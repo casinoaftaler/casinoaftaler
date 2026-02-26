@@ -30,6 +30,7 @@ import {
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
+import ajseImage from "@/assets/ajse-avatar.png";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import omHeroImage from "@/assets/heroes/om-hero.png";
@@ -165,7 +166,7 @@ const OmTeamet = () => {
     <>
       <SEO
         title="Om teamet bag Casinoaftaler.dk | Streamere & Casinoeksperter"
-        description="Mød teamet bag Casinoaftaler.dk. Læs om Jonas og Kevin – casino-streamere og medansvarlige for test, anmeldelser og udvikling."
+        description="Mød teamet bag Casinoaftaler.dk. Læs om Jonas, Kevin og Ajse – casino-streamere og redaktører bag test, anmeldelser og udvikling."
         jsonLd={[organizationJsonLd, websiteJsonLd]}
       />
 
@@ -190,7 +191,7 @@ const OmTeamet = () => {
               Teamet bag Casinoaftaler.dk
             </h1>
             <p className="mb-4 text-xl font-semibold text-white/90 md:text-2xl">
-              To streamere. Ét fælles mål.
+              To streamere og én juridisk redaktør. Ét fælles mål.
               <br />
               At skabe gennemsigtighed i online casino i Danmark.
             </p>
@@ -215,6 +216,15 @@ const OmTeamet = () => {
                   <img src={kevinImage} alt="Kevin – IT Medansvarlig" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Kevin</p>
+              </Link>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-3xl font-bold text-white/30">&</span>
+              </div>
+              <Link to="/forfatter/ajse" className="group">
+                <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
+                  <img src={ajseImage} alt="Ajse – Juridisk redaktør" className="h-full w-full object-cover object-top" loading="eager" />
+                </div>
+                <p className="mt-2 text-sm font-medium text-white/80">Ajse</p>
               </Link>
             </div>
           </div>
@@ -563,7 +573,7 @@ const OmTeamet = () => {
                   <h3 className="font-semibold text-sm">Rollefordeling</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Jonas står for anmeldelser og guides. Kevin dækker teknik, lovgivning og platformudvikling. De fungerer som hinandens faktatjekkere.
+                  Jonas står for anmeldelser og guides. Kevin dækker teknik og platformudvikling. Ajse er juridisk redaktør og dækker compliance, licenser og ansvarligt spil. Alle artikler faktatjekkes af en anden redaktør end forfatteren.
                 </p>
               </CardContent>
             </Card>

@@ -505,6 +505,12 @@ export const Header = memo(function Header() {
                       Kevin
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/forfatter/ajse" className="flex items-center gap-2">
+                      <User className="h-4 w-4" />
+                      Ajse
+                    </Link>
+                  </DropdownMenuItem>
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
               <DropdownMenuSeparator />
@@ -1138,6 +1144,10 @@ export const Header = memo(function Header() {
                     <Link to="/forfatter/kevin" className="ml-12 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                       <User className="h-4 w-4" />
                       Kevin
+                    </Link>
+                    <Link to="/forfatter/ajse" className="ml-12 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                      <User className="h-4 w-4" />
+                      Ajse
                     </Link>
                   </div>
                 )}
