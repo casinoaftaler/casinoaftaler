@@ -55,7 +55,10 @@ const authorData = {
     badge: "Juridisk redaktør & casinoanalytiker",
     role: "Juridisk redaktør hos Casinoaftaler.dk",
     bio: "Ajse er juridisk redaktør hos Casinoaftaler.dk med særligt fokus på dansk spillelovgivning, regulering og ansvarligt spil. Hun kombinerer sit jurastudie med daglig analyse af den danske casinobranche.",
-    socials: [],
+    socials: [
+      { href: "https://www.linkedin.com/in/ajse-serifovski-587b25278/", label: "LinkedIn" },
+      { href: "https://www.instagram.com/serifoaaa/", label: "Instagram" },
+    ],
   },
 } as const;
 
