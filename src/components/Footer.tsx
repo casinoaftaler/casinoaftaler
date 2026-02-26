@@ -352,7 +352,19 @@ export function Footer() {
               <li>
                 <Link to="/forfatter/jonas" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <PenTool className="h-4 w-4" />
-                  Skribenter
+                  Jonas – Forfatter
+                </Link>
+              </li>
+              <li>
+                <Link to="/forfatter/kevin" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <PenTool className="h-4 w-4" />
+                  Kevin – Forfatter
+                </Link>
+              </li>
+              <li>
+                <Link to="/forfatter/ajse" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <PenTool className="h-4 w-4" />
+                  Ajse – Forfatter
                 </Link>
               </li>
               <li>

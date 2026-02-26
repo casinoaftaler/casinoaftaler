@@ -70,6 +70,14 @@ const OmTeamet = () => {
         image: "https://casinoaftaler.dk/kevin-avatar.webp",
         jobTitle: "Casino Streamer & IT-medansvarlig",
       },
+      {
+        "@type": "Person",
+        "@id": "https://casinoaftaler.dk/forfatter/ajse#person",
+        name: "Ajse",
+        url: "https://casinoaftaler.dk/forfatter/ajse",
+        image: "https://casinoaftaler.dk/ajse-avatar.png",
+        jobTitle: "Juridisk redaktør & casinoanalytiker",
+      },
     ],
     sameAs: [
       "https://www.youtube.com/@casinoaftaler",
