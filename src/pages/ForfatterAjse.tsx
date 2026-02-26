@@ -9,7 +9,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { usePublishedNews } from "@/hooks/useCasinoNews";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -17,10 +17,7 @@ import {
   CalendarDays,
   BookOpen,
   Star,
-  Heart,
   Zap,
-  Trophy,
-  Users,
   ShieldCheck,
   Scale,
   BadgeCheck,
@@ -30,6 +27,10 @@ import {
   ChevronRight,
   Newspaper,
   Pen,
+  Gavel,
+  Heart,
+  Users,
+  Gamepad2,
 } from "lucide-react";
 import ajseImage from "@/assets/ajse-avatar.png";
 
@@ -37,12 +38,12 @@ const faqs = [
   {
     question: "Hvad er Ajses rolle på Casinoaftaler.dk?",
     answer:
-      "Ajse er nyhedsredaktør og forfatter på Casinoaftaler.dk. Hun skriver og redigerer alle nyheder om det danske casinomarked.",
+      "Ajse er juridisk redaktør og casinoanalytiker på Casinoaftaler.dk. Hun skriver og redigerer analyser og nyheder om regulering, lovgivning og ansvarligt spil i det danske casinomarked.",
   },
   {
     question: "Hvad skriver Ajse om?",
     answer:
-      "Ajse dækker nyheder om danske online casinoer, nye licenser, bonusændringer, regulering og markedstendenser.",
+      "Ajse dækker dansk spillelovgivning, regulering, compliance, ansvarligt spil, nye licenser og markedstendenser i casinobranchen.",
   },
   {
     question: "Er Ajses artikler faktatjekket?",
@@ -57,11 +58,34 @@ const faqs = [
 ];
 
 const expertiseItems = [
-  { icon: Newspaper, label: "Casino-nyheder" },
-  { icon: FileText, label: "Markedsanalyse" },
-  { icon: Pen, label: "Redaktionelt indhold" },
-  { icon: ShieldCheck, label: "Regulering & licenser" },
-  { icon: Star, label: "Bonusopdateringer" },
+  {
+    icon: Gavel,
+    label: "Casino-lovgivning & regulering",
+    desc: "2+ års daglig fordybelse i dansk spillelov, licenskrav og regulatoriske ændringer.",
+  },
+  {
+    icon: ShieldCheck,
+    label: "Ansvarligt spil",
+    desc: "Fokus på ROFUS, selvudelukkelse, bonusvilkår og spillerbeskyttelse.",
+  },
+  {
+    icon: Gamepad2,
+    label: "Slot-marked & innovation",
+    desc: "Indsigt i udviklingen på den danske slot-scene, herunder mekanikker, volatilitet og bonusstrukturer.",
+  },
+  {
+    icon: Users,
+    label: "Community & brancheindsigt",
+    desc: "Aktiv i casino-community siden 2022 og følger markedet tæt via analyser, streams og branchekilder.",
+  },
+];
+
+const personalFacts = [
+  { label: "Yndlingsslot", value: "Sugar Rush 1000x" },
+  { label: "Største moment", value: "11.300x Super Bonus Buy på stream" },
+  { label: "Yndlingscasinoer", value: "Spilleautomaten, SpilDanskNu & Campobet" },
+  { label: "Aktiv på Twitch", value: "Siden 2022" },
+  { label: "Yndlingssnack", value: "Ben & Jerry's og mørk chokolade" },
 ];
 
 const personSchema = {
@@ -71,8 +95,14 @@ const personSchema = {
   name: "Ajse",
   url: `${SITE_URL}/forfatter/ajse`,
   image: `${SITE_URL}/ajse-avatar.png`,
-  jobTitle: "Nyhedsredaktør",
-  knowsAbout: ["online casino", "casino nyheder", "dansk casinoregulering", "bonusvilkår"],
+  jobTitle: "Juridisk redaktør & casinoanalytiker",
+  knowsAbout: [
+    "dansk spillelovgivning",
+    "online casino regulering",
+    "ansvarligt spil",
+    "casino compliance",
+    "slot-markedet",
+  ],
   nationality: { "@type": "Country", name: "Denmark" },
   worksFor: {
     "@type": "Organization",
@@ -86,9 +116,8 @@ const personSchema = {
   },
   sameAs: [],
   description:
-    "Ajse er nyhedsredaktør på Casinoaftaler.dk og skriver om nyheder, regulering og tendenser i det danske casinomarked.",
+    "Ajse er juridisk redaktør hos Casinoaftaler.dk med særligt fokus på dansk spillelovgivning, regulering og ansvarligt spil.",
 };
-
 
 export default function ForfatterAjse() {
   const { data: siteSettings } = useSiteSettings();
@@ -105,15 +134,18 @@ export default function ForfatterAjse() {
     (articlePage + 1) * ARTICLES_PER_PAGE
   );
   const prevArticlePage = useCallback(() => setArticlePage((p) => Math.max(0, p - 1)), []);
-  const nextArticlePage = useCallback(() => setArticlePage((p) => Math.min(totalArticlePages - 1, p + 1)), [totalArticlePages]);
+  const nextArticlePage = useCallback(
+    () => setArticlePage((p) => Math.min(totalArticlePages - 1, p + 1)),
+    [totalArticlePages]
+  );
 
   const faqJsonLd = buildFaqSchema(faqs);
 
   return (
     <>
       <SEO
-        title="Ajse – Nyhedsredaktør | Casinoaftaler.dk"
-        description="Mød Ajse – nyhedsredaktør hos Casinoaftaler.dk. Hun dækker de seneste nyheder om danske online casinoer, regulering og markedstendenser."
+        title="Ajse – Juridisk redaktør & casinoanalytiker | Casinoaftaler.dk"
+        description="Mød Ajse – juridisk redaktør hos Casinoaftaler.dk med fokus på dansk spillelovgivning, regulering og ansvarligt spil i casinobranchen."
         jsonLd={[faqJsonLd, personSchema]}
       />
 
@@ -136,19 +168,21 @@ export default function ForfatterAjse() {
                 Forfatter
               </Badge>
               <Badge variant="secondary">
-                <Newspaper className="mr-1.5 h-3.5 w-3.5" />
-                Nyhedsredaktør
+                <Gavel className="mr-1.5 h-3.5 w-3.5" />
+                Juridisk redaktør
               </Badge>
               <Badge variant="secondary">
-                <Pen className="mr-1.5 h-3.5 w-3.5" />
-                Redaktionelt indhold
+                <Scale className="mr-1.5 h-3.5 w-3.5" />
+                Casinoanalytiker
               </Badge>
             </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Ajse – Nyhedsredaktør
+              Ajse – Juridisk redaktør & casinoanalytiker
             </h1>
             <p className="text-lg text-white/80">
-              Nyhedsredaktør på Casinoaftaler.dk med fokus på nyheder, regulering og tendenser i det danske casinomarked.
+              Juridisk redaktør hos Casinoaftaler.dk med særligt fokus på dansk spillelovgivning,
+              regulering og ansvarligt spil. Hun kombinerer sit jurastudie med daglig analyse af
+              udviklingen i den danske casinobranche.
             </p>
           </div>
         </div>
@@ -163,7 +197,7 @@ export default function ForfatterAjse() {
             <div className="flex-shrink-0 mx-auto md:mx-0">
               <img
                 src={ajseImage}
-                alt="Ajse – Nyhedsredaktør hos Casinoaftaler.dk"
+                alt="Ajse – Juridisk redaktør hos Casinoaftaler.dk"
                 className="w-64 h-64 rounded-2xl object-cover object-top shadow-lg"
                 loading="eager"
               />
@@ -175,53 +209,88 @@ export default function ForfatterAjse() {
                   <User className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Rolle</p>
-                    <p className="text-sm font-medium">Nyhedsredaktør</p>
+                    <p className="text-sm font-medium">Juridisk redaktør</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <Newspaper className="h-4 w-4 text-primary" />
+                  <Gavel className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Speciale</p>
-                    <p className="text-sm font-medium">Casino-nyheder</p>
+                    <p className="text-sm font-medium">Regulering & lovgivning</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <Pen className="h-4 w-4 text-primary" />
-                  <div>
-                    <p className="text-xs text-muted-foreground">Indhold</p>
-                    <p className="text-sm font-medium">Nyheder & analyser</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <FileText className="h-4 w-4 text-primary" />
+                  <ShieldCheck className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Fokusområde</p>
-                    <p className="text-sm font-medium">Regulering & marked</p>
+                    <p className="text-sm font-medium">Spillelov & compliance</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
                   <CalendarDays className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Aktiv siden</p>
-                    <p className="text-sm font-medium">2026</p>
+                    <p className="text-sm font-medium">2024</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <FileText className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Artikler</p>
-                    <p className="text-sm font-medium">{newsArticles.length}+ nyheder</p>
+                    <p className="text-sm font-medium">20+ analyser</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
+                  <Scale className="h-4 w-4 text-primary" />
+                  <div>
+                    <p className="text-xs text-muted-foreground">Indhold</p>
+                    <p className="text-sm font-medium">Ansvarligt spil</p>
                   </div>
                 </div>
               </div>
               <p className="text-muted-foreground leading-relaxed">
-                Ajse er nyhedsredaktør på Casinoaftaler.dk og ansvarlig for al nyhedsdækning af det danske casinomarked.
-                Hun følger løbende med i nye licenser, bonusændringer, reguleringstiltag og markedstendenser
-                og omsætter det til letforståelige, faktatjekkede artikler for danske spillere.
-                Hendes arbejde sikrer, at læserne altid er opdateret med de seneste udviklinger inden for{" "}
-                <Link to="/casino-nyheder" className="text-primary hover:underline">casino-nyheder</Link>.
+                Ajse er juridisk redaktør hos Casinoaftaler.dk med særligt fokus på dansk
+                spillelovgivning, regulering og ansvarligt spil. Hun kombinerer sit jurastudie med
+                daglig analyse af udviklingen i den danske casinobranche – fra nye licenser til
+                regulatoriske ændringer og trends i slot-markedet. Hendes arbejde sikrer, at
+                læserne altid er opdateret med de seneste udviklinger inden for{" "}
+                <Link to="/casino-nyheder" className="text-primary hover:underline">
+                  casino-nyheder
+                </Link>{" "}
+                og{" "}
+                <Link to="/casino-licenser" className="text-primary hover:underline">
+                  licenser
+                </Link>
+                .
               </p>
             </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Om Ajse – hovedafsnit */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <BookOpen className="h-7 w-7 text-primary" />
+            Om Ajse
+          </h2>
+          <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              Ajse er 24 år og jurastuderende med en stærk faglig interesse for spillelovgivning og
+              regulering af online casinoer i Danmark. Hun mødte{" "}
+              <Link to="/forfatter/jonas" className="text-primary hover:underline">
+                Jonas
+              </Link>{" "}
+              for to år siden og blev hurtigt engageret i arbejdet med at forstå og analysere alt,
+              der bevæger sig inden for casinobranchen – fra juridiske rammer og compliance til
+              innovationen på den danske slot-scene.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Siden da har hun dagligt fordybet sig i lovændringer, markedstendenser og ansvarligt
+              spil. Hendes tilgang er analytisk og struktureret, og hun har et særligt fokus på
+              gennemsigtighed og forbrugerbeskyttelse i branchen.
+            </p>
           </div>
         </section>
 
@@ -233,17 +302,20 @@ export default function ForfatterAjse() {
             <BadgeCheck className="h-7 w-7 text-primary" />
             Ekspertise & Erfaring
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2">
             {expertiseItems.map((item) => (
               <Card
                 key={item.label}
                 className="group transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
               >
-                <CardContent className="flex items-center gap-3 p-5">
+                <CardContent className="flex items-start gap-4 p-5">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
                     <item.icon className="h-5 w-5" />
                   </div>
-                  <p className="text-sm font-medium">{item.label}</p>
+                  <div>
+                    <p className="text-sm font-semibold mb-1">{item.label}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -258,13 +330,19 @@ export default function ForfatterAjse() {
             <ShieldCheck className="h-7 w-7 text-primary" />
             Dokumenteret Erfaring
           </h2>
-          <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6">
+          <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
             <p className="text-muted-foreground leading-relaxed">
-              Ajse har en baggrund inden for journalistik og digital medieproduktion.
-              Som nyhedsredaktør på Casinoaftaler.dk er hun ansvarlig for at researche, skrive og faktatjekke
-              nyheder om det danske casinomarked. Hendes artikler bygger på primære kilder som{" "}
-              <Link to="/spillemyndigheden" className="text-primary hover:underline">Spillemyndigheden</Link>,
-              officielle casinosider og brancheanalyser.
+              Ajse kombinerer sit jurastudie med praktisk brancheindsigt. Hun arbejder struktureret
+              med primære kilder som{" "}
+              <Link to="/spillemyndigheden" className="text-primary hover:underline">
+                Spillemyndigheden
+              </Link>
+              , lovforslag, regulatoriske bekendtgørelser og officielle udmeldinger fra licenserede
+              operatører.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Hendes analyser bygger på dokumentation frem for spekulation og har særligt fokus på,
+              hvordan lovgivning og markedsændringer påvirker danske spillere.
             </p>
           </div>
         </section>
@@ -275,37 +353,68 @@ export default function ForfatterAjse() {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <Zap className="h-7 w-7 text-primary" />
-            Baggrund og Motivation
+            Baggrund & Motivation
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Ajse har altid haft en interesse for digital kommunikation og forbrugerrettigheder.
-            Da hun blev introduceret til Casinoaftaler.dk gennem{" "}
-            <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link>,
-            så hun en mulighed for at kombinere sin passion for skrivning med et behov for uafhængig
-            og pålidelig nyhedsdækning i casinobranchen.
+            Ajse har altid haft interesse for jura, forbrugerrettigheder og digital regulering.
+            Mødet med{" "}
+            <Link to="/forfatter/jonas" className="text-primary hover:underline">
+              Jonas
+            </Link>{" "}
+            blev startskuddet til en dybere involvering i casinobranchen, hvor hun fandt et felt,
+            der kombinerer lovgivning, teknologi og markedstendenser.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Hendes motivation er at sikre, at danske spillere har adgang til opdaterede, upartiske nyheder
-            om det marked, de bevæger sig i. Hun tror på, at gennemsigtighed og kvalitetsjournalistik
-            er afgørende for et sundt spillemiljø.
+            Hendes motivation er at skabe gennemsigtighed i en branche, der ofte kan virke kompleks
+            for almindelige spillere. Hun arbejder for, at danske spillere skal forstå både deres
+            rettigheder og deres ansvar.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            I dag er Ajse en fast del af redaktionen på <strong>Casinoaftaler.dk</strong> og bidrager
-            dagligt med nye artikler, der holder læserne informeret om alt fra{" "}
-            <Link to="/casino-bonus" className="text-primary hover:underline">bonusændringer</Link> til
-            ny lovgivning og{" "}
-            <Link to="/nye-casinoer" className="text-primary hover:underline">nye casinoer</Link> på markedet.
+            I dag er Ajse en fast del af redaktionen på <strong>Casinoaftaler.dk</strong> og
+            bidrager dagligt med analyser, der holder læserne informeret om alt fra{" "}
+            <Link to="/casino-bonus" className="text-primary hover:underline">
+              bonusændringer
+            </Link>{" "}
+            til ny lovgivning og{" "}
+            <Link to="/nye-casinoer" className="text-primary hover:underline">
+              nye casinoer
+            </Link>{" "}
+            på markedet.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* Nyheder skrevet af Ajse – dynamisk fra DB */}
+        {/* Personlig faktaboks */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Heart className="h-7 w-7 text-primary" />
+            Personligt
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {personalFacts.map((fact) => (
+              <div
+                key={fact.label}
+                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"
+              >
+                <Star className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <div>
+                  <p className="text-xs text-muted-foreground">{fact.label}</p>
+                  <p className="text-sm font-medium">{fact.value}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Nyheder skrevet af Ajse */}
         <section className="mb-12">
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-3xl font-bold flex items-center gap-2">
-              <BookOpen className="h-7 w-7 text-primary" />
-              Nyheder skrevet af Ajse
+              <Newspaper className="h-7 w-7 text-primary" />
+              Nyheder af Ajse
             </h2>
             {totalArticlePages > 1 && (
               <div className="flex items-center gap-1">
@@ -343,7 +452,10 @@ export default function ForfatterAjse() {
                 >
                   {article.featured_image && (
                     <img
-                      src={optimizeStorageImage(article.featured_image, 120, 70) || article.featured_image}
+                      src={
+                        optimizeStorageImage(article.featured_image, 120, 70) ||
+                        article.featured_image
+                      }
                       alt={article.title}
                       className="h-20 w-28 shrink-0 rounded-lg object-cover"
                       loading="lazy"
@@ -351,7 +463,9 @@ export default function ForfatterAjse() {
                   )}
                   <div className="flex flex-col min-w-0">
                     <div className="mb-1 flex items-center gap-2">
-                      <Badge variant="secondary" className="text-xs">Nyhed</Badge>
+                      <Badge variant="secondary" className="text-xs">
+                        Nyhed
+                      </Badge>
                       {article.published_at && (
                         <span className="flex items-center gap-1 text-xs text-muted-foreground">
                           <Clock className="h-3 w-3" />
@@ -363,7 +477,9 @@ export default function ForfatterAjse() {
                       {article.title}
                     </h3>
                     {article.excerpt && (
-                      <p className="text-sm text-muted-foreground line-clamp-1">{article.excerpt}</p>
+                      <p className="text-sm text-muted-foreground line-clamp-1">
+                        {article.excerpt}
+                      </p>
                     )}
                   </div>
                 </Link>
@@ -381,8 +497,9 @@ export default function ForfatterAjse() {
             Transparens & metode
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Ajses artikler bygger på en dokumenteret research-metode og klare redaktionelle retningslinjer.
-            Læs mere om vores tilgang til kvalitetssikring, forretningsmodel og redaktionel politik.
+            Ajses artikler bygger på en dokumenteret research-metode og klare redaktionelle
+            retningslinjer. Læs mere om vores tilgang til kvalitetssikring, forretningsmodel og
+            redaktionel politik.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <Link
@@ -392,7 +509,9 @@ export default function ForfatterAjse() {
               <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Sådan tester vi casinoer</h3>
-                <p className="text-xs text-muted-foreground">Vores testmetode og vurderingskriterier</p>
+                <p className="text-xs text-muted-foreground">
+                  Vores testmetode og vurderingskriterier
+                </p>
               </div>
             </Link>
             <Link
@@ -402,7 +521,9 @@ export default function ForfatterAjse() {
               <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Forretningsmodel</h3>
-                <p className="text-xs text-muted-foreground">Sådan finansieres Casinoaftaler.dk</p>
+                <p className="text-xs text-muted-foreground">
+                  Sådan finansieres Casinoaftaler.dk
+                </p>
               </div>
             </Link>
             <Link
@@ -412,7 +533,9 @@ export default function ForfatterAjse() {
               <BookOpen className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
               <div>
                 <h3 className="font-semibold text-sm">Redaktionel politik</h3>
-                <p className="text-xs text-muted-foreground">Vores redaktionelle retningslinjer</p>
+                <p className="text-xs text-muted-foreground">
+                  Vores redaktionelle retningslinjer
+                </p>
               </div>
             </Link>
           </div>
