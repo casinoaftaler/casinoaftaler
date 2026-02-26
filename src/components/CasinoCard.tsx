@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Star, Flame, Check, ChevronDown, Gift, RotateCcw, Clock, Wallet, Calendar, Percent, Coins, Zap, BookOpen } from "lucide-react";
-import { PrimaryCTAButton } from "@/components/PrimaryCTAButton";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { useAuth } from "@/hooks/useAuth";
@@ -341,13 +340,17 @@ function FeaturedCard({
             </div>
 
             {/* CTA Button – affiliate (JS-redirect, non-crawlable) */}
-            <PrimaryCTAButton
-              variant="bonus"
-              size={isTopRow ? "large" : "default"}
-              fullWidth
-              onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
-              className="mt-auto"
-            />
+            <Button 
+              onClick={() => getAffiliateRedirect(casino.slug, user?.id)} 
+              data-sponsored="true"
+              className={`group/btn relative mt-auto w-full rounded-full border-2 border-white bg-white/10 text-white hover:bg-white hover:text-gray-900 font-bold transition-all overflow-hidden ${
+                isTopRow ? "py-5 text-base" : "py-4 text-sm"
+              }`}
+            >
+              <span className="absolute inset-0 -translate-x-full animate-[shine_3s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <Gift className={`relative z-10 ${isTopRow ? "h-5 w-5" : "h-4 w-4"}`} />
+              <span className="relative z-10">HENT BONUS</span>
+            </Button>
 
             {/* Vis Funktioner + Læs anmeldelse row */}
             <div className="flex items-center justify-between mt-3">
@@ -496,11 +499,16 @@ function RegularCard({
 
             {/* Actions */}
             <div className="flex items-center gap-2 ml-auto">
-              <PrimaryCTAButton
-                variant="bonus"
-                size="compact"
-                onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
-              />
+              <Button 
+                onClick={() => getAffiliateRedirect(casino.slug, user?.id)} 
+                data-sponsored="true"
+                size="sm"
+                className="group/btn relative rounded-full border border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground font-semibold text-xs px-4 transition-all overflow-hidden"
+              >
+                <span className="absolute inset-0 -translate-x-full animate-[shine_3s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+                <Gift className="relative z-10 h-4 w-4" />
+                <span className="relative z-10">HENT BONUS</span>
+              </Button>
               <CollapsibleTrigger asChild>
                 <button className="flex items-center gap-1 text-sm text-primary hover:underline">
                   {isOpen ? "Vis mindre" : "Læs mere"}

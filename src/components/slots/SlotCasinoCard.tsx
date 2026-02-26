@@ -1,5 +1,5 @@
-import { Star } from "lucide-react";
-import { PrimaryCTAButton } from "@/components/PrimaryCTAButton";
+import { Star, Gift } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
@@ -86,11 +86,15 @@ export function SlotCasinoCard({ casino, backgroundImage }: SlotCasinoCardProps)
           </div>
 
           {/* CTA Button */}
-          <PrimaryCTAButton
-            variant="bonus"
-            fullWidth
+          <Button
             onClick={handleBonusClick}
-          />
+            data-sponsored="true"
+            className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold py-2 relative overflow-hidden group"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            <Gift className="h-4 w-4 mr-2" />
+            HENT BONUS
+          </Button>
 
           {/* Legal Disclaimer */}
           <CasinoCardDisclaimer />
