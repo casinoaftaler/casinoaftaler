@@ -36,7 +36,7 @@ function AffiliateDisclaimer() {
 const authorConfig = {
   jonas: { name: "Jonas", image: "/jonas-avatar.webp", alt: "Jonas – Fedesvinsejer", link: "/forfatter/jonas" },
   kevin: { name: "Kevin", image: "/kevin-avatar.webp", alt: "Kevin – Casino-streamer", link: "/forfatter/kevin" },
-  ajse: { name: "Ajse", image: "/ajse-avatar.png", alt: "Ajse – Juridisk redaktør", link: "/forfatter/ajse" },
+  ajse: { name: "Ajse", image: "/ajse-avatar.webp", alt: "Ajse – Juridisk redaktør", link: "/forfatter/ajse" },
 } as const;
 
 interface AuthorMetaBarProps {

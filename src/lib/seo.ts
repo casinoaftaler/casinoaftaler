@@ -94,7 +94,7 @@ function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: 
     name: isAjse ? "Ajse" : isKevin ? "Kevin" : "Jonas Theill",
     url: authorUrl,
     image: isAjse
-      ? `${SITE_URL}/ajse-avatar.png`
+      ? `${SITE_URL}/ajse-avatar.webp`
       : isKevin
         ? `${SITE_URL}/kevin-avatar.webp`
         : `${SITE_URL}/jonas-avatar.webp`,

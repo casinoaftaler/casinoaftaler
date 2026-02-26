@@ -34,7 +34,7 @@ import {
   Users,
   Gamepad2,
 } from "lucide-react";
-import ajseImage from "@/assets/ajse-avatar.png";
+import ajseImage from "@/assets/ajse-avatar.webp";
 
 const faqs = [
   {
@@ -89,7 +89,7 @@ const personSchema = {
   "@id": `${SITE_URL}/forfatter/ajse#person`,
   name: "Ajse",
   url: `${SITE_URL}/forfatter/ajse`,
-  image: `${SITE_URL}/ajse-avatar.png`,
+  image: `${SITE_URL}/ajse-avatar.webp`,
   jobTitle: "Juridisk redaktør & casinoanalytiker",
   knowsAbout: [
     "dansk spillelovgivning",
