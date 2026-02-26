@@ -26,8 +26,13 @@ import {
   MessageSquare,
   Trophy,
   Zap,
+  Newspaper,
+  Pen,
+  FileCheck,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { usePublishedNews } from "@/hooks/useCasinoNews";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
@@ -37,7 +42,9 @@ import omHeroImage from "@/assets/heroes/om-hero.png";
 
 const OmTeamet = () => {
   const { data: siteSettings } = useSiteSettings();
+  const { data: latestNewsData } = usePublishedNews(1, 6);
   const heroBackgroundImage = siteSettings?.hero_background;
+  const latestArticles = latestNewsData?.articles ?? [];
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
@@ -45,7 +52,7 @@ const OmTeamet = () => {
     "@id": "https://casinoaftaler.dk/#organization",
     name: "Casinoaftaler.dk",
     url: "https://casinoaftaler.dk",
-    dateModified: "2026-02-20",
+    dateModified: "2026-02-26",
     logo: {
       "@type": "ImageObject",
       url: "https://casinoaftaler.dk/icon-512x512.png",
@@ -58,29 +65,19 @@ const OmTeamet = () => {
     founder: {
       "@type": "Person",
       "@id": "https://casinoaftaler.dk/forfatter/jonas#person",
-      name: "Jonas Theill",
-      url: "https://casinoaftaler.dk/forfatter/jonas",
     },
     employee: [
       {
         "@type": "Person",
+        "@id": "https://casinoaftaler.dk/forfatter/jonas#person",
+      },
+      {
+        "@type": "Person",
         "@id": "https://casinoaftaler.dk/forfatter/kevin#person",
-        name: "Kevin",
-        url: "https://casinoaftaler.dk/forfatter/kevin",
-        image: "https://casinoaftaler.dk/kevin-avatar.webp",
-        jobTitle: "Casino Streamer & IT-medansvarlig",
       },
       {
         "@type": "Person",
         "@id": "https://casinoaftaler.dk/forfatter/ajse#person",
-        name: "Ajse",
-        url: "https://casinoaftaler.dk/forfatter/ajse",
-        image: "https://casinoaftaler.dk/ajse-avatar.webp",
-        jobTitle: "Juridisk redaktør & casinoanalytiker",
-        sameAs: [
-          "https://www.linkedin.com/in/ajse-serifovski-587b25278/",
-          "https://www.instagram.com/serifoaaa/",
-        ],
       },
     ],
     sameAs: [
@@ -525,6 +522,178 @@ const OmTeamet = () => {
 
         <Separator className="my-10" />
 
+        {/* ═══ VORES SKRIBENTER & REDAKTION ═══ */}
+        <section className="mb-16">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2 md:text-4xl">
+            <Pen className="h-7 w-7 text-primary" />
+            Vores skribenter & redaktion
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Casinoaftaler.dk drives af tre faste skribenter med klare roller og ansvarsområder.
+            Alle artikler, anmeldelser og guides produceres internt af redaktionen og faktatjekkes
+            af en anden redaktør end forfatteren inden publicering.
+          </p>
+          <div className="grid gap-4 md:grid-cols-3">
+            <Link
+              to="/forfatter/jonas"
+              className="group rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <img src={jonasImage} alt="Jonas – Grundlægger" className="h-12 w-12 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors" width={48} height={48} loading="lazy" />
+                <div>
+                  <p className="font-semibold group-hover:text-primary transition-colors">Jonas</p>
+                  <p className="text-xs text-muted-foreground">Grundlægger & Indholdsansvarlig</p>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Ansvarlig for strategi, casino-anmeldelser, bonusguides og slots-indhold. Streamer med 4+ års erfaring.
+              </p>
+            </Link>
+            <Link
+              to="/forfatter/kevin"
+              className="group rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <img src={kevinImage} alt="Kevin – IT Medansvarlig" className="h-12 w-12 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors" width={48} height={48} loading="lazy" />
+                <div>
+                  <p className="font-semibold group-hover:text-primary transition-colors">Kevin</p>
+                  <p className="text-xs text-muted-foreground">Casino-streamer & IT Medansvarlig</p>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Dækker betalingsmetoder, spiludviklere og teknisk platformudvikling. Streamer med 3+ års erfaring.
+              </p>
+            </Link>
+            <Link
+              to="/forfatter/ajse"
+              className="group rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <img src={ajseImage} alt="Ajse – Juridisk redaktør" className="h-12 w-12 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors" width={48} height={48} loading="lazy" />
+                <div>
+                  <p className="font-semibold group-hover:text-primary transition-colors">Ajse</p>
+                  <p className="text-xs text-muted-foreground">Juridisk redaktør & Compliance</p>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Ansvarlig for regulering, licenser, ansvarligt spil og compliance-nyheder. Jurastuderende med branchefokus.
+              </p>
+            </Link>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══ SENESTE ARTIKLER FRA REDAKTIONEN ═══ */}
+        {latestArticles.length > 0 && (
+          <section className="mb-16">
+            <h2 className="mb-6 text-3xl font-bold flex items-center gap-2 md:text-4xl">
+              <Newspaper className="h-7 w-7 text-primary" />
+              Seneste artikler fra redaktionen
+            </h2>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {latestArticles.map((article) => (
+                <Link
+                  key={article.id}
+                  to={`/casino-nyheder/${article.slug}`}
+                  className="group rounded-xl border border-border bg-card overflow-hidden transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
+                >
+                  {article.featured_image && (
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src={optimizeStorageImage(article.featured_image, 400, 70) ?? ""}
+                        alt={article.title}
+                        className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                        loading="lazy"
+                        width={400}
+                        height={225}
+                      />
+                    </div>
+                  )}
+                  <div className="p-4">
+                    <p className="text-xs text-muted-foreground mb-1">
+                      {article.published_at
+                        ? new Date(article.published_at).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })
+                        : ""}
+                      {" · "}
+                      <span className="capitalize">{article.author_id === "ajse" ? "Ajse" : article.author_id === "kevin" ? "Kevin" : "Jonas"}</span>
+                    </p>
+                    <h3 className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                      {article.title}
+                    </h3>
+                    {article.excerpt && (
+                      <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2">{article.excerpt}</p>
+                    )}
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-6 text-center">
+              <Link to="/casino-nyheder">
+                <Button variant="outline" size="sm">
+                  <Newspaper className="mr-1.5 h-4 w-4" />
+                  Se alle nyheder
+                  <ArrowRight className="ml-1.5 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </section>
+        )}
+
+        <Separator className="my-10" />
+
+        {/* ═══ KVALITETSSIKRING & FAKTATJEK ═══ */}
+        <section className="mb-16">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2 md:text-4xl">
+            <FileCheck className="h-7 w-7 text-primary" />
+            Sådan sikrer vi kvalitet og faktatjek
+          </h2>
+          <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              Alt indhold på Casinoaftaler.dk gennemgår et <strong>dual fact-check system</strong>:
+              Ingen artikel publiceres uden at en anden redaktør end forfatteren har verificeret
+              fakta, bonusvilkår og juridiske oplysninger.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Vi opretholder en <strong>klar adskillelse mellem kommercielt og redaktionelt indhold</strong>.
+              Affiliate-partnerskaber påvirker aldrig vores vurderinger eller anbefalinger – dette
+              er dokumenteret i vores forretningsmodel og redaktionelle politik.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Alt reguleringsindhold – herunder licenser, lovgivning og ansvarligt spil –
+              gennemgår <strong>juridisk review</strong> af Ajse, vores juridiske redaktør, inden publicering.
+            </p>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link to="/redaktionel-politik">
+              <Button variant="outline" size="sm">
+                <BookOpen className="mr-1.5 h-4 w-4" />
+                Redaktionel politik
+              </Button>
+            </Link>
+            <Link to="/forretningsmodel">
+              <Button variant="outline" size="sm">
+                <Scale className="mr-1.5 h-4 w-4" />
+                Forretningsmodel
+              </Button>
+            </Link>
+            <Link to="/saadan-tester-vi-casinoer">
+              <Button variant="outline" size="sm">
+                <ShieldCheck className="mr-1.5 h-4 w-4" />
+                Sådan tester vi casinoer
+              </Button>
+            </Link>
+            <Link to="/ansvarligt-spil">
+              <Button variant="outline" size="sm">
+                <Shield className="mr-1.5 h-4 w-4" />
+                Ansvarligt Spil
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* ═══ SÅDAN ARBEJDER TEAMET ═══ */}
         <section className="mb-16">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2 md:text-4xl">
@@ -753,6 +922,12 @@ const OmTeamet = () => {
             <Link to="/forfatter/kevin">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white/20 font-semibold">
                 Mød Kevin
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/forfatter/ajse">
+              <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white/20 font-semibold">
+                Mød Ajse
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
