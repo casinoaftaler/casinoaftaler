@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { PrimaryCTAButton } from "@/components/PrimaryCTAButton";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -171,14 +171,12 @@ export function StickyCTA({
 
         {/* Right: CTA */}
         <div className="flex flex-col items-center gap-1.5 shrink-0">
-          <Button
+          <PrimaryCTAButton
+            variant="bonus"
+            size="large"
             onClick={handleClick}
-            size="lg"
-            className="font-bold text-base min-w-[200px] h-12 shadow-lg"
-            data-sponsored="true"
-          >
-            HENT BONUS NU
-          </Button>
+            className="min-w-[200px]"
+          />
           <span className="text-[10px] text-muted-foreground">18+ | Spil ansvarligt</span>
         </div>
       </div>
@@ -208,13 +206,12 @@ export function StickyCTA({
         </div>
 
         {/* Right: CTA */}
-        <Button
+        <PrimaryCTAButton
+          variant="bonus"
+          size="compact"
           onClick={handleClick}
-          className="font-bold text-sm px-4 h-10 flex-shrink-0 max-w-[50%] shadow-md ml-auto"
-          data-sponsored="true"
-        >
-          HENT BONUS NU
-        </Button>
+          className="flex-shrink-0 max-w-[50%] ml-auto"
+        />
       </div>
     </div>
   );
