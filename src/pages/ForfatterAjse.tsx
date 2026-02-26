@@ -19,7 +19,7 @@ import {
   User,
   CalendarDays,
   BookOpen,
-  Star,
+  
   Zap,
   ShieldCheck,
   Scale,
@@ -31,7 +31,6 @@ import {
   Newspaper,
   Pen,
   Gavel,
-  Heart,
   Users,
   Gamepad2,
 } from "lucide-react";
@@ -83,12 +82,6 @@ const expertiseItems = [
   },
 ];
 
-const personalFacts = [
-  { label: "Yndlingsslot", value: "Sugar Rush 1000" },
-  { label: "Største øjeblik", value: "Under en live stream foreslog Ajse et Super Bonus Buy på Sugar Rush 1000. Det endte i 11.300x – et gyldent community-øjeblik." },
-  { label: "Aktiv på Twitch", value: "Siden 2022" },
-  { label: "Yndlingssnack", value: "Ben & Jerry's og mørk chokolade" },
-];
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -427,30 +420,6 @@ export default function ForfatterAjse() {
 
         <Separator className="my-10" />
 
-        {/* Personlig faktaboks */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Heart className="h-7 w-7 text-primary" />
-            Personligt
-          </h2>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {personalFacts.map((fact) => (
-              <div
-                key={fact.label}
-                className="flex items-start gap-3 rounded-xl border border-border bg-card p-5 min-h-[5rem] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
-              >
-                <Star className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                <div>
-                  <p className="text-xs text-muted-foreground">{fact.label}</p>
-                  <p className="text-sm font-medium leading-relaxed">{fact.value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-10" />
-
         {/* Ajse Top 3 Casinoer */}
         <section className="mb-12">
           <h3 className="text-2xl font-bold mb-6 text-center">Ajses Top 3 Casinoer</h3>
@@ -514,7 +483,7 @@ export default function ForfatterAjse() {
           <div className="mb-6 flex items-center justify-between">
             <h2 className="text-3xl font-bold flex items-center gap-2">
               <Newspaper className="h-7 w-7 text-primary" />
-              Nyheder af Ajse
+              Nyheder og artikler af Ajse
             </h2>
             {totalArticlePages > 1 && (
               <div className="flex items-center gap-1">
@@ -540,6 +509,36 @@ export default function ForfatterAjse() {
               </div>
             )}
           </div>
+
+          {/* Statiske sider af Ajse */}
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-3 text-muted-foreground">Sider & guides</h3>
+            <div className="grid gap-3 md:grid-cols-2">
+              {[
+                { to: "/spillemyndigheden", label: "Spillemyndigheden", desc: "Danmarks regulering af online spil" },
+                { to: "/casino-licenser", label: "Casino Licenser", desc: "Guide til danske casinolicenser" },
+                { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi casinoer", desc: "Vores testmetode og kriterier" },
+                { to: "/redaktionel-politik", label: "Redaktionel Politik", desc: "Casinoaftaler.dk's retningslinjer" },
+                { to: "/forretningsmodel", label: "Forretningsmodel", desc: "Sådan finansieres Casinoaftaler.dk" },
+                { to: "/casino-nyheder", label: "Casino Nyheder", desc: "Seneste nyheder fra branchen" },
+              ].map((page) => (
+                <Link
+                  key={page.to}
+                  to={page.to}
+                  className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
+                >
+                  <Pen className="h-5 w-5 shrink-0 text-primary" />
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-semibold group-hover:text-primary transition-colors">{page.label}</h4>
+                    <p className="text-xs text-muted-foreground">{page.desc}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Nyheder */}
+          <h3 className="text-lg font-semibold mb-3 text-muted-foreground">Nyheder</h3>
           {newsArticles.length === 0 ? (
             <p className="text-muted-foreground">Ingen publicerede nyheder endnu.</p>
           ) : (
