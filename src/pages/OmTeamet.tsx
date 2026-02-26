@@ -151,7 +151,7 @@ const OmTeamet = () => {
     { icon: Clock, value: "7+", label: "Års samlet streaming-erfaring" },
     { icon: Trophy, value: "30+", label: "Testede danske casinoer" },
     { icon: Tv, value: "7000+", label: "Timers live streaming" },
-    { icon: BookOpen, value: "50+", label: "Skrevne artikler i alt" },
+    { icon: BookOpen, value: "160+", label: "Publicerede artikler & guides" },
     { icon: Users, value: "Aktivt", label: "Engageret community" },
   ];
 
@@ -453,6 +453,37 @@ const OmTeamet = () => {
               </CardContent>
             </Card>
           </div>
+
+          {/* Ajse card */}
+          <Card className="border-border bg-card overflow-hidden mt-6">
+            <CardHeader className="pb-4">
+              <div className="flex items-center gap-4">
+                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-2xl border-2 border-primary/30">
+                  <img src={ajseImage} alt="Ajse – Juridisk redaktør" className="h-full w-full object-cover object-top" loading="eager" />
+                </div>
+                <div>
+                  <CardTitle className="text-xl">Ajse</CardTitle>
+                  <div className="mt-1 flex flex-wrap gap-1.5">
+                    <Badge variant="secondary" className="text-xs">Juridisk redaktør</Badge>
+                    <Badge variant="secondary" className="text-xs">Compliance</Badge>
+                    <Badge variant="secondary" className="text-xs">Nyheder</Badge>
+                  </div>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Juridisk redaktør med ansvar for compliance, licensovervågning og casino-nyheder.
+                Ajse sikrer, at al information om licenser og lovgivning er korrekt og opdateret.
+              </p>
+              <Link to="/forfatter/ajse">
+                <Button variant="outline" size="sm" className="w-full">
+                  Se Ajses fulde profil
+                  <ArrowRight className="ml-1.5 h-4 w-4" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
         </section>
 
         <Separator className="my-10" />
