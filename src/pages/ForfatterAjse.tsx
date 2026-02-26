@@ -512,14 +512,17 @@ export default function ForfatterAjse() {
 
           {/* Statiske sider af Ajse */}
           <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-3 text-muted-foreground">Sider & guides</h3>
-            <div className="grid gap-3 md:grid-cols-2">
+            <h3 className="text-lg font-semibold mb-3 text-muted-foreground">Sider</h3>
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {[
-                { to: "/spillemyndigheden", label: "Spillemyndigheden", desc: "Danmarks regulering af online spil" },
-                { to: "/casino-licenser", label: "Casino Licenser", desc: "Guide til danske casinolicenser" },
+                { to: "/om", label: "Om Casinoaftaler.dk", desc: "Om teamet bag sitet" },
                 { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi casinoer", desc: "Vores testmetode og kriterier" },
-                { to: "/redaktionel-politik", label: "Redaktionel Politik", desc: "Casinoaftaler.dk's retningslinjer" },
                 { to: "/forretningsmodel", label: "Forretningsmodel", desc: "Sådan finansieres Casinoaftaler.dk" },
+                { to: "/redaktionel-politik", label: "Redaktionel Politik", desc: "Casinoaftaler.dk's retningslinjer" },
+                { to: "/ansvarligt-spil", label: "Ansvarligt Spil", desc: "Ressourcer til ansvarligt spil" },
+                { to: "/casino-licenser", label: "Casino Licenser", desc: "Guide til danske casinolicenser" },
+                { to: "/spillemyndigheden", label: "Spillemyndigheden", desc: "Danmarks regulering af online spil" },
+                { to: "/kontakt", label: "Kontakt", desc: "Kontakt Casinoaftaler.dk" },
                 { to: "/casino-nyheder", label: "Casino Nyheder", desc: "Seneste nyheder fra branchen" },
               ].map((page) => (
                 <Link
