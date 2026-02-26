@@ -87,18 +87,27 @@ const JONAS_PERSON_ID = `${SITE_URL}/forfatter/jonas#person`;
 
 function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: string[]) {
   const isKevin = authorName === "Kevin";
+  const isAjse = authorName === "Ajse";
   return {
     "@type": "Person",
     "@id": `${authorUrl}#person`,
-    name: isKevin ? "Kevin" : "Jonas Theill",
+    name: isAjse ? "Ajse" : isKevin ? "Kevin" : "Jonas Theill",
     url: authorUrl,
-    image: isKevin
-      ? `${SITE_URL}/kevin-avatar.webp`
-      : `${SITE_URL}/jonas-avatar.webp`,
-    jobTitle: isKevin ? "Casino Streamer & IT-medansvarlig" : "Casino Bonus Ekspert",
-    knowsAbout: isKevin
-      ? ["online casino", "casino streaming", "betalingsmetoder", "spiludviklere", "IT-sikkerhed"]
-      : ["online casino", "iGaming", "casino bonus", "spillemaskiner", "RTP", "ansvarligt spil"],
+    image: isAjse
+      ? `${SITE_URL}/ajse-avatar.png`
+      : isKevin
+        ? `${SITE_URL}/kevin-avatar.webp`
+        : `${SITE_URL}/jonas-avatar.webp`,
+    jobTitle: isAjse
+      ? "Juridisk redaktør & casinoanalytiker"
+      : isKevin
+        ? "Casino Streamer & IT-medansvarlig"
+        : "Casino Bonus Ekspert",
+    knowsAbout: isAjse
+      ? ["dansk spillelovgivning", "online casino regulering", "ansvarligt spil", "casino compliance", "slot-markedet", "Gambling Law", "Casino Regulation", "Responsible Gambling"]
+      : isKevin
+        ? ["online casino", "casino streaming", "betalingsmetoder", "spiludviklere", "IT-sikkerhed"]
+        : ["online casino", "iGaming", "casino bonus", "spillemaskiner", "RTP", "ansvarligt spil"],
     nationality: {
       "@type": "Country",
       name: "Denmark",
