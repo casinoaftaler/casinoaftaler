@@ -53,7 +53,7 @@ const MadameDestinyMegawaysGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="15 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Madame Destiny Megaways spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Madame Destiny Megaways spillemaskine" loading="eager" />
         </div>
 
         <section className="mb-10">

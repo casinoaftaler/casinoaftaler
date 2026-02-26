@@ -259,7 +259,7 @@ const BonusBuysGuide = () => {
         <AuthorMetaBar author="jonas" date="19-02-2026" readTime="22 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Bonus buy guide til spillemaskiner" loading="eager" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Bonus buy guide til spillemaskiner" loading="eager" />
         </div>
 
         {/* H2: Hvad er Bonus Buys? */}

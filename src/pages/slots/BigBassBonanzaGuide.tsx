@@ -88,7 +88,7 @@ const BigBassBonanzaGuide = () => {
       { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Indstil din indsats fra 0,10 til 250 kr. pr. spin." },
       { "@type": "HowToStep", position: 2, name: "Spin hjulene", text: "Tryk spin og observer fisker- og pengesymboler på hjulene." },
       { "@type": "HowToStep", position: 3, name: "Aktivér Money Collect", text: "Land 3+ scatters for free spins, hvor fiskeren indsamler pengeværdier fra fiskesymboler." },
-      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Overfør dine gevinster til din bankkonto eller digitale tegnebog." },
     ],
   };
 
@@ -114,7 +114,7 @@ const BigBassBonanzaGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="18-02-2026" readTime="23 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Big Bass Bonanza spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Big Bass Bonanza spillemaskine" loading="eager" />
         </div>
 
         {/* ── ÅBNINGSVINKEL: UDVIKLERKONTEKST ── */}

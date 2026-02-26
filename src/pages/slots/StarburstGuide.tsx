@@ -75,7 +75,7 @@ const StarburstGuide = () => {
       { name: "Vælg indsats", text: "Juster din indsats fra 0,10 til 1.000 kr. pr. spin via bet-menuen." },
       { name: "Spin hjulene", text: "Tryk spin og observer det 5×3 grid med both-ways gevinstlinjer." },
       { name: "Udløs Wild Respins", text: "Land Starburst Wild på hjul 2, 3 eller 4 for expanding wilds og op til 3 respins." },
-      { name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+      { name: "Udbetal gevinst", text: "Anmod om udbetaling via casinoets kasse – de fleste metoder behandles inden for 24 timer." },
     ],
   });
 
@@ -101,7 +101,7 @@ const StarburstGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="18-02-2026" readTime="22 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Starburst spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Starburst spillemaskine" loading="eager" />
         </div>
 
         {/* ── ÅBNINGSVINKEL: "ER SPILLET OVERVURDERET?" ── */}

@@ -88,7 +88,7 @@ const GonzosQuestGuide = () => {
       { name: "Spin hjulene", text: "Tryk spin og observer Avalanche-mekanikken, hvor vindende symboler eksploderer." },
       { name: "Opbyg multiplikatorer", text: "Consecutive Avalanche-gevinster øger multiplikatoren: 1x → 2x → 3x → 5x." },
       { name: "Aktivér Free Falls", text: "Land 3+ Free Fall-scatters for 10 free spins med tredobbelte multiplikatorer (op til 15x)." },
-      { name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+      { name: "Udbetal gevinst", text: "Anmod om udbetaling og modtag dine gevinster via bankoverførsel eller e-wallet." },
     ],
   });
 
@@ -114,7 +114,7 @@ const GonzosQuestGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="18-02-2026" readTime="22 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Gonzo's Quest spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Gonzo's Quest spillemaskine" loading="eager" />
         </div>
 
         {/* ── ÅBNINGSVINKEL: SAMMENLIGNING MED MODERNE SLOTS ── */}

@@ -80,7 +80,7 @@ const SweetBonanzaGuide = () => {
       { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Juster din indsats fra 0,20 til 125 kr. pr. spin via +/- knapperne." },
       { "@type": "HowToStep", position: 2, name: "Spin hjulene", text: "Tryk på spin-knappen eller aktiver autoplay for automatisk spinning." },
       { "@type": "HowToStep", position: 3, name: "Aktivér bonusfunktion", text: "Land 4+ scatter-symboler for at trigge free spins med multiplikatorer, eller køb bonus for 100× indsatsen." },
-      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder når du er klar." },
+      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Gå til kassen og udbetal din saldo via din foretrukne metode." },
     ],
   };
 
@@ -106,7 +106,7 @@ const SweetBonanzaGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="25 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Sweet Bonanza spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Sweet Bonanza spillemaskine" loading="eager" />
         </div>
 
         {/* ── ÅBNINGSVINKEL: MATEMATIK FØRST ── */}

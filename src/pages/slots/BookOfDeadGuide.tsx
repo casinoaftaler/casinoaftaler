@@ -79,7 +79,7 @@ const BookOfDeadGuide = () => {
       { name: "Vælg indsats og linjer", text: "Indstil din indsats og sørg for at alle 10 gevinstlinjer er aktive for optimal RTP." },
       { name: "Spin hjulene", text: "Tryk spin og observer symbolkombinationerne på det 5×3 grid." },
       { name: "Aktivér Free Spins", text: "Land 3+ Book-scatters for at trigge 10 free spins med expanding symbols." },
-      { name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder når du er klar." },
+      { name: "Udbetal gevinst", text: "Gå til kassen og overfør din saldo til din foretrukne betalingsmetode." },
     ],
   });
 
@@ -105,7 +105,7 @@ const BookOfDeadGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="24 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Book of Dead spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Book of Dead spillemaskine" loading="eager" />
         </div>
 
         {/* ── ÅBNINGSVINKEL: RISIKOPROFIL FØRST ── */}

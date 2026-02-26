@@ -107,7 +107,7 @@ const WolfGoldGuide = () => {
       { name: "Spin hjulene", text: "Tryk spin og observer moon-symboler og scatters på det 5×3 grid." },
       { name: "Aktivér Money Respin", text: "Land 6+ moon-symboler for at starte Money Respin med jackpot-værdier." },
       { name: "Udløs Free Spins", text: "Land 3 scatters for 5 free spins med Mega Symbols på hjul 2-4." },
-      { name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+      { name: "Udbetal gevinst", text: "Gå til casinoets udbetalingssektion og vælg din ønskede overførselsmetode." },
     ],
   });
 
@@ -133,7 +133,7 @@ const WolfGoldGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="18 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Wolf Gold spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Wolf Gold spillemaskine" loading="eager" />
         </div>
 
         {/* ── Segment First: Hvem er spillet til? ── */}

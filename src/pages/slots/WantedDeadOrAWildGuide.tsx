@@ -44,7 +44,7 @@ const WantedDeadOrAWildGuide = () => {
       { "@type": "HowToStep", position: 1, name: "Vælg indsats", text: "Indstil din indsats fra 0,20 til 100 kr. pr. spin." },
       { "@type": "HowToStep", position: 2, name: "Spin hjulene", text: "Tryk spin og vent på Duel-symboler eller scatter-triggere." },
       { "@type": "HowToStep", position: 3, name: "Aktivér Duel at Dawn", text: "Land 3+ scatters for at starte Duel at Dawn med sticky wilds og multiplicerende dueller." },
-      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Hæv dine gevinster via casinoets betalingsmetoder." },
+      { "@type": "HowToStep", position: 4, name: "Udbetal gevinst", text: "Hæv din gevinst via casinoets kasse med Trustly, kort eller bankoverførsel." },
     ],
   };
 
@@ -65,7 +65,7 @@ const WantedDeadOrAWildGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-02-18" readTime="17 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} className="w-full h-auto object-cover max-h-[400px]" alt="Wanted Dead or a Wild spillemaskine" />
+          <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Wanted Dead or a Wild spillemaskine" loading="eager" />
         </div>
 
         <section className="mb-12">
