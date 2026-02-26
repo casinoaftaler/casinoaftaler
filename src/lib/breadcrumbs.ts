@@ -220,6 +220,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/bonus-uden-omsaetningskrav": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/no-sticky-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/sticky-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
+  "/free-spins-i-dag": [{ name: "Casino Bonus", path: "/casino-bonus" }],
 
   // Info-klynge – bundet til /om hubben
   "/saadan-tester-vi-casinoer": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
