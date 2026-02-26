@@ -32,6 +32,7 @@ export const routeLabels: Record<string, string> = {
   // Casino Bonus
   "/casino-bonus": "Casino Bonus",
   "/free-spins": "Free Spins",
+  "/free-spins-i-dag": "Free Spins i Dag",
   "/velkomstbonus": "Velkomstbonus",
   "/omsaetningskrav": "Omsætningskrav",
   "/indskudsbonus": "Indskudsbonus",
