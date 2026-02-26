@@ -85,9 +85,6 @@ export const KEVIN_SAME_AS = [
 export const AJSE_SAME_AS = [
   "https://www.linkedin.com/in/ajse-serifovski-587b25278/",
   "https://www.instagram.com/serifoaaa/",
-  "https://x.com/ajseserifovski",
-  "https://www.facebook.com/ajse.serifovski",
-  "https://www.tiktok.com/@serifoaaa",
 ];
 
 /** Canonical Person entity for Jonas Theill – reused across all article pages. */
