@@ -82,8 +82,8 @@ const expertiseItems = [
 
 const personalFacts = [
   { label: "Yndlingsslot", value: "Sugar Rush 1000x" },
-  { label: "Største moment", value: "11.300x Super Bonus Buy på stream" },
-  { label: "Yndlingscasinoer", value: "Spilleautomaten, SpilDanskNu & Campobet" },
+  { label: "Største øjeblik", value: "Under en live stream foreslog Ajse et Super Bonus Buy på Sugar Rush 1000x, som endte i 11.300x – et gyldent community-øjeblik." },
+  { label: "Top 3 casinoer", value: "Spilleautomaten, SpilDanskNu & Campobet" },
   { label: "Aktiv på Twitch", value: "Siden 2022" },
   { label: "Yndlingssnack", value: "Ben & Jerry's og mørk chokolade" },
 ];
@@ -102,6 +102,14 @@ const personSchema = {
     "ansvarligt spil",
     "casino compliance",
     "slot-markedet",
+    "Gambling Law",
+    "Casino Regulation",
+    "Responsible Gambling",
+  ],
+  areaOfExpertise: [
+    "Gambling Law",
+    "Casino Regulation",
+    "Responsible Gambling",
   ],
   nationality: { "@type": "Country", name: "Denmark" },
   worksFor: {
