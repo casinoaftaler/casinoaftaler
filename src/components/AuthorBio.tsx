@@ -50,11 +50,11 @@ const authorData = {
   ajse: {
     name: "Ajse",
     image: ajseImage,
-    alt: "Ajse – Nyhedsredaktør hos Casinoaftaler.dk",
+    alt: "Ajse – Juridisk redaktør hos Casinoaftaler.dk",
     link: "/forfatter/ajse",
-    badge: "Nyhedsredaktør",
-    role: "Nyhedsredaktør hos Casinoaftaler.dk",
-    bio: "Ajse er nyhedsredaktør på Casinoaftaler.dk og skriver om nyheder, regulering og tendenser i det danske casinomarked. Hun sikrer, at læserne altid er opdateret med de seneste udviklinger.",
+    badge: "Juridisk redaktør & casinoanalytiker",
+    role: "Juridisk redaktør hos Casinoaftaler.dk",
+    bio: "Ajse er juridisk redaktør hos Casinoaftaler.dk med særligt fokus på dansk spillelovgivning, regulering og ansvarligt spil. Hun kombinerer sit jurastudie med daglig analyse af den danske casinobranche.",
     socials: [],
   },
 } as const;
