@@ -221,8 +221,8 @@ function FeaturedCard({
   // Extract bonus percentage from bonusTitle or use default
   const bonusPercentage = casino.bonusTitle?.match(/(\d+)%/)?.[1] || "100";
 
-  // Unified site-themed gradient for all featured cards (dark version)
-  const gradientClass = "bg-gradient-to-br from-[hsl(260,70%,15%)] via-[hsl(210,90%,20%)] to-[hsl(260,70%,15%)]";
+  // Uniform dark card background – minimal gradient noise
+  const gradientClass = "bg-[hsl(250,30%,14%)]";
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>

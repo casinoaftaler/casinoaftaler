@@ -21,7 +21,7 @@ const VARIANT_LABELS: Record<CTAVariant, string> = {
 };
 
 /**
- * Global standardised CTA button with premium gradient.
+ * Global standardised CTA button – solid brand-blue, fintech feel.
  * Usage: <PrimaryCTAButton variant="bonus" onClick={...} />
  */
 export const PrimaryCTAButton = forwardRef<HTMLButtonElement, PrimaryCTAButtonProps>(
@@ -34,20 +34,20 @@ export const PrimaryCTAButton = forwardRef<HTMLButtonElement, PrimaryCTAButtonPr
         className={cn(
           // Base
           "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl font-semibold text-white transition-all duration-200",
-          // Gradient – uses primary/accent design tokens
-          "bg-gradient-to-r from-[hsl(260,70%,50%)] via-[hsl(240,65%,48%)] to-[hsl(210,90%,45%)]",
-          // Shadow
-          "shadow-[0_4px_14px_hsl(260_70%_50%/0.35)]",
+          // Solid brand blue
+          "bg-[hsl(210,90%,45%)] hover:bg-[hsl(210,90%,38%)]",
+          // Shadow – clear layer separation
+          "shadow-[0_4px_14px_hsl(210_90%_45%/0.4)]",
           // Hover (desktop)
-          "hover:-translate-y-[1px] hover:shadow-[0_6px_20px_hsl(260_70%_50%/0.45)] hover:brightness-110",
+          "hover:-translate-y-[2px] hover:shadow-[0_8px_24px_hsl(210_90%_45%/0.5)]",
           // Active / press
-          "active:translate-y-0 active:shadow-[0_2px_8px_hsl(260_70%_50%/0.3)] active:brightness-95",
+          "active:translate-y-0 active:shadow-[0_2px_8px_hsl(210_90%_45%/0.3)]",
           // Focus
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           // Sizes
-          size === "compact" && "px-4 py-2 text-xs",
-          size === "default" && "px-6 py-3 text-sm",
-          size === "large" && "px-8 py-4 text-base",
+          size === "compact" && "px-5 py-2.5 text-xs",
+          size === "default" && "px-7 py-3.5 text-sm",
+          size === "large" && "px-9 py-[18px] text-base",
           // Width
           fullWidth && "w-full",
           className,
