@@ -58,7 +58,7 @@ const StakeCasinoAnmeldelse = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
-        <CasinoReviewHero slug="stake" casinoName="Stake Casino" />
+        <CasinoReviewHero slug="stake-casino" casinoName="Stake Casino" />
 
         {/* License Confirmation Card */}
         <section className="mb-12">
