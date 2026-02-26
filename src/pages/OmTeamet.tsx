@@ -175,8 +175,8 @@ const OmTeamet = () => {
 
   const disqualificationCriteria = [
     { text: "Manglende dansk licens fra Spillemyndigheden", link: "/casino-licenser", linkText: "dansk licens" },
-    { text: "Uklare eller vildledende bonusvilkår", link: "/bonusser", linkText: "bonusvilkår" },
-    { text: "Langsom udbetalingstid uden dokumenteret grund", link: "/udbetalingstid", linkText: "udbetalingstid" },
+    { text: "Uklare eller vildledende bonusvilkår", link: "/casino-bonus", linkText: "bonusvilkår" },
+    { text: "Langsom udbetalingstid uden dokumenteret grund", link: "/casinoer/hurtig-udbetaling", linkText: "udbetalingstid" },
     { text: "Skjulte gebyrer ved ind- eller udbetaling", link: "/betalingsmetoder", linkText: "gebyrer" },
     { text: "Aggressiv eller uansvarlig markedsføring", link: "/ansvarligt-spil", linkText: "uansvarlig markedsføring" },
     { text: "Manglende tilslutning til ROFUS", link: null, linkText: null },
@@ -456,7 +456,7 @@ const OmTeamet = () => {
                 </div>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Ansvarlig for strategi, <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino-anmeldelser</Link>, <Link to="/bonusser" className="text-primary underline hover:text-primary/80">bonusguides</Link> og <Link to="/slots" className="text-primary underline hover:text-primary/80">slots</Link>-indhold. Streamer med 4+ års erfaring.
+                Ansvarlig for strategi, <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino-anmeldelser</Link>, <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">bonusguides</Link> og <Link to="/community/slots" className="text-primary underline hover:text-primary/80">slots</Link>-indhold. Streamer med 4+ års erfaring.
               </p>
               <Link to="/forfatter/jonas" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
                 Læs om Jonas – Grundlægger <ArrowRight className="ml-1 h-3.5 w-3.5" />
@@ -474,7 +474,7 @@ const OmTeamet = () => {
                 </div>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Dækker <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>, <Link to="/udbetalingstid" className="text-primary underline hover:text-primary/80">udbetalingshastighed</Link>, spiludviklere og teknisk platformudvikling. Streamer med 3+ års erfaring.
+                Dækker <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>, <Link to="/casinoer/hurtig-udbetaling" className="text-primary underline hover:text-primary/80">udbetalingshastighed</Link>, spiludviklere og teknisk platformudvikling. Streamer med 3+ års erfaring.
               </p>
               <Link to="/forfatter/kevin" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
                 Se Kevin – Casino & IT <ArrowRight className="ml-1 h-3.5 w-3.5" />
