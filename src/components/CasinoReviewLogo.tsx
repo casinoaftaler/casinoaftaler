@@ -24,7 +24,7 @@ const PATH_TO_SLUG: Record<string, string> = {
   "mr-green": "mr-green",
   "mr-vegas": "mr-vegas",
   "nordicbet": "nordicbet",
-  "onecasino": "onecasino",
+  "one-casino": "onecasino",
   "pokerstars": "pokerstars",
   "royal-casino": "royal-casino",
   "spildansknu": "spildansknu",

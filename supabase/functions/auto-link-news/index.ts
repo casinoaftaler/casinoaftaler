@@ -24,7 +24,7 @@ const CASINO_VARIANTS: Record<string, string[]> = {
   unibet: ["Unibet"],
   "royal-casino": ["Royal Casino"],
   pokerstars: ["PokerStars"],
-  "888casino": ["888casino", "888 Casino"],
+  "888-casino": ["888casino", "888 Casino"],
   videoslots: ["Videoslots"],
   comeon: ["ComeOn", "Come On"],
   betano: ["Betano"],
@@ -38,7 +38,7 @@ const CASINO_VARIANTS: Record<string, string[]> = {
   "kapow-casino": ["Kapow Casino"],
   marathonbet: ["MarathonBet", "Marathon Bet"],
   expekt: ["Expekt"],
-  onecasino: ["OneCasino", "One Casino"],
+  "one-casino": ["OneCasino", "One Casino"],
   casinostuen: ["Casinostuen"],
 };
 

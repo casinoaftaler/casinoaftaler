@@ -96,11 +96,11 @@ const RELATED_REVIEWS: Record<string, { slug: string; anchor: string }[]> = {
   pokerstars: [
     { slug: "bet365", anchor: "bet365 – bred sportssektion" },
     { slug: "unibet", anchor: "Unibet – poker og casino" },
-    { slug: "888casino", anchor: "888 Casino – også poker" },
+    { slug: "888-casino", anchor: "888 Casino – også poker" },
     { slug: "betano", anchor: "Betano anmeldelse" },
     { slug: "mr-green", anchor: "Mr Green – bredt udvalg" },
   ],
-  "888casino": [
+  "888-casino": [
     { slug: "pokerstars", anchor: "PokerStars – poker-fokus" },
     { slug: "unibet", anchor: "Unibet – etableret platform" },
     { slug: "mr-green", anchor: "Mr Green anmeldelse" },
@@ -198,7 +198,7 @@ const RELATED_REVIEWS: Record<string, { slug: string; anchor: string }[]> = {
     { slug: "nordicbet", anchor: "NordicBet – nordisk betting" },
     { slug: "betano", anchor: "Betano – moderne platform" },
   ],
-  onecasino: [
+  "one-casino": [
     { slug: "casinostuen", anchor: "Casinostuen – lignende profil" },
     { slug: "kapow-casino", anchor: "Kapow Casino anmeldelse" },
     { slug: "getlucky", anchor: "GetLucky – bedre udvalg" },
@@ -207,7 +207,7 @@ const RELATED_REVIEWS: Record<string, { slug: string; anchor: string }[]> = {
   ],
   casinostuen: [
     { slug: "spilnu", anchor: "Spilnu – dansk fokus" },
-    { slug: "onecasino", anchor: "One Casino anmeldelse" },
+    { slug: "one-casino", anchor: "One Casino anmeldelse" },
     { slug: "royal-casino", anchor: "Royal Casino – dansk licens" },
     { slug: "spildansknu", anchor: "SpilDanskNu anmeldelse" },
     { slug: "kapow-casino", anchor: "Kapow Casino anmeldelse" },

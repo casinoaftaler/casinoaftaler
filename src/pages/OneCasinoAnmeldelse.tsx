@@ -133,7 +133,7 @@ const OneCasinoAnmeldelse = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="33 Min." />
-        <CasinoReviewHero slug="onecasino" casinoName="One Casino" />
+        <CasinoReviewHero slug="one-casino" casinoName="One Casino" />
 
         {/* Hurtige fakta */}
         <section className="mb-12">
@@ -479,7 +479,7 @@ const OneCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">For spillere, der overvejer One Casino i dag, er den mest realistiske prognose: platformen vil forblive en niche-aktør med et specifikt appeal. Den vil sandsynligvis ikke blive en mainstream-konkurrent, men den vil heller ikke forsvinde – Betreels Ltd har opereret stabilt i over et årti, og det eksklusive spilunivers tiltrækker en loyal, om end lille, spillerbase. Gratisbonussen gør det risikofrit at teste, og for den rette spiller er One Casino en unik oplevelse, der beriger casinolandskabet med variation og originalitet.</p>
         </section>
 
-        <RelatedReviews currentSlug="onecasino" />
+        <RelatedReviews currentSlug="one-casino" />
         <InlineCasinoCards count={3} />
 
         <Separator className="my-10" />
@@ -491,7 +491,7 @@ const OneCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Den gratis tilmeldingsbonus gør det risikofrit at prøve – og det er vores primære anbefaling: opret en konto, test de eksklusive spil med gratisbonussen, og beslut derefter om platformen er noget for dig. De bedste eksklusive in-house spil tilbyder en oplevelse, der ikke kan genskabes andetsteds, og de 3-4 stærkeste titler er genuint underholdende med originale mekanikker. Men platformen mangler den polering, dybde og hastighed, som de bedste danske casinoer leverer i 2026.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vores anbefaling: Brug One Casino som supplement, ikke som primært casino. Test de eksklusive spil gratis, vurder om de tiltaler dig, og behold kontoen som et sted du besøger for unikt indhold. Dit primære casino bør være en bredere platform med stærkere bonusser, hurtigere udbetalinger og MobilePay-support. Hvis de eksklusive spil tiltaler dig, er One Casino værd at have i porteføljen. Hvis ikke, er der stærkere alternativer i næsten alle andre kategorier.</p>
 
-          <RatingBreakdown scores={CASINO_SCORES["onecasino"].scores} total={CASINO_SCORES["onecasino"].total} />
+          <RatingBreakdown scores={CASINO_SCORES["one-casino"].scores} total={CASINO_SCORES["one-casino"].total} />
 
           <Card className="border-border bg-card border-l-4 border-l-primary mt-6">
             <CardContent className="pt-6 space-y-3">

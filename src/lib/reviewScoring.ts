@@ -133,8 +133,8 @@ export const CASINO_SCORES: Record<string, CasinoScoring> = {
     scores: { sikkerhed: 5.0, spiludvalg: 4.0, bonus: 3.8, udbetaling: 4.2, kundeservice: 4.0, brugeroplevelse: 4.2 },
     total: 4.2,
   },
-  "888casino": {
-    slug: "888casino",
+  "888-casino": {
+    slug: "888-casino",
     scores: { sikkerhed: 4.8, spiludvalg: 4.0, bonus: 4.0, udbetaling: 4.0, kundeservice: 4.0, brugeroplevelse: 4.2 },
     total: 4.2,
   },
@@ -203,8 +203,8 @@ export const CASINO_SCORES: Record<string, CasinoScoring> = {
     scores: { sikkerhed: 4.5, spiludvalg: 3.2, bonus: 3.0, udbetaling: 3.5, kundeservice: 3.2, brugeroplevelse: 3.5 },
     total: 3.6,
   },
-  onecasino: {
-    slug: "onecasino",
+  "one-casino": {
+    slug: "one-casino",
     scores: { sikkerhed: 4.5, spiludvalg: 3.0, bonus: 3.5, udbetaling: 3.2, kundeservice: 3.0, brugeroplevelse: 3.2 },
     total: 3.5,
   },
