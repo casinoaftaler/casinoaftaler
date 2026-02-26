@@ -77,6 +77,10 @@ const OmTeamet = () => {
         url: "https://casinoaftaler.dk/forfatter/ajse",
         image: "https://casinoaftaler.dk/ajse-avatar.png",
         jobTitle: "Juridisk redaktør & casinoanalytiker",
+        sameAs: [
+          "https://www.linkedin.com/in/ajse-serifovski-587b25278/",
+          "https://www.instagram.com/serifoaaa/",
+        ],
       },
     ],
     sameAs: [
@@ -504,6 +508,10 @@ const OmTeamet = () => {
                   Juridisk redaktør med ansvar for compliance, licensovervågning og casino-nyheder.
                   Ajse sikrer, at al information om licenser og lovgivning er korrekt og opdateret.
                 </p>
+                <div className="flex gap-2 mb-4">
+                  <a href="https://www.linkedin.com/in/ajse-serifovski-587b25278/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-sm underline">LinkedIn</a>
+                  <a href="https://www.instagram.com/serifoaaa/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-sm underline">Instagram</a>
+                </div>
                 <Link to="/forfatter/ajse">
                   <Button variant="outline" size="sm" className="w-full">
                     Se Ajses fulde profil

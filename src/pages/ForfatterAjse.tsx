@@ -117,7 +117,10 @@ const personSchema = {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
   },
-  sameAs: [],
+  sameAs: [
+    "https://www.linkedin.com/in/ajse-serifovski-587b25278/",
+    "https://www.instagram.com/serifoaaa/",
+  ],
   description:
     "Ajse er juridisk redaktør hos Casinoaftaler.dk med særligt fokus på dansk spillelovgivning, regulering og ansvarligt spil.",
 };
