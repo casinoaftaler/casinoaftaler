@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CommunityPromoSection } from "@/components/CommunityPromoSection";
 import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
-import ajseImage from "@/assets/ajse-avatar.png";
+import ajseImage from "@/assets/ajse-avatar.webp";
 
 interface AuthorBioProps {
   author?: "jonas" | "kevin" | "ajse";

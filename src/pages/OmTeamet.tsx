@@ -30,7 +30,7 @@ import {
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
-import ajseImage from "@/assets/ajse-avatar.png";
+import ajseImage from "@/assets/ajse-avatar.webp";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import omHeroImage from "@/assets/heroes/om-hero.png";
@@ -75,7 +75,7 @@ const OmTeamet = () => {
         "@id": "https://casinoaftaler.dk/forfatter/ajse#person",
         name: "Ajse",
         url: "https://casinoaftaler.dk/forfatter/ajse",
-        image: "https://casinoaftaler.dk/ajse-avatar.png",
+        image: "https://casinoaftaler.dk/ajse-avatar.webp",
         jobTitle: "Juridisk redaktør & casinoanalytiker",
         sameAs: [
           "https://www.linkedin.com/in/ajse-serifovski-587b25278/",
