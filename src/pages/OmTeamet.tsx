@@ -223,7 +223,7 @@ const OmTeamet = () => {
 
       {/* ═══ FRA TWITCH TIL PLATFORM (Storytelling) ═══ */}
       <div className="container py-12 md:py-16">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="6 Min." showFactCheck={false} showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="ajse" date="17-02-2026" readTime="6 Min." showFactCheck={false} showAffiliateDisclaimer={false} />
         <section className="mb-16">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2 md:text-4xl">
             <Tv className="h-7 w-7 text-primary" />
@@ -683,7 +683,7 @@ const OmTeamet = () => {
 
       {/* ═══ RELATEREDE GUIDES ═══ */}
       <div className="container py-12 md:py-16">
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="ajse" showCommunity={false} />
         <RelatedGuides currentPath="/om" maxLinks={6} />
       </div>
     </>

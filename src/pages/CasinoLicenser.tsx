@@ -73,8 +73,8 @@ const CasinoLicenser = () => {
     url: `${SITE_URL}/casino-licenser`,
     datePublished: "2026-02-16",
     dateModified: "2026-02-17",
-    authorName: "Kevin",
-    authorUrl: `${SITE_URL}/forfatter/kevin`,
+    authorName: "Ajse",
+    authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
 
   const faqSchema = buildFaqSchema(faqs);
@@ -98,7 +98,7 @@ const CasinoLicenser = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="16-02-2026" readTime="14 Min." />
+        <AuthorMetaBar author="ajse" date="16-02-2026" readTime="14 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={casinoLicenserHero} alt="Casino licenser – danske og udenlandske licenser forklaret" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -381,7 +381,7 @@ const CasinoLicenser = () => {
 
         <InlineCasinoCards title="Anbefalede licenserede casinoer" count={4} />
 
-        <AuthorBio author="kevin" />
+        <AuthorBio author="ajse" />
         <RelatedGuides currentPath="/casino-licenser" />
         <FAQSection title="Ofte stillede spørgsmål om casino-licenser" faqs={faqs} />
       </div>

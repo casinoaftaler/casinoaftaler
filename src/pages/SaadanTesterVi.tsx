@@ -162,7 +162,7 @@ const webPageJsonLd = {
     url: "https://casinoaftaler.dk",
   },
   author: {
-    "@id": "https://casinoaftaler.dk/forfatter/jonas#person",
+    "@id": "https://casinoaftaler.dk/forfatter/ajse#person",
   },
   breadcrumb: {
     "@type": "BreadcrumbList",
@@ -213,7 +213,7 @@ const SaadanTesterVi = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="8 Min." />
+        <AuthorMetaBar author="ajse" date="15-02-2026" readTime="8 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
@@ -443,7 +443,7 @@ const SaadanTesterVi = () => {
         {/* FAQ */}
         <FAQSection faqs={faqs} />
 
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>
   );

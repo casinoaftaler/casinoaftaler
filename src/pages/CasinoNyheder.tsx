@@ -30,6 +30,8 @@ const CasinoNyheder = () => {
     url: `${SITE_URL}/casino-nyheder`,
     datePublished: "2026-02-21",
     dateModified: latestModified,
+    authorName: "Ajse",
+    authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
 
   // Find the most recently published article date
@@ -91,7 +93,7 @@ const CasinoNyheder = () => {
       <main className="container py-8">
 
         <AuthorMetaBar
-          author="jonas"
+          author="ajse"
           date={latestDate || "21. februar 2026"}
           readTime="Løbende opdateret"
           showFactCheck={true}
