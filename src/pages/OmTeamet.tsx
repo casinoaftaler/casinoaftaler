@@ -361,6 +361,25 @@ const OmTeamet = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Ajse quote – centered below */}
+            <Card className="border-white/10 bg-white/5 backdrop-blur-sm md:col-span-2 md:max-w-xl md:mx-auto">
+              <CardContent className="p-8">
+                <Quote className="mb-4 h-8 w-8 text-primary/60" />
+                <p className="mb-6 text-xl font-medium leading-relaxed text-white/90 italic">
+                  "Gennemsigtighed starter med korrekt information – det er min opgave at sikre det."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-12 w-12 overflow-hidden rounded-xl border-2 border-primary/30">
+                    <img src={ajseImage} alt="Ajse" className="h-full w-full object-cover object-top" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Ajse</p>
+                    <p className="text-sm text-white/60">Juridisk redaktør & Compliance</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
