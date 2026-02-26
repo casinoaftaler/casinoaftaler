@@ -93,6 +93,9 @@ const CasinoNyhedArticle = () => {
     datePublished: article.published_at || article.created_at,
     dateModified: article.updated_at,
     image: article.featured_image || undefined,
+    authorName: "Ajse",
+    authorUrl: `${SITE_URL}/forfatter/ajse`,
+    authorSameAs: [],
   });
 
   // Build FAQ schema if FAQs exist and merge with article schema
@@ -139,7 +142,7 @@ const CasinoNyhedArticle = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar
-          author="jonas"
+          author="ajse"
           date={publishedDate}
           readTime="5 min"
           showFactCheck={true}
@@ -208,7 +211,7 @@ const CasinoNyhedArticle = () => {
           </section>
         )}
 
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>
   );

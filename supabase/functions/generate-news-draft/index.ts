@@ -842,7 +842,7 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
         meta_description: articleData.meta_description,
         featured_image: featuredImageUrl,
         status: "draft",
-        author_id: "jonas",
+        author_id: "ajse",
       })
       .select()
       .single();
