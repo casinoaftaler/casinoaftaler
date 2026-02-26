@@ -6,6 +6,9 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { CasinoCard } from "@/components/CasinoCard";
+import { CASINO_SCORES } from "@/lib/reviewScoring";
+import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { usePublishedNewsByAuthor } from "@/hooks/useCasinoNews";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
@@ -83,7 +86,6 @@ const expertiseItems = [
 const personalFacts = [
   { label: "Yndlingsslot", value: "Sugar Rush 1000" },
   { label: "Største øjeblik", value: "Under en live stream foreslog Ajse et Super Bonus Buy på Sugar Rush 1000. Det endte i 11.300x – et gyldent community-øjeblik." },
-  { label: "Top 3 casinoer", value: "Spilleautomaten, SpilDanskNu & Campobet" },
   { label: "Aktiv på Twitch", value: "Siden 2022" },
   { label: "Yndlingssnack", value: "Ben & Jerry's og mørk chokolade" },
 ];
@@ -127,11 +129,43 @@ const personSchema = {
     "Ajse er juridisk redaktør hos Casinoaftaler.dk med særligt fokus på dansk spillelovgivning, regulering og ansvarligt spil.",
 };
 
+const AJSE_FEATURED_SLUGS = ["spilleautomaten", "spildansknu", "campobet"];
+
 export default function ForfatterAjse() {
   const { data: siteSettings } = useSiteSettings();
+  const { data: casinos } = useCasinos();
   const { data: newsData } = usePublishedNewsByAuthor("ajse", 1, 100);
   const [articlePage, setArticlePage] = useState(0);
+  const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const heroBackgroundImage = siteSettings?.hero_background;
+
+  const featuredCasinos = (casinos ?? []).filter((c) =>
+    AJSE_FEATURED_SLUGS.includes(c.slug)
+  );
+
+  const mapCasino = (casino: (typeof featuredCasinos)[0]) => ({
+    id: casino.id,
+    name: casino.name,
+    slug: casino.slug,
+    rating: CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating),
+    bonusTitle: casino.bonus_title,
+    bonusAmount: casino.bonus_amount,
+    bonusType: casino.bonus_type,
+    wageringRequirements: casino.wagering_requirements,
+    validity: casino.validity,
+    minDeposit: casino.min_deposit,
+    payoutTime: casino.payout_time,
+    freeSpins: casino.free_spins,
+    features: casino.features ?? [],
+    pros: casino.pros ?? [],
+    cons: casino.cons ?? [],
+    description: casino.description ?? "",
+    isRecommended: casino.is_recommended,
+    isHot: casino.is_hot,
+    logoUrl: casino.logo_url,
+    affiliateUrl: casino.affiliate_url,
+    gameProviders: casino.game_providers ?? [],
+  });
 
   const newsArticles = newsData?.articles ?? [];
 
@@ -412,6 +446,64 @@ export default function ForfatterAjse() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Ajse Top 3 Casinoer */}
+        <section className="mb-12">
+          <h3 className="text-2xl font-bold mb-6 text-center">Ajses Top 3 Casinoer</h3>
+          {featuredCasinos.length > 0 && (
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
+                {featuredCasinos.map((casino) => (
+                  <CasinoCard
+                    key={casino.id}
+                    casino={mapCasino(casino)}
+                    rank={1}
+                    open={openCasinoId === casino.id}
+                    onOpenChange={(open) =>
+                      setOpenCasinoId(open ? casino.id : null)
+                    }
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="mt-8 space-y-6">
+            <div>
+              <h4 className="text-lg font-semibold mb-2">
+                <Link to="/casino-anmeldelser/spilleautomaten" className="text-primary hover:underline">Spilleautomaten</Link>
+              </h4>
+              <p className="text-muted-foreground leading-relaxed">
+                Spilleautomaten er kendt for sit enorme spiludvalg og hurtige udbetalinger. Med over 3.000 spil fra førende udbydere som{" "}
+                <Link to="/spiludviklere/netent" className="text-primary hover:underline">NetEnt</Link>,{" "}
+                <Link to="/spiludviklere/pragmatic-play" className="text-primary hover:underline">Pragmatic Play</Link> og{" "}
+                <Link to="/spiludviklere/play-n-go" className="text-primary hover:underline">Play'n GO</Link> er der altid noget nyt at udforske.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-2">
+                <Link to="/casino-anmeldelser/spildansknu" className="text-primary hover:underline">SpilDanskNu</Link>
+              </h4>
+              <p className="text-muted-foreground leading-relaxed">
+                SpilDanskNu er et af de mest populære danske online casinoer med et stærkt fokus på det danske marked. Med en dansk licens og et bredt udvalg af{" "}
+                <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spilleautomater</Link>, bordspil og{" "}
+                <Link to="/live-casino" className="text-primary hover:underline">live casino</Link> tilbyder de en tryg spiloplevelse.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold mb-2">
+                <Link to="/casino-anmeldelser/campobet" className="text-primary hover:underline">Campobet</Link>
+              </h4>
+              <p className="text-muted-foreground leading-relaxed">
+                Campobet kombinerer casino og sportsbetting under ét tag. Med en dansk licens, konkurrencedygtige{" "}
+                <Link to="/casino-bonus" className="text-primary hover:underline">bonusser</Link> og et solidt{" "}
+                <Link to="/live-casino" className="text-primary hover:underline">live casino</Link>-udbud leverer Campobet en komplet spiloplevelse.
+              </p>
+            </div>
           </div>
         </section>
 
