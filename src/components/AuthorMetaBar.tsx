@@ -36,10 +36,11 @@ function AffiliateDisclaimer() {
 const authorConfig = {
   jonas: { name: "Jonas", image: "/jonas-avatar.webp", alt: "Jonas – Fedesvinsejer", link: "/forfatter/jonas" },
   kevin: { name: "Kevin", image: "/kevin-avatar.webp", alt: "Kevin – Casino-streamer", link: "/forfatter/kevin" },
+  ajse: { name: "Ajse", image: "/ajse-avatar.png", alt: "Ajse – Nyhedsredaktør", link: "/forfatter/ajse" },
 } as const;
 
 interface AuthorMetaBarProps {
-  author: "jonas" | "kevin" | "redaktionen";
+  author: "jonas" | "kevin" | "ajse" | "redaktionen";
   date: string;
   readTime: string;
   showFactCheck?: boolean;
@@ -116,7 +117,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
                   Kevin
                 </span>
               </Link>
-            ) : author === "kevin" || author === "redaktionen" ? (
+            ) : author === "kevin" || author === "redaktionen" || author === "ajse" ? (
               <Link to="/forfatter/jonas" className="flex items-center gap-1.5 group">
                 <span>Af:</span>
                 <img
