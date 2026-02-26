@@ -251,6 +251,13 @@ const OmTeamet = () => {
         </div>
       </section>
 
+      {/* ═══ AUTHORITY POSITIONERING ═══ */}
+      <div className="container pt-10 pb-0 md:pt-14">
+        <p className="mx-auto max-w-3xl text-center text-muted-foreground leading-relaxed">
+          Casinoaftaler.dk er en uafhængig dansk platform, der tester og analyserer online casinoer under dansk licens. Vi kombinerer praktisk erfaring, juridisk gennemgang og løbende overvågning af markedet.
+        </p>
+      </div>
+
       {/* ═══ FRA TWITCH TIL PLATFORM (Storytelling) ═══ */}
       <div className="container py-12 md:py-16">
         <AuthorMetaBar author="ajse" date="17-02-2026" readTime="6 Min." showFactCheck={true} showAffiliateDisclaimer={false} />
@@ -313,7 +320,7 @@ const OmTeamet = () => {
             <Link to="/saadan-tester-vi-casinoer">
               <Button variant="outline" size="sm">
                 <ShieldCheck className="mr-1.5 h-4 w-4" />
-                Sådan tester vi casinoer
+                Vores testproces
               </Button>
             </Link>
             <Link to="/nye-casinoer">
@@ -325,7 +332,7 @@ const OmTeamet = () => {
             <Link to="/ansvarligt-spil">
               <Button variant="outline" size="sm">
                 <Shield className="mr-1.5 h-4 w-4" />
-                Ansvarligt Spil
+                Spil med omtanke
               </Button>
             </Link>
           </div>
@@ -595,13 +602,13 @@ const OmTeamet = () => {
             <Link to="/saadan-tester-vi-casinoer">
               <Button variant="outline" size="sm">
                 <ShieldCheck className="mr-1.5 h-4 w-4" />
-                Sådan tester vi casinoer
+                Se vores testmetode
               </Button>
             </Link>
             <Link to="/ansvarligt-spil">
               <Button variant="outline" size="sm">
                 <Shield className="mr-1.5 h-4 w-4" />
-                Ansvarligt Spil
+                Om ansvarligt spil
               </Button>
             </Link>
           </div>
@@ -666,7 +673,7 @@ const OmTeamet = () => {
           <Link to="/saadan-tester-vi-casinoer">
             <Button variant="outline" size="sm">
               <ShieldCheck className="mr-1.5 h-4 w-4" />
-              Sådan tester vi casinoer
+              Læs om vores testproces
               <ArrowRight className="ml-1.5 h-4 w-4" />
             </Button>
           </Link>
@@ -699,7 +706,7 @@ const OmTeamet = () => {
             <Link to="/saadan-tester-vi-casinoer">
               <Button variant="outline" size="sm">
                 <ShieldCheck className="mr-1.5 h-4 w-4" />
-                Læs mere om vores testmetode
+                Sådan tester vi casinoer
               </Button>
             </Link>
           </div>
