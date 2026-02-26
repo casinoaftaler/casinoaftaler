@@ -190,7 +190,7 @@ export function NewsAdminSection() {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold">Casino Nyheder</h2>
-          <p className="text-muted-foreground">Administrer nyhedsartikler. Max 2 pr. uge.</p>
+          <p className="text-muted-foreground">Administrer nyhedsartikler. Max 4 pr. uge.</p>
         </div>
         <Dialog open={dialogOpen} onOpenChange={(open) => { setDialogOpen(open); if (!open) setEditArticle(undefined); }}>
           <DialogTrigger asChild>
