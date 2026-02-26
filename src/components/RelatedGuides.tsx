@@ -295,8 +295,8 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       siblings = filtered.slice(0, MAX_SIBLINGS);
     }
     return {
-      guides: [reviewHub, ...siblings, bonusHub].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
-      subtitle: "Udforsk andre casino anmeldelser på danske casinoer.",
+      guides: [reviewHub, ...siblings, paymentHub, bonusHub].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER + 1),
+      subtitle: "Udforsk andre casino anmeldelser, betalingsmetoder og bonusser.",
     };
   }
 
