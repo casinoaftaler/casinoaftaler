@@ -492,7 +492,7 @@ const OmTeamet = () => {
                 </div>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Ansvarlig for <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">licenser</Link>, <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link> og compliance-nyheder. Jurastuderende med branchefokus.
+                Ansvarlig for <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">licenser</Link>, <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link> og <Link to="/casino-nyheder" className="text-primary underline hover:text-primary/80">casino-nyheder</Link>. Jurastuderende med branchefokus.
               </p>
               <Link to="/forfatter/ajse" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
                 Se Ajse – Juridisk redaktør <ArrowRight className="ml-1 h-3.5 w-3.5" />
