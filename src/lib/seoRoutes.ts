@@ -178,7 +178,7 @@ export const seoRoutes: SeoRoute[] = ([
 
   // ── Casino Nyheder ──
   // Hub only – article entries are dynamically generated in sitemap-news.xml
-  { path: "/casino-nyheder", changefreq: "daily", priority: 0.9, lastmod: "2026-02-21" },
+  { path: "/casino-nyheder", changefreq: "daily", priority: 0.9, lastmod: "2026-02-26" },
 
   // ── Community & Highlights ──
   { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22" },
