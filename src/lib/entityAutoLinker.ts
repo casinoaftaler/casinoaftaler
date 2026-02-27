@@ -7,6 +7,7 @@
  * - Natural anchor text
  * - No keyword stuffing
  * - Skip entities already wrapped in <a> tags
+ * - Skip entities inside headings (h1-h6) and strong tags
  */
 
 interface EntityMapping {
@@ -59,9 +60,39 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
 ];
 
 /**
+ * Forbidden wrapper tags — auto-linking is only allowed inside <p> and <li>.
+ * We check if the match position is inside any of these tags.
+ */
+const FORBIDDEN_TAGS = ["a", "h1", "h2", "h3", "h4", "h5", "h6", "strong", "button"];
+
+/**
+ * Check if a position in HTML is inside a forbidden context.
+ */
+function isInsideForbiddenContext(html: string, pos: number): boolean {
+  const before = html.slice(0, pos);
+
+  for (const tag of FORBIDDEN_TAGS) {
+    const lastOpen = before.lastIndexOf(`<${tag}`);
+    if (lastOpen !== -1) {
+      const lastClose = before.lastIndexOf(`</${tag}>`);
+      if (lastClose < lastOpen) return true;
+    }
+  }
+
+  // Check if inside an HTML tag attribute (e.g., alt="...", title="...")
+  const lastTagOpen = before.lastIndexOf("<");
+  if (lastTagOpen !== -1) {
+    const lastTagClose = before.lastIndexOf(">");
+    if (lastTagClose < lastTagOpen) return true;
+  }
+
+  return false;
+}
+
+/**
  * Processes HTML content and auto-links the first occurrence of
  * key entities to their respective main pages.
- * Skips text already inside anchor tags.
+ * Only links text inside <p> and <li> elements, never in headings or anchors.
  */
 export function autoLinkEntities(html: string): string {
   if (!html) return html;
@@ -73,17 +104,20 @@ export function autoLinkEntities(html: string): string {
     if (linkedEntities.has(entity.href)) continue;
 
     for (const pattern of entity.patterns) {
-      // Find match that is NOT already inside an <a> tag
-      // Strategy: split by <a...>...</a> blocks, only process non-anchor segments
-      const parts = result.split(/(<a[^>]*>[\s\S]*?<\/a>)/gi);
+      // Split by anchor and heading tags to skip them entirely
+      const parts = result.split(/(<(?:a|h[1-6]|strong|button)[^>]*>[\s\S]*?<\/(?:a|h[1-6]|strong|button)>)/gi);
       let found = false;
 
       for (let i = 0; i < parts.length; i++) {
-        // Skip anchor tag segments (odd indices from split)
-        if (parts[i].match(/^<a[^>]*>/i)) continue;
+        // Skip parts that are forbidden tags
+        if (parts[i].match(/^<(?:a|h[1-6]|strong|button)[^>]*>/i)) continue;
 
         const match = parts[i].match(pattern);
         if (match && match.index !== undefined) {
+          // Calculate absolute position for extra safety check
+          const absolutePos = parts.slice(0, i).join("").length + match.index;
+          if (isInsideForbiddenContext(result, absolutePos)) continue;
+
           const matchedText = match[0];
           const anchorText = entity.anchor || matchedText;
           const link = `<a href="${entity.href}" class="text-primary hover:underline">${anchorText}</a>`;
