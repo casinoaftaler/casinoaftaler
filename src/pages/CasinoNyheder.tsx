@@ -9,6 +9,7 @@ import { CalendarDays, ChevronLeft, ChevronRight, Newspaper } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { AuthorBio } from "@/components/AuthorBio";
 
 const ARTICLES_PER_PAGE = 10;
 
@@ -211,6 +212,7 @@ const CasinoNyheder = () => {
             )}
           </>
         )}
+        <AuthorBio author="ajse" showCommunity={false} />
       </main>
     </>
   );
