@@ -112,6 +112,11 @@ export default function RiseOfFedesvin() {
   if (!user) {
     return (
       <div className="min-h-[calc(100vh-4rem)] relative">
+        <SEO
+          title="Rise of Fedesvin – Gratis Spilleautomat | Casinoaftaler"
+          description="Spil Rise of Fedesvin gratis hos Casinoaftaler. Magisk tema med tryllekunstnere, drager og free spins. Optjen point og klatr på ranglisten."
+          noindex
+        />
         <PageBackground />
         <div className="container py-16">
           <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-purple-500/20">
