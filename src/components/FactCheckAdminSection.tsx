@@ -26,6 +26,7 @@ const VALID_ROUTES = new Set([
   "/spiludviklere", "/free-spins", "/velkomstbonus", "/omsaetningskrav",
   "/indskudsbonus", "/bonus-uden-indbetaling", "/bonus-uden-omsaetningskrav",
   "/no-sticky-bonus", "/sticky-bonus", "/live-casino",
+  "/cashback-bonus", "/reload-bonus",
   "/live-casino/blackjack", "/live-casino/roulette", "/live-casino/baccarat",
   "/live-casino/lightning-roulette", "/live-casino/monopoly-live",
   "/casino-anmeldelser", "/casino-anmeldelser/spilleautomaten",

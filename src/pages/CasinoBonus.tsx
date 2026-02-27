@@ -469,14 +469,14 @@ const CasinoBonus = () => {
           {/* Reload Bonus */}
           <Card className="mb-6 border-border bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><RefreshCw className="h-5 w-5 text-primary" />Reload-Bonus</CardTitle>
+              <CardTitle className="flex items-center gap-2"><RefreshCw className="h-5 w-5 text-primary" /><Link to="/reload-bonus" className={linkClass}>Reload-Bonus</Link></CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
                 Reload-bonusser er rettet mod eksisterende spillere og belønner efterfølgende indbetalinger. De fungerer som en matchbonus, men med lavere matchprocent end velkomstbonussen – typisk 25-50%. Mange casinoer tilbyder ugentlige eller weekendbaserede reload-bonusser, og de bedste VIP-programmer inkluderer eksklusive reload-tilbud med forbedrede vilkår. Over tid kan reload-bonusser faktisk give mere samlet værdi end velkomstbonussen, da de kan bruges gentagne gange.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                <strong>Fordele:</strong> Gentagen bonusværdi, lavere matchprocent men fleksibel. <strong>Ulemper:</strong> Kræver løbende indbetalinger, lavere matchprocent. <strong>Passer til:</strong> Aktive spillere der vil maksimere langsigtet bonusværdi.
+                <strong>Fordele:</strong> Gentagen bonusværdi, lavere matchprocent men fleksibel. <strong>Ulemper:</strong> Kræver løbende indbetalinger, lavere matchprocent. <strong>Passer til:</strong> Aktive spillere der vil maksimere langsigtet bonusværdi. <Link to="/reload-bonus" className={linkClass}>Læs vores komplette reload bonus guide →</Link>
               </p>
             </CardContent>
           </Card>
@@ -484,14 +484,14 @@ const CasinoBonus = () => {
           {/* Cashback */}
           <Card className="mb-6 border-border bg-card">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><DollarSign className="h-5 w-5 text-primary" />Cashback-Bonus</CardTitle>
+              <CardTitle className="flex items-center gap-2"><DollarSign className="h-5 w-5 text-primary" /><Link to="/cashback-bonus" className={linkClass}>Cashback-Bonus</Link></CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
                 Cashback returnerer en procentdel af dine nettotab – typisk 5-15% – som bonusmidler eller kontanter. Det fungerer som en forsikring mod tab og reducerer den effektive house edge. En 10% cashback på et nettotab af 1.000 kr. giver dig 100 kr. tilbage. De bedste cashback-tilbud udbetales som kontanter uden omsætningskrav, hvilket gør dem til en af de mest spillervenlige bonusformer. Cashback er særligt værdifuld for high rollers, der omsætter store beløb.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                <strong>Fordele:</strong> Reducerer nettotab, ofte uden omsætningskrav, automatisk. <strong>Ulemper:</strong> Kun relevant ved tab, kræver aktivt spil. <strong>Passer til:</strong> High rollers og faste spillere med højt volume.
+                <strong>Fordele:</strong> Reducerer nettotab, ofte uden omsætningskrav, automatisk. <strong>Ulemper:</strong> Kun relevant ved tab, kræver aktivt spil. <strong>Passer til:</strong> High rollers og faste spillere med højt volume. <Link to="/cashback-bonus" className={linkClass}>Læs vores komplette cashback bonus guide →</Link>
               </p>
             </CardContent>
           </Card>
