@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3, Smartphone, Globe, Heart, Landmark, RotateCw, Newspaper } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Layers, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3, Smartphone, Globe, Heart, Landmark, RotateCw, Newspaper, TrendingUp } from "lucide-react";
 import { CreditCoin } from "@/components/CreditCoin";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
@@ -423,6 +423,18 @@ export const Header = memo(function Header() {
                 <Link to="/bonus-uden-omsaetningskrav" className="flex items-center gap-2">
                   <Zap className="h-4 w-4" />
                   Bonus uden Omsætningskrav
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/cashback-bonus" className="flex items-center gap-2">
+                  <TrendingUp className="h-4 w-4" />
+                  Cashback Bonus
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/reload-bonus" className="flex items-center gap-2">
+                  <RefreshCw className="h-4 w-4" />
+                  Reload Bonus
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -1061,6 +1073,8 @@ export const Header = memo(function Header() {
                   { to: "/indskudsbonus", icon: <DollarSign className="h-4 w-4" />, label: "Indskudsbonus" },
                   { to: "/bonus-uden-indbetaling", icon: <Gift className="h-4 w-4" />, label: "Bonus uden Indbetaling" },
                   { to: "/bonus-uden-omsaetningskrav", icon: <Zap className="h-4 w-4" />, label: "Bonus uden Omsætningskrav" },
+                  { to: "/cashback-bonus", icon: <TrendingUp className="h-4 w-4" />, label: "Cashback Bonus" },
+                  { to: "/reload-bonus", icon: <RefreshCw className="h-4 w-4" />, label: "Reload Bonus" },
                 ].map((item) => (
                   <Link
                     key={item.to}
