@@ -134,6 +134,8 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/bonus-uden-omsaetningskrav", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/no-sticky-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/sticky-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
+  { path: "/cashback-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-27" },
+  { path: "/reload-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-27" },
 
   // ── Spiludviklere ──
   { path: "/spiludviklere", changefreq: "monthly", priority: 0.7, lastmod: "2026-02-14" },
