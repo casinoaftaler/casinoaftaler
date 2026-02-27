@@ -7,6 +7,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import betalingsmetoderHero from "@/assets/heroes/betalingsmetoder-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import applePayLogo from "@/assets/payments/apple-pay.png";
 import mobilepayLogo from "@/assets/payments/mobilepay.png";
@@ -895,6 +896,8 @@ const Betalingsmetoder = () => {
         <AuthorBio author="kevin" />
 
         <Separator className="my-10" />
+
+        <LatestNewsByCategory pagePath="/betalingsmetoder" />
 
         <RelatedGuides currentPath="/betalingsmetoder" />
 

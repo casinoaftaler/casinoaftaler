@@ -5,6 +5,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -383,6 +384,7 @@ const CasinoLicenser = () => {
         <InlineCasinoCards title="Anbefalede licenserede casinoer" count={4} />
 
         <AuthorBio author="ajse" />
+        <LatestNewsByCategory pagePath="/casino-licenser" />
         <RelatedGuides currentPath="/casino-licenser" />
         <FAQSection title="Ofte stillede spørgsmål om casino-licenser" faqs={faqs} />
       </div>

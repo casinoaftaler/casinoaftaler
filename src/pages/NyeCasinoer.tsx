@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { CasinoCard } from "@/components/CasinoCard";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -985,6 +986,7 @@ const NyeCasinoer = () => {
         </section>
 
         <AuthorBio author="jonas" />
+        <LatestNewsByCategory pagePath="/nye-casinoer" />
         <RelatedGuides currentPath="/nye-casinoer" />
         <FAQSection title="Ofte stillede spørgsmål om nye casinoer i Danmark" faqs={nyeCasinoerFaqs} />
       </div>

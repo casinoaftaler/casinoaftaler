@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { CasinoCard } from "@/components/CasinoCard";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -855,6 +856,8 @@ const CasinoAnmeldelser = () => {
         <AuthorBio />
 
         <Separator className="my-10" />
+
+        <LatestNewsByCategory pagePath="/casino-anmeldelser" />
 
         <RelatedGuides currentPath="/casino-anmeldelser" />
 
