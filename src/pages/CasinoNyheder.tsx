@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { usePublishedNews } from "@/hooks/useCasinoNews";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
@@ -9,20 +11,60 @@ import { CalendarDays, ChevronLeft, ChevronRight, Newspaper } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { AuthorBio } from "@/components/AuthorBio";
 
 const ARTICLES_PER_PAGE = 10;
 
+/** Category display names and SEO intro texts */
+const CATEGORY_META: Record<string, { label: string; intro: string }> = {
+  alle: {
+    label: "Alle Nyheder",
+    intro: "",
+  },
+  regulering: {
+    label: "Regulering",
+    intro: "Følg de seneste ændringer i dansk spillelovgivning og EU-regulering. Vi analyserer nye krav til operatører, ændrede bonusregler og hvordan regulering påvirker din spiloplevelse på danske online casinoer.",
+  },
+  licenser: {
+    label: "Licenser",
+    intro: "Hold dig opdateret med nye licensudstedelser og -inddragelser fra Spillemyndigheden. Vi dækker hvilke operatører der får dansk licens, og hvad det betyder for udvalget af lovlige casinoer i Danmark.",
+  },
+  "nye-casinoer": {
+    label: "Nye Casinoer",
+    intro: "De nyeste casino-lanceringer på det danske marked. Vi vurderer nye operatører, deres bonusser og spiludvalg – så du kan træffe informerede valg om de seneste tilføjelser til markedet.",
+  },
+  betalingsmetoder: {
+    label: "Betalingsmetoder",
+    intro: "Nyheder om betalingsløsninger på danske casinoer. Fra MobilePay-integrationer til nye fintech-partnerskaber – vi dækker alt der påvirker dine ind- og udbetalingsmuligheder.",
+  },
+  "markedsbevægelser": {
+    label: "Markedsanalyse",
+    intro: "Analyser af markedstendenser, fusioner, opkøb og strategiske bevægelser i den danske iGaming-branche. Forstå de kommercielle kræfter der former dit casinovalg.",
+  },
+  juridisk: {
+    label: "Juridisk",
+    intro: "Juridiske nyheder der berører danske spillere og casinooperatører. Fra forbrugerbeskyttelse til GDPR-compliance – vi oversætter juraen til forståeligt dansk.",
+  },
+};
+
+const CATEGORIES = ["alle", "regulering", "licenser", "nye-casinoer", "betalingsmetoder", "markedsbevægelser", "juridisk"];
+
 const CasinoNyheder = () => {
   const [page, setPage] = useState(1);
+  const [activeCategory, setActiveCategory] = useState("alle");
   const { data, isLoading } = usePublishedNews(page, ARTICLES_PER_PAGE);
 
-  const articles = data?.articles ?? [];
-  const total = data?.total ?? 0;
-  const totalPages = Math.ceil(total / ARTICLES_PER_PAGE);
+  const allArticles = data?.articles ?? [];
+  
+  // Filter by category client-side (small dataset)
+  const articles = activeCategory === "alle"
+    ? allArticles
+    : allArticles.filter((a) => a.category === activeCategory);
+  
+  const total = activeCategory === "alle" ? (data?.total ?? 0) : articles.length;
+  const totalPages = activeCategory === "alle" ? Math.ceil(total / ARTICLES_PER_PAGE) : 1;
 
-  const latestModified = articles.length > 0
-    ? (articles[0].updated_at || articles[0].published_at || new Date().toISOString())
+  const latestModified = allArticles.length > 0
+    ? (allArticles[0].updated_at || allArticles[0].published_at || new Date().toISOString())
     : new Date().toISOString();
 
   const articleSchema = buildArticleSchema({
@@ -35,14 +77,15 @@ const CasinoNyheder = () => {
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
 
-  // Find the most recently published article date
-  const latestDate = articles.length > 0 && articles[0].published_at
-    ? new Date(articles[0].published_at).toLocaleDateString("da-DK", {
+  const latestDate = allArticles.length > 0 && allArticles[0].published_at
+    ? new Date(allArticles[0].published_at).toLocaleDateString("da-DK", {
         day: "numeric",
         month: "long",
         year: "numeric",
       })
     : null;
+
+  const categoryMeta = CATEGORY_META[activeCategory] || CATEGORY_META.alle;
 
   return (
     <>
@@ -75,7 +118,6 @@ const CasinoNyheder = () => {
             )}
           </div>
         </div>
-        {/* Decorative elements */}
         <div className="absolute left-0 top-0 h-full w-full opacity-20">
           <div className="absolute left-10 top-10 h-32 w-32 rounded-full bg-[hsl(210_80%_60%)] blur-xl" style={{ animation: "float 6s ease-in-out infinite" }} />
           <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-[hsl(260_70%_60%)] blur-xl" style={{ animation: "float 8s ease-in-out infinite 1s" }} />
@@ -124,10 +166,33 @@ const CasinoNyheder = () => {
 
         <Separator className="mb-8" />
 
-        {/* Section Header */}
+        {/* Category Filter */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-2">Seneste casino-nyheder</h2>
-          <p className="text-muted-foreground">Korte analyser og opdateringer fra det danske online casino-marked.</p>
+          <h2 className="text-2xl font-bold mb-4">Seneste casino-nyheder</h2>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {CATEGORIES.map((cat) => (
+              <Button
+                key={cat}
+                variant={activeCategory === cat ? "default" : "outline"}
+                size="sm"
+                onClick={() => {
+                  setActiveCategory(cat);
+                  setPage(1);
+                }}
+              >
+                {CATEGORY_META[cat]?.label || cat}
+              </Button>
+            ))}
+          </div>
+          {/* Category intro text for SEO */}
+          {activeCategory !== "alle" && categoryMeta.intro && (
+            <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+              {categoryMeta.intro}
+            </p>
+          )}
+          {activeCategory === "alle" && (
+            <p className="text-muted-foreground">Korte analyser og opdateringer fra det danske online casino-marked.</p>
+          )}
         </div>
 
         {/* Article List */}
@@ -141,7 +206,9 @@ const CasinoNyheder = () => {
           <div className="py-16 text-center">
             <Newspaper className="mx-auto h-12 w-12 text-muted-foreground/50" />
             <p className="mt-4 text-lg text-muted-foreground">
-              Første opdateringer udgives snart. Vi publicerer nye analyser hver tirsdag og fredag.
+              {activeCategory !== "alle"
+                ? `Ingen nyheder i kategorien "${categoryMeta.label}" endnu.`
+                : "Første opdateringer udgives snart. Vi publicerer nye analyser hver tirsdag og fredag."}
             </p>
           </div>
         ) : (
@@ -186,8 +253,8 @@ const CasinoNyheder = () => {
               ))}
             </div>
 
-            {/* Pagination */}
-            {totalPages > 1 && (
+            {/* Pagination - only for "alle" category */}
+            {activeCategory === "alle" && totalPages > 1 && (
               <div className="mt-10 flex items-center justify-center gap-4">
                 <Button
                   variant="outline"
@@ -212,7 +279,12 @@ const CasinoNyheder = () => {
             )}
           </>
         )}
+
+        <Separator className="my-10" />
+
         <AuthorBio author="ajse" showCommunity={false} />
+
+        <RelatedGuides currentPath="/casino-nyheder" maxLinks={5} />
       </main>
     </>
   );

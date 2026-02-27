@@ -6,8 +6,12 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedCasinos } from "@/components/RelatedCasinos";
-import { useNewsArticle, usePublishedNews } from "@/hooks/useCasinoNews";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { NewsContextualCTA } from "@/components/NewsContextualCTA";
+import { useNewsArticle } from "@/hooks/useCasinoNews";
+import { useRelatedNews } from "@/hooks/useRelatedNews";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { CalendarDays, Loader2, Newspaper } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -15,20 +19,21 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const CasinoNyhedArticle = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { data: article, isLoading, error } = useNewsArticle(slug || "");
-  
-  // Fetch related articles (latest 3 excluding current)
-  const { data: latestNews } = usePublishedNews(1, 4);
-  const relatedArticles = (latestNews?.articles ?? [])
-    .filter((a) => a.slug !== slug)
-    .slice(0, 3);
+  const { data: article, isLoading } = useNewsArticle(slug || "");
+
+  // Fetch related articles by category/tags instead of just latest
+  const { data: relatedArticles = [] } = useRelatedNews(
+    slug || "",
+    article?.category || "",
+    article?.tags || [],
+    4
+  );
 
   // Extract FAQ from HTML content and split into structured data + clean content
   const { contentWithoutFaq, faqs } = useMemo(() => {
     if (!article?.content) return { contentWithoutFaq: "", faqs: [] };
 
     const html = article.content;
-    // Find the FAQ heading and everything after it
     const faqHeadingRegex = /<h2[^>]*>\s*FAQ\s*<\/h2>/i;
     const match = html.match(faqHeadingRegex);
 
@@ -39,7 +44,6 @@ const CasinoNyhedArticle = () => {
     const beforeFaq = html.slice(0, match.index);
     const faqHtml = html.slice(match.index + match[0].length);
 
-    // Extract content AFTER FAQ section (e.g. Kilder) by finding the next <h2>
     const nextH2Match = faqHtml.match(/<h2[^>]*>/i);
     const afterFaqContent = nextH2Match && nextH2Match.index !== undefined
       ? faqHtml.slice(nextH2Match.index)
@@ -48,7 +52,6 @@ const CasinoNyhedArticle = () => {
       ? faqHtml.slice(0, nextH2Match.index)
       : faqHtml;
 
-    // Parse Q&A pairs from <p><strong>Question</strong><br/>Answer</p> pattern
     const parsedFaqs: { question: string; answer: string }[] = [];
     const pRegex = /<p>\s*<strong>(.*?)<\/strong>\s*<br\s*\/?>\s*([\s\S]*?)<\/p>/gi;
     let pMatch;
@@ -85,7 +88,6 @@ const CasinoNyhedArticle = () => {
 
   const articleUrl = `${SITE_URL}/casino-nyheder/${article.slug}`;
 
-  // Build NewsArticle schema using the centralized builder with full Person + Organization entities
   const newsArticleSchema = buildArticleSchema({
     articleType: "NewsArticle",
     headline: article.meta_title || article.title,
@@ -99,7 +101,6 @@ const CasinoNyhedArticle = () => {
     authorSameAs: [],
   });
 
-  // Build FAQ schema if FAQs exist and merge with article schema
   const faqJsonLd = faqs.length > 0 ? buildFaqSchema(faqs) : null;
   const jsonLdSchemas = faqJsonLd
     ? [newsArticleSchema, faqJsonLd]
@@ -156,7 +157,7 @@ const CasinoNyhedArticle = () => {
         {article.featured_image && (
           <div className="mb-10 overflow-hidden rounded-xl">
             <img
-              src={article.featured_image}
+              src={optimizeStorageImage(article.featured_image, 1200) ?? article.featured_image}
               alt={article.title}
               width={1200}
               height={400}
@@ -172,6 +173,9 @@ const CasinoNyhedArticle = () => {
           dangerouslySetInnerHTML={{ __html: contentWithoutFaq }}
         />
 
+        {/* Contextual CTA Bridge – category-based money-page links */}
+        <NewsContextualCTA category={article.category} />
+
         {/* Structured FAQ Accordion */}
         {faqs.length > 0 && (
           <FAQSection
@@ -185,29 +189,50 @@ const CasinoNyhedArticle = () => {
 
         <Separator className="my-8" />
 
-        {/* Related Articles */}
+        {/* Related Articles – category/tag matched */}
         {relatedArticles.length > 0 && (
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-6">Relaterede Nyheder</h2>
-            <div className="grid gap-4 md:grid-cols-3">
+            <h2 className="text-2xl font-bold mb-2">Relaterede Nyheder</h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              Flere artikler om {article.category === "regulering" ? "regulering og lovgivning" :
+                article.category === "licenser" ? "casino-licenser" :
+                article.category === "nye-casinoer" ? "nye casinoer i Danmark" :
+                article.category === "betalingsmetoder" ? "betalingsmetoder" :
+                article.category === "markedsbevægelser" ? "markedsudviklinger" :
+                article.category === "juridisk" ? "juridiske emner" :
+                "det danske casinomarked"}.
+            </p>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {relatedArticles.map((related) => (
                 <Link
                   key={related.id}
                   to={`/casino-nyheder/${related.slug}`}
-                  className="group rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/50"
+                  className="group rounded-lg border border-border bg-card overflow-hidden transition-all hover:border-primary/50"
                 >
-                  <span className="text-xs text-muted-foreground flex items-center gap-1 mb-2">
-                    <CalendarDays className="h-3 w-3" />
-                    {related.published_at &&
-                      new Date(related.published_at).toLocaleDateString("da-DK", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                  </span>
-                  <h3 className="font-semibold group-hover:text-primary transition-colors line-clamp-2">
-                    {related.title}
-                  </h3>
+                  {related.featured_image && (
+                    <img
+                      src={optimizeStorageImage(related.featured_image, 400) ?? related.featured_image}
+                      alt={related.title}
+                      width={400}
+                      height={160}
+                      className="w-full h-32 object-cover"
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="p-3">
+                    <span className="text-xs text-muted-foreground flex items-center gap-1 mb-1.5">
+                      <CalendarDays className="h-3 w-3" />
+                      {related.published_at &&
+                        new Date(related.published_at).toLocaleDateString("da-DK", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                    </span>
+                    <h3 className="font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">
+                      {related.title}
+                    </h3>
+                  </div>
                 </Link>
               ))}
             </div>
@@ -215,6 +240,8 @@ const CasinoNyhedArticle = () => {
         )}
 
         <AuthorBio author="ajse" showCommunity={false} />
+
+        <RelatedGuides currentPath={`/casino-nyheder/${slug}`} maxLinks={5} />
       </div>
     </>
   );
