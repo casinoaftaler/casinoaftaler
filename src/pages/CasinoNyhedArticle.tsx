@@ -11,6 +11,7 @@ import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { CalendarDays, Loader2, Newspaper } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const CasinoNyhedArticle = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -115,6 +116,8 @@ const CasinoNyhedArticle = () => {
         jsonLd={jsonLdSchemas}
         breadcrumbLabel={article.title}
       />
+
+      <Breadcrumbs dynamicLabel={article.title} />
 
       {/* Gradient Hero Section */}
       <section
