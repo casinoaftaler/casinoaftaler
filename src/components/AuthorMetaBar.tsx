@@ -138,7 +138,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
       </div>
       {showAffiliateDisclaimer && <AffiliateDisclaimer />}
       {!showAffiliateDisclaimer && <div className="mb-6" />}
-      <TableOfContents levels={["h2", "h3"]} />
+      <TableOfContents />
     </>
   );
 }
