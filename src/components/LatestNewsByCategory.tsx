@@ -26,13 +26,14 @@ function useNewsByCategory(categories: string[], tags: string[], limit = 3) {
   return useQuery({
     queryKey: ["news-by-category", categories, tags, limit],
     queryFn: async () => {
-      // Try category match first
+      // Phase 1: category + tag match with cornerstone priority
       let query = supabase
         .from("casino_news")
-        .select("id, title, slug, published_at, category")
+        .select("id, title, slug, published_at, category, is_cornerstone")
         .eq("status", "published")
+        .order("is_cornerstone", { ascending: false })
         .order("published_at", { ascending: false })
-        .limit(limit);
+        .limit(limit + 3); // fetch extras to filter
 
       if (categories.length === 1) {
         query = query.eq("category", categories[0]);
@@ -40,22 +41,52 @@ function useNewsByCategory(categories: string[], tags: string[], limit = 3) {
         query = query.in("category", categories);
       }
 
-      const { data, error } = await query;
-      if (error) throw error;
-      
-      if ((data?.length ?? 0) >= limit) return data!;
+      const { data: catData, error: catErr } = await query;
+      if (catErr) throw catErr;
 
-      // Fallback: get latest
-      const existingIds = (data ?? []).map((d) => d.id);
+      let results = catData ?? [];
+
+      // Phase 2: if tags exist and not enough results, try tag overlap
+      if (results.length < limit && tags.length > 0) {
+        const existingIds = results.map((r) => r.id);
+        const { data: tagData } = await supabase
+          .from("casino_news")
+          .select("id, title, slug, published_at, category, is_cornerstone")
+          .eq("status", "published")
+          .overlaps("tags", tags)
+          .not("id", "in", `(${existingIds.map((id) => `"${id}"`).join(",")})`)
+          .order("is_cornerstone", { ascending: false })
+          .order("published_at", { ascending: false })
+          .limit(limit - results.length);
+
+        if (tagData) results = [...results, ...tagData];
+      }
+
+      if (results.length >= limit) return results.slice(0, limit);
+
+      // Phase 3: fallback to latest
+      const existingIds = results.map((d) => d.id);
+      if (existingIds.length === 0) {
+        const { data: fallback } = await supabase
+          .from("casino_news")
+          .select("id, title, slug, published_at, category, is_cornerstone")
+          .eq("status", "published")
+          .order("is_cornerstone", { ascending: false })
+          .order("published_at", { ascending: false })
+          .limit(limit);
+        return fallback ?? [];
+      }
+
       const { data: fallback } = await supabase
         .from("casino_news")
-        .select("id, title, slug, published_at, category")
+        .select("id, title, slug, published_at, category, is_cornerstone")
         .eq("status", "published")
         .not("id", "in", `(${existingIds.map((id) => `"${id}"`).join(",")})`)
+        .order("is_cornerstone", { ascending: false })
         .order("published_at", { ascending: false })
-        .limit(limit - (data?.length ?? 0));
+        .limit(limit - results.length);
 
-      return [...(data ?? []), ...(fallback ?? [])].slice(0, limit);
+      return [...results, ...(fallback ?? [])].slice(0, limit);
     },
     staleTime: 5 * 60 * 1000,
     enabled: categories.length > 0,
@@ -70,11 +101,11 @@ interface LatestNewsByCategoryProps {
 /**
  * Contextual news section for money pages.
  * Shows 2-3 relevant news articles matched by category/tags.
+ * Cornerstone articles are prioritized first.
  */
 export function LatestNewsByCategory({ pagePath }: LatestNewsByCategoryProps) {
   const mapping = PAGE_CATEGORY_MAP[pagePath];
   
-  // Fallback for unmapped pages
   const categories = mapping?.categories ?? ["regulering"];
   const label = mapping?.label ?? "det danske casinomarked";
   const tags = mapping?.tags ?? [];
