@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle, Gift, Newspaper, Map, PenTool } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle, Gift, Newspaper, Map, PenTool, TrendingUp, RefreshCw } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useLatestNews } from "@/hooks/useLatestNews";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
@@ -267,6 +267,18 @@ export function Footer() {
                 <Link to="/bonus-uden-omsaetningskrav" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Sparkles className="h-4 w-4" />
                   Bonus u. Omsætningskrav
+                </Link>
+              </li>
+              <li>
+                <Link to="/cashback-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <TrendingUp className="h-4 w-4" />
+                  Cashback Bonus
+                </Link>
+              </li>
+              <li>
+                <Link to="/reload-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <RefreshCw className="h-4 w-4" />
+                  Reload Bonus
                 </Link>
               </li>
               <li>

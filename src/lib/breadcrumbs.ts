@@ -40,6 +40,8 @@ export const routeLabels: Record<string, string> = {
   "/bonus-uden-omsaetningskrav": "Bonus uden Omsætningskrav",
   "/no-sticky-bonus": "No-Sticky Bonus",
   "/sticky-bonus": "Sticky Bonus",
+  "/cashback-bonus": "Cashback Bonus",
+  "/reload-bonus": "Reload Bonus",
   // Betalingsmetoder
   "/betalingsmetoder": "Betalingsmetoder",
   "/betalingsmetoder/apple-pay": "Apple Pay",
