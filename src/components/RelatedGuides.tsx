@@ -21,6 +21,8 @@ import {
   Globe,
   BarChart3,
   ShoppingCart,
+  TrendingUp,
+  RefreshCw,
 } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
@@ -48,6 +50,8 @@ const bonusSiblings: GuideLink[] = [
   { to: "/sticky-bonus", label: "Sticky Bonus", icon: Gift, desc: "Klæbende bonusser med større beløb" },
   { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", icon: Gift, desc: "Spil gratis uden at indbetale" },
   { to: "/bonus-uden-omsaetningskrav", label: "Uden Omsætningskrav", icon: Zap, desc: "Hæv gevinster med det samme" },
+  { to: "/cashback-bonus", label: "Cashback Bonus", icon: TrendingUp, desc: "Få penge tilbage fra dine tab" },
+  { to: "/reload-bonus", label: "Reload Bonus", icon: RefreshCw, desc: "Tilbagevendende bonusser for eksisterende spillere" },
 ];
 
 const paymentSiblings: GuideLink[] = [
@@ -350,7 +354,8 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     path.startsWith("/velkomstbonus") || path.startsWith("/free-spins") ||
     path.startsWith("/indskudsbonus") || path.startsWith("/omsaetningskrav") ||
     path.startsWith("/no-sticky-bonus") || path.startsWith("/sticky-bonus") ||
-    path.startsWith("/bonus-uden") || path === "/casino-bonus"
+    path.startsWith("/bonus-uden") || path === "/casino-bonus" ||
+    path.startsWith("/cashback-bonus") || path.startsWith("/reload-bonus")
   ) {
     const siblings = bonusSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     const hub = path === "/casino-bonus" ? [] : [bonusHub];
