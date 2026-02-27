@@ -4,10 +4,11 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { NewsHubSections } from "@/components/NewsHubSections";
 import { usePublishedNews } from "@/hooks/useCasinoNews";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
-import { CalendarDays, ChevronLeft, ChevronRight, Newspaper } from "lucide-react";
+import { CalendarDays, ChevronLeft, ChevronRight, Newspaper, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -48,6 +49,9 @@ const CATEGORY_META: Record<string, { label: string; intro: string }> = {
 
 const CATEGORIES = ["alle", "regulering", "licenser", "nye-casinoer", "betalingsmetoder", "markedsbevægelser", "juridisk"];
 
+/** PageRank control: page 4+ gets noindex */
+const NOINDEX_THRESHOLD = 4;
+
 const CasinoNyheder = () => {
   const [page, setPage] = useState(1);
   const [activeCategory, setActiveCategory] = useState("alle");
@@ -87,12 +91,16 @@ const CasinoNyheder = () => {
 
   const categoryMeta = CATEGORY_META[activeCategory] || CATEGORY_META.alle;
 
+  // PageRank: noindex for deep archive pages
+  const shouldNoindex = page >= NOINDEX_THRESHOLD;
+
   return (
     <>
       <SEO
         title="Casino Nyheder 2026 – Seneste Opdateringer fra Danske Online Casinoer"
         description="Hold dig opdateret med de seneste casino nyheder, analyser og opdateringer fra det danske casinomarked. Nye licenser, bonusændringer, betalingsmetoder og lovgivning."
         jsonLd={articleSchema}
+        noindex={shouldNoindex}
       />
 
       {/* Gradient Hero Section */}
@@ -166,6 +174,9 @@ const CasinoNyheder = () => {
 
         <Separator className="mb-8" />
 
+        {/* Evergreen hub sections – only on page 1, category "alle" */}
+        {page === 1 && activeCategory === "alle" && <NewsHubSections />}
+
         {/* Category Filter */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Seneste casino-nyheder</h2>
@@ -232,6 +243,12 @@ const CasinoNyheder = () => {
                   )}
                   <div className="flex items-center gap-2 mb-3">
                     <Badge variant="secondary" className="text-xs">{article.category}</Badge>
+                    {(article as any).is_cornerstone && (
+                      <Badge variant="default" className="text-xs flex items-center gap-1">
+                        <Crown className="h-3 w-3" />
+                        Cornerstone
+                      </Badge>
+                    )}
                     {article.published_at && (
                       <span className="flex items-center gap-1 text-xs text-muted-foreground">
                         <CalendarDays className="h-3 w-3" />

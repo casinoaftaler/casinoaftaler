@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -12,24 +11,29 @@ import { useNewsArticle } from "@/hooks/useCasinoNews";
 import { useRelatedNews } from "@/hooks/useRelatedNews";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
-import { CalendarDays, Loader2, Newspaper } from "lucide-react";
+import { autoLinkEntities } from "@/lib/entityAutoLinker";
+import { CalendarDays, Loader2, Newspaper, Crown, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+
+const MAX_RELATED_ARTICLES = 3;
 
 const CasinoNyhedArticle = () => {
   const { slug } = useParams<{ slug: string }>();
   const { data: article, isLoading } = useNewsArticle(slug || "");
 
-  // Fetch related articles by category/tags instead of just latest
+  const isCornerstone = !!(article as any)?.is_cornerstone;
+
+  // Fetch related articles by category/tags – max 3 for equity control
   const { data: relatedArticles = [] } = useRelatedNews(
     slug || "",
     article?.category || "",
     article?.tags || [],
-    4
+    MAX_RELATED_ARTICLES
   );
 
-  // Extract FAQ from HTML content and split into structured data + clean content
+  // Extract FAQ from HTML content, apply entity auto-linking
   const { contentWithoutFaq, faqs } = useMemo(() => {
     if (!article?.content) return { contentWithoutFaq: "", faqs: [] };
 
@@ -38,7 +42,7 @@ const CasinoNyhedArticle = () => {
     const match = html.match(faqHeadingRegex);
 
     if (!match || match.index === undefined) {
-      return { contentWithoutFaq: html, faqs: [] };
+      return { contentWithoutFaq: autoLinkEntities(html), faqs: [] };
     }
 
     const beforeFaq = html.slice(0, match.index);
@@ -63,7 +67,7 @@ const CasinoNyhedArticle = () => {
       }
     }
 
-    return { contentWithoutFaq: beforeFaq + afterFaqContent, faqs: parsedFaqs };
+    return { contentWithoutFaq: autoLinkEntities(beforeFaq + afterFaqContent), faqs: parsedFaqs };
   }, [article?.content]);
 
   if (isLoading) {
@@ -85,6 +89,14 @@ const CasinoNyhedArticle = () => {
         year: "numeric",
       })
     : "Ikke publiceret";
+
+  const updatedDate = article.updated_at
+    ? new Date(article.updated_at).toLocaleDateString("da-DK", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : null;
 
   const articleUrl = `${SITE_URL}/casino-nyheder/${article.slug}`;
 
@@ -130,10 +142,18 @@ const CasinoNyhedArticle = () => {
       >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4">
-              <Newspaper className="mr-1.5 h-3.5 w-3.5" />
-              {article.category}
-            </Badge>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Badge variant="secondary">
+                <Newspaper className="mr-1.5 h-3.5 w-3.5" />
+                {article.category}
+              </Badge>
+              {isCornerstone && (
+                <Badge variant="default" className="flex items-center gap-1">
+                  <Crown className="h-3.5 w-3.5" />
+                  Løbende opdateret
+                </Badge>
+              )}
+            </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               {article.title}
             </h1>
@@ -153,6 +173,14 @@ const CasinoNyhedArticle = () => {
           showAffiliateDisclaimer={false}
         />
 
+        {/* Cornerstone: show last-updated date */}
+        {isCornerstone && updatedDate && updatedDate !== publishedDate && (
+          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6 rounded-lg border border-primary/20 bg-primary/5 px-4 py-2">
+            <RefreshCw className="h-4 w-4 text-primary" />
+            <span>Senest opdateret: {updatedDate}</span>
+          </div>
+        )}
+
         {/* Hero Image */}
         {article.featured_image && (
           <div className="mb-10 overflow-hidden rounded-xl">
@@ -167,7 +195,7 @@ const CasinoNyhedArticle = () => {
           </div>
         )}
 
-        {/* Article Content - render HTML content (without FAQ) */}
+        {/* Article Content – entity auto-linked HTML (without FAQ) */}
         <section
           className="prose prose-lg dark:prose-invert max-w-none mb-12 [&>h2]:text-3xl [&>h2]:font-bold [&>h2]:mt-12 [&>h2]:mb-4 [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:mt-10 [&>h3]:mb-3 [&>p]:mb-5 [&>p]:leading-relaxed [&>p]:text-muted-foreground [&>ul]:mb-5 [&>ol]:mb-5 [&>h2:first-of-type]:mt-0"
           dangerouslySetInnerHTML={{ __html: contentWithoutFaq }}
@@ -189,7 +217,7 @@ const CasinoNyhedArticle = () => {
 
         <Separator className="my-8" />
 
-        {/* Related Articles – category/tag matched */}
+        {/* Related Articles – max 3, category/tag matched */}
         {relatedArticles.length > 0 && (
           <section className="mb-10">
             <h2 className="text-2xl font-bold mb-2">Relaterede Nyheder</h2>
@@ -202,7 +230,7 @@ const CasinoNyhedArticle = () => {
                 article.category === "juridisk" ? "juridiske emner" :
                 "det danske casinomarked"}.
             </p>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 md:grid-cols-3">
               {relatedArticles.map((related) => (
                 <Link
                   key={related.id}
