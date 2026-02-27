@@ -159,6 +159,34 @@ const MAX_CROSS_CLUSTER = 1;
 function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtitle: string } {
   const path = currentPath.toLowerCase();
 
+  // Casino Nyheder hub → strategic money-page links
+  if (path === "/casino-nyheder") {
+    return {
+      guides: [
+        { to: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: BookOpen, desc: "Dybdegående anmeldelser af danske casinoer" },
+        { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Sammenlign de bedste bonusser" },
+        { to: "/nye-casinoer", label: "Nye Casinoer 2026", icon: Sparkles, desc: "De nyeste casinoer på markedet" },
+        { to: "/casino-licenser", label: "Casino Licenser", icon: ShieldCheck, desc: "Forstå det danske licenssystem" },
+        { to: "/betalingsmetoder", label: "Betalingsmetoder", icon: CreditCard, desc: "Alle betalingsløsninger sammenlignet" },
+      ],
+      subtitle: "Udforsk vores dybdegående guides, anmeldelser og sammenligninger.",
+    };
+  }
+
+  // Casino Nyheder articles → contextual money-page links
+  if (path.startsWith("/casino-nyheder/")) {
+    return {
+      guides: [
+        { to: "/casino-nyheder", label: "Alle Casino Nyheder", icon: BookOpen, desc: "Se alle nyheder og analyser" },
+        { to: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: Star, desc: "Dybdegående anmeldelser af danske casinoer" },
+        { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Sammenlign de bedste bonusser" },
+        { to: "/nye-casinoer", label: "Nye Casinoer 2026", icon: Sparkles, desc: "De nyeste casinoer på markedet" },
+        { to: "/betalingsmetoder", label: "Betalingsmetoder", icon: CreditCard, desc: "Alle betalingsløsninger sammenlignet" },
+      ],
+      subtitle: "Udforsk flere guides, anmeldelser og sammenligninger på Casinoaftaler.dk.",
+    };
+  }
+
   // Om teamet → specific curated links
   if (path === "/om" || path === "/om-teamet") {
     return {
