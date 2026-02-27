@@ -339,6 +339,7 @@ export type Database = {
           excerpt: string | null
           featured_image: string | null
           id: string
+          is_cornerstone: boolean
           meta_description: string | null
           meta_title: string | null
           published_at: string | null
@@ -356,6 +357,7 @@ export type Database = {
           excerpt?: string | null
           featured_image?: string | null
           id?: string
+          is_cornerstone?: boolean
           meta_description?: string | null
           meta_title?: string | null
           published_at?: string | null
@@ -373,6 +375,7 @@ export type Database = {
           excerpt?: string | null
           featured_image?: string | null
           id?: string
+          is_cornerstone?: boolean
           meta_description?: string | null
           meta_title?: string | null
           published_at?: string | null
