@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import { TableOfContents } from "@/components/TableOfContents";
+
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -235,7 +235,7 @@ const Betalingsmetoder = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="18-02-2026" readTime="28 Min." />
-        <TableOfContents levels={["h2", "h3"]} />
+        
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={betalingsmetoderHero} alt="Betalingsmetoder på danske online casinoer – strategisk overblik" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

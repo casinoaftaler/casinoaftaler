@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import casinoLicenserHero from "@/assets/heroes/casino-licenser-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import { TableOfContents } from "@/components/TableOfContents";
+
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -101,7 +101,7 @@ const CasinoLicenser = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="ajse" date="26-02-2026" readTime="14 Min." />
-        <TableOfContents levels={["h2", "h3"]} />
+        
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">
