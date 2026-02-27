@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import forretningsmodelHero from "@/assets/heroes/forretningsmodel-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -81,6 +82,17 @@ const Forretningsmodel = () => {
 
       <div className="container py-10 md:py-14">
         <AuthorMetaBar author="ajse" date="2026-02-15" readTime="5 min" showAffiliateDisclaimer={false} />
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={forretningsmodelHero}
+            alt="Forretningsmodel og transparens hos Casinoaftaler.dk"
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+          />
+        </div>
 
         {/* Hvad er affiliate-marketing */}
         <section className="mb-12">
