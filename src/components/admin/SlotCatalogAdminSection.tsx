@@ -254,6 +254,62 @@ const PROVIDER_PRESETS = [
   "Yggdrasil",
 ];
 
+const SLOT_NAME_PRESETS = [
+  "Big Bass Bonanza",
+  "Big Bass Splash",
+  "Bigger Bass Splash",
+  "Bonanza",
+  "Book of Dead",
+  "Buffalo King Megaways",
+  "Chaos Crew",
+  "Chaos Crew 2",
+  "Crazy Time",
+  "Danger High Voltage",
+  "Dead Or Alive 2",
+  "Divine Fortune Megaways",
+  "Dog House Multihold",
+  "Drop 'Em",
+  "Extra Chilli",
+  "Fire In The Hole",
+  "Floating Dragon",
+  "Fruit Party",
+  "Fruit Party 2",
+  "Gates Of Olympus",
+  "Gates Of Olympus 1000",
+  "Gems Bonanza",
+  "Gonzo's Quest Megaways",
+  "Hand Of Anubis",
+  "Immortal Romance",
+  "Jammin Jars",
+  "Jammin Jars 2",
+  "Karen Maneater",
+  "Le Bandit",
+  "Mental",
+  "Misery Mining",
+  "Money Train 2",
+  "Money Train 3",
+  "Money Train 4",
+  "Punk Rocker",
+  "Razor Shark",
+  "Reactoonz",
+  "Reactoonz 2",
+  "San Quentin Xways",
+  "Sky Bounty",
+  "Starlight Princess",
+  "Starlight Princess 1000",
+  "Stick Em",
+  "Sugar Rush",
+  "Sugar Rush 1000",
+  "Sweet Bonanza",
+  "Sweet Bonanza 1000",
+  "The Dog House",
+  "The Dog House Megaways",
+  "Tombstone Rip",
+  "Wanted Dead Or A Wild",
+  "Wild West Gold",
+  "Wild West Gold Megaways",
+];
+
 function SlotFormDialog({ open, onClose, onSave, initialData, isPending }: {
   open: boolean;
   onClose: () => void;
@@ -265,26 +321,76 @@ function SlotFormDialog({ open, onClose, onSave, initialData, isPending }: {
   const [form, setForm] = useState<SlotFormData>(initialData || emptyForm);
   const [providerOpen, setProviderOpen] = useState(false);
   const [customProvider, setCustomProvider] = useState(false);
+  const [slotNameOpen, setSlotNameOpen] = useState(false);
+  const [customSlotName, setCustomSlotName] = useState(false);
 
   useEffect(() => {
     if (open) {
       setForm(initialData || emptyForm);
       setCustomProvider(false);
+      setCustomSlotName(false);
     }
   }, [open, initialData]);
 
   const isCustomValue = form.provider && !PROVIDER_PRESETS.includes(form.provider);
+  const isCustomSlotValue = form.slot_name && !SLOT_NAME_PRESETS.includes(form.slot_name);
+  const isEditing = !!initialData;
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => { if (!isOpen) onClose(); }}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{initialData ? 'Rediger Slot' : 'Tilføj Slot'}</DialogTitle>
+          <DialogTitle>{isEditing ? 'Rediger Slot' : 'Tilføj Slot'}</DialogTitle>
         </DialogHeader>
         <div className="space-y-3">
           <div className="space-y-1">
             <Label>Slot Navn *</Label>
-            <Input value={form.slot_name} onChange={e => setForm({ ...form, slot_name: e.target.value })} disabled={!!initialData} />
+            {isEditing ? (
+              <Input value={form.slot_name} disabled />
+            ) : customSlotName || isCustomSlotValue ? (
+              <div className="flex gap-2">
+                <Input
+                  value={form.slot_name}
+                  onChange={e => setForm({ ...form, slot_name: e.target.value })}
+                  placeholder="Skriv slot navn..."
+                  autoFocus
+                />
+                <Button type="button" variant="outline" size="sm" onClick={() => { setCustomSlotName(false); setSlotNameOpen(true); if (isCustomSlotValue && !form.slot_name.trim()) setForm({ ...form, slot_name: '' }); }}>
+                  Liste
+                </Button>
+              </div>
+            ) : (
+              <Popover open={slotNameOpen} onOpenChange={setSlotNameOpen}>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" role="combobox" aria-expanded={slotNameOpen} className="w-full justify-between font-normal">
+                    {form.slot_name || "Vælg slot..."}
+                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
+                  <Command>
+                    <CommandInput placeholder="Søg slot..." />
+                    <CommandList>
+                      <CommandEmpty>Ingen fundet</CommandEmpty>
+                      <CommandGroup>
+                        {SLOT_NAME_PRESETS.map(s => (
+                          <CommandItem key={s} value={s} onSelect={() => { setForm({ ...form, slot_name: s }); setSlotNameOpen(false); }}>
+                            <Check className={cn("mr-2 h-4 w-4", form.slot_name === s ? "opacity-100" : "opacity-0")} />
+                            {s}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                      <CommandGroup>
+                        <CommandItem onSelect={() => { setCustomSlotName(true); setSlotNameOpen(false); }}>
+                          <Plus className="mr-2 h-4 w-4" />
+                          Tilføj custom slot...
+                        </CommandItem>
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+            )}
           </div>
           <div className="space-y-1">
             <Label>Provider</Label>
