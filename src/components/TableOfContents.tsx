@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { List, ChevronDown, ChevronRight } from "lucide-react";
 
 interface TocItem {
@@ -7,7 +7,6 @@ interface TocItem {
   level: 2 | 3;
 }
 
-/** Headings containing any of these strings are excluded from ToC */
 const EXCLUDED_PATTERNS = [
   "indholdsfortegnelse",
   "relaterede guides",
@@ -43,13 +42,6 @@ interface TableOfContentsProps {
   title?: string;
 }
 
-/**
- * Minimalist, collapsed-by-default Table of Contents.
- * - Only shows H2 headings (H3 expand per-section via accordion)
- * - Excludes FAQ, related guides, etc.
- * - Hard cap at 15 H2s
- * - Auto-generates anchor IDs
- */
 export function TableOfContents({
   containerSelector = "main",
   title = "Indholdsfortegnelse",
@@ -57,7 +49,11 @@ export function TableOfContents({
   const [items, setItems] = useState<TocItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [expandedH2, setExpandedH2] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const manualClickRef = useRef(false);
 
+  // Parse headings
   useEffect(() => {
     const timer = setTimeout(() => {
       const container = document.querySelector(containerSelector);
@@ -71,27 +67,19 @@ export function TableOfContents({
       headings.forEach((heading) => {
         const text = heading.textContent?.trim();
         if (!text) return;
-
-        // Skip ToC's own heading
         if (heading.closest("[aria-label='Indholdsfortegnelse']")) return;
-        // Skip hero sections
         if (heading.closest("[class*='hero'], [class*='Hero']")) return;
-        // Skip excluded patterns
         if (isExcluded(text)) return;
 
         const level = heading.tagName === "H2" ? 2 : 3;
 
-        // Hard cap on H2s
         if (level === 2) {
           h2Count++;
           if (h2Count > MAX_H2) return;
         }
-        // Skip orphan H3s before any H2
         if (level === 3 && h2Count === 0) return;
-        // Skip H3s beyond the cap
         if (level === 3 && h2Count > MAX_H2) return;
 
-        // Generate unique ID
         let id = heading.id || slugify(text);
         if (usedIds.has(id)) {
           let c = 2;
@@ -104,7 +92,6 @@ export function TableOfContents({
         tocItems.push({ id, text, level });
       });
 
-      // Only show if at least 3 H2s
       const h2Items = tocItems.filter((i) => i.level === 2);
       if (h2Items.length >= 3) {
         setItems(tocItems);
@@ -114,14 +101,67 @@ export function TableOfContents({
     return () => clearTimeout(timer);
   }, [containerSelector]);
 
-  const handleClick = useCallback((id: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      window.history.replaceState(null, "", `#${id}`);
+  // Scrollspy via IntersectionObserver
+  useEffect(() => {
+    const h2Ids = items.filter((i) => i.level === 2).map((i) => i.id);
+    if (h2Ids.length === 0) return;
+
+    // Track which H2s are currently intersecting
+    const visibleSet = new Set<string>();
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        if (manualClickRef.current) return;
+
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            visibleSet.add(entry.target.id);
+          } else {
+            visibleSet.delete(entry.target.id);
+          }
+        }
+
+        // Pick the topmost visible H2 (by document order)
+        for (const id of h2Ids) {
+          if (visibleSet.has(id)) {
+            setActiveId(id);
+            return;
+          }
+        }
+      },
+      { rootMargin: "-10% 0px -60% 0px", threshold: 0 }
+    );
+
+    for (const id of h2Ids) {
+      const el = document.getElementById(id);
+      if (el) observerRef.current.observe(el);
     }
-  }, []);
+
+    return () => {
+      observerRef.current?.disconnect();
+      observerRef.current = null;
+    };
+  }, [items]);
+
+  const handleClick = useCallback(
+    (id: string, e: React.MouseEvent) => {
+      e.preventDefault();
+      setActiveId(id);
+
+      // Suppress observer updates briefly during programmatic scroll
+      manualClickRef.current = true;
+      setTimeout(() => {
+        manualClickRef.current = false;
+      }, 800);
+
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.history.replaceState(null, "", `#${id}`);
+      }
+    },
+    []
+  );
 
   const toggleH2 = useCallback((id: string, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -130,7 +170,6 @@ export function TableOfContents({
 
   if (items.length === 0) return null;
 
-  // Group items: each H2 with its child H3s
   const groups: { h2: TocItem; h3s: TocItem[] }[] = [];
   for (const item of items) {
     if (item.level === 2) {
@@ -145,7 +184,6 @@ export function TableOfContents({
       aria-label="Indholdsfortegnelse"
       className="my-6 rounded-lg border border-border bg-card overflow-hidden"
     >
-      {/* Collapsed header — always visible */}
       <button
         type="button"
         onClick={() => setIsOpen((o) => !o)}
@@ -166,7 +204,6 @@ export function TableOfContents({
         />
       </button>
 
-      {/* Expandable content */}
       <div
         className={`grid transition-[grid-template-rows] duration-200 ease-out ${
           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
@@ -177,11 +214,17 @@ export function TableOfContents({
             {groups.map((group, idx) => {
               const hasChildren = group.h3s.length > 0;
               const isExpanded = expandedH2 === group.h2.id;
+              const isActive = activeId === group.h2.id;
 
               return (
                 <li key={group.h2.id}>
-                  <div className="flex items-start gap-1.5">
-                    {/* Expand toggle for H3s */}
+                  <div
+                    className={`flex items-start gap-1.5 rounded-md px-1.5 -mx-1.5 transition-all duration-150 ${
+                      isActive
+                        ? "bg-primary/5 border-l-2 border-primary pl-2"
+                        : "border-l-2 border-transparent pl-2"
+                    }`}
+                  >
                     {hasChildren ? (
                       <button
                         type="button"
@@ -202,16 +245,23 @@ export function TableOfContents({
                     <a
                       href={`#${group.h2.id}`}
                       onClick={(e) => handleClick(group.h2.id, e)}
-                      className="flex-1 py-1 text-sm text-muted-foreground transition-colors hover:text-primary"
+                      className={`flex-1 py-1.5 text-sm transition-colors duration-150 ${
+                        isActive
+                          ? "text-primary font-semibold"
+                          : "text-muted-foreground hover:text-primary"
+                      }`}
                     >
-                      <span className="mr-1.5 font-mono text-xs text-muted-foreground/50">
+                      <span
+                        className={`mr-1.5 font-mono text-xs ${
+                          isActive ? "text-primary/70" : "text-muted-foreground/50"
+                        }`}
+                      >
                         {idx + 1}.
                       </span>
                       <span className="hover:underline">{group.h2.text}</span>
                     </a>
                   </div>
 
-                  {/* H3 accordion */}
                   {hasChildren && (
                     <div
                       className={`grid transition-[grid-template-rows] duration-150 ease-out ${
