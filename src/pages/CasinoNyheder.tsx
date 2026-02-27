@@ -174,9 +174,6 @@ const CasinoNyheder = () => {
 
         <Separator className="mb-8" />
 
-        {/* Evergreen hub sections – only on page 1, category "alle" */}
-        {page === 1 && activeCategory === "alle" && <NewsHubSections />}
-
         {/* Category Filter */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Seneste casino-nyheder</h2>
@@ -205,6 +202,9 @@ const CasinoNyheder = () => {
             <p className="text-muted-foreground">Korte analyser og opdateringer fra det danske online casino-marked.</p>
           )}
         </div>
+
+        {/* Evergreen hub sections – only on page 1, category "alle" */}
+        {page === 1 && activeCategory === "alle" && <NewsHubSections />}
 
         {/* Article List */}
         {isLoading ? (
