@@ -140,14 +140,15 @@ function SlotCatalogSection() {
             <table className="w-full text-sm">
               <thead className="bg-muted/50">
                 <tr>
-                  <th className="px-3 py-2 text-left font-medium text-muted-foreground">Slot</th>
-                  <th className="px-3 py-2 text-left font-medium text-muted-foreground">Provider</th>
-                  <th className="px-3 py-2 text-left font-medium text-muted-foreground">RTP</th>
-                  <th className="px-3 py-2 text-left font-medium text-muted-foreground">Vol.</th>
-                  <th className="px-3 py-2 text-left font-medium text-muted-foreground">Max</th>
-                  <th className="px-3 py-2 text-left font-medium text-muted-foreground">Højeste Win</th>
-                  <th className="px-3 py-2 text-left font-medium text-muted-foreground">Højeste X</th>
-                  <th className="px-3 py-2 text-right font-medium text-muted-foreground">Handlinger</th>
+                   <th className="px-3 py-2 text-left font-medium text-muted-foreground">Slot</th>
+                   <th className="px-3 py-2 text-left font-medium text-muted-foreground">Provider</th>
+                   <th className="px-3 py-2 text-left font-medium text-muted-foreground">RTP</th>
+                   <th className="px-3 py-2 text-left font-medium text-muted-foreground">Vol.</th>
+                   <th className="px-3 py-2 text-left font-medium text-muted-foreground">Max</th>
+                   <th className="px-3 py-2 text-left font-medium text-muted-foreground">Højeste Win</th>
+                   <th className="px-3 py-2 text-left font-medium text-muted-foreground">Højeste X</th>
+                   <th className="px-3 py-2 text-left font-medium text-muted-foreground"># Hunts</th>
+                   <th className="px-3 py-2 text-right font-medium text-muted-foreground">Handlinger</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
@@ -158,8 +159,9 @@ function SlotCatalogSection() {
                     <td className="px-3 py-2 font-mono">{slot.rtp ? `${slot.rtp}%` : '—'}</td>
                     <td className="px-3 py-2">{slot.volatility || '—'}</td>
                     <td className="px-3 py-2">{slot.max_potential || '—'}</td>
-                    <td className="px-3 py-2 font-mono">{slot.highest_win || '—'}</td>
-                    <td className="px-3 py-2 font-mono">{slot.highest_x ? `${slot.highest_x}x` : '—'}</td>
+                    <td className="px-3 py-2 font-mono">{slot.highest_win ? `${slot.highest_win} (${slot.bonus_count})` : '—'}</td>
+                    <td className="px-3 py-2 font-mono">{slot.highest_x ? `${slot.highest_x}x (${slot.bonus_count})` : '—'}</td>
+                    <td className="px-3 py-2 font-mono text-muted-foreground">{slot.bonus_count}</td>
                     <td className="px-3 py-2 text-right">
                       <div className="flex items-center justify-end gap-1">
                         <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => setEditingSlot(slot)}>
@@ -185,7 +187,7 @@ function SlotCatalogSection() {
                   </tr>
                 ))}
                 {filtered.length === 0 && (
-                  <tr><td colSpan={8} className="px-3 py-8 text-center text-muted-foreground">Ingen slots fundet</td></tr>
+                  <tr><td colSpan={9} className="px-3 py-8 text-center text-muted-foreground">Ingen slots fundet</td></tr>
                 )}
               </tbody>
             </table>
@@ -231,6 +233,7 @@ interface SlotFormData {
   max_potential: string | null;
   highest_win: number;
   highest_x: number;
+  bonus_count: number;
 }
 
 const PROVIDER_PRESETS = [
@@ -258,7 +261,7 @@ function SlotFormDialog({ open, onClose, onSave, initialData, isPending }: {
   initialData?: SlotFormData;
   isPending: boolean;
 }) {
-  const emptyForm: SlotFormData = { slot_name: '', provider: '', rtp: null, volatility: null, max_potential: null, highest_win: 0, highest_x: 0 };
+  const emptyForm: SlotFormData = { slot_name: '', provider: '', rtp: null, volatility: null, max_potential: null, highest_win: 0, highest_x: 0, bonus_count: 0 };
   const [form, setForm] = useState<SlotFormData>(initialData || emptyForm);
   const [providerOpen, setProviderOpen] = useState(false);
   const [customProvider, setCustomProvider] = useState(false);

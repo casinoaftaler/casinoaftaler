@@ -95,3 +95,9 @@ verify_jwt = false
 
 [functions.free-spins-debug]
 verify_jwt = false
+
+[functions.slot-catalog-enrich]
+verify_jwt = false
+
+[functions.bonus-hunt-auto-settle]
+verify_jwt = false

@@ -10,6 +10,7 @@ export interface SlotCatalogEntry {
   max_potential: string | null;
   highest_win: number;
   highest_x: number;
+  bonus_count: number;
   created_at: string;
   updated_at: string;
 }
