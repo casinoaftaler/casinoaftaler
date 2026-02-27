@@ -9,6 +9,38 @@ const corsHeaders = {
 const STREAMSYSTEM_BASE = "https://www.streamsystem.bet/api/bonushunt/data";
 const STREAMER_ID = "959262659";
 
+const TITLE_CASE_LOWER = new Set(['of', 'and', 'the', 'in', 'at', 'by', 'to', 'for', 'or', 'on', 'a', 'an']);
+const ROMAN_NUMERALS = new Set(['ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi', 'xii']);
+
+function toTitleCase(str: string): string {
+  return str.split(' ').map((word, i) => {
+    const lower = word.toLowerCase();
+    if (ROMAN_NUMERALS.has(lower)) return word.toUpperCase();
+    if (i > 0 && TITLE_CASE_LOWER.has(lower)) return lower;
+    if (word.includes("'")) {
+      return word.split("'").map((part, j) => j === 0 ? part.charAt(0).toUpperCase() + part.slice(1).toLowerCase() : part).join("'");
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  }).join(' ');
+}
+
+async function triggerEnrich(supabase: any) {
+  try {
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    await fetch(`${supabaseUrl}/functions/v1/slot-catalog-enrich`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${serviceRoleKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+    });
+  } catch (e) {
+    console.error('Enrich trigger error:', e);
+  }
+}
+
 async function syncSlotCatalog(supabase: any, huntData: any) {
   const slots = huntData?.slots;
   if (!Array.isArray(slots) || slots.length === 0) return;
@@ -24,7 +56,7 @@ async function syncSlotCatalog(supabase: any, huntData: any) {
 
   for (const entry of slots) {
     const slotInfo = entry.slot || {};
-    const slotName = slotInfo.name;
+    const slotName = toTitleCase(slotInfo.name);
     if (!slotName) continue;
 
     const rawProvider = slotInfo.provider || 'Unknown';
@@ -144,9 +176,11 @@ serve(async (req) => {
           }, { onConflict: 'hunt_number' });
       }
 
-      // Auto-sync slots to catalog
+      // Auto-sync slots to catalog + enrich missing metadata
       try {
         await syncSlotCatalog(supabase, huntData);
+        // Fire-and-forget: enrich slots with missing metadata via AI
+        triggerEnrich(supabase);
       } catch (e) {
         console.error('Slot catalog sync error:', e);
       }

@@ -1587,6 +1587,7 @@ export type Database = {
       }
       slot_catalog: {
         Row: {
+          bonus_count: number
           created_at: string
           highest_win: number | null
           highest_x: number | null
@@ -1599,6 +1600,7 @@ export type Database = {
           volatility: string | null
         }
         Insert: {
+          bonus_count?: number
           created_at?: string
           highest_win?: number | null
           highest_x?: number | null
@@ -1611,6 +1613,7 @@ export type Database = {
           volatility?: string | null
         }
         Update: {
+          bonus_count?: number
           created_at?: string
           highest_win?: number | null
           highest_x?: number | null
