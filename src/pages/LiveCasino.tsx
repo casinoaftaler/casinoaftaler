@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 const linkClass = "text-primary underline hover:text-primary/80 font-medium";
 
@@ -881,6 +882,8 @@ const LiveCasino = () => {
         <AuthorBio />
 
         <Separator className="my-10" />
+
+        <LatestNewsByCategory pagePath="/live-casino" />
 
         {/* RelatedGuides */}
         <RelatedGuides currentPath="/live-casino" />

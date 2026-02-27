@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -308,6 +309,8 @@ const ResponsibleGaming = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Ansvarligt Spil" faqs={responsibleGamingFaqs} />
 
         <AuthorBio author="ajse" showCommunity={false} />
+
+        <LatestNewsByCategory pagePath="/ansvarligt-spil" />
 
         <RelatedGuides currentPath="/ansvarligt-spil" />
       </div>
