@@ -225,6 +225,41 @@ export type Database = {
         }
         Relationships: []
       }
+      bonus_hunt_slot_coupons: {
+        Row: {
+          answers: Json
+          created_at: string
+          hunt_number: number
+          id: string
+          session_id: string | null
+          user_id: string
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          hunt_number: number
+          id?: string
+          session_id?: string | null
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          hunt_number?: number
+          id?: string
+          session_id?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bonus_hunt_slot_coupons_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "bonus_hunt_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       casino_compliance: {
         Row: {
           bonus_compliant: boolean

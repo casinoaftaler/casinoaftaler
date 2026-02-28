@@ -5,6 +5,7 @@ import { BonusHuntSlotTable } from "@/components/bonus-hunt/BonusHuntSlotTable";
 import { BonusHuntStatsTab } from "@/components/bonus-hunt/BonusHuntStatsTab";
 import { BonusHuntGTWTab } from "@/components/bonus-hunt/BonusHuntGTWTab";
 import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
+import { BonusHuntSlotCoupon } from "@/components/bonus-hunt/BonusHuntSlotCoupon";
 
 import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
 import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream";
@@ -260,10 +261,11 @@ export default function BonusHunt() {
                 {/* Right column (40%) */}
                 <div className="lg:col-span-2 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
                   <Tabs defaultValue="stats" className="w-full">
-                    <TabsList className="w-full grid grid-cols-3">
+                    <TabsList className="w-full grid grid-cols-4">
                       <TabsTrigger value="stats">STATS</TabsTrigger>
                       <TabsTrigger value="gtw">GTW</TabsTrigger>
                       <TabsTrigger value="avgx">AVG X</TabsTrigger>
+                      <TabsTrigger value="coupon" className="text-[11px]">🎰 Kupon</TabsTrigger>
                     </TabsList>
                     <TabsContent value="stats">
                       <BonusHuntStatsTab
@@ -288,6 +290,12 @@ export default function BonusHunt() {
                         bets={avgxBets}
                         userId={user?.id}
                         onBetPlaced={refreshBets}
+                      />
+                    </TabsContent>
+                    <TabsContent value="coupon">
+                      <BonusHuntSlotCoupon
+                        huntNumber={currentHuntNumber}
+                        sessionId={session?.id}
                       />
                     </TabsContent>
                   </Tabs>
