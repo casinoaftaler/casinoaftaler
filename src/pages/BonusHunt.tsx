@@ -8,6 +8,7 @@ import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
 
 import { BonusHuntCasinoContext } from "@/components/bonus-hunt/BonusHuntCasinoContext";
 import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
+import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream";
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
 import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent";
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
@@ -37,6 +38,7 @@ export default function BonusHunt() {
 
   const liveHuntNumber = huntData?.visibleId || latestHuntNumber + 1;
   const currentHuntNumber = huntIdOverride || liveHuntNumber;
+  const isLive = currentHuntNumber > latestHuntNumber;
   const huntVideo = getHuntVideo(currentHuntNumber);
   const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber);
 
@@ -121,7 +123,7 @@ export default function BonusHunt() {
                     avgX={avgX}
                     latestHuntNumber={latestHuntNumber}
                     maxHuntNumber={maxHuntNumber}
-                    isLive={currentHuntNumber > latestHuntNumber}
+                    isLive={isLive}
                     onNavigate={handleNavigate}
                     onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
                   />
@@ -130,8 +132,13 @@ export default function BonusHunt() {
                     huntDate={huntDate}
                     bonusCount={huntData.stats.openedBonuses}
                     avgX={huntData.stats.averageX}
+                    isLive={isLive}
                   />
-                  {huntVideo && <BonusHuntVideoSection video={huntVideo} />}
+                  {isLive ? (
+                    <BonusHuntLiveStream huntNumber={currentHuntNumber} />
+                  ) : (
+                    huntVideo && <BonusHuntVideoSection video={huntVideo} />
+                  )}
                 </div>
 
                 {/* Right column (40%) */}
