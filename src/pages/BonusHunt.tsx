@@ -135,7 +135,7 @@ export default function BonusHunt() {
                 </div>
 
                 {/* Right column (40%) */}
-                <div className="lg:col-span-2 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
+                <div className="lg:col-span-2 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
 
                   <Tabs defaultValue="stats" className="w-full">
                     <TabsList className="w-full grid grid-cols-3">
@@ -169,7 +169,9 @@ export default function BonusHunt() {
 
                   {huntVideo && <BonusHuntResultSummary video={huntVideo} />}
 
-                  <BonusHuntHostCard />
+                  <div className="flex-1">
+                    <BonusHuntHostCard />
+                  </div>
                 </div>
               </div>
 

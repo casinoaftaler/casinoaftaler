@@ -70,7 +70,7 @@ export function BonusHuntHostCard() {
   const socials = getActiveSocials();
 
   return (
-    <section className="rounded-xl border border-border/50 bg-card p-6">
+    <section className="rounded-xl border border-border/50 bg-card p-6 h-full flex flex-col">
       <div className="flex items-start gap-5">
         {/* Avatar */}
         <img
