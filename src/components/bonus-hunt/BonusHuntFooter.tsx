@@ -27,24 +27,24 @@ function formatTime(ts: string | null): string {
 export function BonusHuntFooter({ stats }: Props) {
   const items = [
     { label: 'Hunt Start', value: formatTime(stats.huntStart) },
-    { label: 'Hunt Duration', value: formatDuration(stats.huntDuration) },
-    { label: 'Opening Start', value: formatTime(stats.openingStart) },
-    { label: 'Opening Duration', value: formatDuration(stats.openingDuration) },
+    { label: 'Duration', value: formatDuration(stats.huntDuration) },
+    { label: 'Opening', value: formatTime(stats.openingStart) },
+    { label: 'Open Dur.', value: formatDuration(stats.openingDuration) },
     { label: 'Hunt End', value: formatTime(stats.bonusHuntEnd) },
-    { label: 'Total Duration', value: formatDuration(stats.totalDuration) },
+    { label: 'Total', value: formatDuration(stats.totalDuration) },
   ];
 
   return (
-    <Card>
+    <Card className="rounded-2xl border-primary/10 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10">
       <CardContent className="p-3">
-        <div className="flex items-center gap-1.5 mb-2 text-xs text-muted-foreground">
-          <Clock className="h-3 w-3" />
+        <div className="flex items-center gap-1.5 mb-2 text-[10px] text-muted-foreground uppercase tracking-wider">
+          <Clock className="h-3 w-3 text-primary" />
           Tidslinje
         </div>
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
           {items.map(item => (
-            <div key={item.label} className="text-center">
-              <p className="text-[10px] text-muted-foreground">{item.label}</p>
+            <div key={item.label} className="text-center rounded-lg bg-muted/30 py-1.5 px-1">
+              <p className="text-[9px] text-muted-foreground">{item.label}</p>
               <p className="text-xs font-semibold">{item.value}</p>
             </div>
           ))}
