@@ -7,6 +7,7 @@ import { BonusHuntGTWTab } from "@/components/bonus-hunt/BonusHuntGTWTab";
 import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
 import { BonusHuntFooter } from "@/components/bonus-hunt/BonusHuntFooter";
 import { BonusHuntCasinoContext } from "@/components/bonus-hunt/BonusHuntCasinoContext";
+import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
 import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
 import { useAuth } from "@/hooks/useAuth";
@@ -31,6 +32,8 @@ export default function BonusHunt() {
   }, [queryClient]);
 
   const liveHuntNumber = huntData?.visibleId || latestHuntNumber + 1;
+  const currentHuntNumber = huntIdOverride || liveHuntNumber;
+  const huntVideo = getHuntVideo(currentHuntNumber);
   const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber);
 
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
@@ -78,7 +81,8 @@ export default function BonusHunt() {
                   huntDate={huntDate}
                   bonusCount={huntData.stats.openedBonuses}
                   avgX={huntData.stats.averageX}
-                />
+                 />
+                 {huntVideo && <BonusHuntVideoSection video={huntVideo} />}
                 <BonusHuntSlotTable
                   slots={huntData.slots}
                   huntNumber={huntIdOverride || liveHuntNumber}
