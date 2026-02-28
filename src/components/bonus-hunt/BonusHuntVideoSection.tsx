@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Play, Monitor, Trophy, BarChart3 } from "lucide-react";
+import { Play, Monitor, Trophy, BarChart3, Video, MessageCircle, Calendar } from "lucide-react";
 import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
 import hunt4Thumbnail from "@/assets/bonus-hunt-4-thumbnail.png";
 import hunt3Thumbnail from "@/assets/bonus-hunt-3-thumbnail.png";
@@ -114,8 +114,9 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
       >
         <div className="p-4 md:p-5 space-y-3">
           <div>
-            <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground mb-0.5">
-              🎥 Fuld stream optagelse
+            <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground mb-0.5 flex items-center gap-1">
+              <Video className="h-3 w-3 text-primary" />
+              Fuld stream optagelse
             </p>
             <h2 className="text-base font-bold text-foreground">
               Se hele Bonus Hunt #{video.huntNumber} ({video.date})
@@ -163,20 +164,25 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
             )}
           </div>
 
-          {/* Stream metadata – compact */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Monitor className="h-3 w-3 text-primary" />
-              {video.date}
-            </span>
-            <span className="flex items-center gap-1">
-              <Trophy className="h-3 w-3 text-primary" />
-              {video.casinoName}
-            </span>
-            <span className="flex items-center gap-1">
-              <BarChart3 className="h-3 w-3 text-primary" />
-              {video.avgX}x over {video.bonusCount} bonusser
-            </span>
+          {/* Status badges */}
+          <div className="flex flex-wrap gap-2">
+            {[
+              { icon: Monitor, label: "Streamet live", color: "text-green-500" },
+              { icon: Video, label: "Fuld VOD", color: "text-primary" },
+              { icon: MessageCircle, label: "Chat aktiv", color: "text-primary" },
+              { icon: Calendar, label: video.date, color: "text-primary" },
+            ].map((badge) => {
+              const Icon = badge.icon;
+              return (
+                <span
+                  key={badge.label}
+                  className="inline-flex items-center gap-1 rounded-full bg-muted/40 px-2.5 py-1 text-[11px] text-muted-foreground transition-all duration-[180ms] hover:bg-muted/60"
+                >
+                  <Icon className={`h-3 w-3 ${badge.color}`} />
+                  {badge.label}
+                </span>
+              );
+            })}
           </div>
         </div>
       </section>
