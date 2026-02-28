@@ -97,11 +97,11 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
         </div>
 
         {/* Row 3: Avatar + tags/desc/socials */}
-        <div className="flex items-start gap-3">
+        <div className="flex items-center gap-3">
           <img
             src="/kevin-avatar.webp"
             alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-            className="h-[68px] w-[68px] rounded-full object-cover ring-2 ring-primary/20 shrink-0"
+            className="h-20 w-20 rounded-full object-cover ring-2 ring-primary/20 shrink-0"
             loading="lazy"
           />
           <div className="min-w-0 flex-1 space-y-2">
