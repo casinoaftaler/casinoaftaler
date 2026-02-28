@@ -77,8 +77,8 @@ export default function BonusHunt() {
             <div className="space-y-4">
               {/* Row 1: Casino+Video | Stats+Result */}
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-                {/* Left column header: nav */}
-                <div className="lg:col-span-5 border-b border-border/20 pb-3">
+                {/* Compact nav row */}
+                <div className="lg:col-span-5">
                   <BonusHuntNavBar
                     huntNumber={huntIdOverride || liveHuntNumber}
                     huntDate={huntDate}
