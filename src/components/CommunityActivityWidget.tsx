@@ -14,8 +14,8 @@ function useCommunityStats() {
   return useQuery({
     queryKey: ["community-activity-stats"],
     queryFn: async () => {
-      // Get overall community stats
-      const [spinsResult, weeklyResult, huntsResult] = await Promise.all([
+      // Get stats from our own slot machines + bonus hunts
+      const [allTimeResult, weeklyResult, huntsResult] = await Promise.all([
         supabase
           .from("slot_game_results")
           .select("id", { count: "exact", head: true }),
@@ -30,16 +30,12 @@ function useCommunityStats() {
           .limit(3),
       ]);
 
-      const totalSpins = spinsResult.count ?? 0;
+      const totalSpins = allTimeResult.count ?? 0;
 
       const weeklyData = weeklyResult.data ?? [];
       const uniqueWeeklyPlayers = new Set(weeklyData.map((r) => r.user_id)).size;
       const weeklySpins = weeklyData.length;
       const weeklyBonuses = weeklyData.filter((r) => r.is_bonus_triggered).length;
-      const biggestWeeklyWin = weeklyData.reduce(
-        (max, r) => Math.max(max, r.win_amount ?? 0),
-        0
-      );
       const biggestWeeklyX =
         weeklyData.reduce((max, r) => {
           const x = r.bet_amount > 0 ? (r.win_amount ?? 0) / r.bet_amount : 0;
@@ -58,7 +54,6 @@ function useCommunityStats() {
         uniqueWeeklyPlayers,
         weeklySpins,
         weeklyBonuses,
-        biggestWeeklyWin,
         biggestWeeklyX,
         recentHunts,
       };
@@ -87,7 +82,7 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
           <div>
             <h3 className="text-lg font-bold">Community-aktivitet</h3>
             <p className="text-sm text-muted-foreground">
-              Live data fra vores {formatNumber(data.uniqueWeeklyPlayers)}+ aktive community-medlemmer
+              Live data fra vores spillemaskiner – spillet af {formatNumber(data.uniqueWeeklyPlayers)}+ community-medlemmer
             </p>
           </div>
           <Badge variant="secondary" className="ml-auto text-xs">
@@ -151,8 +146,8 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
         {/* CTA */}
         <div className="flex flex-wrap items-center gap-4 rounded-lg bg-primary/5 p-4">
           <p className="flex-1 text-sm text-muted-foreground">
-            Vores community tester løbende casinoer som {casinoName} live på Twitch.
-            Se resultater, deltag i bonus hunts og vind præmier.
+            Vi streamer live på Twitch hvor vi bl.a. spiller på {casinoName}.
+            Følg med i bonus hunts, spil på vores spillemaskiner og vind præmier i vores community.
           </p>
           <Link
             to="/community"
