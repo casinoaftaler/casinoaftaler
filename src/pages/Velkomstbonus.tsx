@@ -500,7 +500,7 @@ const Velkomstbonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <RefreshCw className="h-5 w-5 text-primary" />
-                  Reload-bonus
+                  <Link to="/reload-bonus" className="text-primary underline hover:text-primary/80">Reload-bonus</Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -508,7 +508,8 @@ const Velkomstbonus = () => {
                   Gives ved efterfølgende indbetalinger og er typisk mindre
                   generøs end velkomstbonussen. Til gengæld kan
                   omsætningskravene være mere lempelige, og de er
-                  tilgængelige for eksisterende kunder.
+                  tilgængelige for eksisterende kunder. Læs vores{" "}
+                  <Link to="/reload-bonus" className="text-primary underline hover:text-primary/80">komplette reload bonus guide</Link>.
                 </p>
               </CardContent>
             </Card>
@@ -541,7 +542,7 @@ const Velkomstbonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <BarChart3 className="h-5 w-5 text-primary" />
-                  Cashback-bonus
+                  <Link to="/cashback-bonus" className="text-primary underline hover:text-primary/80">Cashback-bonus</Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -549,7 +550,8 @@ const Velkomstbonus = () => {
                   Giver dig en procentdel af dine tab tilbage som
                   bonuspenge. Disse bonusser tilbyder ikke den samme
                   øjeblikkelige boost som en velkomstbonus, men hjælper med
-                  at minimere tab over tid.
+                  at minimere tab over tid. Se vores{" "}
+                  <Link to="/cashback-bonus" className="text-primary underline hover:text-primary/80">cashback bonus guide</Link>.
                 </p>
               </CardContent>
             </Card>

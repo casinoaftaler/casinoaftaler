@@ -759,7 +759,7 @@ const NyeCasinoer = () => {
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-2"><strong>Anbefaling: Nye casinoer er ideelle.</strong></p>
                 <p className="text-sm text-muted-foreground">
-                  Hvis du systematisk udnytter velkomstbonusser og prioriterer lav wagering, er nye casinoer din bedste mulighed. Den gennemsnitligt 42% højere bonusværdi og lavere omsætningskrav giver dig en reel matematisk fordel i lanceringsfasen. Strategi: opret konti hos 2-3 nye casinoer, udnyt velkomstbonusserne, og evaluer derefter hvilken platform du foretrækker til løbende spil.
+                  Hvis du systematisk udnytter velkomstbonusser og prioriterer lav wagering, er nye casinoer din bedste mulighed. Den gennemsnitligt 42% højere bonusværdi og lavere omsætningskrav giver dig en reel matematisk fordel i lanceringsfasen. Strategi: opret konti hos 2-3 nye casinoer, udnyt velkomstbonusserne, og evaluer derefter hvilken platform du foretrækker til løbende spil med <Link to="/reload-bonus" className={linkClass}>reload bonusser</Link> og <Link to="/cashback-bonus" className={linkClass}>cashback</Link>.
                 </p>
               </CardContent>
             </Card>
