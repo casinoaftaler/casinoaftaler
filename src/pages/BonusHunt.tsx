@@ -212,6 +212,8 @@ export default function BonusHunt() {
                   ) : (
                     huntVideo && <BonusHuntVideoSection video={huntVideo} />
                   )}
+                  {/* Slot table – directly under video */}
+                  <BonusHuntSlotTable slots={huntData.slots} />
                 </div>
 
                 {/* Right column (40%) */}
@@ -265,11 +267,6 @@ export default function BonusHunt() {
                     <BonusHuntHostCard huntNumber={currentHuntNumber} />
                   </div>
                 </div>
-              </div>
-
-              {/* Slot table */}
-              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300 delay-200">
-                <BonusHuntSlotTable slots={huntData.slots} />
               </div>
             </div>
           ) : (
