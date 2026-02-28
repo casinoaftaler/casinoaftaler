@@ -152,9 +152,9 @@ export function BonusHuntHostCard() {
             </div>
             <span className="h-4 w-px bg-border" />
             <Button variant="ghost" size="sm" className="h-6 text-[11px] px-2 gap-1 text-muted-foreground hover:text-primary" asChild>
-              <a href="https://www.twitch.tv/casinoaftaler" target="_blank" rel="noopener noreferrer">
-                <Play className="h-3 w-3" /> Se seneste stream
-              </a>
+              <Link to="/forfatter/kevin">
+                <Play className="h-3 w-3" /> Se Kevins profil
+              </Link>
             </Button>
           </div>
         </div>
