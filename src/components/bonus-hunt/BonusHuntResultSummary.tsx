@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Trophy, TrendingUp, BarChart3, Gift } from "lucide-react";
 
 interface Props {
@@ -82,13 +81,6 @@ export function BonusHuntResultSummary({ huntNumber, casinoName, casinoSlug, bon
         })}
       </div>
 
-      <Link
-        to={`/casino-anmeldelser/${casinoSlug}`}
-        className="block text-center text-xs text-primary hover:text-primary/80 underline transition-colors"
-        title={`Læs anmeldelse af ${casinoName}`}
-      >
-        Læs {casinoName} anmeldelse →
-      </Link>
     </div>
   );
 }
