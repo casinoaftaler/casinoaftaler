@@ -18,7 +18,7 @@ const guides = [
     icon: ShieldCheck,
     title: "Casinoer med dansk licens",
     description: "Alle licenserede casinoer reguleret af Spillemyndigheden.",
-    to: "/casino-licenser",
+    to: "/licenserede-casinoer",
   },
   {
     icon: Gamepad2,
