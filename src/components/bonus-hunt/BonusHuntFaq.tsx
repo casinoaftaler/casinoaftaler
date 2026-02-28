@@ -6,12 +6,12 @@ const FAQ_ITEMS = [
     question: "Hvad er en bonus hunt?",
     answer: (
       <>
-        En bonus hunt er en live-streamet session, hvor en spiller køber/hunter flere bonusser på{" "}
+        En bonus hunt hos os dokumenteres som en komplet session, hvor vi køber eller hunter bonusser på{" "}
         <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
-          spillemaskiner
+          spilleautomater
         </Link>{" "}
-        og samler dem, inden de åbnes én ad gangen. Resultatet måles i gennemsnit X (average multiplier)
-        og sammenlignes med break-even X for at afgøre om hunten var profitabel.
+        og åbner dem live på Twitch. Hver hunt arkiveres med fuld statistik – gennemsnit X, break-even analyse,
+        individuelle slot-resultater og VOD-link – så du kan gennemgå præcis hvad der skete.
       </>
     ),
   },
@@ -19,9 +19,9 @@ const FAQ_ITEMS = [
     question: "Hvordan fungerer gennemsnit X?",
     answer: (
       <>
-        Gennemsnit X (average X) er den gennemsnitlige multiplikator på tværs af alle åbnede bonusser i en hunt.
-        Den beregnes ved at dividere den samlede gevinst med den samlede indsats. Et gennemsnit X over
-        break-even X betyder, at hunten var profitabel.
+        Gennemsnit X (average X) er den centrale metrik i vores dokumentation. Vi beregner den ved at dividere
+        den samlede gevinst med den samlede indsats på tværs af alle åbnede bonusser. Et gennemsnit X over
+        break-even X markerer hunten som profitabel – og du kan sammenligne på tværs af alle vores arkiverede hunts.
       </>
     ),
   },
@@ -29,9 +29,9 @@ const FAQ_ITEMS = [
     question: "Hvad er break-even X?",
     answer: (
       <>
-        Break-even X er den multiplikator, der kræves for at gå i nul. Den beregnes som start balance
-        divideret med den samlede indsats. Hvis gennemsnit X er højere end break-even X, har hunten
-        genereret overskud.
+        Break-even X er den multiplikator, der præcis dækker start balance. Vi beregner den som start balance
+        divideret med samlet indsats. I vores arkiv kan du se break-even X for hver hunt og hurtigt vurdere,
+        om resultatet var over eller under tærskelværdien.
       </>
     ),
   },
@@ -39,15 +39,15 @@ const FAQ_ITEMS = [
     question: "Er bonus hunts lovlige i Danmark?",
     answer: (
       <>
-        Ja, bonus hunts er lovlige i Danmark, så længe de spilles hos{" "}
+        Ja. Alle vores bonus hunts gennemføres udelukkende hos{" "}
         <Link to="/licenserede-casinoer" className="text-primary hover:underline">
           casinoer med dansk licens
         </Link>{" "}
         fra{" "}
         <Link to="/spillemyndigheden" className="text-primary hover:underline">
           Spillemyndigheden
-        </Link>. Alle vores bonus hunts dokumenteres med fulde resultater og gennemføres
-        udelukkende på licenserede platforme.
+        </Link>. Vi dokumenterer hvert resultat med fuld gennemsigtighed, så du altid kan verificere
+        vores data.
       </>
     ),
   },
@@ -55,7 +55,7 @@ const FAQ_ITEMS = [
     question: "Hvor kan man se live bonus hunts?",
     answer: (
       <>
-        Vores bonus hunts streames live på{" "}
+        Vi streamer live på{" "}
         <a
           href="https://www.twitch.tv/casinoaftaler"
           target="_blank"
@@ -63,8 +63,13 @@ const FAQ_ITEMS = [
           className="text-primary hover:underline"
         >
           Twitch
-        </a>. Efter hver stream arkiveres resultaterne her med statistik, gennemsnit X og VOD-link,
-        så du kan gennemgå alle hunts i detaljer.
+        </a>{" "}
+        hver uge. Efter hver stream arkiveres alt her med statistik, gennemsnit X, slot-resultater og
+        VOD-link. Vores{" "}
+        <Link to="/community" className="text-primary hover:underline">
+          community
+        </Link>{" "}
+        kan deltage live med bets og interaktion.
       </>
     ),
   },
