@@ -1,9 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { useCasinos } from "@/hooks/useCasinos";
 import { CasinoCard } from "@/components/CasinoCard";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { Separator } from "@/components/ui/separator";
+import { LazySection } from "@/components/LazySection";
 
 /** Only show casino cards for partner casinos */
 const PARTNER_SLUGS = [
@@ -29,36 +30,19 @@ export function InlineCasinoCards({
   count = 6,
   excludeSlugs = [],
 }: InlineCasinoCardsProps) {
-  const sentinelRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const el = sentinelRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "300px" }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div ref={sentinelRef}>
-      {isVisible ? (
-        <InlineCasinoCardsInner title={title} count={count} excludeSlugs={excludeSlugs} />
-      ) : (
+    <LazySection
+      rootMargin="300px"
+      minHeight="320px"
+      fallback={
         <>
           <Separator className="my-10" />
           <section className="mb-12" style={{ minHeight: '320px' }} />
         </>
-      )}
-    </div>
+      }
+    >
+      <InlineCasinoCardsInner title={title} count={count} excludeSlugs={excludeSlugs} />
+    </LazySection>
   );
 }
 
