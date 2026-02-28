@@ -3,6 +3,7 @@ import { Star, ArrowRight, BookOpen } from "lucide-react";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 
 /**
  * Displays a curated grid of popular casino reviews for the homepage.
@@ -54,7 +55,7 @@ export function PopularReviewsSection() {
               <div className="flex items-center gap-3">
                 {casino?.logo_url ? (
                   <img
-                    src={casino.logo_url}
+                    src={optimizeStorageImage(casino.logo_url, 80) ?? casino.logo_url}
                     alt={casino.name || review.slug}
                     width={40}
                     height={40}

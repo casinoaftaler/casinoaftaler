@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 import type { Casino } from "@/hooks/useCasinos";
 
 interface SlotCasinoCardProps {
@@ -35,7 +36,7 @@ export function SlotCasinoCard({ casino, backgroundImage }: SlotCasinoCardProps)
         <div className="flex items-center gap-3">
           {casino.logo_url ? (
             <img 
-              src={casino.logo_url} 
+              src={optimizeStorageImage(casino.logo_url, 96) ?? casino.logo_url} 
               alt={casino.name}
               width={48}
               height={48}
