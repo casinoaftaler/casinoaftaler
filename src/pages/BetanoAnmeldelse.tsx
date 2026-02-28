@@ -13,7 +13,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -115,19 +115,7 @@ const BetanoAnmeldelse = () => {
 
   const faqJsonLd = buildFaqSchema(faqs);
 
-  const reviewJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    itemReviewed: {
-      "@type": "Organization",
-      name: "Betano",
-      url: "https://www.betano.dk/",
-    },
-    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.1", bestRating: "5", worstRating: "1" },
-    reviewBody:
-      "Betano er en teknologidrevet platform med stærk sportssektion og et casino, der stadig er under modning på det danske marked.",
-  };
+  const reviewJsonLd = buildReviewSchema({ itemName: "Betano", itemUrl: "https://www.betano.dk/", ratingValue: "4.1", ratingCount: "144", reviewBody: "Betano er en teknologidrevet platform med stærk sportssektion og et casino, der stadig er under modning på det danske marked." });
 
   return (
     <>

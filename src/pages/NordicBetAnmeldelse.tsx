@@ -12,7 +12,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -34,7 +34,7 @@ const NordicBetAnmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "NordicBet Casino Anmeldelse 2026 – Sport & Casino i Ét", description: "Dybdegående anmeldelse af NordicBet. Nordisk sportsbook med stærkt casino, dansk licens og Betsson Groups opbakning.", url: "https://casinoaftaler.dk/casino-anmeldelser/nordicbet", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.0", ratingCount: "149" } });
   const faqJsonLd = buildFaqSchema(nordicbetFaqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "NordicBet", url: "https://www.nordicbet.dk/" }, author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" }, reviewRating: { "@type": "Rating", ratingValue: "4.0", bestRating: "5", worstRating: "1" }, reviewBody: "NordicBet er en solid nordisk platform med stærkt sportsvæddemål og et konkurrencedygtigt casino under Betsson Group." };
+  const reviewJsonLd = buildReviewSchema({ itemName: "NordicBet", itemUrl: "https://www.nordicbet.dk/", ratingValue: "4.0", ratingCount: "149", reviewBody: "NordicBet er en solid nordisk platform med stærkt sportsvæddemål og et konkurrencedygtigt casino under Betsson Group." });
 
   return (
     <>

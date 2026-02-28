@@ -15,7 +15,7 @@ import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { StickyCTA } from "@/components/StickyCTA";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
@@ -102,14 +102,7 @@ const LunaCasinoAnmeldelse = () => {
   const faqJsonLd = buildFaqSchema(lunaFaqs);
   const articleSchema = buildArticleSchema({ headline: "Luna Casino Anmeldelse 2026 – Kvalitets-Kuratoren", description: "Dybdegående anmeldelse af Luna Casino. 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram og kurateret spiludvalg.", url: "https://casinoaftaler.dk/casino-anmeldelser/luna-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.4", ratingCount: "163" } });
 
-  const reviewJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    itemReviewed: { "@type": "Organization", name: "Luna Casino", url: "https://www.lunacasino.dk/" },
-    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.4", bestRating: "5", worstRating: "1" },
-    reviewBody: "Luna Casino er Kvalitets-Kuratoren blandt danske casinoer – et bevidst kurateret casino med 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram med stigende levels, daglige bonuskampagner og et nøje udvalgt spiludvalg fra premium-udbydere.",
-  };
+  const reviewJsonLd = buildReviewSchema({ itemName: "Luna Casino", itemUrl: "https://www.lunacasino.dk/", ratingValue: "4.4", ratingCount: "163", reviewBody: "Luna Casino er Kvalitets-Kuratoren blandt danske casinoer – et bevidst kurateret casino med 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram med stigende levels, daglige bonuskampagner og et nøje udvalgt spiludvalg fra premium-udbydere." });
 
   return (
     <>

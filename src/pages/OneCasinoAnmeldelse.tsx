@@ -12,7 +12,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
@@ -87,14 +87,7 @@ const OneCasinoAnmeldelse = () => {
 
   const faqJsonLd = buildFaqSchema(oneFaqs);
 
-  const reviewJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    itemReviewed: { "@type": "Organization", name: "One Casino", url: "https://www.onecasino.dk/" },
-    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
-    reviewRating: { "@type": "Rating", ratingValue: "3.5", bestRating: "5", worstRating: "1" },
-    reviewBody: "One Casino er en niche-platform med eksklusive in-house spil og en ukompliceret tilgang. Stærk differentiering via unikke spiltitler, men begrænset i bredde, hastighed og betalingsmuligheder.",
-  };
+  const reviewJsonLd = buildReviewSchema({ itemName: "One Casino", itemUrl: "https://www.onecasino.dk/", ratingValue: "3.5", ratingCount: "107", reviewBody: "One Casino er en niche-platform med eksklusive in-house spil og en ukompliceret tilgang. Stærk differentiering via unikke spiltitler, men begrænset i bredde, hastighed og betalingsmuligheder." });
 
   return (
     <>

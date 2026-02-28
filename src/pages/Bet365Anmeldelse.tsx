@@ -13,7 +13,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -111,19 +111,7 @@ const Bet365Anmeldelse = () => {
 
   const faqJsonLd = buildFaqSchema(faqs);
 
-  const reviewJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    itemReviewed: {
-      "@type": "Organization",
-      name: "bet365",
-      url: "https://www.bet365.dk/",
-    },
-    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.4", bestRating: "5", worstRating: "1" },
-    reviewBody:
-      "bet365 er primært en sportsbook-gigant med et solidt casino-tillæg. Stærkest på sportsbetting og live streaming, men casino-oplevelsen kan virke sekundær.",
-  };
+  const reviewJsonLd = buildReviewSchema({ itemName: "bet365", itemUrl: "https://www.bet365.dk/", ratingValue: "4.4", ratingCount: "267", reviewBody: "bet365 er primært en sportsbook-gigant med et solidt casino-tillæg. Stærkest på sportsbetting og live streaming, men casino-oplevelsen kan virke sekundær." });
 
   return (
     <>

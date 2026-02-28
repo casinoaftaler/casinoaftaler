@@ -16,7 +16,7 @@ const MrVegasAnmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "Mr Vegas Anmeldelse 2026 – 3.000+ Spil fra Betsson", description: "Komplet anmeldelse af Mr Vegas Casino. Betsson Group-casino med dansk licens, 3.000+ spil og generøs velkomstbonus.", url: "https://casinoaftaler.dk/casino-anmeldelser/mr-vegas", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "3.9", ratingCount: "128" } });
   const faqJsonLd = buildFaqSchema(faqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Mr Vegas Casino", url: "https://www.mrvegas.com/da/" }, author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" }, reviewRating: { "@type": "Rating", ratingValue: "3.9", bestRating: "5", worstRating: "1" }, reviewBody: "Mr Vegas Casino drives af Betsson Group og tilbyder 3.000+ spil, generøs velkomstbonus og pålidelige udbetalinger med dansk licens." };
+  const reviewJsonLd = buildReviewSchema({ itemName: "Mr Vegas Casino", itemUrl: "https://www.mrvegas.com/da/", ratingValue: "3.9", ratingCount: "128", reviewBody: "Mr Vegas Casino drives af Betsson Group og tilbyder 3.000+ spil, generøs velkomstbonus og pålidelige udbetalinger med dansk licens." });
   return (
     <>
       <SEO title="Mr Vegas Anmeldelse 2026 – 3.000+ Spil fra Betsson" description="Komplet anmeldelse af Mr Vegas Casino fra Betsson Group. 3.000+ spil, generøs velkomstbonus, dansk licens og hurtige udbetalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />

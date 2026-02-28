@@ -13,7 +13,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -34,7 +34,7 @@ const ExpektAnmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "Expekt Anmeldelse 2026 – Sports & Casino i Danmark", description: "Komplet anmeldelse af Expekt. Betsson Group-casino og sportsbook med dansk licens, kombineret sports- og casino-tilbud.", url: "https://casinoaftaler.dk/casino-anmeldelser/expekt", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "3.6", ratingCount: "104" } });
   const faqJsonLd = buildFaqSchema(faqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Expekt", url: "https://www.expekt.dk/" }, author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" }, reviewRating: { "@type": "Rating", ratingValue: "3.6", bestRating: "5", worstRating: "1" }, reviewBody: "Expekt tilbyder en unik kombination af sportsbetting og casino under Betsson Group med dansk licens." };
+  const reviewJsonLd = buildReviewSchema({ itemName: "Expekt", itemUrl: "https://www.expekt.dk/", ratingValue: "3.6", ratingCount: "104", reviewBody: "Expekt tilbyder en unik kombination af sportsbetting og casino under Betsson Group med dansk licens." });
 
   return (
     <>
