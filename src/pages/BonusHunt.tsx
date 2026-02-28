@@ -102,8 +102,8 @@ export default function BonusHunt() {
   const bonusCount = huntData?.stats.openedBonuses ?? 0;
 
   // SEO Meta
-  const seoTitle = "Live Bonus Hunt i Danmark – Resultater, gennemsnit X & Twitch streams";
-  const seoDescription = "Se live og arkiverede bonus hunts fra danske casinoer med gennemsnit X, top wins og fuld Twitch stream. Opdateres løbende.";
+  const seoTitle = "Bonus Hunt Danmark – Dokumenterede resultater, gennemsnit X & Twitch arkiv";
+  const seoDescription = "Danmarks mest dokumenterede bonus hunt arkiv. Se live og arkiverede hunts fra danske casinoer med gennemsnit X, break-even analyser, top wins og fuld Twitch dokumentation.";
 
   // Structured data
   const faqSchema = useMemo(() => buildBonusHuntFaqSchema(), []);
@@ -156,17 +156,18 @@ export default function BonusHunt() {
               "linear-gradient(135deg, hsl(260 70% 25% / 0.85), hsl(250 60% 20% / 0.8) 40%, hsl(210 80% 25% / 0.85))",
           }}
         />
-        <div className="relative container py-12 md:py-20">
-          <div className="mx-auto max-w-3xl text-center space-y-4">
-            <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
-              Live Bonus Hunt – Resultater, gennemsnit X og Twitch streams
+        <div className="relative container py-14 md:py-24">
+          <div className="mx-auto max-w-3xl text-center space-y-5">
+            <h1 className="text-3xl font-bold tracking-tight leading-tight md:text-5xl md:leading-tight">
+              Danmarks mest dokumenterede Bonus Hunt arkiv
             </h1>
-            <p className="text-lg text-white/80">
-              Se dokumenterede bonus hunts fra danske casinoer med gennemsnit, top wins og fuld stream.
+            <p className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
+              Se live og arkiverede bonus hunts fra danske casinoer med licens.
+              Gennemsnit X, break-even analyser, top wins og fuld Twitch dokumentation.
             </p>
-            <p className="text-sm text-white/60 max-w-2xl mx-auto">
-              En bonus hunt er en live-stream, hvor flere bonusser enten købes eller huntes, og så åbnes i én samlet session.
-              Her finder du vores arkiv med resultater, gennemsnit X og dokumenterede Twitch streams.
+            <p className="inline-flex items-center gap-2 text-xs text-white/50 border border-white/10 rounded-full px-4 py-1.5 mx-auto">
+              <span className="h-1.5 w-1.5 rounded-full bg-green-400/80" />
+              Testet udelukkende på casinoer med dansk licens fra Spillemyndigheden
             </p>
           </div>
         </div>

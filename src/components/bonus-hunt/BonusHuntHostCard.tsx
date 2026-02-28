@@ -71,7 +71,7 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
   const socials = getActiveSocials();
 
   return (
-    <section className="group rounded-xl border border-border/50 bg-card px-5 py-4 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
+    <section className="group rounded-xl border border-border/50 bg-card px-5 py-4 mb-16 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
       <div className="flex items-center gap-3">
         {/* Avatar spanning full height */}
         <div className="shrink-0 h-[112px] w-[112px] rounded-full p-[3px] transition-transform duration-200 hover:scale-[1.03]" style={{ background: 'hsl(var(--primary) / 0.06)', boxShadow: '0 0 0 1px hsl(var(--primary) / 0.18)' }}>
@@ -123,7 +123,8 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
 
             {/* Description */}
             <p className="text-xs text-muted-foreground leading-relaxed">
-              Live hver uge med nye bonus hunts – fra første spin til sidste resultat. Alt dokumenteret. Ingen filter.
+              Live hver uge med dokumenterede bonus hunts – fra første spin til sidste resultat.
+              Testet på danske casinoer. Ingen filter.
             </p>
 
             {/* Social icons + separator + profile link */}

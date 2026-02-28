@@ -53,7 +53,7 @@ const steps = [
   {
     icon: Users,
     step: 4,
-    heading: "Interaktive bets",
+    heading: "Community bets",
     description: (
       <>
         Deltag i GTW (gæt end balance) og AVG X (bet på multiplikator-gruppe)
@@ -72,23 +72,26 @@ const steps = [
 
 export function BonusHuntSeoContent() {
   return (
-    <section className="space-y-4">
+    <section className="space-y-5">
       <h2 className="text-lg font-bold text-foreground">
-        Sådan fungerer en bonus hunt
+        Sådan dokumenterer vi vores bonus hunts
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {steps.map((s) => (
           <div
             key={s.step}
-            className="rounded-xl border border-border/50 bg-card p-4 space-y-2 cursor-default"
+            className="group rounded-xl border border-border/50 bg-card p-5 space-y-3 cursor-default transition-all duration-200 hover:border-primary/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5"
+            style={{
+              background: 'linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.7) 100%)',
+            }}
           >
             <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <s.icon className="h-4 w-4" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary font-bold text-sm">
+                {s.step}
               </div>
               <div>
-                <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
                   Trin {s.step}
                 </span>
                 <h3 className="text-sm font-semibold text-foreground leading-tight">
