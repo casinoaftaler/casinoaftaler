@@ -186,7 +186,7 @@ const Index = () => {
           </div>
 
           {isLoading ? (
-            <div className="flex items-center justify-center" style={{ minHeight: '600px' }}>
+            <div className="flex items-center justify-center" style={{ minHeight: '1100px' }}>
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           ) : filteredCasinos.length === 0 ? (

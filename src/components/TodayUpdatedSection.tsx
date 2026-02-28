@@ -30,7 +30,7 @@ export function TodayUpdatedSection() {
   });
 
   return (
-    <section className="py-6 border-b border-border/30 bg-muted/30">
+    <section className="py-6 border-b border-border/30 bg-muted/30" style={{ minHeight: '120px' }}>
       <div className="container">
         <div className="flex items-center gap-2 mb-3">
           <RefreshCw className="h-4 w-4 text-primary" />
@@ -52,8 +52,8 @@ export function TodayUpdatedSection() {
             <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
           </Link>
 
-          {/* Latest news article link */}
-          {latestArticle && (
+          {/* Latest news article link - always reserve space */}
+          {latestArticle ? (
             <Link
               to={`/casino-nyheder/${latestArticle.slug}`}
               className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md group"
@@ -71,6 +71,16 @@ export function TodayUpdatedSection() {
               </div>
               <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
             </Link>
+          ) : (
+            <div className="flex items-center gap-3 rounded-lg border border-border bg-card p-4">
+              <div className="rounded-lg bg-primary/10 p-2.5 flex-shrink-0">
+                <Newspaper className="h-5 w-5 text-primary" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <span className="font-semibold text-sm block text-muted-foreground">Seneste Nyhed</span>
+                <span className="text-xs text-muted-foreground">Indlæser...</span>
+              </div>
+            </div>
           )}
         </div>
       </div>
