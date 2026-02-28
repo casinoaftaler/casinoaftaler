@@ -22,68 +22,61 @@ export function BonusHuntHeroBar({
   onNavigate,
   onJumpToHunt,
 }: Props) {
-  const fullDate = huntDate || '';
-
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden px-6 py-5 md:px-8 md:py-6 mb-6">
-      {/* Gradient background */}
+    <div className="relative w-full rounded-2xl overflow-hidden px-4 py-3 md:px-5 md:py-4">
+      {/* Subtle gradient background */}
       <div
         className="absolute inset-0 -z-10"
         style={{
           background:
-            'linear-gradient(135deg, hsl(var(--primary) / 0.15) 0%, hsl(var(--background)) 40%, hsl(var(--primary) / 0.1) 100%)',
+            'linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(var(--background)) 50%, hsl(var(--primary) / 0.06) 100%)',
         }}
       />
-      {/* Subtle glow */}
-      <div
-        className="absolute top-1/2 left-1/4 -translate-y-1/2 w-48 h-48 rounded-full -z-10 blur-3xl"
-        style={{ background: 'hsl(var(--primary) / 0.12)' }}
-      />
       {/* Border */}
-      <div className="absolute inset-0 rounded-2xl border border-primary/20 pointer-events-none" />
+      <div className="absolute inset-0 rounded-2xl border border-primary/15 pointer-events-none" />
 
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="flex items-center justify-between gap-3">
         {/* Left: Title + date + badge */}
-        <div className="flex items-center gap-3">
-          <Target className="h-6 w-6 text-primary shrink-0" />
-          <div>
-            <div className="flex items-center gap-2.5">
-              <h2 className="text-2xl md:text-[28px] font-bold tracking-wide uppercase text-foreground leading-none">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <Target className="h-5 w-5 text-primary shrink-0" />
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <h2 className="text-lg md:text-xl font-bold tracking-wide uppercase text-foreground leading-none truncate">
                 BONUS HUNT #{huntNumber}
               </h2>
               {isLive ? (
-                <Badge variant="destructive" className="text-[10px] px-2 py-0.5 gap-1 uppercase font-semibold">
+                <Badge variant="destructive" className="text-[10px] px-1.5 py-0 gap-1 uppercase font-semibold shrink-0">
                   <Radio className="h-2.5 w-2.5 animate-pulse" />
                   Live
                 </Badge>
               ) : (
-                <Badge variant="secondary" className="text-[10px] px-2 py-0.5 gap-1 uppercase font-semibold">
+                <Badge variant="secondary" className="text-[10px] px-1.5 py-0 gap-1 uppercase font-semibold shrink-0">
                   Arkiv
                 </Badge>
               )}
             </div>
-            {fullDate && (
-              <p className="text-sm text-muted-foreground mt-0.5 tracking-wide">
-                {fullDate}
+            {huntDate && (
+              <p className="text-xs text-muted-foreground mt-0.5 tracking-wide">
+                {huntDate}
               </p>
             )}
           </div>
         </div>
 
         {/* Right: Navigation */}
-        <div className="flex items-center gap-1.5">
-          <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('first')}>
-            <ChevronsLeft className="h-4 w-4" />
+        <div className="flex items-center gap-1 shrink-0">
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('first')}>
+            <ChevronsLeft className="h-3.5 w-3.5" />
           </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('prev')}>
-            <ChevronLeft className="h-4 w-4" />
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('prev')}>
+            <ChevronLeft className="h-3.5 w-3.5" />
           </Button>
 
           <Select
             value={String(huntNumber)}
             onValueChange={(val) => onJumpToHunt?.(parseInt(val, 10))}
           >
-            <SelectTrigger className="w-auto min-w-[100px] h-8 text-xs font-semibold px-3 rounded-lg border-border/40 bg-background/50">
+            <SelectTrigger className="w-auto min-w-[70px] h-7 text-[11px] font-semibold px-2 rounded-md border-border/40 bg-background/50">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="max-h-[300px]">
@@ -95,11 +88,11 @@ export function BonusHuntHeroBar({
             </SelectContent>
           </Select>
 
-          <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('next')}>
-            <ChevronRight className="h-4 w-4" />
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('next')}>
+            <ChevronRight className="h-3.5 w-3.5" />
           </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('last')}>
-            <ChevronsRight className="h-4 w-4" />
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('last')}>
+            <ChevronsRight className="h-3.5 w-3.5" />
           </Button>
         </div>
       </div>

@@ -75,21 +75,19 @@ export default function BonusHunt() {
             </div>
           ) : huntData ? (
             <div className="space-y-4">
-              {/* Hero bar – full width */}
-              <BonusHuntHeroBar
-                huntNumber={huntIdOverride || liveHuntNumber}
-                huntDate={huntDate}
-                latestHuntNumber={latestHuntNumber}
-                maxHuntNumber={maxHuntNumber}
-                isLive={currentHuntNumber > latestHuntNumber}
-                onNavigate={handleNavigate}
-                onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
-              />
-
-              {/* Top grid */}
+              {/* Top grid – header in left col, stats in right col, same Y */}
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
                 {/* Left column (60%) */}
                 <div className="lg:col-span-3 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                  <BonusHuntHeroBar
+                    huntNumber={huntIdOverride || liveHuntNumber}
+                    huntDate={huntDate}
+                    latestHuntNumber={latestHuntNumber}
+                    maxHuntNumber={maxHuntNumber}
+                    isLive={currentHuntNumber > latestHuntNumber}
+                    onNavigate={handleNavigate}
+                    onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
+                  />
                   <BonusHuntCasinoContext
                     huntNumber={huntIdOverride || liveHuntNumber}
                     huntDate={huntDate}
