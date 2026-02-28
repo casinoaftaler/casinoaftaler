@@ -98,12 +98,15 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
 
         {/* Row 3: Avatar + tags/desc/socials */}
         <div className="flex items-center gap-3">
-          <img
-            src="/kevin-avatar.webp"
-            alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-            className="h-20 w-20 rounded-full object-cover ring-2 ring-primary/20 shrink-0"
-            loading="lazy"
-          />
+          <div className="shrink-0 h-[104px] w-[104px] rounded-full p-[5px] transition-transform duration-200 hover:scale-[1.03]" style={{ background: 'hsl(var(--primary) / 0.06)', boxShadow: '0 0 0 2px hsl(var(--primary) / 0.2)' }}>
+            <img
+              src="/kevin-avatar.webp"
+              alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
+              className="h-full w-full rounded-full object-cover"
+              style={{ objectPosition: 'center 25%' }}
+              loading="lazy"
+            />
+          </div>
           <div className="min-w-0 flex-1 space-y-2">
             {/* Tags */}
             <div className="flex flex-wrap gap-1.5">
