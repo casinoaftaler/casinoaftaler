@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Play, Monitor, Trophy, BarChart3 } from "lucide-react";
+import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
 
 interface HuntVideoData {
   twitchVideoId: string;
@@ -12,6 +13,7 @@ interface HuntVideoData {
   avgX: number;
   highestWin?: number;
   highestMultiplier?: number;
+  localThumbnail?: string;
 }
 
 /** Video metadata for hunts that have a Twitch recording */
@@ -25,6 +27,7 @@ const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
     avgX: 88.2,
     highestWin: 656,
     highestMultiplier: 328,
+    localThumbnail: hunt5Thumbnail,
   },
 };
 
@@ -112,14 +115,27 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
             ) : (
               <button
                 onClick={handlePlay}
-                className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-background/80 hover:bg-background/60 transition-colors cursor-pointer group"
+                className="absolute inset-0 flex flex-col items-center justify-center gap-3 cursor-pointer group overflow-hidden"
                 aria-label="Afspil Twitch-video"
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg group-hover:scale-110 transition-transform">
+                {video.localThumbnail ? (
+                  <img
+                    src={video.localThumbnail}
+                    alt={`Bonus Hunt #${video.huntNumber} thumbnail`}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    loading="lazy"
+                    width={1280}
+                    height={736}
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-background/80" />
+                )}
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
+                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg group-hover:scale-110 transition-transform">
                   <Play className="h-7 w-7 ml-1" />
                 </div>
-                <span className="text-sm font-semibold text-foreground">Se streamen på Twitch</span>
-                <span className="text-xs text-muted-foreground">Klik for at indlæse video</span>
+                <span className="relative z-10 text-sm font-semibold text-white drop-shadow-md">Se streamen på Twitch</span>
+                <span className="relative z-10 text-xs text-white/80 drop-shadow-md">Klik for at indlæse video</span>
               </button>
             )}
           </div>
