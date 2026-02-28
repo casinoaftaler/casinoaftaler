@@ -3,6 +3,7 @@ import { Star, ArrowRight } from "lucide-react";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 
 /**
  * Mapping of casino slugs → related casinos by category affinity.
@@ -251,8 +252,10 @@ export function RelatedReviews({ currentSlug }: RelatedReviewsProps) {
             <li key={item.slug} className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-all hover:border-primary/50 hover:shadow-sm">
               {casino?.logo_url && (
                 <img
-                  src={casino.logo_url}
+                  src={optimizeStorageImage(casino.logo_url, 80) ?? casino.logo_url}
                   alt={casino?.name || item.slug}
+                  width={40}
+                  height={40}
                   className="h-10 w-10 rounded-md object-cover flex-shrink-0"
                   loading="lazy"
                 />

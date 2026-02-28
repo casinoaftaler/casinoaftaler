@@ -4,6 +4,7 @@ import { Star } from "lucide-react";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 
 /**
  * Maps casino slugs (from CASINO_SCORES, which have review pages) to
@@ -146,8 +147,10 @@ export function RelatedCasinos({ content, category }: RelatedCasinosProps) {
           >
             {casino.logo_url && (
               <img
-                src={casino.logo_url}
+                src={optimizeStorageImage(casino.logo_url, 80) ?? casino.logo_url}
                 alt={casino.name}
+                width={40}
+                height={40}
                 className="h-10 w-10 rounded-md object-cover"
                 loading="lazy"
               />

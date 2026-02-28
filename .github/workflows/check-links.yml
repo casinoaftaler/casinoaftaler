@@ -1,0 +1,21 @@
+name: Check Broken Links
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/**'
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check for broken internal links
+        run: node .github/scripts/check-broken-links.mjs

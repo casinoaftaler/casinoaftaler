@@ -1,5 +1,6 @@
 import { useCasinos } from "@/hooks/useCasinos";
 import { useLocation } from "react-router-dom";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 
 interface CasinoReviewLogoProps {
   slug?: string;
@@ -58,9 +59,12 @@ export function CasinoReviewLogo({ slug }: CasinoReviewLogoProps) {
   return (
     <div className="mb-6 flex justify-center">
       <img
-        src={logoUrl}
+        src={optimizeStorageImage(logoUrl, 192) ?? logoUrl}
         alt={casino?.name || effectiveSlug}
+        width={96}
+        height={96}
         className="h-20 w-20 rounded-2xl object-contain bg-white/10 p-2 backdrop-blur-sm border border-white/20 shadow-lg md:h-24 md:w-24"
+        loading="lazy"
       />
     </div>
   );
