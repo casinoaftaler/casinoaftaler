@@ -1,12 +1,11 @@
 import { useState, useCallback } from "react";
-import { Link } from "react-router-dom";
 import { Play, Monitor, Trophy, BarChart3 } from "lucide-react";
 import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
 
 interface HuntVideoData {
   twitchVideoId: string;
   huntNumber: number;
-  date: string;            // e.g. "28. februar 2026"
+  date: string;
   casinoName: string;
   casinoSlug: string;
   bonusCount: number;
@@ -16,7 +15,6 @@ interface HuntVideoData {
   localThumbnail?: string;
 }
 
-/** Video metadata for hunts that have a Twitch recording */
 const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
   5: {
     twitchVideoId: "2710088948",
@@ -46,8 +44,6 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
 
   const handlePlay = useCallback(() => {
     setIframeLoaded(true);
-
-    // Track play event
     try {
       if (typeof window !== "undefined" && (window as any).gtag) {
         (window as any).gtag("event", "hunt_video_play", {
@@ -55,9 +51,7 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
           casino: video.casinoSlug,
         });
       }
-    } catch {
-      // Tracking failure is non-critical
-    }
+    } catch {}
   }, [video.huntNumber, video.casinoSlug]);
 
   const embedUrl = `https://player.twitch.tv/?video=${video.twitchVideoId}&parent=${typeof window !== "undefined" ? window.location.hostname : "casinoaftaler.lovable.app"}&autoplay=true`;
@@ -65,7 +59,6 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
 
   return (
     <>
-      {/* VideoObject JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "VideoObject",
@@ -76,39 +69,33 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
         "thumbnailUrl": twitchThumb,
         "embedUrl": `https://player.twitch.tv/?video=${video.twitchVideoId}`,
         "contentUrl": `https://www.twitch.tv/videos/${video.twitchVideoId}`,
-        "publisher": {
-          "@type": "Organization",
-          "name": "Casinoaftaler.dk",
-        },
+        "publisher": { "@type": "Organization", "name": "Casinoaftaler.dk" },
       }) }} />
 
       <section
-        className="mb-4 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-card overflow-hidden"
+        className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-card overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10"
         aria-label={`Video af Bonus Hunt #${video.huntNumber}`}
       >
-        <div className="p-5 md:p-6 space-y-4">
-          {/* Heading */}
+        <div className="p-4 md:p-5 space-y-3">
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-1">
+            <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground mb-0.5">
               🎥 Fuld stream optagelse
             </p>
-            <h2 className="text-lg font-bold text-foreground">
+            <h2 className="text-base font-bold text-foreground">
               Se hele Bonus Hunt #{video.huntNumber} ({video.date})
             </h2>
-            <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
-              Denne bonus hunt blev streamet live på Twitch hos {video.casinoName}.
-              Se hele åbningen af {video.bonusCount} bonusser og det samlede resultat
-              på {video.avgX}x gennemsnit.
+            <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+              Streamet live på Twitch hos {video.casinoName} – {video.bonusCount} bonusser, {video.avgX}x snit.
             </p>
           </div>
 
-          {/* Video container – fixed aspect ratio to prevent CLS */}
-          <div className="relative w-full overflow-hidden rounded-xl border border-border/50" style={{ aspectRatio: "16/9" }}>
+          {/* Video container */}
+          <div className="relative w-full overflow-hidden rounded-2xl border border-border/50" style={{ aspectRatio: "16/9" }}>
             {iframeLoaded ? (
               <iframe
                 src={embedUrl}
                 title={`Bonus Hunt #${video.huntNumber} – ${video.casinoName}`}
-                className="absolute inset-0 h-full w-full"
+                className="absolute inset-0 h-full w-full animate-in fade-in duration-500"
                 allowFullScreen
                 allow="autoplay; fullscreen"
               />
@@ -130,9 +117,9 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
                 ) : (
                   <div className="absolute inset-0 bg-background/80" />
                 )}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg group-hover:scale-110 transition-transform">
-                  <Play className="h-7 w-7 ml-1" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors duration-300" />
+                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 group-hover:scale-110 group-hover:shadow-primary/50 transition-all duration-200">
+                  <Play className="h-6 w-6 ml-0.5" />
                 </div>
                 <span className="relative z-10 text-sm font-semibold text-white drop-shadow-md">Se streamen på Twitch</span>
                 <span className="relative z-10 text-xs text-white/80 drop-shadow-md">Klik for at indlæse video</span>
@@ -140,49 +127,21 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
             )}
           </div>
 
-          {/* Stream metadata */}
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1.5">
-              <Monitor className="h-3.5 w-3.5 text-primary" />
-              Streamet: {video.date}
+          {/* Stream metadata – compact */}
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1">
+              <Monitor className="h-3 w-3 text-primary" />
+              {video.date}
             </span>
-            <span className="flex items-center gap-1.5">
-              <Trophy className="h-3.5 w-3.5 text-primary" />
-              Casino: {video.casinoName}
+            <span className="flex items-center gap-1">
+              <Trophy className="h-3 w-3 text-primary" />
+              {video.casinoName}
             </span>
-            <span className="flex items-center gap-1.5">
-              <BarChart3 className="h-3.5 w-3.5 text-primary" />
-              Resultat: {video.avgX}x gennemsnit over {video.bonusCount} bonusser
+            <span className="flex items-center gap-1">
+              <BarChart3 className="h-3 w-3 text-primary" />
+              {video.avgX}x over {video.bonusCount} bonusser
             </span>
           </div>
-        </div>
-
-        {/* SEO crawlable summary */}
-        <div className="border-t border-border/50 px-5 py-4 md:px-6 space-y-2">
-          <h3 className="text-sm font-semibold text-foreground">
-            Resultat af Bonus Hunt #{video.huntNumber}
-          </h3>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            I denne live-stream åbnede vi {video.bonusCount} bonusser på {video.casinoName}.
-            Den samlede gennemsnitlige multiplier endte på {video.avgX}x
-            {video.highestWin != null && `, med højeste win på ${video.highestWin} kr`}
-            {video.highestMultiplier != null && ` og højeste multiplier på ${video.highestMultiplier}x`}
-            .
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Alle resultater er dokumenteret i videoen ovenfor.
-          </p>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Læs også vores fulde{" "}
-            <Link
-              to={`/casino-anmeldelser/${video.casinoSlug}`}
-              className="text-primary underline hover:text-primary/80"
-              title={`Læs anmeldelse af ${video.casinoName}`}
-            >
-              {video.casinoName} anmeldelse
-            </Link>{" "}
-            med bonusvilkår og udbetalingstest.
-          </p>
         </div>
       </section>
     </>

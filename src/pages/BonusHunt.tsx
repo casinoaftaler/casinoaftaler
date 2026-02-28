@@ -8,6 +8,7 @@ import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
 import { BonusHuntFooter } from "@/components/bonus-hunt/BonusHuntFooter";
 import { BonusHuntCasinoContext } from "@/components/bonus-hunt/BonusHuntCasinoContext";
 import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
+import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
 import { BonusHuntNavBar } from "@/components/bonus-hunt/BonusHuntNavBar";
 import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
@@ -44,7 +45,6 @@ export default function BonusHunt() {
       case 'prev': if (current > 1) setHuntIdOverride(current - 1); break;
       case 'next': 
         if (current < maxHuntNumber) setHuntIdOverride(current + 1);
-        // If next goes beyond archived, show live
         if (current + 1 > latestHuntNumber) setHuntIdOverride(undefined);
         break;
       case 'first': setHuntIdOverride(1); break;
@@ -68,72 +68,81 @@ export default function BonusHunt() {
         badgeText="Live"
         badgeIcon={Target}
       >
-        <div className="py-6 md:py-8">
+        <div className="py-4 md:py-6">
           {huntLoading ? (
             <div className="flex items-center justify-center py-20">
               <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
             </div>
           ) : huntData ? (
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-              {/* Hunt navigation bar – aligned with left column */}
-              <div className="lg:col-span-3">
-                <BonusHuntNavBar
-                  huntNumber={huntIdOverride || liveHuntNumber}
-                  huntDate={huntDate}
-                  latestHuntNumber={latestHuntNumber}
-                  maxHuntNumber={maxHuntNumber}
-                  onNavigate={handleNavigate}
-                  onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
-                />
-              </div>
-              <div className="hidden lg:block lg:col-span-2" />
+            <div className="space-y-5">
+              {/* Navigation */}
+              <BonusHuntNavBar
+                huntNumber={huntIdOverride || liveHuntNumber}
+                huntDate={huntDate}
+                latestHuntNumber={latestHuntNumber}
+                maxHuntNumber={maxHuntNumber}
+                onNavigate={handleNavigate}
+                onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
+              />
 
-              {/* Left column – slot table */}
-              <div className="lg:col-span-3 space-y-4">
-                <BonusHuntCasinoContext
-                  huntNumber={huntIdOverride || liveHuntNumber}
-                  huntDate={huntDate}
-                  bonusCount={huntData.stats.openedBonuses}
-                  avgX={huntData.stats.averageX}
-                 />
-                 {huntVideo && <BonusHuntVideoSection video={huntVideo} />}
-                <BonusHuntSlotTable
-                  slots={huntData.slots}
-                />
+              {/* Row 1: Casino+Video | Stats+Result */}
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-5">
+                {/* Left column (60%) */}
+                <div className="lg:col-span-3 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                  <BonusHuntCasinoContext
+                    huntNumber={huntIdOverride || liveHuntNumber}
+                    huntDate={huntDate}
+                    bonusCount={huntData.stats.openedBonuses}
+                    avgX={huntData.stats.averageX}
+                  />
+                  {huntVideo && <BonusHuntVideoSection video={huntVideo} />}
+                </div>
+
+                {/* Right column (40%) */}
+                <div className="lg:col-span-2 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
+                  <Tabs defaultValue="stats" className="w-full">
+                    <TabsList className="w-full grid grid-cols-3">
+                      <TabsTrigger value="stats">STATS</TabsTrigger>
+                      <TabsTrigger value="gtw">GTW</TabsTrigger>
+                      <TabsTrigger value="avgx">AVG X</TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="stats">
+                      <BonusHuntStatsTab data={huntData} />
+                    </TabsContent>
+
+                    <TabsContent value="gtw">
+                      <BonusHuntGTWTab
+                        session={session}
+                        bets={gtwBets}
+                        userId={user?.id}
+                        onBetPlaced={refreshBets}
+                      />
+                    </TabsContent>
+
+                    <TabsContent value="avgx">
+                      <BonusHuntAvgXTab
+                        session={session}
+                        bets={avgxBets}
+                        userId={user?.id}
+                        onBetPlaced={refreshBets}
+                      />
+                    </TabsContent>
+                  </Tabs>
+
+                  {/* Result summary – under stats in right column */}
+                  {huntVideo && <BonusHuntResultSummary video={huntVideo} />}
+                </div>
+              </div>
+
+              {/* Row 2: Timeline */}
+              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300 delay-150">
                 <BonusHuntFooter stats={huntData.stats} />
               </div>
 
-              {/* Right column – tabs */}
-              <div className="lg:col-span-2">
-                <Tabs defaultValue="stats" className="w-full">
-                  <TabsList className="w-full grid grid-cols-3">
-                    <TabsTrigger value="stats">STATS</TabsTrigger>
-                    <TabsTrigger value="gtw">GTW</TabsTrigger>
-                    <TabsTrigger value="avgx">AVG X</TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent value="stats">
-                    <BonusHuntStatsTab data={huntData} />
-                  </TabsContent>
-
-                  <TabsContent value="gtw">
-                    <BonusHuntGTWTab
-                      session={session}
-                      bets={gtwBets}
-                      userId={user?.id}
-                      onBetPlaced={refreshBets}
-                    />
-                  </TabsContent>
-
-                  <TabsContent value="avgx">
-                    <BonusHuntAvgXTab
-                      session={session}
-                      bets={avgxBets}
-                      userId={user?.id}
-                      onBetPlaced={refreshBets}
-                    />
-                  </TabsContent>
-                </Tabs>
+              {/* Row 3: Slot table */}
+              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300 delay-200">
+                <BonusHuntSlotTable slots={huntData.slots} />
               </div>
             </div>
           ) : (
