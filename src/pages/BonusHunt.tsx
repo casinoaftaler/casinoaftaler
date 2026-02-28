@@ -45,13 +45,19 @@ export default function BonusHunt() {
     queryClient.invalidateQueries({ queryKey: ['bonus-hunt-avgx-bets'] });
   }, [queryClient]);
 
-  const liveHuntNumber = huntData?.visibleId || latestHuntNumber + 1;
+  const blockedHunts = new Set([6, 7]);
+
+  const getNextAllowed = useCallback((start: number) => {
+    let n = start;
+    while (blockedHunts.has(n)) n += 1;
+    return n;
+  }, []);
+
+  const liveHuntNumber = getNextAllowed(huntData?.visibleId || latestHuntNumber + 1);
   const currentHuntNumber = huntIdOverride || liveHuntNumber;
   const isLive = !!(session?.status === 'active' && session?.hunt_number === currentHuntNumber);
   const huntVideo = getHuntVideo(currentHuntNumber);
   const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber);
-
-  const blockedHunts = new Set([6, 7]);
 
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
     if (!huntData) return;

@@ -36,6 +36,8 @@ export interface BonusHuntData {
   };
 }
 
+const BLOCKED_HUNTS = new Set([6, 7]);
+
 function parseHuntResponse(raw: any): BonusHuntData {
   const huntData = raw.data || raw;
   const rawSlots = huntData.slots || [];
@@ -97,18 +99,22 @@ function parseHuntResponse(raw: any): BonusHuntData {
   };
 }
 
-async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): Promise<BonusHuntData> {
+function buildProxyUrl(huntId?: number, archived?: boolean) {
   const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
   const url = new URL(`https://${projectId}.supabase.co/functions/v1/bonus-hunt-proxy`);
 
   if (huntId) {
     url.searchParams.set('huntId', String(huntId));
-    // If we know it's archived (latestHuntNumber is passed), prefer archive
-    if (latestHuntNumber) {
-      url.searchParams.set('archive', 'true');
-    }
   }
 
+  if (archived) {
+    url.searchParams.set('archive', 'true');
+  }
+
+  return url;
+}
+
+async function proxyFetch(url: URL): Promise<BonusHuntData> {
   const response = await fetch(url.toString(), {
     headers: { 'apikey': import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY },
   });
@@ -116,6 +122,39 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
   if (!response.ok) throw new Error('Failed to fetch bonus hunt data');
   const raw = await response.json();
   return parseHuntResponse(raw);
+}
+
+function getLatestAllowedHunt(latestHuntNumber: number) {
+  let candidate = latestHuntNumber;
+  while (candidate > 1 && BLOCKED_HUNTS.has(candidate)) {
+    candidate -= 1;
+  }
+  return candidate;
+}
+
+async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): Promise<BonusHuntData> {
+  const resolvedHuntId = huntId && BLOCKED_HUNTS.has(huntId)
+    ? (latestHuntNumber ? getLatestAllowedHunt(latestHuntNumber) : undefined)
+    : huntId;
+
+  const directData = await proxyFetch(
+    buildProxyUrl(resolvedHuntId, Boolean(resolvedHuntId && latestHuntNumber))
+  );
+
+  if (resolvedHuntId || !latestHuntNumber) {
+    return directData;
+  }
+
+  if (!BLOCKED_HUNTS.has(directData.visibleId)) {
+    return directData;
+  }
+
+  const fallbackHuntId = getLatestAllowedHunt(latestHuntNumber);
+  if (fallbackHuntId <= 1) {
+    return directData;
+  }
+
+  return proxyFetch(buildProxyUrl(fallbackHuntId, true));
 }
 
 async function fetchLatestHuntNumber(): Promise<number> {
@@ -141,7 +180,7 @@ export function useBonusHuntData(huntId?: number) {
 
   return useQuery({
     queryKey: ['bonus-hunt-data', huntId, isPastHunt ? 'archived' : 'live'],
-    queryFn: () => fetchBonusHuntData(huntId, isPastHunt ? latestHuntNumber : undefined),
+    queryFn: () => fetchBonusHuntData(huntId, latestHuntNumber),
     refetchInterval: isPastHunt ? false : 30000,
     staleTime: isPastHunt ? 300000 : 15000,
     placeholderData: (prev) => prev,
