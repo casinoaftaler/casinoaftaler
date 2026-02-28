@@ -10,6 +10,7 @@ import { BonusHuntCasinoContext } from "@/components/bonus-hunt/BonusHuntCasinoC
 import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
 import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent";
+import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
 import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
@@ -178,6 +179,9 @@ export default function BonusHunt() {
 
               {/* SEO evergreen content */}
               <BonusHuntSeoContent />
+
+              {/* Host card */}
+              <BonusHuntHostCard />
             </div>
           ) : (
             <div className="text-center py-20 text-muted-foreground">
