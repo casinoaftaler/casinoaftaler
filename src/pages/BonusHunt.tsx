@@ -168,6 +168,8 @@ export default function BonusHunt() {
                   </Tabs>
 
                   {huntVideo && <BonusHuntResultSummary video={huntVideo} />}
+
+                  <BonusHuntHostCard />
                 </div>
               </div>
 
@@ -179,9 +181,6 @@ export default function BonusHunt() {
 
               {/* SEO evergreen content */}
               <BonusHuntSeoContent />
-
-              {/* Host card */}
-              <BonusHuntHostCard />
             </div>
           ) : (
             <div className="text-center py-20 text-muted-foreground">
