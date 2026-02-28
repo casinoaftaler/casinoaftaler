@@ -295,14 +295,14 @@ export default function BonusHunt() {
             </div>
           )}
 
+          {/* SEO Content */}
+          <BonusHuntSeoContent />
+
           {/* Top casinos CTA */}
           <BonusHuntTopCasinos />
 
           {/* Community cross-links */}
           <BonusHuntCommunityLinks />
-
-          {/* SEO Content */}
-          <BonusHuntSeoContent />
 
           {/* Latest news – freshness signal */}
           <BonusHuntLatestNews />
