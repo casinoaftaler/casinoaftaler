@@ -149,7 +149,7 @@ export function GameProvidersInput({ providers, onChange, casinoSlug }: GameProv
       {providers.map((provider, index) => (
         <div key={index} className="flex items-center gap-2 p-2 bg-muted/50 rounded-lg">
           {provider.logo_url ? (
-            <img src={provider.logo_url} alt={provider.name} className="h-8 w-8 object-contain rounded" />
+            <img src={provider.logo_url} alt={provider.name} width={32} height={32} className="h-8 w-8 object-contain rounded" />
           ) : (
             <div className="h-8 w-8 bg-muted rounded flex items-center justify-center text-xs text-muted-foreground">
               ?

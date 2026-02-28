@@ -568,7 +568,7 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
       <div className="relative p-6 pt-14 md:p-8 md:pt-16 flex flex-col md:flex-row items-center gap-6">
         {logoUrl && (
           <div className="flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-            <img src={logoUrl} alt={offer.casino_name} className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-white/20 shadow-lg" loading="lazy" />
+            <img src={logoUrl} alt={offer.casino_name} width={80} height={80} className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-2 border-white/20 shadow-lg" loading="lazy" />
           </div>
         )}
         <div className="flex-1 text-center md:text-left">
@@ -649,7 +649,7 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
         <div className="flex items-start gap-3 mb-3">
           <div className="flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
             {logoUrl ? (
-              <img src={logoUrl} alt={offer.casino_name} className="w-11 h-11 rounded-full object-cover border border-border/50" loading="lazy" />
+              <img src={logoUrl} alt={offer.casino_name} width={44} height={44} className="w-11 h-11 rounded-full object-cover border border-border/50" loading="lazy" />
             ) : (
               <div className="w-11 h-11 rounded-full bg-muted flex items-center justify-center text-lg font-bold text-muted-foreground">
                 {offer.casino_name.charAt(0)}

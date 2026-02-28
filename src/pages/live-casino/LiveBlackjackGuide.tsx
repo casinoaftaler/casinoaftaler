@@ -110,7 +110,7 @@ const LiveBlackjackGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="22 Min." />
 
-        <img src={liveBlackjackHero} alt="Live blackjack bord med dealer og kort i et professionelt casino studio" className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
+        <img src={liveBlackjackHero} alt="Live blackjack bord med dealer og kort i et professionelt casino studio" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
 
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her dykker vi ned i live blackjack specifikt – det spil, der kombinerer den laveste house edge i hele live casino-segmentet med ægte strategisk dybde. Hvor pillar-guiden giver overblikket, giver denne side dig de præcise regler, matematiske modeller og strategiske værktøjer, du behøver for at spille live blackjack med dealer optimalt.
