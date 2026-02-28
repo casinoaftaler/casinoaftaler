@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Search, ArrowUpDown, ChevronDown, Trophy, Rocket } from "lucide-react";
@@ -6,6 +7,36 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { BonusHuntSlotPopoverContent } from "./BonusHuntSlotInfoDialog";
 import { useProviderOverrides, useSlotCatalogMap } from "@/hooks/useSlotCatalog";
 import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
+
+const PROVIDER_SLUG_MAP: Record<string, string> = {
+  'netent': 'netent',
+  'pragmatic play': 'pragmatic-play',
+  'relax gaming': 'relax-gaming',
+  "play'n go": 'play-n-go',
+  'play n go': 'play-n-go',
+  'hacksaw gaming': 'hacksaw-gaming',
+  'nolimit city': 'nolimit-city',
+  'yggdrasil': 'yggdrasil',
+  'microgaming': 'microgaming',
+  'red tiger': 'red-tiger',
+  'red tiger gaming': 'red-tiger',
+  'big time gaming': 'big-time-gaming',
+  'elk studios': 'elk-studios',
+  'evolution gaming': 'evolution-gaming',
+  'evolution': 'evolution-gaming',
+};
+
+function getProviderSlug(provider: string): string | null {
+  return PROVIDER_SLUG_MAP[provider.toLowerCase()] ?? null;
+}
+
+function getSlotSlug(slotName: string): string {
+  return slotName
+    .toLowerCase()
+    .replace(/['']/g, '')
+    .replace(/[^a-z0-9æøå]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
 
 interface Props {
   slots: BonusHuntSlot[];
@@ -146,22 +177,36 @@ export function BonusHuntSlotTable({ slots }: Props) {
               <tr key={slot.index} className={`hover:bg-muted/30 transition-colors ${slot.opened ? '' : 'opacity-60'}`}>
                 <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{slot.index}</td>
                 <td className="px-3 py-2">
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <button className="text-left hover:underline cursor-pointer">
-                        <div className="font-medium text-sm flex items-center gap-1.5">
-                          {slot.slot}
-                          {slot.multiplier >= 100 && slot.opened && <Trophy className="h-3 w-3 text-amber-400" />}
-                        </div>
-                        <div className="text-xs text-muted-foreground inline-flex items-center gap-1">
+                  <div>
+                    <div className="font-medium text-sm flex items-center gap-1.5">
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <button className="text-left hover:underline cursor-pointer">
+                            {slot.slot}
+                          </button>
+                        </PopoverTrigger>
+                        <PopoverContent side="right" align="start" className="w-auto p-0 border-0 bg-transparent shadow-none">
+                          <BonusHuntSlotPopoverContent slotName={slot.slot} />
+                        </PopoverContent>
+                      </Popover>
+                      {slot.multiplier >= 100 && slot.opened && <Trophy className="h-3 w-3 text-amber-400" />}
+                    </div>
+                    <div className="text-xs text-muted-foreground inline-flex items-center gap-1">
+                      {(() => {
+                        const provSlug = getProviderSlug(slot.provider);
+                        return provSlug ? (
+                          <Link
+                            to={`/spiludviklere/${provSlug}`}
+                            className="inline-block rounded bg-muted/60 px-1.5 py-0.5 text-[10px] font-medium hover:text-primary transition-colors"
+                          >
+                            {slot.provider}
+                          </Link>
+                        ) : (
                           <span className="inline-block rounded bg-muted/60 px-1.5 py-0.5 text-[10px] font-medium">{slot.provider}</span>
-                        </div>
-                      </button>
-                    </PopoverTrigger>
-                    <PopoverContent side="right" align="start" className="w-auto p-0 border-0 bg-transparent shadow-none">
-                      <BonusHuntSlotPopoverContent slotName={slot.slot} />
-                    </PopoverContent>
-                  </Popover>
+                        );
+                      })()}
+                    </div>
+                  </div>
                 </td>
                 <td className="px-3 py-2 font-mono text-xs">{slot.bet.toFixed(2)} kr</td>
                 <td className="px-3 py-2 font-mono text-xs">
