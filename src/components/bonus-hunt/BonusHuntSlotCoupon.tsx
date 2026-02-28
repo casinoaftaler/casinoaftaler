@@ -7,14 +7,14 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const MARKETS = [
-  "Kommer der over 10 gevinster over 100x?",
-  "Kommer der over 5 gevinster over 300x?",
-  "Kommer der over 2 gevinster over 500x?",
+  "Betaler 10 bonusser over 100x?",
+  "Betaler 5 bonusser over 300x?",
+  "Betaler 2 bonusser over 500x?",
   "Kommer der mindst 1 gevinst over 1000x?",
   "Kommer der mindst 1 gevinst over 1500x?",
-  "Bliver største gevinst over 1.000 kr?",
-  "Bliver største gevinst over 2.000 kr?",
-  "Bliver største gevinst over 3.000 kr?",
+  "Bliver største gevinst over 1.000kr?",
+  "Bliver største gevinst over 2000kr?",
+  "Bliver største gevinst over 3000kr?",
   "Kommer der back-to-back bonus?",
   "Betaler 5 bonusser under 10x?",
 ] as const;
