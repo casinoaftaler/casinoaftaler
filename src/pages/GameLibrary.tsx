@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunityConversionStrip } from "@/components/community/CommunityConversionStrip";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunityConversionCard } from "@/components/community/CommunityConversionCard";
 
@@ -192,6 +193,9 @@ export default function GameLibrary() {
 
           {/* Section divider */}
           <div className="spillehal-divider" />
+
+          {/* SEO bridge sections */}
+          <CommunitySeoSections />
 
           {/* Brand block */}
           <div className="pb-8">

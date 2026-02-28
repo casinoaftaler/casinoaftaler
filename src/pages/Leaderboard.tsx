@@ -12,6 +12,7 @@ import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
+import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useAuth } from "@/hooks/useAuth";
@@ -475,7 +476,8 @@ export default function Leaderboard() {
           </div>
         )}
 
-        <div className="mt-12">
+        <div className="mt-12 space-y-8">
+          <CommunitySeoSections />
           <RelatedGuides currentPath="/community/leaderboard" />
         </div>
       </div>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 
 
@@ -249,6 +250,7 @@ export default function CommunityHub() {
             </EnergySweep>
           </RevealSection>
 
+          <CommunitySeoSections />
           <CommunityBrandBlock />
         </div>
       </CommunityPageLayout>
