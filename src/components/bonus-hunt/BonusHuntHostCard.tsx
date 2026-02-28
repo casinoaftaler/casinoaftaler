@@ -153,22 +153,7 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
           </div>
         </div>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "@id": `${SITE_URL}/forfatter/kevin#person`,
-            name: "Kevin",
-            jobTitle: "Bonus Hunt vært",
-            url: `${SITE_URL}/forfatter/kevin`,
-            image: `${SITE_URL}/kevin-avatar.webp`,
-            worksFor: { "@type": "Organization", name: "Casinoaftaler.dk", url: SITE_URL },
-            sameAs: KEVIN_SAME_AS,
-          }),
-        }}
-      />
+      {/* Person schema rendered via buildArticleSchema in BonusHunt.tsx – no duplicate needed */}
     </section>
   );
 }

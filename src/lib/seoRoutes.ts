@@ -227,6 +227,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-nyheder", changefreq: "daily", priority: 0.9, lastmod: "2026-02-26" },
 
   // ── Community & Highlights ──
+  { path: "/bonus-hunt", changefreq: "daily", priority: 0.8, lastmod: "2026-02-28" },
   { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-28", showUpdatedDate: false },
   { path: "/community/slots", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },
   { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },

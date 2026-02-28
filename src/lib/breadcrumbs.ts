@@ -181,6 +181,8 @@ export const routeLabels: Record<string, string> = {
   "/bonus-hunt": "Bonus Hunt",
 };
 
+// Note: /bonus-hunt uses community as parent for breadcrumb hierarchy
+
 /** Paths where breadcrumbs should NOT appear (visual + schema). */
 export const EXCLUDED_PATHS = new Set([
   "/community/leaderboard",
