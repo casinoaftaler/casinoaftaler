@@ -71,45 +71,61 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
   const socials = getActiveSocials();
 
   return (
-    <section className="group h-full rounded-xl border border-border/50 bg-card px-5 py-4 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
-      <div className="flex items-center gap-4">
-        {/* Avatar */}
-        <div className="relative shrink-0">
+    <section className="group h-full rounded-xl border border-border/50 bg-card px-5 py-5 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
+      <div className="flex flex-col gap-3">
+        {/* Top line: label + live badge */}
+        <div className="flex items-center gap-2">
+          <Video className="h-3.5 w-3.5 text-primary" />
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+            Vært for: Bonus Hunt {huntNumber ? `#${huntNumber}` : ""}
+          </span>
+          <span className="flex items-center gap-1 text-[11px] font-medium" style={{ color: "hsl(142 71% 45%)" }}>
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inset-0 rounded-full animate-ping opacity-40" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
+            </span>
+            Live streamer
+          </span>
+        </div>
+
+        {/* Name + avatar row */}
+        <div className="flex items-start gap-4">
           <img
             src="/kevin-avatar.webp"
             alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-            className="relative h-14 w-14 rounded-full object-cover ring-2 ring-primary/20"
+            className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/20 shrink-0"
             loading="lazy"
           />
-        </div>
-
-        {/* Info */}
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5">
-              <Video className="h-3 w-3 text-primary" />
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                Vært{huntNumber ? `: Hunt #${huntNumber}` : ""}
-              </span>
+          <div className="min-w-0 flex-1 space-y-2">
+            <div>
+              <Link to="/forfatter/kevin" className="text-base font-bold text-foreground hover:text-primary transition-colors">
+                Kevin
+              </Link>
+              <p className="text-xs text-muted-foreground">Streamer & Casinoanalytiker</p>
             </div>
-            <span className="flex items-center gap-1 text-[10px] font-medium" style={{ color: "hsl(142 71% 45%)" }}>
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inset-0 rounded-full animate-ping opacity-40" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
-              </span>
-              Live
-            </span>
-          </div>
-          <div className="flex items-baseline gap-1.5">
-            <Link to="/forfatter/kevin" className="text-sm font-bold text-foreground hover:text-primary transition-colors">
-              Kevin
-            </Link>
-            <span className="text-[11px] text-muted-foreground">Streamer & Casinoanalytiker</span>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5">
+              {[
+                { icon: "🎰", label: `${huntNumber ?? "5"} hunts` },
+                { icon: "📊", label: "Dokumenteret" },
+                { icon: "👥", label: "Twitch community" },
+              ].map(tag => (
+                <span key={tag.label} className="inline-flex items-center gap-1 rounded-md border border-border/60 bg-muted/40 px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+                  {tag.icon} {tag.label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Social icons */}
-        <div className="flex items-center gap-1 shrink-0">
+        {/* Description */}
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          Live hver uge med nye bonus hunts – fra første spin til sidste resultat. Alt dokumenteret. Ingen filter.
+        </p>
+
+        {/* Social icons + profile link */}
+        <div className="flex items-center gap-2 pt-1">
           {socials.map((s) => (
             <a
               key={s.name}
@@ -117,11 +133,18 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
               target="_blank"
               rel="noopener noreferrer"
               title={s.name}
-              className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground transition-colors hover:text-primary hover:bg-primary/10"
+              className="flex h-7 w-7 items-center justify-center rounded-md border border-border/40 text-muted-foreground transition-colors hover:text-primary hover:border-primary/40 hover:bg-primary/10"
             >
               <SocialIcon platform={s.icon} />
             </a>
           ))}
+          <Link
+            to="/forfatter/kevin"
+            className="ml-auto inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground hover:text-primary transition-colors"
+          >
+            <Play className="h-3 w-3" />
+            Se Kevins profil
+          </Link>
         </div>
       </div>
 
