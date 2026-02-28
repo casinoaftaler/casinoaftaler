@@ -556,7 +556,7 @@ const Index = () => {
             Vores{" "}
             <Link to="/bonus-hunt" className="text-primary hover:underline font-medium">Bonus Hunt arkiv</Link>
             {" "}giver dig adgang til alle tidligere hunts med detaljerede statistikker. Deltag i community bets og følg{" "}
-            <Link to="/forfatter/kevin" className="text-primary hover:underline font-medium">Kevin</Link>
+            <Link to="/om" className="text-primary hover:underline font-medium">Casinoaftaler</Link>
             {" "}live på{" "}
             <a href="https://www.twitch.tv/fedesvinsejer" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Twitch</a>.
           </p>
