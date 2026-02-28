@@ -18,6 +18,8 @@ function useRecentHunts() {
       const { data } = await supabase
         .from("bonus_hunt_archives")
         .select("hunt_number, average_x, total_slots, opened_slots, created_at")
+        .not("average_x", "is", null)
+        .gt("total_slots", 0)
         .order("hunt_number", { ascending: false })
         .limit(3);
 
