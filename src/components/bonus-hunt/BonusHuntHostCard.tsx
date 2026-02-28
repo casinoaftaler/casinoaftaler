@@ -70,41 +70,45 @@ export function BonusHuntHostCard() {
   const socials = getActiveSocials();
 
   return (
-    <section className="rounded-xl border border-border/50 bg-card p-4">
-      <div className="flex items-center gap-3">
+    <section className="rounded-xl border border-border/50 bg-card p-5 md:p-6">
+      <div className="flex items-center gap-4">
         {/* Avatar */}
         <img
           src="/kevin-avatar.webp"
           alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-          className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-primary/20"
+          className="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-primary/20"
           loading="lazy"
         />
 
         {/* Info */}
-        <div className="min-w-0 flex-1 space-y-1">
+        <div className="min-w-0 flex-1 space-y-2">
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1.5">
               <Video className="h-3 w-3 text-primary" />
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
                 Vært
               </span>
             </div>
-            <span className="flex items-center gap-1 text-[10px] text-green-500">
+            <span className="flex items-center gap-1 text-[11px] text-green-500">
               <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
               Live streamer
             </span>
           </div>
 
           <div>
-            <Link to="/forfatter/kevin" className="text-sm font-bold text-foreground hover:text-primary transition-colors">
+            <Link to="/forfatter/kevin" className="text-base font-bold text-foreground hover:text-primary transition-colors">
               Kevin
             </Link>
-            <p className="text-[11px] text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Bonus Hunt vært & streamer
             </p>
           </div>
 
-          <div className="flex items-center gap-2 pt-0.5">
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Kevin streamer og dokumenterer live bonus hunts med fuld gennemsigtighed – fra indsats til resultat.
+          </p>
+
+          <div className="flex items-center gap-2.5 pt-1">
             {socials.map((s) => (
               <a
                 key={s.name}
