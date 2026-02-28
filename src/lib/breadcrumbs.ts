@@ -178,6 +178,7 @@ export const routeLabels: Record<string, string> = {
   // Community (kun indexerbare sider)
   "/community": "Community",
   "/community/slots": "Spillehal",
+  "/bonus-hunt": "Bonus Hunt",
 };
 
 /** Paths where breadcrumbs should NOT appear (visual + schema). */
