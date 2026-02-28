@@ -28,7 +28,7 @@ export function BonusHuntNavBar({ huntNumber, huntDate, latestHuntNumber, maxHun
           <SelectValue />
         </SelectTrigger>
         <SelectContent className="max-h-[300px]">
-          {Array.from({ length: maxHuntNumber }, (_, i) => maxHuntNumber - i).map(num => (
+          {Array.from({ length: maxHuntNumber - 1 }, (_, i) => maxHuntNumber - i).map(num => (
             <SelectItem key={num} value={String(num)}>
               BONUS HUNT #{num} {num === huntNumber ? huntDate : ''} {num > latestHuntNumber ? '🔴 LIVE' : ''}
             </SelectItem>
