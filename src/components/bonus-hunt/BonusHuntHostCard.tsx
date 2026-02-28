@@ -72,44 +72,44 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
 
   return (
     <section className="group rounded-xl border border-border/50 bg-card px-5 py-4 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
-      <div className="flex flex-col gap-1.5">
-        {/* Row 1: Label + live badge */}
-        <div className="flex items-center gap-2 pl-[76px]">
-          <Video className="h-3.5 w-3.5 text-primary" />
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-            Vært for: Bonus Hunt {huntNumber ? `#${huntNumber}` : ""}
-          </span>
-          <span className="flex items-center gap-1.5 text-[11px] font-medium" style={{ color: "hsl(142 71% 45%)" }}>
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inset-0 rounded-full animate-ping opacity-40" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
+      <div className="flex items-center gap-3">
+        {/* Avatar spanning full height */}
+        <div className="shrink-0 h-[112px] w-[112px] rounded-full p-[3px] transition-transform duration-200 hover:scale-[1.03]" style={{ background: 'hsl(var(--primary) / 0.06)', boxShadow: '0 0 0 1px hsl(var(--primary) / 0.18)' }}>
+          <img
+            src="/kevin-avatar.webp"
+            alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
+            className="h-full w-full rounded-full object-cover"
+            style={{ objectPosition: '50% 35%' }}
+            loading="lazy"
+          />
+        </div>
+
+        <div className="min-w-0 flex-1 flex flex-col gap-1.5">
+          {/* Row 1: Label + live badge */}
+          <div className="flex items-center gap-2">
+            <Video className="h-3.5 w-3.5 text-primary" />
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Vært for: Bonus Hunt {huntNumber ? `#${huntNumber}` : ""}
             </span>
-            Live streamer
-          </span>
-        </div>
-
-        {/* Row 2: Name + subtitle */}
-        <div className="pl-[76px]">
-          <Link to="/forfatter/kevin" className="text-base font-bold text-foreground hover:text-primary transition-colors">
-            Kevin
-          </Link>
-          <p className="text-xs text-muted-foreground">Streamer & Casinoanalytiker</p>
-        </div>
-
-        {/* Row 3: Avatar + tags/desc/socials */}
-        <div className="flex items-center gap-3">
-          <div className="shrink-0 h-[112px] w-[112px] rounded-full p-[3px] transition-transform duration-200 hover:scale-[1.03]" style={{ background: 'hsl(var(--primary) / 0.06)', boxShadow: '0 0 0 1px hsl(var(--primary) / 0.18)' }}>
-            <img
-              src="/kevin-avatar.webp"
-              alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-              className="h-full w-full rounded-full object-cover"
-              style={{ objectPosition: '50% 35%' }}
-              loading="lazy"
-            />
+            <span className="flex items-center gap-1.5 text-[11px] font-medium" style={{ color: "hsl(142 71% 45%)" }}>
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inset-0 rounded-full animate-ping opacity-40" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
+              </span>
+              Live streamer
+            </span>
           </div>
-          <div className="min-w-0 flex-1 space-y-2">
-            {/* Tags */}
-            <div className="flex flex-wrap gap-1.5">
+
+          {/* Row 2: Name + subtitle */}
+          <div>
+            <Link to="/forfatter/kevin" className="text-base font-bold text-foreground hover:text-primary transition-colors">
+              Kevin
+            </Link>
+            <p className="text-xs text-muted-foreground">Streamer & Casinoanalytiker</p>
+          </div>
+
+          {/* Row 3: Tags */}
+          <div className="flex flex-wrap gap-1.5">
               {[
                 { icon: "🎰", label: `${huntNumber ?? "5"} hunts` },
                 { icon: "📊", label: "Dokumenteret" },
@@ -151,7 +151,6 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
             </div>
           </div>
         </div>
-      </div>
 
       <script
         type="application/ld+json"
