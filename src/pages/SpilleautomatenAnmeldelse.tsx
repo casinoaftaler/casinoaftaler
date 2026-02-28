@@ -21,6 +21,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { CommunityActivityWidget } from "@/components/CommunityActivityWidget";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
@@ -819,6 +820,8 @@ const SpilleautomatenAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+
+        <CommunityActivityWidget casinoName="Spilleautomaten" casinoSlug="spilleautomaten" />
 
         <RelatedReviews currentSlug="spilleautomaten" />
 
