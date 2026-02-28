@@ -1,11 +1,18 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Gift, Unlock, Wallet, Target, Dice3, BarChart3, Scale, Trophy, Rocket } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Gift, Unlock, Wallet, Target, Dice3, BarChart3, Scale, Trophy, Rocket, Check, ArrowRight } from "lucide-react";
+import { useCasinos } from "@/hooks/useCasinos";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 import type { BonusHuntData } from "@/hooks/useBonusHuntData";
 import type { LucideIcon } from "lucide-react";
 
 interface Props {
   data: BonusHuntData;
+  huntNumber?: number;
+  huntDate?: string;
+  isLive?: boolean;
+  casinoSlug?: string;
 }
 
 function StatRow({ label, value, highlight, icon: Icon }: { label: string; value: string | number; highlight?: boolean; icon: LucideIcon }) {
@@ -20,13 +27,67 @@ function StatRow({ label, value, highlight, icon: Icon }: { label: string; value
   );
 }
 
-export function BonusHuntStatsTab({ data }: Props) {
+export function BonusHuntStatsTab({ data, huntNumber, huntDate, isLive = false, casinoSlug = "spildansknu" }: Props) {
   const s = data.stats;
+  const { data: casinos } = useCasinos();
+  const casino = casinos?.find((c) => c.slug === casinoSlug);
+  const logoUrl = casino?.logo_url;
+  const displayName = casino?.name ?? casinoSlug;
+  const reviewPath = `/casino-anmeldelser/${casinoSlug}`;
 
   return (
     <Card className="rounded-2xl border-primary/10 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10">
-      <CardContent className="p-4">
-        <div className="flex items-center justify-between mb-2">
+      <CardContent className="p-4 space-y-3">
+        {/* Casino context header */}
+        {huntNumber != null && (
+          <div className="flex gap-3 pb-3 border-b border-border/30">
+            {logoUrl && (
+              <Link to={reviewPath} className="shrink-0 self-start">
+                <img
+                  src={optimizeStorageImage(logoUrl, 120) ?? logoUrl}
+                  alt={`${displayName} logo`}
+                  width={48}
+                  height={48}
+                  loading="eager"
+                  className="h-12 w-12 rounded-lg object-contain bg-background/50 p-1.5 border border-border/50"
+                />
+              </Link>
+            )}
+            <div className="min-w-0 flex-1 space-y-1.5">
+              <div>
+                <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                  {isLive ? "Casino der testes" : "Casino testet i denne hunt"}
+                </p>
+                <h2 className="text-sm font-bold text-foreground">
+                  <Link to={reviewPath} className="hover:text-primary transition-colors">
+                    {displayName}
+                  </Link>
+                </h2>
+              </div>
+              <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-[11px] text-muted-foreground">
+                {s.openedBonuses > 0 && (
+                  <li className="flex items-center gap-1">
+                    <Check className="h-3 w-3 text-primary" />
+                    {s.openedBonuses} bonusser
+                  </li>
+                )}
+                {s.averageX != null && (
+                  <li className="flex items-center gap-1">
+                    <Check className="h-3 w-3 text-primary" />
+                    {s.averageX.toFixed(1)}x snit
+                  </li>
+                )}
+                <li className="flex items-center gap-1">
+                  <Check className="h-3 w-3 text-primary" />
+                  Live testet
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {/* Stats section */}
+        <div className="flex items-center justify-between mb-1">
           <h3 className="font-semibold text-sm">Bonus Hunt Info</h3>
           <Badge variant="outline" className="capitalize text-[10px]">{data.status}</Badge>
         </div>
@@ -42,6 +103,18 @@ export function BonusHuntStatsTab({ data }: Props) {
           <StatRow icon={Trophy} label="Highest Win" value={`${s.highestWin.toLocaleString('da-DK')} kr`} />
           <StatRow icon={Rocket} label="Highest Multiplier" value={`${s.highestMultiplier}x`} />
         </div>
+
+        {/* Review CTA */}
+        {huntNumber != null && (
+          <Link
+            to={reviewPath}
+            title={`Læs fuld anmeldelse af ${displayName}`}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-primary/80 px-3.5 py-1.5 text-xs font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:scale-[1.03] hover:shadow-md hover:shadow-primary/25 mt-1"
+          >
+            Læs fuld anmeldelse
+            <ArrowRight className="h-3 w-3" />
+          </Link>
+        )}
       </CardContent>
     </Card>
   );
