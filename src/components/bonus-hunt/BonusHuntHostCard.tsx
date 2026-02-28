@@ -97,7 +97,7 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
         </div>
 
         {/* Row 3: Avatar + tags/desc/socials */}
-        <div className="flex items-center gap-3 -mt-[52px]">
+        <div className="flex items-center gap-3">
           <img
             src="/kevin-avatar.webp"
             alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
