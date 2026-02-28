@@ -345,6 +345,13 @@ const Index = () => {
             {" "}og{" "}
             <Link to="/bonus-uden-omsaetningskrav" className="text-primary hover:underline font-medium">bonusser uden omsætningskrav</Link>.
           </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Erfarne spillere bør desuden kende til{" "}
+            <Link to="/cashback-bonus" className="text-primary hover:underline font-medium">cashback bonusser</Link>
+            , der returnerer en procentdel af dine tab, og{" "}
+            <Link to="/reload-bonus" className="text-primary hover:underline font-medium">reload bonusser</Link>
+            , der giver ekstra midler ved gentagne indbetalinger. Begge bonustyper kan have højere langsigtet værdi end en engangsbonusser.
+          </p>
           <p className="text-muted-foreground leading-relaxed">
             Husk altid at læse vilkårene grundigt – især{" "}
             <Link to="/omsaetningskrav" className="text-primary hover:underline font-medium">omsætningskravene</Link>

@@ -87,6 +87,78 @@ export function BonusTypeCards() {
               </Button>
             </CardContent>
           </Card>
+
+          {/* Cashback Bonus Card */}
+          <Card>
+            <CardHeader>
+              <div className="mb-2 inline-flex rounded-full bg-muted px-3 py-1 text-sm font-medium">
+                Tabsreduktion
+              </div>
+              <CardTitle className="text-2xl">Cashback Bonus</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-muted-foreground">
+                Med en cashback bonus får du en procentdel af dine nettotab
+                tilbage – typisk 5-15% ugentligt eller månedligt. Ideel for
+                aktive spillere med højt volume.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <Check className="h-5 w-5 text-primary" />
+                  <span>Ofte ingen omsætningskrav</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="h-5 w-5 text-primary" />
+                  <span>Automatisk aktivering</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="h-5 w-5 text-primary" />
+                  <span>Reducerer effektivt nettotab</span>
+                </li>
+              </ul>
+              <Button asChild variant="outline" className="w-full">
+                <Link to="/cashback-bonus">
+                  Læs Mere <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Reload Bonus Card */}
+          <Card>
+            <CardHeader>
+              <div className="mb-2 inline-flex rounded-full bg-muted px-3 py-1 text-sm font-medium">
+                Tilbagevendende
+              </div>
+              <CardTitle className="text-2xl">Reload Bonus</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-muted-foreground">
+                Reload-bonusser gives ved gentagne indbetalinger efter din
+                første. De har typisk lavere matchprocent men også lavere
+                omsætningskrav – og kan bruges igen og igen.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2">
+                  <Check className="h-5 w-5 text-primary" />
+                  <span>Gentagen bonusværdi over tid</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="h-5 w-5 text-primary" />
+                  <span>Lavere omsætningskrav end velkomst</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="h-5 w-5 text-primary" />
+                  <span>Ideel til aktive spillere</span>
+                </li>
+              </ul>
+              <Button asChild variant="outline" className="w-full">
+                <Link to="/reload-bonus">
+                  Læs Mere <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

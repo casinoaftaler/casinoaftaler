@@ -52,6 +52,7 @@ import {
   Lock,
   ThumbsUp,
   ArrowRight,
+  RefreshCw,
 } from "lucide-react";
 
 const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"];
@@ -636,6 +637,36 @@ const TopCasinoOnline = () => {
                 <p className="text-sm text-muted-foreground">
                   Den mest spillervenlige bonustype er en{" "}
                   <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link>. Her kan du udbetale alle gevinster direkte uden at skulle gennemspille et vist beløb. Denne type bliver stadig mere populær hos danske casinoer.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <BarChart3 className="h-5 w-5 text-primary" />
+                  Cashback Bonus
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  En <Link to="/cashback-bonus" className={linkClass}>cashback bonus</Link>{" "}
+                  returnerer en procentdel af dine nettotab – typisk 5-15% ugentligt. Cashback er ofte omsætningsfri og aktiveres automatisk, hvilket gør det til den mest forudsigelige bonustype for aktive spillere.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <RefreshCw className="h-5 w-5 text-primary" />
+                  Reload Bonus
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  En <Link to="/reload-bonus" className={linkClass}>reload bonus</Link>{" "}
+                  gives ved gentagne indbetalinger efter velkomstbonussen. Matchprocenten er lavere (25-50%), men omsætningskravene er ofte mere fordelagtige – og bonussen kan bruges igen og igen.
                 </p>
               </CardContent>
             </Card>
