@@ -45,16 +45,6 @@ const SECTIONS = [
     image: spillehalImg,
   },
   {
-    title: "Turneringer",
-    description:
-      "Deltag i slot-turneringer og kæmp om præmier! Se aktive turneringer, ranglister og vindere.",
-    href: "/community/leaderboard",
-    icon: Trophy,
-    badge: "Ugentlige præmier",
-    badgeColor: "bg-purple-500/15 text-purple-600 dark:text-purple-400 border-purple-500/30",
-    image: turneringerImg,
-  },
-  {
     title: "Bonus Hunt",
     description:
       "Følg live bonus hunts, gæt end balance og bet på average multiplier grupper. Vind points og credits!",
@@ -63,6 +53,16 @@ const SECTIONS = [
     badge: "Live Betting",
     badgeColor: "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",
     image: bonusHuntImg,
+  },
+  {
+    title: "Turneringer",
+    description:
+      "Deltag i slot-turneringer og kæmp om præmier! Se aktive turneringer, ranglister og vindere.",
+    href: "/community/leaderboard",
+    icon: Trophy,
+    badge: "Ugentlige præmier",
+    badgeColor: "bg-purple-500/15 text-purple-600 dark:text-purple-400 border-purple-500/30",
+    image: turneringerImg,
   },
   {
     title: "Highlights",
