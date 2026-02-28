@@ -75,18 +75,7 @@ export default function BonusHunt() {
             </div>
           ) : huntData ? (
             <div className="space-y-4">
-              {/* Header row: selector */}
-              <div className="flex justify-center items-center py-3">
-                <BonusHuntNavBar
-                    huntNumber={huntIdOverride || liveHuntNumber}
-                    huntDate={huntDate}
-                    latestHuntNumber={latestHuntNumber}
-                    maxHuntNumber={maxHuntNumber}
-                    onNavigate={handleNavigate}
-                    onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
-                />
-              </div>
-              {/* Top grid: Casino+Video | Stats+Result */}
+              {/* Single top grid – selector integrated in right column */}
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
                 {/* Left column (60%) */}
                 <div className="lg:col-span-3 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
@@ -99,8 +88,17 @@ export default function BonusHunt() {
                   {huntVideo && <BonusHuntVideoSection video={huntVideo} />}
                 </div>
 
-                {/* Right column (40%) */}
+                {/* Right column (40%) – selector + stats + result */}
                 <div className="lg:col-span-2 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
+                  <BonusHuntNavBar
+                    huntNumber={huntIdOverride || liveHuntNumber}
+                    huntDate={huntDate}
+                    latestHuntNumber={latestHuntNumber}
+                    maxHuntNumber={maxHuntNumber}
+                    onNavigate={handleNavigate}
+                    onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
+                  />
+
                   <Tabs defaultValue="stats" className="w-full">
                     <TabsList className="w-full grid grid-cols-3">
                       <TabsTrigger value="stats">STATS</TabsTrigger>
@@ -131,7 +129,6 @@ export default function BonusHunt() {
                     </TabsContent>
                   </Tabs>
 
-                  {/* Result summary – under stats in right column */}
                   {huntVideo && <BonusHuntResultSummary video={huntVideo} />}
                 </div>
               </div>
