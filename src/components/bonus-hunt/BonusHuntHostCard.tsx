@@ -71,91 +71,57 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
   const socials = getActiveSocials();
 
   return (
-    <section className="group rounded-xl border border-border/50 bg-card p-6 h-full flex flex-col transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
-      <div className="flex items-center gap-5">
-        {/* Avatar with subtle glow */}
+    <section className="group rounded-xl border border-border/50 bg-card px-4 py-3 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
+      <div className="flex items-center gap-3">
+        {/* Avatar */}
         <div className="relative shrink-0">
-          <div className="absolute inset-0 rounded-full bg-primary/[0.06] blur-xl scale-150 dark:block hidden pointer-events-none" />
           <img
             src="/kevin-avatar.webp"
             alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-            className="relative h-20 w-20 rounded-full object-cover ring-2 ring-primary/20 transition-transform duration-200 group-hover:scale-[1.03]"
+            className="relative h-12 w-12 rounded-full object-cover ring-2 ring-primary/20"
             loading="lazy"
           />
         </div>
 
         {/* Info */}
-        <div className="min-w-0 flex-1 space-y-2.5">
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5">
-                <Video className="h-3 w-3 text-primary" />
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                  Vært for:{huntNumber ? ` Bonus Hunt #${huntNumber}` : " Bonus Hunt"}
-                </span>
-              </div>
-            <span className="flex items-center gap-1.5 text-[11px] font-medium" style={{ color: "hsl(142 71% 45%)" }}>
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inset-0 rounded-full animate-ping opacity-40" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
-                <span className="relative inline-flex h-2 w-2 rounded-full" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
+              <Video className="h-3 w-3 text-primary" />
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                Vært{huntNumber ? `: Hunt #${huntNumber}` : ""}
               </span>
-              Live streamer
+            </div>
+            <span className="flex items-center gap-1 text-[10px] font-medium" style={{ color: "hsl(142 71% 45%)" }}>
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inset-0 rounded-full animate-ping opacity-40" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
+              </span>
+              Live
             </span>
           </div>
-
-          <div>
-            <Link to="/forfatter/kevin" className="text-base font-bold text-foreground hover:text-primary transition-colors">
+          <div className="flex items-baseline gap-1.5">
+            <Link to="/forfatter/kevin" className="text-sm font-bold text-foreground hover:text-primary transition-colors">
               Kevin
             </Link>
-            <p className="text-xs text-muted-foreground">
-              Streamer & Casinoanalytiker
-            </p>
+            <span className="text-[11px] text-muted-foreground">Streamer & Casinoanalytiker</span>
           </div>
+        </div>
 
-          {/* Mini stats row */}
-          <div className="flex flex-wrap gap-2">
-            {huntNumber && (
-              <span className="inline-flex items-center gap-1 rounded-md border border-border/50 bg-muted/50 px-2 py-0.5 text-[11px] text-muted-foreground">
-                <Gamepad2 className="h-3 w-3 text-primary/70" />
-                {huntNumber} hunts
-              </span>
-            )}
-            <span className="inline-flex items-center gap-1 rounded-md border border-border/50 bg-muted/50 px-2 py-0.5 text-[11px] text-muted-foreground">
-              <BarChart3 className="h-3 w-3 text-primary/70" />
-              Dokumenteret
-            </span>
-            <span className="inline-flex items-center gap-1 rounded-md border border-border/50 bg-muted/50 px-2 py-0.5 text-[11px] text-muted-foreground">
-              <Users className="h-3 w-3 text-primary/70" />
-              Twitch community
-            </span>
-          </div>
-
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            Live hver uge med nye bonus hunts – fra første spin til sidste resultat. Alt dokumenteret. Ingen filter.
-          </p>
-
-          {/* Social icons + CTA */}
-          <div className="flex items-center gap-3 pt-1">
-            <div className="flex items-center gap-1.5">
-              {socials.map((s) => (
-                <a
-                  key={s.name}
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={s.name}
-                  className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground transition-colors hover:text-primary hover:bg-primary/10"
-                >
-                  <SocialIcon platform={s.icon} />
-                </a>
-              ))}
-            </div>
-            <span className="h-4 w-px bg-border" />
-            <Button variant="ghost" size="sm" className="h-6 text-[11px] px-2 gap-1 text-muted-foreground hover:text-primary" asChild>
-              <Link to="/forfatter/kevin">
-                <Play className="h-3 w-3" /> Se Kevins profil
-              </Link>
-            </Button>
-          </div>
+        {/* Social icons */}
+        <div className="flex items-center gap-1 shrink-0">
+          {socials.map((s) => (
+            <a
+              key={s.name}
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={s.name}
+              className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground transition-colors hover:text-primary hover:bg-primary/10"
+            >
+              <SocialIcon platform={s.icon} />
+            </a>
+          ))}
         </div>
       </div>
 
