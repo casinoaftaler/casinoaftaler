@@ -95,6 +95,8 @@ const SpilDanskNuAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">I denne dybdegående anmeldelse gennemgår vi alt fra <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og Præmieshoppen til det fulde spiludvalg, <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, kundeservice, mobiloplevelse og sikkerhed. Vi har testet platformen over 14 dage for at give dig et komplet og ærligt billede af, hvad SpilDanskNu tilbyder i 2026. Læs mere om <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.</p>
         </section>
 
+        <CommunityActivityWidget casinoName="SpilDanskNu" casinoSlug="spildansknu" />
+
         <Separator className="my-10" />
 
         {/* 14-dages test */}
@@ -386,7 +388,6 @@ const SpilDanskNuAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
-        <CommunityActivityWidget casinoName="SpilDanskNu" casinoSlug="spildansknu" />
         <RelatedReviews currentSlug="spildansknu" />
         <InlineCasinoCards />
         <Separator className="my-10" />
