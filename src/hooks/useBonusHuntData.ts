@@ -103,8 +103,8 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
 
   if (huntId) {
     url.searchParams.set('huntId', String(huntId));
-    // If browsing a past hunt (not the latest), prefer archive
-    if (latestHuntNumber && huntId < latestHuntNumber) {
+    // If we know it's archived (latestHuntNumber is passed), prefer archive
+    if (latestHuntNumber) {
       url.searchParams.set('archive', 'true');
     }
   }
@@ -136,15 +136,14 @@ export function useBonusHuntData(huntId?: number) {
     staleTime: 60000,
   });
 
-  // Only include latestHuntNumber in key when it affects the request (browsing past hunts)
-  const isPastHunt = !!(huntId && latestHuntNumber && huntId < latestHuntNumber);
+  // Any explicitly set huntId that exists in archives is a past hunt
+  const isPastHunt = !!(huntId && latestHuntNumber && huntId <= latestHuntNumber);
 
   return useQuery({
-    queryKey: ['bonus-hunt-data', huntId, isPastHunt ? latestHuntNumber : undefined],
-    queryFn: () => fetchBonusHuntData(huntId, latestHuntNumber),
+    queryKey: ['bonus-hunt-data', huntId, isPastHunt ? 'archived' : 'live'],
+    queryFn: () => fetchBonusHuntData(huntId, isPastHunt ? latestHuntNumber : undefined),
     refetchInterval: isPastHunt ? false : 30000,
     staleTime: isPastHunt ? 300000 : 15000,
-    // Don't refetch when latestHuntNumber arrives if we're viewing the current hunt
     placeholderData: (prev) => prev,
   });
 }

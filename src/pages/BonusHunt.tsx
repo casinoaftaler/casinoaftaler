@@ -29,16 +29,23 @@ export default function BonusHunt() {
     queryClient.invalidateQueries({ queryKey: ['bonus-hunt-avgx-bets'] });
   }, [queryClient]);
 
+  const liveHuntNumber = huntData?.visibleId || latestHuntNumber + 1;
+  const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber);
+
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
     if (!huntData) return;
-    const current = huntIdOverride || huntData.visibleId || latestHuntNumber;
+    const current = huntIdOverride || liveHuntNumber;
     switch (dir) {
       case 'prev': if (current > 1) setHuntIdOverride(current - 1); break;
-      case 'next': if (current < latestHuntNumber) setHuntIdOverride(current + 1); else setHuntIdOverride(undefined); break;
+      case 'next': 
+        if (current < maxHuntNumber) setHuntIdOverride(current + 1);
+        // If next goes beyond archived, show live
+        if (current + 1 > latestHuntNumber) setHuntIdOverride(undefined);
+        break;
       case 'first': setHuntIdOverride(1); break;
       case 'last': setHuntIdOverride(undefined); break;
     }
-  }, [huntData, huntIdOverride, latestHuntNumber]);
+  }, [huntData, huntIdOverride, latestHuntNumber, liveHuntNumber, maxHuntNumber]);
 
   const huntDate = huntData?.date
     ? new Date(huntData.date).toLocaleDateString('da-DK', { day: 'numeric', month: 'short' }).toUpperCase()
@@ -70,8 +77,9 @@ export default function BonusHunt() {
                   huntNumber={huntData.visibleId}
                   huntDate={huntDate}
                   latestHuntNumber={latestHuntNumber}
+                  maxHuntNumber={maxHuntNumber}
                   onNavigate={handleNavigate}
-                  onJumpToHunt={(num) => setHuntIdOverride(num || undefined)}
+                  onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
                 />
                 <BonusHuntFooter stats={huntData.stats} />
               </div>
