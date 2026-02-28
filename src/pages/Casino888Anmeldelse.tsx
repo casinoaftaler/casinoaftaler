@@ -13,7 +13,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -35,7 +35,7 @@ const Casino888Anmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "888 Casino Anmeldelse 2026 – Pioneren i Online Casino", description: "Komplet anmeldelse af 888 Casino. Børsnoteret pioner med dansk licens, eksklusive spil og 888 Club loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/888-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.2", ratingCount: "188" } });
   const faqJsonLd = buildFaqSchema(faqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "888 Casino", url: "https://www.888casino.dk/" }, author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" }, reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5", worstRating: "1" }, reviewBody: "888 Casino er en pioner inden for online gambling med eksklusivt spiludvalg, loyalitetsprogram og dansk licens." };
+  const reviewJsonLd = buildReviewSchema({ itemName: "888 Casino", itemUrl: "https://www.888casino.dk/", ratingValue: "4.2", ratingCount: "188", reviewBody: "888 Casino er en pioner inden for online gambling med eksklusivt spiludvalg, loyalitetsprogram og dansk licens." });
 
   return (
     <>

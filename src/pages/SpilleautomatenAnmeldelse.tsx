@@ -16,7 +16,7 @@ import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { StickyCTA } from "@/components/StickyCTA";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
@@ -122,19 +122,7 @@ const SpilleautomatenAnmeldelse = () => {
   const faqJsonLd = buildFaqSchema(spilleautomatenFaqs);
   const articleSchema = buildArticleSchema({ headline: "Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus & Præmieshop", description: "Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. over 5 dage, 10x omsætning, Præmieshop og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.8", ratingCount: "203" } });
 
-  const reviewJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    itemReviewed: {
-      "@type": "Organization",
-      name: "Spilleautomaten",
-      url: "https://www.spilleautomaten.dk",
-    },
-    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.8", bestRating: "5", worstRating: "1" },
-    reviewBody:
-      "Spilleautomaten er et dansk slots-specialiseret casino med 5-dages velkomstbonus op til 1.000 kr., 10x omsætning, Præmieshop med kontante præmier, 2.000+ spilleautomater og hurtige MobilePay-udbetalinger.",
-  };
+  const reviewJsonLd = buildReviewSchema({ itemName: "Spilleautomaten", itemUrl: "https://www.spilleautomaten.dk", ratingValue: "4.8", ratingCount: "203", reviewBody: "Spilleautomaten er et dansk slots-specialiseret casino med 5-dages velkomstbonus op til 1.000 kr., 10x omsætning, Præmieshop med kontante præmier, 2.000+ spilleautomater og hurtige MobilePay-udbetalinger." });
 
   return (
     <>

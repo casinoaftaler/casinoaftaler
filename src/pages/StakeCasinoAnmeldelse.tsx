@@ -12,7 +12,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -35,14 +35,7 @@ const StakeCasinoAnmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "Stake Casino Anmeldelse 2026 – Crypto-Giganten er Landet i Danmark", description: "Komplet anmeldelse af Stake Casino Danmark. Crypto-giganten har fået dansk licens via VinderCasino-opkøbet. Læs om Stake Originals, VIP-program og den danske version.", url: "https://casinoaftaler.dk/casino-anmeldelser/stake-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.1", ratingCount: "144" } });
   const faqJsonLd = buildFaqSchema(stakeFaqs);
-  const reviewJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    itemReviewed: { "@type": "Organization", name: "Stake Casino", url: "https://stake.dk/" },
-    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.1", bestRating: "5", worstRating: "1" },
-    reviewBody: "Komplet anmeldelse af Stake Casino Danmark. Innovativt crypto-casino med proprietære spil, stærkt community og nu dansk licens via VinderCasino-opkøbet.",
-  };
+  const reviewJsonLd = buildReviewSchema({ itemName: "Stake Casino", itemUrl: "https://stake.dk/", ratingValue: "4.1", ratingCount: "144", reviewBody: "Komplet anmeldelse af Stake Casino Danmark. Innovativt crypto-casino med proprietære spil, stærkt community og nu dansk licens via VinderCasino-opkøbet." });
 
   return (
     <>

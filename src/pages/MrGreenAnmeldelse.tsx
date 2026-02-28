@@ -13,7 +13,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -36,7 +36,7 @@ const MrGreenAnmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "Mr Green Casino Anmeldelse 2026 – Dansk Licens, Bonus & Ansvarligt Spil", description: "Komplet anmeldelse af Mr Green Casino. Prisbelønnet platform med dansk licens, Green Gaming og kurateret spiludvalg.", url: "https://casinoaftaler.dk/casino-anmeldelser/mr-green", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.3", ratingCount: "219" } });
   const faqJsonLd = buildFaqSchema(mrgreenFaqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Mr Green Casino", url: "https://www.mrgreen.com/dk/" }, author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" }, reviewRating: { "@type": "Rating", ratingValue: "4.3", bestRating: "5", worstRating: "1" }, reviewBody: "Mr Green Casino er en prisbelønnet platform med dansk licens, innovativt Green Gaming-værktøj og et kurateret spiludvalg af høj kvalitet." };
+  const reviewJsonLd = buildReviewSchema({ itemName: "Mr Green Casino", itemUrl: "https://www.mrgreen.com/dk/", ratingValue: "4.3", ratingCount: "219", reviewBody: "Mr Green Casino er en prisbelønnet platform med dansk licens, innovativt Green Gaming-værktøj og et kurateret spiludvalg af høj kvalitet." });
 
   return (
     <>

@@ -13,7 +13,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -82,14 +82,7 @@ const ComeOnAnmeldelse = () => {
 
   const faqJsonLd = buildFaqSchema(comeonFaqs);
 
-  const reviewJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    itemReviewed: { "@type": "Organization", name: "ComeOn Casino", url: "https://www.comeon.com/dk/" },
-    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
-    reviewRating: { "@type": "Rating", ratingValue: "4.0", bestRating: "5", worstRating: "1" },
-    reviewBody: "ComeOn Casino er en solid og brugervenlig platform med dansk licens, et bredt spiludvalg og gennemsigtige bonusvilkår.",
-  };
+  const reviewJsonLd = buildReviewSchema({ itemName: "ComeOn Casino", itemUrl: "https://www.comeon.com/dk/", ratingValue: "4.0", ratingCount: "136", reviewBody: "ComeOn Casino er en solid og brugervenlig platform med dansk licens, et bredt spiludvalg og gennemsigtige bonusvilkår." });
 
   return (
     <>

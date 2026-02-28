@@ -12,7 +12,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -91,13 +91,7 @@ const BwinAnmeldelse = () => {
     aggregateRating: { ratingValue: "3.9", ratingCount: "131" },
   });
   const faqJsonLd = buildFaqSchema(bwinFaqs);
-  const reviewJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Review",
-    itemReviewed: { "@type": "Organization", name: "bwin", url: "https://www.bwin.dk/" },
-    author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" },
-    reviewRating: { "@type": "Rating", ratingValue: "3.9", bestRating: "5", worstRating: "1" },
-  };
+  const reviewJsonLd = buildReviewSchema({ itemName: "bwin", itemUrl: "https://www.bwin.dk/", ratingValue: "3.9", ratingCount: "131", reviewBody: "bwin er en europæisk sportsbetting-gigant med et voksende casino-tilbud under dansk licens." });
 
   return (
     <>

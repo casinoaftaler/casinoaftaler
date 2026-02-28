@@ -16,7 +16,7 @@ import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { StickyCTA } from "@/components/StickyCTA";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
@@ -49,7 +49,7 @@ const SpilDanskNuAnmeldelse = () => {
 
   const faqJsonLd = buildFaqSchema(spilDanskNuFaqs);
   const articleSchema = buildArticleSchema({ headline: "SpilDanskNu Anmeldelse 2026 – Bonus, Spil & Vilkår", description: "Komplet anmeldelse af SpilDanskNu.dk. 100% bonus op til 1.000 kr., kun 10x omsætning, over 2.500 slots og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spildansknu", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.5", ratingCount: "178" } });
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "SpilDanskNu", url: "https://www.spildansknu.dk" }, author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" }, reviewRating: { "@type": "Rating", ratingValue: "4.5", bestRating: "5", worstRating: "1" }, reviewBody: "SpilDanskNu er et dansk online casino med lavt omsætningskrav, over 2.500 spilleautomater, loyalitetsprogram og hurtige udbetalinger." };
+  const reviewJsonLd = buildReviewSchema({ itemName: "SpilDanskNu", itemUrl: "https://www.spildansknu.dk", ratingValue: "4.5", ratingCount: "178", reviewBody: "SpilDanskNu er et dansk online casino med lavt omsætningskrav, over 2.500 spilleautomater, loyalitetsprogram og hurtige udbetalinger." });
 
   return (
     <>

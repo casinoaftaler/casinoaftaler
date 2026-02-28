@@ -12,7 +12,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { buildArticleSchema, buildFaqSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -34,7 +34,7 @@ const RoyalCasinoAnmeldelse = () => {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const articleSchema = buildArticleSchema({ headline: "Royal Casino Anmeldelse 2026 – Statens Casinojuvel Under Lup", description: "Dybdegående anmeldelse af Royal Casino. Del af Danske Spil-koncernen, dansk licens, stærkt live casino med danske dealers og klassisk premium-oplevelse.", url: "https://casinoaftaler.dk/casino-anmeldelser/royal-casino", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.2", ratingCount: "158" } });
   const faqJsonLd = buildFaqSchema(royalFaqs);
-  const reviewJsonLd = { "@context": "https://schema.org", "@type": "Review", itemReviewed: { "@type": "Organization", name: "Royal Casino", url: "https://www.royalcasino.dk/" }, author: { "@type": "Person", "@id": "https://casinoaftaler.dk/forfatter/jonas#person" }, reviewRating: { "@type": "Rating", ratingValue: "4.2", bestRating: "5", worstRating: "1" }, reviewBody: "Royal Casino er den dedikerede casinoplatform under Danske Spil-koncernen. Med fokus på live casino med danske dealers, kureret spiludvalg og uovertruffen regulatorisk sikkerhed er det et premium-valg for danske spillere, der prioriterer troværdighed og klassisk casinounderholdning." };
+  const reviewJsonLd = buildReviewSchema({ itemName: "Royal Casino", itemUrl: "https://www.royalcasino.dk/", ratingValue: "4.2", ratingCount: "158", reviewBody: "Royal Casino er den dedikerede casinoplatform under Danske Spil-koncernen. Med fokus på live casino med danske dealers, kureret spiludvalg og uovertruffen regulatorisk sikkerhed er det et premium-valg for danske spillere, der prioriterer troværdighed og klassisk casinounderholdning." });
 
   return (
     <>
