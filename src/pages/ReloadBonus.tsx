@@ -183,7 +183,7 @@ const ReloadBonus = () => {
         <AuthorMetaBar author="jonas" date="27-02-2026" readTime="14 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={reloadHero} alt="Reload bonus – tilbagevendende casinobonus med genopladningssymbol" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={reloadHero} alt="Reload bonus – tilbagevendende casinobonus med genopladningssymbol" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

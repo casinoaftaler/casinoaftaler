@@ -61,7 +61,7 @@ const CasinoOgSkatGuide = () => {
         <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="22 min" />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Casino og skat i Danmark" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={heroImage} alt="Casino og skat i Danmark" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         <section className="mb-12">

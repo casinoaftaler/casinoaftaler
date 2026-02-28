@@ -184,7 +184,7 @@ const Velkomstbonus = () => {
         <AuthorMetaBar author="jonas" date="20-02-2026" readTime="11 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={velkomstbonusHero} alt="Velkomstbonus – gaveboks med casino chips" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={velkomstbonusHero} alt="Velkomstbonus – gaveboks med casino chips" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

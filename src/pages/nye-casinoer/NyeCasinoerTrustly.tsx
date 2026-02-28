@@ -70,7 +70,7 @@ const NyeCasinoerTrustly = () => {
         <AuthorMetaBar author="jonas" date="16-02-2026" readTime="8 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={trustlyHero} alt="Nye casinoer med Trustly betaling" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={trustlyHero} alt="Nye casinoer med Trustly betaling" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         <section className="mb-12">

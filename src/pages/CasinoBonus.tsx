@@ -202,7 +202,7 @@ const CasinoBonus = () => {
         
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={casinoBonusHero} alt="Casino bonus oversigt – sammenligning af bonustyper i Danmark 2026" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={casinoBonusHero} alt="Casino bonus oversigt – sammenligning af bonustyper i Danmark 2026" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* ========== 1. INTRODUKTION ========== */}

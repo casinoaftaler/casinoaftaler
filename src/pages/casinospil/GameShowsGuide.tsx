@@ -119,7 +119,7 @@ const GameShowsGuide = () => {
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="28 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={gameShowsHero} alt="Matematisk analyse af casino game shows" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={gameShowsHero} alt="Matematisk analyse af casino game shows" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* ── H2 1 ── */}

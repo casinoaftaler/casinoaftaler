@@ -169,7 +169,7 @@ const BonusUdenIndbetaling = () => {
         <AuthorMetaBar author="jonas" date="20-02-2026" readTime="14 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={bonusUdenIndbetalingHero} alt="Bonus uden indbetaling – teknisk analyse af no deposit bonusser i Danmark 2026" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={bonusUdenIndbetalingHero} alt="Bonus uden indbetaling – teknisk analyse af no deposit bonusser i Danmark 2026" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Cross-link to nye casinoer sub */}

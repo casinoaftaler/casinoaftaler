@@ -209,7 +209,7 @@ const NyeCasinoer = () => {
         
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={nyeCasinoerHero} alt="Nye casinoer i Danmark – futuristisk casino med neonlys og moderne design" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={nyeCasinoerHero} alt="Nye casinoer i Danmark – futuristisk casino med neonlys og moderne design" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* ══════════════════════════════════════════════════════════════

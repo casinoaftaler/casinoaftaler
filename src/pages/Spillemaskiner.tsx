@@ -120,7 +120,7 @@ const Spillemaskiner = () => {
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={spillemaskinerHero} alt="Spillemaskiner og online slots i Danmark" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={spillemaskinerHero} alt="Spillemaskiner og online slots i Danmark" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* ── SEKTION 1: Historisk kontekst ── */}

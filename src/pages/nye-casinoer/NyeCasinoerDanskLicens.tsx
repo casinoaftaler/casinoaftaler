@@ -85,7 +85,7 @@ const NyeCasinoerDanskLicens = () => {
         <AuthorMetaBar author="jonas" date="16-02-2026" readTime="15 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={danskLicensHero} alt="Nye casinoer med dansk licens fra Spillemyndigheden" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={danskLicensHero} alt="Nye casinoer med dansk licens fra Spillemyndigheden" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         <section className="mb-12">

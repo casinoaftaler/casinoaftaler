@@ -197,7 +197,7 @@ const CasinoAnmeldelser = () => {
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={casinoAnmeldelserHero} alt="Casino anmeldelser – dokumenter og ratings" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={casinoAnmeldelserHero} alt="Casino anmeldelser – dokumenter og ratings" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* ===== SEKTION 1: Strategisk intro ===== */}
