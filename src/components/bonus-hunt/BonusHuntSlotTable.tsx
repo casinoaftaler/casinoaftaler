@@ -45,7 +45,7 @@ interface Props {
 type SortKey = 'index' | 'slot' | 'bet' | 'multiplier' | 'win';
 type SortDir = 'asc' | 'desc';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 6;
 
 function MultiplierBadge({ value }: { value: number }) {
   let colorClass = "text-foreground";
