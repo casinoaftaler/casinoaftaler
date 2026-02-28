@@ -37,22 +37,26 @@ export function useProviderOverrides() {
   });
 }
 
-// Fetch slot_catalog provider map for bonus hunt display (lightweight)
-export function useSlotCatalogProviderMap() {
+// Fetch slot_catalog data for bonus hunt display (lightweight)
+export function useSlotCatalogMap() {
   return useQuery({
-    queryKey: ['slot-catalog-provider-map'],
+    queryKey: ['slot-catalog-map'],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('slot_catalog')
         .select('slot_name, provider');
       if (error) throw error;
-      const map = new Map<string, string>();
+      const providerMap = new Map<string, string>();
+      const nameMap = new Map<string, string>();
       data?.forEach(row => {
+        const key = row.slot_name.toLowerCase();
         if (row.provider && row.provider !== 'Custom Slot') {
-          map.set(row.slot_name.toLowerCase(), row.provider);
+          providerMap.set(key, row.provider);
         }
+        // Always store the canonical name from catalog
+        nameMap.set(key, row.slot_name);
       });
-      return map;
+      return { providerMap, nameMap };
     },
     staleTime: 300000,
   });
