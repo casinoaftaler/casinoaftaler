@@ -30,7 +30,7 @@ export function BonusHuntMomentumBar({ stats }: Props) {
     : "I gang...";
 
   return (
-    <section className="rounded-xl border border-border/50 bg-card p-5 space-y-4" aria-label="Balance momentum">
+    <section className="rounded-xl border border-border/50 bg-card p-4 space-y-3" aria-label="Balance momentum">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-semibold text-foreground flex items-center gap-2">
           <StatusIcon className={`h-4 w-4 ${isProfit ? "text-green-500" : isLoss ? "text-red-500" : "text-yellow-500"}`} />

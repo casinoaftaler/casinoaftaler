@@ -83,7 +83,7 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
         className="mb-4 rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-card overflow-hidden"
         aria-label={`Video af Bonus Hunt #${video.huntNumber}`}
       >
-        <div className="p-5 md:p-6 space-y-4">
+        <div className="p-4 md:p-5 space-y-3">
           {/* Heading */}
           <div>
             <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-1">
@@ -99,8 +99,8 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
             </p>
           </div>
 
-          {/* Video container – fixed aspect ratio to prevent CLS */}
-          <div className="relative w-full overflow-hidden rounded-xl border border-border/50" style={{ aspectRatio: "16/9" }}>
+          {/* Video container – fixed aspect ratio, max height on desktop */}
+          <div className="relative w-full overflow-hidden rounded-xl border border-border/50 max-h-[600px]" style={{ aspectRatio: "16/9" }}>
             {iframeLoaded ? (
               <iframe
                 src={embedUrl}
@@ -142,7 +142,7 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
         </div>
 
         {/* SEO crawlable summary */}
-        <div className="border-t border-border/50 px-5 py-4 md:px-6 space-y-2">
+        <div className="border-t border-border/50 px-4 py-3 md:px-5 space-y-1.5">
           <h3 className="text-sm font-semibold text-foreground">
             Resultat af Bonus Hunt #{video.huntNumber}
           </h3>
