@@ -136,11 +136,16 @@ export function useBonusHuntData(huntId?: number) {
     staleTime: 60000,
   });
 
+  // Only include latestHuntNumber in key when it affects the request (browsing past hunts)
+  const isPastHunt = !!(huntId && latestHuntNumber && huntId < latestHuntNumber);
+
   return useQuery({
-    queryKey: ['bonus-hunt-data', huntId, latestHuntNumber],
+    queryKey: ['bonus-hunt-data', huntId, isPastHunt ? latestHuntNumber : undefined],
     queryFn: () => fetchBonusHuntData(huntId, latestHuntNumber),
-    refetchInterval: huntId && latestHuntNumber && huntId < latestHuntNumber ? false : 30000,
-    staleTime: huntId && latestHuntNumber && huntId < latestHuntNumber ? 300000 : 15000,
+    refetchInterval: isPastHunt ? false : 30000,
+    staleTime: isPastHunt ? 300000 : 15000,
+    // Don't refetch when latestHuntNumber arrives if we're viewing the current hunt
+    placeholderData: (prev) => prev,
   });
 }
 

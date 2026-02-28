@@ -15,7 +15,8 @@ export function useBonusHuntSession() {
       if (error) throw error;
       return data as any;
     },
-    refetchInterval: 10000,
+    staleTime: 30000,
+    refetchInterval: 30000,
   });
 }
 
@@ -50,7 +51,8 @@ export function useBonusHuntGtwBets(sessionId?: string) {
       return enrichBetsWithProfiles((data || []) as any[]);
     },
     enabled: !!sessionId,
-    refetchInterval: 10000,
+    staleTime: 30000,
+    refetchInterval: 30000,
   });
 }
 
@@ -69,6 +71,7 @@ export function useBonusHuntAvgxBets(sessionId?: string) {
       return enrichBetsWithProfiles((data || []) as any[]);
     },
     enabled: !!sessionId,
-    refetchInterval: 10000,
+    staleTime: 30000,
+    refetchInterval: 30000,
   });
 }
