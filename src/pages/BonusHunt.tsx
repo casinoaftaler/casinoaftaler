@@ -142,7 +142,7 @@ export default function BonusHunt() {
               Se dokumenterede bonus hunts fra danske casinoer med gennemsnit, top wins og fuld stream.
             </p>
             <p className="text-sm text-white/60 max-w-2xl mx-auto">
-              En bonus hunt er en live-stream, hvor flere bonusser købes og åbnes i én samlet session.
+              En bonus hunt er en live-stream, hvor flere bonusser enten købes eller huntes, og så åbnes i én samlet session.
               Her finder du vores arkiv med resultater, gennemsnit X og dokumenterede Twitch streams.
             </p>
           </div>
@@ -153,7 +153,7 @@ export default function BonusHunt() {
 
       <div className="container relative">
         {/* Sidebar - positioned outside content flow */}
-        <div className="hidden xl:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
+        <div className="hidden xl:block absolute right-full top-0 mr-6 w-[260px] pt-6">
           <div className="sticky top-24 h-fit flex flex-col gap-4">
             <CommunitySeoBridge />
             <CommunityConversionCard />
