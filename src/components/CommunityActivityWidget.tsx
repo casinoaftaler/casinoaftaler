@@ -73,7 +73,7 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
   if (isLoading || !hunts || hunts.length === 0) return null;
 
   return (
-    <section className="mb-12" aria-label={`Seneste bonus hunts på ${casinoName}`}>
+    <section className="mb-12" aria-label={`Seneste live tests på ${casinoName}`}>
       <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-card overflow-hidden">
         {/* Header with casino logo */}
         <div className="flex items-center gap-4 border-b border-border/50 px-6 py-5 md:px-8">
@@ -87,9 +87,9 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
             />
           )}
           <div className="min-w-0 flex-1">
-            <h2 className="text-lg font-bold">Seneste bonus hunts på {casinoName}</h2>
+            <h2 className="text-lg font-bold">Seneste live tests på {casinoName}</h2>
             <p className="text-sm text-muted-foreground">
-              Vi tester løbende {casinoName} live på stream. Her er de seneste resultater:
+              Vi tester løbende {casinoName} live på stream. Her er de seneste bonus hunts:
             </p>
           </div>
           <Badge variant="secondary" className="hidden shrink-0 text-xs sm:inline-flex">
@@ -117,6 +117,9 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
           <p className="mt-4 text-xs text-muted-foreground">
             Data opdateres automatisk efter hver live-stream.
           </p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Vores testdata er baseret på live-streamede bonus hunts og opdateres løbende i 2026.
+          </p>
         </div>
 
         {/* CTA */}
@@ -135,7 +138,7 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
             to="/community/bonus-hunt"
             className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Gå til Bonus Hunts
+            Se alle bonus hunts
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>

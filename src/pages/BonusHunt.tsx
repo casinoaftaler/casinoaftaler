@@ -76,6 +76,8 @@ export default function BonusHunt() {
                 <BonusHuntCasinoContext
                   huntNumber={huntIdOverride || liveHuntNumber}
                   huntDate={huntDate}
+                  bonusCount={huntData.stats.openedBonuses}
+                  avgX={huntData.stats.averageX}
                 />
                 <BonusHuntSlotTable
                   slots={huntData.slots}
