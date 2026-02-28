@@ -15,6 +15,11 @@ import { BonusHuntFaq, buildBonusHuntFaqSchema } from "@/components/bonus-hunt/B
 import { BonusHuntIntroBlock } from "@/components/bonus-hunt/BonusHuntIntroBlock";
 import { BonusHuntStatStrip } from "@/components/bonus-hunt/BonusHuntStatStrip";
 import { CommunityNav } from "@/components/community/CommunityNav";
+import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
+import { CommunityConversionCard } from "@/components/community/CommunityConversionCard";
+import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
+import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
+import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
 import { useAuth } from "@/hooks/useAuth";
@@ -22,6 +27,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { useState, useCallback, useMemo } from "react";
 import { SITE_URL } from "@/lib/seo";
+import bonusHuntHero from "@/assets/bonus-hunt/bonus-hunt-hero.jpg";
 
 export default function BonusHunt() {
   const { user } = useAuth();
@@ -109,24 +115,33 @@ export default function BonusHunt() {
         breadcrumbLabel="Bonus Hunt"
       />
 
-      {/* SEO Hero */}
-      <section className="relative overflow-hidden">
+      {/* SEO Hero with background image */}
+      <section className="relative overflow-hidden text-white">
+        <img
+          src={bonusHuntHero}
+          alt=""
+          width={1920}
+          height={1080}
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+          loading="eager"
+        />
         <div
-          className="absolute inset-0 -z-10"
+          className="absolute inset-0"
           style={{
-            background:
-              'linear-gradient(135deg, hsl(var(--primary) / 0.08) 0%, hsl(var(--background)) 50%, hsl(var(--primary) / 0.04) 100%)',
+            backgroundImage:
+              "linear-gradient(135deg, hsl(260 70% 25% / 0.85), hsl(250 60% 20% / 0.8) 40%, hsl(210 80% 25% / 0.85))",
           }}
         />
-        <div className="container py-10 md:py-14">
+        <div className="relative container py-12 md:py-20">
           <div className="mx-auto max-w-3xl text-center space-y-4">
-            <h1 className="text-3xl font-bold tracking-tight md:text-4xl text-foreground">
+            <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
               Live Bonus Hunt – Resultater, gennemsnit X og Twitch streams
             </h1>
-            <p className="text-base text-muted-foreground">
+            <p className="text-lg text-white/80">
               Se dokumenterede bonus hunts fra danske casinoer med gennemsnit, top wins og fuld stream.
             </p>
-            <p className="text-sm text-muted-foreground/80 max-w-2xl mx-auto">
+            <p className="text-sm text-white/60 max-w-2xl mx-auto">
               En bonus hunt er en live-stream, hvor flere bonusser købes og åbnes i én samlet session.
               Her finder du vores arkiv med resultater, gennemsnit X og dokumenterede Twitch streams.
             </p>
@@ -136,7 +151,18 @@ export default function BonusHunt() {
 
       <CommunityNav />
 
-      <div className="container">
+      <div className="container relative">
+        {/* Sidebar - positioned outside content flow */}
+        <div className="hidden xl:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
+          <div className="sticky top-24 h-fit flex flex-col gap-4">
+            <CommunitySeoBridge />
+            <CommunityConversionCard />
+            <SidebarSocialProof />
+            <SidebarLeaderboard />
+            <SidebarShopLeaderboard />
+          </div>
+        </div>
+
         <div className="pt-6 md:pt-8 space-y-6">
           {/* Stat strip */}
           <BonusHuntStatStrip />
@@ -247,7 +273,7 @@ export default function BonusHunt() {
 
           <div className="pb-12" />
         </div>
-      </div>
+        </div>
     </>
   );
 }
