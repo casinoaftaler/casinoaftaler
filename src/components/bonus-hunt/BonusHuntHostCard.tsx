@@ -88,15 +88,15 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
           </span>
         </div>
 
-        {/* Name + avatar row */}
+        {/* Avatar left, all content right */}
         <div className="flex items-start gap-4">
           <img
             src="/kevin-avatar.webp"
             alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-            className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/20 shrink-0"
+            className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/20 shrink-0 mt-1"
             loading="lazy"
           />
-          <div className="min-w-0 flex-1 space-y-2">
+          <div className="min-w-0 flex-1 space-y-2.5">
             <div>
               <Link to="/forfatter/kevin" className="text-base font-bold text-foreground hover:text-primary transition-colors">
                 Kevin
@@ -104,7 +104,6 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
               <p className="text-xs text-muted-foreground">Streamer & Casinoanalytiker</p>
             </div>
 
-            {/* Tags */}
             <div className="flex flex-wrap gap-1.5">
               {[
                 { icon: "🎰", label: `${huntNumber ?? "5"} hunts` },
@@ -116,35 +115,33 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
                 </span>
               ))}
             </div>
+
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Live hver uge med nye bonus hunts – fra første spin til sidste resultat. Alt dokumenteret. Ingen filter.
+            </p>
+
+            <div className="flex items-center gap-2">
+              {socials.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={s.name}
+                  className="flex h-7 w-7 items-center justify-center rounded-md border border-border/40 text-muted-foreground transition-colors hover:text-primary hover:border-primary/40 hover:bg-primary/10"
+                >
+                  <SocialIcon platform={s.icon} />
+                </a>
+              ))}
+              <Link
+                to="/forfatter/kevin"
+                className="ml-auto inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Play className="h-3 w-3" />
+                Se Kevins profil
+              </Link>
+            </div>
           </div>
-        </div>
-
-        {/* Description */}
-        <p className="text-xs text-muted-foreground leading-relaxed">
-          Live hver uge med nye bonus hunts – fra første spin til sidste resultat. Alt dokumenteret. Ingen filter.
-        </p>
-
-        {/* Social icons + profile link */}
-        <div className="flex items-center gap-2 pt-1">
-          {socials.map((s) => (
-            <a
-              key={s.name}
-              href={s.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              title={s.name}
-              className="flex h-7 w-7 items-center justify-center rounded-md border border-border/40 text-muted-foreground transition-colors hover:text-primary hover:border-primary/40 hover:bg-primary/10"
-            >
-              <SocialIcon platform={s.icon} />
-            </a>
-          ))}
-          <Link
-            to="/forfatter/kevin"
-            className="ml-auto inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground hover:text-primary transition-colors"
-          >
-            <Play className="h-3 w-3" />
-            Se Kevins profil
-          </Link>
         </div>
       </div>
 
