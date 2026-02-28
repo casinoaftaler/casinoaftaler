@@ -108,7 +108,7 @@ export function BonusHuntHostCard() {
               Kevin
             </Link>
             <p className="text-xs text-muted-foreground">
-              Bonus Hunt vært & streamer
+              Streamer & Casinoanalytiker
             </p>
           </div>
 
