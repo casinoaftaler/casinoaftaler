@@ -170,7 +170,7 @@ export default function BonusHunt() {
                   {huntVideo && <BonusHuntResultSummary video={huntVideo} />}
 
                   <div className="flex-1">
-                    <BonusHuntHostCard />
+                    <BonusHuntHostCard huntNumber={currentHuntNumber} />
                   </div>
                 </div>
               </div>

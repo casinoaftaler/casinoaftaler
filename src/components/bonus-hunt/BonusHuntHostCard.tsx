@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Video, ExternalLink, Gamepad2, BarChart3, Users, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { KEVIN_SAME_AS } from "@/lib/seo";
-import { useLatestHuntNumber } from "@/hooks/useBonusHuntData";
+
 
 const SITE_URL = "https://casinoaftaler.dk";
 
@@ -67,9 +67,8 @@ function getActiveSocials() {
   }));
 }
 
-export function BonusHuntHostCard() {
+export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
   const socials = getActiveSocials();
-  const { data: latestHuntNumber } = useLatestHuntNumber();
 
   return (
     <section className="group rounded-xl border border-border/50 bg-card p-6 h-full flex flex-col transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
@@ -91,7 +90,7 @@ export function BonusHuntHostCard() {
               <div className="flex items-center gap-1.5">
                 <Video className="h-3 w-3 text-primary" />
                 <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                  Vært for:{latestHuntNumber ? ` Bonus Hunt #${latestHuntNumber}` : " Bonus Hunt"}
+                  Vært for:{huntNumber ? ` Bonus Hunt #${huntNumber}` : " Bonus Hunt"}
                 </span>
               </div>
             <span className="flex items-center gap-1.5 text-[11px] font-medium" style={{ color: "hsl(142 71% 45%)" }}>
@@ -114,10 +113,10 @@ export function BonusHuntHostCard() {
 
           {/* Mini stats row */}
           <div className="flex flex-wrap gap-2">
-            {latestHuntNumber && (
+            {huntNumber && (
               <span className="inline-flex items-center gap-1 rounded-md border border-border/50 bg-muted/50 px-2 py-0.5 text-[11px] text-muted-foreground">
                 <Gamepad2 className="h-3 w-3 text-primary/70" />
-                {latestHuntNumber} hunts
+                {huntNumber} hunts
               </span>
             )}
             <span className="inline-flex items-center gap-1 rounded-md border border-border/50 bg-muted/50 px-2 py-0.5 text-[11px] text-muted-foreground">
