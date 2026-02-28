@@ -71,10 +71,10 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
   const socials = getActiveSocials();
 
   return (
-    <section className="group h-full rounded-xl border border-border/50 bg-card px-5 py-5 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
-      <div className="flex flex-col gap-2">
+    <section className="group h-full rounded-xl border border-border/50 bg-card px-6 py-6 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
+      <div className="flex flex-col gap-3">
         {/* Row 1: Label + live badge */}
-        <div className="flex items-center gap-2 pl-[76px]">
+        <div className="flex items-center gap-2 pl-[84px]">
           <Video className="h-3.5 w-3.5 text-primary" />
           <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
             Vært for: Bonus Hunt {huntNumber ? `#${huntNumber}` : ""}
@@ -88,43 +88,43 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
           </span>
         </div>
 
-        {/* Row 2: Name + subtitle (indented to match) */}
-        <div className="pl-[76px]">
-          <Link to="/forfatter/kevin" className="text-base font-bold text-foreground hover:text-primary transition-colors">
+        {/* Row 2: Name + subtitle */}
+        <div className="pl-[84px]">
+          <Link to="/forfatter/kevin" className="text-lg font-bold text-foreground hover:text-primary transition-colors">
             Kevin
           </Link>
-          <p className="text-xs text-muted-foreground">Streamer & Casinoanalytiker</p>
+          <p className="text-sm text-muted-foreground">Streamer & Casinoanalytiker</p>
         </div>
 
         {/* Row 3: Avatar + tags/desc/socials */}
-        <div className="flex items-start gap-3">
+        <div className="flex items-start gap-4">
           <img
             src="/kevin-avatar.webp"
             alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-            className="h-[60px] w-[60px] rounded-full object-cover ring-2 ring-primary/20 shrink-0"
+            className="h-[72px] w-[72px] rounded-full object-cover ring-2 ring-primary/20 shrink-0"
             loading="lazy"
           />
-          <div className="min-w-0 flex-1 space-y-2">
+          <div className="min-w-0 flex-1 space-y-3">
             {/* Tags */}
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-2">
               {[
                 { icon: "🎰", label: `${huntNumber ?? "5"} hunts` },
                 { icon: "📊", label: "Dokumenteret" },
                 { icon: "👥", label: "Twitch community" },
               ].map(tag => (
-                <span key={tag.label} className="inline-flex items-center gap-1 rounded-md border border-border/60 bg-muted/40 px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+                <span key={tag.label} className="inline-flex items-center gap-1 rounded-md border border-border/60 bg-muted/40 px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
                   {tag.icon} {tag.label}
                 </span>
               ))}
             </div>
 
             {/* Description */}
-            <p className="text-xs text-muted-foreground leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Live hver uge med nye bonus hunts – fra første spin til sidste resultat. Alt dokumenteret. Ingen filter.
             </p>
 
             {/* Social icons + separator + profile link */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2.5">
               {socials.map((s) => (
                 <a
                   key={s.name}
@@ -132,17 +132,17 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   title={s.name}
-                  className="flex h-7 w-7 items-center justify-center rounded-md border border-border/40 text-muted-foreground transition-colors hover:text-primary hover:border-primary/40 hover:bg-primary/10"
+                  className="flex h-8 w-8 items-center justify-center rounded-md border border-border/40 text-muted-foreground transition-colors hover:text-primary hover:border-primary/40 hover:bg-primary/10"
                 >
                   <SocialIcon platform={s.icon} />
                 </a>
               ))}
-              <span className="mx-1 h-4 w-px bg-border/60" />
+              <span className="mx-1.5 h-5 w-px bg-border/60" />
               <Link
                 to="/forfatter/kevin"
-                className="inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground hover:text-primary transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition-colors"
               >
-                <Play className="h-3 w-3" />
+                <Play className="h-3.5 w-3.5" />
                 Se Kevins profil
               </Link>
             </div>
