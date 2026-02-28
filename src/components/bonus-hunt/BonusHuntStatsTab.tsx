@@ -118,7 +118,7 @@ export function BonusHuntStatsTab({ data, huntNumber, huntDate, isLive = false, 
                   background: "linear-gradient(135deg, hsl(260 60% 45%), hsl(220 70% 45%))",
                 }}
               >
-                Læs fuld anmeldelse
+                Tag en velkomstbonus på {displayName}
                 <ArrowRight className="h-3 w-3" />
               </Button>
             </Link>
