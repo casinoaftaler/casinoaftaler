@@ -39,49 +39,59 @@ export function BonusHuntStatsTab({ data, huntNumber, huntDate, isLive = false, 
   return (
     <Card className="rounded-2xl border-primary/10 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10">
       <CardContent className="p-4 space-y-3">
-        {/* Casino context header – centered */}
+        {/* Casino context header – 2-column layout */}
         {huntNumber != null && (
-          <div className="flex flex-col items-center text-center gap-2 pb-3 border-b border-border/30">
+          <div className="flex items-center gap-4 pb-3 border-b border-border/30">
+            {/* Left: Large logo (35-40%) */}
             {logoUrl && (
-              <Link to={reviewPath}>
-                <img
-                  src={optimizeStorageImage(logoUrl, 120) ?? logoUrl}
-                  alt={`${displayName} logo`}
-                  width={48}
-                  height={48}
-                  loading="eager"
-                  className="h-12 w-12 rounded-lg object-contain bg-background/50 p-1.5 border border-border/50"
-                />
-              </Link>
+              <div className="flex flex-col items-center gap-1.5 shrink-0" style={{ width: '38%' }}>
+                <p className="text-[9px] font-semibold uppercase tracking-widest text-muted-foreground/70">
+                  {isLive ? "Casino der testes" : "Casino testet i denne hunt"}
+                </p>
+                <Link
+                  to={reviewPath}
+                  className="relative group/logo block transition-all duration-200 hover:scale-[1.02]"
+                >
+                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover/logo:opacity-100 transition-opacity duration-200" style={{ boxShadow: '0 0 20px hsl(var(--primary) / 0.15)' }} />
+                  <div className="absolute inset-0 -z-10 rounded-full blur-2xl" style={{ background: 'radial-gradient(circle, hsl(var(--primary) / 0.06) 0%, transparent 70%)' }} />
+                  <img
+                    src={optimizeStorageImage(logoUrl, 220) ?? logoUrl}
+                    alt={`${displayName} logo`}
+                    width={110}
+                    height={110}
+                    loading="eager"
+                    className="h-[100px] w-auto max-w-[110px] object-contain cursor-pointer"
+                  />
+                </Link>
+              </div>
             )}
-            <div className="space-y-1">
-              <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                {isLive ? "Casino der testes" : "Casino testet i denne hunt"}
-              </p>
+
+            {/* Right: Name + meta (60-65%) */}
+            <div className="flex-1 min-w-0 space-y-1.5">
               <h2 className="text-sm font-bold text-foreground">
                 <Link to={reviewPath} className="hover:text-primary transition-colors">
                   {displayName}
                 </Link>
               </h2>
+              <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-[11px] text-muted-foreground">
+                {s.openedBonuses > 0 && (
+                  <li className="flex items-center gap-1">
+                    <Check className="h-3 w-3 text-primary" />
+                    {s.openedBonuses} bonusser
+                  </li>
+                )}
+                {s.averageX != null && (
+                  <li className="flex items-center gap-1">
+                    <Check className="h-3 w-3 text-primary" />
+                    {s.averageX.toFixed(1)}x snit
+                  </li>
+                )}
+                <li className="flex items-center gap-1">
+                  <Check className="h-3 w-3 text-primary" />
+                  Live testet
+                </li>
+              </ul>
             </div>
-            <ul className="flex flex-wrap justify-center gap-x-3 gap-y-0.5 text-[11px] text-muted-foreground">
-              {s.openedBonuses > 0 && (
-                <li className="flex items-center gap-1">
-                  <Check className="h-3 w-3 text-primary" />
-                  {s.openedBonuses} bonusser
-                </li>
-              )}
-              {s.averageX != null && (
-                <li className="flex items-center gap-1">
-                  <Check className="h-3 w-3 text-primary" />
-                  {s.averageX.toFixed(1)}x snit
-                </li>
-              )}
-              <li className="flex items-center gap-1">
-                <Check className="h-3 w-3 text-primary" />
-                Live testet
-              </li>
-            </ul>
           </div>
         )}
 
