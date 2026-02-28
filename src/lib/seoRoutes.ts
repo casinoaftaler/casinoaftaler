@@ -168,16 +168,16 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/game-shows", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-06" },
 
   // ── Bonus Guides ──
-  { path: "/casino-bonus", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-20" },
+  { path: "/casino-bonus", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-19" },
   { path: "/velkomstbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/free-spins", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-22" },
   { path: "/free-spins-i-dag", changefreq: "daily", priority: 0.9, lastmod: "2026-02-22" },
   { path: "/indskudsbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/omsaetningskrav", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-26" },
-  { path: "/bonus-uden-indbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
-  { path: "/bonus-uden-omsaetningskrav", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
-  { path: "/no-sticky-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
-  { path: "/sticky-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
+  { path: "/bonus-uden-indbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-21" },
+  { path: "/bonus-uden-omsaetningskrav", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-21" },
+  { path: "/no-sticky-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-19" },
+  { path: "/sticky-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-21" },
   { path: "/cashback-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-27" },
   { path: "/reload-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-27" },
 
