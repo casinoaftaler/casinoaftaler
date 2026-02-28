@@ -9,6 +9,9 @@ const corsHeaders = {
 const STREAMSYSTEM_BASE = "https://www.streamsystem.bet/api/bonushunt/data";
 const STREAMER_ID = "959262659";
 
+// Hunt numbers to permanently exclude (test hunts)
+const BLOCKED_HUNTS = new Set([6, 7]);
+
 const TITLE_CASE_LOWER = new Set(['of', 'and', 'the', 'in', 'at', 'by', 'to', 'for', 'or', 'on', 'a', 'an']);
 const ROMAN_NUMERALS = new Set(['ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi', 'xii']);
 
@@ -168,7 +171,7 @@ serve(async (req) => {
       const huntData = data.data;
       const huntNumber = parseInt(huntData.name.replace(/\D/g, ''), 10) || 0;
 
-      if (huntNumber > 0) {
+      if (huntNumber > 0 && !BLOCKED_HUNTS.has(huntNumber)) {
         // Check if archive exists already
         const { data: existing } = await supabase
           .from("bonus_hunt_archives")
