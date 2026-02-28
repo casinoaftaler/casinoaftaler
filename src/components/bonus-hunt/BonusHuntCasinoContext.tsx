@@ -9,13 +9,15 @@ interface BonusHuntCasinoContextProps {
   bonusCount?: number;
   avgX?: number | null;
   isLive?: boolean;
+  casinoSlug?: string;
 }
 
-export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX, isLive = false }: BonusHuntCasinoContextProps) {
+export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX, isLive = false, casinoSlug = "spildansknu" }: BonusHuntCasinoContextProps) {
   const { data: casinos } = useCasinos();
-  const casino = casinos?.find((c) => c.slug === "spildansknu");
+  const casino = casinos?.find((c) => c.slug === casinoSlug);
   const logoUrl = casino?.logo_url;
-  const displayName = casino?.name ?? "SpilDanskNu";
+  const displayName = casino?.name ?? casinoSlug;
+  const reviewPath = `/casino-anmeldelser/${casinoSlug}`;
 
   const titles = [
     "Læs vores fulde anmeldelse af " + displayName,
@@ -31,7 +33,7 @@ export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX,
     >
       <div className="flex flex-col sm:flex-row gap-4 p-4 md:p-5">
         {logoUrl && (
-          <Link to="/casino-anmeldelser/spildansknu" title={title} className="shrink-0 self-start">
+          <Link to={reviewPath} title={title} className="shrink-0 self-start">
             <img
               src={optimizeStorageImage(logoUrl, 160) ?? logoUrl}
               alt={`${displayName} logo`}
@@ -49,7 +51,7 @@ export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX,
               {isLive ? "Casino der testes i denne bonus hunt" : "Casino testet i denne bonus hunt"}
             </p>
             <h2 className="text-lg font-bold text-foreground">
-              <Link to="/casino-anmeldelser/spildansknu" title={title} className="hover:text-primary transition-colors">
+              <Link to={reviewPath} title={title} className="hover:text-primary transition-colors">
                 {displayName}
               </Link>
             </h2>
@@ -82,7 +84,7 @@ export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX,
           </ul>
 
           <Link
-            to="/casino-anmeldelser/spildansknu"
+            to={reviewPath}
             title="Læs vores komplette anmeldelse med bonusvilkår og udbetalingstest"
             className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-primary/80 px-4 py-2 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:scale-[1.03] hover:shadow-md hover:shadow-primary/25"
           >

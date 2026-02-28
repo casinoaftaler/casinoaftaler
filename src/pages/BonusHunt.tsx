@@ -64,7 +64,8 @@ export default function BonusHunt() {
     ? new Date(huntData.date).toLocaleDateString('da-DK', { day: 'numeric', month: 'long', year: 'numeric' })
     : '';
 
-  // SEO data from video or fallback
+  // Casino slug: prefer session data (live), then video data (archived), then fallback
+  const casinoSlug = session?.casino_slug || huntVideo?.casinoSlug || 'spildansknu';
   const casinoName = huntVideo?.casinoName ?? 'SpilDanskNu';
   const avgX = huntData?.stats.averageX;
   const bonusCount = huntData?.stats.openedBonuses ?? 0;
@@ -133,6 +134,7 @@ export default function BonusHunt() {
                     bonusCount={huntData.stats.openedBonuses}
                     avgX={huntData.stats.averageX}
                     isLive={isLive}
+                    casinoSlug={casinoSlug}
                   />
                   {isLive ? (
                     <BonusHuntLiveStream huntNumber={currentHuntNumber} />

@@ -168,6 +168,7 @@ export type Database = {
           avgx_betting_open: boolean
           avgx_max_bet: number
           avgx_min_bet: number
+          casino_slug: string | null
           created_at: string
           created_by: string
           end_balance: number | null
@@ -187,6 +188,7 @@ export type Database = {
           avgx_betting_open?: boolean
           avgx_max_bet?: number
           avgx_min_bet?: number
+          casino_slug?: string | null
           created_at?: string
           created_by: string
           end_balance?: number | null
@@ -206,6 +208,7 @@ export type Database = {
           avgx_betting_open?: boolean
           avgx_max_bet?: number
           avgx_min_bet?: number
+          casino_slug?: string | null
           created_at?: string
           created_by?: string
           end_balance?: number | null
