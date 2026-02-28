@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TableOfContents } from "@/components/TableOfContents";
+import { getRouteMetadata, formatLastmodDanish } from "@/lib/seoRoutes";
 
 const DISCLAIMER_VARIANTS = [
   <>Denne side indeholder affiliate-links. Vi modtager provision, hvis du opretter en konto via vores links – det påvirker ikke vores vurdering. <Link to="/forretningsmodel" className="underline hover:text-primary">Læs mere om vores model</Link>.</>,
@@ -42,7 +43,12 @@ const authorConfig = {
 
 interface AuthorMetaBarProps {
   author: "jonas" | "kevin" | "ajse" | "redaktionen";
-  date: string;
+  /**
+   * Display date. If omitted, automatically reads from seoRoutes.ts lastmod.
+   * Accepts ISO (YYYY-MM-DD), DD-MM-YYYY, or Danish text format.
+   * @deprecated Prefer omitting this prop to use the centralized seoRoutes lastmod.
+   */
+  date?: string;
   readTime: string;
   showFactCheck?: boolean;
   showVerified?: boolean;
@@ -50,7 +56,34 @@ interface AuthorMetaBarProps {
 }
 
 export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true }: AuthorMetaBarProps) {
+  const { pathname } = useLocation();
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
+
+  // Resolve display date: prefer seoRoutes (single source of truth), fall back to prop
+  const routeMeta = getRouteMetadata(pathname);
+  const shouldShowDate = routeMeta?.showUpdatedDate !== false;
+
+  const displayDate = useMemo(() => {
+    // seoRoutes lastmod is the authoritative source
+    if (routeMeta?.lastmod) {
+      return formatLastmodDanish(routeMeta.lastmod);
+    }
+    // Fallback: use the date prop (legacy support during migration)
+    if (date) {
+      // If it's already ISO format (YYYY-MM-DD), convert to Danish
+      if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+        return formatLastmodDanish(date);
+      }
+      // If it's DD-MM-YYYY, convert
+      if (/^\d{2}-\d{2}-\d{4}$/.test(date)) {
+        const [d, m, y] = date.split("-");
+        return formatLastmodDanish(`${y}-${m}-${d}`);
+      }
+      // Already formatted (e.g. "1. februar 2026")
+      return date;
+    }
+    return null;
+  }, [routeMeta?.lastmod, date]);
 
   return (
     <>
@@ -77,12 +110,14 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
               <span className="font-medium text-foreground">Casinoaftaler Redaktionen</span>
             )}
           </div>
-          <div className="flex items-center gap-1.5">
-            <CalendarDays className="h-4 w-4" />
-            <span>
-              Opdateret: <span className="font-medium text-foreground">{date}</span>
-            </span>
-          </div>
+          {shouldShowDate && displayDate && (
+            <div className="flex items-center gap-1.5">
+              <CalendarDays className="h-4 w-4" />
+              <span>
+                Opdateret: <span className="font-medium text-foreground">{displayDate}</span>
+              </span>
+            </div>
+          )}
           <div className="flex items-center gap-1.5">
             <BookOpen className="h-4 w-4" />
             <span>

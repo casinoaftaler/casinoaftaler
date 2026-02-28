@@ -23,6 +23,50 @@ export interface SeoRoute {
   priority: number;
   /** ISO date (YYYY-MM-DD) for sitemap lastmod. Falls back to build date if omitted. */
   lastmod?: string;
+  /**
+   * Whether to display "Opdateret" date in the AuthorMetaBar UI.
+   * Default: true for money pages, guides, hubs. Set false for minor utility pages.
+   */
+  showUpdatedDate?: boolean;
+}
+
+/** Map of path → SeoRoute for O(1) lookups */
+let _routeMap: Map<string, SeoRoute> | null = null;
+
+function getRouteMap(): Map<string, SeoRoute> {
+  if (!_routeMap) {
+    _routeMap = new Map(seoRoutes.map((r) => [r.path, r]));
+  }
+  return _routeMap;
+}
+
+/**
+ * Look up route metadata by path.
+ * Returns undefined if the path is not registered in seoRoutes.
+ */
+export function getRouteMetadata(path: string): SeoRoute | undefined {
+  return getRouteMap().get(path);
+}
+
+/**
+ * Get the lastmod date for a given path.
+ * Returns undefined if not found.
+ */
+export function getRouteLastmod(path: string): string | undefined {
+  return getRouteMap().get(path)?.lastmod;
+}
+
+/**
+ * Format an ISO date (YYYY-MM-DD) to Danish display format (DD. måned YYYY).
+ */
+export function formatLastmodDanish(isoDate: string): string {
+  const months = [
+    "januar", "februar", "marts", "april", "maj", "juni",
+    "juli", "august", "september", "oktober", "november", "december",
+  ];
+  const [year, month, day] = isoDate.split("-");
+  const monthIndex = parseInt(month, 10) - 1;
+  return `${parseInt(day, 10)}. ${months[monthIndex]} ${year}`;
 }
 
 export const seoRoutes: SeoRoute[] = ([
@@ -183,25 +227,25 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-nyheder", changefreq: "daily", priority: 0.9, lastmod: "2026-02-26" },
 
   // ── Community & Highlights ──
-  { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22" },
-  { path: "/community/slots", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22" },
-  { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22" },
+  { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },
+  { path: "/community/slots", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },
+  { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },
 
   // ── Info & Ansvarligt Spil ──
   { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-26" },
   { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7, lastmod: "2026-02-26" },
-  { path: "/om", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-26" },
-  { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-15" },
-  { path: "/redaktionel-politik", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-15" },
-  { path: "/kontakt", changefreq: "monthly", priority: 0.5, lastmod: "2026-02-11" },
-  { path: "/forfatter/jonas", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-20" },
-  { path: "/forfatter/kevin", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-17" },
-  { path: "/forfatter/ajse", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-26" },
+  { path: "/om", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-26", showUpdatedDate: false },
+  { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-15", showUpdatedDate: false },
+  { path: "/redaktionel-politik", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-15", showUpdatedDate: false },
+  { path: "/kontakt", changefreq: "monthly", priority: 0.5, lastmod: "2026-02-11", showUpdatedDate: false },
+  { path: "/forfatter/jonas", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-20", showUpdatedDate: false },
+  { path: "/forfatter/kevin", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-17", showUpdatedDate: false },
+  { path: "/forfatter/ajse", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-26", showUpdatedDate: false },
   { path: "/saadan-tester-vi-casinoer", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-15" },
-  { path: "/privatlivspolitik", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
-  { path: "/terms", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
-  { path: "/cookies", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11" },
-  { path: "/sitemap", changefreq: "weekly", priority: 0.4, lastmod: "2026-02-23" },
+  { path: "/privatlivspolitik", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11", showUpdatedDate: false },
+  { path: "/terms", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11", showUpdatedDate: false },
+  { path: "/cookies", changefreq: "yearly", priority: 0.3, lastmod: "2026-02-11", showUpdatedDate: false },
+  { path: "/sitemap", changefreq: "weekly", priority: 0.4, lastmod: "2026-02-23", showUpdatedDate: false },
 
 ] as const).map((route): SeoRoute => {
   // Auto-set lastmod to today (Danish timezone) for daily-changing pages

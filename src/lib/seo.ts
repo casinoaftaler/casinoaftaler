@@ -1,3 +1,5 @@
+import { getRouteLastmod } from "@/lib/seoRoutes";
+
 /**
  * SEO configuration constants.
  *
@@ -145,7 +147,11 @@ export function buildArticleSchema(opts: {
   description: string;
   url: string;
   datePublished: string;
-  dateModified: string;
+  /**
+   * If omitted, automatically resolved from seoRoutes.ts lastmod
+   * based on the URL path. Pass explicitly only to override.
+   */
+  dateModified?: string;
   /** Override @type – defaults to "Article". Use "NewsArticle" for news. */
   articleType?: string;
   authorName?: string;
@@ -171,6 +177,12 @@ export function buildArticleSchema(opts: {
   const authorSameAs = opts.authorSameAs
     ?? (authorName === "Kevin" ? KEVIN_SAME_AS : authorName === "Ajse" ? AJSE_SAME_AS : JONAS_SAME_AS);
 
+  // Auto-resolve dateModified from seoRoutes if not explicitly provided
+  const urlPath = opts.url.replace(SITE_URL, "");
+  const resolvedDateModified = opts.dateModified
+    ?? getRouteLastmod(urlPath)
+    ?? opts.datePublished;
+
   const articleId = `${opts.url}#article`;
   const personId = `${authorUrl}#person`;
   const videoId = opts.videoId ? `${opts.url}#video` : undefined;
@@ -182,7 +194,7 @@ export function buildArticleSchema(opts: {
     description: opts.description,
     image: opts.image || `${SITE_URL}/og-image.png`,
     datePublished: toIso8601WithTz(opts.datePublished),
-    dateModified: toIso8601WithTz(opts.dateModified),
+    dateModified: toIso8601WithTz(resolvedDateModified),
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": opts.url,
