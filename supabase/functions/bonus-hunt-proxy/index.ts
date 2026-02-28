@@ -41,7 +41,7 @@ async function triggerEnrich(supabase: any) {
   }
 }
 
-async function syncSlotCatalog(supabase: any, huntData: any) {
+async function syncSlotCatalog(supabase: any, huntData: any, isNewHunt: boolean) {
   const slots = huntData?.slots;
   if (!Array.isArray(slots) || slots.length === 0) return;
 
@@ -53,6 +53,8 @@ async function syncSlotCatalog(supabase: any, huntData: any) {
   const overrideMap = new Map(
     (overrides || []).map((o: any) => [o.slot_name, o.provider_override])
   );
+
+  const slotNames: string[] = [];
 
   for (const entry of slots) {
     const slotInfo = entry.slot || {};
@@ -66,8 +68,6 @@ async function syncSlotCatalog(supabase: any, huntData: any) {
     const bet = entry.bet || 1;
     const multiplier = win > 0 && bet > 0 ? Math.round((win / bet) * 100) / 100 : 0;
 
-    // Upsert: only update highest_win/highest_x if new values are higher
-    // Provider and RTP set on insert only (preserve admin edits)
     const { error } = await supabase.rpc('upsert_slot_catalog', {
       p_slot_name: slotName,
       p_provider: provider,
@@ -76,7 +76,6 @@ async function syncSlotCatalog(supabase: any, huntData: any) {
       p_multiplier: multiplier,
     });
 
-    // Fallback if RPC doesn't exist yet - use raw upsert
     if (error) {
       await supabase
         .from('slot_catalog')
@@ -88,6 +87,14 @@ async function syncSlotCatalog(supabase: any, huntData: any) {
           highest_x: multiplier,
         }, { onConflict: 'slot_name' });
     }
+
+    slotNames.push(slotName);
+  }
+
+  // Increment bonus_count once per hunt (only when this is a newly archived hunt)
+  if (isNewHunt && slotNames.length > 0) {
+    const uniqueNames = [...new Set(slotNames)];
+    await supabase.rpc('increment_slot_bonus_counts', { p_slot_names: uniqueNames });
   }
 }
 
@@ -155,11 +162,22 @@ serve(async (req) => {
     const data = await response.json();
 
     // Archive the hunt data (upsert by hunt_number)
+    // Check if this hunt is already archived to determine isNewHunt
+    let isNewHunt = false;
     if (data?.data?.name) {
       const huntData = data.data;
       const huntNumber = parseInt(huntData.name.replace(/\D/g, ''), 10) || 0;
 
       if (huntNumber > 0) {
+        // Check if archive exists already
+        const { data: existing } = await supabase
+          .from("bonus_hunt_archives")
+          .select("id")
+          .eq("hunt_number", huntNumber)
+          .maybeSingle();
+
+        isNewHunt = !existing;
+
         const stats = huntData.statistics || {};
         await supabase
           .from("bonus_hunt_archives")
@@ -176,14 +194,10 @@ serve(async (req) => {
           }, { onConflict: 'hunt_number' });
       }
 
-      // Auto-sync slots to catalog + enrich missing metadata
-      try {
-        await syncSlotCatalog(supabase, huntData);
-        // Fire-and-forget: enrich slots with missing metadata via AI
-        triggerEnrich(supabase);
-      } catch (e) {
-        console.error('Slot catalog sync error:', e);
-      }
+      // Fire-and-forget: sync slots + enrich (non-blocking for fast response)
+      syncSlotCatalog(supabase, huntData, isNewHunt)
+        .then(() => triggerEnrich(supabase))
+        .catch(e => console.error('Slot catalog sync error:', e));
     }
 
     return new Response(JSON.stringify(data), {
