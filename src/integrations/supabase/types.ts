@@ -2377,6 +2377,10 @@ export type Database = {
         Args: { code_id_input: string }
         Returns: undefined
       }
+      increment_slot_bonus_counts: {
+        Args: { p_slot_names: string[] }
+        Returns: undefined
+      }
       refresh_slot_leaderboard: { Args: never; Returns: undefined }
       upsert_slot_catalog: {
         Args: {

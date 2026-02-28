@@ -47,16 +47,13 @@ async function syncSlotCatalog(admin: any, huntData: any) {
     const bet = entry.bet || 1;
     const multiplier = win > 0 && bet > 0 ? Math.round((win / bet) * 100) / 100 : 0;
 
-    // Upsert with GREATEST to only update records
-    await admin
-      .from('slot_catalog')
-      .upsert({
-        slot_name: slotName,
-        provider: provider,
-        rtp: rtp,
-        highest_win: win,
-        highest_x: multiplier,
-      }, { onConflict: 'slot_name' });
+    await admin.rpc('upsert_slot_catalog', {
+      p_slot_name: slotName,
+      p_provider: provider,
+      p_rtp: rtp,
+      p_win: win,
+      p_multiplier: multiplier,
+    });
   }
 }
 
