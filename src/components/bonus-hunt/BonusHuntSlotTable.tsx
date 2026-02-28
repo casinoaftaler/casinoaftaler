@@ -13,6 +13,7 @@ interface Props {
   huntNumber: number;
   huntDate: string;
   latestHuntNumber: number;
+  maxHuntNumber: number;
   onNavigate?: (direction: 'first' | 'prev' | 'next' | 'last') => void;
   onJumpToHunt?: (huntNumber: number) => void;
 }
@@ -22,7 +23,7 @@ type SortDir = 'asc' | 'desc';
 
 const PAGE_SIZE = 10;
 
-export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumber, onNavigate, onJumpToHunt }: Props) {
+export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumber, maxHuntNumber, onNavigate, onJumpToHunt }: Props) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
   const [sortKey, setSortKey] = useState<SortKey>('index');
@@ -112,17 +113,16 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
           value={String(huntNumber)}
           onValueChange={(val) => {
             const num = parseInt(val, 10);
-            if (num === latestHuntNumber) onJumpToHunt?.(undefined as any);
-            else onJumpToHunt?.(num);
+            onJumpToHunt?.(num);
           }}
         >
           <SelectTrigger className="w-auto min-w-[200px] h-8 text-sm font-semibold">
             <SelectValue />
           </SelectTrigger>
           <SelectContent className="max-h-[300px]">
-            {Array.from({ length: latestHuntNumber }, (_, i) => latestHuntNumber - i).map(num => (
+            {Array.from({ length: maxHuntNumber }, (_, i) => maxHuntNumber - i).map(num => (
               <SelectItem key={num} value={String(num)}>
-                BONUS HUNT #{num} {num === huntNumber ? huntDate : ''}
+                BONUS HUNT #{num} {num === huntNumber ? huntDate : ''} {num > latestHuntNumber ? '🔴 LIVE' : ''}
               </SelectItem>
             ))}
           </SelectContent>
