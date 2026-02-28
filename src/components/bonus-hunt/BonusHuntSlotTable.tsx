@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, ArrowUp
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { BonusHuntSlotPopoverContent } from "./BonusHuntSlotInfoDialog";
-import { useProviderOverrides, useSlotCatalogProviderMap } from "@/hooks/useSlotCatalog";
+import { useProviderOverrides, useSlotCatalogMap } from "@/hooks/useSlotCatalog";
 import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
 
 interface Props {
@@ -30,7 +30,9 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
   
 
   const { data: overrides } = useProviderOverrides();
-  const { data: catalogProviderMap } = useSlotCatalogProviderMap();
+  const { data: catalogData } = useSlotCatalogMap();
+  const catalogProviderMap = catalogData?.providerMap;
+  const catalogNameMap = catalogData?.nameMap;
 
   // Build override lookup map
   const overrideMap = useMemo(() => {
@@ -39,23 +41,31 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
     return map;
   }, [overrides]);
 
-  // Apply provider overrides + slot_catalog fallback to slots
+  // Apply provider overrides + slot_catalog fallback to slots, and override slot name from catalog
   const slotsWithOverrides = useMemo(() => {
     return slots.map(s => {
-      if (s.provider === 'Custom Slot') {
-        const key = s.slot.toLowerCase();
+      const key = s.slot.toLowerCase();
+      let provider = s.provider;
+      let slotName = s.slot;
+
+      // Override slot name from catalog if available
+      if (catalogNameMap?.has(key)) {
+        slotName = catalogNameMap.get(key)!;
+      }
+
+      if (provider === 'Custom Slot') {
         // 1. Check manual provider overrides first
         if (overrideMap.has(key)) {
-          return { ...s, provider: overrideMap.get(key)! };
+          provider = overrideMap.get(key)!;
         }
         // 2. Fall back to slot_catalog provider
-        if (catalogProviderMap?.has(key)) {
-          return { ...s, provider: catalogProviderMap.get(key)! };
+        else if (catalogProviderMap?.has(key)) {
+          provider = catalogProviderMap.get(key)!;
         }
       }
-      return s;
+      return { ...s, slot: slotName, provider };
     });
-  }, [slots, overrideMap, catalogProviderMap]);
+  }, [slots, overrideMap, catalogProviderMap, catalogNameMap]);
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
