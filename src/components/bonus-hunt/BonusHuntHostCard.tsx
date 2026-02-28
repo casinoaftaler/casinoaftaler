@@ -72,14 +72,14 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
 
   return (
     <section className="group h-full rounded-xl border border-border/50 bg-card px-5 py-5 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
-      <div className="flex flex-col gap-3">
-        {/* Top line: label + live badge */}
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-2">
+        {/* Row 1: Label + live badge */}
+        <div className="flex items-center gap-2 pl-[76px]">
           <Video className="h-3.5 w-3.5 text-primary" />
           <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
             Vært for: Bonus Hunt {huntNumber ? `#${huntNumber}` : ""}
           </span>
-          <span className="flex items-center gap-1 text-[11px] font-medium" style={{ color: "hsl(142 71% 45%)" }}>
+          <span className="flex items-center gap-1.5 text-[11px] font-medium" style={{ color: "hsl(142 71% 45%)" }}>
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inset-0 rounded-full animate-ping opacity-40" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
@@ -88,22 +88,24 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
           </span>
         </div>
 
-        {/* Avatar left, all content right */}
-        <div className="flex items-start gap-4">
+        {/* Row 2: Name + subtitle (indented to match) */}
+        <div className="pl-[76px]">
+          <Link to="/forfatter/kevin" className="text-base font-bold text-foreground hover:text-primary transition-colors">
+            Kevin
+          </Link>
+          <p className="text-xs text-muted-foreground">Streamer & Casinoanalytiker</p>
+        </div>
+
+        {/* Row 3: Avatar + tags/desc/socials */}
+        <div className="flex items-start gap-3">
           <img
             src="/kevin-avatar.webp"
             alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-            className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/20 shrink-0 mt-1"
+            className="h-[60px] w-[60px] rounded-full object-cover ring-2 ring-primary/20 shrink-0"
             loading="lazy"
           />
-          <div className="min-w-0 flex-1 space-y-2.5">
-            <div>
-              <Link to="/forfatter/kevin" className="text-base font-bold text-foreground hover:text-primary transition-colors">
-                Kevin
-              </Link>
-              <p className="text-xs text-muted-foreground">Streamer & Casinoanalytiker</p>
-            </div>
-
+          <div className="min-w-0 flex-1 space-y-2">
+            {/* Tags */}
             <div className="flex flex-wrap gap-1.5">
               {[
                 { icon: "🎰", label: `${huntNumber ?? "5"} hunts` },
@@ -116,10 +118,12 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
               ))}
             </div>
 
+            {/* Description */}
             <p className="text-xs text-muted-foreground leading-relaxed">
               Live hver uge med nye bonus hunts – fra første spin til sidste resultat. Alt dokumenteret. Ingen filter.
             </p>
 
+            {/* Social icons + separator + profile link */}
             <div className="flex items-center gap-2">
               {socials.map((s) => (
                 <a
@@ -133,9 +137,10 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
                   <SocialIcon platform={s.icon} />
                 </a>
               ))}
+              <span className="mx-1 h-4 w-px bg-border/60" />
               <Link
                 to="/forfatter/kevin"
-                className="ml-auto inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground hover:text-primary transition-colors"
+                className="inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground hover:text-primary transition-colors"
               >
                 <Play className="h-3 w-3" />
                 Se Kevins profil
