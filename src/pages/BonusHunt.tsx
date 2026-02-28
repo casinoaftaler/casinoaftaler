@@ -9,7 +9,7 @@ import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
 import { BonusHuntCasinoContext } from "@/components/bonus-hunt/BonusHuntCasinoContext";
 import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
-import { BonusHuntNavBar } from "@/components/bonus-hunt/BonusHuntNavBar";
+import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
 import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
 import { useAuth } from "@/hooks/useAuth";
@@ -75,7 +75,18 @@ export default function BonusHunt() {
             </div>
           ) : huntData ? (
             <div className="space-y-4">
-              {/* Single top grid – selector integrated in right column */}
+              {/* Hero bar – full width */}
+              <BonusHuntHeroBar
+                huntNumber={huntIdOverride || liveHuntNumber}
+                huntDate={huntDate}
+                latestHuntNumber={latestHuntNumber}
+                maxHuntNumber={maxHuntNumber}
+                isLive={currentHuntNumber > latestHuntNumber}
+                onNavigate={handleNavigate}
+                onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
+              />
+
+              {/* Top grid */}
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
                 {/* Left column (60%) */}
                 <div className="lg:col-span-3 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
@@ -88,16 +99,8 @@ export default function BonusHunt() {
                   {huntVideo && <BonusHuntVideoSection video={huntVideo} />}
                 </div>
 
-                {/* Right column (40%) – selector + stats + result */}
+                {/* Right column (40%) */}
                 <div className="lg:col-span-2 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
-                  <BonusHuntNavBar
-                    huntNumber={huntIdOverride || liveHuntNumber}
-                    huntDate={huntDate}
-                    latestHuntNumber={latestHuntNumber}
-                    maxHuntNumber={maxHuntNumber}
-                    onNavigate={handleNavigate}
-                    onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
-                  />
 
                   <Tabs defaultValue="stats" className="w-full">
                     <TabsList className="w-full grid grid-cols-3">
