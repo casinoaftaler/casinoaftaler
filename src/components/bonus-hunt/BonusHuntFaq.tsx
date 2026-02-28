@@ -1,17 +1,12 @@
 import { Link } from "react-router-dom";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { FAQSection } from "@/components/FAQSection";
 
 const FAQ_ITEMS = [
   {
     question: "Hvad er en bonus hunt?",
     answer: (
       <>
-        En bonus hunt er en live-streamet session, hvor en spiller køber flere bonusser på{" "}
+        En bonus hunt er en live-streamet session, hvor en spiller køber/hunter flere bonusser på{" "}
         <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
           spillemaskiner
         </Link>{" "}
@@ -108,22 +103,9 @@ function reactNodeToText(node: React.ReactNode): string {
 
 export function BonusHuntFaq() {
   return (
-    <section className="space-y-4">
-      <h2 className="text-lg font-bold text-foreground">
-        Ofte stillede spørgsmål om bonus hunt
-      </h2>
-      <Accordion type="single" collapsible className="w-full">
-        {FAQ_ITEMS.map((item, i) => (
-          <AccordionItem key={i} value={`faq-${i}`}>
-            <AccordionTrigger className="text-sm font-semibold text-left">
-              {item.question}
-            </AccordionTrigger>
-            <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-              {item.answer}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </section>
+    <FAQSection
+      title="Ofte stillede spørgsmål om bonus hunt"
+      faqs={FAQ_ITEMS}
+    />
   );
 }

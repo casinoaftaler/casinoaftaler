@@ -12,7 +12,7 @@ import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
 import { BonusHuntFaq, buildBonusHuntFaqSchema } from "@/components/bonus-hunt/BonusHuntFaq";
-import { BonusHuntIntroBlock } from "@/components/bonus-hunt/BonusHuntIntroBlock";
+
 import { BonusHuntStatStrip } from "@/components/bonus-hunt/BonusHuntStatStrip";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
@@ -167,8 +167,6 @@ export default function BonusHunt() {
           {/* Stat strip */}
           <BonusHuntStatStrip />
 
-          {/* Intro block */}
-          <BonusHuntIntroBlock />
 
           {/* Main content */}
           {huntLoading ? (
