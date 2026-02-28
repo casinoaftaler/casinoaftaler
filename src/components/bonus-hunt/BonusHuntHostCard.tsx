@@ -71,7 +71,7 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
   const socials = getActiveSocials();
 
   return (
-    <section className="group h-full rounded-xl border border-border/50 bg-card px-6 py-6 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
+    <section className="group rounded-xl border border-border/50 bg-card px-6 py-5 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
       <div className="flex flex-col gap-3">
         {/* Row 1: Label + live badge */}
         <div className="flex items-center gap-2 pl-[84px]">
@@ -101,7 +101,7 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
           <img
             src="/kevin-avatar.webp"
             alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-            className="h-[72px] w-[72px] rounded-full object-cover ring-2 ring-primary/20 shrink-0"
+            className="h-20 w-20 rounded-full object-cover ring-2 ring-primary/20 shrink-0"
             loading="lazy"
           />
           <div className="min-w-0 flex-1 space-y-3">
