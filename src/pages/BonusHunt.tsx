@@ -260,12 +260,12 @@ export default function BonusHunt() {
 
                 {/* Right column (40%) */}
                 <div className="lg:col-span-2 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
-                  <Tabs defaultValue="stats" className="w-full">
+                  <Tabs defaultValue="coupon" className="w-full">
                     <TabsList className="w-full grid grid-cols-4">
+                      <TabsTrigger value="coupon" className="text-[11px]">🎰 Kupon</TabsTrigger>
                       <TabsTrigger value="stats">STATS</TabsTrigger>
                       <TabsTrigger value="gtw">GTW</TabsTrigger>
                       <TabsTrigger value="avgx">AVG X</TabsTrigger>
-                      <TabsTrigger value="coupon" className="text-[11px]">🎰 Kupon</TabsTrigger>
                     </TabsList>
                     <TabsContent value="stats">
                       <BonusHuntStatsTab
