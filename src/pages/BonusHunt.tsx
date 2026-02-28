@@ -182,7 +182,9 @@ export default function BonusHunt() {
               </div>
 
               {/* SEO evergreen content */}
-              <BonusHuntSeoContent />
+              <div className="pb-12">
+                <BonusHuntSeoContent />
+              </div>
             </div>
           ) : (
             <div className="text-center py-20 text-muted-foreground">
