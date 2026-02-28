@@ -128,7 +128,7 @@ const HurtigUdbetalingGuide = () => {
         <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="22 min" />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Casinoer med hurtig udbetaling" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={heroImage} alt="Casinoer med hurtig udbetaling" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

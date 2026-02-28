@@ -200,7 +200,7 @@ export default function Contact() {
         <AuthorMetaBar author="ajse" date="2026-02-16" readTime="3 min" showAffiliateDisclaimer={false} />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={contactHero} alt="Kontakt os – professionelt kontor" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={contactHero} alt="Kontakt os – professionelt kontor" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro with internal links */}

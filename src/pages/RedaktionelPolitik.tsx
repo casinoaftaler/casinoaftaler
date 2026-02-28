@@ -94,7 +94,7 @@ const RedaktionelPolitik = () => {
         <AuthorMetaBar author="ajse" date="2026-02-15" readTime="6 min" showAffiliateDisclaimer={false} />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={redaktionelPolitikHero} alt="Redaktionel politik – faktatjek og kvalitetssikring" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={redaktionelPolitikHero} alt="Redaktionel politik – faktatjek og kvalitetssikring" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Vores redaktionelle proces */}

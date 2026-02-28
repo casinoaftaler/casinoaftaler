@@ -25,7 +25,7 @@ export function Footer() {
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg overflow-hidden">
-                <img src={casinoaftalerLogo} alt={siteName} className="h-full w-full object-cover" loading="lazy" />
+                <img src={casinoaftalerLogo} alt={siteName} width={40} height={40} className="h-full w-full object-cover" loading="lazy" />
               </div>
               <span className="text-xl font-bold">{siteName}</span>
             </Link>

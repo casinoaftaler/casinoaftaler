@@ -153,7 +153,7 @@ const Indskudsbonus = () => {
         <AuthorMetaBar author="jonas" date="20-02-2026" readTime="12 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={indskudsbonusHero} alt="Indskudsbonus – gyldne mønter og deposit bonus" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={indskudsbonusHero} alt="Indskudsbonus – gyldne mønter og deposit bonus" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* Intro */}

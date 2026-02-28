@@ -96,7 +96,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
         <AuthorMetaBar author="jonas" date="16-02-2026" readTime="10 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={hurtigUdbetalingHero} alt="Nye casinoer med hurtig udbetaling" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+          <img src={hurtigUdbetalingHero} alt="Nye casinoer med hurtig udbetaling" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         <section className="mb-12">

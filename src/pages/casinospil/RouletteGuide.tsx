@@ -135,6 +135,8 @@ const RouletteGuide = () => {
           <img
             src={rouletteHero}
             alt="Roulettehjul i et live casino-miljø med grønne feltmarkeringer"
+            width={1920}
+            height={600}
             className="w-full h-auto object-cover max-h-[400px]"
             loading="eager"
           />
