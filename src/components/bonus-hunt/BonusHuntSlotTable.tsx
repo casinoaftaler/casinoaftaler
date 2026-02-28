@@ -84,7 +84,7 @@ export function BonusHuntSlotTable({ slots }: Props) {
   const [page, setPage] = useState(0);
   const [sortKey, setSortKey] = useState<SortKey>('index');
   const [sortDir, setSortDir] = useState<SortDir>('asc');
-  const [expanded, setExpanded] = useState(false);
+  const expanded = false; // no longer used for expand/collapse
 
   const { data: overrides } = useProviderOverrides();
   const { data: catalogData } = useSlotCatalogMap();
@@ -133,7 +133,7 @@ export function BonusHuntSlotTable({ slots }: Props) {
   }, [filtered, sortKey, sortDir]);
 
   const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
-  const pageSlots = expanded ? sorted : sorted.slice(0, PAGE_SIZE);
+  const pageSlots = sorted; // show all, scroll handles overflow
 
   const toggleSort = (key: SortKey) => {
     if (sortKey === key) setSortDir(d => d === 'asc' ? 'desc' : 'asc');
@@ -155,105 +155,81 @@ export function BonusHuntSlotTable({ slots }: Props) {
 
       {/* Table */}
       <div className="border border-border rounded-2xl overflow-hidden">
-        <table className="w-full text-sm">
-          <thead className="bg-muted/50 sticky top-0 z-10">
-            <tr>
-              {(['index', 'slot', 'bet', 'multiplier', 'win'] as SortKey[]).map(key => (
-                <th
-                  key={key}
-                  className="px-3 py-2.5 text-left font-medium text-muted-foreground cursor-pointer hover:text-foreground transition-colors text-xs"
-                  onClick={() => toggleSort(key)}
-                >
-                  <span className="flex items-center gap-1">
-                    {key === 'index' ? '#' : key === 'multiplier' ? 'X' : key.charAt(0).toUpperCase() + key.slice(1)}
-                    <ArrowUpDown className="h-3 w-3" />
-                  </span>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border/50">
-            {pageSlots.map(slot => (
-              <tr key={slot.index} className={`hover:bg-muted/30 transition-colors ${slot.opened ? '' : 'opacity-60'}`}>
-                <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{slot.index}</td>
-                <td className="px-3 py-2">
-                  <div>
-                    <div className="font-medium text-sm flex items-center gap-1.5">
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <button className="text-left hover:underline cursor-pointer">
-                            {slot.slot}
-                          </button>
-                        </PopoverTrigger>
-                        <PopoverContent side="right" align="start" className="w-auto p-0 border-0 bg-transparent shadow-none">
-                          <BonusHuntSlotPopoverContent slotName={slot.slot} />
-                        </PopoverContent>
-                      </Popover>
-                      {slot.multiplier >= 100 && slot.opened && <Trophy className="h-3 w-3 text-amber-400" />}
-                    </div>
-                    <div className="text-xs text-muted-foreground inline-flex items-center gap-1">
-                      {(() => {
-                        const provSlug = getProviderSlug(slot.provider);
-                        return provSlug ? (
-                          <Link
-                            to={`/spiludviklere/${provSlug}`}
-                            className="inline-block rounded bg-muted/60 px-1.5 py-0.5 text-[10px] font-medium hover:text-primary transition-colors"
-                          >
-                            {slot.provider}
-                          </Link>
-                        ) : (
-                          <span className="inline-block rounded bg-muted/60 px-1.5 py-0.5 text-[10px] font-medium">{slot.provider}</span>
-                        );
-                      })()}
-                    </div>
-                  </div>
-                </td>
-                <td className="px-3 py-2 font-mono text-xs">{slot.bet.toFixed(2)} kr</td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  {slot.opened ? <MultiplierBadge value={slot.multiplier} /> : '—'}
-                </td>
-                <td className="px-3 py-2 font-mono text-xs">
-                  {slot.opened ? <WinBadge win={slot.win} multiplier={slot.multiplier} /> : '—'}
-                </td>
+        <div className="max-h-[420px] overflow-y-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-muted/50 sticky top-0 z-10">
+              <tr>
+                {(['index', 'slot', 'bet', 'multiplier', 'win'] as SortKey[]).map(key => (
+                  <th
+                    key={key}
+                    className="px-3 py-2.5 text-left font-medium text-muted-foreground cursor-pointer hover:text-foreground transition-colors text-xs"
+                    onClick={() => toggleSort(key)}
+                  >
+                    <span className="flex items-center gap-1">
+                      {key === 'index' ? '#' : key === 'multiplier' ? 'X' : key.charAt(0).toUpperCase() + key.slice(1)}
+                      <ArrowUpDown className="h-3 w-3" />
+                    </span>
+                  </th>
+                ))}
               </tr>
-            ))}
-            {pageSlots.length === 0 && (
-              <tr><td colSpan={5} className="px-3 py-8 text-center text-muted-foreground">Ingen slots fundet</td></tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-border/50">
+              {pageSlots.map(slot => (
+                <tr key={slot.index} className={`hover:bg-muted/30 transition-colors ${slot.opened ? '' : 'opacity-60'}`}>
+                  <td className="px-3 py-2 font-mono text-xs text-muted-foreground">{slot.index}</td>
+                  <td className="px-3 py-2">
+                    <div>
+                      <div className="font-medium text-sm flex items-center gap-1.5">
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <button className="text-left hover:underline cursor-pointer">
+                              {slot.slot}
+                            </button>
+                          </PopoverTrigger>
+                          <PopoverContent side="right" align="start" className="w-auto p-0 border-0 bg-transparent shadow-none">
+                            <BonusHuntSlotPopoverContent slotName={slot.slot} />
+                          </PopoverContent>
+                        </Popover>
+                        {slot.multiplier >= 100 && slot.opened && <Trophy className="h-3 w-3 text-amber-400" />}
+                      </div>
+                      <div className="text-xs text-muted-foreground inline-flex items-center gap-1">
+                        {(() => {
+                          const provSlug = getProviderSlug(slot.provider);
+                          return provSlug ? (
+                            <Link
+                              to={`/spiludviklere/${provSlug}`}
+                              className="inline-block rounded bg-muted/60 px-1.5 py-0.5 text-[10px] font-medium hover:text-primary transition-colors"
+                            >
+                              {slot.provider}
+                            </Link>
+                          ) : (
+                            <span className="inline-block rounded bg-muted/60 px-1.5 py-0.5 text-[10px] font-medium">{slot.provider}</span>
+                          );
+                        })()}
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs">{slot.bet.toFixed(2)} kr</td>
+                  <td className="px-3 py-2 font-mono text-xs">
+                    {slot.opened ? <MultiplierBadge value={slot.multiplier} /> : '—'}
+                  </td>
+                  <td className="px-3 py-2 font-mono text-xs">
+                    {slot.opened ? <WinBadge win={slot.win} multiplier={slot.multiplier} /> : '—'}
+                  </td>
+                </tr>
+              ))}
+              {pageSlots.length === 0 && (
+                <tr><td colSpan={5} className="px-3 py-8 text-center text-muted-foreground">Ingen slots fundet</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      {/* Expand / Pagination */}
-      {!search && sorted.length > PAGE_SIZE && (
-        <div className="flex justify-center">
-          <Button
-            variant="outline"
-            onClick={() => setExpanded(e => !e)}
-            className="rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20 hover:border-primary/40 hover:scale-[1.03] transition-all duration-200 gap-1.5"
-          >
-            {expanded ? 'Skjul slots' : `Se alle ${sorted.length} slots`}
-            <ChevronDown className={`h-3.5 w-3.5 transition-transform ${expanded ? 'rotate-180' : ''}`} />
-          </Button>
-        </div>
-      )}
-
-      {(expanded || !!search) && (
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <span>{filtered.length} slots</span>
-          {!expanded && (
-            <div className="flex items-center gap-1">
-              <Button variant="ghost" size="sm" disabled={page === 0} onClick={() => setPage(p => p - 1)}>
-                <ChevronLeft className="h-3 w-3" />
-              </Button>
-              <span>{page + 1} / {totalPages}</span>
-              <Button variant="ghost" size="sm" disabled={page >= totalPages - 1} onClick={() => setPage(p => p + 1)}>
-                <ChevronRight className="h-3 w-3" />
-              </Button>
-            </div>
-          )}
-        </div>
-      )}
+      {/* Slot count */}
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <span>{filtered.length} slots</span>
+      </div>
     </div>
   );
 }
