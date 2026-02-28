@@ -87,13 +87,13 @@ export function BonusHuntHostCard() {
 
         {/* Info */}
         <div className="min-w-0 flex-1 space-y-2.5">
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5">
-              <Video className="h-3 w-3 text-primary" />
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-                Vært
-              </span>
-            </div>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
+                <Video className="h-3 w-3 text-primary" />
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  Vært for:{latestHuntNumber ? ` Bonus Hunt #${latestHuntNumber}` : " Bonus Hunt"}
+                </span>
+              </div>
             <span className="flex items-center gap-1.5 text-[11px] font-medium" style={{ color: "hsl(142 71% 45%)" }}>
               <span className="relative flex h-2 w-2">
                 <span className="absolute inset-0 rounded-full animate-ping opacity-40" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
