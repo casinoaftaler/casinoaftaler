@@ -35,11 +35,12 @@ export function CommunityBrandBlock() {
             🚀 Skabt af spillere – for spillere
           </h2>
           <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-            Community-universet på Casinoaftaler.dk er udviklet af Jonas og Kevin, som også står bag vores analyser af nye casinoer og bonusser.
-            Målet er at samle gratis spil, turneringer og casinoindsigt ét sted – med fokus på gennemsigtighed og ansvarligt spil.
+            Casinoaftaler Community er udviklet af Jonas og Kevin, som også dokumenterer vores bonus hunts live.
+            Målet er fuld gennemsigtighed, real data og ansvarligt spil.
           </p>
           <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground mb-4">
-            <span className="flex items-center gap-1.5">✔ Uafhængige anmeldelser</span>
+            <span className="flex items-center gap-1.5">✔ Uafhængige analyser</span>
+            <span className="flex items-center gap-1.5">✔ Live dokumentation</span>
             <span className="flex items-center gap-1.5">✔ Opdateret løbende</span>
             <span className="flex items-center gap-1.5">✔ Fokus på ansvarligt spil</span>
           </div>
