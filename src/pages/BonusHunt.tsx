@@ -13,6 +13,7 @@ import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
 import { BonusHuntFaq, buildBonusHuntFaqSchema } from "@/components/bonus-hunt/BonusHuntFaq";
+import { BonusHuntRelatedGuides } from "@/components/bonus-hunt/BonusHuntRelatedGuides";
 
 import { BonusHuntStatStrip } from "@/components/bonus-hunt/BonusHuntStatStrip";
 import { CommunityNav } from "@/components/community/CommunityNav";
@@ -27,7 +28,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { useState, useCallback, useMemo } from "react";
-import { SITE_URL } from "@/lib/seo";
+import { SITE_URL, buildArticleSchema, KEVIN_SAME_AS } from "@/lib/seo";
 import bonusHuntHero from "@/assets/bonus-hunt/bonus-hunt-hero.jpg";
 
 export default function BonusHunt() {
@@ -102,33 +103,25 @@ export default function BonusHunt() {
   const avgX = huntData?.stats.averageX;
   const bonusCount = huntData?.stats.openedBonuses ?? 0;
 
-  // SEO Meta
-  const seoTitle = "Bonus Hunt Danmark – Dokumenterede resultater, gennemsnit X & Twitch arkiv";
-  const seoDescription = "Danmarks mest dokumenterede bonus hunt arkiv. Se live og arkiverede hunts fra danske casinoer med gennemsnit X, break-even analyser, top wins og fuld Twitch dokumentation.";
+  // SEO Meta – optimised for "bonus hunt Danmark"
+  const seoTitle = "Bonus Hunt Danmark – Resultater, Gennemsnit X & Live Streams";
+  const seoDescription = "Se dokumenterede bonus hunts fra danske casinoer med licens. Gennemsnit X, break-even analyser, top wins og fuld Twitch dokumentation.";
 
-  // Structured data
+  // Structured data – Article + Person (Kevin) via unified @graph
+  const articleSchema = useMemo(() => buildArticleSchema({
+    headline: "Bonus Hunt Danmark – Dokumenterede resultater, gennemsnit X & Twitch arkiv",
+    description: seoDescription,
+    url: `${SITE_URL}/bonus-hunt`,
+    datePublished: "2026-01-15",
+    articleType: "Article",
+    authorName: "Kevin",
+    authorUrl: `${SITE_URL}/forfatter/kevin`,
+    authorSameAs: KEVIN_SAME_AS,
+  }), [seoDescription]);
+
   const faqSchema = useMemo(() => buildBonusHuntFaqSchema(), []);
 
-  const authorSchema = {
-    "@type": "Person",
-    "@id": `${SITE_URL}/forfatter/kevin#person`,
-    name: "Kevin",
-    url: `${SITE_URL}/forfatter/kevin`,
-  };
-
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: seoTitle,
-    description: seoDescription,
-    author: authorSchema,
-    publisher: { "@id": `${SITE_URL}/#organization` },
-    mainEntityOfPage: `${SITE_URL}/bonus-hunt`,
-    datePublished: "2026-01-15",
-    dateModified: new Date().toISOString().split('T')[0],
-  };
-
-  const jsonLdSchemas = [articleSchema, faqSchema];
+  const jsonLdSchemas = useMemo(() => [articleSchema, faqSchema], [articleSchema, faqSchema]);
 
   return (
     <>
@@ -303,6 +296,9 @@ export default function BonusHunt() {
 
           {/* FAQ Section */}
           <BonusHuntFaq />
+
+          {/* Relaterede Guides – internal link hub */}
+          <BonusHuntRelatedGuides />
 
           <div className="pb-12" />
         </div>
