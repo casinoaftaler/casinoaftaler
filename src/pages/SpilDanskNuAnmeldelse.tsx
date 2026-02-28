@@ -20,6 +20,7 @@ import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { CommunityActivityWidget } from "@/components/CommunityActivityWidget";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
@@ -385,6 +386,7 @@ const SpilDanskNuAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CommunityActivityWidget casinoName="SpilDanskNu" casinoSlug="spildansknu" />
         <RelatedReviews currentSlug="spildansknu" />
         <InlineCasinoCards />
         <Separator className="my-10" />
