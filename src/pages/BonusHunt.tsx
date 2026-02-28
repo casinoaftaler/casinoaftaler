@@ -75,19 +75,19 @@ export default function BonusHunt() {
             </div>
           ) : huntData ? (
             <div className="space-y-4">
-              {/* Row 1: Casino+Video | Stats+Result */}
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-                {/* Left column header: nav */}
-                <div className="lg:col-span-5 border-b border-border/20 pb-3">
-                  <BonusHuntNavBar
+              {/* Header row: selector */}
+              <div className="flex justify-center items-center py-3">
+                <BonusHuntNavBar
                     huntNumber={huntIdOverride || liveHuntNumber}
                     huntDate={huntDate}
                     latestHuntNumber={latestHuntNumber}
                     maxHuntNumber={maxHuntNumber}
                     onNavigate={handleNavigate}
                     onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
-                  />
-                </div>
+                />
+              </div>
+              {/* Top grid: Casino+Video | Stats+Result */}
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
                 {/* Left column (60%) */}
                 <div className="lg:col-span-3 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
                   <BonusHuntCasinoContext
