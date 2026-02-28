@@ -48,7 +48,7 @@ const SECTIONS = [
     title: "Bonus Hunt",
     description:
       "Følg live bonus hunts, gæt end balance og bet på average multiplier grupper. Vind points og credits!",
-    href: "/community/bonus-hunt",
+    href: "/bonus-hunt",
     icon: Target,
     badge: "Live Betting",
     badgeColor: "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border-indigo-500/30",

@@ -104,7 +104,7 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
             {hunts.map((hunt, i) => (
               <li key={hunt.number}>
                 <Link
-                  to="/community/bonus-hunt"
+                  to="/bonus-hunt"
                   title={`Bonus Hunt #${hunt.number} på ${casinoName}`}
                   className="text-primary underline decoration-primary/40 hover:decoration-primary hover:text-primary/80 transition-colors text-sm leading-relaxed"
                 >
@@ -127,7 +127,7 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
           <p className="flex-1 text-sm text-muted-foreground">
             Se alle live tests i vores{" "}
             <Link
-              to="/community/bonus-hunt"
+              to="/bonus-hunt"
               className="text-primary underline hover:text-primary/80"
             >
               Bonus Hunt arkiv
@@ -135,7 +135,7 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
             .
           </p>
           <Link
-            to="/community/bonus-hunt"
+            to="/bonus-hunt"
             className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Se alle bonus hunts

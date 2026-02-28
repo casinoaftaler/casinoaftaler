@@ -1,11 +1,9 @@
 import { SEO } from "@/components/SEO";
-import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BonusHuntSlotTable } from "@/components/bonus-hunt/BonusHuntSlotTable";
 import { BonusHuntStatsTab } from "@/components/bonus-hunt/BonusHuntStatsTab";
 import { BonusHuntGTWTab } from "@/components/bonus-hunt/BonusHuntGTWTab";
 import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
-
 import { BonusHuntCasinoContext } from "@/components/bonus-hunt/BonusHuntCasinoContext";
 import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
 import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream";
@@ -13,12 +11,17 @@ import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultS
 import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent";
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
+import { BonusHuntFaq, buildBonusHuntFaqSchema } from "@/components/bonus-hunt/BonusHuntFaq";
+import { BonusHuntIntroBlock } from "@/components/bonus-hunt/BonusHuntIntroBlock";
+import { BonusHuntStatStrip } from "@/components/bonus-hunt/BonusHuntStatStrip";
+import { CommunityNav } from "@/components/community/CommunityNav";
 import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
-import { Target, Loader2 } from "lucide-react";
-import { useState, useCallback } from "react";
+import { Loader2 } from "lucide-react";
+import { useState, useCallback, useMemo } from "react";
+import { SITE_URL } from "@/lib/seo";
 
 export default function BonusHunt() {
   const { user } = useAuth();
@@ -38,7 +41,6 @@ export default function BonusHunt() {
 
   const liveHuntNumber = huntData?.visibleId || latestHuntNumber + 1;
   const currentHuntNumber = huntIdOverride || liveHuntNumber;
-  // A hunt is only "live" if there's an active session matching this hunt
   const isLive = !!(session?.status === 'active' && session?.hunt_number === currentHuntNumber);
   const huntVideo = getHuntVideo(currentHuntNumber);
   const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber);
@@ -48,7 +50,7 @@ export default function BonusHunt() {
     const current = huntIdOverride || liveHuntNumber;
     switch (dir) {
       case 'prev': if (current > 2) setHuntIdOverride(current - 1); break;
-      case 'next': 
+      case 'next':
         if (current < maxHuntNumber) setHuntIdOverride(current + 1);
         if (current + 1 > latestHuntNumber) setHuntIdOverride(undefined);
         break;
@@ -65,55 +67,90 @@ export default function BonusHunt() {
     ? new Date(huntData.date).toLocaleDateString('da-DK', { day: 'numeric', month: 'long', year: 'numeric' })
     : '';
 
-  // Casino slug: prefer session data (live), then video data (archived), then fallback
   const casinoSlug = session?.casino_slug || huntVideo?.casinoSlug || 'spildansknu';
   const casinoName = huntVideo?.casinoName ?? 'SpilDanskNu';
   const avgX = huntData?.stats.averageX;
   const bonusCount = huntData?.stats.openedBonuses ?? 0;
 
-  const seoTitle = huntData
-    ? `Bonus Hunt #${currentHuntNumber} hos ${casinoName}${avgX ? ` – ${avgX.toFixed(1)}x snit & ${bonusCount} bonusser` : ''}`
-    : 'Bonus Hunt – Gæt End Balance & Bet på AVG X';
+  // SEO Meta
+  const seoTitle = "Live Bonus Hunt i Danmark – Resultater, gennemsnit X & Twitch streams";
+  const seoDescription = "Se live og arkiverede bonus hunts fra danske casinoer med gennemsnit X, top wins og fuld Twitch stream. Opdateres løbende.";
 
-  const seoDescription = huntData
-    ? `Se vores live Bonus Hunt #${currentHuntNumber} hos ${casinoName}. Vi åbnede ${bonusCount} bonusser${avgX ? ` og opnåede ${avgX.toFixed(1)}x i gennemsnit` : ''}. Se Twitch VOD og fulde resultater.`
-    : 'Følg live bonus hunts, gæt end balance (GTW) og bet på average multiplier grupper (AVG X). Vind StreamElements points og spillehal credits.';
+  // Structured data
+  const faqSchema = useMemo(() => buildBonusHuntFaqSchema(), []);
 
-  // Event schema
-  const eventSchema = huntData ? {
+  const authorSchema = {
+    "@type": "Person",
+    "@id": `${SITE_URL}/forfatter/kevin#person`,
+    name: "Kevin",
+    url: `${SITE_URL}/forfatter/kevin`,
+  };
+
+  const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Event",
-    "name": `Bonus Hunt #${currentHuntNumber} hos ${casinoName}`,
-    "startDate": huntData.date || undefined,
-    "eventStatus": "https://schema.org/EventScheduled",
-    "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-    "location": { "@type": "VirtualLocation", "url": "https://www.twitch.tv/casinoaftaler" },
-    "organizer": { "@type": "Organization", "name": "Casinoaftaler.dk", "url": "https://casinoaftaler.dk" },
-    "performer": { "@type": "Organization", "name": "Casinoaftaler.dk" },
-    "description": seoDescription,
-  } : undefined;
+    "@type": "Article",
+    headline: seoTitle,
+    description: seoDescription,
+    author: authorSchema,
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    mainEntityOfPage: `${SITE_URL}/bonus-hunt`,
+    datePublished: "2026-01-15",
+    dateModified: new Date().toISOString().split('T')[0],
+  };
+
+  const jsonLdSchemas = [articleSchema, faqSchema];
 
   return (
     <>
       <SEO
         title={seoTitle}
         description={seoDescription}
-        jsonLd={eventSchema}
+        jsonLd={jsonLdSchemas}
+        breadcrumbLabel="Bonus Hunt"
       />
-      <CommunityPageLayout
-        title="Bonus Hunt"
-        description="Følg live bonus hunts, placer bets og vind præmier."
-        badgeText="Live"
-        badgeIcon={Target}
-      >
-        <div className="pt-8 md:pt-12">
+
+      {/* SEO Hero */}
+      <section className="relative overflow-hidden">
+        <div
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              'linear-gradient(135deg, hsl(var(--primary) / 0.08) 0%, hsl(var(--background)) 50%, hsl(var(--primary) / 0.04) 100%)',
+          }}
+        />
+        <div className="container py-10 md:py-14">
+          <div className="mx-auto max-w-3xl text-center space-y-4">
+            <h1 className="text-3xl font-bold tracking-tight md:text-4xl text-foreground">
+              Live Bonus Hunt – Resultater, gennemsnit X og Twitch streams
+            </h1>
+            <p className="text-base text-muted-foreground">
+              Se dokumenterede bonus hunts fra danske casinoer med gennemsnit, top wins og fuld stream.
+            </p>
+            <p className="text-sm text-muted-foreground/80 max-w-2xl mx-auto">
+              En bonus hunt er en live-stream, hvor flere bonusser købes og åbnes i én samlet session.
+              Her finder du vores arkiv med resultater, gennemsnit X og dokumenterede Twitch streams.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <CommunityNav />
+
+      <div className="container">
+        <div className="pt-6 md:pt-8 space-y-6">
+          {/* Stat strip */}
+          <BonusHuntStatStrip />
+
+          {/* Intro block */}
+          <BonusHuntIntroBlock />
+
+          {/* Main content */}
           {huntLoading ? (
             <div className="flex items-center justify-center py-20">
               <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
             </div>
           ) : huntData ? (
             <div className="space-y-4">
-              {/* Top grid – header in left col, stats in right col, same Y */}
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
                 {/* Left column (60%) */}
                 <div className="lg:col-span-3 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
@@ -146,18 +183,15 @@ export default function BonusHunt() {
 
                 {/* Right column (40%) */}
                 <div className="lg:col-span-2 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
-
                   <Tabs defaultValue="stats" className="w-full">
                     <TabsList className="w-full grid grid-cols-3">
                       <TabsTrigger value="stats">STATS</TabsTrigger>
                       <TabsTrigger value="gtw">GTW</TabsTrigger>
                       <TabsTrigger value="avgx">AVG X</TabsTrigger>
                     </TabsList>
-
                     <TabsContent value="stats">
                       <BonusHuntStatsTab data={huntData} />
                     </TabsContent>
-
                     <TabsContent value="gtw">
                       <BonusHuntGTWTab
                         session={session}
@@ -166,7 +200,6 @@ export default function BonusHunt() {
                         onBetPlaced={refreshBets}
                       />
                     </TabsContent>
-
                     <TabsContent value="avgx">
                       <BonusHuntAvgXTab
                         session={session}
@@ -195,15 +228,9 @@ export default function BonusHunt() {
                 </div>
               </div>
 
-
               {/* Slot table */}
               <div className="animate-in fade-in slide-in-from-bottom-2 duration-300 delay-200">
                 <BonusHuntSlotTable slots={huntData.slots} />
-              </div>
-
-              {/* SEO evergreen content */}
-              <div className="pb-12">
-                <BonusHuntSeoContent />
               </div>
             </div>
           ) : (
@@ -211,8 +238,16 @@ export default function BonusHunt() {
               Ingen bonus hunt data tilgængelig
             </div>
           )}
+
+          {/* SEO Content */}
+          <BonusHuntSeoContent />
+
+          {/* FAQ Section */}
+          <BonusHuntFaq />
+
+          <div className="pb-12" />
         </div>
-      </CommunityPageLayout>
+      </div>
     </>
   );
 }
