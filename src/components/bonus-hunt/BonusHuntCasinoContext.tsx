@@ -8,9 +8,10 @@ interface BonusHuntCasinoContextProps {
   huntDate: string;
   bonusCount?: number;
   avgX?: number | null;
+  isLive?: boolean;
 }
 
-export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX }: BonusHuntCasinoContextProps) {
+export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX, isLive = false }: BonusHuntCasinoContextProps) {
   const { data: casinos } = useCasinos();
   const casino = casinos?.find((c) => c.slug === "spildansknu");
   const logoUrl = casino?.logo_url;
@@ -26,7 +27,7 @@ export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX 
   return (
     <section
       className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-card overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10"
-      aria-label="Casino testet i denne bonus hunt"
+      aria-label={isLive ? "Casino der testes i denne bonus hunt" : "Casino testet i denne bonus hunt"}
     >
       <div className="flex flex-col sm:flex-row gap-4 p-4 md:p-5">
         {logoUrl && (
@@ -45,7 +46,7 @@ export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX 
         <div className="min-w-0 flex-1 space-y-2.5">
           <div>
             <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground mb-0.5">
-              Casino testet i denne bonus hunt
+              {isLive ? "Casino der testes i denne bonus hunt" : "Casino testet i denne bonus hunt"}
             </p>
             <h2 className="text-lg font-bold text-foreground">
               <Link to="/casino-anmeldelser/spildansknu" title={title} className="hover:text-primary transition-colors">
@@ -55,9 +56,10 @@ export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX 
           </div>
 
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Bonus Hunt #{huntNumber}
-            {huntDate ? ` blev spillet live hos ${displayName} d. ${huntDate}` : ` blev spillet live hos ${displayName}`}
-            . Vi har huntet forskellige bonusser og åbnet dem live på streamen.
+            {isLive
+              ? `Bonus Hunt #${huntNumber} spilles live hos ${displayName} lige nu. Vi hunter forskellige bonusser og åbner dem live på streamen.`
+              : `Bonus Hunt #${huntNumber}${huntDate ? ` blev spillet live hos ${displayName} d. ${huntDate}` : ` blev spillet live hos ${displayName}`}. Vi har huntet forskellige bonusser og åbnet dem live på streamen.`
+            }
           </p>
 
           <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
