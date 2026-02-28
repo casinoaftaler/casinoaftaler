@@ -234,6 +234,8 @@ export default function BonusHunt() {
                   )}
                   {/* Slot table – directly under video */}
                   <BonusHuntSlotTable slots={huntData.slots} />
+                  {/* SEO Content – process overview, right under slots */}
+                  <BonusHuntSeoContent />
                   {/* Host card – visible on mobile only (below slot table) */}
                   <div className="xl:hidden">
                     <BonusHuntHostCard huntNumber={currentHuntNumber} />
@@ -306,20 +308,17 @@ export default function BonusHunt() {
           {/* Top casinos CTA */}
           <BonusHuntTopCasinos />
 
-          {/* Brand block – E-E-A-T signal */}
-          <CommunityBrandBlock />
-
-          {/* SEO Content – trimmed process overview */}
-          <BonusHuntSeoContent />
-
           {/* Latest news – freshness signal */}
           <BonusHuntLatestNews />
 
           {/* Relaterede Guides – internal link hub */}
           <BonusHuntRelatedGuides />
 
-          {/* FAQ Section – placed last as supplementary */}
+          {/* FAQ Section */}
           <BonusHuntFaq />
+
+          {/* Brand block – E-E-A-T signal (last) */}
+          <CommunityBrandBlock />
 
           <div className="pb-12" />
         </div>
