@@ -38,7 +38,8 @@ export default function BonusHunt() {
 
   const liveHuntNumber = huntData?.visibleId || latestHuntNumber + 1;
   const currentHuntNumber = huntIdOverride || liveHuntNumber;
-  const isLive = huntData?.status === 'active';
+  // A hunt is only "live" if there's an active session matching this hunt
+  const isLive = !!(session?.status === 'active' && session?.hunt_number === currentHuntNumber);
   const huntVideo = getHuntVideo(currentHuntNumber);
   const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber);
 
@@ -176,7 +177,17 @@ export default function BonusHunt() {
                     </TabsContent>
                   </Tabs>
 
-                  {huntVideo && <BonusHuntResultSummary video={huntVideo} />}
+                  {!isLive && huntData && (
+                    <BonusHuntResultSummary
+                      huntNumber={currentHuntNumber}
+                      casinoName={casinoName}
+                      casinoSlug={casinoSlug}
+                      bonusCount={huntData.stats.openedBonuses}
+                      avgX={huntData.stats.averageX}
+                      highestWin={huntData.stats.highestWin}
+                      highestMultiplier={huntData.stats.highestMultiplier}
+                    />
+                  )}
 
                   <div className="flex-1">
                     <BonusHuntHostCard huntNumber={currentHuntNumber} />
