@@ -8,14 +8,14 @@ const steps = [
     heading: "Bonusser samles",
     description: (
       <>
-        Under hunt-fasen købes bonusser fra forskellige{" "}
+        Vi køber bonusser fra udvalgte{" "}
         <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
           spilleautomater
         </Link>{" "}
-        hos et{" "}
+        hos{" "}
         <Link to="/casino-anmeldelser" className="text-primary hover:underline">
-          dansk casino
-        </Link>. Start balance registreres som det samlede investerede beløb.
+          anmeldte danske casinoer
+        </Link>. Start balance logges automatisk.
       </>
     ),
   },
@@ -25,28 +25,37 @@ const steps = [
     heading: "Åbning & analyse",
     description: (
       <>
-        Alle bonusser åbnes live på{" "}
+        Bonusser åbnes live på{" "}
         <a href="https://www.twitch.tv/casinoaftaler" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
           Twitch
-        </a>. Break-even X beregnes ud fra start balance divideret med samlet indsats.
-        Gennemsnit X afgør det endelige resultat.
+        </a>. Break-even X og gennemsnit X beregnes i realtid, så du kan følge med. Læs mere om{" "}
+        <Link to="/casino-bonus" className="text-primary hover:underline">
+          bonustyper
+        </Link>{" "}
+        og{" "}
+        <Link to="/omsaetningskrav" className="text-primary hover:underline">
+          gennemspilskrav
+        </Link>.
       </>
     ),
   },
   {
     icon: ShieldCheck,
     step: 3,
-    heading: "Dansk licens & dokumentation",
+    heading: "Licens & transparens",
     description: (
       <>
-        Alle hunts gennemføres udelukkende hos{" "}
+        Kun{" "}
         <Link to="/licenserede-casinoer" className="text-primary hover:underline">
-          casinoer med dansk licens
+          licenserede casinoer
         </Link>{" "}
-        fra{" "}
+        godkendt af{" "}
         <Link to="/spillemyndigheden" className="text-primary hover:underline">
           Spillemyndigheden
-        </Link>. Resultater dokumenteres med VOD, statistik og fuld gennemsigtighed.
+        </Link>. Se{" "}
+        <Link to="/saadan-tester-vi-casinoer" className="text-primary hover:underline">
+          hvordan vi tester
+        </Link>.
       </>
     ),
   },
@@ -56,15 +65,14 @@ const steps = [
     heading: "Community bets",
     description: (
       <>
-        Deltag i GTW (gæt end balance) og AVG X (bet på multiplikator-gruppe)
-        med StreamElements points. Læs mere om{" "}
-        <Link to="/casino-bonus" className="text-primary hover:underline">
-          casino bonus
+        Deltag i GTW og AVG X bets i realtid via{" "}
+        <Link to="/community" className="text-primary hover:underline">
+          vores community
+        </Link>. Følg{" "}
+        <Link to="/forfatter/kevin" className="text-primary hover:underline">
+          Kevin
         </Link>{" "}
-        og{" "}
-        <Link to="/omsaetningskrav" className="text-primary hover:underline">
-          omsætningskrav
-        </Link>.
+        live med dokumenterede resultater.
       </>
     ),
   },

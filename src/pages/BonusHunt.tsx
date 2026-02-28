@@ -108,8 +108,8 @@ export default function BonusHunt() {
   const bonusCount = huntData?.stats.openedBonuses ?? 0;
 
   // SEO Meta – optimised for "bonus hunt Danmark"
-  const seoTitle = "Bonus Hunt Danmark – Resultater, Gennemsnit X & Live Streams";
-  const seoDescription = "Se dokumenterede bonus hunts fra danske casinoer med licens. Gennemsnit X, break-even analyser, top wins og fuld Twitch dokumentation.";
+  const seoTitle = "Bonus Hunt Danmark – Live Resultater & Community Bets";
+  const seoDescription = "Deltag i live bonus hunts med dokumenterede resultater, gennemsnit X og community bets. Kun danske casinoer med licens.";
 
   // Structured data – Article + Person (Kevin) via unified @graph
   const articleSchema = useMemo(() => buildArticleSchema({
@@ -157,26 +157,31 @@ export default function BonusHunt() {
         <div className="relative container py-14 md:py-24">
           <div className="mx-auto max-w-3xl text-center space-y-5">
             <h1 className="text-3xl font-bold tracking-tight leading-tight md:text-5xl md:leading-tight">
-              Danmarks mest dokumenterede Bonus Hunt arkiv
+              Deltag i Danmarks mest dokumenterede Bonus Hunts
             </h1>
             <p className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
-              Se live og arkiverede bonus hunts fra{" "}
-              <Link to="/casino-anmeldelser" className="font-medium text-white/90 hover:underline transition-all">
-                danske casinoer
-              </Link>{" "}
-              med dansk licens. Vi analyserer gennemsnit X og break-even på populære{" "}
-              <Link to="/casinospil/spillemaskiner" className="font-medium text-white/90 hover:underline transition-all">
-                spilleautomater
-              </Link>{" "}
-              og dokumenterer resultaterne live på Twitch.
+              Se live bonus hunts, følg gennemsnit X og break-even analyser – og deltag i community bets i realtid.
             </p>
-            <p className="inline-flex items-center gap-2 text-xs text-white/50 border border-white/10 rounded-full px-4 py-1.5 mx-auto">
-              <span className="h-1.5 w-1.5 rounded-full bg-green-400/80" />
-              Testet udelukkende på casinoer reguleret af{" "}
-              <Link to="/spillemyndigheden" className="font-medium text-white/60 hover:text-white/80 hover:underline transition-all">
-                Spillemyndigheden
-              </Link>
-            </p>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/70">
+              <span className="inline-flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inset-0 rounded-full animate-ping opacity-40 bg-green-400" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+                </span>
+                Live streams hver uge
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
+                100% dokumenterede resultater
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
+                Kun{" "}
+                <Link to="/licenserede-casinoer" className="font-medium text-white/90 hover:underline transition-all">
+                  casinoer med dansk licens
+                </Link>
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -295,26 +300,26 @@ export default function BonusHunt() {
             </div>
           )}
 
-          {/* SEO Content */}
-          <BonusHuntSeoContent />
+          {/* Community cross-links */}
+          <BonusHuntCommunityLinks />
 
           {/* Top casinos CTA */}
           <BonusHuntTopCasinos />
 
-          {/* Community cross-links */}
-          <BonusHuntCommunityLinks />
+          {/* Brand block – E-E-A-T signal */}
+          <CommunityBrandBlock />
+
+          {/* SEO Content – trimmed process overview */}
+          <BonusHuntSeoContent />
 
           {/* Latest news – freshness signal */}
           <BonusHuntLatestNews />
 
-          {/* FAQ Section */}
-          <BonusHuntFaq />
-
           {/* Relaterede Guides – internal link hub */}
           <BonusHuntRelatedGuides />
 
-          {/* Brand block – E-E-A-T signal */}
-          <CommunityBrandBlock />
+          {/* FAQ Section – placed last as supplementary */}
+          <BonusHuntFaq />
 
           <div className="pb-12" />
         </div>
