@@ -181,6 +181,7 @@ export function useBonusHuntData(huntId?: number) {
   return useQuery({
     queryKey: ['bonus-hunt-data', huntId, isPastHunt ? 'archived' : 'live'],
     queryFn: () => fetchBonusHuntData(huntId, latestHuntNumber),
+    enabled: latestHuntNumber !== undefined,
     refetchInterval: isPastHunt ? false : 30000,
     staleTime: isPastHunt ? 300000 : 15000,
     placeholderData: (prev) => prev,
