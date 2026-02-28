@@ -70,63 +70,53 @@ export function BonusHuntHostCard() {
   const socials = getActiveSocials();
 
   return (
-    <section className="mt-12 mb-20 rounded-xl border border-border/50 bg-card p-5 md:p-6">
-      <div className="flex items-center gap-2 mb-4">
-        <Video className="h-4 w-4 text-primary" />
-        <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          Mød værten bag denne bonus hunt
-        </span>
-      </div>
-
-      <div className="flex items-center gap-5">
+    <section className="rounded-xl border border-border/50 bg-card p-4">
+      <div className="flex items-center gap-3">
         {/* Avatar */}
-        <div className="shrink-0">
-          <img
-            src="/kevin-avatar.webp"
-            alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-            className="h-16 w-16 rounded-full object-cover ring-2 ring-primary/20"
-            loading="lazy"
-          />
-        </div>
+        <img
+          src="/kevin-avatar.webp"
+          alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
+          className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-primary/20"
+          loading="lazy"
+        />
 
         {/* Info */}
-        <div className="min-w-0 flex-1 space-y-2">
+        <div className="min-w-0 flex-1 space-y-1">
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
+              <Video className="h-3 w-3 text-primary" />
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                Vært
+              </span>
+            </div>
+            <span className="flex items-center gap-1 text-[10px] text-green-500">
+              <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+              Live streamer
+            </span>
+          </div>
+
           <div>
-            <h3 className="text-sm font-bold text-foreground">Kevin</h3>
-            <p className="text-xs text-muted-foreground">
-              Bonus Hunt vært & streamer hos Casinoaftaler.dk
+            <Link to="/forfatter/kevin" className="text-sm font-bold text-foreground hover:text-primary transition-colors">
+              Kevin
+            </Link>
+            <p className="text-[11px] text-muted-foreground">
+              Bonus Hunt vært & streamer
             </p>
           </div>
 
-          <p className="text-[11px] text-muted-foreground/80 leading-relaxed">
-            Streamer siden 2021 · Dokumenterede hunts · Twitch community
-          </p>
-
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            Kevin streamer og dokumenterer live bonus hunts med fuld gennemsigtighed – fra indsats til resultat.
-          </p>
-
-          <div className="flex items-center gap-3 pt-1">
-            <Button variant="outline" size="sm" className="h-7 text-xs px-3" asChild>
-              <Link to="/forfatter/kevin">Se Kevin's fulde profil</Link>
-            </Button>
-
-            {socials.length > 0 && (
-              <div className="flex items-center gap-1.5">
-                {socials.map((s) => (
-                  <a
-                    key={s.name}
-                    href={s.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={s.name}
-                    className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-primary hover:bg-primary/10"
-                  >
-                    <SocialIcon platform={s.icon} />
-                  </a>
-                ))}
-              </div>
-            )}
+          <div className="flex items-center gap-2 pt-0.5">
+            {socials.map((s) => (
+              <a
+                key={s.name}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={s.name}
+                className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground transition-colors hover:text-primary hover:bg-primary/10"
+              >
+                <SocialIcon platform={s.icon} />
+              </a>
+            ))}
           </div>
         </div>
       </div>
