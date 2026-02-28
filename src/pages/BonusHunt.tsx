@@ -4,7 +4,7 @@ import { BonusHuntSlotTable } from "@/components/bonus-hunt/BonusHuntSlotTable";
 import { BonusHuntStatsTab } from "@/components/bonus-hunt/BonusHuntStatsTab";
 import { BonusHuntGTWTab } from "@/components/bonus-hunt/BonusHuntGTWTab";
 import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
-import { BonusHuntCasinoContext } from "@/components/bonus-hunt/BonusHuntCasinoContext";
+
 import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
 import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream";
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
@@ -207,14 +207,6 @@ export default function BonusHunt() {
                     onNavigate={handleNavigate}
                     onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
                   />
-                  <BonusHuntCasinoContext
-                    huntNumber={huntIdOverride || liveHuntNumber}
-                    huntDate={huntDate}
-                    bonusCount={huntData.stats.openedBonuses}
-                    avgX={huntData.stats.averageX}
-                    isLive={isLive}
-                    casinoSlug={casinoSlug}
-                  />
                   {isLive ? (
                     <BonusHuntLiveStream huntNumber={currentHuntNumber} />
                   ) : (
@@ -231,7 +223,13 @@ export default function BonusHunt() {
                       <TabsTrigger value="avgx">AVG X</TabsTrigger>
                     </TabsList>
                     <TabsContent value="stats">
-                      <BonusHuntStatsTab data={huntData} />
+                      <BonusHuntStatsTab
+                        data={huntData}
+                        huntNumber={currentHuntNumber}
+                        huntDate={huntDate}
+                        isLive={isLive}
+                        casinoSlug={casinoSlug}
+                      />
                     </TabsContent>
                     <TabsContent value="gtw">
                       <BonusHuntGTWTab
