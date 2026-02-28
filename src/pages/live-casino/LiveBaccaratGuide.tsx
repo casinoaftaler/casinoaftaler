@@ -107,7 +107,7 @@ const LiveBaccaratGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="18 Min." />
 
-        <img src={liveBaccaratHero} alt="Live baccarat bord med krystalkortsko i et eksklusivt casino studio" className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
+        <img src={liveBaccaratHero} alt="Live baccarat bord med krystalkortsko i et eksklusivt casino studio" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
 
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her fokuserer vi specifikt på live baccarat – det spil, der globalt genererer mere omsætning end nogen anden bordspilkategori, primært drevet af det asiatiske marked, men med stigende popularitet i Danmark og Europa. Alt indhold er baseret på matematisk analyse og personlig erfaring fra hundredvis af timer ved live baccarat-borde.

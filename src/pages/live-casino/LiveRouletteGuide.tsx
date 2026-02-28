@@ -107,7 +107,7 @@ const LiveRouletteGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="20 Min." />
 
-        <img src={liveRouletteHero} alt="Live roulette hjul i et elegant casino studio med dealer" className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
+        <img src={liveRouletteHero} alt="Live roulette hjul i et elegant casino studio med dealer" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
 
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her fokuserer vi udelukkende på live roulette med rigtig dealer – det mest ikoniske casinospil, nu tilgængeligt i HD med multi-angle kameraer og op til 80 spins i timen. Vi adskiller os fra den overordnede pillar-guide ved at dykke ekstremt dybt ned i bordtyper, matematiske modeller for hvert bet-type, og en ærlig analyse af populære betting-systemer.

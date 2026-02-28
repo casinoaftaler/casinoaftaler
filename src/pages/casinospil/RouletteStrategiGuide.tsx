@@ -133,6 +133,8 @@ const RouletteStrategiGuide = () => {
           <img
             src={rouletteStrategiHero}
             alt="Roulette-hjul med matematiske formler og sandsynlighedsgrafer"
+            width={1920}
+            height={600}
             className="w-full h-auto object-cover max-h-[400px]"
             loading="eager"
           />

@@ -56,7 +56,7 @@ export function TodayLeaderboard() {
             <div className="flex items-center gap-3">
               <span className="text-xs font-bold text-muted-foreground w-4">#{i + 1}</span>
               {entry.avatar_url ? (
-                <img src={entry.avatar_url} alt="" className="h-6 w-6 rounded-full" />
+                <img src={entry.avatar_url} alt="" width={24} height={24} className="h-6 w-6 rounded-full" />
               ) : (
                 <div className="h-6 w-6 rounded-full bg-muted flex items-center justify-center">
                   <span className="text-[10px] font-bold text-muted-foreground">?</span>

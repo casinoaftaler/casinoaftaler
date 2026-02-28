@@ -813,6 +813,8 @@ const Betalingsmetoder = () => {
                     <img
                       src={pm.logo}
                       alt={`${pm.name} logo`}
+                      width={100}
+                      height={48}
                       className="h-12 w-auto max-w-[100px] rounded object-contain flex-shrink-0 mt-1"
                     />
                     <div className="flex-1">
