@@ -1,152 +1,117 @@
 import { Link } from "react-router-dom";
-import { Users, Gamepad2, Trophy, TrendingUp, Zap, ArrowRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Trophy, ArrowRight, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { useCasinos } from "@/hooks/useCasinos";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 
 interface CommunityActivityWidgetProps {
   casinoName: string;
   casinoSlug: string;
 }
 
-function useCommunityStats() {
+function useRecentHunts() {
   return useQuery({
-    queryKey: ["community-activity-stats"],
+    queryKey: ["community-recent-hunts"],
     queryFn: async () => {
-      // Get stats from our own slot machines + bonus hunts
-      const [allTimeResult, weeklyResult, huntsResult] = await Promise.all([
-        supabase
-          .from("slot_game_results")
-          .select("id", { count: "exact", head: true }),
-        supabase
-          .from("slot_game_results")
-          .select("user_id, win_amount, bet_amount, is_bonus_triggered")
-          .gte("created_at", new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()),
-        supabase
-          .from("bonus_hunt_archives")
-          .select("hunt_number, average_x, total_slots, opened_slots")
-          .order("hunt_number", { ascending: false })
-          .limit(3),
-      ]);
+      const { data } = await supabase
+        .from("bonus_hunt_archives")
+        .select("hunt_number, average_x, total_slots, opened_slots")
+        .order("hunt_number", { ascending: false })
+        .limit(3);
 
-      const totalSpins = allTimeResult.count ?? 0;
-
-      const weeklyData = weeklyResult.data ?? [];
-      const uniqueWeeklyPlayers = new Set(weeklyData.map((r) => r.user_id)).size;
-      const weeklySpins = weeklyData.length;
-      const weeklyBonuses = weeklyData.filter((r) => r.is_bonus_triggered).length;
-      const biggestWeeklyX =
-        weeklyData.reduce((max, r) => {
-          const x = r.bet_amount > 0 ? (r.win_amount ?? 0) / r.bet_amount : 0;
-          return Math.max(max, x);
-        }, 0);
-
-      const recentHunts = (huntsResult.data ?? []).map((h) => ({
+      return (data ?? []).map((h) => ({
         number: h.hunt_number,
         avgX: h.average_x,
         totalSlots: h.total_slots,
         openedSlots: h.opened_slots,
       }));
-
-      return {
-        totalSpins,
-        uniqueWeeklyPlayers,
-        weeklySpins,
-        weeklyBonuses,
-        biggestWeeklyX,
-        recentHunts,
-      };
     },
     staleTime: 5 * 60 * 1000,
   });
 }
 
-function formatNumber(n: number): string {
-  if (n >= 1000) return `${(n / 1000).toFixed(1).replace(/\.0$/, "")}k`;
-  return n.toString();
-}
-
 export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityActivityWidgetProps) {
-  const { data, isLoading } = useCommunityStats();
+  const { data: hunts, isLoading } = useRecentHunts();
+  const { data: casinos } = useCasinos();
 
-  if (isLoading || !data) return null;
+  const casino = casinos?.find((c) => c.slug === casinoSlug);
+  const logoUrl = casino?.logo_url;
+
+  if (isLoading || !hunts || hunts.length === 0) return null;
 
   return (
-    <section className="mb-12" aria-label={`Community-aktivitet relateret til ${casinoName}`}>
-      <div className="rounded-xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-card p-6 md:p-8">
-        <div className="mb-6 flex flex-wrap items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-            <Users className="h-5 w-5" />
-          </div>
-          <div>
-            <h3 className="text-lg font-bold">Community-aktivitet</h3>
+    <section className="mb-12" aria-label={`Bonus hunts på ${casinoName}`}>
+      <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-card overflow-hidden">
+        {/* Header with casino logo */}
+        <div className="flex items-center gap-4 border-b border-border/50 px-6 py-5 md:px-8">
+          {logoUrl && (
+            <img
+              src={optimizeStorageImage(logoUrl, 96) ?? logoUrl}
+              alt={`${casinoName} logo`}
+              width={48}
+              height={48}
+              className="h-12 w-12 shrink-0 rounded-xl object-contain bg-background/50 p-1"
+              loading="lazy"
+            />
+          )}
+          <div className="min-w-0 flex-1">
+            <h3 className="text-lg font-bold">Live Bonus Hunts</h3>
             <p className="text-sm text-muted-foreground">
-              Live data fra vores spillemaskiner – spillet af {formatNumber(data.uniqueWeeklyPlayers)}+ community-medlemmer
+              Vi streamer bonus hunts live på {casinoName} – følg med og se resultaterne
             </p>
           </div>
-          <Badge variant="secondary" className="ml-auto text-xs">
-            <Zap className="mr-1 h-3 w-3" />
-            Opdateres live
+          <Badge variant="secondary" className="hidden shrink-0 text-xs sm:inline-flex">
+            <Sparkles className="mr-1 h-3 w-3" />
+            Live resultater
           </Badge>
         </div>
 
-        {/* Stats grid */}
-        <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <StatCard
-            icon={Gamepad2}
-            value={formatNumber(data.weeklySpins)}
-            label="Spins denne uge"
-          />
-          <StatCard
-            icon={Users}
-            value={formatNumber(data.uniqueWeeklyPlayers)}
-            label="Aktive spillere"
-          />
-          <StatCard
-            icon={Trophy}
-            value={`${data.biggestWeeklyX.toFixed(0)}x`}
-            label="Største X denne uge"
-          />
-          <StatCard
-            icon={TrendingUp}
-            value={formatNumber(data.weeklyBonuses)}
-            label="Bonusser trigget"
-          />
+        {/* Bonus hunt cards */}
+        <div className="grid gap-3 p-6 sm:grid-cols-3 md:px-8">
+          {hunts.map((hunt, i) => {
+            const avgX = hunt.avgX != null ? Number(hunt.avgX) : null;
+            const isTop = i === 0;
+            return (
+              <Link
+                key={hunt.number}
+                to="/community"
+                className={`group relative flex flex-col items-center gap-3 rounded-xl border p-5 text-center transition-all hover:shadow-md ${
+                  isTop
+                    ? "border-primary/30 bg-primary/5 hover:border-primary/50"
+                    : "border-border bg-card hover:border-primary/30 hover:bg-primary/5"
+                }`}
+              >
+                {isTop && (
+                  <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
+                    <Badge className="text-[10px] px-2 py-0.5">
+                      <Trophy className="mr-1 h-3 w-3" />
+                      Seneste
+                    </Badge>
+                  </div>
+                )}
+                <span className="text-sm font-semibold text-muted-foreground">
+                  Hunt #{hunt.number}
+                </span>
+                {avgX != null && (
+                  <span className={`text-3xl font-extrabold tracking-tight ${
+                    isTop ? "text-primary" : "text-foreground"
+                  }`}>
+                    {avgX.toFixed(1)}x
+                  </span>
+                )}
+                <span className="text-xs text-muted-foreground">
+                  avg · {hunt.openedSlots}/{hunt.totalSlots} slots åbnet
+                </span>
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Recent bonus hunts */}
-        {data.recentHunts.length > 0 && (
-          <div className="mb-6">
-            <h4 className="mb-3 text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-              Seneste Bonus Hunts
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {data.recentHunts.map((hunt) => (
-                <Link
-                  key={hunt.number}
-                  to="/community"
-                  className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm transition-colors hover:border-primary/40 hover:bg-primary/5"
-                >
-                  <span className="font-semibold">Hunt #{hunt.number}</span>
-                  {hunt.avgX != null && (
-                    <Badge variant="outline" className="text-xs">
-                      {Number(hunt.avgX).toFixed(1)}x avg
-                    </Badge>
-                  )}
-                  <span className="text-xs text-muted-foreground">
-                    {hunt.openedSlots}/{hunt.totalSlots} slots
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* CTA */}
-        <div className="flex flex-wrap items-center gap-4 rounded-lg bg-primary/5 p-4">
+        <div className="flex flex-wrap items-center gap-4 border-t border-border/50 px-6 py-4 md:px-8">
           <p className="flex-1 text-sm text-muted-foreground">
-            Vi streamer live på Twitch hvor vi bl.a. spiller på {casinoName}.
             Følg med i bonus hunts, spil på vores spillemaskiner og vind præmier i vores community.
           </p>
           <Link
@@ -159,27 +124,5 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
         </div>
       </div>
     </section>
-  );
-}
-
-function StatCard({
-  icon: Icon,
-  value,
-  label,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  value: string;
-  label: string;
-}) {
-  return (
-    <Card className="border-border bg-card/50">
-      <CardContent className="flex items-center gap-3 p-3">
-        <Icon className="h-4 w-4 shrink-0 text-primary" />
-        <div>
-          <p className="text-lg font-bold leading-tight">{value}</p>
-          <p className="text-xs text-muted-foreground">{label}</p>
-        </div>
-      </CardContent>
-    </Card>
   );
 }
