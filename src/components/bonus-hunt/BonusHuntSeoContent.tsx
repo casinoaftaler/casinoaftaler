@@ -26,7 +26,7 @@ const steps = [
     description: (
       <>
         Bonusser åbnes live på{" "}
-        <a href="https://www.twitch.tv/casinoaftaler" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+        <a href="https://www.twitch.tv/fedesvinsejer" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
           Twitch
         </a>. Break-even X og gennemsnit X beregnes i realtid, så du kan følge med. Læs mere om{" "}
         <Link to="/casino-bonus" className="text-primary hover:underline">
