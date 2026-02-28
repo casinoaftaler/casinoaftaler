@@ -1,8 +1,7 @@
 import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, ArrowUpDown } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ChevronLeft, ChevronRight, Search, ArrowUpDown } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { BonusHuntSlotPopoverContent } from "./BonusHuntSlotInfoDialog";
 import { useProviderOverrides, useSlotCatalogMap } from "@/hooks/useSlotCatalog";
@@ -10,12 +9,6 @@ import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
 
 interface Props {
   slots: BonusHuntSlot[];
-  huntNumber: number;
-  huntDate: string;
-  latestHuntNumber: number;
-  maxHuntNumber: number;
-  onNavigate?: (direction: 'first' | 'prev' | 'next' | 'last') => void;
-  onJumpToHunt?: (huntNumber: number) => void;
 }
 
 type SortKey = 'index' | 'slot' | 'bet' | 'multiplier' | 'win';
@@ -23,7 +16,7 @@ type SortDir = 'asc' | 'desc';
 
 const PAGE_SIZE = 10;
 
-export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumber, maxHuntNumber, onNavigate, onJumpToHunt }: Props) {
+export function BonusHuntSlotTable({ slots }: Props) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
   const [sortKey, setSortKey] = useState<SortKey>('index');
@@ -101,40 +94,6 @@ export function BonusHuntSlotTable({ slots, huntNumber, huntDate, latestHuntNumb
 
   return (
     <div className="flex flex-col gap-3">
-      {/* Hunt navigation */}
-      <div className="flex items-center justify-center gap-2 flex-wrap">
-        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('first')}>
-          <ChevronsLeft className="h-4 w-4" />
-        </Button>
-        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('prev')}>
-          <ChevronLeft className="h-4 w-4" />
-        </Button>
-        <Select
-          value={String(huntNumber)}
-          onValueChange={(val) => {
-            const num = parseInt(val, 10);
-            onJumpToHunt?.(num);
-          }}
-        >
-          <SelectTrigger className="w-auto min-w-[200px] h-8 text-sm font-semibold">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent className="max-h-[300px]">
-            {Array.from({ length: maxHuntNumber }, (_, i) => maxHuntNumber - i).map(num => (
-              <SelectItem key={num} value={String(num)}>
-                BONUS HUNT #{num} {num === huntNumber ? huntDate : ''} {num > latestHuntNumber ? '🔴 LIVE' : ''}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('next')}>
-          <ChevronRight className="h-4 w-4" />
-        </Button>
-        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('last')}>
-          <ChevronsRight className="h-4 w-4" />
-        </Button>
-      </div>
-
       {/* Search */}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />

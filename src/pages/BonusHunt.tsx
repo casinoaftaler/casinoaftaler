@@ -8,6 +8,7 @@ import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
 import { BonusHuntFooter } from "@/components/bonus-hunt/BonusHuntFooter";
 import { BonusHuntCasinoContext } from "@/components/bonus-hunt/BonusHuntCasinoContext";
 import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
+import { BonusHuntNavBar } from "@/components/bonus-hunt/BonusHuntNavBar";
 import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
 import { useAuth } from "@/hooks/useAuth";
@@ -74,6 +75,18 @@ export default function BonusHunt() {
             </div>
           ) : huntData ? (
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+              {/* Hunt navigation bar – top level */}
+              <div className="lg:col-span-5">
+                <BonusHuntNavBar
+                  huntNumber={huntIdOverride || liveHuntNumber}
+                  huntDate={huntDate}
+                  latestHuntNumber={latestHuntNumber}
+                  maxHuntNumber={maxHuntNumber}
+                  onNavigate={handleNavigate}
+                  onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
+                />
+              </div>
+
               {/* Left column – slot table */}
               <div className="lg:col-span-3 space-y-4">
                 <BonusHuntCasinoContext
@@ -85,12 +98,6 @@ export default function BonusHunt() {
                  {huntVideo && <BonusHuntVideoSection video={huntVideo} />}
                 <BonusHuntSlotTable
                   slots={huntData.slots}
-                  huntNumber={huntIdOverride || liveHuntNumber}
-                  huntDate={huntDate}
-                  latestHuntNumber={latestHuntNumber}
-                  maxHuntNumber={maxHuntNumber}
-                  onNavigate={handleNavigate}
-                  onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
                 />
                 <BonusHuntFooter stats={huntData.stats} />
               </div>
