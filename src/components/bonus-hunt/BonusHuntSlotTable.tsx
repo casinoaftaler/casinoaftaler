@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Search, ArrowUpDown, ChevronDown } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, ArrowUpDown, ChevronDown, Trophy, Rocket } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { BonusHuntSlotPopoverContent } from "./BonusHuntSlotInfoDialog";
 import { useProviderOverrides, useSlotCatalogMap } from "@/hooks/useSlotCatalog";
@@ -15,6 +15,38 @@ type SortKey = 'index' | 'slot' | 'bet' | 'multiplier' | 'win';
 type SortDir = 'asc' | 'desc';
 
 const PAGE_SIZE = 10;
+
+function MultiplierBadge({ value }: { value: number }) {
+  let colorClass = "text-foreground";
+  let glowClass = "";
+  if (value >= 100) {
+    colorClass = "text-green-500";
+    glowClass = "drop-shadow-[0_0_4px_rgb(34,197,94,0.4)]";
+  } else if (value <= 20 && value > 0) {
+    colorClass = "text-red-400";
+  } else if (value === 0) {
+    colorClass = "text-muted-foreground";
+  }
+  return (
+    <span className={`font-semibold ${colorClass} ${glowClass}`}>
+      {value.toFixed(2)}x
+    </span>
+  );
+}
+
+function WinBadge({ win, multiplier }: { win: number; multiplier: number }) {
+  const formatNum = (n: number) => n >= 1000 ? `${(n / 1000).toFixed(1)}k` : n.toFixed(2);
+  const showTrophy = win >= 500;
+  const showRocket = multiplier >= 200;
+
+  return (
+    <span className={`inline-flex items-center gap-1 ${win >= 100 ? 'font-semibold text-green-500' : ''}`}>
+      {formatNum(win)} kr
+      {showTrophy && <Trophy className="h-3 w-3 text-amber-400" />}
+      {showRocket && <Rocket className="h-3 w-3 text-primary" />}
+    </span>
+  );
+}
 
 export function BonusHuntSlotTable({ slots }: Props) {
   const [search, setSearch] = useState("");
@@ -77,8 +109,6 @@ export function BonusHuntSlotTable({ slots }: Props) {
     else { setSortKey(key); setSortDir('asc'); }
   };
 
-  const formatNum = (n: number) => n >= 1000 ? `${(n / 1000).toFixed(1)}k` : n.toFixed(2);
-
   return (
     <div className="flex flex-col gap-3">
       {/* Search */}
@@ -119,8 +149,13 @@ export function BonusHuntSlotTable({ slots }: Props) {
                   <Popover>
                     <PopoverTrigger asChild>
                       <button className="text-left hover:underline cursor-pointer">
-                        <div className="font-medium text-sm">{slot.slot}</div>
-                        <div className="text-xs text-muted-foreground">{slot.provider}</div>
+                        <div className="font-medium text-sm flex items-center gap-1.5">
+                          {slot.slot}
+                          {slot.multiplier >= 100 && slot.opened && <Trophy className="h-3 w-3 text-amber-400" />}
+                        </div>
+                        <div className="text-xs text-muted-foreground inline-flex items-center gap-1">
+                          <span className="inline-block rounded bg-muted/60 px-1.5 py-0.5 text-[10px] font-medium">{slot.provider}</span>
+                        </div>
                       </button>
                     </PopoverTrigger>
                     <PopoverContent side="right" align="start" className="w-auto p-0 border-0 bg-transparent shadow-none">
@@ -130,18 +165,10 @@ export function BonusHuntSlotTable({ slots }: Props) {
                 </td>
                 <td className="px-3 py-2 font-mono text-xs">{slot.bet.toFixed(2)} kr</td>
                 <td className="px-3 py-2 font-mono text-xs">
-                  {slot.opened ? (
-                    <span className={`font-semibold ${slot.multiplier >= 100 ? 'text-green-500' : slot.multiplier <= 20 ? 'text-red-500' : 'text-foreground'}`}>
-                      {slot.multiplier.toFixed(2)}x
-                    </span>
-                  ) : '—'}
+                  {slot.opened ? <MultiplierBadge value={slot.multiplier} /> : '—'}
                 </td>
                 <td className="px-3 py-2 font-mono text-xs">
-                  {slot.opened ? (
-                    <span className={slot.win >= 100 ? 'font-semibold text-green-500' : ''}>
-                      {formatNum(slot.win)} kr
-                    </span>
-                  ) : '—'}
+                  {slot.opened ? <WinBadge win={slot.win} multiplier={slot.multiplier} /> : '—'}
                 </td>
               </tr>
             ))}

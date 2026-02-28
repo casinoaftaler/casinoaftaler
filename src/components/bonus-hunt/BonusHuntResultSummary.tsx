@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Trophy, TrendingUp, Award } from "lucide-react";
+import { Trophy, TrendingUp, BarChart3, Gift } from "lucide-react";
 
 interface HuntVideoData {
   huntNumber: number;
@@ -16,6 +16,41 @@ interface Props {
 }
 
 export function BonusHuntResultSummary({ video }: Props) {
+  const cards = [
+    {
+      label: "Avg X",
+      value: `${video.avgX}x`,
+      icon: BarChart3,
+      colorClass: "text-primary",
+      bgClass: "from-primary/10 to-primary/5",
+    },
+    {
+      label: "Bonusser",
+      value: String(video.bonusCount),
+      icon: Gift,
+      colorClass: "text-blue-400",
+      bgClass: "from-blue-500/10 to-blue-500/5",
+    },
+    ...(video.highestWin != null
+      ? [{
+          label: "Top Win",
+          value: `${video.highestWin} kr`,
+          icon: Trophy,
+          colorClass: "text-green-500",
+          bgClass: "from-green-500/10 to-green-500/5",
+        }]
+      : []),
+    ...(video.highestMultiplier != null
+      ? [{
+          label: "Top X",
+          value: `${video.highestMultiplier}x`,
+          icon: TrendingUp,
+          colorClass: "text-amber-400",
+          bgClass: "from-amber-400/10 to-amber-400/5",
+        }]
+      : []),
+  ];
+
   return (
     <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-card p-4 space-y-3 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10">
       <div className="flex items-center gap-2">
@@ -28,30 +63,23 @@ export function BonusHuntResultSummary({ video }: Props) {
       </div>
 
       <div className="grid grid-cols-2 gap-2">
-        <div className="rounded-xl bg-muted/50 px-3 py-2 text-center">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Avg X</p>
-          <p className="text-lg font-bold text-primary">{video.avgX}x</p>
-        </div>
-        <div className="rounded-xl bg-muted/50 px-3 py-2 text-center">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Bonusser</p>
-          <p className="text-lg font-bold text-foreground">{video.bonusCount}</p>
-        </div>
-        {video.highestWin != null && (
-          <div className="rounded-xl bg-muted/50 px-3 py-2 text-center">
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wider flex items-center justify-center gap-1">
-              <Award className="h-2.5 w-2.5" /> Top Win
-            </p>
-            <p className="text-lg font-bold text-green-500">{video.highestWin} kr</p>
-          </div>
-        )}
-        {video.highestMultiplier != null && (
-          <div className="rounded-xl bg-muted/50 px-3 py-2 text-center">
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wider flex items-center justify-center gap-1">
-              <TrendingUp className="h-2.5 w-2.5" /> Top X
-            </p>
-            <p className="text-lg font-bold text-green-500">{video.highestMultiplier}x</p>
-          </div>
-        )}
+        {cards.map((card) => {
+          const Icon = card.icon;
+          return (
+            <div
+              key={card.label}
+              className={`group/card rounded-[14px] bg-gradient-to-br ${card.bgClass} px-3 py-2 transition-all duration-[180ms] hover:-translate-y-0.5 hover:shadow-md`}
+            >
+              <div className="flex items-center gap-1.5 mb-0.5">
+                <Icon className={`h-3.5 w-3.5 ${card.colorClass} transition-all duration-[180ms] group-hover/card:drop-shadow-[0_0_4px_currentColor]`} />
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{card.label}</p>
+              </div>
+              <p className={`text-lg font-bold ${card.colorClass} transition-transform duration-[180ms] group-hover/card:scale-[1.02]`}>
+                {card.value}
+              </p>
+            </div>
+          );
+        })}
       </div>
 
       <Link

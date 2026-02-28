@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Target } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface Props {
@@ -25,12 +25,18 @@ export function BonusHuntNavBar({ huntNumber, huntDate, latestHuntNumber, maxHun
         onValueChange={(val) => onJumpToHunt?.(parseInt(val, 10))}
       >
         <SelectTrigger className="w-auto min-w-[200px] h-8 text-sm font-semibold">
-          <SelectValue />
+          <span className="flex items-center gap-1.5">
+            <Target className="h-3.5 w-3.5 text-primary" />
+            <SelectValue />
+          </span>
         </SelectTrigger>
         <SelectContent className="max-h-[300px]">
           {Array.from({ length: maxHuntNumber - 1 }, (_, i) => maxHuntNumber - i).map(num => (
             <SelectItem key={num} value={String(num)}>
-              BONUS HUNT #{num} {num === huntNumber ? huntDate : ''} {num > latestHuntNumber ? '🔴 LIVE' : ''}
+              <span className="flex items-center gap-1.5">
+                <Target className="h-3 w-3 text-primary" />
+                BONUS HUNT #{num} {num === huntNumber ? huntDate : ''} {num > latestHuntNumber ? '🔴 LIVE' : ''}
+              </span>
             </SelectItem>
           ))}
         </SelectContent>
