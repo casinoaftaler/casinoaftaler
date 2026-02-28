@@ -19,13 +19,15 @@ export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX 
   const casino = casinos?.find((c) => c.slug === "spildansknu");
   const logoUrl = casino?.logo_url;
 
-  // Rotate anchor text based on hunt number to ensure variation
-  const anchors = [
-    { text: "SpilDanskNu casino", title: "Læs vores fulde anmeldelse af SpilDanskNu" },
-    { text: "vores SpilDanskNu anmeldelse", title: "SpilDanskNu anmeldelse 2026" },
-    { text: "SpilDanskNu", title: "Læs live test og vurdering af SpilDanskNu" },
+  const displayName = casino?.name ?? "SpilDanskNu";
+
+  // Rotate title attribute for variation, but heading always shows canonical brand name
+  const titles = [
+    "Læs vores fulde anmeldelse af " + displayName,
+    displayName + " anmeldelse 2026",
+    "Læs live test og vurdering af " + displayName,
   ];
-  const anchor = anchors[huntNumber % anchors.length];
+  const title = titles[huntNumber % titles.length];
 
   return (
     <section
@@ -37,12 +39,12 @@ export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX 
         {logoUrl && (
           <Link
             to="/casino-anmeldelser/spildansknu"
-            title={anchor.title}
+            title={title}
             className="shrink-0 self-start"
           >
             <img
               src={optimizeStorageImage(logoUrl, 160) ?? logoUrl}
-              alt="SpilDanskNu logo"
+              alt={`${displayName} logo`}
               width={80}
               height={80}
               loading="eager"
@@ -57,20 +59,20 @@ export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX 
             <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-1">
               Casino testet i denne bonus hunt
             </p>
-            <h2 className="text-lg font-bold text-foreground">
+          <h2 className="text-lg font-bold text-foreground">
               <Link
                 to="/casino-anmeldelser/spildansknu"
-                title={anchor.title}
+                title={title}
                 className="hover:text-primary transition-colors"
               >
-                {anchor.text}
+                {displayName}
               </Link>
             </h2>
           </div>
 
           <p className="text-sm leading-relaxed text-muted-foreground">
             Bonus Hunt #{huntNumber}
-            {huntDate ? ` blev spillet live hos SpilDanskNu d. ${huntDate}` : " blev spillet live hos SpilDanskNu"}
+            {huntDate ? ` blev spillet live hos ${displayName} d. ${huntDate}` : ` blev spillet live hos ${displayName}`}
             . Vi har testet bonusvilkår, udbetalinger og platformens funktionalitet.
           </p>
 
