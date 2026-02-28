@@ -296,6 +296,7 @@ export default function BonusHunt() {
                       <BonusHuntSlotCoupon
                         huntNumber={currentHuntNumber}
                         sessionId={session?.id}
+                        isLive={isLive}
                       />
                     </TabsContent>
                   </Tabs>
