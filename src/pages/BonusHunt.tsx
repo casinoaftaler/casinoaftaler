@@ -75,8 +75,8 @@ export default function BonusHunt() {
             </div>
           ) : huntData ? (
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-              {/* Hunt navigation bar – top level */}
-              <div className="lg:col-span-5">
+              {/* Hunt navigation bar – aligned with left column */}
+              <div className="lg:col-span-3">
                 <BonusHuntNavBar
                   huntNumber={huntIdOverride || liveHuntNumber}
                   huntDate={huntDate}
@@ -86,6 +86,7 @@ export default function BonusHunt() {
                   onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
                 />
               </div>
+              <div className="hidden lg:block lg:col-span-2" />
 
               {/* Left column – slot table */}
               <div className="lg:col-span-3 space-y-4">
