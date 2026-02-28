@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Gift, Unlock, Wallet, Target, Dice3, BarChart3, Scale, Trophy, Rocket, Check, ArrowRight } from "lucide-react";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -38,11 +39,11 @@ export function BonusHuntStatsTab({ data, huntNumber, huntDate, isLive = false, 
   return (
     <Card className="rounded-2xl border-primary/10 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10">
       <CardContent className="p-4 space-y-3">
-        {/* Casino context header */}
+        {/* Casino context header – centered */}
         {huntNumber != null && (
-          <div className="flex gap-3 pb-3 border-b border-border/30">
+          <div className="flex flex-col items-center text-center gap-2 pb-3 border-b border-border/30">
             {logoUrl && (
-              <Link to={reviewPath} className="shrink-0 self-start">
+              <Link to={reviewPath}>
                 <img
                   src={optimizeStorageImage(logoUrl, 120) ?? logoUrl}
                   alt={`${displayName} logo`}
@@ -53,36 +54,34 @@ export function BonusHuntStatsTab({ data, huntNumber, huntDate, isLive = false, 
                 />
               </Link>
             )}
-            <div className="min-w-0 flex-1 space-y-1.5">
-              <div>
-                <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                  {isLive ? "Casino der testes" : "Casino testet i denne hunt"}
-                </p>
-                <h2 className="text-sm font-bold text-foreground">
-                  <Link to={reviewPath} className="hover:text-primary transition-colors">
-                    {displayName}
-                  </Link>
-                </h2>
-              </div>
-              <ul className="flex flex-wrap gap-x-3 gap-y-0.5 text-[11px] text-muted-foreground">
-                {s.openedBonuses > 0 && (
-                  <li className="flex items-center gap-1">
-                    <Check className="h-3 w-3 text-primary" />
-                    {s.openedBonuses} bonusser
-                  </li>
-                )}
-                {s.averageX != null && (
-                  <li className="flex items-center gap-1">
-                    <Check className="h-3 w-3 text-primary" />
-                    {s.averageX.toFixed(1)}x snit
-                  </li>
-                )}
+            <div className="space-y-1">
+              <p className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                {isLive ? "Casino der testes" : "Casino testet i denne hunt"}
+              </p>
+              <h2 className="text-sm font-bold text-foreground">
+                <Link to={reviewPath} className="hover:text-primary transition-colors">
+                  {displayName}
+                </Link>
+              </h2>
+            </div>
+            <ul className="flex flex-wrap justify-center gap-x-3 gap-y-0.5 text-[11px] text-muted-foreground">
+              {s.openedBonuses > 0 && (
                 <li className="flex items-center gap-1">
                   <Check className="h-3 w-3 text-primary" />
-                  Live testet
+                  {s.openedBonuses} bonusser
                 </li>
-              </ul>
-            </div>
+              )}
+              {s.averageX != null && (
+                <li className="flex items-center gap-1">
+                  <Check className="h-3 w-3 text-primary" />
+                  {s.averageX.toFixed(1)}x snit
+                </li>
+              )}
+              <li className="flex items-center gap-1">
+                <Check className="h-3 w-3 text-primary" />
+                Live testet
+              </li>
+            </ul>
           </div>
         )}
 
@@ -104,16 +103,22 @@ export function BonusHuntStatsTab({ data, huntNumber, huntDate, isLive = false, 
           <StatRow icon={Rocket} label="Highest Multiplier" value={`${s.highestMultiplier}x`} />
         </div>
 
-        {/* Review CTA */}
+        {/* Review CTA – matching "Se Free Spins" style */}
         {huntNumber != null && (
-          <Link
-            to={reviewPath}
-            title={`Læs fuld anmeldelse af ${displayName}`}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-primary/80 px-3.5 py-1.5 text-xs font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:scale-[1.03] hover:shadow-md hover:shadow-primary/25 mt-1"
-          >
-            Læs fuld anmeldelse
-            <ArrowRight className="h-3 w-3" />
-          </Link>
+          <div className="flex justify-center pt-1">
+            <Link to={reviewPath} title={`Læs fuld anmeldelse af ${displayName}`} className="w-full">
+              <Button
+                size="sm"
+                className="w-full gap-1.5 text-xs font-semibold transition-all duration-200 hover:shadow-[0_0_15px_rgba(139,92,246,0.25)] hover:scale-[1.02] cta-btn-shimmer"
+                style={{
+                  background: "linear-gradient(135deg, hsl(260 60% 45%), hsl(220 70% 45%))",
+                }}
+              >
+                Læs fuld anmeldelse
+                <ArrowRight className="h-3 w-3" />
+              </Button>
+            </Link>
+          </div>
         )}
       </CardContent>
     </Card>
