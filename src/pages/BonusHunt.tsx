@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BonusHuntSlotTable } from "@/components/bonus-hunt/BonusHuntSlotTable";
@@ -162,12 +163,22 @@ export default function BonusHunt() {
               Danmarks mest dokumenterede Bonus Hunt arkiv
             </h1>
             <p className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
-              Se live og arkiverede bonus hunts fra danske casinoer med licens.
-              Gennemsnit X, break-even analyser, top wins og fuld Twitch dokumentation.
+              Se live og arkiverede bonus hunts fra{" "}
+              <Link to="/casino-anmeldelser" className="font-medium text-white/90 hover:underline transition-all">
+                danske casinoer
+              </Link>{" "}
+              med dansk licens. Vi analyserer gennemsnit X og break-even på populære{" "}
+              <Link to="/casinospil/spillemaskiner" className="font-medium text-white/90 hover:underline transition-all">
+                spilleautomater
+              </Link>{" "}
+              og dokumenterer resultaterne live på Twitch.
             </p>
             <p className="inline-flex items-center gap-2 text-xs text-white/50 border border-white/10 rounded-full px-4 py-1.5 mx-auto">
               <span className="h-1.5 w-1.5 rounded-full bg-green-400/80" />
-              Testet udelukkende på casinoer med dansk licens fra Spillemyndigheden
+              Testet udelukkende på casinoer reguleret af{" "}
+              <Link to="/spillemyndigheden" className="font-medium text-white/60 hover:text-white/80 hover:underline transition-all">
+                Spillemyndigheden
+              </Link>
             </p>
           </div>
         </div>
