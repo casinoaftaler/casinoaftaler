@@ -38,7 +38,7 @@ export default function BonusHunt() {
 
   const liveHuntNumber = huntData?.visibleId || latestHuntNumber + 1;
   const currentHuntNumber = huntIdOverride || liveHuntNumber;
-  const isLive = currentHuntNumber > latestHuntNumber;
+  const isLive = huntData?.status === 'active';
   const huntVideo = getHuntVideo(currentHuntNumber);
   const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber);
 
