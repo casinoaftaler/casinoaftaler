@@ -10,6 +10,7 @@ import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/Bon
 import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream";
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
 import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent";
+import { LazySection } from "@/components/LazySection";
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
 import { BonusHuntFaq, buildBonusHuntFaqSchema } from "@/components/bonus-hunt/BonusHuntFaq";
@@ -207,7 +208,7 @@ export default function BonusHunt() {
 
           {/* Main content */}
           {huntLoading ? (
-            <div className="flex items-center justify-center py-20">
+            <div className="flex items-center justify-center py-20" style={{ minHeight: '600px' }}>
               <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
             </div>
           ) : huntData ? (
@@ -303,22 +304,34 @@ export default function BonusHunt() {
           )}
 
           {/* Community cross-links */}
-          <BonusHuntCommunityLinks />
+          <LazySection minHeight="120px">
+            <BonusHuntCommunityLinks />
+          </LazySection>
 
           {/* Top casinos CTA */}
-          <BonusHuntTopCasinos />
+          <LazySection minHeight="200px">
+            <BonusHuntTopCasinos />
+          </LazySection>
 
           {/* Latest news – freshness signal */}
-          <BonusHuntLatestNews />
+          <LazySection minHeight="180px">
+            <BonusHuntLatestNews />
+          </LazySection>
 
           {/* Relaterede Guides – internal link hub */}
-          <BonusHuntRelatedGuides />
+          <LazySection minHeight="180px">
+            <BonusHuntRelatedGuides />
+          </LazySection>
 
           {/* FAQ Section */}
-          <BonusHuntFaq />
+          <LazySection minHeight="300px">
+            <BonusHuntFaq />
+          </LazySection>
 
           {/* Brand block – E-E-A-T signal (last) */}
-          <CommunityBrandBlock />
+          <LazySection minHeight="200px">
+            <CommunityBrandBlock />
+          </LazySection>
 
           <div className="pb-12" />
         </div>

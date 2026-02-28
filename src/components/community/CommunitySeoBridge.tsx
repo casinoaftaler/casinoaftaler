@@ -77,9 +77,9 @@ export function CommunitySeoBridge() {
 
       <div className="relative flex items-center gap-2 mb-1">
         <Flame className="h-4 w-4 text-orange-400 animate-seo-fire-pulse" />
-        <h2 className="text-base font-bold text-foreground">
+        <h3 className="text-base font-bold text-foreground">
           Klar til at spille på nye casinoer?
-        </h2>
+        </h3>
       </div>
       <p className="relative text-xs text-muted-foreground mb-4 leading-relaxed">
         Find nye online casinoer, free spins og eksklusive bonusser.
