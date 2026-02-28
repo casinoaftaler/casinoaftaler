@@ -73,7 +73,7 @@ export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX 
           <p className="text-sm leading-relaxed text-muted-foreground">
             Bonus Hunt #{huntNumber}
             {huntDate ? ` blev spillet live hos ${displayName} d. ${huntDate}` : ` blev spillet live hos ${displayName}`}
-            . Vi har testet bonusvilkår, udbetalinger og platformens funktionalitet.
+            . Vi har huntet forskellige bonusser og åbnet dem live på streamen.
           </p>
 
           {/* Hunt summary points */}
