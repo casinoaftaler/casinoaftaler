@@ -42,12 +42,12 @@ export default function BonusHunt() {
     if (!huntData) return;
     const current = huntIdOverride || liveHuntNumber;
     switch (dir) {
-      case 'prev': if (current > 1) setHuntIdOverride(current - 1); break;
+      case 'prev': if (current > 2) setHuntIdOverride(current - 1); break;
       case 'next': 
         if (current < maxHuntNumber) setHuntIdOverride(current + 1);
         if (current + 1 > latestHuntNumber) setHuntIdOverride(undefined);
         break;
-      case 'first': setHuntIdOverride(1); break;
+      case 'first': setHuntIdOverride(2); break;
       case 'last': setHuntIdOverride(undefined); break;
     }
   }, [huntData, huntIdOverride, latestHuntNumber, liveHuntNumber, maxHuntNumber]);
