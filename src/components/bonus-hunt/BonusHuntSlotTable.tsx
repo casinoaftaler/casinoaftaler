@@ -225,15 +225,15 @@ export function BonusHuntSlotTable({ slots }: Props) {
       </div>
 
       {/* Expand / Pagination */}
-      {!search && sorted.length > PAGE_SIZE && !expanded && (
+      {!search && sorted.length > PAGE_SIZE && (
         <div className="flex justify-center">
           <Button
             variant="outline"
-            onClick={() => setExpanded(true)}
+            onClick={() => setExpanded(e => !e)}
             className="rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20 hover:border-primary/40 hover:scale-[1.03] transition-all duration-200 gap-1.5"
           >
-            Se alle {sorted.length} slots
-            <ChevronDown className="h-3.5 w-3.5" />
+            {expanded ? 'Skjul slots' : `Se alle ${sorted.length} slots`}
+            <ChevronDown className={`h-3.5 w-3.5 transition-transform ${expanded ? 'rotate-180' : ''}`} />
           </Button>
         </div>
       )}
