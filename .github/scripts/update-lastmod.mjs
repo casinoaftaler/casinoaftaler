@@ -228,6 +228,7 @@ const FILE_TO_ROUTE = {
   "src/pages/Terms.tsx": "/terms",
   "src/pages/Cookies.tsx": "/cookies",
   "src/pages/Sitemap.tsx": "/sitemap",
+  "src/pages/CommunityHub.tsx": "/community",
 };
 
 // ── Helpers ────────────────────────────────────────────────────
