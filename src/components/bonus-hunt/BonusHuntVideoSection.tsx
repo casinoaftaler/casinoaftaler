@@ -1,6 +1,8 @@
 import { useState, useCallback } from "react";
 import { Play, Monitor, Trophy, BarChart3 } from "lucide-react";
 import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
+import hunt4Thumbnail from "@/assets/bonus-hunt-4-thumbnail.png";
+import hunt3Thumbnail from "@/assets/bonus-hunt-3-thumbnail.png";
 
 interface HuntVideoData {
   twitchVideoId: string;
@@ -16,6 +18,28 @@ interface HuntVideoData {
 }
 
 const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
+  3: {
+    twitchVideoId: "2705907775",
+    date: "23. februar 2026",
+    casinoName: "SpilDanskNu",
+    casinoSlug: "spildansknu",
+    bonusCount: 24,
+    avgX: 76.71,
+    highestWin: 226,
+    highestMultiplier: 226,
+    localThumbnail: hunt3Thumbnail,
+  },
+  4: {
+    twitchVideoId: "2708438065",
+    date: "26. februar 2026",
+    casinoName: "SpilDanskNu",
+    casinoSlug: "spildansknu",
+    bonusCount: 11,
+    avgX: 89.4,
+    highestWin: 341,
+    highestMultiplier: 341,
+    localThumbnail: hunt4Thumbnail,
+  },
   5: {
     twitchVideoId: "2710088948",
     date: "28. februar 2026",
