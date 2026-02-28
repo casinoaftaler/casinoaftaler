@@ -9,6 +9,7 @@ import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
 import { BonusHuntCasinoContext } from "@/components/bonus-hunt/BonusHuntCasinoContext";
 import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
+import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
 import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
@@ -56,11 +57,43 @@ export default function BonusHunt() {
     ? new Date(huntData.date).toLocaleDateString('da-DK', { day: 'numeric', month: 'short' }).toUpperCase()
     : '';
 
+  const huntDateLong = huntData?.date
+    ? new Date(huntData.date).toLocaleDateString('da-DK', { day: 'numeric', month: 'long', year: 'numeric' })
+    : '';
+
+  // SEO data from video or fallback
+  const casinoName = huntVideo?.casinoName ?? 'SpilDanskNu';
+  const avgX = huntData?.stats.averageX;
+  const bonusCount = huntData?.stats.openedBonuses ?? 0;
+
+  const seoTitle = huntData
+    ? `Bonus Hunt #${currentHuntNumber} hos ${casinoName}${avgX ? ` – ${avgX.toFixed(1)}x snit & ${bonusCount} bonusser` : ''}`
+    : 'Bonus Hunt – Gæt End Balance & Bet på AVG X';
+
+  const seoDescription = huntData
+    ? `Se vores live Bonus Hunt #${currentHuntNumber} hos ${casinoName}. Vi åbnede ${bonusCount} bonusser${avgX ? ` og opnåede ${avgX.toFixed(1)}x i gennemsnit` : ''}. Se Twitch VOD og fulde resultater.`
+    : 'Følg live bonus hunts, gæt end balance (GTW) og bet på average multiplier grupper (AVG X). Vind StreamElements points og spillehal credits.';
+
+  // Event schema
+  const eventSchema = huntData ? {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": `Bonus Hunt #${currentHuntNumber} hos ${casinoName}`,
+    "startDate": huntData.date || undefined,
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+    "location": { "@type": "VirtualLocation", "url": "https://www.twitch.tv/casinoaftaler" },
+    "organizer": { "@type": "Organization", "name": "Casinoaftaler.dk", "url": "https://casinoaftaler.dk" },
+    "performer": { "@type": "Organization", "name": "Casinoaftaler.dk" },
+    "description": seoDescription,
+  } : undefined;
+
   return (
     <>
       <SEO
-        title="Bonus Hunt – Gæt End Balance & Bet på AVG X"
-        description="Følg live bonus hunts, gæt end balance (GTW) og bet på average multiplier grupper (AVG X). Vind StreamElements points og spillehal credits."
+        title={seoTitle}
+        description={seoDescription}
+        jsonLd={eventSchema}
       />
       <CommunityPageLayout
         title="Bonus Hunt"
@@ -82,6 +115,9 @@ export default function BonusHunt() {
                   <BonusHuntHeroBar
                     huntNumber={huntIdOverride || liveHuntNumber}
                     huntDate={huntDate}
+                    huntDateLong={huntDateLong}
+                    casinoName={casinoName}
+                    avgX={avgX}
                     latestHuntNumber={latestHuntNumber}
                     maxHuntNumber={maxHuntNumber}
                     isLive={currentHuntNumber > latestHuntNumber}
@@ -135,10 +171,13 @@ export default function BonusHunt() {
               </div>
 
 
-              {/* Row 3: Slot table */}
+              {/* Slot table */}
               <div className="animate-in fade-in slide-in-from-bottom-2 duration-300 delay-200">
                 <BonusHuntSlotTable slots={huntData.slots} />
               </div>
+
+              {/* SEO evergreen content */}
+              <BonusHuntSeoContent />
             </div>
           ) : (
             <div className="text-center py-20 text-muted-foreground">

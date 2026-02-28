@@ -6,6 +6,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 interface Props {
   huntNumber: number;
   huntDate: string;
+  huntDateLong?: string;
+  casinoName?: string;
+  avgX?: number | null;
   latestHuntNumber: number;
   maxHuntNumber: number;
   isLive: boolean;
@@ -16,12 +19,20 @@ interface Props {
 export function BonusHuntHeroBar({
   huntNumber,
   huntDate,
+  huntDateLong,
+  casinoName,
+  avgX,
   latestHuntNumber,
   maxHuntNumber,
   isLive,
   onNavigate,
   onJumpToHunt,
 }: Props) {
+  const subtitle = [
+    casinoName && `hos ${casinoName}`,
+    avgX && `${avgX.toFixed(1)}x snit`,
+    huntDateLong,
+  ].filter(Boolean).join(' · ');
   return (
     <div className="relative w-full rounded-2xl overflow-hidden px-4 py-3 md:px-5 md:py-4">
       {/* Subtle gradient background */}
@@ -41,9 +52,9 @@ export function BonusHuntHeroBar({
           <Target className="h-5 w-5 text-primary shrink-0" />
           <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <h2 className="text-lg md:text-xl font-bold tracking-wide uppercase text-foreground leading-none truncate">
+              <h1 className="text-lg md:text-xl font-bold tracking-wide uppercase text-foreground leading-none truncate">
                 BONUS HUNT #{huntNumber}
-              </h2>
+              </h1>
               {isLive ? (
                 <Badge variant="destructive" className="text-[10px] px-1.5 py-0 gap-1 uppercase font-semibold shrink-0">
                   <Radio className="h-2.5 w-2.5 animate-pulse" />
@@ -55,9 +66,9 @@ export function BonusHuntHeroBar({
                 </Badge>
               )}
             </div>
-            {huntDate && (
+            {subtitle && (
               <p className="text-xs text-muted-foreground mt-0.5 tracking-wide">
-                {huntDate}
+                {subtitle}
               </p>
             )}
           </div>
