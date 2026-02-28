@@ -87,7 +87,6 @@ export default function GameLibrary() {
       <SEO
         title="Gratis Slots i Community – Spil Book of Fedesvin & Mere"
         description="Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin. Optjen points og konkurrér mod andre spillere."
-        noindex
       />
       <PageBackground />
       <GameLibraryHero />
