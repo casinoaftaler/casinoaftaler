@@ -13,20 +13,20 @@ interface Props {
 
 export function BonusHuntNavBar({ huntNumber, huntDate, latestHuntNumber, maxHuntNumber, onNavigate, onJumpToHunt }: Props) {
   return (
-    <div className="flex items-center justify-center gap-2 flex-wrap">
-      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('first')}>
+    <div className="flex items-center justify-center gap-3">
+      <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={() => onNavigate?.('first')}>
         <ChevronsLeft className="h-4 w-4" />
       </Button>
-      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('prev')}>
+      <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={() => onNavigate?.('prev')}>
         <ChevronLeft className="h-4 w-4" />
       </Button>
       <Select
         value={String(huntNumber)}
         onValueChange={(val) => onJumpToHunt?.(parseInt(val, 10))}
       >
-        <SelectTrigger className="w-auto min-w-[200px] h-8 text-sm font-semibold">
+        <SelectTrigger className="w-auto min-w-[180px] h-9 text-sm font-semibold px-3 rounded-[10px]">
           <span className="flex items-center gap-1.5">
-            <Target className="h-3.5 w-3.5 text-primary" />
+            <Target className="h-3.5 w-3.5 text-primary shrink-0" />
             <SelectValue />
           </span>
         </SelectTrigger>
@@ -41,10 +41,10 @@ export function BonusHuntNavBar({ huntNumber, huntDate, latestHuntNumber, maxHun
           ))}
         </SelectContent>
       </Select>
-      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('next')}>
+      <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={() => onNavigate?.('next')}>
         <ChevronRight className="h-4 w-4" />
       </Button>
-      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => onNavigate?.('last')}>
+      <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0" onClick={() => onNavigate?.('last')}>
         <ChevronsRight className="h-4 w-4" />
       </Button>
     </div>
