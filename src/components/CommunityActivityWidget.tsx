@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Trophy, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -17,19 +17,50 @@ function useRecentHunts() {
     queryFn: async () => {
       const { data } = await supabase
         .from("bonus_hunt_archives")
-        .select("hunt_number, average_x, total_slots, opened_slots")
+        .select("hunt_number, average_x, total_slots, opened_slots, created_at")
         .order("hunt_number", { ascending: false })
         .limit(3);
 
       return (data ?? []).map((h) => ({
         number: h.hunt_number,
-        avgX: h.average_x,
+        avgX: h.average_x != null ? Number(h.average_x) : null,
         totalSlots: h.total_slots,
         openedSlots: h.opened_slots,
+        date: h.created_at
+          ? new Date(h.created_at).toLocaleDateString("da-DK", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })
+          : null,
       }));
     },
     staleTime: 5 * 60 * 1000,
   });
+}
+
+/**
+ * Anchor variation helpers – avoids >70% exact-match anchors.
+ */
+function getHuntAnchorText(
+  hunt: { number: number; avgX: number | null; totalSlots: number | null; date: string | null },
+  index: number,
+  casinoName: string
+) {
+  const avgXStr = hunt.avgX != null ? `${hunt.avgX.toFixed(1)}x gennemsnit` : "";
+  const slotsStr = hunt.totalSlots ? `over ${hunt.totalSlots} slots` : "";
+  const dateStr = hunt.date ? ` (${hunt.date})` : "";
+
+  // Rotate phrasing per index
+  switch (index % 3) {
+    case 0:
+      return `Bonus Hunt #${hunt.number}${dateStr} – ${avgXStr} ${slotsStr}`.trim();
+    case 1:
+      return `Live test #${hunt.number} på ${casinoName}${dateStr} – ${avgXStr}`.trim();
+    case 2:
+    default:
+      return `Hunt #${hunt.number}${dateStr} – ${avgXStr} ${slotsStr}`.trim();
+  }
 }
 
 export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityActivityWidgetProps) {
@@ -42,7 +73,7 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
   if (isLoading || !hunts || hunts.length === 0) return null;
 
   return (
-    <section className="mb-12" aria-label={`Bonus hunts på ${casinoName}`}>
+    <section className="mb-12" aria-label={`Seneste bonus hunts på ${casinoName}`}>
       <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-card overflow-hidden">
         {/* Header with casino logo */}
         <div className="flex items-center gap-4 border-b border-border/50 px-6 py-5 md:px-8">
@@ -53,13 +84,12 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
               width={48}
               height={48}
               className="h-12 w-12 shrink-0 rounded-xl object-contain bg-background/50 p-1"
-              loading="lazy"
             />
           )}
           <div className="min-w-0 flex-1">
-            <h3 className="text-lg font-bold">Live Bonus Hunts</h3>
+            <h2 className="text-lg font-bold">Seneste bonus hunts på {casinoName}</h2>
             <p className="text-sm text-muted-foreground">
-              Vi streamer bonus hunts live på {casinoName} – følg med og se resultaterne
+              Vi tester løbende {casinoName} live på stream. Her er de seneste resultater:
             </p>
           </div>
           <Badge variant="secondary" className="hidden shrink-0 text-xs sm:inline-flex">
@@ -68,57 +98,44 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
           </Badge>
         </div>
 
-        {/* Bonus hunt cards */}
-        <div className="grid gap-3 p-6 sm:grid-cols-3 md:px-8">
-          {hunts.map((hunt, i) => {
-            const avgX = hunt.avgX != null ? Number(hunt.avgX) : null;
-            const isTop = i === 0;
-            return (
-              <Link
-                key={hunt.number}
-                to="/community"
-                className={`group relative flex flex-col items-center gap-3 rounded-xl border p-5 text-center transition-all hover:shadow-md ${
-                  isTop
-                    ? "border-primary/30 bg-primary/5 hover:border-primary/50"
-                    : "border-border bg-card hover:border-primary/30 hover:bg-primary/5"
-                }`}
-              >
-                {isTop && (
-                  <div className="absolute -top-2.5 left-1/2 -translate-x-1/2">
-                    <Badge className="text-[10px] px-2 py-0.5">
-                      <Trophy className="mr-1 h-3 w-3" />
-                      Seneste
-                    </Badge>
-                  </div>
-                )}
-                <span className="text-sm font-semibold text-muted-foreground">
-                  Hunt #{hunt.number}
-                </span>
-                {avgX != null && (
-                  <span className={`text-3xl font-extrabold tracking-tight ${
-                    isTop ? "text-primary" : "text-foreground"
-                  }`}>
-                    {avgX.toFixed(1)}x
-                  </span>
-                )}
-                <span className="text-xs text-muted-foreground">
-                  avg · {hunt.openedSlots}/{hunt.totalSlots} slots åbnet
-                </span>
-              </Link>
-            );
-          })}
+        {/* Text-based hunt links – crawlable, semantic, with anchor variation */}
+        <div className="px-6 py-5 md:px-8">
+          <ul className="space-y-3">
+            {hunts.map((hunt, i) => (
+              <li key={hunt.number}>
+                <Link
+                  to="/community/bonus-hunt"
+                  title={`Bonus Hunt #${hunt.number} på ${casinoName}`}
+                  className="text-primary underline decoration-primary/40 hover:decoration-primary hover:text-primary/80 transition-colors text-sm leading-relaxed"
+                >
+                  {getHuntAnchorText(hunt, i, casinoName)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-4 text-xs text-muted-foreground">
+            Data opdateres automatisk efter hver live-stream.
+          </p>
         </div>
 
         {/* CTA */}
         <div className="flex flex-wrap items-center gap-4 border-t border-border/50 px-6 py-4 md:px-8">
           <p className="flex-1 text-sm text-muted-foreground">
-            Følg med i bonus hunts, spil på vores spillemaskiner og vind præmier i vores community.
+            Se alle live tests i vores{" "}
+            <Link
+              to="/community/bonus-hunt"
+              className="text-primary underline hover:text-primary/80"
+            >
+              Bonus Hunt arkiv
+            </Link>
+            .
           </p>
           <Link
-            to="/community"
+            to="/community/bonus-hunt"
             className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Gå til Community
+            Gå til Bonus Hunts
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>

@@ -6,6 +6,7 @@ import { BonusHuntStatsTab } from "@/components/bonus-hunt/BonusHuntStatsTab";
 import { BonusHuntGTWTab } from "@/components/bonus-hunt/BonusHuntGTWTab";
 import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
 import { BonusHuntFooter } from "@/components/bonus-hunt/BonusHuntFooter";
+import { BonusHuntCasinoContext } from "@/components/bonus-hunt/BonusHuntCasinoContext";
 import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
 import { useAuth } from "@/hooks/useAuth";
@@ -72,6 +73,10 @@ export default function BonusHunt() {
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
               {/* Left column – slot table */}
               <div className="lg:col-span-3 space-y-4">
+                <BonusHuntCasinoContext
+                  huntNumber={huntIdOverride || liveHuntNumber}
+                  huntDate={huntDate}
+                />
                 <BonusHuntSlotTable
                   slots={huntData.slots}
                   huntNumber={huntIdOverride || liveHuntNumber}
