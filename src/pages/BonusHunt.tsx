@@ -274,7 +274,7 @@ export default function BonusHunt() {
                   )}
 
                   {/* Host card – fills remaining height in right column */}
-                  <div className="hidden xl:flex flex-1">
+                  <div className="hidden xl:block">
                     <BonusHuntHostCard huntNumber={currentHuntNumber} />
                   </div>
                 </div>
