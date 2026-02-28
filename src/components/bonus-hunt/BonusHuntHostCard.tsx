@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { Video, ExternalLink } from "lucide-react";
+import { Video, ExternalLink, Gamepad2, BarChart3, Users, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { KEVIN_SAME_AS } from "@/lib/seo";
+import { useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 
 const SITE_URL = "https://casinoaftaler.dk";
 
@@ -68,20 +69,24 @@ function getActiveSocials() {
 
 export function BonusHuntHostCard() {
   const socials = getActiveSocials();
+  const { data: latestHuntNumber } = useLatestHuntNumber();
 
   return (
-    <section className="rounded-xl border border-border/50 bg-card p-6 h-full flex flex-col">
+    <section className="group rounded-xl border border-border/50 bg-card p-6 h-full flex flex-col transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
       <div className="flex items-start gap-5">
-        {/* Avatar */}
-        <img
-          src="/kevin-avatar.webp"
-          alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
-          className="h-20 w-20 shrink-0 rounded-full object-cover ring-2 ring-primary/20"
-          loading="lazy"
-        />
+        {/* Avatar with subtle glow */}
+        <div className="relative shrink-0">
+          <div className="absolute inset-0 rounded-full bg-primary/[0.06] blur-xl scale-150 dark:block hidden pointer-events-none" />
+          <img
+            src="/kevin-avatar.webp"
+            alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
+            className="relative h-20 w-20 rounded-full object-cover ring-2 ring-primary/20 transition-transform duration-200 group-hover:scale-[1.03]"
+            loading="lazy"
+          />
+        </div>
 
         {/* Info */}
-        <div className="min-w-0 flex-1 space-y-2">
+        <div className="min-w-0 flex-1 space-y-2.5">
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1.5">
               <Video className="h-3 w-3 text-primary" />
@@ -89,8 +94,11 @@ export function BonusHuntHostCard() {
                 Vært
               </span>
             </div>
-            <span className="flex items-center gap-1 text-[11px] text-green-500">
-              <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+            <span className="flex items-center gap-1.5 text-[11px] font-medium" style={{ color: "hsl(142 71% 45%)" }}>
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inset-0 rounded-full animate-ping opacity-40" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
+                <span className="relative inline-flex h-2 w-2 rounded-full" style={{ backgroundColor: "hsl(142 71% 45%)" }} />
+              </span>
               Live streamer
             </span>
           </div>
@@ -104,23 +112,50 @@ export function BonusHuntHostCard() {
             </p>
           </div>
 
+          {/* Mini stats row */}
+          <div className="flex flex-wrap gap-2">
+            {latestHuntNumber && (
+              <span className="inline-flex items-center gap-1 rounded-md border border-border/50 bg-muted/50 px-2 py-0.5 text-[11px] text-muted-foreground">
+                <Gamepad2 className="h-3 w-3 text-primary/70" />
+                {latestHuntNumber} hunts
+              </span>
+            )}
+            <span className="inline-flex items-center gap-1 rounded-md border border-border/50 bg-muted/50 px-2 py-0.5 text-[11px] text-muted-foreground">
+              <BarChart3 className="h-3 w-3 text-primary/70" />
+              Dokumenteret
+            </span>
+            <span className="inline-flex items-center gap-1 rounded-md border border-border/50 bg-muted/50 px-2 py-0.5 text-[11px] text-muted-foreground">
+              <Users className="h-3 w-3 text-primary/70" />
+              Twitch community
+            </span>
+          </div>
+
           <p className="text-xs text-muted-foreground leading-relaxed">
-            Kevin streamer og dokumenterer live bonus hunts med fuld gennemsigtighed – fra indsats til resultat.
+            Live hver uge med nye bonus hunts – fra første spin til sidste resultat. Alt dokumenteret. Ingen filter.
           </p>
 
-          <div className="flex items-center gap-2.5 pt-1">
-            {socials.map((s) => (
-              <a
-                key={s.name}
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={s.name}
-                className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground transition-colors hover:text-primary hover:bg-primary/10"
-              >
-                <SocialIcon platform={s.icon} />
+          {/* Social icons + CTA */}
+          <div className="flex items-center gap-3 pt-1">
+            <div className="flex items-center gap-1.5">
+              {socials.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={s.name}
+                  className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground transition-colors hover:text-primary hover:bg-primary/10"
+                >
+                  <SocialIcon platform={s.icon} />
+                </a>
+              ))}
+            </div>
+            <span className="h-4 w-px bg-border" />
+            <Button variant="ghost" size="sm" className="h-6 text-[11px] px-2 gap-1 text-muted-foreground hover:text-primary" asChild>
+              <a href="https://www.twitch.tv/casinoaftaler" target="_blank" rel="noopener noreferrer">
+                <Play className="h-3 w-3" /> Se seneste stream
               </a>
-            ))}
+            </Button>
           </div>
         </div>
       </div>
