@@ -273,11 +273,9 @@ export default function BonusHunt() {
                     />
                   )}
 
-                  {/* Host card – sticky alongside slot table on desktop */}
-                  <div className="hidden xl:block">
-                    <div className="sticky top-4">
-                      <BonusHuntHostCard huntNumber={currentHuntNumber} />
-                    </div>
+                  {/* Host card – fills remaining height in right column */}
+                  <div className="hidden xl:flex flex-1">
+                    <BonusHuntHostCard huntNumber={currentHuntNumber} />
                   </div>
                 </div>
               </div>

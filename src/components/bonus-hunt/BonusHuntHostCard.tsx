@@ -71,7 +71,7 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
   const socials = getActiveSocials();
 
   return (
-    <section className="group rounded-xl border border-border/50 bg-card px-5 py-4 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
+    <section className="group h-full rounded-xl border border-border/50 bg-card px-5 py-4 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
       <div className="flex items-center gap-4">
         {/* Avatar */}
         <div className="relative shrink-0">
