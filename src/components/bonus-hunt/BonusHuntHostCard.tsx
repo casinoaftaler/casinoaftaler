@@ -72,7 +72,7 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
 
   return (
     <section className="group rounded-xl border border-border/50 bg-card p-6 h-full flex flex-col transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
-      <div className="flex items-start gap-5">
+      <div className="flex items-center gap-5">
         {/* Avatar with subtle glow */}
         <div className="relative shrink-0">
           <div className="absolute inset-0 rounded-full bg-primary/[0.06] blur-xl scale-150 dark:block hidden pointer-events-none" />
