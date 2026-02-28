@@ -74,7 +74,7 @@ export default function BonusHunt() {
               <div className="lg:col-span-3 space-y-4">
                 <BonusHuntSlotTable
                   slots={huntData.slots}
-                  huntNumber={huntData.visibleId}
+                  huntNumber={huntIdOverride || liveHuntNumber}
                   huntDate={huntDate}
                   latestHuntNumber={latestHuntNumber}
                   maxHuntNumber={maxHuntNumber}
