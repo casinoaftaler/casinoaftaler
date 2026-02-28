@@ -53,6 +53,16 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     anchor: "", // uses matched text
   },
   {
+    patterns: [/\bcashback bonus\b/i, /\bcashback-bonus\b/i],
+    href: "/cashback-bonus",
+    anchor: "", // uses matched text
+  },
+  {
+    patterns: [/\breload bonus\b/i, /\breload-bonus\b/i],
+    href: "/reload-bonus",
+    anchor: "", // uses matched text
+  },
+  {
     patterns: [/\bhvidvask(?:regler|lovgivning|ning)?\b/i, /\bAML\b/],
     href: "/casino-licenser",
     anchor: "", // uses matched text
