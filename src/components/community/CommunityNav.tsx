@@ -6,8 +6,8 @@ import "@/styles/community-micro.css";
 const NAV_ITEMS = [
   { href: "/community", label: "Oversigt", icon: Home, exact: true },
   { href: "/community/slots", label: "Spillehal", icon: Gamepad2 },
-  { href: "/community/leaderboard", label: "Turneringer", icon: Trophy },
   { href: "/community/bonus-hunt", label: "Bonus Hunt", icon: Target },
+  { href: "/community/leaderboard", label: "Turneringer", icon: Trophy },
   { href: "/community/spin-the-reel", label: "Spin the Reel", icon: RotateCw },
   { href: "/highlights", label: "Highlights", icon: Video },
   { href: "/community/rewards", label: "Rewards", icon: Gift },
