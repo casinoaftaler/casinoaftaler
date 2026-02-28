@@ -5,7 +5,7 @@ import { BonusHuntSlotTable } from "@/components/bonus-hunt/BonusHuntSlotTable";
 import { BonusHuntStatsTab } from "@/components/bonus-hunt/BonusHuntStatsTab";
 import { BonusHuntGTWTab } from "@/components/bonus-hunt/BonusHuntGTWTab";
 import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
-import { BonusHuntFooter } from "@/components/bonus-hunt/BonusHuntFooter";
+
 import { BonusHuntCasinoContext } from "@/components/bonus-hunt/BonusHuntCasinoContext";
 import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
@@ -135,10 +135,6 @@ export default function BonusHunt() {
                 </div>
               </div>
 
-              {/* Row 2: Timeline */}
-              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300 delay-150">
-                <BonusHuntFooter stats={huntData.stats} />
-              </div>
 
               {/* Row 3: Slot table */}
               <div className="animate-in fade-in slide-in-from-bottom-2 duration-300 delay-200">
