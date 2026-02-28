@@ -104,7 +104,7 @@ export function CommunityActivityWidget({ casinoName, casinoSlug }: CommunityAct
             {hunts.map((hunt, i) => (
               <li key={hunt.number}>
                 <Link
-                  to="/bonus-hunt"
+                  to={`/bonus-hunt?hunt=${hunt.number}`}
                   title={`Bonus Hunt #${hunt.number} på ${casinoName}`}
                   className="text-primary underline decoration-primary/40 hover:decoration-primary hover:text-primary/80 transition-colors text-sm leading-relaxed"
                 >

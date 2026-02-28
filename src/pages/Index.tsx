@@ -541,6 +541,46 @@ const Index = () => {
 
         <Separator className="my-10" />
 
+        {/* Bonus Hunt – Community & Live tests */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Target className="h-7 w-7 text-primary" />
+            Live Bonus Hunts – Dokumenterede Resultater
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Følg med i vores live bonus hunts, hvor vi tester spilleautomater på{" "}
+            <Link to="/licenserede-casinoer" className="text-primary hover:underline font-medium">licenserede danske casinoer</Link>
+            {" "}med fuld transparens. Alle resultater dokumenteres med gennemsnit X, break-even analyser og community bets i realtid.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vores{" "}
+            <Link to="/bonus-hunt" className="text-primary hover:underline font-medium">Bonus Hunt arkiv</Link>
+            {" "}giver dig adgang til alle tidligere hunts med detaljerede statistikker. Deltag i community bets og følg{" "}
+            <Link to="/forfatter/kevin" className="text-primary hover:underline font-medium">Kevin</Link>
+            {" "}live på{" "}
+            <a href="https://www.twitch.tv/fedesvinsejer" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Twitch</a>.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/bonus-hunt"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+            >
+              <Target className="h-4 w-4 text-primary flex-shrink-0" />
+              Se alle bonus hunts
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/community"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+            >
+              <Users className="h-4 w-4 text-primary flex-shrink-0" />
+              Udforsk community
+            </Link>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Casino Nyheder sektion */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Casino Nyheder</h2>

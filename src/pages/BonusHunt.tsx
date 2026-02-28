@@ -32,14 +32,28 @@ import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { SITE_URL, buildArticleSchema, KEVIN_SAME_AS } from "@/lib/seo";
 import bonusHuntHero from "@/assets/bonus-hunt/bonus-hunt-hero.jpg";
 
 export default function BonusHunt() {
   const { user } = useAuth();
   const queryClient = useQueryClient();
-  const [huntIdOverride, setHuntIdOverride] = useState<number | undefined>();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [huntIdOverride, setHuntIdOverride] = useState<number | undefined>(() => {
+    const param = searchParams.get("hunt");
+    return param ? parseInt(param, 10) || undefined : undefined;
+  });
+
+  // Sync URL param when huntIdOverride changes
+  useEffect(() => {
+    if (huntIdOverride) {
+      setSearchParams({ hunt: String(huntIdOverride) }, { replace: true });
+    } else {
+      setSearchParams({}, { replace: true });
+    }
+  }, [huntIdOverride, setSearchParams]);
 
   const { data: latestHuntNumber = 1 } = useLatestHuntNumber();
   const { data: huntData, isLoading: huntLoading } = useBonusHuntData(huntIdOverride);
