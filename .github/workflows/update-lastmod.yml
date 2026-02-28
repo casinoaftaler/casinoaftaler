@@ -1,0 +1,40 @@
+name: Update seoRoutes lastmod on content change
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/pages/**'
+
+jobs:
+  update-lastmod:
+    runs-on: ubuntu-latest
+    # Skip commits made by this workflow to avoid infinite loops
+    if: "!contains(github.event.head_commit.message, '[skip-lastmod]')"
+    
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Need previous commit for diff
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Detect content changes and update lastmod
+        id: update
+        run: node .github/scripts/update-lastmod.mjs
+
+      - name: Commit updated seoRoutes.ts
+        if: steps.update.outputs.updated == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/lib/seoRoutes.ts
+          git commit -m "chore: update lastmod for changed content pages [skip-lastmod]"
+          git push
