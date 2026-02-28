@@ -220,6 +220,10 @@ export default function BonusHunt() {
                   )}
                   {/* Slot table – directly under video */}
                   <BonusHuntSlotTable slots={huntData.slots} />
+                  {/* Host card – visible on mobile only (below slot table) */}
+                  <div className="xl:hidden">
+                    <BonusHuntHostCard huntNumber={currentHuntNumber} />
+                  </div>
                 </div>
 
                 {/* Right column (40%) */}
@@ -269,8 +273,11 @@ export default function BonusHunt() {
                     />
                   )}
 
-                  <div className="flex-1">
-                    <BonusHuntHostCard huntNumber={currentHuntNumber} />
+                  {/* Host card – sticky alongside slot table on desktop */}
+                  <div className="hidden xl:block">
+                    <div className="sticky top-4">
+                      <BonusHuntHostCard huntNumber={currentHuntNumber} />
+                    </div>
                   </div>
                 </div>
               </div>
