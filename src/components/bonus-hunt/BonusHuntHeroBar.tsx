@@ -91,7 +91,9 @@ export function BonusHuntHeroBar({
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="max-h-[300px]">
-              {Array.from({ length: maxHuntNumber - 1 }, (_, i) => maxHuntNumber - i).map(num => (
+              {Array.from({ length: maxHuntNumber - 1 }, (_, i) => maxHuntNumber - i)
+                .filter(num => num !== 6 && num !== 7)
+                .map(num => (
                 <SelectItem key={num} value={String(num)} className="text-xs">
                   #{num} {num > latestHuntNumber ? '🔴 LIVE' : ''}
                 </SelectItem>

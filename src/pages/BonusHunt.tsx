@@ -51,15 +51,32 @@ export default function BonusHunt() {
   const huntVideo = getHuntVideo(currentHuntNumber);
   const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber);
 
+  const blockedHunts = new Set([6, 7]);
+
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
     if (!huntData) return;
     const current = huntIdOverride || liveHuntNumber;
+
+    const findNext = (from: number, step: number, limit: number) => {
+      let n = from + step;
+      while (blockedHunts.has(n) && ((step > 0 && n < limit) || (step < 0 && n > limit))) n += step;
+      return blockedHunts.has(n) ? null : n;
+    };
+
     switch (dir) {
-      case 'prev': if (current > 2) setHuntIdOverride(current - 1); break;
-      case 'next':
-        if (current < maxHuntNumber) setHuntIdOverride(current + 1);
-        if (current + 1 > latestHuntNumber) setHuntIdOverride(undefined);
+      case 'prev': {
+        const n = findNext(current, -1, 2);
+        if (n && n >= 2) setHuntIdOverride(n);
         break;
+      }
+      case 'next': {
+        const n = findNext(current, 1, maxHuntNumber);
+        if (n && n <= maxHuntNumber) {
+          if (n > latestHuntNumber) setHuntIdOverride(undefined);
+          else setHuntIdOverride(n);
+        }
+        break;
+      }
       case 'first': setHuntIdOverride(2); break;
       case 'last': setHuntIdOverride(undefined); break;
     }
