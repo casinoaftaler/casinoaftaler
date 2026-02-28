@@ -42,7 +42,7 @@ export function BonusHuntHero({ huntNumber, huntDate, data }: BonusHuntHeroProps
       />
       <div className="absolute inset-0 bg-card/80" />
 
-      <div className="relative p-4 md:p-6 space-y-4">
+      <div className="relative p-6 md:p-8 space-y-6">
         {/* Top row: badge + status */}
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
@@ -78,14 +78,14 @@ export function BonusHuntHero({ huntNumber, huntDate, data }: BonusHuntHeroProps
         </div>
 
         {/* Main heading */}
-        <div className="space-y-1">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+        <div className="space-y-2">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
             Bonus Hunt #{huntNumber}
           </h1>
           {s.averageX != null && (
-            <p className="text-4xl md:text-[56px] font-black tracking-tighter text-primary leading-none">
+            <p className="text-5xl md:text-6xl font-black tracking-tighter text-primary">
               {s.averageX}x
-              <span className="text-base md:text-lg font-semibold text-muted-foreground ml-2">
+              <span className="text-lg md:text-xl font-semibold text-muted-foreground ml-3">
                 gennemsnit
               </span>
             </p>
@@ -93,17 +93,17 @@ export function BonusHuntHero({ huntNumber, huntDate, data }: BonusHuntHeroProps
         </div>
 
         {/* Metrics grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {metrics.map((m) => (
             <div
               key={m.label}
-              className="rounded-lg bg-background/60 border border-border/50 px-3 py-2.5 space-y-0.5"
+              className="rounded-xl bg-background/60 border border-border/50 p-4 space-y-1"
             >
-              <div className="flex items-center gap-1 text-muted-foreground">
-                <m.icon className="h-3 w-3 text-primary" />
-                <span className="text-[11px] font-medium">{m.label}</span>
+              <div className="flex items-center gap-1.5 text-muted-foreground">
+                <m.icon className="h-3.5 w-3.5 text-primary" />
+                <span className="text-xs font-medium">{m.label}</span>
               </div>
-              <p className="text-lg font-bold text-foreground">{m.value}</p>
+              <p className="text-xl font-bold text-foreground">{m.value}</p>
             </div>
           ))}
         </div>

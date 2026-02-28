@@ -74,13 +74,13 @@ export default function BonusHunt() {
         badgeIcon={Target}
         showHero={false}
       >
-        <div className="py-4 md:py-5">
+        <div className="py-6 md:py-8">
           {huntLoading ? (
             <div className="flex items-center justify-center py-20">
               <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
             </div>
           ) : huntData ? (
-            <div className="space-y-4">
+            <div className="space-y-6">
               {/* === HERO: The event headline === */}
               <BonusHuntHero
                 huntNumber={currentHuntNumber}
@@ -96,9 +96,9 @@ export default function BonusHunt() {
               {huntVideo && <BonusHuntVideoSection video={huntVideo} />}
 
               {/* === Two-column: Storytelling + Betting === */}
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
                 {/* Left: Storytelling flow */}
-                <div className="lg:col-span-3 space-y-4">
+                <div className="lg:col-span-3 space-y-6">
                   {/* Top Moments */}
                   <BonusHuntTopMoments slots={huntData.slots} />
 

@@ -39,17 +39,17 @@ export function BonusHuntTopMoments({ slots }: Props) {
   if (topSlots.length === 0) return null;
 
   return (
-    <section className="space-y-3" aria-label="Top moments">
+    <section className="space-y-4" aria-label="Top moments">
       <div className="flex items-center gap-2">
-        <Trophy className="h-4 w-4 text-primary" />
-        <h2 className="text-sm font-bold text-foreground">Top Moments</h2>
+        <Trophy className="h-5 w-5 text-primary" />
+        <h2 className="text-lg font-bold text-foreground">Top Moments</h2>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
         {topSlots.map((slot, i) => (
           <div
             key={`${slot.slot}-${i}`}
-            className="group relative rounded-lg border border-border/50 bg-card p-3 space-y-1.5 hover:border-primary/30 transition-colors"
+            className="group relative rounded-xl border border-border/50 bg-card p-4 space-y-2 hover:border-primary/30 transition-colors"
           >
             {i === 0 && (
               <div className="absolute -top-2 -right-2">

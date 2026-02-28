@@ -7,7 +7,7 @@ interface Props {
 
 export function BonusHuntCommunity({ huntNumber, twitchVideoId }: Props) {
   return (
-    <section className="rounded-lg border border-border/50 bg-card p-4 space-y-2" aria-label="Community aktivitet">
+    <section className="rounded-xl border border-border/50 bg-card p-5 space-y-3" aria-label="Community aktivitet">
       <div className="flex items-center gap-2">
         <Users className="h-4 w-4 text-primary" />
         <h2 className="text-sm font-semibold text-foreground">Community</h2>
