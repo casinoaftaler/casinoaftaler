@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import { SlotCouponReceipt } from "./SlotCouponReceipt";
 import { SlotCouponLeaderboard } from "./SlotCouponLeaderboard";
 import { DEFAULT_MARKETS, type CouponMarket } from "./slotCouponMarkets";
+import { resolveCouponMarkets } from "./slotCouponResolver";
+import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
 import "@/styles/slot-coupon.css";
 
 interface MarketWithEnabled extends CouponMarket {
@@ -18,12 +20,15 @@ interface Props {
   huntNumber: number;
   sessionId?: string;
   isLive?: boolean;
-  couponResults?: Record<string, boolean | null> | null;
+  /** Live slot data from the hunt API */
+  huntSlots?: BonusHuntSlot[];
+  /** Total number of slots in the hunt */
+  totalSlots?: number;
   sessionMarkets?: MarketWithEnabled[] | null;
   couponOpen?: boolean;
 }
 
-export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResults, sessionMarkets, couponOpen }: Props) {
+export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, totalSlots, sessionMarkets, couponOpen }: Props) {
   const { user } = useAuth();
 
   // Derive active markets from session or fall back to defaults
@@ -33,6 +38,12 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResul
     }
     return DEFAULT_MARKETS;
   }, [sessionMarkets]);
+
+  // Auto-resolve coupon results from live hunt data
+  const couponResults = useMemo(() => {
+    if (!huntSlots || !totalSlots) return null;
+    return resolveCouponMarkets(MARKETS, huntSlots, totalSlots);
+  }, [MARKETS, huntSlots, totalSlots]);
 
   const [answers, setAnswers] = useState<Record<number, boolean | null>>(
     () => Object.fromEntries(MARKETS.map((_, i) => [i, null]))
@@ -113,6 +124,11 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResul
 
   const progressPercent = (answeredCount / MARKETS.length) * 100;
 
+  // Compute how many markets have been resolved so far
+  const resolvedCount = couponResults
+    ? Object.values(couponResults).filter((v) => v !== null).length
+    : 0;
+
   return (
     <>
     <div className="relative rounded-xl border border-border/60 slot-coupon-bg overflow-hidden shadow-lg flex flex-col">
@@ -170,16 +186,30 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResul
         {MARKETS.map((market, i) => {
           const selected = answers[i];
           const justChanged = lastChanged === i;
+          const result = couponResults?.[i] ?? null;
           return (
             <div
               key={i}
               className={cn(
                 "px-4 py-3 transition-all duration-200",
                 selected !== null && "bg-primary/[0.02]",
-                justChanged && "animate-in fade-in duration-300"
+                justChanged && "animate-in fade-in duration-300",
+                result === true && "bg-green-500/[0.05]",
+                result === false && "bg-red-500/[0.05]"
               )}
             >
-              <p className="text-[11px] font-medium text-foreground/80 mb-2 leading-snug">{market.q}</p>
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-[11px] font-medium text-foreground/80 leading-snug">{market.q}</p>
+                {result !== null && (
+                  <span className={cn(
+                    "ml-2 shrink-0 flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded-full",
+                    result ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
+                  )}>
+                    {result ? <Check className="h-2.5 w-2.5" /> : <X className="h-2.5 w-2.5" />}
+                    {result ? "RAMT" : "MISS"}
+                  </span>
+                )}
+              </div>
               <div className="grid grid-cols-2 gap-2">
                 {/* JA */}
                  <button
@@ -249,6 +279,16 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResul
           </div>
         )}
 
+        {/* Live resolution progress */}
+        {couponResults && resolvedCount > 0 && (
+          <div className="flex items-center justify-between rounded-lg bg-muted/30 border border-border/30 px-3 py-1.5">
+            <span className="text-[10px] text-muted-foreground font-medium">Live resultater</span>
+            <span className="text-[10px] font-bold tabular-nums text-foreground">
+              {resolvedCount}/{MARKETS.length} afgjort
+            </span>
+          </div>
+        )}
+
         {/* Risk + count row */}
         <div className="flex items-center justify-between">
           {riskProfile ? (
@@ -312,7 +352,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResul
               className="w-full text-sm font-bold"
               size="default"
             >
-              {isComplete ? "🎰 Placer dit bet" : "Vælg alle 10 markeder"}
+              {isComplete ? "🎰 Placer dit bet" : `Vælg alle ${MARKETS.length} markeder`}
             </Button>
           ) : (
             <div className="space-y-2">
@@ -370,6 +410,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResul
             <SlotCouponReceipt
               huntNumber={huntNumber}
               answers={answers}
+              results={couponResults ?? undefined}
               isLive={isLive}
               markets={MARKETS}
             />
