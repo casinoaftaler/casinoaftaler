@@ -18,6 +18,13 @@ import { useAuth } from "@/hooks/useAuth";
 import { Link, useSearchParams } from "react-router-dom";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
+import { LazySection } from "@/components/LazySection";
+import { BonusHuntCommunityLinks } from "@/components/bonus-hunt/BonusHuntCommunityLinks";
+import { BonusHuntTopCasinos } from "@/components/bonus-hunt/BonusHuntTopCasinos";
+import { BonusHuntLatestNews } from "@/components/bonus-hunt/BonusHuntLatestNews";
+import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { HighlightsFaq, buildHighlightsFaqSchema } from "@/components/highlights/HighlightsFaq";
+import { SITE_URL, buildArticleSchema, KEVIN_SAME_AS } from "@/lib/seo";
 
 function HighlightsTab() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -192,11 +199,29 @@ export default function Highlights() {
   const [searchParams] = useSearchParams();
   const defaultTab = searchParams.get("tab") === "community" ? "community" : "highlights";
 
+  const seoDescription = "Se de bedste casino stream-øjeblikke og bruger-indsendte highlights. Twitch clips, YouTube videoer og community clips samlet ét sted.";
+
+  const articleSchema = useMemo(() => buildArticleSchema({
+    headline: "Highlights & Community Clips – De bedste stream-øjeblikke",
+    description: seoDescription,
+    url: `${SITE_URL}/highlights`,
+    datePublished: "2026-01-20",
+    articleType: "Article",
+    authorName: "Kevin",
+    authorUrl: `${SITE_URL}/forfatter/kevin`,
+    authorSameAs: KEVIN_SAME_AS,
+  }), [seoDescription]);
+
+  const faqSchema = useMemo(() => buildHighlightsFaqSchema(), []);
+  const jsonLdSchemas = useMemo(() => [articleSchema, faqSchema], [articleSchema, faqSchema]);
+
   return (
     <>
       <SEO
         title="Highlights & Community Clips | Casinoaftaler"
-        description="Se de bedste casino stream-øjeblikke og bruger-indsendte highlights. Twitch clips, YouTube videoer og community clips samlet ét sted."
+        description={seoDescription}
+        jsonLd={jsonLdSchemas}
+        breadcrumbLabel="Highlights"
       />
       <CommunityPageLayout
         title="Highlights"
@@ -204,10 +229,10 @@ export default function Highlights() {
         badgeText="Stream & Community"
         badgeIcon={Sparkles}
       >
-        <div className="py-8 md:py-12">
+        <div className="py-8 md:py-12 space-y-8">
 
           {/* ── Redaktionel intro ── */}
-          <div className="max-w-3xl mx-auto mb-10 px-2">
+          <div className="max-w-3xl mx-auto px-2">
             <div className="flex items-center gap-2 mb-3">
               <BookOpen className="h-4 w-4 text-primary" />
               <span className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Redaktionel intro</span>
@@ -217,7 +242,7 @@ export default function Highlights() {
             </h2>
             <div className="space-y-3 text-muted-foreground leading-relaxed text-sm md:text-base">
               <p>
-                Highlights-sektionen er vores kurerede samling af de bedste casino-øjeblikke fra Jonas og kevins streams
+                Highlights-sektionen er vores kurerede samling af de bedste casino-øjeblikke fra Jonas og Kevins streams
                 på Twitch og YouTube. Her finder du alt fra episke bonus-åbninger og massive multipliers til sjove fejltagelser
                 og uforglemmelige reaktioner – præcis som de skete, live.
               </p>
@@ -229,8 +254,9 @@ export default function Highlights() {
               </p>
               <p>
                 Alle indsendte clips gennemgår en godkendelsesproces. Vi verificerer at indholdet er ægte, og at det
-                lever op til vores retningslinjer for ansvarligt spil. Vi viser ikke indhold der glorificerer
-                uforsvarligt spil eller store tab.
+                lever op til vores retningslinjer for{" "}
+                <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link>.
+                Vi viser ikke indhold der glorificerer uforsvarligt spil eller store tab.
               </p>
               <p>
                 Vil du se de nyeste casino-videoer fra vores stream, kan du også følge os direkte på{" "}
@@ -254,6 +280,7 @@ export default function Highlights() {
             </div>
           </div>
 
+          {/* ── Tabs ── */}
           <Tabs defaultValue={defaultTab} className="w-full">
             <div className="flex justify-center mb-8">
               <TabsList>
@@ -275,12 +302,39 @@ export default function Highlights() {
             </TabsContent>
           </Tabs>
 
-          <div className="mt-12">
+          {/* ── Community cross-links ── */}
+          <LazySection minHeight="120px">
+            <BonusHuntCommunityLinks />
+          </LazySection>
+
+          {/* ── Top casinos CTA ── */}
+          <LazySection minHeight="200px">
+            <BonusHuntTopCasinos />
+          </LazySection>
+
+          {/* ── Latest news ── */}
+          <LazySection minHeight="180px">
+            <BonusHuntLatestNews />
+          </LazySection>
+
+          {/* ── Related guides ── */}
+          <LazySection minHeight="180px">
             <RelatedGuides currentPath="/highlights" />
-          </div>
+          </LazySection>
+
+          {/* ── FAQ ── */}
+          <LazySection minHeight="300px">
+            <HighlightsFaq />
+          </LazySection>
+
+          {/* ── Brand block – E-E-A-T signal ── */}
+          <LazySection minHeight="200px">
+            <CommunityBrandBlock />
+          </LazySection>
+
+          <div className="pb-12" />
         </div>
       </CommunityPageLayout>
     </>
   );
 }
-
