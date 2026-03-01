@@ -8,7 +8,7 @@ const NAV_ITEMS = [
   { href: "/community/slots", label: "Spillehal", icon: Gamepad2 },
   { href: "/bonus-hunt", label: "Bonus Hunt", icon: Target },
   { href: "/community/leaderboard", label: "Turneringer", icon: Trophy },
-  { href: "/community/spin-the-reel", label: "Spin the Reel", icon: RotateCw },
+  
   { href: "/highlights", label: "Highlights", icon: Video },
   { href: "/community/rewards", label: "Rewards", icon: Gift },
   { href: "/butik", label: "Butik", icon: ShoppingBag },
