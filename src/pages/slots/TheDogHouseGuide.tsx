@@ -24,7 +24,7 @@ const theDogHouseFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er The Dog House RTP, og varierer den?",
     answer: (
       <>
-        The Dog House fås i tre RTP-versioner: 96,51 % (standard), 95,51 % og 94,39 %. <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> lader casinooperatøren vælge konfigurationen. Standard-versionen er den mest udbredte på danske <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link>. Over 1.000 spins á 10 kr. svarer forskellen mellem 96,51 % og 94,39 % til 212 kr. i ekstra tab – en betydelig forskel. Verificér altid RTP i spillets info-sektion.
+        The Dog House fås i tre RTP-versioner: 96,51 % (standard), 95,51 % og 94,39 %. <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> lader casinooperatøren vælge konfigurationen. Standard-versionen er den mest udbredte på danske <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>. Over 1.000 spins á 10 kr. svarer forskellen mellem 96,51 % og 94,39 % til 212 kr. i ekstra tab – en betydelig forskel. Verificér altid RTP i spillets info-sektion.
       </>
     ),
   },

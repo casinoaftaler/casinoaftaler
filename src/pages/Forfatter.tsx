@@ -143,7 +143,7 @@ const jonasArticles = [
   { title: "Casinoer med Hurtig Udbetaling", path: "/casinoer/hurtig-udbetaling", category: "Guide", date: "17-02-2026", readTime: "22 min.", excerpt: "Find casinoer med de hurtigste udbetalinger i Danmark." },
   { title: "Casinoer med Høj RTP", path: "/casinoer/hoej-rtp", category: "Guide", date: "17-02-2026", readTime: "22 min.", excerpt: "Casinoer med de bedste tilbagebetalingsprocenter." },
   { title: "Crypto Casino Guide", path: "/casinoer/crypto-casino", category: "Guide", date: "17-02-2026", readTime: "22 min.", excerpt: "Alt om kryptovaluta-casinoer, Bitcoin-betalinger og sikkerhed." },
-  { title: "Licenserede Casinoer", path: "/licenserede-casinoer", category: "Guide", date: "17-02-2026", readTime: "22 min.", excerpt: "Komplet liste over casinoer med dansk licens." },
+  { title: "Licenserede Casinoer", path: "/casino-licenser", category: "Guide", date: "17-02-2026", readTime: "22 min.", excerpt: "Komplet liste over casinoer med dansk licens." },
   { title: "VR Casinoer Guide", path: "/casinoer/vr-casinoer", category: "Guide", date: "01-02-2026", readTime: "21 min.", excerpt: "Alt om virtual reality casinoer og fremtidens spiloplevelse." },
   { title: "Mobil Casinoer Guide", path: "/casinoer/mobil-casinoer", category: "Guide", date: "01-02-2026", readTime: "22 min.", excerpt: "De bedste mobilvenlige casinoer i Danmark." },
   { title: "Spil Casino for Sjov", path: "/casinoer/spil-casino-for-sjov", category: "Guide", date: "01-02-2026", readTime: "21 min.", excerpt: "Prøv casinospil gratis uden risiko – komplet guide." },

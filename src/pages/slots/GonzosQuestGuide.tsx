@@ -327,7 +327,7 @@ const GonzosQuestGuide = () => {
             Vores dom: Gonzo's Quest er en solid slot med en unik identitet. Den er ikke det optimale valg for wagering (lavere RTP), ikke det bedste for jackpot-jagt (lavt max win), og ikke det mest spændende for thrill-seekers. Men den er det perfekte valg for spillere, der ønsker en balanceret, veldesignet oplevelse med en af historiens mest tilfredsstillende mekanikker.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Spil Gonzo's Quest for oplevelsen og den progressive Avalanche-spænding. Spil den på <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link>, vær opmærksom på RTP'en, og husk altid at spille <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt</Link>. Gonzos eventyr startede i 2011 – men det er langt fra slut.
+            Spil Gonzo's Quest for oplevelsen og den progressive Avalanche-spænding. Spil den på <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>, vær opmærksom på RTP'en, og husk altid at spille <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt</Link>. Gonzos eventyr startede i 2011 – men det er langt fra slut.
           </p>
         </section>
 

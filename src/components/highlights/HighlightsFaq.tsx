@@ -44,7 +44,7 @@ const FAQ_ITEMS = [
         Vi accepterer wins, sjove øjeblikke, bonus-åbninger og reaktioner fra{" "}
         <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spilleautomater</Link>{" "}
         hos casinoer med{" "}
-        <Link to="/licenserede-casinoer" className="text-primary hover:underline">dansk licens</Link>.
+        <Link to="/casino-licenser" className="text-primary hover:underline">dansk licens</Link>.
         Vi viser ikke indhold der glorificerer uforsvarligt spil eller store tab.
       </>
     ),

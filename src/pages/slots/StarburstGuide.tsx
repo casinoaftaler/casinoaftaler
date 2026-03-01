@@ -386,7 +386,7 @@ const StarburstGuide = () => {
             Siden da har industrien bevæget sig markant mod højere volatilitet, bonus buy-funktioner, og megaways-mekanikker. NetEnt har selv fulgt denne trend med titler som Dead or Alive 2, Gonzos Quest Megaways, og Starburst XXXtreme. Men den originale Starburst forbliver i produktion og i aktiv markedsføring – et vidnesbyrd om, at der stadig er et stort marked for simpel, lavrisiko underholdning.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Starbursts kommercielle succes har haft en outsized indvirkning på branchen. Den beviste, at en slot ikke behøver komplekse features for at engagere spillere – og at casinoers free spins-markedsføring kunne skabe en selvforstærkende cyklus af opmærksomhed og spilaktivitet. Mange af de markedsføringsstrategier, <Link to="/licenserede-casinoer" className={linkClass}>casinoer</Link> bruger i dag, blev perfektioneret med Starburst som katalysator.
+            Starbursts kommercielle succes har haft en outsized indvirkning på branchen. Den beviste, at en slot ikke behøver komplekse features for at engagere spillere – og at casinoers free spins-markedsføring kunne skabe en selvforstærkende cyklus af opmærksomhed og spilaktivitet. Mange af de markedsføringsstrategier, <Link to="/casino-licenser" className={linkClass}>casinoer</Link> bruger i dag, blev perfektioneret med Starburst som katalysator.
           </p>
         </section>
 

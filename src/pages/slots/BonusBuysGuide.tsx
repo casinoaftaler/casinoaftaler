@@ -168,7 +168,7 @@ const bonusBuyFaqs: { question: string; answer: ReactNode }[] = [
     question: "Er bonus buy lovligt i Danmark?",
     answer: (
       <>
-        Ja, bonus buy er lovligt på <Link to="/licenserede-casinoer" className={linkClass}>licenserede danske casinoer</Link> under Spillemyndighedens regulering. I modsætning til UK, hvor FCA og UKGC har forbudt buy features, tillader den danske lovgivning denne funktion. Dog bør du være opmærksom på, at det er en høj-varians mekanik, og du bør altid overholde dine bankroll-grænser. Sørg for at spille på et casino med gyldig dansk licens.
+        Ja, bonus buy er lovligt på <Link to="/casino-licenser" className={linkClass}>licenserede danske casinoer</Link> under Spillemyndighedens regulering. I modsætning til UK, hvor FCA og UKGC har forbudt buy features, tillader den danske lovgivning denne funktion. Dog bør du være opmærksom på, at det er en høj-varians mekanik, og du bør altid overholde dine bankroll-grænser. Sørg for at spille på et casino med gyldig dansk licens.
       </>
     ),
   },
@@ -688,7 +688,7 @@ const BonusBuysGuide = () => {
             Regler i Danmark
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            I Danmark reguleres online gambling af Spillemyndigheden, som udsteder licenser til casinooperatører under den danske spillelov. Bonus buy-funktionen er fuldt lovlig på <Link to="/licenserede-casinoer" className={linkClass}>danske licenserede casinoer</Link>, i modsætning til eksempelvis Storbritannien, hvor funktionen er blevet forbudt.
+            I Danmark reguleres online gambling af Spillemyndigheden, som udsteder licenser til casinooperatører under den danske spillelov. Bonus buy-funktionen er fuldt lovlig på <Link to="/casino-licenser" className={linkClass}>danske licenserede casinoer</Link>, i modsætning til eksempelvis Storbritannien, hvor funktionen er blevet forbudt.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Spillemyndighedens regulering stiller dog krav til operatørerne: slots skal oplyse om RTP, og casinoer skal tilbyde ansvarligt spil-værktøjer som indbetalingsgrænser, tabsgrænser og selvudelukkelse via <a href="https://www.rofus.nu" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Disse værktøjer er særligt relevante for bonus buy-spillere, da den høje koncentration af indsatser kan accelerere tab.

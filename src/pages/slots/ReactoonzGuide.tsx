@@ -24,7 +24,7 @@ const reactoonzFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Reactoonz RTP, og er den konkurrencedygtig?",
     answer: (
       <>
-        Reactoonz har en RTP på 96,51 %, hvilket placerer den solidt over branchegennemsnittet på cirka 96 %. House edge er dermed 3,49 %. Sammenlignet med andre cluster-pays slots som Sweet Bonanza (96,48 %) er forskellen marginal. Over 1.000 spins á 10 kr. er det statistiske forventede tab 349 kr. – en beskeden præmie for den høje underholdningsværdi. Bemærk at <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> ikke tilbyder variable RTP-konfigurationer på Reactoonz, så værdien er identisk på alle <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link>.
+        Reactoonz har en RTP på 96,51 %, hvilket placerer den solidt over branchegennemsnittet på cirka 96 %. House edge er dermed 3,49 %. Sammenlignet med andre cluster-pays slots som Sweet Bonanza (96,48 %) er forskellen marginal. Over 1.000 spins á 10 kr. er det statistiske forventede tab 349 kr. – en beskeden præmie for den høje underholdningsværdi. Bemærk at <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> ikke tilbyder variable RTP-konfigurationer på Reactoonz, så værdien er identisk på alle <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>.
       </>
     ),
   },

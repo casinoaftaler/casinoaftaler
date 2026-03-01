@@ -24,7 +24,7 @@ const sweetBonanzaFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Sweet Bonanza RTP, og varierer den mellem casinoer?",
     answer: (
       <>
-        Sweet Bonanza fås i tre RTP-konfigurationer: 96,48 % (standard), 95,45 % og 91,76 %. Casinoet vælger versionen ved opsætning – du kan tjekke den aktuelle RTP i spillets info-menu. På danske <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link> er det typisk 96,48 %-versionen, der anvendes. Forskellen mellem 96,48 % og 91,76 % svarer til en ekstra house edge på 4,72 procentpoint – over 1.000 spins á 10 kr. ville det koste dig statistisk 472 kr. mere.
+        Sweet Bonanza fås i tre RTP-konfigurationer: 96,48 % (standard), 95,45 % og 91,76 %. Casinoet vælger versionen ved opsætning – du kan tjekke den aktuelle RTP i spillets info-menu. På danske <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> er det typisk 96,48 %-versionen, der anvendes. Forskellen mellem 96,48 % og 91,76 % svarer til en ekstra house edge på 4,72 procentpoint – over 1.000 spins á 10 kr. ville det koste dig statistisk 472 kr. mere.
       </>
     ),
   },
@@ -213,7 +213,7 @@ const SweetBonanzaGuide = () => {
           </div>
 
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Forskellen mellem 96,48 % og 91,76 % er 944 kr. over 2.000 spins. Det svarer til næsten 100 ekstra spins, som casinoet i praksis "konfiskerer" fra din bankroll. Derfor er det absolut essentielt, at du verificerer RTP-versionen, inden du spiller. På danske <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link> er det typisk standardversionen, men det er altid klogt at tjekke spillets info-sektion.
+            Forskellen mellem 96,48 % og 91,76 % er 944 kr. over 2.000 spins. Det svarer til næsten 100 ekstra spins, som casinoet i praksis "konfiskerer" fra din bankroll. Derfor er det absolut essentielt, at du verificerer RTP-versionen, inden du spiller. På danske <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> er det typisk standardversionen, men det er altid klogt at tjekke spillets info-sektion.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             RTP-forskellen påvirker også bonus-compatibiliteten markant. Hvis du bruger en <Link to="/casino-bonus" className={linkClass}>casino bonus</Link> med omsætningskrav på en 91,76 %-version, stiger din forventede tab under omsætningen dramatisk. Vi anbefaler udelukkende at spille Sweet Bonanza med omsætningsbonus på 96,48 %-versionen.
@@ -501,7 +501,7 @@ const SweetBonanzaGuide = () => {
             Dog er Sweet Bonanza ikke det bedste valg i alle scenarier. Til wagering med høje omsætningskrav er der bedre alternativer med lavere volatilitet. Til casual spillere med begrænset budget kan de lange tørrperioder være frustrerende. Men for spillere, der forstår og accepterer volatiliteten, sætter et tilstrækkeligt budget, og nyder spændingen ved potentialet for store multiplikator-cascades, er Sweet Bonanza et af de mest veldesignede slots-produkter på markedet.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Kritisk note: sørg altid for at verificere RTP-versionen, inden du spiller. Forskellen mellem 96,48 % og 91,76 % er ikke kosmetisk – det er forskellen mellem et fair spil og et, der aktivt arbejder imod dig. Spil kun Sweet Bonanza på <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link> med 96,48 %-versionen, og husk altid at sætte ufravigelige budgetgrænser.
+            Kritisk note: sørg altid for at verificere RTP-versionen, inden du spiller. Forskellen mellem 96,48 % og 91,76 % er ikke kosmetisk – det er forskellen mellem et fair spil og et, der aktivt arbejder imod dig. Spil kun Sweet Bonanza på <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> med 96,48 %-versionen, og husk altid at sætte ufravigelige budgetgrænser.
           </p>
         </section>
 

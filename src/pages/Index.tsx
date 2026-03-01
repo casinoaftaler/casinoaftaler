@@ -549,7 +549,7 @@ const Index = () => {
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Følg med i vores live bonus hunts, hvor vi tester spilleautomater på{" "}
-            <Link to="/licenserede-casinoer" className="text-primary hover:underline font-medium">licenserede danske casinoer</Link>
+            <Link to="/casino-licenser" className="text-primary hover:underline font-medium">licenserede danske casinoer</Link>
             {" "}med fuld transparens. Alle resultater dokumenteres med gennemsnit X, break-even analyser og community bets i realtid.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">

@@ -713,7 +713,7 @@ const BlackjackGuide = () => {
             Regulering i Danmark og ansvarligt spil
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Alle blackjack-spil på danske <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link> reguleres af Spillemyndigheden og opfylder strenge krav til fairness, tilfældighed og spillerbeskyttelse. RNG-spil testes af uafhængige laboratorier (eCOGRA, iTech Labs, BMM Testlabs), og live casino-studier overvåges med kameraer og auditerede procedurer.
+            Alle blackjack-spil på danske <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> reguleres af Spillemyndigheden og opfylder strenge krav til fairness, tilfældighed og spillerbeskyttelse. RNG-spil testes af uafhængige laboratorier (eCOGRA, iTech Labs, BMM Testlabs), og live casino-studier overvåges med kameraer og auditerede procedurer.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Danske spillere nyder skattefrihed på casinogevinster (casinoet betaler 28 % bruttospilafgift). Alle licenserede casinoer er forpligtet til at integrere ROFUS (Register Over Frivilligt Udelukkede Spillere), tilbyde indbetalingsgrænser og give adgang til selvtestværktøjer. Hvis du bemærker tegn på problematisk spiladfærd – som at jage tab, spille for lånte penge eller lyve om dit forbrug – bør du kontakte StopSpillet på 70 22 28 25 eller registrere dig i ROFUS.

@@ -299,7 +299,7 @@ const DeadOrAlive2Guide = () => {
             Men lad os være ærlige: for 95 % af spillere vil Dead or Alive 2 resultere i tab. Det er et spil, der belønner de tålmodige, de disciplinerede, og de heldige. Hvis du spiller for underholdning og kan acceptere dette, er der få bedre oplevelser i online slots. Hvis du spiller for profit, er der mere fordelagtige alternativer.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vores dom: Dead or Alive 2 fortjener sin status som en af de allerbedste slots nogensinde lavet. Den har den bedste RTP, det højeste max win, og den mest innovative bonusstruktur i sin klasse. Spil den hos et <Link to="/licenserede-casinoer" className={linkClass}>licenseret casino</Link>, vælg din mode med omtanke, og respektér altid dit budget. High Noon venter.
+            Vores dom: Dead or Alive 2 fortjener sin status som en af de allerbedste slots nogensinde lavet. Den har den bedste RTP, det højeste max win, og den mest innovative bonusstruktur i sin klasse. Spil den hos et <Link to="/casino-licenser" className={linkClass}>licenseret casino</Link>, vælg din mode med omtanke, og respektér altid dit budget. High Noon venter.
           </p>
         </section>
 

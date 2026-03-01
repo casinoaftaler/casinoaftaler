@@ -24,7 +24,7 @@ const bigBassFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Big Bass Bonanza RTP?",
     answer: (
       <>
-        Big Bass Bonanza har tre RTP-konfigurationer: 96,71 % (standard), 95,68 % og 91,60 %. Det er afgørende at spille standardversionen – forskellen til 91,60 %-varianten svarer til en ekstra house edge på 5,11 procentpoint. Verificér altid RTP'en i spillets info-menu eller spil hos <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link>, der typisk kører standardversionen.
+        Big Bass Bonanza har tre RTP-konfigurationer: 96,71 % (standard), 95,68 % og 91,60 %. Det er afgørende at spille standardversionen – forskellen til 91,60 %-varianten svarer til en ekstra house edge på 5,11 procentpoint. Verificér altid RTP'en i spillets info-menu eller spil hos <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>, der typisk kører standardversionen.
       </>
     ),
   },
@@ -222,7 +222,7 @@ const BigBassBonanzaGuide = () => {
           </div>
 
           <p className="text-muted-foreground leading-relaxed">
-            Forskellen er dramatisk: over 2.000 spins koster den laveste RTP-variant 1.022 kr. mere end standardversionen. Det er ikke en marginal forskel – det er en fundamental ændring af spillets økonomi. Spil kun Big Bass Bonanza på <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link>, og verificér RTP i info-menuen.
+            Forskellen er dramatisk: over 2.000 spins koster den laveste RTP-variant 1.022 kr. mere end standardversionen. Det er ikke en marginal forskel – det er en fundamental ændring af spillets økonomi. Spil kun Big Bass Bonanza på <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>, og verificér RTP i info-menuen.
           </p>
         </section>
 
@@ -310,7 +310,7 @@ const BigBassBonanzaGuide = () => {
             For <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> er Big Bass Bonanza et moderat valg. Spillets tema (fiskeri) og moderate volatilitet gør det mindre intenst end ultra-volatile slots, men det er stadig et underholdningsprodukt med negativ EV. Sæt altid et budget, og husk, at den gennemsnitlige spiller taber over tid – uanset hvor mange fisk de fanger.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vores anbefalede session: 200–300 spins med en bankroll-ratio på 200:1. Det giver dig en god chance for at opleve 1–2 bonusrunder og nyde Money Collect-mekanikken, uden at risikere mere, end du er komfortabel med. Husk at verificere RTP-versionen, og spil kun hos <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer</Link>.
+            Vores anbefalede session: 200–300 spins med en bankroll-ratio på 200:1. Det giver dig en god chance for at opleve 1–2 bonusrunder og nyde Money Collect-mekanikken, uden at risikere mere, end du er komfortabel med. Husk at verificere RTP-versionen, og spil kun hos <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link>.
           </p>
         </section>
 

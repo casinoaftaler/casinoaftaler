@@ -318,7 +318,7 @@ const RazorSharkGuide = () => {
             Spillets primære styrke er balancen mellem risiko og belønning. Den er mere tilgængelig end Dead or Alive 2's ekstremer, men mere spændende end <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanzas</Link> moderate volatilitet. For den rette spillerprofil – tålmodig, disciplineret, med tilstrækkeligt budget – er Razor Shark det matematisk mest overbevisende valg i sin kategori.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Kritisk anbefaling: verificér altid RTP-versionen, sæt et budget du er villig til at tabe, og husk, at 50.000x er en teoretisk mulighed – ikke en forventning. Spil Razor Shark for Mystery Stack-oplevelsen og den intellektuelle tilfredsstillelse ved at forstå mekanikken. Gør det på et <Link to="/licenserede-casinoer" className={linkClass}>licenseret casino</Link>, og hold altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> i fokus.
+            Kritisk anbefaling: verificér altid RTP-versionen, sæt et budget du er villig til at tabe, og husk, at 50.000x er en teoretisk mulighed – ikke en forventning. Spil Razor Shark for Mystery Stack-oplevelsen og den intellektuelle tilfredsstillelse ved at forstå mekanikken. Gør det på et <Link to="/casino-licenser" className={linkClass}>licenseret casino</Link>, og hold altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> i fokus.
           </p>
         </section>
 
