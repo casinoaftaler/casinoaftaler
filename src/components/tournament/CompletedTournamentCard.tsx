@@ -8,16 +8,21 @@ import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 import { useTournamentLeaderboard, useTournamentParticipants, type Tournament, type TournamentEntry } from "@/hooks/useTournaments";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
-
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
   "rise-of-fedesvin": "Rise of Fedesvin",
 };
 
 function useIsDark() {
-  const { resolvedTheme } = useTheme();
-  return resolvedTheme === "dark";
+  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains("dark"));
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+  return isDark;
 }
 
 // --- Animated counter with micro-bounce ---
