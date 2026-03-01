@@ -8,8 +8,9 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Loader2, Plus, Trophy, Target, Coins, CheckCircle, Zap, Pencil, Save } from "lucide-react";
+import { Loader2, Plus, Trophy, Target, Coins, CheckCircle, Zap, Pencil, Save, Ticket } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -22,6 +23,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useBonusHuntData } from "@/hooks/useBonusHuntData";
+import { BonusHuntCouponAdmin } from "@/components/admin/BonusHuntCouponAdmin";
+
+
 
 // Fetch the session matching the current hunt number (if any)
 function useSessionForHunt(huntNumber?: number) {
@@ -441,38 +445,63 @@ export function BonusHuntAdminSection() {
       ) : !huntData ? (
         <Card><CardContent className="py-12 text-center text-muted-foreground">Kunne ikke hente aktiv hunt fra StreamSystem.</CardContent></Card>
       ) : (
-        <Card>
-          <CardHeader className="pb-3">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Zap className="h-5 w-5 text-primary" />
-                Bonus Hunt #{huntNumber}
-              </CardTitle>
-              <Badge className={statusColor}>{statusLabel}</Badge>
-            </div>
-            <div className="text-sm text-muted-foreground grid grid-cols-3 gap-2 pt-2">
-              <span>Slots: {huntData.stats.totalBonuses}</span>
-              <span>Åbnet: {huntData.stats.openedBonuses}/{huntData.stats.totalBonuses}</span>
-              <span>Start: {huntData.stats.startBalance.toLocaleString()}</span>
-            </div>
-          </CardHeader>
-          <CardContent>
+        <Tabs defaultValue="betting" className="space-y-4">
+          <TabsList>
+            <TabsTrigger value="betting" className="gap-1.5">
+              <Zap className="h-3.5 w-3.5" /> Betting
+            </TabsTrigger>
+            <TabsTrigger value="coupon" className="gap-1.5">
+              <Ticket className="h-3.5 w-3.5" /> Slot Kupon
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="betting">
+            <Card>
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <Zap className="h-5 w-5 text-primary" />
+                    Bonus Hunt #{huntNumber}
+                  </CardTitle>
+                  <Badge className={statusColor}>{statusLabel}</Badge>
+                </div>
+                <div className="text-sm text-muted-foreground grid grid-cols-3 gap-2 pt-2">
+                  <span>Slots: {huntData.stats.totalBonuses}</span>
+                  <span>Åbnet: {huntData.stats.openedBonuses}/{huntData.stats.totalBonuses}</span>
+                  <span>Start: {huntData.stats.startBalance.toLocaleString()}</span>
+                </div>
+              </CardHeader>
+              <CardContent>
+                {session ? (
+                  <SessionControls session={session} />
+                ) : showCreateForm ? (
+                  <CreateSessionForm
+                    huntNumber={huntNumber!}
+                    huntId={huntData.id}
+                    onClose={() => setShowCreateForm(false)}
+                  />
+                ) : (
+                  <Button onClick={() => setShowCreateForm(true)} className="w-full">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Opret Betting Session for Hunt #{huntNumber}
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="coupon">
             {session ? (
-              <SessionControls session={session} />
-            ) : showCreateForm ? (
-              <CreateSessionForm
-                huntNumber={huntNumber!}
-                huntId={huntData.id}
-                onClose={() => setShowCreateForm(false)}
-              />
+              <BonusHuntCouponAdmin session={session} />
             ) : (
-              <Button onClick={() => setShowCreateForm(true)} className="w-full">
-                <Plus className="h-4 w-4 mr-2" />
-                Opret Betting Session for Hunt #{huntNumber}
-              </Button>
+              <Card>
+                <CardContent className="py-12 text-center text-muted-foreground">
+                  Opret først en betting session for at administrere Slot Kupon.
+                </CardContent>
+              </Card>
             )}
-          </CardContent>
-        </Card>
+          </TabsContent>
+        </Tabs>
       )}
     </div>
   );

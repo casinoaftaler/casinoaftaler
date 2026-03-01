@@ -7,30 +7,33 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SlotCouponReceipt } from "./SlotCouponReceipt";
 import { SlotCouponLeaderboard } from "./SlotCouponLeaderboard";
+import { DEFAULT_MARKETS, type CouponMarket } from "./slotCouponMarkets";
 import "@/styles/slot-coupon.css";
 
-const MARKETS = [
-  { q: "Betaler 10 bonusser over 100x?", oddsYes: 1.85, oddsNo: 1.95, aggressive: true },
-  { q: "Betaler 5 bonusser over 300x?", oddsYes: 2.10, oddsNo: 1.70, aggressive: true },
-  { q: "Betaler 2 bonusser over 500x?", oddsYes: 2.45, oddsNo: 1.55, aggressive: true },
-  { q: "Kommer der mindst 1 gevinst over 1000x?", oddsYes: 3.20, oddsNo: 1.30, aggressive: true },
-  { q: "Kommer der mindst 1 gevinst over 1500x?", oddsYes: 4.50, oddsNo: 1.15, aggressive: true },
-  { q: "Bliver største gevinst over 1.000kr?", oddsYes: 1.60, oddsNo: 2.25, aggressive: true },
-  { q: "Bliver største gevinst over 2000kr?", oddsYes: 2.30, oddsNo: 1.60, aggressive: true },
-  { q: "Bliver største gevinst over 3000kr?", oddsYes: 3.50, oddsNo: 1.25, aggressive: true },
-  { q: "Kommer der back-to-back bonus?", oddsYes: 2.00, oddsNo: 1.80, aggressive: false },
-  { q: "Betaler 5 bonusser under 10x?", oddsYes: 1.40, oddsNo: 2.80, aggressive: false },
-] as const;
+interface MarketWithEnabled extends CouponMarket {
+  enabled?: boolean;
+}
 
 interface Props {
   huntNumber: number;
   sessionId?: string;
   isLive?: boolean;
   couponResults?: Record<string, boolean | null> | null;
+  sessionMarkets?: MarketWithEnabled[] | null;
+  couponOpen?: boolean;
 }
 
-export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResults }: Props) {
+export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResults, sessionMarkets, couponOpen }: Props) {
   const { user } = useAuth();
+
+  // Derive active markets from session or fall back to defaults
+  const MARKETS = useMemo(() => {
+    if (Array.isArray(sessionMarkets) && sessionMarkets.length > 0) {
+      return sessionMarkets.filter((m) => m.enabled !== false);
+    }
+    return DEFAULT_MARKETS;
+  }, [sessionMarkets]);
+
   const [answers, setAnswers] = useState<Record<number, boolean | null>>(
     () => Object.fromEntries(MARKETS.map((_, i) => [i, null]))
   );
@@ -78,15 +81,18 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResul
     return { label: "Balanceret", icon: Zap, type: "balanced" as const };
   }, [answers]);
 
+  // Coupon is locked when explicitly closed by admin
+  const isCouponLocked = couponOpen === false;
+
   const handleSelect = (index: number, value: boolean) => {
-    if (submitted) return;
+    if (submitted || isCouponLocked) return;
     setAnswers((prev) => ({ ...prev, [index]: value }));
     setLastChanged(index);
     setTimeout(() => setLastChanged(null), 400);
   };
 
   const handleSubmit = async () => {
-    if (!user || !isComplete || submitted) return;
+    if (!user || !isComplete || submitted || isCouponLocked) return;
     setSubmitting(true);
     try {
       const { error } = await supabase
@@ -365,6 +371,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResul
               huntNumber={huntNumber}
               answers={answers}
               isLive={isLive}
+              markets={MARKETS}
             />
           </div>
         </div>
