@@ -406,28 +406,12 @@ export function useApproveClip() {
         .eq("id", clipId);
 
       if (error) throw error;
-
-      // Auto-generate thumbnail if clip doesn't have one (fire-and-forget)
-      const { data: clip } = await supabase
-        .from("community_clips")
-        .select("thumbnail_url")
-        .eq("id", clipId)
-        .single();
-
-      if (clip && !clip.thumbnail_url) {
-        supabase.functions.invoke("generate-clip-thumbnail", {
-          body: { clipId },
-        }).then((res) => {
-          if (res.error) console.error("Thumbnail generation failed:", res.error);
-          else console.log("Thumbnail generated for clip", clipId);
-        }).catch((e) => console.error("Thumbnail generation error:", e));
-      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["community-clips"] });
       toast({
         title: "Clip godkendt!",
-        description: "Clip'en er nu synlig for alle. Thumbnail genereres automatisk.",
+        description: "Clip'en er nu synlig for alle.",
       });
     },
     onError: (error) => {
