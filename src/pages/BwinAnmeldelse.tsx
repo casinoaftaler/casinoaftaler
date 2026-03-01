@@ -128,6 +128,24 @@ const BwinAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
+        {/* VIGTIG ADVARSEL: bwin har forladt Danmark */}
+        <Card className="border-destructive bg-destructive/10 border-2 mb-8">
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-3">
+              <ShieldCheck className="h-6 w-6 text-destructive flex-shrink-0 mt-0.5" />
+              <div>
+                <h2 className="text-xl font-bold text-destructive mb-2">⚠️ bwin er ikke længere tilgængeligt i Danmark</h2>
+                <p className="text-muted-foreground leading-relaxed mb-2">
+                  bwin har trukket sig fra det danske marked. Hjemmesiden bwin.dk er blokeret for danske IP-adresser, og det er ikke længere muligt at oprette en konto, indbetale eller spille. Hvis du har en eksisterende konto med indbetalt saldo, kan du kontakte <a href="mailto:support@bwin.dk" className={linkClass}>support@bwin.dk</a> for at få dine midler udbetalt.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  <strong>Anbefalet alternativ:</strong> For en tilsvarende sportsbet-fokuseret platform med casino, anbefaler vi <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="33 Min." />
         <CasinoReviewHero slug="bwin" casinoName="bwin" />
 
