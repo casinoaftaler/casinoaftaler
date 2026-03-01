@@ -120,6 +120,7 @@ export default function BonusHunt() {
 
   const casinoSlug = session?.casino_slug || huntVideo?.casinoSlug || 'spildansknu';
   const casinoName = huntVideo?.casinoName ?? 'SpilDanskNu';
+  const sessionHost = session?.host || 'kevin';
   const avgX = huntData?.stats.averageX;
   const bonusCount = huntData?.stats.openedBonuses ?? 0;
 
@@ -243,7 +244,7 @@ export default function BonusHunt() {
                   <BonusHuntSeoContent />
                   {/* Host card – visible on mobile only (below slot table) */}
                   <div className="xl:hidden">
-                    <BonusHuntHostCard huntNumber={currentHuntNumber} />
+                    <BonusHuntHostCard huntNumber={currentHuntNumber} host={sessionHost} />
                   </div>
                 </div>
 
@@ -308,7 +309,7 @@ export default function BonusHunt() {
 
                   {/* Host card – fills remaining height in right column */}
                   <div className="hidden xl:block">
-                    <BonusHuntHostCard huntNumber={currentHuntNumber} />
+                    <BonusHuntHostCard huntNumber={currentHuntNumber} host={sessionHost} />
                   </div>
                 </div>
               </div>

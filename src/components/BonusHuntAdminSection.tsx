@@ -80,6 +80,7 @@ function CreateSessionForm({ huntNumber, huntId, onClose }: { huntNumber: number
   const { data: casinos } = useCasinos(true);
   const [loading, setLoading] = useState(false);
   const [casinoSlug, setCasinoSlug] = useState("spildansknu");
+  const [host, setHost] = useState("kevin");
   const [form, setForm] = useState({
     gtw_min_bet: "1",
     gtw_max_bet: "50",
@@ -110,6 +111,7 @@ function CreateSessionForm({ huntNumber, huntId, onClose }: { huntNumber: number
         avgx_max_bet: parseInt(form.avgx_max_bet),
         gtw_prizes: form.prizes,
         casino_slug: casinoSlug,
+        host: host,
         created_by: user.id,
         status: 'upcoming',
       });
@@ -133,18 +135,32 @@ function CreateSessionForm({ huntNumber, huntId, onClose }: { huntNumber: number
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="space-y-2">
-        <Label>Casino til denne hunt</Label>
-        <Select value={casinoSlug} onValueChange={setCasinoSlug}>
-          <SelectTrigger>
-            <SelectValue placeholder="Vælg casino" />
-          </SelectTrigger>
-          <SelectContent>
-            {(casinos || []).map((c) => (
-              <SelectItem key={c.slug} value={c.slug}>{c.name}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label>Casino til denne hunt</Label>
+          <Select value={casinoSlug} onValueChange={setCasinoSlug}>
+            <SelectTrigger>
+              <SelectValue placeholder="Vælg casino" />
+            </SelectTrigger>
+            <SelectContent>
+              {(casinos || []).map((c) => (
+                <SelectItem key={c.slug} value={c.slug}>{c.name}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="space-y-2">
+          <Label>Vært</Label>
+          <Select value={host} onValueChange={setHost}>
+            <SelectTrigger>
+              <SelectValue placeholder="Vælg vært" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="kevin">Kevin</SelectItem>
+              <SelectItem value="jonas">Jonas</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
       <Separator />
       <h4 className="font-semibold text-sm">Bet Grænser</h4>
@@ -202,6 +218,7 @@ function SessionControls({ session }: { session: any }) {
   const [editingPrizes, setEditingPrizes] = useState(false);
   const [editPrizes, setEditPrizes] = useState<{ place: number; points: number; credits: number }[]>([]);
   const [editCasinoSlug, setEditCasinoSlug] = useState(session.casino_slug || "spildansknu");
+  const [editHost, setEditHost] = useState(session.host || "kevin");
   const [editBetLimits, setEditBetLimits] = useState({
     gtw_min_bet: "",
     gtw_max_bet: "",
@@ -219,6 +236,7 @@ function SessionControls({ session }: { session: any }) {
       avgx_max_bet: String(session.avgx_max_bet),
     });
     setEditCasinoSlug(session.casino_slug || "spildansknu");
+    setEditHost(session.host || "kevin");
     setEditingPrizes(true);
   };
 
@@ -228,6 +246,7 @@ function SessionControls({ session }: { session: any }) {
       const { error } = await (supabase.from('bonus_hunt_sessions' as any) as any).update({
         gtw_prizes: editPrizes,
         casino_slug: editCasinoSlug,
+        host: editHost,
         gtw_min_bet: parseInt(editBetLimits.gtw_min_bet),
         gtw_max_bet: parseInt(editBetLimits.gtw_max_bet),
         avgx_min_bet: parseInt(editBetLimits.avgx_min_bet),
@@ -332,6 +351,7 @@ function SessionControls({ session }: { session: any }) {
 
           <div className="text-xs text-muted-foreground space-y-1">
             <span className="block">Casino: <strong>{casinos?.find(c => c.slug === session.casino_slug)?.name || session.casino_slug || 'Ikke valgt'}</strong></span>
+            <span className="block">Vært: <strong>{session.host === 'jonas' ? 'Jonas' : 'Kevin'}</strong></span>
             <div className="grid grid-cols-2 gap-2">
               <span>GTW: {session.gtw_min_bet}-{session.gtw_max_bet} credits</span>
               <span>AVG X: {session.avgx_min_bet}-{session.avgx_max_bet} credits</span>
@@ -359,18 +379,32 @@ function SessionControls({ session }: { session: any }) {
             </div>
           ) : (
             <div className="space-y-3">
-              <div className="space-y-2">
-                <Label className="text-xs font-semibold">Casino til denne hunt</Label>
-                <Select value={editCasinoSlug} onValueChange={setEditCasinoSlug}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Vælg casino" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {(casinos || []).map((c) => (
-                      <SelectItem key={c.slug} value={c.slug}>{c.name}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-2">
+                  <Label className="text-xs font-semibold">Casino</Label>
+                  <Select value={editCasinoSlug} onValueChange={setEditCasinoSlug}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Vælg casino" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {(casinos || []).map((c) => (
+                        <SelectItem key={c.slug} value={c.slug}>{c.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-xs font-semibold">Vært</Label>
+                  <Select value={editHost} onValueChange={setEditHost}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Vælg vært" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="kevin">Kevin</SelectItem>
+                      <SelectItem value="jonas">Jonas</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
               <Separator />
               <h4 className="font-semibold text-sm">Rediger Bet Grænser</h4>

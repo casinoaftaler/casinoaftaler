@@ -1,0 +1,1 @@
+ALTER TABLE public.bonus_hunt_sessions ADD COLUMN IF NOT EXISTS host text NOT NULL DEFAULT 'kevin';

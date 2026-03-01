@@ -1,10 +1,52 @@
 import { Link } from "react-router-dom";
-import { Video, ExternalLink, Gamepad2, BarChart3, Users, Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { KEVIN_SAME_AS } from "@/lib/seo";
-
+import { Video, ExternalLink, Play } from "lucide-react";
+import { KEVIN_SAME_AS, JONAS_SAME_AS } from "@/lib/seo";
 
 const SITE_URL = "https://casinoaftaler.dk";
+
+type HostKey = "kevin" | "jonas";
+
+interface HostInfo {
+  name: string;
+  subtitle: string;
+  avatar: string;
+  avatarAlt: string;
+  profilePath: string;
+  description: string;
+  sameAs: string[];
+  tags: (huntNumber?: number) => { icon: string; label: string }[];
+}
+
+const HOSTS: Record<HostKey, HostInfo> = {
+  kevin: {
+    name: "Kevin",
+    subtitle: "Streamer & Casinoanalytiker",
+    avatar: "/kevin-avatar.webp",
+    avatarAlt: "Kevin – Bonus Hunt vært hos Casinoaftaler.dk",
+    profilePath: "/forfatter/kevin",
+    description: "Live hver uge med dokumenterede bonus hunts – fra første spin til sidste resultat. Testet på danske casinoer. Ingen filter.",
+    sameAs: KEVIN_SAME_AS,
+    tags: (huntNumber) => [
+      { icon: "🎰", label: `${huntNumber ?? "5"} hunts` },
+      { icon: "📊", label: "Dokumenteret" },
+      { icon: "👥", label: "Twitch community" },
+    ],
+  },
+  jonas: {
+    name: "Jonas",
+    subtitle: "Grundlægger & Streamer",
+    avatar: "/jonas-avatar.webp",
+    avatarAlt: "Jonas – Bonus Hunt vært hos Casinoaftaler.dk",
+    profilePath: "/forfatter/jonas",
+    description: "Grundlægger af Casinoaftaler.dk med fokus på transparens og dokumenterede casinooplevelser. Live bonus hunts med fuldt overblik.",
+    sameAs: JONAS_SAME_AS,
+    tags: (huntNumber) => [
+      { icon: "🎰", label: `${huntNumber ?? "5"} hunts` },
+      { icon: "📊", label: "Dokumenteret" },
+      { icon: "👥", label: "Twitch community" },
+    ],
+  },
+};
 
 type SocialPlatform = {
   name: string;
@@ -58,26 +100,28 @@ function SocialIcon({ platform }: { platform: string }) {
   }
 }
 
-function getActiveSocials() {
+function getActiveSocials(sameAs: string[]) {
   return PLATFORMS.filter((p) =>
-    KEVIN_SAME_AS.some((url) => url.includes(p.match))
+    sameAs.some((url) => url.includes(p.match))
   ).map((p) => ({
     ...p,
-    url: KEVIN_SAME_AS.find((url) => url.includes(p.match))!,
+    url: sameAs.find((url) => url.includes(p.match))!,
   }));
 }
 
-export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
-  const socials = getActiveSocials();
+export function BonusHuntHostCard({ huntNumber, host = "kevin" }: { huntNumber?: number; host?: string }) {
+  const hostKey: HostKey = host === "jonas" ? "jonas" : "kevin";
+  const hostInfo = HOSTS[hostKey];
+  const socials = getActiveSocials(hostInfo.sameAs);
+  const tags = hostInfo.tags(huntNumber);
 
   return (
     <section className="group rounded-xl border border-border/50 bg-card px-5 py-4 mb-16 transition-all duration-200 hover:border-primary/20 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)]">
       <div className="flex items-center gap-3">
-        {/* Avatar spanning full height */}
         <div className="shrink-0 h-[112px] w-[112px] rounded-full p-[3px] transition-transform duration-200 hover:scale-[1.03]" style={{ background: 'hsl(var(--primary) / 0.06)', boxShadow: '0 0 0 1px hsl(var(--primary) / 0.18)' }}>
           <img
-            src="/kevin-avatar.webp"
-            alt="Kevin – Bonus Hunt vært hos Casinoaftaler.dk"
+            src={hostInfo.avatar}
+            alt={hostInfo.avatarAlt}
             className="h-full w-full rounded-full object-cover"
             style={{ objectPosition: '50% 35%' }}
             loading="lazy"
@@ -85,7 +129,6 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
         </div>
 
         <div className="min-w-0 flex-1 flex flex-col gap-1.5">
-          {/* Row 1: Label + live badge */}
           <div className="flex items-center gap-2">
             <Video className="h-3.5 w-3.5 text-primary" />
             <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
@@ -100,60 +143,49 @@ export function BonusHuntHostCard({ huntNumber }: { huntNumber?: number }) {
             </span>
           </div>
 
-          {/* Row 2: Name + subtitle */}
           <div>
-            <Link to="/forfatter/kevin" className="text-base font-bold text-foreground hover:text-primary transition-colors">
-              Kevin
+            <Link to={hostInfo.profilePath} className="text-base font-bold text-foreground hover:text-primary transition-colors">
+              {hostInfo.name}
             </Link>
-            <p className="text-xs text-muted-foreground">Streamer & Casinoanalytiker</p>
+            <p className="text-xs text-muted-foreground">{hostInfo.subtitle}</p>
           </div>
 
-          {/* Row 3: Tags */}
           <div className="flex flex-wrap gap-1.5">
-              {[
-                { icon: "🎰", label: `${huntNumber ?? "5"} hunts` },
-                { icon: "📊", label: "Dokumenteret" },
-                { icon: "👥", label: "Twitch community" },
-              ].map(tag => (
-                <span key={tag.label} className="inline-flex items-center gap-1 rounded-md border border-border/60 bg-muted/40 px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
-                  {tag.icon} {tag.label}
-                </span>
-              ))}
-            </div>
+            {tags.map(tag => (
+              <span key={tag.label} className="inline-flex items-center gap-1 rounded-md border border-border/60 bg-muted/40 px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+                {tag.icon} {tag.label}
+              </span>
+            ))}
+          </div>
 
-            {/* Description */}
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              Live hver uge med dokumenterede bonus hunts – fra første spin til sidste resultat.
-              Testet på danske casinoer. Ingen filter.
-            </p>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            {hostInfo.description}
+          </p>
 
-            {/* Social icons + separator + profile link */}
-            <div className="flex items-center gap-2">
-              {socials.map((s) => (
-                <a
-                  key={s.name}
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={s.name}
-                  className="flex h-7 w-7 items-center justify-center rounded-md border border-border/40 text-muted-foreground transition-colors hover:text-primary hover:border-primary/40 hover:bg-primary/10"
-                >
-                  <SocialIcon platform={s.icon} />
-                </a>
-              ))}
-              <span className="mx-1 h-4 w-px bg-border/60" />
-              <Link
-                to="/forfatter/kevin"
-                className="inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground hover:text-primary transition-colors"
+          <div className="flex items-center gap-2">
+            {socials.map((s) => (
+              <a
+                key={s.name}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={s.name}
+                className="flex h-7 w-7 items-center justify-center rounded-md border border-border/40 text-muted-foreground transition-colors hover:text-primary hover:border-primary/40 hover:bg-primary/10"
               >
-                <Play className="h-3 w-3" />
-                Se Kevins profil
-              </Link>
-            </div>
+                <SocialIcon platform={s.icon} />
+              </a>
+            ))}
+            <span className="mx-1 h-4 w-px bg-border/60" />
+            <Link
+              to={hostInfo.profilePath}
+              className="inline-flex items-center gap-1 text-[11px] font-medium text-muted-foreground hover:text-primary transition-colors"
+            >
+              <Play className="h-3 w-3" />
+              Se {hostInfo.name}s profil
+            </Link>
           </div>
         </div>
-
-      {/* Person schema rendered via buildArticleSchema in BonusHunt.tsx – no duplicate needed */}
+      </div>
     </section>
   );
 }
