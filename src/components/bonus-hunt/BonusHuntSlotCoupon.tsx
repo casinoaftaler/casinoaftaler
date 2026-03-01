@@ -391,7 +391,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
         )}
 
         {/* Participant leaderboard */}
-        <SlotCouponLeaderboard huntNumber={huntNumber} couponResults={couponResults} />
+        <SlotCouponLeaderboard huntNumber={huntNumber} couponResults={couponResults} markets={MARKETS} />
       </div>
 
       {/* Perforated tear edge */}

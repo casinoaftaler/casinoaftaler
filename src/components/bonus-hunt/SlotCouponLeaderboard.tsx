@@ -1,9 +1,17 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Link } from "react-router-dom";
 import { Users, Trophy, Check, X, Clock, Crown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { SlotCouponReceipt } from "./SlotCouponReceipt";
+import type { CouponMarket } from "./slotCouponMarkets";
 
 const MARKET_COUNT = 10;
 
@@ -21,13 +29,15 @@ interface CouponParticipant {
 interface Props {
   huntNumber: number;
   couponResults?: Record<string, boolean | null> | null;
+  markets?: CouponMarket[];
 }
 
-export function SlotCouponLeaderboard({ huntNumber, couponResults }: Props) {
+export function SlotCouponLeaderboard({ huntNumber, couponResults, markets }: Props) {
+  const [selectedParticipant, setSelectedParticipant] = useState<CouponParticipant | null>(null);
+
   const { data: participants = [], isLoading } = useQuery({
     queryKey: ['slot-coupon-participants', huntNumber],
     queryFn: async () => {
-      // Fetch all coupons for this hunt
       const { data: coupons, error } = await supabase
         .from('bonus_hunt_slot_coupons')
         .select('user_id, answers')
@@ -35,7 +45,6 @@ export function SlotCouponLeaderboard({ huntNumber, couponResults }: Props) {
 
       if (error || !coupons?.length) return [];
 
-      // Fetch profiles for all participants
       const userIds = coupons.map(c => c.user_id);
       const { data: profiles } = await supabase
         .from('profiles_leaderboard')
@@ -46,7 +55,6 @@ export function SlotCouponLeaderboard({ huntNumber, couponResults }: Props) {
         (profiles || []).map(p => [p.user_id, p])
       );
 
-      // Build participant list with scores
       const result: CouponParticipant[] = coupons.map(coupon => {
         const profile = profileMap.get(coupon.user_id);
         const answers = (coupon.answers || {}) as Record<string, boolean | null>;
@@ -88,7 +96,6 @@ export function SlotCouponLeaderboard({ huntNumber, couponResults }: Props) {
         };
       });
 
-      // Sort by correct count desc, then fewer wrong
       result.sort((a, b) => {
         if (b.correctCount !== a.correctCount) return b.correctCount - a.correctCount;
         return a.wrongCount - b.wrongCount;
@@ -118,88 +125,140 @@ export function SlotCouponLeaderboard({ huntNumber, couponResults }: Props) {
 
   const hasResults = couponResults && Object.values(couponResults).some(v => v !== null && v !== undefined);
 
-  return (
-    <div className="space-y-2">
-      <div className="flex items-center gap-2 px-1">
-        <Trophy className="h-3.5 w-3.5 text-primary" />
-        <span className="text-xs font-semibold text-foreground">
-          Kupon Deltagere ({participants.length})
-        </span>
-      </div>
+  // Convert participant answers from string-keyed to number-keyed for the receipt
+  const toReceiptAnswers = (answers: Record<string, boolean | null>): Record<number, boolean | null> => {
+    const result: Record<number, boolean | null> = {};
+    for (let i = 0; i < MARKET_COUNT; i++) {
+      result[i] = answers[String(i)] ?? null;
+    }
+    return result;
+  };
 
-      <div className="rounded-lg border border-border/50 overflow-hidden">
-        {/* Header */}
-        <div className="grid grid-cols-[1fr_auto] gap-2 px-3 py-2 bg-muted/30 border-b border-border/30">
-          <span className="text-[10px] font-semibold text-muted-foreground uppercase">Spiller</span>
-          <span className="text-[10px] font-semibold text-muted-foreground uppercase text-right min-w-[80px]">
-            {hasResults ? 'Score' : 'Markeder'}
+  const toReceiptResults = (results: Record<string, boolean | null> | null | undefined): Record<number, boolean | null> | undefined => {
+    if (!results) return undefined;
+    const r: Record<number, boolean | null> = {};
+    for (let i = 0; i < MARKET_COUNT; i++) {
+      r[i] = results[String(i)] ?? null;
+    }
+    return r;
+  };
+
+  return (
+    <>
+      <div className="space-y-2">
+        <div className="flex items-center gap-2 px-1">
+          <Trophy className="h-3.5 w-3.5 text-primary" />
+          <span className="text-xs font-semibold text-foreground">
+            Kupon Deltagere ({participants.length})
           </span>
         </div>
 
-        {/* Rows */}
-        <div className="divide-y divide-border/20 max-h-[300px] overflow-y-auto scrollbar-thin">
-          {participants.map((p, idx) => (
-            <Link
-              key={p.userId}
-              to={`/u/${p.displayName}`}
-              className={cn(
-                "grid grid-cols-[1fr_auto] gap-2 px-3 py-2.5 items-center transition-colors hover:bg-muted/30",
-                idx === 0 && hasResults && p.correctCount > 0 && "bg-primary/[0.04]"
-              )}
-            >
-              <div className="flex items-center gap-2.5 min-w-0">
-                {/* Rank */}
-                <span className={cn(
-                  "text-[10px] font-bold tabular-nums w-4 text-center shrink-0",
-                  idx === 0 && hasResults && p.correctCount > 0 ? "text-amber-400" : "text-muted-foreground"
-                )}>
-                  {idx === 0 && hasResults && p.correctCount > 0 ? (
-                    <Crown className="h-3.5 w-3.5 text-amber-400" />
-                  ) : (
-                    idx + 1
-                  )}
-                </span>
+        <div className="rounded-lg border border-border/50 overflow-hidden">
+          {/* Header */}
+          <div className="grid grid-cols-[1fr_auto] gap-2 px-3 py-2 bg-muted/30 border-b border-border/30">
+            <span className="text-[10px] font-semibold text-muted-foreground uppercase">Spiller</span>
+            <span className="text-[10px] font-semibold text-muted-foreground uppercase text-right min-w-[80px]">
+              {hasResults ? 'Score' : 'Markeder'}
+            </span>
+          </div>
 
-                <Avatar className="h-6 w-6 shrink-0">
-                  <AvatarImage src={p.avatarUrl || undefined} alt={p.displayName} />
-                  <AvatarFallback className="text-[9px] bg-muted">
-                    {p.displayName.slice(0, 2).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
-
-                <span className="text-xs font-medium text-foreground truncate">
-                  {p.displayName}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-1.5 min-w-[80px] justify-end">
-                {hasResults ? (
-                  <>
-                    <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-green-500">
-                      <Check className="h-3 w-3" />
-                      {p.correctCount}
-                    </span>
-                    <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-red-400">
-                      <X className="h-3 w-3" />
-                      {p.wrongCount}
-                    </span>
-                    {p.pendingCount > 0 && (
-                      <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-muted-foreground">
-                        <Clock className="h-3 w-3" />
-                        {p.pendingCount}
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <span className="text-[10px] font-medium text-muted-foreground tabular-nums">
-                    {p.totalAnswered}/{MARKET_COUNT}
-                  </span>
+          {/* Rows */}
+          <div className="divide-y divide-border/20 max-h-[300px] overflow-y-auto scrollbar-thin">
+            {participants.map((p, idx) => (
+              <button
+                key={p.userId}
+                type="button"
+                onClick={() => setSelectedParticipant(p)}
+                className={cn(
+                  "w-full grid grid-cols-[1fr_auto] gap-2 px-3 py-2.5 items-center transition-colors hover:bg-muted/30 text-left cursor-pointer",
+                  idx === 0 && hasResults && p.correctCount > 0 && "bg-primary/[0.04]"
                 )}
-              </div>
-            </Link>
-          ))}
+              >
+                <div className="flex items-center gap-2.5 min-w-0">
+                  {/* Rank */}
+                  <span className={cn(
+                    "text-[10px] font-bold tabular-nums w-4 text-center shrink-0",
+                    idx === 0 && hasResults && p.correctCount > 0 ? "text-amber-400" : "text-muted-foreground"
+                  )}>
+                    {idx === 0 && hasResults && p.correctCount > 0 ? (
+                      <Crown className="h-3.5 w-3.5 text-amber-400" />
+                    ) : (
+                      idx + 1
+                    )}
+                  </span>
+
+                  <Avatar className="h-6 w-6 shrink-0">
+                    <AvatarImage src={p.avatarUrl || undefined} alt={p.displayName} />
+                    <AvatarFallback className="text-[9px] bg-muted">
+                      {p.displayName.slice(0, 2).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+
+                  <span className="text-xs font-medium text-foreground truncate">
+                    {p.displayName}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-1.5 min-w-[80px] justify-end">
+                  {hasResults ? (
+                    <>
+                      <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-green-500">
+                        <Check className="h-3 w-3" />
+                        {p.correctCount}
+                      </span>
+                      <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-red-400">
+                        <X className="h-3 w-3" />
+                        {p.wrongCount}
+                      </span>
+                      {p.pendingCount > 0 && (
+                        <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-muted-foreground">
+                          <Clock className="h-3 w-3" />
+                          {p.pendingCount}
+                        </span>
+                      )}
+                    </>
+                  ) : (
+                    <span className="text-[10px] font-medium text-muted-foreground tabular-nums">
+                      {p.totalAnswered}/{MARKET_COUNT}
+                    </span>
+                  )}
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Player coupon dialog */}
+      <Dialog open={!!selectedParticipant} onOpenChange={(open) => !open && setSelectedParticipant(null)}>
+        <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-transparent border-none shadow-none">
+          <DialogHeader className="sr-only">
+            <DialogTitle>{selectedParticipant?.displayName}s kupon</DialogTitle>
+          </DialogHeader>
+          {selectedParticipant && (
+            <div className="relative">
+              {/* Player name badge */}
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-background border border-border rounded-full px-3 py-1 shadow-lg">
+                <Avatar className="h-5 w-5">
+                  <AvatarImage src={selectedParticipant.avatarUrl || undefined} />
+                  <AvatarFallback className="text-[8px] bg-muted">
+                    {selectedParticipant.displayName.slice(0, 2).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+                <span className="text-xs font-semibold text-foreground">
+                  {selectedParticipant.displayName}
+                </span>
+              </div>
+              <SlotCouponReceipt
+                huntNumber={huntNumber}
+                answers={toReceiptAnswers(selectedParticipant.answers)}
+                results={toReceiptResults(couponResults)}
+                markets={markets}
+              />
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
