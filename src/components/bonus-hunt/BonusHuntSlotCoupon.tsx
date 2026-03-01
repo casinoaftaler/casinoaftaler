@@ -2,28 +2,35 @@ import { useState, useMemo } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Check, Lock, Ticket, Flame, Shield, Zap, TrendingUp } from "lucide-react";
+import { Check, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import "@/styles/slot-coupon.css";
 
 const MARKETS = [
-  { q: "Betaler 10 bonusser over 100x?", oddsYes: 1.85, oddsNo: 1.95, aggressive: true },
-  { q: "Betaler 5 bonusser over 300x?", oddsYes: 2.10, oddsNo: 1.70, aggressive: true },
-  { q: "Betaler 2 bonusser over 500x?", oddsYes: 2.45, oddsNo: 1.55, aggressive: true },
-  { q: "Kommer der mindst 1 gevinst over 1000x?", oddsYes: 3.20, oddsNo: 1.30, aggressive: true },
-  { q: "Kommer der mindst 1 gevinst over 1500x?", oddsYes: 4.50, oddsNo: 1.15, aggressive: true },
-  { q: "Bliver største gevinst over 1.000kr?", oddsYes: 1.60, oddsNo: 2.25, aggressive: true },
-  { q: "Bliver største gevinst over 2000kr?", oddsYes: 2.30, oddsNo: 1.60, aggressive: true },
-  { q: "Bliver største gevinst over 3000kr?", oddsYes: 3.50, oddsNo: 1.25, aggressive: true },
-  { q: "Kommer der back-to-back bonus?", oddsYes: 2.00, oddsNo: 1.80, aggressive: false },
-  { q: "Betaler 5 bonusser under 10x?", oddsYes: 1.40, oddsNo: 2.80, aggressive: false },
+  { q: "Betaler 10 bonusser over 100x?", oddsYes: 1.85, oddsNo: 1.95 },
+  { q: "Betaler 5 bonusser over 300x?", oddsYes: 2.10, oddsNo: 1.70 },
+  { q: "Betaler 2 bonusser over 500x?", oddsYes: 2.45, oddsNo: 1.55 },
+  { q: "Kommer der mindst 1 gevinst over 1000x?", oddsYes: 3.20, oddsNo: 1.30 },
+  { q: "Kommer der mindst 1 gevinst over 1500x?", oddsYes: 4.50, oddsNo: 1.15 },
+  { q: "Bliver største gevinst over 1.000kr?", oddsYes: 1.60, oddsNo: 2.25 },
+  { q: "Bliver største gevinst over 2000kr?", oddsYes: 2.30, oddsNo: 1.60 },
+  { q: "Bliver største gevinst over 3000kr?", oddsYes: 3.50, oddsNo: 1.25 },
+  { q: "Kommer der back-to-back bonus?", oddsYes: 2.00, oddsNo: 1.80 },
+  { q: "Betaler 5 bonusser under 10x?", oddsYes: 1.40, oddsNo: 2.80 },
 ] as const;
 
 interface Props {
   huntNumber: number;
   sessionId?: string;
   isLive?: boolean;
+}
+
+function getRiskLabel(multiplier: number | null) {
+  if (multiplier === null) return null;
+  if (multiplier < 5) return "Lav risiko";
+  if (multiplier < 15) return "Balanceret";
+  return "Høj risiko";
 }
 
 export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
@@ -33,7 +40,6 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
   );
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [lastChanged, setLastChanged] = useState<number | null>(null);
 
   const answeredCount = useMemo(
     () => Object.values(answers).filter((v) => v !== null).length,
@@ -53,22 +59,9 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
     return count > 0 ? product : null;
   }, [answers]);
 
-  const riskProfile = useMemo(() => {
-    const yesAggressive = Object.entries(answers).filter(
-      ([idx, v]) => v === true && MARKETS[Number(idx)].aggressive
-    ).length;
-    const answered = Object.values(answers).filter((v) => v !== null).length;
-    if (answered < 3) return null;
-    if (yesAggressive >= 6) return { label: "High Roller", icon: Flame, type: "aggressive" as const };
-    if (yesAggressive <= 2) return { label: "Sikker", icon: Shield, type: "defensive" as const };
-    return { label: "Balanceret", icon: Zap, type: "balanced" as const };
-  }, [answers]);
-
   const handleSelect = (index: number, value: boolean) => {
     if (submitted) return;
     setAnswers((prev) => ({ ...prev, [index]: value }));
-    setLastChanged(index);
-    setTimeout(() => setLastChanged(null), 400);
   };
 
   const handleSubmit = async () => {
@@ -83,7 +76,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
         );
       if (error) throw error;
       setSubmitted(true);
-      toast.success("Din Slot Kupon er registreret! 🎰");
+      toast.success("Din kupon er registreret.");
     } catch {
       toast.error("Kunne ikke gemme kuponen. Prøv igen.");
     } finally {
@@ -92,196 +85,160 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
   };
 
   const progressPercent = (answeredCount / MARKETS.length) * 100;
+  const riskLabel = getRiskLabel(combinedMultiplier);
 
   return (
-    <div className="relative rounded-xl border border-border/60 slot-coupon-bg overflow-hidden shadow-lg flex flex-col">
-      {/* Radial glow */}
-      <div className="slot-coupon-glow" />
-
-      {/* Floating particles */}
-      <div className="slot-coupon-particles" aria-hidden="true">
-        <div className="slot-coupon-particle" />
-        <div className="slot-coupon-particle" />
-        <div className="slot-coupon-particle" />
-        <div className="slot-coupon-particle" />
-        <div className="slot-coupon-particle" />
-      </div>
-
-      {/* Header */}
-      <div className="relative z-10 overflow-hidden px-4 py-3 border-b border-border/40">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent" />
-        <div className="relative flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Ticket className="h-4 w-4 text-primary" />
-            <span className="font-bold text-sm text-foreground tracking-wide">Slot Kupon</span>
-          </div>
-          <div className={cn(
-            "flex items-center gap-1.5 text-[10px] font-semibold px-2 py-0.5 rounded-full",
-            isLive ? "bg-green-500/15 text-green-400" : "bg-muted text-muted-foreground"
-          )}>
-            {isLive ? (
-              <>
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="slot-coupon-live-dot absolute inset-0 rounded-full" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-400" />
-                </span>
-                Hunt #{huntNumber} – Live
-              </>
-            ) : (
-              <>Hunt #{huntNumber}</>
-            )}
-          </div>
+    <div className="relative slot-coupon-nordic rounded-lg overflow-hidden flex flex-col slot-coupon-vignette">
+      <div className="slot-coupon-glass rounded-lg flex flex-col relative z-10">
+        {/* Header */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border/30">
+          <span className="text-xs font-semibold tracking-wide text-foreground/90">
+            Slot Kupon
+          </span>
+          {isLive ? (
+            <span className="flex items-center gap-1.5 text-[10px] font-medium text-red-400/90">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-400 slot-coupon-live-pulse" />
+              LIVE
+            </span>
+          ) : (
+            <span className="text-[10px] text-muted-foreground">
+              Hunt #{huntNumber}
+            </span>
+          )}
         </div>
-      </div>
 
-      {/* Progress bar */}
-      <div className="relative z-10 px-4 pt-2">
-        <div className="slot-coupon-progress-track bg-muted/30">
-          <div
-            className="slot-coupon-progress-fill"
-            style={{ width: `${progressPercent}%` }}
-          />
-        </div>
-      </div>
-
-      {/* Markets – scrollable */}
-      <div className="relative z-10 divide-y divide-border/30 overflow-y-auto max-h-[420px] scrollbar-thin">
-        {MARKETS.map((market, i) => {
-          const selected = answers[i];
-          const justChanged = lastChanged === i;
-          return (
+        {/* Progress */}
+        <div className="px-4 pt-2.5 pb-1">
+          <div className="slot-coupon-progress bg-border/20">
             <div
-              key={i}
-              className={cn(
-                "px-4 py-3 transition-all duration-200",
-                selected !== null && "bg-primary/[0.02]",
-                justChanged && "animate-in fade-in duration-300"
-              )}
-            >
-              <p className="text-[11px] font-medium text-foreground/80 mb-2 leading-snug">{market.q}</p>
-              <div className="grid grid-cols-2 gap-2">
-                {/* JA */}
-                <button
-                  type="button"
-                  disabled={submitted}
-                  onClick={() => handleSelect(i, true)}
-                  className={cn(
-                    "slot-coupon-select-pop relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
-                    selected === true
-                      ? "border-green-500/50 bg-green-500/10 text-green-400 scale-[1.02] slot-coupon-odds-yes-active"
-                      : "border-border/50 bg-muted/40 text-muted-foreground hover:border-green-500/30 hover:bg-green-500/5 hover:text-foreground",
-                    selected === false && "opacity-50",
-                    submitted && "opacity-60 cursor-not-allowed"
-                  )}
-                >
-                  <span className="flex items-center gap-1.5">
-                    {selected === true && <Check className="h-3 w-3" />}
-                    JA
+              className="slot-coupon-progress-bar"
+              data-complete={isComplete}
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+        </div>
+
+        {/* Markets */}
+        <div className="overflow-y-auto max-h-[420px] scrollbar-thin">
+          {MARKETS.map((market, i) => {
+            const selected = answers[i];
+            return (
+              <div
+                key={i}
+                className="slot-coupon-market px-4 py-2.5 border-b border-border/15 last:border-b-0"
+              >
+                <p className="text-[11px] font-medium text-foreground/70 mb-1.5 leading-snug">
+                  {market.q}
+                </p>
+                <div className="grid grid-cols-2 gap-2">
+                  {/* JA */}
+                  <button
+                    type="button"
+                    disabled={submitted}
+                    onClick={() => handleSelect(i, true)}
+                    className={cn(
+                      "slot-coupon-odds-btn flex items-center justify-between rounded-md border px-3 py-1.5 text-xs font-semibold",
+                      selected === true
+                        ? "border-[hsl(150_35%_35%)] bg-[hsl(150_40%_20%/0.08)] text-[hsl(150_45%_55%)]"
+                        : "border-border/40 bg-transparent text-muted-foreground hover:border-border/60 hover:text-foreground/80",
+                      selected === false && "opacity-40",
+                      submitted && "opacity-50 cursor-not-allowed"
+                    )}
+                  >
+                    <span className="flex items-center gap-1.5">
+                      {selected === true && <Check className="h-3 w-3" />}
+                      Ja
+                    </span>
+                    <span className="font-mono tabular-nums text-[10px] opacity-60">{market.oddsYes.toFixed(2)}</span>
+                  </button>
+                  {/* NEJ */}
+                  <button
+                    type="button"
+                    disabled={submitted}
+                    onClick={() => handleSelect(i, false)}
+                    className={cn(
+                      "slot-coupon-odds-btn flex items-center justify-between rounded-md border px-3 py-1.5 text-xs font-semibold",
+                      selected === false
+                        ? "border-[hsl(0_35%_40%)] bg-[hsl(0_40%_25%/0.08)] text-[hsl(0_45%_60%)]"
+                        : "border-border/40 bg-transparent text-muted-foreground hover:border-border/60 hover:text-foreground/80",
+                      selected === true && "opacity-40",
+                      submitted && "opacity-50 cursor-not-allowed"
+                    )}
+                  >
+                    <span className="flex items-center gap-1.5">
+                      {selected === false && <Check className="h-3 w-3" />}
+                      Nej
+                    </span>
+                    <span className="font-mono tabular-nums text-[10px] opacity-60">{market.oddsNo.toFixed(2)}</span>
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Footer – betting slip style */}
+        <div className="border-t border-border/30 bg-[hsl(240_10%_8%/0.6)] px-4 py-3.5 space-y-2.5 sticky bottom-0">
+          <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+            <span>Slot Kupon – Hunt #{huntNumber}</span>
+            <span className="tabular-nums">{answeredCount}/{MARKETS.length} markeder</span>
+          </div>
+
+          {combinedMultiplier !== null && (
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] text-muted-foreground">Samlet multiplikator</span>
+              <div className="flex items-center gap-2">
+                <span className={cn(
+                  "text-sm font-bold tabular-nums font-mono",
+                  isComplete ? "text-foreground" : "text-foreground/70"
+                )}>
+                  {combinedMultiplier.toFixed(1)}x
+                </span>
+                {riskLabel && (
+                  <span className="text-[9px] text-muted-foreground/70 border border-border/30 rounded px-1.5 py-0.5">
+                    {riskLabel}
                   </span>
-                  <span className="text-[10px] font-mono tabular-nums opacity-70">{market.oddsYes.toFixed(2)}</span>
-                </button>
-                {/* NEJ */}
-                <button
-                  type="button"
-                  disabled={submitted}
-                  onClick={() => handleSelect(i, false)}
-                  className={cn(
-                    "slot-coupon-select-pop relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
-                    selected === false
-                      ? "border-red-500/50 bg-red-500/10 text-red-400 scale-[1.02] slot-coupon-odds-no-active"
-                      : "border-border/50 bg-muted/40 text-muted-foreground hover:border-red-500/30 hover:bg-red-500/5 hover:text-foreground",
-                    selected === true && "opacity-50",
-                    submitted && "opacity-60 cursor-not-allowed"
-                  )}
-                >
-                  <span className="flex items-center gap-1.5">
-                    {selected === false && <Check className="h-3 w-3" />}
-                    NEJ
-                  </span>
-                  <span className="text-[10px] font-mono tabular-nums opacity-70">{market.oddsNo.toFixed(2)}</span>
-                </button>
+                )}
               </div>
             </div>
-          );
-        })}
-      </div>
+          )}
 
-      {/* Sticky slip footer */}
-      <div className="relative z-10 border-t-2 border-primary/20 bg-gradient-to-t from-muted/40 to-transparent px-4 py-4 space-y-3 sticky bottom-0">
-        {/* Combined multiplier */}
-        {combinedMultiplier !== null && (
-          <div className="flex items-center justify-between rounded-lg bg-primary/[0.07] border border-primary/20 px-3 py-2">
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <TrendingUp className="h-3.5 w-3.5 text-primary" />
-              Samlet multiplikator
-            </div>
-            <span className={cn(
-              "text-base font-bold tabular-nums font-mono transition-all",
-              combinedMultiplier > 100 ? "text-orange-400" : combinedMultiplier > 20 ? "text-amber-400" : "text-primary"
-            )}>
-              {combinedMultiplier.toFixed(1)}x
-            </span>
-          </div>
-        )}
-
-        {/* Risk + count row */}
-        <div className="flex items-center justify-between">
-          {riskProfile ? (
-            <span className={cn(
-              "inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full",
-              riskProfile.type === "aggressive" && "bg-orange-500/15 text-orange-400",
-              riskProfile.type === "defensive" && "bg-blue-500/15 text-blue-400",
-              riskProfile.type === "balanced" && "bg-primary/15 text-primary",
-            )}>
-              <riskProfile.icon className="h-3 w-3" />
-              {riskProfile.label}
-            </span>
-          ) : <span />}
-          <span className={cn(
-            "text-xs font-bold tabular-nums",
-            isComplete ? "text-primary" : "text-foreground"
-          )}>
-            {answeredCount}/{MARKETS.length} markeder
-          </span>
-        </div>
-
-        {/* Status */}
-        <div className="flex items-center justify-center gap-1.5 text-[11px] font-medium">
-          <span className={cn(
-            "h-2 w-2 rounded-full transition-colors",
-            submitted ? "bg-green-400" : isComplete ? "bg-primary animate-pulse" : "bg-amber-400"
-          )} />
-          <span className={cn(
-            submitted ? "text-green-400" : isComplete ? "text-primary" : "text-amber-400"
-          )}>
-            {submitted ? "Kupon registreret ✓" : isComplete ? "Kupon klar – Deltag nu!" : "Afventer valg"}
-          </span>
-        </div>
-
-        {/* CTA */}
-        {submitted ? (
-          <div className="flex items-center justify-center gap-2 rounded-lg bg-green-500/10 border border-green-500/20 py-2.5 text-xs font-semibold text-green-400">
-            <Check className="h-3.5 w-3.5" />
-            Din kupon er registreret
-          </div>
-        ) : user ? (
-          <Button
-            onClick={handleSubmit}
-            disabled={!isComplete || submitting}
-            className={cn(
-              "w-full text-sm font-bold transition-all duration-300",
-              isComplete && "shadow-[0_0_24px_hsl(var(--primary)/0.4)] animate-pulse"
+          {/* Status */}
+          <div className="text-[10px] font-medium text-center">
+            {submitted ? (
+              <span className="text-[hsl(150_40%_50%)]">Kupon registreret</span>
+            ) : isComplete ? (
+              <span className="text-[hsl(150_40%_50%)]">Klar til indsendelse</span>
+            ) : (
+              <span className="text-muted-foreground/60">Afventer valg</span>
             )}
-            size="default"
-          >
-            {submitting ? "Gemmer..." : isComplete ? "🎰 Deltag i Slot Kupon" : "Vælg alle 10 markeder"}
-          </Button>
-        ) : (
-          <div className="flex items-center justify-center gap-2 rounded-lg border border-border bg-muted/50 py-2.5 text-xs text-muted-foreground">
-            <Lock className="h-3.5 w-3.5" />
-            Log ind for at deltage
           </div>
-        )}
+
+          {/* CTA */}
+          {submitted ? (
+            <div className="flex items-center justify-center gap-2 rounded-md border border-[hsl(150_30%_30%)] bg-[hsl(150_30%_15%/0.1)] py-2 text-xs font-medium text-[hsl(150_40%_50%)]">
+              <Check className="h-3.5 w-3.5" />
+              Registreret
+            </div>
+          ) : user ? (
+            <Button
+              onClick={handleSubmit}
+              disabled={!isComplete || submitting}
+              className={cn(
+                "w-full text-xs font-semibold transition-all duration-200",
+                isComplete && "shadow-[0_0_16px_hsl(150_40%_40%/0.15)]"
+              )}
+              size="sm"
+            >
+              {submitting ? "Gemmer..." : isComplete ? "Deltag i Prediction" : `Vælg ${MARKETS.length - answeredCount} markeder mere`}
+            </Button>
+          ) : (
+            <div className="flex items-center justify-center gap-1.5 rounded-md border border-border/30 py-2 text-[11px] text-muted-foreground/60">
+              <Lock className="h-3 w-3" />
+              Log ind for at deltage
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
