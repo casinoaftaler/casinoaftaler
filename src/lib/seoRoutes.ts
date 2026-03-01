@@ -94,7 +94,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-anmeldelser/luna-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-16" },
   { path: "/casino-anmeldelser/spildansknu", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-28" },
   { path: "/casino-anmeldelser/danske-spil", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-01" },
-  { path: "/casino-anmeldelser/comeon", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-19" },
+  { path: "/casino-anmeldelser/comeon", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-01" },
   { path: "/casino-anmeldelser/getlucky", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/casino-anmeldelser/mr-green", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-01" },
   { path: "/casino-anmeldelser/videoslots", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-22" },
