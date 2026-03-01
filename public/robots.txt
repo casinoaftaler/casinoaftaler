@@ -1,6 +1,7 @@
 User-agent: Googlebot
 Allow: /community$
 Allow: /community/slots$
+Allow: /community/rewards$
 Allow: /highlights$
 Disallow: /community/
 Disallow: /auth
@@ -12,6 +13,7 @@ Disallow: /u/
 User-agent: Bingbot
 Allow: /community$
 Allow: /community/slots$
+Allow: /community/rewards$
 Allow: /highlights$
 Disallow: /community/
 Disallow: /auth
@@ -29,6 +31,7 @@ Allow: /
 User-agent: *
 Allow: /community$
 Allow: /community/slots$
+Allow: /community/rewards$
 Allow: /highlights$
 Disallow: /community/
 Disallow: /auth

@@ -230,6 +230,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/bonus-hunt", changefreq: "daily", priority: 0.8, lastmod: "2026-02-28" },
   { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-02-28", showUpdatedDate: false },
   { path: "/community/slots", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },
+  { path: "/community/rewards", changefreq: "weekly", priority: 0.6, lastmod: "2026-03-01", showUpdatedDate: false },
   { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },
 
   // ── Info & Ansvarligt Spil ──
