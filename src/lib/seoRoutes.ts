@@ -109,7 +109,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-anmeldelser/maria-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-01" },
   { path: "/casino-anmeldelser/kapow-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-01" },
   { path: "/casino-anmeldelser/nordicbet", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-06" },
-  { path: "/casino-anmeldelser/one-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-05" },
+  { path: "/casino-anmeldelser/one-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-01" },
   { path: "/casino-anmeldelser/spilnu", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-04" },
   { path: "/casino-anmeldelser/stake-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-03" },
   { path: "/casino-anmeldelser/casinostuen", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-01" },
