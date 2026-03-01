@@ -35,6 +35,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [showReceipt, setShowReceipt] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [lastChanged, setLastChanged] = useState<number | null>(null);
 
   const answeredCount = useMemo(
@@ -279,17 +280,40 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
             </Button>
           </div>
         ) : user ? (
-          <Button
-            onClick={handleSubmit}
-            disabled={!isComplete || submitting}
-            className={cn(
-              "w-full text-sm font-bold transition-all duration-300",
-              isComplete && "shadow-[0_0_24px_hsl(var(--primary)/0.4)] animate-pulse"
-            )}
-            size="default"
-          >
-            {submitting ? "Gemmer..." : isComplete ? "🎰 Deltag i Slot Kupon" : "Vælg alle 10 markeder"}
-          </Button>
+          submitted ? null : !showConfirm ? (
+            <Button
+              onClick={() => setShowConfirm(true)}
+              disabled={!isComplete}
+              className="w-full text-sm font-bold"
+              size="default"
+            >
+              {isComplete ? "🎰 Placer dit bet" : "Vælg alle 10 markeder"}
+            </Button>
+          ) : (
+            <div className="space-y-2">
+              <p className="text-center text-xs text-muted-foreground">
+                Er du sikker? Du kan ikke trække din kupon tilbage.
+              </p>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex-1 text-xs"
+                  onClick={() => setShowConfirm(false)}
+                >
+                  Annuller
+                </Button>
+                <Button
+                  size="sm"
+                  className="flex-1 text-xs"
+                  disabled={submitting}
+                  onClick={handleSubmit}
+                >
+                  {submitting ? "Gemmer..." : "Bekræft"}
+                </Button>
+              </div>
+            </div>
+          )
         ) : (
           <div className="flex items-center justify-center gap-2 rounded-lg border border-border bg-muted/50 py-2.5 text-xs text-muted-foreground">
             <Lock className="h-3.5 w-3.5" />
