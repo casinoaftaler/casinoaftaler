@@ -21,9 +21,7 @@ interface Props {
   sessionId?: string;
   isLive?: boolean;
   isArchived?: boolean;
-  /** Live slot data from the hunt API */
   huntSlots?: BonusHuntSlot[];
-  /** Total number of slots in the hunt */
   totalSlots?: number;
   sessionMarkets?: MarketWithEnabled[] | null;
   couponOpen?: boolean;
@@ -32,7 +30,6 @@ interface Props {
 export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived, huntSlots, totalSlots, sessionMarkets, couponOpen }: Props) {
   const { user } = useAuth();
 
-  // Derive active markets from session or fall back to defaults
   const MARKETS = useMemo(() => {
     if (Array.isArray(sessionMarkets) && sessionMarkets.length > 0) {
       return sessionMarkets.filter((m) => m.enabled !== false);
@@ -40,7 +37,6 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
     return DEFAULT_MARKETS;
   }, [sessionMarkets]);
 
-  // Auto-resolve coupon results from live hunt data
   const couponResults = useMemo(() => {
     if (!huntSlots || !totalSlots) return null;
     return resolveCouponMarkets(MARKETS, huntSlots, totalSlots);
@@ -56,7 +52,6 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
   const [showPostSubmit, setShowPostSubmit] = useState(false);
   const [lastChanged, setLastChanged] = useState<number | null>(null);
 
-  // Hide status + confirmation banner 10s after submit
   useEffect(() => {
     if (!submitted) return;
     setShowPostSubmit(true);
@@ -93,7 +88,6 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
     return { label: "Balanceret", icon: Zap, type: "balanced" as const };
   }, [answers]);
 
-  // Coupon is locked when explicitly closed by admin
   const isCouponLocked = couponOpen === false || isArchived;
 
   const handleSelect = (index: number, value: boolean) => {
@@ -125,58 +119,65 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
 
   const progressPercent = (answeredCount / MARKETS.length) * 100;
 
-  // Compute how many markets have been resolved so far
   const resolvedCount = couponResults
     ? Object.values(couponResults).filter((v) => v !== null).length
     : 0;
 
   return (
     <>
-    <div className="relative rounded-xl border border-border/60 slot-coupon-bg overflow-hidden shadow-lg flex flex-col">
-      {/* Radial glow */}
-      <div className="slot-coupon-glow" />
-
-      {/* Floating particles */}
-      <div className="slot-coupon-particles" aria-hidden="true">
-        <div className="slot-coupon-particle" />
-        <div className="slot-coupon-particle" />
-        <div className="slot-coupon-particle" />
-        <div className="slot-coupon-particle" />
-        <div className="slot-coupon-particle" />
+    <div className="relative rounded-xl slot-coupon-bg overflow-hidden flex flex-col">
+      {/* Watermark */}
+      <div className="slot-coupon-watermark" aria-hidden="true">
+        <span>Casinoaftaler.dk</span>
+        <span>Casinoaftaler.dk</span>
+        <span>Casinoaftaler.dk</span>
+        <span>Casinoaftaler.dk</span>
+        <span>Casinoaftaler.dk</span>
+        <span>Casinoaftaler.dk</span>
       </div>
 
       {/* Header */}
-      <div className="relative z-10 overflow-hidden px-4 py-3 border-b border-border/40">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent" />
-        <div className="relative flex items-center justify-between">
+      <div className="slot-coupon-header">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Ticket className="h-4 w-4 text-primary" />
-            <span className="font-bold text-sm text-foreground tracking-wide">Slot Kupon</span>
+            <Ticket className="h-5 w-5" style={{ color: 'hsl(220 20% 20%)' }} />
+            <span className="font-black text-base tracking-tight" style={{ color: 'hsl(220 20% 12%)' }}>
+              Slot Kupon
+            </span>
+            <span className="text-[9px] font-semibold opacity-50">®</span>
           </div>
           <div className={cn(
-            "flex items-center gap-1.5 text-[10px] font-semibold px-2 py-0.5 rounded-full",
-            isLive ? "bg-green-500/15 text-green-400" : isArchived ? "bg-muted text-muted-foreground" : "bg-muted text-muted-foreground"
-          )}>
+            "flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-1 rounded-full",
+            isLive
+              ? "border border-green-600/30"
+              : "border border-gray-400/30"
+          )} style={{
+            background: isLive ? 'hsl(142 50% 40% / 0.12)' : 'hsl(30 10% 82%)',
+            color: isLive ? 'hsl(142 60% 28%)' : 'hsl(220 10% 40%)'
+          }}>
             {isLive ? (
               <>
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="slot-coupon-live-dot absolute inset-0 rounded-full" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-400" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
                 </span>
-                Hunt #{huntNumber} – Live
+                Hunt #{huntNumber}
               </>
             ) : isArchived ? (
-              <>Hunt #{huntNumber} – Arkiv</>
+              <>Hunt #{huntNumber}</>
             ) : (
               <>Hunt #{huntNumber}</>
             )}
           </div>
         </div>
+        <p className="text-[9px] mt-0.5 tracking-wide" style={{ color: 'hsl(220 15% 45%)' }}>
+          Udbydes af Casinoaftaler.dk
+        </p>
       </div>
 
       {/* Progress bar */}
-      <div className="relative z-10 px-4 pt-2">
-        <div className="slot-coupon-progress-track bg-muted/30">
+      <div className="relative z-[1] px-4 pt-2">
+        <div className="slot-coupon-progress-track">
           <div
             className="slot-coupon-progress-fill"
             style={{ width: `${progressPercent}%` }}
@@ -185,7 +186,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
       </div>
 
       {/* Markets – scrollable */}
-      <div className="relative z-10 divide-y divide-border/30 overflow-y-auto max-h-[420px] scrollbar-thin">
+      <div className="relative z-[1] overflow-y-auto max-h-[420px] scrollbar-thin">
         {MARKETS.map((market, i) => {
           const selected = answers[i];
           const justChanged = lastChanged === i;
@@ -194,19 +195,20 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
             <div
               key={i}
               className={cn(
-                "px-4 py-3 transition-all duration-200",
-                selected !== null && "bg-primary/[0.02]",
+                "slot-coupon-market-row px-4 py-3 transition-all duration-200",
                 justChanged && "animate-in fade-in duration-300",
-                result === true && "bg-green-500/[0.05]",
-                result === false && "bg-red-500/[0.05]"
+                result === true && "!bg-green-500/[0.08]",
+                result === false && "!bg-red-500/[0.08]"
               )}
             >
               <div className="flex items-center justify-between mb-2">
-                <p className="text-[11px] font-medium text-foreground/80 leading-snug">{market.q}</p>
+                <p className="slot-coupon-question text-[11px] font-semibold leading-snug">
+                  {market.q}
+                </p>
                 {result !== null && (
                   <span className={cn(
-                    "ml-2 shrink-0 flex items-center gap-1 text-[10px] font-bold px-1.5 py-0.5 rounded-full",
-                    result ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
+                    "ml-2 shrink-0 flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.5 rounded-full",
+                    result ? "slot-coupon-result-hit" : "slot-coupon-result-miss"
                   )}>
                     {result ? <Check className="h-2.5 w-2.5" /> : <X className="h-2.5 w-2.5" />}
                     {result ? "RAMT" : "MISS"}
@@ -215,48 +217,46 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
               </div>
               <div className="grid grid-cols-2 gap-2">
                 {/* JA */}
-                 <button
-                   type="button"
-                   disabled={submitted || isArchived}
-                   aria-label={`Ja til: ${market.q}`}
-                   aria-pressed={selected === true}
-                   onClick={() => handleSelect(i, true)}
-                   className={cn(
-                     "slot-coupon-select-pop relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
-                     selected === true
-                       ? "border-green-500/50 bg-green-500/10 text-green-400 scale-[1.02] slot-coupon-odds-yes-active"
-                       : "border-border/50 bg-muted/40 text-muted-foreground hover:border-green-500/30 hover:bg-green-500/5 hover:text-foreground",
-                     selected === false && "opacity-50",
-                      (submitted || isArchived) && "opacity-60 cursor-not-allowed"
-                   )}
-                 >
+                <button
+                  type="button"
+                  disabled={submitted || isArchived}
+                  aria-label={`Ja til: ${market.q}`}
+                  aria-pressed={selected === true}
+                  onClick={() => handleSelect(i, true)}
+                  className={cn(
+                    "slot-coupon-select-pop relative flex items-center justify-between rounded-lg px-3 py-2 text-xs font-semibold",
+                    "slot-coupon-btn-ja",
+                    selected === true && "slot-coupon-btn-ja-active",
+                    selected === false && "opacity-50",
+                    (submitted || isArchived) && "opacity-60 cursor-not-allowed"
+                  )}
+                >
                   <span className="flex items-center gap-1.5">
                     {selected === true && <Check className="h-3 w-3" />}
                     JA
                   </span>
-                  <span className="text-[10px] font-mono tabular-nums opacity-70">{market.oddsYes.toFixed(2)}</span>
+                  <span className="slot-coupon-odds-text text-[10px] font-mono">{market.oddsYes.toFixed(2)}</span>
                 </button>
                 {/* NEJ */}
-                 <button
-                   type="button"
-                   disabled={submitted || isArchived}
-                   aria-label={`Nej til: ${market.q}`}
-                   aria-pressed={selected === false}
-                   onClick={() => handleSelect(i, false)}
-                   className={cn(
-                     "slot-coupon-select-pop relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
-                     selected === false
-                       ? "border-red-500/50 bg-red-500/10 text-red-400 scale-[1.02] slot-coupon-odds-no-active"
-                       : "border-border/50 bg-muted/40 text-muted-foreground hover:border-red-500/30 hover:bg-red-500/5 hover:text-foreground",
-                     selected === true && "opacity-50",
-                     (submitted || isArchived) && "opacity-60 cursor-not-allowed"
-                   )}
-                 >
+                <button
+                  type="button"
+                  disabled={submitted || isArchived}
+                  aria-label={`Nej til: ${market.q}`}
+                  aria-pressed={selected === false}
+                  onClick={() => handleSelect(i, false)}
+                  className={cn(
+                    "slot-coupon-select-pop relative flex items-center justify-between rounded-lg px-3 py-2 text-xs font-semibold",
+                    "slot-coupon-btn-nej",
+                    selected === false && "slot-coupon-btn-nej-active",
+                    selected === true && "opacity-50",
+                    (submitted || isArchived) && "opacity-60 cursor-not-allowed"
+                  )}
+                >
                   <span className="flex items-center gap-1.5">
                     {selected === false && <Check className="h-3 w-3" />}
                     NEJ
                   </span>
-                  <span className="text-[10px] font-mono tabular-nums opacity-70">{market.oddsNo.toFixed(2)}</span>
+                  <span className="slot-coupon-odds-text text-[10px] font-mono">{market.oddsNo.toFixed(2)}</span>
                 </button>
               </div>
             </div>
@@ -264,31 +264,29 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
         })}
       </div>
 
-      {/* Sticky slip footer */}
-      <div className="relative z-10 border-t-2 border-primary/20 bg-gradient-to-t from-muted/40 to-transparent px-4 py-4 space-y-3 sticky bottom-0">
+      {/* Footer */}
+      <div className="slot-coupon-footer space-y-3 sticky bottom-0">
         {/* Combined multiplier */}
         {combinedMultiplier !== null && (
-          <div className="flex items-center justify-between rounded-lg bg-primary/[0.07] border border-primary/20 px-3 py-2">
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <TrendingUp className="h-3.5 w-3.5 text-primary" />
-              Samlet multiplikator
+          <div className="slot-coupon-multiplier-box flex items-center justify-between">
+            <div className="flex items-center gap-1.5 text-xs" style={{ color: 'hsl(220 15% 40%)' }}>
+              <TrendingUp className="h-3.5 w-3.5" style={{ color: 'hsl(15 60% 50%)' }} />
+              Samlet odds
             </div>
             <span className={cn(
-              "text-base font-bold tabular-nums font-mono transition-all",
-              combinedMultiplier > 100 ? "text-orange-400" : combinedMultiplier > 20 ? "text-amber-400" : "text-primary"
-            )}>
-              {combinedMultiplier.toFixed(1)}x
+              "text-base font-black tabular-nums font-mono",
+              combinedMultiplier > 100 ? "text-orange-700" : combinedMultiplier > 20 ? "text-amber-700" : ""
+            )} style={{ color: combinedMultiplier <= 20 ? 'hsl(220 20% 15%)' : undefined }}>
+              {combinedMultiplier.toFixed(2)}
             </span>
           </div>
         )}
 
         {/* Live resolution progress */}
         {couponResults && resolvedCount > 0 && (
-          <div className="flex items-center justify-between rounded-lg bg-muted/30 border border-border/30 px-3 py-1.5">
-            <span className="text-[10px] text-muted-foreground font-medium">Live resultater</span>
-            <span className="text-[10px] font-bold tabular-nums text-foreground">
-              {resolvedCount}/{MARKETS.length} afgjort
-            </span>
+          <div className="slot-coupon-info-bar flex items-center justify-between text-[10px] font-medium">
+            <span>Live resultater</span>
+            <span className="font-bold tabular-nums">{resolvedCount}/{MARKETS.length} afgjort</span>
           </div>
         )}
 
@@ -297,37 +295,34 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
           {riskProfile ? (
             <span className={cn(
               "inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full",
-              riskProfile.type === "aggressive" && "bg-orange-500/15 text-orange-400",
-              riskProfile.type === "defensive" && "bg-blue-500/15 text-blue-400",
-              riskProfile.type === "balanced" && "bg-primary/15 text-primary",
-            )}>
+              riskProfile.type === "aggressive" && "slot-coupon-result-miss",
+              riskProfile.type === "defensive" && "slot-coupon-result-hit",
+              riskProfile.type === "balanced" && "slot-coupon-info-bar",
+            )} style={{ padding: '2px 8px' }}>
               <riskProfile.icon className="h-3 w-3" />
               {riskProfile.label}
             </span>
           ) : <span />}
-          <span className={cn(
-            "text-xs font-bold tabular-nums",
-            isComplete ? "text-primary" : "text-foreground"
-          )}>
+          <span className="text-xs font-bold tabular-nums" style={{ color: 'hsl(220 20% 15%)' }}>
             {answeredCount}/{MARKETS.length} markeder
           </span>
         </div>
 
-        {/* Status – auto-hides 10s after submit */}
+        {/* Status */}
         {isArchived ? (
-          <div className="flex items-center justify-center gap-1.5 text-[11px] font-medium">
-            <span className="h-2 w-2 rounded-full bg-muted-foreground" />
-            <span className="text-muted-foreground">Bonus hunt afsluttet</span>
+          <div className="flex items-center justify-center gap-1.5 text-[11px] font-medium slot-coupon-status-text">
+            <span className="h-2 w-2 rounded-full" style={{ background: 'hsl(220 10% 60%)' }} />
+            <span>Bonus hunt afsluttet</span>
           </div>
         ) : (!submitted || showPostSubmit) ? (
           <div className="flex items-center justify-center gap-1.5 text-[11px] font-medium">
             <span className={cn(
               "h-2 w-2 rounded-full transition-colors",
-              submitted ? "bg-green-400" : isComplete ? "bg-primary animate-pulse" : "bg-amber-400"
+              submitted ? "bg-green-500" : isComplete ? "bg-amber-500 animate-pulse" : "bg-amber-400"
             )} />
-            <span className={cn(
-              submitted ? "text-green-400" : isComplete ? "text-primary" : "text-amber-400"
-            )}>
+            <span style={{
+              color: submitted ? 'hsl(142 60% 30%)' : isComplete ? 'hsl(15 60% 45%)' : 'hsl(30 60% 40%)'
+            }}>
               {submitted ? "Kupon registreret ✓" : isComplete ? "Kupon klar – Deltag nu!" : "Afventer valg"}
             </span>
           </div>
@@ -336,7 +331,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
         {/* CTA */}
         {isArchived ? (
           <div className="space-y-2">
-            <div className="flex items-center justify-center gap-2 rounded-lg bg-muted/50 border border-border py-2.5 text-xs font-semibold text-muted-foreground">
+            <div className="slot-coupon-info-bar flex items-center justify-center gap-2 text-xs font-semibold">
               <Lock className="h-3.5 w-3.5" />
               Bonus hunt afsluttet – kuponer låst
             </div>
@@ -344,58 +339,52 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
         ) : submitted ? (
           <div className="space-y-2">
             {showPostSubmit && (
-              <div className="flex items-center justify-center gap-2 rounded-lg bg-green-500/10 border border-green-500/20 py-2.5 text-xs font-semibold text-green-400">
+              <div className="slot-coupon-confirmed-bar flex items-center justify-center gap-2 text-xs font-semibold">
                 <Check className="h-3.5 w-3.5" />
                 Din kupon er registreret
               </div>
             )}
-            <Button
-              variant="outline"
-              size="sm"
-              className="w-full gap-2 text-xs"
+            <button
+              className="slot-coupon-info-bar w-full flex items-center justify-center gap-2 text-xs font-semibold cursor-pointer hover:opacity-80 transition-opacity"
               onClick={() => setShowReceipt((v) => !v)}
             >
               <Eye className="h-3.5 w-3.5" />
               {showReceipt ? "Skjul Slot Kupon" : "Se Slot Kupon"}
-            </Button>
+            </button>
           </div>
         ) : user ? (
           !showConfirm ? (
-            <Button
+            <button
               onClick={() => setShowConfirm(true)}
               disabled={!isComplete}
-              className="w-full text-sm font-bold"
-              size="default"
+              className="slot-coupon-cta w-full rounded-lg py-3 text-sm slot-coupon-select-pop"
             >
               {isComplete ? "🎰 Placer dit bet" : `Vælg alle ${MARKETS.length} markeder`}
-            </Button>
+            </button>
           ) : (
             <div className="space-y-2">
-              <p className="text-center text-xs text-muted-foreground">
+              <p className="text-center text-xs" style={{ color: 'hsl(220 15% 40%)' }}>
                 Er du sikker? Du kan ikke trække din kupon tilbage.
               </p>
               <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex-1 text-xs"
+                <button
+                  className="slot-coupon-info-bar flex-1 text-xs font-semibold cursor-pointer hover:opacity-80 transition-opacity text-center"
                   onClick={() => setShowConfirm(false)}
                 >
                   Annuller
-                </Button>
-                <Button
-                  size="sm"
-                  className="flex-1 text-xs"
+                </button>
+                <button
+                  className="slot-coupon-cta flex-1 rounded-lg py-2.5 text-xs"
                   disabled={submitting}
                   onClick={handleSubmit}
                 >
                   {submitting ? "Gemmer..." : "Bekræft"}
-                </Button>
+                </button>
               </div>
             </div>
           )
         ) : (
-          <div className="flex items-center justify-center gap-2 rounded-lg border border-border bg-muted/50 py-2.5 text-xs text-muted-foreground">
+          <div className="slot-coupon-info-bar flex items-center justify-center gap-2 text-xs">
             <Lock className="h-3.5 w-3.5" />
             Log ind for at deltage
           </div>
@@ -404,6 +393,9 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
         {/* Participant leaderboard */}
         <SlotCouponLeaderboard huntNumber={huntNumber} couponResults={couponResults} />
       </div>
+
+      {/* Perforated tear edge */}
+      <div className="slot-coupon-tear" aria-hidden="true" />
     </div>
 
       {/* Receipt modal overlay */}
@@ -418,7 +410,8 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
           >
             <button
               onClick={() => setShowReceipt(false)}
-              className="absolute -top-3 -right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-card border border-border text-foreground shadow-lg hover:bg-muted transition-colors"
+              className="absolute -top-3 -right-3 z-10 rounded-full bg-card border border-border p-1.5 hover:bg-muted transition-colors"
+              aria-label="Luk"
             >
               <X className="h-4 w-4" />
             </button>
