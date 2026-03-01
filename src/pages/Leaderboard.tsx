@@ -474,7 +474,7 @@ export default function Leaderboard() {
             <div className="space-y-6">
               {/* Active tournaments */}
               {active.length > 0 && (
-                <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {active.map((t) => <TournamentCard key={t.id} tournament={t} />)}
                 </div>
               )}
@@ -485,7 +485,9 @@ export default function Leaderboard() {
                   <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
                     <Clock className="h-4 w-4" /> Kommende turneringer
                   </h2>
-                  {upcoming.map((t) => <TournamentCard key={t.id} tournament={t} />)}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {upcoming.map((t) => <TournamentCard key={t.id} tournament={t} />)}
+                  </div>
                 </div>
               )}
 
@@ -495,7 +497,9 @@ export default function Leaderboard() {
                   <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
                     Afsluttede turneringer
                   </h2>
-                  {ended.map((t) => <TournamentCard key={t.id} tournament={t} />)}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {ended.map((t) => <TournamentCard key={t.id} tournament={t} />)}
+                  </div>
                 </div>
               )}
 
