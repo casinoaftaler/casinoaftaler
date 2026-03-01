@@ -11,6 +11,7 @@ import { DEFAULT_MARKETS, type CouponMarket } from "./slotCouponMarkets";
 import { resolveCouponMarkets } from "./slotCouponResolver";
 import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
 import "@/styles/slot-coupon.css";
+import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
 
 interface MarketWithEnabled extends CouponMarket {
   enabled?: boolean;
@@ -138,6 +139,9 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
 
       {/* Header */}
       <div className="slot-coupon-header">
+        <div className="flex items-center justify-center mb-1.5">
+          <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-5 w-auto opacity-70" />
+        </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Ticket className="h-5 w-5" style={{ color: 'hsl(220 20% 20%)' }} />
