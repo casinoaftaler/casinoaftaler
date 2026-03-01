@@ -72,6 +72,16 @@ function toDanishISO(date: Date): string {
 export default defineConfig(({ mode }) => ({
   build: {
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-icons': ['lucide-react'],
+          'vendor-supabase': ['@supabase/supabase-js'],
+          'vendor-charts': ['recharts'],
+        },
+      },
+    },
   },
   server: {
     host: "::",
