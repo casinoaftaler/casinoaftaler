@@ -23,6 +23,7 @@ import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
 import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
+import bonanzaImage from "@/assets/slots/fedesvin-bonanza-preview.jpg";
 import "@/styles/spillehal-animations.css";
 import "@/styles/community-micro.css";
 
@@ -54,7 +55,7 @@ const MORE_SLOTS = [
     id: "fedesvin-bonanza",
     title: "Fedesvin Bonanza",
     description: "Sødmefuld candy-action med tumble-gevinster og multiplier-bomber i bonusrunden!",
-    image: olympusImage,
+    image: bonanzaImage,
     href: "/community/slots/fedesvin-bonanza",
     status: "coming-soon" as const,
   },
