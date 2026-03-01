@@ -383,7 +383,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   }
 
   // Casino guides subpages → 3 siblings + 1 cross-cluster
-  if (path.startsWith("/casinoer/") || path === "/licenserede-casinoer") {
+  if (path.startsWith("/casinoer/") || path === "/casino-licenser") {
     const siblings = casinoGuidesSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     return {
       guides: [...siblings, bonusHub].slice(0, MAX_SIBLINGS + MAX_CROSS_CLUSTER),
