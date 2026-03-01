@@ -77,7 +77,8 @@ export default function BonusHunt() {
 
   const liveHuntNumber = getNextAllowed(huntData?.visibleId || latestHuntNumber + 1);
   const currentHuntNumber = huntIdOverride || liveHuntNumber;
-  const isLive = !!(session?.status === 'active' && session?.hunt_number === currentHuntNumber);
+  const isArchived = currentHuntNumber <= latestHuntNumber;
+  const isLive = !!(session?.status === 'active' && session?.hunt_number === currentHuntNumber && !isArchived);
   const huntVideo = getHuntVideo(currentHuntNumber);
   const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber);
 
@@ -268,7 +269,7 @@ export default function BonusHunt() {
                     </TabsContent>
                     <TabsContent value="gtw" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntGTWTab
-                        session={session}
+                        session={isArchived ? null : session}
                         bets={gtwBets}
                         userId={user?.id}
                         onBetPlaced={refreshBets}
@@ -276,7 +277,7 @@ export default function BonusHunt() {
                     </TabsContent>
                     <TabsContent value="avgx" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntAvgXTab
-                        session={session}
+                        session={isArchived ? null : session}
                         bets={avgxBets}
                         userId={user?.id}
                         onBetPlaced={refreshBets}
@@ -287,6 +288,7 @@ export default function BonusHunt() {
                         huntNumber={currentHuntNumber}
                         sessionId={session?.id}
                         isLive={isLive}
+                        isArchived={isArchived}
                         huntSlots={huntData?.slots}
                         totalSlots={huntData?.stats.totalBonuses}
                         sessionMarkets={session?.coupon_markets as any}

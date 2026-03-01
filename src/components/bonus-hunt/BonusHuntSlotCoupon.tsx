@@ -20,6 +20,7 @@ interface Props {
   huntNumber: number;
   sessionId?: string;
   isLive?: boolean;
+  isArchived?: boolean;
   /** Live slot data from the hunt API */
   huntSlots?: BonusHuntSlot[];
   /** Total number of slots in the hunt */
@@ -28,7 +29,7 @@ interface Props {
   couponOpen?: boolean;
 }
 
-export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, totalSlots, sessionMarkets, couponOpen }: Props) {
+export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived, huntSlots, totalSlots, sessionMarkets, couponOpen }: Props) {
   const { user } = useAuth();
 
   // Derive active markets from session or fall back to defaults
@@ -93,7 +94,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, 
   }, [answers]);
 
   // Coupon is locked when explicitly closed by admin
-  const isCouponLocked = couponOpen === false;
+  const isCouponLocked = couponOpen === false || isArchived;
 
   const handleSelect = (index: number, value: boolean) => {
     if (submitted || isCouponLocked) return;
@@ -154,7 +155,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, 
           </div>
           <div className={cn(
             "flex items-center gap-1.5 text-[10px] font-semibold px-2 py-0.5 rounded-full",
-            isLive ? "bg-green-500/15 text-green-400" : "bg-muted text-muted-foreground"
+            isLive ? "bg-green-500/15 text-green-400" : isArchived ? "bg-muted text-muted-foreground" : "bg-muted text-muted-foreground"
           )}>
             {isLive ? (
               <>
@@ -164,6 +165,8 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, 
                 </span>
                 Hunt #{huntNumber} – Live
               </>
+            ) : isArchived ? (
+              <>Hunt #{huntNumber} – Arkiv</>
             ) : (
               <>Hunt #{huntNumber}</>
             )}
@@ -214,7 +217,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, 
                 {/* JA */}
                  <button
                    type="button"
-                   disabled={submitted}
+                   disabled={submitted || isArchived}
                    aria-label={`Ja til: ${market.q}`}
                    aria-pressed={selected === true}
                    onClick={() => handleSelect(i, true)}
@@ -224,7 +227,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, 
                        ? "border-green-500/50 bg-green-500/10 text-green-400 scale-[1.02] slot-coupon-odds-yes-active"
                        : "border-border/50 bg-muted/40 text-muted-foreground hover:border-green-500/30 hover:bg-green-500/5 hover:text-foreground",
                      selected === false && "opacity-50",
-                     submitted && "opacity-60 cursor-not-allowed"
+                      (submitted || isArchived) && "opacity-60 cursor-not-allowed"
                    )}
                  >
                   <span className="flex items-center gap-1.5">
@@ -236,7 +239,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, 
                 {/* NEJ */}
                  <button
                    type="button"
-                   disabled={submitted}
+                   disabled={submitted || isArchived}
                    aria-label={`Nej til: ${market.q}`}
                    aria-pressed={selected === false}
                    onClick={() => handleSelect(i, false)}
@@ -246,7 +249,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, 
                        ? "border-red-500/50 bg-red-500/10 text-red-400 scale-[1.02] slot-coupon-odds-no-active"
                        : "border-border/50 bg-muted/40 text-muted-foreground hover:border-red-500/30 hover:bg-red-500/5 hover:text-foreground",
                      selected === true && "opacity-50",
-                     submitted && "opacity-60 cursor-not-allowed"
+                     (submitted || isArchived) && "opacity-60 cursor-not-allowed"
                    )}
                  >
                   <span className="flex items-center gap-1.5">
@@ -311,7 +314,12 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, 
         </div>
 
         {/* Status – auto-hides 10s after submit */}
-        {(!submitted || showPostSubmit) && (
+        {isArchived ? (
+          <div className="flex items-center justify-center gap-1.5 text-[11px] font-medium">
+            <span className="h-2 w-2 rounded-full bg-muted-foreground" />
+            <span className="text-muted-foreground">Bonus hunt afsluttet</span>
+          </div>
+        ) : (!submitted || showPostSubmit) ? (
           <div className="flex items-center justify-center gap-1.5 text-[11px] font-medium">
             <span className={cn(
               "h-2 w-2 rounded-full transition-colors",
@@ -323,10 +331,17 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, 
               {submitted ? "Kupon registreret ✓" : isComplete ? "Kupon klar – Deltag nu!" : "Afventer valg"}
             </span>
           </div>
-        )}
+        ) : null}
 
         {/* CTA */}
-        {submitted ? (
+        {isArchived ? (
+          <div className="space-y-2">
+            <div className="flex items-center justify-center gap-2 rounded-lg bg-muted/50 border border-border py-2.5 text-xs font-semibold text-muted-foreground">
+              <Lock className="h-3.5 w-3.5" />
+              Bonus hunt afsluttet – kuponer låst
+            </div>
+          </div>
+        ) : submitted ? (
           <div className="space-y-2">
             {showPostSubmit && (
               <div className="flex items-center justify-center gap-2 rounded-lg bg-green-500/10 border border-green-500/20 py-2.5 text-xs font-semibold text-green-400">
@@ -345,7 +360,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, huntSlots, 
             </Button>
           </div>
         ) : user ? (
-          submitted ? null : !showConfirm ? (
+          !showConfirm ? (
             <Button
               onClick={() => setShowConfirm(true)}
               disabled={!isComplete}
