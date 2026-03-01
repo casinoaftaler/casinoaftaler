@@ -547,6 +547,301 @@ async function calculateGatesFullSpin(
   };
 }
 
+// ============================================================
+// FEDESVIN BONANZA types and logic
+// ============================================================
+const BONANZA_COLS = 6;
+const BONANZA_ROWS = 5;
+
+// Defaults; overridden by site_settings via loadBonanzaSettings()
+let BONANZA_MIN_MATCH = 8;
+let BONANZA_SCATTER_TRIGGER = 4;
+let BONANZA_SCATTER_RETRIGGER = 3;
+let BONANZA_FREE_SPINS_4 = 10;
+let BONANZA_FREE_SPINS_5 = 12;
+let BONANZA_FREE_SPINS_6 = 15;
+let BONANZA_FREE_SPINS_RETRIGGER = 5;
+let BONANZA_MULTIPLIER_CHANCE_BONUS = 0.10;
+let BONANZA_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
+let BONANZA_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
+
+const bonanzaSettingsCache: { data: Record<string, string> | null; fetchedAt: number } = { data: null, fetchedAt: 0 };
+const BONANZA_SETTINGS_CACHE_TTL = 5 * 60 * 1000;
+
+async function loadBonanzaSettings(serviceClient: ReturnType<typeof createClient>) {
+  const now = Date.now();
+  if (bonanzaSettingsCache.data && (now - bonanzaSettingsCache.fetchedAt) < BONANZA_SETTINGS_CACHE_TTL) return;
+  const { data, error } = await serviceClient
+    .from("site_settings").select("key, value")
+    .in("key", [
+      "bonanza_min_match", "bonanza_scatter_trigger", "bonanza_scatter_retrigger",
+      "bonanza_free_spins_4", "bonanza_free_spins_5", "bonanza_free_spins_6",
+      "bonanza_free_spins_retrigger", "bonanza_multiplier_chance_bonus",
+      "bonanza_multiplier_values", "bonanza_multiplier_weights",
+    ]);
+  if (!error && data) {
+    const map: Record<string, string> = {};
+    data.forEach((s: { key: string; value: string | null }) => { map[s.key] = s.value || ""; });
+    bonanzaSettingsCache.data = map;
+    bonanzaSettingsCache.fetchedAt = now;
+    BONANZA_MIN_MATCH = parseInt(map.bonanza_min_match || "8", 10);
+    BONANZA_SCATTER_TRIGGER = parseInt(map.bonanza_scatter_trigger || "4", 10);
+    BONANZA_SCATTER_RETRIGGER = parseInt(map.bonanza_scatter_retrigger || "3", 10);
+    BONANZA_FREE_SPINS_4 = parseInt(map.bonanza_free_spins_4 || "10", 10);
+    BONANZA_FREE_SPINS_5 = parseInt(map.bonanza_free_spins_5 || "12", 10);
+    BONANZA_FREE_SPINS_6 = parseInt(map.bonanza_free_spins_6 || "15", 10);
+    BONANZA_FREE_SPINS_RETRIGGER = parseInt(map.bonanza_free_spins_retrigger || "5", 10);
+    BONANZA_MULTIPLIER_CHANCE_BONUS = parseFloat(map.bonanza_multiplier_chance_bonus || "0.10");
+    if (map.bonanza_multiplier_values) {
+      try { BONANZA_MULTIPLIER_VALUES = JSON.parse(map.bonanza_multiplier_values); } catch {}
+    }
+    if (map.bonanza_multiplier_weights) {
+      try { BONANZA_MULTIPLIER_WEIGHTS = JSON.parse(map.bonanza_multiplier_weights); } catch {}
+    }
+  }
+}
+
+interface BonanzaWin {
+  symbolId: string;
+  symbolName: string;
+  count: number;
+  payout: number;
+  positions: number[];
+}
+
+interface BonanzaMultiplierBomb {
+  position: number;
+  value: number;
+  activated: boolean;
+}
+
+interface BonanzaTumbleStep {
+  grid: string[][];
+  wins: BonanzaWin[];
+  winningPositions: number[];
+  multiplierBombs: BonanzaMultiplierBomb[];
+  stepWin: number;
+  bombMultiplier: number;
+}
+
+interface BonanzaSpinResult {
+  tumbleSteps: BonanzaTumbleStep[];
+  totalWin: number;
+  bonusTriggered: boolean;
+  scatterCount: number;
+  totalMultiplier: number;
+  initialGrid: string[][];
+}
+
+function isBombSymbol(id: string): boolean { return id.startsWith("bomb_"); }
+function getBombValue(id: string): number {
+  const m = id.match(/^bomb_(\d+)x$/);
+  return m ? parseInt(m[1], 10) : 0;
+}
+
+async function pickBonanzaBombValue(prng: SeededPRNG): Promise<number> {
+  const totalWeight = BONANZA_MULTIPLIER_WEIGHTS.reduce((a, b) => a + b, 0);
+  let r = (await prng.next()) * totalWeight;
+  for (let i = 0; i < BONANZA_MULTIPLIER_VALUES.length; i++) {
+    r -= BONANZA_MULTIPLIER_WEIGHTS[i];
+    if (r <= 0) return BONANZA_MULTIPLIER_VALUES[i];
+  }
+  return BONANZA_MULTIPLIER_VALUES[0];
+}
+
+async function getBonanzaRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<SlotSymbol> {
+  const getWeight = (s: SlotSymbol) => isBonusSpin ? (s.bonus_weight || s.weight || DEFAULT_SYMBOL_WEIGHT) : (s.weight || DEFAULT_SYMBOL_WEIGHT);
+  const totalWeight = symbols.reduce((sum, s) => sum + getWeight(s), 0);
+  let random = (await prng.next()) * totalWeight;
+  for (const sym of symbols) {
+    random -= getWeight(sym);
+    if (random <= 0) return sym;
+  }
+  return symbols[symbols.length - 1];
+}
+
+async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+  const scatterSymbol = symbols.find(s => s.is_scatter);
+  const nonScatterSymbols = symbols.filter(s => !s.is_scatter);
+  const grid: string[][] = [];
+  for (let col = 0; col < BONANZA_COLS; col++) {
+    const column: string[] = [];
+    let hasScatter = false;
+    for (let row = 0; row < BONANZA_ROWS; row++) {
+      // In bonus: chance to place a multiplier bomb
+      if (isBonusSpin && (await prng.next()) < BONANZA_MULTIPLIER_CHANCE_BONUS) {
+        const bombVal = await pickBonanzaBombValue(prng);
+        column.push(`bomb_${bombVal}x`);
+        continue;
+      }
+      let sym = await getBonanzaRandomSymbol(symbols, isBonusSpin, prng);
+      // Cap 1 scatter per column
+      if (scatterSymbol && sym.id === scatterSymbol.id && hasScatter) {
+        sym = await getBonanzaRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
+      }
+      if (scatterSymbol && sym.id === scatterSymbol.id) hasScatter = true;
+      column.push(sym.id);
+    }
+    grid.push(column);
+  }
+  return grid;
+}
+
+function countBonanzaScatters(grid: string[][], symbols: SlotSymbol[]): number {
+  const scatter = symbols.find(s => s.is_scatter);
+  if (!scatter) return 0;
+  let count = 0;
+  for (const col of grid) for (const id of col) if (id === scatter.id) count++;
+  return count;
+}
+
+function calculateBonanzaWins(grid: string[][], symbols: SlotSymbol[], betAmount: number): BonanzaWin[] {
+  const symbolsById = new Map(symbols.map(s => [s.id, s]));
+  // Count matches across entire grid (Pay Anywhere)
+  const matches = new Map<string, { count: number; positions: number[] }>();
+  for (let col = 0; col < BONANZA_COLS; col++) {
+    for (let row = 0; row < BONANZA_ROWS; row++) {
+      const id = grid[col][row];
+      if (isBombSymbol(id)) continue;
+      const flat = col * BONANZA_ROWS + row;
+      if (!matches.has(id)) matches.set(id, { count: 0, positions: [] });
+      const e = matches.get(id)!;
+      e.count++;
+      e.positions.push(flat);
+    }
+  }
+  const wins: BonanzaWin[] = [];
+  for (const [symbolId, { count, positions }] of matches) {
+    const sym = symbolsById.get(symbolId);
+    if (!sym || sym.is_scatter) continue;
+    if (count < BONANZA_MIN_MATCH) continue;
+    let multiplier = 0;
+    if (count >= 12) multiplier = sym.multiplier_5;
+    else if (count >= 10) multiplier = sym.multiplier_4;
+    else if (count >= 8) multiplier = sym.multiplier_3;
+    if (multiplier > 0) {
+      wins.push({ symbolId, symbolName: sym.name, count, payout: multiplier * betAmount, positions });
+    }
+  }
+  return wins;
+}
+
+function scanBonanzaBombs(grid: string[][]): BonanzaMultiplierBomb[] {
+  const bombs: BonanzaMultiplierBomb[] = [];
+  for (let col = 0; col < BONANZA_COLS; col++) {
+    for (let row = 0; row < BONANZA_ROWS; row++) {
+      const id = grid[col][row];
+      if (isBombSymbol(id)) {
+        bombs.push({ position: col * BONANZA_ROWS + row, value: getBombValue(id), activated: false });
+      }
+    }
+  }
+  return bombs;
+}
+
+async function applyBonanzaTumble(grid: string[][], winningPositions: number[], bombPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+  const newGrid = grid.map(col => [...col]);
+  const allRemoved = new Set([...winningPositions, ...bombPositions]);
+  const removedByCol = new Map<number, Set<number>>();
+  for (const pos of allRemoved) {
+    const col = Math.floor(pos / BONANZA_ROWS);
+    const row = pos % BONANZA_ROWS;
+    if (!removedByCol.has(col)) removedByCol.set(col, new Set());
+    removedByCol.get(col)!.add(row);
+  }
+  const scatterSymbol = symbols.find(s => s.is_scatter);
+  const nonScatterSymbols = symbols.filter(s => !s.is_scatter);
+  for (const [col, removedRows] of removedByCol) {
+    const remaining: string[] = [];
+    for (let row = 0; row < BONANZA_ROWS; row++) {
+      if (!removedRows.has(row)) remaining.push(newGrid[col][row]);
+    }
+    const needed = BONANZA_ROWS - remaining.length;
+    const newSymbols: string[] = [];
+    const colHasScatter = scatterSymbol ? remaining.some(id => id === scatterSymbol.id) : false;
+    let fillHasScatter = false;
+    for (let i = 0; i < needed; i++) {
+      // Bonus: chance for bomb
+      if (isBonusSpin && (await prng.next()) < BONANZA_MULTIPLIER_CHANCE_BONUS) {
+        const bombVal = await pickBonanzaBombValue(prng);
+        newSymbols.push(`bomb_${bombVal}x`);
+        continue;
+      }
+      let sym = await getBonanzaRandomSymbol(symbols, isBonusSpin, prng);
+      if (scatterSymbol && sym.id === scatterSymbol.id && (colHasScatter || fillHasScatter)) {
+        sym = await getBonanzaRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
+      }
+      if (scatterSymbol && sym.id === scatterSymbol.id) fillHasScatter = true;
+      newSymbols.push(sym.id);
+    }
+    newGrid[col] = [...newSymbols, ...remaining];
+  }
+  return newGrid;
+}
+
+async function calculateBonanzaFullSpin(
+  symbols: SlotSymbol[],
+  betAmount: number,
+  isBonusSpin: boolean,
+  runningMultiplier: number,
+  prng: SeededPRNG
+): Promise<BonanzaSpinResult> {
+  let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng);
+  const initialGrid = grid.map(col => [...col]);
+  const tumbleSteps: BonanzaTumbleStep[] = [];
+  let totalRawWin = 0;
+  let totalMultiplier = runningMultiplier;
+  let scatterCount = countBonanzaScatters(grid, symbols);
+  let maxTumbles = 50;
+
+  while (maxTumbles-- > 0) {
+    const wins = calculateBonanzaWins(grid, symbols, betAmount);
+    const winningPositions = new Set<number>();
+    for (const w of wins) for (const p of w.positions) winningPositions.add(p);
+    const stepWin = wins.reduce((sum, w) => sum + w.payout, 0);
+
+    // Scan bombs on current grid
+    const bombs = scanBonanzaBombs(grid);
+    let bombMultiplier = 0;
+
+    if (wins.length > 0 && bombs.length > 0) {
+      // Winning tumble: activate all bombs
+      for (const b of bombs) { b.activated = true; }
+      bombMultiplier = bombs.reduce((sum, b) => sum + b.value, 0);
+      totalMultiplier += bombMultiplier;
+    }
+    // Non-winning tumble with bombs: they fizzle (activated = false)
+
+    tumbleSteps.push({
+      grid: grid.map(col => [...col]),
+      wins,
+      winningPositions: Array.from(winningPositions),
+      multiplierBombs: bombs,
+      stepWin,
+      bombMultiplier,
+    });
+
+    totalRawWin += stepWin;
+    if (wins.length === 0) break;
+
+    // Remove winning symbols AND all bombs (bombs don't persist between tumbles)
+    const bombPositions = bombs.map(b => b.position);
+    grid = await applyBonanzaTumble(grid, Array.from(winningPositions), bombPositions, symbols, isBonusSpin, prng);
+
+    const newScatterCount = countBonanzaScatters(grid, symbols);
+    if (newScatterCount > scatterCount) scatterCount = newScatterCount;
+  }
+
+  const bonusTriggered = isBonusSpin
+    ? scatterCount >= BONANZA_SCATTER_RETRIGGER
+    : scatterCount >= BONANZA_SCATTER_TRIGGER;
+
+  // Apply cumulative multiplier to total raw win
+  const totalWin = totalMultiplier > 0 ? totalRawWin * totalMultiplier : totalRawWin;
+
+  return { tumbleSteps, totalWin, bonusTriggered, scatterCount, totalMultiplier, initialGrid };
+}
+
 const DEFAULT_SYMBOL_WEIGHT = 10;
     const MAX_SPINS_CAP = 220;
     const SUBSCRIBER_MAX_SPINS_CAP = 320;
@@ -1263,6 +1558,72 @@ Deno.serve(async (req) => {
     }
     // END GATES OF FEDESVIN
 
+    // ============================================================
+    // FEDESVIN BONANZA - Sweet Bonanza-style engine
+    // 6x5 grid, Pay Anywhere (8+ match), tumble/cascade, multiplier bombs in bonus
+    // ============================================================
+    const isBonanzaGame = gameId === "fedesvin-bonanza";
+    if (isBonanzaGame) {
+      // Load Bonanza settings from DB (cached 5 min)
+      await loadBonanzaSettings(serviceClient);
+
+      // Create provably fair PRNG
+      const serverSecret = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "default-server-secret";
+      const prng = await SeededPRNG.create(serverSecret, userId, clientSeed, nonce);
+
+      if (isBonusSpin) {
+        const bonusData = bonusRes.data;
+        if (bonusRes.error || !bonusData || !bonusData.is_active || bonusData.free_spins_remaining <= 0) {
+          return new Response(JSON.stringify({ error: "No active bonus or no free spins remaining" }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+        }
+        const lockedBet = Number(bonusData.bet_amount);
+        if (lockedBet > 0) bet = lockedBet;
+        const cumulativeMultiplier = Number(bonusData.expanding_symbol_name || "0");
+        const bonanzaResult = await calculateBonanzaFullSpin(symbols, bet, true, cumulativeMultiplier, prng);
+        const isRetrigger = bonanzaResult.scatterCount >= BONANZA_SCATTER_RETRIGGER;
+        const newFreeSpins = isRetrigger ? bonusData.free_spins_remaining - 1 + BONANZA_FREE_SPINS_RETRIGGER : bonusData.free_spins_remaining - 1;
+        const newTotalFreeSpins = isRetrigger ? bonusData.total_free_spins + BONANZA_FREE_SPINS_RETRIGGER : bonusData.total_free_spins;
+        const newBonusWinnings = Number(bonusData.bonus_winnings) + bonanzaResult.totalWin;
+        await serviceClient.from("slot_bonus_state").update({
+          free_spins_remaining: newFreeSpins, total_free_spins: newTotalFreeSpins,
+          bonus_winnings: newBonusWinnings, expanding_symbol_name: String(bonanzaResult.totalMultiplier),
+          is_active: newFreeSpins > 0,
+        }).eq("user_id", userId).eq("game_id", gameId);
+        if (newFreeSpins <= 0 && newBonusWinnings > 0) {
+          // Fire-and-forget: record bonus result
+          (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: 0, is_bonus_triggered: false, bonus_win_amount: newBonusWinnings, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bonus bg err:", e); } })();
+        }
+        return new Response(JSON.stringify({ success: true, result: bonanzaResult, bonusState: { isActive: newFreeSpins > 0, freeSpinsRemaining: newFreeSpins, totalFreeSpins: newTotalFreeSpins, bonusWinnings: newBonusWinnings, cumulativeMultiplier: bonanzaResult.totalMultiplier, betAmount: bet, isRetrigger } }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      }
+
+      // Bonanza normal spin
+      const nowB = new Date();
+      const todayB = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Copenhagen", year: "numeric", month: "2-digit", day: "2-digit" }).format(nowB);
+      const bonusSpinsPermB = profileRes.data?.bonus_spins_permanent || 0;
+      const isSubB = !!(profileRes.data as any)?.twitch_badges?.is_subscriber;
+      const subBonB = isSubB ? SUBSCRIBER_BONUS : 0;
+      const capLimB = isSubB ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
+      const maxSpB = Math.min(dailySpinsValue + subBonB + bonusSpinsPermB, capLimB);
+      const { data: newRemB, error: rpcErrB } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayB, p_bet: bet, p_max_spins: maxSpB });
+      if (rpcErrB) return new Response(JSON.stringify({ error: "Failed to deduct spins" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      if (newRemB === -1) return new Response(JSON.stringify({ error: "Not enough spins remaining" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+      const bonanzaResult = await calculateBonanzaFullSpin(symbols, bet, false, 0, prng);
+      let bonanzaBonusState = null;
+      if (bonanzaResult.bonusTriggered) {
+        const sc = bonanzaResult.scatterCount;
+        const awardedSpins = sc >= 6 ? BONANZA_FREE_SPINS_6 : sc >= 5 ? BONANZA_FREE_SPINS_5 : BONANZA_FREE_SPINS_4;
+        await serviceClient.from("slot_bonus_state").delete().eq("user_id", userId).eq("game_id", gameId);
+        await serviceClient.from("slot_bonus_state").insert({ user_id: userId, is_active: true, free_spins_remaining: awardedSpins, total_free_spins: awardedSpins, expanding_symbol_name: "0", bonus_winnings: bonanzaResult.totalWin, game_id: gameId, bet_amount: bet });
+        bonanzaBonusState = { isActive: true, freeSpinsRemaining: awardedSpins, totalFreeSpins: awardedSpins, bonusWinnings: bonanzaResult.totalWin, cumulativeMultiplier: 0, betAmount: bet };
+      }
+      // Fire-and-forget: record game result
+      (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: bonanzaResult.totalWin, is_bonus_triggered: bonanzaResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bg err:", e); } })();
+      return new Response(JSON.stringify({ success: true, result: bonanzaResult, spinsRemaining: newRemB, maxSpins: maxSpB, bonusState: bonanzaBonusState }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+    // END FEDESVIN BONANZA
 
     // Handle bonus spin (bonus state already fetched in parallel above)
     if (isBonusSpin) {
