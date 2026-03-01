@@ -36,7 +36,7 @@ export interface BonusHuntData {
   };
 }
 
-const BLOCKED_HUNTS = new Set([6, 7]);
+const BLOCKED_HUNTS = new Set([7]);
 
 function parseHuntResponse(raw: any): BonusHuntData {
   const huntData = raw.data || raw;
