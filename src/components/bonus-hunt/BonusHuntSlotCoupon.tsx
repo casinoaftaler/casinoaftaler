@@ -139,16 +139,15 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
 
       {/* Header */}
       <div className="slot-coupon-header">
-        <div className="flex items-center justify-center mb-1.5">
-          <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-5 w-auto opacity-70" />
+        <div className="flex flex-col items-center gap-1 mb-2">
+          <img src={casinoaftalerLogo} alt="Casinoaftaler" className="h-8 w-auto" style={{ filter: 'brightness(0.3)' }} />
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Ticket className="h-5 w-5" style={{ color: 'hsl(220 20% 20%)' }} />
-            <span className="font-black text-base tracking-tight" style={{ color: 'hsl(220 20% 12%)' }}>
+            <span className="font-black text-lg tracking-tight" style={{ color: 'hsl(220 20% 12%)' }}>
               Slot Kupon
             </span>
-            <span className="text-[9px] font-semibold opacity-50">®</span>
           </div>
           <div className={cn(
             "flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-1 rounded-full",
@@ -167,16 +166,11 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, isArchived,
                 </span>
                 Hunt #{huntNumber}
               </>
-            ) : isArchived ? (
-              <>Hunt #{huntNumber}</>
             ) : (
               <>Hunt #{huntNumber}</>
             )}
           </div>
         </div>
-        <p className="text-[9px] mt-0.5 tracking-wide" style={{ color: 'hsl(220 15% 45%)' }}>
-          Udbydes af Casinoaftaler.dk
-        </p>
       </div>
 
       {/* Progress bar */}
