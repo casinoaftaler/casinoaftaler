@@ -1,9 +1,10 @@
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import { Newspaper } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
-export function BonusHuntLatestNews() {
+export const BonusHuntLatestNews = forwardRef<HTMLElement>(function BonusHuntLatestNews(_props, ref) {
   const { data: articles = [] } = useQuery({
     queryKey: ["bonus-hunt-latest-news"],
     queryFn: async () => {
@@ -21,7 +22,7 @@ export function BonusHuntLatestNews() {
   if (articles.length === 0) return null;
 
   return (
-    <section className="space-y-4">
+    <section ref={ref} className="space-y-4">
       <div className="flex items-center gap-2">
         <Newspaper className="h-4 w-4 text-primary" />
         <h2 className="text-lg font-bold text-foreground">Seneste casino nyheder</h2>
@@ -65,4 +66,4 @@ export function BonusHuntLatestNews() {
       </p>
     </section>
   );
-}
+});

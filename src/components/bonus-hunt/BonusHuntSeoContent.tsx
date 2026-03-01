@@ -46,7 +46,7 @@ const steps = [
     description: (
       <>
         Kun{" "}
-        <Link to="/licenserede-casinoer" className="text-primary hover:underline">
+        <Link to="/casino-licenser" className="text-primary hover:underline">
           licenserede casinoer
         </Link>{" "}
         godkendt af{" "}
