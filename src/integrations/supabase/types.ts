@@ -179,6 +179,7 @@ export type Database = {
           gtw_max_bet: number
           gtw_min_bet: number
           gtw_prizes: Json
+          host: string
           hunt_number: number
           id: string
           status: string
@@ -202,6 +203,7 @@ export type Database = {
           gtw_max_bet?: number
           gtw_min_bet?: number
           gtw_prizes?: Json
+          host?: string
           hunt_number: number
           id?: string
           status?: string
@@ -225,6 +227,7 @@ export type Database = {
           gtw_max_bet?: number
           gtw_min_bet?: number
           gtw_prizes?: Json
+          host?: string
           hunt_number?: number
           id?: string
           status?: string
