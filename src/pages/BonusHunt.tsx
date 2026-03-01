@@ -286,7 +286,8 @@ export default function BonusHunt() {
                         huntNumber={currentHuntNumber}
                         sessionId={session?.id}
                         isLive={isLive}
-                        couponResults={session?.coupon_results as Record<string, boolean | null> | null}
+                        huntSlots={huntData?.slots}
+                        totalSlots={huntData?.stats.totalBonuses}
                         sessionMarkets={session?.coupon_markets as any}
                         couponOpen={session?.coupon_betting_open as boolean | undefined}
                       />
