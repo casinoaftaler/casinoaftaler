@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Trophy, Crown, Sparkles, Gamepad2, Gift, Users, Medal, Award } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -14,9 +14,10 @@ const GAME_NAMES: Record<string, string> = {
   "rise-of-fedesvin": "Rise of Fedesvin",
 };
 
-// --- Animated counter hook ---
-function useCountUp(target: number, duration = 1800) {
+// --- Animated counter with micro-bounce ---
+function useCountUp(target: number, duration = 2000) {
   const [value, setValue] = useState(0);
+  const [done, setDone] = useState(false);
   const ref = useRef(false);
   useEffect(() => {
     if (ref.current || target === 0) return;
@@ -24,116 +25,250 @@ function useCountUp(target: number, duration = 1800) {
     const start = performance.now();
     const step = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
+      const eased = 1 - Math.pow(1 - progress, 4);
       setValue(Math.round(eased * target));
       if (progress < 1) requestAnimationFrame(step);
+      else setDone(true);
     };
     requestAnimationFrame(step);
   }, [target, duration]);
-  return value;
+  return { value, done };
 }
 
-// --- Rank badge for leaderboard rows ---
-function PremiumRankBadge({ rank }: { rank: number }) {
-  if (rank === 1) return (
-    <div className="relative flex items-center justify-center w-9 h-9">
-      <div className="absolute inset-0 rounded-full opacity-40" style={{
-        background: "radial-gradient(circle, hsl(45 90% 55% / 0.5), transparent 70%)",
-        animation: "pulse 3s ease-in-out infinite",
+// --- Mouse parallax hook ---
+function useParallax(ref: React.RefObject<HTMLElement | null>) {
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const handle = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      setOffset({ x, y });
+    };
+    const reset = () => setOffset({ x: 0, y: 0 });
+    el.addEventListener("mousemove", handle);
+    el.addEventListener("mouseleave", reset);
+    return () => { el.removeEventListener("mousemove", handle); el.removeEventListener("mouseleave", reset); };
+  }, [ref]);
+  return offset;
+}
+
+// --- Animated Grid Background ---
+function AnimatedGrid() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.06 }}>
+        <defs>
+          <pattern id="lb-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="hsl(230 70% 60%)" strokeWidth="0.5" />
+          </pattern>
+          <radialGradient id="lb-grid-fade" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stopColor="white" stopOpacity="1" />
+            <stop offset="100%" stopColor="white" stopOpacity="0" />
+          </radialGradient>
+          <mask id="lb-grid-mask">
+            <rect width="100%" height="100%" fill="url(#lb-grid-fade)" />
+          </mask>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#lb-grid)" mask="url(#lb-grid-mask)">
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            from="0 0"
+            to="0 40"
+            dur="8s"
+            repeatCount="indefinite"
+          />
+        </rect>
+      </svg>
+      {/* Intersection glows */}
+      <div className="absolute inset-0" style={{
+        backgroundImage: "radial-gradient(circle 1px, hsl(230 70% 60% / 0.12) 0%, transparent 100%)",
+        backgroundSize: "40px 40px",
+        animation: "gridPulse 4s ease-in-out infinite alternate",
       }} />
-      <div className="relative w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold" style={{
-        background: "linear-gradient(135deg, hsl(45 85% 55%), hsl(35 90% 45%))",
-        color: "hsl(35 80% 15%)",
+    </div>
+  );
+}
+
+// --- Floating particles ---
+function FloatingParticles() {
+  const particles = useRef(
+    Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      size: 1.5 + Math.random() * 2,
+      duration: 6 + Math.random() * 8,
+      delay: Math.random() * 5,
+      opacity: 0.15 + Math.random() * 0.2,
+    }))
+  ).current;
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="absolute rounded-full"
+          style={{
+            left: `${p.left}%`,
+            top: `${p.top}%`,
+            width: p.size,
+            height: p.size,
+            background: "hsl(230 70% 70%)",
+            opacity: p.opacity,
+            animation: `floatParticle ${p.duration}s ease-in-out ${p.delay}s infinite alternate`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+// --- Rank badge ---
+function PremiumRankBadge({ rank }: { rank: number }) {
+  const badgeStyle = rank === 1
+    ? { bg: "linear-gradient(135deg, hsl(45 85% 55%), hsl(35 90% 45%))", color: "hsl(35 80% 15%)", glow: "hsl(45 90% 55% / 0.35)" }
+    : rank === 2
+    ? { bg: "linear-gradient(135deg, hsl(220 10% 72%), hsl(220 10% 58%))", color: "hsl(220 10% 20%)", glow: "hsl(220 10% 70% / 0.2)" }
+    : rank === 3
+    ? { bg: "linear-gradient(135deg, hsl(25 60% 52%), hsl(20 55% 42%))", color: "hsl(25 50% 15%)", glow: "hsl(25 60% 50% / 0.2)" }
+    : null;
+
+  if (!badgeStyle) {
+    return (
+      <div className="w-8 h-8 rounded-full flex items-center justify-center bg-secondary/60">
+        <span className="text-sm font-semibold text-muted-foreground">{rank}</span>
+      </div>
+    );
+  }
+
+  const Icon = rank === 1 ? Crown : rank === 2 ? Medal : Award;
+
+  return (
+    <div className="relative flex items-center justify-center w-10 h-10">
+      <div className="absolute inset-0 rounded-full" style={{
+        background: `radial-gradient(circle, ${badgeStyle.glow}, transparent 70%)`,
+        animation: rank === 1 ? "badgePulse 3s ease-in-out infinite" : undefined,
+      }} />
+      <div className="absolute inset-0 rounded-full overflow-hidden" style={{
+        background: badgeStyle.bg,
+        opacity: 0.15,
+        animation: "shimmerBadge 4s ease-in-out infinite",
       }}>
-        <Crown className="h-4 w-4" />
+        <div className="absolute inset-0" style={{
+          background: "linear-gradient(105deg, transparent 30%, hsl(0 0% 100% / 0.3) 50%, transparent 70%)",
+          animation: "shimmerSlide 4s ease-in-out infinite",
+        }} />
+      </div>
+      <div className="relative w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold" style={{
+        background: badgeStyle.bg,
+        color: badgeStyle.color,
+      }}>
+        <Icon className="h-4 w-4" />
       </div>
     </div>
   );
-  if (rank === 2) return (
-    <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold" style={{
-      background: "linear-gradient(135deg, hsl(220 10% 70%), hsl(220 10% 55%))",
-      color: "hsl(220 10% 20%)",
-    }}>
-      <Medal className="h-4 w-4" />
-    </div>
-  );
-  if (rank === 3) return (
-    <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold" style={{
-      background: "linear-gradient(135deg, hsl(25 60% 50%), hsl(20 55% 40%))",
-      color: "hsl(25 50% 15%)",
-    }}>
-      <Award className="h-4 w-4" />
-    </div>
-  );
-  return (
-    <div className="w-8 h-8 rounded-full flex items-center justify-center bg-secondary">
-      <span className="text-sm font-semibold text-muted-foreground">{rank}</span>
-    </div>
-  );
 }
 
-// --- Premium leaderboard row ---
-function PremiumRow({ entry, rank, isCurrentUser, style }: {
+// --- Premium Row with 3D tilt ---
+function PremiumRow({ entry, rank, isCurrentUser, delay = 0 }: {
   entry: TournamentEntry;
   rank: number;
   isCurrentUser?: boolean;
-  style?: React.CSSProperties;
+  delay?: number;
 }) {
   const multiplier = entry.biggest_multiplier > 0 ? `${Number(entry.biggest_multiplier.toFixed(1))}x` : "–";
+  const rowRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const handleMouse = useCallback((e: React.MouseEvent) => {
+    const el = rowRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 4;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -4;
+    setTilt({ x: y, y: x });
+  }, []);
+
+  const isTop3 = rank <= 3;
+  const scale = rank === 1 ? "scale-[1.01]" : rank === 2 ? "scale-[1.005]" : "";
+
   return (
     <div
+      ref={rowRef}
+      onMouseMove={handleMouse}
+      onMouseLeave={() => setTilt({ x: 0, y: 0 })}
       className={cn(
-        "group flex items-center gap-3 p-3.5 rounded-2xl transition-all duration-300",
+        "group relative flex items-center gap-3 p-4 rounded-2xl transition-all duration-250 cursor-default",
         "border border-transparent",
-        rank <= 3 ? "backdrop-blur-sm" : "hover:border-border/40",
-        isCurrentUser && "ring-1 ring-primary/40"
+        isTop3 && scale,
+        isCurrentUser && "ring-1 ring-primary/30",
       )}
       style={{
-        background: rank === 1
-          ? "linear-gradient(135deg, hsl(45 80% 50% / 0.06), hsl(35 70% 40% / 0.03))"
-          : rank === 2
-          ? "linear-gradient(135deg, hsl(220 10% 65% / 0.06), transparent)"
-          : rank === 3
-          ? "linear-gradient(135deg, hsl(25 55% 45% / 0.06), transparent)"
-          : undefined,
-        ...style,
+        background: isTop3
+          ? rank === 1
+            ? "linear-gradient(135deg, hsl(45 80% 50% / 0.05), hsl(35 70% 40% / 0.02))"
+            : rank === 2
+            ? "linear-gradient(135deg, hsl(220 10% 65% / 0.05), transparent)"
+            : "linear-gradient(135deg, hsl(25 55% 45% / 0.05), transparent)"
+          : "hsl(220 30% 14% / 0.4)",
+        backdropFilter: "blur(8px)",
+        transform: `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+        transition: "transform 0.25s ease-out, box-shadow 0.25s ease-out, background 0.25s ease-out, border-color 0.25s ease-out",
+        animation: `rowSlideIn 0.5s ease-out ${delay}ms both`,
+        willChange: "transform",
       }}
     >
+      {/* Left accent line for top 3 */}
+      {isTop3 && (
+        <div className="absolute left-0 top-3 bottom-3 w-[2px] rounded-full" style={{
+          background: rank === 1
+            ? "linear-gradient(180deg, hsl(45 85% 55%), hsl(45 85% 55% / 0.2))"
+            : rank === 2
+            ? "linear-gradient(180deg, hsl(220 10% 70%), hsl(220 10% 70% / 0.2))"
+            : "linear-gradient(180deg, hsl(25 55% 50%), hsl(25 55% 50% / 0.2))",
+        }} />
+      )}
+
       <PremiumRankBadge rank={rank} />
+
       <div className="flex items-center gap-2.5 flex-1 min-w-0">
         <UserProfileLink
           userId={entry.user_id}
           displayName={entry.display_name || "Anonym"}
           avatarUrl={entry.avatar_url}
           avatarClassName={cn("h-9 w-9 ring-2 ring-offset-1 ring-offset-background transition-all duration-200",
-            rank === 1 ? "ring-[hsl(45,85%,55%)]" : rank === 2 ? "ring-[hsl(220,10%,65%)]" : rank === 3 ? "ring-[hsl(25,55%,45%)]" : "ring-border/50"
+            rank === 1 ? "ring-[hsl(45,85%,55%)]" : rank === 2 ? "ring-[hsl(220,10%,65%)]" : rank === 3 ? "ring-[hsl(25,55%,45%)]" : "ring-border/40"
           )}
         />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5">
-            <span className={cn("font-semibold truncate text-sm", rank <= 3 ? "text-foreground" : "text-muted-foreground")}>
+            <span className={cn("font-semibold truncate text-sm", isTop3 ? "text-foreground" : "text-muted-foreground")}>
               {entry.display_name || "Anonym"}
             </span>
             <TwitchBadgesInline badges={entry.twitch_badges as unknown as TwitchBadgesType | null} />
             {isCurrentUser && (
-              <Badge variant="outline" className="text-[10px] border-primary/40 text-primary bg-primary/10 px-1.5 py-0">
-                Du
-              </Badge>
+              <Badge variant="outline" className="text-[10px] border-primary/40 text-primary bg-primary/10 px-1.5 py-0">Du</Badge>
             )}
           </div>
           <div className="flex items-center gap-2 mt-0.5">
             <span className="text-xs text-muted-foreground">{entry.total_spins.toLocaleString()} spins</span>
-            <span className="text-xs text-muted-foreground/50">·</span>
-            <span className="text-xs font-medium transition-colors duration-200 group-hover:text-[hsl(142,72%,50%)]" style={{ color: "hsl(142 60% 45%)" }}>
+            <span className="text-xs text-muted-foreground/40">·</span>
+            <span className="text-xs font-medium transition-all duration-250 group-hover:drop-shadow-[0_0_4px_hsl(142,60%,50%/0.5)]" style={{ color: "hsl(142 60% 48%)" }}>
               {multiplier}
             </span>
           </div>
         </div>
       </div>
-      <div className="text-right">
+
+      <div className="text-right transition-transform duration-250 group-hover:scale-105">
         <span className={cn(
           "text-lg font-bold tabular-nums tracking-tight",
-          rank === 1 ? "text-[hsl(45,85%,55%)]" : rank === 2 ? "text-[hsl(220,10%,75%)]" : rank === 3 ? "text-[hsl(25,55%,55%)]" : "text-foreground"
+          rank === 1 ? "text-[hsl(45,85%,58%)]" : rank === 2 ? "text-[hsl(220,10%,78%)]" : rank === 3 ? "text-[hsl(25,55%,58%)]" : "text-foreground"
         )}>
           {entry.total_points.toLocaleString()}
         </span>
@@ -143,79 +278,100 @@ function PremiumRow({ entry, rank, isCurrentUser, style }: {
 }
 
 // --- Hero Winner Section ---
-function WinnerHero({ winner }: { winner: TournamentEntry }) {
-  const animatedPoints = useCountUp(winner.total_points);
+function WinnerHero({ winner, parallax }: { winner: TournamentEntry; parallax: { x: number; y: number } }) {
+  const { value: animatedPoints, done } = useCountUp(winner.total_points);
   const multiplier = winner.biggest_multiplier > 0 ? `${Number(winner.biggest_multiplier.toFixed(1))}x` : "–";
 
   return (
-    <div className="relative overflow-hidden rounded-2xl p-6 md:p-8" style={{
-      background: "linear-gradient(135deg, hsl(260 60% 22%), hsl(240 50% 18%) 50%, hsl(220 65% 20%))",
-    }}>
-      {/* Animated shine overlay */}
+    <div
+      className="relative overflow-hidden rounded-2xl p-8 md:p-10"
+      style={{
+        background: "linear-gradient(135deg, hsl(260 55% 18%), hsl(240 45% 15%) 50%, hsl(220 60% 16%))",
+        boxShadow: "0 20px 60px hsl(260 50% 10% / 0.5), 0 4px 12px hsl(0 0% 0% / 0.3), inset 0 1px 0 hsl(260 40% 30% / 0.15)",
+        transform: `translateZ(40px) translate(${parallax.x * -3}px, ${parallax.y * -3}px)`,
+        transition: "transform 0.3s ease-out",
+      }}
+    >
+      {/* Spotlight */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: "linear-gradient(105deg, transparent 40%, hsl(260 70% 70% / 0.06) 45%, hsl(260 70% 70% / 0.1) 50%, hsl(260 70% 70% / 0.06) 55%, transparent 60%)",
-        backgroundSize: "200% 100%",
-        animation: "shimmer 8s ease-in-out infinite",
+        background: `radial-gradient(ellipse 50% 60% at ${50 + parallax.x * 5}% ${35 + parallax.y * 5}%, hsl(260 70% 60% / 0.12), transparent)`,
+        transition: "background 0.3s ease-out",
       }} />
 
-      {/* Subtle noise texture */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+      {/* Shimmer */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: "linear-gradient(105deg, transparent 40%, hsl(260 70% 70% / 0.05) 45%, hsl(260 70% 70% / 0.08) 50%, hsl(260 70% 70% / 0.05) 55%, transparent 60%)",
+        backgroundSize: "250% 100%",
+        animation: "shimmerHero 10s ease-in-out infinite",
       }} />
 
-      <div className="relative flex flex-col items-center text-center space-y-4">
-        {/* Trophy with glow */}
-        <div className="relative">
-          <div className="absolute inset-0 blur-xl opacity-30" style={{
-            background: "radial-gradient(circle, hsl(45 90% 60%), transparent 70%)",
+      {/* Noise */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.025]" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+      }} />
+
+      <FloatingParticles />
+
+      <div className="relative flex flex-col items-center text-center space-y-5">
+        {/* Trophy with aura */}
+        <div className="relative" style={{
+          transform: `translate(${parallax.x * -6}px, ${parallax.y * -6}px)`,
+          transition: "transform 0.3s ease-out",
+        }}>
+          <div className="absolute -inset-4 blur-2xl" style={{
+            background: "radial-gradient(circle, hsl(45 90% 60% / 0.2), transparent 70%)",
+            animation: "auraPulse 4s ease-in-out infinite",
           }} />
-          <div className="relative w-14 h-14 rounded-full flex items-center justify-center" style={{
-            background: "linear-gradient(135deg, hsl(45 85% 55% / 0.15), hsl(45 85% 55% / 0.05))",
-            border: "1px solid hsl(45 85% 55% / 0.2)",
+          <div className="relative w-16 h-16 rounded-full flex items-center justify-center" style={{
+            background: "linear-gradient(135deg, hsl(45 85% 55% / 0.12), hsl(45 85% 55% / 0.04))",
+            border: "1px solid hsl(45 85% 55% / 0.15)",
+            boxShadow: "0 0 30px hsl(45 85% 55% / 0.1)",
           }}>
-            <Trophy className="h-7 w-7" style={{ color: "hsl(45 85% 60%)" }} />
+            <Trophy className="h-8 w-8" style={{ color: "hsl(45 85% 60%)" }} />
           </div>
         </div>
 
-        {/* Points - primary hierarchy */}
-        <div>
-          <p className="text-4xl md:text-5xl font-bold tracking-tight tabular-nums" style={{ color: "hsl(0 0% 98%)" }}>
+        {/* Points */}
+        <div style={{ transform: `translate(${parallax.x * -2}px, ${parallax.y * -2}px)`, transition: "transform 0.3s ease-out" }}>
+          <p
+            className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter tabular-nums", done && "animate-bounce-once")}
+            style={{
+              background: "linear-gradient(135deg, hsl(0 0% 100%), hsl(220 20% 85%))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              filter: "drop-shadow(0 0 20px hsl(260 50% 60% / 0.15))",
+            }}
+          >
             {animatedPoints.toLocaleString()}
-          </p>
-          <p className="text-xs uppercase tracking-widest mt-1" style={{ color: "hsl(250 20% 60%)" }}>
-            point
           </p>
         </div>
 
-        {/* Winner name */}
-        <div className="flex items-center gap-2">
-          <UserProfileLink
-            userId={winner.user_id}
-            displayName={winner.display_name || "Anonym"}
-            avatarUrl={winner.avatar_url}
-            avatarClassName="h-8 w-8 ring-2 ring-[hsl(45,85%,55%)] ring-offset-2 ring-offset-[hsl(250,55%,20%)]"
-          />
-          <span className="font-semibold text-lg" style={{ color: "hsl(0 0% 95%)" }}>
+        {/* Winner name + avatar */}
+        <div className="flex items-center gap-2.5">
+          <div className="relative">
+            <div className="absolute -inset-1 rounded-full" style={{
+              background: "radial-gradient(circle, hsl(45 85% 55% / 0.25), transparent 70%)",
+            }} />
+            <UserProfileLink
+              userId={winner.user_id}
+              displayName={winner.display_name || "Anonym"}
+              avatarUrl={winner.avatar_url}
+              avatarClassName="h-9 w-9 ring-2 ring-[hsl(45,85%,55%)] ring-offset-2 ring-offset-[hsl(250,50%,17%)]"
+            />
+          </div>
+          <span className="font-semibold text-lg" style={{ color: "hsl(0 0% 93%)" }}>
             {winner.display_name || "Anonym"}
           </span>
           <TwitchBadgesInline badges={winner.twitch_badges as unknown as TwitchBadgesType | null} />
         </div>
 
-        {/* Meta info */}
-        <div className="flex items-center gap-4 text-xs" style={{ color: "hsl(250 15% 55%)" }}>
+        {/* Meta */}
+        <div className="flex items-center gap-4 text-xs" style={{ color: "hsl(250 15% 50%)" }}>
           <span>{winner.total_spins.toLocaleString()} spins</span>
-          <span style={{ color: "hsl(250 15% 30%)" }}>·</span>
+          <span style={{ color: "hsl(250 15% 25%)" }}>·</span>
           <span style={{ color: "hsl(142 60% 50%)" }}>Bedste: {multiplier}</span>
         </div>
       </div>
-
-      {/* Keyframes */}
-      <style>{`
-        @keyframes shimmer {
-          0%, 100% { background-position: 200% 0; }
-          50% { background-position: -200% 0; }
-        }
-      `}</style>
     </div>
   );
 }
@@ -232,17 +388,32 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
   const currentUser = data?.currentUser;
   const winner = entries.length > 0 ? entries[0] : null;
   const top10 = entries.slice(0, 10);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const parallax = useParallax(containerRef);
 
   return (
-    <div className="rounded-2xl border border-border/30 overflow-hidden" style={{
-      background: "hsl(var(--card))",
-      boxShadow: "0 4px 24px hsl(0 0% 0% / 0.15), 0 1px 3px hsl(0 0% 0% / 0.1)",
-    }}>
-      {/* Header strip */}
-      <div className="px-5 py-4 border-b border-border/20">
+    <div
+      ref={containerRef}
+      className="relative rounded-2xl border border-border/20 overflow-hidden"
+      style={{
+        background: "hsl(220 30% 8%)",
+        boxShadow: "0 8px 40px hsl(0 0% 0% / 0.25), 0 2px 6px hsl(0 0% 0% / 0.15)",
+        perspective: "1200px",
+      }}
+    >
+      {/* Layered background */}
+      <AnimatedGrid />
+
+      {/* Noise texture */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+      }} />
+
+      {/* Header */}
+      <div className="relative px-5 py-4 border-b border-border/10">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="p-2 rounded-xl bg-primary/10">
+            <div className="p-2 rounded-xl" style={{ background: "hsl(260 70% 60% / 0.1)" }}>
               <Trophy className="h-5 w-5 text-primary" />
             </div>
             <div className="min-w-0">
@@ -258,13 +429,10 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
             </div>
           </div>
         </div>
-
-        {/* Meta */}
         <div className="flex flex-wrap items-center gap-3 mt-2">
           {tournament.prize_text && (
             <span className="inline-flex items-center gap-1.5 text-xs font-medium text-primary">
-              <Gift className="h-3.5 w-3.5" />
-              Præmie: {tournament.prize_text}
+              <Gift className="h-3.5 w-3.5" /> Præmie: {tournament.prize_text}
             </span>
           )}
           <span className="text-xs text-muted-foreground inline-flex items-center gap-1">
@@ -274,15 +442,13 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
         </div>
       </div>
 
-      {/* Game filter tabs */}
+      {/* Game tabs */}
       {tournament.separate_leaderboards && tournament.game_ids.length > 1 && (
-        <div className="px-5 pt-4">
+        <div className="relative px-5 pt-4">
           <Tabs value={selectedGame} onValueChange={setSelectedGame}>
             <TabsList className="w-full grid" style={{ gridTemplateColumns: `repeat(${tournament.game_ids.length}, 1fr)` }}>
               {tournament.game_ids.map((gid) => (
-                <TabsTrigger key={gid} value={gid} className="text-xs">
-                  {GAME_NAMES[gid] || gid}
-                </TabsTrigger>
+                <TabsTrigger key={gid} value={gid} className="text-xs">{GAME_NAMES[gid] || gid}</TabsTrigger>
               ))}
             </TabsList>
           </Tabs>
@@ -290,40 +456,34 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
       )}
 
       {/* Content */}
-      <div className="px-5 py-4">
+      <div className="relative px-5 py-5">
         {isLoading ? (
           <div className="space-y-3">
             {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="h-14 bg-secondary/30 rounded-2xl animate-pulse" />
+              <div key={i} className="h-16 rounded-2xl animate-pulse" style={{ background: "hsl(220 25% 13%)" }} />
             ))}
           </div>
         ) : (
           <>
-            {/* Hero winner */}
-            {winner && <WinnerHero winner={winner} />}
+            {winner && <WinnerHero winner={winner} parallax={parallax} />}
 
-            {/* Leaderboard rows */}
             {top10.length > 0 && (
-              <div className="mt-4 space-y-1.5">
+              <div className="mt-5 space-y-2">
                 {top10.map((entry, index) => (
                   <PremiumRow
                     key={`${entry.user_id}-${entry.game_id}`}
                     entry={entry}
                     rank={index + 1}
                     isCurrentUser={user?.id === entry.user_id}
-                    style={{
-                      animation: `fadeSlideIn 0.4s ease-out ${index * 60}ms both`,
-                    }}
+                    delay={index * 60}
                   />
                 ))}
-
-                {/* Current user below top 10 */}
                 {currentUser && currentUser.rank > 10 && (
                   <>
                     <div className="flex items-center gap-2 py-2">
-                      <div className="flex-1 border-t border-dashed border-border/30" />
+                      <div className="flex-1 border-t border-dashed border-border/20" />
                       <span className="text-xs text-muted-foreground">Din placering</span>
-                      <div className="flex-1 border-t border-dashed border-border/30" />
+                      <div className="flex-1 border-t border-dashed border-border/20" />
                     </div>
                     <PremiumRow entry={currentUser.entry} rank={currentUser.rank} isCurrentUser />
                   </>
@@ -332,31 +492,23 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
             )}
 
             {top10.length === 0 && (
-              <div className="text-center py-8">
-                <Sparkles className="h-10 w-10 mx-auto mb-2 text-muted-foreground/30" />
+              <div className="text-center py-10">
+                <Sparkles className="h-10 w-10 mx-auto mb-2 text-muted-foreground/20" />
                 <p className="text-muted-foreground">Ingen har spillet</p>
               </div>
             )}
           </>
         )}
 
-        {/* Participants */}
         {participants && participants.length > 0 && (
-          <div className={cn(top10.length > 0 ? "mt-5 pt-4 border-t border-border/20" : "")}>
+          <div className={cn(top10.length > 0 ? "mt-6 pt-4 border-t border-border/10" : "")}>
             <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1.5">
-              <Users className="h-3.5 w-3.5" />
-              {participants.length} deltagere
+              <Users className="h-3.5 w-3.5" /> {participants.length} deltagere
             </p>
             <div className="flex flex-wrap gap-2">
               {participants.map((p) => (
                 <div key={p.user_id} className="flex items-center gap-1.5">
-                  <UserProfileLink
-                    userId={p.user_id}
-                    displayName={p.display_name}
-                    avatarUrl={p.avatar_url}
-                    avatarClassName="h-6 w-6"
-                    showDropdown={false}
-                  />
+                  <UserProfileLink userId={p.user_id} displayName={p.display_name} avatarUrl={p.avatar_url} avatarClassName="h-6 w-6" showDropdown={false} />
                   <span className="text-xs text-muted-foreground">{p.display_name}</span>
                 </div>
               ))}
@@ -365,17 +517,44 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
         )}
       </div>
 
-      {/* Keyframes for row animations */}
+      {/* All keyframes */}
       <style>{`
-        @keyframes fadeSlideIn {
-          from {
-            opacity: 0;
-            transform: translateY(8px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        @keyframes shimmerHero {
+          0%, 100% { background-position: 250% 0; }
+          50% { background-position: -250% 0; }
+        }
+        @keyframes gridPulse {
+          0% { opacity: 0.03; }
+          100% { opacity: 0.08; }
+        }
+        @keyframes floatParticle {
+          0% { transform: translateY(0px) translateX(0px); opacity: 0.1; }
+          50% { opacity: 0.3; }
+          100% { transform: translateY(-20px) translateX(10px); opacity: 0.1; }
+        }
+        @keyframes badgePulse {
+          0%, 100% { transform: scale(1); opacity: 0.35; }
+          50% { transform: scale(1.15); opacity: 0.5; }
+        }
+        @keyframes shimmerSlide {
+          0%, 100% { transform: translateX(-100%); }
+          50% { transform: translateX(100%); }
+        }
+        @keyframes auraPulse {
+          0%, 100% { opacity: 0.6; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.1); }
+        }
+        @keyframes rowSlideIn {
+          from { opacity: 0; transform: translateY(12px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-bounce-once {
+          animation: microBounce 0.4s ease-out;
+        }
+        @keyframes microBounce {
+          0% { transform: scale(1); }
+          40% { transform: scale(1.03); }
+          100% { transform: scale(1); }
         }
       `}</style>
     </div>
