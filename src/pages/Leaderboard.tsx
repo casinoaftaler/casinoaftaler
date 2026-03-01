@@ -25,7 +25,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useTournaments, useTournamentLeaderboard, useTournamentParticipation, useTournamentParticipants, useJoinTournament, type Tournament, type TournamentEntry } from "@/hooks/useTournaments";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
-import { CompletedTournamentCard } from "@/components/tournament/CompletedTournamentCard";
+import { CompletedTournamentRow } from "@/components/tournament/CompletedTournamentRow";
 
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
@@ -501,8 +501,8 @@ export default function Leaderboard() {
                     Afsluttede turneringer ({ended.length})
                   </CollapsibleTrigger>
                   <CollapsibleContent className="mt-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {ended.map((t) => <CompletedTournamentCard key={t.id} tournament={t} />)}
+                    <div className="space-y-2">
+                      {ended.map((t) => <CompletedTournamentRow key={t.id} tournament={t} />)}
                     </div>
                   </CollapsibleContent>
                 </Collapsible>
