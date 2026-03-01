@@ -34,36 +34,27 @@ export function SourceCitations() {
         <li className="flex items-start gap-2">
           <ExternalLink className="h-3 w-3 mt-0.5 shrink-0" />
           <span>
-            Bonusregler reguleres af{" "}
-            <a
-              href="https://www.spillemyndigheden.dk/"
-              target="_blank"
-              rel="nofollow noopener noreferrer"
-              className="text-primary underline hover:text-primary/80"
-            >
-              Spillemyndigheden
-            </a>{" "}
-            i henhold til gældende bekendtgørelse om onlinekasino (BEK nr. 1494) – maks. 1.000 kr. bonus, 10x omsætningskrav
+            Bonusregler reguleres i henhold til gældende bekendtgørelse om onlinekasino (BEK nr. 1494) under dansk spillelovgivning.
           </span>
         </li>
         <li className="flex items-start gap-2">
           <ExternalLink className="h-3 w-3 mt-0.5 shrink-0" />
           <span>
-            RTP- og volatilitetsdata hentet fra spiludviklernes officielle specifikationer og{" "}
+            Selvudelukkelse administreres via{" "}
             <a
-              href="https://www.spillemyndigheden.dk/"
+              href="https://rofus.nu/"
               target="_blank"
               rel="nofollow noopener noreferrer"
               className="text-primary underline hover:text-primary/80"
             >
-              Spillemyndigheden.dk
+              ROFUS – Register Over Frivilligt Udelukkede Spillere
             </a>
           </span>
         </li>
         <li className="flex items-start gap-2">
           <ExternalLink className="h-3 w-3 mt-0.5 shrink-0" />
           <span>
-            Ansvarligt spil-information fra{" "}
+            Ansvarligt spil og national rådgivning via{" "}
             <a
               href="https://www.stopspillet.dk/"
               target="_blank"
