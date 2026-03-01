@@ -86,16 +86,6 @@ const SECTIONS = [
     image: rewardsImg,
   },
   {
-    title: "Spin the Reel",
-    description:
-      "Spin hjulet hver 12. time og vind points eller ekstra spins! Prøv lykken og se hvad du kan vinde.",
-    href: "/community/spin-the-reel",
-    icon: RotateCw,
-    badge: "Hver 12. time",
-    badgeColor: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border-cyan-500/30",
-    image: spinTheReelImg,
-  },
-  {
     title: "Butik",
     description:
       "Shop eksklusive varer med dine Twitch-point. Gaming headsets, gavekort, konsoller og mere.",
