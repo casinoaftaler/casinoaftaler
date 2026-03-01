@@ -3,45 +3,27 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer, Gift, User, CalendarDays, BookOpen } from "lucide-react";
+import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer, Gift, User, CalendarDays, BookOpen, Users, Target, BarChart3 } from "lucide-react";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { CommunityConversionCard } from "@/components/community/CommunityConversionCard";
+import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
+import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
+import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useAuth } from "@/hooks/useAuth";
 import { useTournaments, useTournamentLeaderboard, useTournamentParticipation, useTournamentParticipants, useJoinTournament, type Tournament, type TournamentEntry } from "@/hooks/useTournaments";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
-
-const GAME_THEMES: Record<string, { gradient: string; border: string; accent: string; accentBg: string; glow: string; badgeBg: string; badgeText: string; badgeBorder: string }> = {
-  "book-of-fedesvin": {
-    gradient: "from-amber-950/90 via-amber-900/80 to-amber-950/90",
-    border: "border-amber-500/30",
-    accent: "text-amber-400",
-    accentBg: "bg-amber-500/20",
-    glow: "shadow-[0_0_30px_rgba(251,191,36,0.15)]",
-    badgeBg: "bg-amber-500/20",
-    badgeText: "text-amber-300",
-    badgeBorder: "border-amber-500/40",
-  },
-  "rise-of-fedesvin": {
-    gradient: "from-purple-950/90 via-purple-900/80 to-purple-950/90",
-    border: "border-purple-500/30",
-    accent: "text-purple-400",
-    accentBg: "bg-purple-500/20",
-    glow: "shadow-[0_0_30px_rgba(168,85,247,0.15)]",
-    badgeBg: "bg-purple-500/20",
-    badgeText: "text-purple-300",
-    badgeBorder: "border-purple-500/40",
-  },
-};
 
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
@@ -147,7 +129,34 @@ function useCountdown(endDate: string) {
   return timeLeft;
 }
 
-function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
+function TournamentStatStrip({ tournaments }: { tournaments: Tournament[] }) {
+  const active = tournaments.filter(t => t.status === "active").length;
+  const totalParticipants = tournaments.length; // approximate
+  const ended = tournaments.filter(t => t.status === "ended").length;
+
+  const stats = [
+    { label: "Aktive turneringer", value: active, icon: Trophy },
+    { label: "Afsluttede turneringer", value: ended, icon: Target },
+    { label: "Turneringer i alt", value: tournaments.length, icon: BarChart3 },
+  ];
+
+  return (
+    <div className="grid grid-cols-3 gap-3">
+      {stats.map((stat) => (
+        <div
+          key={stat.label}
+          className="group flex flex-col items-center gap-1.5 rounded-xl border border-border/50 bg-card p-4 text-center transition-all duration-200 hover:border-primary/30 hover:shadow-[0_0_15px_hsl(var(--primary)/0.08)]"
+        >
+          <stat.icon className="h-4 w-4 text-primary transition-all duration-200 group-hover:drop-shadow-[0_0_6px_hsl(var(--primary)/0.5)]" />
+          <span className="text-2xl font-bold text-foreground">{stat.value}</span>
+          <span className="text-[10px] text-muted-foreground leading-tight">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function TournamentCard({ tournament }: { tournament: Tournament }) {
   const [selectedGame, setSelectedGame] = useState<string | undefined>(
     tournament.separate_leaderboards ? tournament.game_ids[0] : undefined
   );
@@ -165,9 +174,6 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
   const countdown = useCountdown(isActive ? tournament.ends_at : tournament.starts_at);
   const winner = isEnded && entries.length > 0 ? entries[0] : null;
 
-  const themeKey = tournament.game_ids[0] || "book-of-fedesvin";
-  const theme = GAME_THEMES[themeKey] || GAME_THEMES["book-of-fedesvin"];
-
   const handleJoin = async () => {
     try {
       const result = await joinMutation.mutateAsync(tournament.id);
@@ -184,85 +190,98 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
   };
 
   return (
-    <Card className={cn(
-      "relative overflow-hidden border backdrop-blur-md transition-all duration-300",
-      theme.border, theme.glow,
-      `bg-gradient-to-b ${theme.gradient}`,
-      isEnded && "opacity-80"
-    )}>
-      <div className={cn("absolute top-0 right-0 w-32 h-32 opacity-20 blur-2xl -z-10", theme.accentBg)} />
-
-      <CardHeader className="pb-3">
+    <div className="rounded-2xl border border-border/50 bg-card overflow-hidden">
+      {/* Header */}
+      <div className="px-4 py-3 md:px-5 md:py-4 border-b border-border/30">
         <div className="flex items-center justify-between flex-wrap gap-2">
-          <div className="flex items-center gap-3">
-            <div className={cn("p-2.5 rounded-xl", theme.accentBg)}>
-              <Trophy className={cn("h-5 w-5", theme.accent)} />
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="p-2 rounded-xl bg-primary/10 shrink-0">
+              <Trophy className="h-5 w-5 text-primary" />
             </div>
-            <div>
-              <h3 className="font-bold text-lg text-foreground">{tournament.title}</h3>
-              {tournament.description && <p className="text-sm text-muted-foreground">{tournament.description}</p>}
-              {tournament.prize_text && (
-                <div className="flex items-center gap-1.5 mt-1">
-                  <Gift className={cn("h-4 w-4", theme.accent)} />
-                  <span className={cn("text-sm font-medium", theme.accent)}>Præmie: {tournament.prize_text}</span>
-                </div>
-              )}
-              {tournament.max_credits && (
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className="text-xs text-muted-foreground">💰 Maks {tournament.max_credits.toLocaleString()} credits</span>
-                </div>
-              )}
-              {tournament.exclude_from_global_leaderboard && (
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <Badge variant="outline" className="text-xs">Ekskl. globalt leaderboard</Badge>
-                </div>
-              )}
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <h3 className="font-bold text-lg text-foreground truncate">{tournament.title}</h3>
+                {isActive && (
+                  <Badge variant="destructive" className="text-[10px] px-1.5 py-0 gap-1 uppercase font-semibold shrink-0">
+                    <Timer className="h-2.5 w-2.5" />
+                    {countdown}
+                  </Badge>
+                )}
+                {isUpcoming && (
+                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0 gap-1 uppercase font-semibold shrink-0">
+                    <Clock className="h-2.5 w-2.5" />
+                    Starter om {countdown}
+                  </Badge>
+                )}
+                {isEnded && (
+                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0 uppercase font-semibold shrink-0">
+                    Afsluttet
+                  </Badge>
+                )}
+              </div>
+              <div className="flex items-center gap-3 mt-0.5 text-xs text-muted-foreground">
+                {tournament.description && <span>{tournament.description}</span>}
+              </div>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+
+          <div className="flex items-center gap-2 shrink-0">
             {isActive && hasJoined && (
-              <Badge className="bg-green-500/20 text-green-300 border-green-500/40 border">
+              <Badge variant="outline" className="text-xs border-green-500/40 text-green-500 bg-green-500/10">
                 <Sparkles className="h-3 w-3 mr-1" /> Du deltager
               </Badge>
-            )}
-            {isActive && (
-              <Badge className={cn("border", theme.badgeBg, theme.badgeText, theme.badgeBorder)}>
-                <Timer className="h-3 w-3 mr-1" /> {countdown}
-              </Badge>
-            )}
-            {isUpcoming && (
-              <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/40 border">
-                <Clock className="h-3 w-3 mr-1" /> Starter om {countdown}
-              </Badge>
-            )}
-            {isEnded && (
-              <Badge variant="secondary">Afsluttet</Badge>
             )}
           </div>
         </div>
 
-        {/* Join button for active tournaments */}
-        {isActive && user && !hasJoined && !participationLoading && (
-          <div className={cn("mt-3 p-3 rounded-xl border text-center", theme.accentBg, theme.border)}>
-            <p className="text-sm text-muted-foreground mb-2">
-              Tilmeld dig for at deltage i turneringen
+        {/* Meta: prize, credits, games */}
+        <div className="flex flex-wrap items-center gap-3 mt-2">
+          {tournament.prize_text && (
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-primary">
+              <Gift className="h-3.5 w-3.5" />
+              Præmie: {tournament.prize_text}
+            </span>
+          )}
+          {tournament.max_credits && (
+            <span className="text-xs text-muted-foreground">
+              💰 Maks {tournament.max_credits.toLocaleString()} credits
+            </span>
+          )}
+          <span className="text-xs text-muted-foreground inline-flex items-center gap-1">
+            <Gamepad2 className="h-3 w-3" />
+            {tournament.game_ids.map((id) => GAME_NAMES[id] || id).join(" + ")}
+          </span>
+          {tournament.exclude_from_global_leaderboard && (
+            <Badge variant="outline" className="text-[10px]">Ekskl. globalt leaderboard</Badge>
+          )}
+        </div>
+      </div>
+
+      {/* Join button */}
+      {isActive && user && !hasJoined && !participationLoading && (
+        <div className="px-4 py-3 border-b border-border/30 bg-primary/[0.03]">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-sm text-muted-foreground">
+              Tilmeld dig for at deltage
               {tournament.max_credits ? ` og modtag op til ${tournament.max_credits.toLocaleString()} credits!` : "!"}
             </p>
             <Button
               onClick={handleJoin}
               disabled={joinMutation.isPending}
-              className={cn("gap-2", theme.accentBg, "hover:opacity-90 border", theme.border)}
-              variant="ghost"
+              size="sm"
+              className="gap-2 shrink-0"
             >
-              <Trophy className="h-4 w-4" />
+              <Trophy className="h-3.5 w-3.5" />
               {joinMutation.isPending ? "Tilmelder..." : "Deltag"}
             </Button>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Game filter tabs for separate leaderboards */}
-        {tournament.separate_leaderboards && tournament.game_ids.length > 1 && (
-          <Tabs value={selectedGame} onValueChange={setSelectedGame} className="mt-3">
+      {/* Game filter tabs */}
+      {tournament.separate_leaderboards && tournament.game_ids.length > 1 && (
+        <div className="px-4 pt-3">
+          <Tabs value={selectedGame} onValueChange={setSelectedGame}>
             <TabsList className="w-full grid" style={{ gridTemplateColumns: `repeat(${tournament.game_ids.length}, 1fr)` }}>
               {tournament.game_ids.map((gid) => (
                 <TabsTrigger key={gid} value={gid} className="text-xs">
@@ -271,31 +290,24 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
               ))}
             </TabsList>
           </Tabs>
-        )}
+        </div>
+      )}
 
-        {/* Game names for combined */}
-        {!tournament.separate_leaderboards && (
-          <p className="text-xs text-muted-foreground mt-2">
-            <Gamepad2 className="h-3 w-3 inline mr-1" />
-            {tournament.game_ids.map((id) => GAME_NAMES[id] || id).join(" + ")}
-          </p>
-        )}
-      </CardHeader>
-
-      <CardContent className="pt-0">
-        {/* Winner announcement for ended tournaments */}
+      {/* Leaderboard content */}
+      <div className="px-4 py-3 md:px-5">
+        {/* Winner for ended */}
         {isEnded && winner && (
-          <div className={cn("mb-4 p-4 rounded-xl border text-center", theme.accentBg, theme.border)}>
-            <Crown className={cn("h-8 w-8 mx-auto mb-2", theme.accent)} />
+          <div className="mb-4 p-4 rounded-xl border border-primary/20 bg-primary/[0.04] text-center">
+            <Crown className="h-8 w-8 mx-auto mb-2 text-primary" />
             <p className="text-sm text-muted-foreground">Vinder</p>
             <p className="font-bold text-lg text-foreground">{winner.display_name || "Anonym"}</p>
-            <p className={cn("font-bold text-xl", theme.accent)}>{winner.total_points.toLocaleString()} point</p>
+            <p className="font-bold text-xl text-primary">{winner.total_points.toLocaleString()} point</p>
           </div>
         )}
 
         {isUpcoming ? (
           <div className="text-center py-8">
-            <Clock className={cn("h-12 w-12 mx-auto mb-3 opacity-30", theme.accent)} />
+            <Clock className="h-12 w-12 mx-auto mb-3 opacity-30 text-primary" />
             <p className="text-muted-foreground">Turneringen er ikke startet endnu</p>
           </div>
         ) : isLoading ? (
@@ -328,16 +340,17 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
           </div>
         ) : (
           <div className="text-center py-6">
-            <Trophy className={cn("h-10 w-10 mx-auto mb-2 opacity-30", theme.accent)} />
+            <Trophy className="h-10 w-10 mx-auto mb-2 opacity-30 text-primary" />
             <p className="text-muted-foreground">Ingen har spillet endnu</p>
             <p className="text-sm text-muted-foreground/70">Vær den første på ranglisten!</p>
           </div>
         )}
 
-        {/* Show joined participants */}
+        {/* Participants */}
         {participants && participants.length > 0 && (
           <div className={cn(top10.length > 0 ? "mt-4 pt-4 border-t border-border/30" : "")}>
-            <p className="text-sm text-muted-foreground mb-3">
+            <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1.5">
+              <Users className="h-3.5 w-3.5" />
               {participants.length} tilmeldte spillere
             </p>
             <div className="flex flex-wrap gap-2">
@@ -357,15 +370,15 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
           </div>
         )}
 
-        {/* Play buttons - only show if joined or ended */}
+        {/* Play buttons */}
         {isActive && hasJoined && (
           <div className={cn("flex gap-2 mt-4", tournament.game_ids.length === 1 ? "" : "flex-col sm:flex-row")}>
             {tournament.game_ids.map((gid) => (
               <Button
                 key={gid}
                 asChild
-                className={cn("flex-1 gap-2", GAME_THEMES[gid]?.accentBg || theme.accentBg, "hover:opacity-90 border", GAME_THEMES[gid]?.border || theme.border)}
-                variant="ghost"
+                variant="outline"
+                className="flex-1 gap-2"
               >
                 <Link to={GAME_HREFS[gid] || "/community/slots"}>
                   Spil {GAME_NAMES[gid] || gid}
@@ -375,8 +388,8 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
             ))}
           </div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -396,92 +409,119 @@ export default function Leaderboard() {
         noindex
       />
 
-      {/* Hero Section */}
+      {/* Hero Section – matching Bonus Hunt style */}
       <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
+        className="relative overflow-hidden text-white"
         style={{
-          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
         }}
       >
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Kæmp om Præmier
-            </Badge>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Turneringer</h1>
-            <p className="text-lg text-white/80">
-              Deltag i slot-turneringer og kæmp om præmier! Se aktive turneringer, ranglister og vindere.
+        <div className="relative container py-14 md:py-24">
+          <div className="mx-auto max-w-3xl text-center space-y-5">
+            <h1 className="text-3xl font-bold tracking-tight leading-tight md:text-5xl md:leading-tight">
+              Slot Turneringer med Præmier
+            </h1>
+            <p className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto">
+              Deltag i ugentlige turneringer, kæmp om topplaceringer og vind credits og præmier.
             </p>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/70">
+              <span className="inline-flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inset-0 rounded-full animate-ping opacity-40 bg-green-400" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+                </span>
+                {active.length > 0 ? `${active.length} aktiv${active.length > 1 ? 'e' : ''} turnering${active.length > 1 ? 'er' : ''}` : 'Nye turneringer snart'}
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
+                Gratis at deltage
+              </span>
+              <span className="inline-flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
+                Credits som præmier
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
       <CommunityNav />
 
-      <div className="relative">
-        <div className="hidden lg:block absolute left-4 xl:left-8 top-8 w-[260px] z-10">
-          <div className="sticky top-24">
+      <div className="container relative">
+        {/* Sidebar – positioned outside content flow like Bonus Hunt */}
+        <div className="hidden xl:block absolute right-full top-0 mr-6 w-[260px] pt-6">
+          <div className="sticky top-24 h-fit flex flex-col gap-4">
             <CommunitySeoBridge />
+            <CommunityConversionCard />
+            <SidebarSocialProof />
+            <SidebarLeaderboard />
+            <SidebarShopLeaderboard />
           </div>
         </div>
-        <div className="container py-8 md:py-12">
 
-        {tournamentsLoading ? (
-          <div className="max-w-5xl mx-auto space-y-4">
-            {[1, 2].map((i) => <div key={i} className="h-64 bg-muted/20 rounded-xl animate-pulse" />)}
-          </div>
-        ) : (
-          <div className="max-w-5xl mx-auto space-y-8">
-            {/* Active tournaments */}
-            {active.length > 0 && (
-              <div className="space-y-6">
-                {active.map((t) => <TournamentLeaderboardCard key={t.id} tournament={t} />)}
-              </div>
-            )}
+        <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
+          {/* Stat Strip */}
+          {tournaments && tournaments.length > 0 && (
+            <TournamentStatStrip tournaments={tournaments} />
+          )}
 
+          {/* Main content */}
+          {tournamentsLoading ? (
+            <div className="space-y-4">
+              {[1, 2].map((i) => <div key={i} className="h-64 bg-muted/20 rounded-xl animate-pulse" />)}
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {/* Active tournaments */}
+              {active.length > 0 && (
+                <div className="space-y-4">
+                  {active.map((t) => <TournamentCard key={t.id} tournament={t} />)}
+                </div>
+              )}
 
-            {/* Upcoming tournaments */}
-            {upcoming.length > 0 && (
-              <div className="space-y-6">
-                <h2 className="text-lg font-semibold text-muted-foreground flex items-center gap-2">
-                  <Clock className="h-5 w-5" /> Kommende turneringer
-                </h2>
-                {upcoming.map((t) => <TournamentLeaderboardCard key={t.id} tournament={t} />)}
-              </div>
-            )}
+              {/* Upcoming tournaments */}
+              {upcoming.length > 0 && (
+                <div className="space-y-4">
+                  <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                    <Clock className="h-4 w-4" /> Kommende turneringer
+                  </h2>
+                  {upcoming.map((t) => <TournamentCard key={t.id} tournament={t} />)}
+                </div>
+              )}
 
-            {/* Ended tournaments */}
-            {ended.length > 0 && (
-              <div className="space-y-6">
-                <h2 className="text-lg font-semibold text-muted-foreground">Afsluttede turneringer</h2>
-                {ended.map((t) => <TournamentLeaderboardCard key={t.id} tournament={t} />)}
-              </div>
-            )}
+              {/* Ended tournaments */}
+              {ended.length > 0 && (
+                <div className="space-y-4">
+                  <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                    Afsluttede turneringer
+                  </h2>
+                  {ended.map((t) => <TournamentCard key={t.id} tournament={t} />)}
+                </div>
+              )}
 
-            {/* No tournaments */}
-            {!active.length && !upcoming.length && !ended.length && (
-              <Card className="border-dashed border-muted-foreground/30 bg-muted/10">
-                <CardContent className="py-12 text-center">
+              {/* No tournaments */}
+              {!active.length && !upcoming.length && !ended.length && (
+                <div className="rounded-2xl border border-dashed border-border/50 bg-card p-12 text-center">
                   <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-muted/20 flex items-center justify-center">
                     <Sparkles className="h-8 w-8 text-muted-foreground/50" />
                   </div>
                   <h3 className="text-lg font-medium text-muted-foreground mb-1">Ingen turneringer endnu</h3>
                   <p className="text-sm text-muted-foreground/70">Hold øje med nye turneringer og events!</p>
-                </CardContent>
-              </Card>
-            )}
-          </div>
-        )}
+                </div>
+              )}
+            </div>
+          )}
 
-        <div className="mt-12 space-y-8">
-          <CommunitySeoSections />
-          <RelatedGuides currentPath="/community/leaderboard" />
+          {/* SEO sections */}
+          <div className="mt-12 space-y-8">
+            <CommunitySeoSections />
+            <RelatedGuides currentPath="/community/leaderboard" />
+            <CommunityBrandBlock />
+          </div>
+
+          <div className="pb-12" />
         </div>
       </div>
-    </div>
     </>
   );
 }
