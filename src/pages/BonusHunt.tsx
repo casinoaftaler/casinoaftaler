@@ -67,7 +67,7 @@ export default function BonusHunt() {
     queryClient.invalidateQueries({ queryKey: ['bonus-hunt-avgx-bets'] });
   }, [queryClient]);
 
-  const blockedHunts = new Set([6, 7]);
+  const blockedHunts = new Set([7]);
 
   const getNextAllowed = useCallback((start: number) => {
     let n = start;
