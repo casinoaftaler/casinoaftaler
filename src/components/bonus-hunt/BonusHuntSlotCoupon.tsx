@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Check, Lock, Ticket, Flame, Shield, Zap, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import "@/styles/slot-coupon.css";
 
 const MARKETS = [
   { q: "Betaler 10 bonusser over 100x?", oddsYes: 1.85, oddsNo: 1.95, aggressive: true },
@@ -40,7 +41,6 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
   );
   const isComplete = answeredCount === MARKETS.length;
 
-  // Combined multiplier – product of all selected odds
   const combinedMultiplier = useMemo(() => {
     let product = 1;
     let count = 0;
@@ -53,7 +53,6 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
     return count > 0 ? product : null;
   }, [answers]);
 
-  // Risk profile based on aggressive yes-picks
   const riskProfile = useMemo(() => {
     const yesAggressive = Object.entries(answers).filter(
       ([idx, v]) => v === true && MARKETS[Number(idx)].aggressive
@@ -92,10 +91,24 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
     }
   };
 
+  const progressPercent = (answeredCount / MARKETS.length) * 100;
+
   return (
-    <div className="rounded-xl border border-border/60 bg-card overflow-hidden shadow-lg flex flex-col">
+    <div className="relative rounded-xl border border-border/60 slot-coupon-bg overflow-hidden shadow-lg flex flex-col">
+      {/* Radial glow */}
+      <div className="slot-coupon-glow" />
+
+      {/* Floating particles */}
+      <div className="slot-coupon-particles" aria-hidden="true">
+        <div className="slot-coupon-particle" />
+        <div className="slot-coupon-particle" />
+        <div className="slot-coupon-particle" />
+        <div className="slot-coupon-particle" />
+        <div className="slot-coupon-particle" />
+      </div>
+
       {/* Header */}
-      <div className="relative overflow-hidden px-4 py-3 border-b border-border/40">
+      <div className="relative z-10 overflow-hidden px-4 py-3 border-b border-border/40">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/15 via-primary/5 to-transparent" />
         <div className="relative flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -109,7 +122,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
             {isLive ? (
               <>
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inset-0 rounded-full animate-ping opacity-40 bg-green-400" />
+                  <span className="slot-coupon-live-dot absolute inset-0 rounded-full" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-400" />
                 </span>
                 Hunt #{huntNumber} – Live
@@ -121,8 +134,18 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
         </div>
       </div>
 
+      {/* Progress bar */}
+      <div className="relative z-10 px-4 pt-2">
+        <div className="slot-coupon-progress-track bg-muted/30">
+          <div
+            className="slot-coupon-progress-fill"
+            style={{ width: `${progressPercent}%` }}
+          />
+        </div>
+      </div>
+
       {/* Markets – scrollable */}
-      <div className="divide-y divide-border/30 overflow-y-auto max-h-[420px] scrollbar-thin">
+      <div className="relative z-10 divide-y divide-border/30 overflow-y-auto max-h-[420px] scrollbar-thin">
         {MARKETS.map((market, i) => {
           const selected = answers[i];
           const justChanged = lastChanged === i;
@@ -143,9 +166,9 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
                   disabled={submitted}
                   onClick={() => handleSelect(i, true)}
                   className={cn(
-                    "relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
+                    "slot-coupon-select-pop relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
                     selected === true
-                      ? "border-green-500/50 bg-green-500/10 text-green-400 shadow-[0_0_12px_hsl(142_70%_45%/0.15)] scale-[1.02]"
+                      ? "border-green-500/50 bg-green-500/10 text-green-400 scale-[1.02] slot-coupon-odds-yes-active"
                       : "border-border/50 bg-muted/40 text-muted-foreground hover:border-green-500/30 hover:bg-green-500/5 hover:text-foreground",
                     selected === false && "opacity-50",
                     submitted && "opacity-60 cursor-not-allowed"
@@ -163,9 +186,9 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
                   disabled={submitted}
                   onClick={() => handleSelect(i, false)}
                   className={cn(
-                    "relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
+                    "slot-coupon-select-pop relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
                     selected === false
-                      ? "border-red-500/50 bg-red-500/10 text-red-400 shadow-[0_0_12px_hsl(0_70%_45%/0.15)] scale-[1.02]"
+                      ? "border-red-500/50 bg-red-500/10 text-red-400 scale-[1.02] slot-coupon-odds-no-active"
                       : "border-border/50 bg-muted/40 text-muted-foreground hover:border-red-500/30 hover:bg-red-500/5 hover:text-foreground",
                     selected === true && "opacity-50",
                     submitted && "opacity-60 cursor-not-allowed"
@@ -184,7 +207,7 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
       </div>
 
       {/* Sticky slip footer */}
-      <div className="border-t-2 border-primary/20 bg-gradient-to-t from-muted/40 to-card px-4 py-4 space-y-3 sticky bottom-0">
+      <div className="relative z-10 border-t-2 border-primary/20 bg-gradient-to-t from-muted/40 to-transparent px-4 py-4 space-y-3 sticky bottom-0">
         {/* Combined multiplier */}
         {combinedMultiplier !== null && (
           <div className="flex items-center justify-between rounded-lg bg-primary/[0.07] border border-primary/20 px-3 py-2">
