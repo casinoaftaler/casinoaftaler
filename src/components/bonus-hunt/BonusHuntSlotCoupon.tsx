@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Check, Lock, Ticket, Flame, Shield, Zap, TrendingUp, Eye } from "lucide-react";
+import { Check, Lock, Ticket, Flame, Shield, Zap, TrendingUp, Eye, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SlotCouponReceipt } from "./SlotCouponReceipt";
@@ -299,14 +299,28 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
       </div>
     </div>
 
-      {/* Receipt overlay */}
+      {/* Receipt modal overlay */}
       {submitted && showReceipt && (
-        <div className="mt-3">
-          <SlotCouponReceipt
-            huntNumber={huntNumber}
-            answers={answers}
-            isLive={isLive}
-          />
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+          onClick={() => setShowReceipt(false)}
+        >
+          <div
+            className="relative max-w-sm w-full animate-in zoom-in-95 fade-in duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowReceipt(false)}
+              className="absolute -top-3 -right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-card border border-border text-foreground shadow-lg hover:bg-muted transition-colors"
+            >
+              <X className="h-4 w-4" />
+            </button>
+            <SlotCouponReceipt
+              huntNumber={huntNumber}
+              answers={answers}
+              isLive={isLive}
+            />
+          </div>
         </div>
       )}
     </>
