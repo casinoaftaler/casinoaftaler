@@ -136,7 +136,8 @@ async function generateAndUpload(
     .from("clip-thumbnails")
     .getPublicUrl(filePath);
 
-  const publicUrl = urlData.publicUrl;
+  // Add cache-busting parameter so browsers fetch the new image
+  const publicUrl = `${urlData.publicUrl}?v=${Date.now()}`;
 
   // Update clip with thumbnail
   const { error: updateError } = await supabase
