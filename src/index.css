@@ -170,6 +170,7 @@ All colors MUST be HSL.
   /* Force scrollbar to prevent CLS from scrollbar appearance */
   html {
     overflow-y: scroll;
+    scroll-behavior: smooth;
   }
 
   * {
@@ -178,5 +179,35 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Premium Nordic scrollbars – Webkit */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(220 15% 18%);
+    border-radius: 8px;
+    transition: background 0.2s ease;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, hsl(220 15% 28%), hsl(220 15% 22%));
+    box-shadow: 0 0 4px hsl(220 15% 30% / 0.3);
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: hsl(220 15% 14%);
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Premium Nordic scrollbars – Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(220 15% 18%) transparent;
   }
 }
