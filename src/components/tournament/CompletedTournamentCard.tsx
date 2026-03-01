@@ -8,11 +8,17 @@ import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 import { useTournamentLeaderboard, useTournamentParticipants, type Tournament, type TournamentEntry } from "@/hooks/useTournaments";
 import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
   "rise-of-fedesvin": "Rise of Fedesvin",
 };
+
+function useIsDark() {
+  const { resolvedTheme } = useTheme();
+  return resolvedTheme === "dark";
+}
 
 // --- Animated counter with micro-bounce ---
 function useCountUp(target: number, duration = 2000) {
@@ -35,10 +41,11 @@ function useCountUp(target: number, duration = 2000) {
   return { value, done };
 }
 
-// --- Mouse parallax hook ---
-function useParallax(ref: React.RefObject<HTMLElement | null>) {
+// --- Mouse parallax hook (dark only) ---
+function useParallax(ref: React.RefObject<HTMLElement | null>, enabled: boolean) {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   useEffect(() => {
+    if (!enabled) return;
     const el = ref.current;
     if (!el) return;
     const handle = (e: MouseEvent) => {
@@ -51,14 +58,14 @@ function useParallax(ref: React.RefObject<HTMLElement | null>) {
     el.addEventListener("mousemove", handle);
     el.addEventListener("mouseleave", reset);
     return () => { el.removeEventListener("mousemove", handle); el.removeEventListener("mouseleave", reset); };
-  }, [ref]);
+  }, [ref, enabled]);
   return offset;
 }
 
-// --- Animated Grid Background ---
+// --- Animated Grid Background (dark only) ---
 function AnimatedGrid() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none dark:block hidden">
       <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.06 }}>
         <defs>
           <pattern id="lb-grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -73,17 +80,9 @@ function AnimatedGrid() {
           </mask>
         </defs>
         <rect width="100%" height="100%" fill="url(#lb-grid)" mask="url(#lb-grid-mask)">
-          <animateTransform
-            attributeName="transform"
-            type="translate"
-            from="0 0"
-            to="0 40"
-            dur="8s"
-            repeatCount="indefinite"
-          />
+          <animateTransform attributeName="transform" type="translate" from="0 0" to="0 40" dur="8s" repeatCount="indefinite" />
         </rect>
       </svg>
-      {/* Intersection glows */}
       <div className="absolute inset-0" style={{
         backgroundImage: "radial-gradient(circle 1px, hsl(230 70% 60% / 0.12) 0%, transparent 100%)",
         backgroundSize: "40px 40px",
@@ -93,7 +92,7 @@ function AnimatedGrid() {
   );
 }
 
-// --- Floating particles ---
+// --- Floating particles (dark only) ---
 function FloatingParticles() {
   const particles = useRef(
     Array.from({ length: 12 }, (_, i) => ({
@@ -108,7 +107,7 @@ function FloatingParticles() {
   ).current;
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none dark:block hidden">
       {particles.map((p) => (
         <div
           key={p.id}
@@ -150,14 +149,14 @@ function PremiumRankBadge({ rank }: { rank: number }) {
 
   return (
     <div className="relative flex items-center justify-center w-10 h-10">
-      <div className="absolute inset-0 rounded-full" style={{
+      {/* Glow + shimmer only in dark */}
+      <div className="absolute inset-0 rounded-full dark:block hidden" style={{
         background: `radial-gradient(circle, ${badgeStyle.glow}, transparent 70%)`,
         animation: rank === 1 ? "badgePulse 3s ease-in-out infinite" : undefined,
       }} />
-      <div className="absolute inset-0 rounded-full overflow-hidden" style={{
+      <div className="absolute inset-0 rounded-full overflow-hidden dark:block hidden" style={{
         background: badgeStyle.bg,
         opacity: 0.15,
-        animation: "shimmerBadge 4s ease-in-out infinite",
       }}>
         <div className="absolute inset-0" style={{
           background: "linear-gradient(105deg, transparent 30%, hsl(0 0% 100% / 0.3) 50%, transparent 70%)",
@@ -174,28 +173,44 @@ function PremiumRankBadge({ rank }: { rank: number }) {
   );
 }
 
-// --- Premium Row with 3D tilt ---
-function PremiumRow({ entry, rank, isCurrentUser, delay = 0 }: {
+// --- Premium Row ---
+function PremiumRow({ entry, rank, isCurrentUser, delay = 0, isDark }: {
   entry: TournamentEntry;
   rank: number;
   isCurrentUser?: boolean;
   delay?: number;
+  isDark: boolean;
 }) {
   const multiplier = entry.biggest_multiplier > 0 ? `${Number(entry.biggest_multiplier.toFixed(1))}x` : "–";
   const rowRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   const handleMouse = useCallback((e: React.MouseEvent) => {
+    if (!isDark) return;
     const el = rowRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 4;
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * -4;
     setTilt({ x: y, y: x });
-  }, []);
+  }, [isDark]);
 
   const isTop3 = rank <= 3;
   const scale = rank === 1 ? "scale-[1.01]" : rank === 2 ? "scale-[1.005]" : "";
+
+  // Light mode: use design tokens for backgrounds
+  const rowBg = isDark
+    ? isTop3
+      ? rank === 1 ? "linear-gradient(135deg, hsl(45 80% 50% / 0.05), hsl(35 70% 40% / 0.02))" : rank === 2 ? "linear-gradient(135deg, hsl(220 10% 65% / 0.05), transparent)" : "linear-gradient(135deg, hsl(25 55% 45% / 0.05), transparent)"
+      : "hsl(220 30% 14% / 0.4)"
+    : isTop3
+      ? rank === 1 ? "linear-gradient(135deg, hsl(45 80% 50% / 0.06), hsl(45 80% 50% / 0.02))" : rank === 2 ? "linear-gradient(135deg, hsl(220 10% 50% / 0.04), transparent)" : "linear-gradient(135deg, hsl(25 55% 45% / 0.04), transparent)"
+      : undefined;
+
+  // Light mode point colors: darker, readable versions
+  const pointColor = isDark
+    ? rank === 1 ? "hsl(45 85% 58%)" : rank === 2 ? "hsl(220 10% 78%)" : rank === 3 ? "hsl(25 55% 58%)" : undefined
+    : rank === 1 ? "hsl(38 80% 40%)" : rank === 2 ? "hsl(220 10% 45%)" : rank === 3 ? "hsl(25 55% 38%)" : undefined;
 
   return (
     <div
@@ -203,34 +218,28 @@ function PremiumRow({ entry, rank, isCurrentUser, delay = 0 }: {
       onMouseMove={handleMouse}
       onMouseLeave={() => setTilt({ x: 0, y: 0 })}
       className={cn(
-        "group relative flex items-center gap-3 p-4 rounded-2xl transition-all duration-250 cursor-default",
+        "group relative flex items-center gap-3 p-4 rounded-2xl transition-all cursor-default",
         "border border-transparent",
+        !isDark && !isTop3 && "bg-card hover:bg-secondary/40",
         isTop3 && scale,
         isCurrentUser && "ring-1 ring-primary/30",
       )}
       style={{
-        background: isTop3
-          ? rank === 1
-            ? "linear-gradient(135deg, hsl(45 80% 50% / 0.05), hsl(35 70% 40% / 0.02))"
-            : rank === 2
-            ? "linear-gradient(135deg, hsl(220 10% 65% / 0.05), transparent)"
-            : "linear-gradient(135deg, hsl(25 55% 45% / 0.05), transparent)"
-          : "hsl(220 30% 14% / 0.4)",
-        backdropFilter: "blur(8px)",
-        transform: `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-        transition: "transform 0.25s ease-out, box-shadow 0.25s ease-out, background 0.25s ease-out, border-color 0.25s ease-out",
+        background: rowBg,
+        backdropFilter: isDark ? "blur(8px)" : undefined,
+        transform: isDark ? `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` : undefined,
+        transition: "transform 0.25s ease-out, box-shadow 0.25s ease-out, background 0.25s ease-out",
         animation: `rowSlideIn 0.5s ease-out ${delay}ms both`,
-        willChange: "transform",
       }}
     >
       {/* Left accent line for top 3 */}
       {isTop3 && (
         <div className="absolute left-0 top-3 bottom-3 w-[2px] rounded-full" style={{
           background: rank === 1
-            ? "linear-gradient(180deg, hsl(45 85% 55%), hsl(45 85% 55% / 0.2))"
+            ? `linear-gradient(180deg, hsl(45 85% ${isDark ? 55 : 45}%), hsl(45 85% ${isDark ? 55 : 45}% / 0.2))`
             : rank === 2
-            ? "linear-gradient(180deg, hsl(220 10% 70%), hsl(220 10% 70% / 0.2))"
-            : "linear-gradient(180deg, hsl(25 55% 50%), hsl(25 55% 50% / 0.2))",
+            ? `linear-gradient(180deg, hsl(220 10% ${isDark ? 70 : 55}%), hsl(220 10% ${isDark ? 70 : 55}% / 0.2))`
+            : `linear-gradient(180deg, hsl(25 55% ${isDark ? 50 : 42}%), hsl(25 55% ${isDark ? 50 : 42}% / 0.2))`,
         }} />
       )}
 
@@ -258,7 +267,7 @@ function PremiumRow({ entry, rank, isCurrentUser, delay = 0 }: {
           <div className="flex items-center gap-2 mt-0.5">
             <span className="text-xs text-muted-foreground">{entry.total_spins.toLocaleString()} spins</span>
             <span className="text-xs text-muted-foreground/40">·</span>
-            <span className="text-xs font-medium transition-all duration-250 group-hover:drop-shadow-[0_0_4px_hsl(142,60%,50%/0.5)]" style={{ color: "hsl(142 60% 48%)" }}>
+            <span className="text-xs font-medium" style={{ color: isDark ? "hsl(142 60% 48%)" : "hsl(142 60% 35%)" }}>
               {multiplier}
             </span>
           </div>
@@ -266,10 +275,7 @@ function PremiumRow({ entry, rank, isCurrentUser, delay = 0 }: {
       </div>
 
       <div className="text-right transition-transform duration-250 group-hover:scale-105">
-        <span className={cn(
-          "text-lg font-bold tabular-nums tracking-tight",
-          rank === 1 ? "text-[hsl(45,85%,58%)]" : rank === 2 ? "text-[hsl(220,10%,78%)]" : rank === 3 ? "text-[hsl(25,55%,58%)]" : "text-foreground"
-        )}>
+        <span className={cn("text-lg font-bold tabular-nums tracking-tight", !pointColor && "text-foreground")} style={pointColor ? { color: pointColor } : undefined}>
           {entry.total_points.toLocaleString()}
         </span>
       </div>
@@ -278,7 +284,7 @@ function PremiumRow({ entry, rank, isCurrentUser, delay = 0 }: {
 }
 
 // --- Hero Winner Section ---
-function WinnerHero({ winner, parallax }: { winner: TournamentEntry; parallax: { x: number; y: number } }) {
+function WinnerHero({ winner, parallax, isDark }: { winner: TournamentEntry; parallax: { x: number; y: number }; isDark: boolean }) {
   const { value: animatedPoints, done } = useCountUp(winner.total_points);
   const multiplier = winner.biggest_multiplier > 0 ? `${Number(winner.biggest_multiplier.toFixed(1))}x` : "–";
 
@@ -286,60 +292,70 @@ function WinnerHero({ winner, parallax }: { winner: TournamentEntry; parallax: {
     <div
       className="relative overflow-hidden rounded-2xl p-8 md:p-10"
       style={{
-        background: "linear-gradient(135deg, hsl(260 55% 18%), hsl(240 45% 15%) 50%, hsl(220 60% 16%))",
-        boxShadow: "0 20px 60px hsl(260 50% 10% / 0.5), 0 4px 12px hsl(0 0% 0% / 0.3), inset 0 1px 0 hsl(260 40% 30% / 0.15)",
-        transform: `translateZ(40px) translate(${parallax.x * -3}px, ${parallax.y * -3}px)`,
+        background: isDark
+          ? "linear-gradient(135deg, hsl(260 55% 18%), hsl(240 45% 15%) 50%, hsl(220 60% 16%))"
+          : "linear-gradient(135deg, hsl(260 60% 96%), hsl(240 50% 95%) 50%, hsl(220 65% 96%))",
+        boxShadow: isDark
+          ? "0 20px 60px hsl(260 50% 10% / 0.5), 0 4px 12px hsl(0 0% 0% / 0.3), inset 0 1px 0 hsl(260 40% 30% / 0.15)"
+          : "0 8px 30px hsl(260 40% 50% / 0.08), 0 2px 8px hsl(0 0% 0% / 0.04), inset 0 1px 0 hsl(0 0% 100% / 0.5)",
+        transform: isDark ? `translateZ(40px) translate(${parallax.x * -3}px, ${parallax.y * -3}px)` : undefined,
         transition: "transform 0.3s ease-out",
+        border: isDark ? undefined : "1px solid hsl(260 30% 88%)",
       }}
     >
-      {/* Spotlight */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: `radial-gradient(ellipse 50% 60% at ${50 + parallax.x * 5}% ${35 + parallax.y * 5}%, hsl(260 70% 60% / 0.12), transparent)`,
-        transition: "background 0.3s ease-out",
-      }} />
-
-      {/* Shimmer */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: "linear-gradient(105deg, transparent 40%, hsl(260 70% 70% / 0.05) 45%, hsl(260 70% 70% / 0.08) 50%, hsl(260 70% 70% / 0.05) 55%, transparent 60%)",
-        backgroundSize: "250% 100%",
-        animation: "shimmerHero 10s ease-in-out infinite",
-      }} />
-
-      {/* Noise */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.025]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-      }} />
-
-      <FloatingParticles />
+      {/* Dark-only overlays */}
+      {isDark && (
+        <>
+          <div className="absolute inset-0 pointer-events-none" style={{
+            background: `radial-gradient(ellipse 50% 60% at ${50 + parallax.x * 5}% ${35 + parallax.y * 5}%, hsl(260 70% 60% / 0.12), transparent)`,
+            transition: "background 0.3s ease-out",
+          }} />
+          <div className="absolute inset-0 pointer-events-none" style={{
+            background: "linear-gradient(105deg, transparent 40%, hsl(260 70% 70% / 0.05) 45%, hsl(260 70% 70% / 0.08) 50%, hsl(260 70% 70% / 0.05) 55%, transparent 60%)",
+            backgroundSize: "250% 100%",
+            animation: "shimmerHero 10s ease-in-out infinite",
+          }} />
+          <div className="absolute inset-0 pointer-events-none opacity-[0.025]" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          }} />
+          <FloatingParticles />
+        </>
+      )}
 
       <div className="relative flex flex-col items-center text-center space-y-5">
         {/* Trophy with aura */}
-        <div className="relative" style={{
+        <div className="relative" style={isDark ? {
           transform: `translate(${parallax.x * -6}px, ${parallax.y * -6}px)`,
           transition: "transform 0.3s ease-out",
-        }}>
-          <div className="absolute -inset-4 blur-2xl" style={{
-            background: "radial-gradient(circle, hsl(45 90% 60% / 0.2), transparent 70%)",
-            animation: "auraPulse 4s ease-in-out infinite",
-          }} />
+        } : undefined}>
+          {isDark && (
+            <div className="absolute -inset-4 blur-2xl" style={{
+              background: "radial-gradient(circle, hsl(45 90% 60% / 0.2), transparent 70%)",
+              animation: "auraPulse 4s ease-in-out infinite",
+            }} />
+          )}
           <div className="relative w-16 h-16 rounded-full flex items-center justify-center" style={{
-            background: "linear-gradient(135deg, hsl(45 85% 55% / 0.12), hsl(45 85% 55% / 0.04))",
-            border: "1px solid hsl(45 85% 55% / 0.15)",
-            boxShadow: "0 0 30px hsl(45 85% 55% / 0.1)",
+            background: isDark
+              ? "linear-gradient(135deg, hsl(45 85% 55% / 0.12), hsl(45 85% 55% / 0.04))"
+              : "linear-gradient(135deg, hsl(45 85% 55% / 0.15), hsl(45 85% 55% / 0.06))",
+            border: `1px solid hsl(45 85% 55% / ${isDark ? 0.15 : 0.25})`,
+            boxShadow: isDark ? "0 0 30px hsl(45 85% 55% / 0.1)" : "0 4px 12px hsl(45 85% 55% / 0.1)",
           }}>
-            <Trophy className="h-8 w-8" style={{ color: "hsl(45 85% 60%)" }} />
+            <Trophy className="h-8 w-8" style={{ color: isDark ? "hsl(45 85% 60%)" : "hsl(38 80% 42%)" }} />
           </div>
         </div>
 
         {/* Points */}
-        <div style={{ transform: `translate(${parallax.x * -2}px, ${parallax.y * -2}px)`, transition: "transform 0.3s ease-out" }}>
+        <div style={isDark ? { transform: `translate(${parallax.x * -2}px, ${parallax.y * -2}px)`, transition: "transform 0.3s ease-out" } : undefined}>
           <p
             className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter tabular-nums", done && "animate-bounce-once")}
             style={{
-              background: "linear-gradient(135deg, hsl(0 0% 100%), hsl(220 20% 85%))",
+              background: isDark
+                ? "linear-gradient(135deg, hsl(0 0% 100%), hsl(220 20% 85%))"
+                : "linear-gradient(135deg, hsl(260 60% 30%), hsl(240 50% 25%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-              filter: "drop-shadow(0 0 20px hsl(260 50% 60% / 0.15))",
+              filter: isDark ? "drop-shadow(0 0 20px hsl(260 50% 60% / 0.15))" : undefined,
             }}
           >
             {animatedPoints.toLocaleString()}
@@ -349,27 +365,32 @@ function WinnerHero({ winner, parallax }: { winner: TournamentEntry; parallax: {
         {/* Winner name + avatar */}
         <div className="flex items-center gap-2.5">
           <div className="relative">
-            <div className="absolute -inset-1 rounded-full" style={{
-              background: "radial-gradient(circle, hsl(45 85% 55% / 0.25), transparent 70%)",
-            }} />
+            {isDark && (
+              <div className="absolute -inset-1 rounded-full" style={{
+                background: "radial-gradient(circle, hsl(45 85% 55% / 0.25), transparent 70%)",
+              }} />
+            )}
             <UserProfileLink
               userId={winner.user_id}
               displayName={winner.display_name || "Anonym"}
               avatarUrl={winner.avatar_url}
-              avatarClassName="h-9 w-9 ring-2 ring-[hsl(45,85%,55%)] ring-offset-2 ring-offset-[hsl(250,50%,17%)]"
+              avatarClassName={cn(
+                "h-9 w-9 ring-2 ring-[hsl(45,85%,55%)] ring-offset-2",
+                isDark ? "ring-offset-[hsl(250,50%,17%)]" : "ring-offset-background"
+              )}
             />
           </div>
-          <span className="font-semibold text-lg" style={{ color: "hsl(0 0% 93%)" }}>
+          <span className={cn("font-semibold text-lg", isDark ? "text-[hsl(0,0%,93%)]" : "text-foreground")}>
             {winner.display_name || "Anonym"}
           </span>
           <TwitchBadgesInline badges={winner.twitch_badges as unknown as TwitchBadgesType | null} />
         </div>
 
         {/* Meta */}
-        <div className="flex items-center gap-4 text-xs" style={{ color: "hsl(250 15% 50%)" }}>
+        <div className="flex items-center gap-4 text-xs text-muted-foreground">
           <span>{winner.total_spins.toLocaleString()} spins</span>
-          <span style={{ color: "hsl(250 15% 25%)" }}>·</span>
-          <span style={{ color: "hsl(142 60% 50%)" }}>Bedste: {multiplier}</span>
+          <span className="text-muted-foreground/40">·</span>
+          <span style={{ color: isDark ? "hsl(142 60% 50%)" : "hsl(142 60% 35%)" }}>Bedste: {multiplier}</span>
         </div>
       </div>
     </div>
@@ -378,6 +399,7 @@ function WinnerHero({ winner, parallax }: { winner: TournamentEntry; parallax: {
 
 // --- Main Component ---
 export function CompletedTournamentCard({ tournament }: { tournament: Tournament }) {
+  const isDark = useIsDark();
   const [selectedGame, setSelectedGame] = useState<string | undefined>(
     tournament.separate_leaderboards ? tournament.game_ids[0] : undefined
   );
@@ -389,31 +411,38 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
   const winner = entries.length > 0 ? entries[0] : null;
   const top10 = entries.slice(0, 10);
   const containerRef = useRef<HTMLDivElement>(null);
-  const parallax = useParallax(containerRef);
+  const parallax = useParallax(containerRef, isDark);
 
   return (
     <div
       ref={containerRef}
-      className="relative rounded-2xl border border-border/20 overflow-hidden"
-      style={{
+      className={cn(
+        "relative rounded-2xl border overflow-hidden",
+        isDark ? "border-border/20" : "border-border/50 bg-card"
+      )}
+      style={isDark ? {
         background: "hsl(220 30% 8%)",
         boxShadow: "0 8px 40px hsl(0 0% 0% / 0.25), 0 2px 6px hsl(0 0% 0% / 0.15)",
         perspective: "1200px",
+      } : {
+        boxShadow: "0 4px 20px hsl(0 0% 0% / 0.06), 0 1px 3px hsl(0 0% 0% / 0.04)",
       }}
     >
-      {/* Layered background */}
+      {/* Dark-only layered background */}
       <AnimatedGrid />
 
-      {/* Noise texture */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-      }} />
+      {/* Dark-only noise texture */}
+      {isDark && (
+        <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+        }} />
+      )}
 
       {/* Header */}
-      <div className="relative px-5 py-4 border-b border-border/10">
+      <div className="relative px-5 py-4 border-b border-border/20">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="p-2 rounded-xl" style={{ background: "hsl(260 70% 60% / 0.1)" }}>
+            <div className="p-2 rounded-xl bg-primary/10">
               <Trophy className="h-5 w-5 text-primary" />
             </div>
             <div className="min-w-0">
@@ -460,12 +489,12 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
         {isLoading ? (
           <div className="space-y-3">
             {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="h-16 rounded-2xl animate-pulse" style={{ background: "hsl(220 25% 13%)" }} />
+              <div key={i} className="h-16 rounded-2xl animate-pulse bg-secondary/30" />
             ))}
           </div>
         ) : (
           <>
-            {winner && <WinnerHero winner={winner} parallax={parallax} />}
+            {winner && <WinnerHero winner={winner} parallax={parallax} isDark={isDark} />}
 
             {top10.length > 0 && (
               <div className="mt-5 space-y-2">
@@ -476,6 +505,7 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
                     rank={index + 1}
                     isCurrentUser={user?.id === entry.user_id}
                     delay={index * 60}
+                    isDark={isDark}
                   />
                 ))}
                 {currentUser && currentUser.rank > 10 && (
@@ -485,7 +515,7 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
                       <span className="text-xs text-muted-foreground">Din placering</span>
                       <div className="flex-1 border-t border-dashed border-border/20" />
                     </div>
-                    <PremiumRow entry={currentUser.entry} rank={currentUser.rank} isCurrentUser />
+                    <PremiumRow entry={currentUser.entry} rank={currentUser.rank} isCurrentUser isDark={isDark} />
                   </>
                 )}
               </div>
@@ -501,7 +531,7 @@ export function CompletedTournamentCard({ tournament }: { tournament: Tournament
         )}
 
         {participants && participants.length > 0 && (
-          <div className={cn(top10.length > 0 ? "mt-6 pt-4 border-t border-border/10" : "")}>
+          <div className={cn(top10.length > 0 ? "mt-6 pt-4 border-t border-border/20" : "")}>
             <p className="text-sm text-muted-foreground mb-3 flex items-center gap-1.5">
               <Users className="h-3.5 w-3.5" /> {participants.length} deltagere
             </p>
