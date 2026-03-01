@@ -6,7 +6,7 @@ const COMMUNITY_LINKS = [
     icon: Gamepad2,
     title: "Gratis Spillehal",
     description: "Spil gratis slots og optjen points uden risiko.",
-    to: "/community/slots",
+    to: "/spillehal",
   },
   {
     icon: Trophy,

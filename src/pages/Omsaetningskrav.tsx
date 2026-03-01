@@ -212,7 +212,7 @@ const Omsaetningskrav = () => {
               casino bonus oversigt
             </Link>
             , hvor vi gennemgår alle bonustyper og deres vilkår. Du kan også prøve at gennemspille bonusrunder risikofrit i vores{" "}
-            <Link to="/community/slots" className="text-primary underline hover:text-primary/80">
+            <Link to="/spillehal" className="text-primary underline hover:text-primary/80">
               gratis spillehal
             </Link>.
           </p>

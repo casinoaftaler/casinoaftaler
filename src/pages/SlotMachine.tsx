@@ -203,7 +203,7 @@ export default function SlotMachine() {
           size="sm"
           className="text-amber-300/80 hover:text-amber-300 hover:bg-amber-500/10 gap-1.5"
         >
-          <Link to="/community/slots">
+          <Link to="/spillehal">
             <ArrowLeft className="h-4 w-4" />
             <span className="hidden sm:inline">Tilbage til spil</span>
           </Link>

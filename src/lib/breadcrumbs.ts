@@ -178,15 +178,14 @@ export const routeLabels: Record<string, string> = {
   // Community (kun indexerbare sider)
   "/community": "Community",
   "/community/slots": "Spillehal",
+  "/spillehal": "Spillehal",
   "/bonus-hunt": "Bonus Hunt",
+  "/community/rewards": "Rewards",
 };
-
-// Note: /bonus-hunt uses community as parent for breadcrumb hierarchy
 
 /** Paths where breadcrumbs should NOT appear (visual + schema). */
 export const EXCLUDED_PATHS = new Set([
   "/community/leaderboard",
-  "/community/rewards",
   "/community/spin-the-reel",
 ]);
 

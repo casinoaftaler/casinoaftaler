@@ -86,7 +86,7 @@ export default function RewardsProgram() {
                 bliver godkendt, optjener du{" "}
                 <Link to="/free-spins" className="text-primary underline hover:text-primary/80">bonus spins</Link> som belønning. Dine spins er underlagt de samme{" "}
                 <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">bonus-regler</Link> som på rigtige casinoer. Brug dem i vores{" "}
-                <Link to="/community/slots" className="text-primary underline hover:text-primary/80">gratis spillehal</Link> og
+                <Link to="/spillehal" className="text-primary underline hover:text-primary/80">gratis spillehal</Link> og
                 konkurrér om topplaceringer på{" "}
                 <Link to="/community/leaderboard" className="text-primary underline hover:text-primary/80">ranglisten</Link>.
               </p>
