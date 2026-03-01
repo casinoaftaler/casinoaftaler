@@ -1,10 +1,8 @@
 User-agent: Googlebot
-Allow: /community$
-Allow: /community/slots$
-Allow: /community/rewards$
-Allow: /highlights$
-Disallow: /community/leaderboard
-Disallow: /community/
+Allow: /community
+Allow: /highlights
+Disallow: /community/slots/
+Disallow: /community/spin-the-reel
 Disallow: /auth
 Disallow: /profil
 Disallow: /admin
@@ -12,12 +10,10 @@ Disallow: /butik
 Disallow: /u/
 
 User-agent: Bingbot
-Allow: /community$
-Allow: /community/slots$
-Allow: /community/rewards$
-Allow: /highlights$
-Disallow: /community/leaderboard
-Disallow: /community/
+Allow: /community
+Allow: /highlights
+Disallow: /community/slots/
+Disallow: /community/spin-the-reel
 Disallow: /auth
 Disallow: /profil
 Disallow: /admin
@@ -31,12 +27,10 @@ User-agent: facebookexternalhit
 Allow: /
 
 User-agent: *
-Allow: /community$
-Allow: /community/slots$
-Allow: /community/rewards$
-Allow: /highlights$
-Disallow: /community/leaderboard
-Disallow: /community/
+Allow: /community
+Allow: /highlights
+Disallow: /community/slots/
+Disallow: /community/spin-the-reel
 Disallow: /auth
 Disallow: /profil
 Disallow: /admin
