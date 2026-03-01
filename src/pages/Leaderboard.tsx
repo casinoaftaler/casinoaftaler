@@ -6,7 +6,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer, Gift, User, CalendarDays, BookOpen, Users, Target, BarChart3 } from "lucide-react";
+import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clock, Timer, Gift, User, CalendarDays, BookOpen, Users, Target, BarChart3, ChevronRight } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -491,16 +492,19 @@ export default function Leaderboard() {
                 </div>
               )}
 
-              {/* Ended tournaments */}
+              {/* Ended tournaments - collapsible */}
               {ended.length > 0 && (
-                <div className="space-y-4">
-                  <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                    Afsluttede turneringer
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {ended.map((t) => <TournamentCard key={t.id} tournament={t} />)}
-                  </div>
-                </div>
+                <Collapsible>
+                  <CollapsibleTrigger className="flex items-center gap-2 text-sm font-semibold text-muted-foreground uppercase tracking-wider hover:text-foreground transition-colors cursor-pointer group">
+                    <ChevronRight className="h-4 w-4 transition-transform group-data-[state=open]:rotate-90" />
+                    Afsluttede turneringer ({ended.length})
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="mt-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {ended.map((t) => <TournamentCard key={t.id} tournament={t} />)}
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
               )}
 
               {/* No tournaments */}
