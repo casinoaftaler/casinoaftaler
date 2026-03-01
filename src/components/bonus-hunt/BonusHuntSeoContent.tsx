@@ -8,7 +8,7 @@ const steps = [
     heading: "Bonusser samles",
     description: (
       <>
-        Vi køber bonusser fra udvalgte{" "}
+        Vi enten køber eller hunter bonusser fra udvalgte{" "}
         <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
           spilleautomater
         </Link>{" "}
