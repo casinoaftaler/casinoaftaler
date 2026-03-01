@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Trophy, ChevronRight, Gamepad2, Gift, Calendar } from "lucide-react";
+import { Trophy, ChevronRight, Gamepad2, Calendar, Crown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useTournamentLeaderboard, type Tournament } from "@/hooks/useTournaments";
@@ -23,52 +23,69 @@ function CompactWinner({ tournamentId }: { tournamentId: string }) {
         userId={winner.user_id}
         displayName={winner.display_name || "Anonym"}
         avatarUrl={winner.avatar_url}
-        avatarClassName="h-6 w-6"
+        avatarClassName="h-7 w-7 ring-2 ring-primary/30"
         showDropdown={false}
       />
-      <span className="text-sm font-medium text-foreground truncate">{winner.display_name || "Anonym"}</span>
+      <span className="text-sm font-semibold text-foreground truncate">{winner.display_name || "Anonym"}</span>
     </div>
   );
 }
 
-export function CompletedTournamentRow({ tournament }: { tournament: Tournament }) {
+export function CompletedTournamentRow({ tournament, index = 0 }: { tournament: Tournament; index?: number }) {
   const [expanded, setExpanded] = useState(false);
   const endDate = new Date(tournament.ends_at);
   const formattedDate = endDate.toLocaleDateString("da-DK", { day: "numeric", month: "short", year: "numeric" });
 
   return (
-    <div className="space-y-0">
-      {/* Compact row */}
+    <div
+      className="space-y-0"
+      style={{ animationDelay: `${index * 60}ms` }}
+    >
       <button
         onClick={() => setExpanded(!expanded)}
         className={cn(
-          "w-full flex items-center gap-3 md:gap-4 px-4 py-3 rounded-xl text-left transition-all cursor-pointer",
-          "border bg-card hover:bg-secondary/30",
-          expanded ? "border-primary/20 bg-secondary/20" : "border-border/40 hover:border-border/60",
+          "w-full flex items-center gap-3 md:gap-4 px-4 md:px-5 py-3.5 rounded-xl text-left transition-all duration-300 cursor-pointer",
+          "border backdrop-blur-sm",
+          "hover:scale-[1.005] active:scale-[0.998]",
+          expanded
+            ? "border-primary/30 bg-primary/5 shadow-lg shadow-primary/5"
+            : "border-border/50 bg-card/80 hover:bg-card hover:border-primary/20 hover:shadow-md hover:shadow-primary/5",
           "group"
         )}
-        style={{
-          boxShadow: expanded
-            ? "0 4px 16px hsl(var(--primary) / 0.06)"
-            : "0 1px 4px hsl(0 0% 0% / 0.03)",
-        }}
       >
         {/* Expand chevron */}
         <ChevronRight className={cn(
-          "h-4 w-4 text-muted-foreground transition-transform shrink-0",
-          expanded && "rotate-90"
+          "h-4 w-4 text-muted-foreground transition-all duration-300 shrink-0",
+          expanded && "rotate-90 text-primary",
+          "group-hover:text-primary/70"
         )} />
 
-        {/* Trophy icon */}
-        <div className="p-1.5 rounded-lg bg-primary/10 shrink-0">
-          <Trophy className="h-4 w-4 text-primary" />
+        {/* Trophy icon with glow */}
+        <div className={cn(
+          "p-2 rounded-lg shrink-0 transition-all duration-300",
+          "bg-gradient-to-br from-primary/15 to-primary/5",
+          "group-hover:from-primary/25 group-hover:to-primary/10",
+          expanded && "from-primary/25 to-primary/10 shadow-sm shadow-primary/10"
+        )}>
+          <Trophy className={cn(
+            "h-4 w-4 transition-colors duration-300",
+            expanded ? "text-primary" : "text-primary/70 group-hover:text-primary"
+          )} />
         </div>
 
         {/* Title + game */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-sm text-foreground truncate">{tournament.title}</span>
-            <Badge variant="secondary" className="text-[9px] px-1.5 py-0 uppercase font-semibold shrink-0 hidden sm:inline-flex">
+            <span className="font-semibold text-sm text-foreground truncate group-hover:text-primary/90 transition-colors">
+              {tournament.title}
+            </span>
+            <Badge
+              variant="secondary"
+              className={cn(
+                "text-[9px] px-2 py-0.5 uppercase font-bold shrink-0 hidden sm:inline-flex tracking-wider",
+                "bg-primary/10 text-primary/80 border-primary/20"
+              )}
+            >
               Afsluttet
             </Badge>
           </div>
@@ -82,7 +99,7 @@ export function CompletedTournamentRow({ tournament }: { tournament: Tournament 
 
         {/* Winner */}
         <div className="hidden md:flex items-center gap-2 shrink-0">
-          <span className="text-xs text-muted-foreground">Vinder:</span>
+          <Crown className="h-3.5 w-3.5 text-primary/60" />
           <CompactWinner tournamentId={tournament.id} />
         </div>
 
