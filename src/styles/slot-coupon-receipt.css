@@ -1,0 +1,167 @@
+/* Slot Kupon Receipt – Oddset-style betting slip */
+
+.slot-receipt-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(175deg, hsl(220 20% 14%) 0%, hsl(225 18% 11%) 100%);
+  border: 1px solid hsl(220 15% 22%);
+  box-shadow: 0 8px 32px hsl(0 0% 0% / 0.4);
+  padding: 0;
+  font-family: var(--font-sans);
+  color: hsl(220 20% 88%);
+}
+
+/* Watermark overlay */
+.slot-receipt-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-25deg);
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.slot-receipt-watermark span {
+  font-size: 14px;
+  font-weight: 800;
+  color: hsl(220 15% 20% / 0.12);
+  white-space: nowrap;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Header */
+.slot-receipt-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 16px 16px 10px;
+  background: linear-gradient(180deg, hsl(220 20% 18%) 0%, transparent 100%);
+}
+
+/* Column header bar */
+.slot-receipt-col-headers {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 6px 16px;
+  background: hsl(220 15% 10% / 0.5);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(220 15% 55%);
+}
+
+/* Divider */
+.slot-receipt-divider {
+  position: relative;
+  z-index: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, hsl(220 15% 25%) 20%, hsl(220 15% 25%) 80%, transparent 100%);
+}
+
+/* Market rows */
+.slot-receipt-rows {
+  position: relative;
+  z-index: 1;
+}
+
+.slot-receipt-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid hsl(220 15% 18%);
+  transition: background 0.2s ease;
+}
+.slot-receipt-row:last-child {
+  border-bottom: none;
+}
+.slot-receipt-row:nth-child(even) {
+  background: hsl(220 15% 10% / 0.25);
+}
+
+/* Hit / miss row tinting */
+.slot-receipt-row-hit {
+  background: hsl(142 50% 40% / 0.06) !important;
+}
+.slot-receipt-row-miss {
+  background: hsl(0 50% 40% / 0.06) !important;
+  opacity: 0.7;
+}
+
+/* Result badges */
+.slot-receipt-badge-hit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: hsl(142 60% 40% / 0.15);
+  color: hsl(142 70% 55%);
+  border: 1px solid hsl(142 60% 40% / 0.3);
+}
+.slot-receipt-badge-miss {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: hsl(0 60% 40% / 0.15);
+  color: hsl(0 70% 60%);
+  border: 1px solid hsl(0 60% 40% / 0.3);
+}
+.slot-receipt-badge-pending {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: hsl(45 60% 40% / 0.12);
+  color: hsl(45 70% 55%);
+  border: 1px solid hsl(45 60% 40% / 0.2);
+  animation: receipt-pending-pulse 2s ease-in-out infinite;
+}
+
+@keyframes receipt-pending-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Footer */
+.slot-receipt-footer {
+  position: relative;
+  z-index: 1;
+  padding: 12px 16px 14px;
+  background: linear-gradient(0deg, hsl(220 20% 10%) 0%, transparent 100%);
+}
+
+/* Perforated tear edge */
+.slot-receipt-tear {
+  position: relative;
+  z-index: 1;
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 6px,
+    hsl(220 20% 14%) 6px,
+    hsl(220 20% 14%) 8px,
+    transparent 8px,
+    transparent 14px
+  );
+  mask-image: radial-gradient(circle 4px at 7px 0px, transparent 3px, black 4px);
+  -webkit-mask-image: radial-gradient(circle 4px at 7px 0px, transparent 3px, black 4px);
+  mask-size: 14px 8px;
+  -webkit-mask-size: 14px 8px;
+  background-color: hsl(220 15% 8%);
+}
