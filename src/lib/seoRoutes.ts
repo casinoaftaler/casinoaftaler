@@ -226,12 +226,14 @@ export const seoRoutes: SeoRoute[] = ([
   // Hub only – article entries are dynamically generated in sitemap-news.xml
   { path: "/casino-nyheder", changefreq: "daily", priority: 0.9, lastmod: "2026-02-26" },
 
-  // ── Community & Highlights ──
-  { path: "/bonus-hunt", changefreq: "daily", priority: 0.8, lastmod: "2026-02-28" },
+  // ── Core Hubs (Tier 1) ──
+  { path: "/bonus-hunt", changefreq: "daily", priority: 0.9, lastmod: "2026-03-01" },
+  { path: "/spillehal", changefreq: "daily", priority: 0.9, lastmod: "2026-03-01", showUpdatedDate: false },
+  { path: "/highlights", changefreq: "daily", priority: 0.7, lastmod: "2026-02-22", showUpdatedDate: false },
+
+  // ── Community (Tier 2 – Feature Hub) ──
   { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-03-01", showUpdatedDate: false },
-  { path: "/community/slots", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },
   { path: "/community/rewards", changefreq: "weekly", priority: 0.6, lastmod: "2026-03-01", showUpdatedDate: false },
-  { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },
 
   // ── Info & Ansvarligt Spil ──
   { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-02-26" },

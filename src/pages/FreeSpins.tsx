@@ -235,7 +235,7 @@ const FreeSpins = () => {
           </p>
           <p className="mb-8 text-muted-foreground leading-relaxed">
             Vil du opleve free spins-mekanikken i praksis? I vores{" "}
-            <Link to="/community/slots" className="text-primary underline hover:text-primary/80">
+            <Link to="/spillehal" className="text-primary underline hover:text-primary/80">
               gratis spillehal
             </Link>{" "}
             kan du prøve spilleautomater med bonusrunder og free spins helt uden

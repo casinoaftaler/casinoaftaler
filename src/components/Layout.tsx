@@ -16,7 +16,7 @@ export function Layout() {
   const location = useLocation();
   const { isBanned, banLoading } = useBanCheck();
   
-  const hideFooter = location.pathname.startsWith("/community/slots/");
+  const hideFooter = location.pathname.startsWith("/spillehal/") || location.pathname.startsWith("/community/slots/");
   const isCommunityPage = location.pathname.startsWith("/community") || location.pathname.startsWith("/profil") || location.pathname.startsWith("/auth");
 
   if (isBanned && !banLoading) {

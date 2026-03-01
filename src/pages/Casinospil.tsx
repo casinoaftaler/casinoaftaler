@@ -427,7 +427,7 @@ const Casinospil = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  <strong>Motivation:</strong> Underholdning, interaktion, fællesskab. <strong>Bedste valg:</strong> Live casino (live roulette, live blackjack), game shows (Crazy Time, Monopoly Live), <Link to="/community/slots" className={linkClass}>vores community spillehal</Link>. <strong>Fordel:</strong> Den sociale dimension gør spilletiden mere meningsfuld.
+                  <strong>Motivation:</strong> Underholdning, interaktion, fællesskab. <strong>Bedste valg:</strong> Live casino (live roulette, live blackjack), game shows (Crazy Time, Monopoly Live), <Link to="/spillehal" className={linkClass}>vores community spillehal</Link>. <strong>Fordel:</strong> Den sociale dimension gør spilletiden mere meningsfuld.
                 </p>
               </CardContent>
             </Card>

@@ -410,31 +410,34 @@ const App = () => (
                 <Route path="/bonus-hunt" element={<Suspense fallback={null}><BonusHunt /></Suspense>} />
                 <Route path="/community/bonus-hunt" element={<Navigate to="/bonus-hunt" replace />} />
                 <Route 
-                  path="/community/slots" 
+                  path="/spillehal" 
                   element={
                     <Suspense fallback={<PageFallback />}>
                       <GameLibrary />
                     </Suspense>
                   } 
                 />
+                <Route path="/community/slots" element={<Navigate to="/spillehal" replace />} />
                 <Route 
-                  path="/community/slots/book-of-fedesvin" 
+                  path="/spillehal/book-of-fedesvin" 
                   element={
                     <Suspense fallback={<SlotPageLoading />}>
                       <SlotMachine />
                     </Suspense>
                   } 
                 />
+                <Route path="/community/slots/book-of-fedesvin" element={<Navigate to="/spillehal/book-of-fedesvin" replace />} />
                 <Route 
-                  path="/community/slots/rise-of-fedesvin" 
+                  path="/spillehal/rise-of-fedesvin" 
                   element={
                     <Suspense fallback={<SlotPageLoading />}>
                       <RiseOfFedesvin />
                     </Suspense>
                   } 
                 />
+                <Route path="/community/slots/rise-of-fedesvin" element={<Navigate to="/spillehal/rise-of-fedesvin" replace />} />
                 <Route 
-                  path="/community/slots/gates-of-fedesvin" 
+                  path="/spillehal/gates-of-fedesvin" 
                   element={
                     <Suspense fallback={<SlotPageLoading />}>
                       <GatesOfFedesvin />
@@ -458,7 +461,7 @@ const App = () => (
               <Route path="/bonusser" element={<Navigate to="/casino-bonus" replace />} />
               <Route path="/spil" element={<Navigate to="/casinospil" replace />} />
               <Route path="/spillemaskiner" element={<Navigate to="/casinospil/spillemaskiner" replace />} />
-              <Route path="/slots" element={<Navigate to="/community/slots" replace />} />
+              <Route path="/slots" element={<Navigate to="/spillehal" replace />} />
               <Route path="/free-spins-uden-indbetaling" element={<Navigate to="/bonus-uden-indbetaling" replace />} />
               <Route path="/betalinger" element={<Navigate to="/betalingsmetoder" replace />} />
               <Route path="/payment-methods" element={<Navigate to="/betalingsmetoder" replace />} />
@@ -482,9 +485,10 @@ const App = () => (
               <Route path="/danske-casinoer" element={<Navigate to="/top-10-casino-online" replace />} />
               <Route path="/bonus-guide" element={<Navigate to="/casino-bonus" replace />} />
               <Route path="/casino-bonusser" element={<Navigate to="/casino-bonus" replace />} />
-              <Route path="/slots/book-of-fedesvin" element={<Navigate to="/community/slots/book-of-fedesvin" replace />} />
-              <Route path="/slots/rise-of-fedesvin" element={<Navigate to="/community/slots/rise-of-fedesvin" replace />} />
-              <Route path="/slots/*" element={<Navigate to="/community/slots" replace />} />
+              <Route path="/slots/book-of-fedesvin" element={<Navigate to="/spillehal/book-of-fedesvin" replace />} />
+              <Route path="/slots/rise-of-fedesvin" element={<Navigate to="/spillehal/rise-of-fedesvin" replace />} />
+              <Route path="/slots/*" element={<Navigate to="/spillehal" replace />} />
+              <Route path="/community/slots/*" element={<Navigate to="/spillehal" replace />} />
               <Route path="/spilleautomaten-anmeldelse" element={<Navigate to="/casino-anmeldelser/spilleautomaten" replace />} />
               <Route path="/spildansknu-anmeldelse" element={<Navigate to="/casino-anmeldelser/spildansknu" replace />} />
               <Route path="/campobet-anmeldelse" element={<Navigate to="/casino-anmeldelser/campobet" replace />} />

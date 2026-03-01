@@ -105,7 +105,7 @@ export function RewardModal({
             {isWin ? (
               <>
                 <Button asChild className="flex-1 gap-2">
-                  <Link to="/community/slots" onClick={onClose}>
+                  <Link to="/spillehal" onClick={onClose}>
                     <Gamepad2 className="h-4 w-4" />
                     Gå til Spillehal
                   </Link>
@@ -120,7 +120,7 @@ export function RewardModal({
             ) : (
               <>
                 <Button asChild className="flex-1 gap-2">
-                  <Link to="/community/slots" onClick={onClose}>
+                  <Link to="/spillehal" onClick={onClose}>
                     <Gamepad2 className="h-4 w-4" />
                     Gå til Spillehal
                   </Link>
