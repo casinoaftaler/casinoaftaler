@@ -1,13 +1,13 @@
 import { BarChart3, Film, Target } from "lucide-react";
-import { useLatestHuntNumber } from "@/hooks/useBonusHuntData";
+import { useDocumentedHuntCount } from "@/hooks/useBonusHuntData";
 
 export function BonusHuntStatStrip() {
-  const { data: latestHuntNumber = 0 } = useLatestHuntNumber();
+  const { data: huntCount = 0 } = useDocumentedHuntCount();
 
   const stats = [
-    { label: "Dokumenterede bonus hunts", value: latestHuntNumber, icon: Target },
+    { label: "Dokumenterede bonus hunts", value: huntCount, icon: Target },
     { label: "100% arkiveret med data", value: "100%", icon: Film },
-    { label: "Analyserede datapunkter", value: latestHuntNumber > 0 ? `${latestHuntNumber * 20}+` : "—", icon: BarChart3 },
+    { label: "Analyserede datapunkter", value: huntCount > 0 ? `${huntCount * 20}+` : "—", icon: BarChart3 },
   ];
 
   return (

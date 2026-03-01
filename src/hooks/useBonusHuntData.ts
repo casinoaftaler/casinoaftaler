@@ -168,6 +168,16 @@ async function fetchLatestHuntNumber(): Promise<number> {
   return data?.hunt_number || 1;
 }
 
+async function fetchDocumentedHuntCount(): Promise<number> {
+  const { count } = await supabase
+    .from('bonus_hunt_archives')
+    .select('*', { count: 'exact', head: true })
+    .gt('total_slots', 0)
+    .not('hunt_number', 'in', `(${[...BLOCKED_HUNTS].join(',')})`);
+
+  return count || 0;
+}
+
 export function useBonusHuntData(huntId?: number) {
   const { data: latestHuntNumber } = useQuery({
     queryKey: ['bonus-hunt-latest-number'],
@@ -192,6 +202,14 @@ export function useLatestHuntNumber() {
   return useQuery({
     queryKey: ['bonus-hunt-latest-number'],
     queryFn: fetchLatestHuntNumber,
+    staleTime: 60000,
+  });
+}
+
+export function useDocumentedHuntCount() {
+  return useQuery({
+    queryKey: ['bonus-hunt-documented-count'],
+    queryFn: fetchDocumentedHuntCount,
     staleTime: 60000,
   });
 }
