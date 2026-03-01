@@ -1,106 +1,161 @@
 
-
-# Auto-Enrich Slot Catalog + Name Formatting + Bonus Count Display
+# Fedesvin Bonanza - Sweet Bonanza-Style Slot Machine
 
 ## Overview
-Three improvements to the Slot Catalog system:
-1. Auto-search slot metadata (provider, RTP, volatility, max win) when new slots are added via bonus hunts
-2. Proper title-case formatting of slot names
-3. Show how many bonuses the highest win/x records are based on
+A new 6x5 cluster/tumble slot game with candy theme, multiplier bombs (bonus only), and free spins. Admin-only access during development with "Kommer snart" for regular users.
+
+## Architecture
+The new game follows the exact same pattern as "Gates of Fedesvin" (which is also a 6x5 tumble/cluster game), adapted with Bonanza-specific mechanics (multiplier bombs only in bonus, candy theme, different visual style).
+
+**Game ID:** `fedesvin-bonanza`
 
 ---
 
-## 1. Add `bonus_count` Column to `slot_catalog`
+## Phase 1: Database & Backend Setup
 
-**Database migration:**
-- Add `bonus_count INTEGER NOT NULL DEFAULT 0` to `slot_catalog`
-- Update the `upsert_slot_catalog` RPC to increment `bonus_count` by 1 on every upsert (tracking how many bonus hunts contributed data)
+### 1.1 Slot Symbols (Database)
+- Insert candy/fruit symbols into `slot_symbols` with `game_id = 'fedesvin-bonanza'`
+- **Premium (candy):** Red Heart, Purple Square, Green Hexagon, Blue Oval
+- **Common (fruit):** Banana, Watermelon, Grape, Apple, Peach
+- **Scatter:** Lollipop (triggers free spins at 4+)
+- Each with appropriate weights, multipliers (8+/10+/12+ match tiers like Gates), and rarity
 
-**Updated RPC logic:**
-```text
-bonus_count = slot_catalog.bonus_count + 1
-```
+### 1.2 Site Settings
+- Add `fedesvin_bonanza_locked` to `site_settings` (for page lock gate)
+- Add `fedesvin_bonanza_background_image` setting
 
-This counts every time a slot appears in a bonus hunt, giving context to the highest_win and highest_x values.
-
----
-
-## 2. Auto Title-Case Slot Names
-
-**In the `upsert_slot_catalog` RPC:**
-- Apply `initcap()` to `p_slot_name` on INSERT to properly capitalize new entries
-- On UPDATE (conflict), keep the existing name (admin may have manually corrected it)
-
-**One-time data fix:**
-- Run an UPDATE to fix existing lowercase names using `initcap()`, but skip names that already look correct (contain apostrophes, special casing like "Play'n GO")
-
-**In the Edge Functions** (`bonus-hunt-proxy` and `bonus-hunt-auto-settle`):
-- Apply a `toTitleCase()` helper to slot names before upserting, handling edge cases like "of", "and", "the" (lowercase), Roman numerals, and apostrophes
+### 1.3 Access Control
+- Update `useSlotPageAccess` hook's `GAME_SETTINGS_KEYS` map with `fedesvin-bonanza` entry
+- Update `verify-slot-password` edge function's allowed game IDs list
 
 ---
 
-## 3. Auto-Search Slot Metadata via Edge Function
+## Phase 2: Game Logic Engine
 
-**New Edge Function: `slot-catalog-enrich`**
+### 2.1 New File: `src/lib/bonanzaGameLogic.ts`
+Adapted from `gatesGameLogic.ts` with key differences:
+- 6 columns x 5 rows (same grid)
+- **Cluster wins:** 8+ matching symbols anywhere (same as Gates)
+- **Multiplier bombs:** Only appear during bonus/free spins (NOT base game)
+- **Bombs only activate on winning tumbles** -- if no win, bombs fizzle and disappear
+- **Scatter trigger:** 4 lollipops = 10 free spins, 5 = 12, 6 = 15
+- Tumble mechanics identical to Gates (remove winners, gravity fill)
 
-When a new slot is inserted into the catalog with missing metadata (no volatility, no max_potential), this function:
-1. Uses Lovable AI (Gemini 2.5 Flash) to look up the slot's metadata
-2. Specifically asks for: provider, RTP (SpilDanskNu version), volatility, and max win potential
-3. Updates the `slot_catalog` row with the found data (only fills NULL fields, never overwrites admin edits)
-
-**Trigger:** Called from `bonus-hunt-proxy` and `bonus-hunt-auto-settle` after `syncSlotCatalog` runs, for any slots where `volatility IS NULL` or `max_potential IS NULL`.
-
-**AI Prompt structure:**
-```text
-For the slot machine "[slot_name]" by [provider]:
-- What is the RTP on SpilDanskNu (Danish casino)?
-- What is the volatility level?
-- What is the maximum win potential (e.g. "10,000x")?
-Return JSON: { rtp, volatility, max_potential }
-```
-
----
-
-## 4. Display Bonus Count in UI
-
-**`BonusHuntSlotInfoDialog.tsx` (popover):**
-- Show "(X bonusser)" next to highest win and highest X values
-- Example: `160 kr (3)` and `160x (3)`
-
-**`SlotCatalogAdminSection.tsx` (admin table):**
-- Add a "# Bonusser" column showing the bonus_count
-- Display highest_win and highest_x with "(count)" suffix
+### 2.2 Update Edge Function: `supabase/functions/slot-spin/index.ts`
+Add a new `isBonanza` branch (similar to `isGatesOfFedesvin`):
+- Bonanza-specific grid generation (no multiplier bombs in base game)
+- Bonus spins: multiplier bombs can appear, only activate on winning tumbles
+- Bombs that don't participate in a win are removed (fizzle)
+- All active bomb multipliers on a winning tumble are summed and applied
+- In free spins: multiplier accumulates across tumbles within a single spin (resets per spin)
+- Provably fair PRNG (reuse existing SeededPRNG)
 
 ---
 
-## Files to Change
+## Phase 3: Theme & Styling
 
-| File | Change |
-|------|--------|
-| `supabase/functions/slot-catalog-enrich/index.ts` | **NEW** - AI-powered metadata lookup |
-| `supabase/functions/bonus-hunt-proxy/index.ts` | Add title-case helper, call enrich function for new slots |
-| `supabase/functions/bonus-hunt-auto-settle/index.ts` | Add title-case helper, call enrich function for new slots |
-| `src/components/bonus-hunt/BonusHuntSlotInfoDialog.tsx` | Display bonus_count next to records |
-| `src/components/admin/SlotCatalogAdminSection.tsx` | Add bonus count column, display counts |
-| `src/hooks/useSlotCatalog.ts` | Add `bonus_count` to interface |
-| Database migration | Add `bonus_count` column, update `upsert_slot_catalog` RPC |
+### 3.1 New Theme in `src/lib/slotTheme.ts`
+- Add `bonanzaTheme` (candy pink palette): pink accents, pastel gradients, candy-colored UI
+- Register as `"fedesvin-bonanza"` in themes map
+
+### 3.2 New CSS: `src/styles/bonanza-animations.css`
+- Candy-specific animations: symbol bounce on landing, candy spark explosions, bomb fizzle/activate
+- Gravity drop with slight rotation variation
+- Bomb jump-forward + multiplier grow animation
+- Lollipop scatter celebration
+- Big Win / Mega Win / Sensational text animations
+
+---
+
+## Phase 4: Game Components
+
+### 4.1 New File: `src/components/slots/BonanzaSlotGame.tsx`
+Main game component, adapted from `GatesSlotGame.tsx`:
+- Same tumble flow (spin -> show wins -> explode -> gravity fill -> repeat)
+- Multiplier bomb handling: visual fizzle when no win, activate animation when win
+- Running multiplier display during bonus
+- Bomb multipliers sum together per tumble, applied to tumble win
+- Free spins mode with accumulated multiplier per spin
+
+### 4.2 New File: `src/components/slots/BonanzaColumn.tsx`
+Column renderer adapted from `GatesColumn.tsx`:
+- Candy-themed cell backgrounds (pastel instead of blue)
+- Bomb symbol rendering with multiplier value overlay
+- Bomb fizzle/activate cell animation states
+
+### 4.3 Reuse Existing Components
+- `GatesControlBar` -- reused with bonanza theme (candy pink via slotTheme)
+- `GatesPayTable` -- adapted or new `BonanzaPayTable` for cluster pay info
+- `WinCelebration` -- reused with bonanza-specific tier names (BIG WIN / MEGA WIN / SENSATIONAL)
+- `BonusEntrySequence`, `GatesBonusEndOverlay`, `GatesRetriggerOverlay` -- adapted versions
+- `AnimatedWinCounter`, `AnimatedSpinCounter` -- reused as-is
+
+---
+
+## Phase 5: Page & Routing
+
+### 5.1 New File: `src/pages/FedesvinBonanza.tsx`
+Page component following `GatesOfFedesvin.tsx` pattern:
+- Admin-only gate: non-admins see "Kommer snart!" message
+- Password lock gate, session gate, loading screen, intro screen
+- Candy sky-blue gradient background
+- SEO component with noindex
+
+### 5.2 Route in `App.tsx`
+- Add lazy import for `FedesvinBonanza`
+- Add route: `/community/slots/fedesvin-bonanza`
+
+### 5.3 Spillehal Link
+- Add game card to the slots overview page so admins can navigate to it
+
+---
+
+## Phase 6: Symbol Images
+- Symbols will initially use emoji fallbacks or placeholder images
+- Admin can upload proper candy/fruit images via existing `SlotSymbolImageUpload` component
+- The symbol admin section already supports per-game filtering
 
 ---
 
 ## Technical Details
 
-**Title Case Logic:**
-- Capitalize first letter of each word
-- Keep lowercase: "of", "and", "the", "in", "at", "by", "to", "for"  
-- Always capitalize first word
-- Preserve apostrophes (e.g., "Drop 'Em", "Play'n GO")
-- Handle Roman numerals (II, III, IV)
+### Win Tiers (for celebration display)
+- Big Win: > 20x bet
+- Mega Win: > 50x bet  
+- Sensational: > 100x bet
 
-**Enrich Function Rate Limiting:**
-- Only enrich slots where metadata is missing (volatility IS NULL OR max_potential IS NULL)
-- Max 5 slots per sync call to avoid overloading
-- Cache-friendly: once enriched, won't be called again for that slot
+### Multiplier Bomb Weights (bonus only)
+Same distribution as Gates: 2x(30), 3x(25), 5x(20), 10x(12), 15x(6), 25x(3), 50x(2), 100x(1)
 
-**Data Fix for Existing Slots:**
-- One-time migration to fix ~20+ slots with incorrect casing (e.g., "bigger bass splash" -> "Bigger Bass Splash")
+### Key Difference from Gates
+In Gates, multipliers persist across tumbles and only collect at end. In Bonanza:
+- Bombs only appear in bonus
+- Bombs activate immediately on winning tumbles (multiplied to that tumble's win)
+- Non-winning bombs fizzle and disappear
+- Per-spin accumulation in free spins: all bomb values from winning tumbles in one spin add together
 
+### Files Created (new)
+1. `src/lib/bonanzaGameLogic.ts`
+2. `src/components/slots/BonanzaSlotGame.tsx`
+3. `src/components/slots/BonanzaColumn.tsx`
+4. `src/components/slots/BonanzaPayTable.tsx`
+5. `src/pages/FedesvinBonanza.tsx`
+6. `src/styles/bonanza-animations.css`
+
+### Files Modified
+1. `src/lib/slotTheme.ts` -- add bonanza theme
+2. `src/App.tsx` -- add route + lazy import
+3. `supabase/functions/slot-spin/index.ts` -- add bonanza engine branch
+4. `src/hooks/useSlotPageAccess.ts` -- add bonanza to game settings keys
+5. `supabase/functions/verify-slot-password/index.ts` -- add bonanza to allowed list
+6. Database migration: insert symbols + site settings
+
+### Execution Order
+1. Database migration (symbols + settings)
+2. Game logic engine (`bonanzaGameLogic.ts`)
+3. Theme + CSS animations
+4. Column component
+5. Main game component
+6. Page + routing
+7. Edge function update
+8. Deploy + test
