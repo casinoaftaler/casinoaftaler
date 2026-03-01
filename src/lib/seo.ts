@@ -44,6 +44,11 @@ export const organizationSchema = {
     "https://www.youtube.com/@casinoaftaler",
     "https://www.instagram.com/casinoaftaler",
     "https://www.facebook.com/casinoaftaler",
+    "https://x.com/casinoaftaler",
+    "https://www.twitch.tv/fedesvinsejer",
+    "https://www.linkedin.com/in/info-casinoaftaler-5782203b1/",
+    "https://discord.gg/ZD4YdSeY",
+    "https://www.tiktok.com/@casinoaftaler",
   ],
   contactPoint: {
     "@type": "ContactPoint",
