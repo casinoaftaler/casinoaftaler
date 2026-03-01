@@ -205,7 +205,7 @@ export default function BonusHunt() {
           </div>
         </div>
 
-        <div className="pt-6 md:pt-8 space-y-6">
+        <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
           {/* Stat strip */}
           <BonusHuntStatStrip />
 
