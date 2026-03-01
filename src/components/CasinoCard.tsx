@@ -259,10 +259,11 @@ function FeaturedCard({
               {casino.logoUrl ? (
                 <img
                   src={optimizeStorageImage(casino.logoUrl, isTopRow ? 192 : 160) ?? casino.logoUrl}
-                  alt={casino.name}
+                  alt={`${casino.name} logo`}
                   width={isTopRow ? 96 : 80}
                   height={isTopRow ? 96 : 80}
                   loading={rank <= 2 ? "eager" : "lazy"}
+                  {...(rank <= 2 ? { fetchPriority: "high" as const } : {})}
                   className={`object-cover rounded-xl border-2 border-white/30 shadow-lg ${
                     isTopRow ? "h-24 w-24" : "h-20 w-20"
                   }`}

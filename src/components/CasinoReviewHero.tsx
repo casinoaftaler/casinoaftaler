@@ -23,6 +23,7 @@ export function CasinoReviewHero({ slug, casinoName }: CasinoReviewHeroProps) {
           height={160}
           className="h-16 w-16 rounded-xl object-contain bg-background/50 p-1.5 md:h-20 md:w-20"
           loading="eager"
+          fetchPriority="high"
         />
         <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
           {displayName}
