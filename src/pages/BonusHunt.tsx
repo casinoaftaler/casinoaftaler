@@ -36,7 +36,7 @@ import { Loader2 } from "lucide-react";
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SITE_URL, buildArticleSchema, KEVIN_SAME_AS } from "@/lib/seo";
-import bonusHuntHero from "@/assets/bonus-hunt/bonus-hunt-hero.jpg";
+
 
 export default function BonusHunt() {
   const { user } = useAuth();
@@ -152,24 +152,13 @@ export default function BonusHunt() {
         breadcrumbLabel="Bonus Hunt"
       />
 
-      {/* SEO Hero with background image */}
-      <section className="relative overflow-hidden text-white">
-        <img
-          src={bonusHuntHero}
-          alt=""
-          width={1920}
-          height={1080}
-          className="absolute inset-0 w-full h-full object-cover"
-          aria-hidden="true"
-          loading="eager"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(135deg, hsl(260 70% 25% / 0.85), hsl(250 60% 20% / 0.8) 40%, hsl(210 80% 25% / 0.85))",
-          }}
-        />
+      {/* SEO Hero with gradient background */}
+      <section
+        className="relative overflow-hidden text-white"
+        style={{
+          background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+        }}
+      >
         <div className="relative container py-14 md:py-24">
           <div className="mx-auto max-w-3xl text-center space-y-5">
             <h1 className="text-3xl font-bold tracking-tight leading-tight md:text-5xl md:leading-tight">
