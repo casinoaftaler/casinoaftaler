@@ -18,7 +18,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { Link, useSearchParams } from "react-router-dom";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
-import { LazySection } from "@/components/LazySection";
+
 import { BonusHuntCommunityLinks } from "@/components/bonus-hunt/BonusHuntCommunityLinks";
 import { BonusHuntTopCasinos } from "@/components/bonus-hunt/BonusHuntTopCasinos";
 import { BonusHuntLatestNews } from "@/components/bonus-hunt/BonusHuntLatestNews";
@@ -272,34 +272,22 @@ export default function Highlights() {
           </Tabs>
 
           {/* ── Community cross-links ── */}
-          <LazySection minHeight="120px">
-            <BonusHuntCommunityLinks />
-          </LazySection>
+          <BonusHuntCommunityLinks />
 
           {/* ── Top casinos CTA ── */}
-          <LazySection minHeight="200px">
-            <BonusHuntTopCasinos />
-          </LazySection>
+          <BonusHuntTopCasinos />
 
           {/* ── Latest news ── */}
-          <LazySection minHeight="180px">
-            <BonusHuntLatestNews />
-          </LazySection>
+          <BonusHuntLatestNews />
 
           {/* ── Related guides ── */}
-          <LazySection minHeight="180px">
-            <RelatedGuides currentPath="/highlights" />
-          </LazySection>
+          <RelatedGuides currentPath="/highlights" />
 
           {/* ── FAQ ── */}
-          <LazySection minHeight="300px">
-            <HighlightsFaq />
-          </LazySection>
+          <HighlightsFaq />
 
           {/* ── Brand block – E-E-A-T signal ── */}
-          <LazySection minHeight="200px">
-            <CommunityBrandBlock />
-          </LazySection>
+          <CommunityBrandBlock />
 
           <div className="pb-12" />
         </div>
