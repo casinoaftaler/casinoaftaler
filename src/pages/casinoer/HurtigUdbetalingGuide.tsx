@@ -37,7 +37,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Er der gebyrer på udbetalinger fra danske casinoer?",
     answer: (
       <>
-        De fleste <Link to="/licenserede-casinoer" className={linkClass}>licenserede danske casinoer</Link> opkræver ingen gebyrer på udbetalinger. Dog kan din bank eller e-wallet have egne transaktionsgebyrer. Trustly og MobilePay er typisk gebyrfri, mens internationale overførsler via bankoverførsel kan medføre valutavekslingsgebyrer. Tjek altid casinoets vilkår og din banks prisblad.
+        De fleste <Link to="/casino-licenser" className={linkClass}>licenserede danske casinoer</Link> opkræver ingen gebyrer på udbetalinger. Dog kan din bank eller e-wallet have egne transaktionsgebyrer. Trustly og MobilePay er typisk gebyrfri, mens internationale overførsler via bankoverførsel kan medføre valutavekslingsgebyrer. Tjek altid casinoets vilkår og din banks prisblad.
       </>
     ),
   },

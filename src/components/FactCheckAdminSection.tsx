@@ -46,7 +46,7 @@ const VALID_ROUTES = new Set([
   "/casino-anmeldelser/bwin", "/casino-anmeldelser/marathonbet",
   "/casinospil", "/casinoer", "/casinoer/hurtig-udbetaling",
   "/casinoer/hoej-rtp", "/casinoer/crypto-casino",
-  "/licenserede-casinoer", "/casino-licenser", "/casinoer/vr-casinoer",
+  "/casino-licenser", "/casinoer/vr-casinoer",
   "/casinoer/mobil-casinoer", "/casinoer/spil-casino-for-sjov",
   "/casinoer/casino-og-skat",
   "/casinospil/spillemaskiner", "/casinospil/spillemaskiner/hoej-rtp",

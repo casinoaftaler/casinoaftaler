@@ -229,7 +229,7 @@ export default function CasinoerHub() {
             Et casino med dansk licens fra Spillemyndigheden er underlagt løbende kontrol. Det betyder at din indbetaling
             er i sikre hænder, at bonusvilkårene overholder de lovpligtige 10x-loft på omsætningskrav, og at casinoet
             kan rapporteres og sanktioneres ved overtrædelser. Læs mere i vores guide til{" "}
-            <Link to="/licenserede-casinoer" className={linkClass}>licenserede casinoer i Danmark</Link>.
+            <Link to="/casino-licenser" className={linkClass}>licenserede casinoer i Danmark</Link>.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Udbetalingshastighed er den anden kritiske faktor. Vi tester reelle udbetalingstider på de casinoer vi

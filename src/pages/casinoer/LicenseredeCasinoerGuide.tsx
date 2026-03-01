@@ -28,7 +28,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const LicenseredeCasinoerGuide = () => {
-  const articleSchema = buildArticleSchema({ headline: "Licenserede Casinoer i Danmark 2026 – Din Komplette Guide", description: "Alt om licenserede danske casinoer, Spillemyndigheden og spillerbeskyttelse.", url: `${SITE_URL}/licenserede-casinoer`, datePublished: "2026-02-01", dateModified: "2026-02-15" });
+  const articleSchema = buildArticleSchema({ headline: "Licenserede Casinoer i Danmark 2026 – Din Komplette Guide", description: "Alt om licenserede danske casinoer, Spillemyndigheden og spillerbeskyttelse.", url: `${SITE_URL}/casino-licenser`, datePublished: "2026-02-01", dateModified: "2026-02-15" });
   const faqSchema = buildFaqSchema(faqs);
 
   return (
@@ -240,7 +240,7 @@ const LicenseredeCasinoerGuide = () => {
 
         <Separator className="my-10" />
 
-        <RelatedGuides currentPath="/licenserede-casinoer" />
+        <RelatedGuides currentPath="/casino-licenser" />
 
         <FAQSection title="Ofte stillede spørgsmål om licenserede casinoer" faqs={faqs} />
       </div>

@@ -232,7 +232,7 @@ const NyeCasinoerUdenRofus = () => {
             {[
               { to: "/nye-casinoer", label: "Nye Casinoer – Hovedside", desc: "Alle nye casinoer med dansk licens" },
               { to: "/nye-casinoer/dansk-licens", label: "Med Dansk Licens", desc: "Kun licenserede nye casinoer" },
-              { to: "/licenserede-casinoer", label: "Licenserede Casinoer", desc: "Alle licenserede casinoer" },
+              { to: "/casino-licenser", label: "Licenserede Casinoer", desc: "Alle licenserede casinoer" },
               { to: "/ansvarligt-spil", label: "Ansvarligt Spil", desc: "Guide til ansvarligt spil" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
