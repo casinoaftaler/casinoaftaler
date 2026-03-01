@@ -1,10 +1,11 @@
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import "@/styles/community-micro.css";
 
-export function CommunityBrandBlock() {
+export const CommunityBrandBlock = forwardRef<HTMLElement>(function CommunityBrandBlock(_props, ref) {
   return (
-    <section className="community-panel-brand mt-12 rounded-xl p-6 md:p-8">
+    <section ref={ref} className="community-panel-brand mt-12 rounded-xl p-6 md:p-8">
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
         <div className="flex gap-5 shrink-0">
           <Link to="/forfatter/jonas" className="flex flex-col items-center gap-2 group">
@@ -55,4 +56,4 @@ export function CommunityBrandBlock() {
       </div>
     </section>
   );
-}
+});

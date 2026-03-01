@@ -176,19 +176,21 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResul
               <p className="text-[11px] font-medium text-foreground/80 mb-2 leading-snug">{market.q}</p>
               <div className="grid grid-cols-2 gap-2">
                 {/* JA */}
-                <button
-                  type="button"
-                  disabled={submitted}
-                  onClick={() => handleSelect(i, true)}
-                  className={cn(
-                    "slot-coupon-select-pop relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
-                    selected === true
-                      ? "border-green-500/50 bg-green-500/10 text-green-400 scale-[1.02] slot-coupon-odds-yes-active"
-                      : "border-border/50 bg-muted/40 text-muted-foreground hover:border-green-500/30 hover:bg-green-500/5 hover:text-foreground",
-                    selected === false && "opacity-50",
-                    submitted && "opacity-60 cursor-not-allowed"
-                  )}
-                >
+                 <button
+                   type="button"
+                   disabled={submitted}
+                   aria-label={`Ja til: ${market.q}`}
+                   aria-pressed={selected === true}
+                   onClick={() => handleSelect(i, true)}
+                   className={cn(
+                     "slot-coupon-select-pop relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
+                     selected === true
+                       ? "border-green-500/50 bg-green-500/10 text-green-400 scale-[1.02] slot-coupon-odds-yes-active"
+                       : "border-border/50 bg-muted/40 text-muted-foreground hover:border-green-500/30 hover:bg-green-500/5 hover:text-foreground",
+                     selected === false && "opacity-50",
+                     submitted && "opacity-60 cursor-not-allowed"
+                   )}
+                 >
                   <span className="flex items-center gap-1.5">
                     {selected === true && <Check className="h-3 w-3" />}
                     JA
@@ -196,19 +198,21 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResul
                   <span className="text-[10px] font-mono tabular-nums opacity-70">{market.oddsYes.toFixed(2)}</span>
                 </button>
                 {/* NEJ */}
-                <button
-                  type="button"
-                  disabled={submitted}
-                  onClick={() => handleSelect(i, false)}
-                  className={cn(
-                    "slot-coupon-select-pop relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
-                    selected === false
-                      ? "border-red-500/50 bg-red-500/10 text-red-400 scale-[1.02] slot-coupon-odds-no-active"
-                      : "border-border/50 bg-muted/40 text-muted-foreground hover:border-red-500/30 hover:bg-red-500/5 hover:text-foreground",
-                    selected === true && "opacity-50",
-                    submitted && "opacity-60 cursor-not-allowed"
-                  )}
-                >
+                 <button
+                   type="button"
+                   disabled={submitted}
+                   aria-label={`Nej til: ${market.q}`}
+                   aria-pressed={selected === false}
+                   onClick={() => handleSelect(i, false)}
+                   className={cn(
+                     "slot-coupon-select-pop relative flex items-center justify-between rounded-lg border px-3 py-2 text-xs font-semibold transition-all duration-200",
+                     selected === false
+                       ? "border-red-500/50 bg-red-500/10 text-red-400 scale-[1.02] slot-coupon-odds-no-active"
+                       : "border-border/50 bg-muted/40 text-muted-foreground hover:border-red-500/30 hover:bg-red-500/5 hover:text-foreground",
+                     selected === true && "opacity-50",
+                     submitted && "opacity-60 cursor-not-allowed"
+                   )}
+                 >
                   <span className="flex items-center gap-1.5">
                     {selected === false && <Check className="h-3 w-3" />}
                     NEJ

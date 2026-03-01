@@ -11,7 +11,7 @@ import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/Bon
 import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream";
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
 import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent";
-import { LazySection } from "@/components/LazySection";
+// LazySection removed from SEO-critical sections for crawlability
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
 import { BonusHuntFaq, buildBonusHuntFaqSchema } from "@/components/bonus-hunt/BonusHuntFaq";
@@ -182,7 +182,7 @@ export default function BonusHunt() {
               <span className="inline-flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
                 Kun{" "}
-                <Link to="/licenserede-casinoer" className="font-medium text-white/90 hover:underline transition-all">
+                <Link to="/casino-licenser" className="font-medium text-white/90 hover:underline transition-all">
                   casinoer med dansk licens
                 </Link>
               </span>
@@ -256,7 +256,7 @@ export default function BonusHunt() {
                       <TabsTrigger value="gtw">GTW</TabsTrigger>
                       <TabsTrigger value="avgx">AVG X</TabsTrigger>
                     </TabsList>
-                    <TabsContent value="stats">
+                    <TabsContent value="stats" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntStatsTab
                         data={huntData}
                         huntNumber={currentHuntNumber}
@@ -265,7 +265,7 @@ export default function BonusHunt() {
                         casinoSlug={casinoSlug}
                       />
                     </TabsContent>
-                    <TabsContent value="gtw">
+                    <TabsContent value="gtw" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntGTWTab
                         session={session}
                         bets={gtwBets}
@@ -273,7 +273,7 @@ export default function BonusHunt() {
                         onBetPlaced={refreshBets}
                       />
                     </TabsContent>
-                    <TabsContent value="avgx">
+                    <TabsContent value="avgx" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntAvgXTab
                         session={session}
                         bets={avgxBets}
@@ -281,7 +281,7 @@ export default function BonusHunt() {
                         onBetPlaced={refreshBets}
                       />
                     </TabsContent>
-                    <TabsContent value="coupon">
+                    <TabsContent value="coupon" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntSlotCoupon
                         huntNumber={currentHuntNumber}
                         sessionId={session?.id}
@@ -316,35 +316,23 @@ export default function BonusHunt() {
             </div>
           )}
 
-          {/* Community cross-links */}
-          <LazySection minHeight="120px">
-            <BonusHuntCommunityLinks />
-          </LazySection>
+          {/* Community cross-links – rendered eagerly for crawlability */}
+          <BonusHuntCommunityLinks />
 
           {/* Top casinos CTA */}
-          <LazySection minHeight="200px">
-            <BonusHuntTopCasinos />
-          </LazySection>
+          <BonusHuntTopCasinos />
 
           {/* Latest news – freshness signal */}
-          <LazySection minHeight="180px">
-            <BonusHuntLatestNews />
-          </LazySection>
+          <BonusHuntLatestNews />
 
           {/* Relaterede Guides – internal link hub */}
-          <LazySection minHeight="180px">
-            <BonusHuntRelatedGuides />
-          </LazySection>
+          <BonusHuntRelatedGuides />
 
-          {/* FAQ Section */}
-          <LazySection minHeight="300px">
-            <BonusHuntFaq />
-          </LazySection>
+          {/* FAQ Section – must be in DOM for schema match */}
+          <BonusHuntFaq />
 
           {/* Brand block – E-E-A-T signal (last) */}
-          <LazySection minHeight="200px">
-            <CommunityBrandBlock />
-          </LazySection>
+          <CommunityBrandBlock />
 
           <div className="pb-12" />
         </div>

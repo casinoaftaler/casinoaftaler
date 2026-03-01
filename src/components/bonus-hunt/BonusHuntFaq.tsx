@@ -40,7 +40,7 @@ const FAQ_ITEMS = [
     answer: (
       <>
         Ja. Alle vores bonus hunts gennemføres udelukkende hos{" "}
-        <Link to="/licenserede-casinoer" className="text-primary hover:underline">
+        <Link to="/casino-licenser" className="text-primary hover:underline">
           casinoer med dansk licens
         </Link>{" "}
         fra{" "}
