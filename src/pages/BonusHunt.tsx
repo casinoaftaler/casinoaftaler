@@ -286,6 +286,7 @@ export default function BonusHunt() {
                         huntNumber={currentHuntNumber}
                         sessionId={session?.id}
                         isLive={isLive}
+                        couponResults={session?.coupon_results as Record<string, boolean | null> | null}
                       />
                     </TabsContent>
                   </Tabs>

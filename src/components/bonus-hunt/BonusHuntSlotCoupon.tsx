@@ -6,6 +6,7 @@ import { Check, Lock, Ticket, Flame, Shield, Zap, TrendingUp, Eye, X } from "luc
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SlotCouponReceipt } from "./SlotCouponReceipt";
+import { SlotCouponLeaderboard } from "./SlotCouponLeaderboard";
 import "@/styles/slot-coupon.css";
 
 const MARKETS = [
@@ -25,9 +26,10 @@ interface Props {
   huntNumber: number;
   sessionId?: string;
   isLive?: boolean;
+  couponResults?: Record<string, boolean | null> | null;
 }
 
-export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
+export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive, couponResults }: Props) {
   const { user } = useAuth();
   const [answers, setAnswers] = useState<Record<number, boolean | null>>(
     () => Object.fromEntries(MARKETS.map((_, i) => [i, null]))
@@ -333,6 +335,9 @@ export function BonusHuntSlotCoupon({ huntNumber, sessionId, isLive }: Props) {
             Log ind for at deltage
           </div>
         )}
+
+        {/* Participant leaderboard */}
+        <SlotCouponLeaderboard huntNumber={huntNumber} couponResults={couponResults} />
       </div>
     </div>
 

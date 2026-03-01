@@ -169,6 +169,7 @@ export type Database = {
           avgx_max_bet: number
           avgx_min_bet: number
           casino_slug: string | null
+          coupon_results: Json | null
           created_at: string
           created_by: string
           end_balance: number | null
@@ -189,6 +190,7 @@ export type Database = {
           avgx_max_bet?: number
           avgx_min_bet?: number
           casino_slug?: string | null
+          coupon_results?: Json | null
           created_at?: string
           created_by: string
           end_balance?: number | null
@@ -209,6 +211,7 @@ export type Database = {
           avgx_max_bet?: number
           avgx_min_bet?: number
           casino_slug?: string | null
+          coupon_results?: Json | null
           created_at?: string
           created_by?: string
           end_balance?: number | null
