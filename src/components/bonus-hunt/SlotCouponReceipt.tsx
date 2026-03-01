@@ -1,20 +1,8 @@
 import { useMemo } from "react";
 import { Check, X, Clock, Ticket } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DEFAULT_MARKETS, type CouponMarket } from "./slotCouponMarkets";
 import "@/styles/slot-coupon-receipt.css";
-
-const MARKETS = [
-  { q: "Betaler 10 bonusser over 100x?", oddsYes: 1.85, oddsNo: 1.95 },
-  { q: "Betaler 5 bonusser over 300x?", oddsYes: 2.10, oddsNo: 1.70 },
-  { q: "Betaler 2 bonusser over 500x?", oddsYes: 2.45, oddsNo: 1.55 },
-  { q: "Kommer der mindst 1 gevinst over 1000x?", oddsYes: 3.20, oddsNo: 1.30 },
-  { q: "Kommer der mindst 1 gevinst over 1500x?", oddsYes: 4.50, oddsNo: 1.15 },
-  { q: "Bliver største gevinst over 1.000kr?", oddsYes: 1.60, oddsNo: 2.25 },
-  { q: "Bliver største gevinst over 2000kr?", oddsYes: 2.30, oddsNo: 1.60 },
-  { q: "Bliver største gevinst over 3000kr?", oddsYes: 3.50, oddsNo: 1.25 },
-  { q: "Kommer der back-to-back bonus?", oddsYes: 2.00, oddsNo: 1.80 },
-  { q: "Betaler 5 bonusser under 10x?", oddsYes: 1.40, oddsNo: 2.80 },
-] as const;
 
 interface Props {
   huntNumber: number;
@@ -22,9 +10,11 @@ interface Props {
   /** Map of market index -> true (hit) / false (miss) / null (pending) */
   results?: Record<number, boolean | null>;
   isLive?: boolean;
+  markets?: CouponMarket[];
 }
 
-export function SlotCouponReceipt({ huntNumber, answers, results, isLive }: Props) {
+export function SlotCouponReceipt({ huntNumber, answers, results, isLive, markets: marketsProp }: Props) {
+  const MARKETS = marketsProp && marketsProp.length > 0 ? marketsProp : DEFAULT_MARKETS;
   const totalOdds = useMemo(() => {
     let product = 1;
     Object.entries(answers).forEach(([idx, val]) => {
