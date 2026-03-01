@@ -498,7 +498,7 @@ const Index = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Bordspil som blackjack tilbyder lavere husfordel (ned til 0,5 % med optimal strategi), hvilket gør dem attraktive for strategiske spillere. Vi anbefaler at prøve vores{" "}
-            <Link to="/spillehal" className="text-primary hover:underline font-medium">gratis spillehal</Link>
+            <Link to="/community/slots" className="text-primary hover:underline font-medium">gratis spillehal</Link>
             {" "}for at teste forskellige spiltyper uden risiko.
           </p>
         </section>

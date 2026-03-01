@@ -39,7 +39,7 @@ const SECTIONS = [
     title: "Spillehal",
     description:
       "Spil vores egne gratis spilleautomater – Book of Fedesvin, Rise of Fedesvin og flere. Optjen point og konkurrer med andre spillere.",
-    href: "/spillehal",
+    href: "/community/slots",
     icon: Gamepad2,
     badge: "Populær",
     badgeColor: "bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/30",

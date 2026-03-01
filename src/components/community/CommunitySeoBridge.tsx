@@ -45,7 +45,7 @@ function trackClick(label: string) {
 
 export function CommunitySeoBridge() {
   const { pathname } = useLocation();
-  const isSlotPage = pathname.startsWith("/spillehal") || pathname.startsWith("/community/slots");
+  const isSlotPage = pathname.startsWith("/community/slots");
 
   const links = isSlotPage
     ? [LINKS[5], LINKS[0], LINKS[1], LINKS[2], LINKS[3], LINKS[4]]

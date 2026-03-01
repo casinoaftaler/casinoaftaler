@@ -228,7 +228,7 @@ const Velkomstbonus = () => {
           <p className="mb-8 text-muted-foreground leading-relaxed">
             Vil du forstå bonusmekanikker i praksis, inden du investerer rigtige penge?
             Prøv vores{" "}
-            <Link to="/spillehal" className="text-primary underline hover:text-primary/80">
+            <Link to="/community/slots" className="text-primary underline hover:text-primary/80">
               gratis spilleautomater i spillehallen
             </Link>
             , hvor du kan opleve free spins og bonusrunder helt risikofrit.

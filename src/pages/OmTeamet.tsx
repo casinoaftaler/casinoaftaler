@@ -440,7 +440,7 @@ const OmTeamet = () => {
                 </div>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Ansvarlig for strategi, <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino-anmeldelser</Link>, <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">bonusguides</Link> og <Link to="/spillehal" className="text-primary underline hover:text-primary/80">slots</Link>-indhold. Streamer med 4+ års erfaring.
+                Ansvarlig for strategi, <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino-anmeldelser</Link>, <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">bonusguides</Link> og <Link to="/community/slots" className="text-primary underline hover:text-primary/80">slots</Link>-indhold. Streamer med 4+ års erfaring.
               </p>
               <Link to="/forfatter/jonas" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
                 Læs om Jonas – Grundlægger <ArrowRight className="ml-1 h-3.5 w-3.5" />

@@ -19,7 +19,7 @@ export function CommunityPromoSection() {
           
           <div className="flex flex-wrap gap-2">
             <Button asChild variant="outline" size="sm" className="gap-1.5">
-              <Link to="/spillehal">
+              <Link to="/community/slots">
                 Spillehal
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>

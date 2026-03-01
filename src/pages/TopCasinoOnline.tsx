@@ -461,7 +461,7 @@ const TopCasinoOnline = () => {
             Online casinoer tilbyder typisk et langt større spiludvalg end fysiske casinoer. Hvor et landbaseret casino måske har 50-100 spilleautomater, kan et online casino tilbyde tusindvis af spil fra dusinvis af{" "}
             <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>. Derudover kan du nyde bonusser og kampagner, som sjældent findes i fysiske spillehal. Læs mere om de forskellige{" "}
             <Link to="/velkomstbonus" className={linkClass}>bonustyper</Link> i vores guide, eller prøv vores{" "}
-            <Link to="/spillehal" className={linkClass}>gratis spilleautomater</Link> i vores community spillehal.
+            <Link to="/community/slots" className={linkClass}>gratis spilleautomater</Link> i vores community spillehal.
           </p>
         </section>
 
@@ -486,7 +486,7 @@ const TopCasinoOnline = () => {
               <CardContent>
                 <p className="text-sm text-muted-foreground">
                   Spilleautomater er den mest populære spiltype online. Fra klassiske 3-hjuls slots til moderne videoslots med bonusrunder, free spins og progressive jackpots. Populære titler inkluderer Book of Dead, Starburst, Sweet Bonanza og Gates of Olympus. Prøv vores egne gratis spilleautomater i{" "}
-                  <Link to="/spillehal" className={linkClass}>vores spillehal</Link>
+                  <Link to="/community/slots" className={linkClass}>vores spillehal</Link>
                   , eller udforsk spil fra førende{" "}
                   <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>.
                 </p>

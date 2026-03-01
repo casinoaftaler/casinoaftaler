@@ -132,7 +132,7 @@ export default function GatesOfFedesvin() {
               Gates of Fedesvin er under udvikling og vil snart være tilgængelig for alle spillere.
             </p>
             <Button asChild variant="outline" size="lg">
-              <Link to="/spillehal">Tilbage til spillehallen</Link>
+              <Link to="/community/slots">Tilbage til spillehallen</Link>
             </Button>
           </div>
         </div>
@@ -194,7 +194,7 @@ export default function GatesOfFedesvin() {
           asChild variant="ghost" size="sm"
           className="text-blue-300/80 hover:text-blue-300 hover:bg-blue-500/10 gap-1.5 h-7 px-2 text-xs sm:h-8 sm:px-3 sm:text-sm"
         >
-          <Link to="/spillehal">
+          <Link to="/community/slots">
             <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4" />
             <span className="hidden sm:inline">Tilbage til spil</span>
           </Link>

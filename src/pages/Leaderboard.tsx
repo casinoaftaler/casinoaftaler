@@ -367,7 +367,7 @@ function TournamentLeaderboardCard({ tournament }: { tournament: Tournament }) {
                 className={cn("flex-1 gap-2", GAME_THEMES[gid]?.accentBg || theme.accentBg, "hover:opacity-90 border", GAME_THEMES[gid]?.border || theme.border)}
                 variant="ghost"
               >
-                <Link to={GAME_HREFS[gid] || "/spillehal"}>
+                <Link to={GAME_HREFS[gid] || "/community/slots"}>
                   Spil {GAME_NAMES[gid] || gid}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
