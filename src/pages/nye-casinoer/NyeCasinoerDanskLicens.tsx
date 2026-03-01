@@ -228,7 +228,7 @@ const NyeCasinoerDanskLicens = () => {
               { to: "/nye-casinoer", label: "Nye Casinoer – Hovedside", desc: "Komplet hub med alle nye casinoer" },
               { to: "/nye-casinoer/2026", label: "Nye Casinoer 2026", desc: "Alle nye casinoer lanceret i 2026" },
               { to: "/nye-casinoer/uden-rofus", label: "Uden ROFUS", desc: "Risici ved casinoer uden ROFUS" },
-              { to: "/licenserede-casinoer", label: "Licenserede Casinoer", desc: "Alle licenserede danske casinoer" },
+              { to: "/casino-licenser", label: "Licenserede Casinoer", desc: "Alle licenserede danske casinoer" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
                 <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
