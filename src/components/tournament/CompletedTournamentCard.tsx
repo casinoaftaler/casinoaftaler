@@ -353,15 +353,12 @@ function WinnerHero({ winner, parallax, isDark }: { winner: TournamentEntry; par
         {/* Points */}
         <div style={isDark ? { transform: `translate(${parallax.x * -2}px, ${parallax.y * -2}px)`, transition: "transform 0.3s ease-out" } : undefined}>
           <p
-            className={cn("text-5xl md:text-6xl font-extrabold tracking-tighter tabular-nums", done && "animate-bounce-once")}
-            style={{
-              background: isDark
-                ? "linear-gradient(135deg, hsl(0 0% 100%), hsl(220 20% 85%))"
-                : "linear-gradient(135deg, hsl(260 60% 30%), hsl(240 50% 25%))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              filter: isDark ? "drop-shadow(0 0 20px hsl(260 50% 60% / 0.15))" : undefined,
-            }}
+            className={cn(
+              "text-5xl md:text-6xl font-extrabold tracking-tighter tabular-nums",
+              done && "animate-bounce-once",
+              isDark ? "text-foreground" : "text-primary"
+            )}
+            style={isDark ? { textShadow: "0 0 20px hsl(var(--primary) / 0.2)" } : undefined}
           >
             {animatedPoints.toLocaleString()}
           </p>
