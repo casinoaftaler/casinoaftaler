@@ -141,7 +141,7 @@ const OneCasinoAnmeldelse = () => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div className="rounded-lg border border-border p-3">
                   <p className="text-xs text-muted-foreground uppercase mb-1">Velkomstbonus</p>
-                  <p className="text-lg font-bold text-foreground">Op til 1.000 kr.</p>
+                  <p className="text-lg font-bold text-foreground">100 Gratis Spins</p>
                 </div>
                 <div className="rounded-lg border border-border p-3">
                   <p className="text-xs text-muted-foreground uppercase mb-1">Omsætningskrav</p>
