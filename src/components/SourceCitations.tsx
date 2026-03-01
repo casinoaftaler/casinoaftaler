@@ -22,9 +22,9 @@ export function SourceCitations() {
           <span>
             Licensoplysninger verificeret via{" "}
             <a
-              href="https://www.spillemyndigheden.dk/tilladelsesindehavere"
+              href="https://www.spillemyndigheden.dk/tilladelser/tilladelsesindehavere"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="text-primary underline hover:text-primary/80"
             >
               Spillemyndigheden – Tilladelsesindehavere
@@ -34,16 +34,16 @@ export function SourceCitations() {
         <li className="flex items-start gap-2">
           <ExternalLink className="h-3 w-3 mt-0.5 shrink-0" />
           <span>
-            Bonusregler baseret på{" "}
+            Bonusregler reguleres af{" "}
             <a
-              href="https://www.retsinformation.dk/eli/lta/2020/1494"
+              href="https://www.spillemyndigheden.dk/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="text-primary underline hover:text-primary/80"
             >
-              Bekendtgørelse om bonusser (BEK nr. 1494)
+              Spillemyndigheden
             </a>{" "}
-            – maks. 1.000 kr. bonus, 10x omsætningskrav
+            i henhold til gældende bekendtgørelse om onlinekasino (BEK nr. 1494) – maks. 1.000 kr. bonus, 10x omsætningskrav
           </span>
         </li>
         <li className="flex items-start gap-2">
@@ -53,7 +53,7 @@ export function SourceCitations() {
             <a
               href="https://www.spillemyndigheden.dk/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="text-primary underline hover:text-primary/80"
             >
               Spillemyndigheden.dk
@@ -67,7 +67,7 @@ export function SourceCitations() {
             <a
               href="https://www.stopspillet.dk/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="text-primary underline hover:text-primary/80"
             >
               StopSpillet.dk
