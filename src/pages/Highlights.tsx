@@ -151,7 +151,7 @@ function CommunityTab() {
 
   return (
     <div>
-      <div className="mb-6 flex justify-center">
+      <div className="mb-4 flex justify-center">
         {user ? (
           <ClipSubmitForm
             trigger={
@@ -251,7 +251,7 @@ export default function Highlights() {
 
           {/* ── Tabs ── */}
           <Tabs defaultValue={defaultTab} className="w-full">
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-4">
               <TabsList>
                 <TabsTrigger value="highlights" className="gap-2">
                   <Video className="h-4 w-4" />
