@@ -76,21 +76,13 @@ export function CommunityClipCard({ clip, onOpenDetail }: CommunityClipCardProps
           />
         ) : (
           <>
-            {clip.thumbnail_url ? (
-              <img
-                src={clip.thumbnail_url}
-                alt={clip.title || "Clip thumbnail"}
-                className="h-full w-full object-cover pointer-events-none"
-              />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5 pointer-events-none">
-                {isEmbeddable ? (
-                  <Play className="h-12 w-12 text-muted-foreground" />
-                ) : (
-                  <ExternalLink className="h-12 w-12 text-muted-foreground" />
-                )}
-              </div>
-            )}
+            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/20 to-primary/5 pointer-events-none">
+              {isEmbeddable ? (
+                <Play className="h-12 w-12 text-muted-foreground" />
+              ) : (
+                <ExternalLink className="h-12 w-12 text-muted-foreground" />
+              )}
+            </div>
             {/* Hover overlay with icon */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
               <div className="rounded-full bg-primary p-4">
