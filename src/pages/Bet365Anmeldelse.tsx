@@ -136,7 +136,7 @@ const Bet365Anmeldelse = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Globe className="mr-1.5 h-3.5 w-3.5" />
-              4.4 / 5 – Sportsbook-gigant med casino
+              4.5 / 5 – Sportsbook-gigant med casino
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               bet365 Anmeldelse 2026
@@ -164,38 +164,20 @@ const Bet365Anmeldelse = () => {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Velkomstbonus</p>
-                  <p className="text-lg font-bold text-foreground">100% op til 1.000 kr.</p>
-                </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Omsætningskrav</p>
-                  <p className="text-lg font-bold text-foreground">10x (d+b)</p>
-                </div>
-                <div className="rounded-lg border border-border p-3">
                   <p className="text-xs text-muted-foreground uppercase mb-1">Casino-spil</p>
                   <p className="text-lg font-bold text-foreground">~2.500</p>
-                </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Udbetaling</p>
-                  <p className="text-lg font-bold text-foreground">1–4 timer</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mt-4">
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Min. indbetaling</p>
-                  <p className="text-lg font-bold text-foreground">50 kr.</p>
                 </div>
                 <div className="rounded-lg border border-border p-3">
                   <p className="text-xs text-muted-foreground uppercase mb-1">Sportsgrene</p>
                   <p className="text-lg font-bold text-foreground">40+</p>
                 </div>
                 <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Grundlagt</p>
-                  <p className="text-lg font-bold text-foreground">2000</p>
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Omsætningskrav</p>
+                  <p className="text-lg font-bold text-foreground">10x (d+b)</p>
                 </div>
                 <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Operatør</p>
-                  <p className="text-lg font-bold text-foreground">Hillside (New Media) Ltd</p>
+                  <p className="text-xs text-muted-foreground uppercase mb-1">Udbetaling</p>
+                  <p className="text-lg font-bold text-foreground">Under 24 timer</p>
                 </div>
               </div>
               <QuickFactsProviders
