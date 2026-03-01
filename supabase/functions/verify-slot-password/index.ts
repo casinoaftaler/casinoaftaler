@@ -21,13 +21,14 @@ Deno.serve(async (req) => {
       );
     }
 
-    const validGameIds = ["book-of-fedesvin", "rise-of-fedesvin", "gates-of-fedesvin"];
+    const validGameIds = ["book-of-fedesvin", "rise-of-fedesvin", "gates-of-fedesvin", "fedesvin-bonanza"];
     const safeGameId = validGameIds.includes(gameId) ? gameId : "book-of-fedesvin";
 
     const passwordKeyMap: Record<string, string> = {
       "book-of-fedesvin": "slot_page_password",
       "rise-of-fedesvin": "rise_of_fedesvin_password",
       "gates-of-fedesvin": "gates_of_fedesvin_password",
+      "fedesvin-bonanza": "fedesvin_bonanza_password",
     };
 
     const passwordKey = passwordKeyMap[safeGameId];
