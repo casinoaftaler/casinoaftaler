@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useBonusHuntData } from "@/hooks/useBonusHuntData";
 import { BonusHuntCouponAdmin } from "@/components/admin/BonusHuntCouponAdmin";
+import { BonusHuntCouponSubmissions } from "@/components/admin/BonusHuntCouponSubmissions";
 import { useCasinos } from "@/hooks/useCasinos";
 
 
@@ -570,9 +571,13 @@ export function BonusHuntAdminSection() {
             </Card>
           </TabsContent>
 
-          <TabsContent value="coupon">
+          <TabsContent value="coupon" className="space-y-4">
             {session ? (
-              <BonusHuntCouponAdmin session={session} />
+              <>
+                <BonusHuntCouponAdmin session={session} />
+                <BonusHuntCouponSubmissions session={session} />
+              </>
+            
             ) : (
               <Card>
                 <CardContent className="py-12 text-center text-muted-foreground">
