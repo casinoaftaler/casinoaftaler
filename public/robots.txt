@@ -3,6 +3,7 @@ Allow: /community$
 Allow: /community/slots$
 Allow: /community/rewards$
 Allow: /highlights$
+Disallow: /community/leaderboard
 Disallow: /community/
 Disallow: /auth
 Disallow: /profil
@@ -15,6 +16,7 @@ Allow: /community$
 Allow: /community/slots$
 Allow: /community/rewards$
 Allow: /highlights$
+Disallow: /community/leaderboard
 Disallow: /community/
 Disallow: /auth
 Disallow: /profil
@@ -33,6 +35,7 @@ Allow: /community$
 Allow: /community/slots$
 Allow: /community/rewards$
 Allow: /highlights$
+Disallow: /community/leaderboard
 Disallow: /community/
 Disallow: /auth
 Disallow: /profil
