@@ -25,6 +25,10 @@ const GAME_SETTINGS_KEYS: Record<string, { lockedKey: string; sessionKey: string
     lockedKey: "gates_of_fedesvin_locked",
     sessionKey: GATES_SESSION_STORAGE_KEY,
   },
+  "fedesvin-bonanza": {
+    lockedKey: "fedesvin_bonanza_locked",
+    sessionKey: "bonanza_slot_page_access_granted",
+  },
 };
 
 export function useSlotPageAccess(gameId: string = "book-of-fedesvin") {
