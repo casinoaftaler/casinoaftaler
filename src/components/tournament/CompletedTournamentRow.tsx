@@ -1,21 +1,29 @@
 import { useState } from "react";
-import { Trophy, ChevronRight, Gamepad2, Calendar, Crown } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useTournamentLeaderboard, type Tournament } from "@/hooks/useTournaments";
 import { CompletedTournamentCard } from "./CompletedTournamentCard";
 import { cn } from "@/lib/utils";
 
+import bookIntro from "@/assets/slots/slot-intro-screen.jpg";
+import riseIntro from "@/assets/slots/rise/intro-screen.jpg";
+
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
   "rise-of-fedesvin": "Rise of Fedesvin",
+};
+
+const GAME_IMAGES: Record<string, string> = {
+  "book-of-fedesvin": bookIntro,
+  "rise-of-fedesvin": riseIntro,
 };
 
 function CompactWinner({ tournamentId }: { tournamentId: string }) {
   const { data } = useTournamentLeaderboard(tournamentId);
   const winner = data?.entries?.[0];
 
-  if (!winner) return <span className="text-xs text-muted-foreground">Ingen deltagere</span>;
+  if (!winner) return <span className="text-sm text-muted-foreground">—</span>;
 
   return (
     <div className="flex items-center gap-2">
@@ -23,10 +31,12 @@ function CompactWinner({ tournamentId }: { tournamentId: string }) {
         userId={winner.user_id}
         displayName={winner.display_name || "Anonym"}
         avatarUrl={winner.avatar_url}
-        avatarClassName="h-7 w-7 ring-2 ring-primary/30"
+        avatarClassName="h-6 w-6"
         showDropdown={false}
       />
-      <span className="text-sm font-semibold text-foreground truncate">{winner.display_name || "Anonym"}</span>
+      <span className="text-sm font-medium text-foreground truncate max-w-[120px]">
+        {winner.display_name || "Anonym"}
+      </span>
     </div>
   );
 }
@@ -36,81 +46,78 @@ export function CompletedTournamentRow({ tournament, index = 0 }: { tournament: 
   const endDate = new Date(tournament.ends_at);
   const formattedDate = endDate.toLocaleDateString("da-DK", { day: "numeric", month: "short", year: "numeric" });
 
+  // Pick the first game image as thumbnail
+  const thumbSrc = tournament.game_ids
+    .map((id) => GAME_IMAGES[id])
+    .find(Boolean);
+
+  const gameLabel = tournament.game_ids
+    .map((id) => GAME_NAMES[id] || id)
+    .join(" + ");
+
   return (
-    <div
-      className="space-y-0"
-      style={{ animationDelay: `${index * 60}ms` }}
-    >
+    <div className="space-y-0">
       <button
         onClick={() => setExpanded(!expanded)}
         className={cn(
-          "w-full flex items-center gap-3 md:gap-4 px-4 md:px-5 py-3.5 rounded-xl text-left transition-all duration-300 cursor-pointer",
-          "border backdrop-blur-sm",
-          "hover:scale-[1.005] active:scale-[0.998]",
+          "w-full flex items-center gap-4 px-3 md:px-4 py-2.5 rounded-xl text-left transition-all duration-200 cursor-pointer",
+          "border bg-card hover:bg-secondary/30",
           expanded
-            ? "border-primary/30 bg-primary/5 shadow-lg shadow-primary/5"
-            : "border-border/50 bg-card/80 hover:bg-card hover:border-primary/20 hover:shadow-md hover:shadow-primary/5",
+            ? "border-primary/25 bg-secondary/20 shadow-md shadow-primary/5"
+            : "border-border/40 hover:border-border/60 hover:shadow-sm",
           "group"
         )}
       >
-        {/* Expand chevron */}
-        <ChevronRight className={cn(
-          "h-4 w-4 text-muted-foreground transition-all duration-300 shrink-0",
-          expanded && "rotate-90 text-primary",
-          "group-hover:text-primary/70"
-        )} />
-
-        {/* Trophy icon with glow */}
-        <div className={cn(
-          "p-2 rounded-lg shrink-0 transition-all duration-300",
-          "bg-gradient-to-br from-primary/15 to-primary/5",
-          "group-hover:from-primary/25 group-hover:to-primary/10",
-          expanded && "from-primary/25 to-primary/10 shadow-sm shadow-primary/10"
-        )}>
-          <Trophy className={cn(
-            "h-4 w-4 transition-colors duration-300",
-            expanded ? "text-primary" : "text-primary/70 group-hover:text-primary"
-          )} />
-        </div>
-
-        {/* Title + game */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-sm text-foreground truncate group-hover:text-primary/90 transition-colors">
-              {tournament.title}
-            </span>
-            <Badge
-              variant="secondary"
-              className={cn(
-                "text-[9px] px-2 py-0.5 uppercase font-bold shrink-0 hidden sm:inline-flex tracking-wider",
-                "bg-primary/10 text-primary/80 border-primary/20"
-              )}
-            >
+        {/* Game thumbnail */}
+        {thumbSrc && (
+          <div className="relative shrink-0 w-[72px] h-[48px] md:w-[88px] md:h-[56px] rounded-lg overflow-hidden border border-border/30">
+            <img
+              src={thumbSrc}
+              alt={gameLabel}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <Badge className="absolute top-1 left-1 text-[8px] px-1.5 py-0 uppercase font-bold bg-primary/90 text-primary-foreground border-0">
               Afsluttet
             </Badge>
           </div>
-          <div className="flex items-center gap-2 mt-0.5">
-            <span className="text-xs text-muted-foreground inline-flex items-center gap-1">
-              <Gamepad2 className="h-3 w-3" />
-              {tournament.game_ids.map((id) => GAME_NAMES[id] || id).join(" + ")}
-            </span>
-          </div>
+        )}
+
+        {/* Title + game provider */}
+        <div className="flex-1 min-w-0">
+          <span className="font-semibold text-sm text-foreground truncate block">
+            {tournament.title}
+          </span>
+          <span className="text-xs text-muted-foreground mt-0.5 block truncate">
+            {gameLabel}
+          </span>
         </div>
 
         {/* Winner */}
-        <div className="hidden md:flex items-center gap-2 shrink-0">
-          <Crown className="h-3.5 w-3.5 text-primary/60" />
+        <div className="hidden md:flex flex-col items-start shrink-0 min-w-[160px]">
+          <span className="text-[11px] text-muted-foreground font-medium uppercase tracking-wide">Vinder:</span>
           <CompactWinner tournamentId={tournament.id} />
         </div>
 
         {/* End date */}
-        <div className="hidden sm:flex items-center gap-1.5 text-xs text-muted-foreground shrink-0">
-          <Calendar className="h-3 w-3" />
-          {formattedDate}
+        <div className="hidden sm:flex flex-col items-start shrink-0 min-w-[100px]">
+          <span className="text-[11px] text-muted-foreground font-medium uppercase tracking-wide">Ended:</span>
+          <span className="text-sm font-medium text-foreground">{formattedDate}</span>
+        </div>
+
+        {/* Chevron */}
+        <div className={cn(
+          "shrink-0 p-2 rounded-lg border border-border/40 transition-all",
+          "group-hover:border-primary/30 group-hover:bg-primary/5",
+          expanded && "border-primary/30 bg-primary/5"
+        )}>
+          <ChevronRight className={cn(
+            "h-4 w-4 text-muted-foreground transition-transform duration-200",
+            expanded && "rotate-90 text-primary"
+          )} />
         </div>
       </button>
 
-      {/* Expanded full card */}
       {expanded && (
         <div className="mt-3 animate-in slide-in-from-top-2 fade-in duration-300">
           <CompletedTournamentCard tournament={tournament} />
