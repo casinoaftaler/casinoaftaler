@@ -28,7 +28,7 @@ export function Layout() {
       <ScrollToTop />
       <Header />
       <Breadcrumbs />
-      <main className="flex-1">
+      <main className="flex-1" style={{ minHeight: '100vh' }}>
         <Outlet />
       </main>
       {!hideFooter && <Footer />}

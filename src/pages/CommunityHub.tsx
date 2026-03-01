@@ -174,7 +174,7 @@ export default function CommunityHub() {
           </p>
         }
       >
-        <div className="py-8 md:py-12">
+        <div className="py-8 md:py-12" style={{ minHeight: '80vh' }}>
 
           {!user && (
             <RevealSection className="mb-8">
