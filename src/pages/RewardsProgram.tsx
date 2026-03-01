@@ -12,6 +12,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
+import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 
 export default function RewardsProgram() {
   const { user, loading } = useAuth();
@@ -253,7 +255,13 @@ export default function RewardsProgram() {
           </Card>
         </section>
 
+        <CommunitySeoSections />
+
         <RelatedGuides currentPath="/community/rewards" maxLinks={4} />
+
+        <CommunityBrandBlock />
+
+        <div className="pb-12" />
         </div>
       </div>
     </>
