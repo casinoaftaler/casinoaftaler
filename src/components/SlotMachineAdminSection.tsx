@@ -15,6 +15,7 @@ import { SlotSoundFilesSection } from "@/components/slots/SlotSoundFilesSection"
 import { SlotSoundGeneratorSection } from "@/components/slots/SlotSoundGeneratorSection";
 import { BatchSoundGenerator } from "@/components/slots/BatchSoundGenerator";
 import { GatesGameSettingsAdmin } from "@/components/slots/GatesGameSettingsAdmin";
+import { BonanzaGameSettingsAdmin } from "@/components/slots/BonanzaGameSettingsAdmin";
 import { MultiplierSymbolsAdmin } from "@/components/slots/MultiplierSymbolsAdmin";
 import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
 import { TournamentAdminSection } from "@/components/TournamentAdminSection";
@@ -907,6 +908,9 @@ function SettingsTab({ gameId }: { gameId?: string }) {
       {activeGameId === "gates-of-fedesvin" && <GatesGameSettingsAdmin />}
       {activeGameId === "gates-of-fedesvin" && <MultiplierSymbolsAdmin />}
 
+      {/* Bonanza Game Mechanics Settings */}
+      {activeGameId === "fedesvin-bonanza" && <BonanzaGameSettingsAdmin />}
+
       {/* Game Position Offset */}
       <Card>
         <CardHeader>
@@ -1396,6 +1400,7 @@ const GAME_OPTIONS = [
   { id: "book-of-fedesvin", label: "Book of Fedesvin" },
   { id: "rise-of-fedesvin", label: "Rise of Fedesvin" },
   { id: "gates-of-fedesvin", label: "Gates of Fedesvin" },
+  { id: "fedesvin-bonanza", label: "Fedesvin Bonanza" },
 ] as const;
 
 const GLOBAL_TABS = ["spins", "points", "combined-stats", "live-players", "requests", "tournaments"] as const;
