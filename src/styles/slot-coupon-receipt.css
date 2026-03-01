@@ -4,12 +4,12 @@
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  background: linear-gradient(175deg, hsl(220 20% 14%) 0%, hsl(225 18% 11%) 100%);
-  border: 1px solid hsl(220 15% 22%);
-  box-shadow: 0 8px 32px hsl(0 0% 0% / 0.4);
+  background: linear-gradient(175deg, hsl(30 20% 92%) 0%, hsl(30 15% 88%) 50%, hsl(30 20% 90%) 100%);
+  border: 1px solid hsl(30 10% 78%);
+  box-shadow: 0 8px 32px hsl(0 0% 0% / 0.4), inset 0 1px 0 hsl(0 0% 100% / 0.3);
   padding: 0;
   font-family: var(--font-sans);
-  color: hsl(220 20% 88%);
+  color: hsl(220 20% 15%);
 }
 
 /* Watermark overlay */
@@ -27,9 +27,9 @@
   overflow: hidden;
 }
 .slot-receipt-watermark span {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 800;
-  color: hsl(220 15% 20% / 0.12);
+  color: hsl(0 60% 45% / 0.10);
   white-space: nowrap;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -41,7 +41,8 @@
   z-index: 1;
   text-align: center;
   padding: 16px 16px 10px;
-  background: linear-gradient(180deg, hsl(220 20% 18%) 0%, transparent 100%);
+  background: linear-gradient(180deg, hsl(30 15% 94%) 0%, transparent 100%);
+  color: hsl(220 20% 12%);
 }
 
 /* Column header bar */
@@ -51,12 +52,12 @@
   display: flex;
   align-items: center;
   padding: 6px 16px;
-  background: hsl(220 15% 10% / 0.5);
+  background: hsl(30 10% 82% / 0.5);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: hsl(220 15% 55%);
+  color: hsl(220 10% 35%);
 }
 
 /* Divider */
@@ -64,7 +65,7 @@
   position: relative;
   z-index: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, hsl(220 15% 25%) 20%, hsl(220 15% 25%) 80%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, hsl(30 10% 75%) 20%, hsl(30 10% 75%) 80%, transparent 100%);
 }
 
 /* Market rows */
@@ -77,22 +78,22 @@
   display: flex;
   align-items: center;
   padding: 8px 16px;
-  border-bottom: 1px solid hsl(220 15% 18%);
+  border-bottom: 1px solid hsl(30 10% 80%);
   transition: background 0.2s ease;
 }
 .slot-receipt-row:last-child {
   border-bottom: none;
 }
 .slot-receipt-row:nth-child(even) {
-  background: hsl(220 15% 10% / 0.25);
+  background: hsl(30 10% 85% / 0.35);
 }
 
 /* Hit / miss row tinting */
 .slot-receipt-row-hit {
-  background: hsl(142 50% 40% / 0.06) !important;
+  background: hsl(142 50% 40% / 0.10) !important;
 }
 .slot-receipt-row-miss {
-  background: hsl(0 50% 40% / 0.06) !important;
+  background: hsl(0 50% 40% / 0.10) !important;
   opacity: 0.7;
 }
 
@@ -142,7 +143,8 @@
   position: relative;
   z-index: 1;
   padding: 12px 16px 14px;
-  background: linear-gradient(0deg, hsl(220 20% 10%) 0%, transparent 100%);
+  background: linear-gradient(0deg, hsl(30 15% 86%) 0%, transparent 100%);
+  color: hsl(220 20% 12%);
 }
 
 /* Perforated tear edge */
@@ -163,5 +165,18 @@
   -webkit-mask-image: radial-gradient(circle 4px at 7px 0px, transparent 3px, black 4px);
   mask-size: 14px 8px;
   -webkit-mask-size: 14px 8px;
-  background-color: hsl(220 15% 8%);
+  background-color: hsl(30 15% 86%);
+}
+
+/* Right-side accent stripe (like the Oddset salmon/coral edge) */
+.slot-receipt-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 22px;
+  background: linear-gradient(180deg, hsl(15 60% 65% / 0.35) 0%, hsl(15 50% 55% / 0.25) 50%, hsl(15 60% 65% / 0.35) 100%);
+  z-index: 2;
+  pointer-events: none;
 }
