@@ -97,7 +97,7 @@ function LeaderboardRow({
         </div>
       </div>
       {/* Stats row */}
-      <div className="flex items-center gap-3 mt-1.5 pl-7 text-xs">
+      <div className="grid grid-cols-4 gap-1 mt-1.5 pl-7 text-xs">
         <span className={cn("font-bold", theme.leaderboardPointsText)}>{formattedValue} <span className="font-normal text-muted-foreground">{unit}</span></span>
         <span className={cn("font-medium", theme.leaderboardSpinsText)}>{entry.total_spins.toLocaleString()} <span className="font-normal text-muted-foreground">credits</span></span>
         <span className="font-medium text-blue-400">{entry.total_bonuses.toLocaleString()} <span className="font-normal text-muted-foreground">bonusser</span></span>
