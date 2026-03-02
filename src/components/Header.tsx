@@ -367,9 +367,76 @@ export const Header = memo(function Header() {
                   </DropdownMenuItem>
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <Star className="h-3 w-3" />
+                  Roulette
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/roulette" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Roulette Guide
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/roulette/amerikansk-roulette" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Amerikansk Roulette
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/roulette/europaeisk-roulette" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Europæisk Roulette
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/roulette/fransk-roulette" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Fransk Roulette
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/roulette/martingale-roulette" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Martingale Strategi
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/roulette/fibonacci-roulette" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Fibonacci Strategi
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/roulette/dalembert-roulette" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      D'Alembert Strategi
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/roulette/labouchere-roulette" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Labouchère Strategi
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/roulette/james-bond-roulette" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      James Bond Strategi
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              <DropdownMenuItem asChild>
+                <Link to="/casinospil/roulette-strategi" className="flex items-center gap-2">
+                  <Star className="h-3 w-3" />
+                  Roulette Strategi
+                </Link>
+              </DropdownMenuItem>
               {[
-                { to: "/casinospil/roulette", label: "Roulette" },
-                { to: "/casinospil/roulette-strategi", label: "Roulette Strategi" },
                 { to: "/casinospil/poker", label: "Poker" },
                 { to: "/casinospil/craps", label: "Craps" },
                 { to: "/casinospil/baccarat", label: "Baccarat" },
@@ -1066,8 +1133,28 @@ export const Header = memo(function Header() {
                     </Link>
                   ))}
                 </div>
+                <div className="ml-6 flex flex-col">
+                  <Link to="/casinospil/roulette" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                    <Star className="h-4 w-4" />
+                    Roulette Guide
+                  </Link>
+                  {[
+                    { to: "/casinospil/roulette/amerikansk-roulette", label: "Amerikansk Roulette" },
+                    { to: "/casinospil/roulette/europaeisk-roulette", label: "Europæisk Roulette" },
+                    { to: "/casinospil/roulette/fransk-roulette", label: "Fransk Roulette" },
+                    { to: "/casinospil/roulette/martingale-roulette", label: "Martingale Strategi" },
+                    { to: "/casinospil/roulette/fibonacci-roulette", label: "Fibonacci Strategi" },
+                    { to: "/casinospil/roulette/dalembert-roulette", label: "D'Alembert Strategi" },
+                    { to: "/casinospil/roulette/labouchere-roulette", label: "Labouchère Strategi" },
+                    { to: "/casinospil/roulette/james-bond-roulette", label: "James Bond Strategi" },
+                  ].map((item) => (
+                    <Link key={item.to} to={item.to} className="ml-4 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                      <Star className="h-3 w-3" />
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
                 {[
-                  { to: "/casinospil/roulette", label: "Roulette" },
                   { to: "/casinospil/roulette-strategi", label: "Roulette Strategi" },
                   { to: "/casinospil/poker", label: "Poker" },
                   { to: "/casinospil/craps", label: "Craps" },

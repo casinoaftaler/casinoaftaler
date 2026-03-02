@@ -114,13 +114,9 @@ export default function MartingaleRouletteGuide() {
           </div>
         </section>
 
-        <AuthorMetaBar author="jonas" />
+        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="40 Min." />
 
-        <InlineCasinoCards
-          slugs={["spildansknu", "betinia", "spilleautomaten"]}
-          title="Bedste casinoer til roulette systemer"
-          subtitle="Europæisk roulette med lav min-bet og højt bordmaksimum"
-        />
+        <InlineCasinoCards title="Bedste casinoer til roulette systemer" count={3} />
 
         <Separator className="my-10" />
 
