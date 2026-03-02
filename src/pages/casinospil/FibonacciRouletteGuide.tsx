@@ -105,13 +105,9 @@ export default function FibonacciRouletteGuide() {
           </div>
         </section>
 
-        <AuthorMetaBar author="jonas" />
+        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="38 Min." />
 
-        <InlineCasinoCards
-          slugs={["spildansknu", "betinia", "spilleautomaten"]}
-          title="Bedste casinoer til Fibonacci roulette"
-          subtitle="Europæisk roulette med lave minimum-indsatser"
-        />
+        <InlineCasinoCards title="Bedste casinoer til Fibonacci roulette" count={3} />
 
         <Separator className="my-10" />
 

@@ -97,13 +97,9 @@ export default function JamesBondRouletteGuide() {
           </div>
         </section>
 
-        <AuthorMetaBar author="jonas" />
+        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="35 Min." />
 
-        <InlineCasinoCards
-          slugs={["spildansknu", "betinia", "spilleautomaten"]}
-          title="Bedste casinoer til James Bond systemet"
-          subtitle="Europæisk roulette med lave minimumsindsatser"
-        />
+        <InlineCasinoCards title="Bedste casinoer til James Bond systemet" count={3} />
 
         <Separator className="my-10" />
 

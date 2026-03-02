@@ -97,13 +97,9 @@ export default function LabouchereRouletteGuide() {
           </div>
         </section>
 
-        <AuthorMetaBar author="jonas" />
+        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="36 Min." />
 
-        <InlineCasinoCards
-          slugs={["spildansknu", "betinia", "spilleautomaten"]}
-          title="Bedste casinoer til Labouchère roulette"
-          subtitle="Europæisk roulette med fleksible indsatsgrænser"
-        />
+        <InlineCasinoCards title="Bedste casinoer til Labouchère roulette" count={3} />
 
         <Separator className="my-10" />
 
