@@ -27,6 +27,7 @@ interface BonanzaColumnProps {
   bombSymbolsMap?: Map<number, BombSymbol>;
   symbolWidth?: number;
   symbolHeight?: number;
+  symbolScale?: number;
 }
 
 export const BonanzaColumn = React.memo(function BonanzaColumn({
@@ -43,10 +44,12 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
   bombSymbolsMap,
   symbolWidth: SYMBOL_WIDTH = DEFAULT_SYMBOL_WIDTH,
   symbolHeight: SYMBOL_HEIGHT = DEFAULT_SYMBOL_HEIGHT,
+  symbolScale = 100,
 }: BonanzaColumnProps) {
   const isDroppingOff = spinState === 'dropping-off';
   const isDroppingIn = spinState === 'dropping-in';
   const isLanding = spinState === 'landing';
+  const scaleValue = symbolScale / 100;
 
   return (
     <div
@@ -74,7 +77,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
             key={`${row}-${(cellAnim === 'dropping' || cellAnim === 'filling') ? animationEpoch : 'stable'}-${applyDropOff ? 'off' : applyDropIn ? 'in' : 'idle'}`}
             className={cn(
               "relative rounded-lg",
-              (cellAnim === 'dropping' || cellAnim === 'filling' || cellAnim === 'exploding' || applyDropOff || applyDropIn) ? "overflow-visible" : "overflow-hidden",
+              "overflow-visible",
               
               isWinning && "bonanza-candy-highlight",
               isLanding && "bonanza-column-stop-impact",
@@ -110,6 +113,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
                     src={symbol.image_url}
                     alt={symbol.name}
                     className="w-full h-full object-contain"
+                    style={{ transform: `scale(${scaleValue})` }}
                     draggable={false}
                   />
                 ) : (
@@ -124,7 +128,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
             {cellAnim !== 'removing' && cellAnim !== 'exploding' && cellAnim !== 'bomb-exploded' && isBomb && (
               <div className="w-full h-full flex items-center justify-center relative">
                 {bombSymbolsMap?.get(bombValue)?.image_url ? (
-                  <img src={bombSymbolsMap.get(bombValue)!.image_url!} alt={`${bombValue}x`} className="w-full h-full object-contain" draggable={false} />
+                  <img src={bombSymbolsMap.get(bombValue)!.image_url!} alt={`${bombValue}x`} className="w-full h-full object-contain" style={{ transform: `scale(${scaleValue})` }} draggable={false} />
                 ) : (
                   <>
                     <span className="text-3xl">💣</span>
@@ -138,7 +142,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
             {(cellAnim === 'bomb-fizzle' || cellAnim === 'bomb-activate') && isBomb && (
               <div className="w-full h-full flex items-center justify-center relative">
                 {bombSymbolsMap?.get(bombValue)?.image_url ? (
-                  <img src={bombSymbolsMap.get(bombValue)!.image_url!} alt={`${bombValue}x`} className="w-full h-full object-contain" draggable={false} />
+                  <img src={bombSymbolsMap.get(bombValue)!.image_url!} alt={`${bombValue}x`} className="w-full h-full object-contain" style={{ transform: `scale(${scaleValue})` }} draggable={false} />
                 ) : (
                   <>
                     <span className="text-3xl">💣</span>
@@ -159,7 +163,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
             {(cellAnim === 'removing' || cellAnim === 'exploding') && symbol && !isBomb && (
               <div className="w-full h-full flex items-center justify-center bonanza-symbol-explode">
                 {symbol.image_url ? (
-                  <img src={symbol.image_url} alt={symbol.name} className="w-[85%] h-[85%] object-contain" draggable={false} />
+                  <img src={symbol.image_url} alt={symbol.name} className="w-[85%] h-[85%] object-contain" style={{ transform: `scale(${scaleValue})` }} draggable={false} />
                 ) : (
                   <span className="text-2xl font-bold text-pink-200">{getEmojiForSymbol(symbol.name)}</span>
                 )}
@@ -170,7 +174,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
             {(cellAnim === 'removing' || cellAnim === 'exploding') && isBomb && (
               <div className="w-full h-full flex items-center justify-center bonanza-symbol-explode">
                 {bombSymbolsMap?.get(bombValue)?.image_url ? (
-                  <img src={bombSymbolsMap.get(bombValue)!.image_url!} alt={`${bombValue}x`} className="w-[85%] h-[85%] object-contain" draggable={false} />
+                  <img src={bombSymbolsMap.get(bombValue)!.image_url!} alt={`${bombValue}x`} className="w-[85%] h-[85%] object-contain" style={{ transform: `scale(${scaleValue})` }} draggable={false} />
                 ) : (
                   <span className="text-3xl">💣</span>
                 )}

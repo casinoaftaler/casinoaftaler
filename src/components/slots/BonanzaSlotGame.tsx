@@ -53,6 +53,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
 
   const SYMBOL_WIDTH = siteSettings?.bonanza_symbol_width ? parseInt(siteSettings.bonanza_symbol_width) : DEFAULT_SYMBOL_WIDTH;
   const SYMBOL_HEIGHT = siteSettings?.bonanza_symbol_height ? parseInt(siteSettings.bonanza_symbol_height) : DEFAULT_SYMBOL_HEIGHT;
+  const SYMBOL_SCALE = siteSettings?.bonanza_symbol_scale ? parseInt(siteSettings.bonanza_symbol_scale) : 100;
 
   const bombSymbolsMap = useMemo(() => {
     if (!bombSymbols) return new Map<number, (typeof bombSymbols)[0]>();
@@ -715,6 +716,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
                 bombSymbolsMap={bombSymbolsMap}
                 symbolWidth={SYMBOL_WIDTH}
                 symbolHeight={SYMBOL_HEIGHT}
+                symbolScale={SYMBOL_SCALE}
               />
             );
           })}
