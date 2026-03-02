@@ -119,12 +119,14 @@ const SwiftCasinoAnmeldelse = () => {
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Swift Casino", itemUrl: "https://www.swiftcasino.dk/", ratingValue: "4.6", ratingCount: "187", reviewBody: "Swift Casino er Data-Innovatøren blandt danske casinoer – et veletableret casino med 3.300+ spil, 100% bonus op til 500 kr. med 10x omsætning, den unikke Hot Or Cold-funktion, PayPal/Trustly-support og hurtige udbetalinger." });
 
+  const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/swift-casino", "BVYnQxwqHG0", { title: "Swift Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Swift Casino ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features – så du ved præcis hvad du kan forvente, før du opretter en konto.", uploadDate: "2026-02-18", duration: "PT2M" });
+
   return (
     <>
       <SEO
         title="Swift Casino Anmeldelse 2026 – Hot Or Cold"
         description="Dybdegående anmeldelse af Swift Casino efter 14 dages test. 100% bonus op til 500 kr. (kode SWIFT), 10x omsætning, 3.300+ spil, unik Hot Or Cold-funktion og PayPal/Trustly. Komplet analyse."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]}
       />
 
       <section
@@ -222,6 +224,17 @@ const SwiftCasinoAnmeldelse = () => {
             <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.
           </p>
         </section>
+
+          <YoutubeEmbed
+            videoId="BVYnQxwqHG0"
+            title="Swift Casino Anmeldelse 2026 – Ærlig Gennemgang"
+            description="Se hvordan Swift Casino ser ud indefra."
+            uploadDate="2026-02-18"
+            duration="PT2M"
+          />
+          <div className="mb-8 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground leading-relaxed">
+            I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem Swift Casinos platform – fra registrering og bonusaktivering til navigation, Hot Or Cold-funktionen og spilvalg. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
+          </div>
 
         <Separator className="my-10" />
 

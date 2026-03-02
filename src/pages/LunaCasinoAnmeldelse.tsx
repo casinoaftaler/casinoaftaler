@@ -106,12 +106,14 @@ const LunaCasinoAnmeldelse = () => {
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Luna Casino", itemUrl: "https://www.lunacasino.dk/", ratingValue: "4.4", ratingCount: "163", reviewBody: "Luna Casino er Kvalitets-Kuratoren blandt danske casinoer – et bevidst kurateret casino med 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram med stigende levels, daglige bonuskampagner og et nøje udvalgt spiludvalg fra premium-udbydere." });
 
+  const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/luna-casino", "14tI5vWShvs", { title: "Luna Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Luna Casino ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features – så du ved præcis hvad du kan forvente, før du opretter en konto.", uploadDate: "2026-02-18", duration: "PT2M" });
+
   return (
     <>
       <SEO
         title="Luna Casino Anmeldelse 2026 – Kurateret Kvalitet"
         description="Dybdegående anmeldelse af Luna Casino efter 14 dages test. 100% bonus op til 500 kr., kun 10x omsætning, loyalitetsprogram, daglige kampagner og kurateret spiludvalg. Komplet analyse."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]}
       />
 
       <section
@@ -214,6 +216,17 @@ const LunaCasinoAnmeldelse = () => {
             <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.
           </p>
         </section>
+
+          <YoutubeEmbed
+            videoId="14tI5vWShvs"
+            title="Luna Casino Anmeldelse 2026 – Ærlig Gennemgang"
+            description="Se hvordan Luna Casino ser ud indefra."
+            uploadDate="2026-02-18"
+            duration="PT2M"
+          />
+          <div className="mb-8 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground leading-relaxed">
+            I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem Luna Casinos platform – fra registrering og bonusaktivering til navigation, loyalitetsprogram og spilvalg. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
+          </div>
 
         <Separator className="my-10" />
 

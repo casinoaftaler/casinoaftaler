@@ -119,12 +119,14 @@ const BetanoAnmeldelse = () => {
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Betano", itemUrl: "https://www.betano.dk/", ratingValue: "4.1", ratingCount: "144", reviewBody: "Betano er en teknologidrevet platform med stærk sportssektion og et casino, der stadig er under modning på det danske marked." });
 
+  const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/betano", "Uu3NBZzt-Sk", { title: "Betano Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Betano ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features – så du ved præcis hvad du kan forvente, før du opretter en konto.", uploadDate: "2026-02-18", duration: "PT2M" });
+
   return (
     <>
       <SEO
         title="Betano Anmeldelse 2026 – Casino, Odds & Mobilapp | Casinoaftaler"
         description="Kritisk anmeldelse af Betano Danmark. Vi tester casino, sportsbetting, mobilapp, bonus, udbetalinger og kundeservice. Dansk licens."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]}
       />
 
       {/* Hero */}
@@ -215,6 +217,17 @@ const BetanoAnmeldelse = () => {
             Det store spørgsmål er, om teknologisk ambition alene er nok. Betano er stadig relativt ny i Danmark, og brand-genkendelsen er lavere end hos <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>, <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> eller <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>. Det er en platform, der gør mange ting rigtigt – men den mangler stadig den dybde og markedsmodenhed, som 20+ års tilstedeværelse giver. Læs mere om vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>.
           </p>
         </section>
+
+          <YoutubeEmbed
+            videoId="Uu3NBZzt-Sk"
+            title="Betano Casino Anmeldelse 2026 – Ærlig Gennemgang"
+            description="Se hvordan Betano ser ud indefra."
+            uploadDate="2026-02-18"
+            duration="PT2M"
+          />
+          <div className="mb-8 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground leading-relaxed">
+            I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem Betanos platform – fra registrering og bonusaktivering til navigation, sportsbetting og spilvalg. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
+          </div>
 
         <Separator className="my-10" />
 

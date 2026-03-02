@@ -40,9 +40,11 @@ const UnibetAnmeldelse = () => {
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Unibet", itemUrl: "https://www.unibet.dk/", ratingValue: "4.3", ratingCount: "234", reviewBody: "Unibet er en af de mest komplette spilleplatforme i Danmark med casino, sports, poker og live casino under Kindred Groups paraply." });
 
+  const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/unibet", "53m8Fk6tmw8", { title: "Unibet Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Unibet ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features – så du ved præcis hvad du kan forvente, før du opretter en konto.", uploadDate: "2026-02-18", duration: "PT2M" });
+
   return (
     <>
-      <SEO title="Unibet Anmeldelse 2026 – Casino, Sports, Poker & Bonus | Casinoaftaler" description="Komplet anmeldelse af Unibet – Danmarks mest komplette spilleplatform. Casino, sportsbetting, poker, live casino, dansk licens og hurtige udbetalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="Unibet Anmeldelse 2026 – Casino, Sports, Poker & Bonus | Casinoaftaler" description="Komplet anmeldelse af Unibet – Danmarks mest komplette spilleplatform. Casino, sportsbetting, poker, live casino, dansk licens og hurtige udbetalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
@@ -81,6 +83,17 @@ const UnibetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> evaluerer Unibet som en helhed, og den samlede pakke er imponerende. Kindred Groups børsnotering på Nasdaq Stockholm sikrer finansiel gennemsigtighed – du kan faktisk tilgå deres kvartalsrapporter og se præcis, hvordan virksomheden performer. Deres engagement i <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> er brancheførende med et ambitiøst mål om at eliminere skadeligt spil inden 2030 – et mål, som ingen anden stor operatør har sat offentligt.</p>
           <p className="text-muted-foreground leading-relaxed">I denne anmeldelse dykker vi ned i hver enkelt del af Unibet-oplevelsen: casino, sport, poker, live casino, mobilapp, betalingsmetoder, kundeservice og sikkerhed. Vi har testet platformen i over to uger med reelle indbetalinger og udbetalinger for at give dig et ærligt og datadrevet billede af, hvad du kan forvente. Slutresultatet? En platform, der gør alt godt – og det meste af det rigtig godt.</p>
         </section>
+
+          <YoutubeEmbed
+            videoId="53m8Fk6tmw8"
+            title="Unibet Casino Anmeldelse 2026 – Ærlig Gennemgang"
+            description="Se hvordan Unibet ser ud indefra."
+            uploadDate="2026-02-18"
+            duration="PT2M"
+          />
+          <div className="mb-8 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground leading-relaxed">
+            I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem Unibets platform – fra registrering og bonusaktivering til navigation, sportsbetting, poker og spilvalg. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
+          </div>
 
         <Separator className="my-10" />
 
