@@ -3,6 +3,7 @@ import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useBombSymbols } from "@/hooks/useBombSymbols";
 import { supabase } from "@/integrations/supabase/client";
 import { getTodayDanish } from "@/lib/danishDate";
 import { useServerSpin } from "@/hooks/useServerSpin";
@@ -42,11 +43,17 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols(gameId);
+  const { data: bombSymbols } = useBombSymbols(gameId);
   const { spinsRemaining, maxSpins, canSpin, hasEnoughSpins } = useSlotSpins();
   const { settings: slotSettings } = useSlotSettings();
   const { data: siteSettings } = useSiteSettings();
   const { spin: serverSpin } = useServerSpin(gameId);
   const theme = getSlotTheme(gameId);
+
+  const bombSymbolsMap = useMemo(() => {
+    if (!bombSymbols) return new Map<number, (typeof bombSymbols)[0]>();
+    return new Map(bombSymbols.map(b => [b.value, b]));
+  }, [bombSymbols]);
 
   const [bet, setBet] = useState(1);
   const [isSpinning, setIsSpinning] = useState(false);
@@ -611,6 +618,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
                 cellDropOffsets={cellDropOffsets}
                 tumblePhase={tumblePhase}
                 animationEpoch={animationEpoch}
+                bombSymbolsMap={bombSymbolsMap}
               />
             );
           })}
