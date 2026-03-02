@@ -285,8 +285,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       }
     }
 
-    // === Sequential bomb blow-up AFTER all tumbles ===
-    const lastStepWithBombs = [...steps].reverse().find(s => s.multiplierBombs?.length > 0);
+    // === Sequential bomb blow-up AFTER all tumbles (only if there were wins) ===
+    const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
     if (lastStepWithBombs?.multiplierBombs?.length) {
       const sorted = [...lastStepWithBombs.multiplierBombs].sort((a, b) => a.position - b.position);
       for (const bomb of sorted) {
