@@ -1,47 +1,42 @@
 
-# Refined Win Celebration Graphics
+# Make Symbol Images Bigger Without Enlarging the Grid
 
 ## Problem
-The current win celebration has an oversized border glow that fills the entire game area, making it feel boxy and unprofessional. The text floats without a focused container, and the pulsing border covers the full grid inset.
+Currently, the admin sliders for "Symbol Bredde" and "Symbol Hojde" control the **cell size** (the box each symbol sits in). Making the cell bigger makes the entire grid bigger. The symbol images use `w-full h-full object-contain`, so they always fill exactly their cell -- no more, no less.
+
+You want to scale just the **images themselves** beyond the cell boundary, so they visually overlap without changing the grid layout.
+
+## Solution
+Add a new **Symbol Scale** slider (separate from width/height) that applies a CSS `transform: scale(...)` to the images. The cell stays the same size, but the image renders larger and overflows visually.
 
 ## Changes
 
-### 1. Add a compact, styled card behind the win text
-- Replace the full-inset glow border with a focused, compact card behind the text content
-- The card will have a frosted glass effect with a subtle themed border
-- Sized to tightly wrap the text content rather than spanning the entire grid
-- Rounded corners, backdrop blur, and a refined gradient background
+### 1. Add `bonanza_symbol_scale` setting
+- Add a new key `bonanza_symbol_scale` to the settings keys list
+- Default value: `100` (percent, meaning 1:1 with cell)
+- Admin slider range: `80%` to `160%`, step `5`
 
-### 2. Reduce and refine the border glow
-- Remove the full-inset `glow-pulse` box-shadow that covers the entire game area
-- Instead, apply a subtle glow only to the compact win card
-- Scale the glow intensity by win tier (Big < Mega < Epic)
+### 2. Admin panel slider (BonanzaGameSettingsAdmin.tsx)
+- Add a new "Symbol Skalering" slider beneath the existing width/height sliders
+- Shows the current percentage value (e.g. "120%")
 
-### 3. Improve text hierarchy and spacing
-- Tighten padding: smaller, more proportional spacing inside the card
-- Adjust font sizes slightly for better balance within the compact card
-- Add a subtle divider or spacing between the title and amount
-- Remove emoji decorations from the title text for a cleaner look (optional, keep if preferred)
+### 3. Read the setting in BonanzaSlotGame.tsx
+- Read `bonanza_symbol_scale` from `siteSettings`, default to `100`
+- Pass it as a new `symbolScale` prop to each `BonanzaColumn`
 
-### 4. Polish the card presentation
-- Add a thin themed border (pink for Bonanza, purple for Wizard, gold for Egyptian)
-- Inner shadow for depth
-- The card itself gets the glow effect instead of the full grid
+### 4. Apply scale in BonanzaColumn.tsx
+- Accept new `symbolScale` prop (number, percentage)
+- On every `<img>` tag for symbols and bombs, apply `style={{ transform: scale(X) }}` where X = symbolScale / 100
+- The cell div already toggles between `overflow-hidden` and `overflow-visible` for animations -- during idle state it clips. We will need to **always allow overflow-visible** on cells so the scaled images can visually overlap their neighbors, or alternatively use `overflow: clip` only on the column wrapper (not individual cells)
+
+### 5. Overflow handling
+- Remove `overflow-hidden` from individual cells so scaled images can bleed over
+- Keep `overflow-hidden` on the **column container** to prevent images from escaping the entire grid area
+- This preserves existing animation overflow behavior (tumbles, drops already use `overflow-visible`)
 
 ## Technical Details
 
-### File: `src/components/slots/WinCelebration.tsx`
-
-**Lines 514-593** (Big Win Text Overlay section):
-- Wrap the text content in a compact card div with:
-  - `backdrop-blur-md bg-black/60` for frosted glass
-  - `rounded-2xl` with themed border
-  - Compact padding: `px-8 py-5` for big, `px-10 py-6` for mega, `px-12 py-8` for epic
-  - Themed box-shadow glow on the card itself
-
-**Lines 631-646** (Pulsing border glow):
-- Remove or significantly reduce the full-inset glow div
-- The glow effect moves to the compact card instead
-
-### No new files needed
-All changes are within `WinCelebration.tsx`.
+### Files to modify:
+1. **`src/components/slots/BonanzaGameSettingsAdmin.tsx`** -- add `symbolScale` to form, defaults, settings keys, save/load logic, and a new slider UI
+2. **`src/components/slots/BonanzaSlotGame.tsx`** -- read `bonanza_symbol_scale` from site settings, pass as prop
+3. **`src/components/slots/BonanzaColumn.tsx`** -- accept `symbolScale` prop, apply `transform: scale()` to all `<img>` elements, adjust overflow rules on cells
