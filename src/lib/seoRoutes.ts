@@ -158,7 +158,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", changefreq: "weekly", priority: 0.8, lastmod: "2026-01-31" },
   { path: "/casinospil/spillemaskiner/chaos-crew", changefreq: "weekly", priority: 0.8, lastmod: "2026-01-29" },
   { path: "/casinospil/spillemaskiner/joker-strike", changefreq: "weekly", priority: 0.8, lastmod: "2026-01-28" },
-  { path: "/casinospil/blackjack", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-14" },
+  { path: "/casinospil/blackjack", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
   { path: "/casinospil/blackjack/amerikansk-blackjack", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-02" },
   { path: "/casinospil/blackjack/europaeisk-blackjack", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-02" },
   { path: "/casinospil/blackjack/double-exposure-blackjack", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-02" },
