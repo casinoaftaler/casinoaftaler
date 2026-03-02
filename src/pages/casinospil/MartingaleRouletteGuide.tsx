@@ -90,35 +90,31 @@ export default function MartingaleRouletteGuide() {
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
-      <div className="mx-auto max-w-4xl px-4 py-8">
-        {/* Hero */}
-        <section className="relative mb-10 overflow-hidden rounded-2xl">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroImage})` }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{ backgroundImage: "linear-gradient(135deg, hsl(220 60% 20%), hsl(240 50% 18%) 40%, hsl(200 70% 25%))", opacity: 0.85 }}
-          />
-          <div className="relative z-10 flex flex-col items-start gap-4 p-8 md:p-12">
-            <Badge variant="secondary" className="bg-primary/20 text-primary-foreground border-primary/30">
-              <TrendingUp className="mr-1 h-3 w-3" /> Roulette System
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{ backgroundImage: "linear-gradient(135deg, hsl(220 60% 20%), hsl(240 50% 18%) 40%, hsl(200 70% 25%))" }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <TrendingUp className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse – Marts 2026
             </Badge>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-primary-foreground leading-tight">
-              Martingale Roulette System 2026
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Martingale Roulette System 2026 – Fordoblingsprincippet Under Mikroskop
             </h1>
-            <p className="max-w-2xl text-base md:text-lg text-primary-foreground/80">
+            <p className="text-lg text-white/80">
               Den mest kendte – og farligste – roulette-strategi. Vi gennemgår matematikken, simulerer 10.000 spins og viser, hvorfor fordoblingsprincippet er en fælde for de fleste spillere.
             </p>
           </div>
-        </section>
+        </div>
+      </section>
 
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" date="02-03-2026" readTime="40 Min." />
 
-        <InlineCasinoCards title="Bedste casinoer til roulette systemer" count={3} />
-
-        <Separator className="my-10" />
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} alt="Martingale roulette system med fordoblings-chips på et europæisk roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
+        </div>
 
         {/* Indledning */}
         <section className="mb-12">
