@@ -131,6 +131,16 @@ export function BatchSoundGenerator({ gameId }: BatchSoundGeneratorProps) {
     abortRef.current = true;
   };
 
+  const handleGenerateSingle = async (soundType: string) => {
+    const success = await generateSingle(soundType);
+    await queryClient.invalidateQueries({ queryKey: ["slot-sound-files", gameId] });
+    toast({
+      title: success ? "Lyd genereret!" : "Fejl",
+      description: success ? `${soundType} blev gemt.` : `Kunne ikke generere ${soundType}.`,
+      variant: success ? "default" : "destructive",
+    });
+  };
+
   const handlePlay = (soundType: string) => {
     const url = audioUrls[soundType];
     if (url) {
@@ -193,12 +203,23 @@ export function BatchSoundGenerator({ gameId }: BatchSoundGeneratorProps) {
                   <span>{sound.label}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  {status === "generating" && <Loader2 className="h-4 w-4 animate-spin text-blue-500" />}
+                  {status === "generating" && <Loader2 className="h-4 w-4 animate-spin text-primary" />}
                   {status === "done" && <CheckCircle className="h-4 w-4 text-green-500" />}
                   {status === "error" && <XCircle className="h-4 w-4 text-destructive" />}
                   {hasAudio && (
                     <Button variant="ghost" size="sm" className="h-6 w-6 p-0" onClick={() => handlePlay(sound.key)}>
                       <Play className="h-3 w-3" />
+                    </Button>
+                  )}
+                  {status !== "generating" && !isRunning && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-6 px-2 text-xs"
+                      onClick={() => handleGenerateSingle(sound.key)}
+                    >
+                      <Wand2 className="h-3 w-3 mr-1" />
+                      Generer
                     </Button>
                   )}
                 </div>
