@@ -9,7 +9,9 @@ const corsHeaders = {
 };
 
 // Sound definitions with prompts and durations per game theme
-const GATES_SOUNDS: Record<string, { prompt: string; duration: number; settingSuffix: string }> = {
+type SoundDef = { prompt: string; duration: number; settingSuffix: string };
+
+const GATES_SOUNDS: Record<string, SoundDef> = {
   spinSound: {
     prompt: "Ancient Greek temple wind whoosh with ethereal clouds swirling, divine energy building, short mystical gust sound effect",
     duration: 1.5,
@@ -67,6 +69,69 @@ const GATES_SOUNDS: Record<string, { prompt: string; duration: number; settingSu
   },
 };
 
+const BONANZA_SOUNDS: Record<string, SoundDef> = {
+  spinSound: {
+    prompt: "Bubbly candy whoosh with sugar crystals swirling, fizzy soda pop carbonation rush, sweet whimsical gust sound effect",
+    duration: 1.5,
+    settingSuffix: "spin",
+  },
+  stopSound: {
+    prompt: "Gummy candy bounce landing with soft squish impact, jellybean drop on glass surface, satisfying candy plop",
+    duration: 1,
+    settingSuffix: "stop",
+  },
+  smallWinSound: {
+    prompt: "Sweet candy chimes with sugar sprinkle tinkle, gentle xylophone notes, light bubblegum pop, pleasant small candy reward jingle",
+    duration: 2,
+    settingSuffix: "small_win",
+  },
+  mediumWinSound: {
+    prompt: "Joyful candy pop melody with bubblegum burst fanfare, cascading sugar crystals, cheerful gummy bounce rhythm, medium candy celebration",
+    duration: 3,
+    settingSuffix: "medium_win",
+  },
+  bigWinSound: {
+    prompt: "Massive candy explosion with lollipop fireworks, gummy bear celebration parade, sugar rush crescendo, rainbow sprinkle cascade, epic cotton candy symphony",
+    duration: 5,
+    settingSuffix: "big_win",
+  },
+  bonusTriggerSound: {
+    prompt: "Candy factory power-up with swirling lollipops accelerating, bubblegum bubble growing to massive burst, sugar energy surge building to climax",
+    duration: 4,
+    settingSuffix: "bonus_trigger",
+  },
+  bonusWinSound: {
+    prompt: "Epic candy kingdom celebration with sugar symphony orchestra, gummy bear fanfare, rainbow sprinkle cascade, massive lollipop fireworks finale",
+    duration: 5,
+    settingSuffix: "bonus_win",
+  },
+  scatterSound1: {
+    prompt: "Single candy wrapper crinkle unwrap with sweet sparkle chime, bubblegum stretch and soft pop",
+    duration: 1.5,
+    settingSuffix: "scatter_1",
+  },
+  scatterSound2: {
+    prompt: "Intensifying candy crinkle cascade with fizzy soda bubbles, multiple bubblegum pops building energy, sugar crystals rattling",
+    duration: 2,
+    settingSuffix: "scatter_2",
+  },
+  scatterSound3: {
+    prompt: "Ultimate candy explosion burst with massive bubblegum pop, sugar firework crackle, rainbow sprinkle shower climax, sweet maximum power",
+    duration: 2.5,
+    settingSuffix: "scatter_3",
+  },
+  scatterCelebrationSound: {
+    prompt: "Grand candy land gates opening with rainbow sugar burst, whimsical music box fanfare, cotton candy cloud explosion, sweet kingdom free spins celebration",
+    duration: 4,
+    settingSuffix: "scatter_celebration",
+  },
+};
+
+const GAME_SOUND_MAPS: Record<string, Record<string, SoundDef>> = {
+  "gates-of-olympus": GATES_SOUNDS,
+  "fedesvin-bonanza": BONANZA_SOUNDS,
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -121,7 +186,8 @@ serve(async (req) => {
       );
     }
 
-    const soundDef = GATES_SOUNDS[soundType];
+    const soundMap = GAME_SOUND_MAPS[gameId] || GATES_SOUNDS;
+    const soundDef = soundMap[soundType];
     if (!soundDef) {
       return new Response(
         JSON.stringify({ error: `Unknown soundType: ${soundType}` }),

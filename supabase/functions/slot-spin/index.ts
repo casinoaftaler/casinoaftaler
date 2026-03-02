@@ -843,12 +843,12 @@ async function calculateBonanzaFullSpin(
       const cols = [0, 1, 2, 3, 4, 5];
       // Pick 4 random columns
       for (let i = cols.length - 1; i > 0; i--) {
-        const j = Math.floor(prng.next() * (i + 1));
+        const j = Math.floor(await prng.next() * (i + 1));
         [cols[i], cols[j]] = [cols[j], cols[i]];
       }
       const chosen = cols.slice(0, 4);
       for (const col of chosen) {
-        const row = Math.floor(prng.next() * BONANZA_ROWS);
+        const row = Math.floor(await prng.next() * BONANZA_ROWS);
         grid[col][row] = scatterSymbol.id;
       }
     }

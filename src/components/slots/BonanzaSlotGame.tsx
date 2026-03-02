@@ -303,18 +303,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           await new Promise(r => setTimeout(r, 200));
         }
 
+        // Clear animations after gravity has had time to render
+        await new Promise(r => setTimeout(r, 100));
         setCellAnimStates(new Map());
         setCellDropOffsets(new Map());
       } else {
-        // No win step
-        // Fizzle any bombs present on non-winning tumble
-        if (step.multiplierBombs && step.multiplierBombs.length > 0) {
-          const fizzleAnims = new Map<number, BonanzaCellAnimState>();
-          for (const bomb of step.multiplierBombs) fizzleAnims.set(bomb.position, 'bomb-fizzle');
-          setCellAnimStates(fizzleAnims);
-          await new Promise(r => setTimeout(r, 600));
-          setCellAnimStates(new Map());
-        }
+        // No win step — bombs sit silently, no tease
         await new Promise(r => setTimeout(r, 300));
       }
     }
