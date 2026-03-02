@@ -301,12 +301,11 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           setTimeout(() => setScreenShake('none'), 400);
         }
         await new Promise(r => setTimeout(r, 400));
-        // After animation, mark as exploded so it stays hidden
+        // Immediately show exploded decal after animation
         explodedPositions.set(bomb.position, 'bomb-exploded');
       }
-      // Keep exploded decals visible — they persist until next spin
+      // Keep exploded decals visible
       setCellAnimStates(new Map(explodedPositions));
-      await new Promise(r => setTimeout(r, 500));
     }
 
     // Don't clear bomb-exploded states — they stay until next spin
