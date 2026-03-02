@@ -23,6 +23,7 @@ import {
   ShoppingCart,
   TrendingUp,
   RefreshCw,
+  Layers,
 } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
@@ -508,35 +509,35 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   }
 
   // ── BLACKJACK CLUSTER: unique per-page related guides ──
-  if (path === "/casinospil/blackjack/martingale-blackjack") {
+  if (path === "/casinospil/blackjack/martingale") {
     return {
       guides: [
         { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Komplet guide til regler og strategi" },
-        { to: "/casinospil/blackjack/fibonacci-blackjack", label: "Fibonacci Blackjack", icon: BarChart3, desc: "Blødere progression end Martingale" },
-        { to: "/casinospil/blackjack/dalembert-blackjack", label: "D'Alembert Blackjack", icon: BookOpen, desc: "Konservativ indsatsstyring" },
+        { to: "/casinospil/blackjack/fibonacci", label: "Fibonacci Blackjack", icon: BarChart3, desc: "Blødere progression end Martingale" },
+        { to: "/casinospil/blackjack/dalembert", label: "D'Alembert Blackjack", icon: BookOpen, desc: "Konservativ indsatsstyring" },
         { to: "/casinospil/roulette/martingale-roulette", label: "Martingale Roulette", icon: TrendingUp, desc: "Sammenlign med roulette-versionen" },
       ],
       subtitle: "Udforsk alternative blackjack-strategier og sammenlign med roulette.",
     };
   }
 
-  if (path === "/casinospil/blackjack/fibonacci-blackjack") {
+  if (path === "/casinospil/blackjack/fibonacci") {
     return {
       guides: [
         { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Regler, odds og basic strategy" },
-        { to: "/casinospil/blackjack/martingale-blackjack", label: "Martingale Blackjack", icon: TrendingUp, desc: "Aggressiv dobling som alternativ" },
-        { to: "/casinospil/blackjack/dalembert-blackjack", label: "D'Alembert Blackjack", icon: BookOpen, desc: "Gradvis progression" },
+        { to: "/casinospil/blackjack/martingale", label: "Martingale Blackjack", icon: TrendingUp, desc: "Aggressiv dobling som alternativ" },
+        { to: "/casinospil/blackjack/dalembert", label: "D'Alembert Blackjack", icon: BookOpen, desc: "Gradvis progression" },
         { to: "/casinospil/roulette/fibonacci-roulette", label: "Fibonacci Roulette", icon: BarChart3, desc: "Fibonacci anvendt på roulette" },
       ],
       subtitle: "Sammenlign Fibonacci med andre systemer og se forskellen på blackjack vs. roulette.",
     };
   }
 
-  if (path === "/casinospil/blackjack/dalembert-blackjack") {
+  if (path === "/casinospil/blackjack/dalembert") {
     return {
       guides: [
         { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Komplet blackjack-strategi" },
-        { to: "/casinospil/blackjack/martingale-blackjack", label: "Martingale Blackjack", icon: TrendingUp, desc: "Mere aggressiv progression" },
+        { to: "/casinospil/blackjack/martingale", label: "Martingale Blackjack", icon: TrendingUp, desc: "Mere aggressiv progression" },
         { to: "/casinospil/blackjack/amerikansk-blackjack", label: "Amerikansk Blackjack", icon: Star, desc: "Populær variant med hole card" },
         { to: "/casinospil/roulette/dalembert-roulette", label: "D'Alembert Roulette", icon: BarChart3, desc: "D'Alembert på roulette-bordet" },
       ],
@@ -549,7 +550,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       guides: [
         { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Alle blackjack-regler og strategier" },
         { to: "/casinospil/blackjack/europaeisk-blackjack", label: "Europæisk Blackjack", icon: Star, desc: "Ingen hole card – ændret strategi" },
-        { to: "/casinospil/blackjack/double-exposure", label: "Double Exposure", icon: Zap, desc: "Begge dealer-kort synlige" },
+        { to: "/casinospil/blackjack/double-exposure-blackjack", label: "Double Exposure", icon: Zap, desc: "Begge dealer-kort synlige" },
         { to: "/casinospil/blackjack/spanish-21", label: "Spanish 21", icon: Trophy, desc: "Ingen 10'ere – flere bonusregler" },
       ],
       subtitle: "Sammenlign amerikansk blackjack med andre varianter.",
@@ -561,14 +562,14 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       guides: [
         { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Komplet oversigt over regler" },
         { to: "/casinospil/blackjack/amerikansk-blackjack", label: "Amerikansk Blackjack", icon: Star, desc: "Hole card-reglen sammenlignet" },
-        { to: "/casinospil/blackjack/double-exposure", label: "Double Exposure", icon: Zap, desc: "Begge kort åbne – unik variant" },
-        { to: "/casinospil/blackjack/martingale-blackjack", label: "Martingale Blackjack", icon: TrendingUp, desc: "Progression til europæisk blackjack" },
+        { to: "/casinospil/blackjack/double-exposure-blackjack", label: "Double Exposure", icon: Zap, desc: "Begge kort åbne – unik variant" },
+        { to: "/casinospil/blackjack/martingale", label: "Martingale Blackjack", icon: TrendingUp, desc: "Progression til europæisk blackjack" },
       ],
       subtitle: "Udforsk forskelle mellem europæisk og andre blackjack-varianter.",
     };
   }
 
-  if (path === "/casinospil/blackjack/double-exposure") {
+  if (path === "/casinospil/blackjack/double-exposure-blackjack") {
     return {
       guides: [
         { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Grundlæggende regler og odds" },
@@ -584,7 +585,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [
         { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Alle regler og strategier" },
-        { to: "/casinospil/blackjack/double-exposure", label: "Double Exposure", icon: Zap, desc: "Anden alternativ blackjack-variant" },
+        { to: "/casinospil/blackjack/double-exposure-blackjack", label: "Double Exposure", icon: Zap, desc: "Anden alternativ blackjack-variant" },
         { to: "/casinospil/blackjack/europaeisk-blackjack", label: "Europæisk Blackjack", icon: Star, desc: "Klassisk no-hole-card variant" },
         { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser til blackjack-spil" },
       ],
@@ -598,7 +599,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       guides: [
         casinospilHub,
         { to: "/casinospil/blackjack/amerikansk-blackjack", label: "Amerikansk Blackjack", icon: Star, desc: "Den mest populære variant" },
-        { to: "/casinospil/blackjack/martingale-blackjack", label: "Martingale Blackjack", icon: TrendingUp, desc: "Progressionsstrategi til blackjack" },
+        { to: "/casinospil/blackjack/martingale", label: "Martingale Blackjack", icon: TrendingUp, desc: "Progressionsstrategi til blackjack" },
         { to: "/live-casino/blackjack", label: "Live Blackjack", icon: Tv, desc: "Spil med live dealere" },
         { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser med blackjack-bidrag" },
       ],
@@ -725,7 +726,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       "Udforsk andre casino-guides og casinospil.",
     ];
     return {
-      guides: [...siblings, crossCluster].slice(0, MAX_SIBLINGS + MAX_CROSS_CLUSTER),
+      guides: [{ to: "/casinoer", label: "Alle Casinoer", icon: Layers, desc: "Komplet hub for alle casino-kategorier" }, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
       subtitle: subtitles[currentIndex >= 0 ? currentIndex % 3 : 0],
     };
   }
