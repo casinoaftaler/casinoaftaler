@@ -609,17 +609,28 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       {/* Main game grid */}
       <div
         className={cn(
-          "relative rounded-xl border-2 overflow-hidden",
+          "relative rounded-xl border-2",
           "bg-gradient-to-b from-pink-950/80 via-fuchsia-950/70 to-pink-950/80",
           "border-pink-500/30",
           screenShake === 'normal' && "bonanza-shake",
           screenShake === 'intense' && "bonanza-shake-intense",
         )}
-        style={{ width: gridWidth, height: gridHeight }}
+        style={{ width: gridWidth, height: gridHeight, overflow: 'clip' }}
       >
+        {/* Static vertical reel dividers — rendered first, behind columns */}
+        {Array.from({ length: BONANZA_COLS - 1 }).map((_, i) => (
+          <div
+            key={`divider-${i}`}
+            className="absolute top-0 bottom-0 w-px bg-pink-400/20 pointer-events-none"
+            style={{
+              left: SYMBOL_GAP + (i + 1) * (SYMBOL_WIDTH + SYMBOL_GAP) - SYMBOL_GAP / 2,
+              zIndex: 0,
+            }}
+          />
+        ))}
         <div
           className="relative flex"
-          style={{ gap: `${SYMBOL_GAP}px`, padding: `${SYMBOL_GAP}px` }}
+          style={{ gap: `${SYMBOL_GAP}px`, padding: `${SYMBOL_GAP}px`, zIndex: 1 }}
         >
           {Array.from({ length: BONANZA_COLS }).map((_, col) => {
             const colSymbolIds = grid ? grid[col] || [] : [];
@@ -640,14 +651,6 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
               />
             );
           })}
-          {/* Static vertical reel dividers — absolutely positioned so animations can't move them */}
-          {Array.from({ length: BONANZA_COLS - 1 }).map((_, i) => (
-            <div
-              key={`divider-${i}`}
-              className="absolute top-0 bottom-0 w-px bg-pink-400/20 pointer-events-none"
-              style={{ left: SYMBOL_GAP + (i + 1) * (SYMBOL_WIDTH + SYMBOL_GAP) - SYMBOL_GAP / 2 }}
-            />
-          ))}
         </div>
       </div>
 
