@@ -101,3 +101,6 @@ verify_jwt = false
 
 [functions.bonus-hunt-auto-settle]
 verify_jwt = false
+
+[functions.archive-monthly-tournament]
+verify_jwt = false

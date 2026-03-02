@@ -1,8 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Trophy, Crown } from "lucide-react";
+import { Trophy, Crown, ChevronRight, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { useTournamentCountdown } from "@/hooks/useTournamentCountdown";
 import "@/styles/community-micro.css";
 
 interface LeaderboardEntry {
@@ -43,6 +45,7 @@ export function SidebarLeaderboard() {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
   const [visible, setVisible] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
+  const countdown = useTournamentCountdown();
 
   useEffect(() => {
     async function fetch() {
@@ -82,8 +85,6 @@ export function SidebarLeaderboard() {
     fetch();
   }, []);
 
-  // Visibility is immediate for sidebar items
-
   if (entries.length === 0) return null;
 
   const medals = ["🥇", "🥈", "🥉", "4.", "5."];
@@ -119,7 +120,15 @@ export function SidebarLeaderboard() {
         <Trophy className="h-4 w-4 text-amber-400" />
         <h3 className="text-sm font-bold text-foreground">Månedsturnering</h3>
       </div>
-      <p className="text-[11px] text-muted-foreground mb-3">Top 5 spillere</p>
+
+      {/* Countdown + subtitle row */}
+      <div className="flex items-center justify-between mb-3">
+        <p className="text-[11px] text-muted-foreground">Top 5 spillere</p>
+        <div className="flex items-center gap-1 text-[10px] text-muted-foreground font-mono">
+          <Clock className="h-3 w-3" />
+          <span>{countdown.label}</span>
+        </div>
+      </div>
 
       <ul className="space-y-1.5">
         {entries.map((entry, i) => {
@@ -191,6 +200,18 @@ export function SidebarLeaderboard() {
           return content;
         })}
       </ul>
+
+      {/* "Se alle" button */}
+      <Link to="/community/leaderboard" className="block no-underline mt-3">
+        <Button
+          variant="ghost"
+          className="w-full text-xs text-muted-foreground hover:text-foreground border border-border/50 hover:border-border"
+          size="sm"
+        >
+          Se alle
+          <ChevronRight className="h-3 w-3 ml-1" />
+        </Button>
+      </Link>
     </div>
   );
 }

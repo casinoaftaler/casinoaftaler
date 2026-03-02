@@ -1166,6 +1166,42 @@ export type Database = {
           },
         ]
       }
+      monthly_tournament_archives: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          month: string
+          top_entries: Json
+          winner_avatar_url: string | null
+          winner_display_name: string
+          winner_user_id: string
+          winning_value: number
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          month: string
+          top_entries?: Json
+          winner_avatar_url?: string | null
+          winner_display_name: string
+          winner_user_id: string
+          winning_value?: number
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          month?: string
+          top_entries?: Json
+          winner_avatar_url?: string | null
+          winner_display_name?: string
+          winner_user_id?: string
+          winning_value?: number
+        }
+        Relationships: []
+      }
       news_generation_logs: {
         Row: {
           ai_model: string | null

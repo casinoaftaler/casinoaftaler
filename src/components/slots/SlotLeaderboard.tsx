@@ -5,8 +5,11 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Trophy, Medal, Award, Users, Search, Zap, Star, TrendingUp } from "lucide-react";
+import { Trophy, Medal, Award, Users, Search, Zap, Star, TrendingUp, Clock, History } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useTournamentCountdown } from "@/hooks/useTournamentCountdown";
+import { useMonthlyTournamentArchive } from "@/hooks/useMonthlyTournamentArchive";
 import {
   useSlotLeaderboard,
   getCategoryDisplayValue,
@@ -117,8 +120,11 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
   const theme = getSlotTheme(gameId);
   const { user } = useAuth();
   const [showFullList, setShowFullList] = useState(false);
+  const [showArchive, setShowArchive] = useState(false);
   const [category, setCategory] = useState<LeaderboardCategory>("total_points");
   const [searchQuery, setSearchQuery] = useState("");
+  const countdown = useTournamentCountdown();
+  const { data: archiveData } = useMonthlyTournamentArchive();
 
   const { data, isLoading } = useSlotLeaderboard(category);
 
@@ -148,6 +154,16 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
             </Badge>
           </CardTitle>
         </CardHeader>
+
+        {/* Countdown timer */}
+        <div className={cn("flex items-center justify-between px-6 py-2 border-b text-xs", theme.leaderboardHeaderBorder)}>
+          <div className="flex items-center gap-1.5 text-muted-foreground">
+            <Clock className="h-3.5 w-3.5" />
+            <span>Nulstilles om</span>
+          </div>
+          <span className="font-mono font-semibold text-foreground">{countdown.label}</span>
+        </div>
+
         <CardContent className="pt-3">
           {!user ? (
             <div className="text-center py-8">
@@ -298,6 +314,66 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
               <p className={theme.leaderboardEmptyText}>Ingen gevinster endnu</p>
               <p className={cn("text-sm", theme.leaderboardEmptySubtext)}>Vær den første på ranglisten!</p>
             </div>
+          )}
+
+          {/* Previous winners / archive */}
+          {archiveData && archiveData.length > 0 && (
+            <Dialog open={showArchive} onOpenChange={setShowArchive}>
+              <DialogTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className={cn("w-full mt-3 border text-xs", theme.leaderboardShowAllText, theme.leaderboardShowAllBorder)}
+                  size="sm"
+                >
+                  <History className="h-3.5 w-3.5 mr-1.5" />
+                  Tidligere vindere
+                </Button>
+              </DialogTrigger>
+              <DialogContent className={cn("max-w-md", theme.leaderboardDialogBorder, theme.leaderboardDialogBg)}>
+                <DialogHeader>
+                  <DialogTitle className={cn("flex items-center gap-2", theme.leaderboardDialogTitleText)}>
+                    <History className={cn("h-5 w-5", theme.leaderboardIconColor)} />
+                    Tidligere vindere
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                  {archiveData.map(({ month, entries: archEntries }) => {
+                    const monthDate = new Date(month + "T00:00:00");
+                    const monthName = monthDate.toLocaleDateString("da-DK", { month: "long", year: "numeric" });
+                    return (
+                      <div key={month}>
+                        <h4 className="text-sm font-semibold text-foreground capitalize mb-2">{monthName}</h4>
+                        <div className="space-y-1.5">
+                          {archEntries.map((arch) => (
+                            <div key={arch.id} className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-muted/30">
+                              <div className="flex items-center gap-1 w-20 shrink-0">
+                                {getCategoryIcon(arch.category as LeaderboardCategory)}
+                                <span className="text-[10px] text-muted-foreground truncate">
+                                  {getCategoryLabel(arch.category as LeaderboardCategory)}
+                                </span>
+                              </div>
+                              <Avatar className="h-6 w-6 shrink-0">
+                                <AvatarImage src={arch.winner_avatar_url || undefined} />
+                                <AvatarFallback className="text-[10px]">
+                                  {arch.winner_display_name.charAt(0).toUpperCase()}
+                                </AvatarFallback>
+                              </Avatar>
+                              <span className="text-xs font-medium text-foreground truncate flex-1">
+                                {arch.winner_display_name}
+                              </span>
+                              <span className="text-xs font-mono font-semibold tabular-nums text-amber-400">
+                                {formatCategoryValue(arch.winning_value, arch.category as LeaderboardCategory)}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                        <Separator className="mt-3" />
+                      </div>
+                    );
+                  })}
+                </div>
+              </DialogContent>
+            </Dialog>
           )}
         </CardContent>
       </Card>
