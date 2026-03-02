@@ -32,6 +32,11 @@ import {
   Shield,
   Award,
   Shuffle,
+  Calculator,
+  Percent,
+  Trophy,
+  Landmark,
+  Flame,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/three-card-poker-hero.jpg";
@@ -98,6 +103,16 @@ const faqs: { question: string; answer: ReactNode }[] = [
     answer:
       "Nej, korttælling er ikke muligt i Three Card Poker, fordi hele bunken blandes efter hver hånd (både i RNG og live format). Til forskel fra blackjack, hvor kort deles fra en shoe over flere hænder, starter Three Card Poker med en frisk bunke hver gang. Der er ingen informationsfordel at opnå fra tidligere hænder.",
   },
+  {
+    question: "Hvad er forskellen mellem RNG og live Three Card Poker?",
+    answer:
+      "RNG (Random Number Generator) Three Card Poker bruger en computeralgoritme til at generere tilfældige kort, mens live Three Card Poker bruger en rigtig dealer med fysiske kort, streamet via HD-video. Begge formater har identiske regler og odds. Live-formatet tilbyder en mere autentisk casinooplevelse med social interaktion, mens RNG er hurtigere (flere hænder pr. time) og ofte har lavere minimumsindsatser.",
+  },
+  {
+    question: "Hvad er Ante Bonus i Three Card Poker?",
+    answer:
+      "Ante Bonus er en automatisk bonus, der udbetales uanset om dealeren kvalificerer eller ej. Du modtager 1:1 for en Straight, 4:1 for Three of a Kind, og 5:1 for en Straight Flush. Denne bonus reducerer den effektive house edge og er en af grundene til, at Ante/Play-komboen er mere attraktiv end mange andre casinospil. Ante Bonus er inkluderet i den 3,37 % house edge-beregning.",
+  },
 ];
 
 const ThreeCardPokerGuide = () => {
@@ -139,14 +154,14 @@ const ThreeCardPokerGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="32 Min." />
+        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="40 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Three Card Poker-bord i elegant casino med dealer og kort" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
         {/* ═══════════════════════════════════════════════════════════════
-            SECTION 1 – Arketype C: Segment First – Hvem spiller?
+            SECTION 1 – Segment First – Hvem spiller?
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
@@ -162,8 +177,11 @@ const ThreeCardPokerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Jackpot-jægeren:</strong> Pair Plus-indsatsen tilbyder udbetalinger op til 40:1 for en straight flush og varianter med progressive jackpots, der kan ramme seks- og syvcifrede beløb. Hvis du elsker den adrenalin, der kommer med muligheden for en massiv udbetaling fra en lille indsats, er Pair Plus designet til dig. Dog bør du være opmærksom på house edge (se vores analyse nedenfor).
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Den strategiske spiller:</strong> Selvom Three Card Poker er simplere end Hold'em, er der stadig edge-optimering at hente. At vælge det rigtige bord (Pair Plus-udbetalingstabel), kombinere Ante/Play med Pair Plus korrekt, og udnytte bonus-strukturer fra dit <Link to="/casino-bonus" className={linkClass}>casino</Link> kan reducere den effektive house edge betydeligt. For denne spillertype handler det om at finde de bedste vilkår og spille disciplineret.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Historisk kontekst:</strong> Three Card Poker blev opfundet i 1994 af Derek Webb, en britisk pokerspiller, der ønskede at skabe et casinobordspil med pokerens appel men casinoets tilgængelighed. Spillet var oprindeligt kendt som "Brit-Brag" og blev hurtigt det mest succesrige nye casinobordspil i årtier. I dag er Three Card Poker tilgængeligt i praktisk talt hvert casino i verden – fra Las Vegas til Macau, fra London til København.
           </p>
         </section>
 
@@ -278,8 +296,11 @@ const ThreeCardPokerGuide = () => {
             </CardContent>
           </Card>
 
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Hvorfor er rækkefølgen anderledes?</strong> I 5-korts poker er Three of a Kind sjældnere end en Straight, fordi der er flere kombinationsmuligheder. Med kun tre kort vender dette: der er kun 52 måder at lave Three of a Kind (4 for hver rang × 13 rangen) mod 720 Straights. Derudover er en Flush med tre kort lettere at ramme end en Straight, fordi du kan have vilkårlige tre kort i samme kulør. Denne ændrede sandsynlighed dikterer den ændrede rangering.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Mini Royal Flush:</strong> Nogle Three Card Poker-varianter inkluderer en "Mini Royal Flush" (A-K-Q suited) som den højeste hånd med en separat bonusudbetaling. I standard Three Card Poker er Mini Royal blot den bedste Straight Flush, men i visse live casino-versioner betaler den en separat jackpot – typisk 50:1 eller endda en progressiv jackpot. Tjek spillets regler for at se, om denne variant er tilgængelig.
           </p>
         </section>
 
@@ -344,7 +365,61 @@ const ThreeCardPokerGuide = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
-            SECTION 5 – House Edge analyse
+            SECTION 5 – Dealer Qualifying Matematik
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Calculator className="h-7 w-7 text-primary" />
+            Dealer-Qualifying Matematik – Hvad Betyder Q-High?
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Et centralt element i Three Card Poker er, at dealeren skal have Queen-high eller bedre for at "kvalificere". Hvis dealeren ikke kvalificerer, vinder du kun 1:1 på Ante (Play pushes). Denne mekanik har en dyb indflydelse på spillets dynamik og forklarer, hvorfor du skal raise med relativt svage hænder.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Hvor ofte kvalificerer dealeren?</strong> Dealeren kvalificerer ca. 66,4 % af tiden (to ud af tre hænder). Det betyder, at i ca. 33,6 % af hænderne – altså hver tredje hånd – vinder du kun 1:1 på Ante uanset din hånds styrke. Denne frekvens er beregnet ud fra de 22.100 mulige 3-korts kombinationer fra en 52-korts bunke.
+          </p>
+
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Percent className="h-5 w-5 text-primary" />
+                Dealer Qualifying Sandsynligheder
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 text-left font-semibold">Dealer har</th>
+                      <th className="py-2 text-left font-semibold">Sandsynlighed</th>
+                      <th className="py-2 text-left font-semibold">Konsekvens for dig</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b"><td className="py-2 font-semibold">Under Q-high</td><td className="py-2">33,6 %</td><td className="py-2">Ante 1:1, Play push</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Q-high til A-high</td><td className="py-2">41,8 %</td><td className="py-2">Normal sammenligning</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Pair</td><td className="py-2">16,9 %</td><td className="py-2">Normal sammenligning</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Flush</td><td className="py-2">5,0 %</td><td className="py-2">Normal sammenligning</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Straight</td><td className="py-2">3,3 %</td><td className="py-2">Normal sammenligning</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Three of a Kind</td><td className="py-2">0,24 %</td><td className="py-2">Normal sammenligning</td></tr>
+                    <tr><td className="py-2 font-semibold">Straight Flush</td><td className="py-2">0,22 %</td><td className="py-2">Normal sammenligning</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Strategisk implikation:</strong> Fordi dealeren ikke kvalificerer i over en tredjedel af hænderne, får du "gratis" gevinster med selv svage hænder. Det er derfor, at Q-6-4-strategien er korrekt – selv en svag Queen-high vinder automatisk 1:1 på Ante i 33,6 % af tilfældene, hvor dealeren ikke kvalificerer. Denne "gratis" gevinst kompenserer for de gange, hvor dealeren kvalificerer og slår dig.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>EV-beregning for grænse-hænder:</strong> Med Q-6-4 er din forventede værdi (EV) for Play-indsatsen marginalt positiv: ca. +0,004 units per hånd. Med Q-6-3 er den marginalt negativ: ca. -0,002 units. Denne mikroskopiske forskel akkumuleres over tusindvis af hænder – over 10.000 hænder er forskellen ca. 60 kr. med en 100 kr. Ante. Det lyder småt, men det er forskellen mellem at spille optimalt og at give casinoet en unødvendig fordel.
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 6 – House Edge analyse
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
@@ -373,20 +448,100 @@ const ThreeCardPokerGuide = () => {
                     <tr className="border-b"><td className="py-2 font-semibold"><Link to="/casinospil/craps" className={linkClass}>Craps</Link> (Pass Line)</td><td className="py-2">1,41 %</td><td className="py-2">Lav</td><td className="py-2">Moderat</td></tr>
                     <tr className="border-b"><td className="py-2 font-semibold"><Link to="/casinospil/roulette/europaeisk-roulette" className={linkClass}>Roulette</Link> (Europæisk)</td><td className="py-2">2,70 %</td><td className="py-2">Ingen</td><td className="py-2">Langsom</td></tr>
                     <tr className="border-b bg-muted/30"><td className="py-2 font-bold">Three Card Poker (Ante)</td><td className="py-2 font-bold">3,37 %</td><td className="py-2 font-bold">Meget lav</td><td className="py-2 font-bold">Hurtig</td></tr>
-                    <tr><td className="py-2 font-semibold">Three Card Poker (Pair Plus)</td><td className="py-2">2,32-7,28 %</td><td className="py-2">Ingen</td><td className="py-2">Hurtig</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Three Card Poker (Pair Plus A)</td><td className="py-2">2,32 %</td><td className="py-2">Ingen</td><td className="py-2">Hurtig</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold"><Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud</Link></td><td className="py-2">5,22 %</td><td className="py-2">Moderat</td><td className="py-2">Langsom</td></tr>
+                    <tr><td className="py-2 font-semibold"><Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link> (9/6 JoB)</td><td className="py-2">0,46 %</td><td className="py-2">Høj</td><td className="py-2">Hurtig</td></tr>
                   </tbody>
                 </table>
               </div>
             </CardContent>
           </Card>
 
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Three Card Poker har en højere house edge end blackjack og baccarat, men kompenserer med ekstremt lav strategikompleksitet og hurtig handling. Hvis din primære motivation er at minimere husets fordel, er blackjack det bedre valg. Men hvis du vil have et simpelt, actionfyldt bordspil med mulighed for store Pair Plus-udbetalinger, er Three Card Poker en fremragende mulighed.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Bemærk:</strong> Pair Plus med Tabel A (2,32 %) har faktisk lavere house edge end Ante/Play (3,37 %). Det kan virke kontraintuitivt, men Pair Plus er en ren lotteriindsats uden strategisk element – du vinder eller taber baseret på dine kort alene. For spillere, der primært ønsker underholdning med lavest mulig house edge, kan "kun Pair Plus" med Tabel A faktisk være den bedste tilgang. Dog mister du Ante Bonus-elementet, som tilføjer spænding.
           </p>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
-            SECTION 6 – Live Casino varianter
+            SECTION 7 – 6 Card Bonus Deep Dive
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Flame className="h-7 w-7 text-primary" />
+            6 Card Bonus – Sideindsats Under Luppen
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            6 Card Bonus er en populær sideindsats i Three Card Poker, der kombinerer dine tre kort med dealerens tre kort til den bedste 5-korts pokerhånd. Det er en rent varians-baseret indsats med høj house edge, men den tilbyder mulighed for massive udbetalinger fra små indsatser.
+          </p>
+
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Trophy className="h-5 w-5 text-primary" />
+                6 Card Bonus Udbetalingstabel
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 text-left font-semibold">Hånd</th>
+                      <th className="py-2 text-left font-semibold">Standard</th>
+                      <th className="py-2 text-left font-semibold">Premium</th>
+                      <th className="py-2 text-left font-semibold">Sandsynlighed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b"><td className="py-2 font-semibold">Royal Flush</td><td className="py-2">1.000:1</td><td className="py-2">1.000:1</td><td className="py-2">0,0032 %</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Straight Flush</td><td className="py-2">200:1</td><td className="py-2">200:1</td><td className="py-2">0,028 %</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Four of a Kind</td><td className="py-2">100:1</td><td className="py-2">50:1</td><td className="py-2">0,048 %</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Full House</td><td className="py-2">20:1</td><td className="py-2">20:1</td><td className="py-2">0,17 %</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Flush</td><td className="py-2">15:1</td><td className="py-2">10:1</td><td className="py-2">0,20 %</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Straight</td><td className="py-2">10:1</td><td className="py-2">5:1</td><td className="py-2">0,39 %</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Three of a Kind</td><td className="py-2">7:1</td><td className="py-2">5:1</td><td className="py-2">2,11 %</td></tr>
+                    <tr className="border-b border-t-2"><td className="py-2 font-bold">House Edge</td><td className="py-2 font-bold">10,4 %</td><td className="py-2 font-bold text-destructive">17,2 %</td><td className="py-2">–</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Er 6 Card Bonus det værd?</strong> Med en house edge på 10-17 % er svaret klart: <strong>nej, for den disciplinerede spiller</strong>. Over 1.000 hænder med en 25 kr. 6 Card Bonus-indsats taber du statistisk 2.600-4.300 kr. Det er en sideindsats designet til at generere revenue for casinoet, ikke værdi for spilleren. Den eneste undtagelse er, hvis 6 Card Bonus er knyttet til en progressiv jackpot, der har akkumuleret til et niveau, der gør den +EV (se progressiv jackpot-analyse nedenfor).
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Hvornår er 6 Card Bonus acceptable?</strong> Kun som underholdning med et meget lille beløb (f.eks. minimum indsats), hvor du eksplicit accepterer den høje house edge til gengæld for muligheden for en stor udbetaling. Sæt aldrig mere end 5 % af din session-bankroll på 6 Card Bonus. Og husk: uanset udfaldet af 6 Card Bonus påvirker det ikke dine Ante/Play eller Pair Plus-resultater.
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 8 – Progressive Jackpot Analyse
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <TrendingUp className="h-7 w-7 text-primary" />
+            Progressiv Jackpot – Matematisk Break-Even Analyse
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Mange Three Card Poker-borde tilbyder en progressiv jackpot-sideindsats, typisk knyttet til Pair Plus eller 6 Card Bonus. Den progressive jackpot vokser med hver indsats og udbetales ved sjældne hænder som Mini Royal (A-K-Q suited). Spørgsmålet er: hvornår er den progressive jackpot stor nok til at retfærdiggøre indsatsen?
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Break-even beregning:</strong> For en typisk progressiv jackpot knyttet til Pair Plus, hvor Mini Royal (A-K-Q suited) vinder hele jackpotten, er sandsynligheden for at ramme Mini Royal ca. 1 i 460 (4 suits × C(13,3) mulige 3-korts kombinationer, men kun A-K-Q i en specifik suit). Med en $1 sideindsats og en base house edge på ~3,37 %, skal jackpotten være mindst $435 for at bringe den samlede EV til break-even. Over dette niveau er indsatsen teoretisk +EV.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Vigtig advarsel:</strong> Selvom jackpotten er over break-even-niveauet, er variansen astronomisk. Du kan spille 10.000 hænder uden at ramme Mini Royal – det er forventeligt. Den progressive jackpot er kun +EV i gennemsnittet over uendeligt mange hænder. For en enkeltsession er den altid en gamble. Overvej den progressive jackpot som en "lotteri-tilføjelse" til din Three Card Poker-session, ikke som en investering.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Praktisk anbefaling:</strong> Tjek jackpottens størrelse før du sætter dig ved bordet. Hvis den er under break-even (~435 gange din sideindsats), er det matematisk forkert at spille den. Hvis den er over, kan du tilføje den som en lille ekstra indsats (aldrig mere end 10 % af din totale indsats per hånd). Og husk: den progressive indsats ændrer ikke dine odds på Ante/Play eller standard Pair Plus.
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 9 – Live Casino varianter
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
@@ -399,13 +554,101 @@ const ThreeCardPokerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Fordele ved live Three Card Poker:</strong> Autentisk casinoatmosfære fra din sofa, social interaktion via chat, mulighed for at se dealeren blande og dele kort i realtid (eliminerer tvivl om fairness), og typisk adgang til bedre Pair Plus-tabeller end RNG-versioner. De fleste live-borde accepterer indsatser fra 10-5.000 kr.
           </p>
+
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Eye className="h-5 w-5 text-primary" />
+                Live vs. RNG Three Card Poker
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 text-left font-semibold">Parameter</th>
+                      <th className="py-2 text-left font-semibold">Live Casino</th>
+                      <th className="py-2 text-left font-semibold">RNG (Software)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b"><td className="py-2 font-semibold">Hænder/time</td><td className="py-2">30-40</td><td className="py-2">80-120</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Min. indsats</td><td className="py-2">10-50 kr.</td><td className="py-2">1-10 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Max. indsats</td><td className="py-2">5.000-50.000 kr.</td><td className="py-2">1.000-5.000 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Fairness</td><td className="py-2">Synlige kort + licens</td><td className="py-2">RNG-certificeret</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Social interaktion</td><td className="py-2">Chat med dealer</td><td className="py-2">Ingen</td></tr>
+                    <tr className="border-b"><td className="py-2 font-semibold">Forventet tab/time</td><td className="py-2">Lavere (færre hænder)</td><td className="py-2">Højere (flere hænder)</td></tr>
+                    <tr><td className="py-2 font-semibold">Tilgængelighed</td><td className="py-2">Begrænset til åbne borde</td><td className="py-2">Altid tilgængeligt</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Tip til live-spil:</strong> Brug auto-play funktionen sparsomt – den kan øge dit tempo og dermed din eksponering mod house edge. Tag dig tid til at evaluere hver hånd mod Q-6-4-grænsen. I live-format har du typisk 15-20 sekunder pr. beslutning, hvilket er mere end rigeligt.
+          </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Tip til live-spil:</strong> Brug auto-play funktionen sparsomt – den kan øge dit tempo og dermed din eksponering mod house edge. Tag dig tid til at evaluere hver hånd mod Q-6-4-grænsen. I live-format har du typisk 15-20 sekunder pr. beslutning, hvilket er mere end rigeligt. Nyd tempoet og undgå at chase tab. Hvis du er ny til live-formatet, kan du starte med at observere nogle hænder, før du sætter penge på bordet. Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
+            <strong>Forventet tab sammenligning:</strong> Med en 100 kr. Ante i live casino (35 hænder/time) er dit forventede tab ca. 118 kr./time. Samme indsats i RNG (100 hænder/time) giver et forventet tab på ca. 337 kr./time. Det langsommere live-tempo er dermed en fordel for din bankroll – selvom house edge er identisk, spiller du færre hænder og mister derfor mindre per time. Husk altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
           </p>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
-            SECTION 7 – Matematisk EV-model
+            SECTION 10 – Bankroll Management
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Shield className="h-7 w-7 text-primary" />
+            Bankroll Management for Three Card Poker
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Korrekt bankroll management er afgørende for at nyde Three Card Poker uden at risikere mere, end du har råd til at tabe. Her giver vi konkrete retningslinjer baseret på matematiske modeller for variansen i Three Card Poker.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Session-bankroll:</strong> Vi anbefaler en session-bankroll på minimum 30-40 × din Ante-indsats. Med en 100 kr. Ante bør du medbringe 3.000-4.000 kr. til en session. Dette giver dig nok buffer til at overleve de naturlige downswings, der forekommer i enhver casinosession. Husk: med 3,37 % house edge og standard afvigelse på ~1,6 units per hånd kan du nemt tabe 15+ hænder i træk.
+          </p>
+
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <TrendingUp className="h-5 w-5 text-primary" />
+                Session-Planlægning: 4 Scenarier
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 text-left font-semibold">Scenarie</th>
+                      <th className="py-2 text-left font-semibold">Ante</th>
+                      <th className="py-2 text-left font-semibold">Session-bankroll</th>
+                      <th className="py-2 text-left font-semibold">Spilletid (ca.)</th>
+                      <th className="py-2 text-left font-semibold">Forventet tab</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b"><td className="py-2">Lav risiko</td><td className="py-2">25 kr.</td><td className="py-2">1.000 kr.</td><td className="py-2">2-3 timer</td><td className="py-2">59-84 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Middel</td><td className="py-2">50 kr.</td><td className="py-2">2.000 kr.</td><td className="py-2">2-3 timer</td><td className="py-2">118-168 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Middel-høj</td><td className="py-2">100 kr.</td><td className="py-2">4.000 kr.</td><td className="py-2">2-3 timer</td><td className="py-2">236-337 kr.</td></tr>
+                    <tr><td className="py-2">Høj</td><td className="py-2">250 kr.</td><td className="py-2">10.000 kr.</td><td className="py-2">2-3 timer</td><td className="py-2">590-843 kr.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Stop-loss og stop-win:</strong> Sæt altid en stop-loss grænse før du begynder. Vi anbefaler 50 % af din session-bankroll som maksimalt tab (f.eks. 2.000 kr. af 4.000 kr.). Tilsvarende kan du sætte en stop-win grænse på 50-100 % af bankroll – hvis du har fordoblet din bankroll, er det et godt tidspunkt at stoppe og fejre gevinsten. Disse grænser er ikke matematisk nødvendige (house edge er konstant), men de hjælper med disciplin og nydelse.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Undgå Martingale:</strong> At fordoble indsatser efter tab (Martingale-systemet) virker ikke i Three Card Poker. House edge er konstant uanset indsatsstørrelse, og bordet har en maksimumsindsats, der forhindrer uendelig fordobling. Martingale øger kun din varians – det ændrer ikke din forventede gevinst. Hold din Ante konstant gennem hele sessionen for den mest disciplinerede tilgang.
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 11 – EV-Model
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
@@ -436,10 +679,12 @@ const ThreeCardPokerGuide = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b"><td className="py-2">Kun Ante (50 kr.)</td><td className="py-2">50 kr.</td><td className="py-2">–</td><td className="py-2">50</td><td className="py-2">84 kr.</td></tr>
-                    <tr className="border-b"><td className="py-2">Ante + PP (50+25 kr.)</td><td className="py-2">50 kr.</td><td className="py-2">25 kr. (Tabel A)</td><td className="py-2">50</td><td className="py-2">113 kr.</td></tr>
-                    <tr className="border-b"><td className="py-2">Ante + PP (100+50 kr.)</td><td className="py-2">100 kr.</td><td className="py-2">50 kr. (Tabel A)</td><td className="py-2">50</td><td className="py-2">227 kr.</td></tr>
-                    <tr><td className="py-2">Ante + PP (100+50 kr.)</td><td className="py-2">100 kr.</td><td className="py-2">50 kr. (Tabel C)</td><td className="py-2">50</td><td className="py-2">351 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Kun Ante – Live</td><td className="py-2">50 kr.</td><td className="py-2">–</td><td className="py-2">35</td><td className="py-2">59 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Kun Ante – RNG</td><td className="py-2">50 kr.</td><td className="py-2">–</td><td className="py-2">100</td><td className="py-2">169 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Ante + PP (Tabel A) – Live</td><td className="py-2">50 kr.</td><td className="py-2">25 kr.</td><td className="py-2">35</td><td className="py-2">79 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Ante + PP (Tabel A) – RNG</td><td className="py-2">50 kr.</td><td className="py-2">25 kr.</td><td className="py-2">100</td><td className="py-2">227 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Ante + PP (Tabel C) – Live</td><td className="py-2">100 kr.</td><td className="py-2">50 kr.</td><td className="py-2">35</td><td className="py-2">245 kr.</td></tr>
+                    <tr><td className="py-2">Ante + PP (Tabel C) – RNG</td><td className="py-2">100 kr.</td><td className="py-2">50 kr.</td><td className="py-2">100</td><td className="py-2">701 kr.</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -447,51 +692,129 @@ const ThreeCardPokerGuide = () => {
           </Card>
 
           <p className="text-muted-foreground leading-relaxed">
-            Disse tal viser tydeligt, hvorfor valg af Pair Plus-tabel er afgørende: med Tabel C (7,28 %) koster det dig 124 kr. mere pr. time end med Tabel A (2,32 %) ved identiske indsatser. Over en hel aften (4 timer) er det forskellen mellem 908 kr. og 1.404 kr. i forventet tab. Brug denne information til at vælge det rigtige casino og den rigtige bordvariant.
+            Disse tal viser tydeligt to ting: (1) Valg af Pair Plus-tabel er afgørende – Tabel C koster dig markant mere end Tabel A. (2) Live-tempo reducerer dit forventede tab med 60-65 % sammenlignet med RNG ved identiske indsatser. Over en hel aften (4 timer) med 100 kr. Ante + 50 kr. PP (Tabel C) er forskellen mellem live (980 kr. tab) og RNG (2.804 kr. tab) hele 1.824 kr. Vælg dine vilkår med omhu.
           </p>
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
-            SECTION 8 – Tips og fejl
+            SECTION 12 – Strategi-variationer
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Scale className="h-7 w-7 text-primary" />
+            Strategi-Variationer: Hvad Hvis Q-6-4 Føles For Simpelt?
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Q-6-4 er den matematisk optimale strategi, men der er variationer, som spillere bruger baseret på deres risikoappetit og spillestil. Her analyserer vi de mest populære alternative strategier og deres indvirkning på house edge.
+          </p>
+
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="py-2 text-left font-semibold">Strategi</th>
+                      <th className="py-2 text-left font-semibold">Raise-grænse</th>
+                      <th className="py-2 text-left font-semibold">House Edge</th>
+                      <th className="py-2 text-left font-semibold">Ekstra tab/1.000 hænder (100 kr.)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b bg-muted/30"><td className="py-2 font-bold">Optimal</td><td className="py-2 font-bold">Q-6-4+</td><td className="py-2 font-bold">3,37 %</td><td className="py-2 font-bold">Baseline</td></tr>
+                    <tr className="border-b"><td className="py-2">Konservativ</td><td className="py-2">K-high+</td><td className="py-2">4,28 %</td><td className="py-2">+910 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Ultra-konservativ</td><td className="py-2">Pair+</td><td className="py-2">7,65 %</td><td className="py-2">+4.280 kr.</td></tr>
+                    <tr className="border-b"><td className="py-2">Aggressiv</td><td className="py-2">J-high+</td><td className="py-2">4,52 %</td><td className="py-2">+1.150 kr.</td></tr>
+                    <tr><td className="py-2">Altid raise</td><td className="py-2">Alt</td><td className="py-2">7,74 %</td><td className="py-2">+4.370 kr.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Analyse:</strong> Den mest overraskende konklusion er, at "altid raise" og "kun raise med pair+" har næsten identisk house edge (~7,7 %). Det skyldes, at begge strategier afviger lige meget fra optimal – den ene i den aggressive retning, den anden i den konservative. Q-6-4 er det perfekte sweet spot. Den konservative K-high strategi koster dig "kun" 910 kr. ekstra per 1.000 hænder, men det er stadig unødvendigt: at lære Q-6-4-grænsen tager bogstaveligt talt 10 sekunder.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Q-6-4 er ikke-forhandlingsbar:</strong> Vi kan ikke understrege dette nok. Enhver afvigelse fra Q-6-4 koster dig penge. Den eneste acceptable variation er at spille Q-6-3 i stedet for Q-6-4 – EV-forskellen er så mikroskopisk (0,006 units/hånd), at den er irrelevant over en normal session. Men K-high eller pair+ strategier er målbart dårligere og bør undgås.
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 13 – Tips og fejl
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <AlertTriangle className="h-7 w-7 text-primary" />
-            5 Fatale Fejl – Og Hvordan du Undgår Dem
+            7 Fatale Fejl – Og Hvordan du Undgår Dem
           </h2>
 
           <div className="space-y-4 mb-6">
             <Card>
               <CardContent className="pt-4">
                 <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 1: Spille Pair Plus med dårlig udbetalingstabel</p>
-                <p className="text-sm text-muted-foreground">Mange spillere ignorerer udbetalingstabellen og spiller bare "Pair Plus". Tjek ALTID tabellen – forskellen kan være 5 procentpoint i house edge.</p>
+                <p className="text-sm text-muted-foreground">Mange spillere ignorerer udbetalingstabellen og spiller bare "Pair Plus". Tjek ALTID tabellen – forskellen kan være 5 procentpoint i house edge. Tabel C (7,28 %) koster dig over 3x mere end Tabel A (2,32 %).</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
                 <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 2: Folde Q-high hænder, der kvalificerer</p>
-                <p className="text-sm text-muted-foreground">Hænder som Q-7-2 skal raises, men mange spillere folder dem "fordi det kun er Queen-high". Det koster dig direkte EV.</p>
+                <p className="text-sm text-muted-foreground">Hænder som Q-7-2 skal raises, men mange spillere folder dem "fordi det kun er Queen-high". Det koster dig direkte EV – du mister de 33,6 % af hænderne, hvor dealeren ikke kvalificerer.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
                 <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 3: Raise med Jack-high</p>
-                <p className="text-sm text-muted-foreground">J-T-9 ser "stærk" ud, men det er et fold i Three Card Poker. Husk: Q-6-4 er grænsen, uanset hvor connected dine kort er.</p>
+                <p className="text-sm text-muted-foreground">J-T-9 ser "stærk" ud, men det er et fold i Three Card Poker. Husk: Q-6-4 er grænsen, uanset hvor connected dine kort er. Connectivity er irrelevant i Three Card Poker.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
                 <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 4: Chase tab med stigende indsatser</p>
-                <p className="text-sm text-muted-foreground">Three Card Poker har en fast house edge. At fordoble indsatser efter tab (Martingale) ændrer ikke din forventede gevinst – det øger kun din risiko for ruin.</p>
+                <p className="text-sm text-muted-foreground">Three Card Poker har en fast house edge. At fordoble indsatser efter tab (Martingale) ændrer ikke din forventede gevinst – det øger kun din risiko for ruin og kan tømme din bankroll på rekordtid.</p>
               </CardContent>
             </Card>
             <Card>
               <CardContent className="pt-4">
                 <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 5: Ignorere 6 Card Bonus house edge</p>
-                <p className="text-sm text-muted-foreground">6 Card Bonus har typisk 10-18 % house edge – den er designet til at uddræne din bankroll langsomt. Spil den kun, hvis du eksplicit jagter en progressiv jackpot.</p>
+                <p className="text-sm text-muted-foreground">6 Card Bonus har typisk 10-18 % house edge – den er designet til at uddræne din bankroll langsomt. Spil den kun med minimumsindsat, hvis du eksplicit jagter en progressiv jackpot over break-even.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-4">
+                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 6: Spille RNG i stedet for live uden at overveje tempoforskellen</p>
+                <p className="text-sm text-muted-foreground">RNG spiller 2-3x flere hænder pr. time end live. Med identisk house edge taber du 2-3x mere per time. Vælg live for at beskytte din bankroll og nyde oplevelsen.</p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="pt-4">
+                <p className="font-semibold mb-1 flex items-center gap-2"><XCircle className="h-4 w-4 text-destructive" /> Fejl 7: Forveksle Three Card Poker-håndrankering med standard poker</p>
+                <p className="text-sm text-muted-foreground">I Three Card Poker slår Three of a Kind en Straight, og Straight slår Flush. Mange spillere fra Hold'em antager standard rankering og missvurderer deres hånds styrke.</p>
               </CardContent>
             </Card>
           </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 14 – Dansk regulering
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Landmark className="h-7 w-7 text-primary" />
+            Three Card Poker i Danmark – Regulering & Tilgængelighed
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Three Card Poker er tilgængeligt for danske spillere under den danske spillelovgivning, reguleret af Spillemyndigheden. Alle operatører, der tilbyder Three Card Poker til danske spillere, skal have en gyldig dansk licens, der sikrer fairness, ansvarligt spil og spillerbeskyttelse.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Licenserede udbydere:</strong> De fleste store danske online casinoer tilbyder Three Card Poker i en eller anden form. Evolution Gaming er den dominerende leverandør af live Three Card Poker, mens softwareversioner leveres af diverse RNG-udbydere. Tjek altid, at casinoet har en gyldig Spillemyndigheden-licens (licens.telecom.dk), før du spiller.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Beskatning:</strong> Gevinster fra Three Card Poker hos danske licenserede casinoer er allerede beskattet ved kilden – casinoet betaler 28 % bruttospilleafgift af deres indtægter. Du som spiller skal ikke indberette individuelle gevinster fra danske licenserede operatører. Gevinster fra udenlandske, ikke-licenserede operatører er dog skattepligtige og skal selvangives.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Ansvarligt spil:</strong> Danske spillere har adgang til ROFUS (Register Over Frivilligt Udelukkede Spillere), indbetalingsgrænser og tidsbegrænsninger hos alle danske licenserede casinoer. Vi anbefaler kraftigt, at du sætter en indbetalingsgrænse INDEN du begynder at spille – Three Card Pokers hurtige tempo kan gøre det let at miste overblikket over dit forbrug. Læs mere i vores guide til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
+          </p>
         </section>
 
         <Separator className="my-10" />
