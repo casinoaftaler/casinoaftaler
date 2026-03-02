@@ -1163,6 +1163,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                         isDarkenedForTease={isDarkenedForTeaseGlobal}
                         isDarkenedForExpansion={showExpansionDarken && !expandedReels.includes(colIndex)}
                         gameId={gameId}
+                        isBonusActive={bonusState.isActive}
                       />
                       {colIndex < 4 && (
                         <div className={cn("w-[2px] self-stretch", gameId === "rise-of-fedesvin" ? "bg-purple-950/70" : "bg-amber-950/70")} />

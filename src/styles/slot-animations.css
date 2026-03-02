@@ -36,6 +36,7 @@
   pointer-events: none;
   z-index: 5;
   border-radius: inherit;
+  mix-blend-mode: screen;
 }
 
 /* Theme-specific shimmer colors */

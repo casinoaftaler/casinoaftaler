@@ -29,6 +29,7 @@ interface BonanzaColumnProps {
   symbolWidth?: number;
   symbolHeight?: number;
   symbolScale?: number;
+  isBonusActive?: boolean;
 }
 
 export const BonanzaColumn = React.memo(function BonanzaColumn({
@@ -46,12 +47,13 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
   symbolWidth: SYMBOL_WIDTH = DEFAULT_SYMBOL_WIDTH,
   symbolHeight: SYMBOL_HEIGHT = DEFAULT_SYMBOL_HEIGHT,
   symbolScale = 100,
+  isBonusActive = false,
 }: BonanzaColumnProps) {
   const isDroppingOff = spinState === 'dropping-off';
   const isDroppingIn = spinState === 'dropping-in';
   const isLanding = spinState === 'landing';
   const scaleValue = symbolScale / 100;
-  const isColumnIdle = spinState === 'idle' && tumblePhase === 'idle';
+  const isColumnIdle = spinState === 'idle' && tumblePhase === 'idle' && !isBonusActive;
   const shimmeringCells = useIdleShimmer(BONANZA_ROWS, isColumnIdle);
 
   return (

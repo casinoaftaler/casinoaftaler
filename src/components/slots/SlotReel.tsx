@@ -15,6 +15,7 @@ interface SlotReelProps {
   symbols: SlotSymbolType[];
   displayedSymbolIds: string[];
   isSpinning: boolean;
+  isBonusActive?: boolean;
   winningPositions?: number[];
   isExpanded?: boolean;
   isNewlyExpanded?: boolean;
@@ -40,6 +41,7 @@ export const SlotReel = React.memo(function SlotReel({
   symbols,
   displayedSymbolIds,
   isSpinning,
+  isBonusActive = false,
   winningPositions = [],
   isExpanded = false,
   isNewlyExpanded = false,
@@ -66,7 +68,7 @@ export const SlotReel = React.memo(function SlotReel({
   
   const symbolsById = useMemo(() => new Map(symbols.map(s => [s.id, s])), [symbols]);
   const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
-  const shimmeringCells = useIdleShimmer(3, !isSpinning && spinState === "idle");
+  const shimmeringCells = useIdleShimmer(3, !isSpinning && spinState === "idle" && !isBonusActive);
   const animationRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const stripContainerRef = useRef<HTMLDivElement>(null);
