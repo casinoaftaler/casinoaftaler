@@ -85,7 +85,6 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
             className={cn(
               "relative rounded-lg",
               "overflow-visible",
-              shimmeringCells.has(row) && cellAnim === 'idle' && !isBomb && "slot-idle-shimmer slot-idle-shimmer-pink",
               
               isWinning && "bonanza-candy-highlight",
               isLanding && "bonanza-column-stop-impact",
@@ -112,7 +111,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
           >
             {/* Regular symbol rendering */}
             {cellAnim !== 'removing' && cellAnim !== 'exploding' && cellAnim !== 'bomb-fizzle' && cellAnim !== 'bomb-activate' && symbol && !isBomb && (
-              <div className="w-full h-full flex items-center justify-center">
+              <div className={cn("w-full h-full flex items-center justify-center", shimmeringCells.has(row) && cellAnim === 'idle' && "slot-idle-shimmer slot-idle-shimmer-pink")}>
                 {symbol.image_url ? (
                   <img
                     src={symbol.image_url}
