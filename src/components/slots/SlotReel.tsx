@@ -261,8 +261,7 @@ export const SlotReel = React.memo(function SlotReel({
                 className={cn(spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]")}
                 style={{ animationFillMode: spinState === "stopped" ? "both" : undefined }}
               >
-                <div className={cn(shimmeringCells.has(rowIndex) && spinState === "idle" && `slot-idle-shimmer ${shimmerTheme}`)}>
-                  <SlotSymbol
+              <SlotSymbol
                     symbol={symbol}
                     isWinning={winningPositions.includes(rowIndex)}
                     isSpinning={false}
@@ -273,8 +272,8 @@ export const SlotReel = React.memo(function SlotReel({
                     isScatterCelebrating={isScatterCelebrating && symbol.is_scatter}
                     isDarkened={shouldDarkenSymbol}
                     gameId={gameId}
+                    shimmerClass={shimmeringCells.has(rowIndex) && spinState === "idle" ? `slot-idle-shimmer ${shimmerTheme}` : undefined}
                   />
-                </div>
               </div>
             );
           })}

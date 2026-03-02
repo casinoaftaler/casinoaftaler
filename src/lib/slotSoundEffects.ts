@@ -497,35 +497,38 @@ class SlotSoundEffects {
   startMusic() {
     if (!this.enabled || !this.musicEnabled) return;
     
-    // If music is already playing for this game, don't restart it
-    if (this.backgroundMusicAudio && this.customSoundFiles.backgroundMusic && !this.backgroundMusicAudio.paused) {
+    // If custom background music is configured, ONLY use that — never fall back to default
+    if (this.customSoundFiles.backgroundMusic) {
+      if (this.backgroundMusicAudio && !this.backgroundMusicAudio.paused) {
+        return; // Custom music already playing
+      }
+      // Stop any default music that might be playing
+      if (this.defaultMusicAudio && !this.defaultMusicAudio.paused) {
+        this.defaultMusicAudio.pause();
+        this.defaultMusicAudio.currentTime = 0;
+      }
+      this.stopMusic();
+      if (this.backgroundMusicAudio) {
+        this.backgroundMusicAudio.volume = this.volume * 0.5;
+        this.backgroundMusicAudio.play().catch(() => {});
+      }
       return;
     }
-    // Check if default music is already playing for the CORRECT game
+    
+    // No custom music — use default bundled music
     const expectedDefaultUrl = DEFAULT_BACKGROUND_MUSIC[this.currentGameId] || DEFAULT_BACKGROUND_MUSIC['book-of-fedesvin'];
     if (this.defaultMusicAudio && !this.defaultMusicAudio.paused) {
       const currentSrc = this.defaultMusicAudio.src;
       const expectedSrc = new URL(expectedDefaultUrl, window.location.origin).href;
       if (currentSrc === expectedSrc) {
-        return; // Correct music already playing
+        return; // Correct default music already playing
       }
-      // Wrong game's music — stop it and play the right one
     }
     if (this.musicInterval) return; // Synthesized music already playing
     
     // Stop any currently playing music first to prevent overlap
     this.stopMusic();
     
-    // Try custom background music first (from admin upload)
-    if (this.backgroundMusicAudio && this.customSoundFiles.backgroundMusic) {
-      this.backgroundMusicAudio.volume = this.volume * 0.5;
-      this.backgroundMusicAudio.play().catch(() => {
-        this.playDefaultMusic();
-      });
-      return;
-    }
-    
-    // Try default bundled Egyptian music
     this.playDefaultMusic();
   }
 
