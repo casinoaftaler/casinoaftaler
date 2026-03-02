@@ -979,8 +979,8 @@ function SettingsTab({ gameId }: { gameId?: string }) {
       {/* AI Sound Generator */}
       <SlotSoundGeneratorSection gameId={gameId} />
 
-      {/* Batch Sound Generator for Gates */}
-      {gameId === "gates-of-fedesvin" && <BatchSoundGenerator gameId={gameId} />}
+      {/* Batch Sound Generator */}
+      <BatchSoundGenerator gameId={gameId} />
 
       {/* Custom Sound Files */}
       <SlotSoundFilesSection gameId={gameId} />
