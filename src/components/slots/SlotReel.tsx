@@ -256,24 +256,23 @@ export const SlotReel = React.memo(function SlotReel({
             return (
               <div
                 key={`final-${rowIndex}-${symbolId}`}
-                className={cn(
-                  spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]",
-                  shimmeringCells.has(rowIndex) && spinState === "idle" && `slot-idle-shimmer ${shimmerTheme}`
-                )}
+                className={cn(spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]")}
                 style={{ animationFillMode: spinState === "stopped" ? "both" : undefined }}
               >
-                <SlotSymbol
-                  symbol={symbol}
-                  isWinning={winningPositions.includes(rowIndex)}
-                  isSpinning={false}
-                  isExpanded={symbolIsExpanded}
-                  isNewlyExpanded={symbolIsNewlyExpanded}
-                  hasLanded={spinState === "stopped"}
-                  isTeasing={globalTeaseActive && hasLandedScatter && symbol.is_scatter}
-                  isScatterCelebrating={isScatterCelebrating && symbol.is_scatter}
-                  isDarkened={shouldDarkenSymbol}
-                  gameId={gameId}
-                />
+                <div className={cn(shimmeringCells.has(rowIndex) && spinState === "idle" && `slot-idle-shimmer ${shimmerTheme}`)}>
+                  <SlotSymbol
+                    symbol={symbol}
+                    isWinning={winningPositions.includes(rowIndex)}
+                    isSpinning={false}
+                    isExpanded={symbolIsExpanded}
+                    isNewlyExpanded={symbolIsNewlyExpanded}
+                    hasLanded={spinState === "stopped"}
+                    isTeasing={globalTeaseActive && hasLandedScatter && symbol.is_scatter}
+                    isScatterCelebrating={isScatterCelebrating && symbol.is_scatter}
+                    isDarkened={shouldDarkenSymbol}
+                    gameId={gameId}
+                  />
+                </div>
               </div>
             );
           })}
