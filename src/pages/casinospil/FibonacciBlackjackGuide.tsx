@@ -557,10 +557,6 @@ const FibonacciBlackjackGuide = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Danske Casinoer med Live Blackjack til Fibonacci-Test" />
-
-        <Separator className="mb-12" />
-
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 10 – Konklusion
         ═══════════════════════════════════════════════════════════════ */}
