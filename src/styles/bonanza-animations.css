@@ -2,10 +2,10 @@
 
 /* Symbol bounce on landing */
 @keyframes bonanza-bounce-land {
-  0% { transform: translateY(-120%) scale(0.8); opacity: 0; }
-  60% { transform: translateY(8%) scale(1.05); opacity: 1; }
-  80% { transform: translateY(-3%) scale(0.98); }
-  100% { transform: translateY(0) scale(1); }
+  0% { transform: translateY(-120%) scaleY(0.8); opacity: 0; }
+  60% { transform: translateY(8%) scaleY(1.05); opacity: 1; }
+  80% { transform: translateY(-3%) scaleY(0.98); }
+  100% { transform: translateY(0) scaleY(1); }
 }
 
 .bonanza-drop-in {
@@ -14,8 +14,8 @@
 
 /* Symbol drop off */
 @keyframes bonanza-drop-off {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(150%) scale(0.7) rotate(8deg); opacity: 0; }
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(150%) rotate(8deg); opacity: 0; }
 }
 
 .bonanza-drop-off {
