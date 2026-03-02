@@ -62,7 +62,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
         const isWinning = winningPositions.has(flatIndex);
         const cellAnim = cellAnimStates.get(flatIndex) || 'idle';
 
-        const applyDropOff = isDroppingOff && cellAnim === 'idle';
+        const applyDropOff = isDroppingOff && (cellAnim === 'idle' || cellAnim === 'bomb-exploded');
         const applyDropIn = isDroppingIn && cellAnim === 'idle';
 
         return (
