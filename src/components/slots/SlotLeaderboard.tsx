@@ -36,7 +36,8 @@ function getCategoryIcon(category: LeaderboardCategory) {
 
 function getCurrentMonthLabel(): string {
   const now = new Date();
-  return now.toLocaleDateString("da-DK", { month: "long", year: "numeric" });
+  const month = now.toLocaleDateString("da-DK", { month: "short" });
+  return `${month} ${now.getFullYear()}`;
 }
 
 function LeaderboardRow({
@@ -66,52 +67,43 @@ function LeaderboardRow({
   return (
     <div
       className={cn(
-        "p-3 rounded-lg",
+        "px-2.5 py-2 rounded-lg",
         rank <= 3 && !isCurrentUser && theme.leaderboardTopRowBg,
         rank > 3 && !isCurrentUser && "hover:bg-muted/50",
         isCurrentUser && `ring-1 ${theme.leaderboardUserRing} ${theme.leaderboardUserBg}`
       )}
     >
-      {/* Top row: Rank, Avatar, Name */}
-      <div className="flex items-center gap-3 mb-2">
-        <div className="w-6 flex justify-center">{getRankIcon()}</div>
+       {/* Row: Rank, Avatar, Name, Stats inline */}
+      <div className="flex items-center gap-2">
+        <div className="w-5 flex-shrink-0 flex justify-center">{getRankIcon()}</div>
         <UserProfileLink
           userId={entry.user_id}
           displayName={entry.display_name}
           avatarUrl={entry.avatar_url}
-          avatarClassName="h-8 w-8"
+          avatarClassName="h-7 w-7"
         />
-        <p className={cn("font-medium flex-1 truncate", theme.leaderboardNameText)}>
-          {entry.display_name}
-        </p>
-        <TwitchBadgesInline badges={entry.twitch_badges as unknown as TwitchBadgesType | null} />
-        {isCurrentUser && (
-          <Badge variant="outline" className={cn("text-xs", theme.leaderboardUserBadgeBorder, theme.leaderboardUserBadgeText, theme.leaderboardUserBadgeBg)}>
-            Du
-          </Badge>
-        )}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1.5">
+            <p className={cn("font-medium text-sm truncate", theme.leaderboardNameText)}>
+              {entry.display_name}
+            </p>
+            <TwitchBadgesInline badges={entry.twitch_badges as unknown as TwitchBadgesType | null} />
+            {isCurrentUser && (
+              <Badge variant="outline" className={cn("text-[10px] px-1.5 py-0", theme.leaderboardUserBadgeBorder, theme.leaderboardUserBadgeText, theme.leaderboardUserBadgeBg)}>
+                Du
+              </Badge>
+            )}
+          </div>
+        </div>
       </div>
-
-      {/* Bottom row: Primary stat + secondary stats */}
-      <div className="grid grid-cols-4 gap-4 text-sm pl-2">
-        <div className="text-center">
-          <p className={cn("font-bold", theme.leaderboardPointsText)}>{formattedValue}</p>
-          <p className="text-[10px] text-muted-foreground">{unit}</p>
-        </div>
-        <div className="text-center">
-          <p className={cn("font-medium", theme.leaderboardSpinsText)}>{entry.total_spins.toLocaleString()}</p>
-          <p className="text-[10px] text-muted-foreground">credits</p>
-        </div>
-        <div className="text-center">
-          <p className="font-medium text-blue-400">{entry.total_bonuses.toLocaleString()}</p>
-          <p className="text-[10px] text-muted-foreground">bonusser</p>
-        </div>
-        <div className="text-center">
-          <p className="font-bold text-green-400">
-            {entry.biggest_multiplier > 0 ? `${Number(entry.biggest_multiplier.toFixed(1))}x` : "-"}
-          </p>
-          <p className="text-[10px] text-muted-foreground">bedste</p>
-        </div>
+      {/* Stats row */}
+      <div className="flex items-center gap-3 mt-1.5 pl-7 text-xs">
+        <span className={cn("font-bold", theme.leaderboardPointsText)}>{formattedValue} <span className="font-normal text-muted-foreground">{unit}</span></span>
+        <span className={cn("font-medium", theme.leaderboardSpinsText)}>{entry.total_spins.toLocaleString()} <span className="font-normal text-muted-foreground">credits</span></span>
+        <span className="font-medium text-blue-400">{entry.total_bonuses.toLocaleString()} <span className="font-normal text-muted-foreground">bonusser</span></span>
+        <span className="font-bold text-green-400">
+          {entry.biggest_multiplier > 0 ? `${Number(entry.biggest_multiplier.toFixed(1))}x` : "-"} <span className="font-normal text-muted-foreground">bedste</span>
+        </span>
       </div>
     </div>
   );
@@ -146,12 +138,12 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
     <div className="relative animate-fade-in">
       <Card className={cn(theme.leaderboardCardBorder, theme.leaderboardCardBg, "backdrop-blur-md", theme.leaderboardGlowShadow)}>
         <CardHeader className={cn("pb-2 border-b", theme.leaderboardHeaderBorder)}>
-          <CardTitle className={cn("flex items-center gap-2 text-lg", theme.leaderboardTitleText)}>
-            <div className={cn("p-1.5 rounded-lg", theme.leaderboardIconBg)}>
-              <Trophy className={cn("h-5 w-5", theme.leaderboardIconColor)} />
+         <CardTitle className={cn("flex items-center gap-2 text-base", theme.leaderboardTitleText)}>
+            <div className={cn("p-1 rounded-md", theme.leaderboardIconBg)}>
+              <Trophy className={cn("h-4 w-4", theme.leaderboardIconColor)} />
             </div>
-            Månedsturnering
-            <Badge variant="outline" className={cn("ml-auto text-[10px] capitalize", theme.leaderboardUserBadgeBorder, theme.leaderboardUserBadgeText)}>
+            <span>Månedsturnering</span>
+            <Badge variant="outline" className={cn("ml-auto text-[10px] capitalize whitespace-nowrap", theme.leaderboardUserBadgeBorder, theme.leaderboardUserBadgeText)}>
               {monthLabel}
             </Badge>
           </CardTitle>
