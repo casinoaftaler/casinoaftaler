@@ -1623,6 +1623,36 @@ export type Database = {
         }
         Relationships: []
       }
+      slot_bomb_symbols: {
+        Row: {
+          created_at: string
+          game_id: string
+          id: string
+          image_url: string | null
+          label: string
+          position: number
+          value: number
+        }
+        Insert: {
+          created_at?: string
+          game_id?: string
+          id: string
+          image_url?: string | null
+          label: string
+          position?: number
+          value: number
+        }
+        Update: {
+          created_at?: string
+          game_id?: string
+          id?: string
+          image_url?: string | null
+          label?: string
+          position?: number
+          value?: number
+        }
+        Relationships: []
+      }
       slot_bonus_state: {
         Row: {
           bet_amount: number
