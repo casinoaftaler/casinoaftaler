@@ -1,39 +1,47 @@
 
-# Floating Tumble Win Numbers
+# Refined Win Celebration Graphics
 
-## What it does
-After each tumble, a small floating number showing the cluster payout (e.g., "+2.50") will appear over the winning symbols, float upward, and fade out -- similar to damage numbers in video games.
+## Problem
+The current win celebration has an oversized border glow that fills the entire game area, making it feel boxy and unprofessional. The text floats without a focused container, and the pulsing border covers the full grid inset.
 
-## Plan
+## Changes
 
-### 1. Create a new component: `BonanzaTumbleWinPopup`
-- A small overlay that renders absolutely inside the game grid
-- Shows the win amount with a float-up + fade-out CSS animation
-- Positioned at the center of the winning cluster (average of all winning symbol positions)
-- Auto-removes itself after animation completes (~1.2s)
+### 1. Add a compact, styled card behind the win text
+- Replace the full-inset glow border with a focused, compact card behind the text content
+- The card will have a frosted glass effect with a subtle themed border
+- Sized to tightly wrap the text content rather than spanning the entire grid
+- Rounded corners, backdrop blur, and a refined gradient background
 
-### 2. Add CSS animation to `bonanza-animations.css`
-- `bonanza-win-float`: starts at opacity 1, scale 0.8, floats upward ~40px while scaling to 1.0, then fades to opacity 0
-- Duration: ~1.2s with ease-out timing
+### 2. Reduce and refine the border glow
+- Remove the full-inset `glow-pulse` box-shadow that covers the entire game area
+- Instead, apply a subtle glow only to the compact win card
+- Scale the glow intensity by win tier (Big < Mega < Epic)
 
-### 3. Wire it into `BonanzaSlotGame.tsx` tumble processing
-- Add a state array for active floating win popups: `tumbleWinPopups`
-- Each popup has: id, amount, center position (x, y), and a creation timestamp
-- In `processTumbleSteps`, when a winning step is found (line ~208), calculate the center of the winning positions and push a new popup entry
-- The popup auto-clears after the animation duration
-- Popups render inside the grid container as absolute-positioned elements
+### 3. Improve text hierarchy and spacing
+- Tighten padding: smaller, more proportional spacing inside the card
+- Adjust font sizes slightly for better balance within the compact card
+- Add a subtle divider or spacing between the title and amount
+- Remove emoji decorations from the title text for a cleaner look (optional, keep if preferred)
+
+### 4. Polish the card presentation
+- Add a thin themed border (pink for Bonanza, purple for Wizard, gold for Egyptian)
+- Inner shadow for depth
+- The card itself gets the glow effect instead of the full grid
 
 ## Technical Details
 
-### Position calculation
-- Each winning position flat index maps to `col` and `row` via `flatToColRow()`
-- Pixel x = `SYMBOL_GAP + col * (SYMBOL_WIDTH + SYMBOL_GAP) + SYMBOL_WIDTH / 2`
-- Pixel y = `SYMBOL_GAP + row * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_HEIGHT / 2`
-- Average all winning positions to find center of cluster
+### File: `src/components/slots/WinCelebration.tsx`
 
-### Files to create
-- `src/components/slots/BonanzaTumbleWinPopup.tsx` -- the floating number component
+**Lines 514-593** (Big Win Text Overlay section):
+- Wrap the text content in a compact card div with:
+  - `backdrop-blur-md bg-black/60` for frosted glass
+  - `rounded-2xl` with themed border
+  - Compact padding: `px-8 py-5` for big, `px-10 py-6` for mega, `px-12 py-8` for epic
+  - Themed box-shadow glow on the card itself
 
-### Files to modify
-- `src/styles/bonanza-animations.css` -- add `bonanza-win-float` keyframes and class
-- `src/components/slots/BonanzaSlotGame.tsx` -- add state for popups, spawn them during tumble processing, render them inside the grid
+**Lines 631-646** (Pulsing border glow):
+- Remove or significantly reduce the full-inset glow div
+- The glow effect moves to the compact card instead
+
+### No new files needed
+All changes are within `WinCelebration.tsx`.
