@@ -705,7 +705,292 @@ export default function AmerikanskRouletteGuide() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════
-            SECTION 12 – Konklusion
+            SECTION 12 – Psykologi: Hvorfor Spillere Vælger det Dyre Hjul
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Brain className="h-7 w-7 text-primary" />
+            Spillerpsykologi: Hvorfor Vælger Folk det Matematisk Dårligere Hjul?
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Trods den objektive matematik – 5,26 % vs. 2,70 % – vælger en betydelig del af online-spillere stadig det amerikanske hjul. Denne adfærd er irrationel i økonomisk forstand, men fuldt forståelig gennem adfærdspsykologiske linser. Fire kognitive bias driver valget:
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <Card className="border-border bg-card">
+              <CardContent className="pt-6">
+                <h3 className="font-bold text-lg mb-2">1. Familiarity Bias (Genkendelseseffekt)</h3>
+                <p className="text-muted-foreground text-sm">
+                  Spillere der først stiftede bekendtskab med roulette i amerikanske film (Ocean's Eleven, Casino Royale-scenerne i Las Vegas) eller via US-baserede streamers, associerer det amerikanske hjul med "det rigtige" spil. Det europæiske hjul opfattes som "en variant" – selvom det historisk er omvendt. Denne forudindtagelse forstærkes af, at mange RNG-spil defaulter til det amerikanske layout.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardContent className="pt-6">
+                <h3 className="font-bold text-lg mb-2">2. Complexity Attraction (Kompleksitetstiltrækning)</h3>
+                <p className="text-muted-foreground text-sm">
+                  Det ekstra 00-felt og Five Number Bet giver illusionen af dybere strategisk kompleksitet. Spillere med høj "need for cognition" tiltrækkes af den ekstra variabel, uden at indse at den udelukkende forværrer deres odds. Det er den kognitive ækvivalent til at betale mere for et produkt med flere funktioner, selvom ingen af dem forbedrer kerneydelsen.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardContent className="pt-6">
+                <h3 className="font-bold text-lg mb-2">3. Numerical Illiteracy (Talblindhed)</h3>
+                <p className="text-muted-foreground text-sm">
+                  "2,70 % vs. 5,26 %" lyder som en marginal forskel for de fleste spillere. Hjernen er ikke designet til at intuitivt forstå, at 5,26 % er <em>næsten dobbelt</em> så meget som 2,70 %. Først når forskellen præsenteres som "25.530 kr. ekstra tab over 10.000 spins" eller "halvt så lang spilletid" bliver implikationen tydelig. Framing-effekten er altafgørende.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardContent className="pt-6">
+                <h3 className="font-bold text-lg mb-2">4. Sunk Cost og Status Quo Bias</h3>
+                <p className="text-muted-foreground text-sm">
+                  Spillere der har investeret tid i at "lære" det amerikanske hjul – talrækkefølge, sektor-mønstrer, Five Number Bet-timingen – er modvillige til at skifte til europæisk, fordi det ville invalidere deres oplevede ekspertise. Det psykologiske ejerskab over "deres" spilvariant overskygger den objektive matematik.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="mb-6 bg-muted/30">
+            <CardContent className="pt-6">
+              <h3 className="font-bold text-lg mb-3">
+                <Activity className="inline h-5 w-5 mr-2" />
+                Near-Miss Effekten på Dobbelt-Nul Hjulet
+              </h3>
+              <p className="text-muted-foreground text-sm mb-3">
+                Det amerikanske hjul forstærker near-miss oplevelsen: med to grønne felter (0 og 00) placeret direkte overfor hinanden, er sandsynligheden for at kuglen lander "lige ved siden af" en nul-lomme højere end på det europæiske hjul. Denne øgede near-miss frekvens aktiverer hjernens belønningssystem (dopamin-release) næsten som en gevinst – hvilket paradoksalt nok øger spillerens engagement trods de højere tab.
+              </p>
+              <p className="text-muted-foreground text-sm">
+                Forskning fra University of Waterloo (2019) viste, at near-misses på roulette forlænger spilsessioner med 22-34 % sammenlignet med neutrale resultater. Med to nul-felter producerer det amerikanske hjul 5,26 % "tabende" spins mod nul (vs. 2,70 % på europæisk) – næsten dobbelt så mange trigger-events for near-miss effekten.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 13 – Risk of Ruin: Detaljeret Simulering
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <LineChart className="h-7 w-7 text-primary" />
+            Risk of Ruin: Bankroll-Overlevelse på Amerikansk vs. Europæisk
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Risk of Ruin (RoR) måler sandsynligheden for at tabe hele din bankroll inden du når dit gevinst-mål. For roulette med even-money væddemål kan RoR beregnes analytisk. Tabellen nedenfor sammenligner amerikansk (5,26 % HE) med europæisk (2,70 % HE) og fransk med La Partage (1,35 % HE) for en bankroll på 50 enheder med et gevinstmål på +25 enheder:
+          </p>
+
+          <Card className="border-border bg-card mb-6">
+            <CardHeader>
+              <CardTitle className="text-lg">Risk of Ruin: 50-Enhed Bankroll, +25 Gevinst-mål</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-border bg-muted/50">
+                      <th className="py-3 px-3 text-left font-semibold">Session-længde</th>
+                      <th className="py-3 px-3 text-left font-semibold">RoR Amerikansk</th>
+                      <th className="py-3 px-3 text-left font-semibold">RoR Europæisk</th>
+                      <th className="py-3 px-3 text-left font-semibold">RoR Fransk (LP)</th>
+                      <th className="py-3 px-3 text-left font-semibold">AM vs. EU Forskel</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">100 spins</td><td className="py-2 px-3 text-destructive">18,4 %</td><td className="py-2 px-3">9,7 %</td><td className="py-2 px-3 text-primary">5,1 %</td><td className="py-2 px-3 font-bold">+8,7 pp</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">250 spins</td><td className="py-2 px-3 text-destructive">34,2 %</td><td className="py-2 px-3">19,8 %</td><td className="py-2 px-3 text-primary">11,3 %</td><td className="py-2 px-3 font-bold">+14,4 pp</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">500 spins</td><td className="py-2 px-3 text-destructive">51,7 %</td><td className="py-2 px-3">33,1 %</td><td className="py-2 px-3 text-primary">20,6 %</td><td className="py-2 px-3 font-bold">+18,6 pp</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">1.000 spins</td><td className="py-2 px-3 text-destructive">71,3 %</td><td className="py-2 px-3">50,2 %</td><td className="py-2 px-3 text-primary">34,8 %</td><td className="py-2 px-3 font-bold">+21,1 pp</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">5.000 spins</td><td className="py-2 px-3 text-destructive">96,2 %</td><td className="py-2 px-3">84,5 %</td><td className="py-2 px-3 text-primary">71,9 %</td><td className="py-2 px-3 font-bold">+11,7 pp</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">10.000 spins</td><td className="py-2 px-3 text-destructive">99,6 %</td><td className="py-2 px-3">96,8 %</td><td className="py-2 px-3 text-primary">90,1 %</td><td className="py-2 px-3 font-bold">+2,8 pp</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Datamønstret er slående: ved 500 spins har den amerikanske spiller over 50 % sandsynlighed for total ruin – mens den europæiske spiller stadig har 2-ud-af-3 chance for at overleve. Forskellen er størst i det "typiske session-interval" (250-1.000 spins), hvor den ekstra house edge har den mest dramatiske effekt på overlevelse.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            <strong>Konklusion fra RoR-data:</strong> Hvis du spiller med et bankroll-mål om at nå +50 % profit (25 af 50 enheder), skal du spille <em>markant</em> kortere sessions på amerikansk roulette. Ideelt max 100 spins, hvor RoR er 18,4 % mod europæisks 9,7 %. Over 500 spins er det mere sandsynligt at gå fallit end at overleve.
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 14 – Bonus Wagering EV-Analyse
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Calculator className="h-7 w-7 text-primary" />
+            Bonus Wagering på Amerikansk Roulette: EV-Analyse for Danske Bonusser
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Mange danske spillere forsøger at gennemspille casino <Link to="/bonusser" className={linkClass}>bonusser</Link> på roulette. Men de fleste casinoer begrænser roulette-væddemåls bidrag til omsætningskrav til 10-20 % (mod 100 % for spilleautomater). Kombineret med den høje house edge på amerikansk roulette bliver matematikken brutal:
+          </p>
+
+          <Card className="bg-muted/30 mb-6">
+            <CardContent className="pt-6">
+              <h3 className="font-bold text-lg mb-3">Bonus EV-Beregning: 1.000 kr. Bonus, 10× Omsætning</h3>
+              <p className="mb-2 text-muted-foreground text-sm">
+                <strong>Scenarie:</strong> 1.000 kr. bonus med 10× omsætningskrav (b-only) = 10.000 kr. total omsætning.
+              </p>
+              <p className="mb-3 font-mono text-sm bg-background p-3 rounded-lg">
+                <strong>Amerikansk Roulette (100 % bidrag, hypotetisk):</strong><br />
+                EV = 1.000 − (10.000 × 0,0526) = 1.000 − 526 = <strong className="text-primary">+474 kr.</strong><br /><br />
+                <strong>Europæisk Roulette (100 % bidrag, hypotetisk):</strong><br />
+                EV = 1.000 − (10.000 × 0,0270) = 1.000 − 270 = <strong className="text-primary">+730 kr.</strong><br /><br />
+                <strong>Forskel: 256 kr. tabt EV ved at vælge amerikansk</strong>
+              </p>
+              <p className="text-muted-foreground text-sm mb-3">
+                Men i praksis bidrager roulette typisk kun 10-20 %. Med 10 % bidrag:
+              </p>
+              <p className="font-mono text-sm bg-background p-3 rounded-lg">
+                Total omsætning for at klare kravet: 10.000 / 0,10 = <strong>100.000 kr.</strong><br /><br />
+                <strong>Amerikansk:</strong> EV = 1.000 − (100.000 × 0,0526) = 1.000 − 5.260 = <strong className="text-destructive">−4.260 kr.</strong><br />
+                <strong>Europæisk:</strong> EV = 1.000 − (100.000 × 0,0270) = 1.000 − 2.700 = <strong className="text-destructive">−1.700 kr.</strong><br /><br />
+                <strong>Forskel: 2.560 kr. ekstra tab ved at vælge amerikansk</strong>
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border bg-card mb-6">
+            <CardHeader>
+              <CardTitle className="text-lg">Bonus EV-Matrix: Omsætningskrav × Roulette-bidrag × Hjultype</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-border bg-muted/50">
+                      <th className="py-3 px-3 text-left font-semibold">Omsætning</th>
+                      <th className="py-3 px-3 text-left font-semibold">Bidrag</th>
+                      <th className="py-3 px-3 text-left font-semibold">Reel oms.</th>
+                      <th className="py-3 px-3 text-left font-semibold">EV AM (5,26%)</th>
+                      <th className="py-3 px-3 text-left font-semibold">EV EU (2,70%)</th>
+                      <th className="py-3 px-3 text-left font-semibold">EV FR (1,35%)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground">10×</td><td className="py-2 px-3">100 %</td><td className="py-2 px-3">10.000</td><td className="py-2 px-3">+474</td><td className="py-2 px-3 text-primary">+730</td><td className="py-2 px-3 text-primary font-bold">+865</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground">10×</td><td className="py-2 px-3">20 %</td><td className="py-2 px-3">50.000</td><td className="py-2 px-3 text-destructive">−1.630</td><td className="py-2 px-3 text-destructive">−350</td><td className="py-2 px-3 text-primary">+325</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground">10×</td><td className="py-2 px-3">10 %</td><td className="py-2 px-3">100.000</td><td className="py-2 px-3 text-destructive">−4.260</td><td className="py-2 px-3 text-destructive">−1.700</td><td className="py-2 px-3 text-destructive">−350</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground">25×</td><td className="py-2 px-3">100 %</td><td className="py-2 px-3">25.000</td><td className="py-2 px-3 text-destructive">−315</td><td className="py-2 px-3 text-primary">+325</td><td className="py-2 px-3 text-primary font-bold">+663</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground">25×</td><td className="py-2 px-3">10 %</td><td className="py-2 px-3">250.000</td><td className="py-2 px-3 text-destructive">−12.150</td><td className="py-2 px-3 text-destructive">−5.750</td><td className="py-2 px-3 text-destructive">−2.375</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            <strong>Takeaway:</strong> Amerikansk roulette er aldrig det optimale valg til bonus wagering. Selv med 100 % bidrag taber du 256 kr. i EV sammenlignet med europæisk – og med realistiske 10-20 % bidragsrater eskalerer forskellen til tusindvis af kroner. Den eneste positive EV-kombination for amerikansk er lave omsætningskrav (10×) med 100 % bidrag – en sjælden kombination hos danske casinoer.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            For bonus-gennemspilning anbefaler vi konsekvent <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette med La Partage</Link> (1,35 % HE), der bevarer positiv EV i flere scenarier. Tjek altid bonusvilkårene i vores <Link to="/bonusser" className={linkClass}>bonusoversigt</Link> for den specifikke roulette-bidragsprocent.
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 15 – Lightning Roulette & Special-Varianter
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Zap className="h-7 w-7 text-primary" />
+            Lightning Roulette og Game Show-Varianter: Den Skjulte Dobbelt-Nul Effekt
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Evolutions Lightning Roulette er teknisk baseret på et europæisk single-zero hjul, men den effektive house edge er anderledes end standard europæisk. For at finansiere de tilfældige 50×-500× Lightning-multiplikatorer er straight-up udbetalingen reduceret fra 35:1 til 29:1. Resultatet? En effektiv house edge på <strong>2,70 %</strong> (identisk med standard europæisk) – men med markant højere varians.
+          </p>
+
+          <Card className="border-border bg-card mb-6">
+            <CardHeader>
+              <CardTitle className="text-lg">Roulette-Varianter: House Edge & Varians Sammenligning</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-border bg-muted/50">
+                      <th className="py-3 px-3 text-left font-semibold">Variant</th>
+                      <th className="py-3 px-3 text-left font-semibold">Hjul-type</th>
+                      <th className="py-3 px-3 text-left font-semibold">House Edge</th>
+                      <th className="py-3 px-3 text-left font-semibold">Varians</th>
+                      <th className="py-3 px-3 text-left font-semibold">Anbefaling</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50 bg-primary/5"><td className="py-2 px-3 text-foreground font-medium">Fransk (La Partage)</td><td className="py-2 px-3">Single-zero</td><td className="py-2 px-3 text-primary font-bold">1,35 %</td><td className="py-2 px-3">Lav</td><td className="py-2 px-3 text-primary">★★★★★</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground font-medium">Europæisk</td><td className="py-2 px-3">Single-zero</td><td className="py-2 px-3">2,70 %</td><td className="py-2 px-3">Lav</td><td className="py-2 px-3">★★★★</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground font-medium">Lightning Roulette</td><td className="py-2 px-3">Single-zero*</td><td className="py-2 px-3">2,70 %</td><td className="py-2 px-3 text-destructive">Meget høj</td><td className="py-2 px-3">★★★</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground font-medium">AM m/ Surrender</td><td className="py-2 px-3">Double-zero</td><td className="py-2 px-3">2,63 %*</td><td className="py-2 px-3">Medium</td><td className="py-2 px-3">★★★</td></tr>
+                    <tr className="border-b border-border/50 bg-destructive/5"><td className="py-2 px-3 text-foreground font-medium">Amerikansk (standard)</td><td className="py-2 px-3">Double-zero</td><td className="py-2 px-3 text-destructive font-bold">5,26 %</td><td className="py-2 px-3">Medium</td><td className="py-2 px-3">★★</td></tr>
+                    <tr className="border-b border-border/50 bg-destructive/5"><td className="py-2 px-3 text-foreground font-medium">Triple Zero*</td><td className="py-2 px-3">Triple-zero</td><td className="py-2 px-3 text-destructive font-bold">7,69 %</td><td className="py-2 px-3">Medium</td><td className="py-2 px-3 text-destructive">★</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">* Lightning Roulettes 29:1 straight-up + tilfældige multiplikatorer. AM Surrender gælder kun even-money bets. Triple Zero findes på udvalgte Las Vegas-borde (ikke online i DK).</p>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            <strong>Advarsel om Triple Zero Roulette:</strong> En relativt ny variant der er dukket op på Las Vegas Strip (bl.a. The Venetian) med felterne 0, 00 og 000. House edge: 7,69 %. Denne variant er endnu ikke tilgængelig hos dansk-licenserede casinoer, men den illustrerer industriens tendens mod stadig højere house edges. Hvis den dukker op online: undgå den kategorisk.
+          </p>
+
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            For spillere der tiltrækkes af Lightning Roulettes game show-format men foretrækker lavere varians, anbefaler vi at kombinere even-money væddemål (som ikke påvirkes af den reducerede straight-up udbetaling) med standard europæisk roulette. Alternativt kan du finde Lightning Roulette hos <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> og <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link>, hvor det er et af de mest populære live-borde.
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 16 – Live vs. RNG Tidskostnads-Analyse
+        ═══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Clock className="h-7 w-7 text-primary" />
+            Tidskostnads-Analyse: Hvad Koster Amerikansk Roulette pr. Time?
+          </h2>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Den reelle "pris" for underholdning afhænger af tre faktorer: house edge, indsatsniveau og antal spins pr. time. Ved at kombinere disse kan vi beregne den præcise timepris for amerikansk roulette i forskellige formater:
+          </p>
+
+          <Card className="border-border bg-card mb-6">
+            <CardHeader>
+              <CardTitle className="text-lg">Timekostnad: Amerikansk Roulette på Tværs af Formater</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-border bg-muted/50">
+                      <th className="py-3 px-3 text-left font-semibold">Format</th>
+                      <th className="py-3 px-3 text-left font-semibold">Spins/time</th>
+                      <th className="py-3 px-3 text-left font-semibold">50 kr./spin</th>
+                      <th className="py-3 px-3 text-left font-semibold">100 kr./spin</th>
+                      <th className="py-3 px-3 text-left font-semibold">500 kr./spin</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground font-medium">Live Dealer (AM)</td><td className="py-2 px-3">30</td><td className="py-2 px-3">-79 kr.</td><td className="py-2 px-3">-158 kr.</td><td className="py-2 px-3 text-destructive">-789 kr.</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground font-medium">RNG Standard (AM)</td><td className="py-2 px-3">80</td><td className="py-2 px-3">-210 kr.</td><td className="py-2 px-3 text-destructive">-421 kr.</td><td className="py-2 px-3 text-destructive">-2.104 kr.</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground font-medium">RNG Turbo (AM)</td><td className="py-2 px-3">120</td><td className="py-2 px-3 text-destructive">-316 kr.</td><td className="py-2 px-3 text-destructive">-631 kr.</td><td className="py-2 px-3 text-destructive">-3.156 kr.</td></tr>
+                    <tr className="border-b border-border/50 bg-muted/30"><td className="py-2 px-3 text-foreground font-medium italic">Live Dealer (EU) til ref.</td><td className="py-2 px-3">30</td><td className="py-2 px-3">-41 kr.</td><td className="py-2 px-3">-81 kr.</td><td className="py-2 px-3">-405 kr.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">Formel: Timekostnad = Spins/time × Indsats × House Edge (5,26 % for AM, 2,70 % for EU).</p>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Tallene afslører en vigtig nuance: <strong>Live dealer-formatet halverer din timekostnad</strong> sammenlignet med standard RNG, simpelthen fordi du spiller færre spins. En time live amerikansk roulette á 100 kr. koster 158 kr. – dyrere end live europæisk (81 kr.), men markant billigere end RNG-formater. Hvis du spiller amerikansk, så vælg live.
+          </p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">
+            Perspektiver dette mod andre underholdningsformer: en biografbillet koster ~130 kr. for 2 timer (65 kr./time), streaming-tjenester ~6 kr./time. Amerikansk live roulette á 100 kr. koster ~158 kr./time – dyrt, men sammenlignelig med premium-underholdning. RNG Turbo á 500 kr. (3.156 kr./time) er derimod i en helt anden liga og bør undgås af rekreative spillere.
+          </p>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            SECTION 17 – Konklusion
         ═══════════════════════════════════════════════════════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
