@@ -1,89 +1,135 @@
 
+# Fedesvin Bonanza - Comprehensive Update Plan
 
-## Plan: Countdown timer, vinderarkiv og "Vis alle" knap til SidebarLeaderboard
-
-### Overblik
-Tre nye features:
-1. **Countdown timer** i leaderboard-komponenter der viser tid til naeste maned (auto-reset d. 1.)
-2. **Vinderarkiv** -- ved maanedsskift arkiveres vinderne for alle 3 kategorier i en ny DB-tabel, og brugere kan se tidligere vindere
-3. **"Vis alle" knap** paa SidebarLeaderboard (billedet brugeren sendte) der aabner det fulde leaderboard
+This plan covers 7 distinct changes to the Bonanza slot game, spanning the server-side Edge Function, client-side game component, new components, and admin tools.
 
 ---
 
-### 1. Database: Ny tabel `monthly_tournament_archives`
+## 1. Reel-Based Symbol Generation with Duplicate Chance
 
-Ny tabel til at gemme vindere ved maanedsskift:
+**Current**: Symbols generated independently per cell (position-by-position).
+**New**: Generate symbols per reel (column), then apply duplication logic:
 
-```text
-monthly_tournament_archives
-- id (uuid, PK)
-- month (date) -- foerste dag i maaneden, fx 2026-03-01
-- category (text) -- "total_points" | "highest_x" | "highest_win"
-- winner_user_id (uuid)
-- winner_display_name (text)
-- winner_avatar_url (text, nullable)
-- winning_value (numeric) -- det vindende tal (point, multiplier, eller gevinst)
-- top_entries (jsonb) -- top 10 for denne kategori (for historisk visning)
-- created_at (timestamptz)
-```
+- For each of the 6 reels: generate 5 random symbols using weights
+- 35% chance a reel contains 2 identical regular symbols; 10% chance for 3 identical
+- Bombs and scatters cannot duplicate on the same reel
+- After building all 6 reels, shuffle each reel individually
+- Then check total symbol counts across the entire 6x5 grid for wins (8+)
 
-RLS: Alle kan laese (SELECT), kun service_role kan skrive.
+**Files changed:**
+- `supabase/functions/slot-spin/index.ts` -- rewrite `generateBonanzaGrid()` and `applyBonanzaTumble()` fill logic
 
-Index paa `month` for hurtig historik-opslag.
+---
 
-### 2. Edge Function: `archive-monthly-tournament`
+## 2. Scatter Tease Only at 3 Scatters, Shown After Each Win Pop
 
-Ny edge function der koerer d. 1. i hver maaned (kan trigges via cron eller manuelt):
+**Current**: Tease triggers at 2+ scatters immediately after grid lands.
+**New**:
+- Only tease when exactly 3 scatters are present (not 2)
+- Instead of showing tease right after grid lands, show it after each tumble step's winning symbols "pop" (explode), so the tease pulses between tumble rounds
 
-- Henter top 1 for hver af de 3 kategorier fra `slot_leaderboard` (monthly_winnings, monthly_biggest_win, monthly_biggest_multiplier)
-- Gemmer 3 raekker i `monthly_tournament_archives` (en per kategori)
-- Gemmer top 10 per kategori i `top_entries` JSON-feltet
-- Henter display_name/avatar_url fra profiles_leaderboard
-- Idempotent: tjekker om maaneden allerede er arkiveret foer insert
+**Files changed:**
+- `src/components/slots/BonanzaSlotGame.tsx` -- move scatter tease logic from post-landing into `processTumbleSteps`, trigger after each win explosion when scatter count is 3
 
-### 3. Hook: `useMonthlyTournamentArchive`
+---
 
-Ny hook der henter arkiverede vindere:
+## 3. New Bonanza-Themed Bonus Intro (Replace Gates Theme)
 
-- Query `monthly_tournament_archives` ordnet efter `month DESC`
-- Returnerer liste af maaneder med deres 3 vindere
-- Bruges i SlotLeaderboard til at vise "Forrige vindere" sektion
+**Current**: `BonusEntrySequence` uses Zeus/storm/temple/lightning theme from Gates.
+**New**: Create a candy-themed bonus intro for Bonanza:
+- Phase 1: Candy burst flash (pink/purple instead of lightning)
+- Phase 2: Fade to candy landscape background (gradient from pink to fuchsia with candy elements)
+- Phase 3: Lollipop icon instead of lightning bolt, "FREE SPINS" text in candy colors (pink/yellow gradient)
+- Phase 4: Count-up and "Multiplier bomber aktive!" subtitle
 
-### 4. Countdown Timer
+Also replace `GatesRetriggerOverlay` and `GatesBonusEndOverlay` with Bonanza-themed versions (pink/candy styling instead of storm/zeus).
 
-Tilfoej en countdown-komponent der viser tid til d. 1. i naeste maaned:
+**Files changed:**
+- New: `src/components/slots/BonanzaBonusEntrySequence.tsx`
+- New: `src/components/slots/BonanzaRetriggerOverlay.tsx`
+- New: `src/components/slots/BonanzaBonusEndOverlay.tsx`
+- `src/components/slots/BonanzaSlotGame.tsx` -- swap imports from Gates overlays to new Bonanza overlays
 
-- Beregner naeste maaneds foerste dag kl. 00:00 dansk tid
-- Viser "Xd Xh Xm" format
-- Opdateres hvert sekund
-- Vises i baade `SlotLeaderboard` (under header) og `SidebarLeaderboard`
+---
 
-### 5. UI: Opdater `SlotLeaderboard`
+## 4. Bomb Symbols as Admin-Manageable Assets
 
-- Tilfoej countdown timer mellem header og category tabs
-- Tilfoej en "Forrige vindere" sektion i bunden eller dialog med arkiverede vindere
-- Vis seneste maaneds vindere med avatar, navn og vindende vaerdi
+**Current**: Bombs render as a hardcoded emoji (bomb) with a text value overlay.
+**New**:
+- Create 8 bomb symbol records in a new DB table (or reuse `slot_multiplier_symbols` pattern) for the 8 multiplier values (2x, 3x, 5x, 10x, 15x, 25x, 50x, 100x)
+- Each bomb has an `image_url` that admins can upload/change via admin panel
+- On the game grid, render the bomb image (or fallback to emoji if no image)
 
-### 6. UI: Opdater `SidebarLeaderboard`
+**Database migration:**
+- Create `slot_bomb_symbols` table: `id, game_id, value (int), label (text), image_url (text nullable), position (int)`
+- Seed 8 rows for fedesvin-bonanza
 
-- Tilfoej en "Se alle" knap i bunden (som paa billedet brugeren sendte)
-- Knappen aabner en Dialog med det fulde leaderboard (genbruger SlotLeaderboard-dialog logik)
-- Tilfoej kort countdown timer tekst under "Top 5 spillere" label
+**Files changed:**
+- New: `src/components/slots/BonanzaBombSymbolsAdmin.tsx` -- admin panel for uploading bomb images
+- `src/components/slots/BonanzaColumn.tsx` -- render bomb images from a lookup map instead of emoji
+- `src/components/slots/BonanzaSlotGame.tsx` -- fetch bomb symbols and pass to columns
+- Admin page integration (wherever slot admin is rendered)
 
-### Filer der aendres/oprettes
+---
 
-| Fil | Type | Beskrivelse |
-|---|---|---|
-| `supabase/migrations/new.sql` | Ny | Opret `monthly_tournament_archives` tabel |
-| `supabase/functions/archive-monthly-tournament/index.ts` | Ny | Edge function til at arkivere vindere |
-| `src/hooks/useMonthlyTournamentArchive.ts` | Ny | Hook til at hente arkiverede vindere |
-| `src/components/slots/SlotLeaderboard.tsx` | Opdater | Countdown timer + vindere-arkiv visning |
-| `src/components/games/SidebarLeaderboard.tsx` | Opdater | "Se alle" knap + countdown |
+## 5. Bonanza-Specific Gevinsttabel (Paytable)
 
-### Hvad forbliver uaendret
-- Admin panel stats
-- Turnerings-systemet (join, credits, clawback)
-- `useSlotLeaderboard` hook (allerede korrekt)
-- MiniLeaderboard
-- Leaderboard page (`/community/leaderboard`)
+**Current**: Uses `GatesPayTable` which has Gates/blue styling and a fixed layout. The scatter section says "4+ Scatter udloeser 15 gratis spins".
+**New**: Match the reference image from Sweet Bonanza:
+- 2 rows of 4 premium symbols (top), 1 row of 5 common symbols (bottom)
+- Each symbol card shows: image + 3 payout lines (12+ / 10-11 / 8-9) with `kr` prefix and bet-scaled values
+- Scatter section at bottom with its own payout tiers (6 / 5 / 4) and description text in Danish
+- Pink/candy themed styling instead of blue
+- Admin should be able to change multiplier values per symbol (already possible via existing symbol admin -- no extra work needed there)
+
+**Files changed:**
+- New: `src/components/slots/BonanzaPayTable.tsx` -- candy-themed paytable matching the reference image layout
+- `src/components/slots/BonanzaSlotGame.tsx` -- use `BonanzaPayTable` instead of `GatesPayTable`
+
+---
+
+## 6. Multiplier Reset Per Spin in Bonus
+
+**Current**: `cumulativeMultiplier` accumulates across the entire bonus session and is saved/restored.
+**New**:
+- Each bonus spin starts with multiplier at 0x
+- Multiplier only accumulates within a single spin's tumble chain
+- Show the running multiplier during tumbles
+- Bombs only pop AFTER all tumble wins in a chain are resolved (not during each step)
+
+**Server-side change** (`supabase/functions/slot-spin/index.ts`):
+- In `calculateBonanzaFullSpin`: always start `totalMultiplier` at 0 regardless of `runningMultiplier` param
+- Change bomb behavior: bombs persist across all tumble steps in a spin, only activate at the very end after the last winning tumble, then all bombs explode at once
+
+**Client-side change** (`src/components/slots/BonanzaSlotGame.tsx`):
+- Reset `runningMultiplier` to 0 at start of every bonus spin
+- Remove cumulative multiplier persistence from bonus state
+- In `processTumbleSteps`: don't process bombs during individual steps -- collect all bombs from the final grid after all wins, then animate them popping at the end
+- Show running multiplier during tumble chain
+
+---
+
+## 7. Bonus Bar Multiplier Display Update
+
+Since multiplier resets per spin, the bonus bar should show:
+- Current spin multiplier (resets each spin)
+- Remove the cumulative multiplier concept from the UI
+
+**Files changed:**
+- `src/components/slots/BonanzaSlotGame.tsx` -- update bonus bar to show per-spin multiplier only
+
+---
+
+## Technical Summary
+
+| Area | Files |
+|------|-------|
+| Server Engine | `supabase/functions/slot-spin/index.ts` (Bonanza section) |
+| Main Game Component | `src/components/slots/BonanzaSlotGame.tsx` |
+| Column Renderer | `src/components/slots/BonanzaColumn.tsx` |
+| New Bonus Overlays | 3 new files (BonanzaBonusEntry, Retrigger, EndOverlay) |
+| New Paytable | `src/components/slots/BonanzaPayTable.tsx` |
+| New Admin Component | `src/components/slots/BonanzaBombSymbolsAdmin.tsx` |
+| Database | New `slot_bomb_symbols` table with 8 seed rows |
+| CSS Animations | `src/styles/bonanza-animations.css` (new candy bonus animations) |
 
