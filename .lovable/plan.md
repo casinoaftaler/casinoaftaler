@@ -1,42 +1,49 @@
 
-# Make Symbol Images Bigger Without Enlarging the Grid
+
+# Move Scatter Glow From Cell to Image
 
 ## Problem
-Currently, the admin sliders for "Symbol Bredde" and "Symbol Hojde" control the **cell size** (the box each symbol sits in). Making the cell bigger makes the entire grid bigger. The symbol images use `w-full h-full object-contain`, so they always fill exactly their cell -- no more, no less.
-
-You want to scale just the **images themselves** beyond the cell boundary, so they visually overlap without changing the grid layout.
+The scatter tease/pulse glow currently uses `box-shadow` on the rectangular cell container. Since symbols are PNGs with transparent backgrounds, the glow appears as a rectangle around the cell rather than conforming to the image shape.
 
 ## Solution
-Add a new **Symbol Scale** slider (separate from width/height) that applies a CSS `transform: scale(...)` to the images. The cell stays the same size, but the image renders larger and overflows visually.
+Change the scatter animations from `box-shadow` (on the cell) to `filter: drop-shadow()` (on the `<img>` element inside the cell). This makes the glow follow the actual alpha contour of the symbol image.
 
 ## Changes
 
-### 1. Add `bonanza_symbol_scale` setting
-- Add a new key `bonanza_symbol_scale` to the settings keys list
-- Default value: `100` (percent, meaning 1:1 with cell)
-- Admin slider range: `80%` to `160%`, step `5`
+### 1. Update CSS animations (`src/styles/bonanza-animations.css`)
 
-### 2. Admin panel slider (BonanzaGameSettingsAdmin.tsx)
-- Add a new "Symbol Skalering" slider beneath the existing width/height sliders
-- Shows the current percentage value (e.g. "120%")
+Replace `box-shadow` with `filter: drop-shadow()` for all three scatter animation classes:
 
-### 3. Read the setting in BonanzaSlotGame.tsx
-- Read `bonanza_symbol_scale` from `siteSettings`, default to `100`
-- Pass it as a new `symbolScale` prop to each `BonanzaColumn`
+- **`bonanza-scatter-tease`**: Change from `box-shadow: 0 0 10px/25px` to `filter: drop-shadow(0 0 10px/25px)`
+- **`bonanza-scatter-tease-intense`**: Same treatment, remove the `border-color` override
+- **`bonanza-scatter-trigger-pulse`**: Change from `box-shadow` to `filter: drop-shadow()`, keep the `transform: scale()` on the cell
 
-### 4. Apply scale in BonanzaColumn.tsx
-- Accept new `symbolScale` prop (number, percentage)
-- On every `<img>` tag for symbols and bombs, apply `style={{ transform: scale(X) }}` where X = symbolScale / 100
-- The cell div already toggles between `overflow-hidden` and `overflow-visible` for animations -- during idle state it clips. We will need to **always allow overflow-visible** on cells so the scaled images can visually overlap their neighbors, or alternatively use `overflow: clip` only on the column wrapper (not individual cells)
+### 2. Move scatter animation classes to the image element (`src/components/slots/BonanzaColumn.tsx`)
 
-### 5. Overflow handling
-- Remove `overflow-hidden` from individual cells so scaled images can bleed over
-- Keep `overflow-hidden` on the **column container** to prevent images from escaping the entire grid area
-- This preserves existing animation overflow behavior (tumbles, drops already use `overflow-visible`)
+Currently the scatter classes are applied to the cell `<div>`. Move them to the inner `<img>` element instead, so the `filter: drop-shadow` targets the image directly.
 
-## Technical Details
+- Remove `scatter-pulse`, `scatter-tease`, `scatter-tease-intense` from the cell div's `className`
+- Add a variable (e.g. `isScatterAnim`) based on `cellAnim`
+- Apply the appropriate class to the `<img>` tag inside the symbol rendering block
 
-### Files to modify:
-1. **`src/components/slots/BonanzaGameSettingsAdmin.tsx`** -- add `symbolScale` to form, defaults, settings keys, save/load logic, and a new slider UI
-2. **`src/components/slots/BonanzaSlotGame.tsx`** -- read `bonanza_symbol_scale` from site settings, pass as prop
-3. **`src/components/slots/BonanzaColumn.tsx`** -- accept `symbolScale` prop, apply `transform: scale()` to all `<img>` elements, adjust overflow rules on cells
+### Technical Details
+
+**`src/styles/bonanza-animations.css`** -- Replace box-shadow with drop-shadow:
+```css
+@keyframes bonanza-scatter-tease {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 25px rgba(168, 85, 247, 0.7)); transform: scale(1.05); }
+}
+
+@keyframes bonanza-scatter-pulse {
+  0% { filter: drop-shadow(0 0 0 rgba(168, 85, 247, 0)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.6)); transform: scale(1.15); }
+  100% { filter: drop-shadow(0 0 0 rgba(168, 85, 247, 0)); transform: scale(1); }
+}
+```
+
+**`src/components/slots/BonanzaColumn.tsx`** -- Move classes from cell to img:
+- Determine scatter animation class from `cellAnim`
+- Remove scatter classes from the cell div
+- Apply them to `<img>` elements in the symbol rendering sections
+
