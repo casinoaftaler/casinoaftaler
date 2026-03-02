@@ -818,7 +818,7 @@ const LunaCasinoAnmeldelse = () => {
 
         <Separator className="my-10" />
         <RelatedReviews currentSlug="luna-casino" />
-        <InlineCasinoCards />
+        <InlineCasinoCards excludeSlugs={["luna-casino"]} />
         <Separator className="my-10" />
         <AuthorBio author="jonas" />
         <Separator className="my-10" />

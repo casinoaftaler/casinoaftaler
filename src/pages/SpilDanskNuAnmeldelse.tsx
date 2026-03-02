@@ -389,7 +389,7 @@ const SpilDanskNuAnmeldelse = () => {
 
         <Separator className="my-10" />
         <RelatedReviews currentSlug="spildansknu" />
-        <InlineCasinoCards />
+        <InlineCasinoCards excludeSlugs={["spildansknu"]} />
         <Separator className="my-10" />
         <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/casino-anmeldelser/spildansknu" />
