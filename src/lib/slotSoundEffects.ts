@@ -60,6 +60,7 @@ interface PersistedAudioSettings {
 const DEFAULT_BACKGROUND_MUSIC: Record<string, string> = {
   'book-of-fedesvin': '/sounds/egyptianmusic.mp3',
   'rise-of-fedesvin': '/sounds/riseoffedesvin.mp3',
+  'fedesvin-bonanza': '/sounds/fedesvinbonanzamusic.mp3',
 };
 // Default bundled spin start sound
 const DEFAULT_SPIN_SOUND = '/sounds/spin-start.mp3';
