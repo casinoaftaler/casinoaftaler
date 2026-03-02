@@ -87,10 +87,11 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
   const theme = getSlotTheme(gameId);
   const isWizard = gameId === "rise-of-fedesvin";
   const isOlympus = gameId === "gates-of-fedesvin";
+  const isBonanza = gameId === "fedesvin-bonanza";
   
   const titleKey = gameId === "book-of-fedesvin" ? "slot_title_image"
     : `${gameId.replace(/-/g, "_")}_title_image`;
-  const titleImage = siteSettings?.[titleKey] || (isWizard ? riseTitleImage : defaultTitleImage);
+  const titleImage = siteSettings?.[titleKey] || (isWizard ? riseTitleImage : isBonanza ? null : defaultTitleImage);
 
   const bgKey = gameId === "book-of-fedesvin" ? "slot_background_image"
     : `${gameId.replace(/-/g, "_")}_background_image`;
@@ -157,6 +158,9 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
       {isWizard && (
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/40 via-indigo-900/20 to-purple-950/40 -z-10" />
       )}
+      {isBonanza && (
+        <div className="absolute inset-0 bg-gradient-to-b from-pink-900/40 via-fuchsia-900/20 to-pink-950/40 -z-10" />
+      )}
 
       {/* Wizard animated particles */}
       {isWizard && (
@@ -182,33 +186,54 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
       {/* Content */}
       <div className="flex flex-col items-center gap-8 px-4 animate-fade-in">
         {/* Title */}
-        <img 
-          src={titleImage} 
-          alt={isWizard ? "Rise of Fedesvin" : "Book of Fedesvin"} 
-          className="w-full max-w-[280px] sm:max-w-md md:max-w-lg h-auto"
-          style={{
-            filter: isWizard
-              ? 'drop-shadow(0 0 20px rgba(168,85,247,0.5)) drop-shadow(0 0 40px rgba(168,85,247,0.3))'
-              : 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3))',
-            animation: isWizard ? 'wizard-title-glow 3s ease-in-out infinite' : undefined,
-          }}
-        />
+        {titleImage ? (
+          <img 
+            src={titleImage} 
+            alt={isBonanza ? "Fedesvin Bonanza" : isWizard ? "Rise of Fedesvin" : "Book of Fedesvin"} 
+            className="w-full max-w-[280px] sm:max-w-md md:max-w-lg h-auto"
+            style={{
+              filter: isBonanza
+                ? 'drop-shadow(0 0 20px rgba(236,72,153,0.5)) drop-shadow(0 0 40px rgba(236,72,153,0.3))'
+                : isWizard
+                  ? 'drop-shadow(0 0 20px rgba(168,85,247,0.5)) drop-shadow(0 0 40px rgba(168,85,247,0.3))'
+                  : 'drop-shadow(0 0 20px rgba(251,191,36,0.5)) drop-shadow(0 0 40px rgba(251,191,36,0.3))',
+              animation: isWizard ? 'wizard-title-glow 3s ease-in-out infinite'
+                : isBonanza ? 'bonanza-title-glow 3s ease-in-out infinite' : undefined,
+            }}
+          />
+        ) : (
+          <h1 className={cn(
+            "text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight",
+            isBonanza ? "text-pink-300" : "text-foreground"
+          )} style={{
+            filter: isBonanza
+              ? 'drop-shadow(0 0 20px rgba(236,72,153,0.5)) drop-shadow(0 0 40px rgba(236,72,153,0.3))'
+              : undefined,
+            animation: isBonanza ? 'bonanza-title-glow 3s ease-in-out infinite' : undefined,
+          }}>
+            Fedesvin Bonanza
+          </h1>
+        )}
         
         {/* Loading Bar */}
         <div className="w-full max-w-xs sm:max-w-sm space-y-4">
           <div className={cn(
             "relative p-3 rounded-xl backdrop-blur-md border",
-            isWizard
-              ? "bg-purple-950/40 border-purple-500/20 shadow-[0_0_30px_rgba(168,85,247,0.15)]"
-              : "bg-amber-950/40 border-amber-500/20 shadow-[0_0_30px_rgba(251,191,36,0.15)]"
+            isBonanza
+              ? "bg-pink-950/40 border-pink-500/20 shadow-[0_0_30px_rgba(236,72,153,0.15)]"
+              : isWizard
+                ? "bg-purple-950/40 border-purple-500/20 shadow-[0_0_30px_rgba(168,85,247,0.15)]"
+                : "bg-amber-950/40 border-amber-500/20 shadow-[0_0_30px_rgba(251,191,36,0.15)]"
           )}>
             <Progress 
               value={totalProgress} 
               className={cn(
                 "h-5 rounded-full overflow-hidden border",
-                isWizard
-                  ? "bg-purple-950/60 border-purple-500/40 [&>div]:bg-gradient-to-r [&>div]:from-purple-600 [&>div]:via-purple-400 [&>div]:to-indigo-400"
-                  : "bg-amber-950/60 border-amber-500/40"
+                isBonanza
+                  ? "bg-pink-950/60 border-pink-500/40 [&>div]:bg-gradient-to-r [&>div]:from-pink-600 [&>div]:via-pink-400 [&>div]:to-fuchsia-400"
+                  : isWizard
+                    ? "bg-purple-950/60 border-purple-500/40 [&>div]:bg-gradient-to-r [&>div]:from-purple-600 [&>div]:via-purple-400 [&>div]:to-indigo-400"
+                    : "bg-amber-950/60 border-amber-500/40"
               )}
             />
             {/* Shimmer overlay */}
@@ -222,7 +247,7 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
           
           <p className={cn(
             "text-center text-sm font-medium",
-            isWizard ? "text-purple-400/80" : "text-amber-500/80"
+            isBonanza ? "text-pink-400/80" : isWizard ? "text-purple-400/80" : "text-amber-500/80"
           )}>
             {everythingLoaded ? "Klar!" : "Indlæser..."} {Math.round(totalProgress)}%
           </p>
@@ -241,6 +266,16 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
           @keyframes wizard-title-glow {
             0%, 100% { filter: drop-shadow(0 0 20px rgba(168,85,247,0.5)) drop-shadow(0 0 40px rgba(168,85,247,0.3)); }
             50% { filter: drop-shadow(0 0 30px rgba(168,85,247,0.7)) drop-shadow(0 0 60px rgba(168,85,247,0.4)); }
+          }
+        `}</style>
+      )}
+
+      {/* Bonanza-specific animations */}
+      {isBonanza && (
+        <style>{`
+          @keyframes bonanza-title-glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(236,72,153,0.5)) drop-shadow(0 0 40px rgba(236,72,153,0.3)); }
+            50% { filter: drop-shadow(0 0 30px rgba(236,72,153,0.7)) drop-shadow(0 0 60px rgba(236,72,153,0.4)); }
           }
         `}</style>
       )}
