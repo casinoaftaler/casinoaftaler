@@ -162,7 +162,7 @@ export const routeLabels: Record<string, string> = {
   "/casinospil/blackjack/dalembert": "D'Alembert Strategi",
   "/casinospil/blackjack/amerikansk-blackjack": "Amerikansk Blackjack",
   "/casinospil/blackjack/europaeisk-blackjack": "Europæisk Blackjack",
-  "/casinospil/blackjack/double-exposure": "Double Exposure",
+  "/casinospil/blackjack/double-exposure-blackjack": "Double Exposure",
   "/casinospil/blackjack/spanish-21": "Spanish 21",
   "/casinospil/roulette": "Roulette",
   "/casinospil/poker": "Poker",

@@ -383,7 +383,7 @@ const App = () => (
                 <Route path="/casinospil/blackjack" element={<BlackjackGuide />} />
                 <Route path="/casinospil/blackjack/amerikansk-blackjack" element={<AmerikanskBlackjackGuide />} />
                 <Route path="/casinospil/blackjack/europaeisk-blackjack" element={<EuropaeiskBlackjackGuide />} />
-                <Route path="/casinospil/blackjack/double-exposure" element={<DoubleExposureBlackjackGuide />} />
+                <Route path="/casinospil/blackjack/double-exposure-blackjack" element={<DoubleExposureBlackjackGuide />} />
                 <Route path="/casinospil/blackjack/spanish-21" element={<Spanish21Guide />} />
                 <Route path="/casinospil/blackjack/martingale" element={<MartingaleBlackjackGuide />} />
                 <Route path="/casinospil/blackjack/fibonacci" element={<FibonacciBlackjackGuide />} />
