@@ -530,9 +530,23 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
             </div>
             <div className="w-px h-10 bg-pink-500/30" />
             <div className="flex flex-col items-center">
+              <span className="text-[10px] uppercase tracking-widest text-pink-400/80 font-semibold">Tumble Win</span>
+              <span className="text-2xl font-black text-pink-200 drop-shadow-[0_0_10px_rgba(236,72,153,0.6)] tabular-nums">
+                {runningWin.toFixed(2)}
+              </span>
+            </div>
+            <div className="w-px h-10 bg-pink-500/30" />
+            <div className="flex flex-col items-center">
               <span className="text-[10px] uppercase tracking-widest text-yellow-400/80 font-semibold">Multiplier</span>
               <span className="text-2xl font-black text-yellow-300 drop-shadow-[0_0_10px_rgba(250,204,21,0.7)] tabular-nums">
                 x{runningMultiplier}
+              </span>
+            </div>
+            <div className="w-px h-10 bg-pink-500/30" />
+            <div className="flex flex-col items-center">
+              <span className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-semibold">Total</span>
+              <span className="text-2xl font-black text-emerald-300 drop-shadow-[0_0_10px_rgba(52,211,153,0.7)] tabular-nums">
+                {(runningWin * Math.max(1, runningMultiplier)).toFixed(2)}
               </span>
             </div>
           </div>
