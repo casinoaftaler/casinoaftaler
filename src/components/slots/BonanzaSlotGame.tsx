@@ -209,20 +209,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         // Mark winning cells + activated bombs
         const winAnims = new Map<number, BonanzaCellAnimState>();
         for (const pos of step.winningPositions) winAnims.set(pos, 'winning');
-        // Highlight activated bombs
-        if (step.multiplierBombs) {
-          for (const bomb of step.multiplierBombs) {
-            if (bomb.activated) winAnims.set(bomb.position, 'winning');
-          }
-        }
+        // Bombs remain visually inert during tumbles — no highlight
         setCellAnimStates(winAnims);
-
-        // Apply bomb multiplier
-        if (step.bombMultiplier > 0) {
-          setRunningMultiplier(prev => prev + step.bombMultiplier);
-          setScreenShake('normal');
-          setTimeout(() => setScreenShake('none'), 500);
-        }
 
         await new Promise(r => setTimeout(r, 1200));
 
@@ -230,26 +218,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         setTumblePhase('tumbling');
         const removeAnims = new Map<number, BonanzaCellAnimState>();
         for (const pos of step.winningPositions) removeAnims.set(pos, 'exploding');
-        // Activated bombs explode
-        if (step.multiplierBombs) {
-          for (const bomb of step.multiplierBombs) {
-            if (bomb.activated) removeAnims.set(bomb.position, 'bomb-activate');
-          }
-        }
+        // Bombs are NOT animated here — they blow up after all tumbles
         setCellAnimStates(removeAnims);
         slotSounds.playCrackle();
         await new Promise(r => setTimeout(r, 500));
-
-        // Fizzle non-activated bombs
-        if (step.multiplierBombs) {
-          const fizzleBombs = step.multiplierBombs.filter(b => !b.activated);
-          if (fizzleBombs.length > 0) {
-            const fizzleAnims = new Map<number, BonanzaCellAnimState>();
-            for (const bomb of fizzleBombs) fizzleAnims.set(bomb.position, 'bomb-fizzle');
-            setCellAnimStates(fizzleAnims);
-            await new Promise(r => setTimeout(r, 600));
-          }
-        }
 
         setWinningPositions(new Set());
 
@@ -312,6 +284,25 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         await new Promise(r => setTimeout(r, 300));
       }
     }
+
+    // === Sequential bomb blow-up AFTER all tumbles ===
+    const lastStepWithBombs = [...steps].reverse().find(s => s.multiplierBombs?.length > 0);
+    if (lastStepWithBombs?.multiplierBombs?.length) {
+      const sorted = [...lastStepWithBombs.multiplierBombs].sort((a, b) => a.position - b.position);
+      for (const bomb of sorted) {
+        const animState = bomb.activated ? 'bomb-activate' : 'bomb-fizzle';
+        setCellAnimStates(new Map([[bomb.position, animState]]));
+        if (bomb.activated) {
+          slotSounds.playCrackle();
+          setRunningMultiplier(prev => prev + bomb.value);
+          setScreenShake('normal');
+          setTimeout(() => setScreenShake('none'), 400);
+        }
+        await new Promise(r => setTimeout(r, 400));
+      }
+      await new Promise(r => setTimeout(r, 300));
+    }
+
     setCellAnimStates(new Map());
     setCellDropOffsets(new Map());
     setTumbleChainLength(0);
