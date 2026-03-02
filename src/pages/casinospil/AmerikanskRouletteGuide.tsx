@@ -99,7 +99,7 @@ const articleSchema = buildArticleSchema({
   description: "Dybdegående guide til amerikansk roulette: dobbelt-nul mekanik, house edge matematik, Five Number Bet fælden, 10.000-spins simulering og strategiske anbefalinger.",
   datePublished: "2026-03-02",
   dateModified: "2026-03-02",
-  slug: "/casinospil/roulette/amerikansk-roulette",
+  url: `${SITE_URL}/casinospil/roulette/amerikansk-roulette`,
   image: `${SITE_URL}/og/amerikansk-roulette.jpg`,
 });
 
@@ -739,16 +739,7 @@ export default function AmerikanskRouletteGuide() {
 
         <Separator className="my-12" />
 
-        <RelatedGuides
-          guides={[
-            { title: "Europæisk Roulette", path: "/casinospil/roulette/europaeisk-roulette" },
-            { title: "Fransk Roulette", path: "/casinospil/roulette/fransk-roulette" },
-            { title: "Martingale Roulette", path: "/casinospil/roulette/martingale-roulette" },
-            { title: "Roulette Strategi", path: "/casinospil/roulette-strategi" },
-            { title: "Live Roulette", path: "/live-casino/roulette" },
-            { title: "Lightning Roulette", path: "/live-casino/lightning-roulette" },
-          ]}
-        />
+        <RelatedGuides currentPath="/casinospil/roulette/amerikansk-roulette" />
       </div>
     </>
   );
