@@ -346,6 +346,25 @@ export const Header = memo(function Header() {
                       Spanish 21
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/blackjack/martingale" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Martingale Strategi
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/blackjack/fibonacci" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Fibonacci Strategi
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/blackjack/dalembert" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      D'Alembert Strategi
+                    </Link>
+                  </DropdownMenuItem>
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
               {[
@@ -1037,6 +1056,9 @@ export const Header = memo(function Header() {
                     { to: "/casinospil/blackjack/europaeisk-blackjack", label: "Europæisk Blackjack" },
                     { to: "/casinospil/blackjack/double-exposure-blackjack", label: "Double Exposure" },
                     { to: "/casinospil/blackjack/spanish-21", label: "Spanish 21" },
+                    { to: "/casinospil/blackjack/martingale", label: "Martingale Strategi" },
+                    { to: "/casinospil/blackjack/fibonacci", label: "Fibonacci Strategi" },
+                    { to: "/casinospil/blackjack/dalembert", label: "D'Alembert Strategi" },
                   ].map((item) => (
                     <Link key={item.to} to={item.to} className="ml-4 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
                       <Star className="h-3 w-3" />

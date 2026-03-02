@@ -341,7 +341,7 @@ const DalembertBlackjackGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards slugs={["spildansknu", "spilleautomaten", "betinia"]} heading="Prøv D'Alembert på Disse Live Blackjack-Borde" />
+        <InlineCasinoCards title="Prøv D'Alembert på Disse Live Blackjack-Borde" />
 
         <Separator className="mb-12" />
 
@@ -593,7 +593,7 @@ const DalembertBlackjackGuide = () => {
           </div>
         </section>
 
-        <InlineCasinoCards slugs={["swift-casino", "betinia", "spilleautomaten", "spildansknu"]} heading="Danske Casinoer med Live Blackjack til D'Alembert-Test" />
+        <InlineCasinoCards title="Danske Casinoer med Live Blackjack til D'Alembert-Test" />
 
         <Separator className="mb-12" />
 

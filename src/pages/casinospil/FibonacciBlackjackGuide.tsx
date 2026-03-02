@@ -326,7 +326,7 @@ const FibonacciBlackjackGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards slugs={["betinia", "spildansknu", "spilleautomaten"]} heading="Test Fibonacci på Disse Live Blackjack-Borde" />
+        <InlineCasinoCards title="Test Fibonacci på Disse Live Blackjack-Borde" />
 
         <Separator className="mb-12" />
 
@@ -557,7 +557,7 @@ const FibonacciBlackjackGuide = () => {
           </div>
         </section>
 
-        <InlineCasinoCards slugs={["swift-casino", "spildansknu", "betinia", "spilleautomaten"]} heading="Danske Casinoer med Live Blackjack til Fibonacci-Test" />
+        <InlineCasinoCards title="Danske Casinoer med Live Blackjack til Fibonacci-Test" />
 
         <Separator className="mb-12" />
 
