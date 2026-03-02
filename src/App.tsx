@@ -163,6 +163,10 @@ const BankTransferGuide = lazy(() => import("./pages/payments/BankTransferGuide"
 const VisaMastercardGuide = lazy(() => import("./pages/payments/VisaMastercardGuide"));
 const RevolutGuide = lazy(() => import("./pages/payments/RevolutGuide"));
 const BlackjackGuide = lazy(() => import("./pages/casinospil/BlackjackGuide"));
+const AmerikanskBlackjackGuide = lazy(() => import("./pages/casinospil/AmerikanskBlackjackGuide"));
+const EuropaeiskBlackjackGuide = lazy(() => import("./pages/casinospil/EuropaeiskBlackjackGuide"));
+const DoubleExposureBlackjackGuide = lazy(() => import("./pages/casinospil/DoubleExposureBlackjackGuide"));
+const Spanish21Guide = lazy(() => import("./pages/casinospil/Spanish21Guide"));
 const RouletteGuide = lazy(() => import("./pages/casinospil/RouletteGuide"));
 const PokerGuide = lazy(() => import("./pages/casinospil/PokerGuide"));
 const CrapsGuide = lazy(() => import("./pages/casinospil/CrapsGuide"));
@@ -374,6 +378,10 @@ const App = () => (
                 <Route path="/casinospil/spillemaskiner/joker-strike" element={<JokerStrikeGuide />} />
                 <Route path="/casinospil/spillemaskiner/bonus-buys" element={<BonusBuysGuide />} />
                 <Route path="/casinospil/blackjack" element={<BlackjackGuide />} />
+                <Route path="/casinospil/blackjack/amerikansk-blackjack" element={<AmerikanskBlackjackGuide />} />
+                <Route path="/casinospil/blackjack/europaeisk-blackjack" element={<EuropaeiskBlackjackGuide />} />
+                <Route path="/casinospil/blackjack/double-exposure" element={<DoubleExposureBlackjackGuide />} />
+                <Route path="/casinospil/blackjack/spanish-21" element={<Spanish21Guide />} />
                 <Route path="/casinospil/roulette" element={<RouletteGuide />} />
                 <Route path="/casinospil/poker" element={<PokerGuide />} />
                 <Route path="/casinospil/craps" element={<CrapsGuide />} />
