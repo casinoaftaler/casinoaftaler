@@ -518,17 +518,149 @@ const RouletteGuide = () => {
 
         <Separator className="my-10" />
 
-        {/* ═══════════════ 14 – VIDERE LÆSNING ═══════════════ */}
+        {/* ═══════════════ 14 – ROULETTE VARIANTER: DYBDEGÅENDE GUIDES ═══════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Videre Læsning: Strategier og Avanceret Analyse</h2>
+          <h2 className="mb-4 text-3xl font-bold">Alle Roulette-Varianter: Dybdegående Guides</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Denne guide har dækket roulettens grundlæggende elementer: hjulets opbygning, bordets layout, alle væddemålstyper, odds og udbetalinger, varianter og regulering. Med denne viden er du i stand til at spille informeret roulette og træffe rationelle valg om variant, indsatsstørrelse og sessionslængde.
+            Roulette er ikke ét spil – det er en familie af varianter med fundamentalt forskellige matematiske profiler. Valget af variant er den vigtigste beslutning du træffer, fordi det determinerer den house edge du betaler for hele din session. Nedenfor finder du vores komplet dækning af de tre primære hjulvarianter, hver med detaljeret matematik, simuleringer og bonus wagering EV-analyse.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
+            <Card className="border-primary/30 hover:border-primary/60 transition-colors">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  <Link to="/casinospil/roulette/europaeisk-roulette" className={linkClass}>Europæisk Roulette</Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-2">37 felter · 2,70 % house edge · Standarden for informerede spillere</p>
+                <p className="text-xs text-muted-foreground">Komplet guide med Risk of Ruin simulering, EV-analyse for danske bonusser og historisk kontekst fra Bad Homburg til Monte Carlo.</p>
+              </CardContent>
+            </Card>
+            <Card className="border-primary/30 hover:border-primary/60 transition-colors">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-primary" />
+                  <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>Fransk Roulette</Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-2">37 felter · 1,35 % HE med La Partage · Det matematisk optimale valg</p>
+                <p className="text-xs text-muted-foreground">La Partage-mekanik, En Prison-reglens impact på varians, progressive systems simulation og Live vs. RNG performance.</p>
+              </CardContent>
+            </Card>
+            <Card className="border-destructive/30 hover:border-destructive/60 transition-colors">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                  <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>Amerikansk Roulette</Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-2">38 felter · 5,26 % house edge · Dobbelt-nul hjulet der koster dobbelt</p>
+                <p className="text-xs text-muted-foreground">Five Number Bet fælden, 10.000-spins Monte Carlo simulering, Surrender-reglen og psykologisk analyse af hjulvalg.</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <h3 className="mb-3 text-xl font-semibold">Indsatsstrategier: Matematik og Simuleringer</h3>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Ingen indsatsstrategi kan overvinde house edge – men de påvirker din risikoprofil, session-dynamik og bankroll survival markant. Vores strategi-guides analyserer hvert system med Monte Carlo-simuleringer, Risk of Ruin-tabeller og EV-beregninger for dansk bonus wagering. Start med den overordnede <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategi-oversigt</Link>, eller dyk direkte ned i et specifikt system:
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            <Card className="hover:border-primary/40 transition-colors">
+              <CardContent className="pt-6">
+                <h4 className="font-bold mb-1">
+                  <Link to="/casinospil/roulette/martingale-roulette" className={linkClass}>Martingale Strategi</Link>
+                </h4>
+                <p className="text-xs text-muted-foreground">Fordoblings-systemet: matematisk bevis for tabsgrænser, Monte Carlo-fallgruben (1913-analysen) og Lightning Roulette-advarsler.</p>
+              </CardContent>
+            </Card>
+            <Card className="hover:border-primary/40 transition-colors">
+              <CardContent className="pt-6">
+                <h4 className="font-bold mb-1">
+                  <Link to="/casinospil/roulette/fibonacci-roulette" className={linkClass}>Fibonacci Strategi</Link>
+                </h4>
+                <p className="text-xs text-muted-foreground">Det gyldne snit anvendt på roulette: sekvensmønstre, Golden Ratio (φ) analyse og psykologiske bias som Pattern Recognition.</p>
+              </CardContent>
+            </Card>
+            <Card className="hover:border-primary/40 transition-colors">
+              <CardContent className="pt-6">
+                <h4 className="font-bold mb-1">
+                  <Link to="/casinospil/roulette/dalembert-roulette" className={linkClass}>D'Alembert Strategi</Link>
+                </h4>
+                <p className="text-xs text-muted-foreground">Equilibrium-illusionen: Jean-Baptiste d'Alemberts teori, Gambler's Fallacy og tidsbaseret tabsanalyse (Live vs. RNG).</p>
+              </CardContent>
+            </Card>
+            <Card className="hover:border-primary/40 transition-colors">
+              <CardContent className="pt-6">
+                <h4 className="font-bold mb-1">
+                  <Link to="/casinospil/roulette/labouchere-roulette" className={linkClass}>Labouchère Strategi</Link>
+                </h4>
+                <p className="text-xs text-muted-foreground">Cancellation-systemet: sekvens-specifikke completion rates, inflationseffekten og tracking-krav i Live vs. Turbo RNG.</p>
+              </CardContent>
+            </Card>
+            <Card className="hover:border-primary/40 transition-colors">
+              <CardContent className="pt-6">
+                <h4 className="font-bold mb-1">
+                  <Link to="/casinospil/roulette/james-bond-roulette" className={linkClass}>James Bond Strategi</Link>
+                </h4>
+                <p className="text-xs text-muted-foreground">Ian Flemings 200-enhed system: Win Frequency Bias, Prospect Theory, Brand Halo-effekten og French Bond-varianten.</p>
+              </CardContent>
+            </Card>
+            <Card className="hover:border-primary/40 transition-colors">
+              <CardContent className="pt-6">
+                <h4 className="font-bold mb-1">
+                  <Link to="/casinospil/roulette-strategi" className={linkClass}>Roulette Strategi – Oversigt</Link>
+                </h4>
+                <p className="text-xs text-muted-foreground">Samlet guide med alle systemer, forventet værdi-formler, varians-beregninger og bankroll management-modeller.</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="text-lg">Strategi-Sammenligning: House Edge × Ruin-Risiko (1.000 spins, 100 kr.)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-border bg-muted/50">
+                      <th className="py-3 px-3 text-left font-semibold">Strategi</th>
+                      <th className="py-3 px-3 text-left font-semibold">Gns. tab (EU 2,70%)</th>
+                      <th className="py-3 px-3 text-left font-semibold">Gns. tab (FR 1,35%)</th>
+                      <th className="py-3 px-3 text-left font-semibold">Ruin-risiko (EU)</th>
+                      <th className="py-3 px-3 text-left font-semibold">Varians-profil</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground">Flat Betting</td><td className="py-2 px-3">−2.700 kr.</td><td className="py-2 px-3">−1.350 kr.</td><td className="py-2 px-3 text-primary">6 %</td><td className="py-2 px-3">Lav</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground"><Link to="/casinospil/roulette/martingale-roulette" className={linkClass}>Martingale</Link></td><td className="py-2 px-3">−2.700 kr.</td><td className="py-2 px-3">−1.350 kr.</td><td className="py-2 px-3 text-destructive">24 %</td><td className="py-2 px-3">Ekstrem</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground"><Link to="/casinospil/roulette/fibonacci-roulette" className={linkClass}>Fibonacci</Link></td><td className="py-2 px-3">−2.700 kr.</td><td className="py-2 px-3">−1.350 kr.</td><td className="py-2 px-3">18 %</td><td className="py-2 px-3">Høj</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground"><Link to="/casinospil/roulette/dalembert-roulette" className={linkClass}>D'Alembert</Link></td><td className="py-2 px-3">−2.700 kr.</td><td className="py-2 px-3">−1.350 kr.</td><td className="py-2 px-3">14 %</td><td className="py-2 px-3">Medium</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground"><Link to="/casinospil/roulette/labouchere-roulette" className={linkClass}>Labouchère</Link></td><td className="py-2 px-3">−2.700 kr.</td><td className="py-2 px-3">−1.350 kr.</td><td className="py-2 px-3">20 %</td><td className="py-2 px-3">Høj</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 text-foreground"><Link to="/casinospil/roulette/james-bond-roulette" className={linkClass}>James Bond</Link></td><td className="py-2 px-3">−2.700 kr.</td><td className="py-2 px-3">−1.350 kr.</td><td className="py-2 px-3">16 %</td><td className="py-2 px-3">Medium-Høj</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-muted-foreground mt-2">Gennemsnitligt tab er identisk uanset strategi (determineret af house edge). Forskellen er ruin-risiko og session-dynamik. Flat betting er konsekvent den sikreste tilgang.</p>
+            </CardContent>
+          </Card>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════ 15 – VIDERE LÆSNING ═══════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Videre Læsning: Andre Casinospil og Bordspil</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Roulette er kun ét element i det bredere <Link to="/casinospil" className={linkClass}>casinospil</Link>-landskab. For at træffe det bedste valg for din spilleprofil bør du forstå, hvordan roulette positionerer sig relativt til andre klassiske bordspil – både i house edge, strategisk dybde og underholdningsværdi.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Hvis du vil dykke dybere ind i matematikken bag roulette – forventet værdi-formler, varians-beregninger, simuleringer af progressive systemer, risk of ruin-analyse og bankroll management-modeller – anbefaler vi vores dedikerede <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategi-guide</Link>. Den er skrevet som en akademisk analyse og behandler hvert system (Martingale, Fibonacci, D'Alembert, Labouchère) med konkrete tal og Monte Carlo-simuleringer.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            For sammenligning med andre casinospil anbefaler vi vores guides til <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> (det eneste casinospil med reel spiller-edge via basic strategy), <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> (det simpleste bordspil med lavest house edge på banker-bet) og <Link to="/casinospil/craps" className={linkClass}>craps</Link> (det mest sociale terningsspil). Hver guide analyserer spillets unikke egenskaber og positionerer det i forhold til de andre klassiske casinospil.
+            <Link to="/casinospil/blackjack" className={linkClass}>Blackjack</Link> er det eneste casinospil, hvor perfekt basisstrategi reducerer house edge til under 0,5 % – markant lavere end selv fransk roulettes 1,35 %. <Link to="/casinospil/baccarat" className={linkClass}>Baccarat</Link> tilbyder det simpleste bordspil med banker-bettets 1,06 % house edge. <Link to="/casinospil/craps" className={linkClass}>Craps</Link> er det mest sociale terningsspil med pass-line odds på blot 1,41 %. Og <Link to="/casinospil/game-shows" className={linkClass}>game shows</Link> som Lightning Roulette og Crazy Time fusionerer roulette-mekanik med underholdning.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Roulette forbliver et af de mest tilgængelige og visuelt engagerende casinospil – et spil, der belønner viden om regler og varianter, ikke med en edge over casinoet, men med en bedre, mere bevidst og mere underholdende spilleoplevelse. Og det er i sig selv en gevinst.

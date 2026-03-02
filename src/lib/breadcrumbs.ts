@@ -244,6 +244,36 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/cashback-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/reload-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
 
+  // Casinospil cluster – sub-hubs bound to /casinospil
+  "/casinospil/roulette": [{ name: "Casinospil", path: "/casinospil" }],
+  "/casinospil/blackjack": [{ name: "Casinospil", path: "/casinospil" }],
+  "/casinospil/baccarat": [{ name: "Casinospil", path: "/casinospil" }],
+  "/casinospil/poker": [{ name: "Casinospil", path: "/casinospil" }],
+  "/casinospil/craps": [{ name: "Casinospil", path: "/casinospil" }],
+  "/casinospil/game-shows": [{ name: "Casinospil", path: "/casinospil" }],
+  "/casinospil/online-lotteri": [{ name: "Casinospil", path: "/casinospil" }],
+  "/casinospil/spillemaskiner": [{ name: "Casinospil", path: "/casinospil" }],
+  "/casinospil/roulette-strategi": [{ name: "Casinospil", path: "/casinospil" }, { name: "Roulette", path: "/casinospil/roulette" }],
+
+  // Roulette cluster – all spokes bound to /casinospil/roulette hub
+  "/casinospil/roulette/amerikansk-roulette": [{ name: "Casinospil", path: "/casinospil" }, { name: "Roulette", path: "/casinospil/roulette" }],
+  "/casinospil/roulette/europaeisk-roulette": [{ name: "Casinospil", path: "/casinospil" }, { name: "Roulette", path: "/casinospil/roulette" }],
+  "/casinospil/roulette/fransk-roulette": [{ name: "Casinospil", path: "/casinospil" }, { name: "Roulette", path: "/casinospil/roulette" }],
+  "/casinospil/roulette/martingale-roulette": [{ name: "Casinospil", path: "/casinospil" }, { name: "Roulette", path: "/casinospil/roulette" }],
+  "/casinospil/roulette/fibonacci-roulette": [{ name: "Casinospil", path: "/casinospil" }, { name: "Roulette", path: "/casinospil/roulette" }],
+  "/casinospil/roulette/dalembert-roulette": [{ name: "Casinospil", path: "/casinospil" }, { name: "Roulette", path: "/casinospil/roulette" }],
+  "/casinospil/roulette/labouchere-roulette": [{ name: "Casinospil", path: "/casinospil" }, { name: "Roulette", path: "/casinospil/roulette" }],
+  "/casinospil/roulette/james-bond-roulette": [{ name: "Casinospil", path: "/casinospil" }, { name: "Roulette", path: "/casinospil/roulette" }],
+
+  // Blackjack cluster – all spokes bound to /casinospil/blackjack hub
+  "/casinospil/blackjack/martingale": [{ name: "Casinospil", path: "/casinospil" }, { name: "Blackjack", path: "/casinospil/blackjack" }],
+  "/casinospil/blackjack/fibonacci": [{ name: "Casinospil", path: "/casinospil" }, { name: "Blackjack", path: "/casinospil/blackjack" }],
+  "/casinospil/blackjack/dalembert": [{ name: "Casinospil", path: "/casinospil" }, { name: "Blackjack", path: "/casinospil/blackjack" }],
+  "/casinospil/blackjack/amerikansk-blackjack": [{ name: "Casinospil", path: "/casinospil" }, { name: "Blackjack", path: "/casinospil/blackjack" }],
+  "/casinospil/blackjack/europaeisk-blackjack": [{ name: "Casinospil", path: "/casinospil" }, { name: "Blackjack", path: "/casinospil/blackjack" }],
+  "/casinospil/blackjack/double-exposure-blackjack": [{ name: "Casinospil", path: "/casinospil" }, { name: "Blackjack", path: "/casinospil/blackjack" }],
+  "/casinospil/blackjack/spanish-21": [{ name: "Casinospil", path: "/casinospil" }, { name: "Blackjack", path: "/casinospil/blackjack" }],
+
   // Info-klynge – bundet til /om hubben
   "/saadan-tester-vi-casinoer": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/forretningsmodel": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
