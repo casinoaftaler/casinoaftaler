@@ -190,3 +190,15 @@
 .bonanza-slow-motion * {
   transition-duration: 0.5s !important;
 }
+
+/* Floating tumble win number */
+@keyframes bonanza-win-float {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(0.6); }
+  15% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  30% { opacity: 1; transform: translate(-50%, -60%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -120%) scale(0.9); }
+}
+
+.bonanza-win-float {
+  animation: bonanza-win-float 1.2s ease-out both;
+}
