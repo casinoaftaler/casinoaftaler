@@ -98,6 +98,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
   const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
+  const pendingPostWinSpinRef = useRef<"bonus" | "auto" | null>(null);
   const [spinPressed, setSpinPressed] = useState(false);
 
   // Initialize grid
@@ -342,6 +343,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     // Don't clear bomb-exploded decals yet — let them persist through drop-off animation
     if (isBonusSpin) setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
     setIsWinAnimating(false);
+    pendingPostWinSpinRef.current = null;
     setWinningPositions(new Set());
     setScreenShake('none');
     setTumbleChainLength(0);
@@ -363,6 +365,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     }
 
     slotSounds.playSpinStart();
+
+    let shouldWaitForWinAnimation = false;
 
     try {
       const useDebugScatters = debugScattersRef.current;
@@ -411,10 +415,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
 
         if (totalWin > 0) {
           setIsWinAnimating(true);
+          shouldWaitForWinAnimation = true;
           if (totalWin >= bet * 10) slotSounds.playBigWin();
           else if (totalWin >= bet * 3) slotSounds.playMediumWin();
           else slotSounds.playSmallWin();
-          // DEV MODE: Skip leaderboard invalidation for Bonanza
           // queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
         }
 
@@ -486,19 +490,23 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       spinLockRef.current = false;
 
       if (isBonusActive && freeSpinsRemaining > 0 && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current) {
-        // If win animation is playing, don't schedule yet — the onAnimationComplete callback will handle it
-        if (!isWinAnimating) {
+        if (shouldWaitForWinAnimation) {
+          pendingPostWinSpinRef.current = 'bonus';
+        } else {
+          if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
           autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
         }
-        // else: winAnimCompleteRef effect will schedule the spin
       } else if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
         if (autoSpinsRemaining !== null) {
           const newCount = autoSpinsRemaining - 1;
           setAutoSpinsRemaining(newCount);
           if (newCount <= 0) { stopAutoSpin(); return; }
         }
-        // If win animation is playing, don't schedule yet
-        if (!isWinAnimating) {
+
+        if (shouldWaitForWinAnimation) {
+          pendingPostWinSpinRef.current = 'auto';
+        } else {
+          if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
           autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1500);
         }
       }
@@ -617,12 +625,22 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           bet={bet}
           onAnimationComplete={() => {
             setIsWinAnimating(false);
-            // Schedule next spin now that animation is done
-            if (isBonusActive && freeSpinsRemaining > 0 && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current) {
+
+            if (pendingPostWinSpinRef.current === 'bonus') {
+              pendingPostWinSpinRef.current = null;
+              if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
               autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
-            } else if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
-              autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1000);
+              return;
             }
+
+            if (pendingPostWinSpinRef.current === 'auto' && !shouldStopAutoSpinRef.current) {
+              pendingPostWinSpinRef.current = null;
+              if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+              autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1000);
+              return;
+            }
+
+            pendingPostWinSpinRef.current = null;
           }}
           gameId={gameId}
         />
