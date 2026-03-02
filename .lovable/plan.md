@@ -1,52 +1,39 @@
 
-# Remake Big Win / Epic Win Celebration Screen
+# Floating Tumble Win Numbers
 
-## Problem
-The current win celebration animations are too brief and get cut short by the next spin starting. The counter counts up quickly, does a short pulse, then fades — not giving the player time to appreciate big wins. The next spin also fires on a fixed timeout (500ms bonus / 1500ms auto-spin) without waiting for the celebration to finish.
+## What it does
+After each tumble, a small floating number showing the cluster payout (e.g., "+2.50") will appear over the winning symbols, float upward, and fade out -- similar to damage numbers in video games.
 
-## Solution
+## Plan
 
-### 1. Increase celebration durations significantly in WinCelebration.tsx
+### 1. Create a new component: `BonanzaTumbleWinPopup`
+- A small overlay that renders absolutely inside the game grid
+- Shows the win amount with a float-up + fade-out CSS animation
+- Positioned at the center of the winning cluster (average of all winning symbol positions)
+- Auto-removes itself after animation completes (~1.2s)
 
-**Counter duration** (how long the number counts up):
-- Big Win (10x+): 2200ms -> 3500ms
-- Mega Win (50x+): 2800ms -> 5000ms  
-- Epic Win (100x+): 3500ms -> 7000ms
+### 2. Add CSS animation to `bonanza-animations.css`
+- `bonanza-win-float`: starts at opacity 1, scale 0.8, floats upward ~40px while scaling to 1.0, then fades to opacity 0
+- Duration: ~1.2s with ease-out timing
 
-**Pulse/hold duration** (how long it stays on screen after counting):
-- Big Win: 1800ms -> 3000ms
-- Mega Win: 2200ms -> 4500ms
-- Epic Win: 3000ms -> 6000ms
-
-**Fade-out duration** (exit transition):
-- Big Win: 400ms -> 800ms
-- Mega Win: 450ms -> 1000ms
-- Epic Win: 1000ms -> 1500ms
-
-### 2. Block next spin until animation completes in BonanzaSlotGame.tsx
-
-Currently the spin function fires on a timer without checking `isWinAnimating`. Changes:
-- Add a ref to track when the win animation finishes
-- In the `finally` block of `handleSpin`, check if win animation is still playing before scheduling the next auto-spin
-- Use the `onAnimationComplete` callback to trigger the next auto-spin/bonus-spin instead of a fixed timer
-- This ensures players see the full celebration before the game continues
-
-### 3. Add a "click to skip" interaction
-
-For manual play (non-auto-spin), allow clicking anywhere on the celebration overlay to skip to the end immediately, so players who don't want to wait can dismiss it.
+### 3. Wire it into `BonanzaSlotGame.tsx` tumble processing
+- Add a state array for active floating win popups: `tumbleWinPopups`
+- Each popup has: id, amount, center position (x, y), and a creation timestamp
+- In `processTumbleSteps`, when a winning step is found (line ~208), calculate the center of the winning positions and push a new popup entry
+- The popup auto-clears after the animation duration
+- Popups render inside the grid container as absolute-positioned elements
 
 ## Technical Details
 
-**Files to modify:**
+### Position calculation
+- Each winning position flat index maps to `col` and `row` via `flatToColRow()`
+- Pixel x = `SYMBOL_GAP + col * (SYMBOL_WIDTH + SYMBOL_GAP) + SYMBOL_WIDTH / 2`
+- Pixel y = `SYMBOL_GAP + row * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_HEIGHT / 2`
+- Average all winning positions to find center of cluster
 
-1. **`src/components/slots/WinCelebration.tsx`**
-   - Increase `pulseDuration`, `counterDuration`, and fade timings
-   - Add `pointerEvents: auto` and an `onClick` handler for skip-to-end functionality
-   - Make the overlay a proper blocking layer during big wins
+### Files to create
+- `src/components/slots/BonanzaTumbleWinPopup.tsx` -- the floating number component
 
-2. **`src/components/slots/BonanzaSlotGame.tsx`**
-   - Modify the `finally` block in `handleSpin` to not schedule next spin while `isWinAnimating` is true
-   - Add an effect that watches for `isWinAnimating` transitioning to `false` and then schedules the next auto/bonus spin
-   - This ensures the celebration plays fully before continuing
-
-The total visible time for an Epic Win will go from roughly 5-6 seconds to approximately 15 seconds, making it a proper cinematic moment.
+### Files to modify
+- `src/styles/bonanza-animations.css` -- add `bonanza-win-float` keyframes and class
+- `src/components/slots/BonanzaSlotGame.tsx` -- add state for popups, spawn them during tumble processing, render them inside the grid
