@@ -48,8 +48,8 @@ export function SidebarLeaderboard() {
     async function fetch() {
       const { data } = await supabase
         .from("slot_leaderboard")
-        .select("user_id, total_winnings")
-        .order("total_winnings", { ascending: false })
+        .select("user_id, monthly_winnings")
+        .order("monthly_winnings", { ascending: false })
         .limit(5);
 
       if (!data || data.length === 0) return;
@@ -65,15 +65,17 @@ export function SidebarLeaderboard() {
       );
 
       setEntries(
-        data.map((d) => {
-          const profile = profileMap.get(d.user_id!);
-          return {
-            user_id: d.user_id!,
-            display_name: profile?.display_name || "Anonym",
-            avatar_url: profile?.avatar_url || null,
-            total_winnings: d.total_winnings || 0,
-          };
-        })
+        data
+          .filter((d) => (d as any).monthly_winnings > 0)
+          .map((d) => {
+            const profile = profileMap.get(d.user_id!);
+            return {
+              user_id: d.user_id!,
+              display_name: profile?.display_name || "Anonym",
+              avatar_url: profile?.avatar_url || null,
+              total_winnings: (d as any).monthly_winnings || 0,
+            };
+          })
       );
     }
 
@@ -115,7 +117,7 @@ export function SidebarLeaderboard() {
 
       <div className="flex items-center gap-2 mb-1">
         <Trophy className="h-4 w-4 text-amber-400" />
-        <h3 className="text-sm font-bold text-foreground">Spillehal - Leaderboard</h3>
+        <h3 className="text-sm font-bold text-foreground">Månedsturnering</h3>
       </div>
       <p className="text-[11px] text-muted-foreground mb-3">Top 5 spillere</p>
 
