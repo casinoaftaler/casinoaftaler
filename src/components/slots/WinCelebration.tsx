@@ -78,8 +78,8 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
   const isMegaWin = winMultiplier >= 50;
   const isEpicWin = winMultiplier >= 100;
 
-  const pulseDuration = isEpicWin ? 1200 : isMegaWin ? 900 : 750;
-  const counterDuration = isEpicWin ? 2500 : isMegaWin ? 2000 : 1500;
+  const pulseDuration = isEpicWin ? 3000 : isMegaWin ? 2200 : 1800;
+  const counterDuration = isEpicWin ? 3500 : isMegaWin ? 2800 : 2200;
   
   const displayAmount = useAnimatedCounter(showBigWin ? winAmount : 0, { 
     duration: counterDuration, 
@@ -162,7 +162,7 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
           setShowShockwave(false);
           hasTriggeredCompleteRef.current = true;
           onAnimationComplete?.();
-        }, isEpicWin ? 600 : 400);
+        }, isEpicWin ? 1000 : 700);
         
         return () => clearTimeout(fadeTimeout);
       }, pulseDuration);
