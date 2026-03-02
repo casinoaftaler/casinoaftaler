@@ -142,12 +142,12 @@ export function BatchSoundGenerator({ gameId }: BatchSoundGeneratorProps) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Wand2 className="h-5 w-5 text-blue-500" />
-          Batch Lydgenerator — Gates of Fedesvin
+          Batch Lydgenerator
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="text-sm text-muted-foreground">
-          Generer alle {totalCount} lydeffekter til Gates of Fedesvin automatisk med AI. Hver lyd er tematisk designet til Zeus/Olympus-temaet.
+          Generer alle {totalCount} lydeffekter automatisk med AI. Lydene bliver tematisk tilpasset det valgte spil.
         </p>
 
         {/* Progress */}
