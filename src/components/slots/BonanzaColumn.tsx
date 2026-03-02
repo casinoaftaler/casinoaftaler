@@ -68,6 +68,10 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
         const flatIndex = col * BONANZA_ROWS + row;
         const isWinning = winningPositions.has(flatIndex);
         const cellAnim = cellAnimStates.get(flatIndex) || 'idle';
+        const scatterAnimClass = cellAnim === 'scatter-pulse' ? 'bonanza-scatter-trigger-pulse'
+          : cellAnim === 'scatter-tease-intense' ? 'bonanza-scatter-tease-intense'
+          : cellAnim === 'scatter-tease' ? 'bonanza-scatter-tease'
+          : null;
 
         const applyDropOff = isDroppingOff && (cellAnim === 'idle' || cellAnim === 'bomb-exploded');
         const applyDropIn = isDroppingIn && cellAnim === 'idle';
@@ -90,9 +94,6 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
               cellAnim === 'filling' && "bonanza-lightning-fill",
               cellAnim === 'bomb-fizzle' && "bonanza-bomb-fizzle",
               cellAnim === 'bomb-activate' && "bonanza-bomb-activate",
-              cellAnim === 'scatter-pulse' && "bonanza-scatter-trigger-pulse",
-              cellAnim === 'scatter-tease' && "bonanza-scatter-tease",
-              cellAnim === 'scatter-tease-intense' && "bonanza-scatter-tease-intense",
             )}
             style={{
               width: SYMBOL_WIDTH,
@@ -112,7 +113,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
                   <img
                     src={symbol.image_url}
                     alt={symbol.name}
-                    className="w-full h-full object-contain"
+                    className={cn("w-full h-full object-contain", scatterAnimClass)}
                     style={{ transform: `scale(${scaleValue})` }}
                     draggable={false}
                   />
