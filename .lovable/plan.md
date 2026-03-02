@@ -1,49 +1,35 @@
 
 
-# Move Scatter Glow From Cell to Image
-
-## Problem
-The scatter tease/pulse glow currently uses `box-shadow` on the rectangular cell container. Since symbols are PNGs with transparent backgrounds, the glow appears as a rectangle around the cell rather than conforming to the image shape.
-
-## Solution
-Change the scatter animations from `box-shadow` (on the cell) to `filter: drop-shadow()` (on the `<img>` element inside the cell). This makes the glow follow the actual alpha contour of the symbol image.
+# Fix Win Celebration: Remove Black Box, Better Pulse, Skip-to-Count-End
 
 ## Changes
 
-### 1. Update CSS animations (`src/styles/bonanza-animations.css`)
+### 1. Remove the black background box (lines 515-548 in WinCelebration.tsx)
+The inner `<div>` wrapping the win text has `background: linear-gradient(... rgba(0,0,0,0.7) ...)`, a border, rounded corners, and box-shadow -- this creates the visible black rectangle. Remove the background, border, box-shadow, and backdrop-blur from this container so only the text and its glow are visible.
 
-Replace `box-shadow` with `filter: drop-shadow()` for all three scatter animation classes:
+### 2. Add a stronger pulse effect after counting finishes
+Currently `isPulsing` applies `animate-[win-amount-pulse_0.25s_ease-in-out_3]` (3 pulses). Change this to a continuous, more dramatic pulse animation on both the win label and the amount, with a glowing scale effect that loops until the celebration fades out.
 
-- **`bonanza-scatter-tease`**: Change from `box-shadow: 0 0 10px/25px` to `filter: drop-shadow(0 0 10px/25px)`
-- **`bonanza-scatter-tease-intense`**: Same treatment, remove the `border-color` override
-- **`bonanza-scatter-trigger-pulse`**: Change from `box-shadow` to `filter: drop-shadow()`, keep the `transform: scale()` on the cell
+### 3. Change skip to only skip the counter, not the whole animation
+Currently `handleSkip` immediately fades out and calls `onAnimationComplete`. Instead:
+- **First click (while counting)**: Jump the counter to the final value instantly (the existing `useAnimatedCounter` already snaps when `targetValue` matches, so we just need to force it). We can do this by setting a "skipCounter" state that makes the counter display the final amount immediately, then the existing `useEffect` at line 167 detects `displayAmount === winAmount` and triggers the pulse + fade-out flow naturally.
+- **Second click (during pulse/after counting)**: Then dismiss the whole celebration (current skip behavior).
 
-### 2. Move scatter animation classes to the image element (`src/components/slots/BonanzaColumn.tsx`)
+### Files to modify
+- **`src/components/slots/WinCelebration.tsx`** -- all three changes
+- **`src/hooks/useAnimatedCounter.ts`** -- add ability to force-skip to end value
+- **`src/styles/slot-animations.css`** -- add a continuous pulse keyframe for the post-count effect
 
-Currently the scatter classes are applied to the cell `<div>`. Move them to the inner `<img>` element instead, so the `filter: drop-shadow` targets the image directly.
+### Technical approach
 
-- Remove `scatter-pulse`, `scatter-tease`, `scatter-tease-intense` from the cell div's `className`
-- Add a variable (e.g. `isScatterAnim`) based on `cellAnim`
-- Apply the appropriate class to the `<img>` tag inside the symbol rendering block
+**useAnimatedCounter.ts**: Add an optional `skipToEnd` boolean param. When true, immediately cancel the animation and return `targetValue`.
 
-### Technical Details
+**WinCelebration.tsx**:
+- Add `counterSkipped` state (boolean)
+- On first click: set `counterSkipped = true` (passed to useAnimatedCounter to skip)
+- On second click (when `isPulsing` or counting is done): run current fade-out dismiss logic
+- Remove `background`, `border`, `borderColor`, `boxShadow`, `backdrop-blur-md`, and `rounded-2xl` from the inner card div -- keep only padding for text layout
+- Make `isPulsing` animation continuous (`infinite`) and more dramatic (scale 1 to 1.12)
 
-**`src/styles/bonanza-animations.css`** -- Replace box-shadow with drop-shadow:
-```css
-@keyframes bonanza-scatter-tease {
-  0%, 100% { filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4)); transform: scale(1); }
-  50% { filter: drop-shadow(0 0 25px rgba(168, 85, 247, 0.7)); transform: scale(1.05); }
-}
-
-@keyframes bonanza-scatter-pulse {
-  0% { filter: drop-shadow(0 0 0 rgba(168, 85, 247, 0)); transform: scale(1); }
-  50% { filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.6)); transform: scale(1.15); }
-  100% { filter: drop-shadow(0 0 0 rgba(168, 85, 247, 0)); transform: scale(1); }
-}
-```
-
-**`src/components/slots/BonanzaColumn.tsx`** -- Move classes from cell to img:
-- Determine scatter animation class from `cellAnim`
-- Remove scatter classes from the cell div
-- Apply them to `<img>` elements in the symbol rendering sections
+**slot-animations.css**: Add `win-amount-pulse-loop` keyframe with continuous scale + glow breathing.
 
