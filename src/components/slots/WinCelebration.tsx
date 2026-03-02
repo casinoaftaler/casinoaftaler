@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, useMemo, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
+import "@/styles/slot-animations.css";
 
 interface Particle {
   id: number;
@@ -71,11 +72,21 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
   const [isPulsing, setIsPulsing] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [showShockwave, setShowShockwave] = useState(false);
+  const [counterSkipped, setCounterSkipped] = useState(false);
   const hasTriggeredCompleteRef = useRef(false);
   const skipRef = useRef(false);
 
   const handleSkip = useCallback(() => {
-    if (hasTriggeredCompleteRef.current || skipRef.current) return;
+    if (hasTriggeredCompleteRef.current) return;
+    
+    // First click: skip the counter to end value
+    if (!counterSkipped && !isPulsing) {
+      setCounterSkipped(true);
+      return;
+    }
+    
+    // Second click (or click during pulse): dismiss the whole celebration
+    if (skipRef.current) return;
     skipRef.current = true;
     setIsPulsing(false);
     setIsFadingOut(true);
@@ -87,7 +98,7 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
       hasTriggeredCompleteRef.current = true;
       onAnimationComplete?.();
     }, 400);
-  }, [onAnimationComplete]);
+  }, [onAnimationComplete, counterSkipped, isPulsing]);
   
   const winMultiplier = bet > 0 ? winAmount / bet : 0;
   const isBigWin = winMultiplier >= 10;
@@ -102,7 +113,8 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
     duration: counterDuration, 
     startFrom: 0,
     playSound: showBigWin,
-    isBigWin: true
+    isBigWin: true,
+    skipToEnd: counterSkipped
   });
 
   // Theme colors for effects
@@ -197,6 +209,7 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
       setShowShockwave(false);
       hasTriggeredCompleteRef.current = false;
       skipRef.current = false;
+      setCounterSkipped(false);
       return;
     }
 
@@ -514,38 +527,8 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
         >
         <div
             className={cn(
-              "rounded-2xl backdrop-blur-md border",
               isEpicWin ? "px-10 sm:px-14 py-6 sm:py-8" : isMegaWin ? "px-8 sm:px-12 py-5 sm:py-7" : "px-6 sm:px-10 py-4 sm:py-5"
             )}
-            style={{
-              background: isBonanza
-                ? "linear-gradient(135deg, rgba(236,72,153,0.15), rgba(0,0,0,0.7), rgba(236,72,153,0.1))"
-                : isWizard
-                  ? "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(0,0,0,0.7), rgba(168,85,247,0.1))"
-                  : "linear-gradient(135deg, rgba(255,215,0,0.15), rgba(0,0,0,0.7), rgba(255,215,0,0.1))",
-              borderColor: isBonanza
-                ? `rgba(236,72,153,${isEpicWin ? 0.6 : isMegaWin ? 0.5 : 0.35})`
-                : isWizard
-                  ? `rgba(168,85,247,${isEpicWin ? 0.6 : isMegaWin ? 0.5 : 0.35})`
-                  : `rgba(255,215,0,${isEpicWin ? 0.6 : isMegaWin ? 0.5 : 0.35})`,
-              boxShadow: isBonanza
-                ? isEpicWin
-                  ? "0 0 40px rgba(236,72,153,0.5), 0 0 80px rgba(236,72,153,0.25), inset 0 1px 0 rgba(255,255,255,0.1)"
-                  : isMegaWin
-                  ? "0 0 30px rgba(236,72,153,0.4), 0 0 60px rgba(236,72,153,0.15), inset 0 1px 0 rgba(255,255,255,0.08)"
-                  : "0 0 20px rgba(236,72,153,0.3), inset 0 1px 0 rgba(255,255,255,0.06)"
-                : isWizard
-                  ? isEpicWin
-                    ? "0 0 40px rgba(168,85,247,0.5), 0 0 80px rgba(168,85,247,0.25), inset 0 1px 0 rgba(255,255,255,0.1)"
-                    : isMegaWin
-                    ? "0 0 30px rgba(168,85,247,0.4), 0 0 60px rgba(168,85,247,0.15), inset 0 1px 0 rgba(255,255,255,0.08)"
-                    : "0 0 20px rgba(168,85,247,0.3), inset 0 1px 0 rgba(255,255,255,0.06)"
-                  : isEpicWin
-                    ? "0 0 40px rgba(255,215,0,0.5), 0 0 80px rgba(255,215,0,0.25), inset 0 1px 0 rgba(255,255,255,0.1)"
-                    : isMegaWin
-                    ? "0 0 30px rgba(255,215,0,0.4), 0 0 60px rgba(255,215,0,0.15), inset 0 1px 0 rgba(255,255,255,0.08)"
-                    : "0 0 20px rgba(255,215,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06)",
-            }}
           >
             <div
               className={cn(
@@ -619,7 +602,7 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
                 className={cn(
                   "font-bold",
                   isEpicWin ? "text-3xl sm:text-5xl" : isMegaWin ? "text-xl sm:text-3xl" : "text-lg sm:text-2xl",
-                  isPulsing && "animate-[win-amount-pulse_0.25s_ease-in-out_3]"
+                  isPulsing && "animate-[win-amount-pulse-loop_0.6s_ease-in-out_infinite]"
                 )}
                 style={{
                   color: isBonanza ? "#f9a8d4" : isWizard ? "#c084fc" : "#ffd700",

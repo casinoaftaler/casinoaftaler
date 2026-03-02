@@ -6,22 +6,35 @@ interface UseAnimatedCounterOptions {
   startFrom?: number;
   playSound?: boolean;
   isBigWin?: boolean; // Use dramatic big win sound instead of standard coin count
+  skipToEnd?: boolean; // Immediately jump to target value
 }
 
 export function useAnimatedCounter(
   targetValue: number,
   options: UseAnimatedCounterOptions = {}
 ) {
-  const { duration = 1000, startFrom = 0, playSound = true, isBigWin = false } = options;
+  const { duration = 1000, startFrom = 0, playSound = true, isBigWin = false, skipToEnd = false } = options;
   const [displayValue, setDisplayValue] = useState(targetValue);
   const animationRef = useRef<number | null>(null);
   const previousTargetRef = useRef(targetValue);
   const stopSoundRef = useRef<(() => void) | null>(null);
 
+  // Skip to end when requested
+  useEffect(() => {
+    if (skipToEnd && targetValue > 0) {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
+      }
+      setDisplayValue(targetValue);
+      previousTargetRef.current = targetValue;
+    }
+  }, [skipToEnd, targetValue]);
+
   useEffect(() => {
     // Only animate if target increased (new win)
-    if (targetValue <= 0 || targetValue === previousTargetRef.current) {
-      setDisplayValue(targetValue);
+    if (skipToEnd || targetValue <= 0 || targetValue === previousTargetRef.current) {
+      if (!skipToEnd) setDisplayValue(targetValue);
       previousTargetRef.current = targetValue;
       return;
     }
@@ -68,7 +81,7 @@ export function useAnimatedCounter(
         stopSoundRef.current = null;
       }
     };
-  }, [targetValue, duration, startFrom, playSound, isBigWin]);
+  }, [targetValue, duration, startFrom, playSound, isBigWin, skipToEnd]);
 
   return displayValue;
 }
