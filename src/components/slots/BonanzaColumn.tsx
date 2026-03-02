@@ -67,7 +67,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
 
         return (
           <div
-            key={`${row}-${(cellAnim === 'dropping' || cellAnim === 'filling') ? animationEpoch : 'stable'}-${cellAnim}-${applyDropOff ? 'off' : applyDropIn ? 'in' : ''}`}
+            key={`${row}-${(cellAnim === 'dropping' || cellAnim === 'filling') ? animationEpoch : 'stable'}-${applyDropOff ? 'off' : applyDropIn ? 'in' : 'idle'}`}
             className={cn(
               "relative rounded-lg",
               (cellAnim === 'dropping' || cellAnim === 'filling' || cellAnim === 'exploding' || applyDropOff || applyDropIn) ? "overflow-visible" : "overflow-hidden",
