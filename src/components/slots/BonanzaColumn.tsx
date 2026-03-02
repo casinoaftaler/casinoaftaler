@@ -10,7 +10,7 @@ const SYMBOL_HEIGHT = 108;
 
 export type BonanzaColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed' | 'dropping-off' | 'dropping-in';
 
-export type BonanzaCellAnimState = 'idle' | 'winning' | 'removing' | 'exploding' | 'dropping' | 'filling' | 'bomb-fizzle' | 'bomb-activate' | 'scatter-pulse' | 'scatter-tease' | 'scatter-tease-intense';
+export type BonanzaCellAnimState = 'idle' | 'winning' | 'removing' | 'exploding' | 'dropping' | 'filling' | 'bomb-fizzle' | 'bomb-activate' | 'bomb-exploded' | 'scatter-pulse' | 'scatter-tease' | 'scatter-tease-intense';
 
 interface BonanzaColumnProps {
   col: number;
@@ -116,7 +116,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
             )}
 
             {/* Bomb symbol rendering */}
-            {cellAnim !== 'removing' && cellAnim !== 'exploding' && isBomb && (
+            {cellAnim !== 'removing' && cellAnim !== 'exploding' && cellAnim !== 'bomb-exploded' && isBomb && (
               <div className="w-full h-full flex items-center justify-center relative">
                 {bombSymbolsMap?.get(bombValue)?.image_url ? (
                   <img src={bombSymbolsMap.get(bombValue)!.image_url!} alt={`${bombValue}x`} className="w-full h-full object-contain" draggable={false} />
@@ -140,6 +140,13 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
                     <span className="bonanza-bomb-value">{bombValue}x</span>
                   </>
                 )}
+              </div>
+            )}
+
+            {/* Bomb exploded — show explosion decal */}
+            {cellAnim === 'bomb-exploded' && (
+              <div className="w-full h-full flex items-center justify-center bonanza-bomb-exploded-decal">
+                <span className="text-4xl">💥</span>
               </div>
             )}
 
