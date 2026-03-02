@@ -26,6 +26,7 @@ import { useTournaments, useTournamentLeaderboard, useTournamentParticipation, u
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { CompletedTournamentRow } from "@/components/tournament/CompletedTournamentRow";
+import { MonthlyLeaderboardCard } from "@/components/tournament/MonthlyLeaderboardCard";
 
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
@@ -474,10 +475,18 @@ export default function Leaderboard() {
             </div>
           ) : (
             <div className="space-y-6">
+              {/* Monthly tournament leaderboard */}
+              <MonthlyLeaderboardCard />
+
               {/* Active tournaments */}
               {active.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {active.map((t) => <TournamentCard key={t.id} tournament={t} />)}
+                <div>
+                  <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2 mb-4">
+                    <Trophy className="h-4 w-4" /> Aktive turneringer
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {active.map((t) => <TournamentCard key={t.id} tournament={t} />)}
+                  </div>
                 </div>
               )}
 
