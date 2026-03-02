@@ -233,9 +233,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           const CELL_HEIGHT = SYMBOL_HEIGHT + SYMBOL_GAP;
 
           const allRemovedPositions = new Set(step.winningPositions);
-          if (step.multiplierBombs) {
-            for (const bomb of step.multiplierBombs) allRemovedPositions.add(bomb.position);
-          }
+          // Do NOT add bomb positions — bombs persist in the grid during tumbles
 
           for (let col = 0; col < BONANZA_COLS; col++) {
             let removedInCol = 0;
@@ -289,9 +287,13 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     const lastStepWithBombs = winningStepCount > 0 ? [...steps].reverse().find(s => s.multiplierBombs?.length > 0) : null;
     if (lastStepWithBombs?.multiplierBombs?.length) {
       const sorted = [...lastStepWithBombs.multiplierBombs].sort((a, b) => a.position - b.position);
+      const explodedPositions = new Map<number, BonanzaCellAnimState>();
       for (const bomb of sorted) {
         const animState = bomb.activated ? 'bomb-activate' : 'bomb-fizzle';
-        setCellAnimStates(new Map([[bomb.position, animState]]));
+        // Keep previously exploded bombs hidden while animating next
+        const currentAnims = new Map(explodedPositions);
+        currentAnims.set(bomb.position, animState);
+        setCellAnimStates(currentAnims);
         if (bomb.activated) {
           slotSounds.playCrackle();
           setRunningMultiplier(prev => prev + bomb.value);
@@ -299,8 +301,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           setTimeout(() => setScreenShake('none'), 400);
         }
         await new Promise(r => setTimeout(r, 400));
+        // After animation, mark as exploded so it stays hidden
+        explodedPositions.set(bomb.position, 'bomb-exploded');
       }
-      await new Promise(r => setTimeout(r, 300));
+      // Keep exploded decals visible briefly
+      setCellAnimStates(new Map(explodedPositions));
+      await new Promise(r => setTimeout(r, 500));
     }
 
     setCellAnimStates(new Map());
