@@ -21,6 +21,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   Zap, RotateCcw, Check, X, Globe, Target, TrendingUp, Award,
@@ -122,12 +124,14 @@ const CampobetAnmeldelse = () => {
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Campobet", itemUrl: "https://www.campobet.dk", ratingValue: "4.7", ratingCount: "156", reviewBody: "Campobet er et internationalt casino med dansk licens, No-Sticky velkomstbonus på 100% op til 1.000 kr., 10x omsætning, sportsbetting og tusindvis af spil." });
 
+  const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/campobet", "s7S_GRsKfK4", { title: "Campobet Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Campobet ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features – så du ved præcis hvad du kan forvente, før du opretter en konto.", uploadDate: "2026-02-18", duration: "PT2M" });
+
   return (
     <>
       <SEO
         title="Campobet Anmeldelse 2026 – No-Sticky Bonus"
         description="Komplet anmeldelse af Campobet.dk. 100% No-Sticky bonus op til 1.000 kr., kun 10x omsætning, sportsbetting, tusindvis af spil og hurtige udbetalinger. Læs vores ærlige vurdering."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]}
       />
 
       {/* Hero */}
@@ -198,6 +202,27 @@ const CampobetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Bag Campobet står Denix Limited, et Malta-baseret selskab der har opereret internationalt siden 2018 og har opnået licenser i ikke mindre end tre europæiske jurisdiktioner: Spillemyndigheden i Danmark (licensnr. 20-6359), Malta Gaming Authority og den svenske Spelinspektionen. Denne tredobbelte licensering er usædvanlig og signalerer et compliance-niveau, der overgår de fleste konkurrenter på det danske marked. Denix Limited har brugt seks år på at finpudse deres platform internationalt, før de lancerede den danske version – og den polering mærkes i alt fra navigationens glidende responsivitet til den dybde, sportssektionen tilbyder.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det der virkelig differentierer Campobet fra konkurrenterne er kombinationen af en generøs <Link to="/no-sticky-bonus" className={linkClass}>No-Sticky velkomstbonus</Link> på 100 % op til 1.000 kr. med kun 10x omsætningskrav og en sportssektion der dækker ca. 40 sportsgrene med Bet Builder, livebetting og akkumulatorboost. Hos de fleste dual-platform casinoer i Danmark er enten casinodelen eller sportsdelen tydeligt underudviklet – hos Campobet føles begge sider som produkter, der er designet med omhu og teknisk kompetence.</p>
           <p className="text-muted-foreground leading-relaxed">I denne dybdegående anmeldelse gennemgår vi alt fra <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> til spiludvalg, sportsbetting-funktionalitet, <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, kundeservice og sikkerhed. Vi har testet platformen intensivt over 10 dage med fokus på både casino- og sportsdelen for at give dig et komplet og ærligt billede. Læs mere om <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.</p>
+
+          <YoutubeEmbed
+            videoId="s7S_GRsKfK4"
+            title="Campobet Casino Anmeldelse 2026 – Ærlig Gennemgang"
+            description="Se hvordan Campobet ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features – så du ved præcis hvad du kan forvente, før du opretter en konto."
+            duration="PT2M"
+            uploadDate="2026-02-18"
+            articleUrl="https://casinoaftaler.dk/casino-anmeldelser/campobet"
+          />
+
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">
+              Her gennemgår vores streamer og forfatter Jonas, hvordan Campobet ser ud indefra
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Campobets hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video. Videoen er en del af vores dybdegående indhold om{" "}
+              <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link>,{" "}
+              <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonusser</Link> og{" "}
+              <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
+            </p>
+          </div>
         </section>
 
         <Separator className="my-10" />
