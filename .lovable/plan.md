@@ -1,78 +1,89 @@
 
 
-## Plan: Omstrukturering af det globale leaderboard til 3-kategori månedsturnering
+## Plan: Countdown timer, vinderarkiv og "Vis alle" knap til SidebarLeaderboard
 
 ### Overblik
-Det globale leaderboard (slot-leaderboard) skal ændres fra en enkelt rangliste til en automatisk månedsturnering med **3 kategorier**, hver med sin egen vinder:
-
-1. **Højeste X** (biggest_multiplier) -- Hvem har ramt den højeste multiplikator
-2. **Største Gevinst** (biggest_win) -- Hvem har vundet mest i en enkelt bonus
-3. **Flest Point** (total_winnings) -- Hvem har samlet flest point i alt
-
-Brugere deltager automatisk -- ingen tilmelding nødvendig. Admin panel stats forbliver uændrede.
+Tre nye features:
+1. **Countdown timer** i leaderboard-komponenter der viser tid til naeste maned (auto-reset d. 1.)
+2. **Vinderarkiv** -- ved maanedsskift arkiveres vinderne for alle 3 kategorier i en ny DB-tabel, og brugere kan se tidligere vindere
+3. **"Vis alle" knap** paa SidebarLeaderboard (billedet brugeren sendte) der aabner det fulde leaderboard
 
 ---
 
-### Tekniske ændringer
+### 1. Database: Ny tabel `monthly_tournament_archives`
 
-#### 1. Database: Udvid materialized view med månedlige kategori-kolonner
+Ny tabel til at gemme vindere ved maanedsskift:
 
-Nuværende `slot_leaderboard` mangler `monthly_biggest_win` og `monthly_biggest_multiplier`. Ny migration:
+```text
+monthly_tournament_archives
+- id (uuid, PK)
+- month (date) -- foerste dag i maaneden, fx 2026-03-01
+- category (text) -- "total_points" | "highest_x" | "highest_win"
+- winner_user_id (uuid)
+- winner_display_name (text)
+- winner_avatar_url (text, nullable)
+- winning_value (numeric) -- det vindende tal (point, multiplier, eller gevinst)
+- top_entries (jsonb) -- top 10 for denne kategori (for historisk visning)
+- created_at (timestamptz)
+```
 
-- Tilføj `monthly_biggest_win` -- MAX(win) for indeværende måned
-- Tilføj `monthly_biggest_multiplier` -- MAX(multiplier) for indeværende måned
-- Tilføj indekser for hurtig sortering på de nye kolonner
-- `monthly_winnings` eksisterer allerede og bruges til "Flest Point"
+RLS: Alle kan laese (SELECT), kun service_role kan skrive.
 
-#### 2. Hook: Opdater `useSlotLeaderboard`
+Index paa `month` for hurtig historik-opslag.
 
-- Tilføj ny parameter `category`: `"highest_x"` | `"highest_win"` | `"total_points"` (default)
-- Bevar `period` parameter men sæt standard til `"monthly"` da det nu er en månedsturnering
-- Map kategorier til sort-kolonner:
-  - `highest_x` sorterer efter `monthly_biggest_multiplier` (nyt felt) eller `biggest_multiplier` for alltime
-  - `highest_win` sorterer efter `monthly_biggest_win` (nyt felt) eller `biggest_win` for alltime
-  - `total_points` sorterer efter `monthly_winnings` eller `total_winnings` for alltime
+### 2. Edge Function: `archive-monthly-tournament`
 
-#### 3. UI: Ombyg `SlotLeaderboard` komponent
+Ny edge function der koerer d. 1. i hver maaned (kan trigges via cron eller manuelt):
 
-- Erstat period-tabs (I dag/Uge/Måned/All-time) med **kategori-tabs**:
-  - "Flest Point" (default)
-  - "Højeste X"
-  - "Største Gevinst"
-- Vis relevant stat prominently per kategori (point, multiplier, eller gevinst)
-- Titlen ændres til "Månedsturnering" med en badge der viser indeværende måned
-- Vis **3 vindere** tydeligt i toppen (en per kategori) eller marker vinderen af den aktive kategori
-- Dialog (fuld liste) beholder kategoriskift
+- Henter top 1 for hver af de 3 kategorier fra `slot_leaderboard` (monthly_winnings, monthly_biggest_win, monthly_biggest_multiplier)
+- Gemmer 3 raekker i `monthly_tournament_archives` (en per kategori)
+- Gemmer top 10 per kategori i `top_entries` JSON-feltet
+- Henter display_name/avatar_url fra profiles_leaderboard
+- Idempotent: tjekker om maaneden allerede er arkiveret foer insert
 
-#### 4. UI: Opdater `SidebarLeaderboard`
+### 3. Hook: `useMonthlyTournamentArchive`
 
-- Vis top 5 for den primære kategori (Flest Point)
-- Tilføj en lille label "Månedsturnering - Marts 2026"
+Ny hook der henter arkiverede vindere:
 
-#### 5. UI: Opdater `MiniLeaderboard`
+- Query `monthly_tournament_archives` ordnet efter `month DESC`
+- Returnerer liste af maaneder med deres 3 vindere
+- Bruges i SlotLeaderboard til at vise "Forrige vindere" sektion
 
-- Brug `monthly_winnings` i stedet for `total_winnings` for at vise den aktuelle måneds rangliste
+### 4. Countdown Timer
 
-#### 6. Eksisterende turneringer forbliver uændrede
+Tilfoej en countdown-komponent der viser tid til d. 1. i naeste maaned:
 
-Normale turneringer (med tilmelding, credits, clawback) fungerer stadig som før. Det globale leaderboard omdannes blot visuelt og data-mæssigt til en månedsturnering.
+- Beregner naeste maaneds foerste dag kl. 00:00 dansk tid
+- Viser "Xd Xh Xm" format
+- Opdateres hvert sekund
+- Vises i baade `SlotLeaderboard` (under header) og `SidebarLeaderboard`
 
----
+### 5. UI: Opdater `SlotLeaderboard`
 
-### Filer der ændres
+- Tilfoej countdown timer mellem header og category tabs
+- Tilfoej en "Forrige vindere" sektion i bunden eller dialog med arkiverede vindere
+- Vis seneste maaneds vindere med avatar, navn og vindende vaerdi
 
-| Fil | Ændring |
-|---|---|
-| `supabase/migrations/new.sql` | Genskab materialized view med `monthly_biggest_win`, `monthly_biggest_multiplier` |
-| `src/hooks/useSlotLeaderboard.ts` | Tilføj `category` parameter, opdater sorterings-logik |
-| `src/components/slots/SlotLeaderboard.tsx` | 3 kategori-tabs, vis relevant stat per kategori, "Månedsturnering" branding |
-| `src/components/games/SidebarLeaderboard.tsx` | Brug monthly data, opdater label |
-| `src/components/games/MiniLeaderboard.tsx` | Brug `monthly_winnings` i stedet for `total_winnings` |
+### 6. UI: Opdater `SidebarLeaderboard`
 
-### Hvad forbliver uændret
-- Admin panel stats (`useSlotAdminStatistics`, `SlotPointsManagement`)
+- Tilfoej en "Se alle" knap i bunden (som paa billedet brugeren sendte)
+- Knappen aabner en Dialog med det fulde leaderboard (genbruger SlotLeaderboard-dialog logik)
+- Tilfoej kort countdown timer tekst under "Top 5 spillere" label
+
+### Filer der aendres/oprettes
+
+| Fil | Type | Beskrivelse |
+|---|---|---|
+| `supabase/migrations/new.sql` | Ny | Opret `monthly_tournament_archives` tabel |
+| `supabase/functions/archive-monthly-tournament/index.ts` | Ny | Edge function til at arkivere vindere |
+| `src/hooks/useMonthlyTournamentArchive.ts` | Ny | Hook til at hente arkiverede vindere |
+| `src/components/slots/SlotLeaderboard.tsx` | Opdater | Countdown timer + vindere-arkiv visning |
+| `src/components/games/SidebarLeaderboard.tsx` | Opdater | "Se alle" knap + countdown |
+
+### Hvad forbliver uaendret
+- Admin panel stats
 - Turnerings-systemet (join, credits, clawback)
-- `useUserPoints` (profil-visning)
-- `CompletedTournamentCard` / `CompletedTournamentRow`
-- Leaderboard page (`/community/leaderboard`) -- viser stadig turneringer som før
+- `useSlotLeaderboard` hook (allerede korrekt)
+- MiniLeaderboard
+- Leaderboard page (`/community/leaderboard`)
 
