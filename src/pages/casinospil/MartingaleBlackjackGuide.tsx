@@ -131,7 +131,7 @@ const MartingaleBlackjackGuide = () => {
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
-        style={{ backgroundImage: "linear-gradient(135deg, hsl(0 60% 25%), hsl(350 50% 18%) 40%, hsl(15 70% 22%))" }}
+        style={{ backgroundImage: "linear-gradient(135deg, hsl(220 60% 20%), hsl(240 50% 18%) 40%, hsl(200 70% 25%))" }}
       >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
