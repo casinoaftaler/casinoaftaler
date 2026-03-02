@@ -340,7 +340,239 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
-  // Casinospil subpages → hub + 3 siblings + 1 cross-cluster
+  // ── ROULETTE CLUSTER: unique per-page related guides ──
+  if (path === "/casinospil/roulette/martingale-roulette") {
+    return {
+      guides: [
+        { to: "/casinospil/roulette", label: "Roulette Guide", icon: Target, desc: "Komplet overblik over regler og varianter" },
+        { to: "/casinospil/roulette/dalembert-roulette", label: "D'Alembert Strategi", icon: BarChart3, desc: "Lavrisiko-alternativ til Martingale" },
+        { to: "/casinospil/roulette/labouchere-roulette", label: "Labouchère Strategi", icon: BookOpen, desc: "Fleksibel negativ progression" },
+        { to: "/casinospil/roulette/europaeisk-roulette", label: "Europæisk Roulette", icon: Star, desc: "2,70 % house edge – det optimale valg" },
+        { to: "/omsaetningskrav", label: "Omsætningskrav", icon: Target, desc: "Hvordan bonuskrav påvirker din strategi" },
+      ],
+      subtitle: "Udforsk alternative strategier og de bedste roulette-varianter til Martingale.",
+    };
+  }
+
+  if (path === "/casinospil/roulette/fibonacci-roulette") {
+    return {
+      guides: [
+        { to: "/casinospil/roulette", label: "Roulette Guide", icon: Target, desc: "Regler, odds og væddemålstyper" },
+        { to: "/casinospil/roulette/martingale-roulette", label: "Martingale Strategi", icon: TrendingUp, desc: "Aggressiv dobling efter tab" },
+        { to: "/casinospil/roulette/dalembert-roulette", label: "D'Alembert Strategi", icon: BarChart3, desc: "Blødere progression end Fibonacci" },
+        { to: "/casinospil/roulette/fransk-roulette", label: "Fransk Roulette", icon: Star, desc: "La Partage halverer house edge" },
+        { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser til din roulette-bankroll" },
+      ],
+      subtitle: "Sammenlign Fibonacci med andre systemer og find den bedste roulette-variant.",
+    };
+  }
+
+  if (path === "/casinospil/roulette/dalembert-roulette") {
+    return {
+      guides: [
+        { to: "/casinospil/roulette", label: "Roulette Regler", icon: Target, desc: "Komplet guide til alle væddemål" },
+        { to: "/casinospil/roulette/fibonacci-roulette", label: "Fibonacci Strategi", icon: BarChart3, desc: "Matematisk elegant progression" },
+        { to: "/casinospil/roulette/james-bond-roulette", label: "James Bond Strategi", icon: Trophy, desc: "Flat bet-dækning over 25 numre" },
+        { to: "/casinospil/roulette/europaeisk-roulette", label: "Europæisk Roulette", icon: Star, desc: "Optimal variant for D'Alembert" },
+        { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Sæt grænser og spil sikkert" },
+      ],
+      subtitle: "Udforsk relaterede strategier og find den optimale roulette-variant til D'Alembert.",
+    };
+  }
+
+  if (path === "/casinospil/roulette/labouchere-roulette") {
+    return {
+      guides: [
+        { to: "/casinospil/roulette", label: "Roulette Guide", icon: Target, desc: "Regler, varianter og house edge" },
+        { to: "/casinospil/roulette/martingale-roulette", label: "Martingale Strategi", icon: TrendingUp, desc: "Simpel dobling vs. Labouchère-sekvens" },
+        { to: "/casinospil/roulette/fibonacci-roulette", label: "Fibonacci Strategi", icon: BarChart3, desc: "Naturlig talserie-progression" },
+        { to: "/casinospil/roulette/amerikansk-roulette", label: "Amerikansk Roulette", icon: Zap, desc: "Dobbelt-nul og højere house edge" },
+        { to: "/casinospil/blackjack", label: "Blackjack Strategi", icon: Gamepad2, desc: "Bordspil med lavere house edge" },
+      ],
+      subtitle: "Sammenlign Labouchère med andre progressionssystemer og bordspil.",
+    };
+  }
+
+  if (path === "/casinospil/roulette/james-bond-roulette") {
+    return {
+      guides: [
+        { to: "/casinospil/roulette", label: "Roulette Regler", icon: Target, desc: "Komplet guide til roulettens regler" },
+        { to: "/casinospil/roulette/dalembert-roulette", label: "D'Alembert Strategi", icon: BarChart3, desc: "Gradvis progression som alternativ" },
+        { to: "/casinospil/roulette/labouchere-roulette", label: "Labouchère Strategi", icon: BookOpen, desc: "Avanceret sekvens-baseret system" },
+        { to: "/casinospil/roulette/fransk-roulette", label: "Fransk Roulette", icon: Star, desc: "La Partage-reglen forbedrer Bond-oddsen" },
+        { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil James Bond-strategien med live dealer" },
+      ],
+      subtitle: "Udforsk alternative systemer og de bedste varianter til James Bond-strategien.",
+    };
+  }
+
+  if (path === "/casinospil/roulette/europaeisk-roulette") {
+    return {
+      guides: [
+        { to: "/casinospil/roulette", label: "Roulette Guide", icon: Target, desc: "Oversigt over alle varianter og strategier" },
+        { to: "/casinospil/roulette/fransk-roulette", label: "Fransk Roulette", icon: Star, desc: "Endnu lavere house edge med La Partage" },
+        { to: "/casinospil/roulette/amerikansk-roulette", label: "Amerikansk Roulette", icon: Zap, desc: "Dobbelt-nul – højere house edge" },
+        { to: "/casinospil/roulette/martingale-roulette", label: "Martingale Strategi", icon: TrendingUp, desc: "Populær strategi til europæisk roulette" },
+        { to: "/spiludviklere/evolution-gaming", label: "Evolution Gaming", icon: Tv, desc: "Førende live roulette-udbyder" },
+      ],
+      subtitle: "Sammenlign europæisk roulette med andre varianter og find den rette strategi.",
+    };
+  }
+
+  if (path === "/casinospil/roulette/fransk-roulette") {
+    return {
+      guides: [
+        { to: "/casinospil/roulette", label: "Roulette Regler", icon: Target, desc: "Alle roulette-varianter sammenlignet" },
+        { to: "/casinospil/roulette/europaeisk-roulette", label: "Europæisk Roulette", icon: Star, desc: "Næstbedst uden La Partage" },
+        { to: "/casinospil/roulette/dalembert-roulette", label: "D'Alembert Strategi", icon: BarChart3, desc: "Ideel strategi til even-money bets" },
+        { to: "/casinospil/roulette/fibonacci-roulette", label: "Fibonacci Strategi", icon: BookOpen, desc: "Moderat progression til La Partage" },
+        { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser der understøtter roulette" },
+      ],
+      subtitle: "Udforsk varianter og strategier der passer perfekt til fransk roulettes La Partage-regel.",
+    };
+  }
+
+  if (path === "/casinospil/roulette/amerikansk-roulette") {
+    return {
+      guides: [
+        { to: "/casinospil/roulette", label: "Roulette Guide", icon: Target, desc: "Komplet overblik over roulette-varianter" },
+        { to: "/casinospil/roulette/europaeisk-roulette", label: "Europæisk Roulette", icon: Star, desc: "Halveret house edge uden dobbelt-nul" },
+        { to: "/casinospil/roulette/fransk-roulette", label: "Fransk Roulette", icon: Star, desc: "Laveste house edge med La Partage" },
+        { to: "/casinospil/roulette/james-bond-roulette", label: "James Bond Strategi", icon: Trophy, desc: "Bred dækning til højere volatilitet" },
+        { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Hold styr på tabsgrænser" },
+      ],
+      subtitle: "Forstå forskellen på amerikansk roulette og bedre alternativer med lavere house edge.",
+    };
+  }
+
+  // Roulette hub → link to all variants + strategies
+  if (path === "/casinospil/roulette") {
+    return {
+      guides: [
+        casinospilHub,
+        { to: "/casinospil/roulette/europaeisk-roulette", label: "Europæisk Roulette", icon: Star, desc: "Standardvarianten med 2,70 % house edge" },
+        { to: "/casinospil/roulette/martingale-roulette", label: "Martingale Strategi", icon: TrendingUp, desc: "Den mest kendte roulette-strategi" },
+        { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil roulette med live dealere" },
+        { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser til roulette-spil" },
+      ],
+      subtitle: "Udforsk roulette-varianter, strategier og live casino-oplevelser.",
+    };
+  }
+
+  // Roulette strategi overview
+  if (path === "/casinospil/roulette-strategi") {
+    return {
+      guides: [
+        { to: "/casinospil/roulette", label: "Roulette Regler", icon: Target, desc: "Grundlæggende regler og varianter" },
+        { to: "/casinospil/roulette/martingale-roulette", label: "Martingale", icon: TrendingUp, desc: "Dobling efter tab – komplet analyse" },
+        { to: "/casinospil/roulette/fibonacci-roulette", label: "Fibonacci", icon: BarChart3, desc: "Naturlig talserie-progression" },
+        { to: "/casinospil/roulette/labouchere-roulette", label: "Labouchère", icon: BookOpen, desc: "Avanceret sekvens-system" },
+        { to: "/casinospil/blackjack", label: "Blackjack Strategi", icon: Gamepad2, desc: "Bordspil med skill-baseret edge" },
+      ],
+      subtitle: "Dyk ned i specifikke strategier og sammenlign med andre bordspil.",
+    };
+  }
+
+  // ── BLACKJACK CLUSTER: unique per-page related guides ──
+  if (path === "/casinospil/blackjack/martingale-blackjack") {
+    return {
+      guides: [
+        { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Komplet guide til regler og strategi" },
+        { to: "/casinospil/blackjack/fibonacci-blackjack", label: "Fibonacci Blackjack", icon: BarChart3, desc: "Blødere progression end Martingale" },
+        { to: "/casinospil/blackjack/dalembert-blackjack", label: "D'Alembert Blackjack", icon: BookOpen, desc: "Konservativ indsatsstyring" },
+        { to: "/casinospil/roulette/martingale-roulette", label: "Martingale Roulette", icon: TrendingUp, desc: "Sammenlign med roulette-versionen" },
+      ],
+      subtitle: "Udforsk alternative blackjack-strategier og sammenlign med roulette.",
+    };
+  }
+
+  if (path === "/casinospil/blackjack/fibonacci-blackjack") {
+    return {
+      guides: [
+        { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Regler, odds og basic strategy" },
+        { to: "/casinospil/blackjack/martingale-blackjack", label: "Martingale Blackjack", icon: TrendingUp, desc: "Aggressiv dobling som alternativ" },
+        { to: "/casinospil/blackjack/dalembert-blackjack", label: "D'Alembert Blackjack", icon: BookOpen, desc: "Gradvis progression" },
+        { to: "/casinospil/roulette/fibonacci-roulette", label: "Fibonacci Roulette", icon: BarChart3, desc: "Fibonacci anvendt på roulette" },
+      ],
+      subtitle: "Sammenlign Fibonacci med andre systemer og se forskellen på blackjack vs. roulette.",
+    };
+  }
+
+  if (path === "/casinospil/blackjack/dalembert-blackjack") {
+    return {
+      guides: [
+        { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Komplet blackjack-strategi" },
+        { to: "/casinospil/blackjack/martingale-blackjack", label: "Martingale Blackjack", icon: TrendingUp, desc: "Mere aggressiv progression" },
+        { to: "/casinospil/blackjack/amerikansk-blackjack", label: "Amerikansk Blackjack", icon: Star, desc: "Populær variant med hole card" },
+        { to: "/casinospil/roulette/dalembert-roulette", label: "D'Alembert Roulette", icon: BarChart3, desc: "D'Alembert på roulette-bordet" },
+      ],
+      subtitle: "Udforsk blackjack-varianter og sammenlign D'Alembert på tværs af spil.",
+    };
+  }
+
+  if (path === "/casinospil/blackjack/amerikansk-blackjack") {
+    return {
+      guides: [
+        { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Alle blackjack-regler og strategier" },
+        { to: "/casinospil/blackjack/europaeisk-blackjack", label: "Europæisk Blackjack", icon: Star, desc: "Ingen hole card – ændret strategi" },
+        { to: "/casinospil/blackjack/double-exposure", label: "Double Exposure", icon: Zap, desc: "Begge dealer-kort synlige" },
+        { to: "/casinospil/blackjack/spanish-21", label: "Spanish 21", icon: Trophy, desc: "Ingen 10'ere – flere bonusregler" },
+      ],
+      subtitle: "Sammenlign amerikansk blackjack med andre varianter.",
+    };
+  }
+
+  if (path === "/casinospil/blackjack/europaeisk-blackjack") {
+    return {
+      guides: [
+        { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Komplet oversigt over regler" },
+        { to: "/casinospil/blackjack/amerikansk-blackjack", label: "Amerikansk Blackjack", icon: Star, desc: "Hole card-reglen sammenlignet" },
+        { to: "/casinospil/blackjack/double-exposure", label: "Double Exposure", icon: Zap, desc: "Begge kort åbne – unik variant" },
+        { to: "/casinospil/blackjack/martingale-blackjack", label: "Martingale Blackjack", icon: TrendingUp, desc: "Progression til europæisk blackjack" },
+      ],
+      subtitle: "Udforsk forskelle mellem europæisk og andre blackjack-varianter.",
+    };
+  }
+
+  if (path === "/casinospil/blackjack/double-exposure") {
+    return {
+      guides: [
+        { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Grundlæggende regler og odds" },
+        { to: "/casinospil/blackjack/amerikansk-blackjack", label: "Amerikansk Blackjack", icon: Star, desc: "Standard hole card-variant" },
+        { to: "/casinospil/blackjack/spanish-21", label: "Spanish 21", icon: Trophy, desc: "Anden unik blackjack-variant" },
+        { to: "/live-casino/blackjack", label: "Live Blackjack", icon: Tv, desc: "Spil blackjack med live dealer" },
+      ],
+      subtitle: "Sammenlign Double Exposure med andre spændende blackjack-varianter.",
+    };
+  }
+
+  if (path === "/casinospil/blackjack/spanish-21") {
+    return {
+      guides: [
+        { to: "/casinospil/blackjack", label: "Blackjack Guide", icon: Gamepad2, desc: "Alle regler og strategier" },
+        { to: "/casinospil/blackjack/double-exposure", label: "Double Exposure", icon: Zap, desc: "Anden alternativ blackjack-variant" },
+        { to: "/casinospil/blackjack/europaeisk-blackjack", label: "Europæisk Blackjack", icon: Star, desc: "Klassisk no-hole-card variant" },
+        { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser til blackjack-spil" },
+      ],
+      subtitle: "Udforsk Spanish 21-alternativer og find de bedste bonusser til bordspil.",
+    };
+  }
+
+  // Blackjack hub
+  if (path === "/casinospil/blackjack") {
+    return {
+      guides: [
+        casinospilHub,
+        { to: "/casinospil/blackjack/amerikansk-blackjack", label: "Amerikansk Blackjack", icon: Star, desc: "Den mest populære variant" },
+        { to: "/casinospil/blackjack/martingale-blackjack", label: "Martingale Blackjack", icon: TrendingUp, desc: "Progressionsstrategi til blackjack" },
+        { to: "/live-casino/blackjack", label: "Live Blackjack", icon: Tv, desc: "Spil med live dealere" },
+        { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser med blackjack-bidrag" },
+      ],
+      subtitle: "Dyk ned i blackjack-varianter, strategier og live casino-muligheder.",
+    };
+  }
+
+  // Casinospil subpages (generic fallback) → hub + 3 siblings + 1 cross-cluster
   if (path.startsWith("/casinospil/") || path === "/live-casino") {
     const siblings = casinospilSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     return {
