@@ -340,7 +340,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     setWinAmount(0);
     setRunningWin(0);
     setRunningMultiplier(0);
-    setCellAnimStates(new Map()); // Clear bomb-exploded decals on new spin
+    // Don't clear bomb-exploded decals yet — let them persist through drop-off animation
     if (isBonusSpin) setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
     setIsWinAnimating(false);
     setWinningPositions(new Set());
@@ -370,6 +370,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current, useDebugScatters || undefined);
       const totalDropOffTime = DROP_OFF_DURATION + (BONANZA_COLS - 1) * STAGGER_MS;
       await new Promise(r => setTimeout(r, totalDropOffTime));
+
+      // Now clear bomb-exploded decals — drop-off has finished, old symbols are gone
+      setCellAnimStates(new Map());
 
       const response = await serverPromise;
       if (!response) throw new Error("Spin failed");
