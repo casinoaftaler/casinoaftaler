@@ -14,10 +14,11 @@ interface SlotSymbolProps {
   isScatterCelebrating?: boolean;
   isDarkened?: boolean;
   gameId?: string;
+  shimmerClass?: string;
 }
 
 // Fixed base size: 150×150 container, 136×136 image
-export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened, gameId }: SlotSymbolProps) {
+export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, isSpinning, isExpanded, isNewlyExpanded, hasLanded, isTeasing, isScatterCelebrating, isDarkened, gameId, shimmerClass }: SlotSymbolProps) {
   const isWizard = gameId === "rise-of-fedesvin";
   
   return (
@@ -66,7 +67,8 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
             "w-[136px] h-[136px] object-cover rounded-lg transition-transform duration-300",
             "shadow-[0_4px_12px_rgba(0,0,0,0.5),0_2px_4px_rgba(0,0,0,0.3)]",
             isExpanded && "scale-110",
-            isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
+            isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]",
+            shimmerClass
           )}
         />
       ) : (
