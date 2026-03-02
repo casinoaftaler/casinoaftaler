@@ -14,8 +14,8 @@ export function MiniLeaderboard() {
     async function fetchLeaderboard() {
       const { data } = await supabase
         .from("slot_leaderboard")
-        .select("user_id, total_winnings")
-        .order("total_winnings", { ascending: false })
+        .select("user_id, monthly_winnings")
+        .order("monthly_winnings", { ascending: false })
         .limit(3);
 
       if (!data || data.length === 0) return;
@@ -31,10 +31,12 @@ export function MiniLeaderboard() {
       );
 
       setEntries(
-        data.map((d) => ({
-          display_name: profileMap.get(d.user_id!) || "Anonym",
-          total_winnings: d.total_winnings || 0,
-        }))
+        data
+          .filter((d) => (d as any).monthly_winnings > 0)
+          .map((d) => ({
+            display_name: profileMap.get(d.user_id!) || "Anonym",
+            total_winnings: (d as any).monthly_winnings || 0,
+          }))
       );
     }
 
@@ -63,7 +65,7 @@ export function MiniLeaderboard() {
 
       <div className="flex items-center gap-2 mb-3">
         <Trophy className="h-4 w-4 text-amber-400" />
-        <h3 className="text-sm font-bold text-foreground">Top spillere i dag</h3>
+        <h3 className="text-sm font-bold text-foreground">Månedsturnering</h3>
       </div>
 
       <ul className="space-y-2">

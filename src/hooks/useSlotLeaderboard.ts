@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 
+export type LeaderboardCategory = "total_points" | "highest_x" | "highest_win";
+
 export interface LeaderboardEntry {
   user_id: string;
   total_winnings: number;
@@ -12,6 +14,8 @@ export interface LeaderboardEntry {
   daily_winnings: number;
   weekly_winnings: number;
   monthly_winnings: number;
+  monthly_biggest_win: number;
+  monthly_biggest_multiplier: number;
   display_name?: string;
   avatar_url?: string;
   twitch_badges?: Record<string, unknown> | null;
@@ -22,10 +26,54 @@ export interface CurrentUserLeaderboard {
   rank: number;
 }
 
-export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "alltime" = "alltime") {
+function getCategorySortKey(category: LeaderboardCategory): string {
+  switch (category) {
+    case "highest_x": return "monthly_biggest_multiplier";
+    case "highest_win": return "monthly_biggest_win";
+    case "total_points":
+    default: return "monthly_winnings";
+  }
+}
+
+export function getCategoryDisplayValue(entry: LeaderboardEntry, category: LeaderboardCategory): number {
+  switch (category) {
+    case "highest_x": return entry.monthly_biggest_multiplier ?? 0;
+    case "highest_win": return entry.monthly_biggest_win ?? 0;
+    case "total_points":
+    default: return entry.monthly_winnings ?? 0;
+  }
+}
+
+export function formatCategoryValue(value: number, category: LeaderboardCategory): string {
+  switch (category) {
+    case "highest_x": return value > 0 ? `${Number(value.toFixed(1))}x` : "-";
+    case "highest_win": return Math.round(value).toLocaleString("da-DK");
+    case "total_points":
+    default: return Math.round(value).toLocaleString("da-DK");
+  }
+}
+
+export function getCategoryLabel(category: LeaderboardCategory): string {
+  switch (category) {
+    case "highest_x": return "Højeste X";
+    case "highest_win": return "Største Gevinst";
+    case "total_points":
+    default: return "Flest Point";
+  }
+}
+
+export function getCategoryUnit(category: LeaderboardCategory): string {
+  switch (category) {
+    case "highest_x": return "multiplier";
+    case "highest_win": return "point";
+    case "total_points":
+    default: return "point";
+  }
+}
+
+export function useSlotLeaderboard(category: LeaderboardCategory = "total_points") {
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
-  // Get current user ID
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       setCurrentUserId(data.user?.id ?? null);
@@ -38,19 +86,15 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "all
     return () => subscription.unsubscribe();
   }, []);
 
+  const sortKey = getCategorySortKey(category);
+
   return useQuery({
-    queryKey: ["slot-leaderboard", period, currentUserId],
+    queryKey: ["slot-leaderboard", category, currentUserId],
     enabled: !!currentUserId,
     queryFn: async (): Promise<{
       entries: LeaderboardEntry[];
       currentUser: CurrentUserLeaderboard | null;
     }> => {
-      // Determine sort key before query
-      const sortKey = period === "daily" ? "daily_winnings" 
-                    : period === "weekly" ? "weekly_winnings"
-                    : period === "monthly" ? "monthly_winnings"
-                    : "total_winnings";
-
       const { data, error } = await supabase
         .from("slot_leaderboard")
         .select(`
@@ -62,7 +106,9 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "all
           total_bonuses,
           daily_winnings,
           weekly_winnings,
-          monthly_winnings
+          monthly_winnings,
+          monthly_biggest_win,
+          monthly_biggest_multiplier
         `)
         .order(sortKey, { ascending: false, nullsFirst: false })
         .limit(100);
@@ -96,21 +142,21 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "all
           daily_winnings: row.daily_winnings || 0,
           weekly_winnings: row.weekly_winnings || 0,
           monthly_winnings: row.monthly_winnings || 0,
+          monthly_biggest_win: (row as any).monthly_biggest_win || 0,
+          monthly_biggest_multiplier: (row as any).monthly_biggest_multiplier || 0,
           display_name: profile?.display_name || "Anonym",
           avatar_url: profile?.avatar_url || undefined,
           twitch_badges: profile?.twitch_badges as Record<string, unknown> | null,
         };
       });
 
-      // Filter out entries with 0 winnings for period-specific views
-      const filteredEntries = period !== "alltime"
-        ? allEntries.filter(e => (e[sortKey] as number) > 0)
-        : allEntries;
+      // Filter out entries with 0 value for the active category
+      const filteredEntries = allEntries.filter(e => getCategoryDisplayValue(e, category) > 0);
 
-      // Already sorted by database, but ensure consistent order
-      filteredEntries.sort((a, b) => (b[sortKey] as number) - (a[sortKey] as number));
+      // Sort by category value
+      filteredEntries.sort((a, b) => getCategoryDisplayValue(b, category) - getCategoryDisplayValue(a, category));
 
-      // Find current user's rank in the full sorted list
+      // Find current user's rank
       let currentUser: CurrentUserLeaderboard | null = null;
       if (currentUserId) {
         const userIndex = filteredEntries.findIndex(e => e.user_id === currentUserId);
@@ -123,7 +169,7 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "all
           // User not in top 100 — fetch their data separately
           const { data: userData } = await supabase
             .from("slot_leaderboard")
-            .select("user_id, total_winnings, biggest_win, biggest_multiplier, total_spins, total_bonuses, daily_winnings, weekly_winnings, monthly_winnings")
+            .select("user_id, total_winnings, biggest_win, biggest_multiplier, total_spins, total_bonuses, daily_winnings, weekly_winnings, monthly_winnings, monthly_biggest_win, monthly_biggest_multiplier")
             .eq("user_id", currentUserId)
             .maybeSingle();
 
@@ -133,14 +179,6 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "all
               .select("user_id, display_name, avatar_url, twitch_badges")
               .eq("user_id", currentUserId)
               .maybeSingle();
-
-            const userScore = userData[sortKey] || 0;
-
-            // Count how many users have a higher score to determine rank
-            const { count } = await supabase
-              .from("slot_leaderboard")
-              .select("user_id", { count: "exact", head: true })
-              .gt(sortKey, userScore);
 
             const entry: LeaderboardEntry = {
               user_id: userData.user_id || "",
@@ -152,10 +190,20 @@ export function useSlotLeaderboard(period: "daily" | "weekly" | "monthly" | "all
               daily_winnings: userData.daily_winnings || 0,
               weekly_winnings: userData.weekly_winnings || 0,
               monthly_winnings: userData.monthly_winnings || 0,
+              monthly_biggest_win: (userData as any).monthly_biggest_win || 0,
+              monthly_biggest_multiplier: (userData as any).monthly_biggest_multiplier || 0,
               display_name: userProfile?.display_name || "Anonym",
               avatar_url: userProfile?.avatar_url || undefined,
               twitch_badges: (userProfile as any)?.twitch_badges as Record<string, unknown> | null,
             };
+
+            const userScore = getCategoryDisplayValue(entry, category);
+
+            // Count how many users have a higher score
+            const { count } = await supabase
+              .from("slot_leaderboard")
+              .select("user_id", { count: "exact", head: true })
+              .gt(sortKey, userScore);
 
             currentUser = {
               entry,

@@ -5,9 +5,17 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Trophy, Medal, Award, Users, Search } from "lucide-react";
+import { Trophy, Medal, Award, Users, Search, Zap, Star, TrendingUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { useSlotLeaderboard, type LeaderboardEntry } from "@/hooks/useSlotLeaderboard";
+import {
+  useSlotLeaderboard,
+  getCategoryDisplayValue,
+  formatCategoryValue,
+  getCategoryLabel,
+  getCategoryUnit,
+  type LeaderboardEntry,
+  type LeaderboardCategory,
+} from "@/hooks/useSlotLeaderboard";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import { cn } from "@/lib/utils";
@@ -17,11 +25,18 @@ import { LogIn } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 
-function getDisplayWinnings(entry: LeaderboardEntry, period: "daily" | "weekly" | "monthly" | "alltime"): number {
-  if (period === "daily") return entry.daily_winnings ?? 0;
-  if (period === "weekly") return entry.weekly_winnings ?? 0;
-  if (period === "monthly") return entry.monthly_winnings ?? 0;
-  return entry.total_winnings;
+function getCategoryIcon(category: LeaderboardCategory) {
+  switch (category) {
+    case "highest_x": return <Zap className="h-4 w-4" />;
+    case "highest_win": return <Star className="h-4 w-4" />;
+    case "total_points":
+    default: return <TrendingUp className="h-4 w-4" />;
+  }
+}
+
+function getCurrentMonthLabel(): string {
+  const now = new Date();
+  return now.toLocaleDateString("da-DK", { month: "long", year: "numeric" });
 }
 
 function LeaderboardRow({
@@ -29,13 +44,13 @@ function LeaderboardRow({
   rank,
   isCurrentUser = false,
   theme,
-  period = "alltime",
+  category = "total_points",
 }: {
   entry: LeaderboardEntry;
   rank: number;
   isCurrentUser?: boolean;
   theme: SlotTheme;
-  period?: "daily" | "weekly" | "monthly" | "alltime";
+  category?: LeaderboardCategory;
 }) {
   const getRankIcon = () => {
     if (rank === 1) return <Trophy className="h-5 w-5 text-amber-500" />;
@@ -44,9 +59,9 @@ function LeaderboardRow({
     return <span className="w-5 text-center text-muted-foreground font-bold">{rank}</span>;
   };
 
-  const formattedMultiplier = entry.biggest_multiplier > 0
-    ? `${Number(entry.biggest_multiplier.toFixed(1))}x`
-    : "-";
+  const displayValue = getCategoryDisplayValue(entry, category);
+  const formattedValue = formatCategoryValue(displayValue, category);
+  const unit = getCategoryUnit(category);
 
   return (
     <div
@@ -77,11 +92,11 @@ function LeaderboardRow({
         )}
       </div>
 
-      {/* Bottom row: Stats in 4 columns */}
+      {/* Bottom row: Primary stat + secondary stats */}
       <div className="grid grid-cols-4 gap-4 text-sm pl-2">
         <div className="text-center">
-          <p className={cn("font-bold", theme.leaderboardPointsText)}>{getDisplayWinnings(entry, period).toLocaleString()}</p>
-          <p className="text-[10px] text-muted-foreground">point</p>
+          <p className={cn("font-bold", theme.leaderboardPointsText)}>{formattedValue}</p>
+          <p className="text-[10px] text-muted-foreground">{unit}</p>
         </div>
         <div className="text-center">
           <p className={cn("font-medium", theme.leaderboardSpinsText)}>{entry.total_spins.toLocaleString()}</p>
@@ -92,7 +107,9 @@ function LeaderboardRow({
           <p className="text-[10px] text-muted-foreground">bonusser</p>
         </div>
         <div className="text-center">
-          <p className="font-bold text-green-400">{formattedMultiplier}</p>
+          <p className="font-bold text-green-400">
+            {entry.biggest_multiplier > 0 ? `${Number(entry.biggest_multiplier.toFixed(1))}x` : "-"}
+          </p>
           <p className="text-[10px] text-muted-foreground">bedste</p>
         </div>
       </div>
@@ -108,25 +125,22 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
   const theme = getSlotTheme(gameId);
   const { user } = useAuth();
   const [showFullList, setShowFullList] = useState(false);
-  const [dialogPeriod, setDialogPeriod] = useState<"daily" | "weekly" | "monthly" | "alltime">("alltime");
+  const [category, setCategory] = useState<LeaderboardCategory>("total_points");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Main card always shows alltime
-  const { data: alltimeData, isLoading } = useSlotLeaderboard("alltime");
-  // Dialog shows selected period
-  const { data: dialogData, isLoading: dialogLoading } = useSlotLeaderboard(dialogPeriod);
+  const { data, isLoading } = useSlotLeaderboard(category);
 
-  const entries = alltimeData?.entries;
-  const currentUser = alltimeData?.currentUser;
-  const dialogEntries = dialogData?.entries;
-  const dialogCurrentUser = dialogData?.currentUser;
+  const entries = data?.entries;
+  const currentUser = data?.currentUser;
 
-  const filteredDialogEntries = dialogEntries?.filter(e =>
+  const filteredEntries = entries?.filter(e =>
     e.display_name?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const isCurrentUserInTop = (userId: string | undefined, list: LeaderboardEntry[] | undefined) =>
     !!userId && !!list && list.some(e => e.user_id === userId);
+
+  const monthLabel = getCurrentMonthLabel();
 
   return (
     <div className="relative animate-fade-in">
@@ -136,7 +150,10 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
             <div className={cn("p-1.5 rounded-lg", theme.leaderboardIconBg)}>
               <Trophy className={cn("h-5 w-5", theme.leaderboardIconColor)} />
             </div>
-            Rangliste
+            Månedsturnering
+            <Badge variant="outline" className={cn("ml-auto text-[10px] capitalize", theme.leaderboardUserBadgeBorder, theme.leaderboardUserBadgeText)}>
+              {monthLabel}
+            </Badge>
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-3">
@@ -159,6 +176,24 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
             </div>
           ) : entries && entries.length > 0 ? (
             <>
+              {/* Category tabs on card */}
+              <Tabs value={category} onValueChange={(v) => setCategory(v as LeaderboardCategory)} className="mb-3">
+                <TabsList className={cn("w-full grid grid-cols-3", theme.leaderboardTabsBg)}>
+                  <TabsTrigger value="total_points" className={cn("text-xs", theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
+                    <TrendingUp className="h-3 w-3 mr-1" />
+                    Point
+                  </TabsTrigger>
+                  <TabsTrigger value="highest_x" className={cn("text-xs", theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
+                    <Zap className="h-3 w-3 mr-1" />
+                    Højeste X
+                  </TabsTrigger>
+                  <TabsTrigger value="highest_win" className={cn("text-xs", theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
+                    <Star className="h-3 w-3 mr-1" />
+                    Største Gevinst
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+
               <div className="space-y-1">
                 {entries.slice(0, 3).map((entry, index) => (
                   <LeaderboardRow
@@ -167,6 +202,7 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
                     rank={index + 1}
                     isCurrentUser={currentUser?.entry.user_id === entry.user_id}
                     theme={theme}
+                    category={category}
                   />
                 ))}
               </div>
@@ -186,23 +222,20 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
                     <DialogHeader>
                       <DialogTitle className={cn("flex items-center gap-2", theme.leaderboardDialogTitleText)}>
                         <Trophy className={cn("h-5 w-5", theme.leaderboardIconColor)} />
-                        Fuld Rangliste
+                        Månedsturnering — {getCategoryLabel(category)}
                       </DialogTitle>
                     </DialogHeader>
 
-                    <Tabs value={dialogPeriod} onValueChange={(v) => setDialogPeriod(v as typeof dialogPeriod)} className="w-full">
-                      <TabsList className={cn("w-full grid grid-cols-4", theme.leaderboardTabsBg)}>
-                        <TabsTrigger value="daily" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
-                          I dag
+                    <Tabs value={category} onValueChange={(v) => setCategory(v as LeaderboardCategory)} className="w-full">
+                      <TabsList className={cn("w-full grid grid-cols-3", theme.leaderboardTabsBg)}>
+                        <TabsTrigger value="total_points" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
+                          Point
                         </TabsTrigger>
-                        <TabsTrigger value="weekly" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
-                          Uge
+                        <TabsTrigger value="highest_x" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
+                          Højeste X
                         </TabsTrigger>
-                        <TabsTrigger value="monthly" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
-                          Måned
-                        </TabsTrigger>
-                        <TabsTrigger value="alltime" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
-                          All-time
+                        <TabsTrigger value="highest_win" className={cn(theme.leaderboardTabActive, theme.leaderboardTabActiveText)}>
+                          Største Gevinst
                         </TabsTrigger>
                       </TabsList>
                     </Tabs>
@@ -218,38 +251,38 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
                     </div>
 
                     <div className="space-y-1 max-h-[50vh] overflow-y-auto">
-                      {dialogLoading ? (
+                      {isLoading ? (
                         <div className="space-y-2">
                           {[1, 2, 3].map((i) => (
                             <div key={i} className="h-16 bg-muted/50 rounded-lg animate-pulse" />
                           ))}
                         </div>
-                      ) : filteredDialogEntries && filteredDialogEntries.length > 0 ? (
+                      ) : filteredEntries && filteredEntries.length > 0 ? (
                         <>
-                          {filteredDialogEntries.map((entry) => {
-                            const originalRank = dialogEntries!.indexOf(entry) + 1;
+                          {filteredEntries.map((entry) => {
+                            const originalRank = entries!.indexOf(entry) + 1;
                             return (
                               <LeaderboardRow
                                 key={entry.user_id}
                                 entry={entry}
                                 rank={originalRank}
-                                isCurrentUser={dialogCurrentUser?.entry.user_id === entry.user_id}
+                                isCurrentUser={currentUser?.entry.user_id === entry.user_id}
                                 theme={theme}
-                                period={dialogPeriod}
+                                category={category}
                               />
                             );
                           })}
 
                           {/* Pinned current user if not in filtered results */}
-                          {!searchQuery && dialogCurrentUser && !isCurrentUserInTop(dialogCurrentUser.entry.user_id, dialogEntries) && (
+                          {!searchQuery && currentUser && !isCurrentUserInTop(currentUser.entry.user_id, entries) && (
                             <>
                               <Separator className={cn("my-2", theme.leaderboardSeparator)} />
                               <LeaderboardRow
-                                entry={dialogCurrentUser.entry}
-                                rank={dialogCurrentUser.rank}
+                                entry={currentUser.entry}
+                                rank={currentUser.rank}
                                 isCurrentUser
                                 theme={theme}
-                                period={dialogPeriod}
+                                category={category}
                               />
                             </>
                           )}
@@ -258,7 +291,7 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
                         <div className="text-center py-8">
                           <Trophy className={cn("h-10 w-10 mx-auto mb-2 opacity-50", theme.leaderboardEmptyIconColor)} />
                           <p className={theme.leaderboardEmptyText}>
-                            {searchQuery ? "Ingen spillere matcher søgningen" : "Ingen gevinster i denne periode"}
+                            {searchQuery ? "Ingen spillere matcher søgningen" : "Ingen gevinster i denne kategori"}
                           </p>
                         </div>
                       )}
