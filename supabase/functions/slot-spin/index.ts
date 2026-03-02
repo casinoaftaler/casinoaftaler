@@ -564,6 +564,8 @@ let BONANZA_FREE_SPINS_RETRIGGER = 5;
 let BONANZA_MULTIPLIER_CHANCE_BONUS = 0.10;
 let BONANZA_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
 let BONANZA_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
+let BONANZA_REEL_DUP_2_CHANCE = 0.35;
+let BONANZA_REEL_DUP_3_CHANCE = 0.10;
 
 const bonanzaSettingsCache: { data: Record<string, string> | null; fetchedAt: number } = { data: null, fetchedAt: 0 };
 const BONANZA_SETTINGS_CACHE_TTL = 5 * 60 * 1000;
@@ -578,6 +580,7 @@ async function loadBonanzaSettings(serviceClient: ReturnType<typeof createClient
       "bonanza_free_spins_4", "bonanza_free_spins_5", "bonanza_free_spins_6",
       "bonanza_free_spins_retrigger", "bonanza_multiplier_chance_bonus",
       "bonanza_multiplier_values", "bonanza_multiplier_weights",
+      "bonanza_reel_dup_2_chance", "bonanza_reel_dup_3_chance",
     ]);
   if (!error && data) {
     const map: Record<string, string> = {};
@@ -598,6 +601,8 @@ async function loadBonanzaSettings(serviceClient: ReturnType<typeof createClient
     if (map.bonanza_multiplier_weights) {
       try { BONANZA_MULTIPLIER_WEIGHTS = JSON.parse(map.bonanza_multiplier_weights); } catch {}
     }
+    BONANZA_REEL_DUP_2_CHANCE = parseFloat(map.bonanza_reel_dup_2_chance || "0.35");
+    BONANZA_REEL_DUP_3_CHANCE = parseFloat(map.bonanza_reel_dup_3_chance || "0.10");
   }
 }
 
@@ -690,10 +695,12 @@ async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, 
     }
 
     // Step 2: Reel-based duplication for regular symbols only
-    // 35% chance for 2 identical, 10% chance for 3 identical
+    // Configurable chance for 2 or 3 identical symbols per reel
     const dupRoll = await prng.next();
-    if (dupRoll < 0.45) { // 0-0.10 = triple, 0.10-0.45 = double
-      const dupCount = dupRoll < 0.10 ? 3 : 2;
+    const tripleThreshold = BONANZA_REEL_DUP_3_CHANCE;
+    const doubleThreshold = tripleThreshold + BONANZA_REEL_DUP_2_CHANCE;
+    if (dupRoll < doubleThreshold) {
+      const dupCount = dupRoll < tripleThreshold ? 3 : 2;
       // Find regular symbol indices (not scatter, not bomb)
       const regularIndices: number[] = [];
       for (let i = 0; i < column.length; i++) {

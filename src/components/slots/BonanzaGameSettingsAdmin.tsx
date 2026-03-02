@@ -20,6 +20,8 @@ const BONANZA_SETTINGS_KEYS = [
   "bonanza_multiplier_chance_bonus",
   "bonanza_multiplier_values",
   "bonanza_multiplier_weights",
+  "bonanza_reel_dup_2_chance",
+  "bonanza_reel_dup_3_chance",
 ];
 
 interface BonanzaSettings {
@@ -33,6 +35,8 @@ interface BonanzaSettings {
   multiplierChanceBonus: number;
   multiplierValues: string;
   multiplierWeights: string;
+  reelDup2Chance: number;
+  reelDup3Chance: number;
 }
 
 const DEFAULTS: BonanzaSettings = {
@@ -46,6 +50,8 @@ const DEFAULTS: BonanzaSettings = {
   multiplierChanceBonus: 0.10,
   multiplierValues: "2,3,5,10,15,25,50,100",
   multiplierWeights: "30,25,20,12,6,3,2,1",
+  reelDup2Chance: 0.35,
+  reelDup3Chance: 0.10,
 };
 
 export function BonanzaGameSettingsAdmin() {
@@ -73,6 +79,8 @@ export function BonanzaGameSettingsAdmin() {
         multiplierChanceBonus: parseFloat(map.bonanza_multiplier_chance_bonus || String(DEFAULTS.multiplierChanceBonus)),
         multiplierValues: map.bonanza_multiplier_values || DEFAULTS.multiplierValues,
         multiplierWeights: map.bonanza_multiplier_weights || DEFAULTS.multiplierWeights,
+        reelDup2Chance: parseFloat(map.bonanza_reel_dup_2_chance || String(DEFAULTS.reelDup2Chance)),
+        reelDup3Chance: parseFloat(map.bonanza_reel_dup_3_chance || String(DEFAULTS.reelDup3Chance)),
       } as BonanzaSettings;
     },
   });
@@ -94,6 +102,8 @@ export function BonanzaGameSettingsAdmin() {
         { key: "bonanza_multiplier_chance_bonus", value: String(s.multiplierChanceBonus) },
         { key: "bonanza_multiplier_values", value: s.multiplierValues },
         { key: "bonanza_multiplier_weights", value: s.multiplierWeights },
+        { key: "bonanza_reel_dup_2_chance", value: String(s.reelDup2Chance) },
+        { key: "bonanza_reel_dup_3_chance", value: String(s.reelDup3Chance) },
       ];
       for (const u of updates) {
         const { error } = await supabase
@@ -260,6 +270,49 @@ export function BonanzaGameSettingsAdmin() {
                 placeholder="30,25,20,12,6,3,2,1"
               />
               <p className="text-xs text-muted-foreground">Vægte svarende til hver værdi (højere = hyppigere)</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Reel Duplicate Settings */}
+        <div className="space-y-4">
+          <h4 className="text-sm font-semibold">Reel Symbol Duplikering</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>2 ens pr. reel</Label>
+                <span className="text-sm text-muted-foreground font-mono">
+                  {(form.reelDup2Chance * 100).toFixed(1)}%
+                </span>
+              </div>
+              <Slider
+                min={0}
+                max={0.80}
+                step={0.01}
+                value={[form.reelDup2Chance]}
+                onValueChange={(v) => setForm({ ...form, reelDup2Chance: v[0] })}
+              />
+              <p className="text-xs text-muted-foreground">
+                Chance for at 2 symboler på en reel bliver ens.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>3 ens pr. reel</Label>
+                <span className="text-sm text-muted-foreground font-mono">
+                  {(form.reelDup3Chance * 100).toFixed(1)}%
+                </span>
+              </div>
+              <Slider
+                min={0}
+                max={0.50}
+                step={0.01}
+                value={[form.reelDup3Chance]}
+                onValueChange={(v) => setForm({ ...form, reelDup3Chance: v[0] })}
+              />
+              <p className="text-xs text-muted-foreground">
+                Chance for at 3 symboler på en reel bliver ens.
+              </p>
             </div>
           </div>
         </div>
