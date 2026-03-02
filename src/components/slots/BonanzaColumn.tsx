@@ -6,8 +6,8 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 import type { BombSymbol } from "@/hooks/useBombSymbols";
 import bombExplodedDecal from "@/assets/bomb-exploded-decal.png";
 
-const SYMBOL_WIDTH = 210;
-const SYMBOL_HEIGHT = 165;
+const DEFAULT_SYMBOL_WIDTH = 180;
+const DEFAULT_SYMBOL_HEIGHT = 140;
 
 export type BonanzaColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed' | 'dropping-off' | 'dropping-in';
 
@@ -25,6 +25,8 @@ interface BonanzaColumnProps {
   tumblePhase: string;
   animationEpoch?: number;
   bombSymbolsMap?: Map<number, BombSymbol>;
+  symbolWidth?: number;
+  symbolHeight?: number;
 }
 
 export const BonanzaColumn = React.memo(function BonanzaColumn({
@@ -39,6 +41,8 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
   tumblePhase,
   animationEpoch = 0,
   bombSymbolsMap,
+  symbolWidth: SYMBOL_WIDTH = DEFAULT_SYMBOL_WIDTH,
+  symbolHeight: SYMBOL_HEIGHT = DEFAULT_SYMBOL_HEIGHT,
 }: BonanzaColumnProps) {
   const isDroppingOff = spinState === 'dropping-off';
   const isDroppingIn = spinState === 'dropping-in';

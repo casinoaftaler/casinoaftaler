@@ -22,6 +22,8 @@ const BONANZA_SETTINGS_KEYS = [
   "bonanza_multiplier_weights",
   "bonanza_reel_dup_2_chance",
   "bonanza_reel_dup_3_chance",
+  "bonanza_symbol_width",
+  "bonanza_symbol_height",
 ];
 
 interface BonanzaSettings {
@@ -37,6 +39,8 @@ interface BonanzaSettings {
   multiplierWeights: string;
   reelDup2Chance: number;
   reelDup3Chance: number;
+  symbolWidth: number;
+  symbolHeight: number;
 }
 
 const DEFAULTS: BonanzaSettings = {
@@ -52,6 +56,8 @@ const DEFAULTS: BonanzaSettings = {
   multiplierWeights: "30,25,20,12,6,3,2,1",
   reelDup2Chance: 0.35,
   reelDup3Chance: 0.10,
+  symbolWidth: 180,
+  symbolHeight: 140,
 };
 
 export function BonanzaGameSettingsAdmin() {
@@ -81,6 +87,8 @@ export function BonanzaGameSettingsAdmin() {
         multiplierWeights: map.bonanza_multiplier_weights || DEFAULTS.multiplierWeights,
         reelDup2Chance: parseFloat(map.bonanza_reel_dup_2_chance || String(DEFAULTS.reelDup2Chance)),
         reelDup3Chance: parseFloat(map.bonanza_reel_dup_3_chance || String(DEFAULTS.reelDup3Chance)),
+        symbolWidth: parseInt(map.bonanza_symbol_width || String(DEFAULTS.symbolWidth), 10),
+        symbolHeight: parseInt(map.bonanza_symbol_height || String(DEFAULTS.symbolHeight), 10),
       } as BonanzaSettings;
     },
   });
@@ -104,6 +112,8 @@ export function BonanzaGameSettingsAdmin() {
         { key: "bonanza_multiplier_weights", value: s.multiplierWeights },
         { key: "bonanza_reel_dup_2_chance", value: String(s.reelDup2Chance) },
         { key: "bonanza_reel_dup_3_chance", value: String(s.reelDup3Chance) },
+        { key: "bonanza_symbol_width", value: String(s.symbolWidth) },
+        { key: "bonanza_symbol_height", value: String(s.symbolHeight) },
       ];
       for (const u of updates) {
         const { error } = await supabase
@@ -312,6 +322,49 @@ export function BonanzaGameSettingsAdmin() {
               />
               <p className="text-xs text-muted-foreground">
                 Chance for at 3 symboler på en reel bliver ens.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Symbol Size Settings */}
+        <div className="space-y-4">
+          <h4 className="text-sm font-semibold">Symbol Størrelse</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Symbol Bredde (px)</Label>
+                <span className="text-sm text-muted-foreground font-mono">
+                  {form.symbolWidth}px
+                </span>
+              </div>
+              <Slider
+                min={100}
+                max={280}
+                step={5}
+                value={[form.symbolWidth]}
+                onValueChange={(v) => setForm({ ...form, symbolWidth: v[0] })}
+              />
+              <p className="text-xs text-muted-foreground">
+                Standard: 180px. Grid-bredden skalerer automatisk.
+              </p>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Symbol Højde (px)</Label>
+                <span className="text-sm text-muted-foreground font-mono">
+                  {form.symbolHeight}px
+                </span>
+              </div>
+              <Slider
+                min={80}
+                max={220}
+                step={5}
+                value={[form.symbolHeight]}
+                onValueChange={(v) => setForm({ ...form, symbolHeight: v[0] })}
+              />
+              <p className="text-xs text-muted-foreground">
+                Standard: 140px. Grid-højden skalerer automatisk.
               </p>
             </div>
           </div>
