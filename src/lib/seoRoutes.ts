@@ -175,7 +175,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/indskudsbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/omsaetningskrav", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-26" },
   { path: "/bonus-uden-indbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-21" },
-  { path: "/bonus-uden-omsaetningskrav", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-21" },
+  { path: "/bonus-uden-omsaetningskrav", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
   { path: "/no-sticky-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-19" },
   { path: "/sticky-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-21" },
   { path: "/cashback-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-27" },
