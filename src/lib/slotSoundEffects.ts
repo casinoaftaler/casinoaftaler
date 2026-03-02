@@ -497,6 +497,15 @@ class SlotSoundEffects {
   startMusic() {
     if (!this.enabled || !this.musicEnabled) return;
     
+    // If music is already playing for this game, don't restart it
+    if (this.backgroundMusicAudio && this.customSoundFiles.backgroundMusic && !this.backgroundMusicAudio.paused) {
+      return;
+    }
+    if (this.defaultMusicAudio && !this.defaultMusicAudio.paused) {
+      return;
+    }
+    if (this.musicInterval) return; // Synthesized music already playing
+    
     // Stop any currently playing music first to prevent overlap
     this.stopMusic();
     
@@ -504,7 +513,6 @@ class SlotSoundEffects {
     if (this.backgroundMusicAudio && this.customSoundFiles.backgroundMusic) {
       this.backgroundMusicAudio.volume = this.volume * 0.5;
       this.backgroundMusicAudio.play().catch(() => {
-        // Ignore autoplay errors, try default music
         this.playDefaultMusic();
       });
       return;
