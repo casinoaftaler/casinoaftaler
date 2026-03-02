@@ -146,7 +146,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
 
             {/* Bomb exploded — show explosion decal */}
             {cellAnim === 'bomb-exploded' && (
-              <div className="w-full h-full flex items-center justify-center bonanza-bomb-exploded-decal">
+              <div className={cn("w-full h-full flex items-center justify-center", !applyDropOff && "bonanza-bomb-exploded-decal")}>
                 <img src={bombExplodedDecal} alt="Explosion" className="w-full h-full object-contain" draggable={false} />
               </div>
             )}
