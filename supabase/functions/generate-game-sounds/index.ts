@@ -125,6 +125,31 @@ const BONANZA_SOUNDS: Record<string, SoundDef> = {
     duration: 4,
     settingSuffix: "scatter_celebration",
   },
+  symbolHighlightSound: {
+    prompt: "Sparkling sugar crystal shimmer with gentle candy chime accent, sweet glowing highlight twinkle, magical candy dust sprinkle",
+    duration: 1,
+    settingSuffix: "symbol_highlight",
+  },
+  symbolExplodeSound: {
+    prompt: "Candy shattering burst with colorful sugar crystal explosion, bubblegum pop splatter, sweet confetti scatter impact, satisfying candy crunch break",
+    duration: 1.5,
+    settingSuffix: "symbol_explode",
+  },
+  bombFizzSound: {
+    prompt: "Fizzing candy fuse sizzle with sparkling sugar crackle building intensity, effervescent soda pop carbonation hiss, sweet bomb countdown sparkle",
+    duration: 2,
+    settingSuffix: "bomb_fizz",
+  },
+  bonusEndSound: {
+    prompt: "Cheerful candy music box winding down with final sugar chime, sweet lollipop twirl slowdown, gentle gummy bear farewell jingle, candy kingdom closing melody",
+    duration: 3,
+    settingSuffix: "bonus_end",
+  },
+  scatterLandSound: {
+    prompt: "Single heavy gummy bear landing with sweet candy impact thud, magical sugar sparkle burst on contact, lollipop stick striking candy glass",
+    duration: 1,
+    settingSuffix: "scatter_land",
+  },
 };
 
 const GAME_SOUND_MAPS: Record<string, Record<string, SoundDef>> = {

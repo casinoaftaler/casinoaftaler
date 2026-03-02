@@ -17,6 +17,10 @@ export interface SlotSoundFiles {
   scatterSound3: string | null;
   scatterCelebrationSound: string | null;
   symbolHighlightSound: string | null;
+  symbolExplodeSound: string | null;
+  bombFizzSound: string | null;
+  bonusEndSound: string | null;
+  scatterLandSound: string | null;
 }
 
 export type SoundSettingKeys = Record<keyof SlotSoundFiles, string>;
@@ -37,6 +41,10 @@ const SOUND_SUFFIXES: Record<keyof SlotSoundFiles, string> = {
   scatterSound3: "scatter_3",
   scatterCelebrationSound: "scatter_celebration",
   symbolHighlightSound: "symbol_highlight",
+  symbolExplodeSound: "symbol_explode",
+  bombFizzSound: "bomb_fizz",
+  bonusEndSound: "bonus_end",
+  scatterLandSound: "scatter_land",
 };
 
 function getPrefix(gameId: string): string {

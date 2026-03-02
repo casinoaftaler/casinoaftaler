@@ -23,6 +23,11 @@ const SOUND_TYPES = [
   { key: "scatterSound2", label: "Scatter 2", icon: "⚡⚡" },
   { key: "scatterSound3", label: "Scatter 3", icon: "⚡⚡⚡" },
   { key: "scatterCelebrationSound", label: "Scatter Fejring", icon: "🎉" },
+  { key: "symbolHighlightSound", label: "Symbol Highlight", icon: "✨" },
+  { key: "symbolExplodeSound", label: "Symbol Eksplosion", icon: "💥" },
+  { key: "bombFizzSound", label: "Bombe Fuse", icon: "🧨" },
+  { key: "bonusEndSound", label: "Bonus Afslutning", icon: "🔚" },
+  { key: "scatterLandSound", label: "Scatter Landing", icon: "🎯" },
 ];
 
 type SoundStatus = "idle" | "generating" | "done" | "error";
