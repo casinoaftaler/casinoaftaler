@@ -624,20 +624,24 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           {Array.from({ length: BONANZA_COLS }).map((_, col) => {
             const colSymbolIds = grid ? grid[col] || [] : [];
             return (
-              <BonanzaColumn
-                key={col}
-                col={col}
-                spinState={columnSpinStates[col]}
-                symbols={symbols}
-                symbolsById={symbolsById}
-                finalSymbolIds={colSymbolIds}
-                winningPositions={winningPositions}
-                cellAnimStates={cellAnimStates}
-                cellDropOffsets={cellDropOffsets}
-                tumblePhase={tumblePhase}
-                animationEpoch={animationEpoch}
-                bombSymbolsMap={bombSymbolsMap}
-              />
+              <React.Fragment key={col}>
+                {col > 0 && (
+                  <div className="w-px self-stretch bg-pink-400/20" />
+                )}
+                <BonanzaColumn
+                  col={col}
+                  spinState={columnSpinStates[col]}
+                  symbols={symbols}
+                  symbolsById={symbolsById}
+                  finalSymbolIds={colSymbolIds}
+                  winningPositions={winningPositions}
+                  cellAnimStates={cellAnimStates}
+                  cellDropOffsets={cellDropOffsets}
+                  tumblePhase={tumblePhase}
+                  animationEpoch={animationEpoch}
+                  bombSymbolsMap={bombSymbolsMap}
+                />
+              </React.Fragment>
             );
           })}
         </div>
