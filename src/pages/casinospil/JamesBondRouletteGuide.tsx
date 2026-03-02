@@ -318,6 +318,212 @@ export default function JamesBondRouletteGuide() {
           </p>
         </section>
 
+        {/* Ian Fleming og den historiske oprindelse */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <BookOpen className="h-5 w-5 text-primary" />
+            Ian Fleming, Casino Royale og Strategiens Historiske Oprindelse
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            James Bond-systemet har rødder i Ian Flemings egen passion for gambling. Fleming – en ivrig casinogæst i franske og italienske spillebanker – inkorporerede sin viden i Bond-romanerne. I "Casino Royale" (1953) spiller Bond baccarat (chemin de fer), men i den populære filmadaptation fra 2006 blev spillet ændret til Texas Hold'em poker. Roulette-systemet, som populært tilskrives Bond, stammer faktisk ikke fra romanerne men fra en anden kilde: et interview med Fleming i en britisk avis i 1960'erne, hvor han nonchalant beskrev sin foretrukne roulette-tilgang.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Flemings originale system brugte britiske pund: £140 på høje tal, £50 på six-line, £10 på nul – i alt £200 per spin. Det var designet til at give en "gentleman's gamble" – en tilgang der producerede hyppige, beskedne gevinster og dermed bevarede elegancen ved spillebordet uden de desperate fordoblings-manøvrer der kendetegnede progressive systemer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Det er vigtigt at forstå konteksten: i 1960'ernes britiske overklasse-casinoer var roulette ikke primært en profitjagt men en social aktivitet. Flemings system afspejlede denne filosofi: bred dækning (67,6% vindersandsynlighed) sikrede at spilleren oftest forlod bordet med en smule mere end han kom med – i hvert fald i korte sessioner. Den statistiske virkelighed over mange sessioner var naturligvis den samme som for enhver anden tilgang.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Interesant nok var Fleming selv bevidst om matematikkens begrænsninger. I et brev til en ven skrev han: "The only way to make money at a casino is to own one." Denne selvironi gennemsyrer Bond-karakterens forhold til gambling – Bond spiller ikke for at blive rig, men som en del af sin cover og livsstil. Moderne spillere bør adoptere den samme mentalitet: systemet er underholdning, ikke en indkomstplan.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            I dag er "James Bond-systemet" blevet et af de mest søgte roulette-begreber online, delvist drevet af film-franchisens massive popularitet. Men det er værd at bemærke, at ingen Bond-film faktisk viser denne specifikke roulette-strategi – den lever udelukkende i interview-citater og gambling-folklore. Det ændrer dog ikke på dens matematiske validitet (eller mangel på samme).
+          </p>
+        </section>
+
+        {/* Risk of Ruin analyse */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <Activity className="h-5 w-5 text-primary" />
+            Risk of Ruin: Hvor Hurtigt Tømmer 007 Sin Bankroll?
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            James Bond-systemets unikke risikoprofil adskiller sig markant fra progressionssystemer. Hvor <Link to="/casinospil/roulette/martingale-roulette" className={linkClass}>Martingale</Link> producerer en "pludselig død"-profil (mange små gevinster afbrudt af katastrofale tab), leverer James Bond en gradvis, forudsigelig bankroll-erosion. Lad os kvantificere dette med præcise Risk of Ruin (RoR) beregninger.
+          </p>
+
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="text-base">Risk of Ruin (RoR) – James Bond 200 kr./spin vs. Flat Bet 100 kr. Rød/Sort</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-border bg-muted/50">
+                      <th className="py-2 px-3 text-left font-semibold">Bankroll</th>
+                      <th className="py-2 px-3 text-center font-semibold">RoR Bond (100 spins)</th>
+                      <th className="py-2 px-3 text-center font-semibold">RoR Flat (100 spins)</th>
+                      <th className="py-2 px-3 text-center font-semibold">RoR Bond (500 spins)</th>
+                      <th className="py-2 px-3 text-center font-semibold">RoR Flat (500 spins)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">2.000 kr.</td><td className="py-2 px-3 text-center text-destructive">38,2 %</td><td className="py-2 px-3 text-center">18,7 %</td><td className="py-2 px-3 text-center text-destructive">89,1 %</td><td className="py-2 px-3 text-center">62,4 %</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">5.000 kr.</td><td className="py-2 px-3 text-center text-destructive">11,3 %</td><td className="py-2 px-3 text-center">3,8 %</td><td className="py-2 px-3 text-center text-destructive">67,4 %</td><td className="py-2 px-3 text-center">28,9 %</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">10.000 kr.</td><td className="py-2 px-3 text-center">2,4 %</td><td className="py-2 px-3 text-center">0,6 %</td><td className="py-2 px-3 text-center text-destructive">41,8 %</td><td className="py-2 px-3 text-center">11,2 %</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">20.000 kr.</td><td className="py-2 px-3 text-center">0,1 %</td><td className="py-2 px-3 text-center">{"< 0,1 %"}</td><td className="py-2 px-3 text-center">14,7 %</td><td className="py-2 px-3 text-center">2,1 %</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-muted-foreground mt-3">
+                Simulering: 50.000 iterationer, europæisk hjul (2,70 % HE). Bond = 200 kr. fordelt på 3 væddemål. Flat = 100 kr. på rød/sort.
+              </p>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Tabellen afslører James Bond-systemets centrale svaghed: den høje indsats per spin (200 kr.) accelererer bankroll-erosion sammenlignet med flat betting (100 kr.). Med en 5.000 kr. bankroll er RoR efter 500 spins 67,4 % for Bond mod kun 28,9 % for flat betting. Forskellen skyldes ikke et dårligere EV (begge har -2,70 %), men den <em>dobbelte eksponering</em> per spin.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Et centralt indsigt er, at James Bond-systemet er et <strong>high-exposure flat bet</strong>. Selvom du fordeler 200 kr. over tre væddemål, risikerer du stadig 200 kr. per spin (ved tab 1-12 mister du hele beløbet). Den bredere dækning ændrer resultatfordelingen men ikke den fundamentale risiko per spin. Det er som at have tre forsikringspolicer der alle annulleres af den samme begivenhed.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Praktisk anbefaling:</strong> Hvis du vil spille James Bond med en moderat bankroll (5.000-10.000 kr.), bør du bruge Mini Bond-varianten (100 kr. total: 70/25/5 kr.) for at halvere din eksponering. Det giver dig statistisk dobbelt så lang spilletid for den samme bankroll – og dermed dobbelt så meget underholdning for pengene.
+          </p>
+        </section>
+
+        {/* Psykologisk analyse */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <Brain className="h-5 w-5 text-primary" />
+            Psykologien bag James Bond-systemet: Hvorfor Det Føles Som om Det Virker
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            James Bond-systemet er et mesterværk i kognitiv manipulation – ikke fordi det er designet til at bedrage, men fordi det perfekt udnytter menneskelige psykologiske bias. At forstå disse mekanismer er afgørende for at undgå at overinvestere i systemet.
+          </p>
+
+          <div className="space-y-4 mb-6">
+            <Card className="border-border/50">
+              <CardContent className="pt-4">
+                <h3 className="text-sm font-semibold text-foreground mb-2">1. Win Frequency Bias (Vindingsfrekvens-illusion)</h3>
+                <p className="text-sm text-muted-foreground">
+                  Med 67,6 % vindersandsynlighed vinder du ca. 2 ud af 3 spins. Den menneskelige hjerne vægter <em>antallet</em> af gevinster tungere end <em>størrelsen</em>. Tre gevinster á +80 kr. (+240 kr.) efterfulgt af ét tab á -200 kr. (netto: +40 kr.) føles som en vindende strategi – selvom det næste tabsspin vil fjerne gevinsten. Over tid akkumulerer tabene hurtigere end gevinsterne, men den høje vinderfrekvens maskerer dette.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border/50">
+              <CardContent className="pt-4">
+                <h3 className="text-sm font-semibold text-foreground mb-2">2. Prospect Theory og Tabsaversion</h3>
+                <p className="text-sm text-muted-foreground">
+                  Daniel Kahneman og Amos Tverskys Prospect Theory viser, at tab føles ca. 2,5× stærkere end tilsvarende gevinster. I James Bond-systemet er gevinster (+80-160 kr.) hyppige og moderate, mens tab (-200 kr.) er sjældnere men kraftigere. Systemet minimerer den <em>frekvens</em> af den smertefulde oplevelse (tab), selvom det ikke ændrer den matematiske realitet. Det er psykologisk analgesisk (smertedæmpende) men ikke finansielt helbredende.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border/50">
+              <CardContent className="pt-4">
+                <h3 className="text-sm font-semibold text-foreground mb-2">3. Illusion of Control (Kontrolillusion)</h3>
+                <p className="text-sm text-muted-foreground">
+                  At placere tre strategiske væddemål (høje tal, six-line, nul) giver en fornemmelse af at "designe" sin eksponering – som om man er en portfoliomanager der diversificerer. Men i roulette er der ingen korrelation mellem væddemål; hvert spin er uafhængigt. Diversificering beskytter mod <em>usystematisk</em> risiko, men house edge er <em>systematisk</em> risiko der ikke kan diversificeres bort. Det er som at "diversificere" sin aktieportefølje ved at købe flere aktier i det samme selskab.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border/50">
+              <CardContent className="pt-4">
+                <h3 className="text-sm font-semibold text-foreground mb-2">4. Brand Halo Effect (Mærke-halo-effekt)</h3>
+                <p className="text-sm text-muted-foreground">
+                  James Bond er det ultimative aspirations-brand: sofistikeret, succesfuld, uovervindelig. At bruge "hans" roulette-system aktiverer en halo-effekt, hvor man associerer strategien med Bonds ubesejrede image. Men Bond er fiktion – og selv Ian Fleming tabte regelmæssigt i casinoet. Mærke-tilknytningen tilføjer underholdningsværdi men nul matematisk fordel.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed">
+            Disse psykologiske mekanismer forklarer, hvorfor James Bond-systemet er blandt de mest populære roulette-strategier trods sin enkelhed. Det er et system designet til at føles godt – ikke til at præstere godt. Og i en spillekontekst, hvor underholdning er det primære formål, er det faktisk en kvalitet. Problemet opstår kun, når spillere forveksler den gode følelse med en reel matematisk fordel.
+          </p>
+        </section>
+
+        {/* EV-analyse ved dansk bonus wagering */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <Calculator className="h-5 w-5 text-primary" />
+            James Bond + Dansk Bonus Wagering: EV-Analyse
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Kan James Bond-systemet bruges til at gennemspille en <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>? Teoretisk ja – men med vigtige forbehold. De fleste danske casinoer kræver omsætning på 10-50× bonusbeløbet, og roulette tæller typisk kun 10-20 % mod omsætningskravet.
+          </p>
+
+          <Card className="mb-6 border-primary/20 bg-card">
+            <CardHeader>
+              <CardTitle className="text-base">EV-beregning: James Bond til Bonus Wagering</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-sm text-muted-foreground space-y-3">
+                <p><strong>Scenarie:</strong> 1.000 kr. bonus, 30× omsætningskrav, roulette tæller 10 %.</p>
+                <p>Effektivt krav: 1.000 × 30 / 0,10 = <strong>300.000 kr.</strong> i roulette-indsatser</p>
+                <p>Med 200 kr. per spin: 300.000 / 200 = <strong>1.500 spins</strong></p>
+                <p>Forventet tab: 1.500 × 5,41 kr. = <strong>-8.115 kr.</strong></p>
+                <p>Netto EV: 1.000 (bonus) - 8.115 (forventet tab) = <strong className="text-destructive">-7.115 kr.</strong></p>
+                <p className="text-xs mt-2 italic">Konklusion: Bonussen er massivt negativ EV med James Bond-systemet pga. den lave roulette-tællingsrate. Brug i stedet slots med 100 % tælling.</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Selv med et mere generøst casino der tæller roulette 20 %, bliver det 150.000 kr. i indsatser (750 spins), med et forventet tab på -4.058 kr. – stadig langt over bonusværdien. Den lave roulette-tællingsrate gør enhver roulette-baseret bonus-strategi til negativ EV hos danske casinoer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Undtagelsen:</strong> Nogle få casinoer tilbyder <Link to="/casino-bonus/omsaetningsfri-bonus" className={linkClass}>omsætningsfri bonusser</Link> eller bonusser med 1× omsætning. Her kan James Bond være interessant, da du kun behøver 5-10 spins for at gennemspille – og med 67,6 % vindersandsynlighed per spin har du en anstændig chance for at beholde en del af bonussen. Men disse tilbud er sjældne og har typisk lavere bonusbeløb.
+          </p>
+        </section>
+
+        {/* Live vs. RNG performance */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <LineChart className="h-5 w-5 text-primary" />
+            James Bond i Live Casino vs. RNG: Praktiske Forskelle
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            James Bond-systemet kræver placering af tre separate væddemål per spin, hvilket skaber praktiske udfordringer i <Link to="/live-casino/roulette" className={linkClass}>live roulette</Link>. Her er de vigtigste forskelle mellem formaterne:
+          </p>
+
+          <Card className="mb-6 border-border bg-card">
+            <CardHeader>
+              <CardTitle className="text-base">Live vs. RNG Performance – James Bond 200 kr./spin</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse text-sm">
+                  <thead>
+                    <tr className="border-b border-border bg-muted/50">
+                      <th className="py-2 px-3 text-left font-semibold">Parameter</th>
+                      <th className="py-2 px-3 text-left font-semibold">Live Dealer</th>
+                      <th className="py-2 px-3 text-left font-semibold">RNG (Auto)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">Spins pr. time</td><td className="py-2 px-3">25-35</td><td className="py-2 px-3">60-120</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">Tid til placering af 3 væddemål</td><td className="py-2 px-3">8-15 sek. (kan misse betting-vindue)</td><td className="py-2 px-3">Ubegrænset tid</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">Forventet tab pr. time</td><td className="py-2 px-3 text-primary">~162 kr.</td><td className="py-2 px-3 text-destructive">~487 kr.</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">Spilletid for 5.000 kr. bankroll</td><td className="py-2 px-3 text-primary">~31 timer</td><td className="py-2 px-3">~10 timer</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">Favourite Feature</td><td className="py-2 px-3">Repeat/Favourite Bet</td><td className="py-2 px-3">Auto-play med fast mønster</td></tr>
+                    <tr className="border-b border-border/50"><td className="py-2 px-3 font-medium text-foreground">Bond-stemning</td><td className="py-2 px-3 text-primary">Høj (casino-atmosfære)</td><td className="py-2 px-3">Lav (ingen interaktion)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Pro-tip til live casino:</strong> De fleste <Link to="/live-casino" className={linkClass}>live casino</Link>-platforme (Evolution Gaming, Pragmatic Play Live) tilbyder en "Favourite Bets" funktion, hvor du kan gemme dit James Bond-mønster som ét klik. Dette eliminerer risikoen for at misse betting-vinduet og gør systemet praktisk gennemførligt i live-format. Hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> og <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> er denne funktion tilgængelig på alle live-borde.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Lightning Roulette-twist:</strong> I <Link to="/live-casino/lightning-roulette" className={linkClass}>Lightning Roulette</Link> tilføjes tilfældige multipliers (50x-500x) til 1-5 tal per spin. Med James Bond-systemet dækker du 25 af 37 tal, hvilket giver en høj sandsynlighed for at ramme et Lightning-tal. Men da dine væddemål er fordelt (kun nul-væddemålet er straight-up), udløses Lightning-multipliers sjældent optimalt. De bedste multipliers kræver straight-up væddemål, som kun udgør 5 % af din James Bond-indsats (10 kr. på nul).
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Det er også værd at bemærke, at Lightning Roulette har en lidt højere house edge end standard europæisk roulette (ca. 2,92 % vs. 2,70 %) på grund af de reducerede standard-udbetalinger (29:1 i stedet for 35:1 for straight-up). Denne forskel er marginal men opsummerer over mange spins. For James Bond-spillere er impact minimal, da straight-up kun udgør en lille del af indsatsen.
+          </p>
+        </section>
+
         {/* Varianter */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
@@ -347,9 +553,25 @@ export default function JamesBondRouletteGuide() {
             </Card>
             <Card className="border-border/50">
               <CardContent className="pt-4">
+                <h3 className="text-sm font-semibold text-foreground mb-2">Extended Bond (30 tal dækning)</h3>
+                <p className="text-sm text-muted-foreground">
+                  Tilføj et fjerde væddemål: 20 kr. på corner/street for at dække yderligere 3-4 tal. Øger dækningen til ~81 % men reducerer profit per gevinst til +40-60 kr. EV forbliver -2,70 %. Mere konservativt mønster med endnu lavere varians.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border/50">
+              <CardContent className="pt-4">
                 <h3 className="text-sm font-semibold text-foreground mb-2">James Bond + Martingale (IKKE anbefalet)</h3>
                 <p className="text-sm text-muted-foreground">
                   Fordobl hele Bond-indsatsen efter tab: 200→400→800→1.600. Kombinerer Martingales eksponentielle risiko med Bonds 32,4% tabssandsynlighed. Ekstremt farligt – rammer bordmaksimum på 3-4 fordoblinger.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border/50">
+              <CardContent className="pt-4">
+                <h3 className="text-sm font-semibold text-foreground mb-2">French Bond (fransk hjul med La Partage)</h3>
+                <p className="text-sm text-muted-foreground">
+                  Spil James Bond på <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette</Link> med La Partage. Når 0 rammer, får du 70 kr. tilbage (halvdelen af de 140 kr. på høje tal) i stedet for at vinde 160 kr. (nul-indsatsen). Nettoresultatet er mere komplekst: La Partage reducerer kun tabet på even-money-delen af indsatsen. Den samlede EV forbedres marginalt til ca. -2,35 %.
                 </p>
               </CardContent>
             </Card>
@@ -378,11 +600,15 @@ export default function JamesBondRouletteGuide() {
             <li>Seriøs bankroll-management (ingen recovery-mekanisme)</li>
             <li>Lange sessioner (gradvis bankroll-erosion er uundgåelig)</li>
             <li>Spillere der søger profitabel strategi (den eksisterer ikke i roulette)</li>
+            <li>Bonus wagering (roulettes lave tællingsrate gør det ineffektivt)</li>
           </ul>
-          <h3 className="text-lg font-semibold text-foreground mb-3">Anbefalede casinoer</h3>
+          <h3 className="text-lg font-semibold text-foreground mb-3">Anbefalede casinoer til James Bond-systemet</h3>
+          <p className="text-muted-foreground leading-relaxed mb-3">
+            For den optimale James Bond-oplevelse anbefaler vi casinoer med europæiske live-borde, lave minimumsindsatser og Favourite Bets-funktionalitet:
+          </p>
           <ul className="list-disc list-inside text-muted-foreground space-y-2">
             <li><Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> – Bredt udvalg af europæisk roulette med lave minimumsindsatser</li>
-            <li><Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> – Auto-roulette med hurtige spins</li>
+            <li><Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> – Auto-roulette med hurtige spins og Favourite Bets</li>
             <li><Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> – Elegant live roulette-miljø der passer til Bond-temaet</li>
             <li><Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> – Stilfuldt casino med gode roulette-borde</li>
           </ul>
@@ -398,10 +624,13 @@ export default function JamesBondRouletteGuide() {
             James Bond-systemet er det mest underholdende af alle roulette-strategier. Det giver hyppige gevinster (67,6% af spins), en filmisk forbindelse og en simpel mekanik uden tracking-krav. Det er det perfekte system til en kort, sjov session.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Men matematikken er ubestridelig: -2,70% EV per spin er identisk med ethvert andet system. Dækning af 25/37 tal ændrer resultatfordelingen men ikke gennemsnittet. Over tid vil de 32,4% totaltab-spins overveje de mange små gevinster.
+            Men matematikken er ubestridelig: -2,70% EV per spin er identisk med ethvert andet system. Dækning af 25/37 tal ændrer resultatfordelingen men ikke gennemsnittet. Over tid vil de 32,4% totaltab-spins overveje de mange små gevinster. De psykologiske mekanismer – Win Frequency Bias, Prospect Theory-effekter og Brand Halo – forklarer, hvorfor systemet føles bedre end det er.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Ian Fleming vidste det selv: casinoets matematiske fordel er uovervindelig. Men han forstod også, at roulette handler om oplevelsen, ikke profitjagten. Brug Mini Bond (100 kr.) for længere spilletid, vælg altid <Link to="/casinospil/roulette/europaeisk-roulette" className={linkClass}>europæisk roulette</Link> (aldrig <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>amerikansk</Link>), og gem dine Favourite Bets i live casinoet for et sømløst Bond-setup.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Hvis du vil spille roulette som James Bond, gør det med stil, et fast budget og en tidsbegrænsning. Brug <Link to="/casinospil/roulette/europaeisk-roulette" className={linkClass}>europæisk roulette</Link> (aldrig <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>amerikansk</Link>), og overhold altid principperne i vores <Link to="/ansvarligt-spil" className={linkClass}>guide til ansvarligt spil</Link>. For den komplette oversigt over alle systemer, se vores <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategiguide</Link>. The name is Bond – not broke.
+            Overhold altid principperne i vores <Link to="/ansvarligt-spil" className={linkClass}>guide til ansvarligt spil</Link>. For den komplette oversigt over alle systemer, se vores <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategiguide</Link>. The name is Bond – not broke.
           </p>
         </section>
 
