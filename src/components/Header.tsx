@@ -310,8 +310,45 @@ export const Header = memo(function Header() {
                   })()}
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <Star className="h-3 w-3" />
+                  Blackjack
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/blackjack" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Blackjack Guide
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/blackjack/amerikansk-blackjack" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Amerikansk Blackjack
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/blackjack/europaeisk-blackjack" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Europæisk Blackjack
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/blackjack/double-exposure-blackjack" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Double Exposure
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/blackjack/spanish-21" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Spanish 21
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
               {[
-                { to: "/casinospil/blackjack", label: "Blackjack" },
                 { to: "/casinospil/roulette", label: "Roulette" },
                 { to: "/casinospil/roulette-strategi", label: "Roulette Strategi" },
                 { to: "/casinospil/poker", label: "Poker" },
@@ -990,8 +1027,24 @@ export const Header = memo(function Header() {
                     </>
                   );
                 })()}
+                <div className="ml-6 flex flex-col">
+                  <Link to="/casinospil/blackjack" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                    <Star className="h-4 w-4" />
+                    Blackjack Guide
+                  </Link>
+                  {[
+                    { to: "/casinospil/blackjack/amerikansk-blackjack", label: "Amerikansk Blackjack" },
+                    { to: "/casinospil/blackjack/europaeisk-blackjack", label: "Europæisk Blackjack" },
+                    { to: "/casinospil/blackjack/double-exposure-blackjack", label: "Double Exposure" },
+                    { to: "/casinospil/blackjack/spanish-21", label: "Spanish 21" },
+                  ].map((item) => (
+                    <Link key={item.to} to={item.to} className="ml-4 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                      <Star className="h-3 w-3" />
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
                 {[
-                  { to: "/casinospil/blackjack", label: "Blackjack" },
                   { to: "/casinospil/roulette", label: "Roulette" },
                   { to: "/casinospil/roulette-strategi", label: "Roulette Strategi" },
                   { to: "/casinospil/poker", label: "Poker" },
