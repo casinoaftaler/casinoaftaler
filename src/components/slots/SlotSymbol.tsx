@@ -58,19 +58,23 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
       }}
     >
       {symbol.image_url ? (
-        <img
-          src={symbol.image_url}
-          alt={symbol.name}
-          loading="eager"
-          decoding="async"
-          className={cn(
-            "w-[136px] h-[136px] object-cover rounded-lg transition-transform duration-300",
-            "shadow-[0_4px_12px_rgba(0,0,0,0.5),0_2px_4px_rgba(0,0,0,0.3)]",
-            isExpanded && "scale-110",
-            isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]",
-            shimmerClass
-          )}
-        />
+        <div className={cn(
+          "w-[136px] h-[136px] rounded-lg",
+          shimmerClass
+        )}>
+          <img
+            src={symbol.image_url}
+            alt={symbol.name}
+            loading="eager"
+            decoding="async"
+            className={cn(
+              "w-full h-full object-cover rounded-lg transition-transform duration-300",
+              "shadow-[0_4px_12px_rgba(0,0,0,0.5),0_2px_4px_rgba(0,0,0,0.3)]",
+              isExpanded && "scale-110",
+              isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
+            )}
+          />
+        </div>
       ) : (
         <span className={cn(
           "text-8xl transition-transform duration-300",

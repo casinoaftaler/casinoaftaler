@@ -115,17 +115,18 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
             {cellAnim !== 'removing' && cellAnim !== 'exploding' && cellAnim !== 'bomb-fizzle' && cellAnim !== 'bomb-activate' && symbol && !isBomb && (
               <div className="w-full h-full flex items-center justify-center">
                 {symbol.image_url ? (
-                  <img
-                    src={symbol.image_url}
-                    alt={symbol.name}
-                    className={cn(
-                      "w-full h-full object-contain",
-                      scatterAnimClass,
-                      shimmeringCells.has(row) && cellAnim === 'idle' && "slot-idle-shimmer slot-idle-shimmer-pink"
-                    )}
-                    style={{ transform: `scale(${scaleValue})` }}
-                    draggable={false}
-                  />
+                  <div className={cn(
+                    "w-full h-full",
+                    shimmeringCells.has(row) && cellAnim === 'idle' && "slot-idle-shimmer slot-idle-shimmer-pink"
+                  )}>
+                    <img
+                      src={symbol.image_url}
+                      alt={symbol.name}
+                      className={cn("w-full h-full object-contain", scatterAnimClass)}
+                      style={{ transform: `scale(${scaleValue})` }}
+                      draggable={false}
+                    />
+                  </div>
                 ) : (
                   <span className="text-2xl font-bold text-pink-200">
                     {getEmojiForSymbol(symbol.name)}
