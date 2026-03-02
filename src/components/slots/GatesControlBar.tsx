@@ -39,6 +39,7 @@ interface GatesControlBarProps {
   showBonusTrigger?: boolean;
   winAmount: number;
   gameId?: string;
+  debugButton?: React.ReactNode;
 }
 
 export function GatesControlBar({
@@ -63,6 +64,7 @@ export function GatesControlBar({
   spinsLoading,
   showBonusTrigger,
   gameId,
+  debugButton,
 }: GatesControlBarProps) {
   const theme = getSlotTheme(gameId);
   const canSpinNow = bonusState.isActive
@@ -198,7 +200,8 @@ export function GatesControlBar({
       {/* Spacer */}
       <div className="flex-1" />
 
-      {/* Auto spin popover */}
+      {/* Debug + Auto spin */}
+      {debugButton}
       <AutoSpinPopover
         isAutoSpinning={isAutoSpinning}
         autoSpinCount={autoSpinCount}
