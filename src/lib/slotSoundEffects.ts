@@ -501,8 +501,15 @@ class SlotSoundEffects {
     if (this.backgroundMusicAudio && this.customSoundFiles.backgroundMusic && !this.backgroundMusicAudio.paused) {
       return;
     }
+    // Check if default music is already playing for the CORRECT game
+    const expectedDefaultUrl = DEFAULT_BACKGROUND_MUSIC[this.currentGameId] || DEFAULT_BACKGROUND_MUSIC['book-of-fedesvin'];
     if (this.defaultMusicAudio && !this.defaultMusicAudio.paused) {
-      return;
+      const currentSrc = this.defaultMusicAudio.src;
+      const expectedSrc = new URL(expectedDefaultUrl, window.location.origin).href;
+      if (currentSrc === expectedSrc) {
+        return; // Correct music already playing
+      }
+      // Wrong game's music — stop it and play the right one
     }
     if (this.musicInterval) return; // Synthesized music already playing
     
