@@ -528,7 +528,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const gridHeight = BONANZA_ROWS * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_GAP;
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-4" style={{ width: gridWidth, maxWidth: "100%" }}>
       {/* Bonus bar */}
       {isBonusActive && (
         <div className="w-full flex justify-center animate-fade-in">
