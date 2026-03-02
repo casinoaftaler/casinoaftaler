@@ -15,6 +15,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, AlertTriangle, Users, TrendingUp, Target, BarChart3, Swords } from "lucide-react";
 
@@ -39,7 +41,7 @@ const VideoslotsAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="Videoslots Casino Anmeldelse 2026 – 5.000+ Spil" description="Komplet anmeldelse af Videoslots Casino. 5.000+ spil, 170+ udbydere, Battle of Slots-turneringer, Weekend Boosters og dansk licens. Læs vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="Videoslots Casino Anmeldelse 2026 – 5.000+ Spil" description="Komplet anmeldelse af Videoslots Casino. 5.000+ spil, 170+ udbydere, Battle of Slots-turneringer, Weekend Boosters og dansk licens. Læs vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/videoslots", "xo9vTabQgE8", { title: "Videoslots Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Videoslots ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
@@ -77,6 +79,11 @@ const VideoslotsAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Med over 5.000 aktive titler fra 170+ udbydere er Videoslots det sted, hvor du finder spil, der simpelthen ikke er tilgængelige andre steder i Danmark. Mens <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> kuraterer sit udvalg ned til ca. 2.000 spil og <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> holder sig under 1.000, har Videoslots integreret alt fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnts</Link> klassikere til obskure titler fra studios som Swintt, Spinomenal, Kalamba og Peter & Sons. For den nysgerrige spiller, der elsker at opdage nye mekanikker og ukendte perler, er Videoslots det ultimative legeplads.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Men dette fokus har en pris. Videoslots' design er funktionelt snarere end smukt. Interfacet prioriterer databaser og filtrering over æstetik og animations. Navigationen kan virke overvældende for nye brugere, og der er en indlæringskurve, som ikke eksisterer på mere strømlinede platforme. Det er et casino for entusiasten – ikke for den afslappede spiller, der bare vil have "noget der virker" med minimal indsats.</p>
           <p className="text-muted-foreground leading-relaxed">Denne anmeldelse er baseret på 14 dages intensiv test i januar 2026, hvor vi systematisk evaluerede spiludvalg, turneringssystem, udbetalingshastighed, bonusstruktur og mobiloplevelse. Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> lægger særlig vægt på transparens og spillerfordele, og på begge parametre leverer Videoslots noget unikt.</p>
+          <YoutubeEmbed videoId="xo9vTabQgE8" title="Videoslots Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan Videoslots ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/videoslots" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Videoslots ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Videoslots' hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
+          </div>
         </section>
 
         <Separator className="my-10" />

@@ -16,6 +16,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Shield, Globe, ShieldCheck, Smartphone, Headphones, Users, Clock, Award, TrendingUp, BarChart3 } from "lucide-react";
 

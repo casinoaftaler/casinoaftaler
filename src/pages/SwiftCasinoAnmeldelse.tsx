@@ -20,6 +20,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import {
   ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,

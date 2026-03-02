@@ -20,6 +20,8 @@ import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import { CommunityActivityWidget } from "@/components/CommunityActivityWidget";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import {
@@ -51,10 +53,11 @@ const SpilDanskNuAnmeldelse = () => {
   const faqJsonLd = buildFaqSchema(spilDanskNuFaqs);
   const articleSchema = buildArticleSchema({ headline: "SpilDanskNu Anmeldelse 2026 – Bonus, Spil & Vilkår", description: "Komplet anmeldelse af SpilDanskNu.dk. 100% bonus op til 1.000 kr., kun 10x omsætning, over 2.500 slots og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spildansknu", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.5", ratingCount: "178" } });
   const reviewJsonLd = buildReviewSchema({ itemName: "SpilDanskNu", itemUrl: "https://www.spildansknu.dk", ratingValue: "4.5", ratingCount: "178", reviewBody: "SpilDanskNu er et dansk online casino med lavt omsætningskrav, over 2.500 spilleautomater, loyalitetsprogram og hurtige udbetalinger." });
+  const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/spildansknu", "_hHQkRwUzoU", { title: "SpilDanskNu Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan SpilDanskNu ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features.", uploadDate: "2026-02-18", duration: "PT2M" });
 
   return (
     <>
-      <SEO title="SpilDanskNu Anmeldelse 2026 – Bonus & Vilkår" description="Komplet anmeldelse af SpilDanskNu.dk. 100% bonus op til 1.000 kr., kun 10x omsætning, over 2.500 slots, loyalitetsprogram og hurtige udbetalinger. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="SpilDanskNu Anmeldelse 2026 – Bonus & Vilkår" description="Komplet anmeldelse af SpilDanskNu.dk. 100% bonus op til 1.000 kr., kun 10x omsætning, over 2.500 slots, loyalitetsprogram og hurtige udbetalinger. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
@@ -93,6 +96,11 @@ const SpilDanskNuAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Siden lanceringen i 2017 har SpilDanskNu opbygget en loyal brugerbase med en tilgang, der prioriterer gennemsigtighed, enkelthed og fair vilkår over aggressiv markedsføring. Der er ingen opblæste bonusbeløb med skjulte vilkår, ingen komplicerede VIP-strukturer med uopnåelige tiers, og ingen sportsbetting eller bingo at navigere forbi. SpilDanskNu er et rent casinoprodukt – fokuseret, ærligt og gennemskueligt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Velkomstpakken er et perfekt eksempel på denne filosofi: 100 % bonus op til 1.000 kr. fordelt over 5 dage med bonuskoden VELKOMMEN, kun 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og 60 dages gyldighed. Den 5-dages model er unik på det danske marked og giver spillere mulighed for at sprede deres risiko over flere indbetalinger i stedet for at binde hele bonusbeløbet på én gang. Det er en gennemtænkt tilgang, der afspejler Winteqs fokus på spillerbeskyttelse.</p>
           <p className="text-muted-foreground leading-relaxed">I denne dybdegående anmeldelse gennemgår vi alt fra <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og Præmieshoppen til det fulde spiludvalg, <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, kundeservice, mobiloplevelse og sikkerhed. Vi har testet platformen over 14 dage for at give dig et komplet og ærligt billede af, hvad SpilDanskNu tilbyder i 2026. Læs mere om <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.</p>
+          <YoutubeEmbed videoId="_hHQkRwUzoU" title="SpilDanskNu Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan SpilDanskNu ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/spildansknu" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan SpilDanskNu ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig SpilDanskNus hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video. Videoen er en del af vores dybdegående indhold om <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> og <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.</p>
+          </div>
         </section>
 
         <CommunityActivityWidget casinoName="SpilDanskNu" casinoSlug="spildansknu" />

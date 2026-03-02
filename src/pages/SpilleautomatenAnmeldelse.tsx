@@ -21,6 +21,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
@@ -124,13 +126,14 @@ const SpilleautomatenAnmeldelse = () => {
   const articleSchema = buildArticleSchema({ headline: "Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus & Præmieshop", description: "Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. over 5 dage, 10x omsætning, Præmieshop og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.8", ratingCount: "203" } });
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Spilleautomaten", itemUrl: "https://www.spilleautomaten.dk", ratingValue: "4.8", ratingCount: "203", reviewBody: "Spilleautomaten er et dansk slots-specialiseret casino med 5-dages velkomstbonus op til 1.000 kr., 10x omsætning, Præmieshop med kontante præmier, 2.000+ spilleautomater og hurtige MobilePay-udbetalinger." });
+  const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", "L5JtdRVTNwk", { title: "Spilleautomaten Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Spilleautomaten ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features.", uploadDate: "2026-02-18", duration: "PT2M" });
 
   return (
     <>
       <SEO
         title="Spilleautomaten Anmeldelse 2026 – Bonus & Præmieshop"
         description="Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. fordelt over 5 dage, kun 10x omsætning, Præmieshop med kontante præmier og hurtige MobilePay-udbetalinger. Testet over 14 dage."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]}
       />
 
       {/* Hero Section */}
@@ -255,6 +258,11 @@ const SpilleautomatenAnmeldelse = () => {
             Vi har testet Spilleautomaten intensivt over 14 dage. Vi har gennemført alle 5 bonusdage, testet Præmieshoppen fra point-optjening til indløsning, målt udbetalingshastighed med 3 betalingsmetoder, stresset kundeservicen med tekniske spørgsmål og analyseret spiludvalgets dybde sammenlignet med søstercasinoet SpilDanskNu. Her er den fulde rapport. Læs mere om{" "}
             <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.
           </p>
+          <YoutubeEmbed videoId="L5JtdRVTNwk" title="Spilleautomaten Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan Spilleautomaten ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Spilleautomaten ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Spilleautomatens hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video. Videoen er en del af vores dybdegående indhold om <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> og <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.</p>
+          </div>
         </section>
 
         <Separator className="my-10" />

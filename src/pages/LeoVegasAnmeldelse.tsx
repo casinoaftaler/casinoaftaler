@@ -15,6 +15,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Zap, Check, X, Crown, Gamepad2, Trophy, Sparkles, Headphones, Wallet, Target, Users, Smartphone, Globe, TrendingUp } from "lucide-react";
 
@@ -93,6 +95,11 @@ const LeoVegasAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             For danske spillere betyder det en platform med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, fuld ROFUS-tilslutning og en spiloplevelse, der konsekvent sætter standarden for, hvad et online casino kan være. I denne anmeldelse gennemgår vi alle aspekter af LeoVegas – fra det massive spiludvalg til bonusstrukturen, mobiloplevelsen, live casinoet og de konkurrenter, der forsøger at matche "King of Mobile Casino".
           </p>
+          <YoutubeEmbed videoId="8_nQyVEJEcU" title="LeoVegas Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan LeoVegas ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/leovegas" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan LeoVegas ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig LeoVegas' hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
+          </div>
         </section>
 
         <Separator className="my-10" />

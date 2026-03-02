@@ -16,6 +16,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Crown, Award, ShieldCheck, Headphones, TrendingUp, BarChart3 } from "lucide-react";
 
@@ -39,7 +41,7 @@ const Casino888Anmeldelse = () => {
 
   return (
     <>
-      <SEO title="888 Casino Anmeldelse 2026 – Eksklusiv Bonus & Pioner" description="Komplet anmeldelse af 888 Casino – en af online gamblings pionerer. Eksklusive spil, 888 Club loyalitetsprogram, dansk licens og bonus uden indbetaling." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="888 Casino Anmeldelse 2026 – Eksklusiv Bonus & Pioner" description="Komplet anmeldelse af 888 Casino – en af online gamblings pionerer. Eksklusive spil, 888 Club loyalitetsprogram, dansk licens og bonus uden indbetaling." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/888-casino", "crhpDPocTrQ", { title: "888 Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan 888 Casino ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><Crown className="mr-1.5 h-3.5 w-3.5" />4.3 / 5 – Online Casino Pioner</Badge>
@@ -81,6 +83,11 @@ const Casino888Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi spillede i tre sessions over en uge. Primære testspil: 888-eksklusive slots (Millionaire Genie, The Dark Knight Rises), NetEnt-klassikere (Starburst, Gonzo's Quest) og Pragmatic Play-titler (Sweet Bonanza, Gates of Olympus). De eksklusive 888-titler havde en mærkbart anderledes æstetik og gameplay-mekanik end standard-udbydernes spil – grafisk acceptable men ikke best-in-class. RTP-niveauerne på de eksklusive titler varierede fra 94,8% til 96,5%, hvor de laveste er under markedsgennemsnittet.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Udbetalingstest: Vi anmodede om udbetaling af 750 kr. via Trustly den 10. december klokken 11:20. Pengene landede på vores bankkonto den 11. december klokken 18:35 – en samlet behandlingstid på ca. 31 timer. Det er inden for det lovede interval på 24-48 timer, men langt fra de hurtigste operatører. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> behandler tilsvarende Trustly-udbetalinger på 4–6 timer.</p>
           <p className="text-muted-foreground leading-relaxed">KYC-forløbet: Fordi vi registrerede via MitID, var identitetsverifikation allerede overstået. Dog modtog vi en e-mail fra 888 Casino 48 timer efter udbetalingsanmodningen med anmodning om dokumentation for betalingsmetode (screenshot af Trustly-konto). Det er et ekstra verifikationstrin, som mange danske casinoer ikke kræver, og det tilføjede forsinkelse til processen. Efterfølgende udbetalinger gik dog markant hurtigere – 18 timer for næste anmodning.</p>
+          <YoutubeEmbed videoId="crhpDPocTrQ" title="888 Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan 888 Casino ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/888-casino" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan 888 Casino ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig 888 Casinos hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
+          </div>
         </section>
 
         <Separator className="my-10" />
