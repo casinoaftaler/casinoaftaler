@@ -139,8 +139,8 @@ const BonusUdenOmsaetningskrav = () => {
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
           backgroundImage: heroBackgroundImage
-            ? `linear-gradient(135deg, hsl(150 60% 20% / 0.95), hsl(170 50% 18% / 0.9)), url(${heroBackgroundImage})`
-            : "linear-gradient(135deg, hsl(150 60% 20%), hsl(160 50% 18%) 40%, hsl(180 60% 22%))",
+            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
+            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
