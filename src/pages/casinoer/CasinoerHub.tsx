@@ -536,7 +536,7 @@ export default function CasinoerHub() {
           </p>
         </section>
 
-        <InlineCasinoCards title="Anbefalede Casinoer med Bedst Spiludvalg" />
+        {/* Casino cards removed – already shown above in "Top Casinoer med Hurtig Udbetaling" */}
 
         {/* ── SECTION 11: Spiludviklere ── */}
         <section className="mb-12">

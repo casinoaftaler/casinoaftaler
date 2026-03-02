@@ -841,7 +841,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         <Separator className="my-10" />
         <RelatedReviews currentSlug="swift-casino" />
-        <InlineCasinoCards />
+        <InlineCasinoCards excludeSlugs={["swift-casino"]} />
         <Separator className="my-10" />
         <AuthorBio author="jonas" />
         <Separator className="my-10" />
