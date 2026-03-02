@@ -7,13 +7,15 @@ const corsHeaders = {
 
 // ─── Aggregator sources ───
 const AGGREGATOR_URLS = [
-  "https://www.casinopenge.dk/free-spins-i-dag",
-  "https://www.spilxperten.com/casino/dagens-free-spins/",
+  "https://d-bet.dk/casino/free-spins/",
+  "https://slotsguiden.dk/free-spins-til-eksisterende-kunder/",
+  "https://free-spins-i-dag.dk/",
+  "https://slotsguiden.dk/free-spins/",
   "https://www.casinoonline.dk/freespin/",
 ];
 
 // ─── Direct casino paths to crawl ───
-const CASINO_PATHS = ["/kampagner", "/promotions", "/bonus"];
+const CASINO_PATHS = ["/kampagner", "/promotions", "/bonus", "/tilbud", "/bonusser", "/fri-spins", "/free-spins"];
 
 // ─── Casino name → slug mapping ───
 const CASINO_NAME_MAP: Record<string, string> = {
@@ -34,6 +36,13 @@ const CASINO_NAME_MAP: Record<string, string> = {
   "pokerstars": "pokerstars", "pokerstars casino": "pokerstars",
   "mr vegas": "mr-vegas", "stake": "stake",
   "tivoli casino": "tivoli-casino", "casino copenhagen": "casino-copenhagen",
+  "jackpotbet": "jackpotbet", "jackpot bet": "jackpotbet",
+  "vbet": "vbet", "v bet": "vbet",
+  "vindercasino": "vindercasino", "vinder casino": "vindercasino",
+  "spilleautomaten": "spilleautomaten", "spilleautomaten.dk": "spilleautomaten",
+  "danske spil": "danske-spil", "danskespil": "danske-spil",
+  "maria casino": "maria-casino", "mariacasino": "maria-casino",
+  "spildansknu": "spildansknu", "spil dansk nu": "spildansknu",
 };
 
 interface CasinoRow {
@@ -379,15 +388,28 @@ async function scrapeDirectCasino(casino: CasinoRow, firecrawlKey: string): Prom
 // ─── AGGREGATOR SCRAPER ───
 async function scrapeAggregator(url: string, firecrawlKey: string): Promise<string> {
   try {
+    console.log(`  Scraping aggregator: ${url}`);
     const resp = await fetch("https://api.firecrawl.dev/v1/scrape", {
       method: "POST",
       headers: { "Authorization": `Bearer ${firecrawlKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({ url, formats: ["markdown"], onlyMainContent: true, waitFor: 5000 }),
     });
-    if (!resp.ok) return "";
+    if (!resp.ok) {
+      const errBody = await resp.text();
+      console.error(`  Firecrawl error ${resp.status} for ${url}: ${errBody.substring(0, 300)}`);
+      return "";
+    }
     const d = await resp.json();
-    return d?.data?.markdown || d?.markdown || "";
-  } catch { return ""; }
+    const md = d?.data?.markdown || d?.markdown || "";
+    console.log(`  Firecrawl result for ${url}: ${md.length} chars, success=${d?.success}`);
+    if (md.length < 50) {
+      console.log(`  Raw response keys: ${JSON.stringify(Object.keys(d || {}))}, data keys: ${JSON.stringify(Object.keys(d?.data || {}))}`);
+    }
+    return md;
+  } catch (e) {
+    console.error(`  Aggregator scrape exception for ${url}: ${e}`);
+    return "";
+  }
 }
 
 /** Split aggregator markdown into per-casino sections */
@@ -461,78 +483,108 @@ Deno.serve(async (req) => {
     const MAX_RUNTIME_MS = 240_000; // 4 min safety margin
     function hasTimeLeft() { return (Date.now() - START_TIME) < MAX_RUNTIME_MS; }
 
-    // ─── PHASE 1: Direct casino scraping ───
-    const casinosWithUrl = Array.from(casinoMap.values()).filter(c => {
-      if (!c.website_url) return false;
-      try { return new URL(c.website_url).hostname.endsWith(".dk"); } catch { return false; }
-    });
-    console.log(`Phase 1: Direct scraping ${casinosWithUrl.length} .dk casinos`);
+    // ─── PHASE 1: Aggregator scraping FIRST (highest ROI per Firecrawl request) ───
+    console.log(`Phase 1: Aggregator scraping (${AGGREGATOR_URLS.length} sources)`);
 
-    const BATCH_SIZE = 5;
-    for (let i = 0; i < casinosWithUrl.length; i += BATCH_SIZE) {
+    for (const url of AGGREGATOR_URLS) {
       if (!hasTimeLeft()) {
-        console.log(`Time limit reached after ${Math.round((Date.now() - START_TIME) / 1000)}s, stopping Phase 1 early`);
+        console.log(`Time limit reached, skipping remaining aggregators`);
         break;
       }
-      const batch = casinosWithUrl.slice(i, i + BATCH_SIZE);
-      const results = await Promise.all(batch.map(async (casino) => {
-        try {
-          const scraped = await scrapeDirectCasino(casino, firecrawlKey);
-          if (!scraped) return { casino, campaigns: [], error: null };
-          const campaigns = await extractStructuredOffers(scraped.raw, casino.name, casino.slug, "direct");
-          return { casino, campaigns, error: null };
-        } catch (e) {
-          return { casino, campaigns: [], error: String(e) };
+      try {
+        const md = await scrapeAggregator(url, firecrawlKey);
+        if (!md || md.length < 100) {
+          scrapeResults.push({ source: url, type: "aggregator", status: "error", offers: 0, error: "Empty" });
+          continue;
         }
-      }));
 
-      for (const { casino, campaigns, error } of results) {
-        scrapeResults.push({
-          source: casino.website_url || casino.slug,
-          type: "direct",
-          status: error ? "error" : campaigns.length > 0 ? "ok" : "no_offers",
-          offers: campaigns.length,
-          error: error || undefined,
-        });
-        allCampaigns.push(...campaigns);
-      }
-    }
-
-    const directCount = allCampaigns.length;
-    console.log(`Phase 1 done: ${directCount} direct campaigns`);
-
-    // ─── PHASE 2: Aggregator scraping (only if time remains) ───
-    if (hasTimeLeft()) {
-      const casinosWithDirect = new Set(allCampaigns.map(c => c.casino_slug));
-      console.log(`Phase 2: Aggregator scraping (${Math.round((MAX_RUNTIME_MS - (Date.now() - START_TIME)) / 1000)}s remaining)`);
-
-      for (const url of AGGREGATOR_URLS) {
-        if (!hasTimeLeft()) {
-          console.log(`Time limit reached, skipping remaining aggregators`);
-          break;
-        }
-        try {
-          const md = await scrapeAggregator(url, firecrawlKey);
-          if (!md || md.length < 100) {
-            scrapeResults.push({ source: url, type: "aggregator", status: "error", offers: 0, error: "Empty" });
-            continue;
-          }
-
-          const sections = splitIntoCasinoSections(md);
-          let count = 0;
+        // First try splitting into casino sections
+        const sections = splitIntoCasinoSections(md);
+        let count = 0;
+        
+        if (sections.length > 0) {
           for (const section of sections) {
-            if (casinosWithDirect.has(section.slug)) continue;
             const campaigns = await extractStructuredOffers(section.text, section.casinoName, section.slug, "aggregator");
             allCampaigns.push(...campaigns);
             count += campaigns.length;
           }
-          scrapeResults.push({ source: url, type: "aggregator", status: "ok", offers: count });
-        } catch (e) {
-          scrapeResults.push({ source: url, type: "aggregator", status: "error", offers: 0, error: String(e) });
+        } else {
+          // If no sections found, send the entire markdown to LLM for extraction
+          console.log(`  No sections found for ${url}, sending full text to LLM (${md.length} chars)`);
+          const campaigns = await extractStructuredOffers(md, "aggregator", "unknown", "aggregator");
+          for (const c of campaigns) {
+            // Try to resolve the slug from the LLM-extracted casino name
+            const resolvedSlug = resolveSlug(c.casino_name);
+            if (resolvedSlug) {
+              c.casino_slug = resolvedSlug;
+              const casino = casinoMap.get(resolvedSlug);
+              if (casino) c.casino_name = casino.name;
+            }
+          }
+          allCampaigns.push(...campaigns);
+          count = campaigns.length;
+        }
+        
+        scrapeResults.push({ source: url, type: "aggregator", status: count > 0 ? "ok" : "no_offers", offers: count });
+      } catch (e) {
+        scrapeResults.push({ source: url, type: "aggregator", status: "error", offers: 0, error: String(e) });
+      }
+    }
+
+    const aggregatorCount = allCampaigns.length;
+    console.log(`Phase 1 done: ${aggregatorCount} aggregator campaigns`);
+
+    // ─── PHASE 2: Direct casino scraping (only if time + rate limit remains) ───
+    const casinosWithUrl = Array.from(casinoMap.values()).filter(c => {
+      if (!c.website_url) return false;
+      try { return new URL(c.website_url).hostname.endsWith(".dk"); } catch { return false; }
+    });
+    
+    // Only scrape casinos not already covered by aggregators
+    const casinosFromAggregator = new Set(allCampaigns.map(c => c.casino_slug));
+    const casinosToScrape = casinosWithUrl.filter(c => !casinosFromAggregator.has(c.slug));
+    
+    if (hasTimeLeft() && casinosToScrape.length > 0) {
+      console.log(`Phase 2: Direct scraping ${casinosToScrape.length} .dk casinos (skipping ${casinosWithUrl.length - casinosToScrape.length} already covered)`);
+
+      const BATCH_SIZE = 3; // Smaller batches to respect rate limits
+      for (let i = 0; i < casinosToScrape.length; i += BATCH_SIZE) {
+        if (!hasTimeLeft()) {
+          console.log(`Time limit reached after ${Math.round((Date.now() - START_TIME) / 1000)}s, stopping Phase 2 early`);
+          break;
+        }
+        
+        // Rate limit pause between batches
+        if (i > 0) {
+          console.log(`  Rate limit pause (2s)...`);
+          await new Promise(r => setTimeout(r, 2000));
+        }
+        
+        const batch = casinosToScrape.slice(i, i + BATCH_SIZE);
+        const results = await Promise.all(batch.map(async (casino) => {
+          try {
+            const scraped = await scrapeDirectCasino(casino, firecrawlKey);
+            if (!scraped) return { casino, campaigns: [], error: null };
+            const campaigns = await extractStructuredOffers(scraped.raw, casino.name, casino.slug, "direct");
+            return { casino, campaigns, error: null };
+          } catch (e) {
+            return { casino, campaigns: [], error: String(e) };
+          }
+        }));
+
+        for (const { casino, campaigns, error } of results) {
+          scrapeResults.push({
+            source: casino.website_url || casino.slug,
+            type: "direct",
+            status: error ? "error" : campaigns.length > 0 ? "ok" : "no_offers",
+            offers: campaigns.length,
+            error: error || undefined,
+          });
+          allCampaigns.push(...campaigns);
         }
       }
     } else {
-      console.log(`Skipping Phase 2 (aggregators) - no time left after ${Math.round((Date.now() - START_TIME) / 1000)}s`);
+      console.log(`Skipping Phase 2 (direct) - ${!hasTimeLeft() ? 'no time left' : 'all casinos covered by aggregators'}`);
     }
 
     console.log(`Total campaigns: ${allCampaigns.length}`);
