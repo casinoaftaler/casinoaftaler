@@ -327,10 +327,10 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
           className="absolute inset-0 pointer-events-none z-10 animate-[vignette-in_0.5s_ease-out_forwards]"
           style={{
             background: isEpicWin
-              ? "radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.7) 100%)"
+              ? "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.35) 100%)"
               : isMegaWin
-              ? "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.5) 100%)"
-              : "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%)",
+              ? "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.25) 100%)"
+              : "radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.15) 100%)",
           }}
         />
       )}
@@ -527,8 +527,12 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
         >
         <div
             className={cn(
+              "rounded-xl backdrop-blur-sm",
               isEpicWin ? "px-10 sm:px-14 py-6 sm:py-8" : isMegaWin ? "px-8 sm:px-12 py-5 sm:py-7" : "px-6 sm:px-10 py-4 sm:py-5"
             )}
+            style={{
+              background: "rgba(0,0,0,0.35)",
+            }}
           >
             <div
               className={cn(
