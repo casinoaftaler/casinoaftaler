@@ -24,7 +24,7 @@ export function BonanzaTumbleWinPopup({ popups }: BonanzaTumbleWinPopupProps) {
             transform: "translate(-50%, -50%)",
           }}
         >
-          <span className="text-lg font-black text-green-300 drop-shadow-[0_0_8px_rgba(74,222,128,0.6)] [text-shadow:0_1px_4px_rgba(0,0,0,0.9)]">
+          <span className="text-2xl font-black text-pink-300 drop-shadow-[0_0_12px_rgba(236,72,153,0.7)] [text-shadow:0_2px_6px_rgba(0,0,0,0.9),0_0_16px_rgba(236,72,153,0.5)]">
             +{p.amount.toLocaleString()}
           </span>
         </div>
