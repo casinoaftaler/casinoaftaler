@@ -4,6 +4,7 @@ import { CreditCoin } from "@/components/CreditCoin";
 import { cn } from "@/lib/utils";
 import { VolumeControl } from "./VolumeControl";
 import { GatesPayTable } from "./GatesPayTable";
+import { BonanzaPayTable } from "./BonanzaPayTable";
 import { PayTable } from "./PayTable";
 import { AutoSpinPopover } from "./AutoSpinPopover";
 import { getSlotTheme } from "@/lib/slotTheme";
@@ -128,6 +129,8 @@ export function GatesControlBar({
       <div className="flex items-center gap-1 flex-shrink-0">
         {gameId === "gates-of-fedesvin" ? (
           <GatesPayTable gameId={gameId!} bet={bet} />
+        ) : gameId === "fedesvin-bonanza" ? (
+          <BonanzaPayTable gameId={gameId} bet={bet} />
         ) : (
           <PayTable gameId={gameId} bet={bet} />
         )}
