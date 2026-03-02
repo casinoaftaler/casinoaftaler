@@ -106,8 +106,8 @@
 
 
 @keyframes bonanza-scatter-tease {
-  0%, 100% { box-shadow: 0 0 10px rgba(168, 85, 247, 0.4); transform: scale(1); }
-  50% { box-shadow: 0 0 25px rgba(168, 85, 247, 0.7); transform: scale(1.05); }
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 25px rgba(168, 85, 247, 0.7)); transform: scale(1.05); }
 }
 
 .bonanza-scatter-tease {
@@ -116,14 +116,13 @@
 
 .bonanza-scatter-tease-intense {
   animation: bonanza-scatter-tease 0.4s ease-in-out infinite;
-  border-color: rgba(168, 85, 247, 0.8) !important;
 }
 
 /* Scatter trigger pulse */
 @keyframes bonanza-scatter-pulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 rgba(168, 85, 247, 0); }
-  50% { transform: scale(1.15); box-shadow: 0 0 30px rgba(168, 85, 247, 0.6); }
-  100% { transform: scale(1); box-shadow: 0 0 0 rgba(168, 85, 247, 0); }
+  0% { filter: drop-shadow(0 0 0 rgba(168, 85, 247, 0)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.6)); transform: scale(1.15); }
+  100% { filter: drop-shadow(0 0 0 rgba(168, 85, 247, 0)); transform: scale(1); }
 }
 
 .bonanza-scatter-trigger-pulse {
