@@ -7,6 +7,7 @@ import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import riseSlotBackground from "@/assets/slots/rise/background.jpg";
 import gatesSlotBackground from "@/assets/slots/gates/background.jpg";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { cn } from "@/lib/utils";
 import { getSlotTheme } from "@/lib/slotTheme";
@@ -33,6 +34,9 @@ export function SlotIntroScreen({ onStart, gameId = "book-of-fedesvin" }: SlotIn
   const { data: siteSettings } = useSiteSettings();
   const theme = getSlotTheme(gameId);
 
+  // Load custom sounds on the intro screen so they're ready before startMusic
+  const { isLoading: soundsLoading } = useSlotSoundLoader(gameId);
+
   const isWizard = gameId === "rise-of-fedesvin";
   const isOlympus = gameId === "gates-of-fedesvin";
   const isBonanza = gameId === "fedesvin-bonanza";
@@ -44,11 +48,11 @@ export function SlotIntroScreen({ onStart, gameId = "book-of-fedesvin" }: SlotIn
   const backgroundImage = siteSettings?.[bgKey] || gameDefaultBackground;
   const currentIntroImage = GAME_INTRO_IMAGES[gameId] || introImage;
 
-  // Set game ID and start background music when intro screen opens
+  // Start background music only after custom sounds have loaded
   useEffect(() => {
-    slotSounds.setGameId(gameId);
+    if (soundsLoading) return;
     slotSounds.startMusic();
-  }, [gameId]);
+  }, [gameId, soundsLoading]);
 
   return (
     <div className="min-h-[calc(100vh-4rem)] relative flex flex-col items-center justify-center px-4">
