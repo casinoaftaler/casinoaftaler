@@ -398,9 +398,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         DROP_OFF_DURATION +
         (BONANZA_COLS - 1) * STAGGER_MS +
         (BONANZA_ROWS - 1) * DROP_OFF_ROW_STAGGER_MS;
-      await new Promise(r => setTimeout(r, totalDropOffTime));
+      await new Promise(r => setTimeout(r, totalDropOffTime + 100));
 
-      // Now clear bomb-exploded decals — drop-off has finished, old symbols are gone
+      // Clear bomb-exploded decals after drop-off animation fully completes
       setCellAnimStates(new Map());
 
       const response = await serverPromise;
