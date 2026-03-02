@@ -71,7 +71,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
             className={cn(
               "relative rounded-lg",
               (cellAnim === 'dropping' || cellAnim === 'filling' || cellAnim === 'exploding' || applyDropOff || applyDropIn) ? "overflow-visible" : "overflow-hidden",
-              "bg-pink-950/30 border border-pink-400/10",
+              
               isWinning && "bonanza-candy-highlight",
               isLanding && "bonanza-column-stop-impact",
               applyDropOff && "bonanza-drop-off",
