@@ -500,7 +500,7 @@ const ThreeCardPokerGuide = () => {
 
         <Separator className="my-10" />
 
-        <RelatedGuides category="poker" currentPath="/casinospil/poker/three-card-poker" index={2} />
+        <RelatedGuides currentPath="/casinospil/poker/three-card-poker" />
 
         <Separator className="my-10" />
 

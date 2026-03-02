@@ -414,7 +414,7 @@ const OmahaPokerGuide = () => {
 
         <Separator className="my-10" />
 
-        <RelatedGuides category="poker" currentPath="/casinospil/poker/omaha" index={1} />
+        <RelatedGuides currentPath="/casinospil/poker/omaha" />
 
         <Separator className="my-10" />
 

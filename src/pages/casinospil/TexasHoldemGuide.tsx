@@ -672,7 +672,7 @@ const TexasHoldemGuide = () => {
 
         <Separator className="my-10" />
 
-        <RelatedGuides category="poker" currentPath="/casinospil/poker/texas-holdem" index={0} />
+        <RelatedGuides currentPath="/casinospil/poker/texas-holdem" />
 
         <Separator className="my-10" />
 
