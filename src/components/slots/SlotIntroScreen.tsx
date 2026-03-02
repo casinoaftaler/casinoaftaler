@@ -33,6 +33,7 @@ export function SlotIntroScreen({ onStart, gameId = "book-of-fedesvin" }: SlotIn
 
   const isWizard = gameId === "rise-of-fedesvin";
   const isOlympus = gameId === "gates-of-fedesvin";
+  const isBonanza = gameId === "fedesvin-bonanza";
 
   const bgKey = gameId === "book-of-fedesvin"
     ? "slot_background_image"
@@ -61,6 +62,9 @@ export function SlotIntroScreen({ onStart, gameId = "book-of-fedesvin" }: SlotIn
       {isOlympus && (
         <div className="absolute inset-0 bg-gradient-to-b from-blue-900/30 via-transparent to-amber-900/20 -z-10" />
       )}
+      {isBonanza && (
+        <div className="absolute inset-0 bg-gradient-to-b from-pink-900/30 via-fuchsia-900/10 to-pink-900/20 -z-10" />
+      )}
       
       {/* Content */}
       <div 
@@ -78,29 +82,35 @@ export function SlotIntroScreen({ onStart, gameId = "book-of-fedesvin" }: SlotIn
         <div className="relative group">
           <img 
             src={currentIntroImage} 
-            alt={gameId === "rise-of-fedesvin" ? "Rise of Fedesvin" : "Book of Fedesvin"} 
+            alt={isBonanza ? "Fedesvin Bonanza" : gameId === "rise-of-fedesvin" ? "Rise of Fedesvin" : "Book of Fedesvin"} 
             className={cn(
               "w-full max-w-[640px] sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl h-auto rounded-xl border-2 shadow-2xl transition-all duration-300 group-hover:scale-[1.02]",
-              isWizard
-                ? "border-purple-500/30 group-hover:border-purple-500/50"
-                : "border-amber-500/30 group-hover:border-amber-500/50"
+              isBonanza
+                ? "border-pink-500/30 group-hover:border-pink-500/50"
+                : isWizard
+                  ? "border-purple-500/30 group-hover:border-purple-500/50"
+                  : "border-amber-500/30 group-hover:border-amber-500/50"
             )}
             style={{
-              boxShadow: isOlympus
-                ? '0 0 40px rgba(59,130,246,0.3), 0 0 80px rgba(251,191,36,0.15), 0 0 120px rgba(59,130,246,0.08)'
-                : isWizard
-                  ? '0 0 40px rgba(168,85,247,0.3), 0 0 80px rgba(168,85,247,0.15), 0 0 120px rgba(168,85,247,0.08)'
-                  : '0 0 40px rgba(251,191,36,0.3), 0 0 80px rgba(251,191,36,0.15), 0 0 120px rgba(251,191,36,0.08)'
+              boxShadow: isBonanza
+                ? '0 0 40px rgba(236,72,153,0.3), 0 0 80px rgba(236,72,153,0.15), 0 0 120px rgba(236,72,153,0.08)'
+                : isOlympus
+                  ? '0 0 40px rgba(59,130,246,0.3), 0 0 80px rgba(251,191,36,0.15), 0 0 120px rgba(59,130,246,0.08)'
+                  : isWizard
+                    ? '0 0 40px rgba(168,85,247,0.3), 0 0 80px rgba(168,85,247,0.15), 0 0 120px rgba(168,85,247,0.08)'
+                    : '0 0 40px rgba(251,191,36,0.3), 0 0 80px rgba(251,191,36,0.15), 0 0 120px rgba(251,191,36,0.08)'
             }}
           />
           {/* Click to play hint */}
           <div className={cn(
             "absolute bottom-4 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full backdrop-blur-md text-sm font-medium animate-pulse",
-            isOlympus
-              ? "bg-blue-500/20 border border-amber-400/40 text-amber-100"
-              : isWizard
-                ? "bg-purple-500/20 border border-purple-500/40 text-purple-100"
-                : "bg-amber-500/20 border border-amber-500/40 text-amber-100"
+            isBonanza
+              ? "bg-pink-500/20 border border-pink-400/40 text-pink-100"
+              : isOlympus
+                ? "bg-blue-500/20 border border-amber-400/40 text-amber-100"
+                : isWizard
+                  ? "bg-purple-500/20 border border-purple-500/40 text-purple-100"
+                  : "bg-amber-500/20 border border-amber-500/40 text-amber-100"
           )}>
             Klik for at spille
           </div>
