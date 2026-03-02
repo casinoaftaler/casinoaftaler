@@ -13,7 +13,7 @@ import { slotSounds } from "@/lib/slotSoundEffects";
 import { GatesControlBar } from "./GatesControlBar";
 import { AnimatedSpinCounter } from "./AnimatedSpinCounter";
 import { WinCelebration } from "./WinCelebration";
-import { Loader2 } from "lucide-react";
+import { Loader2, Bug } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { getSlotTheme } from "@/lib/slotTheme";
@@ -40,7 +40,7 @@ interface BonanzaSlotGameProps {
 }
 
 export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGameProps) {
-  const { user } = useAuth();
+  const { user, isAdmin } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols(gameId);
   const { data: bombSymbols } = useBombSymbols(gameId);
@@ -92,6 +92,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const pendingBonusStateRef = useRef<any>(null);
 
   const spinLockRef = useRef(false);
+  const debugScattersRef = useRef(false);
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
   const [autoSpinCount, setAutoSpinCount] = useState<AutoSpinCount>(10);
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
@@ -364,7 +365,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     slotSounds.playSpinStart();
 
     try {
-      const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current);
+      const useDebugScatters = debugScattersRef.current;
+      debugScattersRef.current = false;
+      const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current, useDebugScatters || undefined);
       const totalDropOffTime = DROP_OFF_DURATION + (BONANZA_COLS - 1) * STAGGER_MS;
       await new Promise(r => setTimeout(r, totalDropOffTime));
 
@@ -405,7 +408,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           if (totalWin >= bet * 10) slotSounds.playBigWin();
           else if (totalWin >= bet * 3) slotSounds.playMediumWin();
           else slotSounds.playSmallWin();
-          queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
+          // DEV MODE: Skip leaderboard invalidation for Bonanza
+          // queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
         }
 
         // Handle bonus state
@@ -660,7 +664,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       </div>
 
       {/* Control panel */}
-      <div className="w-full">
+      <div className="w-full relative">
         <GatesControlBar
           bet={bet}
           onBetChange={setBet}
@@ -680,6 +684,20 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           winAmount={winAmount}
           gameId={gameId}
         />
+        {isAdmin && !isBonusActive && (
+          <button
+            onClick={() => {
+              if (isSpinning || tumblePhase !== 'idle' || spinLockRef.current) return;
+              debugScattersRef.current = true;
+              handleSpin();
+            }}
+            disabled={isSpinning || tumblePhase !== 'idle'}
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-lg bg-pink-500/20 hover:bg-pink-500/40 border border-pink-500/30 text-pink-300 transition-colors disabled:opacity-30"
+            title="Debug: Force 4 Scatters"
+          >
+            <Bug className="h-4 w-4" />
+          </button>
+        )}
       </div>
     </div>
   );

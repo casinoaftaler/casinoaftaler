@@ -831,9 +831,29 @@ async function calculateBonanzaFullSpin(
   betAmount: number,
   isBonusSpin: boolean,
   runningMultiplier: number,
-  prng: SeededPRNG
+  prng: SeededPRNG,
+  forceScatters: boolean = false
 ): Promise<BonanzaSpinResult> {
   let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng);
+
+  // Debug: force exactly 4 scatters across different columns
+  if (forceScatters && !isBonusSpin) {
+    const scatterSymbol = symbols.find(s => s.is_scatter);
+    if (scatterSymbol) {
+      const cols = [0, 1, 2, 3, 4, 5];
+      // Pick 4 random columns
+      for (let i = cols.length - 1; i > 0; i--) {
+        const j = Math.floor(prng.next() * (i + 1));
+        [cols[i], cols[j]] = [cols[j], cols[i]];
+      }
+      const chosen = cols.slice(0, 4);
+      for (const col of chosen) {
+        const row = Math.floor(prng.next() * BONANZA_ROWS);
+        grid[col][row] = scatterSymbol.id;
+      }
+    }
+  }
+
   const initialGrid = grid.map(col => [...col]);
   const tumbleSteps: BonanzaTumbleStep[] = [];
   let totalRawWin = 0;
@@ -1466,7 +1486,7 @@ Deno.serve(async (req) => {
 
     // Parse request body
     const body = await req.json();
-    let { bet, sessionId, isBonusSpin, gameId: rawGameId, clientSeed, nonce } = body;
+    let { bet, sessionId, isBonusSpin, gameId: rawGameId, clientSeed, nonce, debugScatters } = body;
     const gameId = rawGameId || "book-of-fedesvin";
 
     // Validate clientSeed and nonce for provably fair RNG
@@ -1646,8 +1666,8 @@ Deno.serve(async (req) => {
           is_active: newFreeSpins > 0,
         }).eq("user_id", userId).eq("game_id", gameId);
         if (newFreeSpins <= 0 && newBonusWinnings > 0) {
-          // Fire-and-forget: record bonus result
-          (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: 0, is_bonus_triggered: false, bonus_win_amount: newBonusWinnings, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bonus bg err:", e); } })();
+          // DEV MODE: Skip leaderboard recording for Bonanza
+          // (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: 0, is_bonus_triggered: false, bonus_win_amount: newBonusWinnings, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bonus bg err:", e); } })();
         }
         return new Response(JSON.stringify({ success: true, result: bonanzaResult, bonusState: { isActive: newFreeSpins > 0, freeSpinsRemaining: newFreeSpins, totalFreeSpins: newTotalFreeSpins, bonusWinnings: newBonusWinnings, cumulativeMultiplier: bonanzaResult.totalMultiplier, betAmount: bet, isRetrigger } }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } });
@@ -1664,7 +1684,14 @@ Deno.serve(async (req) => {
       const { data: newRemB, error: rpcErrB } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayB, p_bet: bet, p_max_spins: maxSpB });
       if (rpcErrB) return new Response(JSON.stringify({ error: "Failed to deduct spins" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       if (newRemB === -1) return new Response(JSON.stringify({ error: "Not enough spins remaining" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-      const bonanzaResult = await calculateBonanzaFullSpin(symbols, bet, false, 0, prng);
+      // Debug scatters: admin-only, force 4 scatters onto grid after generation
+      let forceScatters = false;
+      if (debugScatters) {
+        const { data: isAdminData } = await serviceClient.rpc("has_role", { _user_id: userId, _role: "admin" });
+        if (isAdminData === true) forceScatters = true;
+      }
+
+      const bonanzaResult = await calculateBonanzaFullSpin(symbols, bet, false, 0, prng, forceScatters);
       let bonanzaBonusState = null;
       if (bonanzaResult.bonusTriggered) {
         const sc = bonanzaResult.scatterCount;
@@ -1673,8 +1700,8 @@ Deno.serve(async (req) => {
         await serviceClient.from("slot_bonus_state").insert({ user_id: userId, is_active: true, free_spins_remaining: awardedSpins, total_free_spins: awardedSpins, expanding_symbol_name: "0", bonus_winnings: bonanzaResult.totalWin, game_id: gameId, bet_amount: bet });
         bonanzaBonusState = { isActive: true, freeSpinsRemaining: awardedSpins, totalFreeSpins: awardedSpins, bonusWinnings: bonanzaResult.totalWin, cumulativeMultiplier: 0, betAmount: bet };
       }
-      // Fire-and-forget: record game result
-      (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: bonanzaResult.totalWin, is_bonus_triggered: bonanzaResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bg err:", e); } })();
+      // DEV MODE: Skip leaderboard recording for Bonanza
+      // (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: bonanzaResult.totalWin, is_bonus_triggered: bonanzaResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bg err:", e); } })();
       return new Response(JSON.stringify({ success: true, result: bonanzaResult, spinsRemaining: newRemB, maxSpins: maxSpB, bonusState: bonanzaBonusState }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
