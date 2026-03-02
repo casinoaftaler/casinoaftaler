@@ -28,6 +28,7 @@ import { AnimatedWinCounter } from "./AnimatedWinCounter";
 import { BonanzaBonusEntrySequence } from "./BonanzaBonusEntrySequence";
 import { BonanzaRetriggerOverlay } from "./BonanzaRetriggerOverlay";
 import { BonanzaBonusEndOverlay } from "./BonanzaBonusEndOverlay";
+import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
 
 const SYMBOL_WIDTH = 140;
 const SYMBOL_HEIGHT = 108;
@@ -76,6 +77,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const [screenShake, setScreenShake] = useState<'none' | 'normal' | 'intense'>('none');
   const [animationEpoch, setAnimationEpoch] = useState(0);
   const [tumbleChainLength, setTumbleChainLength] = useState(0);
+  const [tumbleWinPopups, setTumbleWinPopups] = useState<TumbleWinPopup[]>([]);
 
   // Bonus state
   const [isBonusActive, setIsBonusActive] = useState(false);
@@ -206,6 +208,25 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         setWinningPositions(winPositions);
         slotSounds.playSymbolHighlight();
         setRunningWin(prev => prev + step.stepWin);
+
+        // Spawn floating win popups for each winning cluster
+        for (const win of step.wins) {
+          if (win.payout > 0 && win.positions.length > 0) {
+            let sumX = 0, sumY = 0;
+            for (const pos of win.positions) {
+              const { col, row } = flatToColRow(pos);
+              sumX += SYMBOL_GAP + col * (SYMBOL_WIDTH + SYMBOL_GAP) + SYMBOL_WIDTH / 2;
+              sumY += SYMBOL_GAP + row * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_HEIGHT / 2;
+            }
+            const cx = sumX / win.positions.length;
+            const cy = sumY / win.positions.length;
+            const popupId = `${i}-${win.symbolId}-${Date.now()}`;
+            setTumbleWinPopups(prev => [...prev, { id: popupId, amount: win.payout, x: cx, y: cy }]);
+            setTimeout(() => {
+              setTumbleWinPopups(prev => prev.filter(p => p.id !== popupId));
+            }, 1300);
+          }
+        }
 
         // Mark winning cells + activated bombs
         const winAnims = new Map<number, BonanzaCellAnimState>();
@@ -347,6 +368,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     setWinningPositions(new Set());
     setScreenShake('none');
     setTumbleChainLength(0);
+    setTumbleWinPopups([]);
     serverResultRef.current = null;
 
     const STAGGER_MS = 80;
@@ -692,6 +714,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
             );
           })}
         </div>
+        {/* Floating tumble win popups */}
+        <BonanzaTumbleWinPopup popups={tumbleWinPopups} />
       </div>
 
       {/* Gevinst bar */}
