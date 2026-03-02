@@ -30,8 +30,8 @@ import { BonanzaRetriggerOverlay } from "./BonanzaRetriggerOverlay";
 import { BonanzaBonusEndOverlay } from "./BonanzaBonusEndOverlay";
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
 
-const SYMBOL_WIDTH = 180;
-const SYMBOL_HEIGHT = 140;
+const SYMBOL_WIDTH = 210;
+const SYMBOL_HEIGHT = 165;
 const SYMBOL_GAP = 5;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
