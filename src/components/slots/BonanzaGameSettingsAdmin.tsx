@@ -24,6 +24,7 @@ const BONANZA_SETTINGS_KEYS = [
   "bonanza_reel_dup_3_chance",
   "bonanza_symbol_width",
   "bonanza_symbol_height",
+  "bonanza_symbol_scale",
 ];
 
 interface BonanzaSettings {
@@ -41,6 +42,7 @@ interface BonanzaSettings {
   reelDup3Chance: number;
   symbolWidth: number;
   symbolHeight: number;
+  symbolScale: number;
 }
 
 const DEFAULTS: BonanzaSettings = {
@@ -58,6 +60,7 @@ const DEFAULTS: BonanzaSettings = {
   reelDup3Chance: 0.10,
   symbolWidth: 180,
   symbolHeight: 140,
+  symbolScale: 100,
 };
 
 export function BonanzaGameSettingsAdmin() {
@@ -89,6 +92,7 @@ export function BonanzaGameSettingsAdmin() {
         reelDup3Chance: parseFloat(map.bonanza_reel_dup_3_chance || String(DEFAULTS.reelDup3Chance)),
         symbolWidth: parseInt(map.bonanza_symbol_width || String(DEFAULTS.symbolWidth), 10),
         symbolHeight: parseInt(map.bonanza_symbol_height || String(DEFAULTS.symbolHeight), 10),
+        symbolScale: parseInt(map.bonanza_symbol_scale || String(DEFAULTS.symbolScale), 10),
       } as BonanzaSettings;
     },
   });
@@ -114,6 +118,7 @@ export function BonanzaGameSettingsAdmin() {
         { key: "bonanza_reel_dup_3_chance", value: String(s.reelDup3Chance) },
         { key: "bonanza_symbol_width", value: String(s.symbolWidth) },
         { key: "bonanza_symbol_height", value: String(s.symbolHeight) },
+        { key: "bonanza_symbol_scale", value: String(s.symbolScale) },
       ];
       for (const u of updates) {
         const { error } = await supabase
@@ -367,6 +372,24 @@ export function BonanzaGameSettingsAdmin() {
                 Standard: 140px. Grid-højden skalerer automatisk.
               </p>
             </div>
+          </div>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <Label>Symbol Skalering</Label>
+              <span className="text-sm text-muted-foreground font-mono">
+                {form.symbolScale}%
+              </span>
+            </div>
+            <Slider
+              min={80}
+              max={160}
+              step={5}
+              value={[form.symbolScale]}
+              onValueChange={(v) => setForm({ ...form, symbolScale: v[0] })}
+            />
+            <p className="text-xs text-muted-foreground">
+              Skalerer billederne uden at ændre grid-størrelsen. Over 100% overlapper naboceller.
+            </p>
           </div>
         </div>
 
