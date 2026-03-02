@@ -38,9 +38,11 @@ const RoyalCasinoAnmeldelse = () => {
   const faqJsonLd = buildFaqSchema(royalFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Royal Casino", itemUrl: "https://www.royalcasino.dk/", ratingValue: "4.2", ratingCount: "158", reviewBody: "Royal Casino er en dansk-licenseret casinoplatform med fokus på live casino, klassiske bordspil og velkomstbonus op til 750 kr. Platformen er ikke statsejet og er ikke en del af Danske Spil." });
 
+  const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/royal-casino", "6R3Zt_ABaAo", { title: "Royal Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Royal Casino ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features – så du ved præcis hvad du kan forvente, før du opretter en konto.", uploadDate: "2026-02-18", duration: "PT2M" });
+
   return (
     <>
-      <SEO title="Royal Casino Anmeldelse 2026 – Bonus op til 750 kr." description="Komplet anmeldelse af Royal Casino: ejerforhold, licens, bonus op til 750 kr., spiludvalg, live casino og betalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="Royal Casino Anmeldelse 2026 – Bonus op til 750 kr." description="Komplet anmeldelse af Royal Casino: ejerforhold, licens, bonus op til 750 kr., spiludvalg, live casino og betalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
@@ -78,6 +80,17 @@ const RoyalCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Men troværdighed alene sælger ikke i 2026. Det danske casinomarked er mere konkurrencepræget end nogensinde, og spillere forventer stort spiludvalg, hurtige udbetalinger, aggressive bonusser og polerede mobiloplevelser. Royal Casino leverer på nogle af disse parametre – særligt live casino og udbetalingshastighed – men halter på andre. Denne anmeldelse er en ærlig evaluering af, hvornår Royal Casino er det rigtige valg, og hvornår du bør kigge andetsteds.</p>
           <p className="text-muted-foreground leading-relaxed">Vores vurdering er baseret på en 10-dages testperiode i januar 2026 og følger vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>, der evaluerer spiludvalg, bonus, betalinger, kundeservice, sikkerhed og mobiloplevelse. Royal Casino scorede 4.2 ud af 5 – primært trukket op af live casino og sikkerhed, men ned af spiludvalgets begrænsede bredde.</p>
         </section>
+
+          <YoutubeEmbed
+            videoId="6R3Zt_ABaAo"
+            title="Royal Casino Anmeldelse 2026 – Ærlig Gennemgang"
+            description="Se hvordan Royal Casino ser ud indefra."
+            uploadDate="2026-02-18"
+            duration="PT2M"
+          />
+          <div className="mb-8 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground leading-relaxed">
+            I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem Royal Casinos platform – fra registrering og bonusaktivering til navigation, live casino og spilvalg. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
+          </div>
 
         <Separator className="my-10" />
 

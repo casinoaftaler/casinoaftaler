@@ -17,9 +17,10 @@ const MariaCasinoAnmeldelse = () => {
   const articleSchema = buildArticleSchema({ headline: "Maria Casino Anmeldelse 2026 – Slots, Live Casino & Bonus", description: "Komplet anmeldelse af Maria Casino med korrekte oplysninger. Dansk licens under Kindred Group, 1.500+ slots, 270+ live spil og venlig platform.", url: "https://casinoaftaler.dk/casino-anmeldelser/maria-casino", datePublished: "2026-02-15", dateModified: "2026-03-01", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "3.9", ratingCount: "138" } });
   const faqJsonLd = buildFaqSchema(mariaFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Maria Casino", itemUrl: "https://www.mariacasino.dk/", ratingValue: "3.9", ratingCount: "138", reviewBody: "Maria Casino er en dansk-licenseret casinoplatform under Kindred Group med 1.500+ slots, 270+ live spil og et venligt design. Bingo er ikke tilgængeligt i Danmark." });
+  const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/maria-casino", "o9m02b_cAnE", { title: "Maria Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Maria Casino ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features – så du ved præcis hvad du kan forvente, før du opretter en konto.", uploadDate: "2026-02-18", duration: "PT2M" });
   return (
     <>
-      <SEO title="Maria Casino Anmeldelse 2026 – Slots & Bonus | Casinoaftaler" description="Opdateret anmeldelse af Maria Casino. Dansk licens under Kindred Group, 1.500+ slots, 270+ live spil, PayPal/MobilePay og 24/7 kundeservice." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="Maria Casino Anmeldelse 2026 – Slots & Bonus | Casinoaftaler" description="Opdateret anmeldelse af Maria Casino. Dansk licens under Kindred Group, 1.500+ slots, 270+ live spil, PayPal/MobilePay og 24/7 kundeservice." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><Heart className="mr-1.5 h-3.5 w-3.5" />3.9 / 5 – Venlig Casinoplatform</Badge>
@@ -61,6 +62,17 @@ const MariaCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Vigtigt at bemærke:</strong> Maria Casinos bingo-produkt, som er populært i andre lande som England og Norge, er <strong>ikke tilgængeligt i Danmark</strong>. I Danmark fokuserer platformen udelukkende på casino, slots og live casino.</p>
           <p className="text-muted-foreground leading-relaxed">Vores vurdering er baseret på vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> og evaluerer spiludvalg, bonus, betalinger, kundeservice, sikkerhed og mobiloplevelse. Maria Casino scorede 3.9 ud af 5 – en solid platform med god infrastruktur men gennemsnitlige bonusser.</p>
         </section>
+
+          <YoutubeEmbed
+            videoId="o9m02b_cAnE"
+            title="Maria Casino Anmeldelse 2026 – Ærlig Gennemgang"
+            description="Se hvordan Maria Casino ser ud indefra."
+            uploadDate="2026-02-18"
+            duration="PT2M"
+          />
+          <div className="mb-8 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground leading-relaxed">
+            I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem Maria Casinos platform – fra registrering og bonusaktivering til navigation, spiludvalg og betalingsmetoder. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
+          </div>
 
         <Separator className="my-10" />
 

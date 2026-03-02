@@ -115,12 +115,14 @@ const Bet365Anmeldelse = () => {
 
   const reviewJsonLd = buildReviewSchema({ itemName: "bet365", itemUrl: "https://www.bet365.dk/", ratingValue: "4.4", ratingCount: "267", reviewBody: "bet365 er primært en sportsbook-gigant med et solidt casino-tillæg. Stærkest på sportsbetting og live streaming, men casino-oplevelsen kan virke sekundær." });
 
+  const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/bet365", "vb5nT5UGk8c", { title: "bet365 Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan bet365 ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features – så du ved præcis hvad du kan forvente, før du opretter en konto.", uploadDate: "2026-02-18", duration: "PT2M" });
+
   return (
     <>
       <SEO
         title="bet365 Anmeldelse 2026 – Casino, Odds & Live Streaming | Casinoaftaler"
         description="Kritisk anmeldelse af bet365 Danmark. Vi tester casino, sportsbetting, live streaming, bonus, udbetaling og kundeservice. Dansk licens."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]}
       />
 
       {/* Hero */}
@@ -211,6 +213,17 @@ const Bet365Anmeldelse = () => {
             Hvad der adskiller bet365 fra de fleste danske konkurrenter, er skala. Virksomheden beskæftiger over 6.000 medarbejdere, behandler millioner af daglige transaktioner og har investeret massivt i egen teknologi. De bruger ikke tredjepartsplatforme som mange mindre operatører – alt fra odds-beregning til betalingsinfrastruktur er bygget internt. Det giver en stabilitet og reaktionshastighed, der er sjælden i branchen. Læs mere om vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>.
           </p>
         </section>
+
+          <YoutubeEmbed
+            videoId="vb5nT5UGk8c"
+            title="bet365 Casino Anmeldelse 2026 – Ærlig Gennemgang"
+            description="Se hvordan bet365 ser ud indefra."
+            uploadDate="2026-02-18"
+            duration="PT2M"
+          />
+          <div className="mb-8 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground leading-relaxed">
+            I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem bet365's platform – fra registrering og bonusaktivering til navigation, sportsbetting og spilvalg. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
+          </div>
 
         <Separator className="my-10" />
 
