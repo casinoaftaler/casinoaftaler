@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useEffect, useState, useRef, useMemo, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
 
@@ -72,14 +72,31 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [showShockwave, setShowShockwave] = useState(false);
   const hasTriggeredCompleteRef = useRef(false);
+  const skipRef = useRef(false);
+
+  const handleSkip = useCallback(() => {
+    if (hasTriggeredCompleteRef.current || skipRef.current) return;
+    skipRef.current = true;
+    setIsPulsing(false);
+    setIsFadingOut(true);
+    setTimeout(() => {
+      setShowBigWin(false);
+      setParticles([]);
+      setIsFadingOut(false);
+      setShowShockwave(false);
+      hasTriggeredCompleteRef.current = true;
+      onAnimationComplete?.();
+    }, 400);
+  }, [onAnimationComplete]);
   
   const winMultiplier = bet > 0 ? winAmount / bet : 0;
   const isBigWin = winMultiplier >= 10;
   const isMegaWin = winMultiplier >= 50;
   const isEpicWin = winMultiplier >= 100;
 
-  const pulseDuration = isEpicWin ? 3000 : isMegaWin ? 2200 : 1800;
-  const counterDuration = isEpicWin ? 3500 : isMegaWin ? 2800 : 2200;
+  const pulseDuration = isEpicWin ? 6000 : isMegaWin ? 4500 : 3000;
+  const counterDuration = isEpicWin ? 7000 : isMegaWin ? 5000 : 3500;
+  const fadeDuration = isEpicWin ? 1500 : isMegaWin ? 1000 : 800;
   
   const displayAmount = useAnimatedCounter(showBigWin ? winAmount : 0, { 
     duration: counterDuration, 
@@ -162,14 +179,14 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
           setShowShockwave(false);
           hasTriggeredCompleteRef.current = true;
           onAnimationComplete?.();
-        }, isEpicWin ? 1000 : 700);
+        }, fadeDuration);
         
         return () => clearTimeout(fadeTimeout);
       }, pulseDuration);
       
       return () => clearTimeout(pulseTimeout);
     }
-  }, [displayAmount, winAmount, showBigWin, onAnimationComplete, pulseDuration, isEpicWin]);
+  }, [displayAmount, winAmount, showBigWin, onAnimationComplete, pulseDuration, fadeDuration]);
 
   useEffect(() => {
     if (!isActive || winAmount <= 0) {
@@ -179,6 +196,7 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
       setIsPulsing(false);
       setShowShockwave(false);
       hasTriggeredCompleteRef.current = false;
+      skipRef.current = false;
       return;
     }
 
@@ -478,14 +496,15 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
       {/* Big Win Text Overlay */}
       {showBigWin && (
         <div 
+          onClick={handleSkip}
           className={cn(
-            "absolute inset-0 flex items-center justify-center pointer-events-none z-30",
+            "absolute inset-0 flex items-center justify-center z-30 cursor-pointer",
             isFadingOut 
               ? isEpicWin 
-                ? "opacity-0 scale-50 blur-sm transition-all duration-600"
+                ? "opacity-0 scale-50 blur-sm transition-all duration-[1500ms]"
                 : isMegaWin
-                ? "opacity-0 scale-60 transition-all duration-450"
-                : "opacity-0 scale-75 transition-all duration-400"
+                ? "opacity-0 scale-60 transition-all duration-[1000ms]"
+                : "opacity-0 scale-75 transition-all duration-[800ms]"
               : isEpicWin
               ? "animate-[epic-win-entry_0.8s_cubic-bezier(0.34,1.56,0.64,1)_forwards]"
               : isMegaWin
