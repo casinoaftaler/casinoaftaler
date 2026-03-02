@@ -398,7 +398,7 @@ const MartingaleBlackjackGuide = () => {
           </p>
         </section>
 
-        <InlineCasinoCards slugs={["spildansknu", "betinia", "spilleautomaten"]} heading="Casinoer med Live Blackjack til Test af Indsatsstrategier" />
+        <InlineCasinoCards title="Casinoer med Live Blackjack til Test af Indsatsstrategier" />
 
         <Separator className="mb-12" />
 
@@ -740,7 +740,7 @@ const MartingaleBlackjackGuide = () => {
           </div>
         </section>
 
-        <InlineCasinoCards slugs={["swift-casino", "spildansknu", "betinia", "spilleautomaten"]} heading="Danske Casinoer med Live Blackjack-Borde" />
+        <InlineCasinoCards title="Danske Casinoer med Live Blackjack-Borde" />
 
         <Separator className="mb-12" />
 
