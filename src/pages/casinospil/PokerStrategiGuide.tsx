@@ -120,8 +120,6 @@ export default function PokerStrategiGuide() {
           </p>
         </section>
 
-        <InlineCasinoCards title="Bedste casinoer til poker" count={3} />
-
         {/* ──── Sektion 2: EV-modeller ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">

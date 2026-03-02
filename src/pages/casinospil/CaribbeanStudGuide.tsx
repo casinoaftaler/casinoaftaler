@@ -129,8 +129,6 @@ export default function CaribbeanStudGuide() {
           </p>
         </section>
 
-        <InlineCasinoCards title="Bedste casinoer til Caribbean Stud" count={3} />
-
         {/* ──── Sektion 2: Regler ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
@@ -160,8 +158,6 @@ export default function CaribbeanStudGuide() {
             Det er værd at bemærke, at den progressive jackpot-indsats har en husets fordel på helt op til 26 % ved lave jackpot-niveauer. Denne falder naturligvis i takt med at jackpotten vokser, men den når sjældent break-even. For underholdningsværdi er jackpot-indsatsen fin, men matematisk orienterede spillere bør generelt undgå den.
           </p>
         </section>
-
-        <InlineCasinoCards title="Populære casinoer med poker-spil" count={3} />
 
         {/* ──── Sektion 3: Optimal strategi ──── */}
         <section className="mb-12">

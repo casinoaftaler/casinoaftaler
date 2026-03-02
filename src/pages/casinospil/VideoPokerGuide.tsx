@@ -116,8 +116,6 @@ export default function VideoPokerGuide() {
           </p>
         </section>
 
-        <InlineCasinoCards title="Bedste casinoer til video poker" count={3} />
-
         {/* ──── Sektion 2: Varianter ──── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
