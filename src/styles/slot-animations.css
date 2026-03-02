@@ -1,4 +1,78 @@
 /* Slot machine win celebration animations - lazy loaded only on slot pages */
+
+/* === Idle shimmer effect for symbol cells === */
+@keyframes idle-shimmer {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%) skewX(-15deg);
+  }
+}
+
+.slot-idle-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.slot-idle-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 45%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.15) 55%,
+    transparent 70%
+  );
+  animation: idle-shimmer 1.2s ease-in-out forwards;
+  pointer-events: none;
+  z-index: 5;
+  border-radius: inherit;
+}
+
+/* Theme-specific shimmer colors */
+.slot-idle-shimmer-gold::after {
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(251, 191, 36, 0.12) 45%,
+    rgba(255, 215, 0, 0.22) 50%,
+    rgba(251, 191, 36, 0.12) 55%,
+    transparent 70%
+  );
+}
+
+.slot-idle-shimmer-purple::after {
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(168, 85, 247, 0.12) 45%,
+    rgba(192, 132, 252, 0.22) 50%,
+    rgba(168, 85, 247, 0.12) 55%,
+    transparent 70%
+  );
+}
+
+.slot-idle-shimmer-pink::after {
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(236, 72, 153, 0.12) 45%,
+    rgba(244, 114, 182, 0.22) 50%,
+    rgba(236, 72, 153, 0.12) 55%,
+    transparent 70%
+  );
+}
+
+/* === Original animations below === */
 @keyframes particle-fall {
   0% {
     transform: translateY(0) rotate(0deg);

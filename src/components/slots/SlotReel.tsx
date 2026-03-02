@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from "react"
 import { cn } from "@/lib/utils";
 import { SlotSymbol } from "./SlotSymbol";
 import { slotSounds } from "@/lib/slotSoundEffects";
+import { useIdleShimmer } from "@/hooks/useIdleShimmer";
 import type { SlotSymbol as SlotSymbolType } from "@/lib/slotGameLogic";
 
 // Fixed dimensions at base resolution
@@ -60,9 +61,12 @@ export const SlotReel = React.memo(function SlotReel({
   gameId,
 }: SlotReelProps) {
   const isWizard = gameId === "rise-of-fedesvin";
+  const isBonanza = gameId === "fedesvin-bonanza";
+  const shimmerTheme = isBonanza ? "slot-idle-shimmer-pink" : isWizard ? "slot-idle-shimmer-purple" : "slot-idle-shimmer-gold";
   
   const symbolsById = useMemo(() => new Map(symbols.map(s => [s.id, s])), [symbols]);
   const [spinState, setSpinState] = useState<"idle" | "spinning" | "stopping" | "stopped">("idle");
+  const shimmeringCells = useIdleShimmer(3, !isSpinning && spinState === "idle");
   const animationRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const stripContainerRef = useRef<HTMLDivElement>(null);
@@ -252,7 +256,10 @@ export const SlotReel = React.memo(function SlotReel({
             return (
               <div
                 key={`final-${rowIndex}-${symbolId}`}
-                className={cn(spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]")}
+                className={cn(
+                  spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]",
+                  shimmeringCells.has(rowIndex) && spinState === "idle" && `slot-idle-shimmer ${shimmerTheme}`
+                )}
                 style={{ animationFillMode: spinState === "stopped" ? "both" : undefined }}
               >
                 <SlotSymbol

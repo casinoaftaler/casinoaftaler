@@ -4,6 +4,7 @@ import { BONANZA_ROWS } from "@/lib/bonanzaGameLogic";
 import { isBombSymbol, getBombValue } from "@/lib/bonanzaGameLogic";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import type { BombSymbol } from "@/hooks/useBombSymbols";
+import { useIdleShimmer } from "@/hooks/useIdleShimmer";
 import bombExplodedDecal from "@/assets/bomb-exploded-decal.png";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
@@ -50,6 +51,8 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
   const isDroppingIn = spinState === 'dropping-in';
   const isLanding = spinState === 'landing';
   const scaleValue = symbolScale / 100;
+  const isColumnIdle = spinState === 'idle' && tumblePhase === 'idle';
+  const shimmeringCells = useIdleShimmer(BONANZA_ROWS, isColumnIdle);
 
   return (
     <div
@@ -82,6 +85,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
             className={cn(
               "relative rounded-lg",
               "overflow-visible",
+              shimmeringCells.has(row) && cellAnim === 'idle' && !isBomb && "slot-idle-shimmer slot-idle-shimmer-pink",
               
               isWinning && "bonanza-candy-highlight",
               isLanding && "bonanza-column-stop-impact",
