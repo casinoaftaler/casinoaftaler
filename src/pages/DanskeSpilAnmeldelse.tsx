@@ -17,6 +17,8 @@ import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X, Smartphone, Headphones, Users, Globe } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -42,7 +44,7 @@ const DanskeSpilAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="Danske Spil Anmeldelse 2026 – Danmarks Tryggeste Casino" description="Komplet anmeldelse af Danske Spil Casino. Danmarks statsligt forankrede casino med dansk licens, bredt spiludvalg, hurtige udbetalinger og høj sikkerhed. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="Danske Spil Anmeldelse 2026 – Danmarks Tryggeste Casino" description="Komplet anmeldelse af Danske Spil Casino. Danmarks statsligt forankrede casino med dansk licens, bredt spiludvalg, hurtige udbetalinger og høj sikkerhed. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/danske-spil", "AuYbcBpBOxY", { title: "Danske Spil Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Danske Spil ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
 
       {/* Hero */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
@@ -82,6 +84,11 @@ const DanskeSpilAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Hvor <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> ofte forsøger at tiltrække spillere med aggressive bonusser og flashy markedsføring, satser Danske Spil på langsigtet tillid og en gennemprøvet platform. Det er en tilgang, der resonerer med en specifik spillerprofil: den danske spiller, der prioriterer sikkerhed og tillid over bonusstørrelser, og som ønsker at spille hos en operatør med rødder i dansk kultur og tradition.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I denne anmeldelse tester vi Danske Spil Casino på alle parametre: vi har gennemspillet over 150 spil, foretaget ind- og udbetalinger med alle tilgængelige metoder, kontaktet kundeservice seks gange på forskellige tidspunkter, og analyseret platformens tekniske performance på tværs af desktop og mobil. Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> er identisk med den, vi anvender på alle andre operatører – statsligt ejerskab giver ingen bonuspoint i vores vurdering.</p>
           <p className="text-muted-foreground leading-relaxed">Det er værd at understrege den unikke position, Danske Spil indtager på det danske marked. Mens private casinoer primært drives af aktionærinteresser, har Danske Spil en dobbelt mission: at tilbyde underholdning og samtidig bidrage til det danske samfund. En betydelig del af overskuddet kanaliseres til almennyttige formål inden for sport, kultur og frivillighed – i 2024 bidrog Danske Spil med over 1,5 milliard kr. til danske foreninger og organisationer. Det giver en helt anderledes kontekst for din spiloplevelse: du spiller på en platform, der investerer i Danmark, ikke kun i sine ejere.</p>
+          <YoutubeEmbed videoId="AuYbcBpBOxY" title="Danske Spil Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan Danske Spil ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/danske-spil" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Danske Spil ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Danske Spils hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
+          </div>
         </section>
 
         <Separator className="my-10" />

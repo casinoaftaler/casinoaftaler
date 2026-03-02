@@ -20,6 +20,8 @@ import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo
 import { useAuth } from "@/hooks/useAuth";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
@@ -258,6 +260,11 @@ const BetiniaAnmeldelse = () => {
             I denne anmeldelse gennemgår vi alt fra velkomstbonus og bonusmatematik til spiludvalg, sportsbetting-funktioner, live casino, betalingsmetoder, kundeservice og sikkerhed – så du kan tage en informeret beslutning. Læs mere om{" "}
             <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.
           </p>
+          <YoutubeEmbed videoId="GyqEjKQiCJU" title="Betinia Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan Betinia ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/betinia" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Betinia ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Betinias hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
+          </div>
         </section>
 
         <Separator className="my-10" />

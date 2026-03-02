@@ -16,6 +16,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Globe, Award, Headphones, TrendingUp } from "lucide-react";
 
@@ -38,7 +40,7 @@ const ExpektAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="Expekt Anmeldelse 2026 – Sportsbetting & Casino | Casinoaftaler" description="Komplet anmeldelse af Expekt – kombineret sportsbook og casino. Betsson Group-ejet, dansk licens og komplet spiludbud. Læs vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="Expekt Anmeldelse 2026 – Sportsbetting & Casino | Casinoaftaler" description="Komplet anmeldelse af Expekt – kombineret sportsbook og casino. Betsson Group-ejet, dansk licens og komplet spiludbud. Læs vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/expekt", "TzSmePJgd84", { title: "Expekt Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Expekt ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><Globe className="mr-1.5 h-3.5 w-3.5" />3.8 / 5 – Sports & Casino</Badge>
@@ -78,6 +80,11 @@ const ExpektAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi spillede både casino og sport over tre dage. Casino-sektionen bød på en kompakt men kvalitetssikret samling af slots og live casino. Sportsbook'en var tydeligt Expekts flagskib: dybdegående dækning af fodbold, tennis, ishockey og e-sport med konkurrencedygtige odds. Live-betting var responsiv med hurtige markedsopdateringer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Udbetalingstest: Vi anmodede om 600 kr. via Trustly den 11. januar klokken 09:45. Pengene landede klokken 04:50 den 12. januar – 19 timer i alt. Det er markant hurtigere end vores 888 Casino-test (31 timer) og kun marginalt langsommere end <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (4–6 timer). Betsson Groups infrastruktur leverer her.</p>
           <p className="text-muted-foreground leading-relaxed">Et konkret problem under testen: navigationen mellem sports og casino kan føles forvirrende. Interfacet skifter kontekst markant – farvetema, layout og menupunkter ændrer sig, hvilket kan desorientere nye brugere. Det føles som to separate platforme syet sammen snarere end ét integreret produkt. Sammenlignet med <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>'s mere sømløse integration er der plads til forbedring.</p>
+          <YoutubeEmbed videoId="TzSmePJgd84" title="Expekt Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan Expekt ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/expekt" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Expekt ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Expekts hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
+          </div>
         </section>
 
         <Separator className="my-10" />

@@ -16,6 +16,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Target, Users, Search, TrendingUp } from "lucide-react";
 
@@ -40,7 +42,7 @@ const GetLuckyAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="GetLucky Anmeldelse 2026 – 1.500+ Spil & Loyalitetsprogram" description="Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens, loyalitetsprogram og gennemsigtige vilkår. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="GetLucky Anmeldelse 2026 – 1.500+ Spil & Loyalitetsprogram" description="Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens, loyalitetsprogram og gennemsigtige vilkår. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/getlucky", "N1MyxsYcmMk", { title: "GetLucky Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan GetLucky ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><Star className="mr-1.5 h-3.5 w-3.5" />4.0 / 5 – Stort Spiludvalg</Badge>
@@ -87,6 +89,11 @@ const GetLuckyAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">For den danske spiller har SkillOnNets størrelse både fordele og ulemper. Fordelene er åbenlyse: en moden platform med 19 års driftserfaring, robuste sikkerhedsforanstaltninger og et bredt udvalg af spiludbydere, som kun er muligt for en operatør med SkillOnNets forhandlingsposition. Selskabet har licenser fra tre af Europas strengeste myndigheder – <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, Malta Gaming Authority og UK Gambling Commission – hvilket betyder løbende audits fra tre uafhængige regulatorer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ulempen er, at SkillOnNets platform-tilgang kan resultere i en vis generiskhed. GetLucky deler kerneinfrastruktur med andre SkillOnNet-brands, og det mærkes i elementer som live casino-borde (delte med andre platforme, hvilket kan medføre ventetider), kundeservice-systemer og bonusmekanikker. Det er ikke en unik platform bygget fra bunden – det er en skinlægning over en standardiseret motor. Det gør platformen stabil og pålidelig, men det begrænser også graden af unik tilpasning.</p>
           <p className="text-muted-foreground leading-relaxed">SkillOnNet er privatejet og ikke børsnoteret, hvilket betyder, at finansielle detaljer ikke er offentligt tilgængelige. Dog er selskabet underlagt ekstern revision som krav fra MGA-licensen, og det har aldrig modtaget offentlige sanktioner fra nogen af sine tre licensmyndigheder. For spilleren er det det vigtigste signal om operatørens troværdighed – en 19-årig track record uden regulatoriske problemer er sjælden i branchen.</p>
+          <YoutubeEmbed videoId="N1MyxsYcmMk" title="GetLucky Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan GetLucky ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/getlucky" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan GetLucky ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig GetLuckys hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
+          </div>
         </section>
 
         <Separator className="my-10" />

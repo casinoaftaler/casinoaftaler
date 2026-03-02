@@ -16,6 +16,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Users, TrendingUp } from "lucide-react";
 
@@ -78,6 +80,11 @@ const MrGreenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Denne filosofi gennemsyrer alle aspekter af platformen. Fra det ikoniske grøn-sorte farveskema og den elegante typografi til den kuraterede spilliste og det patenterede Green Gaming-værktøj – alt er designet med omhu og intention. Det er en tilgang, der resonerer dybt med en bestemt type spiller: den bevidste, designorienterede spiller, der ser online casino som en raffineret underholdningsform snarere end et sted at jage den største bonus.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Med en dansk licens fra Spillemyndigheden er platformen fuldt lovlig og sikker for danske spillere. Ejerskabet af 888 Holdings – en af verdens mest regulerede spilkoncerner med børsnotering på London Stock Exchange – giver en ekstra dimension af finansiel stabilitet og gennemsigtighed, som smaller operatører simpelthen ikke kan matche.</p>
           <p className="text-muted-foreground leading-relaxed">I denne anmeldelse tester vi Mr Green Casino fra bunden: vi har gennemspillet over 200 spil, testet Green Gaming-værktøjet med reelle data, foretaget ind- og udbetalinger med tre forskellige metoder, og kontaktet kundeservice på fem separate tidspunkter. Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> vægter ansvarligt spil og brugervenlighed højt, og på begge parametre scorer Mr Green Casino exceptionelt.</p>
+          <YoutubeEmbed videoId="htCLh4TK6tA" title="Mr Green Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan Mr Green ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/mr-green" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Mr Green ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Mr Greens hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
+          </div>
         </section>
 
         <Separator className="my-10" />

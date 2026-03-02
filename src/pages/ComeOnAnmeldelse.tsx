@@ -16,6 +16,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet,
@@ -122,6 +124,11 @@ const ComeOnAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Spilbidrag:</strong> Her skiller ComeOn sig ud. Spilbidragsprocenter er klart og tydeligt angivet: slots 100%, bordspil 10%, live casino 10% (de fleste konkurrenter giver 0% på live casino). Det er en af de højere live casino-bidragssatser på det danske marked – en fordel for spillere, der foretrækker <Link to="/live-casino" className={linkClass}>live borde</Link>. Ingen populære spil er ekskluderet fra omsætning, hvilket er en frekvent fælde hos andre casinoer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Sammenligning:</strong> ComeOns maks. bonus er 1.000 kr. med kun 5x omsætning – det laveste på det danske marked, delt med GetLucky. Andre casinoer kræver standardloftet på 10x. ComeOns gennemsigtighed skiller sig desuden markant ud: spilbidragsprocenter er tydeligt angivet, og live casino tæller 10% – en sjælden fordel. For den bonusbevidste spiller er ComeOns vilkår blandt de mest ærlige på markedet.</p>
           <p className="text-muted-foreground leading-relaxed">Løbende kampagner inkluderer ugentlige <Link to="/free-spins" className={linkClass}>free spins</Link> på nye spilleautomater, reload-bonusser og sæsonbestemte kampagner. ComeOn sender tilbud via e-mail og push-notifikationer. Kampagnefrekvensen er 2–3 pr. uge – moderat sammenlignet med aggressive operatører som Bet365 (5+ dagligt), men konsistent og uden aggressive opt-in krav.</p>
+          <YoutubeEmbed videoId="tW_E0RmzSHg" title="ComeOn Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan ComeOn ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/comeon" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan ComeOn ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig ComeOns hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
+          </div>
         </section>
 
         <Separator className="my-10" />
