@@ -6,8 +6,8 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 import type { BombSymbol } from "@/hooks/useBombSymbols";
 import bombExplodedDecal from "@/assets/bomb-exploded-decal.png";
 
-const SYMBOL_WIDTH = 140;
-const SYMBOL_HEIGHT = 108;
+const SYMBOL_WIDTH = 180;
+const SYMBOL_HEIGHT = 140;
 
 export type BonanzaColumnSpinState = 'idle' | 'spinning' | 'landing' | 'landed' | 'dropping-off' | 'dropping-in';
 
