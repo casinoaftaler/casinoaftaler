@@ -180,6 +180,12 @@ const FibonacciRouletteGuide = lazy(() => import("./pages/casinospil/FibonacciRo
 const LabouchereRouletteGuide = lazy(() => import("./pages/casinospil/LabouchereRouletteGuide"));
 const JamesBondRouletteGuide = lazy(() => import("./pages/casinospil/JamesBondRouletteGuide"));
 const PokerGuide = lazy(() => import("./pages/casinospil/PokerGuide"));
+const TexasHoldemGuide = lazy(() => import("./pages/casinospil/TexasHoldemGuide"));
+const OmahaPokerGuide = lazy(() => import("./pages/casinospil/OmahaPokerGuide"));
+const ThreeCardPokerGuide = lazy(() => import("./pages/casinospil/ThreeCardPokerGuide"));
+const CaribbeanStudGuide = lazy(() => import("./pages/casinospil/CaribbeanStudGuide"));
+const VideoPokerGuide = lazy(() => import("./pages/casinospil/VideoPokerGuide"));
+const PokerStrategiGuide = lazy(() => import("./pages/casinospil/PokerStrategiGuide"));
 const CrapsGuide = lazy(() => import("./pages/casinospil/CrapsGuide"));
 const BaccaratGuide = lazy(() => import("./pages/casinospil/BaccaratGuide"));
 const RouletteStrategiGuide = lazy(() => import("./pages/casinospil/RouletteStrategiGuide"));
@@ -406,6 +412,12 @@ const App = () => (
                 <Route path="/casinospil/roulette/labouchere-roulette" element={<LabouchereRouletteGuide />} />
                 <Route path="/casinospil/roulette/james-bond-roulette" element={<JamesBondRouletteGuide />} />
                 <Route path="/casinospil/poker" element={<PokerGuide />} />
+                <Route path="/casinospil/poker/texas-holdem" element={<TexasHoldemGuide />} />
+                <Route path="/casinospil/poker/omaha" element={<OmahaPokerGuide />} />
+                <Route path="/casinospil/poker/three-card-poker" element={<ThreeCardPokerGuide />} />
+                <Route path="/casinospil/poker/caribbean-stud" element={<CaribbeanStudGuide />} />
+                <Route path="/casinospil/poker/video-poker" element={<VideoPokerGuide />} />
+                <Route path="/casinospil/poker/poker-strategi" element={<PokerStrategiGuide />} />
                 <Route path="/casinospil/craps" element={<CrapsGuide />} />
                 <Route path="/casinospil/baccarat" element={<BaccaratGuide />} />
                 <Route path="/casinospil/roulette-strategi" element={<RouletteStrategiGuide />} />

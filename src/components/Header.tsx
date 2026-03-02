@@ -436,8 +436,58 @@ export const Header = memo(function Header() {
                   Roulette Strategi
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <Star className="h-3 w-3" />
+                  Poker
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/poker" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Poker Guide
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/poker/texas-holdem" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Texas Hold'em
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/poker/omaha" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Omaha
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/poker/three-card-poker" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Three Card Poker
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/poker/caribbean-stud" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Caribbean Stud
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/poker/video-poker" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Video Poker
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/poker/poker-strategi" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Poker Strategi
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
               {[
-                { to: "/casinospil/poker", label: "Poker" },
                 { to: "/casinospil/craps", label: "Craps" },
                 { to: "/casinospil/baccarat", label: "Baccarat" },
                 { to: "/casinospil/online-lotteri", label: "Online Lotteri" },
@@ -1154,9 +1204,27 @@ export const Header = memo(function Header() {
                     </Link>
                   ))}
                 </div>
+                <div className="ml-6 flex flex-col">
+                  <Link to="/casinospil/poker" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                    <Star className="h-4 w-4" />
+                    Poker Guide
+                  </Link>
+                  {[
+                    { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em" },
+                    { to: "/casinospil/poker/omaha", label: "Omaha" },
+                    { to: "/casinospil/poker/three-card-poker", label: "Three Card Poker" },
+                    { to: "/casinospil/poker/caribbean-stud", label: "Caribbean Stud" },
+                    { to: "/casinospil/poker/video-poker", label: "Video Poker" },
+                    { to: "/casinospil/poker/poker-strategi", label: "Poker Strategi" },
+                  ].map((item) => (
+                    <Link key={item.to} to={item.to} className="ml-4 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                      <Star className="h-3 w-3" />
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
                 {[
                   { to: "/casinospil/roulette-strategi", label: "Roulette Strategi" },
-                  { to: "/casinospil/poker", label: "Poker" },
                   { to: "/casinospil/craps", label: "Craps" },
                   { to: "/casinospil/baccarat", label: "Baccarat" },
                   { to: "/casinospil/online-lotteri", label: "Online Lotteri" },
