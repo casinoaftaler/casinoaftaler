@@ -30,8 +30,8 @@ import { BonanzaRetriggerOverlay } from "./BonanzaRetriggerOverlay";
 import { BonanzaBonusEndOverlay } from "./BonanzaBonusEndOverlay";
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
 
-const SYMBOL_WIDTH = 210;
-const SYMBOL_HEIGHT = 165;
+const DEFAULT_SYMBOL_WIDTH = 180;
+const DEFAULT_SYMBOL_HEIGHT = 140;
 const SYMBOL_GAP = 5;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
@@ -50,6 +50,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const { data: siteSettings } = useSiteSettings();
   const { spin: serverSpin } = useServerSpin(gameId);
   const theme = getSlotTheme(gameId);
+
+  const SYMBOL_WIDTH = siteSettings?.bonanza_symbol_width ? parseInt(siteSettings.bonanza_symbol_width) : DEFAULT_SYMBOL_WIDTH;
+  const SYMBOL_HEIGHT = siteSettings?.bonanza_symbol_height ? parseInt(siteSettings.bonanza_symbol_height) : DEFAULT_SYMBOL_HEIGHT;
 
   const bombSymbolsMap = useMemo(() => {
     if (!bombSymbols) return new Map<number, (typeof bombSymbols)[0]>();
@@ -710,6 +713,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
                 tumblePhase={tumblePhase}
                 animationEpoch={animationEpoch}
                 bombSymbolsMap={bombSymbolsMap}
+                symbolWidth={SYMBOL_WIDTH}
+                symbolHeight={SYMBOL_HEIGHT}
               />
             );
           })}
