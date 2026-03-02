@@ -350,6 +350,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     const STAGGER_MS = 80;
     const DROP_OFF_DURATION = 350;
     const DROP_IN_DURATION = 400;
+    const DROP_OFF_ROW_STAGGER_MS = 40; // must match BonanzaColumn drop-off row delay
 
     for (let c = 0; c < BONANZA_COLS; c++) {
       setTimeout(() => {
@@ -367,7 +368,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       const useDebugScatters = debugScattersRef.current;
       debugScattersRef.current = false;
       const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current, useDebugScatters || undefined);
-      const totalDropOffTime = DROP_OFF_DURATION + (BONANZA_COLS - 1) * STAGGER_MS;
+      const totalDropOffTime =
+        DROP_OFF_DURATION +
+        (BONANZA_COLS - 1) * STAGGER_MS +
+        (BONANZA_ROWS - 1) * DROP_OFF_ROW_STAGGER_MS;
       await new Promise(r => setTimeout(r, totalDropOffTime));
 
       // Now clear bomb-exploded decals — drop-off has finished, old symbols are gone
