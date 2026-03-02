@@ -512,7 +512,41 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
               : "animate-[big-win-entry_0.4s_cubic-bezier(0.34,1.56,0.64,1)_forwards]"
           )}
         >
-          <div className="px-6 sm:px-10 py-4 sm:py-8">
+        <div
+            className={cn(
+              "rounded-2xl backdrop-blur-md border",
+              isEpicWin ? "px-10 sm:px-14 py-6 sm:py-8" : isMegaWin ? "px-8 sm:px-12 py-5 sm:py-7" : "px-6 sm:px-10 py-4 sm:py-5"
+            )}
+            style={{
+              background: isBonanza
+                ? "linear-gradient(135deg, rgba(236,72,153,0.15), rgba(0,0,0,0.7), rgba(236,72,153,0.1))"
+                : isWizard
+                  ? "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(0,0,0,0.7), rgba(168,85,247,0.1))"
+                  : "linear-gradient(135deg, rgba(255,215,0,0.15), rgba(0,0,0,0.7), rgba(255,215,0,0.1))",
+              borderColor: isBonanza
+                ? `rgba(236,72,153,${isEpicWin ? 0.6 : isMegaWin ? 0.5 : 0.35})`
+                : isWizard
+                  ? `rgba(168,85,247,${isEpicWin ? 0.6 : isMegaWin ? 0.5 : 0.35})`
+                  : `rgba(255,215,0,${isEpicWin ? 0.6 : isMegaWin ? 0.5 : 0.35})`,
+              boxShadow: isBonanza
+                ? isEpicWin
+                  ? "0 0 40px rgba(236,72,153,0.5), 0 0 80px rgba(236,72,153,0.25), inset 0 1px 0 rgba(255,255,255,0.1)"
+                  : isMegaWin
+                  ? "0 0 30px rgba(236,72,153,0.4), 0 0 60px rgba(236,72,153,0.15), inset 0 1px 0 rgba(255,255,255,0.08)"
+                  : "0 0 20px rgba(236,72,153,0.3), inset 0 1px 0 rgba(255,255,255,0.06)"
+                : isWizard
+                  ? isEpicWin
+                    ? "0 0 40px rgba(168,85,247,0.5), 0 0 80px rgba(168,85,247,0.25), inset 0 1px 0 rgba(255,255,255,0.1)"
+                    : isMegaWin
+                    ? "0 0 30px rgba(168,85,247,0.4), 0 0 60px rgba(168,85,247,0.15), inset 0 1px 0 rgba(255,255,255,0.08)"
+                    : "0 0 20px rgba(168,85,247,0.3), inset 0 1px 0 rgba(255,255,255,0.06)"
+                  : isEpicWin
+                    ? "0 0 40px rgba(255,215,0,0.5), 0 0 80px rgba(255,215,0,0.25), inset 0 1px 0 rgba(255,255,255,0.1)"
+                    : isMegaWin
+                    ? "0 0 30px rgba(255,215,0,0.4), 0 0 60px rgba(255,215,0,0.15), inset 0 1px 0 rgba(255,255,255,0.08)"
+                    : "0 0 20px rgba(255,215,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06)",
+            }}
+          >
             <div
               className={cn(
                 "text-center animate-[big-win-pop_0.6s_ease-out_forwards]",
@@ -522,7 +556,7 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
               <div
                 className={cn(
                   "font-bold tracking-wider animate-[text-glow-breathe_2s_ease-in-out_infinite]",
-                  isEpicWin ? "text-5xl sm:text-7xl" : isMegaWin ? "text-3xl sm:text-5xl" : "text-2xl sm:text-4xl"
+                  isEpicWin ? "text-4xl sm:text-6xl" : isMegaWin ? "text-2xl sm:text-4xl" : "text-xl sm:text-3xl"
                 )}
                 style={{
                   background: isBonanza
@@ -549,42 +583,51 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
                     ? "gradient-shift 0.4s ease infinite, text-glow-breathe 2s ease-in-out infinite" 
                     : "gradient-shift 1s ease infinite, text-glow-breathe 2s ease-in-out infinite",
                   textShadow: isBonanza
-                    ? "0 0 40px rgba(236, 72, 153, 0.9)"
+                    ? "0 0 30px rgba(236, 72, 153, 0.9)"
                     : isWizard
-                      ? "0 0 40px rgba(168, 85, 247, 0.9)"
-                      : "0 0 40px rgba(255, 215, 0, 0.9)",
+                      ? "0 0 30px rgba(168, 85, 247, 0.9)"
+                      : "0 0 30px rgba(255, 215, 0, 0.9)",
                   filter: isBonanza
                     ? isEpicWin
-                      ? "drop-shadow(0 0 30px rgba(236, 72, 153, 0.8)) drop-shadow(0 0 60px rgba(250, 204, 21, 0.5))"
-                      : "drop-shadow(0 0 25px rgba(236, 72, 153, 0.7))"
+                      ? "drop-shadow(0 0 20px rgba(236, 72, 153, 0.8)) drop-shadow(0 0 40px rgba(250, 204, 21, 0.4))"
+                      : "drop-shadow(0 0 15px rgba(236, 72, 153, 0.6))"
                     : isWizard
                       ? isEpicWin
-                        ? "drop-shadow(0 0 30px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 60px rgba(236, 72, 153, 0.5))"
-                        : "drop-shadow(0 0 25px rgba(168, 85, 247, 0.7))"
+                        ? "drop-shadow(0 0 20px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 40px rgba(236, 72, 153, 0.4))"
+                        : "drop-shadow(0 0 15px rgba(168, 85, 247, 0.6))"
                       : isEpicWin
-                        ? "drop-shadow(0 0 30px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 60px rgba(255, 140, 0, 0.5))"
-                        : "drop-shadow(0 0 25px rgba(255, 215, 0, 0.7))",
+                        ? "drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 40px rgba(255, 140, 0, 0.4))"
+                        : "drop-shadow(0 0 15px rgba(255, 215, 0, 0.6))",
                 }}
               >
-                {isBonanza
-                  ? (isEpicWin ? "🍭 EPIC WIN! 🍭" : isMegaWin ? "🍬 MEGA WIN! 🍬" : "🍰 BIG WIN! 🍰")
-                  : isWizard
-                    ? (isEpicWin ? "⚡ EPIC WIN! ⚡" : isMegaWin ? "🔮 MEGA WIN! 🔮" : "✨ BIG WIN! ✨")
-                    : (isEpicWin ? "🔥 EPIC WIN! 🔥" : isMegaWin ? "💎 MEGA WIN! 💎" : "⭐ BIG WIN! ⭐")}
+                {isEpicWin ? "EPIC WIN!" : isMegaWin ? "MEGA WIN!" : "BIG WIN!"}
               </div>
               <div
                 className={cn(
-                  "mt-2 font-bold",
-                  isEpicWin ? "text-4xl sm:text-6xl" : isMegaWin ? "text-2xl sm:text-4xl" : "text-xl sm:text-3xl",
+                  "h-px mx-auto my-2 sm:my-3 opacity-40",
+                  isEpicWin ? "w-3/4" : "w-2/3"
+                )}
+                style={{
+                  background: isBonanza
+                    ? "linear-gradient(90deg, transparent, rgba(236,72,153,0.8), transparent)"
+                    : isWizard
+                      ? "linear-gradient(90deg, transparent, rgba(168,85,247,0.8), transparent)"
+                      : "linear-gradient(90deg, transparent, rgba(255,215,0,0.8), transparent)",
+                }}
+              />
+              <div
+                className={cn(
+                  "font-bold",
+                  isEpicWin ? "text-3xl sm:text-5xl" : isMegaWin ? "text-xl sm:text-3xl" : "text-lg sm:text-2xl",
                   isPulsing && "animate-[win-amount-pulse_0.25s_ease-in-out_3]"
                 )}
                 style={{
                   color: isBonanza ? "#f9a8d4" : isWizard ? "#c084fc" : "#ffd700",
                   textShadow: isBonanza
-                    ? "0 0 25px rgba(236, 72, 153, 0.9), 0 0 50px rgba(236, 72, 153, 0.5), 0 0 80px rgba(236, 72, 153, 0.3)"
+                    ? "0 0 20px rgba(236, 72, 153, 0.8), 0 0 40px rgba(236, 72, 153, 0.4)"
                     : isWizard
-                      ? "0 0 25px rgba(168, 85, 247, 0.9), 0 0 50px rgba(168, 85, 247, 0.5), 0 0 80px rgba(168, 85, 247, 0.3)"
-                      : "0 0 25px rgba(255, 215, 0, 0.9), 0 0 50px rgba(255, 215, 0, 0.5), 0 0 80px rgba(255, 215, 0, 0.3)",
+                      ? "0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(168, 85, 247, 0.4)"
+                      : "0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.4)",
                 }}
               >
                 {displayAmount} POINT!
@@ -628,22 +671,19 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
         />
       ))}
 
-      {/* Pulsing border glow for wins */}
-      <div
-        className={cn(
-          "absolute inset-0 pointer-events-none z-10 rounded-lg",
-          "animate-[glow-pulse_1s_ease-in-out_infinite]"
-        )}
-        style={{
-          boxShadow: isEpicWin
-            ? `inset 0 0 40px rgba(${themeColors.secondary}, 0.6), 0 0 60px rgba(${themeColors.primary}, 0.6), 0 0 100px rgba(${themeColors.primary}, 0.3)`
-            : isMegaWin
-            ? `inset 0 0 30px rgba(${themeColors.primary}, 0.5), 0 0 50px rgba(${themeColors.primary}, 0.5)`
-            : isBigWin
-            ? `inset 0 0 20px rgba(${themeColors.primary}, 0.3), 0 0 30px rgba(${themeColors.primary}, 0.3)`
-            : `inset 0 0 15px rgba(${themeColors.primary}, 0.2), 0 0 20px rgba(${themeColors.primary}, 0.2)`,
-        }}
-      />
+      {/* Subtle edge vignette for wins */}
+      {(isBigWin || isMegaWin || isEpicWin) && (
+        <div
+          className="absolute inset-0 pointer-events-none z-10 rounded-lg"
+          style={{
+            boxShadow: isEpicWin
+              ? `inset 0 0 20px rgba(${themeColors.primary}, 0.2)`
+              : isMegaWin
+              ? `inset 0 0 15px rgba(${themeColors.primary}, 0.15)`
+              : `inset 0 0 10px rgba(${themeColors.primary}, 0.1)`,
+          }}
+        />
+      )}
     </>
   );
 }
