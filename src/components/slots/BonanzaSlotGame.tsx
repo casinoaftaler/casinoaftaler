@@ -24,9 +24,9 @@ import {
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { BonanzaColumn, type BonanzaColumnSpinState, type BonanzaCellAnimState } from "./BonanzaColumn";
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
-import { BonusEntrySequence } from "./BonusEntrySequence";
-import { GatesRetriggerOverlay } from "./GatesRetriggerOverlay";
-import { GatesBonusEndOverlay } from "./GatesBonusEndOverlay";
+import { BonanzaBonusEntrySequence } from "./BonanzaBonusEntrySequence";
+import { BonanzaRetriggerOverlay } from "./BonanzaRetriggerOverlay";
+import { BonanzaBonusEndOverlay } from "./BonanzaBonusEndOverlay";
 
 const SYMBOL_WIDTH = 140;
 const SYMBOL_HEIGHT = 108;
@@ -332,7 +332,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     setTumblePhase('spinning');
     setWinAmount(0);
     setRunningWin(0);
-    if (!isBonusSpin) setRunningMultiplier(0);
+    setRunningMultiplier(0);
     if (isBonusSpin) setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
     setIsWinAnimating(false);
     setWinningPositions(new Set());
@@ -385,20 +385,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       await new Promise(r => setTimeout(r, totalDropInTime));
       setColumnSpinStates(Array(BONANZA_COLS).fill('idle'));
 
-      // Scatter tease
-      if (result.tumbleSteps && result.tumbleSteps.length > 0 && symbols) {
-        const firstGrid = result.tumbleSteps[0].grid;
-        const { count: scatterCount, positions: scatterPositions } = countBonanzaScatters(firstGrid, symbols);
-        if (scatterCount >= 2 && scatterCount <= 3) {
-          const teaseAnims = new Map<number, BonanzaCellAnimState>();
-          const teaseClass = scatterCount >= 3 ? 'scatter-tease-intense' : 'scatter-tease';
-          scatterPositions.forEach(pos => teaseAnims.set(pos, teaseClass as BonanzaCellAnimState));
-          setCellAnimStates(teaseAnims);
-          slotSounds.playScatterTease(scatterCount);
-          await new Promise(r => setTimeout(r, scatterCount >= 3 ? 1200 : 800));
-          setCellAnimStates(new Map());
-        }
-      }
+      // Scatter tease — only at exactly 3 scatters, shown after tumble wins pop (handled in processTumbleSteps)
+      // No tease at 2 scatters anymore
 
       if (result.tumbleSteps) {
         await processTumbleSteps(result.tumbleSteps);
@@ -548,7 +536,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
             <div className="flex flex-col items-center">
               <span className="text-[10px] uppercase tracking-widest text-yellow-400/80 font-semibold">Multiplier</span>
               <span className="text-2xl font-black text-yellow-300 drop-shadow-[0_0_10px_rgba(250,204,21,0.7)] tabular-nums">
-                x{tumblePhase !== 'idle' ? runningMultiplier : cumulativeMultiplier}
+                x{runningMultiplier}
               </span>
             </div>
           </div>
@@ -556,17 +544,17 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       )}
 
       {/* Bonus overlays */}
-      <BonusEntrySequence
+      <BonanzaBonusEntrySequence
         isActive={showBonusTrigger}
         freeSpinsAwarded={pendingBonusStateRef.current?.freeSpinsRemaining || 10}
         onComplete={handleBonusEntryComplete}
       />
-      <GatesRetriggerOverlay
+      <BonanzaRetriggerOverlay
         isActive={showRetrigger}
         spinsAwarded={5}
         onComplete={handleRetriggerComplete}
       />
-      <GatesBonusEndOverlay
+      <BonanzaBonusEndOverlay
         isActive={showBonusComplete}
         totalWin={bonusWinnings}
         totalMultiplier={cumulativeMultiplier}

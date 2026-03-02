@@ -663,15 +663,21 @@ async function getBonanzaRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolea
 async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
   const scatterSymbol = symbols.find(s => s.is_scatter);
   const nonScatterSymbols = symbols.filter(s => !s.is_scatter);
+  const regularSymbols = nonScatterSymbols; // non-scatter, non-bomb candidates for duplication
   const grid: string[][] = [];
+
   for (let col = 0; col < BONANZA_COLS; col++) {
     const column: string[] = [];
+
+    // Step 1: Generate 5 symbols for this reel
     let hasScatter = false;
+    let hasBomb = false;
     for (let row = 0; row < BONANZA_ROWS; row++) {
-      // In bonus: chance to place a multiplier bomb
-      if (isBonusSpin && (await prng.next()) < BONANZA_MULTIPLIER_CHANCE_BONUS) {
+      // In bonus: chance to place a multiplier bomb (max 1 per reel)
+      if (isBonusSpin && !hasBomb && (await prng.next()) < BONANZA_MULTIPLIER_CHANCE_BONUS) {
         const bombVal = await pickBonanzaBombValue(prng);
         column.push(`bomb_${bombVal}x`);
+        hasBomb = true;
         continue;
       }
       let sym = await getBonanzaRandomSymbol(symbols, isBonusSpin, prng);
@@ -682,6 +688,44 @@ async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, 
       if (scatterSymbol && sym.id === scatterSymbol.id) hasScatter = true;
       column.push(sym.id);
     }
+
+    // Step 2: Reel-based duplication for regular symbols only
+    // 35% chance for 2 identical, 10% chance for 3 identical
+    const dupRoll = await prng.next();
+    if (dupRoll < 0.45) { // 0-0.10 = triple, 0.10-0.45 = double
+      const dupCount = dupRoll < 0.10 ? 3 : 2;
+      // Find regular symbol indices (not scatter, not bomb)
+      const regularIndices: number[] = [];
+      for (let i = 0; i < column.length; i++) {
+        const id = column[i];
+        if (!isBombSymbol(id) && (!scatterSymbol || id !== scatterSymbol.id)) {
+          regularIndices.push(i);
+        }
+      }
+      if (regularIndices.length >= dupCount) {
+        // Pick a random regular symbol to be the duplicate
+        const sourceIdx = regularIndices[Math.floor((await prng.next()) * regularIndices.length)];
+        const sourceId = column[sourceIdx];
+        // Pick (dupCount - 1) other regular indices to replace
+        const otherIndices = regularIndices.filter(i => i !== sourceIdx);
+        // Shuffle and take needed count
+        for (let i = otherIndices.length - 1; i > 0; i--) {
+          const j = Math.floor((await prng.next()) * (i + 1));
+          [otherIndices[i], otherIndices[j]] = [otherIndices[j], otherIndices[i]];
+        }
+        const replaceCount = Math.min(dupCount - 1, otherIndices.length);
+        for (let i = 0; i < replaceCount; i++) {
+          column[otherIndices[i]] = sourceId;
+        }
+      }
+    }
+
+    // Step 3: Shuffle the reel individually
+    for (let i = column.length - 1; i > 0; i--) {
+      const j = Math.floor((await prng.next()) * (i + 1));
+      [column[i], column[j]] = [column[j], column[i]];
+    }
+
     grid.push(column);
   }
   return grid;
@@ -759,12 +803,15 @@ async function applyBonanzaTumble(grid: string[][], winningPositions: number[], 
     const needed = BONANZA_ROWS - remaining.length;
     const newSymbols: string[] = [];
     const colHasScatter = scatterSymbol ? remaining.some(id => id === scatterSymbol.id) : false;
+    const colHasBomb = remaining.some(id => isBombSymbol(id));
     let fillHasScatter = false;
+    let fillHasBomb = false;
     for (let i = 0; i < needed; i++) {
-      // Bonus: chance for bomb
-      if (isBonusSpin && (await prng.next()) < BONANZA_MULTIPLIER_CHANCE_BONUS) {
+      // Bonus: chance for bomb (max 1 per reel total)
+      if (isBonusSpin && !colHasBomb && !fillHasBomb && (await prng.next()) < BONANZA_MULTIPLIER_CHANCE_BONUS) {
         const bombVal = await pickBonanzaBombValue(prng);
         newSymbols.push(`bomb_${bombVal}x`);
+        fillHasBomb = true;
         continue;
       }
       let sym = await getBonanzaRandomSymbol(symbols, isBonusSpin, prng);
@@ -790,9 +837,12 @@ async function calculateBonanzaFullSpin(
   const initialGrid = grid.map(col => [...col]);
   const tumbleSteps: BonanzaTumbleStep[] = [];
   let totalRawWin = 0;
-  let totalMultiplier = runningMultiplier;
+  // Per-spin multiplier: always start at 0 regardless of runningMultiplier
+  let totalMultiplier = 0;
   let scatterCount = countBonanzaScatters(grid, symbols);
   let maxTumbles = 50;
+  // Track ALL bombs across the entire tumble chain (they persist until the end)
+  const allBombsCollected: BonanzaMultiplierBomb[] = [];
 
   while (maxTumbles-- > 0) {
     const wins = calculateBonanzaWins(grid, symbols, betAmount);
@@ -800,43 +850,48 @@ async function calculateBonanzaFullSpin(
     for (const w of wins) for (const p of w.positions) winningPositions.add(p);
     const stepWin = wins.reduce((sum, w) => sum + w.payout, 0);
 
-    // Scan bombs on current grid
+    // Scan bombs on current grid — report them but do NOT activate or remove yet
     const bombs = scanBonanzaBombs(grid);
-    let bombMultiplier = 0;
-
-    if (wins.length > 0 && bombs.length > 0) {
-      // Winning tumble: activate all bombs
-      for (const b of bombs) { b.activated = true; }
-      bombMultiplier = bombs.reduce((sum, b) => sum + b.value, 0);
-      totalMultiplier += bombMultiplier;
-    }
-    // Non-winning tumble with bombs: they fizzle (activated = false)
 
     tumbleSteps.push({
       grid: grid.map(col => [...col]),
       wins,
       winningPositions: Array.from(winningPositions),
-      multiplierBombs: bombs,
+      multiplierBombs: bombs.map(b => ({ ...b, activated: false })),
       stepWin,
-      bombMultiplier,
+      bombMultiplier: 0, // bombs don't activate during individual steps
     });
 
     totalRawWin += stepWin;
     if (wins.length === 0) break;
 
-    // Remove winning symbols AND all bombs (bombs don't persist between tumbles)
-    const bombPositions = bombs.map(b => b.position);
-    grid = await applyBonanzaTumble(grid, Array.from(winningPositions), bombPositions, symbols, isBonusSpin, prng);
+    // Remove ONLY winning symbols; bombs persist on the grid
+    grid = await applyBonanzaTumble(grid, Array.from(winningPositions), [], symbols, isBonusSpin, prng);
 
     const newScatterCount = countBonanzaScatters(grid, symbols);
     if (newScatterCount > scatterCount) scatterCount = newScatterCount;
+  }
+
+  // After all tumbles: if there were any wins, collect ALL remaining bombs
+  if (totalRawWin > 0) {
+    const finalBombs = scanBonanzaBombs(grid);
+    if (finalBombs.length > 0) {
+      const bombSum = finalBombs.reduce((sum, b) => sum + b.value, 0);
+      totalMultiplier += bombSum;
+      // Mark them as activated in the last tumble step for client animation
+      if (tumbleSteps.length > 0) {
+        const lastStep = tumbleSteps[tumbleSteps.length - 1];
+        lastStep.multiplierBombs = finalBombs.map(b => ({ ...b, activated: true }));
+        lastStep.bombMultiplier = bombSum;
+      }
+    }
   }
 
   const bonusTriggered = isBonusSpin
     ? scatterCount >= BONANZA_SCATTER_RETRIGGER
     : scatterCount >= BONANZA_SCATTER_TRIGGER;
 
-  // Apply cumulative multiplier to total raw win
+  // Apply total multiplier to raw win
   const totalWin = totalMultiplier > 0 ? totalRawWin * totalMultiplier : totalRawWin;
 
   return { tumbleSteps, totalWin, bonusTriggered, scatterCount, totalMultiplier, initialGrid };

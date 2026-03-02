@@ -17,6 +17,7 @@ import { BatchSoundGenerator } from "@/components/slots/BatchSoundGenerator";
 import { GatesGameSettingsAdmin } from "@/components/slots/GatesGameSettingsAdmin";
 import { BonanzaGameSettingsAdmin } from "@/components/slots/BonanzaGameSettingsAdmin";
 import { MultiplierSymbolsAdmin } from "@/components/slots/MultiplierSymbolsAdmin";
+import { BonanzaBombSymbolsAdmin } from "@/components/slots/BonanzaBombSymbolsAdmin";
 import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
 import { TournamentAdminSection } from "@/components/TournamentAdminSection";
 import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
@@ -910,6 +911,7 @@ function SettingsTab({ gameId }: { gameId?: string }) {
 
       {/* Bonanza Game Mechanics Settings */}
       {activeGameId === "fedesvin-bonanza" && <BonanzaGameSettingsAdmin />}
+      {activeGameId === "fedesvin-bonanza" && <BonanzaBombSymbolsAdmin />}
 
       {/* Game Position Offset */}
       <Card>
