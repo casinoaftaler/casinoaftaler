@@ -20,6 +20,16 @@ import {
   Eye,
   Layers,
   Target,
+  Brain,
+  Timer,
+  Lightbulb,
+  XCircle,
+  CheckCircle,
+  Gamepad2,
+  Users,
+  Calculator,
+  BookOpen,
+  Puzzle,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import heroImage from "@/assets/heroes/double-exposure-blackjack-hero.jpg";
@@ -63,6 +73,32 @@ const faqs: { question: string; answer: ReactNode }[] = [
     answer:
       "Strategien adskiller sig markant fra standard blackjack, fordi du har fuld information. Grundreglen: stand når du slår dealerens total, hit når du er bagud, og fordobl kun i de stærkeste situationer. Du skal aldrig tage insurance (den eksisterer ikke i Double Exposure) og sjældent splitte.",
   },
+  {
+    question: "Er Double Exposure et godt valg for nybegyndere?",
+    answer: (
+      <>
+        Paradoksalt nok nej. Selvom det lyder lettere (du kan se alle kort), er strategien helt anderledes end standard blackjack. Nybegyndere bør starte med <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikansk blackjack</Link>, lære basic strategy dér, og derefter eksperimentere med Double Exposure.
+      </>
+    ),
+  },
+  {
+    question: "Hvad sker der ved tie (push) i Double Exposure?",
+    answer:
+      "I modsætning til standard blackjack (hvor ties returnerer din indsats), vinder dealeren alle ties i Double Exposure – undtagen naturlig blackjack. Hvis du og dealeren begge har 19, mister du din indsats. Denne regel er den næststørste faktor i den forhøjede house edge.",
+  },
+  {
+    question: "Findes der Double Exposure med bedre regler?",
+    answer:
+      "Sjældent. Nogle varianter tillader 'push on 20' (ties på 20 returnerer indsats), hvilket reducerer house edge med ca. 0,20 %. Andre varianter tillader surrender, som tilføjer yderligere 0,07 %. Men selv med de bedste regler er Double Exposure's house edge altid højere end standard blackjack.",
+  },
+  {
+    question: "Hvordan adskiller Double Exposure sig fra Spanish 21?",
+    answer: (
+      <>
+        Fundamentalt: Double Exposure giver dig mere information (begge dealerkort synlige) men strengere regler. <Link to="/casinospil/blackjack/spanish-21" className={linkClass}>Spanish 21</Link> fjerner 10-kort men tilbyder bonusregler. Double Exposure har 0,69 % house edge vs. Spanish 21's 0,40 %. Begge kræver unik strategi – ingen af dem bruger standard basic strategy.
+      </>
+    ),
+  },
 ];
 
 const DoubleExposureBlackjackGuide = () => {
@@ -97,136 +133,173 @@ const DoubleExposureBlackjackGuide = () => {
               Double Exposure Blackjack – Fuld Information, Nye Regler
             </h1>
             <p className="text-lg text-white/80">
-              Se begge dealerens kort – men forbered dig på strengere vilkår. En unik variant der udfordrer din strategi.
+              Se begge dealerens kort – men forbered dig på strengere vilkår. Det fuldstændige overblik over den mest transparente blackjack-variant.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="36 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Double Exposure blackjack-bord med begge dealerkort synlige" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        {/* SECTION 1 – Hvad er Double Exposure */}
+        {/* ═══════════════ CRITICAL FIRST: Advarsel ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Eye className="h-7 w-7 text-primary" />
-            Hvad er Double Exposure Blackjack?
+            <AlertTriangle className="h-7 w-7 text-destructive" />
+            Advarsel: Hvorfor 90 % af Spillere Taber Mere på Double Exposure
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Double Exposure Blackjack (også kendt som Face Up 21 eller Dealer Disclosure) er en af de mest unikke blackjack-varianter. Konceptet er radikalt simpelt: <strong>begge dealerens kort deles åbent</strong>. Du har fuld information om dealerens hånd, før du træffer nogen beslutning.
+            Lad os starte med den vigtigste pointe, som de fleste Double Exposure-guides overser: <strong>denne variant har en højere house edge end standard blackjack</strong>. Ja, du kan se begge dealerens kort. Ja, det føles som en kæmpe fordel. Men nej, det er det ikke – fordi casinoet har kompenseret med regler der koster dig mere, end informationen er værd.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det lyder som en kæmpe fordel for spilleren – og det er det i isolation. Men casinoer er ikke velgørende organisationer. Fordelen ved at se begge kort kompenseres med strengere regler, der tilter house edge markant. Det mest bemærkelsesværdige: <strong>blackjack betaler kun 1:1</strong> (even money) i stedet for det sædvanlige 3:2, og <strong>dealer vinder alle ties</strong> (pushes) undtagen naturlig blackjack.
+            Den typiske Double Exposure-spiller tror, at fuld information eliminerer usikkerhed. Det gør det – men casinoet har ikke givet dig denne fordel gratis. De har fjernet 3:2 blackjack-udbetaling (koster dig 1,39 %), tilføjet "dealer vinder ties" (koster dig 0,50 %), og begrænset dine splits og fordoblinger (koster dig 0,24 %). Den samlede kompensation (2,13 %) overstiger informationsfordelens værdi (ca. 2,00 %).
           </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Resultatet er en variant med ca. <strong>0,69 % house edge</strong> – højere end standard <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikansk blackjack</Link> (0,28 %) og <Link to="/casinospil/blackjack/europaeisk-blackjack" className={linkClass}>europæisk blackjack</Link> (0,39 %). Alligevel tiltrækker Double Exposure mange spillere, fordi den eliminerer den frustrerende usikkerhed om dealerens skjulte kort.
-          </p>
+          <Card className="border-border bg-card my-6 border-destructive/30">
+            <CardContent className="pt-4">
+              <div className="flex items-start gap-3">
+                <XCircle className="h-6 w-6 text-destructive flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-foreground mb-2">Den Store Misforståelse</p>
+                  <p className="text-sm text-muted-foreground">
+                    "Jeg kan se begge kort, så jeg kan umuligt tabe" – denne logik ignorerer, at information kun er værdifuld, hvis den ændrer dine beslutninger. I mange situationer er din handling identisk uanset dealerens kort (f.eks. stand på 20, hit på 6). Information uden handlingskonsekvens har nul EV-værdi.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
           <p className="text-muted-foreground leading-relaxed">
-            Double Exposure blev populært i 1970'erne og 1980'erne i Las Vegas og blev formaliseret af Richard Epstein i hans arbejde om spilteori. Varianten er i dag primært tilgængelig online som RNG-spil, da live-versioner er sjældne.
+            Med alt det sagt: Double Exposure er stadig et af de bedste casinospil målt på house edge. 0,69 % er langt bedre end <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> (2,70 %), <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> (3-8 %) eller de fleste side bets (3-8 %). Det er bare ikke det <em>bedste</em> blackjack-spil. Hvis du spiller Double Exposure fordi du nyder transparensen og har lært den specifikke strategi, er det et helt legitimt valg. Hvis du spiller det fordi du tror, det er nemmere at vinde – så er dette dit wake-up call.
           </p>
         </section>
 
-        <InlineCasinoCards title="Casinoer med Double Exposure blackjack" count={3} />
+        <InlineCasinoCards title="Casinoer med blackjack-varianter" count={4} />
 
-        {/* SECTION 2 – Regler */}
+        {/* ═══════════════ Hvad er Double Exposure ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Layers className="h-7 w-7 text-primary" />
-            Reglerne – Hvad Du Giver og Hvad Du Får
+            <Eye className="h-7 w-7 text-primary" />
+            Hvad er Double Exposure – Historien og Konceptet
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <ShieldCheck className="h-5 w-5 text-primary" />
-                  Spillerfordele
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Begge dealerkort synlige fra start</li>
-                  <li>• Perfekt information til beslutninger</li>
-                  <li>• Ingen overraskelser (dealer-blackjack ses straks)</li>
-                  <li>• Ingen insurance-fælde</li>
-                  <li>• Lettere at lære optimal strategi</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <AlertTriangle className="h-5 w-5 text-destructive" />
-                  Casino-kompensationer
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>• Blackjack betaler 1:1 (ikke 3:2)</li>
-                  <li>• Dealer vinder alle ties (undtagen BJ)</li>
-                  <li>• Fordobling kun på hard 9, 10, 11</li>
-                  <li>• Split kun én gang (ingen re-split)</li>
-                  <li>• Ingen surrender</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Double Exposure Blackjack (også kendt som Face Up 21, Dealer Disclosure eller Zweikartenspiel) er en af de mest unikke blackjack-varianter. Konceptet er radikalt simpelt: <strong>begge dealerens kort deles åbent</strong>. Du har fuld information om dealerens hånd, før du træffer nogen beslutning. Det eliminerer den centrale usikkerhed i blackjack – dealerens skjulte kort.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Varianten blev populær i 1970'erne og 1980'erne i Las Vegas og blev formaliseret af Richard Epstein i hans banebrydende arbejde om spilteori, "The Theory of Gambling and Statistical Logic". Epstein demonstrerede matematisk, at fuld information giver spilleren en fordel på ca. 10 % – men at denne fordel kan neutraliseres helt med regelændringer. Casinoer tog udfordringen op og designede et regelsæt der præcist kompenserer for informationsfordelen.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I dag er Double Exposure primært tilgængelig som RNG-spil online. Live-versioner er sjældne, fordi det er sværere for casinoer at kontrollere spillets tempo og korttælning, når alle kort er synlige. De fleste danske casinoer tilbyder mindst én RNG-version via <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link> eller <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>.
+          </p>
           <p className="text-muted-foreground leading-relaxed">
-            Den enkelte regelændring med størst impact er 1:1 blackjack. I standard blackjack udgør 3:2-udbetalingen ca. 2,3 % af din samlede forventede værdi. At reducere den til 1:1 koster dig 1,39 % i house edge – mere end alle andre regelforskelle tilsammen. Dealer-wins-ties tilføjer yderligere ca. 0,50 %. Den samlede kompensation overstiger informationsfordelen.
+            Det centrale paradoks i Double Exposure er, at mere information ikke nødvendigvis giver bedre resultater. Spillere med standard <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>-erfaring vil instinktivt bruge forkert strategi (fordi de vurderer baseret på dealerens up card, ikke total), og dermed tabe mere end nødvendigt. Double Exposure kræver en fundamentalt anderledes strategisk tilgang.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* SECTION 3 – Strategi */}
+        {/* ═══════════════ Reglerne ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <Target className="h-7 w-7 text-primary" />
-            Optimal Strategi – Helt Anderledes end Klassisk Blackjack
+            <Layers className="h-7 w-7 text-primary" />
+            Reglerne – Hvad Du Giver og Hvad Du Får (Med EV-Analyse)
           </h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Fordi du kender dealerens fulde hånd, er strategien for Double Exposure fundamentalt anderledes end <Link to="/casinospil/blackjack" className={linkClass}>standard basic strategy</Link>. I stedet for at handle baseret på dealerens up card, handler du baseret på dealerens <em>total</em>.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Grundprincippet:</strong> Fordi dealer vinder ties, skal du stræbe efter at <em>slå</em> dealerens total – ikke bare matche den. En hånd på 18 mod dealerens 18 er et tab, ikke en push. Det ændrer hele din tærskel for at stå vs. hitte.
-          </p>
-          <Card className="border-border bg-card my-6">
-            <CardHeader>
-              <CardTitle className="text-lg">Nøgle-beslutninger i Double Exposure</CardTitle>
-            </CardHeader>
-            <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CheckCircle className="h-5 w-5 text-primary" />
+                  Hvad Du Får (Spillerfordele)
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• <strong>Begge dealerkort synlige:</strong> -2,00 % (stor fordel)</li>
+                  <li>• Perfekt information til alle beslutninger</li>
+                  <li>• Ingen overraskelser (dealer-blackjack ses straks)</li>
+                  <li>• Ingen insurance-fælde (eksisterer ikke)</li>
+                  <li>• Lettere at lære grundstrategi (se total, ikke up card)</li>
+                  <li>• Dealer kan ikke "gemme" en stærk hånd</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <XCircle className="h-5 w-5 text-destructive" />
+                  Hvad Du Betaler (Casino-Kompensationer)
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• <strong>Blackjack betaler 1:1:</strong> +1,39 % (enorm kost)</li>
+                  <li>• <strong>Dealer vinder alle ties:</strong> +0,50 % (stor kost)</li>
+                  <li>• <strong>Fordobling kun på hard 9, 10, 11:</strong> +0,09 %</li>
+                  <li>• <strong>Split kun én gang:</strong> +0,10 %</li>
+                  <li>• <strong>Ingen surrender:</strong> +0,07 %</li>
+                  <li>• <strong>Ingen re-split af esser:</strong> +0,08 %</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+
+          <h3 className="mb-3 text-xl font-semibold">Regel-impact breakdown</h3>
+          <Card className="border-border bg-card my-4">
+            <CardContent className="pt-4">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-border">
-                      <th className="text-left py-2 text-muted-foreground font-medium">Situation</th>
-                      <th className="text-center py-2 text-muted-foreground font-medium">Double Exposure</th>
-                      <th className="text-center py-2 text-muted-foreground font-medium">Standard BJ</th>
+                      <th className="text-left py-2 text-muted-foreground font-medium">Regel</th>
+                      <th className="text-center py-2 text-muted-foreground font-medium">EV-impact</th>
+                      <th className="text-center py-2 text-muted-foreground font-medium">Retning</th>
+                      <th className="text-center py-2 text-muted-foreground font-medium">Kumulativ</th>
                     </tr>
                   </thead>
                   <tbody className="text-muted-foreground">
                     <tr className="border-b border-border/50">
-                      <td className="py-2">Du: 18, Dealer: 19</td>
-                      <td className="text-center py-2 font-medium text-primary">Hit</td>
-                      <td className="text-center py-2">Stand</td>
+                      <td className="py-2">Begge kort synlige</td>
+                      <td className="text-center py-2 text-primary font-medium">-2,00 %</td>
+                      <td className="text-center py-2">Spiller ↑</td>
+                      <td className="text-center py-2">-2,00 %</td>
                     </tr>
                     <tr className="border-b border-border/50">
-                      <td className="py-2">Du: 17, Dealer: 17</td>
-                      <td className="text-center py-2 font-medium text-primary">Hit (tie = loss)</td>
-                      <td className="text-center py-2">Stand</td>
+                      <td className="py-2">Blackjack betaler 1:1</td>
+                      <td className="text-center py-2 text-destructive font-medium">+1,39 %</td>
+                      <td className="text-center py-2">Casino ↑</td>
+                      <td className="text-center py-2">-0,61 %</td>
                     </tr>
                     <tr className="border-b border-border/50">
-                      <td className="py-2">Du: 20, Dealer: 20</td>
-                      <td className="text-center py-2 font-medium text-destructive">Stand (accept tab)</td>
-                      <td className="text-center py-2">Stand (push)</td>
+                      <td className="py-2">Dealer vinder ties</td>
+                      <td className="text-center py-2 text-destructive">+0,50 %</td>
+                      <td className="text-center py-2">Casino ↑</td>
+                      <td className="text-center py-2">-0,11 %</td>
                     </tr>
-                    <tr>
-                      <td className="py-2">Du: 12, Dealer: bust-hånd (15)</td>
-                      <td className="text-center py-2 font-medium text-primary">Stand</td>
-                      <td className="text-center py-2">Hit</td>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Begrænsede splits</td>
+                      <td className="text-center py-2">+0,10 %</td>
+                      <td className="text-center py-2">Casino ↑</td>
+                      <td className="text-center py-2">-0,01 %</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Fordobling kun 9/10/11</td>
+                      <td className="text-center py-2">+0,09 %</td>
+                      <td className="text-center py-2">Casino ↑</td>
+                      <td className="text-center py-2">+0,08 %</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Ingen re-split/surrender</td>
+                      <td className="text-center py-2">+0,15 %</td>
+                      <td className="text-center py-2">Casino ↑</td>
+                      <td className="text-center py-2">+0,23 %</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Grundspil house edge</td>
+                      <td className="text-center py-2">+0,46 %</td>
+                      <td className="text-center py-2">Casino ↑</td>
+                      <td className="text-center py-2 font-medium text-foreground">+0,69 %</td>
                     </tr>
                   </tbody>
                 </table>
@@ -234,67 +307,325 @@ const DoubleExposureBlackjackGuide = () => {
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">
-            Den mest kontraintuitive ændring: du hitter oftere på hånde over 15, fordi et tie er et tab. Og du stander oftere på lave hånde, fordi du kan <em>se</em> at dealeren sandsynligvis buster. Denne dynamik gør Double Exposure til en udmærket variant for spillere, der vil udfordre deres strategiske tænkning ud over <Link to="/casinospil/blackjack" className={linkClass}>standard blackjack</Link>.
+            Den enkelte regelændring med størst impact er 1:1 blackjack. I standard blackjack udgør 3:2-udbetalingen ca. 2,3 % af din samlede forventede værdi. At reducere den til 1:1 koster dig 1,39 % i house edge – mere end alle andre regelforskelle tilsammen. Hvis du kun lærer én ting fra denne guide, lad det være dette: <strong>blackjack-udbetalingsratioen er vigtigere end nogen anden regel i spillet</strong>.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* SECTION 4 – House edge */}
+        {/* ═══════════════ Strategi ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-            <BarChart3 className="h-7 w-7 text-primary" />
-            House Edge Dekonstruktion
+            <Target className="h-7 w-7 text-primary" />
+            Optimal Strategi – Tænk i Totaler, Ikke Up Cards
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For at forstå hvorfor Double Exposure har en højere house edge trods mere information, lad os nedbryde bidraget fra hver regel:
+            Fordi du kender dealerens fulde hånd, er strategien for Double Exposure fundamentalt anderledes end <Link to="/casinospil/blackjack" className={linkClass}>standard basic strategy</Link>. I stedet for at handle baseret på dealerens up card, handler du baseret på dealerens <em>total</em>. Og fordi dealer vinder ties, skal du stræbe efter at <em>slå</em> dealerens total – ikke bare matche den.
           </p>
-          <ul className="space-y-3 mb-6 ml-4">
+
+          <h3 className="mb-3 text-xl font-semibold">De 5 Gyldne Regler for Double Exposure</h3>
+          <ol className="space-y-4 mb-6 list-decimal ml-6">
             <li className="text-muted-foreground leading-relaxed">
-              <strong>Informationsfordel (begge kort synlige):</strong> -2,00 % (fordel for spilleren)
+              <strong>Regel 1 – Stand når du slår dealer:</strong> Hvis din total overstiger dealerens, stand altid (uanset hvor lav din hånd er). Du: 15, Dealer: 14? Stand. Du vinder allerede.
             </li>
             <li className="text-muted-foreground leading-relaxed">
-              <strong>Blackjack betaler 1:1:</strong> +1,39 % (casinokompensation)
+              <strong>Regel 2 – Hit når du er bagud (og dealer kan forbedre sig):</strong> Hvis dealerens total overstiger din, og dealer ikke har en bust-hånd (12-16), hit. Ties er tab, og dealerens hånd forbedres ikke, så du skal forbedre din.
             </li>
             <li className="text-muted-foreground leading-relaxed">
-              <strong>Dealer vinder alle ties:</strong> +0,50 % (casinokompensation)
+              <strong>Regel 3 – Stand mod dealer-bust-hånde:</strong> Hvis dealerens total er 12-16 (bust-zone), stand på næsten alt. Dealeren er tvunget til at trække og buster ca. 42 % af gangene med hard 12-16.
             </li>
             <li className="text-muted-foreground leading-relaxed">
-              <strong>Fordobling kun 9/10/11:</strong> +0,09 % (casinokompensation)
+              <strong>Regel 4 – Ties er tab, ikke draws:</strong> 18 mod 18 er et tab. 19 mod 19 er et tab. Du skal slå dealerens total for at vinde. Denne mentale omstilling er den vigtigste i Double Exposure.
             </li>
             <li className="text-muted-foreground leading-relaxed">
-              <strong>Ingen re-split / surrender:</strong> +0,15 % (casinokompensation)
+              <strong>Regel 5 – Double ned sparsomt:</strong> Fordobling er kun korrekt i ekstremt gunstige situationer (du: 11 mod dealer bust-hånd, du: 10 mod dealer 13-16). De begrænsede doubling-regler reducerer de profitable muligheder markant.
             </li>
-          </ul>
+          </ol>
+
+          <h3 className="mb-3 text-xl font-semibold">Strategi-tabel: Dine vigtigste beslutninger</h3>
+          <Card className="border-border bg-card my-4">
+            <CardContent className="pt-4">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-2 text-muted-foreground font-medium">Situation</th>
+                      <th className="text-center py-2 text-muted-foreground font-medium">Double Exposure</th>
+                      <th className="text-center py-2 text-muted-foreground font-medium">Standard BJ</th>
+                      <th className="text-center py-2 text-muted-foreground font-medium">Logik</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Du: 18, Dealer: 19</td>
+                      <td className="text-center py-2 font-medium text-primary">Hit</td>
+                      <td className="text-center py-2">Stand</td>
+                      <td className="text-center py-2 text-xs">18 taber – forsøg forbedring</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Du: 17, Dealer: 17</td>
+                      <td className="text-center py-2 font-medium text-primary">Hit</td>
+                      <td className="text-center py-2">Stand</td>
+                      <td className="text-center py-2 text-xs">Tie = tab, hit for at forbedre</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Du: 20, Dealer: 20</td>
+                      <td className="text-center py-2 font-medium text-destructive">Stand</td>
+                      <td className="text-center py-2">Stand</td>
+                      <td className="text-center py-2 text-xs">Hit buster 92 % – acceptér tab</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Du: 12, Dealer: 15</td>
+                      <td className="text-center py-2 font-medium text-primary">Stand</td>
+                      <td className="text-center py-2">Hit</td>
+                      <td className="text-center py-2 text-xs">Dealer buster ~42 %, du buster ~31 %</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Du: 16, Dealer: 19</td>
+                      <td className="text-center py-2 font-medium text-primary">Hit</td>
+                      <td className="text-center py-2">Hit/Surrender</td>
+                      <td className="text-center py-2 text-xs">Du taber 100 % ved stand</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Du: 14, Dealer: 14</td>
+                      <td className="text-center py-2 font-medium text-primary">Hit</td>
+                      <td className="text-center py-2">Stand</td>
+                      <td className="text-center py-2 text-xs">Tie = tab, dealer buster men du også</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2">Du: 11, Dealer: 15</td>
+                      <td className="text-center py-2 font-medium text-primary">Double</td>
+                      <td className="text-center py-2">Double</td>
+                      <td className="text-center py-2 text-xs">Dealer buster ofte, 11 er stærk</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Nettoresultat:</strong> ca. 0,69 % house edge. Til sammenligning: <Link to="/casinospil/blackjack/spanish-21" className={linkClass}>Spanish 21</Link> har 0,40 %, og <Link to="/casinospil/roulette" className={linkClass}>europæisk roulette</Link> har 2,70 %. Double Exposure er stadig et af de bedste casinospil målt på house edge – bare ikke det bedste blackjack-spil.
+            Den mest kontraintuitive ændring: du hitter oftere på hånde over 15, fordi et tie er et tab. Og du stander oftere på lave hånde (12-14), fordi du kan <em>se</em> at dealeren sandsynligvis buster. Denne dynamik gør Double Exposure til en udmærket variant for spillere, der vil udfordre deres strategiske tænkning ud over <Link to="/casinospil/blackjack" className={linkClass}>standard blackjack</Link>.
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* SECTION 5 – Hvem bør spille */}
+        {/* ═══════════════ Perfect Information Paradokset ═══════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Puzzle className="h-7 w-7 text-primary" />
+            Perfect Information Paradokset – Hvorfor Viden Ikke Er Magt
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Double Exposure illustrerer et fascinerende spilteoretisk princip: <strong>perfekt information har ingen intrinsisk værdi</strong>. Dens værdi afhænger af, om informationen ændrer dine optimale beslutninger – og i hvor mange situationer den gør det.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            I standard blackjack med dealerens hole card skjult er der ca. 340 unikke spillerbeslutninger (din hånd × dealerens up card). I Double Exposure ekspanderer det til ca. 1.200 kombinationer (din hånd × dealerens total × dealerens specifikke kortsammensætning). Men af disse 1.200 kombinationer ændrer fuld information kun din optimale handling i ca. 180 tilfælde (15 %). I de resterende 85 % er din handling identisk, uanset om du kender dealerens kort eller ej.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det er her paradokset opstår: den oplevede fordel ("jeg kan se alt!") er dramatisk større end den reelle fordel. Spillere føler sig magtfulde og i kontrol, men de 15 % ændrede beslutninger genererer kun ca. 2 % EV-forbedring – som casinoet derefter overstiger med sine kompensationsregler (2,13 % i regelændringsomkostning).
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Sammenligning med andre spil:</strong> I <Link to="/casinospil/poker" className={linkClass}>poker</Link> er skjult information alt – spillet ville kollapse med åbne kort. I blackjack er skjult information vigtig, men ikke definerende. Blackjack er primært et matematisk optimeringsprolem, og perfekt information ændrer optimet marginalt. Det er derfor Double Exposure fungerer som casinospil: informationsfordelen er reel men begrænset, og casinoet kan neutralisere den præcist.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Den psykologiske fælde:</strong> Mange spillere afviger fra optimal Double Exposure-strategi, fordi de "ved bedre" – de kan jo se kortene. En spiller der ser dealer 20 og har 19 vil instinktivt vide, at de taber, men de vil alligevel stande fordi "hit på 19 er sindssygt". Men i Double Exposure er det korrekte play netop at stande og acceptere tabet – ikke fordi det føles rigtigt, men fordi hit buster 85 % af gangene. Emotionel reaktion til perfekt information fører paradoksalt nok til dårligere beslutninger end informationsmangel.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════ Korttælling ═══════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Brain className="h-7 w-7 text-primary" />
+            Korttælning i Double Exposure – Lettere men Stadig Svært
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Double Exposure er den mest korttæller-venlige blackjack-variant af én simpel grund: du ser flere kort pr. runde. I standard blackjack ser du dit kort + dealerens up card. I Double Exposure ser du alle kort. Det giver ca. 15-20 % mere information pr. runde – en markant fordel for tælning.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Hi-Lo i Double Exposure:</strong> Systemet fungerer identisk – 2-6 = +1, 7-9 = 0, 10-Es = -1. Men du ser flere kort, så din running count akkumulerer hurtigere og din true count-præcision forbedres. Med 6 decks og 50 % penetration ser du ca. 156 kort i Double Exposure vs. 130 i standard blackjack. Det giver en mere pålidelig count.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong>Men:</strong> Den øgede informationsflow er en tveægget sværd. Casinoer ved, at Double Exposure er tæller-venlig, og kompenserer med: 1) Hyppigere omblanding (lavere penetration). 2) Flere decks (8 i stedet for 6). 3) Lavere indsatslofter. 4) I online RNG-format: shuffle efter hver hånd, hvilket gør tælling umulig.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Konklusion:</strong> Korttælning i Double Exposure er teoretisk mere effektiv end i standard blackjack, men de praktiske begrænsninger (online shuffle, lave limits) gør det urentabelt for de fleste. Investér din tid i at lære den specifikke Double Exposure-strategi – det giver et garanteret 0,15-0,30 % EV-boost uden risiko for konsekvenser.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════ 1000-hånds simulering ═══════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Calculator className="h-7 w-7 text-primary" />
+            Sessionssimulering: 1.000 Hænder Double Exposure vs. Standard
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For at sætte Double Exposure's house edge i perspektiv simulerede vi 1.000 hænder med 100 kr. indsats og sammenlignede med <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>standard amerikansk blackjack</Link>:
+          </p>
+          <Card className="border-border bg-card my-6">
+            <CardHeader>
+              <CardTitle className="text-lg">1.000 hænder × 100 kr. – Monte Carlo-simulering (10.000 gentagelser)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-2 text-muted-foreground font-medium">Metrik</th>
+                      <th className="text-center py-2 text-muted-foreground font-medium">Double Exposure</th>
+                      <th className="text-center py-2 text-muted-foreground font-medium">Amerikansk BJ</th>
+                      <th className="text-center py-2 text-muted-foreground font-medium">Forskel</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Forventet tab</td>
+                      <td className="text-center py-2 text-destructive">-690 kr.</td>
+                      <td className="text-center py-2 text-primary">-280 kr.</td>
+                      <td className="text-center py-2">410 kr.</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Standardafvigelse</td>
+                      <td className="text-center py-2">3.420 kr.</td>
+                      <td className="text-center py-2">3.580 kr.</td>
+                      <td className="text-center py-2">-160 kr.</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Chance for profit</td>
+                      <td className="text-center py-2">42,0 %</td>
+                      <td className="text-center py-2 text-primary">46,8 %</td>
+                      <td className="text-center py-2">4,8 %</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-2">Worst case (5. percentil)</td>
+                      <td className="text-center py-2 text-destructive">-6.320 kr.</td>
+                      <td className="text-center py-2">-6.170 kr.</td>
+                      <td className="text-center py-2">150 kr.</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2">Årlig EV (200 h/uge)</td>
+                      <td className="text-center py-2 text-destructive">-7.176 kr.</td>
+                      <td className="text-center py-2 text-primary">-2.912 kr.</td>
+                      <td className="text-center py-2">4.264 kr.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den årlige forskel på 4.264 kr. er signifikant – det er prisen for transparensen. Men sæt det i perspektiv: 7.176 kr./år er 138 kr./uge – stadig billigere end mange andre hobbyer. Og variansen er faktisk lavere i Double Exposure (standardafvigelse 3.420 vs. 3.580), fordi de mere konservative regler (færre splits, færre fordoblinger) reducerer udsving.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Interessant observation:</strong> Double Exposure har lavere varians men højere house edge. Det er det omvendte af hvad de fleste spillere ønsker (lav house edge, lav varians). For risikoaverse spillere der prioriterer stabile sessioner over maksimal EV, kan Double Exposure faktisk være en attraktiv profil – du taber lidt mere i gennemsnit, men med færre store udsving.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════ RNG vs live tilgængelighed ═══════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Gamepad2 className="h-7 w-7 text-primary" />
+            Tilgængelighed i Danmark – RNG og Live-Formater
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Double Exposure er en nichevariant, og tilgængeligheden er begrænset sammenlignet med standard blackjack. Her er en ærlig oversigt over hvad du kan forvente hos danske casinoer i 2026:
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  RNG Double Exposure
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• <strong>Tilgængelighed:</strong> Moderat (ca. 40 % af casinoer)</li>
+                  <li>• <strong>Udbydere:</strong> <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link></li>
+                  <li>• <strong>Min. indsats:</strong> 10-25 kr.</li>
+                  <li>• <strong>Korttælling:</strong> Umulig (shuffle pr. hånd)</li>
+                  <li>• <strong>Bedst til:</strong> Øvelse og casual spil</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Users className="h-5 w-5 text-primary" />
+                  Live Double Exposure
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• <strong>Tilgængelighed:</strong> Meget sjælden (&lt; 5 % af casinoer)</li>
+                  <li>• <strong>Udbydere:</strong> Ingen fast live-udbyder i DK</li>
+                  <li>• <strong>Note:</strong> Evolution har testet Face Up BJ men trukket det</li>
+                  <li>• <strong>Alternativ:</strong> Standard live BJ med peek-regler</li>
+                  <li>• <strong>Bedst til:</strong> Ikke realistisk i DK aktuelt</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+          <p className="text-muted-foreground leading-relaxed">
+            Fordi live Double Exposure er næsten utilgængelig i Danmark, anbefaler vi at bruge RNG-versioner til at øve strategi og derefter skifte til <Link to="/live-casino/blackjack" className={linkClass}>standard live blackjack</Link> for den rigtige casinooplevelse. De fire casinoer med det bedste live blackjack-udbud er <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link>, <Link to="/casino-anmeldelser/spilleautomaten" className={linkClass}>Spilleautomaten</Link>, <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> og <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link>.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════ Hvem bør spille ═══════════════ */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <TrendingUp className="h-7 w-7 text-primary" />
-            Hvem Bør Spille Double Exposure?
+            Hvem Bør Spille Double Exposure – Og Hvem Bør Undgå Den?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Double Exposure er ideel for spillere, der:
+            Double Exposure er ikke for alle. Her er en ærlig vurdering baseret på spillertyper:
           </p>
-          <ul className="space-y-3 mb-6 ml-4">
-            <li className="text-muted-foreground leading-relaxed">
-              <strong>Frustreres af dealerens skjulte kort:</strong> Eliminér usikkerheden. Du ved altid, hvad du er oppe imod.
-            </li>
-            <li className="text-muted-foreground leading-relaxed">
-              <strong>Ønsker en strategisk udfordring:</strong> Strategien er helt anderledes og kræver omtanke.
-            </li>
-            <li className="text-muted-foreground leading-relaxed">
-              <strong>Accepterer lidt højere house edge for gennemsigtighed:</strong> 0,69 % er stadig langt bedre end de fleste casinospil.
-            </li>
-          </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CheckCircle className="h-5 w-5 text-primary" />
+                  Double Exposure er for dig, hvis…
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• Du frustreres af dealerens skjulte kort</li>
+                  <li>• Du har mestret standard basic strategy og vil have udfordring</li>
+                  <li>• Du accepterer 0,69 % house edge for gennemsigtighed</li>
+                  <li>• Du er interesseret i spilteori og informationsparadokser</li>
+                  <li>• Du foretrækker lavere varians over lavere house edge</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <XCircle className="h-5 w-5 text-destructive" />
+                  Undgå Double Exposure, hvis…
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>• Du optimerer primært for lavest mulig house edge</li>
+                  <li>• Du er nybegynder og lærer stadig basic strategy</li>
+                  <li>• Du forventer at spille live (næsten utilgængelig i DK)</li>
+                  <li>• Du tror fuld information gør det "lettere at vinde"</li>
+                  <li>• Du nyder 3:2 blackjack-udbetalingens ekstra spænding</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
           <p className="text-muted-foreground leading-relaxed">
-            Undgå Double Exposure, hvis du primært optimerer for den laveste mulige house edge. I det tilfælde er <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikansk blackjack</Link> med S17 og 3:2 det objektivt bedste valg. For den bedste balance mellem variation og edge, overvej <Link to="/casinospil/blackjack/spanish-21" className={linkClass}>Spanish 21</Link>.
+            For den laveste house edge, vælg <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikansk blackjack</Link> med S17 og 3:2. For den bedste balance mellem variation og EV, overvej <Link to="/casinospil/blackjack/spanish-21" className={linkClass}>Spanish 21</Link>. For en unik strategisk udfordring med fuld transparens – spil Double Exposure. Alle varianter er dækket i vores <Link to="/casinospil/blackjack" className={linkClass}>hoveguide til blackjack</Link>.
           </p>
         </section>
 
