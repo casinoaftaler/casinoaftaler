@@ -64,7 +64,7 @@ const articleSchema = buildArticleSchema({
   description: "Komplet guide til europæisk roulette: single zero mekanik, 2,70% house edge, call bets, sector betting, 10.000-spins simulering og casino-anbefalinger for danske spillere.",
   datePublished: "2026-03-02",
   dateModified: "2026-03-02",
-  slug: "/casinospil/roulette/europaeisk-roulette",
+  url: `${SITE_URL}/casinospil/roulette/europaeisk-roulette`,
   image: `${SITE_URL}/og/europaeisk-roulette.jpg`,
 });
 
@@ -484,16 +484,7 @@ export default function EuropaeiskRouletteGuide() {
         <Separator className="mb-12" />
         <AuthorBio author="jonas" />
         <Separator className="my-12" />
-        <RelatedGuides
-          guides={[
-            { title: "Amerikansk Roulette", path: "/casinospil/roulette/amerikansk-roulette" },
-            { title: "Fransk Roulette", path: "/casinospil/roulette/fransk-roulette" },
-            { title: "D'Alembert Roulette", path: "/casinospil/roulette/dalembert-roulette" },
-            { title: "Martingale Roulette", path: "/casinospil/roulette/martingale-roulette" },
-            { title: "Live Roulette", path: "/live-casino/roulette" },
-            { title: "Roulette Strategi", path: "/casinospil/roulette-strategi" },
-          ]}
-        />
+        <RelatedGuides currentPath="/casinospil/roulette/europaeisk-roulette" />
       </div>
     </>
   );

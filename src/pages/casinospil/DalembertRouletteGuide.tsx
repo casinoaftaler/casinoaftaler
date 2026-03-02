@@ -60,7 +60,7 @@ const articleSchema = buildArticleSchema({
   description: "Komplet guide til D'Alembert-systemet i roulette: lineær progression, equilibrium-teori, 10.000-spins simulering, sammenligning med Martingale og Fibonacci.",
   datePublished: "2026-03-02",
   dateModified: "2026-03-02",
-  slug: "/casinospil/roulette/dalembert-roulette",
+  url: `${SITE_URL}/casinospil/roulette/dalembert-roulette`,
   image: `${SITE_URL}/og/dalembert-roulette.jpg`,
 });
 
@@ -388,16 +388,7 @@ export default function DalembertRouletteGuide() {
         <Separator className="mb-12" />
         <AuthorBio author="jonas" />
         <Separator className="my-12" />
-        <RelatedGuides
-          guides={[
-            { title: "Martingale Roulette", path: "/casinospil/roulette/martingale-roulette" },
-            { title: "Fibonacci Roulette", path: "/casinospil/roulette/fibonacci-roulette" },
-            { title: "Labouchère Roulette", path: "/casinospil/roulette/labouchere-roulette" },
-            { title: "Europæisk Roulette", path: "/casinospil/roulette/europaeisk-roulette" },
-            { title: "Roulette Strategi", path: "/casinospil/roulette-strategi" },
-            { title: "Live Roulette", path: "/live-casino/roulette" },
-          ]}
-        />
+        <RelatedGuides currentPath="/casinospil/roulette/dalembert-roulette" />
       </div>
     </>
   );
