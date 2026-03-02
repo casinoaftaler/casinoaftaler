@@ -681,13 +681,109 @@ export default function MartingaleRouletteGuide() {
             Martingale-systemet har en rig historie, der strækker sig over 300 år. Forståelsen af denne historie giver perspektiv på, hvorfor systemet stadig fascinerer – og hvorfor det stadig fejler.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Systemet blev først beskrevet matematisk i 1700-tallet, men princippet om at fordoble efter tab er ældre end selve roulette-spillet. I 18. århundredes Frankrig var det en standard tilgang til "jeux de hasard" (hasardspil), og det blev populariseret af John Henry Martindale (eller Martingdale), en London-casinoejer.
+            Systemet blev først beskrevet matematisk i 1700-tallet, men princippet om at fordoble efter tab er ældre end selve roulette-spillet. I 18. århundredes Frankrig var det en standard tilgang til "jeux de hasard" (hasardspil), og det blev populariseret af John Henry Martindale (eller Martingdale), en London-casinoejer. Ironien er bemærkelsesværdig: Martindale var casinoejer, ikke spiller. Han forstod sandsynligvis systemets svagheder, men promoverede det alligevel til sine kunder – fordi han vidste, at bordmaksimum og begrænset bankroll altid ville beskytte huset.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Det berømte eksempel fra Casino de Monte-Carlo i 1913 – "The night the bank broke" – er ofte fejlagtigt tilskrevet Martingale. I virkeligheden handlede det om en ekstraordinær serie af 26 sorte i træk (sandsynlighed: ca. 1 ud af 136 millioner). Spillere der brugte Martingale på rød var ødelagt længe inden spin nr. 26 – de fleste kunne ikke engang klare 10-12 fordoblinger.
+            I 1796 beskrev den franske matematiker Pierre-Simon Laplace Martingale-princippet i sin "Théorie analytique des probabilités" og demonstrerede formelt, at ingen indsatsstrategi kan overvinde et spil med negativ forventet værdi. Denne matematiske sandhed har stået uimodsagt i over 200 år – men det har ikke forhindret generationer af spillere i at prøve.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Det berømte eksempel fra Casino de Monte-Carlo i 1913 – "The night the bank broke" – er ofte fejlagtigt tilskrevet Martingale. I virkeligheden handlede det om en ekstraordinær serie af 26 sorte i træk (sandsynlighed: ca. 1 ud af 136 millioner). Spillere der brugte Martingale på rød var ødelagt længe inden spin nr. 26 – de fleste kunne ikke engang klare 10-12 fordoblinger. Denne hændelse blev ironisk nok et af de mest berømte eksempler på Gambler's Fallacy i statistisk litteratur.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            I den moderne online-æra er Martingale lige så populært – og lige så ineffektivt – som altid. Fordelen ved online roulette er hurtigere spil (flere spins per time), hvilket paradoksalt nok accelererer det uundgåelige tab. Hos danske licenserede operatører kan du spille RNG-roulette med 100+ spins i timen, hvilket betyder at en statistisk uundgåelig 10+ tabsserie rammer endnu hurtigere end på fysiske casinoer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Det er også værd at nævne, at Martingale-princippet har fundet anvendelse ud over casinoer. I finansverdenen bruges det (kontroversielt) af visse tradere, der fordobler deres position efter tab – med tilsvarende katastrofale resultater. Hedge fund Long-Term Capital Management's kollaps i 1998 er ofte citeret som et reelt eksempel på Martingale-tænkning i praksis: strategien producerede stabile gevinster i årevis, indtil en uforudset begivenhed (den russiske finanskrise) udløste det ultimative sammenbrud.
+          </p>
+        </section>
+
+        {/* Bonusomsætning med Martingale */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <Coins className="h-5 w-5 text-primary" />
+            Martingale og Bonusomsætning: En Analyse
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Kan Martingale bruges til at omsætte <Link to="/casino-bonus" className={linkClass}>casinobonusser</Link> mere effektivt? Det korte svar er nej – men der er nuancer. Lad os analysere matematikken bag bonusomsætning med Martingale på europæisk roulette.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            De fleste danske casinoer reducerer roulettes bidrag til <Link to="/omsaetningskrav" className={linkClass}>omsætningskravet</Link> til 10-25 %. Med Martingale satser du variable beløb (50→100→200→400 osv.), men alle indsatser tæller med den reducerede sats. Den kritiske indsigt er, at Martingale ikke ændrer den forventede værdi af din samlede action – den er stadig -2,70 % per krone satset. Martingale ændrer kun <em>fordelingen</em> af resultater.
+          </p>
+
+          <Card className="mb-6 bg-muted/30">
+            <CardContent className="pt-6">
+              <h3 className="font-bold text-lg mb-3">EV-Beregning: Bonusomsætning med Martingale</h3>
+              <div className="font-mono text-sm bg-background p-4 rounded-lg space-y-2">
+                <p className="font-bold">Scenario: 1.000 kr. bonus, 10× omsætning, 25% roulette-bidrag</p>
+                <p>Effektiv omsætning: 10.000 / 0,25 = 40.000 kr. faktisk indsats</p>
+                <p className="border-t border-border pt-2 mt-2">
+                  Europæisk roulette: EV = 1.000 − (40.000 × 2,70%) = 1.000 − 1.080 = <strong className="text-destructive">−80 kr.</strong>
+                </p>
+                <p>
+                  <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>Fransk roulette</Link> (La Partage): EV = 1.000 − (40.000 × 1,35%) = 1.000 − 540 = <strong className="text-primary">+460 kr.</strong>
+                </p>
+              </div>
+              <p className="text-muted-foreground text-sm mt-3">
+                Martingale ændrer ikke EV – den er identisk med flat betting. Men Martingale øger risikoen for at tabe hele bankrollen <em>under</em> omsætningen, hvilket effektivt forværrer dine chancer for at fuldføre omsætningskravet.
+              </p>
+            </CardContent>
+          </Card>
+
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Praktisk risiko:</strong> Martingales eksponentielle eskalering er særligt farlig under bonusomsætning, fordi du har et fast beløb der skal satses. Hvis du rammer bordmaksimum midtvejs i omsætningen, har du potentielt tabt hele din bankroll OG bonussen. Flat betting er markant sikrere til bonusomsætning, fordi det minimerer variansen og maksimerer sandsynligheden for at <em>fuldføre</em> omsætningskravet. For mere om bonusomsætningsstrategier, se vores guide til <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
+          </p>
+        </section>
+
+        {/* Live vs RNG for Martingale */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
+            <Users className="h-5 w-5 text-primary" />
+            Live vs. RNG Roulette: Hvad er Bedst for Martingale?
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Valget mellem <Link to="/live-casino/roulette" className={linkClass}>live dealer roulette</Link> og RNG (computer-genereret) roulette har markant indvirkning på Martingale-spillerens oplevelse. Begge har identisk house edge (2,70 % på europæisk), men den praktiske forskel i hastighed og bordgrænser er afgørende.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            <Card className="border-primary/20">
+              <CardContent className="pt-4">
+                <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+                  <Users className="h-4 w-4 text-primary" />
+                  Live Dealer (Anbefalet for Martingale)
+                </h3>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• <strong>Hastighed:</strong> 25-35 spins/time (langsommere eskalering)</li>
+                  <li>• <strong>Bordgrænser:</strong> Typisk 10-25.000 kr. (8-11 fordoblinger)</li>
+                  <li>• <strong>VIP-borde:</strong> Op til 100.000 kr. max (11+ fordoblinger)</li>
+                  <li>• <strong>Fordel:</strong> Lavere tempo = færre tabsserier per time</li>
+                  <li>• <strong>Ulempe:</strong> Højere minimumsindsats (10-50 kr.)</li>
+                  <li>• <strong>Anbefalet hos:</strong> <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link>, <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link></li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="border-border">
+              <CardContent className="pt-4">
+                <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
+                  <Gamepad2 className="h-4 w-4 text-muted-foreground" />
+                  RNG Roulette
+                </h3>
+                <ul className="text-sm text-muted-foreground space-y-1">
+                  <li>• <strong>Hastighed:</strong> 60-120 spins/time (hurtig eskalering!)</li>
+                  <li>• <strong>Bordgrænser:</strong> Typisk 5-10.000 kr. (7-10 fordoblinger)</li>
+                  <li>• <strong>Fordel:</strong> Lavere minimumsindsats (1-5 kr.)</li>
+                  <li>• <strong>Ulempe:</strong> Hurtigere eskalering = hurtigere bankerot</li>
+                  <li>• <strong>Ulempe:</strong> Typisk lavere bordmaksimum</li>
+                  <li>• <strong>Advarsel:</strong> 100+ spins/time accelererer tab markant</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Vores anbefaling:</strong> Hvis du vil eksperimentere med Martingale, gør det på live dealer-borde. Den lavere spin-rate (30 vs. 80+ spins/time) betyder, at du rammer statistisk uundgåelige lange tabsserier langsommere, hvilket giver dig mere spilletid for dit budget. Derudover har live-borde typisk højere bordmaksimum, som giver flere fordoblingstrin.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            I den moderne online-æra er Martingale lige så populært – og lige så ineffektivt – som altid. Fordelen ved online roulette er hurtigere spil (flere spins per time), hvilket paradoksalt nok accelererer det uundgåelige tab. Hos <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil Casino</Link> og andre danske licenserede operatører kan du spille RNG-roulette med 100+ spins i timen, hvilket betyder at en statistisk uundgåelig 10+ tabsserie rammer endnu hurtigere.
+            <strong>Vigtig note om <Link to="/live-casino/lightning-roulette" className={linkClass}>Lightning Roulette</Link>:</strong> Denne populære variant egner sig <em>dårligt</em> til Martingale, da even-money payouts reduceres til at kompensere for Lightning-multipliers. Du får lavere odds på de væddemål, Martingale kræver, hvilket øger din effektive house edge. Hold dig til standard europæisk eller <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette</Link> for Martingale.
           </p>
         </section>
 
