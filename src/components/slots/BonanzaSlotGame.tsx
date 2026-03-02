@@ -424,9 +424,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           if (bs.isActive !== undefined) {
             if (!isBonusActive && bs.freeSpinsRemaining > 0) {
               pendingBonusStateRef.current = bs;
-              const initialGrid = result.tumbleSteps?.[0]?.grid || grid;
-              if (initialGrid && symbols) {
-                const { positions: scatterPos } = countBonanzaScatters(initialGrid, symbols);
+              const finalGrid = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
+              if (finalGrid && symbols) {
+                const { positions: scatterPos } = countBonanzaScatters(finalGrid, symbols);
                 if (scatterPos.length > 0) {
                   const scatterAnims = new Map<number, BonanzaCellAnimState>();
                   scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
