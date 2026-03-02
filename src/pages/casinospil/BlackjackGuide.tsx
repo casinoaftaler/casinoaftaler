@@ -22,11 +22,62 @@ import {
   Users,
   Scale,
   Eye,
+  ArrowRight,
+  Shuffle,
+  Brain,
+  Gamepad2,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import blackjackHero from "@/assets/heroes/blackjack-hero.jpg";
 
 const linkClass = "text-primary underline hover:text-primary/80";
+
+/* ─────────────────── CLUSTER NAVIGATION ─────────────────── */
+
+const blackjackCluster = [
+  {
+    to: "/casinospil/blackjack/amerikansk-blackjack",
+    title: "Amerikansk Blackjack",
+    desc: "Hole card-reglen, peek-mekanikken og hvorfor amerikanske regler favoriserer spilleren ved doubles og splits.",
+    icon: Target,
+  },
+  {
+    to: "/casinospil/blackjack/europaeisk-blackjack",
+    title: "Europæisk Blackjack",
+    desc: "No hole card, double kun 9–11, 2-deck varianten og tilpasset basic strategy for europæiske regler.",
+    icon: Layers,
+  },
+  {
+    to: "/casinospil/blackjack/double-exposure-blackjack",
+    title: "Double Exposure Blackjack",
+    desc: "Begge dealer-kort synlige – dramatisk ændret strategi, 6:5-udbetaling og modificeret house edge.",
+    icon: Eye,
+  },
+  {
+    to: "/casinospil/blackjack/spanish-21",
+    title: "Spanish 21",
+    desc: "Ingen 10'ere i bunken, bonusudbetalinger, spiller-21-vinder-altid og unik basic strategy.",
+    icon: Sparkles,
+  },
+  {
+    to: "/casinospil/blackjack/martingale",
+    title: "Martingale System",
+    desc: "Fordoblings-systemet analyseret: matematisk bevis, Risk of Ruin og hvorfor det fejler langsigtet.",
+    icon: TrendingUp,
+  },
+  {
+    to: "/casinospil/blackjack/fibonacci",
+    title: "Fibonacci System",
+    desc: "Fibonacci-sekvensen som betting-system: langsommere progression, lavere varians, samme house edge.",
+    icon: Shuffle,
+  },
+  {
+    to: "/casinospil/blackjack/dalembert",
+    title: "D'Alembert System",
+    desc: "Den konservative progressions-strategi: +1/-1 justering, variansanalyse og sammenligning med Martingale.",
+    icon: Scale,
+  },
+];
 
 const blackjackFaqs: { question: string; answer: ReactNode }[] = [
   {
@@ -86,11 +137,11 @@ const blackjackFaqs: { question: string; answer: ReactNode }[] = [
 const BlackjackGuide = () => {
   const faqJsonLd = buildFaqSchema(blackjackFaqs);
   const articleSchema = buildArticleSchema({
-    headline: "Blackjack Strategi & Matematik 2026 – Spiller-Edge Guide",
-    description: "Analytisk blackjack-guide med basic strategy, house edge-beregninger, korttælling og bankroll management for danske spillere.",
+    headline: "Blackjack Guide 2026 – Strategi, Varianter, Matematik og Spiller-Edge",
+    description: "Cornerstone blackjack-guide: basic strategy, house edge, korttælling, varianter, betting-systemer og bankroll management for danske spillere.",
     url: `${SITE_URL}/casinospil/blackjack`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-18",
+    dateModified: "2026-03-02",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -112,7 +163,7 @@ const BlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026
+              <Brain className="mr-1.5 h-3.5 w-3.5" /> Cornerstone Guide · Marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Blackjack – Matematik, Strategi og Spiller-Edge
@@ -125,11 +176,66 @@ const BlackjackGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="40 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={blackjackHero} alt="Blackjack-bord med kort og chips i professionelt studie" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
+
+        {/* ═══════════════ CLUSTER NAVIGATION GRID ═══════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
+            <Gamepad2 className="h-8 w-8 text-primary" />
+            Udforsk Alle Blackjack-Guides
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Vores blackjack-cluster dækker 4 varianter og 3 betting-systemer i dybden. Hver guide er skrevet i 6.000+ ord med matematiske modeller, EV-tabeller og konkret strategi for danske spillere. Varianterne ændrer reglerne – systemerne ændrer indsatsstrukturen. Begge kræver separat analyse.
+          </p>
+
+          <h3 className="mb-4 text-xl font-semibold">Varianter</h3>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-6">
+            {blackjackCluster.slice(0, 4).map((spoke) => (
+              <Link key={spoke.to} to={spoke.to} className="group">
+                <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="flex items-center gap-2 text-base group-hover:text-primary transition-colors">
+                      <spoke.icon className="h-5 w-5 text-primary" />
+                      {spoke.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{spoke.desc}</p>
+                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                      Læs guide <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          <h3 className="mb-4 text-xl font-semibold">Betting-Systemer</h3>
+          <div className="grid gap-4 sm:grid-cols-3 mb-6">
+            {blackjackCluster.slice(4).map((spoke) => (
+              <Link key={spoke.to} to={spoke.to} className="group">
+                <Card className="h-full transition-all hover:border-primary/50 hover:shadow-md">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="flex items-center gap-2 text-base group-hover:text-primary transition-colors">
+                      <spoke.icon className="h-5 w-5 text-primary" />
+                      {spoke.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{spoke.desc}</p>
+                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                      Læs analyse <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </section>
 
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 1 – Hvorfor blackjack er det eneste casinospil med reel spiller-edge
@@ -299,13 +405,13 @@ const BlackjackGuide = () => {
                   <td className="p-3">Laveste edge, sjælden online, ofte 6:5-udbetaling (undgå)</td>
                 </tr>
                 <tr className="border-t border-border">
-                  <td className="p-3 font-medium">European Blackjack</td>
+                  <td className="p-3 font-medium"><Link to="/casinospil/blackjack/europaeisk-blackjack" className={linkClass}>European Blackjack</Link></td>
                   <td className="p-3">2</td>
                   <td className="p-3">0,42 %</td>
                   <td className="p-3">No hole card, double kun 9–11</td>
                 </tr>
                 <tr className="border-t border-border">
-                  <td className="p-3 font-medium">Atlantic City</td>
+                  <td className="p-3 font-medium"><Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>Atlantic City (Amerikansk)</Link></td>
                   <td className="p-3">8</td>
                   <td className="p-3">0,36 %</td>
                   <td className="p-3">Late surrender, DAS, liberal split</td>
@@ -317,7 +423,7 @@ const BlackjackGuide = () => {
                   <td className="p-3">Dealer stander S17, DAS, 3:2 BJ</td>
                 </tr>
                 <tr className="border-t border-border">
-                  <td className="p-3 font-medium">Spanish 21</td>
+                  <td className="p-3 font-medium"><Link to="/casinospil/blackjack/spanish-21" className={linkClass}>Spanish 21</Link></td>
                   <td className="p-3">6–8</td>
                   <td className="p-3">0,38 %</td>
                   <td className="p-3">Ingen 10'ere, bonusudbetalinger, spiller 21 vinder altid</td>
@@ -602,7 +708,7 @@ const BlackjackGuide = () => {
                 At øge indsatsen efter tab ("chase losses")
               </h3>
               <p className="text-muted-foreground leading-relaxed mt-1">
-                Progressiv betting (Martingale-lignende systemer) ændrer ikke den forventede værdi. Du vinder oftere, men tabene er katastrofale. Over tid konvergerer resultatet mod den samme house edge. Det eneste, progression gør, er at øge variansen – og risikoen for at sprænge din bankroll.
+                Progressiv betting (<Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale</Link>-lignende systemer) ændrer ikke den forventede værdi. Du vinder oftere, men tabene er katastrofale. Over tid konvergerer resultatet mod den samme house edge. Det eneste, progression gør, er at øge variansen – og risikoen for at sprænge din bankroll. Se vores dybdegående analyser af <Link to="/casinospil/blackjack/fibonacci" className={linkClass}>Fibonacci</Link>- og <Link to="/casinospil/blackjack/dalembert" className={linkClass}>D'Alembert</Link>-systemerne for alternativer.
               </p>
             </div>
             <div>
@@ -805,6 +911,28 @@ const BlackjackGuide = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Trods alle innovationer forbliver blackjacks fundament uændret: det er et matematisk spil, hvor informerede beslutninger reducerer casinoets fordel. Uanset om du spiller i VR i 2030 eller ved et live bord i dag, er basic strategy din vigtigste allierede. Teknologien ændrer indpakningen, men indholdet – 52 kort, 21 som mål, dine valg som variabel – har bestået tidens prøve.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════ VIDERE LÆSNING ═══════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Videre Læsning: Varianter og Betting-Systemer</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Denne cornerstone-guide har dækket blackjacks samlede landskab. For dybere specialisering, naviger til de individuelle guides via cluster-gitteret ovenfor. Her er hvad hver guide tilbyder ud over denne hubs indhold:
+          </p>
+          <ul className="mb-4 space-y-2 text-muted-foreground leading-relaxed list-disc list-inside">
+            <li><Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>Amerikansk Blackjack</Link> – Hole card-reglen, peek-mekanikken, liberal splitting og surrender-analyse med EV-tabeller.</li>
+            <li><Link to="/casinospil/blackjack/europaeisk-blackjack" className={linkClass}>Europæisk Blackjack</Link> – No hole card-konsekvenser, modificeret basic strategy, og hvorfor doubles mod dealer-es kræver anderledes tilgang.</li>
+            <li><Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure Blackjack</Link> – Begge kort synlige: dramatisk ændret strategi, 6:5-kompensation og matematisk analyse af fordel vs. ulempe.</li>
+            <li><Link to="/casinospil/blackjack/spanish-21" className={linkClass}>Spanish 21</Link> – Ingen 10'ere, bonusudbetalinger for 5-7-kort 21, late surrender og komplet tilpasset basic strategy.</li>
+            <li><Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale System</Link> – Matematisk bevis for systemets langsigtede failure, Risk of Ruin-simuleringer og historisk kontekst.</li>
+            <li><Link to="/casinospil/blackjack/fibonacci" className={linkClass}>Fibonacci System</Link> – Fibonacci-sekvensen som indsatsstruktur: langsommere progression, variansanalyse og sammenligning med Martingale.</li>
+            <li><Link to="/casinospil/blackjack/dalembert" className={linkClass}>D'Alembert System</Link> – Den konservative +1/-1-progression: matematisk modellering, session-simuleringer og optimale stop-loss-punkter.</li>
+          </ul>
+          <p className="text-muted-foreground leading-relaxed">
+            For sammenligning med andre strategiske <Link to="/casinospil" className={linkClass}>casinospil</Link> anbefaler vi vores guides til <Link to="/casinospil/poker" className={linkClass}>poker</Link> (det eneste spil med positiv EV mod andre spillere), <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> (laveste house edge uden strategi) og <Link to="/casinospil/craps" className={linkClass}>craps</Link> (favorable pass line-odds). Blackjack er det eneste rene casinospil, hvor dine beslutninger definerer din forventede værdi – og med denne guide som fundament er du klar til at dykke dybere.
           </p>
         </section>
 
