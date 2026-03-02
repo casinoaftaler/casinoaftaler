@@ -779,21 +779,21 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           bonusLoaded={bonusLoaded}
           winAmount={winAmount}
           gameId={gameId}
+          debugButton={isAdmin && !isBonusActive ? (
+            <button
+              onClick={() => {
+                if (isSpinning || tumblePhase !== 'idle' || spinLockRef.current) return;
+                debugScattersRef.current = true;
+                handleSpin();
+              }}
+              disabled={isSpinning || tumblePhase !== 'idle'}
+              className="p-1.5 rounded-lg bg-pink-500/20 hover:bg-pink-500/40 border border-pink-500/30 text-pink-300 transition-colors disabled:opacity-30"
+              title="Debug: Force 4 Scatters"
+            >
+              <Bug className="h-4 w-4" />
+            </button>
+          ) : undefined}
         />
-        {isAdmin && !isBonusActive && (
-          <button
-            onClick={() => {
-              if (isSpinning || tumblePhase !== 'idle' || spinLockRef.current) return;
-              debugScattersRef.current = true;
-              handleSpin();
-            }}
-            disabled={isSpinning || tumblePhase !== 'idle'}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-lg bg-pink-500/20 hover:bg-pink-500/40 border border-pink-500/30 text-pink-300 transition-colors disabled:opacity-30"
-            title="Debug: Force 4 Scatters"
-          >
-            <Bug className="h-4 w-4" />
-          </button>
-        )}
       </div>
     </div>
   );
