@@ -624,26 +624,30 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           {Array.from({ length: BONANZA_COLS }).map((_, col) => {
             const colSymbolIds = grid ? grid[col] || [] : [];
             return (
-              <React.Fragment key={col}>
-                {col > 0 && (
-                  <div className="w-px self-stretch bg-pink-400/20" />
-                )}
-                <BonanzaColumn
-                  col={col}
-                  spinState={columnSpinStates[col]}
-                  symbols={symbols}
-                  symbolsById={symbolsById}
-                  finalSymbolIds={colSymbolIds}
-                  winningPositions={winningPositions}
-                  cellAnimStates={cellAnimStates}
-                  cellDropOffsets={cellDropOffsets}
-                  tumblePhase={tumblePhase}
-                  animationEpoch={animationEpoch}
-                  bombSymbolsMap={bombSymbolsMap}
-                />
-              </React.Fragment>
+              <BonanzaColumn
+                key={col}
+                col={col}
+                spinState={columnSpinStates[col]}
+                symbols={symbols}
+                symbolsById={symbolsById}
+                finalSymbolIds={colSymbolIds}
+                winningPositions={winningPositions}
+                cellAnimStates={cellAnimStates}
+                cellDropOffsets={cellDropOffsets}
+                tumblePhase={tumblePhase}
+                animationEpoch={animationEpoch}
+                bombSymbolsMap={bombSymbolsMap}
+              />
             );
           })}
+          {/* Static vertical reel dividers — absolutely positioned so animations can't move them */}
+          {Array.from({ length: BONANZA_COLS - 1 }).map((_, i) => (
+            <div
+              key={`divider-${i}`}
+              className="absolute top-0 bottom-0 w-px bg-pink-400/20 pointer-events-none"
+              style={{ left: SYMBOL_GAP + (i + 1) * (SYMBOL_WIDTH + SYMBOL_GAP) - SYMBOL_GAP / 2 }}
+            />
+          ))}
         </div>
       </div>
 
