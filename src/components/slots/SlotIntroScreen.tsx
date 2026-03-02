@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import introImage from "@/assets/slots/slot-intro-screen.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import gatesIntroImage from "@/assets/slots/gates/intro-screen.jpg";
+import bonanzaIntroImage from "@/assets/slots/bonanza/intro-screen.jpg";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 import riseSlotBackground from "@/assets/slots/rise/background.jpg";
 import gatesSlotBackground from "@/assets/slots/gates/background.jpg";
@@ -19,6 +20,7 @@ const GAME_INTRO_IMAGES: Record<string, string> = {
   "book-of-fedesvin": introImage,
   "rise-of-fedesvin": riseIntroImage,
   "gates-of-fedesvin": gatesIntroImage,
+  "fedesvin-bonanza": bonanzaIntroImage,
 };
 
 const GAME_DEFAULT_BACKGROUNDS: Record<string, string> = {
