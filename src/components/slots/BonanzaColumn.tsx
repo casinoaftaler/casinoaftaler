@@ -4,6 +4,7 @@ import { BONANZA_ROWS } from "@/lib/bonanzaGameLogic";
 import { isBombSymbol, getBombValue } from "@/lib/bonanzaGameLogic";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import type { BombSymbol } from "@/hooks/useBombSymbols";
+import bombExplodedDecal from "@/assets/bomb-exploded-decal.png";
 
 const SYMBOL_WIDTH = 140;
 const SYMBOL_HEIGHT = 108;
@@ -146,7 +147,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
             {/* Bomb exploded — show explosion decal */}
             {cellAnim === 'bomb-exploded' && (
               <div className="w-full h-full flex items-center justify-center bonanza-bomb-exploded-decal">
-                <span className="text-4xl">💥</span>
+                <img src={bombExplodedDecal} alt="Explosion" className="w-full h-full object-contain" draggable={false} />
               </div>
             )}
 

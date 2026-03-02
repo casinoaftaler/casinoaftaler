@@ -304,12 +304,20 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         // After animation, mark as exploded so it stays hidden
         explodedPositions.set(bomb.position, 'bomb-exploded');
       }
-      // Keep exploded decals visible briefly
+      // Keep exploded decals visible — they persist until next spin
       setCellAnimStates(new Map(explodedPositions));
       await new Promise(r => setTimeout(r, 500));
     }
 
-    setCellAnimStates(new Map());
+    // Don't clear bomb-exploded states — they stay until next spin
+    // Only clear non-bomb-exploded states
+    setCellAnimStates(prev => {
+      const kept = new Map<number, BonanzaCellAnimState>();
+      for (const [pos, state] of prev) {
+        if (state === 'bomb-exploded') kept.set(pos, state);
+      }
+      return kept;
+    });
     setCellDropOffsets(new Map());
     setTumbleChainLength(0);
   }, []);
@@ -332,6 +340,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     setWinAmount(0);
     setRunningWin(0);
     setRunningMultiplier(0);
+    setCellAnimStates(new Map()); // Clear bomb-exploded decals on new spin
     if (isBonusSpin) setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
     setIsWinAnimating(false);
     setWinningPositions(new Set());
