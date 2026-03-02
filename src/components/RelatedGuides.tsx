@@ -24,6 +24,8 @@ import {
   TrendingUp,
   RefreshCw,
   Layers,
+  Brain,
+  Shuffle,
 } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
@@ -590,6 +592,99 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser til blackjack-spil" },
       ],
       subtitle: "Udforsk Spanish 21-alternativer og find de bedste bonusser til bordspil.",
+    };
+  }
+
+  // ── POKER CLUSTER: unique per-page related guides ──
+  if (path === "/casinospil/poker/texas-holdem") {
+    return {
+      guides: [
+        { to: "/casinospil/poker", label: "Poker Guide", icon: Gamepad2, desc: "Komplet overblik over alle pokervarianter" },
+        { to: "/casinospil/poker/omaha", label: "Omaha Poker", icon: Shuffle, desc: "4 hole cards – højere action og varians" },
+        { to: "/casinospil/poker/poker-strategi", label: "Poker Strategi", icon: Brain, desc: "GTO, pot odds og avanceret teori" },
+        { to: "/casinospil/poker/three-card-poker", label: "Three Card Poker", icon: Zap, desc: "Hurtigt casino-bordspil med Pair Plus" },
+        { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil poker med live dealere" },
+      ],
+      subtitle: "Udforsk andre pokervarianter, strategier og live casino-muligheder.",
+    };
+  }
+
+  if (path === "/casinospil/poker/omaha") {
+    return {
+      guides: [
+        { to: "/casinospil/poker", label: "Poker Guide", icon: Gamepad2, desc: "Hub med alle pokervarianter" },
+        { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em", icon: Target, desc: "Verdens mest populære pokervariant" },
+        { to: "/casinospil/poker/poker-strategi", label: "Poker Strategi", icon: Brain, desc: "Bankroll, position og avanceret teori" },
+        { to: "/casinospil/poker/caribbean-stud", label: "Caribbean Stud", icon: Trophy, desc: "5-kort poker mod dealeren" },
+        { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser til poker-spil" },
+      ],
+      subtitle: "Sammenlign Omaha med andre pokervarianter og find de bedste strategier.",
+    };
+  }
+
+  if (path === "/casinospil/poker/three-card-poker") {
+    return {
+      guides: [
+        { to: "/casinospil/poker", label: "Poker Guide", icon: Gamepad2, desc: "Alle pokervarianter sammenlignet" },
+        { to: "/casinospil/poker/caribbean-stud", label: "Caribbean Stud", icon: Trophy, desc: "Andet populært casino-bordspil" },
+        { to: "/casinospil/poker/video-poker", label: "Video Poker", icon: Gamepad2, desc: "Solo poker med RTP op til 99,5 %" },
+        { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em", icon: Target, desc: "Community-card poker klassikeren" },
+        { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil Three Card Poker live" },
+      ],
+      subtitle: "Udforsk lignende casino-bordspil og pokervarianter.",
+    };
+  }
+
+  if (path === "/casinospil/poker/caribbean-stud") {
+    return {
+      guides: [
+        { to: "/casinospil/poker", label: "Poker Guide", icon: Gamepad2, desc: "Komplet oversigt over pokervarianter" },
+        { to: "/casinospil/poker/three-card-poker", label: "Three Card Poker", icon: Zap, desc: "Hurtigere alternativ med Pair Plus" },
+        { to: "/casinospil/poker/video-poker", label: "Video Poker", icon: Gamepad2, desc: "Solo poker med bedre RTP" },
+        { to: "/casinospil/poker/poker-strategi", label: "Poker Strategi", icon: Brain, desc: "Matematiske modeller og EV-analyse" },
+        { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Sæt grænser og spil sikkert" },
+      ],
+      subtitle: "Sammenlign Caribbean Stud med andre poker-bordspil og strategier.",
+    };
+  }
+
+  if (path === "/casinospil/poker/video-poker") {
+    return {
+      guides: [
+        { to: "/casinospil/poker", label: "Poker Guide", icon: Gamepad2, desc: "Hub med alle pokervarianter" },
+        { to: "/casinospil/poker/poker-strategi", label: "Poker Strategi", icon: Brain, desc: "Avanceret strategiteori" },
+        { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em", icon: Target, desc: "Multi-player poker online" },
+        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2, desc: "Sammenlign med slot-mekanikker" },
+        { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser der understøtter video poker" },
+      ],
+      subtitle: "Udforsk pokervarianter, strategier og sammenlign med spillemaskiner.",
+    };
+  }
+
+  if (path === "/casinospil/poker/poker-strategi") {
+    return {
+      guides: [
+        { to: "/casinospil/poker", label: "Poker Guide", icon: Gamepad2, desc: "Alle pokervarianter sammenlignet" },
+        { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em", icon: Target, desc: "Anvend strategien i praksis" },
+        { to: "/casinospil/poker/omaha", label: "Omaha Poker", icon: Shuffle, desc: "Avanceret multi-draw strategi" },
+        { to: "/casinospil/poker/video-poker", label: "Video Poker", icon: Gamepad2, desc: "Solo strategi med 99,5 % RTP" },
+        { to: "/omsaetningskrav", label: "Omsætningskrav", icon: Target, desc: "Poker og bonusomsætning" },
+      ],
+      subtitle: "Anvend strategien på specifikke pokervarianter og forstå bonusvilkår.",
+    };
+  }
+
+  // Poker hub
+  if (path === "/casinospil/poker") {
+    return {
+      guides: [
+        casinospilHub,
+        { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em", icon: Target, desc: "Verdens mest populære pokervariant" },
+        { to: "/casinospil/poker/video-poker", label: "Video Poker", icon: Gamepad2, desc: "Solo poker med op til 99,5 % RTP" },
+        { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil poker med live dealere" },
+        { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser til poker-spil" },
+      ],
+      subtitle: "Dyk ned i pokervarianter, strategier og live casino-muligheder.",
     };
   }
 
