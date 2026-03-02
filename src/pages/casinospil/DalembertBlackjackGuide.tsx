@@ -593,10 +593,6 @@ const DalembertBlackjackGuide = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Danske Casinoer med Live Blackjack til D'Alembert-Test" />
-
-        <Separator className="mb-12" />
-
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 10 – Konklusion
         ═══════════════════════════════════════════════════════════════ */}

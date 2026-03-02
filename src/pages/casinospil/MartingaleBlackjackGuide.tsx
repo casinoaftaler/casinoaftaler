@@ -740,10 +740,6 @@ const MartingaleBlackjackGuide = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Danske Casinoer med Live Blackjack-Borde" />
-
-        <Separator className="mb-12" />
-
         {/* ═══════════════════════════════════════════════════════════════
             SECTION 12 – Hvad du bør gøre i stedet
         ═══════════════════════════════════════════════════════════════ */}
