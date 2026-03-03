@@ -678,6 +678,9 @@ async function getBonanzaRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolea
 }
 
 async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+  // Pre-generate enough random values for grid generation:
+  // ~5 rows * 6 cols * 2 (symbol picks + bomb/scatter rolls) + ~20 (dup rolls + shuffles) = ~80
+  await prng.pregenerate(100);
   const scatterSymbol = symbols.find(s => s.is_scatter);
   const nonScatterSymbols = symbols.filter(s => !s.is_scatter);
   const regularSymbols = nonScatterSymbols; // non-scatter, non-bomb candidates for duplication
@@ -803,6 +806,8 @@ function scanBonanzaBombs(grid: string[][]): BonanzaMultiplierBomb[] {
 }
 
 async function applyBonanzaTumble(grid: string[][], winningPositions: number[], bombPositions: number[], symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+  // Pre-generate enough random values for tumble fill (~15 per tumble)
+  await prng.pregenerate(20);
   const newGrid = grid.map(col => [...col]);
   const allRemoved = new Set([...winningPositions, ...bombPositions]);
   const removedByCol = new Map<number, Set<number>>();
@@ -957,6 +962,8 @@ function secureRandom(): number {
 class SeededPRNG {
   private state: Uint8Array;
   private offset: number = 0;
+  private buffer: number[] = [];
+  private bufferIdx: number = 0;
 
   constructor(seed: Uint8Array) {
     this.state = seed;
@@ -969,8 +976,48 @@ class SeededPRNG {
     return new SeededPRNG(new Uint8Array(hash));
   }
 
+  // Pre-generate at least n random values by chaining SHA-256 hashes upfront.
+  // After calling this, next() will consume from the buffer without awaiting.
+  async pregenerate(n: number): Promise<void> {
+    const remaining = this.buffer.length - this.bufferIdx;
+    const needed = n - remaining;
+    if (needed <= 0) return;
+    // Each hash produces 8 floats (32 bytes / 4 bytes each)
+    const hashRounds = Math.ceil(needed / 8);
+    const newValues: number[] = [];
+    // First, drain any remaining values from current state
+    while (this.offset + 4 <= this.state.length && newValues.length < needed) {
+      const view = new DataView(this.state.buffer, this.state.byteOffset + this.offset, 4);
+      newValues.push(view.getUint32(0) / (0xffffffff + 1));
+      this.offset += 4;
+    }
+    // Chain-hash to fill the rest
+    let hashState = this.state;
+    while (newValues.length < needed) {
+      const hash = await crypto.subtle.digest("SHA-256", hashState);
+      hashState = new Uint8Array(hash);
+      for (let off = 0; off + 4 <= 32 && newValues.length < needed; off += 4) {
+        const view = new DataView(hash, off, 4);
+        newValues.push(view.getUint32(0) / (0xffffffff + 1));
+      }
+    }
+    // Update internal state to continue from last hash
+    this.state = hashState;
+    this.offset = (needed % 8) * 4; // offset into last hash block
+    // Append to buffer (keep unconsumed values)
+    if (this.bufferIdx > 0) {
+      this.buffer = this.buffer.slice(this.bufferIdx);
+      this.bufferIdx = 0;
+    }
+    this.buffer.push(...newValues);
+  }
+
   async next(): Promise<number> {
-    // If we've consumed all 32 bytes (8 floats), re-hash to get more
+    // Fast path: consume from pre-generated buffer
+    if (this.bufferIdx < this.buffer.length) {
+      return this.buffer[this.bufferIdx++];
+    }
+    // Slow path: hash on demand (fallback for non-batched callers)
     if (this.offset + 4 > this.state.length) {
       const hash = await crypto.subtle.digest("SHA-256", this.state);
       this.state = new Uint8Array(hash);
@@ -1704,9 +1751,18 @@ Deno.serve(async (req) => {
       // Load Bonanza settings from DB (cached 5 min)
       await loadBonanzaSettings(serviceClient);
 
+      // Pre-fetch tournament participations (cached for entire request)
+      const tournamentParticipationsPromise = serviceClient
+        .from("tournament_participants")
+        .select("tournament_id")
+        .eq("user_id", userId);
+
       // Create provably fair PRNG
       const serverSecret = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "default-server-secret";
-      const prng = await SeededPRNG.create(serverSecret, userId, clientSeed, nonce);
+      const [prng, { data: cachedParticipations }] = await Promise.all([
+        SeededPRNG.create(serverSecret, userId, clientSeed, nonce),
+        tournamentParticipationsPromise,
+      ]);
 
       if (isBonusSpin) {
         const bonusData = bonusRes.data;
@@ -1733,11 +1789,7 @@ Deno.serve(async (req) => {
           const capturedBonanzaBet = bet;
           (async () => {
             try {
-              const { data: participations } = await serviceClient
-                .from("tournament_participants")
-                .select("tournament_id")
-                .eq("user_id", userId);
-
+              const participations = cachedParticipations;
               let skipBonusGlobal = false;
 
               if (participations && participations.length > 0) {
@@ -1816,11 +1868,7 @@ Deno.serve(async (req) => {
       const bonanzaSpinBonus = bonanzaResult.bonusTriggered;
       (async () => {
         try {
-          const { data: participations } = await serviceClient
-            .from("tournament_participants")
-            .select("tournament_id")
-            .eq("user_id", userId);
-
+          const participations = cachedParticipations;
           let skipGlobal = false;
 
           if (participations && participations.length > 0) {
