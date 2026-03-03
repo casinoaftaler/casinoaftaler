@@ -171,14 +171,7 @@ export default function SlotMachine() {
   }
 
   // Side panel content for desktop
-  const sidePanelContent = (
-    <>
-      <SlotLeaderboard gameId="book-of-fedesvin" />
-      {topCasino && (
-        <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
-      )}
-    </>
-  );
+  const sidePanelContent = null;
 
   // 7. Show the game
   return (
@@ -229,12 +222,6 @@ export default function SlotMachine() {
 
       {/* Mobile/Tablet: Side content below game - OUTSIDE scaled container for proper scrolling */}
       <div className="xl:hidden flex flex-col items-center px-4 pb-6 pt-2">
-        <div className="w-full max-w-sm space-y-4">
-          {topCasino && (
-            <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />
-          )}
-          <SlotLeaderboard gameId="book-of-fedesvin" />
-        </div>
         <SlotGameSeoCta />
       </div>
     </div>
