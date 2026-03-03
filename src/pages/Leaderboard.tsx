@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { CompletedTournamentRow } from "@/components/tournament/CompletedTournamentRow";
 import { MonthlyTournamentBoxes } from "@/components/tournament/MonthlyTournamentBoxes";
-import { TournamentSeoContent } from "@/components/tournament/TournamentSeoContent";
+import { TournamentSeoContent, getTournamentFaqSchema } from "@/components/tournament/TournamentSeoContent";
 
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
