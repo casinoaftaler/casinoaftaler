@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { CreditsExpiredOverlay } from "./CreditsExpiredOverlay";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
