@@ -66,7 +66,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     return new Map(bombSymbols.map(b => [b.value, b]));
   }, [bombSymbols]);
 
-  const [bet, setBet] = useState(10);
+  const [bet, setBet] = useState(1);
   const [isSpinning, setIsSpinning] = useState(false);
   const [grid, setGrid] = useState<string[][] | null>(null);
   const [winAmount, setWinAmount] = useState(0);
@@ -594,7 +594,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         if (response.spinsRemaining !== undefined) {
           const today = getTodayDanish();
           queryClient.setQueryData(
-            ["slot-spins", user?.id, today],
+            ["slot-spins", user?.id, today, "shared"],
             (old: any) => old ? { ...old, spins_remaining: response.spinsRemaining } : old
           );
           queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
@@ -897,7 +897,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           bet={bet}
           onBetChange={setBet}
           onSpin={handleSpinWithPress}
-          maxBet={siteSettings?.bonanza_max_bet ? parseInt(siteSettings.bonanza_max_bet) : 10}
+          minBet={slotSettings.minBet}
+          maxBet={siteSettings?.bonanza_max_bet ? parseInt(siteSettings.bonanza_max_bet) : slotSettings.maxBet}
           isSpinning={isSpinning || tumblePhase !== 'idle'}
           isSpinLocked={spinLockRef.current}
           canSpin={canSpin}
