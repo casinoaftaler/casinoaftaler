@@ -670,11 +670,23 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     }
   }, [bonusAutoSpinPending, isBonusActive, isSpinning, handleSpin]);
 
-  const handleSpinWithPress = useCallback(async () => {
+   const handleSpinWithPress = useCallback(async () => {
     setSpinPressed(true);
     setTimeout(() => setSpinPressed(false), 200);
     handleSpin();
   }, [handleSpin]);
+
+  // Spacebar to spin + prevent page scroll
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        handleSpinWithPress();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleSpinWithPress]);
 
   if (symbolsLoading || !symbols) {
     return (
@@ -853,41 +865,30 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         />
       </div>
 
-      {/* Gevinst bar */}
-      <div className="w-full flex justify-center">
-        <div className={cn(
-          "flex items-center gap-4 px-6 py-2 rounded-xl border",
-          isBonusActive
-            ? "bg-gradient-to-b from-pink-900/60 via-pink-950/70 to-pink-950/60 border-pink-500/40"
-            : "bg-gradient-to-b from-pink-950/60 via-fuchsia-950/60 to-pink-950/60 border-pink-500/20"
-        )}>
-          {isBonusActive && (
-            <>
-              <div className="flex flex-col items-center">
-                <span className="text-[10px] uppercase tracking-widest font-semibold text-pink-400/70">Free Spins</span>
-                <div className="flex items-baseline gap-1">
-                  <AnimatedSpinCounter
-                    value={freeSpinsRemaining}
-                    className="text-2xl font-black text-pink-300 drop-shadow-[0_0_12px_rgba(236,72,153,0.8)] tabular-nums"
-                  />
-                  <span className="text-sm text-pink-500/60 font-bold">/ {totalFreeSpins}</span>
-                </div>
-              </div>
-              <div className="w-px h-8 bg-pink-500/30" />
-            </>
-          )}
-          <div className="flex flex-col items-center">
-            <span className={cn(
-              "text-[10px] uppercase tracking-widest font-semibold",
-              "text-green-400/70"
-            )}>Gevinst</span>
-            <span className="text-2xl font-black tabular-nums text-green-300/90 drop-shadow-[0_0_8px_rgba(74,222,128,0.5)]">
-              {isBonusActive
-                ? bonusWinnings.toLocaleString()
-                : (tumblePhase !== 'idle' ? runningWin : winAmount).toLocaleString()
-              }
-            </span>
+      {/* Gevinst + Resterende spins text */}
+      <div className="w-full flex flex-col items-center gap-0.5">
+        {isBonusActive && (
+          <div className="flex items-baseline gap-2">
+            <span className="text-xs uppercase tracking-widest font-bold text-pink-400">Free Spins</span>
+            <AnimatedSpinCounter
+              value={freeSpinsRemaining}
+              className="text-2xl font-black text-pink-300 drop-shadow-[0_0_12px_rgba(236,72,153,0.8)] tabular-nums"
+            />
+            <span className="text-sm text-pink-500/60 font-bold">/ {totalFreeSpins}</span>
           </div>
+        )}
+        <div className="flex items-baseline gap-2">
+          <span className="text-xs uppercase tracking-widest font-bold text-pink-400" style={{ textShadow: "0 0 10px rgba(236,72,153,0.6)" }}>Gevinst</span>
+          <span className="text-2xl font-black tabular-nums text-pink-300 drop-shadow-[0_0_10px_rgba(236,72,153,0.6)]">
+            {isBonusActive
+              ? bonusWinnings.toLocaleString()
+              : (tumblePhase !== 'idle' ? runningWin : winAmount).toLocaleString()
+            }
+          </span>
+        </div>
+        <div className="flex items-baseline gap-2">
+          <span className="text-[10px] uppercase tracking-widest font-semibold text-pink-400/70">Resterende spins</span>
+          <span className="text-sm font-black tabular-nums text-pink-300/80">{spinsRemaining}</span>
         </div>
       </div>
 
