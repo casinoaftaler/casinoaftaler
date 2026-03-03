@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { CompletedTournamentRow } from "@/components/tournament/CompletedTournamentRow";
 import { MonthlyTournamentBoxes } from "@/components/tournament/MonthlyTournamentBoxes";
-import { TournamentSeoContent } from "@/components/tournament/TournamentSeoContent";
+import { TournamentSeoContent, getTournamentFaqSchema } from "@/components/tournament/TournamentSeoContent";
 
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
@@ -405,11 +405,52 @@ export default function Leaderboard() {
   const upcoming = tournaments?.filter((t) => t.status === "upcoming") || [];
   const ended = tournaments?.filter((t) => t.status === "ended") || [];
 
+  // Build JSON-LD: Event schema + FAQ schema
+  const now = new Date();
+  const currentMonth = now.toLocaleString("da-DK", { month: "long", year: "numeric" });
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split("T")[0];
+  const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0).toISOString().split("T")[0];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Event",
+        name: `Slot Turnering – ${currentMonth}`,
+        description: "Månedlig gratis slot-turnering med præmier. Deltag i tre kategorier: Flest Point, Højeste X og Største Gevinst.",
+        startDate: monthStart,
+        endDate: monthEnd,
+        eventStatus: "https://schema.org/EventScheduled",
+        eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+        location: {
+          "@type": "VirtualLocation",
+          url: "https://casinoaftaler.dk/community/turneringer",
+        },
+        organizer: {
+          "@type": "Organization",
+          name: "Casinoaftaler.dk",
+          url: "https://casinoaftaler.dk",
+        },
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "DKK",
+          availability: "https://schema.org/InStock",
+          url: "https://casinoaftaler.dk/community/turneringer",
+          description: "Gratis deltagelse – spil med virtuelle credits",
+        },
+        isAccessibleForFree: true,
+      },
+      getTournamentFaqSchema(),
+    ],
+  };
+
   return (
     <>
       <SEO
-        title="Turneringer – Slot Turneringer | Casinoaftaler"
-        description="Deltag i slot-turneringer og vind præmier! Se aktive turneringer, ranglister og vindere hos Casinoaftaler."
+        title="Slot Turneringer – Gratis Turneringer med Præmier 2026"
+        description="Deltag gratis i månedlige slot-turneringer og vind præmier op til 500 kr. Tre kategorier, daglige credits og automatisk deltagelse."
+        jsonLd={jsonLd}
       />
 
       {/* Hero Section – matching Bonus Hunt style */}

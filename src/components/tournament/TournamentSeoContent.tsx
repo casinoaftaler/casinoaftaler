@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Trophy, BarChart3, Gift } from "lucide-react";
+import { Gamepad2, Trophy, BarChart3, Gift, HelpCircle } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const steps = [
   {
@@ -64,41 +70,224 @@ const steps = [
   },
 ];
 
+const faqItems = [
+  {
+    q: "Koster det penge at deltage i turneringerne?",
+    a: "Nej, alle turneringer er 100 % gratis. Du spiller med virtuelle credits – ikke rigtige penge. Du får 1.000 credits per maskine dagligt, og de nulstilles automatisk ved midnat dansk tid.",
+  },
+  {
+    q: "Hvad kan jeg vinde?",
+    a: "Hver måned uddeles præmier til top 3 i tre kategorier: 500 kr for 1. pladsen, 300 kr for 2. pladsen og 200 kr for 3. pladsen. Præmierne udbetales som credits, der kan bruges i vores butik.",
+  },
+  {
+    q: "Hvor mange spilleautomater kan jeg spille?",
+    a: (
+      <>
+        Der er tre eksklusive community-maskiner: <strong>Fedesvin Bonanza</strong> (Flest Point), <strong>Book of Fedesvin</strong> (Højeste X) og <strong>Rise of Fedesvin</strong> (Største Gevinst). Hver maskine har sin egen turnering og sine egne daglige credits.
+      </>
+    ),
+  },
+  {
+    q: "Hvornår nulstilles turneringen?",
+    a: "Turneringen nulstilles automatisk den 1. i hver måned kl. 00:00 dansk tid. Alle spillere starter fra scratch, og vinderne fra den foregående måned arkiveres.",
+  },
+  {
+    q: "Kan jeg deltage på mobil?",
+    a: "Ja, alle spilleautomater og turneringer er fuldt optimeret til mobil. Du kan spille og følge din placering direkte fra din smartphone.",
+  },
+  {
+    q: "Hvordan adskiller dette sig fra rigtige casino-turneringer?",
+    a: (
+      <>
+        Vores turneringer bruger virtuelle credits – ikke rigtige penge – og er derfor fuldstændig risikofrie.
+        Hos rigtige onlinecasinoer kræver turneringer typisk et indskud. Vil du vide mere om{" "}
+        <Link to="/casino-bonus" className="text-primary hover:underline">
+          bonusser hos rigtige casinoer
+        </Link>
+        , kan du læse vores bonusguides.
+      </>
+    ),
+  },
+  {
+    q: "Er der krav om wagering eller omsætning?",
+    a: (
+      <>
+        Nej, der er ingen omsætningskrav i vores community-turneringer. Præmierne gives direkte som credits.
+        Vil du forstå, hvordan{" "}
+        <Link to="/omsaetningskrav" className="text-primary hover:underline">
+          omsætningskrav fungerer hos casinoer
+        </Link>
+        , har vi en dybdegående guide.
+      </>
+    ),
+  },
+];
+
 export function TournamentSeoContent() {
   return (
-    <section className="space-y-5">
-      <h2 className="text-lg font-bold text-foreground">
-        Sådan deltager du i vores månedlige turneringer
-      </h2>
+    <div className="space-y-10">
+      {/* 4-step guide */}
+      <section className="space-y-5">
+        <h2 className="text-lg font-bold text-foreground">
+          Sådan deltager du i vores månedlige turneringer
+        </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {steps.map((s) => (
-          <div
-            key={s.step}
-            className="group rounded-xl border border-border/50 bg-card p-5 space-y-3 cursor-default transition-all duration-200 hover:border-primary/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5"
-            style={{
-              background: 'linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.7) 100%)',
-            }}
-          >
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary font-bold text-sm">
-                {s.step}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {steps.map((s) => (
+            <div
+              key={s.step}
+              className="group rounded-xl border border-border/50 bg-card p-5 space-y-3 cursor-default transition-all duration-200 hover:border-primary/20 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/5"
+              style={{
+                background: 'linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.7) 100%)',
+              }}
+            >
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary font-bold text-sm">
+                  {s.step}
+                </div>
+                <div>
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
+                    Trin {s.step}
+                  </span>
+                  <h3 className="text-sm font-semibold text-foreground leading-tight">
+                    {s.heading}
+                  </h3>
+                </div>
               </div>
-              <div>
-                <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">
-                  Trin {s.step}
-                </span>
-                <h3 className="text-sm font-semibold text-foreground leading-tight">
-                  {s.heading}
-                </h3>
-              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {s.description}
+              </p>
             </div>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              {s.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
+
+      {/* Rules & tournament structure */}
+      <section className="space-y-4">
+        <h2 className="text-lg font-bold text-foreground">
+          Turneringsregler & præmiestruktur
+        </h2>
+        <div className="prose prose-sm max-w-none text-muted-foreground space-y-3">
+          <p>
+            Vores månedlige slot-turneringer er designet til at give alle en fair chance for at vinde. I modsætning til{" "}
+            <Link to="/nye-casinoer" className="text-primary hover:underline">
+              nye online casinoer
+            </Link>
+            , hvor turneringer ofte kræver et indskud, er vores turneringer 100 % gratis og risikofrie.
+          </p>
+          <p>
+            Du får <strong>1.000 virtuelle credits dagligt</strong> til hver af de tre spilleautomater. Credits nulstilles ved midnat dansk tid,
+            så du kan vende tilbage hver dag og forbedre din placering. Dit bedste resultat i løbet af måneden tæller — ikke det seneste.
+          </p>
+          <p>
+            Turneringen opdeles i tre uafhængige kategorier, så forskellige spilstile belønnes:
+          </p>
+          <ul className="list-disc pl-5 space-y-1.5 text-muted-foreground text-sm">
+            <li>
+              <strong>Fedesvin Bonanza – Flest Point:</strong> Belønner konsistente spillere, der akkumulerer flest samlede point over måneden.
+            </li>
+            <li>
+              <strong>Book of Fedesvin – Højeste X:</strong> Går efter den single biggest multiplikator — perfekt til high-risk spillere, der jager store udbetalinger.
+            </li>
+            <li>
+              <strong>Rise of Fedesvin – Største Gevinst:</strong> Belønner den højeste enkeltgevinst i credits — en blanding af held og timing.
+            </li>
+          </ul>
+          <p>
+            Præmierne for top 3 i hver kategori er: <strong>500 kr</strong> (1. plads), <strong>300 kr</strong> (2. plads) og <strong>200 kr</strong> (3. plads).
+            Præmierne udbetales som credits til din profil. Du kan bruge dem i vores{" "}
+            <Link to="/community/rewards" className="text-primary hover:underline">
+              rewards-program
+            </Link>{" "}
+            eller i{" "}
+            <Link to="/butik" className="text-primary hover:underline">
+              butikken
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+
+      {/* Strategy section with money-page links */}
+      <section className="space-y-4">
+        <h2 className="text-lg font-bold text-foreground">
+          Strategitips til turneringerne
+        </h2>
+        <div className="prose prose-sm max-w-none text-muted-foreground space-y-3">
+          <p>
+            Selvom vores spilleautomater er baseret på tilfældighed (ligesom{" "}
+            <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
+              rigtige spillemaskiner
+            </Link>
+            ), kan du optimere dine chancer med en bevidst tilgang:
+          </p>
+          <ul className="list-disc pl-5 space-y-1.5 text-muted-foreground text-sm">
+            <li>
+              <strong>Spred dine credits:</strong> Brug ikke alle 1.000 credits på ét bet. Mindre bets giver flere spins og dermed flere chancer for at triggere bonusrunder.
+            </li>
+            <li>
+              <strong>Fokusér på din stærkeste kategori:</strong> Hvis du jager "Højeste X", bør du prioritere Book of Fedesvin, hvor bonus-mekanikken favoriserer store multiplikatorer.
+            </li>
+            <li>
+              <strong>Kom tilbage dagligt:</strong> Med 1.000 nye credits pr. maskine pr. dag har du op til 3.000 daglige forsøg. Jo flere dage du spiller, jo bedre er dine odds.
+            </li>
+            <li>
+              <strong>Forstå volatilitet:</strong> Hver maskine har unik volatilitet. Fedesvin Bonanza har tumble-mekanik for jævne gevinster, mens Book of Fedesvin har expanding wilds for sjældne, men store udbetalinger — ligesom{" "}
+              <Link to="/casinospil/spillemaskiner/book-of-dead" className="text-primary hover:underline">
+                Book of Dead
+              </Link>
+              .
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* FAQ section */}
+      <section className="space-y-4">
+        <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
+          <HelpCircle className="h-5 w-5 text-primary" />
+          Ofte stillede spørgsmål om turneringer
+        </h2>
+        <Accordion type="single" collapsible className="w-full">
+          {faqItems.map((item, i) => (
+            <AccordionItem key={i} value={`faq-${i}`}>
+              <AccordionTrigger className="text-sm font-medium text-foreground text-left">
+                {item.q}
+              </AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                {item.a}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </section>
+    </div>
   );
+}
+
+/**
+ * FAQ structured data for the tournament page.
+ * Should be passed to <SEO jsonLd={...} />.
+ */
+export function getTournamentFaqSchema() {
+  return {
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: typeof item.q === "string" ? item.q : "",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: typeof item.a === "string" ? item.a : (() => {
+          // Extract text content from JSX for schema
+          const texts: Record<number, string> = {
+            2: "Der er tre eksklusive community-maskiner: Fedesvin Bonanza (Flest Point), Book of Fedesvin (Højeste X) og Rise of Fedesvin (Største Gevinst). Hver maskine har sin egen turnering og sine egne daglige credits.",
+            5: "Vores turneringer bruger virtuelle credits – ikke rigtige penge – og er derfor fuldstændig risikofrie. Hos rigtige onlinecasinoer kræver turneringer typisk et indskud. Vil du vide mere om bonusser hos rigtige casinoer, kan du læse vores bonusguides.",
+            6: "Nej, der er ingen omsætningskrav i vores community-turneringer. Præmierne gives direkte som credits. Vil du forstå, hvordan omsætningskrav fungerer hos casinoer, har vi en dybdegående guide.",
+          };
+          const idx = faqItems.indexOf(item);
+          return texts[idx] || "";
+        })(),
+      },
+    })),
+  };
 }
