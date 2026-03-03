@@ -143,13 +143,6 @@ export function GatesBonusEndOverlay({
         <div className="absolute inset-0 bg-white/30 z-20" />
       )}
 
-      {/* Backdrop — transitions from stormy to calm */}
-      <div className={cn(
-        "absolute inset-0 transition-all duration-1000",
-        phase === 'storm-peak' ? "bg-purple-950/90 backdrop-blur-sm" :
-        phase === 'calm' ? "bg-black/80 backdrop-blur-sm" :
-        "bg-black/85 backdrop-blur-sm"
-      )} />
 
       {/* Camera shake for large wins during count */}
       <div className={cn(
