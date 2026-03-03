@@ -530,6 +530,9 @@ export default function Leaderboard() {
             </div>
           )}
 
+          {/* Tournament SEO content */}
+          <TournamentSeoContent />
+
           {/* SEO sections */}
           <div className="mt-12 space-y-8">
             <CommunitySeoSections />
