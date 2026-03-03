@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import tournamentHero from "@/assets/community/tournament-hero.jpg";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -454,24 +454,13 @@ export default function Leaderboard() {
         jsonLd={jsonLd}
       />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden text-white">
-        <img
-          src={tournamentHero}
-          alt=""
-          width={1920}
-          height={1080}
-          className="absolute inset-0 w-full h-full object-cover"
-          aria-hidden="true"
-          loading="eager"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(135deg, hsl(260 70% 25% / 0.85), hsl(250 60% 20% / 0.8) 40%, hsl(210 80% 25% / 0.85))",
-          }}
-        />
+      {/* Hero Section – matching Bonus Hunt style */}
+      <section
+        className="relative overflow-hidden text-white"
+        style={{
+          background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+        }}
+      >
         <div className="relative container py-14 md:py-24">
           <div className="mx-auto max-w-3xl text-center space-y-5">
             <h1 className="text-3xl font-bold tracking-tight leading-tight md:text-5xl md:leading-tight">
@@ -494,7 +483,7 @@ export default function Leaderboard() {
               </span>
               <span className="inline-flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
-                Kontante præmier
+                Credits som præmier
               </span>
             </div>
           </div>

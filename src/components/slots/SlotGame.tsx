@@ -82,7 +82,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
     resumeRealtimeUpdates,
   } = useBonusGameSync(symbols, gameId);
   
-  const [bet, setBetRaw] = useState(1);
+  const [bet, setBetRaw] = useState(10);
   // During active bonus, always show the locked-in bet from bonus state
   // to prevent brief flash of bet=1 on page refresh
   const effectiveBet = bonusState.isActive && bonusLoaded && bonusState.betAmount > 0
