@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 
-type BonusEntryPhase = 'freeze' | 'candy-burst' | 'fadeout' | 'candy-land' | 'spins-reveal' | 'done';
+type BonusEntryPhase = 'idle' | 'flash' | 'explosion' | 'vignette' | 'reveal' | 'hold';
 
 interface BonanzaBonusEntrySequenceProps {
   isActive: boolean;
@@ -9,109 +9,235 @@ interface BonanzaBonusEntrySequenceProps {
   onComplete: () => void;
 }
 
+/* ── Particle system ── */
+interface Particle {
+  x: number; y: number;
+  vx: number; vy: number;
+  size: number; color: string;
+  alpha: number; decay: number;
+  gravity: number;
+}
+
+const COLORS = [
+  'rgba(236,72,153,', // pink-500
+  'rgba(217,70,239,', // fuchsia-500
+  'rgba(250,204,21,', // yellow-400
+  'rgba(251,191,36,', // amber-400
+  'rgba(255,255,255,', // white
+  'rgba(244,114,182,', // pink-400
+];
+
+function spawnParticles(cx: number, cy: number, count: number): Particle[] {
+  const particles: Particle[] = [];
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 2 + Math.random() * 8;
+    particles.push({
+      x: cx, y: cy,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      size: 2 + Math.random() * 5,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      alpha: 1,
+      decay: 0.008 + Math.random() * 0.012,
+      gravity: 0.04 + Math.random() * 0.04,
+    });
+  }
+  return particles;
+}
+
 export function BonanzaBonusEntrySequence({ isActive, freeSpinsAwarded, onComplete }: BonanzaBonusEntrySequenceProps) {
-  const [phase, setPhase] = useState<BonusEntryPhase>('freeze');
+  const [phase, setPhase] = useState<BonusEntryPhase>('idle');
   const [spinsCountUp, setSpinsCountUp] = useState(0);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<Particle[]>([]);
+  const rafRef = useRef<number>(0);
+  const stableComplete = useRef(onComplete);
+  stableComplete.current = onComplete;
 
+  // Canvas particle loop
+  const startParticles = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = canvas.clientWidth * dpr;
+    canvas.height = canvas.clientHeight * dpr;
+    ctx.scale(dpr, dpr);
+
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    particlesRef.current = spawnParticles(w / 2, h / 2, 140);
+
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      let alive = 0;
+      for (const p of particlesRef.current) {
+        if (p.alpha <= 0) continue;
+        alive++;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += p.gravity;
+        p.alpha -= p.decay;
+        p.size *= 0.995;
+        if (p.alpha <= 0) continue;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.alpha + ')';
+        ctx.fill();
+      }
+      if (alive > 0) {
+        rafRef.current = requestAnimationFrame(draw);
+      }
+    };
+    draw();
+  }, []);
+
+  // Phase sequencing
   useEffect(() => {
-    if (!isActive) {
-      setPhase('freeze');
-      setSpinsCountUp(0);
-      return;
-    }
+    if (!isActive) { setPhase('idle'); setSpinsCountUp(0); return; }
 
-    setPhase('freeze');
-    const t0 = setTimeout(() => setPhase('candy-burst'), 200);
-    const t1 = setTimeout(() => setPhase('fadeout'), 500);
-    const t2 = setTimeout(() => setPhase('candy-land'), 1100);
-    const t3 = setTimeout(() => setPhase('spins-reveal'), 1700);
-    const t4 = setTimeout(() => { setPhase('done'); onComplete(); }, 4500);
+    setPhase('flash');
+    const t0 = setTimeout(() => { setPhase('explosion'); startParticles(); }, 300);
+    const t1 = setTimeout(() => setPhase('vignette'), 1200);
+    const t2 = setTimeout(() => setPhase('reveal'), 2000);
+    const t3 = setTimeout(() => setPhase('hold'), 3500);
+    const t4 = setTimeout(() => stableComplete.current(), 5000);
 
-    return () => { clearTimeout(t0); clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
-  }, [isActive, onComplete]);
+    return () => { [t0, t1, t2, t3, t4].forEach(clearTimeout); cancelAnimationFrame(rafRef.current); };
+  }, [isActive, startParticles]);
 
+  // Drum-roll counter
   useEffect(() => {
-    if (phase !== 'spins-reveal') return;
+    if (phase !== 'reveal') return;
     setSpinsCountUp(0);
     let current = 0;
-    const step = Math.max(1, Math.floor(freeSpinsAwarded / 15));
+    const step = Math.max(1, Math.floor(freeSpinsAwarded / 20));
     const interval = setInterval(() => {
       current += step;
       if (current >= freeSpinsAwarded) { current = freeSpinsAwarded; clearInterval(interval); }
       setSpinsCountUp(current);
-    }, 80);
+    }, 60);
     return () => clearInterval(interval);
   }, [phase, freeSpinsAwarded]);
 
   if (!isActive) return null;
 
+  const showVignette = phase === 'vignette' || phase === 'reveal' || phase === 'hold';
+  const showContent = phase === 'reveal' || phase === 'hold';
+  const isCountingDone = spinsCountUp >= freeSpinsAwarded;
+
   return (
-    <div className="fixed inset-0 z-50 pointer-events-auto">
-      {/* Phase 0: Freeze — pink flash */}
+    <div className={cn(
+      "fixed inset-0 z-50 pointer-events-auto",
+      phase === 'flash' && "bonanza-screen-shake"
+    )}>
+      {/* Flash overlay */}
       <div className={cn(
-        "absolute inset-0 z-5 bg-pink-300/30 transition-opacity duration-100",
-        phase === 'freeze' ? "opacity-100" : "opacity-0"
-      )} />
+        "absolute inset-0 z-[5] transition-opacity duration-150",
+        phase === 'flash' ? "opacity-100" : "opacity-0"
+      )} style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(236,72,153,0.7) 60%, rgba(217,70,239,0.5) 100%)' }} />
 
-      {/* Phase 1: Candy burst flash */}
-      <div className={cn(
-        "absolute inset-0 z-10 transition-opacity duration-200",
-        phase === 'candy-burst' ? "opacity-100" : "opacity-0"
-      )}>
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-400/70 via-fuchsia-400/60 to-purple-400/70 animate-pulse" />
-        {/* Candy sparkle bursts */}
-        <div className="absolute top-1/4 left-1/4 w-4 h-4 rounded-full bg-yellow-300 animate-ping" />
-        <div className="absolute top-1/3 right-1/3 w-3 h-3 rounded-full bg-pink-300 animate-ping" style={{ animationDelay: '100ms' }} />
-        <div className="absolute bottom-1/3 left-1/2 w-5 h-5 rounded-full bg-fuchsia-300 animate-ping" style={{ animationDelay: '200ms' }} />
-      </div>
+      {/* Canvas for particles */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full z-[10]"
+        style={{ pointerEvents: 'none' }}
+      />
 
-      {/* Phase 2: Fade out */}
+      {/* Vignette / background */}
       <div className={cn(
-        "absolute inset-0 z-20 bg-black transition-opacity duration-800",
-        phase === 'freeze' || phase === 'candy-burst' ? "opacity-0" :
-        phase === 'fadeout' ? "opacity-90" : "opacity-0"
-      )} />
+        "absolute inset-0 z-[15] transition-opacity duration-700",
+        showVignette ? "opacity-100" : "opacity-0"
+      )} style={{
+        background: 'radial-gradient(ellipse at center, rgba(120,20,80,0.85) 0%, rgba(40,5,30,0.97) 70%, rgba(10,0,10,1) 100%)'
+      }} />
 
-      {/* Phase 3: Candy landscape */}
-      <div className={cn(
-        "absolute inset-0 z-30 transition-opacity duration-1000",
-        (phase === 'candy-land' || phase === 'spins-reveal' || phase === 'done') ? "opacity-100" : "opacity-0"
-      )}>
-        <div className="absolute inset-0 bg-gradient-to-b from-pink-950 via-fuchsia-950 to-purple-950" />
-        {/* Candy clouds */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-20 -left-20 w-[140%] h-48 bg-gradient-to-r from-pink-800/40 via-fuchsia-700/30 to-pink-800/40 animate-pulse" style={{ animationDuration: '8s' }} />
-          <div className="absolute top-10 -left-10 w-[120%] h-32 bg-gradient-to-r from-purple-800/30 via-pink-700/20 to-purple-800/30 animate-pulse" style={{ animationDuration: '12s' }} />
+      {/* Radial light burst behind text */}
+      {showContent && (
+        <div className="absolute inset-0 z-[18] flex items-center justify-center">
+          <div className="w-[500px] h-[500px] rounded-full opacity-40"
+            style={{
+              background: 'radial-gradient(circle, rgba(251,191,36,0.35) 0%, rgba(236,72,153,0.15) 40%, transparent 70%)',
+              animation: 'glow-pulse 2s ease-in-out infinite',
+            }}
+          />
         </div>
-        {/* Candy glow at center */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-pink-500/10 blur-3xl animate-pulse" style={{ animationDuration: '3s' }} />
-      </div>
+      )}
 
-      {/* Phase 4: Content */}
+      {/* Content: title + counter */}
       <div className={cn(
-        "absolute inset-0 z-40 flex flex-col items-center justify-center transition-opacity duration-500",
-        (phase === 'spins-reveal' || phase === 'done') ? "opacity-100" : "opacity-0"
+        "absolute inset-0 z-[20] flex flex-col items-center justify-center",
+        showContent ? "opacity-100" : "opacity-0"
       )}>
-        {/* Lollipop icon */}
-        <div className="text-8xl mb-4 animate-bounce">🍭</div>
+        {/* Starburst SVG */}
+        <svg className="bonanza-title-scale-in mb-2" width="80" height="80" viewBox="0 0 80 80" fill="none">
+          {Array.from({ length: 12 }).map((_, i) => {
+            const angle = (i / 12) * Math.PI * 2;
+            const inner = 12;
+            const outer = i % 2 === 0 ? 38 : 26;
+            return (
+              <line
+                key={i}
+                x1={40 + Math.cos(angle) * inner}
+                y1={40 + Math.sin(angle) * inner}
+                x2={40 + Math.cos(angle) * outer}
+                y2={40 + Math.sin(angle) * outer}
+                stroke="rgba(251,191,36,0.9)"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              />
+            );
+          })}
+          <circle cx="40" cy="40" r="10" fill="rgba(251,191,36,0.85)" />
+        </svg>
 
-        {/* FREE SPINS title */}
-        <h2 className="text-4xl sm:text-6xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-yellow-200 to-pink-300 drop-shadow-[0_0_20px_rgba(236,72,153,0.8)]">
+        {/* FREE SPINS metallic title */}
+        <h2
+          className="bonanza-title-scale-in text-4xl sm:text-6xl font-black tracking-widest"
+          style={{
+            backgroundImage: 'linear-gradient(90deg, #b8860b 0%, #ffd700 25%, #fffacd 50%, #ffd700 75%, #b8860b 100%)',
+            backgroundSize: '200% 100%',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            animation: 'bonanza-gold-sweep 1.5s ease-out forwards',
+            filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.6)) drop-shadow(0 0 40px rgba(251,191,36,0.3))',
+          }}
+        >
           FREE SPINS
         </h2>
 
-        {/* Spins count */}
+        {/* Spin count with drum-roll */}
         <div className="mt-6">
-          <div className="text-7xl sm:text-9xl font-black text-yellow-400 drop-shadow-[0_0_30px_rgba(250,204,21,0.6)]">
+          <div
+            className={cn(
+              "text-7xl sm:text-9xl font-black",
+              !isCountingDone && "bonanza-counter-drum"
+            )}
+            style={{
+              backgroundImage: 'linear-gradient(180deg, #ffd700 0%, #ff8c00 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              filter: 'drop-shadow(0 0 30px rgba(250,204,21,0.5))',
+            }}
+          >
             {spinsCountUp}
           </div>
         </div>
 
         {/* Subtitle */}
-        <div className={cn(
-          "mt-4 text-lg sm:text-xl text-pink-200/90 font-medium transition-opacity duration-500",
-          phase === 'spins-reveal' ? "opacity-100" : "opacity-0"
-        )}>
+        <div
+          className="mt-4 text-lg sm:text-xl font-medium"
+          style={{
+            color: 'rgba(244,114,182,0.9)',
+            opacity: showContent ? 1 : 0,
+            transition: 'opacity 0.6s ease 0.5s',
+          }}
+        >
           Multiplier bomber aktive! 💣
         </div>
       </div>
