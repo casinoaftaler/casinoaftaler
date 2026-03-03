@@ -60,7 +60,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     return new Map(multSymbols.map(s => [s.id, s]));
   }, [multSymbols]);
 
-  const [bet, setBet] = useState(10);
+  const [bet, setBet] = useState(1);
   const [isSpinning, setIsSpinning] = useState(false);
   const [grid, setGrid] = useState<string[][] | null>(null);
   const [winAmount, setWinAmount] = useState(0);
@@ -655,7 +655,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         if (response.spinsRemaining !== undefined) {
           const today = getTodayDanish();
           queryClient.setQueryData(
-            ["slot-spins", user?.id, today],
+            ["slot-spins", user?.id, today, "shared"],
             (old: any) => old ? { ...old, spins_remaining: response.spinsRemaining } : old
           );
           queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
@@ -929,6 +929,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         <GatesControlBar
           bet={bet}
           onBetChange={setBet}
+          minBet={slotSettings.minBet}
+          maxBet={slotSettings.maxBet}
           onSpin={handleSpinWithPress}
           isSpinning={isSpinning || tumblePhase !== 'idle'}
           isSpinLocked={spinLockRef.current}
