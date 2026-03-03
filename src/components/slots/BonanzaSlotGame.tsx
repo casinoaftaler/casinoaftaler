@@ -193,6 +193,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     const bs = pendingBonusStateRef.current;
     setShowBonusTrigger(false);
     showBonusTriggerRef.current = false;
+    setBonusAutoSpinPending(false);
     if (bs) {
       setIsBonusActive(true);
       setFreeSpinsRemaining(bs.freeSpinsRemaining);
@@ -593,7 +594,15 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   }, [isAutoSpinning]);
 
   useEffect(() => {
-    if (bonusAutoSpinPending && isBonusActive && !isSpinning) {
+    if (
+      bonusAutoSpinPending &&
+      isBonusActive &&
+      freeSpinsRemainingRef.current > 0 &&
+      !isSpinning &&
+      !showBonusTriggerRef.current &&
+      !showBonusCompleteRef.current &&
+      !showRetriggerRef.current
+    ) {
       setBonusAutoSpinPending(false);
       autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 800);
     }
@@ -677,6 +686,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           setShowBonusComplete(false);
           showBonusCompleteRef.current = false;
           setIsBonusActive(false);
+          setBonusAutoSpinPending(false);
           setCumulativeMultiplier(0);
           setRunningMultiplier(0);
           setBonusWinnings(0);
@@ -700,18 +710,11 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
               setTimeout(() => {
                 action();
 
-                const shouldResumeBonus =
-                  isBonusActiveRef.current &&
-                  freeSpinsRemainingRef.current > 0 &&
-                  !showBonusTriggerRef.current &&
-                  !showBonusCompleteRef.current &&
-                  !showRetriggerRef.current &&
-                  !pendingBonusActionRef.current;
-
-                if (shouldResumeBonus) {
-                  if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
-                  autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
-                }
+                // Let React commit bonus state updates first, then request bonus auto-spin resume.
+                // The bonusAutoSpinPending effect will only fire when overlays are closed and spins remain.
+                setTimeout(() => {
+                  setBonusAutoSpinPending(true);
+                }, 120);
               }, 300);
               return;
             }
