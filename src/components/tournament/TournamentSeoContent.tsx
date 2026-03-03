@@ -117,7 +117,7 @@ export function TournamentSeoContent() {
             , hvor turneringer ofte kræver et indskud, er vores turneringer 100 % gratis og risikofrie.
           </p>
           <p>
-            Du får <strong className="text-foreground">1.000 virtuelle credits dagligt</strong> til hver af de tre spilleautomater. Credits nulstilles ved midnat dansk tid,
+            Du får <strong className="text-foreground">2.000 virtuelle credits dagligt</strong>, som deles på tværs af alle tre spilleautomater. Det betyder, at du selv vælger, hvordan du fordeler dine credits — fokusér på én turnering eller spred dem ud. Credits nulstilles ved midnat dansk tid,
             så du kan vende tilbage hver dag og forbedre din placering. Dit bedste resultat i løbet af måneden tæller — ikke det seneste.
           </p>
           <p>
@@ -159,13 +159,13 @@ export function TournamentSeoContent() {
           </p>
           <ul className="list-disc pl-5 space-y-1.5">
             <li>
-              <strong className="text-foreground">Spred dine credits:</strong> Brug ikke alle 1.000 credits på ét bet. Mindre bets giver flere spins og dermed flere chancer for at triggere bonusrunder.
+              <strong className="text-foreground">Spred dine credits:</strong> Med 2.000 daglige credits fordelt på tværs af alle maskiner kan du selv prioritere. Mindre bets giver flere spins og dermed flere chancer for at triggere bonusrunder.
             </li>
             <li>
               <strong className="text-foreground">Fokusér på din stærkeste kategori:</strong> Hvis du jager "Højeste X", bør du prioritere Book of Fedesvin, hvor bonus-mekanikken favoriserer store multiplikatorer.
             </li>
             <li>
-              <strong className="text-foreground">Kom tilbage dagligt:</strong> Med 1.000 nye credits pr. maskine pr. dag har du op til 3.000 daglige forsøg. Jo flere dage du spiller, jo bedre er dine odds.
+              <strong className="text-foreground">Kom tilbage dagligt:</strong> Med 2.000 nye credits hver dag kan du fokusere på de turneringer, der betyder mest for dig. Jo flere dage du spiller, jo bedre er dine odds.
             </li>
             <li>
               <strong className="text-foreground">Forstå volatilitet:</strong> Hver maskine har unik volatilitet. Fedesvin Bonanza har tumble-mekanik for jævne gevinster (som{" "}
@@ -193,15 +193,15 @@ export function TournamentSeoContent() {
 export const tournamentFaqs = [
   {
     question: "Koster det penge at deltage i turneringerne?",
-    answer: "Nej, alle turneringer er 100 % gratis. Du spiller med virtuelle credits – ikke rigtige penge. Du får 1.000 credits per maskine dagligt, og de nulstilles automatisk ved midnat dansk tid.",
+    answer: "Nej, alle turneringer er 100 % gratis. Du spiller med virtuelle credits – ikke rigtige penge. Du får 2.000 credits dagligt, som deles på tværs af alle tre maskiner, og de nulstilles automatisk ved midnat dansk tid.",
   },
   {
     question: "Hvad kan jeg vinde?",
-    answer: "Hver måned uddeles præmier til top 3 i tre kategorier: 500 kr for 1. pladsen, 300 kr for 2. pladsen og 200 kr for 3. pladsen. Præmierne udbetales som credits, der kan bruges i vores butik.",
+    answer: "Hver måned uddeles præmier til top 3 i tre kategorier: 500 kr for 1. pladsen, 300 kr for 2. pladsen og 200 kr for 3. pladsen. Præmierne udbetales kontant til vinderne.",
   },
   {
     question: "Hvor mange spilleautomater kan jeg spille?",
-    answer: "Der er tre eksklusive community-maskiner: Fedesvin Bonanza (Flest Point), Book of Fedesvin (Højeste X) og Rise of Fedesvin (Største Gevinst). Hver maskine har sin egen turnering og sine egne daglige credits.",
+    answer: "Der er tre eksklusive community-maskiner: Fedesvin Bonanza (Flest Point), Book of Fedesvin (Højeste X) og Rise of Fedesvin (Største Gevinst). Hver maskine har sin egen turnering, men alle deler den samme daglige pulje på 2.000 credits — så du selv bestemmer, hvordan du fordeler dem.",
   },
   {
     question: "Hvornår nulstilles turneringen?",
@@ -217,7 +217,7 @@ export const tournamentFaqs = [
   },
   {
     question: "Er der krav om wagering eller omsætning?",
-    answer: "Nej, der er ingen omsætningskrav i vores community-turneringer. Præmierne gives direkte som credits.",
+    answer: "Nej, der er ingen omsætningskrav i vores community-turneringer. Præmierne udbetales kontant.",
   },
 ];
 
