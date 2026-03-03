@@ -24,7 +24,7 @@ const CASINO_PROMOS = [
   {
     name: "SpilDanskNu",
     slug: "spildansknu",
-    bonus: "100% op til 2.000 kr.",
+    bonus: "100% op til 1.000 kr.",
     reviewPath: "/casino-anmeldelser/spildansknu",
   },
   {
@@ -32,6 +32,18 @@ const CASINO_PROMOS = [
     slug: "spilleautomaten",
     bonus: "100% op til 1.000 kr.",
     reviewPath: "/casino-anmeldelser/spilleautomaten",
+  },
+  {
+    name: "Campobet",
+    slug: "campobet",
+    bonus: "100% op til 1.000 kr.",
+    reviewPath: "/casino-anmeldelser/campobet",
+  },
+  {
+    name: "Betinia",
+    slug: "betinia",
+    bonus: "100% op til 1.000 kr.",
+    reviewPath: "/casino-anmeldelser/betinia",
   },
 ];
 
