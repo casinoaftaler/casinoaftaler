@@ -198,12 +198,8 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
       </div>
 
       {/* Top 5 mini leaderboard */}
-      <div className="px-2 pb-2 flex-1">
-        {isLoading ? (
-          <div className="space-y-1">
-            {[1, 2, 3].map(i => <div key={i} className="h-8 bg-muted/20 rounded animate-pulse" />)}
-          </div>
-        ) : top5.length > 0 ? (
+      {!isLoading && top5.length > 0 && (
+        <div className="px-2 pb-2 flex-1">
           <div className="space-y-0.5">
             {top5.map((entry, i) => (
               <LeaderboardRow
@@ -215,35 +211,43 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
               />
             ))}
           </div>
-        ) : (
-          <div className="text-center py-4">
-            <p className="text-xs text-muted-foreground">Ingen deltagere endnu</p>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Action buttons */}
-      <div className="px-3 pb-3 flex gap-2">
+      <div className="px-3 pb-3 mt-auto space-y-2">
         <Button
-          variant="outline"
-          size="sm"
-          className="flex-1 text-xs h-8"
+          size="lg"
+          className="w-full text-sm font-bold h-10"
           asChild
         >
           <a href={`/community/slots/${config.gameSlug}`}>
-            <Gamepad2 className="h-3 w-3 mr-1" />
-            Spil
+            <Gamepad2 className="h-4 w-4 mr-1.5" />
+            Spil nu
           </a>
         </Button>
-        <Dialog open={showLeaderboard} onOpenChange={setShowLeaderboard}>
-          <DialogTrigger asChild>
-            <Button
-              variant="default"
-              size="sm"
-              className="flex-1 text-xs h-8"
-            >
-              <BarChart3 className="h-3 w-3 mr-1" />
-              Leaderboard
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex-1 text-xs h-8"
+            asChild
+          >
+            <a href={`/community/slots/${config.gameSlug}`}>
+              <BookOpen className="h-3 w-3 mr-1" />
+              Information
+            </a>
+          </Button>
+          <Dialog open={showLeaderboard} onOpenChange={setShowLeaderboard}>
+            <DialogTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex-1 text-xs h-8"
+              >
+                <BarChart3 className="h-3 w-3 mr-1" />
+                Leaderboard
+              </Button>
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-lg">
