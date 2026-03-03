@@ -656,40 +656,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
 
   return (
     <div className="flex flex-col items-center gap-4" style={{ width: gridWidth, maxWidth: "100%" }}>
-      {/* Bonus overlays */}
-      <BonanzaBonusEntrySequence
-        isActive={showBonusTrigger}
-        freeSpinsAwarded={pendingBonusStateRef.current?.freeSpinsRemaining || 10}
-        onComplete={handleBonusEntryComplete}
-      />
-      <BonanzaRetriggerOverlay
-        isActive={showRetrigger}
-        spinsAwarded={5}
-        onComplete={handleRetriggerComplete}
-      />
-      <BonanzaBonusEndOverlay
-        isActive={showBonusComplete}
-        totalWin={bonusWinnings}
-        totalMultiplier={cumulativeMultiplier}
-        totalSpins={totalFreeSpins}
-        onComplete={() => {
-          setShowBonusComplete(false);
-          showBonusCompleteRef.current = false;
-          setIsBonusActive(false);
-          isBonusActiveRef.current = false;
-          setBonusAutoSpinPending(false);
-          setCumulativeMultiplier(0);
-          setRunningMultiplier(0);
-          setBonusWinnings(0);
-          setRunningWin(0);
-          
-          // Resume auto-spinning after bonus ends
-          if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
-            if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
-            autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1000);
-          }
-        }}
-      />
+      {/* Bonus overlays moved inside grid below */}
 
       {/* Win celebration */}
       {isWinAnimating && winAmount > 0 && (
@@ -873,6 +840,40 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           bonusLoaded={bonusLoaded}
           winAmount={winAmount}
           gameId={gameId}
+        />
+        {/* Bonus overlays — inside grid so they match grid size */}
+        <BonanzaBonusEntrySequence
+          isActive={showBonusTrigger}
+          freeSpinsAwarded={pendingBonusStateRef.current?.freeSpinsRemaining || 10}
+          onComplete={handleBonusEntryComplete}
+        />
+        <BonanzaRetriggerOverlay
+          isActive={showRetrigger}
+          spinsAwarded={5}
+          onComplete={handleRetriggerComplete}
+        />
+        <BonanzaBonusEndOverlay
+          isActive={showBonusComplete}
+          totalWin={bonusWinnings}
+          totalMultiplier={cumulativeMultiplier}
+          totalSpins={totalFreeSpins}
+          onComplete={() => {
+            setShowBonusComplete(false);
+            showBonusCompleteRef.current = false;
+            setIsBonusActive(false);
+            isBonusActiveRef.current = false;
+            setBonusAutoSpinPending(false);
+            setCumulativeMultiplier(0);
+            setRunningMultiplier(0);
+            setBonusWinnings(0);
+            setRunningWin(0);
+            
+            // Resume auto-spinning after bonus ends
+            if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
+              if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+              autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1000);
+            }
+          }}
         />
       </div>
     </div>

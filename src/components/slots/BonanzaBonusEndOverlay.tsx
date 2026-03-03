@@ -57,7 +57,7 @@ export function BonanzaBonusEndOverlay({
   return (
     <>
       {phase === 'flash' && (
-        <div className="fixed inset-0 z-50 animate-pulse"
+        <div className="absolute inset-0 z-50 animate-pulse"
           style={{ background: 'rgba(255,182,193,0.5)' }}
         />
       )}
