@@ -321,19 +321,6 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
 
   return (
     <>
-      {/* Vignette overlay for big wins - both themes */}
-      {showBigWin && (
-        <div
-          className="absolute inset-0 pointer-events-none z-10 animate-[vignette-in_0.5s_ease-out_forwards]"
-          style={{
-            background: isEpicWin
-              ? "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.35) 100%)"
-              : isMegaWin
-              ? "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.25) 100%)"
-              : "radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.15) 100%)",
-          }}
-        />
-      )}
 
       {/* Shockwave rings - both themes */}
       {showShockwave && Array.from({ length: shockwaveCount }).map((_, i) => (
