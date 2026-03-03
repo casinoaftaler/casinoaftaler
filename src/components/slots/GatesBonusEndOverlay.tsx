@@ -153,9 +153,9 @@ export function GatesBonusEndOverlay({
 
       {/* Camera shake for large wins during count */}
       <div className={cn(
-        "relative z-10 flex flex-col items-center gap-6 px-8",
+        "relative z-10 flex flex-col items-center gap-4 px-6 py-5 rounded-2xl backdrop-blur-md border border-white/10",
         phase === 'counting' && (winTier === 'large' || winTier === 'very-large') && "gates-shake"
-      )}>
+      )} style={{ background: "rgba(0,0,0,0.25)", boxShadow: "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)", maxWidth: "340px" }}>
         {/* Title */}
         <div className={cn(
           "text-3xl font-black tracking-widest uppercase",
