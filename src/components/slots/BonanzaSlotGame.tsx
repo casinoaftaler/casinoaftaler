@@ -718,10 +718,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       {/* Main game grid */}
       <div
         className={cn(
-          "relative rounded-xl border-[3px]",
-          "bg-gradient-to-b from-pink-100/80 via-rose-50/70 to-fuchsia-100/80",
-          "border-pink-400/60",
-          "shadow-[0_0_20px_rgba(236,72,153,0.3),inset_0_0_15px_rgba(255,255,255,0.2)]",
+          "relative rounded-xl border-[3px] transition-all duration-500",
+          isBonusActive
+            ? "bg-gradient-to-b from-pink-800/80 via-fuchsia-900/70 to-pink-900/80 border-pink-500/50 shadow-[0_0_30px_rgba(180,50,120,0.5),inset_0_0_20px_rgba(120,30,80,0.3)]"
+            : "bg-gradient-to-b from-pink-100/80 via-rose-50/70 to-fuchsia-100/80 border-pink-400/60 shadow-[0_0_20px_rgba(236,72,153,0.3),inset_0_0_15px_rgba(255,255,255,0.2)]",
           screenShake === 'normal' && "bonanza-shake",
           screenShake === 'intense' && "bonanza-shake-intense",
         )}
