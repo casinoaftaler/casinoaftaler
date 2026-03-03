@@ -1679,8 +1679,7 @@ Deno.serve(async (req) => {
           is_active: newFreeSpins > 0,
         }).eq("user_id", userId).eq("game_id", gameId);
         if (newFreeSpins <= 0 && newBonusWinnings > 0) {
-          // DEV MODE: Skip leaderboard recording for Bonanza
-          // (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: 0, is_bonus_triggered: false, bonus_win_amount: newBonusWinnings, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bonus bg err:", e); } })();
+          (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: 0, is_bonus_triggered: false, bonus_win_amount: newBonusWinnings, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bonus bg err:", e); } })();
         }
         return new Response(JSON.stringify({ success: true, result: bonanzaResult, bonusState: { isActive: newFreeSpins > 0, freeSpinsRemaining: newFreeSpins, totalFreeSpins: newTotalFreeSpins, bonusWinnings: newBonusWinnings, cumulativeMultiplier: bonanzaResult.totalMultiplier, betAmount: bet, isRetrigger } }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } });
@@ -1713,8 +1712,7 @@ Deno.serve(async (req) => {
         await serviceClient.from("slot_bonus_state").insert({ user_id: userId, is_active: true, free_spins_remaining: awardedSpins, total_free_spins: awardedSpins, expanding_symbol_name: "0", bonus_winnings: bonanzaResult.totalWin, game_id: gameId, bet_amount: bet });
         bonanzaBonusState = { isActive: true, freeSpinsRemaining: awardedSpins, totalFreeSpins: awardedSpins, bonusWinnings: bonanzaResult.totalWin, cumulativeMultiplier: 0, betAmount: bet };
       }
-      // DEV MODE: Skip leaderboard recording for Bonanza
-      // (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: bonanzaResult.totalWin, is_bonus_triggered: bonanzaResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bg err:", e); } })();
+      (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: bonanzaResult.totalWin, is_bonus_triggered: bonanzaResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bg err:", e); } })();
       return new Response(JSON.stringify({ success: true, result: bonanzaResult, spinsRemaining: newRemB, maxSpins: maxSpB, bonusState: bonanzaBonusState }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
