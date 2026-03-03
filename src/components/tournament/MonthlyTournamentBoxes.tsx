@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 
 import fedesvinBonanzaPreview from "@/assets/slots/fedesvin-bonanza-preview.jpg";
-import bookOfFedesvinIntro from "@/assets/slots/slot-intro-screen.jpg";
+import bookOfFedesvinPreview from "@/assets/slots/book-of-fedesvin-preview.jpg";
 import riseOfFedesvinIntro from "@/assets/slots/rise/intro-screen.jpg";
 
 interface TournamentBoxConfig {
