@@ -26,7 +26,7 @@ import { useTournaments, useTournamentLeaderboard, useTournamentParticipation, u
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { CompletedTournamentRow } from "@/components/tournament/CompletedTournamentRow";
-import { MonthlyLeaderboardCard } from "@/components/tournament/MonthlyLeaderboardCard";
+import { MonthlyTournamentBoxes } from "@/components/tournament/MonthlyTournamentBoxes";
 
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
@@ -475,8 +475,8 @@ export default function Leaderboard() {
             </div>
           ) : (
             <div className="space-y-6">
-              {/* Monthly tournament leaderboard */}
-              <MonthlyLeaderboardCard />
+              {/* Monthly tournament boxes */}
+              <MonthlyTournamentBoxes />
 
               {/* Active tournaments */}
               {active.length > 0 && (
