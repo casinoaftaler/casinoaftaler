@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Trophy, TrendingUp, Zap, Star, Clock, Gamepad2, Gift, BarChart3, Users, Search, History, Medal, Award, BookOpen, Info, ShieldCheck, Coins, AlertTriangle } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Trophy, TrendingUp, Zap, Star, Clock, Gamepad2, Gift, BarChart3, Users, Search, History, Medal, Award, BookOpen, Info, ShieldCheck, Coins, AlertTriangle, Crown } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import "./tournament-effects.css";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -139,31 +140,72 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
     ? entries.filter(e => e.display_name?.toLowerCase().includes(searchQuery.toLowerCase()))
     : entries;
 
+  // Countdown urgency
+  const isUrgent = countdown.days < 2;
+  const isWarning = countdown.days < 7 && !isUrgent;
+
+  // Particles (memoized, 8 particles)
+  const particles = useMemo(() =>
+    Array.from({ length: 8 }, (_, i) => ({
+      id: i,
+      left: `${10 + (i * 12) % 85}%`,
+      size: `${2 + (i % 3)}px`,
+      duration: `${5 + (i % 4)}s`,
+      delay: `${(i * 0.7) % 4}s`,
+      drift: `${(i % 2 === 0 ? 1 : -1) * (5 + i * 3)}px`,
+      driftEnd: `${(i % 2 === 0 ? -1 : 1) * (3 + i * 2)}px`,
+    })),
+  []);
+
   return (
-    <div className="rounded-xl border border-border/50 bg-card overflow-hidden flex flex-col">
-      {/* Badge header */}
-      <div className="bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 text-center py-1.5 px-2">
-        <span className="text-xs font-bold uppercase tracking-wider text-amber-950">
+    <div
+      className="tournament-card rounded-xl border border-border/50 bg-card overflow-hidden flex flex-col"
+      data-category={config.category}
+    >
+      {/* Badge header with shine */}
+      <div className="tournament-header-shine bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 text-center py-1.5 px-2">
+        <span className="text-xs font-bold uppercase tracking-wider text-amber-950 flex items-center justify-center gap-1.5">
+          <Crown className="h-3 w-3 tournament-crown" />
           Månedens Turnering
         </span>
       </div>
 
-      {/* Game image with countdown */}
+      {/* Game image with particles & countdown */}
       <div className="relative aspect-[16/10] overflow-hidden">
         <img
           src={config.image}
           alt={config.gameName}
-          className="w-full h-full object-cover"
+          className="tournament-image w-full h-full object-cover"
         />
-        <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/60 backdrop-blur-sm rounded-md px-2.5 py-1">
-          <Clock className="h-3.5 w-3.5 text-white" />
-          <span className="text-xs font-mono text-white font-medium">{countdown.label}</span>
+        {/* Particle overlay */}
+        <div className="tournament-particles">
+          {particles.map(p => (
+            <div
+              key={p.id}
+              className="tournament-particle"
+              style={{
+                left: p.left,
+                '--p-size': p.size,
+                '--p-duration': p.duration,
+                '--p-delay': p.delay,
+                '--p-drift': p.drift,
+                '--p-drift-end': p.driftEnd,
+              } as React.CSSProperties}
+            />
+          ))}
+        </div>
+        <div className={cn(
+          "tournament-countdown absolute top-2 left-2 flex items-center gap-1 backdrop-blur-sm rounded-md px-2.5 py-1",
+          isUrgent ? "tournament-countdown-urgent" : isWarning ? "tournament-countdown-glow" : "bg-black/60"
+        )}>
+          <Clock className="h-3.5 w-3.5 text-foreground dark:text-white" />
+          <span className="text-xs font-mono text-foreground dark:text-white font-medium">{countdown.label}</span>
         </div>
       </div>
 
-      {/* Game info - centered */}
+      {/* Game info */}
       <div className="px-3 pt-4 pb-1 text-center">
-        <h3 className="font-bold text-lg text-foreground">{config.gameName}</h3>
+        <h3 className="tournament-title font-bold text-lg text-foreground transition-all duration-200">{config.gameName}</h3>
         <div className="flex items-center justify-center gap-1.5 mt-1">
           {config.icon}
           <span className="text-sm text-muted-foreground">{config.categoryLabel}</span>
@@ -220,7 +262,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
       <div className="px-3 pb-3 mt-auto space-y-2">
         <Button
           size="lg"
-          className="w-full text-sm font-bold h-10"
+          className="tournament-cta w-full text-sm font-bold h-10 text-primary-foreground border-0"
           asChild
         >
           <a href={`/community/slots/${config.gameSlug}`}>
