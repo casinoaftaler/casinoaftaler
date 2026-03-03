@@ -113,7 +113,7 @@ export function useServerSpin(gameId: string = "book-of-fedesvin") {
       if (data.spinsRemaining !== undefined) {
         const today = getTodayDanish();
         queryClient.setQueryData(
-          ["slot-spins", session?.user?.id, today],
+          ["slot-spins", session?.user?.id, today, "shared"],
           (old: any) => old ? { ...old, spins_remaining: data.spinsRemaining } : old
         );
       }
