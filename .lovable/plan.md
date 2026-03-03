@@ -1,15 +1,31 @@
 
 
-## Plan: Reverse Drop Animation Order (Bottom First)
+## Plan: Control Bar Text Enhancements + Gevinst/Resterende Repositioning
 
-The current `animationDelay` in `BonanzaColumn.tsx` uses `row * Xms`, so row 0 (top) animates first. To make the bottom symbols land first, reverse the delay calculation.
+### 1. Enlarge Credit & Indsats text with black stroke + shadow (`BonanzaControlBar.tsx`)
 
-### Change: `src/components/slots/BonanzaColumn.tsx`
+**Left zone** — increase text sizes and add text stroke + shadow styling:
+- "Credit" label: `text-[8px]` → `text-sm`, keep uppercase/tracking
+- Credit value: `text-sm` → `text-2xl`
+- "Indsats" label: `text-[8px]` → `text-sm`
+- Indsats value: `text-sm` → `text-2xl`
+- All four elements get `style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}`
 
-In the `animationDelay` style (around line 113-118), reverse the row order for `bonanza-drop-off` and `bonanza-drop-in`:
+### 2. Move Gevinst to right zone of control bar (`BonanzaControlBar.tsx` + `BonanzaSlotGame.tsx`)
 
-- **Drop-off:** Change `row * 40ms` → `(BONANZA_ROWS - 1 - row) * 40ms`
-- **Drop-in:** Change `row * 50ms` → `(BONANZA_ROWS - 1 - row) * 50ms`
+- **Remove** Gevinst text from `BonanzaSlotGame.tsx` (lines 880-888)
+- **Add** Gevinst display in the **right zone** of `BonanzaControlBar.tsx`, positioned between the `[+]` button and the AutoSpin popover
+- Display: vibrant pink "Gevinst" label + win amount, with black stroke + shadow
+- The `winAmount` prop already exists on the component
 
-This makes the bottom row (highest index) start animating first, so bottom symbols drop out and land before top ones.
+### 3. Resterende spins → bonus only (`BonanzaSlotGame.tsx`)
+
+- **Remove** the always-visible "Resterende spins" showing `spinsRemaining` (lines 889-892)
+- **Keep** the existing bonus "Free Spins" display (lines 870-878) but relabel it to "Resterende spins" showing `freeSpinsRemaining`
+- Add black stroke + shadow to this text
+- Only renders when `isBonusActive` is true
+
+### Files Modified
+- `src/components/slots/BonanzaControlBar.tsx` — bigger Credit/Indsats, Gevinst in right zone
+- `src/components/slots/BonanzaSlotGame.tsx` — remove Gevinst + Resterende from above bar, relabel bonus display
 
