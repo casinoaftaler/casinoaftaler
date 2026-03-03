@@ -147,12 +147,7 @@ export default function FedesvinBonanza() {
     return <SlotIntroScreen onStart={handleIntroComplete} gameId={GAME_ID} />;
   }
 
-  const sidePanelContent = (
-    <>
-      <SlotLeaderboard gameId={GAME_ID} />
-      {topCasino && <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />}
-    </>
-  );
+  const sidePanelContent = null;
 
   return (
     <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col overflow-x-hidden">
@@ -191,10 +186,6 @@ export default function FedesvinBonanza() {
       </div>
 
       <div className="xl:hidden flex flex-col items-center px-4 pb-4 pt-6">
-        <div className="w-full max-w-sm space-y-3">
-          {topCasino && <SlotPromoSlider casino={topCasino} backgroundImage={slotCasinoCardBg} />}
-          <SlotLeaderboard gameId={GAME_ID} />
-        </div>
         <SlotGameSeoCta />
       </div>
     </div>
