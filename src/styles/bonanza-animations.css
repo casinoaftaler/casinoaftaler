@@ -91,7 +91,7 @@
   animation: bonanza-bomb-fizzle 0.7s ease-out both;
 }
 
-/* Bomb activate animation - jump forward when win */
+/* Bomb activate animation - kept as fallback */
 @keyframes bonanza-bomb-activate {
   0% { transform: scale(1); filter: brightness(1); }
   30% { transform: scale(1.5) translateY(-10px); filter: brightness(2); }
@@ -101,6 +101,17 @@
 
 .bonanza-bomb-activate {
   animation: bonanza-bomb-activate 0.6s ease-out both;
+}
+
+/* Bomb fracture explosion - fragments fly outward */
+@keyframes bonanza-bomb-fracture {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; filter: brightness(1); }
+  15% { filter: brightness(2); }
+  100% { transform: translate(var(--frag-tx), var(--frag-ty)) rotate(var(--frag-rot)) scale(0.6); opacity: 0; filter: brightness(1.5); }
+}
+
+.bonanza-bomb-fracture {
+  animation: bonanza-bomb-fracture 0.6s ease-out both;
 }
 
 /* Bomb exploded decal — stays visible until cleared */

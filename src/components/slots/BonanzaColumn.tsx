@@ -5,6 +5,7 @@ import { isBombSymbol, getBombValue } from "@/lib/bonanzaGameLogic";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import type { BombSymbol } from "@/hooks/useBombSymbols";
 import { useIdleShimmer } from "@/hooks/useIdleShimmer";
+import { BombFractureExplosion } from "./BombFractureExplosion";
 import bombExplodedDecal from "@/assets/bomb-exploded-decal.png";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
@@ -99,7 +100,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
               cellAnim === 'dropping' && "bonanza-gravity-bounce",
               cellAnim === 'filling' && "bonanza-lightning-fill",
               cellAnim === 'bomb-fizzle' && "bonanza-bomb-fizzle",
-              cellAnim === 'bomb-activate' && "bonanza-bomb-activate",
+              /* bomb-activate handled by BombFractureExplosion */
             )}
             style={{
               width: SYMBOL_WIDTH,
@@ -154,8 +155,8 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
               </div>
             )}
 
-            {/* Bomb fizzle / activate */}
-            {(cellAnim === 'bomb-fizzle' || cellAnim === 'bomb-activate') && isBomb && (
+            {/* Bomb fizzle */}
+            {cellAnim === 'bomb-fizzle' && isBomb && (
               <div className="w-full h-full flex items-center justify-center relative">
                 {bombSymbolsMap?.get(bombValue)?.image_url ? (
                   <img src={bombSymbolsMap.get(bombValue)!.image_url!} alt={`${bombValue}x`} className="w-full h-full object-contain" style={{ transform: `scale(${scaleValue})` }} draggable={false} />
@@ -166,6 +167,17 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
                   </>
                 )}
               </div>
+            )}
+
+            {/* Bomb activate - fracture explosion */}
+            {cellAnim === 'bomb-activate' && isBomb && (
+              <BombFractureExplosion
+                imageUrl={bombSymbolsMap?.get(bombValue)?.image_url}
+                fallbackValue={bombValue}
+                scaleValue={scaleValue}
+                width={SYMBOL_WIDTH}
+                height={SYMBOL_HEIGHT}
+              />
             )}
 
             {/* Bomb exploded — show explosion decal */}
