@@ -123,7 +123,11 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
                     <img
                       src={symbol.image_url}
                       alt={symbol.name}
-                      className={cn("w-full h-full object-contain", scatterAnimClass)}
+                      className={cn(
+                        "w-full h-full object-contain",
+                        (isWinning || cellAnim === 'winning') && "bonanza-candy-highlight-img",
+                        scatterAnimClass
+                      )}
                       style={{ transform: `scale(${scaleValue})` }}
                       draggable={false}
                     />
