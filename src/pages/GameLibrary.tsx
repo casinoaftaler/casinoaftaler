@@ -48,17 +48,18 @@ const FEATURED_SLOTS = [
     priority: "secondary" as const,
     imagePosition: "center 30%",
   },
-];
-
-const MORE_SLOTS = [
   {
     id: "fedesvin-bonanza",
     title: "Fedesvin Bonanza",
     description: "Sødmefuld candy-action med tumble-gevinster og multiplier-bomber i bonusrunden!",
     image: bonanzaImage,
     href: "/community/slots/fedesvin-bonanza",
-    status: "coming-soon" as const,
+    badge: "✨ NY",
+    priority: "secondary" as const,
   },
+];
+
+const MORE_SLOTS = [
   {
     id: "gates-of-fedesvin",
     title: "Gates of Fedesvin",
