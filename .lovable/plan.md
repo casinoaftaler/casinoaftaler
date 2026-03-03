@@ -1,52 +1,29 @@
 
 
-# Add Symbol Drop-In Sound Effect for Fedesvin Bonanza
+## Problem
 
-## Overview
-Add a new candy-themed sound effect that plays when new symbols drop into the grid after a tumble (cluster win removal). Currently there is no audio feedback for this moment -- symbols silently fall into place.
+Twitch badges (VIP, Moderator, etc.) are not shown on two sidebar leaderboards:
 
-## Changes Required
+1. **SidebarLeaderboard** (monthly tournament sidebar) — fetches `profiles_leaderboard` but only selects `user_id, display_name, avatar_url` (missing `twitch_badges`)
+2. **SidebarShopLeaderboard** (shop points sidebar) — fetches `profiles_public` and doesn't select or display `twitch_badges` at all
 
-### 1. Add `symbolDropInSound` to the sound file system
+The main `SlotLeaderboard` and tournament `Leaderboard.tsx` pages already show badges correctly.
 
-**`src/hooks/useSlotSoundFiles.ts`**
-- Add `symbolDropInSound: string | null` to the `SlotSoundFiles` interface
-- Add `symbolDropInSound: "symbol_drop_in"` to the `SOUND_SUFFIXES` map
+## Plan
 
-### 2. Add candy-themed prompt to the sound generator
+### 1. SidebarLeaderboard — Add twitch badges
 
-**`supabase/functions/generate-game-sounds/index.ts`**
-- Add a `symbolDropInSound` entry to `BONANZA_SOUNDS` with a candy-themed prompt like:
-  *"Cascading gummy bears and jellybeans tumbling down with soft bouncy plops, bubbly candy rain landing on glass, sweet sugar crystals tinkling as they settle"*
-- Duration: ~1.5 seconds
-- Also add a Gates equivalent to `GATES_SOUNDS` for consistency
+- Add `twitch_badges` to the `LeaderboardEntry` interface
+- Add `twitch_badges` to the `profiles_leaderboard` select query (line 63)
+- Map `twitch_badges` into entries
+- Import `TwitchBadgesInline` and render it inline next to each display name
 
-### 3. Wire the sound into the game loop
+### 2. SidebarShopLeaderboard — Add twitch badges
 
-**`src/hooks/useSlotSoundLoader.ts`**
-- Pass `soundFiles.symbolDropInSound` through to the `CustomSoundFiles` object
+- Add `twitch_badges` to the `ShopLeaderboardEntry` interface
+- Change the `profiles_public` select to include `twitch_badges`
+- Map `twitch_badges` into entries
+- Import `TwitchBadgesInline` and render it inline next to each display name
 
-**`src/lib/slotSoundEffects.ts`** (or equivalent singleton)
-- Add `symbolDropInSound` to the `CustomSoundFiles` interface and playback method
-
-**`src/components/slots/BonanzaSlotGame.tsx`**
-- In the tumble loop, when column spin states are set to `'dropping-in'`, trigger the drop-in sound effect
-
-### 4. Add to batch generator and admin upload UI
-
-**`src/components/slots/BatchSoundGenerator.tsx`**
-- Add `{ key: "symbolDropInSound", label: "Symbol Drop-In", icon: "🍬" }` to `SOUND_TYPES`
-
-**`src/components/slots/SlotSoundFilesSection.tsx`**
-- Add an upload slot for the new sound file
-
-### 5. Add to loading screen preloader
-
-**`src/components/slots/SlotLoadingScreen.tsx`**
-- Include `symbolDropInSound` in the sound URLs array so it preloads during the loading screen
-
-## Technical Notes
-- The sound key in `site_settings` will be `fedesvin_bonanza_sound_file_symbol_drop_in`
-- The edge function must be redeployed after adding the new sound definition
-- The sound plays once per tumble drop-in phase (not per column), keeping it clean
+Both changes follow the exact same pattern already used in `SlotLeaderboard` and `Leaderboard.tsx`.
 
