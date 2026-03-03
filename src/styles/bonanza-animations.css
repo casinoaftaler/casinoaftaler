@@ -21,13 +21,15 @@
   animation: bonanza-drop-off 0.35s cubic-bezier(0.55, 0, 1, 0.45) both;
 }
 
-/* Winning highlight - candy glow (applied to img via filter for alpha-aware glow) */
+/* Winning highlight - candy glow + subtle pulse (applied to img via filter for alpha-aware glow) */
 @keyframes bonanza-candy-glow-filter {
   0%, 100% {
     filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.5)) drop-shadow(0 0 16px rgba(236, 72, 153, 0.3));
+    transform: scale(var(--symbol-scale, 1));
   }
   50% {
     filter: drop-shadow(0 0 14px rgba(236, 72, 153, 0.8)) drop-shadow(0 0 28px rgba(236, 72, 153, 0.5)) drop-shadow(0 0 40px rgba(236, 72, 153, 0.2));
+    transform: scale(calc(var(--symbol-scale, 1) * 1.06));
   }
 }
 
