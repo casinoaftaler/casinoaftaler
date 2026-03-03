@@ -1,26 +1,17 @@
 
 
-# Make Fedesvin Bonanza Public and Remove Debug Tools
+# Fix Fedesvin Bonanza Card Size
 
-## Overview
-Open Fedesvin Bonanza to all authenticated users (not just admins) and remove the debug/force-bonus button.
+## Problem
+In the 2-column grid, the first two cards share a row and size each other via `items-stretch`. The third card (Fedesvin Bonanza) sits alone on the second row with no sibling to match height against, so it can render at a different (likely larger) height.
 
-## Changes
+## Solution
+Add a fixed `aspect-ratio` to the `FeaturedSlotPanel` component so all cards render at a consistent height regardless of row siblings.
 
-### 1. Remove admin-only gate (`src/pages/FedesvinBonanza.tsx`)
-- Remove the `isAdmin` check and the "Kommer snart!" block (lines ~117-138) that blocks non-admin users
-- Remove `isAdmin` from the `useAuth()` destructure since it's no longer needed on this page
+### File: `src/components/games/FeaturedSlotPanel.tsx`
+- Add `aspect-video` (16:9) class to the outer card container alongside the existing `h-full`, ensuring every card has the same proportional height
+- This keeps all three cards visually identical whether they share a row or not
 
-### 2. Remove debug button (`src/components/slots/BonanzaSlotGame.tsx`)
-- Remove the `Bug` icon import
-- Remove `debugScattersRef` ref
-- Remove the `debugButton` prop passed to `GatesControlBar` (the entire block rendering the bug button)
-- Remove the `useDebugScatters` usage in the spin handler that sends it to the server
-- Remove `isAdmin` from `useAuth()` destructure if no longer needed
+### Alternative considered
+Adding a fixed pixel height (e.g. `h-[300px]`) -- but `aspect-video` is more responsive and matches the 1200x675 image ratio already used.
 
-### 3. No leaderboard changes needed
-The leaderboard and stats components (`SlotLeaderboard`, `SpinsRemaining`, etc.) are already wired up with `gameId="fedesvin-bonanza"` and will work for all users once the admin gate is removed.
-
-## Technical Notes
-- The `GatesControlBar` component will simply receive `undefined` for `debugButton` (or we stop passing it entirely), which it already handles gracefully
-- The server-side spin endpoint may still accept a debug parameter, but since the client no longer sends it, this is harmless
