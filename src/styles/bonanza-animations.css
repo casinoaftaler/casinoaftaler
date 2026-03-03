@@ -21,14 +21,22 @@
   animation: bonanza-drop-off 0.35s cubic-bezier(0.55, 0, 1, 0.45) both;
 }
 
-/* Winning highlight - candy glow */
-@keyframes bonanza-candy-glow {
-  0%, 100% { box-shadow: inset 0 0 12px rgba(236, 72, 153, 0.4), 0 0 16px rgba(236, 72, 153, 0.3); }
-  50% { box-shadow: inset 0 0 20px rgba(236, 72, 153, 0.6), 0 0 28px rgba(236, 72, 153, 0.5); }
+/* Winning highlight - candy glow (applied to img via filter for alpha-aware glow) */
+@keyframes bonanza-candy-glow-filter {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.5)) drop-shadow(0 0 16px rgba(236, 72, 153, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(236, 72, 153, 0.8)) drop-shadow(0 0 28px rgba(236, 72, 153, 0.5)) drop-shadow(0 0 40px rgba(236, 72, 153, 0.2));
+  }
 }
 
+.bonanza-candy-highlight-img {
+  animation: bonanza-candy-glow-filter 0.6s ease-in-out infinite;
+}
+
+/* Legacy cell highlight kept minimal - no box-shadow, just border */
 .bonanza-candy-highlight {
-  animation: bonanza-candy-glow 0.6s ease-in-out infinite;
   border-color: rgba(236, 72, 153, 0.6) !important;
 }
 
