@@ -750,9 +750,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       {/* Main game grid */}
       <div
         className={cn(
-          "relative rounded-xl border-2",
-          "bg-gradient-to-b from-purple-400/50 via-fuchsia-400/40 to-purple-400/50",
-          "border-pink-300/40",
+          "relative rounded-xl border-[3px]",
+          "bg-gradient-to-b from-pink-200/60 via-rose-100/50 to-fuchsia-200/60",
+          "border-pink-400/60",
+          "shadow-[0_0_20px_rgba(236,72,153,0.3),inset_0_0_15px_rgba(255,255,255,0.2)]",
           screenShake === 'normal' && "bonanza-shake",
           screenShake === 'intense' && "bonanza-shake-intense",
         )}
@@ -760,13 +761,28 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       >
         <SlotAmbientLight isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="pink" />
         <SlotIdleEffects isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="pink" width={gridWidth} height={gridHeight} />
-        {/* Static vertical reel dividers — rendered first, behind columns */}
+        {/* Static vertical reel dividers */}
         {Array.from({ length: BONANZA_COLS - 1 }).map((_, i) => (
           <div
-            key={`divider-${i}`}
-            className="absolute top-0 bottom-0 w-px bg-pink-400/20 pointer-events-none"
+            key={`divider-v-${i}`}
+            className="absolute top-0 bottom-0 pointer-events-none"
             style={{
               left: SYMBOL_GAP + (i + 1) * (SYMBOL_WIDTH + SYMBOL_GAP) - SYMBOL_GAP / 2,
+              width: 1,
+              background: 'linear-gradient(to bottom, rgba(236,72,153,0.15), rgba(236,72,153,0.35), rgba(236,72,153,0.15))',
+              zIndex: 0,
+            }}
+          />
+        ))}
+        {/* Static horizontal row dividers */}
+        {Array.from({ length: BONANZA_ROWS - 1 }).map((_, i) => (
+          <div
+            key={`divider-h-${i}`}
+            className="absolute left-0 right-0 pointer-events-none"
+            style={{
+              top: SYMBOL_GAP + (i + 1) * (SYMBOL_HEIGHT + SYMBOL_GAP) - SYMBOL_GAP / 2,
+              height: 1,
+              background: 'linear-gradient(to right, rgba(236,72,153,0.15), rgba(236,72,153,0.35), rgba(236,72,153,0.15))',
               zIndex: 0,
             }}
           />
