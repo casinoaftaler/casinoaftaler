@@ -55,16 +55,24 @@ export function BonanzaBonusEndOverlay({
   const showContent = phase === 'counting' || phase === 'hold';
 
   return (
-    <>
+    <div className="absolute inset-0 z-50">
       {phase === 'flash' && (
-        <div className="absolute inset-0 z-50 animate-pulse"
+        <div className="absolute inset-0 animate-pulse"
           style={{ background: 'rgba(255,182,193,0.5)' }}
         />
       )}
 
+      {/* Dark backdrop covering entire grid */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}
+        style={{ background: 'rgba(80,20,60,0.7)' }}
+      />
+
       <BonanzaOverlayCard
         showContent={showContent}
         onDismiss={() => stableComplete.current()}
+        header="TOTAL GEVINST"
+        subtitle=""
         bubbleContent={
           <span className="relative z-10 text-4xl sm:text-5xl font-black text-white tabular-nums"
             style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.3)' }}>
@@ -73,6 +81,6 @@ export function BonanzaBonusEndOverlay({
         }
         bottomLabel={<>i {totalSpins} Free Spins</>}
       />
-    </>
+    </div>
   );
 }
