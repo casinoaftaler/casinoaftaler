@@ -141,8 +141,8 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
     : entries;
 
   // Countdown urgency
-  const isUrgent = countdown.daysLeft !== undefined && countdown.daysLeft < 2;
-  const isWarning = countdown.daysLeft !== undefined && countdown.daysLeft < 7 && !isUrgent;
+  const isUrgent = countdown.days < 2;
+  const isWarning = countdown.days < 7 && !isUrgent;
 
   // Particles (memoized, 8 particles)
   const particles = useMemo(() =>
