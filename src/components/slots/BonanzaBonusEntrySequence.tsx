@@ -112,7 +112,7 @@ export function BonanzaBonusEntrySequence({ isActive, freeSpinsAwarded, onComple
     <>
       {/* Flash overlay */}
       {phase === 'flash' && (
-        <div className="fixed inset-0 z-50 animate-pulse"
+        <div className="absolute inset-0 z-50 animate-pulse"
           style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(236,72,153,0.7) 60%, rgba(217,70,239,0.5) 100%)' }}
         />
       )}
@@ -120,7 +120,7 @@ export function BonanzaBonusEntrySequence({ isActive, freeSpinsAwarded, onComple
       {/* Canvas for particles */}
       <canvas
         ref={canvasRef}
-        className="fixed inset-0 w-full h-full z-50 pointer-events-none"
+        className="absolute inset-0 w-full h-full z-50 pointer-events-none"
       />
 
       <BonanzaOverlayCard
