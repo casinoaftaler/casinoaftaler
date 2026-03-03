@@ -16,6 +16,8 @@ export interface BigWin {
 const GAME_LABELS: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
   "rise-of-fedesvin": "Rise of Fedesvin",
+  "gates-of-fedesvin": "Gates of Fedesvin",
+  "fedesvin-bonanza": "Fedesvin Bonanza",
 };
 
 const MAX_WINS = 10;

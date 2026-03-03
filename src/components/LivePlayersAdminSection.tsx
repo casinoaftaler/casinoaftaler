@@ -25,6 +25,8 @@ interface ActiveSession {
 const GAME_LABELS: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
   "rise-of-fedesvin": "Rise of Fedesvin",
+  "gates-of-fedesvin": "Gates of Fedesvin",
+  "fedesvin-bonanza": "Fedesvin Bonanza",
 };
 
 // Sessions active within last 2 minutes are considered live
