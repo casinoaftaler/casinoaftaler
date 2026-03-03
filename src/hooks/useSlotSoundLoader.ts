@@ -36,6 +36,7 @@ export function useSlotSoundLoader(gameId: string = "book-of-fedesvin") {
         scatterSound3: soundFiles.scatterSound3,
         scatterCelebrationSound: soundFiles.scatterCelebrationSound,
         symbolHighlightSound: soundFiles.symbolHighlightSound,
+        symbolDropInSound: soundFiles.symbolDropInSound,
       };
       
       slotSounds.setCustomSoundFiles(customFiles);

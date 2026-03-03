@@ -43,6 +43,7 @@ export interface CustomSoundFiles {
   scatterSound3?: string | null;
   scatterCelebrationSound?: string | null;
   symbolHighlightSound?: string | null;
+  symbolDropInSound?: string | null;
 }
 
 // localStorage key for persisting audio settings
@@ -203,7 +204,7 @@ class SlotSoundEffects {
       'bigWinSound', 'bonusTriggerSound', 'bonusWinSound',
       'bonusSymbolScrollSound', 'bonusSymbolSelectedSound',
       'scatterSound1', 'scatterSound2', 'scatterSound3',
-      'scatterCelebrationSound', 'symbolHighlightSound'
+      'scatterCelebrationSound', 'symbolHighlightSound', 'symbolDropInSound'
     ];
 
     soundKeys.forEach(key => {
@@ -1282,6 +1283,14 @@ class SlotSoundEffects {
       osc.start(t);
       osc.stop(t + 0.05);
     }
+  }
+
+  // Candy drop-in sound for tumble refills
+  playSymbolDropIn() {
+    if (!this.canPlayEffect()) return;
+    if (this.playCustomSound('symbolDropInSound', 0.6)) return;
+    // Fallback: use the clack sound
+    this.playClack();
   }
 
   // Percussive clack for symbol landing impact

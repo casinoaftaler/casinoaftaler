@@ -436,6 +436,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       }
 
       // Drop in
+      slotSounds.playSymbolDropIn();
       for (let c = 0; c < BONANZA_COLS; c++) {
         setTimeout(() => {
           setColumnSpinStates(prev => {
