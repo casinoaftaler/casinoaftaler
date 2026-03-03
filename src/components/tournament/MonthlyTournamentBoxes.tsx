@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Trophy, TrendingUp, Zap, Star, Clock, Gamepad2, Gift, BarChart3, Users, Search, History, Medal, Award, BookOpen } from "lucide-react";
+import { Trophy, TrendingUp, Zap, Star, Clock, Gamepad2, Gift, BarChart3, Users, Search, History, Medal, Award, BookOpen, Info, ShieldCheck, Coins, AlertTriangle } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
