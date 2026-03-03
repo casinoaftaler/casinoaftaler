@@ -40,8 +40,9 @@ export function AnimatedWinCounter({ targetValue, duration = 1200, className, st
       // Ease-out cubic for acceleration feel: fast start, decelerate at end
       const eased = 1 - Math.pow(1 - progress, 3);
       
-      const current = Math.round(startValue + delta * eased);
-      setDisplayValue(current);
+      const current = startValue + delta * eased;
+      // Round to 2 decimal places to preserve fractional wins
+      setDisplayValue(Math.round(current * 100) / 100);
 
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(tick);
@@ -74,7 +75,7 @@ export function AnimatedWinCounter({ targetValue, duration = 1200, className, st
 
   return (
     <span ref={bumpRef} className={className} style={style}>
-      {displayValue.toLocaleString()}
+      {Number.isInteger(displayValue) ? displayValue.toLocaleString() : displayValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
     </span>
   );
 }
