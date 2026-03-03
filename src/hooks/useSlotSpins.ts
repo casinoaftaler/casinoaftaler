@@ -15,7 +15,7 @@ interface SlotSpins {
 const MAX_SPINS_CAP = 220;
 const SUBSCRIBER_MAX_SPINS_CAP = 320;
 const SUBSCRIBER_BONUS = 100;
-const ABSOLUTE_MAX_CREDITS = 2000;
+const ABSOLUTE_MAX_CREDITS = 1000;
 
 export function useSlotSpins(gameId: string = "book-of-fedesvin") {
   const { user } = useAuth();
@@ -50,7 +50,7 @@ export function useSlotSpins(gameId: string = "book-of-fedesvin") {
 
   // Read-only: fetch today's spin record from shared pool
   const { data: spinsData, isLoading } = useQuery({
-    queryKey: ["slot-spins", user?.id, today, "shared"],
+    queryKey: ["slot-spins", user?.id, today, gameId],
     queryFn: async (): Promise<SlotSpins | null> => {
       if (!user?.id) return null;
 
@@ -59,7 +59,7 @@ export function useSlotSpins(gameId: string = "book-of-fedesvin") {
         .select("*")
         .eq("user_id", user.id)
         .eq("date", today)
-        .eq("game_id", "shared")
+        .eq("game_id", gameId)
         .maybeSingle();
 
       return existing || null;
