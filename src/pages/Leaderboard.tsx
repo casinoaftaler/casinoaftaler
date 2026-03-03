@@ -464,10 +464,6 @@ export default function Leaderboard() {
         </div>
 
         <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
-          {/* Stat Strip */}
-          {tournaments && tournaments.length > 0 && (
-            <TournamentStatStrip tournaments={tournaments} />
-          )}
 
           {/* Main content */}
           {tournamentsLoading ? (
