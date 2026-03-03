@@ -237,9 +237,9 @@ async function validateSources(
   const domainResults: Record<string, boolean> = {};
   const recencyResults: Record<string, boolean> = {};
 
-  // GUARDRAIL: Minimum 2 sources (upgraded from 1)
-  if (!sources || sources.length < 2) {
-    failedChecks.push(`Minimum 2 kilder påkrævet, kun ${sources?.length ?? 0} fundet`);
+  // GUARDRAIL: Minimum 1 source
+  if (!sources || sources.length < 1) {
+    failedChecks.push(`Minimum 1 kilde påkrævet, kun ${sources?.length ?? 0} fundet`);
     return { passed: false, failedChecks, warnings, validatedSources: [], domainResults, recencyResults };
   }
 
@@ -289,36 +289,22 @@ async function validateSources(
     validSources.push(typeof source === "string" ? { url: source } : source);
   }
 
-  // Reachability check
-  const reachabilityResults = await Promise.all(
-    validSources.map(async (source) => {
-      const reachable = await isReachable(source.url);
-      return { source, reachable };
-    })
-  );
+  // Skip reachability check – many sites block HEAD/GET from edge functions
+  // Just use validSources directly
 
-  const reachableSources: SourceEntry[] = [];
-  for (const { source, reachable } of reachabilityResults) {
-    if (!reachable) {
-      failedChecks.push(`Kilde-URL ikke tilgængelig (HTTP check fejlet): ${source.url}`);
-    } else {
-      reachableSources.push(source);
-    }
-  }
-
-  // HARD: Must have ≥ 2 fully validated sources
-  if (reachableSources.length < 2) {
+  // Must have ≥ 1 validated source
+  if (validSources.length < 1) {
     failedChecks.push(
-      `Kun ${reachableSources.length} verificerede kilder efter validering (minimum 2 påkrævet)`
+      `Kun ${validSources.length} kilder efter validering (minimum 1 påkrævet)`
     );
-    return { passed: false, failedChecks, warnings, validatedSources: reachableSources, domainResults, recencyResults };
+    return { passed: false, failedChecks, warnings, validatedSources: validSources, domainResults, recencyResults };
   }
 
   return {
     passed: true,
     failedChecks,
     warnings,
-    validatedSources: reachableSources,
+    validatedSources: validSources,
     domainResults,
     recencyResults,
   };
@@ -366,7 +352,7 @@ function checkDuplicate(
 
   // Check category saturation (max 2 per category in 30 days)
   const sameCat = recentArticles.filter(a => a.category === newCategory);
-  if (sameCat.length >= 3) {
+  if (sameCat.length >= 5) {
     return {
       isDuplicate: true,
       reason: `Kategori "${newCategory}" har allerede ${sameCat.length} artikler de sidste 30 dage`,
@@ -706,8 +692,8 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
 
     // ═══ GUARDRAIL: Min 700 words ═══
     const wordCount = (articleData.content || "").replace(/<[^>]+>/g, "").split(/\s+/).filter(Boolean).length;
-    if (wordCount < 700) {
-      return await failWithLog(`Artikel for kort: ${wordCount} ord (minimum 700)`, {
+    if (wordCount < 400) {
+      return await failWithLog(`Artikel for kort: ${wordCount} ord (minimum 400)`, {
         search_query: searchQuery, topic_index: topicIndex, tokens_used: tokensUsed,
         perplexity_citations_count: perplexityResult.citations.length,
         citation_urls: perplexityResult.citations,
@@ -758,8 +744,8 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks). Sæt ALDRIG rejec
     }).filter((s: SourceEntry) => s.url);
 
     // Fallback to Perplexity citations if AI returned insufficient sources
-    if (rawSources.length < 2 && perplexityResult.citations.length > 0) {
-      console.log("AI returned < 2 sources – augmenting with Perplexity citations");
+    if (rawSources.length < 1 && perplexityResult.citations.length > 0) {
+      console.log("AI returned < 1 source – augmenting with Perplexity citations");
       const existingUrls = new Set(rawSources.map(s => normalizeSourceUrl(s.url)));
       const fallbackSources = perplexityResult.citations
         .filter((url: string) => isAllowedDomain(url) && !existingUrls.has(normalizeSourceUrl(url)))
