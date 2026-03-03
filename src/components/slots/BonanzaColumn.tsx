@@ -128,7 +128,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
                         (isWinning || cellAnim === 'winning') && "bonanza-candy-highlight-img",
                         scatterAnimClass
                       )}
-                      style={{ transform: `scale(${scaleValue})` }}
+                      style={{ transform: (isWinning || cellAnim === 'winning') ? undefined : `scale(${scaleValue})`, '--symbol-scale': scaleValue } as React.CSSProperties}
                       draggable={false}
                     />
                   </div>
