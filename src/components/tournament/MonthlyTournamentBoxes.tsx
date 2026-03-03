@@ -195,7 +195,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
           ))}
         </div>
         <div className={cn(
-          "tournament-countdown absolute top-2 left-2 flex items-center gap-1 backdrop-blur-sm rounded-md px-2.5 py-1",
+          "tournament-countdown absolute top-2 left-2 z-[2] flex items-center gap-1 backdrop-blur-sm rounded-md px-2.5 py-1",
           isUrgent ? "tournament-countdown-urgent" : isWarning ? "tournament-countdown-glow" : "bg-black/60"
         )}>
           <Clock className="h-3.5 w-3.5 text-foreground dark:text-white" />
