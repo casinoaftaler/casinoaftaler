@@ -41,7 +41,7 @@ export default function FedesvinBonanza() {
     timeSinceOtherActive, isLoading: sessionLoading,
     takeOverSession, refreshSession
   } = useSlotSession(GAME_ID);
-  const { scale, shouldScale } = useSlotScale();
+  const { scale, shouldScale } = useSlotScale(1700, 1200);
   const { isLocked, hasAccess, isLoading: accessLoading, isVerifying, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
 
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
