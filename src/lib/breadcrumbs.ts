@@ -198,6 +198,7 @@ export const routeLabels: Record<string, string> = {
   "/casino-nyheder": "Casino Nyheder",
   // Community (kun indexerbare sider)
   "/community": "Community",
+  "/community/turneringer": "Turneringer",
   "/community/slots": "Spillehal",
   "/bonus-hunt": "Bonus Hunt",
 };
@@ -206,7 +207,6 @@ export const routeLabels: Record<string, string> = {
 
 /** Paths where breadcrumbs should NOT appear (visual + schema). */
 export const EXCLUDED_PATHS = new Set([
-  "/community/turneringer",
   "/community/rewards",
   "/community/spin-the-reel",
 ]);
