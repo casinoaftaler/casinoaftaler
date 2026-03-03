@@ -191,7 +191,7 @@ export const seoRoutes: SeoRoute[] = ([
   // ── Bonus Guides ──
   { path: "/casino-bonus", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-19" },
   { path: "/velkomstbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
-  { path: "/free-spins", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-03" },
+  { path: "/free-spins", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-22" },
   { path: "/free-spins-i-dag", changefreq: "daily", priority: 0.9, lastmod: "2026-02-22" },
   { path: "/indskudsbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/omsaetningskrav", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-26" },
@@ -249,7 +249,7 @@ export const seoRoutes: SeoRoute[] = ([
 
   // ── Community & Highlights ──
   { path: "/bonus-hunt", changefreq: "daily", priority: 0.8, lastmod: "2026-02-28" },
-  { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-03-03", showUpdatedDate: false },
+  { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-03-01", showUpdatedDate: false },
   { path: "/community/turneringer", changefreq: "daily", priority: 0.6, lastmod: "2026-03-03", showUpdatedDate: false },
   { path: "/community/slots", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },
   { path: "/community/rewards", changefreq: "weekly", priority: 0.6, lastmod: "2026-03-01", showUpdatedDate: false },
