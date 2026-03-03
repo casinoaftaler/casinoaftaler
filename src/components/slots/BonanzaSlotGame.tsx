@@ -749,12 +749,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       )}
 
       {/* Logo positioned above grid like Sweet Bonanza */}
-      <div className="flex justify-center" style={{ width: gridWidth, marginBottom: -8 }}>
+      <div className="flex justify-center relative z-10" style={{ width: gridWidth, marginBottom: -22 }}>
         <img
           src={fedesvinBonanzaLogo}
           alt="Fedesvin Bonanza"
-          className="pointer-events-none z-10 relative"
-          style={{ width: gridWidth * 0.5 }}
+          className="pointer-events-none block"
+          style={{ width: gridWidth * 0.54, transform: 'translateY(10px)' }}
           draggable={false}
         />
       </div>
