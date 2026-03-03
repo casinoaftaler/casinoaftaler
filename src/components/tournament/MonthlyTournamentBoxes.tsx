@@ -248,48 +248,48 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
                 <BarChart3 className="h-3 w-3 mr-1" />
                 Leaderboard
               </Button>
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-lg">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2">
-                <Trophy className="h-5 w-5 text-amber-400" />
-                {config.gameName} — {config.categoryLabel}
-              </DialogTitle>
-            </DialogHeader>
+            </DialogTrigger>
+            <DialogContent className="max-w-lg">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Trophy className="h-5 w-5 text-amber-400" />
+                  {config.gameName} — {config.categoryLabel}
+                </DialogTitle>
+              </DialogHeader>
 
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Søg efter spiller..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9"
-              />
-            </div>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Søg efter spiller..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-9"
+                />
+              </div>
 
-            <div className="space-y-1 max-h-[50vh] overflow-y-auto">
-              {filteredEntries.map((entry, i) => {
-                const rank = entries.indexOf(entry) + 1;
-                return (
-                  <LeaderboardRow
-                    key={entry.user_id}
-                    entry={entry}
-                    rank={rank}
-                    isCurrentUser={user?.id === entry.user_id}
-                    category={config.category}
-                  />
-                );
-              })}
-              {currentUser && currentUser.rank > entries.length && (
-                <>
-                  <Separator className="my-2" />
-                  <LeaderboardRow entry={currentUser.entry} rank={currentUser.rank} isCurrentUser category={config.category} />
-                </>
-              )}
-            </div>
-          </DialogContent>
-        </Dialog>
+              <div className="space-y-1 max-h-[50vh] overflow-y-auto">
+                {filteredEntries.map((entry, i) => {
+                  const rank = entries.indexOf(entry) + 1;
+                  return (
+                    <LeaderboardRow
+                      key={entry.user_id}
+                      entry={entry}
+                      rank={rank}
+                      isCurrentUser={user?.id === entry.user_id}
+                      category={config.category}
+                    />
+                  );
+                })}
+                {currentUser && currentUser.rank > entries.length && (
+                  <>
+                    <Separator className="my-2" />
+                    <LeaderboardRow entry={currentUser.entry} rank={currentUser.rank} isCurrentUser category={config.category} />
+                  </>
+                )}
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
     </div>
   );
