@@ -28,6 +28,7 @@ const SOUND_TYPES = [
   { key: "bombFizzSound", label: "Bombe Fuse", icon: "🧨" },
   { key: "bonusEndSound", label: "Bonus Afslutning", icon: "🔚" },
   { key: "scatterLandSound", label: "Scatter Landing", icon: "🎯" },
+  { key: "symbolDropInSound", label: "Symbol Drop-In", icon: "🍬" },
 ];
 
 type SoundStatus = "idle" | "generating" | "done" | "error";

@@ -41,6 +41,7 @@ export function SlotSoundFilesSection({ gameId = "book-of-fedesvin" }: SlotSound
     bombFizzSound: null,
     bonusEndSound: null,
     scatterLandSound: null,
+    symbolDropInSound: null,
   });
 
   useEffect(() => {
@@ -226,6 +227,13 @@ export function SlotSoundFilesSection({ gameId = "book-of-fedesvin" }: SlotSound
                   settingKey={settingKeys.scatterSound3}
                   currentUrl={localFiles.scatterSound3}
                   onUrlChange={handleUrlChange("scatterSound3")}
+                />
+                <SlotSoundUpload
+                  label="Symbol Drop-In"
+                  description="Afspilles når nye symboler falder ned i gitteret efter en tumble."
+                  settingKey={settingKeys.symbolDropInSound}
+                  currentUrl={localFiles.symbolDropInSound}
+                  onUrlChange={handleUrlChange("symbolDropInSound")}
                 />
               </div>
             </div>

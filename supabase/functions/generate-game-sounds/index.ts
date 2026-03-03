@@ -67,6 +67,11 @@ const GATES_SOUNDS: Record<string, SoundDef> = {
     duration: 4,
     settingSuffix: "scatter_celebration",
   },
+  symbolDropInSound: {
+    prompt: "Ancient stone blocks and marble tiles cascading down temple steps with deep reverberating impacts, divine energy whoosh as symbols settle into place",
+    duration: 1.5,
+    settingSuffix: "symbol_drop_in",
+  },
 };
 
 const BONANZA_SOUNDS: Record<string, SoundDef> = {
@@ -149,6 +154,11 @@ const BONANZA_SOUNDS: Record<string, SoundDef> = {
     prompt: "Single heavy gummy bear landing with sweet candy impact thud, magical sugar sparkle burst on contact, lollipop stick striking candy glass",
     duration: 1,
     settingSuffix: "scatter_land",
+  },
+  symbolDropInSound: {
+    prompt: "Cascading gummy bears and jellybeans tumbling down with soft bouncy plops, bubbly candy rain landing on glass, sweet sugar crystals tinkling as they settle",
+    duration: 1.5,
+    settingSuffix: "symbol_drop_in",
   },
 };
 
