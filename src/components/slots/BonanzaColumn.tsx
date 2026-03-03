@@ -106,7 +106,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
               height: SYMBOL_HEIGHT,
               '--gravity-offset': cellAnim === 'dropping' ? `${-(cellDropOffsets.get(flatIndex) || (SYMBOL_HEIGHT + 4))}px` : undefined,
               animationDelay: applyDropOff ? `${(BONANZA_ROWS - 1 - row) * 40}ms` :
-                applyDropIn ? `${(BONANZA_ROWS - 1 - row) * 50}ms` :
+                applyDropIn ? `${row * 50}ms` :
                 isLanding ? `${row * 50}ms` :
                 cellAnim === 'filling' ? `${row * 40}ms` :
                 cellAnim === 'dropping' ? `${row * 30}ms` : undefined,
