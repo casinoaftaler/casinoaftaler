@@ -60,6 +60,7 @@ export function BonanzaControlBar({
   maxSpins,
   spinsLoading,
   showBonusTrigger,
+  winAmount,
   gameId,
   debugButton,
 }: BonanzaControlBarProps) {
@@ -131,17 +132,22 @@ export function BonanzaControlBar({
 
           {/* Credit + Bet stacked display */}
           {!bonusState.isActive && (
-            <div className="flex flex-col leading-none gap-0.5 pl-2 border-l border-pink-500/10">
+            <div className="flex flex-col leading-none gap-1 pl-2 border-l border-pink-500/10">
               <div className="flex items-center gap-1.5">
-                <span className="text-[8px] sm:text-[9px] uppercase tracking-widest font-bold text-amber-400/70">Credit</span>
+                <span
+                  className="text-sm uppercase tracking-widest font-bold text-amber-400"
+                  style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
+                >
+                  Credit
+                </span>
                 <div className="flex items-center gap-1">
                   <CreditCoin size="sm" />
                   {spinsLoading ? (
-                    <span className="text-xs animate-pulse text-pink-300/40">...</span>
+                    <span className="text-lg animate-pulse text-pink-300/40">...</span>
                   ) : (
                     <span
-                      className="text-sm font-black tabular-nums text-amber-300"
-                      style={{ textShadow: "0 0 8px rgba(251,191,36,0.3)" }}
+                      className="text-2xl font-black tabular-nums text-amber-300"
+                      style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(251,191,36,0.3)" }}
                     >
                       {spinsRemaining.toLocaleString()}
                     </span>
@@ -149,8 +155,18 @@ export function BonanzaControlBar({
                 </div>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="text-[8px] sm:text-[9px] uppercase tracking-widest font-bold text-pink-300/50">Indsats</span>
-                <span className="text-sm font-black tabular-nums text-white/90">{bet}</span>
+                <span
+                  className="text-sm uppercase tracking-widest font-bold text-pink-300/70"
+                  style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
+                >
+                  Indsats
+                </span>
+                <span
+                  className="text-2xl font-black tabular-nums text-white/90"
+                  style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
+                >
+                  {bet}
+                </span>
               </div>
             </div>
           )}
@@ -227,8 +243,23 @@ export function BonanzaControlBar({
 
         {/* ─── RIGHT ZONE: absolute right ─── */}
         <div
-          className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 sm:gap-2 z-10"
+          className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 z-10"
         >
+          {/* Gevinst display */}
+          <div className="flex flex-col items-center leading-none">
+            <span
+              className="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-pink-400"
+              style={{ WebkitTextStroke: "0.5px black", textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
+            >
+              Gevinst
+            </span>
+            <span
+              className="text-xl sm:text-2xl font-black tabular-nums text-pink-300"
+              style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
+            >
+              {winAmount.toLocaleString()}
+            </span>
+          </div>
           {debugButton}
           <AutoSpinPopover
             isAutoSpinning={isAutoSpinning}
