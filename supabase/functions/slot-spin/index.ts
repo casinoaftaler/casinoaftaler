@@ -106,6 +106,7 @@ let GATES_FREE_SPINS_INITIAL = 15;
 let GATES_FREE_SPINS_RETRIGGER = 5;
 let GATES_MULTIPLIER_CHANCE_BASE = 0.04;
 let GATES_MULTIPLIER_CHANCE_BONUS = 0.05; // ~5% per cell in bonus
+let GATES_MAX_BET = 10;
 const GATES_BONUS_PREMIUM_WEIGHT_BOOST = 1.10; // +10% premium symbol weight in bonus
 
 const GATES_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
@@ -133,6 +134,7 @@ async function loadGatesSettings(serviceClient: ReturnType<typeof createClient>)
       "gates_multiplier_chance_base", "gates_multiplier_chance_bonus",
       "gates_min_match", "gates_scatter_trigger", "gates_scatter_retrigger",
       "gates_free_spins_initial", "gates_free_spins_retrigger",
+      "gates_max_bet",
     ]);
   if (!error && data) {
     const map: Record<string, string> = {};
@@ -148,6 +150,7 @@ async function loadGatesSettings(serviceClient: ReturnType<typeof createClient>)
     GATES_FREE_SPINS_RETRIGGER = parseInt(map.gates_free_spins_retrigger || "5", 10);
     GATES_MULTIPLIER_CHANCE_BASE = parseFloat(map.gates_multiplier_chance_base || "0.04");
     GATES_MULTIPLIER_CHANCE_BONUS = parseFloat(map.gates_multiplier_chance_bonus || "0.05");
+    GATES_MAX_BET = parseInt(map.gates_max_bet || "10", 10);
   }
 }
 
@@ -566,6 +569,7 @@ let BONANZA_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
 let BONANZA_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
 let BONANZA_REEL_DUP_2_CHANCE = 0.35;
 let BONANZA_REEL_DUP_3_CHANCE = 0.10;
+let BONANZA_MAX_BET = 5;
 
 const bonanzaSettingsCache: { data: Record<string, string> | null; fetchedAt: number } = { data: null, fetchedAt: 0 };
 const BONANZA_SETTINGS_CACHE_TTL = 5 * 60 * 1000;
@@ -581,6 +585,7 @@ async function loadBonanzaSettings(serviceClient: ReturnType<typeof createClient
       "bonanza_free_spins_retrigger", "bonanza_multiplier_chance_bonus",
       "bonanza_multiplier_values", "bonanza_multiplier_weights",
       "bonanza_reel_dup_2_chance", "bonanza_reel_dup_3_chance",
+      "bonanza_max_bet",
     ]);
   if (!error && data) {
     const map: Record<string, string> = {};
@@ -609,6 +614,7 @@ async function loadBonanzaSettings(serviceClient: ReturnType<typeof createClient
     }
     BONANZA_REEL_DUP_2_CHANCE = parseFloat(map.bonanza_reel_dup_2_chance || "0.35");
     BONANZA_REEL_DUP_3_CHANCE = parseFloat(map.bonanza_reel_dup_3_chance || "0.10");
+    BONANZA_MAX_BET = parseInt(map.bonanza_max_bet || "5", 10);
   }
 }
 
@@ -1512,12 +1518,55 @@ Deno.serve(async (req) => {
 
     console.log(`[slot-spin] gameId=${gameId}, bet=${bet}, isBonusSpin=${isBonusSpin}, userId=${userId}`);
 
-    // Validate bet amount
-    if (typeof bet !== "number" || bet < 1 || bet > 100 || !Number.isInteger(bet)) {
+    // Validate bet amount (global safety cap)
+    if (typeof bet !== "number" || bet < 1 || bet > 50 || !Number.isInteger(bet)) {
       return new Response(
         JSON.stringify({ error: "Invalid bet amount" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    }
+
+    // Per-game max bet enforcement (loaded from site_settings, cached)
+    const isBonanzaGame = gameId === "fedesvin-bonanza";
+    const isGatesGame = gameId === "gates-of-fedesvin";
+    
+    if (isBonanzaGame) {
+      await loadBonanzaSettings(serviceClient);
+      if (bet > BONANZA_MAX_BET) {
+        console.log(`[slot-spin] REJECTED: bet ${bet} exceeds bonanza max ${BONANZA_MAX_BET} for user ${userId}`);
+        return new Response(
+          JSON.stringify({ error: `Bet exceeds maximum of ${BONANZA_MAX_BET} for this game` }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    } else if (isGatesGame) {
+      await loadGatesSettings(serviceClient);
+      if (bet > GATES_MAX_BET) {
+        console.log(`[slot-spin] REJECTED: bet ${bet} exceeds gates max ${GATES_MAX_BET} for user ${userId}`);
+        return new Response(
+          JSON.stringify({ error: `Bet exceeds maximum of ${GATES_MAX_BET} for this game` }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    } else {
+      // Book of Fedesvin / Rise of Fedesvin: use slot_max_bet
+      let slotMaxBet = 10;
+      const slotMaxCached = settingsCache.get("slot_max_bet");
+      if (slotMaxCached && Date.now() - slotMaxCached.fetchedAt < SETTINGS_CACHE_TTL_MS) {
+        slotMaxBet = slotMaxCached.data;
+      } else {
+        const { data: smb } = await serviceClient
+          .from("site_settings").select("value").eq("key", "slot_max_bet").maybeSingle();
+        slotMaxBet = parseInt(smb?.value || "10", 10);
+        settingsCache.set("slot_max_bet", { data: slotMaxBet, fetchedAt: Date.now() });
+      }
+      if (bet > slotMaxBet) {
+        console.log(`[slot-spin] REJECTED: bet ${bet} exceeds slot max ${slotMaxBet} for user ${userId}`);
+        return new Response(
+          JSON.stringify({ error: `Bet exceeds maximum of ${slotMaxBet} for this game` }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
     }
 
     // Get symbols from module-level cache (eliminates DB call for warm instances)
@@ -1650,7 +1699,7 @@ Deno.serve(async (req) => {
     // FEDESVIN BONANZA - Sweet Bonanza-style engine
     // 6x5 grid, Pay Anywhere (8+ match), tumble/cascade, multiplier bombs in bonus
     // ============================================================
-    const isBonanzaGame = gameId === "fedesvin-bonanza";
+    // isBonanzaGame already declared above during per-game max bet check
     if (isBonanzaGame) {
       // Load Bonanza settings from DB (cached 5 min)
       await loadBonanzaSettings(serviceClient);
