@@ -538,14 +538,17 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       setTumblePhase('idle');
       spinLockRef.current = false;
 
-      if (isBonusActive && freeSpinsRemaining > 0 && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current) {
+      if (isBonusActive && freeSpinsRemaining > 0 && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current && !pendingBonusActionRef.current) {
         if (shouldWaitForWinAnimation) {
           pendingPostWinSpinRef.current = 'bonus';
         } else {
           if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
           autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
         }
-      } else if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
+      } else if (pendingBonusActionRef.current) {
+        // A deferred bonus action exists (trigger/retrigger/complete) — don't auto-spin,
+        // let the WinCelebration onComplete handler execute it first
+        pendingPostWinSpinRef.current = null;
         if (autoSpinsRemaining !== null) {
           const newCount = autoSpinsRemaining - 1;
           setAutoSpinsRemaining(newCount);
