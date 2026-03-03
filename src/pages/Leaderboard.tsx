@@ -503,36 +503,26 @@ export default function Leaderboard() {
                 </div>
               )}
 
-              {/* Ended tournaments - collapsible */}
-              {ended.length > 0 && (
-                <Collapsible>
-                  <CollapsibleTrigger className="flex items-center gap-2 text-sm font-semibold text-muted-foreground uppercase tracking-wider hover:text-foreground transition-colors cursor-pointer group">
-                    <ChevronRight className="h-4 w-4 transition-transform group-data-[state=open]:rotate-90" />
-                    Afsluttede turneringer ({ended.length})
-                  </CollapsibleTrigger>
-                  <CollapsibleContent className="mt-4">
-                    <div className="space-y-2">
-                      {ended.map((t) => <CompletedTournamentRow key={t.id} tournament={t} />)}
-                    </div>
-                  </CollapsibleContent>
-                </Collapsible>
-              )}
-
-              {/* No tournaments */}
-              {!active.length && !upcoming.length && !ended.length && (
-                <div className="rounded-2xl border border-dashed border-border/50 bg-card p-12 text-center">
-                  <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-muted/20 flex items-center justify-center">
-                    <Sparkles className="h-8 w-8 text-muted-foreground/50" />
-                  </div>
-                  <h3 className="text-lg font-medium text-muted-foreground mb-1">Ingen turneringer endnu</h3>
-                  <p className="text-sm text-muted-foreground/70">Hold øje med nye turneringer og events!</p>
-                </div>
-              )}
             </div>
           )}
 
           {/* Tournament SEO content */}
           <TournamentSeoContent />
+
+          {/* Ended tournaments - collapsible */}
+          {ended.length > 0 && (
+            <Collapsible>
+              <CollapsibleTrigger className="flex items-center gap-2 text-sm font-semibold text-muted-foreground uppercase tracking-wider hover:text-foreground transition-colors cursor-pointer group">
+                <ChevronRight className="h-4 w-4 transition-transform group-data-[state=open]:rotate-90" />
+                Afsluttede turneringer ({ended.length})
+              </CollapsibleTrigger>
+              <CollapsibleContent className="mt-4">
+                <div className="space-y-2">
+                  {ended.map((t) => <CompletedTournamentRow key={t.id} tournament={t} />)}
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          )}
 
           {/* SEO sections */}
           <div className="mt-12 space-y-8">
