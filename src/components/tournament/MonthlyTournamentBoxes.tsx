@@ -195,11 +195,10 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
           ))}
         </div>
         <div className={cn(
-          "tournament-countdown absolute top-2 left-2 z-[2] flex items-center gap-1 backdrop-blur-md rounded-md px-2.5 py-1 shadow-lg",
-          isUrgent ? "tournament-countdown-urgent" : isWarning ? "tournament-countdown-glow" : "bg-black/70"
+          "tournament-countdown absolute top-2 left-2 z-[2] flex items-center gap-1 backdrop-blur-md rounded-md px-2.5 py-1 shadow-lg bg-black/70"
         )}>
           <Clock className="h-3.5 w-3.5 text-white" />
-          <span className="text-xs font-mono text-white font-medium">{countdown.label}</span>
+          <span className="text-xs font-mono text-white font-medium">Starter i morgen: 04-04-2026</span>
         </div>
       </div>
 
@@ -432,10 +431,6 @@ export function MonthlyTournamentBoxes() {
           </Badge>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
-            <Clock className="h-3.5 w-3.5" />
-            <span>Nulstilles om {countdown.label}</span>
-          </div>
           {archiveData && archiveData.length > 0 && (
             <Dialog open={showArchive} onOpenChange={setShowArchive}>
               <DialogTrigger asChild>
