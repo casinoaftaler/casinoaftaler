@@ -333,3 +333,59 @@
 .bonanza-mult-pop {
   animation: bonanza-mult-pop 0.35s ease-out both;
 }
+
+/* ── Bonus Entry Effects ── */
+
+/* Diagonal stripe background - animated sliding */
+@keyframes bonanza-diagonal-stripes {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+.bonanza-stripe-bg {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(160, 50, 180, 0.3) 0px,
+    rgba(160, 50, 180, 0.3) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  background-size: 40px 40px;
+  animation: bonanza-diagonal-stripes 1.5s linear infinite;
+}
+
+/* Coin/gem rain */
+@keyframes bonanza-coin-fall {
+  0% { transform: translateY(-20px) rotate(0deg) scale(0); opacity: 0; }
+  10% { opacity: 1; transform: translateY(0) rotate(20deg) scale(1); }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(calc(100vh + 20px)) rotate(720deg) scale(0.6); opacity: 0; }
+}
+
+.bonanza-coin-rain {
+  animation: bonanza-coin-fall var(--fall-duration, 3s) linear var(--fall-delay, 0s) both;
+}
+
+/* Shockwave ripple */
+@keyframes bonanza-shockwave {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0.8; border-width: 6px; }
+  100% { transform: translate(-50%, -50%) scale(3); opacity: 0; border-width: 1px; }
+}
+
+.bonanza-shockwave {
+  animation: bonanza-shockwave 1s ease-out both;
+}
+
+.bonanza-shockwave-delayed {
+  animation: bonanza-shockwave 1.2s ease-out 0.15s both;
+}
+
+/* Glow pulse on number */
+@keyframes bonanza-number-glow {
+  0%, 100% { text-shadow: 0 2px 8px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.3); filter: brightness(1); }
+  50% { text-shadow: 0 2px 8px rgba(0,0,0,0.4), 0 0 30px rgba(255,105,180,0.8), 0 0 60px rgba(255,105,180,0.4), 0 0 90px rgba(255,215,0,0.3); filter: brightness(1.15); }
+}
+
+.bonanza-number-glow {
+  animation: bonanza-number-glow 1.2s ease-in-out infinite;
+}
