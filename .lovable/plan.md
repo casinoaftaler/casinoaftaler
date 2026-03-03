@@ -1,17 +1,52 @@
 
 
-# Fix Fedesvin Bonanza Card Size
+# Add Symbol Drop-In Sound Effect for Fedesvin Bonanza
 
-## Problem
-In the 2-column grid, the first two cards share a row and size each other via `items-stretch`. The third card (Fedesvin Bonanza) sits alone on the second row with no sibling to match height against, so it can render at a different (likely larger) height.
+## Overview
+Add a new candy-themed sound effect that plays when new symbols drop into the grid after a tumble (cluster win removal). Currently there is no audio feedback for this moment -- symbols silently fall into place.
 
-## Solution
-Add a fixed `aspect-ratio` to the `FeaturedSlotPanel` component so all cards render at a consistent height regardless of row siblings.
+## Changes Required
 
-### File: `src/components/games/FeaturedSlotPanel.tsx`
-- Add `aspect-video` (16:9) class to the outer card container alongside the existing `h-full`, ensuring every card has the same proportional height
-- This keeps all three cards visually identical whether they share a row or not
+### 1. Add `symbolDropInSound` to the sound file system
 
-### Alternative considered
-Adding a fixed pixel height (e.g. `h-[300px]`) -- but `aspect-video` is more responsive and matches the 1200x675 image ratio already used.
+**`src/hooks/useSlotSoundFiles.ts`**
+- Add `symbolDropInSound: string | null` to the `SlotSoundFiles` interface
+- Add `symbolDropInSound: "symbol_drop_in"` to the `SOUND_SUFFIXES` map
+
+### 2. Add candy-themed prompt to the sound generator
+
+**`supabase/functions/generate-game-sounds/index.ts`**
+- Add a `symbolDropInSound` entry to `BONANZA_SOUNDS` with a candy-themed prompt like:
+  *"Cascading gummy bears and jellybeans tumbling down with soft bouncy plops, bubbly candy rain landing on glass, sweet sugar crystals tinkling as they settle"*
+- Duration: ~1.5 seconds
+- Also add a Gates equivalent to `GATES_SOUNDS` for consistency
+
+### 3. Wire the sound into the game loop
+
+**`src/hooks/useSlotSoundLoader.ts`**
+- Pass `soundFiles.symbolDropInSound` through to the `CustomSoundFiles` object
+
+**`src/lib/slotSoundEffects.ts`** (or equivalent singleton)
+- Add `symbolDropInSound` to the `CustomSoundFiles` interface and playback method
+
+**`src/components/slots/BonanzaSlotGame.tsx`**
+- In the tumble loop, when column spin states are set to `'dropping-in'`, trigger the drop-in sound effect
+
+### 4. Add to batch generator and admin upload UI
+
+**`src/components/slots/BatchSoundGenerator.tsx`**
+- Add `{ key: "symbolDropInSound", label: "Symbol Drop-In", icon: "🍬" }` to `SOUND_TYPES`
+
+**`src/components/slots/SlotSoundFilesSection.tsx`**
+- Add an upload slot for the new sound file
+
+### 5. Add to loading screen preloader
+
+**`src/components/slots/SlotLoadingScreen.tsx`**
+- Include `symbolDropInSound` in the sound URLs array so it preloads during the loading screen
+
+## Technical Notes
+- The sound key in `site_settings` will be `fedesvin_bonanza_sound_file_symbol_drop_in`
+- The edge function must be redeployed after adding the new sound definition
+- The sound plays once per tumble drop-in phase (not per column), keeping it clean
 
