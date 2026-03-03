@@ -490,8 +490,8 @@ export default function Leaderboard() {
         </div>
       </section>
 
-      <AuthorMetaBar author="kevin" readTime="5 min" />
       <CommunityNav />
+      <AuthorMetaBar author="kevin" readTime="5 min" />
 
       <div className="container relative">
         {/* Sidebar – positioned outside content flow like Bonus Hunt */}
