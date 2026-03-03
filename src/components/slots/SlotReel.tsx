@@ -93,22 +93,19 @@ export const SlotReel = React.memo(function SlotReel({
 
   const buildReelStrip = useCallback(() => {
     const strip: SlotSymbolType[] = [];
-    // Random symbols first (scroll past these)
-    const pool = randomPoolRef.current;
-    const poolLen = pool.length;
-    if (poolLen > 0) {
-      let idx = poolIndexRef.current;
-      for (let i = 0; i < 30; i++) {
-        strip.push(pool[idx % poolLen]);
-        idx++;
-      }
-      poolIndexRef.current = idx;
-    }
-    // Final symbols at end (land on these)
     for (let i = 0; i < displayedSymbolIds.length; i++) {
       const symbol = symbolsById.get(displayedSymbolIds[i]);
       if (symbol) strip.push(symbol);
     }
+    const pool = randomPoolRef.current;
+    const poolLen = pool.length;
+    if (poolLen === 0) return strip;
+    let idx = poolIndexRef.current;
+    for (let i = 0; i < 30; i++) {
+      strip.push(pool[idx % poolLen]);
+      idx++;
+    }
+    poolIndexRef.current = idx;
     return strip;
   }, [displayedSymbolIds, symbolsById]);
 
@@ -140,9 +137,9 @@ export const SlotReel = React.memo(function SlotReel({
         if (!hasStartedSpinRef.current || hasStartedSlowdownRef.current) return;
         const elapsed = (currentTime - fakeLoopStartTime) % loopDuration;
         const loopProgress = elapsed / loopDuration;
-        const loopOffset = startOffset * loopProgress;
+        const loopOffset = startOffset * (1 - loopProgress);
         // Compute blur inline
-        const progress = loopOffset / maxOffset;
+        const progress = 1 - (loopOffset / maxOffset);
         const blur = Math.max(0, 8 * (1 - progress * progress));
         applyOffset(loopOffset, blur, false);
         animationRef.current = requestAnimationFrame(fakeLoopAnimate);
@@ -167,7 +164,7 @@ export const SlotReel = React.memo(function SlotReel({
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / spinDuration, 1);
         const easeOut = teaseMode ? 1 - Math.pow(1 - progress, 5) : 1 - Math.pow(1 - progress, 2);
-        const currentOffset = startOffset * easeOut;
+        const currentOffset = startOffset * (1 - easeOut);
         // Skip blur during tease to avoid expensive per-frame filter repaints
         const blur = teaseMode ? 0 : Math.max(0, 8 * (1 - Math.pow(easeOut, 2)));
         applyOffset(currentOffset, blur, true);
