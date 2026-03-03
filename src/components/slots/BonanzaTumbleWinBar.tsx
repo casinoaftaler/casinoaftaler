@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 export type CollisionPhase = 'idle' | 'colliding' | 'resolved';
@@ -17,6 +17,8 @@ export function BonanzaTumbleWinBar({
   visible,
 }: BonanzaTumbleWinBarProps) {
   const [showResult, setShowResult] = useState(false);
+  const [multPop, setMultPop] = useState(false);
+  const prevMultRef = useRef(runningMultiplier);
 
   useEffect(() => {
     if (collisionPhase === 'colliding') {
@@ -26,6 +28,17 @@ export function BonanzaTumbleWinBar({
     }
     if (collisionPhase === 'idle') setShowResult(false);
   }, [collisionPhase]);
+
+  // Pop animation when multiplier changes
+  useEffect(() => {
+    if (runningMultiplier !== prevMultRef.current && runningMultiplier > 0) {
+      setMultPop(true);
+      const t = setTimeout(() => setMultPop(false), 400);
+      prevMultRef.current = runningMultiplier;
+      return () => clearTimeout(t);
+    }
+    prevMultRef.current = runningMultiplier;
+  }, [runningMultiplier]);
 
   if (!visible) return null;
 
@@ -43,7 +56,6 @@ export function BonanzaTumbleWinBar({
         )}
       >
         {collisionPhase === 'resolved' || showResult ? (
-          /* Final merged result */
           <div className="bonanza-collide-flash flex flex-col items-center">
             <span className="text-[9px] uppercase tracking-widest text-pink-200/80 font-bold">Tumble Win</span>
             <span className="text-2xl font-black text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.6)] tabular-nums">
@@ -51,7 +63,6 @@ export function BonanzaTumbleWinBar({
             </span>
           </div>
         ) : (
-          /* Pre-collision: amount x multiplier */
           <>
             <div className={cn(
               "flex flex-col items-center",
@@ -62,17 +73,19 @@ export function BonanzaTumbleWinBar({
                 {runningWin.toFixed(2)}
               </span>
             </div>
-            {runningMultiplier > 0 && (
-              <div className={cn(
+            <div
+              id="bonanza-mult-target"
+              className={cn(
                 "flex flex-col items-center",
-                collisionPhase === 'colliding' && "bonanza-collide-right"
-              )}>
-                <span className="text-[9px] uppercase tracking-widest text-yellow-200/80 font-bold">Multi</span>
-                <span className="text-xl font-black text-yellow-300 tabular-nums drop-shadow-[0_0_10px_rgba(250,204,21,0.6)]">
-                  x{runningMultiplier}
-                </span>
-              </div>
-            )}
+                collisionPhase === 'colliding' && "bonanza-collide-right",
+                multPop && "bonanza-mult-pop"
+              )}
+            >
+              <span className="text-[9px] uppercase tracking-widest text-yellow-200/80 font-bold">Multi</span>
+              <span className="text-xl font-black text-yellow-300 tabular-nums drop-shadow-[0_0_10px_rgba(250,204,21,0.6)]">
+                x{runningMultiplier}
+              </span>
+            </div>
           </>
         )}
       </div>
