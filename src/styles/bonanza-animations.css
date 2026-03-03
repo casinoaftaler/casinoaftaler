@@ -221,3 +221,48 @@
 .bonanza-win-float {
   animation: bonanza-win-float 1.2s ease-out both;
 }
+
+/* ── Candy overlay card styles ── */
+
+/* Candy stripe border */
+.bonanza-candy-stripe-border {
+  border-radius: 1.5rem;
+  border: 5px solid transparent;
+  background-image:
+    linear-gradient(180deg, rgba(120,40,140,0.92), rgba(80,20,100,0.95)),
+    repeating-linear-gradient(
+      135deg,
+      #ff69b4 0px, #ff69b4 8px,
+      #fff 8px, #fff 16px,
+      #ff69b4 16px, #ff69b4 24px
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  pointer-events: none;
+}
+
+/* Candy bubble scale-in */
+@keyframes bonanza-bubble-pop {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.bonanza-candy-bubble {
+  animation: bonanza-bubble-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Star spin */
+@keyframes bonanza-star-rotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.15); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.bonanza-star-spin {
+  animation: bonanza-star-rotate 3s linear infinite;
+}
+
+.bonanza-star-spin-reverse {
+  animation: bonanza-star-rotate 4s linear infinite reverse;
+}
