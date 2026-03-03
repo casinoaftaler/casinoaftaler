@@ -28,6 +28,7 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { BonanzaColumn, type BonanzaColumnSpinState, type BonanzaCellAnimState } from "./BonanzaColumn";
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
 import { BonanzaBonusEntrySequence } from "./BonanzaBonusEntrySequence";
+import fedesvinBonanzaLogo from "@/assets/fedesvin-bonanza-logo.png";
 import { BonanzaRetriggerOverlay } from "./BonanzaRetriggerOverlay";
 import { BonanzaBonusEndOverlay } from "./BonanzaBonusEndOverlay";
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
@@ -746,6 +747,17 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           gameId={gameId}
         />
       )}
+
+      {/* Logo positioned above grid like Sweet Bonanza */}
+      <div className="relative" style={{ width: gridWidth }}>
+        <img
+          src={fedesvinBonanzaLogo}
+          alt="Fedesvin Bonanza"
+          className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-10"
+          style={{ width: gridWidth * 0.45, top: -gridWidth * 0.45 * 0.32 }}
+          draggable={false}
+        />
+      </div>
 
       {/* Main game grid */}
       <div
