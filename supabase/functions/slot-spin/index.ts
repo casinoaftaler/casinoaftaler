@@ -2228,7 +2228,7 @@ Deno.serve(async (req) => {
         p_date: today,
         p_bet: bet,
         p_max_spins: maxSpins,
-        p_game_id: gameId,
+        p_game_id: "shared",
       });
 
     if (rpcError) {
