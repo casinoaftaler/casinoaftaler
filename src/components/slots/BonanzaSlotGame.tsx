@@ -272,6 +272,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
             }, 1300);
           }
         }
+
+        // Update Gevinst counter at the pop moment (base game: incrementally)
+        if (!isBonusActiveRef.current) {
+          setWinAmount(prev => prev + step.stepWin);
+        }
+
         await new Promise(r => setTimeout(r, 500));
 
         setWinningPositions(new Set());
