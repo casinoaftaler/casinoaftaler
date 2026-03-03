@@ -254,10 +254,12 @@ export function buildReviewSchema(opts: {
   return {
     "@context": "https://schema.org",
     "@type": "Review",
+    name: `${opts.itemName} Anmeldelse`,
     itemReviewed: {
-      "@type": "Organization",
+      "@type": "SoftwareApplication",
       name: opts.itemName,
       url: opts.itemUrl,
+      applicationCategory: "GameApplication",
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: opts.ratingValue,
