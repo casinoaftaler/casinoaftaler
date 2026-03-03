@@ -1,0 +1,268 @@
+/* ============================================
+   TOURNAMENT GAMING EFFECTS
+   Pure CSS, GPU-accelerated, no layout shift
+   ============================================ */
+
+/* 1. Animated Glow Border */
+@keyframes tournament-glow-rotate {
+  0% { --glow-angle: 0deg; }
+  100% { --glow-angle: 360deg; }
+}
+
+@property --glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.tournament-card {
+  position: relative;
+  isolation: isolate;
+  will-change: transform;
+  transition: transform 250ms ease-out, box-shadow 250ms ease-out;
+}
+
+/* Glow border pseudo-element */
+.tournament-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--glow-angle),
+    var(--tournament-glow-1, hsl(45 90% 55%)),
+    var(--tournament-glow-2, hsl(280 70% 55%)),
+    var(--tournament-glow-3, hsl(45 90% 55%))
+  );
+  animation: tournament-glow-rotate 5s linear infinite;
+  opacity: 0.5;
+  transition: opacity 300ms ease-out;
+}
+
+.tournament-card:hover::before {
+  opacity: 0.85;
+}
+
+/* 2. Hover Power-Up */
+.tournament-card:hover {
+  transform: scale(1.03) perspective(1000px);
+  box-shadow:
+    0 8px 32px -8px var(--tournament-shadow, hsl(45 80% 50% / 0.25)),
+    0 0 20px var(--tournament-shadow, hsl(45 80% 50% / 0.15));
+}
+
+.tournament-card:hover .tournament-title {
+  text-shadow: 0 0 12px var(--tournament-shadow, hsl(45 80% 50% / 0.5));
+}
+
+.tournament-card:hover .tournament-countdown {
+  animation: countdown-pulse-hover 1s ease-in-out infinite;
+}
+
+@keyframes countdown-pulse-hover {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* 3. Particle Overlay */
+.tournament-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.tournament-particle {
+  position: absolute;
+  width: var(--p-size, 3px);
+  height: var(--p-size, 3px);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--tournament-glow-1, hsl(45 90% 70% / 0.8)) 0%,
+    transparent 70%
+  );
+  animation: particle-float var(--p-duration, 6s) ease-in-out infinite;
+  animation-delay: var(--p-delay, 0s);
+  opacity: 0;
+}
+
+@keyframes particle-float {
+  0% {
+    opacity: 0;
+    transform: translateY(100%) translateX(0) scale(0.5);
+  }
+  20% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(30%) translateX(var(--p-drift, 10px)) scale(1);
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20%) translateX(var(--p-drift-end, -5px)) scale(0.5);
+  }
+}
+
+/* 4. Countdown Pulse */
+.tournament-countdown-glow {
+  animation: countdown-glow-pulse 2s ease-in-out infinite;
+}
+
+.tournament-countdown-urgent {
+  animation: countdown-urgent-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes countdown-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 4px hsl(45 80% 50% / 0.2);
+  }
+  50% {
+    box-shadow: 0 0 12px hsl(45 80% 50% / 0.4);
+  }
+}
+
+@keyframes countdown-urgent-pulse {
+  0%, 100% {
+    box-shadow: 0 0 4px hsl(0 80% 50% / 0.3);
+    background-color: hsl(0 0% 0% / 0.6);
+  }
+  50% {
+    box-shadow: 0 0 16px hsl(15 90% 50% / 0.5);
+    background-color: hsl(0 70% 20% / 0.6);
+  }
+}
+
+/* 5. Header Shine Sweep */
+.tournament-header-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.tournament-header-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    hsl(0 0% 100% / 0.15) 45%,
+    hsl(0 0% 100% / 0.25) 50%,
+    hsl(0 0% 100% / 0.15) 55%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  animation: header-shine-sweep 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes header-shine-sweep {
+  0%, 20% { transform: translateX(-100%); }
+  40%, 100% { transform: translateX(200%); }
+}
+
+/* 6. CTA Gaming Boost */
+.tournament-cta {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, hsl(260 70% 55%), hsl(280 80% 60%)) !important;
+  box-shadow: inset 0 1px 1px hsl(0 0% 100% / 0.15), 0 2px 8px hsl(260 70% 50% / 0.3);
+  transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+}
+
+.tournament-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, hsl(0 0% 100% / 0.1), transparent 60%);
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+
+.tournament-cta:hover {
+  transform: scale(1.04);
+  box-shadow: inset 0 1px 1px hsl(0 0% 100% / 0.2), 0 4px 20px hsl(260 70% 50% / 0.5);
+}
+
+.tournament-cta:hover::after {
+  opacity: 1;
+  animation: cta-ripple 0.8s ease-out;
+}
+
+.tournament-cta:active {
+  transform: scale(0.98);
+  transition: transform 80ms ease-out;
+}
+
+@keyframes cta-ripple {
+  0% { transform: scale(0.8); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* 7. Elite Crown Badge */
+.tournament-crown {
+  display: inline-flex;
+  animation: crown-float 3s ease-in-out infinite;
+}
+
+@keyframes crown-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    filter: drop-shadow(0 0 3px hsl(45 90% 55% / 0.4));
+  }
+  50% {
+    transform: translateY(-2px) rotate(2deg);
+    filter: drop-shadow(0 0 8px hsl(45 90% 55% / 0.7));
+  }
+}
+
+/* 8. 3D Card Depth on hover */
+.tournament-card:hover .tournament-image {
+  transform: scale(1.05);
+}
+
+.tournament-image {
+  transition: transform 300ms ease-out;
+}
+
+/* Per-category glow colors */
+.tournament-card[data-category="total_points"] {
+  --tournament-glow-1: hsl(45 90% 55%);
+  --tournament-glow-2: hsl(35 85% 50%);
+  --tournament-glow-3: hsl(45 90% 55%);
+  --tournament-shadow: hsl(45 80% 50% / 0.3);
+}
+
+.tournament-card[data-category="highest_x"] {
+  --tournament-glow-1: hsl(210 90% 55%);
+  --tournament-glow-2: hsl(195 95% 50%);
+  --tournament-glow-3: hsl(210 90% 55%);
+  --tournament-shadow: hsl(210 80% 50% / 0.3);
+}
+
+.tournament-card[data-category="highest_win"] {
+  --tournament-glow-1: hsl(270 70% 60%);
+  --tournament-glow-2: hsl(290 80% 55%);
+  --tournament-glow-3: hsl(270 70% 60%);
+  --tournament-shadow: hsl(270 70% 55% / 0.3);
+}
+
+/* Light mode toning down */
+:root .tournament-card::before {
+  opacity: 0.3;
+}
+:root .tournament-card:hover::before {
+  opacity: 0.55;
+}
+:root .tournament-card:hover {
+  box-shadow:
+    0 8px 24px -8px hsl(0 0% 0% / 0.1),
+    0 0 12px var(--tournament-shadow, hsl(45 80% 50% / 0.1));
+}
