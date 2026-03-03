@@ -167,8 +167,9 @@ export function buildArticleSchema(opts: {
   /** YouTube video ID – when provided, creates hasPart ↔ isPartOf binding */
   videoId?: string;
   /**
-   * Optional AggregateRating for casino review pages.
-   * Enables star ratings in SERP. Must not be inflated (max 4.9, ratingCount ≥ 8).
+   * @deprecated This parameter is intentionally ignored. AggregateRating is NOT valid
+   * on Article type per Google. Use buildReviewSchema() instead, which attaches it
+   * to itemReviewed (SoftwareApplication). Kept only for backward compatibility.
    */
   aggregateRating?: {
     ratingValue: string;
