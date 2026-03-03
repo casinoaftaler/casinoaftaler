@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { CreditsExpiredOverlay } from "./CreditsExpiredOverlay";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
 import { useSlotSettings } from "@/hooks/useSlotSettings";
@@ -655,7 +656,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const gridHeight = BONANZA_ROWS * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_GAP;
 
   return (
-    <div className="flex flex-col items-center gap-4" style={{ width: gridWidth, maxWidth: "100%" }}>
+    <div className="flex flex-col items-center gap-4 relative" style={{ width: gridWidth, maxWidth: "100%" }}>
+      {/* Credits expired overlay */}
+      <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !isBonusActive} />
       {/* Bonus overlays moved inside grid below */}
 
       {/* Win celebration */}

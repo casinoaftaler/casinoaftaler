@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { CreditsExpiredOverlay } from "./CreditsExpiredOverlay";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useMultiplierSymbols } from "@/hooks/useMultiplierSymbols";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
@@ -739,12 +740,14 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
   return (
     <div
-      className="flex flex-col items-center gap-4"
+      className="flex flex-col items-center gap-4 relative"
       data-intensity={intensityState}
       data-bonus={isBonusActive ? "true" : "false"}
       data-mult-tier={bonusIntensityTier}
       data-last-spin={isBonusActive && freeSpinsRemaining === 1 ? "true" : "false"}
     >
+      {/* Credits expired overlay */}
+      <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !isBonusActive} />
       {/* Ambient lightning overlay */}
       <div className="gates-lightning-ambient" />
       {/* Ambient glow background */}

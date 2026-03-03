@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
+import { CreditsExpiredOverlay } from "./CreditsExpiredOverlay";
 import { Card, CardContent } from "@/components/ui/card";
 import { SlotReel } from "./SlotReel";
 import { WinLines } from "./WinLines";
@@ -1044,7 +1045,9 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const canSpinNow = bonusState.isActive ? bonusState.freeSpinsRemaining > 0 : hasEnoughSpins(bet);
 
   return (
-    <div className="transition-all duration-300">
+    <div className="transition-all duration-300 relative">
+      {/* Credits expired overlay */}
+      <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !bonusState.isActive} />
       {/* Bonus Overlays */}
       <BonusOverlay
         isVisible={showRetrigger}
