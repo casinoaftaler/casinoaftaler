@@ -80,11 +80,11 @@ Deno.serve(async (req) => {
     }
 
     const today = getTodayDanish();
-    const BASE_DAILY_SPINS = 200;
-    const MAX_SPINS_CAP = 220;
-    const SUBSCRIBER_MAX_SPINS_CAP = 320;
+    const BASE_DAILY_SPINS = 2000;
+    const MAX_SPINS_CAP = 10200;
+    const SUBSCRIBER_MAX_SPINS_CAP = 10300;
     const SUBSCRIBER_BONUS = 100;
-    const ABSOLUTE_MAX_CREDITS = 1000;
+    const ABSOLUTE_MAX_CREDITS = 10000;
 
     // Get all users with a Twitch account (active users)
     const { data: profiles, error: profilesError } = await supabase
@@ -127,7 +127,7 @@ Deno.serve(async (req) => {
     const latestSpins = await batchIn<any>(
       "slot_spins", "user_id", userIds,
       "user_id, spins_remaining, date",
-      (q) => q.lt("date", today).order("date", { ascending: false }),
+      (q) => q.lt("date", today).eq("game_id", "shared").order("date", { ascending: false }),
     );
 
     // Build a map of user_id -> most recent spins_remaining (before today)
@@ -142,7 +142,7 @@ Deno.serve(async (req) => {
     const todaySpins = await batchIn<any>(
       "slot_spins", "user_id", userIds,
       "user_id",
-      (q) => q.eq("date", today),
+      (q) => q.eq("date", today).eq("game_id", "shared"),
     );
 
     const usersWithTodayRecord = new Set(todaySpins.map((s: any) => s.user_id));
@@ -182,6 +182,7 @@ Deno.serve(async (req) => {
         user_id: p.user_id,
         date: today,
         spins_remaining: startValue,
+        game_id: "shared",
       });
 
       logRows.push({
@@ -198,7 +199,7 @@ Deno.serve(async (req) => {
       // Insert new records (ignoreDuplicates for safety)
       const { error: upsertError } = await supabase
         .from("slot_spins")
-        .upsert(rows, { onConflict: "user_id,date", ignoreDuplicates: true });
+        .upsert(rows, { onConflict: "user_id,date,game_id", ignoreDuplicates: true });
 
       if (upsertError) throw upsertError;
 

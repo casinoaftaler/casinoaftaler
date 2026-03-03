@@ -72,6 +72,7 @@ export const Header = memo(function Header() {
         .select("spins_remaining")
         .eq("user_id", user.id)
         .eq("date", today)
+        .eq("game_id", "shared")
         .maybeSingle();
       return data;
     },
