@@ -136,9 +136,9 @@ export function BonanzaControlBar({
               <div className="flex items-center gap-1.5">
                 <span
                   className="text-sm uppercase tracking-widest font-bold text-amber-400"
-                  style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
-                >
-                  Credit
+                   style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
+                 >
+                   Credit
                 </span>
                 <div className="flex items-center gap-1">
                   <CreditCoin size="sm" />
@@ -147,7 +147,7 @@ export function BonanzaControlBar({
                   ) : (
                     <span
                       className="text-2xl font-black tabular-nums text-amber-300"
-                      style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(251,191,36,0.3)" }}
+                      style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(251,191,36,0.3)" }}
                     >
                       {spinsRemaining.toLocaleString()}
                     </span>
@@ -157,15 +157,15 @@ export function BonanzaControlBar({
               <div className="flex items-center gap-1.5">
                 <span
                   className="text-sm uppercase tracking-widest font-bold text-pink-300/70"
-                  style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
-                >
-                  Indsats
+                   style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
+                 >
+                   Indsats
                 </span>
                 <span
                   className="text-2xl font-black tabular-nums text-white/90"
-                  style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
-                >
-                  {bet}
+                   style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
+                 >
+                   {bet}
                 </span>
               </div>
             </div>
@@ -249,13 +249,13 @@ export function BonanzaControlBar({
           <div className="flex flex-col items-center leading-none">
             <span
               className="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-pink-400"
-              style={{ WebkitTextStroke: "0.5px black", textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
+              style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
             >
               Gevinst
             </span>
             <span
               className="text-xl sm:text-2xl font-black tabular-nums text-pink-300"
-              style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
+              style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
             >
               {winAmount.toLocaleString()}
             </span>
