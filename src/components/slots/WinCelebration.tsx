@@ -527,11 +527,12 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
         >
         <div
             className={cn(
-              "rounded-xl backdrop-blur-sm",
-              isEpicWin ? "px-10 sm:px-14 py-6 sm:py-8" : isMegaWin ? "px-8 sm:px-12 py-5 sm:py-7" : "px-6 sm:px-10 py-4 sm:py-5"
+              "rounded-2xl backdrop-blur-md border border-white/10",
+              isEpicWin ? "px-8 sm:px-10 py-4 sm:py-5" : isMegaWin ? "px-6 sm:px-8 py-3 sm:py-4" : "px-5 sm:px-7 py-3 sm:py-4"
             )}
             style={{
-              background: "rgba(0,0,0,0.35)",
+              background: "rgba(0,0,0,0.25)",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)",
             }}
           >
             <div

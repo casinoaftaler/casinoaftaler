@@ -135,41 +135,44 @@ export function BonusEntrySequence({ isActive, freeSpinsAwarded, onComplete }: B
 
       {/* Content overlay - Free Spins reveal - Phase 4 */}
       <div className={cn(
-        "absolute inset-0 z-40 flex flex-col items-center justify-center transition-opacity duration-500",
+        "absolute inset-0 z-40 flex items-center justify-center transition-opacity duration-500",
         (phase === 'spins-reveal' || phase === 'done') ? "opacity-100" : "opacity-0"
       )}>
-        {/* Zeus bolt icon */}
-        <div className="text-8xl mb-4 bonus-zeus-entrance">⚡</div>
+        <div className="flex flex-col items-center gap-3 px-8 py-6 rounded-2xl backdrop-blur-md border border-white/10"
+          style={{ background: "rgba(0,0,0,0.25)", boxShadow: "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)", maxWidth: "380px" }}>
+          {/* Zeus bolt icon */}
+          <div className="text-6xl bonus-zeus-entrance">⚡</div>
 
-        {/* FREE SPINS AWARDED title */}
-        <div className="bonus-title-entrance">
-          <h2 className="text-4xl sm:text-6xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-100 to-yellow-300 bonus-text-glow">
-            FREE SPINS AWARDED
-          </h2>
-        </div>
-
-        {/* Spins count */}
-        <div className="mt-6 bonus-count-entrance">
-          <div className="text-7xl sm:text-9xl font-black text-yellow-400 bonus-spins-counter">
-            {spinsCountUp}
+          {/* FREE SPINS AWARDED title */}
+          <div className="bonus-title-entrance">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-100 to-yellow-300 bonus-text-glow">
+              FREE SPINS AWARDED
+            </h2>
           </div>
-        </div>
 
-        {/* Subtitle */}
-        <div className={cn(
-          "mt-4 text-lg sm:text-xl text-blue-200/90 font-medium transition-opacity duration-500",
-          phase === 'spins-reveal' ? "opacity-100" : "opacity-0"
-        )}>
-          Alle multipliers akkumuleres!
-        </div>
+          {/* Spins count */}
+          <div className="mt-2 bonus-count-entrance">
+            <div className="text-6xl sm:text-7xl font-black text-yellow-400 bonus-spins-counter">
+              {spinsCountUp}
+            </div>
+          </div>
 
-        {/* Multiplier bank reset indicator */}
-        <div className={cn(
-          "mt-2 flex gap-6 text-sm text-blue-300/70 transition-opacity duration-500",
-          phase === 'spins-reveal' ? "opacity-100" : "opacity-0"
-        )} style={{ transitionDelay: '400ms' }}>
-          <span>Multiplier Bank: <span className="text-yellow-400 font-bold">0x</span></span>
-          <span>Gevinst: <span className="text-green-400 font-bold">0</span></span>
+          {/* Subtitle */}
+          <div className={cn(
+            "text-base sm:text-lg text-blue-200/90 font-medium transition-opacity duration-500",
+            phase === 'spins-reveal' ? "opacity-100" : "opacity-0"
+          )}>
+            Alle multipliers akkumuleres!
+          </div>
+
+          {/* Multiplier bank reset indicator */}
+          <div className={cn(
+            "flex gap-5 text-sm text-blue-300/70 transition-opacity duration-500",
+            phase === 'spins-reveal' ? "opacity-100" : "opacity-0"
+          )} style={{ transitionDelay: '400ms' }}>
+            <span>Multiplier Bank: <span className="text-yellow-400 font-bold">0x</span></span>
+            <span>Gevinst: <span className="text-green-400 font-bold">0</span></span>
+          </div>
         </div>
       </div>
     </div>

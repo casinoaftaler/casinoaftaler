@@ -67,7 +67,8 @@ export function BonanzaBonusEndOverlay({
         phase === 'calm' ? "bg-black/80 backdrop-blur-sm" : "bg-black/85 backdrop-blur-sm"
       )} />
 
-      <div className="relative z-10 flex flex-col items-center gap-6 px-8">
+      <div className="relative z-10 flex flex-col items-center gap-4 px-6 py-5 rounded-2xl backdrop-blur-md border border-white/10"
+        style={{ background: "rgba(0,0,0,0.25)", boxShadow: "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)", maxWidth: "340px" }}>
         <div className={cn(
           "text-3xl font-black tracking-widest uppercase",
           "bg-gradient-to-r from-pink-300 via-yellow-200 to-pink-300",
