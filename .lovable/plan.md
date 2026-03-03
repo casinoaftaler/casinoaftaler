@@ -1,51 +1,57 @@
 
 
-# Redesign: Bonanza Bonus Entry Sequence
+# Bomb Fracture Explosion Effect
 
-## Problem
-The current bonus intro uses basic Tailwind utility classes (animate-pulse, animate-ping, animate-bounce) and emoji icons, which looks amateur. It needs a cinematic, polished feel matching the candy/Fedesvin Bonanza theme.
+Replace the current bomb explosion (simple scale-down + fade) with a CSS-based fracture effect that splits the bomb image into fragments that fly outward, rotate, and fade -- making it look like the bomb actually shatters.
 
-## New Approach: Particle Explosion + Cinematic Reveal
+## Approach
 
-Instead of layered div transitions, we'll build a **canvas-based particle burst** combined with CSS keyframe-driven cinematic text reveals. The sequence will feel like a premium slot game bonus trigger.
+Use a dedicated React component (`BombFractureExplosion`) that renders the bomb image clipped into a grid of fragments (e.g., 4x4 = 16 pieces). Each fragment uses `clip-path: inset(...)` to show only its portion of the original image, then animates outward in a random direction with rotation and fade-out.
 
-### Phase Timeline (total ~5s)
+This is a pure CSS + React solution -- no canvas or external libraries needed.
 
-| Time | Phase | Visual |
-|------|-------|--------|
-| 0-300ms | **flash** | Quick white-to-pink screen flash (screen shake via CSS) |
-| 300-1200ms | **explosion** | Canvas particle burst — hundreds of pink/gold/fuchsia particles explode outward from center, then fade |
-| 1200-2000ms | **vignette** | Screen darkens with a radial vignette, deep fuchsia/purple gradient fades in |
-| 2000-3500ms | **reveal** | "FREE SPINS" text scales up from 0 with a gold metallic gradient + glow. Spin count does a rapid drum-roll count-up. Subtitle fades in with delay |
-| 3500-5000ms | **hold + done** | Hold the final frame, then call onComplete |
+## Changes
 
-### Key Visual Improvements
+### 1. Create `src/components/slots/BombFractureExplosion.tsx`
 
-1. **Canvas particle system** — ~120 particles with physics (velocity, gravity, fade, size decay). Colors: pink, fuchsia, gold, white. Creates an explosive, celebratory feel impossible with CSS alone.
-2. **Screen shake** — A brief CSS transform shake on the entire overlay during the flash phase for impact.
-3. **Metallic text effect** — The "FREE SPINS" title uses a CSS `background-image` with a sweeping linear-gradient animation (gold shimmer moving across text) instead of a static gradient.
-4. **Radial light burst** — A pulsing radial gradient behind the text creating a volumetric light source effect.
-5. **No emojis** — Replace the lollipop emoji with a styled SVG star/burst shape or pure CSS radial burst.
-6. **Drum-roll counter** — The number counter gets a slight vertical oscillation during count-up, settling when it reaches the final number.
+A new component that:
+- Takes the bomb image URL (or fallback emoji) and cell dimensions
+- Renders 16 overlapping `<div>` fragments, each with `clip-path: inset(...)` showing a 25% x 25% slice of the bomb image
+- Each fragment gets a unique CSS custom property for its outward direction (`--frag-tx`, `--frag-ty`, `--frag-rot`)
+- Fragments near edges fly outward from center; corner pieces go diagonally
+- All fragments share one `@keyframes` animation but with slight random delays
 
-### Technical Details
+### 2. Update `src/styles/bonanza-animations.css`
 
-**Files to modify:**
-- `src/components/slots/BonanzaBonusEntrySequence.tsx` — Complete rewrite with canvas + refined phases
-- `src/styles/slot-animations.css` — Add new keyframes: `bonanza-screen-shake`, `bonanza-title-scale-in`, `bonanza-gold-sweep`, `bonanza-counter-drum`
+Add a new keyframes animation:
 
-**Canvas particle system (inline in component):**
-- Uses `useRef` for canvas + `requestAnimationFrame` loop
-- Particles spawned at center with random velocity vectors
-- Each particle: `{ x, y, vx, vy, size, color, alpha, decay }`
-- Renders during explosion phase only, cleanup on unmount
-- Canvas is transparent overlay — background layers render beneath
+```text
+@keyframes bonanza-bomb-fracture {
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--frag-tx), var(--frag-ty)) rotate(var(--frag-rot)); opacity: 0; }
+}
+```
 
-**CSS keyframes to add:**
-- `bonanza-screen-shake`: rapid translateX/Y jitter over 300ms
-- `bonanza-title-scale-in`: scale(0) + blur(10px) to scale(1) + blur(0) with overshoot via cubic-bezier
-- `bonanza-gold-sweep`: background-position shift for the metallic text shimmer (loops once)
-- `bonanza-counter-drum`: subtle translateY oscillation during count-up
+Remove the old `bonanza-bomb-activate` animation (or keep it as fallback).
 
-**Component interface stays the same** — `isActive`, `freeSpinsAwarded`, `onComplete` — so no changes needed in `BonanzaSlotGame.tsx`.
+### 3. Update `BonanzaColumn.tsx`
+
+- Import `BombFractureExplosion`
+- In the `bomb-activate` cell animation state, render `<BombFractureExplosion>` instead of the current simple image with `bonanza-bomb-activate` class
+- The fracture component receives the bomb image URL from `bombSymbolsMap` and the cell dimensions
+
+### 4. Timing
+
+The fracture animation runs ~0.6s (matching the current `bomb-activate` duration) so no changes needed to the game logic timing in `BonanzaSlotGame.tsx`.
+
+## Technical Details
+
+The fragment grid approach:
+- 4 columns x 4 rows = 16 fragments
+- Each fragment is absolutely positioned over the full cell
+- `clip-path: inset(top right bottom left)` isolates each piece
+- Direction vectors are calculated based on each fragment's position relative to center
+- Edge fragments fly further; center fragments fly less
+- Each fragment gets a small random rotation (between -180deg and 180deg)
+- Staggered `animation-delay` (0-80ms range) for a natural shatter feel
 
