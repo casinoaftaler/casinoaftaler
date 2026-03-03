@@ -34,6 +34,7 @@ import { BonanzaRetriggerOverlay } from "./BonanzaRetriggerOverlay";
 import { BonanzaBonusEndOverlay } from "./BonanzaBonusEndOverlay";
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
+import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
 const DEFAULT_SYMBOL_HEIGHT = 140;
@@ -89,6 +90,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const [tumbleWinPopups, setTumbleWinPopups] = useState<TumbleWinPopup[]>([]);
   const [collisionPhase, setCollisionPhase] = useState<CollisionPhase>('idle');
   const [tumbleBarVisible, setTumbleBarVisible] = useState(false);
+  const [flyingMultipliers, setFlyingMultipliers] = useState<FlyingMultiplier[]>([]);
+  const gridContainerRef = useRef<HTMLDivElement>(null);
   // Bonus state
   const [isBonusActive, setIsBonusActive] = useState(false);
   const [freeSpinsRemaining, setFreeSpinsRemaining] = useState(0);
@@ -223,6 +226,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       if (hasWins) {
         winningStepCount++;
         setTumbleChainLength(winningStepCount);
+        // Show tumble bar on first win during bonus
+        if (winningStepCount === 1 && isBonusActiveRef.current) {
+          setTumbleBarVisible(true);
+        }
 
         // Highlight winning symbols
         setTumblePhase('showing-wins');
@@ -332,28 +339,50 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     if (lastStepWithBombs?.multiplierBombs?.length) {
       const sorted = [...lastStepWithBombs.multiplierBombs].sort((a, b) => a.position - b.position);
       const explodedPositions = new Map<number, BonanzaCellAnimState>();
+
+      // Calculate target position for flying multipliers (center-top of grid = tumble bar mult area)
+      const gridEl = gridContainerRef.current;
+      const targetX = gridEl ? gridEl.offsetWidth / 2 : 300;
+      const targetY = 20; // near top of grid where bar is
+
       for (const bomb of sorted) {
         const animState = bomb.activated ? 'bomb-activate' : 'bomb-fizzle';
-        // Keep previously exploded bombs hidden while animating next
         const currentAnims = new Map(explodedPositions);
         currentAnims.set(bomb.position, animState);
         setCellAnimStates(currentAnims);
         if (bomb.activated) {
           slotSounds.playCrackle();
-          setRunningMultiplier(prev => prev + bomb.value);
+
+          // Spawn flying multiplier from bomb position to bar
+          const { col, row } = flatToColRow(bomb.position);
+          const bombX = SYMBOL_GAP + col * (SYMBOL_WIDTH + SYMBOL_GAP) + SYMBOL_WIDTH / 2;
+          const bombY = SYMBOL_GAP + row * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_HEIGHT / 2;
+          const flyId = `fly-${bomb.position}-${Date.now()}`;
+          setFlyingMultipliers(prev => [...prev, {
+            id: flyId,
+            value: bomb.value,
+            startX: bombX,
+            startY: bombY,
+            targetX,
+            targetY,
+          }]);
+
           setScreenShake('normal');
           setTimeout(() => setScreenShake('none'), 400);
-          // Show exploded decal almost immediately alongside the fracture animation
           setTimeout(() => {
             explodedPositions.set(bomb.position, 'bomb-exploded');
             setCellAnimStates(new Map(explodedPositions));
           }, 150);
+
+          // Wait for fly animation, then update multiplier and remove flyer
+          await new Promise(r => setTimeout(r, 500));
+          setRunningMultiplier(prev => prev + bomb.value);
+          setFlyingMultipliers(prev => prev.filter(f => f.id !== flyId));
+        } else {
+          await new Promise(r => setTimeout(r, 400));
+          explodedPositions.set(bomb.position, 'bomb-exploded');
         }
-        await new Promise(r => setTimeout(r, 400));
-        // Ensure decal is set for non-activated bombs too
-        if (!bomb.activated) explodedPositions.set(bomb.position, 'bomb-exploded');
       }
-      // Keep exploded decals visible
       setCellAnimStates(new Map(explodedPositions));
     }
 
@@ -369,9 +398,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     setCellDropOffsets(new Map());
     setTumbleChainLength(0);
 
-    // Trigger collision effect if there was a win with multiplier
-    if (winningStepCount > 0) {
-      setTumbleBarVisible(true);
+    // Trigger collision effect if there was a win with multiplier (bonus only)
+    if (winningStepCount > 0 && isBonusActiveRef.current) {
+      // tumbleBarVisible already set to true on first win
       if (lastStepWithBombs?.multiplierBombs?.some(b => b.activated)) {
         setCollisionPhase('colliding');
         await new Promise(r => setTimeout(r, 800));
@@ -415,6 +444,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     setTumbleWinPopups([]);
     setCollisionPhase('idle');
     setTumbleBarVisible(false);
+    setFlyingMultipliers([]);
     serverResultRef.current = null;
 
     const STAGGER_MS = 80;
@@ -720,6 +750,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
 
       {/* Main game grid */}
       <div
+        ref={gridContainerRef}
         className={cn(
           "relative rounded-xl border-[3px] transition-all duration-500",
           isBonusActive
@@ -775,12 +806,14 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         </div>
         {/* Floating tumble win popups */}
         <BonanzaTumbleWinPopup popups={tumbleWinPopups} />
+        {/* Flying bomb multipliers */}
+        <BonanzaFlyingMultiplier flyers={flyingMultipliers} />
         {/* Tumble win bar overlay */}
         <BonanzaTumbleWinBar
           runningWin={runningWin}
           runningMultiplier={runningMultiplier}
           collisionPhase={collisionPhase}
-          visible={tumbleBarVisible && isBonusActive && runningWin > 0}
+          visible={tumbleBarVisible && isBonusActive}
         />
         {/* Bonus overlays — inside grid so they match grid size */}
         <BonanzaBonusEntrySequence
