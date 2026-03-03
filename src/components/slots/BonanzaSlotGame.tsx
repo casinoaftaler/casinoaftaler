@@ -32,6 +32,7 @@ import fedesvinBonanzaLogo from "@/assets/fedesvin-bonanza-logo.png";
 import { BonanzaRetriggerOverlay } from "./BonanzaRetriggerOverlay";
 import { BonanzaBonusEndOverlay } from "./BonanzaBonusEndOverlay";
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
+import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
 const DEFAULT_SYMBOL_HEIGHT = 140;
@@ -85,7 +86,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const [animationEpoch, setAnimationEpoch] = useState(0);
   const [tumbleChainLength, setTumbleChainLength] = useState(0);
   const [tumbleWinPopups, setTumbleWinPopups] = useState<TumbleWinPopup[]>([]);
-
+  const [collisionPhase, setCollisionPhase] = useState<CollisionPhase>('idle');
+  const [tumbleBarVisible, setTumbleBarVisible] = useState(false);
   // Bonus state
   const [isBonusActive, setIsBonusActive] = useState(false);
   const [freeSpinsRemaining, setFreeSpinsRemaining] = useState(0);
@@ -365,6 +367,23 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     });
     setCellDropOffsets(new Map());
     setTumbleChainLength(0);
+
+    // Trigger collision effect if there was a win with multiplier
+    if (winningStepCount > 0) {
+      setTumbleBarVisible(true);
+      if (lastStepWithBombs?.multiplierBombs?.some(b => b.activated)) {
+        setCollisionPhase('colliding');
+        await new Promise(r => setTimeout(r, 800));
+        setCollisionPhase('resolved');
+        await new Promise(r => setTimeout(r, 1200));
+        setCollisionPhase('idle');
+        setTumbleBarVisible(false);
+      } else {
+        // Show bar briefly then fade
+        await new Promise(r => setTimeout(r, 800));
+        setTumbleBarVisible(false);
+      }
+    }
   }, []);
 
   // Client seed for provably fair
@@ -393,6 +412,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     setScreenShake('none');
     setTumbleChainLength(0);
     setTumbleWinPopups([]);
+    setCollisionPhase('idle');
+    setTumbleBarVisible(false);
     serverResultRef.current = null;
 
     const STAGGER_MS = 80;
@@ -635,45 +656,6 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
 
   return (
     <div className="flex flex-col items-center gap-4" style={{ width: gridWidth, maxWidth: "100%" }}>
-      {/* Bonus bar */}
-      {isBonusActive && (
-        <div className="w-full flex justify-center animate-fade-in">
-          <div className="flex items-center gap-6 px-8 py-3 rounded-2xl border-2 bg-gradient-to-b from-pink-900/90 via-pink-950/95 to-pink-950/90 border-pink-500/60 shadow-[0_0_30px_rgba(236,72,153,0.3),0_0_60px_rgba(236,72,153,0.15)]">
-            <div className="flex flex-col items-center">
-              <span className="text-[10px] uppercase tracking-widest text-pink-400/80 font-semibold">Free Spins</span>
-              <div className="flex items-baseline gap-1">
-                <AnimatedSpinCounter
-                  value={freeSpinsRemaining}
-                  className="text-4xl font-black text-pink-300 drop-shadow-[0_0_12px_rgba(236,72,153,0.8)] tabular-nums"
-                />
-                <span className="text-lg text-pink-500/60 font-bold">/ {totalFreeSpins}</span>
-              </div>
-            </div>
-            <div className="w-px h-10 bg-pink-500/30" />
-            <div className="flex flex-col items-center">
-              <span className="text-[10px] uppercase tracking-widest text-pink-400/80 font-semibold">Tumble Win</span>
-              <span className="text-2xl font-black text-pink-200 drop-shadow-[0_0_10px_rgba(236,72,153,0.6)] tabular-nums">
-                {runningWin.toFixed(2)}
-              </span>
-            </div>
-            <div className="w-px h-10 bg-pink-500/30" />
-            <div className="flex flex-col items-center">
-              <span className="text-[10px] uppercase tracking-widest text-yellow-400/80 font-semibold">Multiplier</span>
-              <span className="text-2xl font-black text-yellow-300 drop-shadow-[0_0_10px_rgba(250,204,21,0.7)] tabular-nums">
-                x{runningMultiplier}
-              </span>
-            </div>
-            <div className="w-px h-10 bg-pink-500/30" />
-            <div className="flex flex-col items-center">
-              <span className="text-[10px] uppercase tracking-widest text-emerald-400/80 font-semibold">Total</span>
-              <span className="text-2xl font-black text-emerald-300 drop-shadow-[0_0_10px_rgba(52,211,153,0.7)] tabular-nums">
-                {(runningWin * Math.max(1, runningMultiplier)).toFixed(2)}
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Bonus overlays */}
       <BonanzaBonusEntrySequence
         isActive={showBonusTrigger}
@@ -823,6 +805,13 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         </div>
         {/* Floating tumble win popups */}
         <BonanzaTumbleWinPopup popups={tumbleWinPopups} />
+        {/* Tumble win bar overlay */}
+        <BonanzaTumbleWinBar
+          runningWin={runningWin}
+          runningMultiplier={runningMultiplier}
+          collisionPhase={collisionPhase}
+          visible={tumbleBarVisible && isBonusActive && runningWin > 0}
+        />
       </div>
 
       {/* Gevinst bar */}
@@ -833,6 +822,21 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
             ? "bg-gradient-to-b from-pink-900/60 via-pink-950/70 to-pink-950/60 border-pink-500/40"
             : "bg-gradient-to-b from-pink-950/60 via-fuchsia-950/60 to-pink-950/60 border-pink-500/20"
         )}>
+          {isBonusActive && (
+            <>
+              <div className="flex flex-col items-center">
+                <span className="text-[10px] uppercase tracking-widest font-semibold text-pink-400/70">Free Spins</span>
+                <div className="flex items-baseline gap-1">
+                  <AnimatedSpinCounter
+                    value={freeSpinsRemaining}
+                    className="text-2xl font-black text-pink-300 drop-shadow-[0_0_12px_rgba(236,72,153,0.8)] tabular-nums"
+                  />
+                  <span className="text-sm text-pink-500/60 font-bold">/ {totalFreeSpins}</span>
+                </div>
+              </div>
+              <div className="w-px h-8 bg-pink-500/30" />
+            </>
+          )}
           <div className="flex flex-col items-center">
             <span className={cn(
               "text-[10px] uppercase tracking-widest font-semibold",
@@ -840,22 +844,11 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
             )}>Gevinst</span>
             <span className="text-2xl font-black tabular-nums text-green-300/90 drop-shadow-[0_0_8px_rgba(74,222,128,0.5)]">
               {isBonusActive
-                ? (tumblePhase !== 'idle' ? (bonusWinnings + runningWin) : bonusWinnings).toLocaleString()
+                ? bonusWinnings.toLocaleString()
                 : (tumblePhase !== 'idle' ? runningWin : winAmount).toLocaleString()
               }
             </span>
           </div>
-          {isBonusActive && tumblePhase !== 'idle' && runningWin > 0 && (
-            <>
-              <div className="w-px h-8 bg-pink-500/30" />
-              <div className="flex flex-col items-center">
-                <span className="text-[10px] uppercase tracking-widest font-semibold text-pink-400/70">Tumble</span>
-                <span className="text-lg font-bold tabular-nums text-pink-300 drop-shadow-[0_0_8px_rgba(236,72,153,0.5)]">
-                  +{runningWin.toLocaleString()}
-                </span>
-              </div>
-            </>
-          )}
         </div>
       </div>
 
