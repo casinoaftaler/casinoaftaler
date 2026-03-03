@@ -1,60 +1,60 @@
 
 
-## Problem Analysis
-
-There are two core issues:
-
-**1. Credit display broken** — The header dropdown queries `slot_spins` without a `game_id` filter (uses `.maybeSingle()`), which returns a random row. Your DB currently has two rows for today: `book-of-fedesvin` (744 credits) and `shared` (376 credits, leftover from the previous shared-pool implementation). Each slot machine queries by its own `game_id`, but Fedesvin Bonanza uses `"fedesvin-bonanza"` which has no row — so the fallback `maxSpins` (capped at 220) is shown instead of 744.
-
-**2. Economy values are outdated** — Daily spins, reward amounts, and the absolute cap are still at the old values across multiple files.
-
----
-
 ## Plan
 
-### A. Unify credits to a single shared balance
+### 1. Double floating win text size
+**File:** `src/components/slots/BonanzaTumbleWinPopup.tsx`
+- Change `text-2xl` → `text-5xl` on the span
 
-All 3 machines and the header should read/write from ONE row per user per day. The `game_id` column will use `"shared"` as the canonical key.
+**File:** `src/styles/bonanza-animations.css`
+- Scale up the `bonanza-win-float` keyframes (larger initial/peak scale)
 
-**Database changes (migration):**
-- Update `deduct_spin` RPC to always use `game_id = 'shared'` (ignore `p_game_id`).
-- Update `claim_profile_section_reward` RPC to award 50 credits instead of 5, using `game_id = 'shared'`.
-- Update `activate_community_spins_safe` to use `game_id = 'shared'`.
-- Update `reward_community_bonus_spins` trigger to award 500 credits instead of 50.
-- Clean up: merge kevinsylence's existing rows into a single `shared` row for today (take the max of 744).
+### 2. Tumble bar: always show during bonus tumbles with default x0 multiplier
+**File:** `src/components/slots/BonanzaTumbleWinBar.tsx`
+- Always render the multiplier section (remove `runningMultiplier > 0` guard), show `x0` when multiplier is 0
+- Add a ref/id on the multiplier element so flying bombs can target it
+- Add a "pop" animation class when multiplier updates
 
-**Frontend changes:**
-1. `useSlotSpins.ts` — Change query to always use `game_id = "shared"`, remove per-game `gameId` from query key. Raise `ABSOLUTE_MAX_CREDITS` to 10000 and remove the 220/320 caps (use a higher cap like 10200).
-2. `useServerSpin.ts` — Update `setQueryData` cache key to use `"shared"` instead of per-game `gameId`.
-3. `Header.tsx` — Update credits query to filter by `game_id = 'shared'`.
-4. `SpinsRemaining.tsx` / `UserStatsBar.tsx` — No changes needed (they call `useSlotSpins` which will be fixed).
+**File:** `src/components/slots/BonanzaSlotGame.tsx` (line 783)
+- Currently: `visible={tumbleBarVisible && isBonusActive && runningWin > 0}`
+- Change to: show tumble bar at the start of every tumble chain during bonus (set `tumbleBarVisible(true)` when first win is detected in `processTumbleSteps`, keep `isBonusActive` gate)
+- Move `setTumbleBarVisible(true)` from after all tumble steps (line 374) to inside the loop when `hasWins && winningStepCount === 1` (first win of the chain)
 
-**Edge function changes:**
-1. `slot-spin/index.ts` — All `deduct_spin` RPC calls pass `p_game_id: "shared"`. Raise `ABSOLUTE_MAX_CREDITS` to 10000 and `MAX_SPINS_CAP` / `SUBSCRIBER_MAX_SPINS_CAP` accordingly.
-2. `daily-credit-allocation/index.ts` — Change `BASE_DAILY_SPINS` to 2000, `ABSOLUTE_MAX_CREDITS` to 10000, use `game_id = 'shared'`, and raise `MAX_SPINS_CAP` to 2020 / `SUBSCRIBER_MAX_SPINS_CAP` to 2320.
-3. `claim-profile-reward/index.ts` — Change `spinsEarned` from 5 to 50.
+### 3. Flying bomb multiplier animation (Sweet Bonanza style)
+**New file:** `src/components/slots/BonanzaFlyingMultiplier.tsx`
+- Renders floating "5x" labels that animate from a bomb's grid position upward to the tumble bar multiplier
+- Each flyer has: `id`, `value`, `startX`, `startY`
+- Uses CSS animation `bonanza-mult-fly-to-bar` (~500ms) then auto-removes
 
-### B. Update economy values
+**File:** `src/styles/bonanza-animations.css`
+- Add `bonanza-mult-fly-to-bar` keyframe: starts at element position, flies upward to top-center of grid, scales up then down
+- Add `bonanza-mult-pop` keyframe for the multiplier counter bump when value arrives
 
-| Setting | Old | New | Location(s) |
-|---|---|---|---|
-| Daily credits | 200 | 2000 | `site_settings.slot_daily_spins`, `daily-credit-allocation` |
-| Profile reward per section | 5 | 50 | `claim_profile_section_reward` RPC, `claim-profile-reward` edge fn, `useProfileRewards.ts` |
-| Community clip reward | 50 | 500 | `reward_community_bonus_spins` trigger |
-| Slot request reward | 20 | 200 | `useSlotRequests.ts` |
-| Absolute max credits cap | 1000 | 10000 | `slot-spin`, `useSlotSpins.ts`, `daily-credit-allocation` |
-| Max spins cap (non-sub) | 220 | 2200 | `slot-spin`, `useSlotSpins.ts`, `daily-credit-allocation` |
-| Max spins cap (sub) | 320 | 2300 | `slot-spin`, `useSlotSpins.ts`, `daily-credit-allocation` |
+**File:** `src/components/slots/BonanzaSlotGame.tsx`
+- Add state: `flyingMultipliers` array
+- In the bomb blow-up sequence (lines 330-358), when a bomb activates:
+  1. Calculate bomb's pixel position from its grid col/row
+  2. Spawn a flying multiplier popup at that position
+  3. Wait ~500ms for fly animation
+  4. Then increment `runningMultiplier` (move line 343 to after the fly completes)
+  5. Remove the flyer
+- Render `<BonanzaFlyingMultiplier>` inside the grid container alongside the tumble bar
 
-### C. Files to modify
+### Animation flow
+```text
+Tumble wins detected (bonus) → tumble bar appears with "Tumble Win: X.XX" + "x0"
+  → Bombs blow up sequentially:
+    → Bomb fractures → "5x" label spawns at bomb position
+    → Label flies to multiplier counter (~500ms)
+    → Counter updates: x0 → x5 (with pop)
+    → Next bomb: "10x" flies up → x5 → x15
+  → After all bombs: collision effect merges win × multiplier → final result
+```
 
-1. **Migration SQL** — Update `deduct_spin`, `claim_profile_section_reward`, `activate_community_spins_safe`, `reward_community_bonus_spins`, and set `slot_daily_spins = '2000'`
-2. **`src/hooks/useSlotSpins.ts`** — Shared game_id, new caps
-3. **`src/hooks/useServerSpin.ts`** — Cache key fix
-4. **`src/hooks/useProfileRewards.ts`** — `SPINS_PER_SECTION = 50`
-5. **`src/hooks/useSlotRequests.ts`** — Award 200 instead of 20
-6. **`src/components/Header.tsx`** — Add `.eq("game_id", "shared")` to credits query
-7. **`supabase/functions/slot-spin/index.ts`** — `p_game_id: "shared"`, new constants
-8. **`supabase/functions/daily-credit-allocation/index.ts`** — New constants, `game_id = 'shared'`
-9. **`supabase/functions/claim-profile-reward/index.ts`** — `spinsEarned: 50`
+### Files to modify
+1. `src/components/slots/BonanzaTumbleWinPopup.tsx` — bigger text
+2. `src/styles/bonanza-animations.css` — scaled win float, new fly + pop keyframes
+3. `src/components/slots/BonanzaTumbleWinBar.tsx` — always show multiplier (default x0), pop on update
+4. `src/components/slots/BonanzaFlyingMultiplier.tsx` — new component
+5. `src/components/slots/BonanzaSlotGame.tsx` — flying multiplier state, updated bomb sequence timing, tumble bar visibility during bonus
 
