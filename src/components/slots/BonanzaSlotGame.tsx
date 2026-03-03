@@ -339,10 +339,15 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           setRunningMultiplier(prev => prev + bomb.value);
           setScreenShake('normal');
           setTimeout(() => setScreenShake('none'), 400);
+          // Show exploded decal almost immediately alongside the fracture animation
+          setTimeout(() => {
+            explodedPositions.set(bomb.position, 'bomb-exploded');
+            setCellAnimStates(new Map(explodedPositions));
+          }, 150);
         }
         await new Promise(r => setTimeout(r, 400));
-        // Immediately show exploded decal after animation
-        explodedPositions.set(bomb.position, 'bomb-exploded');
+        // Ensure decal is set for non-activated bombs too
+        if (!bomb.activated) explodedPositions.set(bomb.position, 'bomb-exploded');
       }
       // Keep exploded decals visible
       setCellAnimStates(new Map(explodedPositions));
