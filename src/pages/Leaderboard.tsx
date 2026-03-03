@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import tournamentHero from "@/assets/community/tournament-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -491,7 +491,6 @@ export default function Leaderboard() {
       </section>
 
       <CommunityNav />
-      <AuthorMetaBar author="kevin" readTime="5 min" />
 
       <div className="container relative">
         {/* Sidebar – positioned outside content flow like Bonus Hunt */}
