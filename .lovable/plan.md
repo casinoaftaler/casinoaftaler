@@ -1,55 +1,72 @@
 
 
-## Security Investigation: Slot Spin Server-Side Bet Validation
+# Fedesvin Bonanza RTP Tuning Plan
 
-### Findings
+## Current State (100K spin baseline)
+- **RTP: 177.47%** (target: 97%)
+- Base RTP: 74.8%, Bonus RTP: 102.67%
+- Bonus frequency: 1 in 67 (target: 1 in 100)
+- Biggest win: 1,435x
+- Root cause: DUP2=0.8 + DUP3=0.2 = **100% duplication rate** on every column
 
-**1. CRITICAL: No per-game max bet enforcement on server (line 1516)**
-The server validates `bet >= 1 && bet <= 100` as a hard-coded global range. There is NO check against `bonanza_max_bet`, `slot_max_bet`, or any per-game max bet from `site_settings`. A user can open DevTools, modify the request body, and send `bet: 100` to Fedesvin Bonanza even though the UI caps at 5.
+## Approach
 
-**2. LOW: `debugScatters` is admin-gated (SAFE)**
-The `debugScatters` parameter is checked server-side via `has_role()` RPC — only admins can force scatters. No issue here.
+### Step 1: Rewrite the simulation edge function
 
-**3. LOW: Bonus spin bet is locked server-side (SAFE)**
-During bonus spins, the server overrides the client-sent bet with `lockedBet` from `slot_bonus_state.bet_amount`. Users cannot inflate their bet during free spins.
+The current function caps at 100K spins and lacks key metrics. Rewrite `bonanza-rtp-sim` to:
 
-**4. LOW: Session locking is enforced (SAFE)**
-Multi-device is blocked via `slot_active_sessions` check before any spin logic runs.
+- Accept **parameter overrides** in the request body (so we can test configs without touching the DB)
+- Support up to **2,000,000 spins per call** (edge function ~60s budget)
+- Track **hit frequency** (spins that pay anything)
+- Track **bonus win distribution** in buckets (5-30x, 30-100x, 100-300x, 300-1000x, 1000x+)
+- Track **max win** and **win variance**
+- Support a `batch` mode: run 5 calls of 2M each to reach 10M total, aggregate client-side
 
-**5. LOW: Spin deduction is atomic (SAFE)**
-The `deduct_spin` RPC uses `FOR UPDATE` locking, preventing race conditions on spin balance.
+### Step 2: Mathematically-guided parameter tuning
 
-**6. MEDIUM: No rate limiting on spin requests**
-A user could theoretically spam rapid spin requests. The session lock and atomic deduction prevent double-spending, but rapid requests could cause load. Not a cheating vector, but worth noting.
+Based on the 177% RTP analysis, the primary levers and target ranges:
 
-**7. LOW: Bonus state manipulation (SAFE)**
-Bonus state lives in `slot_bonus_state` table. RLS policies should prevent users from inserting/updating their own bonus state directly. The server uses service role for all bonus state mutations.
+| Parameter | Current | Target Range | Effect |
+|-----------|---------|-------------|--------|
+| reel_dup_2_chance | 0.80 | 0.12-0.18 | Largest RTP driver |
+| reel_dup_3_chance | 0.20 | 0.02-0.04 | Secondary RTP driver |
+| scatter weight | 7 | 5-6 | Controls bonus freq |
+| bomb chance (bonus) | 0.04 | 0.06-0.08 | Bonus volatility |
+| multiplier_weights | heavy on 2x,3x | shift toward higher values | Bonus win shape |
+| Symbol multipliers | current | reduce ~30-40% | Base game RTP |
 
-### Plan: Server-Side Per-Game Max Bet Enforcement
+The tuning loop:
+1. Start with drastically reduced dup rates (0.15 / 0.03) and ~30% lower symbol multipliers
+2. Run 2M spin sim, check RTP/hit-freq/bonus-freq
+3. Adjust and re-run until within targets
+4. Once close, run full 10M (5x2M batches) for statistical confidence
+5. Verify bonus win distribution buckets match targets
 
-**Changes to `supabase/functions/slot-spin/index.ts`:**
+### Step 3: Apply tuned parameters
 
-1. **Load `bonanza_max_bet` in `loadBonanzaSettings()`** — add it to the settings keys list and store in a module-level variable (default 5).
+Once verified at 10M spins:
+- Update `site_settings` table with new dup/scatter/bomb/multiplier settings
+- Update `slot_symbols` table with new weights and multipliers
+- Run one final 10M verification sim
 
-2. **Load `slot_max_bet` from cached settings** — already cached via `site_settings`, add a lookup for non-Bonanza games.
+### Step 4: Add a simple admin UI trigger
 
-3. **Enforce per-game max bet after the global validation (line ~1516)**:
-   - For `fedesvin-bonanza`: reject if `bet > BONANZA_MAX_BET`
-   - For `gates-of-fedesvin`: reject if `bet > GATES_MAX_BET` (load from settings too, or use same global)
-   - For `book-of-fedesvin` / `rise-of-fedesvin`: reject if `bet > slot_max_bet` from settings
+Add a "Run RTP Simulation" button to the existing `BonanzaGameSettingsAdmin` component that calls the enhanced edge function with current DB settings and displays results (RTP, hit freq, bonus freq, win distribution).
 
-4. **Tighten global hardcoded cap** from `100` to a sane maximum (e.g., `50`) as a safety net.
+## Technical Details
 
-**Changes to `src/components/slots/BonanzaGameSettingsAdmin.tsx`:**
-Already done in the previous edit — `bonanza_max_bet` is already configurable.
+**Edge function changes** (`bonanza-rtp-sim/index.ts`):
+- Accept `overrides` object: `{ weights: {}, settings: {}, multipliers: {} }`
+- Add counters: `hitCount`, `bonusWinBuckets[5]`, `winDistribution`
+- Increase max spins to 2,000,000
+- Return extended stats object
 
-### Technical Details
+**Client-side aggregation**: A helper function runs 5 sequential calls of 2M spins each with different seeds, then computes weighted averages for RTP and merges distribution histograms.
 
-The fix adds ~20 lines to the edge function. The per-game max bet values are loaded from `site_settings` alongside existing cached settings, so there's zero additional DB calls for warm instances.
-
-For Gates of Fedesvin, we'll also add a `gates_max_bet` setting (loaded in `loadGatesSettings()`) with a default of 10.
-
-For Book/Rise, we'll load `slot_max_bet` with a default of 10.
-
-The server will reject any bet exceeding the per-game max with a 400 error, regardless of what the client sends.
+**Estimated parameter targets** (mathematical estimate, to be refined by simulation):
+- DUP2: ~0.15, DUP3: ~0.03
+- Scatter weight: 5 (base), 3 (bonus) → bonus freq ~1 in 100
+- Bomb chance: 0.07 during bonus
+- Symbol multipliers reduced ~35% across the board
+- Multiplier weight distribution shifted: more weight on 2x-5x, less on 50x-100x
 
