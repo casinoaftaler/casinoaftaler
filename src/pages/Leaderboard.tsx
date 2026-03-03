@@ -483,13 +483,14 @@ export default function Leaderboard() {
               </span>
               <span className="inline-flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-white/50" />
-                Credits som præmier
+                Kontante præmier
               </span>
             </div>
           </div>
         </div>
       </section>
 
+      <AuthorMetaBar author="kevin" readTime="5 min" />
       <CommunityNav />
 
       <div className="container relative">
