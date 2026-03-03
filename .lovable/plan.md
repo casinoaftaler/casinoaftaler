@@ -1,57 +1,26 @@
 
 
-# Bomb Fracture Explosion Effect
+# Make Fedesvin Bonanza Public and Remove Debug Tools
 
-Replace the current bomb explosion (simple scale-down + fade) with a CSS-based fracture effect that splits the bomb image into fragments that fly outward, rotate, and fade -- making it look like the bomb actually shatters.
-
-## Approach
-
-Use a dedicated React component (`BombFractureExplosion`) that renders the bomb image clipped into a grid of fragments (e.g., 4x4 = 16 pieces). Each fragment uses `clip-path: inset(...)` to show only its portion of the original image, then animates outward in a random direction with rotation and fade-out.
-
-This is a pure CSS + React solution -- no canvas or external libraries needed.
+## Overview
+Open Fedesvin Bonanza to all authenticated users (not just admins) and remove the debug/force-bonus button.
 
 ## Changes
 
-### 1. Create `src/components/slots/BombFractureExplosion.tsx`
+### 1. Remove admin-only gate (`src/pages/FedesvinBonanza.tsx`)
+- Remove the `isAdmin` check and the "Kommer snart!" block (lines ~117-138) that blocks non-admin users
+- Remove `isAdmin` from the `useAuth()` destructure since it's no longer needed on this page
 
-A new component that:
-- Takes the bomb image URL (or fallback emoji) and cell dimensions
-- Renders 16 overlapping `<div>` fragments, each with `clip-path: inset(...)` showing a 25% x 25% slice of the bomb image
-- Each fragment gets a unique CSS custom property for its outward direction (`--frag-tx`, `--frag-ty`, `--frag-rot`)
-- Fragments near edges fly outward from center; corner pieces go diagonally
-- All fragments share one `@keyframes` animation but with slight random delays
+### 2. Remove debug button (`src/components/slots/BonanzaSlotGame.tsx`)
+- Remove the `Bug` icon import
+- Remove `debugScattersRef` ref
+- Remove the `debugButton` prop passed to `GatesControlBar` (the entire block rendering the bug button)
+- Remove the `useDebugScatters` usage in the spin handler that sends it to the server
+- Remove `isAdmin` from `useAuth()` destructure if no longer needed
 
-### 2. Update `src/styles/bonanza-animations.css`
+### 3. No leaderboard changes needed
+The leaderboard and stats components (`SlotLeaderboard`, `SpinsRemaining`, etc.) are already wired up with `gameId="fedesvin-bonanza"` and will work for all users once the admin gate is removed.
 
-Add a new keyframes animation:
-
-```text
-@keyframes bonanza-bomb-fracture {
-  0%   { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-  100% { transform: translate(var(--frag-tx), var(--frag-ty)) rotate(var(--frag-rot)); opacity: 0; }
-}
-```
-
-Remove the old `bonanza-bomb-activate` animation (or keep it as fallback).
-
-### 3. Update `BonanzaColumn.tsx`
-
-- Import `BombFractureExplosion`
-- In the `bomb-activate` cell animation state, render `<BombFractureExplosion>` instead of the current simple image with `bonanza-bomb-activate` class
-- The fracture component receives the bomb image URL from `bombSymbolsMap` and the cell dimensions
-
-### 4. Timing
-
-The fracture animation runs ~0.6s (matching the current `bomb-activate` duration) so no changes needed to the game logic timing in `BonanzaSlotGame.tsx`.
-
-## Technical Details
-
-The fragment grid approach:
-- 4 columns x 4 rows = 16 fragments
-- Each fragment is absolutely positioned over the full cell
-- `clip-path: inset(top right bottom left)` isolates each piece
-- Direction vectors are calculated based on each fragment's position relative to center
-- Edge fragments fly further; center fragments fly less
-- Each fragment gets a small random rotation (between -180deg and 180deg)
-- Staggered `animation-delay` (0-80ms range) for a natural shatter feel
-
+## Technical Notes
+- The `GatesControlBar` component will simply receive `undefined` for `debugButton` (or we stop passing it entirely), which it already handles gracefully
+- The server-side spin endpoint may still accept a debug parameter, but since the client no longer sends it, this is harmless
