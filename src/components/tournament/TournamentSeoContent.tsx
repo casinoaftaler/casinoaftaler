@@ -133,7 +133,8 @@ export function TournamentSeoContent() {
               <Link to="/casinospil/spillemaskiner/book-of-dead" className="text-primary hover:underline">Book of Dead</Link>.
             </li>
             <li>
-              <strong className="text-foreground">Rise of Fedesvin – Største Gevinst:</strong> Belønner den højeste enkeltgevinst i credits — en blanding af held og timing.
+              <strong className="text-foreground">Rise of Fedesvin – Største Gevinst:</strong> Belønner den højeste enkeltgevinst i credits — inspireret af{" "}
+              <Link to="/casinospil/spillemaskiner/legacy-of-dead" className="text-primary hover:underline">Legacy of Dead</Link> med en blanding af held og timing.
             </li>
           </ul>
           <p>
