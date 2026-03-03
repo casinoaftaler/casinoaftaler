@@ -745,6 +745,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       data-mult-tier={bonusIntensityTier}
       data-last-spin={isBonusActive && freeSpinsRemaining === 1 ? "true" : "false"}
     >
+      {/* Credits expired overlay */}
+      <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !isBonusActive} />
       {/* Ambient lightning overlay */}
       <div className="gates-lightning-ambient" />
       {/* Ambient glow background */}
