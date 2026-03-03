@@ -15,11 +15,10 @@ export function BonanzaRetriggerOverlay({ isActive, spinsAwarded, onComplete }: 
   stableComplete.current = onComplete;
 
   useEffect(() => {
-    if (!isActive) { setPhase('flash'); return; }
-    setPhase('flash');
-    const t1 = setTimeout(() => setPhase('reveal'), 400);
-    const t2 = setTimeout(() => setPhase('hold'), 1200);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    if (!isActive) { setPhase('reveal'); return; }
+    setPhase('reveal');
+    const t2 = setTimeout(() => setPhase('hold'), 800);
+    return () => { clearTimeout(t2); };
   }, [isActive]);
 
   if (!isActive) return null;
@@ -28,12 +27,6 @@ export function BonanzaRetriggerOverlay({ isActive, spinsAwarded, onComplete }: 
 
   return (
     <div className="absolute inset-0 z-50">
-      {phase === 'flash' && (
-        <div className="absolute inset-0 animate-pulse"
-          style={{ background: 'rgba(255,182,193,0.4)' }}
-        />
-      )}
-
       {/* Dark backdrop covering entire grid */}
       <div
         className={`absolute inset-0 transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}

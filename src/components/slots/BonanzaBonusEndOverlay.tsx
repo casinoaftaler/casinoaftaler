@@ -24,14 +24,13 @@ export function BonanzaBonusEndOverlay({
   const winTier = totalWin >= 5000 ? 'very-large' : totalWin >= 1000 ? 'large' : totalWin >= 200 ? 'medium' : 'small';
 
   useEffect(() => {
-    if (!isActive) { setPhase('flash'); setDisplayedWin(0); return; }
-    setPhase('flash');
-    const t0 = setTimeout(() => setPhase('calm'), 600);
+    if (!isActive) { setPhase('calm'); setDisplayedWin(0); return; }
+    setPhase('calm');
     const t1 = setTimeout(() => {
       setPhase('counting');
       if (winTier !== 'small') slotSounds.playBonusWinSwell();
-    }, 1400);
-    return () => { clearTimeout(t0); clearTimeout(t1); };
+    }, 800);
+    return () => { clearTimeout(t1); };
   }, [isActive, winTier]);
 
   useEffect(() => {
@@ -56,12 +55,6 @@ export function BonanzaBonusEndOverlay({
 
   return (
     <div className="absolute inset-0 z-50">
-      {phase === 'flash' && (
-        <div className="absolute inset-0 animate-pulse"
-          style={{ background: 'rgba(255,182,193,0.5)' }}
-        />
-      )}
-
       {/* Dark backdrop covering entire grid */}
       <div
         className={`absolute inset-0 transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}
