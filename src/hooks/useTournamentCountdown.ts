@@ -74,9 +74,9 @@ export function useTournamentCountdown(): CountdownValues {
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
       const parts: string[] = [];
-      if (days > 0) parts.push(`${days}d`);
-      parts.push(`${hours}t`);
-      parts.push(`${minutes}m`);
+      if (days > 0) parts.push(`${days} dage`);
+      parts.push(`${hours} timer`);
+      parts.push(`${minutes} min`);
       if (days === 0) parts.push(`${seconds}s`);
 
       setCountdown({
