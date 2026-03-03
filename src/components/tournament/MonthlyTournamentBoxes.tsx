@@ -262,7 +262,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
       <div className="px-3 pb-3 mt-auto space-y-2">
         <Button
           size="lg"
-          className="w-full text-sm font-bold h-10"
+          className="tournament-cta w-full text-sm font-bold h-10 text-primary-foreground border-0"
           asChild
         >
           <a href={`/community/slots/${config.gameSlug}`}>
