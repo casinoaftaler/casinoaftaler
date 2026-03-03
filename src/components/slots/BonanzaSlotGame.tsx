@@ -34,9 +34,9 @@ import { BonanzaBonusEndOverlay } from "./BonanzaBonusEndOverlay";
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
 
-const DEFAULT_SYMBOL_WIDTH = 194;
-const DEFAULT_SYMBOL_HEIGHT = 152;
-const SYMBOL_GAP = 5;
+const DEFAULT_SYMBOL_WIDTH = 240;
+const DEFAULT_SYMBOL_HEIGHT = 187;
+const SYMBOL_GAP = 6;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 

@@ -175,7 +175,7 @@ export default function FedesvinBonanza() {
         <div
           className="slot-viewport-container"
           style={{
-            width: '1280px',
+            width: '1700px',
             transform: shouldScale ? `scale(${scale})` : undefined,
           }}
         >
