@@ -1338,6 +1338,7 @@ export type Database = {
       }
       profiles: {
         Row: {
+          age_verified: boolean
           avatar_url: string | null
           biggest_spin_win: number | null
           biggest_x_win: number | null
@@ -1376,6 +1377,7 @@ export type Database = {
           volatility_preference: string | null
         }
         Insert: {
+          age_verified?: boolean
           avatar_url?: string | null
           biggest_spin_win?: number | null
           biggest_x_win?: number | null
@@ -1414,6 +1416,7 @@ export type Database = {
           volatility_preference?: string | null
         }
         Update: {
+          age_verified?: boolean
           avatar_url?: string | null
           biggest_spin_win?: number | null
           biggest_x_win?: number | null
