@@ -44,7 +44,7 @@ export function FeaturedSlotPanel({
   }
 
   return (
-    <div className="relative h-full">
+    <div className="relative h-full aspect-video">
       <div
         className={`card-depth group relative overflow-hidden rounded-2xl border border-amber-500/15 h-full transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
           disabled
