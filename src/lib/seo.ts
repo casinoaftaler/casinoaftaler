@@ -166,6 +166,17 @@ export function buildArticleSchema(opts: {
   image?: string;
   /** YouTube video ID – when provided, creates hasPart ↔ isPartOf binding */
   videoId?: string;
+  /**
+   * @deprecated This parameter is intentionally ignored. AggregateRating is NOT valid
+   * on Article type per Google. Use buildReviewSchema() instead, which attaches it
+   * to itemReviewed (SoftwareApplication). Kept only for backward compatibility.
+   */
+  aggregateRating?: {
+    ratingValue: string;
+    ratingCount: string;
+    bestRating?: string;
+    worstRating?: string;
+  };
 }) {
   const authorName = opts.authorName || "Jonas";
   const authorUrl = opts.authorUrl || `${SITE_URL}/forfatter/jonas`;
