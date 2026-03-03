@@ -1,31 +1,24 @@
 
 
-## Plan: Control Bar Text Enhancements + Gevinst/Resterende Repositioning
+## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
 
-### 1. Enlarge Credit & Indsats text with black stroke + shadow (`BonanzaControlBar.tsx`)
+### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
 
-**Left zone** — increase text sizes and add text stroke + shadow styling:
-- "Credit" label: `text-[8px]` → `text-sm`, keep uppercase/tracking
-- Credit value: `text-sm` → `text-2xl`
-- "Indsats" label: `text-[8px]` → `text-sm`
-- Indsats value: `text-sm` → `text-2xl`
-- All four elements get `style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}`
+The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
 
-### 2. Move Gevinst to right zone of control bar (`BonanzaControlBar.tsx` + `BonanzaSlotGame.tsx`)
+Specifically:
+- **Remove** Gevinst from the right zone (lines 247-261)
+- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
 
-- **Remove** Gevinst text from `BonanzaSlotGame.tsx` (lines 880-888)
-- **Add** Gevinst display in the **right zone** of `BonanzaControlBar.tsx`, positioned between the `[+]` button and the AutoSpin popover
-- Display: vibrant pink "Gevinst" label + win amount, with black stroke + shadow
-- The `winAmount` prop already exists on the component
+Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
 
-### 3. Resterende spins → bonus only (`BonanzaSlotGame.tsx`)
+### 2. Add Count-Up Animation for Win Amount
 
-- **Remove** the always-visible "Resterende spins" showing `spinsRemaining` (lines 889-892)
-- **Keep** the existing bonus "Free Spins" display (lines 870-878) but relabel it to "Resterende spins" showing `freeSpinsRemaining`
-- Add black stroke + shadow to this text
-- Only renders when `isBonusActive` is true
+Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
+- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
+- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
+- The component already handles ease-out counting and bump animation on completion
 
 ### Files Modified
-- `src/components/slots/BonanzaControlBar.tsx` — bigger Credit/Indsats, Gevinst in right zone
-- `src/components/slots/BonanzaSlotGame.tsx` — remove Gevinst + Resterende from above bar, relabel bonus display
+- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
 
