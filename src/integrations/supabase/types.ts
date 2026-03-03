@@ -1885,6 +1885,7 @@ export type Database = {
         Row: {
           created_at: string
           date: string
+          game_id: string
           id: string
           spins_remaining: number
           user_id: string
@@ -1892,6 +1893,7 @@ export type Database = {
         Insert: {
           created_at?: string
           date?: string
+          game_id?: string
           id?: string
           spins_remaining?: number
           user_id: string
@@ -1899,6 +1901,7 @@ export type Database = {
         Update: {
           created_at?: string
           date?: string
+          game_id?: string
           id?: string
           spins_remaining?: number
           user_id?: string
@@ -2466,15 +2469,26 @@ export type Database = {
         Args: { p_section: string; p_today: string; p_user_id: string }
         Returns: Json
       }
-      deduct_spin: {
-        Args: {
-          p_bet: number
-          p_date: string
-          p_max_spins: number
-          p_user_id: string
-        }
-        Returns: number
-      }
+      deduct_spin:
+        | {
+            Args: {
+              p_bet: number
+              p_date: string
+              p_max_spins: number
+              p_user_id: string
+            }
+            Returns: number
+          }
+        | {
+            Args: {
+              p_bet: number
+              p_date: string
+              p_game_id?: string
+              p_max_spins: number
+              p_user_id: string
+            }
+            Returns: number
+          }
       get_admin_users_with_email: {
         Args: never
         Returns: {
