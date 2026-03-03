@@ -384,6 +384,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         }
       }
       setCellAnimStates(new Map(explodedPositions));
+      // Wait for the last multiplier pop animation to fully settle before collision
+      await new Promise(r => setTimeout(r, 500));
     }
 
     // Don't clear bomb-exploded states — they stay until next spin
