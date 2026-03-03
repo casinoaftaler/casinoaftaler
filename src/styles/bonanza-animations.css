@@ -279,26 +279,25 @@
   animation: bonanza-tumble-bar-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-/* Collision: left side slides right */
+/* Collision: both sides slide toward center simultaneously */
 @keyframes bonanza-collide-left {
   0% { transform: translateX(0); opacity: 1; }
-  70% { transform: translateX(40px); opacity: 1; }
-  100% { transform: translateX(40px); opacity: 0; }
+  60% { transform: translateX(35px); opacity: 1; }
+  100% { transform: translateX(35px); opacity: 0; }
 }
 
 .bonanza-collide-left {
-  animation: bonanza-collide-left 0.5s ease-in both;
+  animation: bonanza-collide-left 0.5s ease-in-out both;
 }
 
-/* Collision: right side slides left */
 @keyframes bonanza-collide-right {
   0% { transform: translateX(0); opacity: 1; }
-  70% { transform: translateX(-40px); opacity: 1; }
-  100% { transform: translateX(-40px); opacity: 0; }
+  60% { transform: translateX(-35px); opacity: 1; }
+  100% { transform: translateX(-35px); opacity: 0; }
 }
 
 .bonanza-collide-right {
-  animation: bonanza-collide-right 0.5s ease-in both;
+  animation: bonanza-collide-right 0.5s ease-in-out both;
 }
 
 /* Collision flash on merged result */
