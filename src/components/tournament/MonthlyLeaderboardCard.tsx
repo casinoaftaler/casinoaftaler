@@ -155,7 +155,7 @@ export function MonthlyLeaderboardCard() {
           </div>
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
             <Clock className="h-3.5 w-3.5" />
-            <span>Nulstilles om {countdown.label}</span>
+            <span>Starter i morgen: 04-04-2026</span>
           </div>
         </div>
       </div>
