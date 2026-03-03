@@ -1,29 +1,15 @@
 
 
-## Plan: Bonanza Control Bar Restructure
+## Plan: Reverse Drop Animation Order (Bottom First)
 
-### Changes Overview
+The current `animationDelay` in `BonanzaColumn.tsx` uses `row * Xms`, so row 0 (top) animates first. To make the bottom symbols land first, reverse the delay calculation.
 
-**1. Remove "Hold space for turbo spin" text** (`BonanzaControlBar.tsx`)
-- Delete the turbo hint overlay (lines 114-122)
+### Change: `src/components/slots/BonanzaColumn.tsx`
 
-**2. Add spacebar-to-spin + prevent scroll** (`BonanzaSlotGame.tsx`)
-- Add a `useEffect` with `keydown`/`keyup` listener for Space key
-- Call `e.preventDefault()` to block page scrolling
-- Trigger `handleSpin()` on Space press
+In the `animationDelay` style (around line 113-118), reverse the row order for `bonanza-drop-off` and `bonanza-drop-in`:
 
-**3. Replace Gevinst bar with inline text** (`BonanzaSlotGame.tsx`, lines 856-892)
-- Remove the rounded box/card container
-- Replace with vibrant pink text: "Gevinst" label + win amount, no background/border
-- Below it, add "Resterende spins: {spinsRemaining}" text line
-- Keep bonus free spins display logic
+- **Drop-off:** Change `row * 40ms` → `(BONANZA_ROWS - 1 - row) * 40ms`
+- **Drop-in:** Change `row * 50ms` → `(BONANZA_ROWS - 1 - row) * 50ms`
 
-**4. Restructure bet controls around spin button** (`BonanzaControlBar.tsx`)
-- Current: `[-] [BET VALUE] [+] [SPIN]`
-- New: `[-] [SPIN] [+]` — remove the bet value display from center zone
-- Minus button left of spin, plus button right of spin
-
-### Files Modified
-- `src/components/slots/BonanzaControlBar.tsx` — remove turbo text, restructure center zone
-- `src/components/slots/BonanzaSlotGame.tsx` — spacebar handler, replace gevinst bar with text
+This makes the bottom row (highest index) start animating first, so bottom symbols drop out and land before top ones.
 
