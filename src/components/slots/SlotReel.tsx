@@ -258,7 +258,10 @@ export const SlotReel = React.memo(function SlotReel({
             return (
               <div
                 key={`final-${rowIndex}-${symbolId}`}
-                className={cn(spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]")}
+                className={cn(
+                  spinState === "stopped" && "animate-[slot-land_0.4s_cubic-bezier(0.34,1.56,0.64,1)]",
+                  spinState === "idle" && !isBonusActive && `relative slot-cell-idle-hover slot-cell-idle-hover-${isBonanza ? "pink" : isWizard ? "purple" : "gold"}`
+                )}
                 style={{ animationFillMode: spinState === "stopped" ? "both" : undefined }}
               >
               <SlotSymbol

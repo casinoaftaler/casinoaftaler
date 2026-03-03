@@ -13,6 +13,8 @@ import { slotSounds } from "@/lib/slotSoundEffects";
 import { GatesControlBar } from "./GatesControlBar";
 import { AnimatedSpinCounter } from "./AnimatedSpinCounter";
 import { WinCelebration } from "./WinCelebration";
+import { SlotIdleEffects } from "./SlotIdleEffects";
+import { SlotAmbientLight } from "./SlotAmbientLight";
 import { Loader2, Bug } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -686,6 +688,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         )}
         style={{ width: gridWidth, height: gridHeight, overflow: 'clip' }}
       >
+        <SlotAmbientLight isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="pink" />
+        <SlotIdleEffects isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="pink" width={gridWidth} height={gridHeight} />
         {/* Static vertical reel dividers — rendered first, behind columns */}
         {Array.from({ length: BONANZA_COLS - 1 }).map((_, i) => (
           <div

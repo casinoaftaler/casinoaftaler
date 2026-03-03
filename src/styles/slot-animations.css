@@ -73,6 +73,66 @@
   );
 }
 
+/* === Ambient light drift for slot frame === */
+@keyframes ambient-drift {
+  0% { --ambient-x: 25%; --ambient-y: 20%; }
+  25% { --ambient-x: 70%; --ambient-y: 30%; }
+  50% { --ambient-x: 60%; --ambient-y: 75%; }
+  75% { --ambient-x: 30%; --ambient-y: 65%; }
+  100% { --ambient-x: 25%; --ambient-y: 20%; }
+}
+
+@property --ambient-x {
+  syntax: '<percentage>';
+  initial-value: 30%;
+  inherits: false;
+}
+
+@property --ambient-y {
+  syntax: '<percentage>';
+  initial-value: 20%;
+  inherits: false;
+}
+
+.slot-ambient-drift {
+  animation: ambient-drift 8s ease-in-out infinite;
+}
+
+/* === Hover micro-interaction for idle symbol cells === */
+.slot-cell-idle-hover {
+  transition: transform 0.2s ease-out, filter 0.2s ease-out;
+}
+
+.slot-cell-idle-hover:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.slot-cell-idle-hover:hover::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.slot-cell-idle-hover-gold:hover::before {
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.3), inset 0 0 8px rgba(251, 191, 36, 0.1);
+}
+
+.slot-cell-idle-hover-purple:hover::before {
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.3), inset 0 0 8px rgba(168, 85, 247, 0.1);
+}
+
+.slot-cell-idle-hover-pink:hover::before {
+  box-shadow: 0 0 12px rgba(236, 72, 153, 0.3), inset 0 0 8px rgba(236, 72, 153, 0.1);
+}
+
+.slot-cell-idle-hover-blue:hover::before {
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.3), inset 0 0 8px rgba(59, 130, 246, 0.1);
+}
+
 /* === Original animations below === */
 @keyframes particle-fall {
   0% {
