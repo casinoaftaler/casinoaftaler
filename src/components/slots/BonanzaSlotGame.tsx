@@ -858,6 +858,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           bet={bet}
           onBetChange={setBet}
           onSpin={handleSpinWithPress}
+          maxBet={siteSettings?.bonanza_max_bet ? parseInt(siteSettings.bonanza_max_bet) : 5}
           isSpinning={isSpinning || tumblePhase !== 'idle'}
           isSpinLocked={spinLockRef.current}
           canSpin={canSpin}
