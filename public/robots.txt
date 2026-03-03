@@ -1,5 +1,6 @@
 User-agent: Googlebot
 Allow: /community
+Allow: /community/turneringer
 Allow: /highlights
 Disallow: /community/slots/
 Disallow: /community/spin-the-reel
@@ -11,6 +12,7 @@ Disallow: /u/
 
 User-agent: Bingbot
 Allow: /community
+Allow: /community/turneringer
 Allow: /highlights
 Disallow: /community/slots/
 Disallow: /community/spin-the-reel
@@ -28,6 +30,7 @@ Allow: /
 
 User-agent: *
 Allow: /community
+Allow: /community/turneringer
 Allow: /highlights
 Disallow: /community/slots/
 Disallow: /community/spin-the-reel
