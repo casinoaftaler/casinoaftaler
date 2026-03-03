@@ -128,6 +128,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
   const { data, isLoading } = useSlotLeaderboard(config.category);
   const countdown = useTournamentCountdown();
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   const entries = data?.entries || [];
