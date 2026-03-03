@@ -135,8 +135,8 @@ export function BonanzaControlBar({
             <div className="flex flex-col leading-none gap-0.5 pl-2 border-l border-pink-500/10">
               <div className="flex items-center gap-2">
                 <span
-                  className="text-base uppercase tracking-wider font-black text-red-500"
-                  style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(239,68,68,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.6)" }}
+                  className="text-base uppercase tracking-wider font-black text-pink-500"
+                  style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(236,72,153,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.6)" }}
                 >
                   Credit
                 </span>
@@ -145,26 +145,26 @@ export function BonanzaControlBar({
                     <span className="text-lg animate-pulse text-pink-300/40">...</span>
                   ) : (
                     <span
-                      className="text-2xl font-black tabular-nums text-emerald-400"
-                      style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(52,211,153,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.5)" }}
+                      className="text-2xl font-black tabular-nums text-amber-300"
+                      style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(251,191,36,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.5)" }}
                     >
-                      ${spinsRemaining.toLocaleString()}.00
+                      {spinsRemaining.toLocaleString()}
                     </span>
                   )}
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <span
-                  className="text-base uppercase tracking-wider font-black text-red-500"
-                  style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(239,68,68,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.6)" }}
+                  className="text-base uppercase tracking-wider font-black text-pink-500"
+                  style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(236,72,153,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.6)" }}
                 >
                   Bet
                 </span>
                 <span
-                  className="text-2xl font-black tabular-nums text-emerald-400"
-                  style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(52,211,153,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.5)" }}
+                  className="text-2xl font-black tabular-nums text-amber-300"
+                  style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(251,191,36,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.5)" }}
                 >
-                  ${bet}.00
+                  {bet}
                 </span>
               </div>
             </div>
@@ -244,17 +244,17 @@ export function BonanzaControlBar({
         <div
           className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 z-10"
         >
-          {/* Gevinst display */}
-          <div className="flex flex-col items-center leading-none">
+          {/* Gevinst display — single row */}
+          <div className="flex items-center gap-2 leading-none">
             <span
-              className="text-[10px] sm:text-xs uppercase tracking-widest font-bold text-pink-400"
-              style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
+              className="text-xs sm:text-sm uppercase tracking-widest font-black text-pink-400"
+              style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)", WebkitTextStroke: "0.5px rgba(0,0,0,0.5)" }}
             >
               Gevinst
             </span>
             <span
-              className="text-xl sm:text-2xl font-black tabular-nums text-pink-300"
-              style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
+              className="text-xl sm:text-2xl font-black tabular-nums text-amber-300"
+              style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(251,191,36,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.5)" }}
             >
               {winAmount.toLocaleString()}
             </span>
