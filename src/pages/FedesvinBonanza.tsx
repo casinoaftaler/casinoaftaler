@@ -61,12 +61,12 @@ export default function FedesvinBonanza() {
 
   const PageBackground = () => (
     <>
-      <div className="absolute inset-0 bg-gradient-to-b from-sky-300 via-pink-200 to-fuchsia-200 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-sky-200 via-pink-100 to-fuchsia-100 -z-10" />
       {backgroundImage && (
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10" style={{ backgroundImage: `url(${backgroundImage})` }} />
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10" style={{ backgroundImage: `url(${backgroundImage})`, filter: 'brightness(1.28) saturate(1.08)' }} />
       )}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/30 -z-10" />
-      <div className="absolute inset-0 bg-gradient-to-b from-pink-400/10 via-transparent to-fuchsia-400/10 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/12 via-black/6 to-black/12 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-pink-300/20 via-transparent to-fuchsia-300/18 -z-10" />
     </>
   );
 
