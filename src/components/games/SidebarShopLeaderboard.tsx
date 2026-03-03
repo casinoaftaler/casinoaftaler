@@ -4,6 +4,7 @@ import { ShoppingBag, Crown } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import "@/styles/community-micro.css";
 
 interface ShopLeaderboardEntry {
@@ -11,6 +12,7 @@ interface ShopLeaderboardEntry {
   points: number;
   avatar_url: string | null;
   display_name: string;
+  twitch_badges: any | null;
 }
 
 function AnimatedScore({ value }: { value: number }) {
@@ -70,13 +72,23 @@ export function SidebarShopLeaderboard() {
 
         // We need to look up profiles by twitch_username - use profiles_public view
         const { data: profiles } = await supabase
-          .from("profiles_public")
+          .from("profiles_public" as any)
           .select("user_id, display_name, avatar_url")
           .filter("display_name", "in", `(${usernames.join(",")})`);
 
+        // Also fetch twitch_badges from profiles_leaderboard
+        const { data: badgeProfiles } = await supabase
+          .from("profiles_leaderboard")
+          .select("user_id, twitch_badges, display_name");
+
         // Build a map by lowercase display_name
         const profileMap = new Map(
-          (profiles || []).map((p) => [p.display_name?.toLowerCase() || "", p])
+          ((profiles || []) as any[]).map((p: any) => [p.display_name?.toLowerCase() || "", p])
+        );
+
+        // Build badge map by lowercase display_name
+        const badgeMap = new Map(
+          (badgeProfiles || []).map((p) => [p.display_name?.toLowerCase() || "", p.twitch_badges])
         );
 
         setEntries(
@@ -87,6 +99,7 @@ export function SidebarShopLeaderboard() {
               points: u.points,
               avatar_url: profile?.avatar_url || null,
               display_name: profile?.display_name || u.username,
+              twitch_badges: badgeMap.get(u.username.toLowerCase()) || null,
             };
           })
         );
@@ -175,10 +188,11 @@ export function SidebarShopLeaderboard() {
                   {entry.display_name.charAt(0).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
-              <span className={`flex-1 truncate text-xs ${
+              <span className={`flex-1 truncate text-xs flex items-center gap-1 ${
                 i === 0 ? "text-foreground font-semibold" : "text-muted-foreground"
               }`}>
                 {entry.display_name}
+                <TwitchBadgesInline badges={entry.twitch_badges} />
               </span>
               <span className={`text-[11px] font-mono font-semibold tabular-nums ${
                 i === 0 ? "text-amber-400" : "text-muted-foreground/70"

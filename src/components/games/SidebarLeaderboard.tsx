@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Trophy, Crown, ChevronRight, Clock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import { Button } from "@/components/ui/button";
 import { useTournamentCountdown } from "@/hooks/useTournamentCountdown";
 import "@/styles/community-micro.css";
@@ -12,6 +13,7 @@ interface LeaderboardEntry {
   display_name: string;
   avatar_url: string | null;
   total_winnings: number;
+  twitch_badges: any | null;
 }
 
 function AnimatedScore({ value }: { value: number }) {
@@ -60,7 +62,7 @@ export function SidebarLeaderboard() {
       const userIds = data.map((d) => d.user_id).filter(Boolean) as string[];
       const { data: profiles } = await supabase
         .from("profiles_leaderboard")
-        .select("user_id, display_name, avatar_url")
+        .select("user_id, display_name, avatar_url, twitch_badges")
         .in("user_id", userIds);
 
       const profileMap = new Map(
@@ -77,6 +79,7 @@ export function SidebarLeaderboard() {
               display_name: profile?.display_name || "Anonym",
               avatar_url: profile?.avatar_url || null,
               total_winnings: (d as any).monthly_winnings || 0,
+              twitch_badges: profile?.twitch_badges || null,
             };
           })
       );
@@ -177,10 +180,11 @@ export function SidebarLeaderboard() {
                   {entry.display_name.charAt(0).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
-              <span className={`flex-1 truncate text-xs ${
+              <span className={`flex-1 truncate text-xs flex items-center gap-1 ${
                 i === 0 ? "text-foreground font-semibold" : "text-muted-foreground"
               }`}>
                 {entry.display_name}
+                <TwitchBadgesInline badges={entry.twitch_badges} />
               </span>
               <span className={`text-[11px] font-mono font-semibold tabular-nums ${
                 i === 0 ? "text-amber-400" : "text-muted-foreground/70"
