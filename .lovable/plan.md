@@ -1,35 +1,51 @@
 
 
-# Fix Win Celebration: Remove Black Box, Better Pulse, Skip-to-Count-End
+# Redesign: Bonanza Bonus Entry Sequence
 
-## Changes
+## Problem
+The current bonus intro uses basic Tailwind utility classes (animate-pulse, animate-ping, animate-bounce) and emoji icons, which looks amateur. It needs a cinematic, polished feel matching the candy/Fedesvin Bonanza theme.
 
-### 1. Remove the black background box (lines 515-548 in WinCelebration.tsx)
-The inner `<div>` wrapping the win text has `background: linear-gradient(... rgba(0,0,0,0.7) ...)`, a border, rounded corners, and box-shadow -- this creates the visible black rectangle. Remove the background, border, box-shadow, and backdrop-blur from this container so only the text and its glow are visible.
+## New Approach: Particle Explosion + Cinematic Reveal
 
-### 2. Add a stronger pulse effect after counting finishes
-Currently `isPulsing` applies `animate-[win-amount-pulse_0.25s_ease-in-out_3]` (3 pulses). Change this to a continuous, more dramatic pulse animation on both the win label and the amount, with a glowing scale effect that loops until the celebration fades out.
+Instead of layered div transitions, we'll build a **canvas-based particle burst** combined with CSS keyframe-driven cinematic text reveals. The sequence will feel like a premium slot game bonus trigger.
 
-### 3. Change skip to only skip the counter, not the whole animation
-Currently `handleSkip` immediately fades out and calls `onAnimationComplete`. Instead:
-- **First click (while counting)**: Jump the counter to the final value instantly (the existing `useAnimatedCounter` already snaps when `targetValue` matches, so we just need to force it). We can do this by setting a "skipCounter" state that makes the counter display the final amount immediately, then the existing `useEffect` at line 167 detects `displayAmount === winAmount` and triggers the pulse + fade-out flow naturally.
-- **Second click (during pulse/after counting)**: Then dismiss the whole celebration (current skip behavior).
+### Phase Timeline (total ~5s)
 
-### Files to modify
-- **`src/components/slots/WinCelebration.tsx`** -- all three changes
-- **`src/hooks/useAnimatedCounter.ts`** -- add ability to force-skip to end value
-- **`src/styles/slot-animations.css`** -- add a continuous pulse keyframe for the post-count effect
+| Time | Phase | Visual |
+|------|-------|--------|
+| 0-300ms | **flash** | Quick white-to-pink screen flash (screen shake via CSS) |
+| 300-1200ms | **explosion** | Canvas particle burst — hundreds of pink/gold/fuchsia particles explode outward from center, then fade |
+| 1200-2000ms | **vignette** | Screen darkens with a radial vignette, deep fuchsia/purple gradient fades in |
+| 2000-3500ms | **reveal** | "FREE SPINS" text scales up from 0 with a gold metallic gradient + glow. Spin count does a rapid drum-roll count-up. Subtitle fades in with delay |
+| 3500-5000ms | **hold + done** | Hold the final frame, then call onComplete |
 
-### Technical approach
+### Key Visual Improvements
 
-**useAnimatedCounter.ts**: Add an optional `skipToEnd` boolean param. When true, immediately cancel the animation and return `targetValue`.
+1. **Canvas particle system** — ~120 particles with physics (velocity, gravity, fade, size decay). Colors: pink, fuchsia, gold, white. Creates an explosive, celebratory feel impossible with CSS alone.
+2. **Screen shake** — A brief CSS transform shake on the entire overlay during the flash phase for impact.
+3. **Metallic text effect** — The "FREE SPINS" title uses a CSS `background-image` with a sweeping linear-gradient animation (gold shimmer moving across text) instead of a static gradient.
+4. **Radial light burst** — A pulsing radial gradient behind the text creating a volumetric light source effect.
+5. **No emojis** — Replace the lollipop emoji with a styled SVG star/burst shape or pure CSS radial burst.
+6. **Drum-roll counter** — The number counter gets a slight vertical oscillation during count-up, settling when it reaches the final number.
 
-**WinCelebration.tsx**:
-- Add `counterSkipped` state (boolean)
-- On first click: set `counterSkipped = true` (passed to useAnimatedCounter to skip)
-- On second click (when `isPulsing` or counting is done): run current fade-out dismiss logic
-- Remove `background`, `border`, `borderColor`, `boxShadow`, `backdrop-blur-md`, and `rounded-2xl` from the inner card div -- keep only padding for text layout
-- Make `isPulsing` animation continuous (`infinite`) and more dramatic (scale 1 to 1.12)
+### Technical Details
 
-**slot-animations.css**: Add `win-amount-pulse-loop` keyframe with continuous scale + glow breathing.
+**Files to modify:**
+- `src/components/slots/BonanzaBonusEntrySequence.tsx` — Complete rewrite with canvas + refined phases
+- `src/styles/slot-animations.css` — Add new keyframes: `bonanza-screen-shake`, `bonanza-title-scale-in`, `bonanza-gold-sweep`, `bonanza-counter-drum`
+
+**Canvas particle system (inline in component):**
+- Uses `useRef` for canvas + `requestAnimationFrame` loop
+- Particles spawned at center with random velocity vectors
+- Each particle: `{ x, y, vx, vy, size, color, alpha, decay }`
+- Renders during explosion phase only, cleanup on unmount
+- Canvas is transparent overlay — background layers render beneath
+
+**CSS keyframes to add:**
+- `bonanza-screen-shake`: rapid translateX/Y jitter over 300ms
+- `bonanza-title-scale-in`: scale(0) + blur(10px) to scale(1) + blur(0) with overshoot via cubic-bezier
+- `bonanza-gold-sweep`: background-position shift for the metallic text shimmer (loops once)
+- `bonanza-counter-drum`: subtle translateY oscillation during count-up
+
+**Component interface stays the same** — `isActive`, `freeSpinsAwarded`, `onComplete` — so no changes needed in `BonanzaSlotGame.tsx`.
 
