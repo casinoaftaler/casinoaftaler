@@ -240,7 +240,7 @@ const FreeSpins = () => {
             </Link>{" "}
             kan du prøve spilleautomater med bonusrunder og free spins helt uden
             risiko – og samtidig konkurrere på vores{" "}
-            <Link to="/community/leaderboard" className="text-primary underline hover:text-primary/80">
+            <Link to="/community/turneringer" className="text-primary underline hover:text-primary/80">
               leaderboard
             </Link>
             .

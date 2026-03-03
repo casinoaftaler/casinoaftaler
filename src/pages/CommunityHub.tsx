@@ -59,7 +59,7 @@ const SECTIONS = [
     title: "Turneringer",
     description:
       "Deltag i slot-turneringer og kæmp om præmier! Se aktive turneringer, ranglister og vindere.",
-    href: "/community/leaderboard",
+    href: "/community/turneringer",
     icon: Trophy,
     badge: "Ugentlige præmier",
     badgeColor: "bg-purple-500/15 text-purple-600 dark:text-purple-400 border-purple-500/30",

@@ -88,7 +88,7 @@ export default function RewardsProgram() {
                 <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">bonus-regler</Link> som på rigtige casinoer. Brug dem i vores{" "}
                 <Link to="/community/slots" className="text-primary underline hover:text-primary/80">gratis spillehal</Link> og
                 konkurrér om topplaceringer på{" "}
-                <Link to="/community/leaderboard" className="text-primary underline hover:text-primary/80">ranglisten</Link>.
+                <Link to="/community/turneringer" className="text-primary underline hover:text-primary/80">ranglisten</Link>.
               </p>
 
               <div className="grid gap-3 sm:grid-cols-2">

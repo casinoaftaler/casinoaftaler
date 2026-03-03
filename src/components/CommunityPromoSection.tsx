@@ -31,7 +31,7 @@ export function CommunityPromoSection() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="sm" className="gap-1.5">
-              <Link to="/community/leaderboard">
+              <Link to="/community/turneringer">
                 <Trophy className="h-3.5 w-3.5" />
                 Leaderboard
               </Link>

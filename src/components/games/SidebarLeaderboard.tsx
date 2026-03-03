@@ -206,7 +206,7 @@ export function SidebarLeaderboard() {
       </ul>
 
       {/* "Se alle" button */}
-      <Link to="/community/leaderboard" className="block no-underline mt-3">
+      <Link to="/community/turneringer" className="block no-underline mt-3">
         <Button
           variant="ghost"
           className="w-full text-xs text-muted-foreground hover:text-foreground border border-border/50 hover:border-border"

@@ -206,7 +206,7 @@ export const routeLabels: Record<string, string> = {
 
 /** Paths where breadcrumbs should NOT appear (visual + schema). */
 export const EXCLUDED_PATHS = new Set([
-  "/community/leaderboard",
+  "/community/turneringer",
   "/community/rewards",
   "/community/spin-the-reel",
 ]);
