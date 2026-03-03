@@ -27,6 +27,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { CompletedTournamentRow } from "@/components/tournament/CompletedTournamentRow";
 import { MonthlyTournamentBoxes } from "@/components/tournament/MonthlyTournamentBoxes";
+import { TournamentSeoContent } from "@/components/tournament/TournamentSeoContent";
 
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
@@ -529,6 +530,9 @@ export default function Leaderboard() {
               )}
             </div>
           )}
+
+          {/* Tournament SEO content */}
+          <TournamentSeoContent />
 
           {/* SEO sections */}
           <div className="mt-12 space-y-8">
