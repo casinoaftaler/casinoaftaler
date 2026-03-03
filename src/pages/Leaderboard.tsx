@@ -11,6 +11,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { FAQSection } from "@/components/FAQSection";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
@@ -27,7 +28,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { CompletedTournamentRow } from "@/components/tournament/CompletedTournamentRow";
 import { MonthlyTournamentBoxes } from "@/components/tournament/MonthlyTournamentBoxes";
-import { TournamentSeoContent, getTournamentFaqSchema } from "@/components/tournament/TournamentSeoContent";
+import { TournamentSeoContent, getTournamentFaqSchema, tournamentFaqs } from "@/components/tournament/TournamentSeoContent";
 
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
@@ -564,6 +565,7 @@ export default function Leaderboard() {
           <div className="mt-12 space-y-8">
             <CommunitySeoSections />
             <RelatedGuides currentPath="/community/turneringer" />
+            <FAQSection title="Ofte stillede spørgsmål om turneringer" faqs={tournamentFaqs} />
             <CommunityBrandBlock />
           </div>
 

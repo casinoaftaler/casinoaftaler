@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Trophy, BarChart3, Gift, HelpCircle } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Gamepad2, Trophy, BarChart3, Gift } from "lucide-react";
 
 const steps = [
   {
@@ -70,62 +64,9 @@ const steps = [
   },
 ];
 
-const faqItems = [
-  {
-    q: "Koster det penge at deltage i turneringerne?",
-    a: "Nej, alle turneringer er 100 % gratis. Du spiller med virtuelle credits – ikke rigtige penge. Du får 1.000 credits per maskine dagligt, og de nulstilles automatisk ved midnat dansk tid.",
-  },
-  {
-    q: "Hvad kan jeg vinde?",
-    a: "Hver måned uddeles præmier til top 3 i tre kategorier: 500 kr for 1. pladsen, 300 kr for 2. pladsen og 200 kr for 3. pladsen. Præmierne udbetales som credits, der kan bruges i vores butik.",
-  },
-  {
-    q: "Hvor mange spilleautomater kan jeg spille?",
-    a: (
-      <>
-        Der er tre eksklusive community-maskiner: <strong>Fedesvin Bonanza</strong> (Flest Point), <strong>Book of Fedesvin</strong> (Højeste X) og <strong>Rise of Fedesvin</strong> (Største Gevinst). Hver maskine har sin egen turnering og sine egne daglige credits.
-      </>
-    ),
-  },
-  {
-    q: "Hvornår nulstilles turneringen?",
-    a: "Turneringen nulstilles automatisk den 1. i hver måned kl. 00:00 dansk tid. Alle spillere starter fra scratch, og vinderne fra den foregående måned arkiveres.",
-  },
-  {
-    q: "Kan jeg deltage på mobil?",
-    a: "Ja, alle spilleautomater og turneringer er fuldt optimeret til mobil. Du kan spille og følge din placering direkte fra din smartphone.",
-  },
-  {
-    q: "Hvordan adskiller dette sig fra rigtige casino-turneringer?",
-    a: (
-      <>
-        Vores turneringer bruger virtuelle credits – ikke rigtige penge – og er derfor fuldstændig risikofrie.
-        Hos rigtige onlinecasinoer kræver turneringer typisk et indskud. Vil du vide mere om{" "}
-        <Link to="/casino-bonus" className="text-primary hover:underline">
-          bonusser hos rigtige casinoer
-        </Link>
-        , kan du læse vores bonusguides.
-      </>
-    ),
-  },
-  {
-    q: "Er der krav om wagering eller omsætning?",
-    a: (
-      <>
-        Nej, der er ingen omsætningskrav i vores community-turneringer. Præmierne gives direkte som credits.
-        Vil du forstå, hvordan{" "}
-        <Link to="/omsaetningskrav" className="text-primary hover:underline">
-          omsætningskrav fungerer hos casinoer
-        </Link>
-        , har vi en dybdegående guide.
-      </>
-    ),
-  },
-];
-
 export function TournamentSeoContent() {
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
       {/* 4-step guide */}
       <section className="space-y-5">
         <h2 className="text-lg font-bold text-foreground">
@@ -162,12 +103,12 @@ export function TournamentSeoContent() {
         </div>
       </section>
 
-      {/* Rules & tournament structure */}
-      <section className="space-y-4">
+      {/* Rules & tournament structure – card style */}
+      <section className="rounded-xl border border-border/50 bg-card p-6 md:p-8 space-y-4">
         <h2 className="text-lg font-bold text-foreground">
           Turneringsregler & præmiestruktur
         </h2>
-        <div className="prose prose-sm max-w-none text-muted-foreground space-y-3">
+        <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
           <p>
             Vores månedlige slot-turneringer er designet til at give alle en fair chance for at vinde. I modsætning til{" "}
             <Link to="/nye-casinoer" className="text-primary hover:underline">
@@ -176,25 +117,27 @@ export function TournamentSeoContent() {
             , hvor turneringer ofte kræver et indskud, er vores turneringer 100 % gratis og risikofrie.
           </p>
           <p>
-            Du får <strong>1.000 virtuelle credits dagligt</strong> til hver af de tre spilleautomater. Credits nulstilles ved midnat dansk tid,
+            Du får <strong className="text-foreground">1.000 virtuelle credits dagligt</strong> til hver af de tre spilleautomater. Credits nulstilles ved midnat dansk tid,
             så du kan vende tilbage hver dag og forbedre din placering. Dit bedste resultat i løbet af måneden tæller — ikke det seneste.
           </p>
           <p>
             Turneringen opdeles i tre uafhængige kategorier, så forskellige spilstile belønnes:
           </p>
-          <ul className="list-disc pl-5 space-y-1.5 text-muted-foreground text-sm">
+          <ul className="list-disc pl-5 space-y-1.5">
             <li>
-              <strong>Fedesvin Bonanza – Flest Point:</strong> Belønner konsistente spillere, der akkumulerer flest samlede point over måneden.
+              <strong className="text-foreground">Fedesvin Bonanza – Flest Point:</strong> Belønner konsistente spillere, der akkumulerer flest samlede point over måneden — inspireret af tumble-mekanikken fra{" "}
+              <Link to="/casinospil/spillemaskiner/sweet-bonanza" className="text-primary hover:underline">Sweet Bonanza</Link>.
             </li>
             <li>
-              <strong>Book of Fedesvin – Højeste X:</strong> Går efter den single biggest multiplikator — perfekt til high-risk spillere, der jager store udbetalinger.
+              <strong className="text-foreground">Book of Fedesvin – Højeste X:</strong> Går efter den single biggest multiplikator — perfekt til high-risk spillere, der jager store udbetalinger med expanding wilds som i{" "}
+              <Link to="/casinospil/spillemaskiner/legacy-of-dead" className="text-primary hover:underline">Legacy of Dead</Link>.
             </li>
             <li>
-              <strong>Rise of Fedesvin – Største Gevinst:</strong> Belønner den højeste enkeltgevinst i credits — en blanding af held og timing.
+              <strong className="text-foreground">Rise of Fedesvin – Største Gevinst:</strong> Belønner den højeste enkeltgevinst i credits — en blanding af held og timing.
             </li>
           </ul>
           <p>
-            Præmierne for top 3 i hver kategori er: <strong>500 kr</strong> (1. plads), <strong>300 kr</strong> (2. plads) og <strong>200 kr</strong> (3. plads).
+            Præmierne for top 3 i hver kategori er: <strong className="text-foreground">500 kr</strong> (1. plads), <strong className="text-foreground">300 kr</strong> (2. plads) og <strong className="text-foreground">200 kr</strong> (3. plads).
             Præmierne udbetales som credits til din profil. Du kan bruge dem i vores{" "}
             <Link to="/community/rewards" className="text-primary hover:underline">
               rewards-program
@@ -208,12 +151,12 @@ export function TournamentSeoContent() {
         </div>
       </section>
 
-      {/* Strategy section with money-page links */}
-      <section className="space-y-4">
+      {/* Strategy section – card style */}
+      <section className="rounded-xl border border-border/50 bg-card p-6 md:p-8 space-y-4">
         <h2 className="text-lg font-bold text-foreground">
           Strategitips til turneringerne
         </h2>
-        <div className="prose prose-sm max-w-none text-muted-foreground space-y-3">
+        <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
           <p>
             Selvom vores spilleautomater er baseret på tilfældighed (ligesom{" "}
             <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
@@ -221,49 +164,67 @@ export function TournamentSeoContent() {
             </Link>
             ), kan du optimere dine chancer med en bevidst tilgang:
           </p>
-          <ul className="list-disc pl-5 space-y-1.5 text-muted-foreground text-sm">
+          <ul className="list-disc pl-5 space-y-1.5">
             <li>
-              <strong>Spred dine credits:</strong> Brug ikke alle 1.000 credits på ét bet. Mindre bets giver flere spins og dermed flere chancer for at triggere bonusrunder.
+              <strong className="text-foreground">Spred dine credits:</strong> Brug ikke alle 1.000 credits på ét bet. Mindre bets giver flere spins og dermed flere chancer for at triggere bonusrunder.
             </li>
             <li>
-              <strong>Fokusér på din stærkeste kategori:</strong> Hvis du jager "Højeste X", bør du prioritere Book of Fedesvin, hvor bonus-mekanikken favoriserer store multiplikatorer.
+              <strong className="text-foreground">Fokusér på din stærkeste kategori:</strong> Hvis du jager "Højeste X", bør du prioritere Book of Fedesvin, hvor bonus-mekanikken favoriserer store multiplikatorer.
             </li>
             <li>
-              <strong>Kom tilbage dagligt:</strong> Med 1.000 nye credits pr. maskine pr. dag har du op til 3.000 daglige forsøg. Jo flere dage du spiller, jo bedre er dine odds.
+              <strong className="text-foreground">Kom tilbage dagligt:</strong> Med 1.000 nye credits pr. maskine pr. dag har du op til 3.000 daglige forsøg. Jo flere dage du spiller, jo bedre er dine odds.
             </li>
             <li>
-              <strong>Forstå volatilitet:</strong> Hver maskine har unik volatilitet. Fedesvin Bonanza har tumble-mekanik for jævne gevinster, mens Book of Fedesvin har expanding wilds for sjældne, men store udbetalinger — ligesom{" "}
-              <Link to="/casinospil/spillemaskiner/book-of-dead" className="text-primary hover:underline">
-                Book of Dead
+              <strong className="text-foreground">Forstå volatilitet:</strong> Hver maskine har unik volatilitet. Fedesvin Bonanza har tumble-mekanik for jævne gevinster (som{" "}
+              <Link to="/casinospil/spillemaskiner/sweet-bonanza" className="text-primary hover:underline">
+                Sweet Bonanza
+              </Link>
+              ), mens Book of Fedesvin har expanding wilds for sjældne, men store udbetalinger — ligesom{" "}
+              <Link to="/casinospil/spillemaskiner/legacy-of-dead" className="text-primary hover:underline">
+                Legacy of Dead
               </Link>
               .
             </li>
           </ul>
         </div>
       </section>
-
-      {/* FAQ section */}
-      <section className="space-y-4">
-        <h2 className="text-lg font-bold text-foreground flex items-center gap-2">
-          <HelpCircle className="h-5 w-5 text-primary" />
-          Ofte stillede spørgsmål om turneringer
-        </h2>
-        <Accordion type="single" collapsible className="w-full">
-          {faqItems.map((item, i) => (
-            <AccordionItem key={i} value={`faq-${i}`}>
-              <AccordionTrigger className="text-sm font-medium text-foreground text-left">
-                {item.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                {item.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </section>
     </div>
   );
 }
+
+/**
+ * Tournament FAQ items for the FAQSection component and JSON-LD schema.
+ */
+export const tournamentFaqs = [
+  {
+    question: "Koster det penge at deltage i turneringerne?",
+    answer: "Nej, alle turneringer er 100 % gratis. Du spiller med virtuelle credits – ikke rigtige penge. Du får 1.000 credits per maskine dagligt, og de nulstilles automatisk ved midnat dansk tid.",
+  },
+  {
+    question: "Hvad kan jeg vinde?",
+    answer: "Hver måned uddeles præmier til top 3 i tre kategorier: 500 kr for 1. pladsen, 300 kr for 2. pladsen og 200 kr for 3. pladsen. Præmierne udbetales som credits, der kan bruges i vores butik.",
+  },
+  {
+    question: "Hvor mange spilleautomater kan jeg spille?",
+    answer: "Der er tre eksklusive community-maskiner: Fedesvin Bonanza (Flest Point), Book of Fedesvin (Højeste X) og Rise of Fedesvin (Største Gevinst). Hver maskine har sin egen turnering og sine egne daglige credits.",
+  },
+  {
+    question: "Hvornår nulstilles turneringen?",
+    answer: "Turneringen nulstilles automatisk den 1. i hver måned kl. 00:00 dansk tid. Alle spillere starter fra scratch, og vinderne fra den foregående måned arkiveres.",
+  },
+  {
+    question: "Kan jeg deltage på mobil?",
+    answer: "Ja, alle spilleautomater og turneringer er fuldt optimeret til mobil. Du kan spille og følge din placering direkte fra din smartphone.",
+  },
+  {
+    question: "Hvordan adskiller dette sig fra rigtige casino-turneringer?",
+    answer: "Vores turneringer bruger virtuelle credits – ikke rigtige penge – og er derfor fuldstændig risikofrie. Hos rigtige onlinecasinoer kræver turneringer typisk et indskud.",
+  },
+  {
+    question: "Er der krav om wagering eller omsætning?",
+    answer: "Nej, der er ingen omsætningskrav i vores community-turneringer. Præmierne gives direkte som credits.",
+  },
+];
 
 /**
  * FAQ structured data for the tournament page.
@@ -272,21 +233,12 @@ export function TournamentSeoContent() {
 export function getTournamentFaqSchema() {
   return {
     "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
+    mainEntity: tournamentFaqs.map((item) => ({
       "@type": "Question",
-      name: typeof item.q === "string" ? item.q : "",
+      name: item.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: typeof item.a === "string" ? item.a : (() => {
-          // Extract text content from JSX for schema
-          const texts: Record<number, string> = {
-            2: "Der er tre eksklusive community-maskiner: Fedesvin Bonanza (Flest Point), Book of Fedesvin (Højeste X) og Rise of Fedesvin (Største Gevinst). Hver maskine har sin egen turnering og sine egne daglige credits.",
-            5: "Vores turneringer bruger virtuelle credits – ikke rigtige penge – og er derfor fuldstændig risikofrie. Hos rigtige onlinecasinoer kræver turneringer typisk et indskud. Vil du vide mere om bonusser hos rigtige casinoer, kan du læse vores bonusguides.",
-            6: "Nej, der er ingen omsætningskrav i vores community-turneringer. Præmierne gives direkte som credits. Vil du forstå, hvordan omsætningskrav fungerer hos casinoer, har vi en dybdegående guide.",
-          };
-          const idx = faqItems.indexOf(item);
-          return texts[idx] || "";
-        })(),
+        text: typeof item.answer === "string" ? item.answer : "",
       },
     })),
   };
