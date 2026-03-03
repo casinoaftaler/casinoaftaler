@@ -476,7 +476,10 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
       // Grid is now visually empty — wait for server result
       const response = await serverPromise;
-      if (!response) throw new Error("Spin failed");
+      if (!response) {
+        // Error already toasted by useServerSpin — just bail out
+        return;
+      }
 
       const result = response.result as any;
 

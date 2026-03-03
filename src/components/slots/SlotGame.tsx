@@ -384,7 +384,8 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
       const response = await serverSpin(bet, isBonusSpin);
       
       if (!response) {
-        throw new Error("Spin failed");
+        // Error already toasted by useServerSpin — just bail out
+        return;
       }
 
       // Extract result from server response

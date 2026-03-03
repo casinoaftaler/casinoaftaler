@@ -408,7 +408,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       setCellAnimStates(new Map());
 
       const response = await serverPromise;
-      if (!response) throw new Error("Spin failed");
+      if (!response) {
+        // Error already toasted by useServerSpin — just bail out
+        return;
+      }
       const result = response.result as any;
 
       if (result.tumbleSteps && result.tumbleSteps.length > 0) {
