@@ -596,10 +596,16 @@ async function loadBonanzaSettings(serviceClient: ReturnType<typeof createClient
     BONANZA_FREE_SPINS_RETRIGGER = parseInt(map.bonanza_free_spins_retrigger || "5", 10);
     BONANZA_MULTIPLIER_CHANCE_BONUS = parseFloat(map.bonanza_multiplier_chance_bonus || "0.10");
     if (map.bonanza_multiplier_values) {
-      try { BONANZA_MULTIPLIER_VALUES = JSON.parse(map.bonanza_multiplier_values); } catch {}
+      try { BONANZA_MULTIPLIER_VALUES = JSON.parse(map.bonanza_multiplier_values); } catch {
+        // Fallback: parse CSV format "2,3,5,10,..."
+        BONANZA_MULTIPLIER_VALUES = map.bonanza_multiplier_values.split(',').map((v: string) => parseInt(v.trim(), 10)).filter((n: number) => !isNaN(n));
+      }
     }
     if (map.bonanza_multiplier_weights) {
-      try { BONANZA_MULTIPLIER_WEIGHTS = JSON.parse(map.bonanza_multiplier_weights); } catch {}
+      try { BONANZA_MULTIPLIER_WEIGHTS = JSON.parse(map.bonanza_multiplier_weights); } catch {
+        // Fallback: parse CSV format "100,60,25,12,..."
+        BONANZA_MULTIPLIER_WEIGHTS = map.bonanza_multiplier_weights.split(',').map((v: string) => parseInt(v.trim(), 10)).filter((n: number) => !isNaN(n));
+      }
     }
     BONANZA_REEL_DUP_2_CHANCE = parseFloat(map.bonanza_reel_dup_2_chance || "0.35");
     BONANZA_REEL_DUP_3_CHANCE = parseFloat(map.bonanza_reel_dup_3_chance || "0.10");
