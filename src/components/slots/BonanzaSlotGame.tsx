@@ -773,16 +773,16 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       >
         <SlotAmbientLight isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="pink" />
         <SlotIdleEffects isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="pink" width={gridWidth} height={gridHeight} />
-        {/* Static vertical reel dividers */}
+        {/* Static vertical reel dividers — purely visual, above grid content */}
         {Array.from({ length: BONANZA_COLS - 1 }).map((_, i) => (
           <div
             key={`divider-v-${i}`}
             className="absolute top-0 bottom-0 pointer-events-none"
             style={{
               left: SYMBOL_GAP + (i + 1) * (SYMBOL_WIDTH + SYMBOL_GAP) - SYMBOL_GAP / 2,
-              width: 1,
-              background: 'linear-gradient(to bottom, rgba(236,72,153,0.15), rgba(236,72,153,0.35), rgba(236,72,153,0.15))',
-              zIndex: 0,
+              width: 2,
+              background: 'linear-gradient(to bottom, rgba(236,72,153,0.1), rgba(236,72,153,0.3), rgba(236,72,153,0.1))',
+              zIndex: 10,
             }}
           />
         ))}
