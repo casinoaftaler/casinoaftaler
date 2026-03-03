@@ -130,7 +130,7 @@ export function TournamentSeoContent() {
             </li>
             <li>
               <strong className="text-foreground">Book of Fedesvin – Højeste X:</strong> Går efter den single biggest multiplikator — perfekt til high-risk spillere, der jager store udbetalinger med expanding wilds som i{" "}
-              <Link to="/casinospil/spillemaskiner/legacy-of-dead" className="text-primary hover:underline">Legacy of Dead</Link>.
+              <Link to="/casinospil/spillemaskiner/book-of-dead" className="text-primary hover:underline">Book of Dead</Link>.
             </li>
             <li>
               <strong className="text-foreground">Rise of Fedesvin – Største Gevinst:</strong> Belønner den højeste enkeltgevinst i credits — en blanding af held og timing.
@@ -138,15 +138,7 @@ export function TournamentSeoContent() {
           </ul>
           <p>
             Præmierne for top 3 i hver kategori er: <strong className="text-foreground">500 kr</strong> (1. plads), <strong className="text-foreground">300 kr</strong> (2. plads) og <strong className="text-foreground">200 kr</strong> (3. plads).
-            Præmierne udbetales som credits til din profil. Du kan bruge dem i vores{" "}
-            <Link to="/community/rewards" className="text-primary hover:underline">
-              rewards-program
-            </Link>{" "}
-            eller i{" "}
-            <Link to="/butik" className="text-primary hover:underline">
-              butikken
-            </Link>
-            .
+            Præmierne udbetales kontant til vinderne.
           </p>
         </div>
       </section>
@@ -180,10 +172,12 @@ export function TournamentSeoContent() {
                 Sweet Bonanza
               </Link>
               ), mens Book of Fedesvin har expanding wilds for sjældne, men store udbetalinger — ligesom{" "}
+              <Link to="/casinospil/spillemaskiner/book-of-dead" className="text-primary hover:underline">
+                Book of Dead
+              </Link>, og Rise of Fedesvin er inspireret af{" "}
               <Link to="/casinospil/spillemaskiner/legacy-of-dead" className="text-primary hover:underline">
                 Legacy of Dead
-              </Link>
-              .
+              </Link>.
             </li>
           </ul>
         </div>
