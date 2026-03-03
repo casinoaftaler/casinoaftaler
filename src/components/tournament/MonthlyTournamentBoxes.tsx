@@ -159,7 +159,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
 
   return (
     <div
-      className="tournament-card rounded-xl border border-border/50 bg-card overflow-hidden flex flex-col"
+      className="tournament-card rounded-xl border border-border/50 bg-background dark:bg-card overflow-hidden flex flex-col"
       data-category={config.category}
     >
       {/* Badge header with shine */}
