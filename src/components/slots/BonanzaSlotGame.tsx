@@ -11,7 +11,7 @@ import { useServerSpin } from "@/hooks/useServerSpin";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 import { slotSounds } from "@/lib/slotSoundEffects";
-import { GatesControlBar } from "./GatesControlBar";
+import { BonanzaControlBar } from "./BonanzaControlBar";
 import { AnimatedSpinCounter } from "./AnimatedSpinCounter";
 import { WinCelebration } from "./WinCelebration";
 import { SlotIdleEffects } from "./SlotIdleEffects";
@@ -893,7 +893,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
 
       {/* Control panel */}
       <div className="w-full relative">
-        <GatesControlBar
+        <BonanzaControlBar
           bet={bet}
           onBetChange={setBet}
           onSpin={handleSpinWithPress}
