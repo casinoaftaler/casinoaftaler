@@ -13,6 +13,8 @@ import { slotSounds } from "@/lib/slotSoundEffects";
 import { GatesControlBar } from "./GatesControlBar";
 import { AnimatedSpinCounter } from "./AnimatedSpinCounter";
 import { WinCelebration } from "./WinCelebration";
+import { SlotIdleEffects } from "./SlotIdleEffects";
+import { SlotAmbientLight } from "./SlotAmbientLight";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -826,7 +828,8 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           height: gridHeight,
         }}
       >
-        {/* Reel stop flash removed */}
+        <SlotAmbientLight isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="blue" />
+        <SlotIdleEffects isIdle={!isSpinning && tumblePhase === 'idle' && !isBonusActive} theme="blue" width={gridWidth} height={gridHeight} />
         {/* Grid of symbols - column-based rendering */}
         <div 
           className="relative flex"

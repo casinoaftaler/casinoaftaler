@@ -8,6 +8,8 @@ import { BonusSymbolBar } from "./BonusSymbolBar";
 import { SlotMachineFrame } from "./SlotMachineFrame";
 import { WinCelebration } from "./WinCelebration";
 import { GatesControlBar } from "./GatesControlBar";
+import { SlotIdleEffects } from "./SlotIdleEffects";
+import { SlotAmbientLight } from "./SlotAmbientLight";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
 import { useSlotSymbolPreloader } from "@/hooks/useSlotSymbolPreloader";
 import { useSlotSpins } from "@/hooks/useSlotSpins";
@@ -1136,7 +1138,18 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
                     }
                   }}
                 />
-                
+                {/* Idle effects */}
+                <SlotAmbientLight
+                  isIdle={!isSpinning && !isWinAnimating && !bonusState.isActive}
+                  theme={gameId === "rise-of-fedesvin" ? "purple" : "gold"}
+                />
+                <SlotIdleEffects
+                  isIdle={!isSpinning && !isWinAnimating && !bonusState.isActive}
+                  theme={gameId === "rise-of-fedesvin" ? "purple" : "gold"}
+                  width={5 * SYMBOL_SIZE + 4 * 2}
+                  height={3 * SYMBOL_SIZE + 2 * SYMBOL_GAP}
+                />
+
                 {/* Reel container */}
                 <div className="relative flex gap-0">
                   {grid?.map((column, colIndex) => (
