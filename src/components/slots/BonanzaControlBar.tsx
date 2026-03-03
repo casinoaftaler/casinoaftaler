@@ -132,40 +132,39 @@ export function BonanzaControlBar({
 
           {/* Credit + Bet stacked display */}
           {!bonusState.isActive && (
-            <div className="flex flex-col leading-none gap-1 pl-2 border-l border-pink-500/10">
-              <div className="flex items-center gap-1.5">
+            <div className="flex flex-col leading-none gap-0.5 pl-2 border-l border-pink-500/10">
+              <div className="flex items-center gap-2">
                 <span
-                  className="text-sm uppercase tracking-widest font-bold text-amber-400"
-                   style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
-                 >
-                   Credit
+                  className="text-base uppercase tracking-wider font-black text-red-500"
+                  style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(239,68,68,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.6)" }}
+                >
+                  Credit
                 </span>
                 <div className="flex items-center gap-1">
-                  <CreditCoin size="sm" />
                   {spinsLoading ? (
                     <span className="text-lg animate-pulse text-pink-300/40">...</span>
                   ) : (
                     <span
-                      className="text-2xl font-black tabular-nums text-amber-300"
-                      style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(251,191,36,0.3)" }}
+                      className="text-2xl font-black tabular-nums text-emerald-400"
+                      style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(52,211,153,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.5)" }}
                     >
-                      {spinsRemaining.toLocaleString()}
+                      ${spinsRemaining.toLocaleString()}.00
                     </span>
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-2">
                 <span
-                  className="text-sm uppercase tracking-widest font-bold text-pink-300/70"
-                   style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
-                 >
-                   Indsats
+                  className="text-base uppercase tracking-wider font-black text-red-500"
+                  style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(239,68,68,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.6)" }}
+                >
+                  Bet
                 </span>
                 <span
-                  className="text-2xl font-black tabular-nums text-white/90"
-                   style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
-                 >
-                   {bet}
+                  className="text-2xl font-black tabular-nums text-emerald-400"
+                  style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(52,211,153,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.5)" }}
+                >
+                  ${bet}.00
                 </span>
               </div>
             </div>
