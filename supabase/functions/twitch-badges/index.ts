@@ -57,47 +57,55 @@ async function getBroadcasterId(
   return data.data?.[0]?.id || null;
 }
 
-// Check if user is a moderator
+// Check if user is a moderator (requires broadcaster's user access token)
 async function checkModerator(
   broadcasterId: string,
   userId: string,
-  accessToken: string,
+  broadcasterAccessToken: string,
   clientId: string
 ): Promise<boolean> {
+  if (!broadcasterAccessToken) return false;
   const response = await fetch(
     `https://api.twitch.tv/helix/moderation/moderators?broadcaster_id=${broadcasterId}&user_id=${userId}`,
     {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${broadcasterAccessToken}`,
         "Client-Id": clientId,
       },
     }
   );
 
-  if (!response.ok) return false;
+  if (!response.ok) {
+    console.error(`checkModerator failed: ${response.status} ${response.statusText}`);
+    return false;
+  }
   
   const data = await response.json();
   return data.data?.length > 0;
 }
 
-// Check if user is a VIP
+// Check if user is a VIP (requires broadcaster's user access token)
 async function checkVip(
   broadcasterId: string,
   userId: string,
-  accessToken: string,
+  broadcasterAccessToken: string,
   clientId: string
 ): Promise<boolean> {
+  if (!broadcasterAccessToken) return false;
   const response = await fetch(
     `https://api.twitch.tv/helix/channels/vips?broadcaster_id=${broadcasterId}&user_id=${userId}`,
     {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${broadcasterAccessToken}`,
         "Client-Id": clientId,
       },
     }
   );
 
-  if (!response.ok) return false;
+  if (!response.ok) {
+    console.error(`checkVip failed: ${response.status} ${response.statusText}`);
+    return false;
+  }
   
   const data = await response.json();
   return data.data?.length > 0;
@@ -337,12 +345,62 @@ serve(async (req) => {
       );
     }
 
+    // Load broadcaster OAuth tokens for mod/VIP checks
+    let broadcasterAccessToken = "";
+    const { data: broadcasterTokenSettings } = await supabaseAdmin
+      .from("site_settings")
+      .select("key, value")
+      .in("key", ["twitch_broadcaster_access_token", "twitch_broadcaster_refresh_token"]);
+    
+    const broadcasterTokenMap: Record<string, string> = {};
+    broadcasterTokenSettings?.forEach((s: { key: string; value: string | null }) => {
+      broadcasterTokenMap[s.key] = s.value || "";
+    });
+    broadcasterAccessToken = broadcasterTokenMap.twitch_broadcaster_access_token || "";
+    let broadcasterRefreshToken = broadcasterTokenMap.twitch_broadcaster_refresh_token || "";
+
+    // If broadcaster access token exists, validate it; refresh if expired
+    if (broadcasterAccessToken) {
+      const validateResp = await fetch("https://id.twitch.tv/oauth2/validate", {
+        headers: { Authorization: `OAuth ${broadcasterAccessToken}` },
+      });
+      if (validateResp.status === 401 && broadcasterRefreshToken) {
+        console.log("Broadcaster token expired, refreshing...");
+        const refreshResp = await fetch("https://id.twitch.tv/oauth2/token", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({
+            client_id: clientId,
+            client_secret: clientSecret,
+            grant_type: "refresh_token",
+            refresh_token: broadcasterRefreshToken,
+          }),
+        });
+        if (refreshResp.ok) {
+          const refreshData = await refreshResp.json();
+          broadcasterAccessToken = refreshData.access_token;
+          const newRefresh = refreshData.refresh_token || broadcasterRefreshToken;
+          // Persist refreshed tokens
+          await Promise.all([
+            supabaseAdmin.from("site_settings").upsert({ key: "twitch_broadcaster_access_token", value: broadcasterAccessToken }, { onConflict: "key" }),
+            supabaseAdmin.from("site_settings").upsert({ key: "twitch_broadcaster_refresh_token", value: newRefresh }, { onConflict: "key" }),
+          ]);
+          console.log("Broadcaster token refreshed successfully");
+        } else {
+          console.error("Broadcaster token refresh failed:", await refreshResp.text());
+          broadcasterAccessToken = "";
+        }
+      }
+    } else {
+      console.log("No broadcaster access token configured — mod/VIP badges will not be detected");
+    }
+
     const userTwitchId = profile.twitch_id;
 
     // Fetch all badge statuses in parallel
     const [isModerator, isVip, followerInfo, subInfo] = await Promise.all([
-      checkModerator(broadcasterId, userTwitchId, accessToken, clientId),
-      checkVip(broadcasterId, userTwitchId, accessToken, clientId),
+      checkModerator(broadcasterId, userTwitchId, broadcasterAccessToken, clientId),
+      checkVip(broadcasterId, userTwitchId, broadcasterAccessToken, clientId),
       checkFollower(broadcasterId, userTwitchId, accessToken, clientId),
       checkSubscription(
         broadcasterId, userTwitchId,
