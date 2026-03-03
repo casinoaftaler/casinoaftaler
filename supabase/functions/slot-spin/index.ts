@@ -614,7 +614,7 @@ async function loadBonanzaSettings(serviceClient: ReturnType<typeof createClient
     }
     BONANZA_REEL_DUP_2_CHANCE = parseFloat(map.bonanza_reel_dup_2_chance || "0.35");
     BONANZA_REEL_DUP_3_CHANCE = parseFloat(map.bonanza_reel_dup_3_chance || "0.10");
-    BONANZA_MAX_BET = parseInt(map.bonanza_max_bet || "5", 10);
+    BONANZA_MAX_BET = parseInt(map.bonanza_max_bet || "10", 10);
   }
 }
 
