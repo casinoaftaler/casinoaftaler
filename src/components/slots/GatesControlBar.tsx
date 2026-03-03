@@ -149,14 +149,38 @@ export function GatesControlBar({
         </>
       )}
 
-      {/* Bet display (locked at 10) */}
-      <div className="flex items-center gap-2 flex-shrink-0">
-        <span className="text-[10px] uppercase tracking-widest font-semibold text-pink-300/50">
+      {/* Bet controls */}
+      <div className="flex items-center gap-1.5 flex-shrink-0">
+        <span className="text-[10px] uppercase tracking-widest font-semibold text-pink-300/50 mr-1">
           Indsats
         </span>
+        <button
+          className={cn(
+            "w-7 h-7 rounded-full flex items-center justify-center",
+            "bg-pink-500/20 border border-pink-500/30 text-pink-200",
+            "hover:bg-pink-500/30 hover:border-pink-400/50 transition-colors",
+            "disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-pink-500/20"
+          )}
+          onClick={() => onBetChange(Math.max(minBet, bet - 1))}
+          disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
+        >
+          <Minus className="h-3.5 w-3.5" />
+        </button>
         <span className="w-8 text-center font-bold text-lg tabular-nums text-pink-100">
           {bet}
         </span>
+        <button
+          className={cn(
+            "w-7 h-7 rounded-full flex items-center justify-center",
+            "bg-pink-500/20 border border-pink-500/30 text-pink-200",
+            "hover:bg-pink-500/30 hover:border-pink-400/50 transition-colors",
+            "disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-pink-500/20"
+          )}
+          onClick={() => onBetChange(Math.min(maxBet, bet + 1))}
+          disabled={isBetLocked || isCurrentlySpinning || bet >= maxBet}
+        >
+          <Plus className="h-3.5 w-3.5" />
+        </button>
       </div>
 
       {/* Spacer */}
