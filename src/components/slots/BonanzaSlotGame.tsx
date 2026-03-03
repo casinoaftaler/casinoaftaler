@@ -694,11 +694,18 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           setShowBonusComplete(false);
           showBonusCompleteRef.current = false;
           setIsBonusActive(false);
+          isBonusActiveRef.current = false;
           setBonusAutoSpinPending(false);
           setCumulativeMultiplier(0);
           setRunningMultiplier(0);
           setBonusWinnings(0);
           setRunningWin(0);
+          
+          // Resume auto-spinning after bonus ends
+          if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
+            if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+            autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1000);
+          }
         }}
       />
 
