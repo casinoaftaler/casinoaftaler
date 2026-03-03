@@ -1,0 +1,343 @@
+import { useState } from "react";
+import { Trophy, TrendingUp, Zap, Star, Clock, Gamepad2, Gift, BarChart3, Users, Search, History, Medal, Award } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { UserProfileLink } from "@/components/UserProfileLink";
+import { TwitchBadgesInline } from "@/components/TwitchBadges";
+import { useTournamentCountdown } from "@/hooks/useTournamentCountdown";
+import { useMonthlyTournamentArchive } from "@/hooks/useMonthlyTournamentArchive";
+import {
+  useSlotLeaderboard,
+  getCategoryDisplayValue,
+  formatCategoryValue,
+  getCategoryLabel,
+  getCategoryUnit,
+  type LeaderboardEntry,
+  type LeaderboardCategory,
+} from "@/hooks/useSlotLeaderboard";
+import { useAuth } from "@/hooks/useAuth";
+import { cn } from "@/lib/utils";
+import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
+
+import fedesvinBonanzaPreview from "@/assets/slots/fedesvin-bonanza-preview.jpg";
+import bookOfFedesvinIntro from "@/assets/slots/slot-intro-screen.jpg";
+import riseOfFedesvinIntro from "@/assets/slots/rise/intro-screen.jpg";
+
+interface TournamentBoxConfig {
+  category: LeaderboardCategory;
+  gameName: string;
+  gameSlug: string;
+  image: string;
+  icon: React.ReactNode;
+  categoryLabel: string;
+}
+
+const TOURNAMENT_BOXES: TournamentBoxConfig[] = [
+  {
+    category: "total_points",
+    gameName: "Fedesvin Bonanza",
+    gameSlug: "fedesvin-bonanza",
+    image: fedesvinBonanzaPreview,
+    icon: <TrendingUp className="h-3.5 w-3.5" />,
+    categoryLabel: "Flest Point",
+  },
+  {
+    category: "highest_x",
+    gameName: "Book of Fedesvin",
+    gameSlug: "book-of-fedesvin",
+    image: bookOfFedesvinIntro,
+    icon: <Zap className="h-3.5 w-3.5" />,
+    categoryLabel: "Højeste X",
+  },
+  {
+    category: "highest_win",
+    gameName: "Rise of Fedesvin",
+    gameSlug: "rise-of-fedesvin",
+    image: riseOfFedesvinIntro,
+    icon: <Star className="h-3.5 w-3.5" />,
+    categoryLabel: "Største Gevinst",
+  },
+];
+
+function RankBadge({ rank }: { rank: number }) {
+  if (rank === 1) return (
+    <div className="relative flex items-center justify-center w-8 h-8">
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full animate-pulse opacity-50" />
+      <div className="relative bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 rounded-full w-7 h-7 flex items-center justify-center shadow-lg">
+        <Trophy className="h-3.5 w-3.5 text-amber-900" />
+      </div>
+    </div>
+  );
+  if (rank === 2) return (
+    <div className="w-7 h-7 bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 rounded-full flex items-center justify-center shadow-md">
+      <Medal className="h-3.5 w-3.5 text-gray-700" />
+    </div>
+  );
+  if (rank === 3) return (
+    <div className="w-7 h-7 bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 rounded-full flex items-center justify-center shadow-md">
+      <Award className="h-3.5 w-3.5 text-amber-200" />
+    </div>
+  );
+  return (
+    <div className="w-7 h-7 bg-muted/50 rounded-full flex items-center justify-center">
+      <span className="text-xs font-bold text-muted-foreground">{rank}</span>
+    </div>
+  );
+}
+
+function LeaderboardRow({ entry, rank, isCurrentUser, category }: {
+  entry: LeaderboardEntry;
+  rank: number;
+  isCurrentUser?: boolean;
+  category: LeaderboardCategory;
+}) {
+  const displayValue = getCategoryDisplayValue(entry, category);
+  const formattedValue = formatCategoryValue(displayValue, category);
+
+  return (
+    <div className={cn(
+      "flex items-center gap-2 px-2 py-1.5 rounded-lg transition-all",
+      rank === 1 && "bg-gradient-to-r from-amber-500/10 to-transparent",
+      rank === 2 && "bg-gradient-to-r from-gray-400/10 to-transparent",
+      rank === 3 && "bg-gradient-to-r from-amber-700/10 to-transparent",
+      isCurrentUser && "ring-1 ring-primary/50 bg-primary/5"
+    )}>
+      <RankBadge rank={rank} />
+      <Avatar className={cn("h-6 w-6 shrink-0", rank <= 3 && "ring-1 ring-offset-1 ring-offset-background", rank === 1 && "ring-amber-400", rank === 2 && "ring-gray-400", rank === 3 && "ring-amber-600")}>
+        <AvatarImage src={entry.avatar_url} />
+        <AvatarFallback className="text-[10px]">{(entry.display_name || "A").charAt(0).toUpperCase()}</AvatarFallback>
+      </Avatar>
+      <span className={cn("text-xs font-medium truncate flex-1 min-w-0", rank <= 3 ? "text-foreground" : "text-muted-foreground")}>
+        {entry.display_name || "Anonym"}
+      </span>
+      {isCurrentUser && <Badge variant="outline" className="text-[9px] px-1 py-0 border-primary/50 text-primary">Du</Badge>}
+      <span className={cn("text-xs font-bold tabular-nums shrink-0", rank === 1 ? "text-amber-400" : "text-foreground")}>
+        {formattedValue}
+      </span>
+    </div>
+  );
+}
+
+function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
+  const { user } = useAuth();
+  const { data, isLoading } = useSlotLeaderboard(config.category);
+  const countdown = useTournamentCountdown();
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const entries = data?.entries || [];
+  const currentUser = data?.currentUser;
+  const top5 = entries.slice(0, 5);
+
+  const filteredEntries = searchQuery
+    ? entries.filter(e => e.display_name?.toLowerCase().includes(searchQuery.toLowerCase()))
+    : entries;
+
+  return (
+    <div className="rounded-xl border border-border/50 bg-card overflow-hidden flex flex-col">
+      {/* Badge header */}
+      <div className="bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 text-center py-1.5 px-2">
+        <span className="text-xs font-bold uppercase tracking-wider text-amber-950">
+          Månedens Turnering
+        </span>
+      </div>
+
+      {/* Game image with countdown */}
+      <div className="relative aspect-[16/10] overflow-hidden">
+        <img
+          src={config.image}
+          alt={config.gameName}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/70 backdrop-blur-sm rounded px-2 py-0.5">
+          <Clock className="h-3 w-3 text-muted-foreground" />
+          <span className="text-[10px] font-mono text-muted-foreground">{countdown.label}</span>
+        </div>
+      </div>
+
+      {/* Game info */}
+      <div className="px-3 pt-3 pb-2">
+        <h3 className="font-bold text-sm text-foreground">{config.gameName}</h3>
+        <div className="flex items-center gap-1 mt-0.5">
+          {config.icon}
+          <span className="text-xs text-muted-foreground">{config.categoryLabel}</span>
+        </div>
+      </div>
+
+      {/* Top 5 mini leaderboard */}
+      <div className="px-2 pb-2 flex-1">
+        {isLoading ? (
+          <div className="space-y-1">
+            {[1, 2, 3].map(i => <div key={i} className="h-8 bg-muted/20 rounded animate-pulse" />)}
+          </div>
+        ) : top5.length > 0 ? (
+          <div className="space-y-0.5">
+            {top5.map((entry, i) => (
+              <LeaderboardRow
+                key={entry.user_id}
+                entry={entry}
+                rank={i + 1}
+                isCurrentUser={user?.id === entry.user_id}
+                category={config.category}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-4">
+            <p className="text-xs text-muted-foreground">Ingen deltagere endnu</p>
+          </div>
+        )}
+      </div>
+
+      {/* Action buttons */}
+      <div className="px-3 pb-3 flex gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          className="flex-1 text-xs h-8"
+          asChild
+        >
+          <a href={`/community/slots/${config.gameSlug}`}>
+            <Gamepad2 className="h-3 w-3 mr-1" />
+            Spil
+          </a>
+        </Button>
+        <Dialog open={showLeaderboard} onOpenChange={setShowLeaderboard}>
+          <DialogTrigger asChild>
+            <Button
+              variant="default"
+              size="sm"
+              className="flex-1 text-xs h-8"
+            >
+              <BarChart3 className="h-3 w-3 mr-1" />
+              Leaderboard
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-lg">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <Trophy className="h-5 w-5 text-amber-400" />
+                {config.gameName} — {config.categoryLabel}
+              </DialogTitle>
+            </DialogHeader>
+
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Søg efter spiller..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-9"
+              />
+            </div>
+
+            <div className="space-y-1 max-h-[50vh] overflow-y-auto">
+              {filteredEntries.map((entry, i) => {
+                const rank = entries.indexOf(entry) + 1;
+                return (
+                  <LeaderboardRow
+                    key={entry.user_id}
+                    entry={entry}
+                    rank={rank}
+                    isCurrentUser={user?.id === entry.user_id}
+                    category={config.category}
+                  />
+                );
+              })}
+              {currentUser && currentUser.rank > entries.length && (
+                <>
+                  <Separator className="my-2" />
+                  <LeaderboardRow entry={currentUser.entry} rank={currentUser.rank} isCurrentUser category={config.category} />
+                </>
+              )}
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
+    </div>
+  );
+}
+
+export function MonthlyTournamentBoxes() {
+  const countdown = useTournamentCountdown();
+  const { data: archiveData } = useMonthlyTournamentArchive();
+  const [showArchive, setShowArchive] = useState(false);
+
+  const now = new Date();
+  const monthLabel = `${now.toLocaleDateString("da-DK", { month: "long" }).replace(/^./, c => c.toUpperCase())} ${now.getFullYear()}`;
+
+  return (
+    <div className="space-y-3">
+      {/* Section header */}
+      <div className="flex items-center justify-between flex-wrap gap-2">
+        <div className="flex items-center gap-2">
+          <Trophy className="h-5 w-5 text-amber-400" />
+          <h2 className="font-bold text-lg text-foreground">Turneringer</h2>
+          <Badge variant="outline" className="text-[10px] px-1.5 py-0 capitalize whitespace-nowrap">
+            {monthLabel}
+          </Badge>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
+            <Clock className="h-3.5 w-3.5" />
+            <span>Nulstilles om {countdown.label}</span>
+          </div>
+          {archiveData && archiveData.length > 0 && (
+            <Dialog open={showArchive} onOpenChange={setShowArchive}>
+              <DialogTrigger asChild>
+                <Button variant="ghost" size="sm" className="text-xs text-muted-foreground h-7 px-2">
+                  <History className="h-3.5 w-3.5 mr-1" />
+                  Arkiv
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="flex items-center gap-2">
+                    <History className="h-5 w-5 text-amber-400" />
+                    Tidligere vindere
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                  {archiveData.map(({ month, entries }) => {
+                    const monthDate = new Date(month + "T00:00:00");
+                    const monthName = monthDate.toLocaleDateString("da-DK", { month: "long", year: "numeric" });
+                    return (
+                      <div key={month}>
+                        <h4 className="text-sm font-semibold text-foreground capitalize mb-2">{monthName}</h4>
+                        <div className="space-y-1.5">
+                          {entries.map((arch) => (
+                            <div key={arch.id} className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-muted/30">
+                              <Avatar className="h-6 w-6 shrink-0">
+                                <AvatarImage src={arch.winner_avatar_url || undefined} />
+                                <AvatarFallback className="text-[10px]">{arch.winner_display_name.charAt(0).toUpperCase()}</AvatarFallback>
+                              </Avatar>
+                              <span className="text-xs font-medium text-foreground truncate flex-1">{arch.winner_display_name}</span>
+                              <span className="text-xs font-mono font-semibold tabular-nums text-amber-400">
+                                {formatCategoryValue(arch.winning_value, arch.category as LeaderboardCategory)}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </DialogContent>
+            </Dialog>
+          )}
+        </div>
+      </div>
+
+      {/* 3 tournament boxes */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {TOURNAMENT_BOXES.map((box) => (
+          <SingleTournamentBox key={box.category} config={box} />
+        ))}
+      </div>
+    </div>
+  );
+}
