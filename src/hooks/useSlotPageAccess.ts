@@ -97,7 +97,7 @@ export function useSlotPageAccess(gameId: string = "book-of-fedesvin") {
     },
   });
 
-  const isLocked = settings?.isLocked ?? true;
+  const isLocked = settings?.isLocked ?? false;
   
   // User has access if: not locked, or is admin, or has session access
   const hasAccess = !isLocked || isAdmin || hasSessionAccess;
