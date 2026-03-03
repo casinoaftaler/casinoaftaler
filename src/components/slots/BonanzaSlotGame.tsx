@@ -98,6 +98,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const showBonusCompleteRef = useRef(false);
   const showRetriggerRef = useRef(false);
   const pendingBonusStateRef = useRef<any>(null);
+  const pendingBonusActionRef = useRef<(() => void) | null>(null);
 
   const spinLockRef = useRef(false);
   const debugScattersRef = useRef(false);
@@ -453,52 +454,69 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           // queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
         }
 
-        // Handle bonus state
+        // Handle bonus state — defer if win celebration is playing
         if (response.bonusState) {
           const bs = response.bonusState as any;
           if (bs.isActive !== undefined) {
-            if (!isBonusActive && bs.freeSpinsRemaining > 0) {
-              pendingBonusStateRef.current = bs;
-              const finalGrid = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
-              if (finalGrid && symbols) {
-                const { positions: scatterPos } = countBonanzaScatters(finalGrid, symbols);
-                if (scatterPos.length > 0) {
-                  const scatterAnims = new Map<number, BonanzaCellAnimState>();
-                  scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
-                  setCellAnimStates(scatterAnims);
-                  slotSounds.playScatterCelebration();
-                  await new Promise(r => setTimeout(r, 1500));
-                  setCellAnimStates(new Map());
+            const executeBonusAction = () => {
+              if (!isBonusActive && bs.freeSpinsRemaining > 0) {
+                pendingBonusStateRef.current = bs;
+                const finalGrid = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
+                if (finalGrid && symbols) {
+                  const { positions: scatterPos } = countBonanzaScatters(finalGrid, symbols);
+                  if (scatterPos.length > 0) {
+                    const scatterAnims = new Map<number, BonanzaCellAnimState>();
+                    scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+                    setCellAnimStates(scatterAnims);
+                    slotSounds.playScatterCelebration();
+                    setTimeout(() => {
+                      setCellAnimStates(new Map());
+                      setShowBonusTrigger(true);
+                      showBonusTriggerRef.current = true;
+                      setScreenShake('intense');
+                      setTimeout(() => setScreenShake('none'), 600);
+                      setRunningWin(0);
+                      setRunningMultiplier(0);
+                    }, 1500);
+                    return;
+                  }
+                }
+                setShowBonusTrigger(true);
+                showBonusTriggerRef.current = true;
+                setScreenShake('intense');
+                setTimeout(() => setScreenShake('none'), 600);
+                setRunningWin(0);
+                setRunningMultiplier(0);
+              } else if (bs.isRetrigger) {
+                setScreenShake('intense');
+                setTimeout(() => setScreenShake('none'), 500);
+                setShowRetrigger(true);
+                showRetriggerRef.current = true;
+                setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                setTotalFreeSpins(bs.totalFreeSpins);
+                setBonusWinnings(bs.bonusWinnings || 0);
+                setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+                setRunningMultiplier(bs.cumulativeMultiplier || 0);
+              } else {
+                setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                setTotalFreeSpins(bs.totalFreeSpins);
+                setBonusWinnings(bs.bonusWinnings || 0);
+                setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+                setRunningMultiplier(bs.cumulativeMultiplier || 0);
+                if (bs.freeSpinsRemaining <= 0) {
+                  setScreenShake('intense');
+                  setTimeout(() => setScreenShake('none'), 800);
+                  setShowBonusComplete(true);
+                  showBonusCompleteRef.current = true;
                 }
               }
-              setShowBonusTrigger(true);
-              showBonusTriggerRef.current = true;
-              setScreenShake('intense');
-              setTimeout(() => setScreenShake('none'), 600);
-              setRunningWin(0);
-              setRunningMultiplier(0);
-            } else if (bs.isRetrigger) {
-              setScreenShake('intense');
-              setTimeout(() => setScreenShake('none'), 500);
-              setShowRetrigger(true);
-              showRetriggerRef.current = true;
-              setFreeSpinsRemaining(bs.freeSpinsRemaining);
-              setTotalFreeSpins(bs.totalFreeSpins);
-              setBonusWinnings(bs.bonusWinnings || 0);
-              setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
-              setRunningMultiplier(bs.cumulativeMultiplier || 0);
+            };
+
+            // If win celebration is playing, defer; otherwise execute immediately
+            if (shouldWaitForWinAnimation) {
+              pendingBonusActionRef.current = executeBonusAction;
             } else {
-              setFreeSpinsRemaining(bs.freeSpinsRemaining);
-              setTotalFreeSpins(bs.totalFreeSpins);
-              setBonusWinnings(bs.bonusWinnings || 0);
-              setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
-              setRunningMultiplier(bs.cumulativeMultiplier || 0);
-              if (bs.freeSpinsRemaining <= 0) {
-                setScreenShake('intense');
-                setTimeout(() => setScreenShake('none'), 800);
-                setShowBonusComplete(true);
-                showBonusCompleteRef.current = true;
-              }
+              executeBonusAction();
             }
           }
         }
@@ -656,6 +674,14 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           bet={bet}
           onAnimationComplete={() => {
             setIsWinAnimating(false);
+
+            // Execute deferred bonus/retrigger/complete action
+            if (pendingBonusActionRef.current) {
+              const action = pendingBonusActionRef.current;
+              pendingBonusActionRef.current = null;
+              setTimeout(() => action(), 300);
+              return;
+            }
 
             if (pendingPostWinSpinRef.current === 'bonus') {
               pendingPostWinSpinRef.current = null;
