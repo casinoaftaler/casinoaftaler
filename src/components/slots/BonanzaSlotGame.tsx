@@ -64,7 +64,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     return new Map(bombSymbols.map(b => [b.value, b]));
   }, [bombSymbols]);
 
-  const [bet, setBet] = useState(1);
+  const [bet, setBet] = useState(10);
   const [isSpinning, setIsSpinning] = useState(false);
   const [grid, setGrid] = useState<string[][] | null>(null);
   const [winAmount, setWinAmount] = useState(0);
