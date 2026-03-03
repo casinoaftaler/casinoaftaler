@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 
 // Base resolution the slot machine is designed at (fixed)
-const BASE_WIDTH = 1700;
-const BASE_HEIGHT = 1200;
+const BASE_WIDTH = 1280;
+const BASE_HEIGHT = 920;
 const HEADER_HEIGHT = 64;
 const SAFETY_PADDING = 16;
 const MIN_SCALE = 0.25;
