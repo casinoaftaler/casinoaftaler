@@ -1679,7 +1679,57 @@ Deno.serve(async (req) => {
           is_active: newFreeSpins > 0,
         }).eq("user_id", userId).eq("game_id", gameId);
         if (newFreeSpins <= 0 && newBonusWinnings > 0) {
-          (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: 0, is_bonus_triggered: false, bonus_win_amount: newBonusWinnings, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bonus bg err:", e); } })();
+          const bonanzaBonusNowISO = new Date().toISOString();
+          const capturedBonanzaWinnings = newBonusWinnings;
+          const capturedBonanzaBet = bet;
+          (async () => {
+            try {
+              const { data: participations } = await serviceClient
+                .from("tournament_participants")
+                .select("tournament_id")
+                .eq("user_id", userId);
+
+              let skipBonusGlobal = false;
+
+              if (participations && participations.length > 0) {
+                const participatingIds = participations.map((p: { tournament_id: string }) => p.tournament_id);
+                const [{ data: activeTournaments }, { data: allEntries }] = await Promise.all([
+                  serviceClient.from("tournaments").select("id, exclude_from_global_leaderboard, max_credits, max_bet")
+                    .in("id", participatingIds).contains("game_ids", [gameId])
+                    .lte("starts_at", bonanzaBonusNowISO).gte("ends_at", bonanzaBonusNowISO),
+                  serviceClient.from("tournament_entries").select("tournament_id, total_credits_used")
+                    .in("tournament_id", participatingIds).eq("user_id", userId),
+                ]);
+
+                if (activeTournaments && activeTournaments.length > 0) {
+                  await Promise.all(activeTournaments.map(async (t) => {
+                    if (t.max_bet && capturedBonanzaBet > t.max_bet) return;
+                    if (t.exclude_from_global_leaderboard) {
+                      if (t.max_credits) {
+                        const totalUsed = (allEntries || [])
+                          .filter((e: { tournament_id: string }) => e.tournament_id === t.id)
+                          .reduce((sum: number, e: { total_credits_used: number }) => sum + Number(e.total_credits_used || 0), 0);
+                        if (totalUsed + capturedBonanzaBet <= t.max_credits) skipBonusGlobal = true;
+                      } else {
+                        skipBonusGlobal = true;
+                      }
+                    }
+                    await serviceClient.rpc("upsert_tournament_entry", {
+                      p_tournament_id: t.id, p_user_id: userId, p_game_id: gameId,
+                      p_points: capturedBonanzaWinnings, p_bet: capturedBonanzaBet, p_is_bonus: true,
+                    });
+                  }));
+                }
+              }
+
+              if (!skipBonusGlobal) {
+                await serviceClient.from("slot_game_results").insert({
+                  user_id: userId, bet_amount: capturedBonanzaBet, win_amount: 0,
+                  is_bonus_triggered: false, bonus_win_amount: capturedBonanzaWinnings, game_id: gameId,
+                });
+              }
+            } catch (e) { console.error("[slot-spin] Bonanza bonus bg err:", e); }
+          })();
         }
         return new Response(JSON.stringify({ success: true, result: bonanzaResult, bonusState: { isActive: newFreeSpins > 0, freeSpinsRemaining: newFreeSpins, totalFreeSpins: newTotalFreeSpins, bonusWinnings: newBonusWinnings, cumulativeMultiplier: bonanzaResult.totalMultiplier, betAmount: bet, isRetrigger } }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } });
@@ -1712,7 +1762,57 @@ Deno.serve(async (req) => {
         await serviceClient.from("slot_bonus_state").insert({ user_id: userId, is_active: true, free_spins_remaining: awardedSpins, total_free_spins: awardedSpins, expanding_symbol_name: "0", bonus_winnings: bonanzaResult.totalWin, game_id: gameId, bet_amount: bet });
         bonanzaBonusState = { isActive: true, freeSpinsRemaining: awardedSpins, totalFreeSpins: awardedSpins, bonusWinnings: bonanzaResult.totalWin, cumulativeMultiplier: 0, betAmount: bet };
       }
-      (async () => { try { await serviceClient.from("slot_game_results").insert({ user_id: userId, bet_amount: bet, win_amount: bonanzaResult.totalWin, is_bonus_triggered: bonanzaResult.bonusTriggered, bonus_win_amount: 0, game_id: gameId }); } catch (e) { console.error("[slot-spin] Bonanza bg err:", e); } })();
+      const bonanzaNowISO = new Date().toISOString();
+      const bonanzaSpinWin = bonanzaResult.totalWin;
+      const bonanzaSpinBonus = bonanzaResult.bonusTriggered;
+      (async () => {
+        try {
+          const { data: participations } = await serviceClient
+            .from("tournament_participants")
+            .select("tournament_id")
+            .eq("user_id", userId);
+
+          let skipGlobal = false;
+
+          if (participations && participations.length > 0) {
+            const participatingIds = participations.map((p: { tournament_id: string }) => p.tournament_id);
+            const [{ data: activeTournaments }, { data: allEntries }] = await Promise.all([
+              serviceClient.from("tournaments").select("id, exclude_from_global_leaderboard, max_credits, max_bet")
+                .in("id", participatingIds).contains("game_ids", [gameId])
+                .lte("starts_at", bonanzaNowISO).gte("ends_at", bonanzaNowISO),
+              serviceClient.from("tournament_entries").select("tournament_id, total_credits_used")
+                .in("tournament_id", participatingIds).eq("user_id", userId),
+            ]);
+
+            if (activeTournaments && activeTournaments.length > 0) {
+              await Promise.all(activeTournaments.map(async (t) => {
+                if (t.max_bet && bet > t.max_bet) return;
+                if (t.exclude_from_global_leaderboard) {
+                  if (t.max_credits) {
+                    const totalUsed = (allEntries || [])
+                      .filter((e: { tournament_id: string }) => e.tournament_id === t.id)
+                      .reduce((sum: number, e: { total_credits_used: number }) => sum + Number(e.total_credits_used || 0), 0);
+                    if (totalUsed + bet <= t.max_credits) skipGlobal = true;
+                  } else {
+                    skipGlobal = true;
+                  }
+                }
+                await serviceClient.rpc("upsert_tournament_entry", {
+                  p_tournament_id: t.id, p_user_id: userId, p_game_id: gameId,
+                  p_points: bonanzaSpinWin, p_bet: bet, p_is_bonus: false,
+                });
+              }));
+            }
+          }
+
+          if (!skipGlobal) {
+            await serviceClient.from("slot_game_results").insert({
+              user_id: userId, bet_amount: bet, win_amount: bonanzaSpinWin,
+              is_bonus_triggered: bonanzaSpinBonus, bonus_win_amount: 0, game_id: gameId,
+            });
+          }
+        } catch (e) { console.error("[slot-spin] Bonanza bg err:", e); }
+      })();
       return new Response(JSON.stringify({ success: true, result: bonanzaResult, spinsRemaining: newRemB, maxSpins: maxSpB, bonusState: bonanzaBonusState }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
