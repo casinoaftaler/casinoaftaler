@@ -8,7 +8,7 @@ interface SpinsRemainingProps {
 }
 
 export function SpinsRemaining({ gameId }: SpinsRemainingProps) {
-  const { spinsRemaining, maxSpins, bonusSpinsPermanent, isLoading } = useSlotSpins();
+  const { spinsRemaining, maxSpins, bonusSpinsPermanent, isLoading } = useSlotSpins(gameId);
   const { remaining: communityRemaining } = useCommunityBonusSpins();
   const isWizard = gameId === "rise-of-fedesvin";
 
