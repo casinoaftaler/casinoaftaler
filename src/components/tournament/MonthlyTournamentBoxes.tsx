@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Trophy, TrendingUp, Zap, Star, Clock, Gamepad2, Gift, BarChart3, Users, Search, History, Medal, Award } from "lucide-react";
+import { Trophy, TrendingUp, Zap, Star, Clock, Gamepad2, Gift, BarChart3, Users, Search, History, Medal, Award, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -198,12 +198,8 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
       </div>
 
       {/* Top 5 mini leaderboard */}
-      <div className="px-2 pb-2 flex-1">
-        {isLoading ? (
-          <div className="space-y-1">
-            {[1, 2, 3].map(i => <div key={i} className="h-8 bg-muted/20 rounded animate-pulse" />)}
-          </div>
-        ) : top5.length > 0 ? (
+      {!isLoading && top5.length > 0 && (
+        <div className="px-2 pb-2 flex-1">
           <div className="space-y-0.5">
             {top5.map((entry, i) => (
               <LeaderboardRow
@@ -215,77 +211,85 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
               />
             ))}
           </div>
-        ) : (
-          <div className="text-center py-4">
-            <p className="text-xs text-muted-foreground">Ingen deltagere endnu</p>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Action buttons */}
-      <div className="px-3 pb-3 flex gap-2">
+      <div className="px-3 pb-3 mt-auto space-y-2">
         <Button
-          variant="outline"
-          size="sm"
-          className="flex-1 text-xs h-8"
+          size="lg"
+          className="w-full text-sm font-bold h-10"
           asChild
         >
           <a href={`/community/slots/${config.gameSlug}`}>
-            <Gamepad2 className="h-3 w-3 mr-1" />
-            Spil
+            <Gamepad2 className="h-4 w-4 mr-1.5" />
+            Spil nu
           </a>
         </Button>
-        <Dialog open={showLeaderboard} onOpenChange={setShowLeaderboard}>
-          <DialogTrigger asChild>
-            <Button
-              variant="default"
-              size="sm"
-              className="flex-1 text-xs h-8"
-            >
-              <BarChart3 className="h-3 w-3 mr-1" />
-              Leaderboard
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-lg">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2">
-                <Trophy className="h-5 w-5 text-amber-400" />
-                {config.gameName} — {config.categoryLabel}
-              </DialogTitle>
-            </DialogHeader>
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex-1 text-xs h-8"
+            asChild
+          >
+            <a href={`/community/slots/${config.gameSlug}`}>
+              <BookOpen className="h-3 w-3 mr-1" />
+              Information
+            </a>
+          </Button>
+          <Dialog open={showLeaderboard} onOpenChange={setShowLeaderboard}>
+            <DialogTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex-1 text-xs h-8"
+              >
+                <BarChart3 className="h-3 w-3 mr-1" />
+                Leaderboard
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-lg">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Trophy className="h-5 w-5 text-amber-400" />
+                  {config.gameName} — {config.categoryLabel}
+                </DialogTitle>
+              </DialogHeader>
 
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Søg efter spiller..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9"
-              />
-            </div>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Søg efter spiller..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-9"
+                />
+              </div>
 
-            <div className="space-y-1 max-h-[50vh] overflow-y-auto">
-              {filteredEntries.map((entry, i) => {
-                const rank = entries.indexOf(entry) + 1;
-                return (
-                  <LeaderboardRow
-                    key={entry.user_id}
-                    entry={entry}
-                    rank={rank}
-                    isCurrentUser={user?.id === entry.user_id}
-                    category={config.category}
-                  />
-                );
-              })}
-              {currentUser && currentUser.rank > entries.length && (
-                <>
-                  <Separator className="my-2" />
-                  <LeaderboardRow entry={currentUser.entry} rank={currentUser.rank} isCurrentUser category={config.category} />
-                </>
-              )}
-            </div>
-          </DialogContent>
-        </Dialog>
+              <div className="space-y-1 max-h-[50vh] overflow-y-auto">
+                {filteredEntries.map((entry, i) => {
+                  const rank = entries.indexOf(entry) + 1;
+                  return (
+                    <LeaderboardRow
+                      key={entry.user_id}
+                      entry={entry}
+                      rank={rank}
+                      isCurrentUser={user?.id === entry.user_id}
+                      category={config.category}
+                    />
+                  );
+                })}
+                {currentUser && currentUser.rank > entries.length && (
+                  <>
+                    <Separator className="my-2" />
+                    <LeaderboardRow entry={currentUser.entry} rank={currentUser.rank} isCurrentUser category={config.category} />
+                  </>
+                )}
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
     </div>
   );
