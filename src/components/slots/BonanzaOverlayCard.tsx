@@ -37,7 +37,7 @@ export function BonanzaOverlayCard({
     >
       {/* Card */}
       <div
-        className={`relative flex flex-col items-center justify-center gap-3 px-6 py-6 sm:px-10 sm:py-8 rounded-lg transition-all duration-500 ${
+        className={`relative flex flex-col items-center justify-center gap-4 px-6 py-6 sm:px-10 sm:py-8 rounded-lg transition-all duration-500 ${
           showContent ? "opacity-100 scale-100" : "opacity-0 scale-90"
         }`}
         style={{
@@ -46,7 +46,6 @@ export function BonanzaOverlayCard({
           height: "100%",
           boxShadow: "0 0 40px rgba(200,80,200,0.4), 0 0 80px rgba(160,40,180,0.2)",
         }}
-        onClick={(e) => e.stopPropagation()}
       >
         {/* Candy stripe border */}
         <div
@@ -64,7 +63,7 @@ export function BonanzaOverlayCard({
 
         {/* Header — golden "CONGRATULATIONS" */}
         <h2
-          className="text-2xl sm:text-3xl font-black tracking-[0.15em] uppercase text-center"
+          className="text-4xl sm:text-5xl font-black tracking-[0.15em] uppercase text-center"
           style={{
             backgroundImage: "linear-gradient(180deg, #fffacd 0%, #ffd700 40%, #daa520 100%)",
             WebkitBackgroundClip: "text",
@@ -78,7 +77,7 @@ export function BonanzaOverlayCard({
 
         {/* Subtitle — "YOU HAVE WON" */}
         <p
-          className="text-lg sm:text-xl font-bold tracking-wider uppercase text-center"
+          className="text-2xl sm:text-3xl font-bold tracking-wider uppercase text-center"
           style={{
             backgroundImage: "linear-gradient(180deg, #fff8dc 0%, #ffd700 100%)",
             WebkitBackgroundClip: "text",
@@ -92,10 +91,10 @@ export function BonanzaOverlayCard({
 
         {/* Candy bubble */}
         <div
-          className="bonanza-candy-bubble relative flex items-center justify-center mt-2 mb-2"
+          className="bonanza-candy-bubble relative flex items-center justify-center mt-3 mb-3"
           style={{
-            width: "min(240px, 60%)",
-            height: "80px",
+            width: "min(320px, 65%)",
+            height: "100px",
             background: "linear-gradient(180deg, #ff69b4 0%, #e91e90 40%, #c71585 100%)",
             borderRadius: "50px",
             boxShadow:
@@ -116,7 +115,7 @@ export function BonanzaOverlayCard({
 
         {/* Bottom label — "FREE SPINS" etc. */}
         <div
-          className="text-center font-bold text-lg sm:text-xl tracking-wider uppercase"
+          className="text-center font-bold text-2xl sm:text-3xl tracking-wider uppercase"
           style={{
             backgroundImage: "linear-gradient(180deg, #fffacd 0%, #ffd700 100%)",
             WebkitBackgroundClip: "text",
@@ -130,12 +129,8 @@ export function BonanzaOverlayCard({
 
         {/* Press anywhere prompt */}
         <p
-          className="mt-3 text-sm font-medium tracking-wide animate-pulse"
+          className="mt-4 text-base font-medium tracking-wide animate-pulse"
           style={{ color: "rgba(255,255,255,0.55)" }}
-          onClick={(e) => {
-            e.stopPropagation();
-            onDismiss();
-          }}
         >
           Tryk hvor som helst for at fortsætte
         </p>
