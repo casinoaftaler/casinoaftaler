@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { BonanzaOverlayCard } from "./BonanzaOverlayCard";
 
 type BonusEntryPhase = 'idle' | 'flash' | 'explosion' | 'reveal' | 'hold';
@@ -22,6 +22,8 @@ const COLORS = [
   'rgba(236,72,153,', 'rgba(217,70,239,', 'rgba(250,204,21,',
   'rgba(251,191,36,', 'rgba(255,255,255,', 'rgba(244,114,182,',
 ];
+
+const COIN_EMOJIS = ['💎', '✨', '⭐', '🍬', '🍭', '💰', '🔮'];
 
 function spawnParticles(cx: number, cy: number, count: number): Particle[] {
   const particles: Particle[] = [];
@@ -48,6 +50,19 @@ export function BonanzaBonusEntrySequence({ isActive, freeSpinsAwarded, onComple
   const rafRef = useRef<number>(0);
   const stableComplete = useRef(onComplete);
   stableComplete.current = onComplete;
+
+  // Generate coin rain items once per activation
+  const coinItems = useMemo(() => {
+    if (!isActive) return [];
+    return Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      emoji: COIN_EMOJIS[Math.floor(Math.random() * COIN_EMOJIS.length)],
+      left: Math.random() * 100,
+      delay: Math.random() * 2,
+      duration: 2 + Math.random() * 2,
+      size: 12 + Math.random() * 16,
+    }));
+  }, [isActive]);
 
   const startParticles = useCallback(() => {
     const canvas = canvasRef.current;
@@ -123,12 +138,60 @@ export function BonanzaBonusEntrySequence({ isActive, freeSpinsAwarded, onComple
         className="absolute inset-0 w-full h-full z-50 pointer-events-none"
       />
 
+      {/* Diagonal stripe background overlay */}
+      {showContent && (
+        <div className="absolute inset-0 z-50 bonanza-stripe-bg pointer-events-none" />
+      )}
+
+      {/* Coin/gem rain */}
+      {showContent && coinItems.map(coin => (
+        <div
+          key={coin.id}
+          className="absolute z-50 pointer-events-none bonanza-coin-rain"
+          style={{
+            left: `${coin.left}%`,
+            top: 0,
+            fontSize: coin.size,
+            ['--fall-delay' as string]: `${coin.delay}s`,
+            ['--fall-duration' as string]: `${coin.duration}s`,
+          }}
+        >
+          {coin.emoji}
+        </div>
+      ))}
+
+      {/* Shockwave ripple on reveal */}
+      {(phase === 'reveal') && (
+        <>
+          <div
+            className="absolute z-50 pointer-events-none rounded-full border-pink-400 bonanza-shockwave"
+            style={{
+              left: '50%', top: '50%',
+              width: 120, height: 120,
+              borderStyle: 'solid',
+              borderColor: 'rgba(236,72,153,0.5)',
+            }}
+          />
+          <div
+            className="absolute z-50 pointer-events-none rounded-full bonanza-shockwave-delayed"
+            style={{
+              left: '50%', top: '50%',
+              width: 80, height: 80,
+              borderStyle: 'solid',
+              borderWidth: 4,
+              borderColor: 'rgba(250,204,21,0.4)',
+            }}
+          />
+        </>
+      )}
+
       <BonanzaOverlayCard
         showContent={showContent}
         onDismiss={() => stableComplete.current()}
         bubbleContent={
-          <span className="relative z-10 text-5xl sm:text-6xl font-black text-white tabular-nums"
-            style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.3)' }}>
+          <span
+            className="relative z-10 text-5xl sm:text-6xl font-black text-white tabular-nums bonanza-number-glow"
+          >
             {spinsCountUp}
           </span>
         }
