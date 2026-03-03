@@ -739,7 +739,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
 
   return (
     <div
-      className="flex flex-col items-center gap-4"
+      className="flex flex-col items-center gap-4 relative"
       data-intensity={intensityState}
       data-bonus={isBonusActive ? "true" : "false"}
       data-mult-tier={bonusIntensityTier}

@@ -1044,7 +1044,9 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const canSpinNow = bonusState.isActive ? bonusState.freeSpinsRemaining > 0 : hasEnoughSpins(bet);
 
   return (
-    <div className="transition-all duration-300">
+    <div className="transition-all duration-300 relative">
+      {/* Credits expired overlay */}
+      <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !bonusState.isActive} />
       {/* Bonus Overlays */}
       <BonusOverlay
         isVisible={showRetrigger}
