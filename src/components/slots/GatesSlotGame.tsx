@@ -59,7 +59,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     return new Map(multSymbols.map(s => [s.id, s]));
   }, [multSymbols]);
 
-  const [bet, setBet] = useState(1);
+  const [bet, setBet] = useState(10);
   const [isSpinning, setIsSpinning] = useState(false);
   const [grid, setGrid] = useState<string[][] | null>(null);
   const [winAmount, setWinAmount] = useState(0);
