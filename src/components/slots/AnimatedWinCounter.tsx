@@ -4,13 +4,14 @@ interface AnimatedWinCounterProps {
   targetValue: number;
   duration?: number; // ms
   className?: string;
+  style?: React.CSSProperties;
 }
 
 /**
  * Animated counter that counts up with acceleration (ease-out).
  * Starts slow, speeds up in the middle, decelerates at the end.
  */
-export function AnimatedWinCounter({ targetValue, duration = 1200, className }: AnimatedWinCounterProps) {
+export function AnimatedWinCounter({ targetValue, duration = 1200, className, style }: AnimatedWinCounterProps) {
   const [displayValue, setDisplayValue] = useState(0);
   const prevTargetRef = useRef(0);
   const rafRef = useRef<number>();
@@ -72,7 +73,7 @@ export function AnimatedWinCounter({ targetValue, duration = 1200, className }: 
   }, [targetValue]);
 
   return (
-    <span ref={bumpRef} className={className}>
+    <span ref={bumpRef} className={className} style={style}>
       {displayValue.toLocaleString()}
     </span>
   );
