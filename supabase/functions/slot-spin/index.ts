@@ -569,7 +569,7 @@ let BONANZA_MULTIPLIER_VALUES = [2, 3, 5, 10, 15, 25, 50, 100];
 let BONANZA_MULTIPLIER_WEIGHTS = [30, 25, 20, 12, 6, 3, 2, 1];
 let BONANZA_REEL_DUP_2_CHANCE = 0.35;
 let BONANZA_REEL_DUP_3_CHANCE = 0.10;
-let BONANZA_MAX_BET = 5;
+let BONANZA_MAX_BET = 10;
 
 const bonanzaSettingsCache: { data: Record<string, string> | null; fetchedAt: number } = { data: null, fetchedAt: 0 };
 const BONANZA_SETTINGS_CACHE_TTL = 5 * 60 * 1000;
