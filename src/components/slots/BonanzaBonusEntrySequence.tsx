@@ -166,49 +166,53 @@ export function BonanzaBonusEntrySequence({ isActive, freeSpinsAwarded, onComple
         "absolute inset-0 z-[20] flex flex-col items-center justify-center",
         showContent ? "opacity-100" : "opacity-0"
       )}>
-        {/* Starburst SVG */}
-        <svg className="bonanza-title-scale-in mb-2" width="80" height="80" viewBox="0 0 80 80" fill="none">
-          {Array.from({ length: 12 }).map((_, i) => {
-            const angle = (i / 12) * Math.PI * 2;
-            const inner = 12;
-            const outer = i % 2 === 0 ? 38 : 26;
-            return (
-              <line
-                key={i}
-                x1={40 + Math.cos(angle) * inner}
-                y1={40 + Math.sin(angle) * inner}
-                x2={40 + Math.cos(angle) * outer}
-                y2={40 + Math.sin(angle) * outer}
-                stroke="rgba(251,191,36,0.9)"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-            );
-          })}
-          <circle cx="40" cy="40" r="10" fill="rgba(251,191,36,0.85)" />
-        </svg>
+        <div className="relative flex flex-col items-center gap-4 px-6 py-5 rounded-2xl backdrop-blur-md border border-white/10"
+          style={{ background: "rgba(0,0,0,0.25)", boxShadow: "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)", maxWidth: "340px" }}>
+          {/* Starburst SVG */}
+          <svg className="bonanza-title-scale-in" width="80" height="80" viewBox="0 0 80 80" fill="none">
+            {Array.from({ length: 12 }).map((_, i) => {
+              const angle = (i / 12) * Math.PI * 2;
+              const inner = 12;
+              const outer = i % 2 === 0 ? 38 : 26;
+              return (
+                <line
+                  key={i}
+                  x1={40 + Math.cos(angle) * inner}
+                  y1={40 + Math.sin(angle) * inner}
+                  x2={40 + Math.cos(angle) * outer}
+                  y2={40 + Math.sin(angle) * outer}
+                  stroke="rgba(251,191,36,0.9)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+              );
+            })}
+            <circle cx="40" cy="40" r="10" fill="rgba(251,191,36,0.85)" />
+          </svg>
 
-        {/* FREE SPINS metallic title */}
-        <h2
-          className="bonanza-title-scale-in text-4xl sm:text-6xl font-black tracking-widest"
-          style={{
-            backgroundImage: 'linear-gradient(90deg, #b8860b 0%, #ffd700 25%, #fffacd 50%, #ffd700 75%, #b8860b 100%)',
-            backgroundSize: '200% 100%',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            animation: 'bonanza-gold-sweep 1.5s ease-out forwards',
-            filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.6)) drop-shadow(0 0 40px rgba(251,191,36,0.3))',
-          }}
-        >
-          FREE SPINS
-        </h2>
+          {/* FREE SPINS metallic title */}
+          <h2
+            className="bonanza-title-scale-in text-4xl sm:text-5xl font-black tracking-widest"
+            style={{
+              backgroundImage: 'linear-gradient(90deg, #b8860b 0%, #ffd700 25%, #fffacd 50%, #ffd700 75%, #b8860b 100%)',
+              backgroundSize: '200% 100%',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              animation: 'bonanza-gold-sweep 1.5s ease-out forwards',
+              filter: 'drop-shadow(0 0 20px rgba(251,191,36,0.6)) drop-shadow(0 0 40px rgba(251,191,36,0.3))',
+            }}
+          >
+            FREE SPINS
+          </h2>
 
-        {/* Spin count with drum-roll */}
-        <div className="mt-6">
+          {/* Divider */}
+          <div className="w-48 h-px bg-gradient-to-r from-transparent via-pink-500/60 to-transparent" />
+
+          {/* Spin count with drum-roll */}
           <div
             className={cn(
-              "text-7xl sm:text-9xl font-black",
+              "text-7xl sm:text-8xl font-black tabular-nums",
               !isCountingDone && "bonanza-counter-drum"
             )}
             style={{
@@ -221,18 +225,18 @@ export function BonanzaBonusEntrySequence({ isActive, freeSpinsAwarded, onComple
           >
             {spinsCountUp}
           </div>
-        </div>
 
-        {/* Subtitle */}
-        <div
-          className="mt-4 text-lg sm:text-xl font-medium"
-          style={{
-            color: 'rgba(244,114,182,0.9)',
-            opacity: showContent ? 1 : 0,
-            transition: 'opacity 0.6s ease 0.5s',
-          }}
-        >
-          Multiplier bomber aktive! 💣
+          {/* Subtitle */}
+          <div
+            className="text-base sm:text-lg font-medium"
+            style={{
+              color: 'rgba(244,114,182,0.9)',
+              opacity: showContent ? 1 : 0,
+              transition: 'opacity 0.6s ease 0.5s',
+            }}
+          >
+            Multiplier bomber aktive! 💣
+          </div>
         </div>
       </div>
     </div>
