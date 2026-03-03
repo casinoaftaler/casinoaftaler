@@ -97,6 +97,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const showBonusCompleteRef = useRef(false);
   const showRetriggerRef = useRef(false);
   const pendingBonusStateRef = useRef<any>(null);
+  const pendingBonusActionRef = useRef<(() => void) | null>(null);
 
   const spinLockRef = useRef(false);
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
@@ -442,6 +443,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
     if (isBonusSpin) {
       setFreeSpinsRemaining(prev => Math.max(0, prev - 1));
     }
+    let shouldWaitForWinAnimation = false;
     setIsWinAnimating(false);
     setWinningPositions(new Set());
     setMultiplierOrbs([]);
@@ -566,6 +568,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
         setWinAmount(totalWin);
         
         if (totalWin > 0) {
+          shouldWaitForWinAnimation = true;
           setIsWinAnimating(true);
           if (totalWin >= bet * 10) {
             slotSounds.playBigWin();
@@ -578,67 +581,71 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });
         }
 
-        // Handle bonus state
+        // Handle bonus state — defer if win celebration is playing
         if (response.bonusState) {
           const bs = response.bonusState as any;
           if (bs.isActive !== undefined) {
-            if (!isBonusActive && bs.freeSpinsRemaining > 0) {
-              // New bonus triggered — highlight scatters before entry sequence
-              pendingBonusStateRef.current = bs;
-              
-              // Find scatter positions on the current grid and pulse them
-              if (grid && symbols) {
-                const { positions: scatterPos } = countGatesScatters(grid, symbols);
-                if (scatterPos.length > 0) {
-                  const scatterAnims = new Map<number, CellAnimState>();
-                  scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
-                  setCellAnimStates(scatterAnims);
-                  // Play scatter celebration sound during pulse
-                  slotSounds.playScatterCelebration();
-                  // Show scatters pulsing for 1.5s, then show bonus entry
-                  await new Promise(r => setTimeout(r, 1500));
-                  setCellAnimStates(new Map());
+            const executeBonusAction = () => {
+              if (!isBonusActive && bs.freeSpinsRemaining > 0) {
+                pendingBonusStateRef.current = bs;
+                if (grid && symbols) {
+                  const { positions: scatterPos } = countGatesScatters(grid, symbols);
+                  if (scatterPos.length > 0) {
+                    const scatterAnims = new Map<number, CellAnimState>();
+                    scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+                    setCellAnimStates(scatterAnims);
+                    slotSounds.playScatterCelebration();
+                    setTimeout(() => {
+                      setCellAnimStates(new Map());
+                      setShowBonusTrigger(true);
+                      showBonusTriggerRef.current = true;
+                      setScreenShake('intense');
+                      setShowLightningFlash(true);
+                      setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 600);
+                      setRunningWin(0);
+                      setRunningMultiplier(0);
+                    }, 1500);
+                    return;
+                  }
                 }
-              }
-              
-              setShowBonusTrigger(true);
-              showBonusTriggerRef.current = true;
-              // Reset counters for bonus entry + screen shake
-              setScreenShake('intense');
-              setShowLightningFlash(true);
-              setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 600);
-              setRunningWin(0);
-              setRunningMultiplier(0);
-            } else if (bs.isRetrigger) {
-              // Retrigger during bonus — climax + screen shake before overlay
-              setScreenShake('intense');
-              setShowLightningFlash(true);
-              setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 500);
-              setShowRetrigger(true);
-              showRetriggerRef.current = true;
-              // Reconcile with server values
-              setFreeSpinsRemaining(bs.freeSpinsRemaining);
-              setTotalFreeSpins(bs.totalFreeSpins);
-              setBonusWinnings(bs.bonusWinnings || 0);
-              setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
-              setRunningMultiplier(bs.cumulativeMultiplier || 0);
-            } else {
-              // Reconcile with authoritative server values
-              setFreeSpinsRemaining(bs.freeSpinsRemaining);
-              setTotalFreeSpins(bs.totalFreeSpins);
-              setBonusWinnings(bs.bonusWinnings || 0);
-              setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
-              // Sync running multiplier with server's cumulative value for next spin
-              setRunningMultiplier(bs.cumulativeMultiplier || 0);
-              
-              if (bs.freeSpinsRemaining <= 0) {
-                // Brief climax before bonus end overlay
+                setShowBonusTrigger(true);
+                showBonusTriggerRef.current = true;
                 setScreenShake('intense');
                 setShowLightningFlash(true);
-                setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 800);
-                setShowBonusComplete(true);
-                showBonusCompleteRef.current = true;
+                setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 600);
+                setRunningWin(0);
+                setRunningMultiplier(0);
+              } else if (bs.isRetrigger) {
+                setScreenShake('intense');
+                setShowLightningFlash(true);
+                setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 500);
+                setShowRetrigger(true);
+                showRetriggerRef.current = true;
+                setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                setTotalFreeSpins(bs.totalFreeSpins);
+                setBonusWinnings(bs.bonusWinnings || 0);
+                setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+                setRunningMultiplier(bs.cumulativeMultiplier || 0);
+              } else {
+                setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                setTotalFreeSpins(bs.totalFreeSpins);
+                setBonusWinnings(bs.bonusWinnings || 0);
+                setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+                setRunningMultiplier(bs.cumulativeMultiplier || 0);
+                if (bs.freeSpinsRemaining <= 0) {
+                  setScreenShake('intense');
+                  setShowLightningFlash(true);
+                  setTimeout(() => { setScreenShake('none'); setShowLightningFlash(false); }, 800);
+                  setShowBonusComplete(true);
+                  showBonusCompleteRef.current = true;
+                }
               }
+            };
+
+            if (shouldWaitForWinAnimation) {
+              pendingBonusActionRef.current = executeBonusAction;
+            } else {
+              executeBonusAction();
             }
           }
         }
@@ -662,8 +669,13 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
       spinLockRef.current = false;
 
       // Auto-spin: bonus free spins always auto-spin, or manual auto-spin
-      if (isBonusActive && freeSpinsRemaining > 0 && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current) {
-        autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
+      // If win celebration is pending, don't auto-spin yet — WinCelebration onComplete handles it
+      if (isBonusActive && freeSpinsRemaining > 0 && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current && !pendingBonusActionRef.current) {
+        if (shouldWaitForWinAnimation) {
+          // Will be handled by WinCelebration onAnimationComplete
+        } else {
+          autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
+        }
       } else if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
         if (autoSpinsRemaining !== null) {
           const newCount = autoSpinsRemaining - 1;
@@ -806,7 +818,14 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           isActive={true}
           winAmount={winAmount}
           bet={bet}
-          onAnimationComplete={() => setIsWinAnimating(false)}
+          onAnimationComplete={() => {
+            setIsWinAnimating(false);
+            if (pendingBonusActionRef.current) {
+              const action = pendingBonusActionRef.current;
+              pendingBonusActionRef.current = null;
+              setTimeout(() => action(), 300);
+            }
+          }}
           gameId={gameId}
         />
       )}
