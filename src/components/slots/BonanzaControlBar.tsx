@@ -125,11 +125,6 @@ export function BonanzaControlBar({
       <div
         className={cn(
           "relative mx-auto overflow-visible",
-          "rounded-full",
-          "bg-gradient-to-b from-[hsl(340,35%,12%)] via-[hsl(335,30%,7%)] to-[hsl(345,25%,5%)]",
-          "border border-pink-500/15",
-          "shadow-[0_-2px_30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05),inset_0_-1px_0_rgba(0,0,0,0.4),0_4px_20px_rgba(0,0,0,0.4)]",
-          "backdrop-blur-md",
         )}
         style={{ height: "80px" }}
       >
