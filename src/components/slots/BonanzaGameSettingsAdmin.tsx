@@ -25,6 +25,7 @@ const BONANZA_SETTINGS_KEYS = [
   "bonanza_symbol_width",
   "bonanza_symbol_height",
   "bonanza_symbol_scale",
+  "bonanza_max_bet",
 ];
 
 interface BonanzaSettings {
@@ -43,6 +44,7 @@ interface BonanzaSettings {
   symbolWidth: number;
   symbolHeight: number;
   symbolScale: number;
+  maxBet: number;
 }
 
 const DEFAULTS: BonanzaSettings = {
@@ -61,6 +63,7 @@ const DEFAULTS: BonanzaSettings = {
   symbolWidth: 180,
   symbolHeight: 140,
   symbolScale: 100,
+  maxBet: 5,
 };
 
 export function BonanzaGameSettingsAdmin() {
@@ -93,6 +96,7 @@ export function BonanzaGameSettingsAdmin() {
         symbolWidth: parseInt(map.bonanza_symbol_width || String(DEFAULTS.symbolWidth), 10),
         symbolHeight: parseInt(map.bonanza_symbol_height || String(DEFAULTS.symbolHeight), 10),
         symbolScale: parseInt(map.bonanza_symbol_scale || String(DEFAULTS.symbolScale), 10),
+        maxBet: parseInt(map.bonanza_max_bet || String(DEFAULTS.maxBet), 10),
       } as BonanzaSettings;
     },
   });
@@ -119,6 +123,7 @@ export function BonanzaGameSettingsAdmin() {
         { key: "bonanza_symbol_width", value: String(s.symbolWidth) },
         { key: "bonanza_symbol_height", value: String(s.symbolHeight) },
         { key: "bonanza_symbol_scale", value: String(s.symbolScale) },
+        { key: "bonanza_max_bet", value: String(s.maxBet) },
       ];
       for (const u of updates) {
         const { error } = await supabase
@@ -157,6 +162,21 @@ export function BonanzaGameSettingsAdmin() {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
+        {/* Bet Settings */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="space-y-2">
+            <Label>Max Bet (credits)</Label>
+            <Input
+              type="number"
+              min={1}
+              max={50}
+              value={form.maxBet}
+              onChange={(e) => setForm({ ...form, maxBet: parseInt(e.target.value) || 5 })}
+            />
+            <p className="text-xs text-muted-foreground">Maks indsats pr. spin</p>
+          </div>
+        </div>
+
         {/* Match & Scatter Settings */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           <div className="space-y-2">
