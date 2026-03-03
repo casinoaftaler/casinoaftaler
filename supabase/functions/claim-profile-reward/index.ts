@@ -150,7 +150,7 @@ Deno.serve(async (req) => {
       JSON.stringify({
         success: true,
         section,
-        spinsEarned: 5,
+        spinsEarned: 50,
         newBonusSpins: result.newBonusSpins,
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }

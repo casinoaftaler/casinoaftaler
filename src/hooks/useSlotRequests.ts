@@ -124,7 +124,7 @@ export function useUpdateSlotRequestStatus() {
       // Update the request status
       const updateData: any = { status };
       if (awardCredits) {
-        updateData.credits_awarded = 20;
+        updateData.credits_awarded = 200;
       }
       const { error: updateError } = await supabase
         .from("slot_requests" as any)
@@ -147,14 +147,14 @@ export function useUpdateSlotRequestStatus() {
         if (existing) {
           const { error } = await supabase
             .from("slot_spins")
-            .update({ spins_remaining: existing.spins_remaining + 20 })
+            .update({ spins_remaining: existing.spins_remaining + 200 })
             .eq("id", existing.id);
           if (error) throw error;
         } else {
           const { error } = await supabase.from("slot_spins").insert({
             user_id: userId,
             date: today,
-            spins_remaining: 20,
+            spins_remaining: 200,
           });
           if (error) throw error;
         }
@@ -162,7 +162,7 @@ export function useUpdateSlotRequestStatus() {
         // Log the credit allocation
         await supabase.from("credit_allocation_log").insert({
           user_id: userId,
-          amount: 20,
+          amount: 200,
           source: "slot_request_bonus",
           note: "Bonus hit på slot request",
         });
@@ -171,7 +171,7 @@ export function useUpdateSlotRequestStatus() {
     onSuccess: (_, variables) => {
       const msg =
         variables.status === "bonus_hit"
-          ? "Bonus hit! +20 credits tildelt"
+          ? "Bonus hit! +200 credits tildelt"
           : variables.status === "no_bonus"
           ? "Markeret som ingen bonus"
           : "Request afvist";

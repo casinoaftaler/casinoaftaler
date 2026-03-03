@@ -942,10 +942,10 @@ async function calculateBonanzaFullSpin(
 }
 
 const DEFAULT_SYMBOL_WEIGHT = 10;
-    const MAX_SPINS_CAP = 220;
-    const SUBSCRIBER_MAX_SPINS_CAP = 320;
+    const MAX_SPINS_CAP = 10200;
+    const SUBSCRIBER_MAX_SPINS_CAP = 10300;
     const SUBSCRIBER_BONUS = 100;
-    const ABSOLUTE_MAX_CREDITS = 1000;
+    const ABSOLUTE_MAX_CREDITS = 10000;
 
 // Secure random number generator (fallback for non-Gates games)
 function secureRandom(): number {
@@ -1724,7 +1724,7 @@ Deno.serve(async (req) => {
       const subBon = isSub ? SUBSCRIBER_BONUS : 0;
       const capLim = isSub ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
       const maxSp = Math.min(dailySpinsValue + subBon + bonusSpinsPerm, capLim);
-      const { data: newRem, error: rpcErr } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayG, p_bet: bet, p_max_spins: maxSp, p_game_id: gameId });
+      const { data: newRem, error: rpcErr } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayG, p_bet: bet, p_max_spins: maxSp, p_game_id: "shared" });
       if (rpcErr) return new Response(JSON.stringify({ error: "Failed to deduct spins" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       if (newRem === -1) return new Response(JSON.stringify({ error: "Not enough spins remaining" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       const gatesResult = await calculateGatesFullSpin(symbols, bet, false, 0, prng);
@@ -1844,7 +1844,7 @@ Deno.serve(async (req) => {
       const subBonB = isSubB ? SUBSCRIBER_BONUS : 0;
       const capLimB = isSubB ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
       const maxSpB = Math.min(dailySpinsValue + subBonB + bonusSpinsPermB, capLimB);
-      const { data: newRemB, error: rpcErrB } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayB, p_bet: bet, p_max_spins: maxSpB, p_game_id: gameId });
+      const { data: newRemB, error: rpcErrB } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayB, p_bet: bet, p_max_spins: maxSpB, p_game_id: "shared" });
       if (rpcErrB) return new Response(JSON.stringify({ error: "Failed to deduct spins" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       if (newRemB === -1) return new Response(JSON.stringify({ error: "Not enough spins remaining" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       // Debug scatters: admin-only, force 4 scatters onto grid after generation
@@ -2228,7 +2228,7 @@ Deno.serve(async (req) => {
         p_date: today,
         p_bet: bet,
         p_max_spins: maxSpins,
-        p_game_id: gameId,
+        p_game_id: "shared",
       });
 
     if (rpcError) {

@@ -4,7 +4,7 @@ import { useAuth } from "./useAuth";
 import { toast } from "@/hooks/use-toast";
 import { ProfileData } from "./useProfile";
 
-export const SPINS_PER_SECTION = 5;
+export const SPINS_PER_SECTION = 50;
 
 export interface SectionCompletionStatus {
   profile: boolean;
