@@ -27,12 +27,18 @@ export function BonanzaRetriggerOverlay({ isActive, spinsAwarded, onComplete }: 
   const showContent = phase === 'reveal' || phase === 'hold';
 
   return (
-    <>
+    <div className="absolute inset-0 z-50">
       {phase === 'flash' && (
-        <div className="absolute inset-0 z-50 animate-pulse"
+        <div className="absolute inset-0 animate-pulse"
           style={{ background: 'rgba(255,182,193,0.4)' }}
         />
       )}
+
+      {/* Dark backdrop covering entire grid */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-500 ${showContent ? 'opacity-100' : 'opacity-0'}`}
+        style={{ background: 'rgba(80,20,60,0.6)' }}
+      />
 
       <BonanzaOverlayCard
         showContent={showContent}
@@ -45,6 +51,6 @@ export function BonanzaRetriggerOverlay({ isActive, spinsAwarded, onComplete }: 
         }
         bottomLabel="EXTRA FREE SPINS"
       />
-    </>
+    </div>
   );
 }
