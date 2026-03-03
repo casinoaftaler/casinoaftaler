@@ -15,7 +15,7 @@ import { AnimatedSpinCounter } from "./AnimatedSpinCounter";
 import { WinCelebration } from "./WinCelebration";
 import { SlotIdleEffects } from "./SlotIdleEffects";
 import { SlotAmbientLight } from "./SlotAmbientLight";
-import { Loader2, Bug } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { getSlotTheme } from "@/lib/slotTheme";
@@ -43,7 +43,7 @@ interface BonanzaSlotGameProps {
 }
 
 export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGameProps) {
-  const { user, isAdmin } = useAuth();
+  const { user } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols(gameId);
   const { data: bombSymbols } = useBombSymbols(gameId);
@@ -101,7 +101,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const pendingBonusActionRef = useRef<(() => void) | null>(null);
 
   const spinLockRef = useRef(false);
-  const debugScattersRef = useRef(false);
+  
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
   const [autoSpinCount, setAutoSpinCount] = useState<AutoSpinCount>(10);
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
@@ -409,9 +409,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     let shouldWaitForWinAnimation = false;
 
     try {
-      const useDebugScatters = debugScattersRef.current;
-      debugScattersRef.current = false;
-      const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current, useDebugScatters || undefined);
+      const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current);
       const totalDropOffTime =
         DROP_OFF_DURATION +
         (BONANZA_COLS - 1) * STAGGER_MS +
@@ -853,20 +851,6 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           bonusLoaded={bonusLoaded}
           winAmount={winAmount}
           gameId={gameId}
-          debugButton={isAdmin && !isBonusActive ? (
-            <button
-              onClick={() => {
-                if (isSpinning || tumblePhase !== 'idle' || spinLockRef.current) return;
-                debugScattersRef.current = true;
-                handleSpin();
-              }}
-              disabled={isSpinning || tumblePhase !== 'idle'}
-              className="p-1.5 rounded-lg bg-pink-500/20 hover:bg-pink-500/40 border border-pink-500/30 text-pink-300 transition-colors disabled:opacity-30"
-              title="Debug: Force 4 Scatters"
-            >
-              <Bug className="h-4 w-4" />
-            </button>
-          ) : undefined}
         />
       </div>
     </div>

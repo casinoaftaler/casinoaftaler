@@ -30,7 +30,7 @@ const GAME_ID = "fedesvin-bonanza";
 type LoadingPhase = 'loading' | 'intro' | 'ready';
 
 export default function FedesvinBonanza() {
-  const { user, loading, isAdmin } = useAuth();
+  const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
 
@@ -115,28 +115,6 @@ export default function FedesvinBonanza() {
     );
   }
 
-  // Admin-only gate during development
-  if (!isAdmin) {
-    return (
-      <div className="min-h-[calc(100vh-4rem)] relative">
-        <PageBackground />
-        <div className="container py-16">
-          <div className="max-w-md mx-auto text-center space-y-6 bg-card/80 backdrop-blur-sm p-8 rounded-xl border border-pink-500/20">
-            <div className="h-20 w-20 mx-auto rounded-full bg-pink-500/20 flex items-center justify-center">
-              <Candy className="h-10 w-10 text-pink-400" />
-            </div>
-            <h1 className="text-2xl font-bold">Kommer snart!</h1>
-            <p className="text-muted-foreground">
-              Fedesvin Bonanza er under udvikling og vil snart være tilgængelig for alle spillere.
-            </p>
-            <Button asChild variant="outline" size="lg">
-              <Link to="/community/slots">Tilbage til spillehallen</Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   if (sessionLoading) {
     return (
