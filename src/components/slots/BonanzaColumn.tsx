@@ -88,7 +88,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
               "relative rounded-lg",
               "overflow-visible",
               
-              isColumnIdle && cellAnim === 'idle' && "slot-cell-idle-hover slot-cell-idle-hover-pink",
+              isColumnIdle && cellAnim === 'idle' && "slot-cell-idle-hover-alpha",
               isWinning && "bonanza-candy-highlight",
               isLanding && "bonanza-column-stop-impact",
               applyDropOff && "bonanza-drop-off",
