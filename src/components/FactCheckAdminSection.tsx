@@ -80,7 +80,7 @@ const VALID_ROUTES = new Set([
   "/betalingsmetoder/trustly", "/betalingsmetoder/zimpler",
   "/betalingsmetoder/paysafecard", "/betalingsmetoder/bankoverforsler",
   "/betalingsmetoder/visa-mastercard", "/betalingsmetoder/revolut",
-  "/community", "/community/leaderboard", "/community/rewards",
+  "/community", "/community/turneringer", "/community/rewards",
   "/community/spin-the-reel", "/community/slots",
   "/community/slots/book-of-fedesvin", "/community/slots/rise-of-fedesvin",
   "/community/slots/gates-of-fedesvin",

@@ -40,7 +40,7 @@ const steps = [
     description: (
       <>
         Dit bedste resultat i hver kategori registreres automatisk og opdateres i realtid på{" "}
-        <Link to="/community/leaderboard" className="text-primary hover:underline">
+        <Link to="/community/turneringer" className="text-primary hover:underline">
           leaderboardet
         </Link>
         . Du kan følge din placering, søge efter andre spillere og se, hvor tæt du er på top 3.

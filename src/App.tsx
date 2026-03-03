@@ -447,7 +447,7 @@ const App = () => (
                 <Route path="/betalingsmetoder/revolut" element={<RevolutGuide />} />
                 
                 <Route path="/community" element={<Suspense fallback={null}><CommunityHub /></Suspense>} />
-                <Route path="/community/leaderboard" element={<Leaderboard />} />
+                <Route path="/community/turneringer" element={<Leaderboard />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />
                 <Route path="/community/spin-the-reel" element={<Suspense fallback={null}><SpinTheReel /></Suspense>} />
                 <Route path="/bonus-hunt" element={<Suspense fallback={null}><BonusHunt /></Suspense>} />
@@ -521,7 +521,8 @@ const App = () => (
               <Route path="/register" element={<Navigate to="/auth" replace />} />
               <Route path="/profil/*" element={<Navigate to="/profil" replace />} />
               <Route path="/shop" element={<Navigate to="/butik" replace />} />
-              <Route path="/leaderboard" element={<Navigate to="/community/leaderboard" replace />} />
+              <Route path="/leaderboard" element={<Navigate to="/community/turneringer" replace />} />
+              <Route path="/community/leaderboard" element={<Navigate to="/community/turneringer" replace />} />
               <Route path="/rewards" element={<Navigate to="/community/rewards" replace />} />
               <Route path="/contact" element={<Navigate to="/kontakt" replace />} />
               <Route path="/om-os" element={<Navigate to="/om" replace />} />

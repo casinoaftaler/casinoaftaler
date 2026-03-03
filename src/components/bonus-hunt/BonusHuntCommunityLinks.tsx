@@ -12,7 +12,7 @@ const COMMUNITY_LINKS = [
     icon: Trophy,
     title: "Turneringer",
     description: "Deltag i ugentlige turneringer og vind præmier.",
-    to: "/community/leaderboard",
+    to: "/community/turneringer",
   },
   {
     icon: Video,
