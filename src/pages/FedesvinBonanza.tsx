@@ -41,7 +41,7 @@ export default function FedesvinBonanza() {
     timeSinceOtherActive, isLoading: sessionLoading,
     takeOverSession, refreshSession
   } = useSlotSession(GAME_ID);
-  const { scale, shouldScale } = useSlotScale(1700, 1200);
+  const { scale, shouldScale } = useSlotScale();
   const { isLocked, hasAccess, isLoading: accessLoading, isVerifying, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
 
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
@@ -175,7 +175,7 @@ export default function FedesvinBonanza() {
         <div
           className="slot-viewport-container"
           style={{
-            width: '1700px',
+            width: '1280px',
             transform: shouldScale ? `scale(${scale})` : undefined,
           }}
         >

@@ -16,11 +16,11 @@ export interface SlotScale {
 /**
  * Unified slot scaling hook.
  * Calculates a single scale factor to fit the entire slot machine
- * (designed at baseWidth x baseHeight) within the viewport.
+ * (designed at BASE_WIDTH x BASE_HEIGHT) within the viewport.
  * 
- * scale = min(availableWidth / baseWidth, availableHeight / baseHeight, 1.0)
+ * scale = min(availableWidth / BASE_WIDTH, availableHeight / BASE_HEIGHT, 1.0)
  */
-export function useSlotScale(baseWidth = BASE_WIDTH, baseHeight = BASE_HEIGHT): SlotScale {
+export function useSlotScale(): SlotScale {
   const [viewport, setViewport] = useState(() => {
     if (typeof window === "undefined") return { width: 1920, height: 1080 };
     return { width: window.innerWidth, height: window.innerHeight };
@@ -51,8 +51,8 @@ export function useSlotScale(baseWidth = BASE_WIDTH, baseHeight = BASE_HEIGHT): 
     const availableHeight = height - HEADER_HEIGHT - SAFETY_PADDING;
 
     const rawScale = Math.min(
-      availableWidth / baseWidth,
-      availableHeight / baseHeight,
+      availableWidth / BASE_WIDTH,
+      availableHeight / BASE_HEIGHT,
       MAX_SCALE
     );
 
@@ -60,5 +60,5 @@ export function useSlotScale(baseWidth = BASE_WIDTH, baseHeight = BASE_HEIGHT): 
     const shouldScale = scale < MAX_SCALE;
 
     return { scale, shouldScale };
-  }, [viewport, baseWidth, baseHeight]);
+  }, [viewport]);
 }
