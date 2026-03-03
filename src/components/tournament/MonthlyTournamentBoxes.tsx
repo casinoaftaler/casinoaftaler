@@ -153,18 +153,47 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
           alt={config.gameName}
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/70 backdrop-blur-sm rounded px-2 py-0.5">
-          <Clock className="h-3 w-3 text-muted-foreground" />
-          <span className="text-[10px] font-mono text-muted-foreground">{countdown.label}</span>
+        <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/60 backdrop-blur-sm rounded-md px-2.5 py-1">
+          <Clock className="h-3.5 w-3.5 text-white" />
+          <span className="text-xs font-mono text-white font-medium">{countdown.label}</span>
         </div>
       </div>
 
-      {/* Game info */}
-      <div className="px-3 pt-3 pb-2">
-        <h3 className="font-bold text-sm text-foreground">{config.gameName}</h3>
-        <div className="flex items-center gap-1 mt-0.5">
+      {/* Game info - centered */}
+      <div className="px-3 pt-4 pb-1 text-center">
+        <h3 className="font-bold text-lg text-foreground">{config.gameName}</h3>
+        <div className="flex items-center justify-center gap-1.5 mt-1">
           {config.icon}
-          <span className="text-xs text-muted-foreground">{config.categoryLabel}</span>
+          <span className="text-sm text-muted-foreground">{config.categoryLabel}</span>
+        </div>
+      </div>
+
+      {/* Prize section */}
+      <div className="px-3 py-3">
+        <div className="rounded-lg border border-border/40 bg-muted/30 overflow-hidden">
+          <div className="grid grid-cols-3 divide-x divide-border/40">
+            <div className="flex flex-col items-center py-2.5 px-1">
+              <div className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 mb-1.5 shadow-md">
+                <Trophy className="h-3.5 w-3.5 text-amber-900" />
+              </div>
+              <span className="text-xs text-muted-foreground">1. præmie</span>
+              <span className="text-sm font-bold text-amber-400">500 kr</span>
+            </div>
+            <div className="flex flex-col items-center py-2.5 px-1">
+              <div className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 mb-1.5 shadow-md">
+                <Medal className="h-3.5 w-3.5 text-gray-700" />
+              </div>
+              <span className="text-xs text-muted-foreground">2. præmie</span>
+              <span className="text-sm font-bold text-foreground">300 kr</span>
+            </div>
+            <div className="flex flex-col items-center py-2.5 px-1">
+              <div className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 mb-1.5 shadow-md">
+                <Award className="h-3.5 w-3.5 text-amber-200" />
+              </div>
+              <span className="text-xs text-muted-foreground">3. præmie</span>
+              <span className="text-sm font-bold text-foreground">200 kr</span>
+            </div>
+          </div>
         </div>
       </div>
 
