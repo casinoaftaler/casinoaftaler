@@ -162,7 +162,7 @@ export default function FedesvinBonanza() {
         description="Spil Fedesvin Bonanza gratis hos Casinoaftaler. Tumble-mekanik, multiplier-bomber og free spins i candy-tema."
         noindex
       />
-      <LiveBigWins />
+      <LiveBigWins theme="candy" />
       <PageBackground />
 
       <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-20">

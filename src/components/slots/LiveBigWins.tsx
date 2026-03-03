@@ -5,10 +5,28 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
-function getAccentClass(multiplier: number) {
-  if (multiplier >= 500) return "border-rose-500/60 bg-rose-500/10";
-  if (multiplier >= 200) return "border-purple-400/50 bg-purple-500/10";
-  return "border-amber-500/40 bg-amber-500/10";
+export type LiveBigWinsTheme = "default" | "candy";
+
+const THEME_ACCENTS: Record<LiveBigWinsTheme, { high: string; mid: string; low: string; badge: string }> = {
+  default: {
+    high: "border-rose-500/60 bg-rose-500/10",
+    mid: "border-purple-400/50 bg-purple-500/10",
+    low: "border-amber-500/40 bg-amber-500/10",
+    badge: "bg-amber-500/20 text-amber-300",
+  },
+  candy: {
+    high: "border-rose-400/60 bg-rose-400/10",
+    mid: "border-fuchsia-400/50 bg-fuchsia-500/10",
+    low: "border-pink-400/40 bg-pink-400/10",
+    badge: "bg-fuchsia-500/20 text-fuchsia-300",
+  },
+};
+
+function getAccentClass(multiplier: number, theme: LiveBigWinsTheme) {
+  const t = THEME_ACCENTS[theme];
+  if (multiplier >= 500) return t.high;
+  if (multiplier >= 200) return t.mid;
+  return t.low;
 }
 
 function getEmoji(multiplier: number) {
@@ -17,15 +35,14 @@ function getEmoji(multiplier: number) {
   return "💥";
 }
 
-function WinBubble({ win, onRemove }: { win: BigWin; onRemove: (id: string) => void }) {
+function WinBubble({ win, onRemove, theme }: { win: BigWin; onRemove: (id: string) => void; theme: LiveBigWinsTheme }) {
   const ref = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // No auto-remove timer — wins stay until replaced by newer ones (max 10)
-
-  const accentClass = getAccentClass(win.winMultiplier);
+  const accentClass = getAccentClass(win.winMultiplier, theme);
   const emoji = getEmoji(win.winMultiplier);
   const isBigWin = win.winMultiplier >= 300;
+  const badgeClass = THEME_ACCENTS[theme].badge;
 
   return (
     <div
@@ -67,7 +84,7 @@ function WinBubble({ win, onRemove }: { win: BigWin; onRemove: (id: string) => v
             {win.username}
           </span>
           {isBigWin && (
-            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 uppercase leading-none">
+            <span className={cn("text-[10px] font-bold px-1.5 py-0.5 rounded uppercase leading-none", badgeClass)}>
               Big Win
             </span>
           )}
@@ -80,7 +97,7 @@ function WinBubble({ win, onRemove }: { win: BigWin; onRemove: (id: string) => v
   );
 }
 
-export function LiveBigWins() {
+export function LiveBigWins({ theme = "default" }: { theme?: LiveBigWinsTheme }) {
   const { wins, removeWin } = useLiveBigWins();
 
   if (wins.length === 0) return null;
@@ -89,7 +106,7 @@ export function LiveBigWins() {
     <div className="hidden xl:flex fixed right-24 top-1/2 -translate-y-1/2 z-30 flex-col gap-2.5 pointer-events-none">
       {wins.map((win) => (
         <div key={win.id} className="pointer-events-auto">
-          <WinBubble win={win} onRemove={removeWin} />
+          <WinBubble win={win} onRemove={removeWin} theme={theme} />
         </div>
       ))}
     </div>
