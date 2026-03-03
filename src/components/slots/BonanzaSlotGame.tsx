@@ -547,7 +547,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     } finally {
       setIsSpinning(false);
       setTumblePhase('idle');
-      spinLockRef.current = false;
+      // Keep spin locked if a bonus action is pending (e.g. bonus trigger overlay about to show)
+      if (!pendingBonusActionRef.current) {
+        spinLockRef.current = false;
+      }
 
       const shouldContinueBonus =
         isBonusActiveRef.current &&
@@ -707,6 +710,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
             if (pendingBonusActionRef.current) {
               const action = pendingBonusActionRef.current;
               pendingBonusActionRef.current = null;
+              spinLockRef.current = false; // Release lock now that bonus action is executing
               setTimeout(() => {
                 action();
 
