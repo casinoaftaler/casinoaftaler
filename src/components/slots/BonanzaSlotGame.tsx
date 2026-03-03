@@ -238,7 +238,23 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         slotSounds.playSymbolHighlight();
         setRunningWin(prev => prev + step.stepWin);
 
-        // Spawn floating win popups for each winning cluster
+        // Mark winning cells + activated bombs
+        const winAnims = new Map<number, BonanzaCellAnimState>();
+        for (const pos of step.winningPositions) winAnims.set(pos, 'winning');
+        // Bombs remain visually inert during tumbles — no highlight
+        setCellAnimStates(winAnims);
+
+        await new Promise(r => setTimeout(r, 1200));
+
+        // Explode winning symbols + activated bombs
+        setTumblePhase('tumbling');
+        const removeAnims = new Map<number, BonanzaCellAnimState>();
+        for (const pos of step.winningPositions) removeAnims.set(pos, 'exploding');
+        // Bombs are NOT animated here — they blow up after all tumbles
+        setCellAnimStates(removeAnims);
+        slotSounds.playCrackle();
+
+        // Spawn floating win popups when symbols pop (explode), not during highlight
         for (const win of step.wins) {
           if (win.payout > 0 && win.positions.length > 0) {
             let sumX = 0, sumY = 0;
@@ -256,22 +272,6 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
             }, 1300);
           }
         }
-
-        // Mark winning cells + activated bombs
-        const winAnims = new Map<number, BonanzaCellAnimState>();
-        for (const pos of step.winningPositions) winAnims.set(pos, 'winning');
-        // Bombs remain visually inert during tumbles — no highlight
-        setCellAnimStates(winAnims);
-
-        await new Promise(r => setTimeout(r, 1200));
-
-        // Explode winning symbols + activated bombs
-        setTumblePhase('tumbling');
-        const removeAnims = new Map<number, BonanzaCellAnimState>();
-        for (const pos of step.winningPositions) removeAnims.set(pos, 'exploding');
-        // Bombs are NOT animated here — they blow up after all tumbles
-        setCellAnimStates(removeAnims);
-        slotSounds.playCrackle();
         await new Promise(r => setTimeout(r, 500));
 
         setWinningPositions(new Set());
