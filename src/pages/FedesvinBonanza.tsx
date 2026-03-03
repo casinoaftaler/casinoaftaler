@@ -63,7 +63,7 @@ export default function FedesvinBonanza() {
     <>
       <div className="absolute inset-0 bg-gradient-to-b from-pink-100 via-rose-50 to-fuchsia-100 -z-10" />
       {backgroundImage && (
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10" style={{ backgroundImage: `url(${backgroundImage})`, filter: 'brightness(1.6) saturate(0.85)' }} />
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10" style={{ backgroundImage: `url(${backgroundImage})`, filter: 'brightness(1.0) saturate(0.9)' }} />
       )}
       <div className="absolute inset-0 bg-white/25 -z-10" />
     </>
