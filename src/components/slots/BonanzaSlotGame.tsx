@@ -763,7 +763,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       <div
         className={cn(
           "relative rounded-xl border-[3px]",
-          "bg-gradient-to-b from-pink-200/60 via-rose-100/50 to-fuchsia-200/60",
+          "bg-gradient-to-b from-pink-100/80 via-rose-50/70 to-fuchsia-100/80",
           "border-pink-400/60",
           "shadow-[0_0_20px_rgba(236,72,153,0.3),inset_0_0_15px_rgba(255,255,255,0.2)]",
           screenShake === 'normal' && "bonanza-shake",
