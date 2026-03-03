@@ -69,10 +69,12 @@ export const SlotSymbol = React.memo(function SlotSymbol({ symbol, isWinning, is
             decoding="async"
             className={cn(
               "w-full h-full object-cover rounded-lg transition-transform duration-300",
-              "shadow-[0_4px_12px_rgba(0,0,0,0.5),0_2px_4px_rgba(0,0,0,0.3)]",
               isExpanded && "scale-110",
               isNewlyExpanded && "animate-[symbol-expand_0.5s_ease-out]"
             )}
+            style={{
+              filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.5)) drop-shadow(0 2px 3px rgba(0,0,0,0.3))',
+            }}
           />
         </div>
       ) : (
