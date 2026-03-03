@@ -147,13 +147,7 @@ export function BonanzaBonusEntrySequence({ isActive, freeSpinsAwarded, onComple
         style={{ pointerEvents: 'none' }}
       />
 
-      {/* Vignette / background */}
-      <div className={cn(
-        "absolute inset-0 z-[15] transition-opacity duration-700",
-        showVignette ? "opacity-100" : "opacity-0"
-      )} style={{
-        background: 'radial-gradient(ellipse at center, rgba(120,20,80,0.85) 0%, rgba(40,5,30,0.97) 70%, rgba(10,0,10,1) 100%)'
-      }} />
+      {/* Vignette removed */}
 
       {/* Radial light burst behind text */}
       {showContent && (

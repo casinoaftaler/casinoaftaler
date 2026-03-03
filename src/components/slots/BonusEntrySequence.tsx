@@ -99,12 +99,6 @@ export function BonusEntrySequence({ isActive, freeSpinsAwarded, onComplete }: B
         <div className="absolute top-0 left-3/4 w-1 h-full bonus-lightning-bolt" style={{ animationDelay: '200ms' }} />
       </div>
 
-      {/* Base background fade-out overlay - Phase 2 */}
-      <div className={cn(
-        "absolute inset-0 z-20 bg-black transition-opacity duration-800",
-        phase === 'freeze' || phase === 'lightning' ? "opacity-0" :
-        phase === 'fadeout' ? "opacity-90" : "opacity-0"
-      )} />
 
       {/* Storm Temple background - Phase 3+ */}
       <div className={cn(
