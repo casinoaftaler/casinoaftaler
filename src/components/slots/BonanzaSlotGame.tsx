@@ -893,7 +893,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
 
       {/* Control panel */}
       <div className="w-full relative">
-        <GatesControlBar
+        <BonanzaControlBar
           bet={bet}
           onBetChange={setBet}
           onSpin={handleSpinWithPress}
