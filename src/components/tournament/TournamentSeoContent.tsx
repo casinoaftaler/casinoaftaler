@@ -172,9 +172,9 @@ export function TournamentSeoContent() {
                 Sweet Bonanza
               </Link>
               ), mens Book of Fedesvin har expanding wilds for sjældne, men store udbetalinger — ligesom{" "}
-              <Link to="/casinospil/spillemaskiner/legacy-of-dead" className="text-primary hover:underline">
-                Legacy of Dead
-              </Link>. Rise of Fedesvin er inspireret af samme mekanik som{" "}
+              <Link to="/casinospil/spillemaskiner/book-of-dead" className="text-primary hover:underline">
+                Book of Dead
+              </Link>, og Rise of Fedesvin er inspireret af{" "}
               <Link to="/casinospil/spillemaskiner/legacy-of-dead" className="text-primary hover:underline">
                 Legacy of Dead
               </Link>.
