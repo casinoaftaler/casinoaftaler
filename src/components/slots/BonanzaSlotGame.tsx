@@ -108,6 +108,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
   const pendingPostWinSpinRef = useRef<"bonus" | "auto" | null>(null);
+  const freeSpinsRemainingRef = useRef(0);
+  const isBonusActiveRef = useRef(false);
   const [spinPressed, setSpinPressed] = useState(false);
 
   // Initialize grid
@@ -178,6 +180,14 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   }, [isAutoSpinning, stopAutoSpin, startAutoSpin]);
 
   const [bonusAutoSpinPending, setBonusAutoSpinPending] = useState(false);
+
+  useEffect(() => {
+    freeSpinsRemainingRef.current = freeSpinsRemaining;
+  }, [freeSpinsRemaining]);
+
+  useEffect(() => {
+    isBonusActiveRef.current = isBonusActive;
+  }, [isBonusActive]);
 
   const handleBonusEntryComplete = useCallback(() => {
     const bs = pendingBonusStateRef.current;
@@ -538,17 +548,22 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       setTumblePhase('idle');
       spinLockRef.current = false;
 
-      if (isBonusActive && freeSpinsRemaining > 0 && !showBonusTriggerRef.current && !showBonusCompleteRef.current && !showRetriggerRef.current && !pendingBonusActionRef.current) {
+      const shouldContinueBonus =
+        isBonusActiveRef.current &&
+        freeSpinsRemainingRef.current > 0 &&
+        !showBonusTriggerRef.current &&
+        !showBonusCompleteRef.current &&
+        !showRetriggerRef.current &&
+        !pendingBonusActionRef.current;
+
+      if (shouldContinueBonus) {
         if (shouldWaitForWinAnimation) {
           pendingPostWinSpinRef.current = 'bonus';
         } else {
           if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
           autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
         }
-      } else if (pendingBonusActionRef.current) {
-        // A deferred bonus action exists (trigger/retrigger/complete) — don't auto-spin,
-        // let the WinCelebration onComplete handler execute it first
-        pendingPostWinSpinRef.current = null;
+      } else if (isAutoSpinning && !shouldStopAutoSpinRef.current && !pendingBonusActionRef.current) {
         if (autoSpinsRemaining !== null) {
           const newCount = autoSpinsRemaining - 1;
           setAutoSpinsRemaining(newCount);
@@ -682,7 +697,22 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
             if (pendingBonusActionRef.current) {
               const action = pendingBonusActionRef.current;
               pendingBonusActionRef.current = null;
-              setTimeout(() => action(), 300);
+              setTimeout(() => {
+                action();
+
+                const shouldResumeBonus =
+                  isBonusActiveRef.current &&
+                  freeSpinsRemainingRef.current > 0 &&
+                  !showBonusTriggerRef.current &&
+                  !showBonusCompleteRef.current &&
+                  !showRetriggerRef.current &&
+                  !pendingBonusActionRef.current;
+
+                if (shouldResumeBonus) {
+                  if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+                  autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
+                }
+              }, 300);
               return;
             }
 
