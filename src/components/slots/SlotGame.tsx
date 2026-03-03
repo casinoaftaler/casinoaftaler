@@ -1047,7 +1047,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   return (
     <div className="transition-all duration-300 relative">
       {/* Credits expired overlay */}
-      <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !bonusState.isActive} />
+      <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !bonusState.isActive && !isSpinning && !showWinLines} />
       {/* Bonus Overlays */}
       <BonusOverlay
         isVisible={showRetrigger}

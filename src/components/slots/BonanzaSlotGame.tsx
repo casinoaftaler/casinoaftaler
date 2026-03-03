@@ -658,7 +658,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   return (
     <div className="flex flex-col items-center gap-4 relative" style={{ width: gridWidth, maxWidth: "100%" }}>
       {/* Credits expired overlay */}
-      <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !isBonusActive} />
+      <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !isBonusActive && !isSpinning && tumblePhase === 'idle'} />
       {/* Bonus overlays moved inside grid below */}
 
       {/* Win celebration */}
