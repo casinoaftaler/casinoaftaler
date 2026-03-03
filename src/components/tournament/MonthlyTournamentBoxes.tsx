@@ -49,7 +49,7 @@ const TOURNAMENT_BOXES: TournamentBoxConfig[] = [
     category: "highest_x",
     gameName: "Book of Fedesvin",
     gameSlug: "book-of-fedesvin",
-    image: bookOfFedesvinIntro,
+    image: bookOfFedesvinPreview,
     icon: <Zap className="h-3.5 w-3.5" />,
     categoryLabel: "Højeste X",
   },
