@@ -17,9 +17,24 @@
 
 .tournament-card {
   position: relative;
-  isolation: isolate;
   will-change: transform;
   transition: transform 250ms ease-out, box-shadow 250ms ease-out;
+}
+
+/* Solid background layer to prevent glow bleed-through */
+.tournament-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: hsl(var(--background));
+  pointer-events: none;
+}
+
+.tournament-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Glow border pseudo-element */
