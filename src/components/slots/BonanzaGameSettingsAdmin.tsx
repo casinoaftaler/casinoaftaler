@@ -63,7 +63,7 @@ const DEFAULTS: BonanzaSettings = {
   symbolWidth: 180,
   symbolHeight: 140,
   symbolScale: 100,
-  maxBet: 5,
+  maxBet: 10,
 };
 
 export function BonanzaGameSettingsAdmin() {
@@ -171,7 +171,7 @@ export function BonanzaGameSettingsAdmin() {
               min={1}
               max={50}
               value={form.maxBet}
-              onChange={(e) => setForm({ ...form, maxBet: parseInt(e.target.value) || 5 })}
+              onChange={(e) => setForm({ ...form, maxBet: parseInt(e.target.value) || 10 })}
             />
             <p className="text-xs text-muted-foreground">Maks indsats pr. spin</p>
           </div>
