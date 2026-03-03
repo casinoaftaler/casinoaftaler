@@ -9,6 +9,7 @@ interface SlotSpins {
   user_id: string;
   date: string;
   spins_remaining: number;
+  game_id: string;
 }
 
 const MAX_SPINS_CAP = 220;
@@ -16,7 +17,7 @@ const SUBSCRIBER_MAX_SPINS_CAP = 320;
 const SUBSCRIBER_BONUS = 100;
 const ABSOLUTE_MAX_CREDITS = 1000;
 
-export function useSlotSpins() {
+export function useSlotSpins(gameId: string = "book-of-fedesvin") {
   const { user } = useAuth();
   const { settings } = useSlotSettings();
   const queryClient = useQueryClient();
@@ -47,10 +48,9 @@ export function useSlotSpins() {
   const bonusSpinsPermanent = profileData?.bonus || 0;
   const isSubscriber = profileData?.isSubscriber || false;
 
-  // Read-only: fetch today's spin record
-  // Spin initialization and deduction are handled server-side by the slot-spin edge function
+  // Read-only: fetch today's spin record for this specific game
   const { data: spinsData, isLoading } = useQuery({
-    queryKey: ["slot-spins", user?.id, today],
+    queryKey: ["slot-spins", user?.id, today, gameId],
     queryFn: async (): Promise<SlotSpins | null> => {
       if (!user?.id) return null;
 
@@ -59,9 +59,9 @@ export function useSlotSpins() {
         .select("*")
         .eq("user_id", user.id)
         .eq("date", today)
+        .eq("game_id", gameId)
         .maybeSingle();
 
-      // Return whatever exists - the slot-spin edge function handles initialization
       return existing || null;
     },
     enabled: !!user?.id,
