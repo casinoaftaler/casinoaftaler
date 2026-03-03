@@ -865,32 +865,29 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         />
       </div>
 
-      {/* Gevinst + Resterende spins text */}
-      <div className="w-full flex flex-col items-center gap-0.5">
-        {isBonusActive && (
+      {/* Resterende spins — bonus only */}
+      {isBonusActive && (
+        <div className="w-full flex justify-center">
           <div className="flex items-baseline gap-2">
-            <span className="text-xs uppercase tracking-widest font-bold text-pink-400">Free Spins</span>
+            <span
+              className="text-sm uppercase tracking-widest font-bold text-pink-400"
+              style={{ WebkitTextStroke: "1px black", textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
+            >
+              Resterende spins
+            </span>
             <AnimatedSpinCounter
               value={freeSpinsRemaining}
-              className="text-2xl font-black text-pink-300 drop-shadow-[0_0_12px_rgba(236,72,153,0.8)] tabular-nums"
+              className="text-2xl font-black text-pink-300 tabular-nums"
             />
-            <span className="text-sm text-pink-500/60 font-bold">/ {totalFreeSpins}</span>
+            <span
+              className="text-sm text-pink-500/60 font-bold"
+              style={{ WebkitTextStroke: "0.5px black", textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
+            >
+              / {totalFreeSpins}
+            </span>
           </div>
-        )}
-        <div className="flex items-baseline gap-2">
-          <span className="text-xs uppercase tracking-widest font-bold text-pink-400" style={{ textShadow: "0 0 10px rgba(236,72,153,0.6)" }}>Gevinst</span>
-          <span className="text-2xl font-black tabular-nums text-pink-300 drop-shadow-[0_0_10px_rgba(236,72,153,0.6)]">
-            {isBonusActive
-              ? bonusWinnings.toLocaleString()
-              : (tumblePhase !== 'idle' ? runningWin : winAmount).toLocaleString()
-            }
-          </span>
         </div>
-        <div className="flex items-baseline gap-2">
-          <span className="text-[10px] uppercase tracking-widest font-semibold text-pink-400/70">Resterende spins</span>
-          <span className="text-sm font-black tabular-nums text-pink-300/80">{spinsRemaining}</span>
-        </div>
-      </div>
+      )}
 
       {/* Control panel */}
       <div className="w-full relative">
