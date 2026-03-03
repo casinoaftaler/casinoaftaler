@@ -1,4 +1,5 @@
 import { Minus, Plus, RotateCw, Zap, Square } from "lucide-react";
+import { AnimatedWinCounter } from "./AnimatedWinCounter";
 import { CreditCoin } from "@/components/CreditCoin";
 import { cn } from "@/lib/utils";
 import { VolumeControl } from "./VolumeControl";
@@ -238,27 +239,27 @@ export function BonanzaControlBar({
           >
             <Plus className="h-4 w-4" />
           </button>
-        </div>
 
-        {/* ─── RIGHT ZONE: absolute right ─── */}
-        <div
-          className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 z-10"
-        >
-          {/* Gevinst display — single row */}
-          <div className="flex items-center gap-2 leading-none">
+          {/* Gevinst display — centered between [+] and AutoSpin */}
+          <div className="flex items-center gap-2 leading-none ml-3 pl-3 border-l border-pink-500/20">
             <span
               className="text-xs sm:text-sm uppercase tracking-widest font-black text-pink-400"
               style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)", WebkitTextStroke: "0.5px rgba(0,0,0,0.5)" }}
             >
               Gevinst
             </span>
-            <span
+            <AnimatedWinCounter
+              targetValue={winAmount}
               className="text-xl sm:text-2xl font-black tabular-nums text-amber-300"
               style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(251,191,36,0.4)", WebkitTextStroke: "1px rgba(0,0,0,0.5)" }}
-            >
-              {winAmount.toLocaleString()}
-            </span>
+            />
           </div>
+        </div>
+
+        {/* ─── RIGHT ZONE: absolute right ─── */}
+        <div
+          className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 z-10"
+        >
           {debugButton}
           <AutoSpinPopover
             isAutoSpinning={isAutoSpinning}
