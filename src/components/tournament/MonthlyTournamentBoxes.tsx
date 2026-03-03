@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Trophy, TrendingUp, Zap, Star, Clock, Gamepad2, Gift, BarChart3, Users, Search, History, Medal, Award, BookOpen } from "lucide-react";
+import { Trophy, TrendingUp, Zap, Star, Clock, Gamepad2, Gift, BarChart3, Users, Search, History, Medal, Award, BookOpen, Info, ShieldCheck, Coins, AlertTriangle } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -127,6 +128,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
   const { data, isLoading } = useSlotLeaderboard(config.category);
   const countdown = useTournamentCountdown();
   const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   const entries = data?.entries || [];
@@ -227,17 +229,90 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
           </a>
         </Button>
         <div className="flex gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="flex-1 text-xs h-8"
-            asChild
-          >
-            <a href={`/community/slots/${config.gameSlug}`}>
-              <BookOpen className="h-3 w-3 mr-1" />
-              Information
-            </a>
-          </Button>
+          <Dialog open={showInfo} onOpenChange={setShowInfo}>
+            <DialogTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex-1 text-xs h-8"
+              >
+                <Info className="h-3 w-3 mr-1" />
+                Information
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-lg">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <ShieldCheck className="h-5 w-5 text-primary" />
+                  Vilkår & Betingelser
+                </DialogTitle>
+              </DialogHeader>
+              <ScrollArea className="max-h-[60vh]">
+                <div className="space-y-5 pr-4">
+                  <p className="text-sm text-muted-foreground">
+                    Ved deltagelse i disse turneringer bekræfter du følgende vilkår & betingelser:
+                  </p>
+
+                  {/* 1. Alderskrav */}
+                  <div className="rounded-lg border border-border/50 bg-muted/30 p-4 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <AlertTriangle className="h-4 w-4 text-amber-500 shrink-0" />
+                      <h4 className="font-semibold text-sm text-foreground">1. Alderskrav</h4>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      For at kunne modtage gevinster, præmier eller andre belønninger via casinoaftaler.dk skal du være minimum 18 år. Dette krav gælder uden undtagelse og er i overensstemmelse med gældende dansk lovgivning. Casinoaftaler.dk forbeholder sig retten til at anmode om aldersverifikation, før eventuelle gevinster udbetales.
+                    </p>
+                  </div>
+
+                  {/* 2. Credits */}
+                  <div className="rounded-lg border border-border/50 bg-muted/30 p-4 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Coins className="h-4 w-4 text-primary shrink-0" />
+                      <h4 className="font-semibold text-sm text-foreground">2. Credits</h4>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      Credits på casinoaftaler.dk er en intern, fiktiv valuta, som udelukkende anvendes inden for platformen til ranglister, konkurrencer og belønningssystemer.
+                    </p>
+                    <ul className="text-xs text-muted-foreground space-y-1.5 mt-2">
+                      <li className="flex items-start gap-2">
+                        <span className="text-muted-foreground/60 mt-0.5">•</span>
+                        Credits har ingen reel pengeværdi
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-muted-foreground/60 mt-0.5">•</span>
+                        Credits kan ikke veksles til kontanter
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-muted-foreground/60 mt-0.5">•</span>
+                        Credits kan ikke hæves, overføres eller sælges
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-muted-foreground/60 mt-0.5">•</span>
+                        Credits kan kun bruges i de sammenhænge, der er beskrevet på sitet
+                      </li>
+                    </ul>
+                    <p className="text-xs text-muted-foreground leading-relaxed mt-2 italic">
+                      Credits er alene et underholdnings- og motivationsværktøj og må ikke opfattes som penge, kredit eller en finansiel værdi.
+                    </p>
+                  </div>
+
+                  {/* 3. Gevinster */}
+                  <div className="rounded-lg border border-border/50 bg-muted/30 p-4 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Gift className="h-4 w-4 text-amber-500 shrink-0" />
+                      <h4 className="font-semibold text-sm text-foreground">3. Gevinster</h4>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      Eventuelle gevinster, præmier eller belønninger er underlagt alderskravet, de gældende vilkår og betingelser samt eventuelle krav fra samarbejdspartnere.
+                    </p>
+                    <p className="text-xs text-muted-foreground leading-relaxed mt-1">
+                      Casinoaftaler.dk er ikke et online casino, men fungerer som en informations- og formidlingsplatform for casinoaftaler og kampagner.
+                    </p>
+                  </div>
+                </div>
+              </ScrollArea>
+            </DialogContent>
+          </Dialog>
           <Dialog open={showLeaderboard} onOpenChange={setShowLeaderboard}>
             <DialogTrigger asChild>
               <Button
