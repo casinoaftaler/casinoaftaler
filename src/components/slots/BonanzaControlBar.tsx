@@ -156,22 +156,22 @@ export function BonanzaControlBar({
 
         {/* HOLD SPACE text */}
         <span
-          className="hidden lg:block text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-white/70 mr-1"
-          style={{ textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}
+          className="hidden lg:block text-[11px] sm:text-[12px] font-black uppercase tracking-widest text-white/80 mr-1"
+          style={{ textShadow: "0 2px 6px rgba(0,0,0,0.9), 0 0 12px rgba(255,255,255,0.15)" }}
         >
-          Hold Space for Turbo Spin
+          TRYK PÅ SPACE FOR AT SPINNE
         </span>
 
         {/* Minus button */}
         <button
           className={cn(
             "w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center flex-shrink-0",
-            "bg-gradient-to-b from-[hsl(340,15%,25%)] to-[hsl(340,15%,15%)]",
-            "border-2 border-white/20",
-            "text-white/80",
-            "hover:border-white/40 hover:text-white hover:shadow-[0_0_12px_rgba(255,255,255,0.15)]",
+            "bg-black/30 backdrop-blur-sm",
+            "border-2 border-white/15",
+            "text-white/70",
+            "hover:bg-white/10 hover:border-white/30 hover:text-white",
             "active:scale-90 transition-all duration-150",
-            "disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:border-white/20"
+            "disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-black/30 disabled:hover:border-white/15"
           )}
           onClick={() => onBetChange(Math.max(minBet, bet - 1))}
           disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
@@ -185,15 +185,16 @@ export function BonanzaControlBar({
             className={cn(
               "relative rounded-full flex items-center justify-center",
               "w-[80px] h-[80px] sm:w-[95px] sm:h-[95px] md:w-[105px] md:h-[105px]",
-              "bg-[radial-gradient(ellipse_at_30%_20%,_hsl(330,85%,70%)_0%,_hsl(335,80%,55%)_25%,_hsl(340,75%,42%)_55%,_hsl(345,70%,28%)_100%)]",
-              "border-[3px] border-pink-300/60",
-              "shadow-[inset_0_3px_10px_rgba(255,200,230,0.5),inset_0_-5px_12px_rgba(80,15,50,0.5),0_0_35px_rgba(236,72,153,0.5),0_0_70px_rgba(236,72,153,0.15),0_10px_30px_rgba(0,0,0,0.5)]",
+              "bg-black/25 backdrop-blur-sm",
+              "border-[3px] border-white/20",
+              "shadow-[0_0_25px_rgba(255,255,255,0.05),0_10px_30px_rgba(0,0,0,0.5)]",
               !isCurrentlySpinning && canSpinNow && !isAutoSpinning && [
-                "hover:shadow-[inset_0_3px_10px_rgba(255,200,230,0.7),inset_0_-5px_12px_rgba(80,15,50,0.3),0_0_55px_rgba(236,72,153,0.7),0_0_90px_rgba(236,72,153,0.3),0_10px_35px_rgba(0,0,0,0.5)]",
-                "hover:border-pink-200/80",
+                "hover:bg-white/10",
+                "hover:border-white/35",
+                "hover:shadow-[0_0_40px_rgba(255,255,255,0.1),0_10px_35px_rgba(0,0,0,0.5)]",
                 "hover:scale-105",
               ],
-              "active:scale-[0.92] active:shadow-[inset_0_5px_15px_rgba(60,10,30,0.7),0_0_20px_rgba(236,72,153,0.3)]",
+              "active:scale-[0.92] active:bg-black/40",
               "transition-all duration-200",
               isSpinning && "animate-pulse",
               "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:animate-none",
@@ -205,8 +206,6 @@ export function BonanzaControlBar({
             onClick={onSpin}
             disabled={isSpinning || isSpinLocked || !canSpinNow || showBonusTrigger || isAutoSpinning}
           >
-            <div className="absolute inset-[-6px] rounded-full pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(236,72,153,0.15) 0%, transparent 70%)" }} />
             {renderSpinContent()}
           </button>
 
@@ -225,11 +224,11 @@ export function BonanzaControlBar({
                 disabled={triggerDisabled}
                 className={cn(
                   "flex items-center gap-1 px-3 py-1 rounded-b-lg -mt-1",
-                  "text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-white",
+                  "text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-white/90",
                   "transition-all duration-150",
                   isAutoSpinning
-                    ? "bg-red-500/80 hover:bg-red-500"
-                    : "bg-black/40 hover:bg-black/60 backdrop-blur-sm",
+                    ? "bg-red-500/60 hover:bg-red-500/80"
+                    : "bg-black/30 hover:bg-black/50 backdrop-blur-sm",
                   "disabled:opacity-30 disabled:cursor-not-allowed"
                 )}
                 style={{ textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}
@@ -254,12 +253,12 @@ export function BonanzaControlBar({
         <button
           className={cn(
             "w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center flex-shrink-0",
-            "bg-gradient-to-b from-[hsl(340,15%,25%)] to-[hsl(340,15%,15%)]",
-            "border-2 border-white/20",
-            "text-white/80",
-            "hover:border-white/40 hover:text-white hover:shadow-[0_0_12px_rgba(255,255,255,0.15)]",
+            "bg-black/30 backdrop-blur-sm",
+            "border-2 border-white/15",
+            "text-white/70",
+            "hover:bg-white/10 hover:border-white/30 hover:text-white",
             "active:scale-90 transition-all duration-150",
-            "disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:border-white/20"
+            "disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-black/30 disabled:hover:border-white/15"
           )}
           onClick={() => onBetChange(Math.min(maxBet, bet + 1))}
           disabled={isBetLocked || isCurrentlySpinning || bet >= maxBet}
