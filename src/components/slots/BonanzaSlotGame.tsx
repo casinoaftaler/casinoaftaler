@@ -1199,30 +1199,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       </div>
       </div>
         </div>{/* end grid column */}
-        {/* Live chat panel — pinned to far right edge of viewport (desktop only) */}
-        {!isMobile && (
-          <div
-            className="fixed top-16 right-0 overflow-hidden z-30"
-            style={{
-              height: desktopChatHeight > 0 ? `${desktopChatHeight}px` : 'calc(100vh - 5rem)',
-            }}
-          >
-            {desktopChatOpen ? (
-              <SlotChat
-                gameId={gameId}
-                className="h-full"
-                onToggle={() => setDesktopChatOpen(false)}
-              />
-            ) : (
-              <SlotChat
-                gameId={gameId}
-                className="h-full"
-                collapsed
-                onToggle={() => setDesktopChatOpen(true)}
-              />
-            )}
-          </div>
-        )}
+        {/* Desktop chat is rendered outside the scaled container, in FedesvinBonanza.tsx */}
       </div>{/* end flex row */}
 
       {/* MOBILE tumble bar is now rendered inside BonanzaControlBar */}
