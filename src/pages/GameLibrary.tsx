@@ -32,7 +32,7 @@ const FEATURED_SLOTS = [
     id: "book-of-fedesvin",
     title: "Book of Fedesvin",
     description: "Udforsk de gamle egyptiske skatte med expanding symbols og free spins. Vores mest populære maskine.",
-    image: slotIntroImage,
+    image: bookOfFedesvinPreview,
     href: "/community/slots/book-of-fedesvin",
     badge: "🔥 POPULÆR",
     priority: "primary" as const,
