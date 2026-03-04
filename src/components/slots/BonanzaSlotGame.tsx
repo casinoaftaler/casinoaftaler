@@ -275,10 +275,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           }
         }
 
-        // Update Gevinst counter at the pop moment (base game: incrementally)
-        if (!isBonusActiveRef.current) {
-          setWinAmount(prev => prev + step.stepWin);
-        }
+        // Update Gevinst counter at the pop moment (incrementally, both base + bonus)
+        setWinAmount(prev => prev + step.stepWin);
 
         await new Promise(r => setTimeout(r, 500));
 
