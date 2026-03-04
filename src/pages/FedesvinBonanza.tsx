@@ -150,7 +150,7 @@ export default function FedesvinBonanza() {
   const sidePanelContent = null;
 
   return (
-    <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col overflow-x-hidden">
+    <div className="h-[calc(100dvh-4rem)] relative flex flex-col overflow-hidden">
       <SEO
         title="Fedesvin Bonanza – Gratis Spilleautomat | Casinoaftaler"
         description="Spil Fedesvin Bonanza gratis hos Casinoaftaler. Tumble-mekanik, multiplier-bomber og free spins i candy-tema."
@@ -171,12 +171,12 @@ export default function FedesvinBonanza() {
         </Button>
       </div>
 
-      <div className="xl:flex-1 flex items-center justify-center overflow-hidden">
+      <div className="flex-1 flex items-center justify-center overflow-hidden">
         <div
-          className="slot-viewport-container"
+          className="slot-viewport-container origin-center"
           style={{
             width: '1280px',
-            transform: shouldScale ? `scale(${scale})` : undefined,
+            transform: `scale(${scale})`,
           }}
         >
           <SlotPageLayout sidePanel={sidePanelContent}>
