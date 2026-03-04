@@ -699,7 +699,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     nonceRef.current += 1;
     setIsSpinning(true);
     setTumblePhase('spinning');
-    setWinAmount(0);
+    // Don't reset winAmount for buyBonus — bonus accumulates
     setRunningWin(0);
     setRunningMultiplier(0);
     setIsWinAnimating(false);
