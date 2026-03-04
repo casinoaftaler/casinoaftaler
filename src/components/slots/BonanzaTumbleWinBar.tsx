@@ -8,6 +8,7 @@ interface BonanzaTumbleWinBarProps {
   runningMultiplier: number;
   collisionPhase: CollisionPhase;
   visible: boolean;
+  inline?: boolean;
 }
 
 export function BonanzaTumbleWinBar({
@@ -15,6 +16,7 @@ export function BonanzaTumbleWinBar({
   runningMultiplier,
   collisionPhase,
   visible,
+  inline = false,
 }: BonanzaTumbleWinBarProps) {
   const [showResult, setShowResult] = useState(false);
   const [multPop, setMultPop] = useState(false);
@@ -45,7 +47,11 @@ export function BonanzaTumbleWinBar({
   const finalWin = runningWin * Math.max(1, runningMultiplier);
 
   return (
-    <div className="absolute top-2 left-1/2 -translate-x-1/2 z-40 pointer-events-none bonanza-tumble-bar-in">
+    <div className={cn(
+      inline
+        ? "relative z-40 pointer-events-none bonanza-tumble-bar-in"
+        : "absolute top-2 left-1/2 -translate-x-1/2 z-40 pointer-events-none bonanza-tumble-bar-in"
+    )}>
       <div
         className={cn(
           "flex items-center gap-4 px-10 py-3 rounded-full",
