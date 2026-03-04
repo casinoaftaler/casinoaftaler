@@ -1076,8 +1076,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
             </span>
             <AnimatedSpinCounter
               value={freeSpinsRemaining}
-              className="text-2xl sm:text-3xl font-black text-white tabular-nums"
-              style={{ textShadow: "0 2px 6px rgba(0,0,0,0.9), 0 0 14px rgba(255,255,255,0.3)" }}
+              className="text-2xl sm:text-3xl font-black text-white tabular-nums [text-shadow:0_2px_6px_rgba(0,0,0,0.9),0_0_14px_rgba(255,255,255,0.3)]"
             />
             <span
               className="text-sm sm:text-lg text-white/60 font-black"
