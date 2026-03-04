@@ -272,6 +272,26 @@ export function useSlotChat(gameId: string) {
     return !error;
   }, [messages]);
 
+  // Clear all messages in chat (admin)
+  const clearChat = useCallback(async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return false;
+
+    const msgIds = messages.filter(m => m.message_type !== "deleted").map(m => m.id);
+    if (msgIds.length === 0) return true;
+
+    const { error } = await supabase
+      .from("slot_chat_messages")
+      .update({ message: "Chatten er blevet ryddet af admin", message_type: "deleted" } as any)
+      .eq("game_id", gameId)
+      .in("id", msgIds);
+
+    if (!error) {
+      setMessages(prev => prev.map(m => msgIds.includes(m.id) ? { ...m, message: "Chatten er blevet ryddet af admin", message_type: "deleted" } : m));
+    }
+    return !error;
+  }, [messages, gameId]);
+
   // Delete message (admin) - replace with "Beskeden er slettet"
   const deleteMessage = useCallback(async (messageId: string) => {
     const { error } = await supabase
@@ -346,6 +366,7 @@ export function useSlotChat(gameId: string) {
     chatTimeout,
     sendMessage,
     sendSystemMessage,
+    clearChat,
     deleteMessage,
     banUser,
     timeoutUser,
