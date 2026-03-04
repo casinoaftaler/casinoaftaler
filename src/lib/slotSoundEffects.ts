@@ -1245,8 +1245,6 @@ class SlotSoundEffects {
   // Crackling electric burst for symbol explosions
   playCrackle() {
     if (!this.canPlayEffect()) return;
-    // Try custom symbol explode sound first
-    if (this.playCustomSound('symbolExplodeSound', 0.7)) return;
     
     const ctx = this.getContext();
     const now = ctx.currentTime;
