@@ -100,12 +100,12 @@ function ChatBubble({
   if (msg.message_type === "system" || msg.message_type === "bonus_buy" || msg.message_type === "big_win") {
     const availableReactions = EVENT_REACTIONS_MAP[msg.message_type] || undefined;
     return (
-      <div className="flex flex-col items-center py-1.5 px-2">
+      <div className="flex flex-col items-center py-3 px-2">
         <span className={cn(
-          "text-[11px] font-medium italic px-3 py-1 rounded-full text-center",
-          msg.message_type === "bonus_buy" && "text-amber-400/90 bg-amber-500/10 border border-amber-500/20",
-          msg.message_type === "big_win" && "text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20",
-          msg.message_type === "system" && "text-amber-400/80 bg-amber-500/10"
+          "font-bold px-3 py-2 rounded-lg text-center",
+          msg.message_type === "bonus_buy" && "text-[11px] text-amber-400/90 bg-amber-500/10 border border-amber-500/20",
+          msg.message_type === "big_win" && "text-[11px] text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20",
+          msg.message_type === "system" && "text-sm text-white bg-white/10 border border-white/20"
         )}>
           {msg.message}
         </span>
