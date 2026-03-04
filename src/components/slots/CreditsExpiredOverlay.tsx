@@ -1,27 +1,30 @@
 import { useState, useEffect } from "react";
-import { Clock, Sparkles } from "lucide-react";
+import { Clock, Sparkles, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 import { CreditCoin } from "@/components/CreditCoin";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 function getTimeUntilMidnightCopenhagen(): { hours: number; minutes: number; seconds: number } {
   const now = new Date();
-  
-  // Get current time in Copenhagen
   const copenhagenNow = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Copenhagen" }));
-  
-  // Next midnight in Copenhagen
   const midnight = new Date(copenhagenNow);
   midnight.setDate(midnight.getDate() + 1);
   midnight.setHours(0, 0, 0, 0);
-  
   const diffMs = midnight.getTime() - copenhagenNow.getTime();
   const totalSeconds = Math.max(0, Math.floor(diffMs / 1000));
-  
   return {
     hours: Math.floor(totalSeconds / 3600),
     minutes: Math.floor((totalSeconds % 3600) / 60),
     seconds: totalSeconds % 60,
   };
 }
+
+const CASINO_PROMOS = [
+  { name: "SpilDanskNu", bonus: "1.000 kr. bonus", slug: "spildansknu", color: "from-blue-600 to-blue-800" },
+  { name: "Spilleautomaten", bonus: "1.000 kr. bonus", slug: "spilleautomaten", color: "from-emerald-600 to-emerald-800" },
+  { name: "Campobet", bonus: "1.000 kr. bonus", slug: "campobet", color: "from-orange-600 to-orange-800" },
+  { name: "Betinia", bonus: "1.000 kr. bonus", slug: "betinia", color: "from-purple-600 to-purple-800" },
+];
 
 interface CreditsExpiredOverlayProps {
   isVisible: boolean;
