@@ -48,7 +48,7 @@ interface BonanzaSlotGameProps {
   isMobile?: boolean;
 }
 
-export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGameProps) {
+export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false }: BonanzaSlotGameProps) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols(gameId);
