@@ -873,31 +873,46 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         />
       )}
 
-      {/* Logo positioned above grid like Sweet Bonanza */}
-      <div className="flex justify-center relative z-10" style={{ width: gridWidth, marginBottom: -22 }}>
-        <img
-          src={fedesvinBonanzaLogo}
-          alt="Fedesvin Bonanza"
-          className="pointer-events-none block"
-          style={{ width: gridWidth * 0.54, transform: 'translateY(10px)' }}
-          draggable={false}
-        />
-      </div>
+      {/* Logo + Side Panels + Grid layout */}
+      <div className="flex items-start gap-4">
+        {/* Side panels - left of grid */}
+        {!isBonusActive && (
+          <div className="flex items-center" style={{ paddingTop: 40 }}>
+            <BonanzaSidePanels
+              bet={bet}
+              doubleChance={doubleChance}
+              onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
+              onBuyBonus={handleBuyBonus}
+              disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle'}
+              isBonusActive={isBonusActive}
+            />
+          </div>
+        )}
 
-      {/* Main game grid with candy stripe border */}
-      <div className="relative" style={{ width: gridWidth }}>
-        {/* Candy stripe border */}
-        <div
-          className="absolute pointer-events-none z-0 bonanza-candy-stripe-border"
-          style={{
-            inset: "-6px",
-            borderRadius: "1rem",
-          }}
-        />
-      <div
-        ref={gridContainerRef}
-        className={cn(
-          "relative rounded-xl border-[3px] transition-all duration-500",
+        {/* Grid column */}
+        <div className="flex flex-col items-center">
+          {/* Logo positioned above grid */}
+          <div className="flex justify-center relative z-10" style={{ width: gridWidth, marginBottom: -22 }}>
+            <img
+              src={fedesvinBonanzaLogo}
+              alt="Fedesvin Bonanza"
+              className="pointer-events-none block"
+              style={{ width: gridWidth * 0.54, transform: 'translateY(10px)' }}
+              draggable={false}
+            />
+          </div>
+
+          {/* Main game grid with candy stripe border */}
+          <div className="relative" style={{ width: gridWidth }}>
+            {/* Candy stripe border */}
+            <div
+              className="absolute pointer-events-none z-0 bonanza-candy-stripe-border"
+              style={{ inset: "-6px", borderRadius: "1rem" }}
+            />
+          <div
+            ref={gridContainerRef}
+            className={cn(
+              "relative rounded-xl border-[3px] transition-all duration-500",
           isBonusActive
             ? "bg-gradient-to-b from-pink-800/80 via-fuchsia-900/70 to-pink-900/80 border-pink-500/50 shadow-[0_0_30px_rgba(180,50,120,0.5),inset_0_0_20px_rgba(120,30,80,0.3),0_8px_32px_rgba(0,0,0,0.5)]"
             : "bg-gradient-to-b from-pink-100/80 via-rose-50/70 to-fuchsia-100/80 border-pink-400/60 shadow-[0_0_20px_rgba(236,72,153,0.3),inset_0_0_15px_rgba(255,255,255,0.2),0_8px_32px_rgba(0,0,0,0.4)]",
