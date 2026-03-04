@@ -275,10 +275,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           }
         }
 
-        // Update Gevinst counter at the pop moment (base game: incrementally)
-        if (!isBonusActiveRef.current) {
-          setWinAmount(prev => prev + step.stepWin);
-        }
+        // Update Gevinst counter at the pop moment (incrementally, both base + bonus)
+        setWinAmount(prev => prev + step.stepWin);
 
         await new Promise(r => setTimeout(r, 500));
 
@@ -441,7 +439,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     nonceRef.current += 1;
     setIsSpinning(true);
     setTumblePhase('spinning');
-    setWinAmount(0);
+    // In bonus, keep cumulative winAmount — only reset in base game
+    if (!isBonusActiveRef.current) {
+      setWinAmount(0);
+    }
     setRunningWin(0);
     setRunningMultiplier(0);
     // Don't clear bomb-exploded decals yet — let them persist through drop-off animation
@@ -521,7 +522,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       if (result.tumbleSteps) {
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
-        setWinAmount(totalWin);
+        // In base game, set final total; in bonus, winAmount is already accumulated incrementally
+        if (!isBonusActiveRef.current) {
+          setWinAmount(totalWin);
+        }
 
         if (totalWin > 0) {
           setIsWinAnimating(true);
@@ -747,6 +751,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       if (result.tumbleSteps) {
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
+        // Buy bonus always starts fresh, so set directly
         setWinAmount(totalWin);
       }
 
@@ -876,18 +881,16 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       {/* Logo + Side Panels + Grid layout */}
       <div className="flex items-center gap-4">
         {/* Side panels - left of grid, vertically centered */}
-        {!isBonusActive && (
-          <div className="flex items-center">
-            <BonanzaSidePanels
-              bet={bet}
-              doubleChance={doubleChance}
-              onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
-              onBuyBonus={handleBuyBonus}
-              disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle'}
-              isBonusActive={isBonusActive}
-            />
-          </div>
-        )}
+        <div className="flex items-center">
+          <BonanzaSidePanels
+            bet={bet}
+            doubleChance={doubleChance}
+            onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
+            onBuyBonus={handleBuyBonus}
+            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive}
+            isBonusActive={isBonusActive}
+          />
+        </div>
 
         {/* Grid column */}
         <div className="flex flex-col items-center">
