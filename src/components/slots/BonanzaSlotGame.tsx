@@ -133,6 +133,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const pendingBonusStateRef = useRef<any>(null);
   const pendingBonusActionRef = useRef<(() => void) | null>(null);
   const [mobileChatOpen, setMobileChatOpen] = useState(false);
+  const [desktopChatOpen, setDesktopChatOpen] = useState(true);
+  const gridColumnRef = useRef<HTMLDivElement>(null);
 
   const spinLockRef = useRef(false);
   
@@ -1172,8 +1174,19 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         </div>{/* end grid column */}
         {/* Live chat panel — right side (desktop only) */}
         {!isMobile && (
-          <div className="shrink-0 self-stretch flex items-stretch ml-auto">
-            <SlotChat gameId={gameId} />
+          <div className="shrink-0 self-stretch flex items-start ml-auto">
+            {desktopChatOpen ? (
+              <SlotChat
+                gameId={gameId}
+                onToggle={() => setDesktopChatOpen(false)}
+              />
+            ) : (
+              <SlotChat
+                gameId={gameId}
+                collapsed
+                onToggle={() => setDesktopChatOpen(true)}
+              />
+            )}
           </div>
         )}
       </div>{/* end flex row */}
