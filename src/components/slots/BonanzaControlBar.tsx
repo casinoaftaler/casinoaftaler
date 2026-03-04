@@ -64,6 +64,7 @@ export function BonanzaControlBar({
   winAmount,
   gameId,
   debugButton,
+  isMobile = false,
 }: BonanzaControlBarProps) {
   const theme = getSlotTheme(gameId);
   const canSpinNow = bonusState.isActive
