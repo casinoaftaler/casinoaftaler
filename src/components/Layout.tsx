@@ -18,17 +18,18 @@ export function Layout() {
   
   const hideFooter = location.pathname.startsWith("/community/slots/");
   const isCommunityPage = location.pathname.startsWith("/community") || location.pathname.startsWith("/profil") || location.pathname.startsWith("/auth");
+  const isSlotMachinePage = location.pathname.startsWith("/community/slots/");
 
   if (isBanned && !banLoading) {
     return <BannedScreen />;
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className={isSlotMachinePage ? "flex h-screen flex-col overflow-hidden" : "flex min-h-screen flex-col"}>
       <ScrollToTop />
       <Header />
       <Breadcrumbs />
-      <main className="flex-1" style={{ minHeight: '100vh' }}>
+      <main className={isSlotMachinePage ? "flex-1 overflow-hidden" : "flex-1"} style={isSlotMachinePage ? undefined : { minHeight: '100vh' }}>
         <Outlet />
       </main>
       {!hideFooter && <Footer />}
