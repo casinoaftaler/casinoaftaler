@@ -1,5 +1,16 @@
+import { useState } from "react";
 import { CreditCoin } from "@/components/CreditCoin";
 import { cn } from "@/lib/utils";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 interface BonanzaSidePanelsProps {
   bet: number;
@@ -22,6 +33,7 @@ export function BonanzaSidePanels({
   horizontal = false,
   compact = false,
 }: BonanzaSidePanelsProps) {
+  const [showBuyConfirm, setShowBuyConfirm] = useState(false);
   const buyBonusCost = bet * 100;
   const displayBet = doubleChance ? bet * 2 : bet;
 
@@ -34,7 +46,7 @@ export function BonanzaSidePanels({
     )} style={horizontal ? undefined : { width: 160 }}>
       {/* ── Buy Feature ── */}
       <button
-        onClick={onBuyBonus}
+        onClick={() => setShowBuyConfirm(true)}
         disabled={disabled || isBonusActive}
         className={cn(
           "relative transition-all duration-[180ms] cursor-pointer select-none",
@@ -211,6 +223,23 @@ export function BonanzaSidePanels({
           </span>
         </div>
       </button>
+
+      <AlertDialog open={showBuyConfirm} onOpenChange={setShowBuyConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Køb Bonus</AlertDialogTitle>
+            <AlertDialogDescription>
+              Er du sikker på at du vil købe bonus for {buyBonusCost} credits?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Nej</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { setShowBuyConfirm(false); onBuyBonus(); }}>
+              Ja
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

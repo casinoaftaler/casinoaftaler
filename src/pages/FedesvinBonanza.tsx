@@ -3,7 +3,7 @@ import "@/styles/gates-animations.css";
 import { useState, useCallback, useEffect } from "react";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { SEO } from "@/components/SEO";
-import { SlotGameSeoCta } from "@/components/community/SlotGameSeoCta";
+
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SlotPromoSlider } from "@/components/slots/SlotPromoSlider";
 import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";
@@ -187,13 +187,9 @@ export default function FedesvinBonanza() {
               <BonanzaSlotGame gameId={GAME_ID} isMobile />
             </SlotPageLayout>
           </div>
-          <div className="flex flex-col items-center px-4 pb-4 pt-4">
-            <SlotGameSeoCta />
-          </div>
         </div>
       ) : (
         /* ── DESKTOP: CSS transform scaling ── */
-        <>
           <div className="flex-1 flex items-center justify-center overflow-hidden">
             <div
               className="slot-viewport-container"
@@ -207,10 +203,6 @@ export default function FedesvinBonanza() {
               </SlotPageLayout>
             </div>
           </div>
-          <div className="xl:hidden flex flex-col items-center px-4 pb-4 pt-6">
-            <SlotGameSeoCta />
-          </div>
-        </>
       )}
     </div>
   );
