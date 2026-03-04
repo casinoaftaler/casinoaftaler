@@ -204,14 +204,19 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
 
   const stopAutoSpin = useCallback(() => {
     setIsAutoSpinning(false);
+    isAutoSpinningRef.current = false;
     setAutoSpinsRemaining(null);
+    autoSpinsRemainingRef.current = null;
     shouldStopAutoSpinRef.current = true;
     if (autoSpinTimeoutRef.current) { clearTimeout(autoSpinTimeoutRef.current); autoSpinTimeoutRef.current = null; }
   }, []);
 
   const startAutoSpin = useCallback(() => {
+    const count = autoSpinCount === "infinite" ? null : autoSpinCount;
     setIsAutoSpinning(true);
-    setAutoSpinsRemaining(autoSpinCount === "infinite" ? null : autoSpinCount);
+    isAutoSpinningRef.current = true;
+    setAutoSpinsRemaining(count);
+    autoSpinsRemainingRef.current = count;
     shouldStopAutoSpinRef.current = false;
   }, [autoSpinCount]);
 
