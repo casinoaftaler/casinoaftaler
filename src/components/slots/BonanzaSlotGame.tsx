@@ -1136,7 +1136,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
             // Clear persisted bonus win from localStorage
             try { localStorage.removeItem(bonusWinKey); } catch {}
             // Resume auto-spinning after bonus ends
-            if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
+            if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
               if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
               autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 1000);
             }
