@@ -87,7 +87,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/nye-casinoer/bedste", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
   { path: "/nye-casinoer/vs-etablerede", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-02" },
   { path: "/top-10-casino-online", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-21" },
-  { path: "/casino-anmeldelser/spilleautomaten", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-28" },
+  { path: "/casino-anmeldelser/spilleautomaten", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casino-anmeldelser/campobet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
   { path: "/casino-anmeldelser/betinia", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-14" },
   { path: "/casino-anmeldelser/swift-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
