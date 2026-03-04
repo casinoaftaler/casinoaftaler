@@ -119,11 +119,12 @@ export function BonanzaControlBar({
   return (
     <div className="relative w-full" style={{ height: 80 }}>
       {/* ─── LEFT: PayTable + Volume + Credit/Bet ─── */}
-      <div className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-3 z-10">
-        <div className="flex items-center gap-0.5">
-          <BonanzaPayTable gameId={gameId || "fedesvin-bonanza"} bet={bet} />
-          <VolumeControl className="text-pink-300/50 hover:text-pink-200 h-8 w-8" />
-        </div>
+      <div className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 sm:gap-2 z-10">
+        {/* Info (PayTable) button — circular like reference */}
+        <BonanzaPayTable gameId={gameId || "fedesvin-bonanza"} bet={bet} />
+
+        {/* Volume button — circular */}
+        <VolumeControl className="w-9 h-9 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white" />
 
         {!bonusState.isActive && (
           <div className="flex flex-col leading-none gap-0.5 pl-2 border-l border-pink-500/10">

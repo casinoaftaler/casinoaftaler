@@ -61,7 +61,7 @@ export function BonanzaSidePanels({
             marginBottom: 4,
           }}
         >
-          Buy Feature
+          Køb Bonus
         </div>
         <div className="flex items-center justify-center gap-1.5">
           <CreditCoin size="lg" />
@@ -155,11 +155,11 @@ export function BonanzaSidePanels({
             marginBottom: 8,
           }}
         >
-          Double
+          Forøg chance
           <br />
-          Chance
+          for scatterdrop
           <br />
-          to Win Feature
+          med x2
         </div>
 
         {/* Toggle row */}
