@@ -332,10 +332,10 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
 
   return (
     <div className={cn(
-      "flex flex-col rounded-2xl overflow-hidden",
+      "flex flex-col rounded-2xl overflow-hidden h-full max-h-full",
       "bg-black/30 backdrop-blur-md border border-white/10",
       className
-    )} style={{ width: 280, height: "100%" }}>
+    )} style={{ width: 280 }}>
       {/* Header: [Close] — Chat — [Online count] */}
       <div className="flex items-center justify-between px-3 py-2 border-b border-white/10 shrink-0">
         {/* Left: close button */}

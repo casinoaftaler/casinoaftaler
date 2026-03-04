@@ -428,7 +428,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         currentAnims.set(bomb.position, animState);
         setCellAnimStates(currentAnims);
         if (bomb.activated) {
-          slotSounds.playBombExplode();
+          slotSounds.playCrackle();
 
           // Spawn flying multiplier from bomb position to bar
           const { col, row } = flatToColRow(bomb.position);
@@ -456,7 +456,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           setRunningMultiplier(prev => prev + bomb.value);
           setFlyingMultipliers(prev => prev.filter(f => f.id !== flyId));
         } else {
-          slotSounds.playBombFizz();
+          // No sound for fizzle — just visual
           await new Promise(r => setTimeout(r, 400));
           explodedPositions.set(bomb.position, 'bomb-exploded');
         }
@@ -1177,7 +1177,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         </div>{/* end grid column */}
         {/* Live chat panel — right side (desktop only) */}
         {!isMobile && (
-          <div className="shrink-0 self-stretch flex items-start ml-auto">
+          <div className="shrink-0 self-stretch ml-auto" style={{ maxHeight: 'inherit', overflow: 'hidden' }}>
             {desktopChatOpen ? (
               <SlotChat
                 gameId={gameId}
