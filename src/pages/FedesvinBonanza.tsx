@@ -230,11 +230,16 @@ export default function FedesvinBonanza() {
           </div>
       )}
 
-      {/* Desktop chat — OUTSIDE the scaled container, pinned to right edge */}
+      {/* Desktop chat — OUTSIDE the scaled container, pinned to right edge, matching slot height */}
       {!isMobile && loadingPhase === 'ready' && user && (
         <div
-          className="fixed top-16 right-0 z-30 overflow-hidden"
-          style={{ height: 'calc(100vh - 4rem)' }}
+          className="fixed right-0 z-30 overflow-hidden"
+          style={{
+            height: `${1120 * scale}px`,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            marginTop: '2rem', /* offset for header */
+          }}
         >
           {desktopChatOpen ? (
             <SlotChat
