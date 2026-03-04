@@ -1,12 +1,21 @@
 import { useState, useEffect, useMemo } from "react";
 
-// Base resolution the slot machine is designed at (fixed)
-const BASE_WIDTH = 1280;
-const BASE_HEIGHT = 960; // grid + logo + control bar + gaps
-const HEADER_HEIGHT = 64;
-const SAFETY_PADDING = 8;
-const MIN_SCALE = 0.25;
-const MAX_SCALE = 1.0;
+// Default resolution the slot machine is designed at (can be overridden per game)
+const DEFAULT_BASE_WIDTH = 1280;
+const DEFAULT_BASE_HEIGHT = 960;
+const DEFAULT_HEADER_HEIGHT = 64;
+const DEFAULT_SAFETY_PADDING = 8;
+const DEFAULT_MIN_SCALE = 0.25;
+const DEFAULT_MAX_SCALE = 1.0;
+
+export interface SlotScaleOptions {
+  baseWidth?: number;
+  baseHeight?: number;
+  headerHeight?: number;
+  safetyPadding?: number;
+  minScale?: number;
+  maxScale?: number;
+}
 
 export interface SlotScale {
   scale: number;
@@ -16,11 +25,18 @@ export interface SlotScale {
 /**
  * Unified slot scaling hook.
  * Calculates a single scale factor to fit the entire slot machine
- * (designed at BASE_WIDTH x BASE_HEIGHT) within the viewport.
- * 
- * scale = min(availableWidth / BASE_WIDTH, availableHeight / BASE_HEIGHT, 1.0)
+ * within the viewport.
  */
-export function useSlotScale(): SlotScale {
+export function useSlotScale(options: SlotScaleOptions = {}): SlotScale {
+  const {
+    baseWidth = DEFAULT_BASE_WIDTH,
+    baseHeight = DEFAULT_BASE_HEIGHT,
+    headerHeight = DEFAULT_HEADER_HEIGHT,
+    safetyPadding = DEFAULT_SAFETY_PADDING,
+    minScale = DEFAULT_MIN_SCALE,
+    maxScale = DEFAULT_MAX_SCALE,
+  } = options;
+
   const [viewport, setViewport] = useState(() => {
     if (typeof window === "undefined") return { width: 1920, height: 1080 };
     return { width: window.innerWidth, height: window.innerHeight };
@@ -47,18 +63,18 @@ export function useSlotScale(): SlotScale {
 
   return useMemo<SlotScale>(() => {
     const { width, height } = viewport;
-    const availableWidth = width - SAFETY_PADDING;
-    const availableHeight = height - HEADER_HEIGHT - SAFETY_PADDING;
+    const availableWidth = width - safetyPadding;
+    const availableHeight = height - headerHeight - safetyPadding;
 
     const rawScale = Math.min(
-      availableWidth / BASE_WIDTH,
-      availableHeight / BASE_HEIGHT,
-      MAX_SCALE
+      availableWidth / baseWidth,
+      availableHeight / baseHeight,
+      maxScale
     );
 
-    const scale = Math.max(MIN_SCALE, rawScale);
-    const shouldScale = scale < MAX_SCALE;
+    const scale = Math.max(minScale, rawScale);
+    const shouldScale = scale < maxScale;
 
     return { scale, shouldScale };
-  }, [viewport]);
+  }, [viewport, baseWidth, baseHeight, headerHeight, safetyPadding, minScale, maxScale]);
 }

@@ -41,7 +41,13 @@ export default function FedesvinBonanza() {
     timeSinceOtherActive, isLoading: sessionLoading,
     takeOverSession, refreshSession
   } = useSlotSession(GAME_ID);
-  const { scale, shouldScale } = useSlotScale();
+  const { scale } = useSlotScale({
+    baseWidth: 1400,
+    baseHeight: 1120,
+    headerHeight: 72,
+    safetyPadding: 16,
+    minScale: 0.2,
+  });
   const { isLocked, hasAccess, isLoading: accessLoading, isVerifying, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
 
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
@@ -173,7 +179,7 @@ export default function FedesvinBonanza() {
 
       <div className="flex-1 flex items-center justify-center overflow-hidden">
         <div
-          className="slot-viewport-container origin-center"
+          className="slot-viewport-container"
           style={{
             width: '1280px',
             transform: `scale(${scale})`,
