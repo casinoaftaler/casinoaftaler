@@ -3,7 +3,7 @@ import "@/styles/gates-animations.css";
 import { useState, useCallback, useEffect } from "react";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { SEO } from "@/components/SEO";
-import { SlotGameSeoCta } from "@/components/community/SlotGameSeoCta";
+
 import { SlotLeaderboard } from "@/components/slots/SlotLeaderboard";
 import { SlotPromoSlider } from "@/components/slots/SlotPromoSlider";
 import { SlotLoadingScreen } from "@/components/slots/SlotLoadingScreen";

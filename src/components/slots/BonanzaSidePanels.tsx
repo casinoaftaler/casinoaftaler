@@ -1,5 +1,16 @@
+import { useState } from "react";
 import { CreditCoin } from "@/components/CreditCoin";
 import { cn } from "@/lib/utils";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 interface BonanzaSidePanelsProps {
   bet: number;
@@ -22,6 +33,7 @@ export function BonanzaSidePanels({
   horizontal = false,
   compact = false,
 }: BonanzaSidePanelsProps) {
+  const [showBuyConfirm, setShowBuyConfirm] = useState(false);
   const buyBonusCost = bet * 100;
   const displayBet = doubleChance ? bet * 2 : bet;
 
