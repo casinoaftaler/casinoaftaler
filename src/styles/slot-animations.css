@@ -695,3 +695,34 @@
 .bonanza-counter-drum {
   animation: bonanza-counter-drum 0.12s linear infinite;
 }
+
+/* === GIGANTISK WIN animations === */
+@keyframes gigantisk-glow-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes gigantisk-text-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+@keyframes firework-flash {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  30% { transform: translate(-50%, -50%) scale(3); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(6); opacity: 0; }
+}
+
+@keyframes firework-spark {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--spark-x, 50px), var(--spark-y, -50px)) scale(0.3);
+    opacity: 0;
+  }
+}
