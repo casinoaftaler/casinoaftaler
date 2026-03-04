@@ -441,7 +441,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     nonceRef.current += 1;
     setIsSpinning(true);
     setTumblePhase('spinning');
-    setWinAmount(0);
+    // In bonus, keep cumulative winAmount — only reset in base game
+    if (!isBonusActiveRef.current) {
+      setWinAmount(0);
+    }
     setRunningWin(0);
     setRunningMultiplier(0);
     // Don't clear bomb-exploded decals yet — let them persist through drop-off animation
