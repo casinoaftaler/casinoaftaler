@@ -219,9 +219,10 @@ export function BonanzaControlBar({
             autoSpinsRemaining={autoSpinsRemaining}
             disabled={!canSpinNow || showBonusTrigger}
             theme={theme}
-            renderTrigger={(triggerProps) => (
+            renderTrigger={({ onClick, disabled: triggerDisabled }) => (
               <button
-                {...triggerProps}
+                onClick={onClick}
+                disabled={triggerDisabled}
                 className={cn(
                   "flex items-center gap-1 px-3 py-1 rounded-b-lg -mt-1",
                   "text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-white",
