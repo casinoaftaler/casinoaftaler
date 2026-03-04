@@ -55,22 +55,18 @@ export function BonanzaPayTable({ gameId, bet = 1 }: BonanzaPayTableProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
+        <button
           className={cn(
-            "gap-2 px-3 py-2",
-            "bg-gradient-to-b from-pink-800/60 to-pink-900/80",
-            "border border-pink-500/30",
-            "text-pink-200",
-            "hover:from-pink-700/70 hover:to-pink-800/90",
-            "shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]",
-            "transition-all duration-200"
+            "w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0",
+            "bg-black/30 backdrop-blur-sm",
+            "border-2 border-white/15",
+            "text-white/70",
+            "hover:bg-white/10 hover:border-white/30 hover:text-white",
+            "transition-all duration-150"
           )}
         >
-          <BookOpen className="h-4 w-4 drop-shadow-[0_0_4px_rgba(236,72,153,0.6)]" />
-          Gevinsttabel
-        </Button>
+          <span className="text-base font-black" style={{ fontFamily: "serif", fontStyle: "italic" }}>i</span>
+        </button>
       </DialogTrigger>
       <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto bg-gradient-to-b from-pink-950/95 via-fuchsia-950/95 to-pink-950/95 border-pink-500/30 shadow-[0_0_60px_rgba(236,72,153,0.2)]">
         <DialogHeader>
