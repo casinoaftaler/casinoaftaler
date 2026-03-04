@@ -3,16 +3,23 @@ import { useSlotChat, type ChatMessage } from "@/hooks/useSlotChat";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { MessageCircle, Send, Users, Trash2, X } from "lucide-react";
+import { MessageCircle, Send, Users, Trash2, X, Ban, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
+import { TwitchBadgesInline } from "@/components/TwitchBadges";
+import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { toast } from "sonner";
 
 interface SlotChatProps {
   gameId: string;
   className?: string;
-  /** Mobile collapsed mode — shows just an icon button */
   collapsed?: boolean;
   onToggle?: () => void;
 }
@@ -22,11 +29,15 @@ function ChatBubble({
   isOwn,
   isAdmin,
   onDelete,
+  onBan,
+  onTimeout,
 }: {
   msg: ChatMessage;
   isOwn: boolean;
   isAdmin: boolean;
   onDelete?: (id: string) => void;
+  onBan?: (userId: string) => void;
+  onTimeout?: (userId: string, minutes: number) => void;
 }) {
   const navigate = useNavigate();
 
@@ -54,20 +65,47 @@ function ChatBubble({
         </Avatar>
       </button>
       <div className={cn("flex flex-col min-w-0 flex-1", isOwn && "items-end")}>
-        <div className="flex items-center gap-1.5">
-          <span className="text-[11px] font-semibold text-pink-300/90 truncate max-w-[100px]">
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className="text-[11px] font-semibold text-pink-300/90 truncate max-w-[80px]">
             {msg.display_name || "Anonym"}
           </span>
+          <TwitchBadgesInline
+            badges={msg.twitch_badges as unknown as TwitchBadgesType | null}
+            className="flex-shrink-0"
+          />
           <span className="text-[9px] text-white/30">
             {new Date(msg.created_at).toLocaleTimeString("da-DK", { hour: "2-digit", minute: "2-digit" })}
           </span>
-          {isAdmin && onDelete && (
-            <button
-              onClick={() => onDelete(msg.id)}
-              className="opacity-0 group-hover:opacity-100 transition-opacity text-red-400/60 hover:text-red-400"
-            >
-              <Trash2 className="h-3 w-3" />
-            </button>
+          {isAdmin && !isOwn && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="opacity-0 group-hover:opacity-100 transition-opacity text-red-400/60 hover:text-red-400">
+                  <Trash2 className="h-3 w-3" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="min-w-[140px]">
+                {onDelete && (
+                  <DropdownMenuItem onClick={() => onDelete(msg.id)} className="text-red-400 text-xs">
+                    <Trash2 className="h-3 w-3 mr-1.5" /> Slet besked
+                  </DropdownMenuItem>
+                )}
+                {onTimeout && (
+                  <>
+                    <DropdownMenuItem onClick={() => onTimeout(msg.user_id, 5)} className="text-amber-400 text-xs">
+                      <Clock className="h-3 w-3 mr-1.5" /> Timeout 5 min
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => onTimeout(msg.user_id, 10)} className="text-amber-400 text-xs">
+                      <Clock className="h-3 w-3 mr-1.5" /> Timeout 10 min
+                    </DropdownMenuItem>
+                  </>
+                )}
+                {onBan && (
+                  <DropdownMenuItem onClick={() => onBan(msg.user_id)} className="text-red-500 text-xs">
+                    <Ban className="h-3 w-3 mr-1.5" /> Ban permanent
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
           )}
         </div>
         <p className={cn(
@@ -82,13 +120,15 @@ function ChatBubble({
 }
 
 export function SlotChat({ gameId, className, collapsed = false, onToggle }: SlotChatProps) {
-  const { messages, isLoading, onlineCount, sendMessage, deleteMessage } = useSlotChat(gameId);
+  const { messages, isLoading, onlineCount, isChatBanned, chatTimeout, sendMessage, deleteMessage, banUser, timeoutUser } = useSlotChat(gameId);
   const [input, setInput] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [hasAcceptedWarning, setHasAcceptedWarning] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const isAtBottomRef = useRef(true);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Get current user
   useEffect(() => {
@@ -101,6 +141,14 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
       }
     });
   }, []);
+
+  // Check localStorage for warning acceptance
+  useEffect(() => {
+    if (currentUserId) {
+      const accepted = localStorage.getItem(`chat_warning_accepted_${currentUserId}`);
+      setHasAcceptedWarning(!!accepted);
+    }
+  }, [currentUserId]);
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
@@ -117,6 +165,13 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
 
   const handleSend = async () => {
     if (!input.trim() || isSending) return;
+
+    // Show warning before first message
+    if (!hasAcceptedWarning) {
+      setHasAcceptedWarning(true);
+      localStorage.setItem(`chat_warning_accepted_${currentUserId}`, "true");
+    }
+
     setIsSending(true);
     const success = await sendMessage(input);
     if (success) setInput("");
@@ -124,11 +179,38 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Stop spacebar propagation so it doesn't trigger spin
+    if (e.key === " ") {
+      e.stopPropagation();
+    }
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend();
     }
   };
+
+  const handleBan = async (userId: string) => {
+    const success = await banUser(userId);
+    if (success) {
+      toast.success("Bruger er bannet fra chatten");
+    } else {
+      toast.error("Kunne ikke banne brugeren");
+    }
+  };
+
+  const handleTimeout = async (userId: string, minutes: number) => {
+    const success = await timeoutUser(userId, minutes);
+    if (success) {
+      toast.success(`Bruger har fået timeout i ${minutes} minutter`);
+    } else {
+      toast.error("Kunne ikke give timeout");
+    }
+  };
+
+  const isTimedOut = chatTimeout && new Date(chatTimeout).getTime() > Date.now();
+  const timeoutRemaining = isTimedOut
+    ? Math.ceil((new Date(chatTimeout!).getTime() - Date.now()) / 60000)
+    : 0;
 
   // Collapsed mode — just show a floating button
   if (collapsed) {
@@ -202,6 +284,8 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
               isOwn={msg.user_id === currentUserId}
               isAdmin={isAdmin}
               onDelete={deleteMessage}
+              onBan={handleBan}
+              onTimeout={handleTimeout}
             />
           ))
         )}
@@ -209,28 +293,47 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
 
       {/* Input */}
       {currentUserId ? (
-        <div className="px-2 py-2 border-t border-white/10">
-          <div className="flex gap-1.5">
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value.slice(0, 200))}
-              onKeyDown={handleKeyDown}
-              placeholder="Skriv en besked..."
-              disabled={isSending}
-              className="h-8 text-xs bg-white/5 border-white/10 text-white placeholder:text-white/30 focus-visible:ring-pink-500/30"
-            />
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={handleSend}
-              disabled={!input.trim() || isSending}
-              className="h-8 w-8 shrink-0 text-pink-400 hover:text-pink-300 hover:bg-pink-500/10"
-            >
-              <Send className="h-3.5 w-3.5" />
-            </Button>
+        isChatBanned ? (
+          <div className="px-3 py-3 border-t border-white/10 text-center">
+            <span className="text-[11px] text-red-400">🚫 Du er bannet permanent fra chatten</span>
           </div>
-          <span className="text-[9px] text-white/20 mt-0.5 block">{input.length}/200</span>
-        </div>
+        ) : isTimedOut ? (
+          <div className="px-3 py-3 border-t border-white/10 text-center">
+            <span className="text-[11px] text-amber-400">⏳ Du har timeout i {timeoutRemaining} min</span>
+          </div>
+        ) : (
+          <div className="px-2 py-2 border-t border-white/10">
+            {/* Warning message before first send */}
+            {!hasAcceptedWarning && (
+              <div className="mb-2 px-2 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                <p className="text-[9px] text-amber-300/90 leading-relaxed">
+                  ⚠️ Sørg for at holde en god tone. Racistiske eller andre nedladende beskeder bliver slettet, og admin kan banne dig PERMANENT fra chatfunktionen.
+                </p>
+              </div>
+            )}
+            <div className="flex gap-1.5">
+              <Input
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value.slice(0, 200))}
+                onKeyDown={handleKeyDown}
+                placeholder="Skriv en besked..."
+                disabled={isSending}
+                className="h-8 text-xs bg-white/5 border-white/10 text-white placeholder:text-white/30 focus-visible:ring-pink-500/30"
+              />
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={handleSend}
+                disabled={!input.trim() || isSending}
+                className="h-8 w-8 shrink-0 text-pink-400 hover:text-pink-300 hover:bg-pink-500/10"
+              >
+                <Send className="h-3.5 w-3.5" />
+              </Button>
+            </div>
+            <span className="text-[9px] text-white/20 mt-0.5 block">{input.length}/200</span>
+          </div>
+        )
       ) : (
         <div className="px-3 py-3 border-t border-white/10 text-center">
           <span className="text-[11px] text-white/40">Log ind for at chatte</span>
