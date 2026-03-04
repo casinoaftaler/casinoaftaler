@@ -703,10 +703,10 @@ async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, 
         hasBomb = true;
         continue;
       }
-      let sym = await getBonanzaRandomSymbol(symbols, isBonusSpin, prng);
+      let sym = await getBonanzaRandomSymbol(symbols, isBonusSpin, prng, scatterWeightMultiplier);
       // Cap 1 scatter per column
       if (scatterSymbol && sym.id === scatterSymbol.id && hasScatter) {
-        sym = await getBonanzaRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
+        sym = await getBonanzaRandomSymbol(nonScatterSymbols, isBonusSpin, prng, scatterWeightMultiplier);
       }
       if (scatterSymbol && sym.id === scatterSymbol.id) hasScatter = true;
       column.push(sym.id);
