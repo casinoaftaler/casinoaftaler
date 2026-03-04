@@ -1035,22 +1035,37 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         </div>{/* end grid column */}
       </div>{/* end flex row */}
 
+      {/* MOBILE: Side panels (Buy Feature + Double Chance) below grid */}
+      {isMobile && (
+        <div className="w-full px-1">
+          <BonanzaSidePanels
+            bet={bet}
+            doubleChance={doubleChance}
+            onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
+            onBuyBonus={handleBuyBonus}
+            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive}
+            isBonusActive={isBonusActive}
+            horizontal
+          />
+        </div>
+      )}
+
       {/* Resterende spins — bonus only */}
       {isBonusActive && (
         <div className="w-full flex justify-center">
           <div className="flex items-baseline gap-2">
             <span
-              className="text-sm uppercase tracking-widest font-bold text-pink-400"
+              className="text-xs sm:text-sm uppercase tracking-widest font-bold text-pink-400"
               style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
             >
               Resterende spins
             </span>
             <AnimatedSpinCounter
               value={freeSpinsRemaining}
-              className="text-2xl font-black text-pink-300 tabular-nums"
+              className="text-xl sm:text-2xl font-black text-pink-300 tabular-nums"
             />
             <span
-              className="text-sm text-pink-500/60 font-bold"
+              className="text-xs sm:text-sm text-pink-500/60 font-bold"
               style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
             >
               / {totalFreeSpins}
@@ -1081,6 +1096,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           bonusLoaded={bonusLoaded}
           winAmount={winAmount}
           gameId={gameId}
+          isMobile={isMobile}
         />
       </div>
     </div>
