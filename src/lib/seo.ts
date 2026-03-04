@@ -302,7 +302,7 @@ export function buildVideoSchema(
 ) {
   const videoEntityId = `${articleUrl}#video`;
   const articleEntityId = `${articleUrl}#article`;
-  const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
   const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
   const thumb = opts.thumbnailUrl || `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
 
