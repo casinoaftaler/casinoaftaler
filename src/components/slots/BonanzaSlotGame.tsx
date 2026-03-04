@@ -572,9 +572,11 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
 
-        // Play scatter celebration for 3+ scatters (even if bonus doesn't trigger)
+        // Play scatter celebration for 3+ scatters ONLY if bonus is NOT triggered
+        // (if bonus IS triggered, the bonus trigger code handles the celebration)
+        const hasBonusState = !!response.bonusState;
         const finalGridForScatter = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
-        if (finalGridForScatter && symbols) {
+        if (!hasBonusState && finalGridForScatter && symbols) {
           const { count: scatCount, positions: scatPos } = countBonanzaScatters(finalGridForScatter, symbols);
           if (scatCount >= 3) {
             const scatterAnims = new Map<number, BonanzaCellAnimState>();
@@ -600,7 +602,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           const bs = response.bonusState as any;
           if (bs.isActive !== undefined) {
             const executeBonusAction = () => {
-              if (!isBonusActive && bs.freeSpinsRemaining > 0) {
+              // Use captured wasBonusActiveBeforeSpin instead of closure isBonusActive
+              // to avoid stale state when deferred after win animation
+              if (!wasBonusActiveBeforeSpin && bs.freeSpinsRemaining > 0) {
                 pendingBonusStateRef.current = bs;
                 const finalGrid = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
                 if (finalGrid && symbols) {
