@@ -45,9 +45,10 @@ type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
 interface BonanzaSlotGameProps {
   gameId?: string;
+  isMobile?: boolean;
 }
 
-export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGameProps) {
+export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false }: BonanzaSlotGameProps) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const { data: symbols, isLoading: symbolsLoading } = useSlotSymbols(gameId);
@@ -58,8 +59,17 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const { spin: serverSpin } = useServerSpin(gameId);
   const theme = getSlotTheme(gameId);
 
-  const SYMBOL_WIDTH = siteSettings?.bonanza_symbol_width ? parseInt(siteSettings.bonanza_symbol_width) : DEFAULT_SYMBOL_WIDTH;
-  const SYMBOL_HEIGHT = siteSettings?.bonanza_symbol_height ? parseInt(siteSettings.bonanza_symbol_height) : DEFAULT_SYMBOL_HEIGHT;
+  // On mobile, calculate symbol size to fill viewport width
+  const mobileSymbolWidth = useMemo(() => {
+    if (!isMobile || typeof window === 'undefined') return DEFAULT_SYMBOL_WIDTH;
+    const viewportWidth = window.innerWidth;
+    const totalGaps = (BONANZA_COLS + 1) * SYMBOL_GAP;
+    const padding = 8; // px-1 = 4px each side
+    return Math.floor((viewportWidth - totalGaps - padding) / BONANZA_COLS);
+  }, [isMobile]);
+
+  const SYMBOL_WIDTH = isMobile ? mobileSymbolWidth : (siteSettings?.bonanza_symbol_width ? parseInt(siteSettings.bonanza_symbol_width) : DEFAULT_SYMBOL_WIDTH);
+  const SYMBOL_HEIGHT = isMobile ? Math.floor(mobileSymbolWidth * 0.78) : (siteSettings?.bonanza_symbol_height ? parseInt(siteSettings.bonanza_symbol_height) : DEFAULT_SYMBOL_HEIGHT);
   const SYMBOL_SCALE = siteSettings?.bonanza_symbol_scale ? parseInt(siteSettings.bonanza_symbol_scale) : 100;
 
   const bombSymbolsMap = useMemo(() => {
@@ -830,10 +840,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
 
   const gridWidth = BONANZA_COLS * (SYMBOL_WIDTH + SYMBOL_GAP) + SYMBOL_GAP;
   const gridHeight = BONANZA_ROWS * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_GAP;
-  const totalLayoutWidth = gridWidth + 140 + 16; // grid + side panels + gap
+  const totalLayoutWidth = isMobile ? gridWidth : gridWidth + 140 + 16;
 
   return (
-    <div className="flex flex-col items-center gap-4 relative" style={{ width: totalLayoutWidth, maxWidth: "100%" }}>
+    <div className={cn("flex flex-col items-center relative", isMobile ? "gap-2 w-full" : "gap-4")} style={isMobile ? undefined : { width: totalLayoutWidth, maxWidth: "100%" }}>
       {/* Credits expired overlay */}
       <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !isBonusActive && !isSpinning && tumblePhase === 'idle'} />
       {/* Bonus overlays moved inside grid below */}
@@ -885,18 +895,20 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       )}
 
       {/* Logo + Side Panels + Grid layout */}
-      <div className="flex items-center gap-4">
-        {/* Side panels - left of grid, vertically centered */}
-        <div className="flex items-center">
-          <BonanzaSidePanels
-            bet={bet}
-            doubleChance={doubleChance}
-            onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
-            onBuyBonus={handleBuyBonus}
-            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive}
-            isBonusActive={isBonusActive}
-          />
-        </div>
+      <div className={cn("flex items-center", isMobile ? "flex-col w-full" : "gap-4")}>
+        {/* Side panels - left of grid on desktop, hidden on mobile (shown below) */}
+        {!isMobile && (
+          <div className="flex items-center">
+            <BonanzaSidePanels
+              bet={bet}
+              doubleChance={doubleChance}
+              onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
+              onBuyBonus={handleBuyBonus}
+              disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive}
+              isBonusActive={isBonusActive}
+            />
+          </div>
+        )}
 
         {/* Grid column */}
         <div className="flex flex-col items-center">
@@ -1023,22 +1035,37 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         </div>{/* end grid column */}
       </div>{/* end flex row */}
 
+      {/* MOBILE: Side panels (Buy Feature + Double Chance) below grid */}
+      {isMobile && (
+        <div className="w-full px-1">
+          <BonanzaSidePanels
+            bet={bet}
+            doubleChance={doubleChance}
+            onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
+            onBuyBonus={handleBuyBonus}
+            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive}
+            isBonusActive={isBonusActive}
+            horizontal
+          />
+        </div>
+      )}
+
       {/* Resterende spins — bonus only */}
       {isBonusActive && (
         <div className="w-full flex justify-center">
           <div className="flex items-baseline gap-2">
             <span
-              className="text-sm uppercase tracking-widest font-bold text-pink-400"
+              className="text-xs sm:text-sm uppercase tracking-widest font-bold text-pink-400"
               style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
             >
               Resterende spins
             </span>
             <AnimatedSpinCounter
               value={freeSpinsRemaining}
-              className="text-2xl font-black text-pink-300 tabular-nums"
+              className="text-xl sm:text-2xl font-black text-pink-300 tabular-nums"
             />
             <span
-              className="text-sm text-pink-500/60 font-bold"
+              className="text-xs sm:text-sm text-pink-500/60 font-bold"
               style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
             >
               / {totalFreeSpins}
@@ -1069,6 +1096,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           bonusLoaded={bonusLoaded}
           winAmount={winAmount}
           gameId={gameId}
+          isMobile={isMobile}
         />
       </div>
     </div>

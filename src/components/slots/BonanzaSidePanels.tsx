@@ -8,6 +8,7 @@ interface BonanzaSidePanelsProps {
   onBuyBonus: () => void;
   disabled?: boolean;
   isBonusActive?: boolean;
+  horizontal?: boolean;
 }
 
 export function BonanzaSidePanels({
@@ -17,12 +18,18 @@ export function BonanzaSidePanels({
   onBuyBonus,
   disabled,
   isBonusActive,
+  horizontal = false,
 }: BonanzaSidePanelsProps) {
   const buyBonusCost = bet * 100;
   const displayBet = doubleChance ? bet * 2 : bet;
 
   return (
-    <div className="flex flex-col shrink-0" style={{ width: 160, gap: 14, marginLeft: 8 }}>
+    <div className={cn(
+      "flex shrink-0",
+      horizontal
+        ? "flex-row gap-3 w-full"
+        : "flex-col gap-[14px] ml-2"
+    )} style={horizontal ? undefined : { width: 160 }}>
       {/* ── Buy Feature ── */}
       <button
         onClick={onBuyBonus}
@@ -31,6 +38,7 @@ export function BonanzaSidePanels({
           "relative transition-all duration-[180ms] cursor-pointer select-none",
           "hover:-translate-y-[2px] active:translate-y-[2px]",
           "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:active:translate-y-0",
+          horizontal && "flex-1",
         )}
         style={{
           borderRadius: 20,
@@ -89,6 +97,7 @@ export function BonanzaSidePanels({
           "relative transition-all duration-[180ms] cursor-pointer select-none",
           "hover:-translate-y-[2px] active:translate-y-[2px]",
           "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:active:translate-y-0",
+          horizontal && "flex-1",
         )}
         style={{
           borderRadius: 20,

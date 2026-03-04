@@ -18,6 +18,7 @@ import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSlotScale } from "@/hooks/useSlotScale";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { BonanzaSlotGame } from "@/components/slots/BonanzaSlotGame";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -33,6 +34,7 @@ export default function FedesvinBonanza() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
+  const isMobile = useIsMobile();
 
   useSlotSoundLoader(GAME_ID);
 
@@ -177,23 +179,39 @@ export default function FedesvinBonanza() {
         </Button>
       </div>
 
-      <div className="flex-1 flex items-center justify-center overflow-hidden">
-        <div
-          className="slot-viewport-container"
-          style={{
-            width: '1280px',
-            transform: `scale(${scale})`,
-          }}
-        >
-          <SlotPageLayout sidePanel={sidePanelContent}>
-            <BonanzaSlotGame gameId={GAME_ID} />
-          </SlotPageLayout>
+      {isMobile ? (
+        /* ── MOBILE: native width, no CSS transform scaling ── */
+        <div className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden">
+          <div className="w-full px-1">
+            <SlotPageLayout sidePanel={null}>
+              <BonanzaSlotGame gameId={GAME_ID} isMobile />
+            </SlotPageLayout>
+          </div>
+          <div className="flex flex-col items-center px-4 pb-4 pt-4">
+            <SlotGameSeoCta />
+          </div>
         </div>
-      </div>
-
-      <div className="xl:hidden flex flex-col items-center px-4 pb-4 pt-6">
-        <SlotGameSeoCta />
-      </div>
+      ) : (
+        /* ── DESKTOP: CSS transform scaling ── */
+        <>
+          <div className="flex-1 flex items-center justify-center overflow-hidden">
+            <div
+              className="slot-viewport-container"
+              style={{
+                width: '1280px',
+                transform: `scale(${scale})`,
+              }}
+            >
+              <SlotPageLayout sidePanel={sidePanelContent}>
+                <BonanzaSlotGame gameId={GAME_ID} />
+              </SlotPageLayout>
+            </div>
+          </div>
+          <div className="xl:hidden flex flex-col items-center px-4 pb-4 pt-6">
+            <SlotGameSeoCta />
+          </div>
+        </>
+      )}
     </div>
   );
 }
