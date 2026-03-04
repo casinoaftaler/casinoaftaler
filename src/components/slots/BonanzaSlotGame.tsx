@@ -34,7 +34,7 @@ import { BonanzaRetriggerOverlay } from "./BonanzaRetriggerOverlay";
 import { BonanzaBonusEndOverlay } from "./BonanzaBonusEndOverlay";
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
-import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
+import { BonanzaSidePanels } from "./BonanzaSidePanels";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
 const DEFAULT_SYMBOL_HEIGHT = 140;
@@ -67,6 +67,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   }, [bombSymbols]);
 
   const [bet, setBet] = useState(1);
+  const [doubleChance, setDoubleChance] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
   const [grid, setGrid] = useState<string[][] | null>(null);
   const [winAmount, setWinAmount] = useState(0);
