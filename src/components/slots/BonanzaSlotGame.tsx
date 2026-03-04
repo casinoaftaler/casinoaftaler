@@ -133,6 +133,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const pendingBonusStateRef = useRef<any>(null);
   const pendingBonusActionRef = useRef<(() => void) | null>(null);
   const [mobileChatOpen, setMobileChatOpen] = useState(false);
+  const [desktopChatOpen, setDesktopChatOpen] = useState(true);
+  const gridColumnRef = useRef<HTMLDivElement>(null);
 
   const spinLockRef = useRef(false);
   
