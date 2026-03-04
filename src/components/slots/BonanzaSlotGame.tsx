@@ -845,9 +845,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     } finally {
       setIsSpinning(false);
       setTumblePhase('idle');
-      if (!pendingBonusActionRef.current) spinLockRef.current = false;
+      if (!pendingBonusActionRef.current) {
+        spinLockRef.current = false;
+        // Don't reset isBuyingBonus here — it stays true until bonus ends
+      }
     }
-  }, [symbols, user, isSpinning, bet, isBonusActive, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, grid]);
+  }, [symbols, user, isSpinning, bet, isBonusActive, isBuyingBonus, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, grid]);
 
   // Spacebar to spin + prevent page scroll
   useEffect(() => {
@@ -935,7 +938,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
               doubleChance={doubleChance}
               onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
               onBuyBonus={handleBuyBonus}
-              disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive}
+              disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive || isBuyingBonus}
               isBonusActive={isBonusActive}
             />
           </div>
@@ -1062,7 +1065,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
             setRunningMultiplier(0);
             setBonusWinnings(0);
             setRunningWin(0);
-            
+            setIsBuyingBonus(false);
+            // Clear persisted bonus win from localStorage
+            try { localStorage.removeItem(bonusWinKey); } catch {}
             // Resume auto-spinning after bonus ends
             if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
               if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
@@ -1085,7 +1090,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
             doubleChance={doubleChance}
             onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
             onBuyBonus={handleBuyBonus}
-            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle'}
+            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBuyingBonus}
             isBonusActive={isBonusActive}
             horizontal
             compact
