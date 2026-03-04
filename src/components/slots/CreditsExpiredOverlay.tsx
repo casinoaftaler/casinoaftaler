@@ -117,6 +117,5 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
         </div>
       </ScrollArea>
     </div>
-    </div>
   );
 }
