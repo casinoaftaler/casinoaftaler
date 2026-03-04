@@ -36,6 +36,7 @@ import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPo
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
 import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
 import { BonanzaSidePanels } from "./BonanzaSidePanels";
+import { SlotChat } from "./SlotChat";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
 const DEFAULT_SYMBOL_HEIGHT = 140;
@@ -120,6 +121,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const showRetriggerRef = useRef(false);
   const pendingBonusStateRef = useRef<any>(null);
   const pendingBonusActionRef = useRef<(() => void) | null>(null);
+  const [mobileChatOpen, setMobileChatOpen] = useState(false);
 
   const spinLockRef = useRef(false);
   
@@ -1145,8 +1147,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       </div>
       </div>
         </div>{/* end grid column */}
-        {/* Invisible spacer to balance side panels on the right */}
-        {!isMobile && <div className="shrink-0" style={{ width: 160 }} />}
+        {/* Live chat panel — right side (desktop only) */}
+        {!isMobile && (
+          <div className="shrink-0 self-stretch flex items-center">
+            <SlotChat gameId={gameId} />
+          </div>
+        )}
       </div>{/* end flex row */}
 
       {/* MOBILE tumble bar is now rendered inside BonanzaControlBar */}
@@ -1220,6 +1226,28 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           tumbleVisible={isMobile && tumbleBarVisible && isBonusActive}
         />
       </div>
+
+      {/* Mobile chat toggle + drawer */}
+      {isMobile && (
+        <>
+          <div className="fixed bottom-20 right-3 z-40">
+            <SlotChat
+              gameId={gameId}
+              collapsed={!mobileChatOpen}
+              onToggle={() => setMobileChatOpen(prev => !prev)}
+            />
+          </div>
+          {mobileChatOpen && (
+            <div className="fixed inset-x-0 bottom-0 z-50 h-[60vh]">
+              <SlotChat
+                gameId={gameId}
+                onToggle={() => setMobileChatOpen(false)}
+                className="h-full w-full rounded-t-2xl rounded-b-none"
+              />
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }

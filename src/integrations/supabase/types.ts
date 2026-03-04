@@ -1749,6 +1749,33 @@ export type Database = {
         }
         Relationships: []
       }
+      slot_chat_messages: {
+        Row: {
+          created_at: string
+          game_id: string
+          id: string
+          message: string
+          message_type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          game_id?: string
+          id?: string
+          message: string
+          message_type?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          game_id?: string
+          id?: string
+          message?: string
+          message_type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       slot_game_results: {
         Row: {
           bet_amount: number
