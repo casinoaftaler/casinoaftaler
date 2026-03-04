@@ -133,9 +133,9 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
   const isMegaWin = isGigantisk;
   const isEpicWin = isGigantisk;
 
-  const pulseDuration = isGigantisk ? 7000 : 3500;
-  const counterDuration = isGigantisk ? 10000 : 4000;
-  const fadeDuration = isGigantisk ? 1500 : 800;
+  const pulseDuration = isGigantisk ? 3500 : 1750;
+  const counterDuration = isGigantisk ? 5000 : 2000;
+  const fadeDuration = isGigantisk ? 750 : 400;
   
   const displayAmount = useAnimatedCounter(showBigWin ? winAmount : 0, { 
     duration: counterDuration, 
