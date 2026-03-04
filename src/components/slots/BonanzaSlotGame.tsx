@@ -39,8 +39,7 @@ import { BonanzaSidePanels } from "./BonanzaSidePanels";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
 const DEFAULT_SYMBOL_HEIGHT = 140;
-const MOBILE_SYMBOL_GAP = 3;
-const DESKTOP_SYMBOL_GAP = 5;
+const SYMBOL_GAP = 5;
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
