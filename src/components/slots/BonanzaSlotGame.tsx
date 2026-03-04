@@ -73,6 +73,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   const [grid, setGrid] = useState<string[][] | null>(null);
   const [winAmount, setWinAmount] = useState(0);
   const [isWinAnimating, setIsWinAnimating] = useState(false);
+  const [currentSpinWin, setCurrentSpinWin] = useState(0);
   const [winningPositions, setWinningPositions] = useState<Set<number>>(new Set());
   const [totalMultiplier, setTotalMultiplier] = useState(0);
   const [tumblePhase, setTumblePhase] = useState<'idle' | 'spinning' | 'showing-wins' | 'tumbling'>('idle');
