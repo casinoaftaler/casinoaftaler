@@ -486,19 +486,36 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
         />
       )}
 
-      {/* Radial light burst */}
+      {/* Radial light burst - enhanced with rotating rays */}
       {showOverlay && (
         <div
           className={cn(
             "absolute inset-0 z-[999] pointer-events-none",
             isFadingOut && "opacity-0 transition-opacity"
           )}
-          style={{
-            background: `radial-gradient(ellipse at center, rgba(255,215,0,${0.08 + cfg.bgDarkness * 0.2}) 0%, transparent 65%)`,
-            animation: "win-radial-pulse 2s ease-in-out infinite",
-            transitionDuration: `${cfg.fadeMs}ms`,
-          }}
-        />
+          style={{ transitionDuration: `${cfg.fadeMs}ms` }}
+        >
+          {/* Core radial glow */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(ellipse at center, rgba(255,215,0,${0.12 + cfg.bgDarkness * 0.25}) 0%, rgba(255,180,0,${0.05 + cfg.bgDarkness * 0.1}) 35%, transparent 65%)`,
+              animation: "win-radial-pulse 1.5s ease-in-out infinite",
+            }}
+          />
+          {/* Rotating light rays */}
+          {isMegaPlus && (
+            <div
+              className="absolute"
+              style={{
+                top: "50%", left: "50%",
+                width: "200%", height: "200%",
+                background: `conic-gradient(from 0deg, transparent, rgba(255,215,0,0.06), transparent, rgba(255,215,0,0.04), transparent, rgba(255,215,0,0.06), transparent, rgba(255,215,0,0.04), transparent, rgba(255,215,0,0.06), transparent, rgba(255,215,0,0.04), transparent)`,
+                animation: "light-ray-rotate 8s linear infinite",
+              }}
+            />
+          )}
+        </div>
       )}
 
       {/* Lightning flashes */}
@@ -512,7 +529,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
         />
       )}
 
-      {/* Coin explosion */}
+      {/* Coin explosion (burst from center) */}
       {showOverlay && (
         <div
           className={cn(
@@ -540,6 +557,42 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
                 style={{
                   background: `radial-gradient(circle at 35% 30%, hsl(48,100%,85%), ${coin.color}, hsl(36,80%,25%))`,
                   boxShadow: `0 0 8px ${coin.color}, 0 0 16px ${coin.color}60, inset 0 -2px 4px rgba(0,0,0,0.3)`,
+                  border: "1px solid hsl(45,80%,70%)",
+                  animation: `coin-spin-3d ${coin.spinDuration}s linear infinite`,
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Coin rain (falling from top continuously) */}
+      {showOverlay && (
+        <div
+          className={cn(
+            "absolute inset-0 z-[1002] pointer-events-none overflow-hidden",
+            isFadingOut && "opacity-0 transition-opacity"
+          )}
+          style={{ transitionDuration: `${cfg.fadeMs}ms` }}
+        >
+          {rainCoins.map((coin) => (
+            <div
+              key={`rain-${coin.id}`}
+              className="absolute"
+              style={{
+                left: `${coin.x}%`,
+                top: "-20px",
+                width: `${coin.size}px`,
+                height: `${coin.size}px`,
+                ["--coin-rot" as string]: `${coin.rotation}deg`,
+                animation: `coin-rain-fall ${coin.duration}s linear ${coin.delay}s infinite`,
+              }}
+            >
+              <div
+                className="w-full h-full rounded-full"
+                style={{
+                  background: `radial-gradient(circle at 35% 30%, hsl(48,100%,85%), ${coin.color}, hsl(36,80%,25%))`,
+                  boxShadow: `0 0 6px ${coin.color}, 0 0 12px ${coin.color}40`,
                   border: "1px solid hsl(45,80%,70%)",
                   animation: `coin-spin-3d ${coin.spinDuration}s linear infinite`,
                 }}
@@ -597,6 +650,45 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
         </div>
       )}
 
+      {/* Floating sparkles (drift and respawn) */}
+      {showOverlay && (
+        <div
+          className={cn(
+            "absolute inset-0 z-[1003] pointer-events-none overflow-hidden",
+            isFadingOut && "opacity-0 transition-opacity"
+          )}
+          style={{ transitionDuration: `${cfg.fadeMs}ms` }}
+        >
+          {floatingSparkles.map((sp) => (
+            <div
+              key={`fsp-${sp.id}`}
+              className="absolute"
+              style={{
+                left: `${sp.x}%`,
+                top: `${sp.y}%`,
+                ["--drift-x1" as string]: `${sp.driftX1}px`,
+                ["--drift-y1" as string]: `${sp.driftY1}px`,
+                ["--drift-x2" as string]: `${sp.driftX2}px`,
+                ["--drift-y2" as string]: `${sp.driftY2}px`,
+                ["--drift-x3" as string]: `${sp.driftX3}px`,
+                ["--drift-y3" as string]: `${sp.driftY3}px`,
+                animation: `sparkle-drift ${sp.duration}s ease-in-out ${sp.delay}s infinite`,
+              }}
+            >
+              <div
+                style={{
+                  width: `${sp.size}px`,
+                  height: `${sp.size}px`,
+                  background: sp.color,
+                  borderRadius: "50%",
+                  boxShadow: `0 0 ${sp.size * 3}px ${sp.color}, 0 0 ${sp.size * 6}px ${sp.color}40`,
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Shockwave rings */}
       {showOverlay && (
         <div className="absolute inset-0 z-[1001] pointer-events-none">
@@ -623,6 +715,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
           className={cn(
             "absolute inset-0 flex flex-col items-center justify-center z-[1005] cursor-pointer",
             isFadingOut && "opacity-0 scale-75 transition-all",
+            impactShake && "win-impact-shake",
           )}
           style={{ transitionDuration: `${cfg.fadeMs}ms` }}
         >
@@ -641,7 +734,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
               </div>
             )}
 
-            {/* Win title */}
+            {/* Win title with pulsing glow */}
             <h2
               className={cn(
                 "font-black tracking-widest text-center select-none",
@@ -653,7 +746,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
                 backgroundSize: cfg.gradientSize,
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
-                animation: cfg.gradientSpeed,
+                animation: `${cfg.gradientSpeed}, win-text-glow-pulse 0.7s ease-in-out infinite`,
                 filter: cfg.glowFilter,
                 WebkitTextStrokeWidth: cfg.strokeWidth,
                 WebkitTextStrokeColor: "rgba(255,180,0,0.3)",
