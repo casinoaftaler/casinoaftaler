@@ -177,7 +177,7 @@ export default function FedesvinBonanza() {
   const sidePanelContent = null;
 
   return (
-    <div className="h-[calc(100dvh-4rem)] max-h-[calc(100dvh-4rem)] relative flex flex-col overflow-hidden">
+    <div className="h-[calc(100svh-4rem)] max-h-[calc(100svh-4rem)] relative flex flex-col overflow-hidden">
       <SEO
         title="Fedesvin Bonanza – Gratis Spilleautomat | Casinoaftaler"
         description="Spil Fedesvin Bonanza gratis hos Casinoaftaler. Tumble-mekanik, multiplier-bomber og free spins i candy-tema."
