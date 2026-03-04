@@ -190,7 +190,6 @@ export default function FedesvinBonanza() {
         </div>
       ) : (
         /* ── DESKTOP: CSS transform scaling ── */
-        <>
           <div className="flex-1 flex items-center justify-center overflow-hidden">
             <div
               className="slot-viewport-container"

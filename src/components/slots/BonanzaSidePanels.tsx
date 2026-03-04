@@ -223,6 +223,23 @@ export function BonanzaSidePanels({
           </span>
         </div>
       </button>
+
+      <AlertDialog open={showBuyConfirm} onOpenChange={setShowBuyConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Køb Bonus</AlertDialogTitle>
+            <AlertDialogDescription>
+              Er du sikker på at du vil købe bonus for {buyBonusCost} credits?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Nej</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { setShowBuyConfirm(false); onBuyBonus(); }}>
+              Ja
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
