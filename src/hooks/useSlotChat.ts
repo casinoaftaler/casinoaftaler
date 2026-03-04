@@ -306,15 +306,27 @@ export function useSlotChat(gameId: string) {
 
     if (error) return false;
 
-    // Insert a single system message
-    await supabase.from("slot_chat_messages").insert({
-      user_id: user.id,
-      game_id: gameId,
-      message: "Chatten er blevet ryddet af admin",
-      message_type: "system",
-    });
+    // Insert a single temporary system message (auto-remove after 5 sec)
+    const { data: inserted, error: insertError } = await supabase
+      .from("slot_chat_messages")
+      .insert({
+        user_id: user.id,
+        game_id: gameId,
+        message: "Chatten er blevet ryddet af admin",
+        message_type: "system",
+      })
+      .select("id")
+      .single();
 
-    // Clear local state - realtime will pick up the new system message
+    if (insertError) return false;
+
+    if (inserted?.id) {
+      setTimeout(async () => {
+        await supabase.from("slot_chat_messages").delete().eq("id", inserted.id);
+      }, 5000);
+    }
+
+    // Clear local state - realtime will pick up the temporary system message
     setMessages([]);
     return true;
   }, [gameId]);

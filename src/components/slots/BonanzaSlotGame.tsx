@@ -1043,10 +1043,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       )}
 
       {/* Logo + Side Panels + Grid layout */}
-      <div className={cn("relative", isMobile ? "flex flex-col w-full" : "flex items-center gap-4 justify-center")}>
-        {/* Side panels - left of grid on desktop, hidden on mobile (shown below) */}
+      <div className={cn("relative", isMobile ? "flex flex-col w-full" : "w-fit mx-auto")}>
+        {/* Side panels - positioned outside grid without affecting centering */}
         {!isMobile && (
-          <div className="flex items-center">
+          <div className="absolute right-full top-1/2 -translate-y-1/2 mr-4">
             <BonanzaSidePanels
               bet={bet}
               doubleChance={doubleChance}
@@ -1204,7 +1204,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           <div
             className="fixed top-16 overflow-hidden z-30"
             style={{
-              right: 16,
+              right: 64,
               height: desktopChatHeight > 0 ? `${desktopChatHeight}px` : 'calc(100vh - 5rem)',
             }}
           >
