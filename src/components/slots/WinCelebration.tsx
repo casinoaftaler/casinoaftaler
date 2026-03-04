@@ -23,6 +23,17 @@ interface CoinParticle {
   spinDuration: number;
 }
 
+interface RainCoin {
+  id: number;
+  x: number;
+  size: number;
+  delay: number;
+  duration: number;
+  rotation: number;
+  color: string;
+  spinDuration: number;
+}
+
 interface SparkParticle {
   id: number;
   x: number;
@@ -32,6 +43,22 @@ interface SparkParticle {
   delay: number;
   duration: number;
   type: "sparkle" | "streak" | "dust" | "burst";
+}
+
+interface FloatingSparkle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  delay: number;
+  duration: number;
+  driftX1: number;
+  driftY1: number;
+  driftX2: number;
+  driftY2: number;
+  driftX3: number;
+  driftY3: number;
+  color: string;
 }
 
 type WinTier = "nice" | "big" | "mega" | "supermega" | "legendary";
