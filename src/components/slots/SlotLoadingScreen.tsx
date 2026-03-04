@@ -95,7 +95,7 @@ export function SlotLoadingScreen({ onComplete, gameId = "book-of-fedesvin" }: S
 
   const bgKey = gameId === "book-of-fedesvin" ? "slot_background_image"
     : `${gameId.replace(/-/g, "_")}_background_image`;
-  const gameDefaultBackground = isOlympus ? gatesSlotBackground : isWizard ? riseSlotBackground : defaultSlotBackground;
+  const gameDefaultBackground = isOlympus ? gatesSlotBackground : isWizard ? riseSlotBackground : isBonanza ? null : defaultSlotBackground;
   const backgroundImage = siteSettings?.[bgKey] || gameDefaultBackground;
 
   const frameKey = gameId === "book-of-fedesvin" ? "slot_machine_frame_image"
