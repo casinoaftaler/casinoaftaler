@@ -492,7 +492,7 @@
 /* Viewport scaling container for slot machine */
 .slot-viewport-container {
   will-change: transform;
-  transform-origin: top center;
+  transform-origin: center center;
   transition: transform 0.15s ease-out;
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
