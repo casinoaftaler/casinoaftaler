@@ -272,25 +272,31 @@ export function useSlotChat(gameId: string) {
     return !error;
   }, [messages]);
 
-  // Clear all messages in chat (admin)
+  // Clear all messages in chat (admin) - delete all, then insert one system message
   const clearChat = useCallback(async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return false;
 
-    const msgIds = messages.filter(m => m.message_type !== "deleted").map(m => m.id);
-    if (msgIds.length === 0) return true;
-
+    // Delete all messages for this game
     const { error } = await supabase
       .from("slot_chat_messages")
-      .update({ message: "Chatten er blevet ryddet af admin", message_type: "deleted" } as any)
-      .eq("game_id", gameId)
-      .in("id", msgIds);
+      .delete()
+      .eq("game_id", gameId);
 
-    if (!error) {
-      setMessages(prev => prev.map(m => msgIds.includes(m.id) ? { ...m, message: "Chatten er blevet ryddet af admin", message_type: "deleted" } : m));
-    }
-    return !error;
-  }, [messages, gameId]);
+    if (error) return false;
+
+    // Insert a single system message
+    await supabase.from("slot_chat_messages").insert({
+      user_id: user.id,
+      game_id: gameId,
+      message: "Chatten er blevet ryddet af admin",
+      message_type: "system",
+    });
+
+    // Clear local state - realtime will pick up the new system message
+    setMessages([]);
+    return true;
+  }, [gameId]);
 
   // Delete message (admin) - replace with "Beskeden er slettet"
   const deleteMessage = useCallback(async (messageId: string) => {
