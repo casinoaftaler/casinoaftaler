@@ -235,7 +235,7 @@ export default function FedesvinBonanza() {
         <div
           className="fixed right-0 z-30 overflow-hidden"
           style={{
-            height: `${1120 * scale}px`,
+            height: `${1120 * scale - 200}px`,
             top: '50%',
             transform: 'translateY(-50%)',
             marginTop: '2rem', /* offset for header */
