@@ -356,10 +356,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       const sorted = [...lastStepWithBombs.multiplierBombs].sort((a, b) => a.position - b.position);
       const explodedPositions = new Map<number, BonanzaCellAnimState>();
 
-      // Calculate target position for flying multipliers (center-top of grid = tumble bar mult area)
+      // Calculate target position for flying multipliers
       const gridEl = gridContainerRef.current;
       const targetX = gridEl ? gridEl.offsetWidth / 2 : 300;
-      const targetY = 20; // near top of grid where bar is
+      // On mobile the tumble bar is BELOW the grid, so fly downward; on desktop it's at the top
+      const gridHeight = gridEl ? gridEl.offsetHeight : 600;
+      const targetY = isMobile ? gridHeight + 60 : 20;
 
       for (const bomb of sorted) {
         const animState = bomb.activated ? 'bomb-activate' : 'bomb-fizzle';

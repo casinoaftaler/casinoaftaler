@@ -31,6 +31,7 @@ interface BonanzaColumnProps {
   symbolHeight?: number;
   symbolScale?: number;
   isBonusActive?: boolean;
+  isMobile?: boolean;
 }
 
 export const BonanzaColumn = React.memo(function BonanzaColumn({
