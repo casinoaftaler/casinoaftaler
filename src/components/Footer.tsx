@@ -513,7 +513,7 @@ export function Footer() {
             <a
               href="https://www.ingenco2.dk/certificate/7836/da"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="inline-block"
             >
               <img
