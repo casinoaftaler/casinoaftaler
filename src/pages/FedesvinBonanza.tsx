@@ -214,7 +214,12 @@ export default function FedesvinBonanza() {
               className="slot-viewport-container"
               style={{
                 width: '1280px',
+                height: '1120px',
                 transform: `scale(${scale})`,
+                marginTop: `${-(1120 * (1 - scale)) / 2}px`,
+                marginBottom: `${-(1120 * (1 - scale)) / 2}px`,
+                marginLeft: `${-(1280 * (1 - scale)) / 2}px`,
+                marginRight: `${-(1280 * (1 - scale)) / 2}px`,
               }}
             >
               <SlotPageLayout sidePanel={sidePanelContent}>
