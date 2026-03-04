@@ -81,7 +81,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const [doubleChance, setDoubleChance] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
   const [grid, setGrid] = useState<string[][] | null>(null);
-  const [winAmount, setWinAmount] = useState(0);
+  const [winAmount, setWinAmountRaw] = useState(0);
+  const [isBuyingBonus, setIsBuyingBonus] = useState(false);
   const [isWinAnimating, setIsWinAnimating] = useState(false);
   const [currentSpinWin, setCurrentSpinWin] = useState(0);
   const [winningPositions, setWinningPositions] = useState<Set<number>>(new Set());
