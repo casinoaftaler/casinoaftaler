@@ -239,7 +239,7 @@ export function useSlotChat(gameId: string) {
     }
 
     return !error;
-  }, [gameId]);
+  }, [gameId, fetchProfile]);
 
   // Send system message (for bonus buy, big wins, etc.)
   const sendSystemMessage = useCallback(async (text: string, type: string = "system") => {
