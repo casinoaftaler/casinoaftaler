@@ -1043,18 +1043,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         </div>{/* end grid column */}
       </div>{/* end flex row */}
 
-      {/* MOBILE: Tumble win bar below grid */}
-      {isMobile && tumbleBarVisible && isBonusActive && (
-        <div className="w-full flex justify-center py-1">
-          <BonanzaTumbleWinBar
-            runningWin={runningWin}
-            runningMultiplier={runningMultiplier}
-            collisionPhase={collisionPhase}
-            visible={true}
-            inline
-          />
-        </div>
-      )}
+      {/* MOBILE tumble bar is now rendered inside BonanzaControlBar */}
 
       {/* MOBILE: Side panels (Buy Feature + Double Chance) below grid — hidden during bonus */}
       {isMobile && !isBonusActive && (
@@ -1119,6 +1108,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           winAmount={winAmount}
           gameId={gameId}
           isMobile={isMobile}
+          tumbleRunningWin={runningWin}
+          tumbleRunningMultiplier={runningMultiplier}
+          tumbleCollisionPhase={collisionPhase}
+          tumbleVisible={isMobile && tumbleBarVisible && isBonusActive}
         />
       </div>
     </div>
