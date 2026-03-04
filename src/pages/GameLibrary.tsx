@@ -19,7 +19,7 @@ import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Clock, Rocket } from "lucide-react";
 import spillehalHero from "@/assets/community/spillehal-hero.jpg";
-import slotIntroImage from "@/assets/slots/slot-intro-screen.jpg";
+import bookOfFedesvinPreview from "@/assets/slots/book-of-fedesvin-preview.jpg";
 import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
 import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
@@ -32,7 +32,7 @@ const FEATURED_SLOTS = [
     id: "book-of-fedesvin",
     title: "Book of Fedesvin",
     description: "Udforsk de gamle egyptiske skatte med expanding symbols og free spins. Vores mest populære maskine.",
-    image: slotIntroImage,
+    image: bookOfFedesvinPreview,
     href: "/community/slots/book-of-fedesvin",
     badge: "🔥 POPULÆR",
     priority: "primary" as const,
