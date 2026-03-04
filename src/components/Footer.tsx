@@ -514,7 +514,6 @@ export function Footer() {
               href="https://www.ingenco2.dk/certificate/7836/da"
               target="_blank"
               rel="nofollow noopener noreferrer"
-              rel="noopener noreferrer"
               className="inline-block"
             >
               <img
