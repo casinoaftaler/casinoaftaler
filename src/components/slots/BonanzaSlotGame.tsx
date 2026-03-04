@@ -522,7 +522,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       if (result.tumbleSteps) {
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
-        setWinAmount(totalWin);
+        // In base game, set final total; in bonus, winAmount is already accumulated incrementally
+        if (!isBonusActiveRef.current) {
+          setWinAmount(totalWin);
+        }
 
         if (totalWin > 0) {
           setIsWinAnimating(true);
@@ -748,6 +751,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       if (result.tumbleSteps) {
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
+        // Buy bonus always starts fresh, so set directly
         setWinAmount(totalWin);
       }
 
