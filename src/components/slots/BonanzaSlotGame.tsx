@@ -876,18 +876,16 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       {/* Logo + Side Panels + Grid layout */}
       <div className="flex items-center gap-4">
         {/* Side panels - left of grid, vertically centered */}
-        {!isBonusActive && (
-          <div className="flex items-center">
-            <BonanzaSidePanels
-              bet={bet}
-              doubleChance={doubleChance}
-              onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
-              onBuyBonus={handleBuyBonus}
-              disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle'}
-              isBonusActive={isBonusActive}
-            />
-          </div>
-        )}
+        <div className="flex items-center">
+          <BonanzaSidePanels
+            bet={bet}
+            doubleChance={doubleChance}
+            onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
+            onBuyBonus={handleBuyBonus}
+            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive}
+            isBonusActive={isBonusActive}
+          />
+        </div>
 
         {/* Grid column */}
         <div className="flex flex-col items-center">
