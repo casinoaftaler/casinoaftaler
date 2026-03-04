@@ -37,6 +37,7 @@ import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar"
 import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
 import { BonanzaSidePanels } from "./BonanzaSidePanels";
 import { SlotChat } from "./SlotChat";
+import { useSlotChat } from "@/hooks/useSlotChat";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
 const DEFAULT_SYMBOL_HEIGHT = 140;
