@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Infinity, Zap, Square } from "lucide-react";
+import { Infinity, RotateCw, Square } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import type { SlotTheme } from "@/lib/slotTheme";
@@ -15,6 +15,8 @@ interface AutoSpinPopoverProps {
   autoSpinsRemaining: number | null;
   disabled?: boolean;
   theme: SlotTheme;
+  /** Optional custom trigger element. Receives ref + popover props. */
+  renderTrigger?: (props: { onClick?: () => void; disabled?: boolean; ref?: React.Ref<HTMLButtonElement> }) => React.ReactNode;
 }
 
 const counts: AutoSpinCount[] = [10, 25, 50, 100, "infinite"];
@@ -27,6 +29,7 @@ export function AutoSpinPopover({
   autoSpinsRemaining,
   disabled,
   theme,
+  renderTrigger,
 }: AutoSpinPopoverProps) {
   const [open, setOpen] = useState(false);
 
@@ -36,6 +39,9 @@ export function AutoSpinPopover({
   };
 
   if (isAutoSpinning) {
+    if (renderTrigger) {
+      return <>{renderTrigger({ onClick: onToggle })}</>;
+    }
     return (
       <Button
         variant="ghost"
@@ -48,24 +54,30 @@ export function AutoSpinPopover({
     );
   }
 
+  const defaultTrigger = (
+    <Button
+      variant="ghost"
+      size="icon"
+      className={cn(
+        "h-10 w-10 rounded-lg border",
+        theme.autoSpinBtnBg,
+        theme.autoSpinBtnBorder,
+        theme.autoSpinBtnText,
+        theme.autoSpinBtnHoverBg,
+        theme.autoSpinBtnHoverText
+      )}
+      disabled={disabled}
+    >
+      <RotateCw className="h-4 w-4" />
+    </Button>
+  );
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className={cn(
-            "h-10 w-10 rounded-lg border",
-            theme.autoSpinBtnBg,
-            theme.autoSpinBtnBorder,
-            theme.autoSpinBtnText,
-            theme.autoSpinBtnHoverBg,
-            theme.autoSpinBtnHoverText
-          )}
-          disabled={disabled}
-        >
-          <Zap className="h-4 w-4" />
-        </Button>
+        {renderTrigger
+          ? renderTrigger({ disabled })
+          : defaultTrigger}
       </PopoverTrigger>
       <PopoverContent
         className={cn("w-52 p-3 backdrop-blur-md", theme.autoSpinPopoverBg, theme.autoSpinPopoverBorder)}
