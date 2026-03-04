@@ -1011,6 +1011,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         />
       </div>
       </div>
+        </div>{/* end grid column */}
+      </div>{/* end flex row */}
 
       {/* Resterende spins — bonus only */}
       {isBonusActive && (
