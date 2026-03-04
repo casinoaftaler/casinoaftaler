@@ -18,6 +18,7 @@ import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSlotScale } from "@/hooks/useSlotScale";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { BonanzaSlotGame } from "@/components/slots/BonanzaSlotGame";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
