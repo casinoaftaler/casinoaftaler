@@ -179,23 +179,39 @@ export default function FedesvinBonanza() {
         </Button>
       </div>
 
-      <div className="flex-1 flex items-center justify-center overflow-hidden">
-        <div
-          className="slot-viewport-container"
-          style={{
-            width: '1280px',
-            transform: `scale(${scale})`,
-          }}
-        >
-          <SlotPageLayout sidePanel={sidePanelContent}>
-            <BonanzaSlotGame gameId={GAME_ID} />
-          </SlotPageLayout>
+      {isMobile ? (
+        /* ── MOBILE: native width, no CSS transform scaling ── */
+        <div className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden">
+          <div className="w-full px-1">
+            <SlotPageLayout sidePanel={null}>
+              <BonanzaSlotGame gameId={GAME_ID} isMobile />
+            </SlotPageLayout>
+          </div>
+          <div className="flex flex-col items-center px-4 pb-4 pt-4">
+            <SlotGameSeoCta />
+          </div>
         </div>
-      </div>
-
-      <div className="xl:hidden flex flex-col items-center px-4 pb-4 pt-6">
-        <SlotGameSeoCta />
-      </div>
+      ) : (
+        /* ── DESKTOP: CSS transform scaling ── */
+        <>
+          <div className="flex-1 flex items-center justify-center overflow-hidden">
+            <div
+              className="slot-viewport-container"
+              style={{
+                width: '1280px',
+                transform: `scale(${scale})`,
+              }}
+            >
+              <SlotPageLayout sidePanel={sidePanelContent}>
+                <BonanzaSlotGame gameId={GAME_ID} />
+              </SlotPageLayout>
+            </div>
+          </div>
+          <div className="xl:hidden flex flex-col items-center px-4 pb-4 pt-6">
+            <SlotGameSeoCta />
+          </div>
+        </>
+      )}
     </div>
   );
 }
