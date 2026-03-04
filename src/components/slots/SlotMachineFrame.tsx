@@ -51,6 +51,8 @@ export function SlotMachineFrame({
   const handleImageLoad = useCallback(() => setImageLoaded(true), []);
   const handleImageError = useCallback(() => setImageError(true), []);
 
+  const isBonanza = gameId === "fedesvin-bonanza";
+
   return (
     <div className="relative" style={{ overflow: "visible" }}>
       {hasFrame && (
@@ -69,8 +71,19 @@ export function SlotMachineFrame({
         </div>
       )}
 
+      {/* Candy stripe border for Bonanza */}
+      {isBonanza && (
+        <div
+          className="absolute pointer-events-none z-10 bonanza-candy-stripe-border"
+          style={{
+            inset: "-8px",
+            borderRadius: "1rem",
+          }}
+        />
+      )}
+
       <div className="relative">
-        {(!hasFrame || !imageLoaded) && (
+        {(!hasFrame || !imageLoaded) && !isBonanza && (
           <>
             <div className={cn("absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4 rounded-tl-lg", getSlotTheme(gameId).frameBorderColor)} />
             <div className={cn("absolute -top-3 -right-3 w-8 h-8 border-t-4 border-r-4 rounded-tr-lg", getSlotTheme(gameId).frameBorderColor)} />
