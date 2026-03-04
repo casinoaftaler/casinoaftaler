@@ -47,51 +47,76 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
 
   return (
     <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm rounded-xl">
-      <div className="max-w-sm mx-4 text-center space-y-4 bg-gradient-to-b from-card/95 to-card border border-primary/20 rounded-2xl p-8 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
-        <div className="flex justify-center">
-          <div className="h-16 w-16 rounded-full bg-primary/15 flex items-center justify-center">
-            <CreditCoin size="lg" />
+      <ScrollArea className="max-h-[90vh] w-full flex justify-center">
+        <div className="max-w-sm mx-auto px-4 py-6 text-center space-y-4 bg-gradient-to-b from-card/95 to-card border border-primary/20 rounded-2xl p-6 shadow-[0_0_40px_rgba(0,0,0,0.5)]">
+          <div className="flex justify-center">
+            <div className="h-14 w-14 rounded-full bg-primary/15 flex items-center justify-center">
+              <CreditCoin size="lg" />
+            </div>
+          </div>
+
+          <h3 className="text-lg font-bold text-foreground">
+            Dine credits er opbrugt
+          </h3>
+
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Kom tilbage i morgen for at vinde præmier og komme på leaderboardet!
+          </p>
+
+          <div className="flex items-center justify-center gap-2 text-primary">
+            <Clock className="h-3.5 w-3.5" />
+            <span className="text-xs font-medium">Nye credits om</span>
+          </div>
+
+          <div className="flex items-center justify-center gap-2">
+            {[
+              { value: pad(timeLeft.hours), label: "timer" },
+              { value: pad(timeLeft.minutes), label: "min" },
+              { value: pad(timeLeft.seconds), label: "sek" },
+            ].map((unit, i) => (
+              <div key={unit.label} className="flex items-center gap-2">
+                {i > 0 && <span className="text-lg font-bold text-primary/50">:</span>}
+                <div className="flex flex-col items-center">
+                  <span className="text-xl font-black tabular-nums text-primary">
+                    {unit.value}
+                  </span>
+                  <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                    {unit.label}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Casino promos */}
+          <div className="border-t border-border/30 pt-3 space-y-2">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              🎰 Spil for rigtige penge
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {CASINO_PROMOS.map((casino) => (
+                <Link
+                  key={casino.slug}
+                  to={`/anmeldelse/${casino.slug}`}
+                  className={`flex items-center justify-between gap-1.5 rounded-lg bg-gradient-to-r ${casino.color} px-3 py-2.5 text-white transition-transform hover:scale-[1.03] active:scale-95`}
+                >
+                  <div className="text-left min-w-0">
+                    <div className="text-xs font-bold truncate">{casino.name}</div>
+                    <div className="text-[10px] opacity-80">{casino.bonus}</div>
+                  </div>
+                  <ExternalLink className="h-3 w-3 shrink-0 opacity-70" />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground/70 pt-1">
+            <Sparkles className="h-3 w-3" />
+            <span>Credits nulstilles ved midnat (dansk tid)</span>
           </div>
         </div>
-
-        <h3 className="text-xl font-bold text-foreground">
-          Dine credits er opbrugt
-        </h3>
-
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          Kom tilbage i morgen for at få muligheden for at vinde præmier og komme på leaderboardet!
-        </p>
-
-        <div className="flex items-center justify-center gap-2 text-primary">
-          <Clock className="h-4 w-4" />
-          <span className="text-sm font-medium">Nye credits om</span>
-        </div>
-
-        <div className="flex items-center justify-center gap-2">
-          {[
-            { value: pad(timeLeft.hours), label: "timer" },
-            { value: pad(timeLeft.minutes), label: "min" },
-            { value: pad(timeLeft.seconds), label: "sek" },
-          ].map((unit, i) => (
-            <div key={unit.label} className="flex items-center gap-2">
-              {i > 0 && <span className="text-xl font-bold text-primary/50">:</span>}
-              <div className="flex flex-col items-center">
-                <span className="text-2xl font-black tabular-nums text-primary">
-                  {unit.value}
-                </span>
-                <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                  {unit.label}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground/70 pt-2">
-          <Sparkles className="h-3 w-3" />
-          <span>Credits nulstilles ved midnat (dansk tid)</span>
-        </div>
-      </div>
+      </ScrollArea>
+    </div>
     </div>
   );
 }
