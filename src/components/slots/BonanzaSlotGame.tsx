@@ -477,7 +477,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     let shouldWaitForWinAnimation = false;
 
     try {
-      const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current);
+      const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current, undefined, !isBonusSpin && doubleChance, false);
       const totalDropOffTime =
         DROP_OFF_DURATION +
         (BONANZA_COLS - 1) * STAGGER_MS +
