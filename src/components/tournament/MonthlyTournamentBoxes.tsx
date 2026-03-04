@@ -109,10 +109,12 @@ function LeaderboardRow({ entry, rank, isCurrentUser, category }: {
       isCurrentUser && "ring-1 ring-primary/50 bg-primary/5"
     )}>
       <RankBadge rank={rank} />
-      <Avatar className={cn("h-6 w-6 shrink-0", rank <= 3 && "ring-1 ring-offset-1 ring-offset-background", rank === 1 && "ring-amber-400", rank === 2 && "ring-gray-400", rank === 3 && "ring-amber-600")}>
-        <AvatarImage src={entry.avatar_url} />
-        <AvatarFallback className="text-[10px]">{(entry.display_name || "A").charAt(0).toUpperCase()}</AvatarFallback>
-      </Avatar>
+      <UserProfileLink
+        userId={entry.user_id}
+        displayName={entry.display_name}
+        avatarUrl={entry.avatar_url}
+        avatarClassName={cn("h-6 w-6 shrink-0", rank <= 3 && "ring-1 ring-offset-1 ring-offset-background", rank === 1 && "ring-amber-400", rank === 2 && "ring-gray-400", rank === 3 && "ring-amber-600")}
+      />
       <span className={cn("text-xs font-medium truncate flex-1 min-w-0", rank <= 3 ? "text-foreground" : "text-muted-foreground")}>
         {entry.display_name || "Anonym"}
       </span>
