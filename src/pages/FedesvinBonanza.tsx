@@ -230,33 +230,42 @@ export default function FedesvinBonanza() {
           </div>
       )}
 
-      {/* Desktop chat — OUTSIDE the scaled container, pinned to right edge, matching slot height */}
-      {!isMobile && loadingPhase === 'ready' && user && (
-        <div
-          className="fixed right-0 z-30 overflow-hidden"
-          style={{
-            height: `${1120 * scale - 200}px`,
-            top: '50%',
-            transform: 'translateY(-50%)',
-            marginTop: '2rem', /* offset for header */
-          }}
-        >
-          {desktopChatOpen ? (
-            <SlotChat
-              gameId={GAME_ID}
-              className="h-full"
-              onToggle={() => setDesktopChatOpen(false)}
-            />
-          ) : (
-            <SlotChat
-              gameId={GAME_ID}
-              className="h-full"
-              collapsed
-              onToggle={() => setDesktopChatOpen(true)}
-            />
-          )}
-        </div>
-      )}
+      {/* Desktop chat — OUTSIDE the scaled container, matching slot vertical position */}
+      {!isMobile && loadingPhase === 'ready' && user && (() => {
+        const scaledHeight = 1120 * scale;
+        const chatHeight = scaledHeight - 200;
+        // The slot container is vertically centered in the area below the 4rem header
+        // So the slot's top edge is at: headerHeight + (availableHeight - scaledHeight) / 2
+        // We want chat centered the same way, but 100px shorter on each side
+        const headerPx = 64; // 4rem
+        const availableHeight = typeof window !== 'undefined' ? window.innerHeight - headerPx : 800;
+        const slotTop = headerPx + (availableHeight - scaledHeight) / 2;
+        const chatTop = slotTop + 100; // 100px from slot top
+        return (
+          <div
+            className="fixed right-0 z-30 overflow-hidden"
+            style={{
+              height: `${Math.max(chatHeight, 300)}px`,
+              top: `${chatTop}px`,
+            }}
+          >
+            {desktopChatOpen ? (
+              <SlotChat
+                gameId={GAME_ID}
+                className="h-full"
+                onToggle={() => setDesktopChatOpen(false)}
+              />
+            ) : (
+              <SlotChat
+                gameId={GAME_ID}
+                className="h-full"
+                collapsed
+                onToggle={() => setDesktopChatOpen(true)}
+              />
+            )}
+          </div>
+        );
+      })()}
     </div>
   );
 }
