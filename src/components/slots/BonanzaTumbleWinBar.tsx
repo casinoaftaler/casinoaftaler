@@ -54,17 +54,17 @@ export function BonanzaTumbleWinBar({
     )}>
       <div
         className={cn(
-          "flex items-center gap-4 px-10 py-3 rounded-full",
+          "flex items-center gap-3 px-6 py-1.5 rounded-full",
           "bg-gradient-to-r from-fuchsia-700/90 via-pink-600/90 to-fuchsia-700/90",
-          "border-2 border-pink-400/60",
-          "shadow-[0_0_20px_rgba(236,72,153,0.5),0_4px_16px_rgba(0,0,0,0.4)]",
-          "min-w-[280px] justify-center"
+          "border border-pink-400/60",
+          "shadow-[0_0_12px_rgba(236,72,153,0.4),0_2px_8px_rgba(0,0,0,0.4)]",
+          inline ? "min-w-[200px] justify-center" : "min-w-[280px] justify-center"
         )}
       >
         {collisionPhase === 'resolved' || showResult ? (
           <div className="bonanza-collide-flash flex flex-col items-center">
-            <span className="text-[10px] uppercase tracking-widest text-pink-200/80 font-bold">Tumble Win</span>
-            <span className="text-3xl font-black text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.6)] tabular-nums">
+            <span className={cn("uppercase tracking-widest font-bold", inline ? "text-[8px] text-pink-200/80" : "text-[10px] text-pink-200/80")}>Tumble Win</span>
+            <span className={cn("font-black text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.6)] tabular-nums", inline ? "text-xl" : "text-3xl")}>
               {finalWin.toFixed(2)}
             </span>
           </div>
@@ -74,8 +74,8 @@ export function BonanzaTumbleWinBar({
               "flex flex-col items-center",
               collisionPhase === 'colliding' && "bonanza-collide-left"
             )}>
-              <span className="text-[10px] uppercase tracking-widest text-pink-200/80 font-bold">Tumble Win</span>
-              <span className="text-2xl font-black text-white tabular-nums drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
+              <span className={cn("uppercase tracking-widest font-bold", inline ? "text-[8px] text-pink-200/80" : "text-[10px] text-pink-200/80")}>Tumble Win</span>
+              <span className={cn("font-black text-white tabular-nums drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]", inline ? "text-lg" : "text-2xl")}>
                 {runningWin.toFixed(2)}
               </span>
             </div>
@@ -87,8 +87,8 @@ export function BonanzaTumbleWinBar({
                 multPop && "bonanza-mult-pop"
               )}
             >
-              <span className="text-[10px] uppercase tracking-widest text-yellow-200/80 font-bold">Multi</span>
-              <span className="text-2xl font-black text-yellow-300 tabular-nums drop-shadow-[0_0_10px_rgba(250,204,21,0.6)]">
+              <span className={cn("uppercase tracking-widest font-bold", inline ? "text-[8px] text-yellow-200/80" : "text-[10px] text-yellow-200/80")}>Multi</span>
+              <span className={cn("font-black text-yellow-300 tabular-nums drop-shadow-[0_0_10px_rgba(250,204,21,0.6)]", inline ? "text-lg" : "text-2xl")}>
                 x{runningMultiplier}
               </span>
             </div>
