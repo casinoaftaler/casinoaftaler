@@ -15,6 +15,7 @@ const formatPayout = (multiplier: number, bet: number): string => {
 interface BonanzaPayTableProps {
   gameId: string;
   bet?: number;
+  className?: string;
 }
 
 function SymbolCard({ symbol, bet }: { symbol: any; bet: number }) {
@@ -45,7 +46,7 @@ function SymbolCard({ symbol, bet }: { symbol: any; bet: number }) {
   );
 }
 
-export function BonanzaPayTable({ gameId, bet = 1 }: BonanzaPayTableProps) {
+export function BonanzaPayTable({ gameId, bet = 1, className }: BonanzaPayTableProps) {
   const { data: symbols } = useSlotSymbols(gameId);
 
   const premiumSymbols = symbols?.filter(s => s.rarity === 'premium') || [];
@@ -62,7 +63,8 @@ export function BonanzaPayTable({ gameId, bet = 1 }: BonanzaPayTableProps) {
             "border-2 border-white/15",
             "text-white/70",
             "hover:bg-white/10 hover:border-white/30 hover:text-white",
-            "transition-all duration-150"
+            "transition-all duration-150",
+            className
           )}
         >
           <span className="text-base font-black" style={{ fontFamily: "serif", fontStyle: "italic" }}>i</span>

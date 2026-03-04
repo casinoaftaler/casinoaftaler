@@ -140,12 +140,12 @@ export function BonanzaControlBar({
     return (
       <div className="w-full flex flex-col items-center gap-2 py-2">
         {/* ─── Spin row: [-] [SPIN+Autoplay] [+] ─── */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-5">
           {/* Minus button */}
           <button
             className={cn(
-              "w-11 h-11 rounded-full flex items-center justify-center",
-              "bg-black/30 backdrop-blur-sm border-2 border-white/15 text-white/70",
+              "w-14 h-14 rounded-full flex items-center justify-center",
+              "bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white/80",
               "hover:bg-white/10 hover:border-white/30 hover:text-white",
               "active:scale-90 transition-all duration-150",
               "disabled:opacity-25 disabled:cursor-not-allowed"
@@ -153,7 +153,7 @@ export function BonanzaControlBar({
             onClick={() => onBetChange(Math.max(minBet, bet - 1))}
             disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
           >
-            <Minus className="h-5 w-5 text-white" />
+            <Minus className="h-6 w-6 text-white" />
           </button>
 
           {/* Spin + Autoplay */}
@@ -161,7 +161,7 @@ export function BonanzaControlBar({
             <button
               className={cn(
                 "relative rounded-full flex items-center justify-center",
-                "w-[72px] h-[72px]",
+                "w-[84px] h-[84px]",
                 "bg-black/25 backdrop-blur-sm border-[3px] border-white/20",
                 "shadow-[0_0_25px_rgba(255,255,255,0.05),0_10px_30px_rgba(0,0,0,0.5)]",
                 !isCurrentlySpinning && canSpinNow && !isAutoSpinning && "hover:bg-white/10 hover:border-white/35 hover:scale-105",
@@ -188,15 +188,15 @@ export function BonanzaControlBar({
                   onClick={onClick}
                   disabled={triggerDisabled}
                   className={cn(
-                    "flex items-center gap-1 px-3 py-1 rounded-b-lg -mt-1",
-                    "text-[10px] font-black uppercase tracking-widest text-white/90",
+                    "flex items-center gap-1.5 px-4 py-1.5 rounded-b-lg -mt-1",
+                    "text-[11px] font-black uppercase tracking-widest text-white/90",
                     "transition-all duration-150",
                     isAutoSpinning ? "bg-red-500/60 hover:bg-red-500/80" : "bg-black/30 hover:bg-black/50 backdrop-blur-sm",
                     "disabled:opacity-30 disabled:cursor-not-allowed"
                   )}
                   style={{ textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}
                 >
-                  {isAutoSpinning ? (<><Square className="h-3 w-3 text-white" />Stop</>) : (<><RotateCw className="h-3 w-3 text-white" />Autoplay</>)}
+                  {isAutoSpinning ? (<><Square className="h-3.5 w-3.5 text-white" />Stop</>) : (<><RotateCw className="h-3.5 w-3.5 text-white" />Autoplay</>)}
                 </button>
               )}
             />
@@ -205,8 +205,8 @@ export function BonanzaControlBar({
           {/* Plus button */}
           <button
             className={cn(
-              "w-11 h-11 rounded-full flex items-center justify-center",
-              "bg-black/30 backdrop-blur-sm border-2 border-white/15 text-white/70",
+              "w-14 h-14 rounded-full flex items-center justify-center",
+              "bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white/80",
               "hover:bg-white/10 hover:border-white/30 hover:text-white",
               "active:scale-90 transition-all duration-150",
               "disabled:opacity-25 disabled:cursor-not-allowed"
@@ -214,7 +214,7 @@ export function BonanzaControlBar({
             onClick={() => onBetChange(Math.min(maxBet, bet + 1))}
             disabled={isBetLocked || isCurrentlySpinning || bet >= maxBet}
           >
-            <Plus className="h-5 w-5 text-white" />
+            <Plus className="h-6 w-6 text-white" />
           </button>
         </div>
 
@@ -222,8 +222,8 @@ export function BonanzaControlBar({
         <div className="w-full px-2">
           <div className="relative flex items-center justify-between w-full" style={{ minHeight: tumbleVisible ? 52 : 38 }}>
             <div className="flex items-center gap-1.5">
-              <BonanzaPayTable gameId={gameId || "fedesvin-bonanza"} bet={bet} />
-              <VolumeControl className="w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/15 text-white/70 hover:bg-white/10" />
+              <BonanzaPayTable gameId={gameId || "fedesvin-bonanza"} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10" />
+              <VolumeControl className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10" />
             </div>
 
             {tumbleVisible && (
@@ -268,8 +268,8 @@ export function BonanzaControlBar({
     <div className="relative w-full" style={{ height: 80 }}>
       {/* ─── LEFT: PayTable + Volume + Credit/Bet ─── */}
       <div className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 sm:gap-2 z-10">
-        <BonanzaPayTable gameId={gameId || "fedesvin-bonanza"} bet={bet} />
-        <VolumeControl className="w-9 h-9 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/15 text-white/70 hover:bg-white/10 hover:border-white/30 hover:text-white" />
+        <BonanzaPayTable gameId={gameId || "fedesvin-bonanza"} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30" />
+        <VolumeControl className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30" />
         {!bonusState.isActive && (
           <div className="flex flex-col leading-none gap-0.5 pl-2 border-l border-pink-500/10">
             <div className="flex items-center gap-2">
@@ -306,16 +306,16 @@ export function BonanzaControlBar({
 
         <button
           className={cn(
-            "w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center flex-shrink-0",
-            "bg-black/30 backdrop-blur-sm border-2 border-white/15 text-white/70",
+            "w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center flex-shrink-0",
+            "bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white/80",
             "hover:bg-white/10 hover:border-white/30 hover:text-white",
             "active:scale-90 transition-all duration-150",
-            "disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-black/30 disabled:hover:border-white/15"
+            "disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-black/30 disabled:hover:border-white/20"
           )}
           onClick={() => onBetChange(Math.max(minBet, bet - 1))}
           disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
         >
-          <Minus className="h-5 w-5 text-white" />
+          <Minus className="h-6 w-6 text-white" />
         </button>
 
         <div className="flex flex-col items-center flex-shrink-0">
@@ -354,15 +354,15 @@ export function BonanzaControlBar({
                 onClick={onClick}
                 disabled={triggerDisabled}
                 className={cn(
-                  "flex items-center gap-1 px-3 py-1 rounded-b-lg -mt-1",
-                  "text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-white/90",
+                  "flex items-center gap-1.5 px-4 py-1.5 rounded-b-lg -mt-1",
+                  "text-[11px] sm:text-xs font-black uppercase tracking-widest text-white/90",
                   "transition-all duration-150",
                   isAutoSpinning ? "bg-red-500/60 hover:bg-red-500/80" : "bg-black/30 hover:bg-black/50 backdrop-blur-sm",
                   "disabled:opacity-30 disabled:cursor-not-allowed"
                 )}
                 style={{ textShadow: "0 1px 3px rgba(0,0,0,0.8)" }}
               >
-                {isAutoSpinning ? (<><Square className="h-3 w-3 text-white" />Stop</>) : (<><RotateCw className="h-3 w-3 text-white" />Autoplay</>)}
+                {isAutoSpinning ? (<><Square className="h-3.5 w-3.5 text-white" />Stop</>) : (<><RotateCw className="h-3.5 w-3.5 text-white" />Autoplay</>)}
               </button>
             )}
           />
@@ -370,16 +370,16 @@ export function BonanzaControlBar({
 
         <button
           className={cn(
-            "w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center flex-shrink-0",
-            "bg-black/30 backdrop-blur-sm border-2 border-white/15 text-white/70",
+            "w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center flex-shrink-0",
+            "bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white/80",
             "hover:bg-white/10 hover:border-white/30 hover:text-white",
             "active:scale-90 transition-all duration-150",
-            "disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-black/30 disabled:hover:border-white/15"
+            "disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-black/30 disabled:hover:border-white/20"
           )}
           onClick={() => onBetChange(Math.min(maxBet, bet + 1))}
           disabled={isBetLocked || isCurrentlySpinning || bet >= maxBet}
         >
-          <Plus className="h-5 w-5 text-white" />
+          <Plus className="h-6 w-6 text-white" />
         </button>
       </div>
     </div>
