@@ -180,7 +180,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
            setBet(Number(data.bet_amount) || 1);
            setCumulativeMultiplier(Number(data.expanding_symbol_name) || 0);
            setRunningMultiplier(Number(data.expanding_symbol_name) || 0);
-           setBonusAutoSpinPending(true);
+           // Don't auto-spin — user must manually spin or enable autospin
            // Restore winAmount from localStorage
            try {
              const savedWin = localStorage.getItem(`bonanza_win_${gameId}_${user.id}`);
@@ -239,7 +239,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       setBonusWinnings(0);
       setCumulativeMultiplier(0);
       pendingBonusStateRef.current = null;
-      setBonusAutoSpinPending(true);
+      // Don't auto-spin on bonus entry — user controls spin manually
     }
   }, []);
 
@@ -677,7 +677,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         !showRetriggerRef.current &&
         !pendingBonusActionRef.current;
 
-      if (shouldContinueBonus) {
+      if (shouldContinueBonus && isAutoSpinning && !shouldStopAutoSpinRef.current) {
         if (shouldWaitForWinAnimation) {
           pendingPostWinSpinRef.current = 'bonus';
         } else {
@@ -704,7 +704,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const handleRetriggerComplete = useCallback(() => {
     setShowRetrigger(false);
     showRetriggerRef.current = false;
-    setBonusAutoSpinPending(true);
+    // Don't auto-spin on retrigger — user controls spin manually
   }, []);
 
   useEffect(() => {
@@ -899,11 +899,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
               setTimeout(() => {
                 action();
 
-                // Let React commit bonus state updates first, then request bonus auto-spin resume.
-                // The bonusAutoSpinPending effect will only fire when overlays are closed and spins remain.
-                setTimeout(() => {
-                  setBonusAutoSpinPending(true);
-                }, 120);
+                // Only auto-continue if autospin is active
+                if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
+                  setTimeout(() => {
+                    setBonusAutoSpinPending(true);
+                  }, 120);
+                }
               }, 300);
               return;
             }
