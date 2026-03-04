@@ -605,7 +605,7 @@ export function WinCelebration({ isActive, winAmount, bet, gameId, onAnimationCo
                       : "0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.4)",
                 }}
               >
-                {displayAmount} POINT!
+                {Number.isInteger(displayAmount) ? displayAmount : parseFloat(displayAmount.toFixed(2))} POINT!
               </div>
             </div>
           </div>
