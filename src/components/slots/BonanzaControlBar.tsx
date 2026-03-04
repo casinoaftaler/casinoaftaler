@@ -231,22 +231,22 @@ export function BonanzaControlBar({
 
             {!bonusState.isActive && !tumbleVisible && (
               <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center gap-3">
-                <div className="flex items-center gap-1">
-                  <span className="text-xs uppercase tracking-wider font-black text-orange-400" style={labelStyle}>Credit</span>
-                  <span className="text-sm font-black tabular-nums text-white" style={valueStyle}>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-base uppercase tracking-wider font-black text-orange-400" style={labelStyle}>Credit</span>
+                  <span className="text-lg font-black tabular-nums text-white" style={valueStyle}>
                     {spinsLoading ? "..." : spinsRemaining.toLocaleString()}
                   </span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <span className="text-xs uppercase tracking-wider font-black text-orange-400" style={labelStyle}>Bet</span>
-                  <span className="text-sm font-black tabular-nums text-white" style={valueStyle}>{bet}</span>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-base uppercase tracking-wider font-black text-orange-400" style={labelStyle}>Bet</span>
+                  <span className="text-lg font-black tabular-nums text-white" style={valueStyle}>{bet}</span>
                 </div>
               </div>
             )}
 
-            <div className="flex items-center gap-1">
-              <span className="text-xs uppercase tracking-wider font-black text-orange-400" style={labelStyle}>WIN</span>
-              <AnimatedWinCounter targetValue={winAmount} className="text-xl font-black tabular-nums text-white" style={valueStyle} />
+            <div className="flex items-center gap-1.5">
+              <span className="text-base uppercase tracking-wider font-black text-orange-400" style={labelStyle}>WIN</span>
+              <AnimatedWinCounter targetValue={winAmount} className="text-2xl font-black tabular-nums text-white" style={valueStyle} />
             </div>
           </div>
         </div>
