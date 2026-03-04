@@ -97,7 +97,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
               {CASINO_PROMOS.map((casino) => (
                 <Link
                   key={casino.slug}
-                  to={`/anmeldelse/${casino.slug}`}
+                  to={`/casino-anmeldelser/${casino.slug}`}
                   className={`flex items-center justify-between gap-1.5 rounded-lg bg-gradient-to-r ${casino.color} px-3 py-2.5 text-white transition-transform hover:scale-[1.03] active:scale-95`}
                 >
                   <div className="text-left min-w-0">
