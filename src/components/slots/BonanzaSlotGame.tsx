@@ -879,6 +879,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           }}
         />
       </div>
+      </div>
 
       {/* Resterende spins — bonus only */}
       {isBonusActive && (
