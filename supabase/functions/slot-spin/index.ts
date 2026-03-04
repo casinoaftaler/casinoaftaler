@@ -859,9 +859,10 @@ async function calculateBonanzaFullSpin(
   isBonusSpin: boolean,
   runningMultiplier: number,
   prng: SeededPRNG,
-  forceScatters: boolean = false
+  forceScatters: boolean = false,
+  scatterWeightMultiplier: number = 1
 ): Promise<BonanzaSpinResult> {
-  let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng);
+  let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier);
 
   // Debug: force exactly 4 scatters across different columns
   if (forceScatters && !isBonusSpin) {
