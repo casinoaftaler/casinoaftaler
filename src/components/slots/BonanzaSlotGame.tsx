@@ -172,16 +172,21 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           .eq("user_id", user.id)
           .eq("game_id", gameId)
           .maybeSingle();
-        if (!error && data && data.is_active && data.free_spins_remaining > 0) {
-          setIsBonusActive(true);
-          setFreeSpinsRemaining(data.free_spins_remaining);
-          setTotalFreeSpins(data.total_free_spins);
-          setBonusWinnings(Number(data.bonus_winnings) || 0);
-          setBet(Number(data.bet_amount) || 1);
-          setCumulativeMultiplier(Number(data.expanding_symbol_name) || 0);
-          setRunningMultiplier(Number(data.expanding_symbol_name) || 0);
-          setBonusAutoSpinPending(true);
-        }
+         if (!error && data && data.is_active && data.free_spins_remaining > 0) {
+           setIsBonusActive(true);
+           setFreeSpinsRemaining(data.free_spins_remaining);
+           setTotalFreeSpins(data.total_free_spins);
+           setBonusWinnings(Number(data.bonus_winnings) || 0);
+           setBet(Number(data.bet_amount) || 1);
+           setCumulativeMultiplier(Number(data.expanding_symbol_name) || 0);
+           setRunningMultiplier(Number(data.expanding_symbol_name) || 0);
+           setBonusAutoSpinPending(true);
+           // Restore winAmount from localStorage
+           try {
+             const savedWin = localStorage.getItem(`bonanza_win_${gameId}_${user.id}`);
+             if (savedWin) setWinAmountRaw(Number(savedWin) || 0);
+           } catch {}
+         }
       } catch (err) {
         console.error("Failed to load Bonanza bonus state:", err);
       }
@@ -729,8 +734,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     handleSpin();
   }, [handleSpin]);
 
-  const handleBuyBonus = useCallback(async () => {
-    if (spinLockRef.current || !symbols || !user || isSpinning || isBonusActive) return;
+   const handleBuyBonus = useCallback(async () => {
+     if (spinLockRef.current || !symbols || !user || isSpinning || isBonusActive || isBuyingBonus) return;
+     setIsBuyingBonus(true);
     if (!hasEnoughSpins(bet * 100)) {
       toast.error("Du har ikke nok credits til at købe bonus");
       return;
