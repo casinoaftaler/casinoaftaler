@@ -920,10 +920,13 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     }
   }, [symbols, user, isSpinning, bet, isBonusActive, isBuyingBonus, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, grid]);
 
-  // Spacebar to spin + prevent page scroll
+  // Spacebar to spin + prevent page scroll (but not when typing in chat)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === 'Space') {
+        // Don't trigger spin if user is typing in an input/textarea
+        const tag = (e.target as HTMLElement)?.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA') return;
         e.preventDefault();
         handleSpinWithPress();
       }
@@ -1149,7 +1152,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         </div>{/* end grid column */}
         {/* Live chat panel — right side (desktop only) */}
         {!isMobile && (
-          <div className="shrink-0 self-stretch flex items-center">
+          <div className="shrink-0 self-stretch flex items-stretch ml-auto">
             <SlotChat gameId={gameId} />
           </div>
         )}

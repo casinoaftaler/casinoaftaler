@@ -11,6 +11,7 @@ export interface ChatMessage {
   // Joined from profiles
   display_name?: string;
   avatar_url?: string;
+  twitch_badges?: any;
 }
 
 const MAX_MESSAGES = 50;
@@ -20,8 +21,10 @@ export function useSlotChat(gameId: string) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [onlineCount, setOnlineCount] = useState(0);
+  const [isChatBanned, setIsChatBanned] = useState(false);
+  const [chatTimeout, setChatTimeout] = useState<string | null>(null); // expires_at ISO string
   const lastSentRef = useRef(0);
-  const profileCacheRef = useRef<Map<string, { display_name: string; avatar_url: string | null }>>(new Map());
+  const profileCacheRef = useRef<Map<string, { display_name: string; avatar_url: string | null; twitch_badges: any }>>(new Map());
 
   // Fetch profile info for a user_id (with cache)
   const fetchProfile = useCallback(async (userId: string) => {
@@ -30,13 +33,14 @@ export function useSlotChat(gameId: string) {
     }
     const { data } = await supabase
       .from("profiles_leaderboard")
-      .select("display_name, avatar_url")
+      .select("display_name, avatar_url, twitch_badges")
       .eq("user_id", userId)
       .single();
     
     const profile = {
       display_name: data?.display_name || "Anonym",
       avatar_url: data?.avatar_url || null,
+      twitch_badges: data?.twitch_badges || null,
     };
     profileCacheRef.current.set(userId, profile);
     return profile;
@@ -53,9 +57,50 @@ export function useSlotChat(gameId: string) {
         ...m,
         display_name: profile?.display_name || "Anonym",
         avatar_url: profile?.avatar_url || null,
+        twitch_badges: profile?.twitch_badges || null,
       };
     });
   }, [fetchProfile]);
+
+  // Check ban/timeout status
+  useEffect(() => {
+    const checkStatus = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      // Check chat ban
+      const { data: banData } = await supabase
+        .from("chat_bans")
+        .select("id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+      setIsChatBanned(!!banData);
+
+      // Check timeout
+      const { data: timeoutData } = await supabase
+        .from("chat_timeouts")
+        .select("expires_at")
+        .eq("user_id", user.id)
+        .gt("expires_at", new Date().toISOString())
+        .order("expires_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      setChatTimeout(timeoutData?.expires_at || null);
+    };
+    checkStatus();
+  }, []);
+
+  // Auto-clear timeout when it expires
+  useEffect(() => {
+    if (!chatTimeout) return;
+    const remaining = new Date(chatTimeout).getTime() - Date.now();
+    if (remaining <= 0) {
+      setChatTimeout(null);
+      return;
+    }
+    const timer = setTimeout(() => setChatTimeout(null), remaining);
+    return () => clearTimeout(timer);
+  }, [chatTimeout]);
 
   // Load initial messages
   useEffect(() => {
@@ -97,6 +142,7 @@ export function useSlotChat(gameId: string) {
             ...newMsg,
             display_name: profile.display_name,
             avatar_url: profile.avatar_url,
+            twitch_badges: profile.twitch_badges,
           };
 
           setMessages(prev => {
@@ -168,11 +214,39 @@ export function useSlotChat(gameId: string) {
     return !error;
   }, []);
 
+  // Ban user from chat (admin)
+  const banUser = useCallback(async (userId: string) => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return false;
+    const { error } = await supabase.from("chat_bans").insert({
+      user_id: userId,
+      banned_by: user.id,
+    });
+    return !error;
+  }, []);
+
+  // Timeout user from chat (admin)
+  const timeoutUser = useCallback(async (userId: string, minutes: number) => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return false;
+    const expiresAt = new Date(Date.now() + minutes * 60 * 1000).toISOString();
+    const { error } = await supabase.from("chat_timeouts").insert({
+      user_id: userId,
+      timed_out_by: user.id,
+      expires_at: expiresAt,
+    });
+    return !error;
+  }, []);
+
   return {
     messages,
     isLoading,
     onlineCount,
+    isChatBanned,
+    chatTimeout,
     sendMessage,
     deleteMessage,
+    banUser,
+    timeoutUser,
   };
 }
