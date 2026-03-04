@@ -24,27 +24,105 @@ interface SlotChatProps {
   onToggle?: () => void;
 }
 
+const SYSTEM_REACTIONS = ["🔥", "💎", "🐷"];
+const EVENT_REACTIONS_MAP: Record<string, string[]> = {
+  bonus_buy: ["🔥", "GL", "GG"],
+  big_win: ["🔥", "💎", "🐷"],
+};
+
+function ReactionBar({
+  msg,
+  currentUserId,
+  onToggleReaction,
+  availableReactions,
+}: {
+  msg: ChatMessage;
+  currentUserId: string | null;
+  onToggleReaction: (messageId: string, emoji: string) => void;
+  availableReactions?: string[];
+}) {
+  const reactions = (msg.reactions || {}) as Record<string, string[]>;
+  const emojis = availableReactions || Object.keys(reactions);
+  const allEmojis = [...new Set([...emojis, ...Object.keys(reactions)])];
+
+  if (allEmojis.length === 0) return null;
+
+  return (
+    <div className="flex gap-1 mt-0.5 flex-wrap">
+      {allEmojis.map(emoji => {
+        const users = reactions[emoji] || [];
+        const hasReacted = currentUserId ? users.includes(currentUserId) : false;
+        return (
+          <button
+            key={emoji}
+            onClick={() => currentUserId && onToggleReaction(msg.id, emoji)}
+            className={cn(
+              "inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[10px] transition-all border",
+              hasReacted
+                ? "bg-pink-500/20 border-pink-500/40 text-pink-300"
+                : "bg-white/5 border-white/10 text-white/50 hover:bg-white/10 hover:border-white/20"
+            )}
+          >
+            <span>{emoji}</span>
+            {users.length > 0 && <span className="font-semibold">{users.length}</span>}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function ChatBubble({
   msg,
   isOwn,
   isAdmin,
+  currentUserId,
   onDelete,
   onBan,
   onTimeout,
+  onToggleReaction,
 }: {
   msg: ChatMessage;
   isOwn: boolean;
   isAdmin: boolean;
+  currentUserId: string | null;
   onDelete?: (id: string) => void;
   onBan?: (userId: string) => void;
   onTimeout?: (userId: string, minutes: number) => void;
+  onToggleReaction: (messageId: string, emoji: string) => void;
 }) {
   const navigate = useNavigate();
 
-  if (msg.message_type === "system") {
+  // System event messages (bonus_buy, big_win)
+  if (msg.message_type === "system" || msg.message_type === "bonus_buy" || msg.message_type === "big_win") {
+    const availableReactions = EVENT_REACTIONS_MAP[msg.message_type] || undefined;
+    return (
+      <div className="flex flex-col items-center py-1.5 px-2">
+        <span className={cn(
+          "text-[11px] font-medium italic px-3 py-1 rounded-full text-center",
+          msg.message_type === "bonus_buy" && "text-amber-400/90 bg-amber-500/10 border border-amber-500/20",
+          msg.message_type === "big_win" && "text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20",
+          msg.message_type === "system" && "text-amber-400/80 bg-amber-500/10"
+        )}>
+          {msg.message}
+        </span>
+        {availableReactions && (
+          <ReactionBar
+            msg={msg}
+            currentUserId={currentUserId}
+            onToggleReaction={onToggleReaction}
+            availableReactions={availableReactions}
+          />
+        )}
+      </div>
+    );
+  }
+
+  // Deleted / banned / timeout messages
+  if (msg.message_type === "deleted" || msg.message_type === "banned" || msg.message_type === "timeout") {
     return (
       <div className="flex justify-center py-1">
-        <span className="text-[11px] text-amber-400/80 font-medium italic px-3 py-0.5 rounded-full bg-amber-500/10">
+        <span className="text-[10px] text-red-400/60 italic px-3 py-0.5">
           {msg.message}
         </span>
       </div>
@@ -120,7 +198,7 @@ function ChatBubble({
 }
 
 export function SlotChat({ gameId, className, collapsed = false, onToggle }: SlotChatProps) {
-  const { messages, isLoading, onlineCount, isChatBanned, chatTimeout, sendMessage, deleteMessage, banUser, timeoutUser } = useSlotChat(gameId);
+  const { messages, isLoading, onlineCount, isChatBanned, chatTimeout, sendMessage, deleteMessage, banUser, timeoutUser, toggleReaction } = useSlotChat(gameId);
   const [input, setInput] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
@@ -166,7 +244,6 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
   const handleSend = async () => {
     if (!input.trim() || isSending) return;
 
-    // Show warning before first message
     if (!hasAcceptedWarning) {
       setHasAcceptedWarning(true);
       localStorage.setItem(`chat_warning_accepted_${currentUserId}`, "true");
@@ -179,7 +256,6 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    // Stop spacebar propagation so it doesn't trigger spin
     if (e.key === " ") {
       e.stopPropagation();
     }
@@ -212,7 +288,7 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
     ? Math.ceil((new Date(chatTimeout!).getTime() - Date.now()) / 60000)
     : 0;
 
-  // Collapsed mode — just show a floating button
+  // Collapsed mode
   if (collapsed) {
     return (
       <button
@@ -283,9 +359,11 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
               msg={msg}
               isOwn={msg.user_id === currentUserId}
               isAdmin={isAdmin}
+              currentUserId={currentUserId}
               onDelete={deleteMessage}
               onBan={handleBan}
               onTimeout={handleTimeout}
+              onToggleReaction={toggleReaction}
             />
           ))
         )}
@@ -296,6 +374,7 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
         isChatBanned ? (
           <div className="px-3 py-3 border-t border-white/10 text-center">
             <span className="text-[11px] text-red-400">🚫 Du er bannet permanent fra chatten</span>
+            <p className="text-[9px] text-red-300/60 mt-1">Hvis du vil appeal din ban - så kontakt os live på Twitch</p>
           </div>
         ) : isTimedOut ? (
           <div className="px-3 py-3 border-t border-white/10 text-center">
@@ -303,7 +382,6 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
           </div>
         ) : (
           <div className="px-2 py-2 border-t border-white/10">
-            {/* Warning message before first send */}
             {!hasAcceptedWarning && (
               <div className="mb-2 px-2 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
                 <p className="text-[9px] text-amber-300/90 leading-relaxed">

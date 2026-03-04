@@ -37,6 +37,7 @@ import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar"
 import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
 import { BonanzaSidePanels } from "./BonanzaSidePanels";
 import { SlotChat } from "./SlotChat";
+import { useSlotChat } from "@/hooks/useSlotChat";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
 const DEFAULT_SYMBOL_HEIGHT = 140;
@@ -59,6 +60,16 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const { data: siteSettings } = useSiteSettings();
   const { spin: serverSpin } = useServerSpin(gameId);
   const theme = getSlotTheme(gameId);
+  const { sendSystemMessage } = useSlotChat(gameId);
+  const userDisplayNameRef = useRef<string | null>(null);
+
+  // Fetch display name for system messages
+  useEffect(() => {
+    if (!user) return;
+    supabase.from("profiles_leaderboard").select("display_name").eq("user_id", user.id).single().then(({ data }) => {
+      userDisplayNameRef.current = data?.display_name || "Anonym";
+    });
+  }, [user]);
 
   // On mobile, calculate symbol size to fill viewport width
   const mobileSymbolWidth = useMemo(() => {
@@ -805,6 +816,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
    const handleBuyBonus = useCallback(async () => {
      if (spinLockRef.current || !symbols || !user || isSpinning || isBonusActive || isBuyingBonus) return;
      setIsBuyingBonus(true);
+     // Send bonus buy system message to chat
+     const name = userDisplayNameRef.current || "Anonym";
+     sendSystemMessage(`🎰 ${name} har købt en bonus for ${bet * 100} credits!`, "bonus_buy");
     if (!hasEnoughSpins(bet * 100)) {
       toast.error("Du har ikke nok credits til at købe bonus");
       return;
@@ -1128,6 +1142,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           totalMultiplier={cumulativeMultiplier}
           totalSpins={totalFreeSpins}
           onComplete={() => {
+            // Check for 100x+ win and send system message
+            if (bet > 0 && bonusWinnings / bet >= 100) {
+              const name = userDisplayNameRef.current || "Anonym";
+              const multiplier = Math.floor(bonusWinnings / bet);
+              sendSystemMessage(`🏆 ${name} vandt ${bonusWinnings.toLocaleString()} credits (${multiplier}x) i bonus! 🐷`, "big_win");
+            }
             setShowBonusComplete(false);
             showBonusCompleteRef.current = false;
             setIsBonusActive(false);
