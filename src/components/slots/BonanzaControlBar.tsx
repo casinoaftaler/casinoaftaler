@@ -151,13 +151,29 @@ export function BonanzaControlBar({
         )}
       </div>
 
-      {/* ─── CENTER-RIGHT: [-] [SPIN + AUTOPLAY] [+] ─── */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-3 sm:gap-4 z-20">
-
-        {/* HOLD SPACE text */}
+      {/* ─── CENTER: WIN / Gevinst ─── */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-3 z-10">
+        {debugButton}
         <span
-          className="hidden lg:block text-[11px] sm:text-[12px] font-black uppercase tracking-widest text-white/80 mr-1"
-          style={{ textShadow: "0 2px 6px rgba(0,0,0,0.9), 0 0 12px rgba(255,255,255,0.15)" }}
+          className="text-lg sm:text-xl uppercase tracking-widest font-black text-orange-400"
+          style={labelStyle}
+        >
+          WIN
+        </span>
+        <AnimatedWinCounter
+          targetValue={winAmount}
+          className="text-3xl sm:text-4xl font-black tabular-nums text-white"
+          style={valueStyle}
+        />
+      </div>
+
+      {/* ─── RIGHT: Space text + [-] [SPIN+Autoplay] [+] ─── */}
+      <div className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 flex items-center gap-3 sm:gap-4 z-20">
+
+        {/* TRYK PÅ SPACE text */}
+        <span
+          className="hidden lg:block text-base sm:text-lg font-black uppercase tracking-wider text-white"
+          style={{ textShadow: "0 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(255,255,255,0.2)" }}
         >
           TRYK PÅ SPACE FOR AT SPINNE
         </span>
@@ -265,24 +281,6 @@ export function BonanzaControlBar({
         >
           <Plus className="h-5 w-5 text-white" />
         </button>
-      </div>
-
-      {/* ─── RIGHT: Gevinst ─── */}
-      <div className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 flex items-center gap-2 z-10">
-        {debugButton}
-        <div className="flex items-center gap-2 leading-none">
-          <span
-            className="text-sm sm:text-base uppercase tracking-widest font-black text-orange-400"
-            style={labelStyle}
-          >
-            Gevinst
-          </span>
-          <AnimatedWinCounter
-            targetValue={winAmount}
-            className="text-xl sm:text-2xl font-black tabular-nums text-white"
-            style={valueStyle}
-          />
-        </div>
       </div>
     </div>
   );
