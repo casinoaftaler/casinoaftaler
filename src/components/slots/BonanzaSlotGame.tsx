@@ -1177,7 +1177,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         </div>{/* end grid column */}
         {/* Live chat panel — right side (desktop only) */}
         {!isMobile && (
-          <div className="shrink-0 self-stretch flex items-start ml-auto">
+          <div className="shrink-0 self-stretch ml-auto" style={{ maxHeight: 'inherit', overflow: 'hidden' }}>
             {desktopChatOpen ? (
               <SlotChat
                 gameId={gameId}
