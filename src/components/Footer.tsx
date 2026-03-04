@@ -508,6 +508,23 @@ export function Footer() {
               Center for Ludomani
               <ExternalLink className="h-3 w-3" />
             </a>
+
+            {/* IngenCO2 klimabadge */}
+            <a
+              href="https://www.ingenco2.dk/certificate/7836/da"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              <img
+                src="https://assets.ingenco2.dk/icons/logo/regular_da.svg"
+                alt="Websites, der støtter klimaprojekter"
+                width={148}
+                height={48}
+                style={{ width: 'auto', height: 60 }}
+                loading="lazy"
+              />
+            </a>
           </div>
         </div>
 
