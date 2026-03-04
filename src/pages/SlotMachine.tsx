@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
-import { LiveBigWins } from "@/components/slots/LiveBigWins";
+
 
 
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
@@ -181,7 +181,7 @@ export default function SlotMachine() {
         description="Spil Book of Fedesvin gratis hos Casinoaftaler. Egyptisk-tema spilleautomat med expanding symbols, free spins og bonusrunder. Optjen point og klatr på ranglisten."
         noindex
       />
-      <LiveBigWins />
+      
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-10"
         style={{ backgroundImage: `url(${backgroundImage})` }}

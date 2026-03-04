@@ -23,7 +23,7 @@ import { BonanzaSlotGame } from "@/components/slots/BonanzaSlotGame";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2, Candy } from "lucide-react";
-import { LiveBigWins } from "@/components/slots/LiveBigWins";
+
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 
 const GAME_ID = "fedesvin-bonanza";
@@ -183,7 +183,7 @@ export default function FedesvinBonanza() {
         description="Spil Fedesvin Bonanza gratis hos Casinoaftaler. Tumble-mekanik, multiplier-bomber og free spins i candy-tema."
         noindex
       />
-      <LiveBigWins theme="candy" />
+      
       <PageBackground />
 
       <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-20">
