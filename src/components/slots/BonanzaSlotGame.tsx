@@ -133,6 +133,18 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const isBonusActiveRef = useRef(false);
   const [spinPressed, setSpinPressed] = useState(false);
 
+  // Wrapper: persist winAmount to localStorage when bonus is active
+  const bonusWinKey = `bonanza_win_${gameId}_${user?.id}`;
+  const setWinAmount = useCallback((val: number | ((prev: number) => number)) => {
+    setWinAmountRaw(prev => {
+      const next = typeof val === 'function' ? val(prev) : val;
+      if (isBonusActiveRef.current) {
+        try { localStorage.setItem(bonusWinKey, String(next)); } catch {}
+      }
+      return next;
+    });
+  }, [bonusWinKey]);
+
   // Initialize grid
   useEffect(() => {
     if (symbols && symbols.length > 0 && !grid) {
