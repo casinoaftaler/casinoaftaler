@@ -428,6 +428,8 @@ class SlotSoundEffects {
     this.enabled = enabled;
     if (!enabled) {
       this.stopMusic();
+    } else if (this.musicEnabled) {
+      this.startMusic();
     }
     this.persistSettings();
   }
