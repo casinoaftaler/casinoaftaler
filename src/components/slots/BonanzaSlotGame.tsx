@@ -533,6 +533,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         // winAmount is accumulated incrementally in processTumbleSteps (line-by-line)
 
         if (totalWin > 0) {
+          setCurrentSpinWin(totalWin);
           setIsWinAnimating(true);
           shouldWaitForWinAnimation = true;
           if (totalWin >= bet * 10) slotSounds.playBigWin();
@@ -838,10 +839,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       {/* Bonus overlays moved inside grid below */}
 
       {/* Win celebration */}
-      {isWinAnimating && winAmount > 0 && (
+      {isWinAnimating && currentSpinWin > 0 && (
         <WinCelebration
           isActive={true}
-          winAmount={winAmount}
+          winAmount={currentSpinWin}
           bet={bet}
           onAnimationComplete={() => {
             setIsWinAnimating(false);
