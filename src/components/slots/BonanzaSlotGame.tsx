@@ -1141,7 +1141,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           autoSpinsRemaining={autoSpinsRemaining}
           onAutoSpinCountChange={setAutoSpinCount}
           onAutoSpinToggle={toggleAutoSpin}
-          bonusState={{ isActive: isBonusActive, freeSpinsRemaining: 0 }}
+          bonusState={{ isActive: isBonusActive, freeSpinsRemaining, totalFreeSpins }}
           bonusLoaded={bonusLoaded}
           winAmount={winAmount}
           gameId={gameId}

@@ -12,6 +12,7 @@ type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 interface BonusState {
   isActive: boolean;
   freeSpinsRemaining: number;
+  totalFreeSpins?: number;
 }
 
 interface BonanzaControlBarProps {
@@ -87,8 +88,16 @@ export function BonanzaControlBar({
     if (isSpinning) {
       return <RotateCw className="h-8 w-8 sm:h-10 sm:w-10 text-white animate-spin" style={{ animationDuration: "0.7s" }} />;
     }
-    if (!canSpinNow) {
+    if (!canSpinNow && !bonusState.isActive) {
       return <span className="text-[9px] sm:text-[10px] text-white/80 text-center leading-tight font-bold">INGEN<br />SPINS</span>;
+    }
+    if (bonusState.isActive && !isAutoSpinning) {
+      return (
+        <div className="flex flex-col items-center">
+          <span className="text-xl sm:text-2xl font-black text-white">{bonusState.freeSpinsRemaining}/{bonusState.totalFreeSpins || 15}</span>
+          <span className="text-[7px] uppercase text-white/60 -mt-0.5 tracking-wider">FREE</span>
+        </div>
+      );
     }
     if (isAutoSpinning && autoSpinsRemaining !== null) {
       return (
