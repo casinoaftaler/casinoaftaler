@@ -841,7 +841,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const gridWidth = BONANZA_COLS * (SYMBOL_WIDTH + SYMBOL_GAP) + SYMBOL_GAP;
   const gridHeight = BONANZA_ROWS * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_GAP;
   const totalLayoutWidth = isMobile ? gridWidth : gridWidth + 140 + 16;
-    <div className="flex flex-col items-center gap-4 relative" style={{ width: totalLayoutWidth, maxWidth: "100%" }}>
+
+  return (
+    <div className={cn("flex flex-col items-center relative", isMobile ? "gap-2 w-full" : "gap-4")} style={isMobile ? undefined : { width: totalLayoutWidth, maxWidth: "100%" }}>
       {/* Credits expired overlay */}
       <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !isBonusActive && !isSpinning && tumblePhase === 'idle'} />
       {/* Bonus overlays moved inside grid below */}
