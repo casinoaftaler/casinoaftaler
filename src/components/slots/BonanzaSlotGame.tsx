@@ -59,8 +59,17 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const { spin: serverSpin } = useServerSpin(gameId);
   const theme = getSlotTheme(gameId);
 
-  const SYMBOL_WIDTH = siteSettings?.bonanza_symbol_width ? parseInt(siteSettings.bonanza_symbol_width) : DEFAULT_SYMBOL_WIDTH;
-  const SYMBOL_HEIGHT = siteSettings?.bonanza_symbol_height ? parseInt(siteSettings.bonanza_symbol_height) : DEFAULT_SYMBOL_HEIGHT;
+  // On mobile, calculate symbol size to fill viewport width
+  const mobileSymbolWidth = useMemo(() => {
+    if (!isMobile || typeof window === 'undefined') return DEFAULT_SYMBOL_WIDTH;
+    const viewportWidth = window.innerWidth;
+    const totalGaps = (BONANZA_COLS + 1) * SYMBOL_GAP;
+    const padding = 8; // px-1 = 4px each side
+    return Math.floor((viewportWidth - totalGaps - padding) / BONANZA_COLS);
+  }, [isMobile]);
+
+  const SYMBOL_WIDTH = isMobile ? mobileSymbolWidth : (siteSettings?.bonanza_symbol_width ? parseInt(siteSettings.bonanza_symbol_width) : DEFAULT_SYMBOL_WIDTH);
+  const SYMBOL_HEIGHT = isMobile ? Math.floor(mobileSymbolWidth * 0.78) : (siteSettings?.bonanza_symbol_height ? parseInt(siteSettings.bonanza_symbol_height) : DEFAULT_SYMBOL_HEIGHT);
   const SYMBOL_SCALE = siteSettings?.bonanza_symbol_scale ? parseInt(siteSettings.bonanza_symbol_scale) : 100;
 
   const bombSymbolsMap = useMemo(() => {
