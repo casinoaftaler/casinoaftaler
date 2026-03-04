@@ -302,7 +302,9 @@ function makeFloatingSparkles(count: number, palette: string[]): FloatingSparkle
 
 export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }: WinCelebrationProps) {
   const [coins, setCoins] = useState<CoinParticle[]>([]);
+  const [rainCoins, setRainCoins] = useState<RainCoin[]>([]);
   const [sparks, setSparks] = useState<SparkParticle[]>([]);
+  const [floatingSparkles, setFloatingSparkles] = useState<FloatingSparkle[]>([]);
   const [showOverlay, setShowOverlay] = useState(false);
   const [isPulsing, setIsPulsing] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -310,7 +312,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
   const [lightningFlash, setLightningFlash] = useState(false);
   const [screenFlash, setScreenFlash] = useState(false);
-  // Track tier upgrades during counter
+  const [impactShake, setImpactShake] = useState(false);
   const [currentDisplayTier, setCurrentDisplayTier] = useState<WinTier>("nice");
   const hasTriggeredCompleteRef = useRef(false);
   const skipRef = useRef(false);
@@ -320,7 +322,6 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
   const finalMultiplier = bet > 0 ? winAmount / bet : 0;
   const finalTier = getTier(finalMultiplier);
 
-  // Use final tier config for counter duration & pulse, but display tier for visuals
   const finalCfg = finalTier ? TIER_CONFIG[finalTier] : TIER_CONFIG.nice;
   const displayCfg = TIER_CONFIG[currentDisplayTier];
 
@@ -341,9 +342,11 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
       const tierOrder: WinTier[] = ["nice", "big", "mega", "supermega", "legendary"];
       if (tierOrder.indexOf(tierNow) > tierOrder.indexOf(currentDisplayTier)) {
         setCurrentDisplayTier(tierNow);
-        // Flash on tier upgrade
         setScreenFlash(true);
         setTimeout(() => setScreenFlash(false), 250);
+        // Mini shake on tier upgrade
+        setImpactShake(true);
+        setTimeout(() => setImpactShake(false), 180);
       }
     }
   }, [displayAmount, bet, showOverlay, currentDisplayTier]);
@@ -371,9 +374,12 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
     setTimeout(() => {
       setShowOverlay(false);
       setCoins([]);
+      setRainCoins([]);
       setSparks([]);
+      setFloatingSparkles([]);
       setIsFadingOut(false);
       setScreenFlash(false);
+      setImpactShake(false);
       hasTriggeredCompleteRef.current = true;
       onAnimationComplete?.();
     }, displayCfg.fadeMs);
@@ -412,11 +418,14 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
   useEffect(() => {
     if (!isActive || winAmount <= 0 || !finalTier) {
       setCoins([]);
+      setRainCoins([]);
       setSparks([]);
+      setFloatingSparkles([]);
       setShowOverlay(false);
       setIsFadingOut(false);
       setIsPulsing(false);
       setScreenFlash(false);
+      setImpactShake(false);
       setCounterSkipped(false);
       setSpeedMultiplier(1);
       setCurrentDisplayTier("nice");
@@ -427,12 +436,20 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
     }
 
     setScreenFlash(true);
+    setImpactShake(true);
     setTimeout(() => setScreenFlash(false), 300);
+    setTimeout(() => setImpactShake(false), 180);
 
     const palette = makePalette(finalTier);
     setCoins(makeCoins(finalCfg.coins, palette));
+    // Rain coins: scale with tier
+    const rainCount = finalTier === "legendary" ? 120 : finalTier === "supermega" ? 90 : finalTier === "mega" ? 70 : finalTier === "big" ? 50 : 30;
+    setRainCoins(makeRainCoins(rainCount, palette));
     setSparks(makeSparks(finalCfg.sparks, palette));
-    setCurrentDisplayTier("nice"); // Start from lowest, will upgrade during counter
+    // Floating sparkles: scale with tier
+    const sparkleCount = finalTier === "legendary" ? 40 : finalTier === "supermega" ? 35 : finalTier === "mega" ? 30 : finalTier === "big" ? 20 : 15;
+    setFloatingSparkles(makeFloatingSparkles(sparkleCount, palette));
+    setCurrentDisplayTier("nice");
     setShowOverlay(true);
   }, [isActive, winAmount, bet]);
 
@@ -440,6 +457,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
 
   const cfg = displayCfg;
   const isHighTier = currentDisplayTier === "supermega" || currentDisplayTier === "legendary";
+  const isMegaPlus = currentDisplayTier === "mega" || isHighTier;
 
   return (
     <>
