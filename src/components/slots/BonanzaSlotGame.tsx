@@ -126,8 +126,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
   const [autoSpinCount, setAutoSpinCount] = useState<AutoSpinCount>(10);
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
+  const autoSpinsRemainingRef = useRef<number | null>(null);
   const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
+  const isAutoSpinningRef = useRef(false);
   const pendingPostWinSpinRef = useRef<"bonus" | "auto" | null>(null);
   const freeSpinsRemainingRef = useRef(0);
   const isBonusActiveRef = useRef(false);
@@ -231,17 +233,24 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     const bs = pendingBonusStateRef.current;
     setShowBonusTrigger(false);
     showBonusTriggerRef.current = false;
-    setBonusAutoSpinPending(false);
+    spinLockRef.current = false; // Always release spin lock when bonus overlay is dismissed
     if (bs) {
       setIsBonusActive(true);
+      isBonusActiveRef.current = true;
       setFreeSpinsRemaining(bs.freeSpinsRemaining);
+      freeSpinsRemainingRef.current = bs.freeSpinsRemaining;
       setTotalFreeSpins(bs.totalFreeSpins);
       setBonusWinnings(0);
       setCumulativeMultiplier(0);
       pendingBonusStateRef.current = null;
-      // Don't auto-spin on bonus entry — user controls spin manually
+      // If auto-spin was active, resume spinning in bonus
+      if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
+        if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
+        autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 800);
+      }
     }
-  }, []);
+    setBonusAutoSpinPending(false);
+  }, [handleSpin]);
 
   // Process tumble steps
   const processTumbleSteps = useCallback(async (steps: BonanzaTumbleStep[]) => {
@@ -725,10 +734,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
           autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
         }
-      } else if (isAutoSpinning && !shouldStopAutoSpinRef.current && !pendingBonusActionRef.current) {
-        if (autoSpinsRemaining !== null) {
-          const newCount = autoSpinsRemaining - 1;
+      } else if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current && !pendingBonusActionRef.current) {
+        // Use ref to avoid stale closure — decrement auto-spin counter
+        if (autoSpinsRemainingRef.current !== null) {
+          const newCount = autoSpinsRemainingRef.current - 1;
           setAutoSpinsRemaining(newCount);
+          autoSpinsRemainingRef.current = newCount;
           if (newCount <= 0) { stopAutoSpin(); return; }
         }
 
