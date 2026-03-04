@@ -102,7 +102,7 @@ const LunaCasinoAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(lunaFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Luna Casino Anmeldelse 2026 – Kvalitets-Kuratoren", description: "Dybdegående anmeldelse af Luna Casino. 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram og kurateret spiludvalg.", url: "https://casinoaftaler.dk/casino-anmeldelser/luna-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.4", ratingCount: "163" } });
+  const articleSchema = buildArticleSchema({ headline: "Luna Casino Anmeldelse 2026 – Kvalitets-Kuratoren", description: "Dybdegående anmeldelse af Luna Casino. 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram og kurateret spiludvalg.", url: "https://casinoaftaler.dk/casino-anmeldelser/luna-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "14tI5vWShvs", aggregateRating: { ratingValue: "4.4", ratingCount: "163" } });
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Luna Casino", itemUrl: "https://www.lunacasino.dk/", ratingValue: "4.4", ratingCount: "163", reviewBody: "Luna Casino er Kvalitets-Kuratoren blandt danske casinoer – et bevidst kurateret casino med 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram med stigende levels, daglige bonuskampagner og et nøje udvalgt spiludvalg fra premium-udbydere." });
 

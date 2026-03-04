@@ -79,6 +79,7 @@ const ComeOnAnmeldelse = () => {
     dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
+    videoId: "tW_E0RmzSHg",
     aggregateRating: { ratingValue: "4.0", ratingCount: "136" },
   });
 
