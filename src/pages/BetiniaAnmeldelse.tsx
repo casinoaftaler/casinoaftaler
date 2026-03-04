@@ -121,7 +121,7 @@ const BetiniaAnmeldelse = () => {
   };
 
   const faqJsonLd = buildFaqSchema(betiniaFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Betinia Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Betinia. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/betinia", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "4.9", ratingCount: "214" } });
+  const articleSchema = buildArticleSchema({ headline: "Betinia Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Betinia. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/betinia", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "GyqEjKQiCJU", aggregateRating: { ratingValue: "4.9", ratingCount: "214" } });
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Betinia", itemUrl: "https://www.betinia.dk", ratingValue: "4.9", ratingCount: "214", reviewBody: "Betinia er et dansk dual-motor casino med No-Sticky velkomstbonus på 100% op til 1.000 kr., 10x omsætning, sportsbetting med akkumulatorboost, over 40 spiludbydere og 19 betalingsmetoder." });
 
@@ -130,7 +130,7 @@ const BetiniaAnmeldelse = () => {
       <SEO
         title="Betinia Anmeldelse 2026 – No-Sticky Bonus"
         description="Komplet anmeldelse af Betinia.dk. 100% No-Sticky bonus op til 1.000 kr., kun 10x omsætning, over 40 spiludbydere, sportsbetting og hurtige udbetalinger. Læs vores ærlige vurdering."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/betinia", "GyqEjKQiCJU", { title: "Betinia Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Betinia ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]}
       />
 
       {/* Hero Section */}
