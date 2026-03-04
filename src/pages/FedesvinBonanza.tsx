@@ -44,7 +44,7 @@ export default function FedesvinBonanza() {
     takeOverSession, refreshSession
   } = useSlotSession(GAME_ID);
   const { scale } = useSlotScale({
-    baseWidth: 1400,
+    baseWidth: 1760,
     baseHeight: 1120,
     headerHeight: 72,
     safetyPadding: 16,
@@ -213,13 +213,13 @@ export default function FedesvinBonanza() {
             <div
               className="slot-viewport-container"
               style={{
-                width: '1280px',
+                width: '1760px',
                 height: '1120px',
                 transform: `scale(${scale})`,
                 marginTop: `${-(1120 * (1 - scale)) / 2}px`,
                 marginBottom: `${-(1120 * (1 - scale)) / 2}px`,
-                marginLeft: `${-(1280 * (1 - scale)) / 2}px`,
-                marginRight: `${-(1280 * (1 - scale)) / 2}px`,
+                marginLeft: `${-(1760 * (1 - scale)) / 2}px`,
+                marginRight: `${-(1760 * (1 - scale)) / 2}px`,
               }}
             >
               <SlotPageLayout sidePanel={sidePanelContent}>
