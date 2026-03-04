@@ -50,6 +50,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
   symbolHeight: SYMBOL_HEIGHT = DEFAULT_SYMBOL_HEIGHT,
   symbolScale = 100,
   isBonusActive = false,
+  isMobile = false,
 }: BonanzaColumnProps) {
   const isDroppingOff = spinState === 'dropping-off';
   const isDroppingIn = spinState === 'dropping-in';
