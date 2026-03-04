@@ -666,8 +666,11 @@ async function pickBonanzaBombValue(prng: SeededPRNG): Promise<number> {
   return BONANZA_MULTIPLIER_VALUES[0];
 }
 
-async function getBonanzaRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<SlotSymbol> {
-  const getWeight = (s: SlotSymbol) => isBonusSpin ? (s.bonus_weight || s.weight || DEFAULT_SYMBOL_WEIGHT) : (s.weight || DEFAULT_SYMBOL_WEIGHT);
+async function getBonanzaRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1): Promise<SlotSymbol> {
+  const getWeight = (s: SlotSymbol) => {
+    const base = isBonusSpin ? (s.bonus_weight || s.weight || DEFAULT_SYMBOL_WEIGHT) : (s.weight || DEFAULT_SYMBOL_WEIGHT);
+    return s.is_scatter && scatterWeightMultiplier > 1 ? base * scatterWeightMultiplier : base;
+  };
   const totalWeight = symbols.reduce((sum, s) => sum + getWeight(s), 0);
   let random = (await prng.next()) * totalWeight;
   for (const sym of symbols) {
@@ -677,7 +680,7 @@ async function getBonanzaRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolea
   return symbols[symbols.length - 1];
 }
 
-async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1): Promise<string[][]> {
   // Pre-generate enough random values for grid generation:
   // ~5 rows * 6 cols * 2 (symbol picks + bomb/scatter rolls) + ~20 (dup rolls + shuffles) = ~80
   await prng.pregenerate(100);
@@ -700,10 +703,10 @@ async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, 
         hasBomb = true;
         continue;
       }
-      let sym = await getBonanzaRandomSymbol(symbols, isBonusSpin, prng);
+      let sym = await getBonanzaRandomSymbol(symbols, isBonusSpin, prng, scatterWeightMultiplier);
       // Cap 1 scatter per column
       if (scatterSymbol && sym.id === scatterSymbol.id && hasScatter) {
-        sym = await getBonanzaRandomSymbol(nonScatterSymbols, isBonusSpin, prng);
+        sym = await getBonanzaRandomSymbol(nonScatterSymbols, isBonusSpin, prng, scatterWeightMultiplier);
       }
       if (scatterSymbol && sym.id === scatterSymbol.id) hasScatter = true;
       column.push(sym.id);
@@ -856,9 +859,10 @@ async function calculateBonanzaFullSpin(
   isBonusSpin: boolean,
   runningMultiplier: number,
   prng: SeededPRNG,
-  forceScatters: boolean = false
+  forceScatters: boolean = false,
+  scatterWeightMultiplier: number = 1
 ): Promise<BonanzaSpinResult> {
-  let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng);
+  let grid = await generateBonanzaGrid(symbols, isBonusSpin, prng, scatterWeightMultiplier);
 
   // Debug: force exactly 4 scatters across different columns
   if (forceScatters && !isBonusSpin) {
@@ -1552,7 +1556,7 @@ Deno.serve(async (req) => {
 
     // Parse request body
     const body = await req.json();
-    let { bet, sessionId, isBonusSpin, gameId: rawGameId, clientSeed, nonce, debugScatters } = body;
+    let { bet, sessionId, isBonusSpin, gameId: rawGameId, clientSeed, nonce, debugScatters, doubleChance, buyBonus } = body;
     const gameId = rawGameId || "book-of-fedesvin";
 
     // Validate clientSeed and nonce for provably fair RNG
@@ -1837,6 +1841,11 @@ Deno.serve(async (req) => {
       }
 
       // Bonanza normal spin
+      // Handle doubleChance (2x scatter weight, 2x bet cost) and buyBonus (100x bet cost, force 4 scatters)
+      const isDoubleChance = !!doubleChance && !isBonusSpin;
+      const isBuyBonus = !!buyBonus && !isBonusSpin;
+      const effectiveBetCost = isBuyBonus ? bet * 100 : isDoubleChance ? bet * 2 : bet;
+      
       const nowB = new Date();
       const todayB = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Copenhagen", year: "numeric", month: "2-digit", day: "2-digit" }).format(nowB);
       const bonusSpinsPermB = profileRes.data?.bonus_spins_permanent || 0;
@@ -1844,17 +1853,18 @@ Deno.serve(async (req) => {
       const subBonB = isSubB ? SUBSCRIBER_BONUS : 0;
       const capLimB = isSubB ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
       const maxSpB = Math.min(dailySpinsValue + subBonB + bonusSpinsPermB, capLimB);
-      const { data: newRemB, error: rpcErrB } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayB, p_bet: bet, p_max_spins: maxSpB, p_game_id: "shared" });
+      const { data: newRemB, error: rpcErrB } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayB, p_bet: effectiveBetCost, p_max_spins: maxSpB, p_game_id: "shared" });
       if (rpcErrB) return new Response(JSON.stringify({ error: "Failed to deduct spins" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       if (newRemB === -1) return new Response(JSON.stringify({ error: "Not enough spins remaining" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       // Debug scatters: admin-only, force 4 scatters onto grid after generation
-      let forceScatters = false;
-      if (debugScatters) {
+      let forceScatters = isBuyBonus; // buyBonus forces 4 scatters
+      if (debugScatters && !isBuyBonus) {
         const { data: isAdminData } = await serviceClient.rpc("has_role", { _user_id: userId, _role: "admin" });
         if (isAdminData === true) forceScatters = true;
       }
+      const scatterWeightMult = isDoubleChance ? 2 : 1;
 
-      const bonanzaResult = await calculateBonanzaFullSpin(symbols, bet, false, 0, prng, forceScatters);
+      const bonanzaResult = await calculateBonanzaFullSpin(symbols, bet, false, 0, prng, forceScatters, scatterWeightMult);
       let bonanzaBonusState = null;
       if (bonanzaResult.bonusTriggered) {
         const sc = bonanzaResult.scatterCount;

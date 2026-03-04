@@ -35,6 +35,7 @@ import { BonanzaBonusEndOverlay } from "./BonanzaBonusEndOverlay";
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
 import { BonanzaFlyingMultiplier, type FlyingMultiplier } from "./BonanzaFlyingMultiplier";
+import { BonanzaSidePanels } from "./BonanzaSidePanels";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
 const DEFAULT_SYMBOL_HEIGHT = 140;
@@ -67,6 +68,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
   }, [bombSymbols]);
 
   const [bet, setBet] = useState(1);
+  const [doubleChance, setDoubleChance] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
   const [grid, setGrid] = useState<string[][] | null>(null);
   const [winAmount, setWinAmount] = useState(0);
@@ -475,7 +477,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     let shouldWaitForWinAnimation = false;
 
     try {
-      const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current);
+      const serverPromise = serverSpin(bet, isBonusSpin, clientSeedRef.current, nonceRef.current, undefined, !isBonusSpin && doubleChance, false);
       const totalDropOffTime =
         DROP_OFF_DURATION +
         (BONANZA_COLS - 1) * STAGGER_MS +
@@ -682,6 +684,119 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     handleSpin();
   }, [handleSpin]);
 
+  const handleBuyBonus = useCallback(async () => {
+    if (spinLockRef.current || !symbols || !user || isSpinning || isBonusActive) return;
+    if (!hasEnoughSpins(bet * 100)) {
+      toast.error("Du har ikke nok credits til at købe bonus");
+      return;
+    }
+    // Use the same spin flow but with buyBonus flag
+    spinLockRef.current = true;
+    nonceRef.current += 1;
+    setIsSpinning(true);
+    setTumblePhase('spinning');
+    setWinAmount(0);
+    setRunningWin(0);
+    setRunningMultiplier(0);
+    setIsWinAnimating(false);
+    pendingPostWinSpinRef.current = null;
+    setWinningPositions(new Set());
+    setScreenShake('none');
+    setTumbleChainLength(0);
+    setTumbleWinPopups([]);
+    setCollisionPhase('idle');
+    setTumbleBarVisible(false);
+    setFlyingMultipliers([]);
+    serverResultRef.current = null;
+
+    const STAGGER_MS = 80;
+    const DROP_OFF_DURATION = 350;
+    const DROP_OFF_ROW_STAGGER_MS = 40;
+    const DROP_IN_DURATION = 400;
+
+    for (let c = 0; c < BONANZA_COLS; c++) {
+      setTimeout(() => {
+        setColumnSpinStates(prev => { const next = [...prev]; next[c] = 'dropping-off'; return next; });
+      }, c * STAGGER_MS);
+    }
+    slotSounds.playSpinStart();
+
+    try {
+      const serverPromise = serverSpin(bet, false, clientSeedRef.current, nonceRef.current, undefined, false, true);
+      const totalDropOffTime = DROP_OFF_DURATION + (BONANZA_COLS - 1) * STAGGER_MS + (BONANZA_ROWS - 1) * DROP_OFF_ROW_STAGGER_MS;
+      await new Promise(r => setTimeout(r, totalDropOffTime + 100));
+      setCellAnimStates(new Map());
+
+      const response = await serverPromise;
+      if (!response) return;
+      const result = response.result as any;
+
+      if (result.tumbleSteps && result.tumbleSteps.length > 0) setGrid(result.tumbleSteps[0].grid);
+
+      slotSounds.playSymbolDropIn();
+      for (let c = 0; c < BONANZA_COLS; c++) {
+        setTimeout(() => {
+          setColumnSpinStates(prev => { const next = [...prev]; next[c] = 'dropping-in'; return next; });
+          slotSounds.playColumnStop();
+        }, c * STAGGER_MS);
+      }
+      const totalDropInTime = DROP_IN_DURATION + (BONANZA_COLS - 1) * STAGGER_MS;
+      await new Promise(r => setTimeout(r, totalDropInTime));
+      setColumnSpinStates(Array(BONANZA_COLS).fill('idle'));
+
+      if (result.tumbleSteps) {
+        await processTumbleSteps(result.tumbleSteps);
+        const totalWin = result.totalWin || 0;
+        setWinAmount(totalWin);
+      }
+
+      if (response.bonusState) {
+        const bs = response.bonusState as any;
+        if (bs.freeSpinsRemaining > 0) {
+          pendingBonusStateRef.current = bs;
+          const finalGrid = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
+          if (finalGrid && symbols) {
+            const { positions: scatterPos } = countBonanzaScatters(finalGrid, symbols);
+            if (scatterPos.length > 0) {
+              const scatterAnims = new Map<number, BonanzaCellAnimState>();
+              scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+              setCellAnimStates(scatterAnims);
+              slotSounds.playScatterCelebration();
+              setTimeout(() => {
+                setCellAnimStates(new Map());
+                setShowBonusTrigger(true);
+                showBonusTriggerRef.current = true;
+                setScreenShake('intense');
+                setTimeout(() => setScreenShake('none'), 600);
+                setRunningWin(0);
+                setRunningMultiplier(0);
+              }, 1500);
+            } else {
+              setShowBonusTrigger(true);
+              showBonusTriggerRef.current = true;
+            }
+          }
+        }
+      }
+
+      if (response.spinsRemaining !== undefined) {
+        const today = getTodayDanish();
+        queryClient.setQueryData(
+          ["slot-spins", user?.id, today, "shared"],
+          (old: any) => old ? { ...old, spins_remaining: response.spinsRemaining } : old
+        );
+        queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
+      }
+    } catch (err) {
+      console.error("Buy bonus error:", err);
+      toast.error("Der opstod en fejl. Prøv igen.");
+    } finally {
+      setIsSpinning(false);
+      setTumblePhase('idle');
+      if (!pendingBonusActionRef.current) spinLockRef.current = false;
+    }
+  }, [symbols, user, isSpinning, bet, isBonusActive, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, grid]);
+
   // Spacebar to spin + prevent page scroll
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -704,9 +819,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
 
   const gridWidth = BONANZA_COLS * (SYMBOL_WIDTH + SYMBOL_GAP) + SYMBOL_GAP;
   const gridHeight = BONANZA_ROWS * (SYMBOL_HEIGHT + SYMBOL_GAP) + SYMBOL_GAP;
+  const totalLayoutWidth = gridWidth + 140 + 16; // grid + side panels + gap
 
   return (
-    <div className="flex flex-col items-center gap-4 relative" style={{ width: gridWidth, maxWidth: "100%" }}>
+    <div className="flex flex-col items-center gap-4 relative" style={{ width: totalLayoutWidth, maxWidth: "100%" }}>
       {/* Credits expired overlay */}
       <CreditsExpiredOverlay isVisible={spinsRemaining <= 0 && !isBonusActive && !isSpinning && tumblePhase === 'idle'} />
       {/* Bonus overlays moved inside grid below */}
@@ -757,31 +873,46 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         />
       )}
 
-      {/* Logo positioned above grid like Sweet Bonanza */}
-      <div className="flex justify-center relative z-10" style={{ width: gridWidth, marginBottom: -22 }}>
-        <img
-          src={fedesvinBonanzaLogo}
-          alt="Fedesvin Bonanza"
-          className="pointer-events-none block"
-          style={{ width: gridWidth * 0.54, transform: 'translateY(10px)' }}
-          draggable={false}
-        />
-      </div>
+      {/* Logo + Side Panels + Grid layout */}
+      <div className="flex items-start gap-4">
+        {/* Side panels - left of grid */}
+        {!isBonusActive && (
+          <div className="flex items-center" style={{ paddingTop: 40 }}>
+            <BonanzaSidePanels
+              bet={bet}
+              doubleChance={doubleChance}
+              onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
+              onBuyBonus={handleBuyBonus}
+              disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle'}
+              isBonusActive={isBonusActive}
+            />
+          </div>
+        )}
 
-      {/* Main game grid with candy stripe border */}
-      <div className="relative" style={{ width: gridWidth }}>
-        {/* Candy stripe border */}
-        <div
-          className="absolute pointer-events-none z-0 bonanza-candy-stripe-border"
-          style={{
-            inset: "-6px",
-            borderRadius: "1rem",
-          }}
-        />
-      <div
-        ref={gridContainerRef}
-        className={cn(
-          "relative rounded-xl border-[3px] transition-all duration-500",
+        {/* Grid column */}
+        <div className="flex flex-col items-center">
+          {/* Logo positioned above grid */}
+          <div className="flex justify-center relative z-10" style={{ width: gridWidth, marginBottom: -22 }}>
+            <img
+              src={fedesvinBonanzaLogo}
+              alt="Fedesvin Bonanza"
+              className="pointer-events-none block"
+              style={{ width: gridWidth * 0.54, transform: 'translateY(10px)' }}
+              draggable={false}
+            />
+          </div>
+
+          {/* Main game grid with candy stripe border */}
+          <div className="relative" style={{ width: gridWidth }}>
+            {/* Candy stripe border */}
+            <div
+              className="absolute pointer-events-none z-0 bonanza-candy-stripe-border"
+              style={{ inset: "-6px", borderRadius: "1rem" }}
+            />
+          <div
+            ref={gridContainerRef}
+            className={cn(
+              "relative rounded-xl border-[3px] transition-all duration-500",
           isBonusActive
             ? "bg-gradient-to-b from-pink-800/80 via-fuchsia-900/70 to-pink-900/80 border-pink-500/50 shadow-[0_0_30px_rgba(180,50,120,0.5),inset_0_0_20px_rgba(120,30,80,0.3),0_8px_32px_rgba(0,0,0,0.5)]"
             : "bg-gradient-to-b from-pink-100/80 via-rose-50/70 to-fuchsia-100/80 border-pink-400/60 shadow-[0_0_20px_rgba(236,72,153,0.3),inset_0_0_15px_rgba(255,255,255,0.2),0_8px_32px_rgba(0,0,0,0.4)]",
@@ -880,6 +1011,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
         />
       </div>
       </div>
+        </div>{/* end grid column */}
+      </div>{/* end flex row */}
 
       {/* Resterende spins — bonus only */}
       {isBonusActive && (
