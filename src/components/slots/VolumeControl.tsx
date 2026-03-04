@@ -64,10 +64,13 @@ export function VolumeControl({ className }: VolumeControlProps) {
   const handleVolumeChange = (value: number[]) => {
     const newVolume = value[0];
     setVolume(newVolume);
+    slotSounds.setVolume(newVolume / 100);
     if (newVolume > 0 && !enabled) {
       setEnabled(true);
+      slotSounds.setEnabled(true);
     } else if (newVolume === 0) {
       setEnabled(false);
+      slotSounds.setEnabled(false);
     }
   };
 
