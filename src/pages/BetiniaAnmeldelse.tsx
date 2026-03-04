@@ -130,7 +130,7 @@ const BetiniaAnmeldelse = () => {
       <SEO
         title="Betinia Anmeldelse 2026 – No-Sticky Bonus"
         description="Komplet anmeldelse af Betinia.dk. 100% No-Sticky bonus op til 1.000 kr., kun 10x omsætning, over 40 spiludbydere, sportsbetting og hurtige udbetalinger. Læs vores ærlige vurdering."
-        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
+        jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/betinia", "GyqEjKQiCJU", { title: "Betinia Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Betinia ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]}
       />
 
       {/* Hero Section */}

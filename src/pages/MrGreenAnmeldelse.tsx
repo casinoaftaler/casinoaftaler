@@ -42,7 +42,7 @@ const MrGreenAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="Mr Green Anmeldelse 2026 – Green Gaming & Kurateret Udvalg" description="Komplet anmeldelse af Mr Green Casino. Prisbelønnet casino med dansk licens, Green Gaming-værktøj, kurateret spiludvalg og hurtige udbetalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="Mr Green Anmeldelse 2026 – Green Gaming & Kurateret Udvalg" description="Komplet anmeldelse af Mr Green Casino. Prisbelønnet casino med dansk licens, Green Gaming-værktøj, kurateret spiludvalg og hurtige udbetalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/mr-green", "htCLh4TK6tA", { title: "Mr Green Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Mr Green ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
