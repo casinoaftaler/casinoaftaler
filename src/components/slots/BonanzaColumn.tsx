@@ -31,6 +31,7 @@ interface BonanzaColumnProps {
   symbolHeight?: number;
   symbolScale?: number;
   isBonusActive?: boolean;
+  isMobile?: boolean;
 }
 
 export const BonanzaColumn = React.memo(function BonanzaColumn({
@@ -49,6 +50,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
   symbolHeight: SYMBOL_HEIGHT = DEFAULT_SYMBOL_HEIGHT,
   symbolScale = 100,
   isBonusActive = false,
+  isMobile = false,
 }: BonanzaColumnProps) {
   const isDroppingOff = spinState === 'dropping-off';
   const isDroppingIn = spinState === 'dropping-in';
@@ -90,7 +92,7 @@ export const BonanzaColumn = React.memo(function BonanzaColumn({
               "overflow-visible",
               isColumnIdle && cellAnim === 'idle' && "slot-cell-idle-hover-alpha",
               isWinning && "bonanza-candy-highlight",
-              isLanding && "bonanza-column-stop-impact",
+              isLanding && !(isMobile && symbol?.is_scatter) && "bonanza-column-stop-impact",
               applyDropOff && "bonanza-drop-off",
               applyDropIn && "bonanza-drop-in",
               cellAnim === 'winning' && "bonanza-candy-highlight",
