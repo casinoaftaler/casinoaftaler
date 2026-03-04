@@ -1,0 +1,1 @@
+UPDATE site_settings SET value = 'https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/slot-sounds/bonanza-background-music.mp3', updated_at = now() WHERE key = 'fedesvin_bonanza_sound_file_background_music';
