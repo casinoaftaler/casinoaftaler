@@ -439,10 +439,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     nonceRef.current += 1;
     setIsSpinning(true);
     setTumblePhase('spinning');
-    // In bonus, keep cumulative winAmount — only reset in base game
-    if (!isBonusActiveRef.current) {
-      setWinAmount(0);
-    }
+    // winAmount accumulates across entire session — never reset
     setRunningWin(0);
     setRunningMultiplier(0);
     // Don't clear bomb-exploded decals yet — let them persist through drop-off animation
@@ -522,10 +519,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       if (result.tumbleSteps) {
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
-        // In base game, set final total; in bonus, winAmount is already accumulated incrementally
-        if (!isBonusActiveRef.current) {
-          setWinAmount(totalWin);
-        }
+        // winAmount is accumulated incrementally in processTumbleSteps (line-by-line)
 
         if (totalWin > 0) {
           setIsWinAnimating(true);
