@@ -44,6 +44,9 @@ export interface CustomSoundFiles {
   scatterCelebrationSound?: string | null;
   symbolHighlightSound?: string | null;
   symbolDropInSound?: string | null;
+  symbolExplodeSound?: string | null;
+  bombFizzSound?: string | null;
+  bonusEndSound?: string | null;
 }
 
 // localStorage key for persisting audio settings
@@ -204,7 +207,8 @@ class SlotSoundEffects {
       'bigWinSound', 'bonusTriggerSound', 'bonusWinSound',
       'bonusSymbolScrollSound', 'bonusSymbolSelectedSound',
       'scatterSound1', 'scatterSound2', 'scatterSound3',
-      'scatterCelebrationSound', 'symbolHighlightSound', 'symbolDropInSound'
+      'scatterCelebrationSound', 'symbolHighlightSound', 'symbolDropInSound',
+      'symbolExplodeSound', 'bombFizzSound', 'bonusEndSound'
     ];
 
     soundKeys.forEach(key => {
@@ -1241,6 +1245,8 @@ class SlotSoundEffects {
   // Crackling electric burst for symbol explosions
   playCrackle() {
     if (!this.canPlayEffect()) return;
+    // Try custom symbol explode sound first
+    if (this.playCustomSound('symbolExplodeSound', 0.7)) return;
     
     const ctx = this.getContext();
     const now = ctx.currentTime;
@@ -3235,6 +3241,57 @@ class SlotSoundEffects {
 
     thud.start(now);
     thud.stop(now + 0.25);
+  }
+
+  // Bomb explosion sound — plays when an activated bomb blows up
+  playBombExplode() {
+    if (!this.canPlayEffect()) return;
+    if (this.playCustomSound('symbolExplodeSound', 0.8)) return;
+    // Fallback: heavy crackle
+    this.playCrackle();
+  }
+
+  // Bomb fizzle sound — plays when a non-activated bomb fizzles out
+  playBombFizz() {
+    if (!this.canPlayEffect()) return;
+    if (this.playCustomSound('bombFizzSound', 0.6)) return;
+    // Fallback: quiet descending tone
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(400, now);
+    osc.frequency.exponentialRampToValueAtTime(100, now + 0.3);
+    gain.gain.setValueAtTime(0.1 * this.volume, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+    osc.start(now);
+    osc.stop(now + 0.4);
+  }
+
+  // Bonus end sound — plays when the bonus round completes
+  playBonusEnd() {
+    if (!this.canPlayEffect()) return;
+    if (this.playCustomSound('bonusEndSound', 0.8)) return;
+    // Fallback: descending fanfare
+    const ctx = this.getContext();
+    const now = ctx.currentTime;
+    const notes = [784, 659, 523, 392]; // G5, E5, C5, G4
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      const t = now + i * 0.15;
+      gain.gain.setValueAtTime(0.15 * this.volume, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+      osc.start(t);
+      osc.stop(t + 0.35);
+    });
   }
 
   // Scatter tease rising pitch sound (2-3 scatters visible)

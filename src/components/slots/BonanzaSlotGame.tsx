@@ -428,7 +428,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         currentAnims.set(bomb.position, animState);
         setCellAnimStates(currentAnims);
         if (bomb.activated) {
-          slotSounds.playCrackle();
+          slotSounds.playBombExplode();
 
           // Spawn flying multiplier from bomb position to bar
           const { col, row } = flatToColRow(bomb.position);
@@ -456,6 +456,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           setRunningMultiplier(prev => prev + bomb.value);
           setFlyingMultipliers(prev => prev.filter(f => f.id !== flyId));
         } else {
+          slotSounds.playBombFizz();
           await new Promise(r => setTimeout(r, 400));
           explodedPositions.set(bomb.position, 'bomb-exploded');
         }
@@ -818,13 +819,14 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
    const handleBuyBonus = useCallback(async () => {
      if (spinLockRef.current || !symbols || !user || isSpinning || isBonusActive || isBuyingBonus) return;
      setIsBuyingBonus(true);
-     // Send bonus buy system message to chat
-     const name = userDisplayNameRef.current || "Anonym";
-     sendSystemMessage(`🎰 ${name} har købt en bonus for ${bet * 100} credits!`, "bonus_buy");
     if (!hasEnoughSpins(bet * 100)) {
       toast.error("Du har ikke nok credits til at købe bonus");
+      setIsBuyingBonus(false);
       return;
     }
+    // Send bonus buy system message to chat AFTER credit check passes
+    const name = userDisplayNameRef.current || "Anonym";
+    sendSystemMessage(`🎰 ${name} har købt en bonus for ${bet * 100} credits!`, "bonus_buy");
     // Use the same spin flow but with buyBonus flag
     spinLockRef.current = true;
     nonceRef.current += 1;
