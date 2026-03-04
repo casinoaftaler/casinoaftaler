@@ -145,6 +145,7 @@ export function useSlotChat(gameId: string) {
           };
 
           setMessages(prev => {
+            if (prev.some(m => m.id === enrichedMsg.id)) return prev;
             const next = [...prev, enrichedMsg];
             return next.length > MAX_MESSAGES ? next.slice(-MAX_MESSAGES) : next;
           });
@@ -210,15 +211,35 @@ export function useSlotChat(gameId: string) {
 
     lastSentRef.current = now;
 
-    const { error } = await supabase.from("slot_chat_messages").insert({
-      user_id: user.id,
-      game_id: gameId,
-      message: trimmed,
-      message_type: "user",
-    });
+    const { data, error } = await supabase
+      .from("slot_chat_messages")
+      .insert({
+        user_id: user.id,
+        game_id: gameId,
+        message: trimmed,
+        message_type: "user",
+      })
+      .select("*")
+      .single();
+
+    if (!error && data) {
+      const profile = await fetchProfile(user.id);
+      const enrichedMsg: ChatMessage = {
+        ...(data as ChatMessage),
+        display_name: profile.display_name,
+        avatar_url: profile.avatar_url,
+        twitch_badges: profile.twitch_badges,
+      };
+
+      setMessages(prev => {
+        if (prev.some(m => m.id === enrichedMsg.id)) return prev;
+        const next = [...prev, enrichedMsg];
+        return next.length > MAX_MESSAGES ? next.slice(-MAX_MESSAGES) : next;
+      });
+    }
 
     return !error;
-  }, [gameId]);
+  }, [gameId, fetchProfile]);
 
   // Send system message (for bonus buy, big wins, etc.)
   const sendSystemMessage = useCallback(async (text: string, type: string = "system") => {
