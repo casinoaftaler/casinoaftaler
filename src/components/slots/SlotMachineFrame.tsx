@@ -83,7 +83,7 @@ export function SlotMachineFrame({
       )}
 
       <div className="relative">
-        {(!hasFrame || !imageLoaded) && !isBonanza && (
+        {(!hasFrame || !imageLoaded) && (
           <>
             <div className={cn("absolute -top-3 -left-3 w-8 h-8 border-t-4 border-l-4 rounded-tl-lg", getSlotTheme(gameId).frameBorderColor)} />
             <div className={cn("absolute -top-3 -right-3 w-8 h-8 border-t-4 border-r-4 rounded-tr-lg", getSlotTheme(gameId).frameBorderColor)} />
