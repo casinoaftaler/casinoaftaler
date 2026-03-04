@@ -81,7 +81,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const [doubleChance, setDoubleChance] = useState(false);
   const [isSpinning, setIsSpinning] = useState(false);
   const [grid, setGrid] = useState<string[][] | null>(null);
-  const [winAmount, setWinAmount] = useState(0);
+  const [winAmount, setWinAmountRaw] = useState(0);
+  const [isBuyingBonus, setIsBuyingBonus] = useState(false);
   const [isWinAnimating, setIsWinAnimating] = useState(false);
   const [currentSpinWin, setCurrentSpinWin] = useState(0);
   const [winningPositions, setWinningPositions] = useState<Set<number>>(new Set());
@@ -132,6 +133,18 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const isBonusActiveRef = useRef(false);
   const [spinPressed, setSpinPressed] = useState(false);
 
+  // Wrapper: persist winAmount to localStorage when bonus is active
+  const bonusWinKey = `bonanza_win_${gameId}_${user?.id}`;
+  const setWinAmount = useCallback((val: number | ((prev: number) => number)) => {
+    setWinAmountRaw(prev => {
+      const next = typeof val === 'function' ? val(prev) : val;
+      if (isBonusActiveRef.current) {
+        try { localStorage.setItem(bonusWinKey, String(next)); } catch {}
+      }
+      return next;
+    });
+  }, [bonusWinKey]);
+
   // Initialize grid
   useEffect(() => {
     if (symbols && symbols.length > 0 && !grid) {
@@ -159,16 +172,21 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           .eq("user_id", user.id)
           .eq("game_id", gameId)
           .maybeSingle();
-        if (!error && data && data.is_active && data.free_spins_remaining > 0) {
-          setIsBonusActive(true);
-          setFreeSpinsRemaining(data.free_spins_remaining);
-          setTotalFreeSpins(data.total_free_spins);
-          setBonusWinnings(Number(data.bonus_winnings) || 0);
-          setBet(Number(data.bet_amount) || 1);
-          setCumulativeMultiplier(Number(data.expanding_symbol_name) || 0);
-          setRunningMultiplier(Number(data.expanding_symbol_name) || 0);
-          setBonusAutoSpinPending(true);
-        }
+         if (!error && data && data.is_active && data.free_spins_remaining > 0) {
+           setIsBonusActive(true);
+           setFreeSpinsRemaining(data.free_spins_remaining);
+           setTotalFreeSpins(data.total_free_spins);
+           setBonusWinnings(Number(data.bonus_winnings) || 0);
+           setBet(Number(data.bet_amount) || 1);
+           setCumulativeMultiplier(Number(data.expanding_symbol_name) || 0);
+           setRunningMultiplier(Number(data.expanding_symbol_name) || 0);
+           setBonusAutoSpinPending(true);
+           // Restore winAmount from localStorage
+           try {
+             const savedWin = localStorage.getItem(`bonanza_win_${gameId}_${user.id}`);
+             if (savedWin) setWinAmountRaw(Number(savedWin) || 0);
+           } catch {}
+         }
       } catch (err) {
         console.error("Failed to load Bonanza bonus state:", err);
       }
@@ -716,8 +734,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     handleSpin();
   }, [handleSpin]);
 
-  const handleBuyBonus = useCallback(async () => {
-    if (spinLockRef.current || !symbols || !user || isSpinning || isBonusActive) return;
+   const handleBuyBonus = useCallback(async () => {
+     if (spinLockRef.current || !symbols || !user || isSpinning || isBonusActive || isBuyingBonus) return;
+     setIsBuyingBonus(true);
     if (!hasEnoughSpins(bet * 100)) {
       toast.error("Du har ikke nok credits til at købe bonus");
       return;
@@ -826,9 +845,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     } finally {
       setIsSpinning(false);
       setTumblePhase('idle');
-      if (!pendingBonusActionRef.current) spinLockRef.current = false;
+      if (!pendingBonusActionRef.current) {
+        spinLockRef.current = false;
+        // Don't reset isBuyingBonus here — it stays true until bonus ends
+      }
     }
-  }, [symbols, user, isSpinning, bet, isBonusActive, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, grid]);
+  }, [symbols, user, isSpinning, bet, isBonusActive, isBuyingBonus, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, grid]);
 
   // Spacebar to spin + prevent page scroll
   useEffect(() => {
@@ -916,7 +938,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
               doubleChance={doubleChance}
               onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
               onBuyBonus={handleBuyBonus}
-              disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive}
+              disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive || isBuyingBonus}
               isBonusActive={isBonusActive}
             />
           </div>
@@ -1043,7 +1065,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
             setRunningMultiplier(0);
             setBonusWinnings(0);
             setRunningWin(0);
-            
+            setIsBuyingBonus(false);
+            // Clear persisted bonus win from localStorage
+            try { localStorage.removeItem(bonusWinKey); } catch {}
             // Resume auto-spinning after bonus ends
             if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
               if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
@@ -1066,7 +1090,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
             doubleChance={doubleChance}
             onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
             onBuyBonus={handleBuyBonus}
-            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle'}
+            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBuyingBonus}
             isBonusActive={isBonusActive}
             horizontal
             compact
