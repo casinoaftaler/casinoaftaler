@@ -24,7 +24,7 @@ export function SourceCitations() {
             <a
               href="https://www.spillemyndigheden.dk/tilladelser/tilladelsesindehavere"
               target="_blank"
-              rel="nofollow noopener noreferrer"
+              rel="noopener noreferrer"
               className="text-primary underline hover:text-primary/80"
             >
               Spillemyndigheden – Tilladelsesindehavere
@@ -44,7 +44,7 @@ export function SourceCitations() {
             <a
               href="https://rofus.nu/"
               target="_blank"
-              rel="nofollow noopener noreferrer"
+              rel="noopener noreferrer"
               className="text-primary underline hover:text-primary/80"
             >
               ROFUS – Register Over Frivilligt Udelukkede Spillere
@@ -58,7 +58,7 @@ export function SourceCitations() {
             <a
               href="https://www.stopspillet.dk/"
               target="_blank"
-              rel="nofollow noopener noreferrer"
+              rel="noopener noreferrer"
               className="text-primary underline hover:text-primary/80"
             >
               StopSpillet.dk
