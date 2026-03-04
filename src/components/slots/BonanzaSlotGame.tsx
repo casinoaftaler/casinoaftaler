@@ -1145,6 +1145,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       </div>
       </div>
         </div>{/* end grid column */}
+        {/* Invisible spacer to balance side panels on the right */}
+        {!isMobile && <div className="shrink-0" style={{ width: 160 }} />}
       </div>{/* end flex row */}
 
       {/* MOBILE tumble bar is now rendered inside BonanzaControlBar */}
