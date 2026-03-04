@@ -487,7 +487,7 @@ const App = () => (
                 <Route 
                   path="/community/slots/fedesvin-bonanza" 
                   element={
-                    <Suspense fallback={<SlotPageLoading />}>
+                    <Suspense fallback={<SlotPageLoading theme="bonanza" />}>
                       <FedesvinBonanza />
                     </Suspense>
                   } 
