@@ -816,3 +816,75 @@
   0%, 100% { opacity: 0.6; box-shadow: 0 0 10px rgba(255,215,0,0.3); }
   50% { opacity: 1; box-shadow: 0 0 25px rgba(255,215,0,0.7); }
 }
+
+/* === Coin Rain (falling from top) === */
+@keyframes coin-rain-fall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(calc(100vh + 20px)) rotate(var(--coin-rot, 720deg));
+    opacity: 0;
+  }
+}
+
+/* === Text glow breathe for win label === */
+@keyframes win-text-glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(255,215,0,0.7)) drop-shadow(0 0 30px rgba(255,180,0,0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(255,215,0,1)) drop-shadow(0 0 60px rgba(255,180,0,0.7)) drop-shadow(0 0 90px rgba(255,140,0,0.4));
+  }
+}
+
+/* === Impact shake on win start === */
+@keyframes win-impact-shake {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-6px, 3px); }
+  20% { transform: translate(5px, -4px); }
+  30% { transform: translate(-4px, 5px); }
+  40% { transform: translate(6px, -3px); }
+  50% { transform: translate(-3px, 4px); }
+  60% { transform: translate(4px, -5px); }
+  70% { transform: translate(-5px, 3px); }
+  80% { transform: translate(3px, -4px); }
+  90% { transform: translate(-4px, 5px); }
+}
+
+.win-impact-shake {
+  animation: win-impact-shake 0.18s ease-out;
+}
+
+/* === Floating sparkle drift === */
+@keyframes sparkle-drift {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  15% {
+    transform: translate(var(--drift-x1, 5px), var(--drift-y1, -10px)) scale(1);
+    opacity: 1;
+  }
+  85% {
+    transform: translate(var(--drift-x2, -5px), var(--drift-y2, -40px)) scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(var(--drift-x3, 0px), var(--drift-y3, -60px)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* === Radial light rays behind text === */
+@keyframes light-ray-rotate {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
