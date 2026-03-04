@@ -484,6 +484,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     if (showBonusTriggerRef.current || showBonusCompleteRef.current || showRetriggerRef.current) return;
 
     const isBonusSpin = isBonusActive && freeSpinsRemaining > 0;
+    const wasBonusActiveBeforeSpin = isBonusActive; // Capture BEFORE spin for closure safety
     if (!isBonusSpin && !hasEnoughSpins(bet)) return;
 
     spinLockRef.current = true;
