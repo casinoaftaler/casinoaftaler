@@ -49,7 +49,7 @@ export function BonanzaTumbleWinBar({
   return (
     <div className={cn(
       inline
-        ? "relative z-40 pointer-events-none bonanza-tumble-bar-in"
+        ? "relative z-40 pointer-events-none bonanza-tumble-bar-inline-in"
         : "absolute top-2 left-1/2 -translate-x-1/2 z-40 pointer-events-none bonanza-tumble-bar-in"
     )}>
       <div
