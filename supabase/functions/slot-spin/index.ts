@@ -666,8 +666,11 @@ async function pickBonanzaBombValue(prng: SeededPRNG): Promise<number> {
   return BONANZA_MULTIPLIER_VALUES[0];
 }
 
-async function getBonanzaRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<SlotSymbol> {
-  const getWeight = (s: SlotSymbol) => isBonusSpin ? (s.bonus_weight || s.weight || DEFAULT_SYMBOL_WEIGHT) : (s.weight || DEFAULT_SYMBOL_WEIGHT);
+async function getBonanzaRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1): Promise<SlotSymbol> {
+  const getWeight = (s: SlotSymbol) => {
+    const base = isBonusSpin ? (s.bonus_weight || s.weight || DEFAULT_SYMBOL_WEIGHT) : (s.weight || DEFAULT_SYMBOL_WEIGHT);
+    return s.is_scatter && scatterWeightMultiplier > 1 ? base * scatterWeightMultiplier : base;
+  };
   const totalWeight = symbols.reduce((sum, s) => sum + getWeight(s), 0);
   let random = (await prng.next()) * totalWeight;
   for (const sym of symbols) {
@@ -677,7 +680,7 @@ async function getBonanzaRandomSymbol(symbols: SlotSymbol[], isBonusSpin: boolea
   return symbols[symbols.length - 1];
 }
 
-async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG): Promise<string[][]> {
+async function generateBonanzaGrid(symbols: SlotSymbol[], isBonusSpin: boolean, prng: SeededPRNG, scatterWeightMultiplier: number = 1): Promise<string[][]> {
   // Pre-generate enough random values for grid generation:
   // ~5 rows * 6 cols * 2 (symbol picks + bomb/scatter rolls) + ~20 (dup rolls + shuffles) = ~80
   await prng.pregenerate(100);
@@ -1552,7 +1555,7 @@ Deno.serve(async (req) => {
 
     // Parse request body
     const body = await req.json();
-    let { bet, sessionId, isBonusSpin, gameId: rawGameId, clientSeed, nonce, debugScatters } = body;
+    let { bet, sessionId, isBonusSpin, gameId: rawGameId, clientSeed, nonce, debugScatters, doubleChance, buyBonus } = body;
     const gameId = rawGameId || "book-of-fedesvin";
 
     // Validate clientSeed and nonce for provably fair RNG
