@@ -45,6 +45,7 @@ type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
 interface BonanzaSlotGameProps {
   gameId?: string;
+  isMobile?: boolean;
 }
 
 export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGameProps) {
