@@ -989,6 +989,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
                 symbolHeight={SYMBOL_HEIGHT}
                 symbolScale={SYMBOL_SCALE}
                 isBonusActive={isBonusActive}
+                isMobile={isMobile}
               />
             );
           })}
