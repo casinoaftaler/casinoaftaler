@@ -187,9 +187,6 @@ export default function FedesvinBonanza() {
               <BonanzaSlotGame gameId={GAME_ID} isMobile />
             </SlotPageLayout>
           </div>
-          <div className="flex flex-col items-center px-4 pb-4 pt-4">
-            <SlotGameSeoCta />
-          </div>
         </div>
       ) : (
         /* ── DESKTOP: CSS transform scaling ── */
@@ -207,10 +204,6 @@ export default function FedesvinBonanza() {
               </SlotPageLayout>
             </div>
           </div>
-          <div className="xl:hidden flex flex-col items-center px-4 pb-4 pt-6">
-            <SlotGameSeoCta />
-          </div>
-        </>
       )}
     </div>
   );

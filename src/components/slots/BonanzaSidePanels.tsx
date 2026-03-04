@@ -46,7 +46,7 @@ export function BonanzaSidePanels({
     )} style={horizontal ? undefined : { width: 160 }}>
       {/* ── Buy Feature ── */}
       <button
-        onClick={onBuyBonus}
+        onClick={() => setShowBuyConfirm(true)}
         disabled={disabled || isBonusActive}
         className={cn(
           "relative transition-all duration-[180ms] cursor-pointer select-none",
