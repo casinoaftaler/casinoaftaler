@@ -734,7 +734,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         !showRetriggerRef.current &&
         !pendingBonusActionRef.current;
 
-      if (shouldContinueBonus && isAutoSpinning && !shouldStopAutoSpinRef.current) {
+      if (shouldContinueBonus && isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
         if (shouldWaitForWinAnimation) {
           pendingPostWinSpinRef.current = 'bonus';
         } else {
@@ -758,7 +758,10 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         }
       }
     }
-  }, [symbols, user, isSpinning, bet, isBonusActive, freeSpinsRemaining, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, isAutoSpinning, autoSpinsRemaining, stopAutoSpin]);
+  }, [symbols, user, isSpinning, bet, isBonusActive, freeSpinsRemaining, hasEnoughSpins, serverSpin, processTumbleSteps, queryClient, stopAutoSpin]);
+
+  // Keep handleSpinRef always pointing to latest handleSpin
+  handleSpinRef.current = handleSpin;
 
   const handleRetriggerComplete = useCallback(() => {
     setShowRetrigger(false);
