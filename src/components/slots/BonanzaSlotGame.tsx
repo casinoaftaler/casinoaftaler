@@ -913,12 +913,18 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         {/* Grid column */}
         <div className="flex flex-col items-center">
           {/* Logo positioned above grid */}
-          <div className="flex justify-center relative z-10" style={{ width: gridWidth, marginBottom: -22 }}>
+          <div className="flex justify-center relative z-10" style={{
+            width: gridWidth,
+            marginBottom: isMobile ? -8 : -22,
+          }}>
             <img
               src={fedesvinBonanzaLogo}
               alt="Fedesvin Bonanza"
               className="pointer-events-none block"
-              style={{ width: gridWidth * 0.54, transform: 'translateY(10px)' }}
+              style={{
+                width: isMobile ? gridWidth * 0.45 : gridWidth * 0.54,
+                transform: isMobile ? 'translateY(2px)' : 'translateY(10px)',
+              }}
               draggable={false}
             />
           </div>
@@ -990,12 +996,14 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         {/* Flying bomb multipliers */}
         <BonanzaFlyingMultiplier flyers={flyingMultipliers} />
         {/* Tumble win bar overlay */}
-        <BonanzaTumbleWinBar
-          runningWin={runningWin}
-          runningMultiplier={runningMultiplier}
-          collisionPhase={collisionPhase}
-          visible={tumbleBarVisible && isBonusActive}
-        />
+        {!isMobile && (
+          <BonanzaTumbleWinBar
+            runningWin={runningWin}
+            runningMultiplier={runningMultiplier}
+            collisionPhase={collisionPhase}
+            visible={tumbleBarVisible && isBonusActive}
+          />
+        )}
         {/* Bonus overlays — inside grid so they match grid size */}
         <BonanzaBonusEntrySequence
           isActive={showBonusTrigger}
@@ -1035,17 +1043,31 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         </div>{/* end grid column */}
       </div>{/* end flex row */}
 
-      {/* MOBILE: Side panels (Buy Feature + Double Chance) below grid */}
-      {isMobile && (
+      {/* MOBILE: Tumble win bar below grid */}
+      {isMobile && tumbleBarVisible && isBonusActive && (
+        <div className="w-full flex justify-center py-1">
+          <BonanzaTumbleWinBar
+            runningWin={runningWin}
+            runningMultiplier={runningMultiplier}
+            collisionPhase={collisionPhase}
+            visible={true}
+            inline
+          />
+        </div>
+      )}
+
+      {/* MOBILE: Side panels (Buy Feature + Double Chance) below grid — hidden during bonus */}
+      {isMobile && !isBonusActive && (
         <div className="w-full px-1">
           <BonanzaSidePanels
             bet={bet}
             doubleChance={doubleChance}
             onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
             onBuyBonus={handleBuyBonus}
-            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive}
+            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle'}
             isBonusActive={isBonusActive}
             horizontal
+            compact
           />
         </div>
       )}

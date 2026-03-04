@@ -9,6 +9,7 @@ interface BonanzaSidePanelsProps {
   disabled?: boolean;
   isBonusActive?: boolean;
   horizontal?: boolean;
+  compact?: boolean;
 }
 
 export function BonanzaSidePanels({
@@ -19,6 +20,7 @@ export function BonanzaSidePanels({
   disabled,
   isBonusActive,
   horizontal = false,
+  compact = false,
 }: BonanzaSidePanelsProps) {
   const buyBonusCost = bet * 100;
   const displayBet = doubleChance ? bet * 2 : bet;
@@ -41,8 +43,8 @@ export function BonanzaSidePanels({
           horizontal && "flex-1",
         )}
         style={{
-          borderRadius: 20,
-          padding: "14px 16px 18px",
+          borderRadius: compact ? 14 : 20,
+          padding: compact ? "8px 10px 10px" : "14px 16px 18px",
           background: "linear-gradient(180deg, #ff6db3 0%, #f0408a 40%, #d42568 100%)",
           border: "3px solid rgba(255,255,255,0.4)",
           boxShadow: [
@@ -59,23 +61,23 @@ export function BonanzaSidePanels({
       >
         <div
           style={{
-            fontSize: 14,
+            fontSize: compact ? 11 : 14,
             fontWeight: 800,
             letterSpacing: "0.08em",
             textTransform: "uppercase",
             color: "#fff",
             textShadow: "0 2px 4px rgba(0,0,0,0.5)",
             textAlign: "center",
-            marginBottom: 4,
+            marginBottom: compact ? 2 : 4,
           }}
         >
           Køb Bonus
         </div>
-        <div className="flex items-center justify-center gap-1.5">
-          <CreditCoin size="lg" />
+        <div className="flex items-center justify-center gap-1">
+          <CreditCoin size={compact ? "sm" : "lg"} />
           <span
             style={{
-              fontSize: 26,
+              fontSize: compact ? 18 : 26,
               fontWeight: 900,
               color: "#fff",
               textShadow: "0 2px 8px rgba(0,0,0,0.55), 0 0 20px rgba(255,255,255,0.15)",
@@ -100,8 +102,8 @@ export function BonanzaSidePanels({
           horizontal && "flex-1",
         )}
         style={{
-          borderRadius: 20,
-          padding: "14px 14px 14px",
+          borderRadius: compact ? 14 : 20,
+          padding: compact ? "8px 10px 8px" : "14px 14px 14px",
           background: doubleChance
             ? "linear-gradient(180deg, #4cdc7a 0%, #2db85a 40%, #1a9744 100%)"
             : "linear-gradient(180deg, #ffc933 0%, #ffb300 35%, #f59400 70%, #e07800 100%)",
@@ -119,7 +121,7 @@ export function BonanzaSidePanels({
         {/* BET label */}
         <div
           style={{
-            fontSize: 14,
+            fontSize: compact ? 11 : 14,
             fontWeight: 800,
             letterSpacing: "0.08em",
             textTransform: "uppercase",
@@ -133,11 +135,11 @@ export function BonanzaSidePanels({
         </div>
 
         {/* Bet value */}
-        <div className="flex items-center justify-center gap-1.5" style={{ marginBottom: 6 }}>
-          <CreditCoin size="lg" />
+        <div className="flex items-center justify-center gap-1" style={{ marginBottom: compact ? 3 : 6 }}>
+          <CreditCoin size={compact ? "sm" : "lg"} />
           <span
             style={{
-              fontSize: 32,
+              fontSize: compact ? 22 : 32,
               fontWeight: 900,
               color: "#fff",
               textShadow: "0 2px 8px rgba(0,0,0,0.55), 0 0 20px rgba(255,255,255,0.15)",
@@ -153,7 +155,7 @@ export function BonanzaSidePanels({
         {/* Double Chance label */}
         <div
           style={{
-            fontSize: 11,
+            fontSize: compact ? 9 : 11,
             fontWeight: 800,
             letterSpacing: "0.04em",
             textTransform: "uppercase",
@@ -161,7 +163,7 @@ export function BonanzaSidePanels({
             textShadow: "0 1px 3px rgba(0,0,0,0.5)",
             textAlign: "center",
             lineHeight: 1.25,
-            marginBottom: 8,
+            marginBottom: compact ? 4 : 8,
           }}
         >
           Forøg chance
