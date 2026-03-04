@@ -209,22 +209,9 @@ export function BonanzaControlBar({
           </button>
         </div>
 
-        {/* ─── Tumble win bar — dedicated row between autoplay and bottom info ─── */}
-        {tumbleVisible && (
-          <div className="w-full flex justify-center pointer-events-none" style={{ minHeight: 36 }}>
-            <BonanzaTumbleWinBar
-              runningWin={tumbleRunningWin}
-              runningMultiplier={tumbleRunningMultiplier}
-              collisionPhase={tumbleCollisionPhase}
-              visible={true}
-              inline
-            />
-          </div>
-        )}
-
-        {/* ─── Bottom row: Info + Volume + WIN ─── */}
+        {/* ─── Bottom row: Info + Volume + centered Tumble + WIN ─── */}
         <div className="w-full px-2">
-          <div className="flex items-center justify-between w-full" style={{ minHeight: 32 }}>
+          <div className="relative flex items-center justify-between w-full" style={{ minHeight: tumbleVisible ? 52 : 32 }}>
             <div className="flex items-center gap-1.5">
               <BonanzaPayTable gameId={gameId || "fedesvin-bonanza"} bet={bet} />
               <VolumeControl className="w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/15 text-white/70 hover:bg-white/10" />
@@ -243,6 +230,19 @@ export function BonanzaControlBar({
                 </div>
               )}
             </div>
+
+            {tumbleVisible && (
+              <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-none z-10">
+                <BonanzaTumbleWinBar
+                  runningWin={tumbleRunningWin}
+                  runningMultiplier={tumbleRunningMultiplier}
+                  collisionPhase={tumbleCollisionPhase}
+                  visible={true}
+                  inline
+                />
+              </div>
+            )}
+
             <div className="flex items-center gap-1">
               <span className="text-xs uppercase tracking-wider font-black text-orange-400" style={labelStyle}>WIN</span>
               <AnimatedWinCounter targetValue={winAmount} className="text-lg font-black tabular-nums text-white" style={valueStyle} />

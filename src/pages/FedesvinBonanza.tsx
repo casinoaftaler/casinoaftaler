@@ -67,6 +67,25 @@ export default function FedesvinBonanza() {
 
   useEffect(() => { return () => { slotSounds.stopMusic(); }; }, []);
 
+  useEffect(() => {
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousBodyOverscroll = document.body.style.overscrollBehavior;
+    const previousHtmlOverscroll = document.documentElement.style.overscrollBehavior;
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+    document.documentElement.style.overscrollBehavior = "none";
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.body.style.overscrollBehavior = previousBodyOverscroll;
+      document.documentElement.style.overscrollBehavior = previousHtmlOverscroll;
+    };
+  }, []);
+
   const PageBackground = () => (
     <>
       <div className="absolute inset-0 bg-gradient-to-b from-pink-100 via-rose-50 to-fuchsia-100 -z-10" />
@@ -158,7 +177,7 @@ export default function FedesvinBonanza() {
   const sidePanelContent = null;
 
   return (
-    <div className="h-[calc(100dvh-4rem)] relative flex flex-col overflow-hidden">
+    <div className="h-[calc(100dvh-4rem)] max-h-[calc(100dvh-4rem)] relative flex flex-col overflow-hidden">
       <SEO
         title="Fedesvin Bonanza – Gratis Spilleautomat | Casinoaftaler"
         description="Spil Fedesvin Bonanza gratis hos Casinoaftaler. Tumble-mekanik, multiplier-bomber og free spins i candy-tema."
