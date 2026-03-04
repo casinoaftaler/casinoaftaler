@@ -256,6 +256,19 @@ function makeCoins(count: number, palette: string[]): CoinParticle[] {
   });
 }
 
+function makeRainCoins(count: number, palette: string[]): RainCoin[] {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    size: 10 + Math.random() * 16,
+    delay: Math.random() * 3,
+    duration: 1.5 + Math.random() * 2,
+    rotation: 360 + Math.random() * 720,
+    color: palette[Math.floor(Math.random() * palette.length)],
+    spinDuration: 0.3 + Math.random() * 0.5,
+  }));
+}
+
 function makeSparks(count: number, palette: string[]): SparkParticle[] {
   return Array.from({ length: count }, (_, i) => ({
     id: i,
@@ -266,6 +279,24 @@ function makeSparks(count: number, palette: string[]): SparkParticle[] {
     delay: Math.random() * 1.5,
     duration: 1 + Math.random() * 2,
     type: (["sparkle", "streak", "dust", "burst"] as const)[Math.floor(Math.random() * 4)],
+  }));
+}
+
+function makeFloatingSparkles(count: number, palette: string[]): FloatingSparkle[] {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: 20 + Math.random() * 60,
+    size: 3 + Math.random() * 5,
+    delay: Math.random() * 4,
+    duration: 2 + Math.random() * 3,
+    driftX1: (Math.random() - 0.5) * 20,
+    driftY1: -5 - Math.random() * 15,
+    driftX2: (Math.random() - 0.5) * 30,
+    driftY2: -20 - Math.random() * 30,
+    driftX3: (Math.random() - 0.5) * 15,
+    driftY3: -40 - Math.random() * 30,
+    color: palette[Math.floor(Math.random() * palette.length)],
   }));
 }
 
