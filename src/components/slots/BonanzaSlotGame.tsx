@@ -772,7 +772,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
       <div className="relative" style={{ width: gridWidth }}>
         {/* Candy stripe border */}
         <div
-          className="absolute pointer-events-none z-10 bonanza-candy-stripe-border"
+          className="absolute pointer-events-none z-0 bonanza-candy-stripe-border"
           style={{
             inset: "-6px",
             borderRadius: "1rem",
