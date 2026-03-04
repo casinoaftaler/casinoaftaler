@@ -1043,7 +1043,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       )}
 
       {/* Logo + Side Panels + Grid layout */}
-      <div className={cn("flex items-center", isMobile ? "flex-col w-full" : "gap-4 justify-center")}>
+      <div className={cn("relative", isMobile ? "flex flex-col w-full" : "flex items-center gap-4 justify-center")}>
         {/* Side panels - left of grid on desktop, hidden on mobile (shown below) */}
         {!isMobile && (
           <div className="flex items-center">
@@ -1202,8 +1202,13 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         {/* Live chat panel — right side (desktop only) */}
         {!isMobile && (
           <div
-            className="shrink-0 ml-auto overflow-hidden"
-            style={desktopChatHeight > 0 ? { height: `${desktopChatHeight}px` } : undefined}
+            className="shrink-0 overflow-hidden"
+            style={{
+              height: desktopChatHeight > 0 ? `${desktopChatHeight}px` : undefined,
+              position: 'absolute',
+              right: 12,
+              top: 0,
+            }}
           >
             {desktopChatOpen ? (
               <SlotChat
