@@ -375,7 +375,7 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex-1 overflow-y-auto py-2 space-y-0.5 min-h-0"
+        className="flex-1 overflow-y-scroll py-2 space-y-0.5 min-h-0"
       >
         {isLoading ? (
           <div className="flex items-center justify-center h-full">
