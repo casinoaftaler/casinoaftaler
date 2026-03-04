@@ -1226,6 +1226,28 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           tumbleVisible={isMobile && tumbleBarVisible && isBonusActive}
         />
       </div>
+
+      {/* Mobile chat toggle + drawer */}
+      {isMobile && (
+        <>
+          <div className="fixed bottom-20 right-3 z-40">
+            <SlotChat
+              gameId={gameId}
+              collapsed={!mobileChatOpen}
+              onToggle={() => setMobileChatOpen(prev => !prev)}
+            />
+          </div>
+          {mobileChatOpen && (
+            <div className="fixed inset-x-0 bottom-0 z-50 h-[60vh]">
+              <SlotChat
+                gameId={gameId}
+                onToggle={() => setMobileChatOpen(false)}
+                className="h-full w-full rounded-t-2xl rounded-b-none"
+              />
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }
