@@ -1149,8 +1149,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
 
       {/* MOBILE tumble bar is now rendered inside BonanzaControlBar */}
 
-      {/* MOBILE: Side panels (Buy Feature + Double Chance) below grid — hidden during bonus */}
-      {isMobile && !isBonusActive && (
+      {/* MOBILE: Side panels (Buy Feature + Double Chance) below grid */}
+      {isMobile && (
         <div className="w-full px-1">
           <BonanzaSidePanels
             bet={bet}
