@@ -97,6 +97,7 @@ export function BonanzaSidePanels({
           "relative transition-all duration-[180ms] cursor-pointer select-none",
           "hover:-translate-y-[2px] active:translate-y-[2px]",
           "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:active:translate-y-0",
+          horizontal && "flex-1",
         )}
         style={{
           borderRadius: 20,

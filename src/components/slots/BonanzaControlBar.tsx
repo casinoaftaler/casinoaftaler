@@ -37,6 +37,7 @@ interface BonanzaControlBarProps {
   winAmount: number;
   gameId?: string;
   debugButton?: React.ReactNode;
+  isMobile?: boolean;
 }
 
 export function BonanzaControlBar({
