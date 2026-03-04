@@ -56,7 +56,7 @@ export function BonanzaSidePanels({
         )}
         style={{
           borderRadius: compact ? 14 : 20,
-          padding: compact ? "8px 10px 10px" : "14px 16px 18px",
+          padding: compact ? "14px 10px 16px" : "24px 16px 30px",
           background: "linear-gradient(180deg, #ff6db3 0%, #f0408a 40%, #d42568 100%)",
           border: "3px solid rgba(255,255,255,0.4)",
           boxShadow: [
@@ -115,7 +115,7 @@ export function BonanzaSidePanels({
         )}
         style={{
           borderRadius: compact ? 14 : 20,
-          padding: compact ? "8px 10px 8px" : "14px 14px 14px",
+          padding: compact ? "14px 10px 14px" : "24px 14px 24px",
           background: doubleChance
             ? "linear-gradient(180deg, #4cdc7a 0%, #2db85a 40%, #1a9744 100%)"
             : "linear-gradient(180deg, #ffc933 0%, #ffb300 35%, #f59400 70%, #e07800 100%)",
