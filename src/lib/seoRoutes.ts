@@ -192,7 +192,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-bonus", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-19" },
   { path: "/velkomstbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/free-spins", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-22" },
-  { path: "/free-spins-i-dag", changefreq: "daily", priority: 0.9, lastmod: "2026-02-22" },
+  { path: "/free-spins-i-dag", changefreq: "daily", priority: 0.9, lastmod: "2026-03-04" },
   { path: "/indskudsbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
   { path: "/omsaetningskrav", changefreq: "monthly", priority: 0.8, lastmod: "2026-02-26" },
   { path: "/bonus-uden-indbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-21" },
