@@ -895,18 +895,20 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       )}
 
       {/* Logo + Side Panels + Grid layout */}
-      <div className="flex items-center gap-4">
-        {/* Side panels - left of grid, vertically centered */}
-        <div className="flex items-center">
-          <BonanzaSidePanels
-            bet={bet}
-            doubleChance={doubleChance}
-            onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
-            onBuyBonus={handleBuyBonus}
-            disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive}
-            isBonusActive={isBonusActive}
-          />
-        </div>
+      <div className={cn("flex items-center", isMobile ? "flex-col w-full" : "gap-4")}>
+        {/* Side panels - left of grid on desktop, hidden on mobile (shown below) */}
+        {!isMobile && (
+          <div className="flex items-center">
+            <BonanzaSidePanels
+              bet={bet}
+              doubleChance={doubleChance}
+              onDoubleChanceToggle={() => setDoubleChance(prev => !prev)}
+              onBuyBonus={handleBuyBonus}
+              disabled={isSpinning || spinLockRef.current || tumblePhase !== 'idle' || isBonusActive}
+              isBonusActive={isBonusActive}
+            />
+          </div>
+        )}
 
         {/* Grid column */}
         <div className="flex flex-col items-center">
