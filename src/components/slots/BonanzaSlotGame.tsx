@@ -1199,12 +1199,13 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       </div>
       </div>
         </div>{/* end grid column */}
-        {/* Live chat panel — right side (desktop only), spaced far from grid */}
+        {/* Live chat panel — fixed to right edge of viewport (desktop only) */}
         {!isMobile && (
           <div
-            className="shrink-0 overflow-hidden ml-56"
+            className="fixed top-16 overflow-hidden z-30"
             style={{
-              height: desktopChatHeight > 0 ? `${desktopChatHeight}px` : undefined,
+              right: 16,
+              height: desktopChatHeight > 0 ? `${desktopChatHeight}px` : 'calc(100vh - 5rem)',
             }}
           >
             {desktopChatOpen ? (
