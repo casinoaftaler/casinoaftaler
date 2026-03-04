@@ -181,7 +181,7 @@ export default function FedesvinBonanza() {
 
       {isMobile ? (
         /* ── MOBILE: native width, no CSS transform scaling ── */
-        <div className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden">
+        <div className="flex-1 flex flex-col overflow-hidden">
           <div className="w-full px-1">
             <SlotPageLayout sidePanel={null}>
               <BonanzaSlotGame gameId={GAME_ID} isMobile />

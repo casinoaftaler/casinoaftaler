@@ -1069,17 +1069,17 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         <div className="w-full flex justify-center">
           <div className="flex items-baseline gap-2">
             <span
-              className="text-xs sm:text-sm uppercase tracking-widest font-bold text-pink-400"
-              style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(236,72,153,0.6)" }}
+              className="text-sm sm:text-lg uppercase tracking-widest font-black text-white"
+              style={{ textShadow: "0 2px 6px rgba(0,0,0,0.9), 0 0 12px rgba(236,72,153,0.6)" }}
             >
               Resterende spins
             </span>
             <AnimatedSpinCounter
               value={freeSpinsRemaining}
-              className="text-xl sm:text-2xl font-black text-pink-300 tabular-nums"
+              className="text-2xl sm:text-3xl font-black text-white tabular-nums [text-shadow:0_2px_6px_rgba(0,0,0,0.9),0_0_14px_rgba(255,255,255,0.3)]"
             />
             <span
-              className="text-xs sm:text-sm text-pink-500/60 font-bold"
+              className="text-sm sm:text-lg text-white/60 font-black"
               style={{ textShadow: "0 2px 4px rgba(0,0,0,0.8)" }}
             >
               / {totalFreeSpins}
