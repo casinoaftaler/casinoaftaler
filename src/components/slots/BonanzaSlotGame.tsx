@@ -358,10 +358,20 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
 
       // Calculate target position for flying multipliers
       const gridEl = gridContainerRef.current;
-      const targetX = gridEl ? gridEl.offsetWidth / 2 : 300;
-      // On mobile the tumble bar is BELOW the grid, so fly downward; on desktop it's at the top
-      const gridHeight = gridEl ? gridEl.offsetHeight : 600;
-      const targetY = isMobile ? gridHeight + 60 : 20;
+      const fallbackWidth = gridEl ? gridEl.offsetWidth : 300;
+      const fallbackHeight = gridEl ? gridEl.offsetHeight : 600;
+
+      const targetEl = isMobile ? document.getElementById("bonanza-mult-target") : null;
+      const gridRect = gridEl?.getBoundingClientRect();
+      const targetRect = targetEl?.getBoundingClientRect();
+
+      const targetX = targetEl && gridRect && targetRect
+        ? (targetRect.left - gridRect.left) + (targetRect.width / 2)
+        : fallbackWidth / 2;
+
+      const targetY = targetEl && gridRect && targetRect
+        ? (targetRect.top - gridRect.top) + (targetRect.height / 2)
+        : (isMobile ? fallbackHeight + 60 : 20);
 
       for (const bomb of sorted) {
         const animState = bomb.activated ? 'bomb-activate' : 'bomb-fizzle';
