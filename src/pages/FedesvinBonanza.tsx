@@ -12,6 +12,9 @@ import { SlotSessionGate } from "@/components/slots/SlotSessionGate";
 import { SlotPageLockGate } from "@/components/slots/SlotPageLockGate";
 import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
 import { SlotPageLayout } from "@/components/slots/SlotPageLayout";
+import { SlotChat } from "@/components/slots/SlotChat";
+import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
+import { SlotPageLayout } from "@/components/slots/SlotPageLayout";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
@@ -175,7 +178,7 @@ export default function FedesvinBonanza() {
   }
 
   const sidePanelContent = null;
-
+  const [desktopChatOpen, setDesktopChatOpen] = useState(true);
   return (
     <div className="h-[calc(100svh-4rem)] max-h-[calc(100svh-4rem)] relative flex flex-col overflow-hidden">
       <SEO
@@ -227,6 +230,29 @@ export default function FedesvinBonanza() {
               </SlotPageLayout>
             </div>
           </div>
+      )}
+
+      {/* Desktop chat — OUTSIDE the scaled container, pinned to right edge */}
+      {!isMobile && loadingPhase === 'ready' && user && (
+        <div
+          className="fixed top-16 right-0 z-30 overflow-hidden"
+          style={{ height: 'calc(100vh - 4rem)' }}
+        >
+          {desktopChatOpen ? (
+            <SlotChat
+              gameId={GAME_ID}
+              className="h-full"
+              onToggle={() => setDesktopChatOpen(false)}
+            />
+          ) : (
+            <SlotChat
+              gameId={GAME_ID}
+              className="h-full"
+              collapsed
+              onToggle={() => setDesktopChatOpen(true)}
+            />
+          )}
+        </div>
       )}
     </div>
   );
