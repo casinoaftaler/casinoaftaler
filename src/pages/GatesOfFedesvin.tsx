@@ -25,7 +25,7 @@ import { GatesSlotGame } from "@/components/slots/GatesSlotGame";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
-import { LiveBigWins } from "@/components/slots/LiveBigWins";
+
 import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
 
 const GAME_ID = "gates-of-fedesvin";
@@ -181,7 +181,7 @@ export default function GatesOfFedesvin() {
         description="Spil Gates of Fedesvin gratis hos Casinoaftaler. Tumble-mekanik, multiplier-orbs og free spins. Optjen point og klatr på ranglisten."
         noindex
       />
-      <LiveBigWins />
+      
       <PageBackground />
 
       <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-20">
