@@ -210,29 +210,43 @@ export function BonanzaControlBar({
         </div>
 
         {/* ─── Bottom row: Info + Volume + Credit/Bet + WIN ─── */}
-        <div className="flex items-center justify-between w-full px-2">
-          <div className="flex items-center gap-1.5">
-            <BonanzaPayTable gameId={gameId || "fedesvin-bonanza"} bet={bet} />
-            <VolumeControl className="w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/15 text-white/70 hover:bg-white/10" />
+        <div className="relative w-full px-2">
+          <div className="flex items-center justify-between w-full">
+            <div className="flex items-center gap-1.5">
+              <BonanzaPayTable gameId={gameId || "fedesvin-bonanza"} bet={bet} />
+              <VolumeControl className="w-8 h-8 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/15 text-white/70 hover:bg-white/10" />
+            </div>
+            {!bonusState.isActive && (
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1">
+                  <span className="text-xs uppercase tracking-wider font-black text-orange-400" style={labelStyle}>Credit</span>
+                  <span className="text-sm font-black tabular-nums text-white" style={valueStyle}>
+                    {spinsLoading ? "..." : spinsRemaining.toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="text-xs uppercase tracking-wider font-black text-orange-400" style={labelStyle}>Bet</span>
+                  <span className="text-sm font-black tabular-nums text-white" style={valueStyle}>{bet}</span>
+                </div>
+              </div>
+            )}
+            <div className="flex items-center gap-1">
+              <span className="text-xs uppercase tracking-wider font-black text-orange-400" style={labelStyle}>WIN</span>
+              <AnimatedWinCounter targetValue={winAmount} className="text-lg font-black tabular-nums text-white" style={valueStyle} />
+            </div>
           </div>
-          {!bonusState.isActive && (
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1">
-                <span className="text-xs uppercase tracking-wider font-black text-orange-400" style={labelStyle}>Credit</span>
-                <span className="text-sm font-black tabular-nums text-white" style={valueStyle}>
-                  {spinsLoading ? "..." : spinsRemaining.toLocaleString()}
-                </span>
-              </div>
-              <div className="flex items-center gap-1">
-                <span className="text-xs uppercase tracking-wider font-black text-orange-400" style={labelStyle}>Bet</span>
-                <span className="text-sm font-black tabular-nums text-white" style={valueStyle}>{bet}</span>
-              </div>
+          {/* Tumble win bar – absolutely positioned so it doesn't push other elements */}
+          {tumbleVisible && (
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-0.5 z-50 pointer-events-none">
+              <BonanzaTumbleWinBar
+                runningWin={tumbleRunningWin}
+                runningMultiplier={tumbleRunningMultiplier}
+                collisionPhase={tumbleCollisionPhase}
+                visible={true}
+                inline
+              />
             </div>
           )}
-          <div className="flex items-center gap-1">
-            <span className="text-xs uppercase tracking-wider font-black text-orange-400" style={labelStyle}>WIN</span>
-            <AnimatedWinCounter targetValue={winAmount} className="text-lg font-black tabular-nums text-white" style={valueStyle} />
-          </div>
         </div>
       </div>
     );
