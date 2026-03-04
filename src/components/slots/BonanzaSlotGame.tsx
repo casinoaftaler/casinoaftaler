@@ -570,7 +570,20 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       if (result.tumbleSteps) {
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
-        // winAmount is accumulated incrementally in processTumbleSteps (line-by-line)
+
+        // Play scatter celebration for 3+ scatters (even if bonus doesn't trigger)
+        const finalGridForScatter = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
+        if (finalGridForScatter && symbols) {
+          const { count: scatCount, positions: scatPos } = countBonanzaScatters(finalGridForScatter, symbols);
+          if (scatCount >= 3) {
+            const scatterAnims = new Map<number, BonanzaCellAnimState>();
+            scatPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+            setCellAnimStates(scatterAnims);
+            slotSounds.playScatterCelebration();
+            await new Promise(r => setTimeout(r, 1500));
+            setCellAnimStates(new Map());
+          }
+        }
 
         if (totalWin > 0) {
           setCurrentSpinWin(totalWin);
