@@ -1,0 +1,1 @@
+INSERT INTO site_settings (key, value) VALUES ('fedesvin_bonanza_sound_file_scatter_celebration', 'https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/slot-sounds/bonanza-scatter-celebration.mp3') ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now();
