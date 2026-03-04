@@ -616,6 +616,30 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
                 setRunningWin(0);
                 setRunningMultiplier(0);
               } else if (bs.isRetrigger) {
+                // Play scatter celebration before showing retrigger overlay
+                const finalGrid = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
+                if (finalGrid && symbols) {
+                  const { positions: scatterPos } = countBonanzaScatters(finalGrid, symbols);
+                  if (scatterPos.length > 0) {
+                    const scatterAnims = new Map<number, BonanzaCellAnimState>();
+                    scatterPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
+                    setCellAnimStates(scatterAnims);
+                    slotSounds.playScatterCelebration();
+                    setTimeout(() => {
+                      setCellAnimStates(new Map());
+                      setScreenShake('intense');
+                      setTimeout(() => setScreenShake('none'), 500);
+                      setShowRetrigger(true);
+                      showRetriggerRef.current = true;
+                      setFreeSpinsRemaining(bs.freeSpinsRemaining);
+                      setTotalFreeSpins(bs.totalFreeSpins);
+                      setBonusWinnings(bs.bonusWinnings || 0);
+                      setCumulativeMultiplier(bs.cumulativeMultiplier || 0);
+                      setRunningMultiplier(bs.cumulativeMultiplier || 0);
+                    }, 1500);
+                    return;
+                  }
+                }
                 setScreenShake('intense');
                 setTimeout(() => setScreenShake('none'), 500);
                 setShowRetrigger(true);
