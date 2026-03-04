@@ -1146,6 +1146,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           totalMultiplier={cumulativeMultiplier}
           totalSpins={totalFreeSpins}
           onComplete={() => {
+            slotSounds.playBonusEnd();
             // Check for 100x+ win and send system message
             if (bet > 0 && bonusWinnings / bet >= 100) {
               const name = userDisplayNameRef.current || "Anonym";
