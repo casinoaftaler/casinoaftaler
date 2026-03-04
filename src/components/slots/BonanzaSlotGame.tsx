@@ -576,7 +576,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           setCurrentSpinWin(totalWin);
           setIsWinAnimating(true);
           shouldWaitForWinAnimation = true;
-          if (totalWin >= bet * 10) slotSounds.playBigWin();
+          if (totalWin >= bet * 20) slotSounds.playBigWin();
           else if (totalWin >= bet * 3) slotSounds.playMediumWin();
           else slotSounds.playSmallWin();
           // queryClient.invalidateQueries({ queryKey: ["slot-leaderboard"] });

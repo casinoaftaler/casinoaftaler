@@ -1,23 +1,24 @@
-import { useState, useEffect, useRef } from "react";
-import { slotSounds } from "@/lib/slotSoundEffects";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 interface UseAnimatedCounterOptions {
-  duration?: number; // Duration in ms
+  duration?: number;
   startFrom?: number;
   playSound?: boolean;
-  isBigWin?: boolean; // Use dramatic big win sound instead of standard coin count
-  skipToEnd?: boolean; // Immediately jump to target value
+  isBigWin?: boolean;
+  skipToEnd?: boolean;
+  speedMultiplier?: number; // 1 = normal, higher = faster
 }
 
 export function useAnimatedCounter(
   targetValue: number,
   options: UseAnimatedCounterOptions = {}
 ) {
-  const { duration = 1000, startFrom = 0, playSound = true, isBigWin = false, skipToEnd = false } = options;
+  const { duration = 1000, startFrom = 0, playSound = true, isBigWin = false, skipToEnd = false, speedMultiplier = 1 } = options;
   const [displayValue, setDisplayValue] = useState(targetValue);
   const animationRef = useRef<number | null>(null);
   const previousTargetRef = useRef(targetValue);
-  const stopSoundRef = useRef<(() => void) | null>(null);
+  const progressRef = useRef(0);
+  const startValueRef = useRef(0);
 
   // Skip to end when requested
   useEffect(() => {
@@ -32,7 +33,6 @@ export function useAnimatedCounter(
   }, [skipToEnd, targetValue]);
 
   useEffect(() => {
-    // Only animate if target increased (new win)
     if (skipToEnd || targetValue <= 0 || targetValue === previousTargetRef.current) {
       if (!skipToEnd) setDisplayValue(targetValue);
       previousTargetRef.current = targetValue;
@@ -42,15 +42,22 @@ export function useAnimatedCounter(
     const start = startFrom;
     const end = targetValue;
     const range = end - start;
-    const startTime = performance.now();
+    startValueRef.current = start;
+    progressRef.current = 0;
 
-    // Counting sound disabled - win sounds are played separately
+    let lastTime = performance.now();
 
     const animate = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
+      const delta = currentTime - lastTime;
+      lastTime = currentTime;
       
-      // Easing function for more satisfying feel (ease-out)
+      // Advance progress based on speed multiplier
+      const progressIncrement = (delta / duration) * speedMultiplier;
+      progressRef.current = Math.min(progressRef.current + progressIncrement, 1);
+      
+      const progress = progressRef.current;
+      
+      // Ease-out cubic
       const easedProgress = 1 - Math.pow(1 - progress, 3);
       
       const currentValue = Math.round(start + range * easedProgress);
@@ -60,11 +67,6 @@ export function useAnimatedCounter(
         animationRef.current = requestAnimationFrame(animate);
       } else {
         setDisplayValue(end);
-        // Stop sound when animation completes
-        if (stopSoundRef.current) {
-          stopSoundRef.current();
-          stopSoundRef.current = null;
-        }
       }
     };
 
@@ -75,13 +77,8 @@ export function useAnimatedCounter(
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      // Stop sound on cleanup
-      if (stopSoundRef.current) {
-        stopSoundRef.current();
-        stopSoundRef.current = null;
-      }
     };
-  }, [targetValue, duration, startFrom, playSound, isBigWin, skipToEnd]);
+  }, [targetValue, duration, startFrom, playSound, isBigWin, skipToEnd, speedMultiplier]);
 
   return displayValue;
 }
