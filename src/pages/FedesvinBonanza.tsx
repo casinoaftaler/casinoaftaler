@@ -34,6 +34,7 @@ export default function FedesvinBonanza() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
+  const isMobile = useIsMobile();
 
   useSlotSoundLoader(GAME_ID);
 
