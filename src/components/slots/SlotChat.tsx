@@ -3,7 +3,7 @@ import { useSlotChat, type ChatMessage } from "@/hooks/useSlotChat";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, Send, Users, Trash2, X, Ban, Clock, ChevronLeft } from "lucide-react";
+import { MessageCircle, Send, Users, Trash2, X, Ban, Clock, ChevronLeft, Eraser } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
@@ -234,7 +234,7 @@ function OnlineUsersList({ messages, onlineCount }: { messages: ChatMessage[]; o
 }
 
 export function SlotChat({ gameId, className, collapsed = false, onToggle }: SlotChatProps) {
-  const { messages, isLoading, onlineCount, isChatBanned, chatTimeout, sendMessage, deleteMessage, banUser, timeoutUser, toggleReaction } = useSlotChat(gameId);
+  const { messages, isLoading, onlineCount, isChatBanned, chatTimeout, sendMessage, clearChat, deleteMessage, banUser, timeoutUser, toggleReaction } = useSlotChat(gameId);
   const [input, setInput] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
@@ -347,10 +347,22 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
           <div className="w-4" />
         )}
 
-        {/* Center: Chat label */}
+        {/* Center: Chat label + admin clear */}
         <div className="flex items-center gap-1.5">
           <MessageCircle className="h-3.5 w-3.5 text-pink-400" />
           <span className="text-xs font-bold text-white/90 uppercase tracking-wider">Chat</span>
+          {isAdmin && (
+            <button
+              onClick={async () => {
+                const ok = await clearChat();
+                toast[ok ? "success" : "error"](ok ? "Chatten er ryddet" : "Kunne ikke rydde chatten");
+              }}
+              title="Ryd hele chatten"
+              className="text-red-400/60 hover:text-red-400 transition-colors ml-0.5"
+            >
+              <Eraser className="h-3.5 w-3.5" />
+            </button>
+          )}
         </div>
 
         {/* Right: Online users popover */}
