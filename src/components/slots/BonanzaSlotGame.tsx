@@ -275,8 +275,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
           }
         }
 
-        // Update Gevinst counter at the pop moment (incrementally, both base + bonus)
-        setWinAmount(prev => prev + step.stepWin);
+        // Don't update Gevinst here — wait until after multiplier bombs resolve
 
         await new Promise(r => setTimeout(r, 500));
 
@@ -405,6 +404,17 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza" }: BonanzaSlotGame
     });
     setCellDropOffsets(new Map());
     setTumbleChainLength(0);
+
+    // Calculate final win for this spin (tumble total × multiplier if any)
+    if (winningStepCount > 0) {
+      const rawTumbleWin = steps.reduce((sum, s) => sum + (s.stepWin || 0), 0);
+      const activatedBombs = lastStepWithBombs?.multiplierBombs?.filter(b => b.activated) || [];
+      const totalMultiplierValue = activatedBombs.reduce((sum, b) => sum + b.value, 0);
+      const finalWin = totalMultiplierValue > 0 ? rawTumbleWin * totalMultiplierValue : rawTumbleWin;
+      
+      // Add the final calculated amount to Gevinst
+      setWinAmount(prev => prev + finalWin);
+    }
 
     // Trigger collision effect if there was a win with multiplier (bonus only)
     if (winningStepCount > 0 && isBonusActiveRef.current) {
