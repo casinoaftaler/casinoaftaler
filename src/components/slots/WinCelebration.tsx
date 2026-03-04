@@ -23,6 +23,17 @@ interface CoinParticle {
   spinDuration: number;
 }
 
+interface RainCoin {
+  id: number;
+  x: number;
+  size: number;
+  delay: number;
+  duration: number;
+  rotation: number;
+  color: string;
+  spinDuration: number;
+}
+
 interface SparkParticle {
   id: number;
   x: number;
@@ -32,6 +43,22 @@ interface SparkParticle {
   delay: number;
   duration: number;
   type: "sparkle" | "streak" | "dust" | "burst";
+}
+
+interface FloatingSparkle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  delay: number;
+  duration: number;
+  driftX1: number;
+  driftY1: number;
+  driftX2: number;
+  driftY2: number;
+  driftX3: number;
+  driftY3: number;
+  color: string;
 }
 
 type WinTier = "nice" | "big" | "mega" | "supermega" | "legendary";
@@ -229,6 +256,19 @@ function makeCoins(count: number, palette: string[]): CoinParticle[] {
   });
 }
 
+function makeRainCoins(count: number, palette: string[]): RainCoin[] {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    size: 10 + Math.random() * 16,
+    delay: Math.random() * 3,
+    duration: 1.5 + Math.random() * 2,
+    rotation: 360 + Math.random() * 720,
+    color: palette[Math.floor(Math.random() * palette.length)],
+    spinDuration: 0.3 + Math.random() * 0.5,
+  }));
+}
+
 function makeSparks(count: number, palette: string[]): SparkParticle[] {
   return Array.from({ length: count }, (_, i) => ({
     id: i,
@@ -242,9 +282,29 @@ function makeSparks(count: number, palette: string[]): SparkParticle[] {
   }));
 }
 
+function makeFloatingSparkles(count: number, palette: string[]): FloatingSparkle[] {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: 20 + Math.random() * 60,
+    size: 3 + Math.random() * 5,
+    delay: Math.random() * 4,
+    duration: 2 + Math.random() * 3,
+    driftX1: (Math.random() - 0.5) * 20,
+    driftY1: -5 - Math.random() * 15,
+    driftX2: (Math.random() - 0.5) * 30,
+    driftY2: -20 - Math.random() * 30,
+    driftX3: (Math.random() - 0.5) * 15,
+    driftY3: -40 - Math.random() * 30,
+    color: palette[Math.floor(Math.random() * palette.length)],
+  }));
+}
+
 export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }: WinCelebrationProps) {
   const [coins, setCoins] = useState<CoinParticle[]>([]);
+  const [rainCoins, setRainCoins] = useState<RainCoin[]>([]);
   const [sparks, setSparks] = useState<SparkParticle[]>([]);
+  const [floatingSparkles, setFloatingSparkles] = useState<FloatingSparkle[]>([]);
   const [showOverlay, setShowOverlay] = useState(false);
   const [isPulsing, setIsPulsing] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -252,7 +312,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
   const [lightningFlash, setLightningFlash] = useState(false);
   const [screenFlash, setScreenFlash] = useState(false);
-  // Track tier upgrades during counter
+  const [impactShake, setImpactShake] = useState(false);
   const [currentDisplayTier, setCurrentDisplayTier] = useState<WinTier>("nice");
   const hasTriggeredCompleteRef = useRef(false);
   const skipRef = useRef(false);
@@ -262,7 +322,6 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
   const finalMultiplier = bet > 0 ? winAmount / bet : 0;
   const finalTier = getTier(finalMultiplier);
 
-  // Use final tier config for counter duration & pulse, but display tier for visuals
   const finalCfg = finalTier ? TIER_CONFIG[finalTier] : TIER_CONFIG.nice;
   const displayCfg = TIER_CONFIG[currentDisplayTier];
 
@@ -283,9 +342,11 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
       const tierOrder: WinTier[] = ["nice", "big", "mega", "supermega", "legendary"];
       if (tierOrder.indexOf(tierNow) > tierOrder.indexOf(currentDisplayTier)) {
         setCurrentDisplayTier(tierNow);
-        // Flash on tier upgrade
         setScreenFlash(true);
         setTimeout(() => setScreenFlash(false), 250);
+        // Mini shake on tier upgrade
+        setImpactShake(true);
+        setTimeout(() => setImpactShake(false), 180);
       }
     }
   }, [displayAmount, bet, showOverlay, currentDisplayTier]);
@@ -313,9 +374,12 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
     setTimeout(() => {
       setShowOverlay(false);
       setCoins([]);
+      setRainCoins([]);
       setSparks([]);
+      setFloatingSparkles([]);
       setIsFadingOut(false);
       setScreenFlash(false);
+      setImpactShake(false);
       hasTriggeredCompleteRef.current = true;
       onAnimationComplete?.();
     }, displayCfg.fadeMs);
@@ -354,11 +418,14 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
   useEffect(() => {
     if (!isActive || winAmount <= 0 || !finalTier) {
       setCoins([]);
+      setRainCoins([]);
       setSparks([]);
+      setFloatingSparkles([]);
       setShowOverlay(false);
       setIsFadingOut(false);
       setIsPulsing(false);
       setScreenFlash(false);
+      setImpactShake(false);
       setCounterSkipped(false);
       setSpeedMultiplier(1);
       setCurrentDisplayTier("nice");
@@ -369,12 +436,20 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
     }
 
     setScreenFlash(true);
+    setImpactShake(true);
     setTimeout(() => setScreenFlash(false), 300);
+    setTimeout(() => setImpactShake(false), 180);
 
     const palette = makePalette(finalTier);
     setCoins(makeCoins(finalCfg.coins, palette));
+    // Rain coins: scale with tier
+    const rainCount = finalTier === "legendary" ? 120 : finalTier === "supermega" ? 90 : finalTier === "mega" ? 70 : finalTier === "big" ? 50 : 30;
+    setRainCoins(makeRainCoins(rainCount, palette));
     setSparks(makeSparks(finalCfg.sparks, palette));
-    setCurrentDisplayTier("nice"); // Start from lowest, will upgrade during counter
+    // Floating sparkles: scale with tier
+    const sparkleCount = finalTier === "legendary" ? 40 : finalTier === "supermega" ? 35 : finalTier === "mega" ? 30 : finalTier === "big" ? 20 : 15;
+    setFloatingSparkles(makeFloatingSparkles(sparkleCount, palette));
+    setCurrentDisplayTier("nice");
     setShowOverlay(true);
   }, [isActive, winAmount, bet]);
 
@@ -382,6 +457,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
 
   const cfg = displayCfg;
   const isHighTier = currentDisplayTier === "supermega" || currentDisplayTier === "legendary";
+  const isMegaPlus = currentDisplayTier === "mega" || isHighTier;
 
   return (
     <>
@@ -410,19 +486,36 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
         />
       )}
 
-      {/* Radial light burst */}
+      {/* Radial light burst - enhanced with rotating rays */}
       {showOverlay && (
         <div
           className={cn(
             "absolute inset-0 z-[999] pointer-events-none",
             isFadingOut && "opacity-0 transition-opacity"
           )}
-          style={{
-            background: `radial-gradient(ellipse at center, rgba(255,215,0,${0.08 + cfg.bgDarkness * 0.2}) 0%, transparent 65%)`,
-            animation: "win-radial-pulse 2s ease-in-out infinite",
-            transitionDuration: `${cfg.fadeMs}ms`,
-          }}
-        />
+          style={{ transitionDuration: `${cfg.fadeMs}ms` }}
+        >
+          {/* Core radial glow */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(ellipse at center, rgba(255,215,0,${0.12 + cfg.bgDarkness * 0.25}) 0%, rgba(255,180,0,${0.05 + cfg.bgDarkness * 0.1}) 35%, transparent 65%)`,
+              animation: "win-radial-pulse 1.5s ease-in-out infinite",
+            }}
+          />
+          {/* Rotating light rays */}
+          {isMegaPlus && (
+            <div
+              className="absolute"
+              style={{
+                top: "50%", left: "50%",
+                width: "200%", height: "200%",
+                background: `conic-gradient(from 0deg, transparent, rgba(255,215,0,0.06), transparent, rgba(255,215,0,0.04), transparent, rgba(255,215,0,0.06), transparent, rgba(255,215,0,0.04), transparent, rgba(255,215,0,0.06), transparent, rgba(255,215,0,0.04), transparent)`,
+                animation: "light-ray-rotate 8s linear infinite",
+              }}
+            />
+          )}
+        </div>
       )}
 
       {/* Lightning flashes */}
@@ -436,7 +529,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
         />
       )}
 
-      {/* Coin explosion */}
+      {/* Coin explosion (burst from center) */}
       {showOverlay && (
         <div
           className={cn(
@@ -464,6 +557,42 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
                 style={{
                   background: `radial-gradient(circle at 35% 30%, hsl(48,100%,85%), ${coin.color}, hsl(36,80%,25%))`,
                   boxShadow: `0 0 8px ${coin.color}, 0 0 16px ${coin.color}60, inset 0 -2px 4px rgba(0,0,0,0.3)`,
+                  border: "1px solid hsl(45,80%,70%)",
+                  animation: `coin-spin-3d ${coin.spinDuration}s linear infinite`,
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Coin rain (falling from top continuously) */}
+      {showOverlay && (
+        <div
+          className={cn(
+            "absolute inset-0 z-[1002] pointer-events-none overflow-hidden",
+            isFadingOut && "opacity-0 transition-opacity"
+          )}
+          style={{ transitionDuration: `${cfg.fadeMs}ms` }}
+        >
+          {rainCoins.map((coin) => (
+            <div
+              key={`rain-${coin.id}`}
+              className="absolute"
+              style={{
+                left: `${coin.x}%`,
+                top: "-20px",
+                width: `${coin.size}px`,
+                height: `${coin.size}px`,
+                ["--coin-rot" as string]: `${coin.rotation}deg`,
+                animation: `coin-rain-fall ${coin.duration}s linear ${coin.delay}s infinite`,
+              }}
+            >
+              <div
+                className="w-full h-full rounded-full"
+                style={{
+                  background: `radial-gradient(circle at 35% 30%, hsl(48,100%,85%), ${coin.color}, hsl(36,80%,25%))`,
+                  boxShadow: `0 0 6px ${coin.color}, 0 0 12px ${coin.color}40`,
                   border: "1px solid hsl(45,80%,70%)",
                   animation: `coin-spin-3d ${coin.spinDuration}s linear infinite`,
                 }}
@@ -521,6 +650,45 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
         </div>
       )}
 
+      {/* Floating sparkles (drift and respawn) */}
+      {showOverlay && (
+        <div
+          className={cn(
+            "absolute inset-0 z-[1003] pointer-events-none overflow-hidden",
+            isFadingOut && "opacity-0 transition-opacity"
+          )}
+          style={{ transitionDuration: `${cfg.fadeMs}ms` }}
+        >
+          {floatingSparkles.map((sp) => (
+            <div
+              key={`fsp-${sp.id}`}
+              className="absolute"
+              style={{
+                left: `${sp.x}%`,
+                top: `${sp.y}%`,
+                ["--drift-x1" as string]: `${sp.driftX1}px`,
+                ["--drift-y1" as string]: `${sp.driftY1}px`,
+                ["--drift-x2" as string]: `${sp.driftX2}px`,
+                ["--drift-y2" as string]: `${sp.driftY2}px`,
+                ["--drift-x3" as string]: `${sp.driftX3}px`,
+                ["--drift-y3" as string]: `${sp.driftY3}px`,
+                animation: `sparkle-drift ${sp.duration}s ease-in-out ${sp.delay}s infinite`,
+              }}
+            >
+              <div
+                style={{
+                  width: `${sp.size}px`,
+                  height: `${sp.size}px`,
+                  background: sp.color,
+                  borderRadius: "50%",
+                  boxShadow: `0 0 ${sp.size * 3}px ${sp.color}, 0 0 ${sp.size * 6}px ${sp.color}40`,
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Shockwave rings */}
       {showOverlay && (
         <div className="absolute inset-0 z-[1001] pointer-events-none">
@@ -547,6 +715,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
           className={cn(
             "absolute inset-0 flex flex-col items-center justify-center z-[1005] cursor-pointer",
             isFadingOut && "opacity-0 scale-75 transition-all",
+            impactShake && "win-impact-shake",
           )}
           style={{ transitionDuration: `${cfg.fadeMs}ms` }}
         >
@@ -565,7 +734,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
               </div>
             )}
 
-            {/* Win title */}
+            {/* Win title with pulsing glow */}
             <h2
               className={cn(
                 "font-black tracking-widest text-center select-none",
@@ -577,7 +746,7 @@ export function WinCelebration({ isActive, winAmount, bet, onAnimationComplete }
                 backgroundSize: cfg.gradientSize,
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
-                animation: cfg.gradientSpeed,
+                animation: `${cfg.gradientSpeed}, win-text-glow-pulse 0.7s ease-in-out infinite`,
                 filter: cfg.glowFilter,
                 WebkitTextStrokeWidth: cfg.strokeWidth,
                 WebkitTextStrokeColor: "rgba(255,180,0,0.3)",
