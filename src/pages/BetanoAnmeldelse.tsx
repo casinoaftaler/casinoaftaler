@@ -112,6 +112,7 @@ const BetanoAnmeldelse = () => {
     dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
+    videoId: "Uu3NBZzt-Sk",
     aggregateRating: { ratingValue: "4.1", ratingCount: "152" },
   });
 
