@@ -134,6 +134,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const pendingBonusActionRef = useRef<(() => void) | null>(null);
   const [mobileChatOpen, setMobileChatOpen] = useState(false);
   const [desktopChatOpen, setDesktopChatOpen] = useState(true);
+  const [desktopChatHeight, setDesktopChatHeight] = useState<number>(0);
   const gridColumnRef = useRef<HTMLDivElement>(null);
 
   const spinLockRef = useRef(false);
@@ -176,6 +177,29 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       columnStopTimersRef.current.forEach(t => clearTimeout(t));
     };
   }, []);
+
+  // Keep desktop chat locked to exact slot machine column height
+  useEffect(() => {
+    if (isMobile) return;
+    const el = gridColumnRef.current;
+    if (!el) return;
+
+    const updateHeight = () => {
+      const next = Math.ceil(el.getBoundingClientRect().height);
+      setDesktopChatHeight(next);
+    };
+
+    updateHeight();
+
+    const resizeObserver = new ResizeObserver(updateHeight);
+    resizeObserver.observe(el);
+    window.addEventListener("resize", updateHeight);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateHeight);
+    };
+  }, [isMobile, SYMBOL_WIDTH, SYMBOL_HEIGHT, isBonusActive, showBonusTrigger, showRetrigger, showBonusComplete]);
 
   // Load persisted bonus state
   const [bonusLoaded, setBonusLoaded] = useState(false);
@@ -1035,7 +1059,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         )}
 
         {/* Grid column */}
-        <div className="flex flex-col items-center">
+        <div ref={gridColumnRef} className="flex flex-col items-center">
           {/* Logo positioned above grid */}
           <div className="flex justify-center relative z-10" style={{
             width: gridWidth,
@@ -1177,15 +1201,20 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         </div>{/* end grid column */}
         {/* Live chat panel — right side (desktop only) */}
         {!isMobile && (
-          <div className="shrink-0 self-stretch ml-auto" style={{ maxHeight: 'inherit', overflow: 'hidden' }}>
+          <div
+            className="shrink-0 ml-auto overflow-hidden"
+            style={desktopChatHeight > 0 ? { height: `${desktopChatHeight}px` } : undefined}
+          >
             {desktopChatOpen ? (
               <SlotChat
                 gameId={gameId}
+                className="h-full"
                 onToggle={() => setDesktopChatOpen(false)}
               />
             ) : (
               <SlotChat
                 gameId={gameId}
+                className="h-full"
                 collapsed
                 onToggle={() => setDesktopChatOpen(true)}
               />
