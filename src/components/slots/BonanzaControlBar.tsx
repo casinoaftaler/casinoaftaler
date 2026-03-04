@@ -1,4 +1,5 @@
 import { Minus, Plus, RotateCw, Square } from "lucide-react";
+import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
 import { cn } from "@/lib/utils";
 import { VolumeControl } from "./VolumeControl";
@@ -38,6 +39,10 @@ interface BonanzaControlBarProps {
   gameId?: string;
   debugButton?: React.ReactNode;
   isMobile?: boolean;
+  tumbleRunningWin?: number;
+  tumbleRunningMultiplier?: number;
+  tumbleCollisionPhase?: CollisionPhase;
+  tumbleVisible?: boolean;
 }
 
 export function BonanzaControlBar({
@@ -65,6 +70,10 @@ export function BonanzaControlBar({
   gameId,
   debugButton,
   isMobile = false,
+  tumbleRunningWin = 0,
+  tumbleRunningMultiplier = 0,
+  tumbleCollisionPhase = 'idle',
+  tumbleVisible = false,
 }: BonanzaControlBarProps) {
   const theme = getSlotTheme(gameId);
   const canSpinNow = bonusState.isActive
