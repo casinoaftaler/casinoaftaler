@@ -263,8 +263,15 @@ export function SlotChat({ gameId, className, collapsed = false, onToggle }: Slo
   }, [currentUserId]);
 
   useEffect(() => {
-    if (isAtBottomRef.current && scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    if (scrollRef.current) {
+      // Always scroll to bottom when messages change, unless user scrolled up
+      if (isAtBottomRef.current) {
+        requestAnimationFrame(() => {
+          if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+          }
+        });
+      }
     }
   }, [messages]);
 
