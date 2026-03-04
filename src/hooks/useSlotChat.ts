@@ -8,6 +8,7 @@ export interface ChatMessage {
   message: string;
   message_type: string;
   created_at: string;
+  reactions?: Record<string, string[]>; // emoji -> user_id[]
   // Joined from profiles
   display_name?: string;
   avatar_url?: string;
@@ -22,7 +23,7 @@ export function useSlotChat(gameId: string) {
   const [isLoading, setIsLoading] = useState(true);
   const [onlineCount, setOnlineCount] = useState(0);
   const [isChatBanned, setIsChatBanned] = useState(false);
-  const [chatTimeout, setChatTimeout] = useState<string | null>(null); // expires_at ISO string
+  const [chatTimeout, setChatTimeout] = useState<string | null>(null);
   const lastSentRef = useRef(0);
   const profileCacheRef = useRef<Map<string, { display_name: string; avatar_url: string | null; twitch_badges: any }>>(new Map());
 
@@ -68,7 +69,6 @@ export function useSlotChat(gameId: string) {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
 
-      // Check chat ban
       const { data: banData } = await supabase
         .from("chat_bans")
         .select("id")
@@ -76,7 +76,6 @@ export function useSlotChat(gameId: string) {
         .maybeSingle();
       setIsChatBanned(!!banData);
 
-      // Check timeout
       const { data: timeoutData } = await supabase
         .from("chat_timeouts")
         .select("expires_at")
@@ -114,7 +113,7 @@ export function useSlotChat(gameId: string) {
         .limit(MAX_MESSAGES);
 
       if (!error && data) {
-        const enriched = await enrichMessages(data.reverse());
+        const enriched = await enrichMessages(data.reverse() as unknown as ChatMessage[]);
         setMessages(enriched);
       }
       setIsLoading(false);
@@ -149,6 +148,22 @@ export function useSlotChat(gameId: string) {
             const next = [...prev, enrichedMsg];
             return next.length > MAX_MESSAGES ? next.slice(-MAX_MESSAGES) : next;
           });
+        }
+      )
+      .on(
+        "postgres_changes",
+        {
+          event: "UPDATE",
+          schema: "public",
+          table: "slot_chat_messages",
+          filter: `game_id=eq.${gameId}`,
+        },
+        async (payload) => {
+          const updated = payload.new as ChatMessage;
+          setMessages(prev => prev.map(m => {
+            if (m.id !== updated.id) return m;
+            return { ...m, message: updated.message, message_type: updated.message_type, reactions: updated.reactions };
+          }));
         }
       )
       .on(
@@ -205,28 +220,98 @@ export function useSlotChat(gameId: string) {
     return !error;
   }, [gameId]);
 
-  // Delete message (admin)
+  // Send system message (for bonus buy, big wins, etc.)
+  const sendSystemMessage = useCallback(async (text: string, type: string = "system") => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return false;
+
+    const { error } = await supabase.from("slot_chat_messages").insert({
+      user_id: user.id,
+      game_id: gameId,
+      message: text,
+      message_type: type,
+    });
+
+    return !error;
+  }, [gameId]);
+
+  // Toggle reaction on a message
+  const toggleReaction = useCallback(async (messageId: string, emoji: string) => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return false;
+
+    const msg = messages.find(m => m.id === messageId);
+    if (!msg) return false;
+
+    const currentReactions: Record<string, string[]> = (msg.reactions as Record<string, string[]>) || {};
+    const emojiReactions = currentReactions[emoji] || [];
+    
+    let newEmojiReactions: string[];
+    if (emojiReactions.includes(user.id)) {
+      newEmojiReactions = emojiReactions.filter(id => id !== user.id);
+    } else {
+      newEmojiReactions = [...emojiReactions, user.id];
+    }
+
+    const newReactions = { ...currentReactions };
+    if (newEmojiReactions.length === 0) {
+      delete newReactions[emoji];
+    } else {
+      newReactions[emoji] = newEmojiReactions;
+    }
+
+    const { error } = await supabase
+      .from("slot_chat_messages")
+      .update({ reactions: newReactions } as any)
+      .eq("id", messageId);
+
+    if (!error) {
+      setMessages(prev => prev.map(m => m.id === messageId ? { ...m, reactions: newReactions } : m));
+    }
+
+    return !error;
+  }, [messages]);
+
+  // Delete message (admin) - replace with "Beskeden er slettet"
   const deleteMessage = useCallback(async (messageId: string) => {
     const { error } = await supabase
       .from("slot_chat_messages")
-      .delete()
+      .update({ message: "Beskeden er slettet", message_type: "deleted" } as any)
       .eq("id", messageId);
+    
+    if (!error) {
+      setMessages(prev => prev.map(m => m.id === messageId ? { ...m, message: "Beskeden er slettet", message_type: "deleted" } : m));
+    }
     return !error;
   }, []);
 
   // Ban user from chat (admin)
-  const banUser = useCallback(async (userId: string) => {
+  const banUser = useCallback(async (userId: string, displayName?: string) => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return false;
     const { error } = await supabase.from("chat_bans").insert({
       user_id: userId,
       banned_by: user.id,
     });
+    if (!error) {
+      // Replace all messages from this user with ban notice
+      const userMsgIds = messages.filter(m => m.user_id === userId && m.message_type === "user").map(m => m.id);
+      if (userMsgIds.length > 0) {
+        await supabase
+          .from("slot_chat_messages")
+          .update({ message: "Brugeren er blevet bannet fra chatten", message_type: "banned" } as any)
+          .in("id", userMsgIds);
+        
+        setMessages(prev => prev.map(m => 
+          userMsgIds.includes(m.id) ? { ...m, message: "Brugeren er blevet bannet fra chatten", message_type: "banned" } : m
+        ));
+      }
+    }
     return !error;
-  }, []);
+  }, [messages]);
 
   // Timeout user from chat (admin)
-  const timeoutUser = useCallback(async (userId: string, minutes: number) => {
+  const timeoutUser = useCallback(async (userId: string, minutes: number, displayName?: string) => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return false;
     const expiresAt = new Date(Date.now() + minutes * 60 * 1000).toISOString();
@@ -235,8 +320,23 @@ export function useSlotChat(gameId: string) {
       timed_out_by: user.id,
       expires_at: expiresAt,
     });
+    if (!error) {
+      // Replace all messages from this user with timeout notice
+      const userMsgIds = messages.filter(m => m.user_id === userId && m.message_type === "user").map(m => m.id);
+      if (userMsgIds.length > 0) {
+        const timeoutMsg = `Beskeden er slettet - Timeout (${minutes} min)`;
+        await supabase
+          .from("slot_chat_messages")
+          .update({ message: timeoutMsg, message_type: "timeout" } as any)
+          .in("id", userMsgIds);
+        
+        setMessages(prev => prev.map(m =>
+          userMsgIds.includes(m.id) ? { ...m, message: timeoutMsg, message_type: "timeout" } : m
+        ));
+      }
+    }
     return !error;
-  }, []);
+  }, [messages]);
 
   return {
     messages,
@@ -245,8 +345,10 @@ export function useSlotChat(gameId: string) {
     isChatBanned,
     chatTimeout,
     sendMessage,
+    sendSystemMessage,
     deleteMessage,
     banUser,
     timeoutUser,
+    toggleReaction,
   };
 }
