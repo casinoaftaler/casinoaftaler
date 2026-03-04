@@ -234,11 +234,13 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     isBonusActiveRef.current = isBonusActive;
   }, [isBonusActive]);
 
+  const handleSpinRef = useRef<() => void>(() => {});
+
   const handleBonusEntryComplete = useCallback(() => {
     const bs = pendingBonusStateRef.current;
     setShowBonusTrigger(false);
     showBonusTriggerRef.current = false;
-    spinLockRef.current = false; // Always release spin lock when bonus overlay is dismissed
+    spinLockRef.current = false;
     if (bs) {
       setIsBonusActive(true);
       isBonusActiveRef.current = true;
@@ -251,11 +253,11 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       // If auto-spin was active, resume spinning in bonus
       if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
         if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
-        autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 800);
+        autoSpinTimeoutRef.current = setTimeout(() => handleSpinRef.current(), 800);
       }
     }
     setBonusAutoSpinPending(false);
-  }, [handleSpin]);
+  }, []);
 
   // Process tumble steps
   const processTumbleSteps = useCallback(async (steps: BonanzaTumbleStep[]) => {
