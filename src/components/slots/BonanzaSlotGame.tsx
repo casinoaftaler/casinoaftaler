@@ -60,6 +60,16 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const { data: siteSettings } = useSiteSettings();
   const { spin: serverSpin } = useServerSpin(gameId);
   const theme = getSlotTheme(gameId);
+  const { sendSystemMessage } = useSlotChat(gameId);
+  const userDisplayNameRef = useRef<string | null>(null);
+
+  // Fetch display name for system messages
+  useEffect(() => {
+    if (!user) return;
+    supabase.from("profiles_leaderboard").select("display_name").eq("user_id", user.id).single().then(({ data }) => {
+      userDisplayNameRef.current = data?.display_name || "Anonym";
+    });
+  }, [user]);
 
   // On mobile, calculate symbol size to fill viewport width
   const mobileSymbolWidth = useMemo(() => {
