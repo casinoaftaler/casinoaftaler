@@ -29,10 +29,18 @@ export function BonanzaOverlayCard({
   onDismiss,
   showContent,
 }: BonanzaOverlayCardProps) {
+  const [canDismiss, setCanDismiss] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!showContent) { setCanDismiss(false); return; }
+    const t = setTimeout(() => setCanDismiss(true), 1000);
+    return () => clearTimeout(t);
+  }, [showContent]);
+
   return (
     <div
-      className="absolute inset-0 z-50 flex items-center justify-center cursor-pointer"
-      onClick={onDismiss}
+      className={`absolute inset-0 z-50 flex items-center justify-center ${canDismiss ? 'cursor-pointer' : 'cursor-default'}`}
+      onClick={() => { if (canDismiss) onDismiss(); }}
       style={{ pointerEvents: "auto" }}
     >
       {/* Card */}
