@@ -55,6 +55,7 @@ function CreateTournamentDialog() {
   const [maxCredits, setMaxCredits] = useState("");
   const [maxBet, setMaxBet] = useState("");
   const [excludeFromGlobalLeaderboard, setExcludeFromGlobalLeaderboard] = useState(false);
+  const [isMonthly, setIsMonthly] = useState(false);
   const [startsAt, setStartsAt] = useState("");
   const [endsAt, setEndsAt] = useState("");
 
@@ -78,6 +79,7 @@ function CreateTournamentDialog() {
         max_credits: maxCredits ? parseInt(maxCredits) : null,
         max_bet: maxBet ? parseInt(maxBet) : null,
         exclude_from_global_leaderboard: excludeFromGlobalLeaderboard,
+        is_monthly: isMonthly,
       } as any);
       toast.success("Turnering oprettet!");
       setOpen(false);
@@ -89,6 +91,7 @@ function CreateTournamentDialog() {
       setMaxCredits("");
       setMaxBet("");
       setExcludeFromGlobalLeaderboard(false);
+      setIsMonthly(false);
       setStartsAt("");
       setEndsAt("");
     } catch {
