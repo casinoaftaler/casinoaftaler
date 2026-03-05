@@ -472,6 +472,37 @@ export const Header = memo(function Header() {
                   Spillehal
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/bonus-hunt" className="flex items-center gap-2">
+                  <Trophy className="h-4 w-4" />
+                  Bonus Hunt
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/bonus-hunt/arkiv" className="flex items-center gap-2">
+                  <BarChart3 className="h-4 w-4" />
+                  Bonus Hunt Arkiv
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/slot-database" className="flex items-center gap-2">
+                  <Gamepad2 className="h-4 w-4" />
+                  Slot Database
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/community/turneringer" className="flex items-center gap-2">
+                  <Trophy className="h-4 w-4" />
+                  Turneringer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/community/turneringer/arkiv" className="flex items-center gap-2">
+                  <BarChart3 className="h-4 w-4" />
+                  Turneringsarkiv
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link to="/highlights" className="flex items-center gap-2">
@@ -828,6 +859,11 @@ export const Header = memo(function Header() {
                 <div className="flex flex-col bg-muted/30 pb-2">
                   {[
                     { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
+                    { to: "/bonus-hunt", icon: <Trophy className="h-4 w-4" />, label: "Bonus Hunt" },
+                    { to: "/bonus-hunt/arkiv", icon: <BarChart3 className="h-4 w-4" />, label: "Bonus Hunt Arkiv" },
+                    { to: "/slot-database", icon: <Gamepad2 className="h-4 w-4" />, label: "Slot Database" },
+                    { to: "/community/turneringer", icon: <Trophy className="h-4 w-4" />, label: "Turneringer" },
+                    { to: "/community/turneringer/arkiv", icon: <BarChart3 className="h-4 w-4" />, label: "Turneringsarkiv" },
                     { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
                     { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
                   ].map((item) => (
