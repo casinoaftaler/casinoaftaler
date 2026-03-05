@@ -1,7 +1,7 @@
 import React from "react";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import responsibleGamingHero from "@/assets/heroes/responsible-gaming-hero.jpg";
-import { AlertTriangle, Phone, Globe, HelpCircle, Shield, Clock, Users, User, CalendarDays, BookOpen } from "lucide-react";
+import { AlertTriangle, Phone, Globe, HelpCircle, Shield, Clock, Users, User, CalendarDays, BookOpen, Scale, BarChart3, Gavel } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,8 @@ const warningSignItems = [
   "Forsømmer arbejde, familie eller andre ansvar",
   "Føler dig ængstelig, deprimeret eller irritabel, når du ikke spiller",
   "Skjuler dine spilleaktiviteter for familie og venner",
+  "Spiller for at flygte fra problemer eller negative følelser",
+  "Har forsøgt at stoppe eller reducere dit spil uden held",
 ];
 
 const tipCards = [
@@ -47,19 +49,19 @@ const helpResources = [
   {
     icon: Globe,
     title: "StopSpillet",
-    description: "Gratis, fortrolig hjælp og støtte til alle, der er bekymrede over deres eget eller andres spil.",
+    description: "Gratis, fortrolig hjælp og støtte til alle, der er bekymrede over deres eget eller andres spil. Telefonisk rådgivning: 70 22 28 25.",
     url: "https://www.stopspillet.dk/",
   },
   {
     icon: Phone,
     title: "ROFUS",
-    description: "Register Over Frivilligt Udelukkede Spillere. Udeluk dig selv fra alle danske online casinoer.",
+    description: "Register Over Frivilligt Udelukkede Spillere. Udeluk dig selv fra alle danske online casinoer via MitID.",
     url: "https://www.spillemyndigheden.dk/rofus",
   },
   {
     icon: HelpCircle,
-    title: "Ludomani",
-    description: "Center for Ludomani tilbyder gratis behandling og rådgivning til personer med spilleproblemer.",
+    title: "Center for Ludomani",
+    description: "Tilbyder gratis behandling og rådgivning til personer med spilleproblemer og deres pårørende.",
     url: "https://ludomani.dk/",
   },
 ];
@@ -116,7 +118,7 @@ const ResponsibleGaming = () => {
     description: "Lær om ansvarligt spil. Find advarselstegn, tips til at bevare kontrollen, selvudelukkelse via ROFUS og hjælp fra StopSpillet og Center for Ludomani.",
     url: `${SITE_URL}/ansvarligt-spil`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-26",
+    dateModified: "2026-03-05",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
@@ -158,12 +160,74 @@ const ResponsibleGaming = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="ajse" date="26-02-2026" readTime="8 Min." />
+        <AuthorMetaBar author="ajse" date="2026-03-05" readTime="14 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={responsibleGamingHero} alt="Ansvarligt spil – tillid og sikkerhed ved casinospil" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
+
+        {/* Introduktion */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <BookOpen className="h-7 w-7 text-primary" />
+            Hvad er ansvarligt spil?
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Ansvarligt spil handler om at behandle gambling som en form for underholdning – ikke som en 
+            indtægtskilde. Det indebærer at sætte grænser for tid og penge, at forstå at huset altid 
+            har en matematisk fordel, og at være villig til at stoppe, når det ikke længere er sjovt.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            I Danmark reguleres online gambling af{" "}
+            <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>, 
+            som stiller strenge krav til alle licenserede casinoer om spillerbeskyttelse. Disse krav 
+            inkluderer obligatoriske indbetalingsgrænser, selvudelukkelsesværktøjer og proaktiv 
+            identifikation af problematisk spilleadfærd.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Hos Casinoaftaler.dk mener vi, at gennemsigtig information om risici og hjælpemuligheder 
+            er mindst lige så vigtig som information om bonusser og spiludvalg. Denne side samler 
+            alt, du har brug for at vide om ansvarligt spil i Danmark.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Danske statistikker */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <BarChart3 className="h-7 w-7 text-primary" />
+            Spilleproblemer i Danmark – fakta & tal
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Ifølge undersøgelser fra VIVE (Det Nationale Forsknings- og Analysecenter for Velfærd) 
+            og Spillemyndighedens årsrapporter er omfanget af spilleproblemer i Danmark:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            {[
+              { stat: "~45.000", label: "Danskere med moderate til svære spilleproblemer" },
+              { stat: "~125.000", label: "Danskere i risikozonen for at udvikle problemer" },
+              { stat: "18-34 år", label: "Aldersgruppen med højest forekomst af problemspil" },
+              { stat: "70 22 28 25", label: "StopSpillets rådgivningslinje – gratis & fortrolig" },
+            ].map((item) => (
+              <Card key={item.label} className="border-border bg-card text-center">
+                <CardContent className="p-6">
+                  <p className="text-2xl font-bold text-primary mb-1">{item.stat}</p>
+                  <p className="text-xs text-muted-foreground">{item.label}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <p className="text-muted-foreground leading-relaxed">
+            Disse tal understreger, at spilleproblemer ikke er sjældne. Mænd er overrepræsenteret 
+            i statistikken, men kvinder med spilleproblemer søger typisk hjælp senere i forløbet, 
+            hvilket gør tidlig forebyggelse endnu vigtigere. Online casino og sportsbetting er de 
+            spilleformer, der oftest er forbundet med problematisk adfærd.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
 
         {/* Warning Signs */}
         <section className="mb-12">
@@ -186,6 +250,11 @@ const ResponsibleGaming = () => {
               </ul>
             </CardContent>
           </Card>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Hvis du genkender tre eller flere af ovenstående tegn, anbefaler vi kraftigt, at du 
+            kontakter StopSpillet eller Center for Ludomani for en uforpligtende samtale. Tidlig 
+            indsats er afgørende – jo tidligere du søger hjælp, desto bedre er prognosen.
+          </p>
         </section>
 
         <Separator className="my-10" />
@@ -215,6 +284,43 @@ const ResponsibleGaming = () => {
               </Card>
             ))}
           </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Lovgivning */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Gavel className="h-7 w-7 text-primary" />
+            Dansk lovgivning om spillerbeskyttelse
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Danmark har en af Europas mest progressive lovgivninger for spillerbeskyttelse. 
+            Alle licenserede casinoer skal overholde strenge krav fastsat i Spilleloven og 
+            håndhævet af Spillemyndigheden:
+          </p>
+          <div className="rounded-xl border border-border bg-card p-6 space-y-3 mb-6">
+            {[
+              "Obligatorisk tilslutning til ROFUS – alle licenserede operatører skal tjekke registret i realtid",
+              "Indbetalingsgrænser skal tilbydes alle spillere, og nedsættelse træder i kraft øjeblikkeligt",
+              "Forhøjelse af grænser kræver minimum 24 timers afkølingsperiode",
+              "Forbud mod kreditbaseret spil – du kan ikke spille for lånte penge",
+              "Forbud mod bonusser over 1.000 kr. og omsætningskrav på maksimalt 10x (BEK nr. 1494)",
+              "Casinoer skal proaktivt identificere og kontakte spillere med risikoadfærd",
+              "Alle markedsføringsmaterialer skal indeholde oplysning om 18+ og ansvarligt spil",
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-3">
+                <Scale className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <span className="text-sm text-muted-foreground">{item}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-muted-foreground leading-relaxed">
+            Disse regler sikrer, at danske spillere har bedre beskyttelse end spillere i de 
+            fleste andre lande. Casinoer, der overtræder reglerne, risikerer bøder, suspension 
+            eller inddragelse af deres licens. Læs mere om regulering på vores{" "}
+            <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden-guide</Link>.
+          </p>
         </section>
 
         <Separator className="my-10" />
@@ -283,6 +389,35 @@ const ResponsibleGaming = () => {
                   </Button>
                 </CardContent>
               </Card>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Casinoaftaler.dk's ansvar */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Shield className="h-7 w-7 text-primary" />
+            Vores ansvar som platform
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Som en affiliate-platform, der henviser brugere til online casinoer, tager vi vores 
+            medansvar for spillerbeskyttelse alvorligt. Konkret betyder det:
+          </p>
+          <div className="rounded-xl border border-border bg-card p-6 space-y-3">
+            {[
+              "Vi anbefaler udelukkende casinoer med gyldig dansk licens og dokumenterede ansvarligt spil-værktøjer",
+              "Vi oplyser tydeligt om alle bonusvilkår, omsætningskrav og risici",
+              "Vi linker til ROFUS, StopSpillet og Center for Ludomani på alle relevante sider",
+              "Vi promoverer aldrig gambling som en investeringsstrategi eller vej til velstand",
+              "Vi anvender aldrig vildledende markedsføring, der minimerer risici ved gambling",
+              "Vi inkluderer 18+ og ansvarligt spil-budskaber i vores footer på alle sider",
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-3">
+                <Shield className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <span className="text-sm text-muted-foreground">{item}</span>
+              </div>
             ))}
           </div>
         </section>
