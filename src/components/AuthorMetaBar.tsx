@@ -4,6 +4,7 @@ import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TableOfContents } from "@/components/TableOfContents";
 import { getRouteMetadata, formatLastmodDanish } from "@/lib/seoRoutes";
+import { usePageLastmod, formatTimestampDanish } from "@/hooks/usePageLastmod";
 
 const DISCLAIMER_VARIANTS = [
   <>Denne side indeholder affiliate-links. Vi modtager provision, hvis du opretter en konto via vores links – det påvirker ikke vores vurdering. <Link to="/forretningsmodel" className="underline hover:text-primary">Læs mere om vores model</Link>.</>,
