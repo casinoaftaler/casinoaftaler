@@ -656,7 +656,9 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           const today = getTodayDanish();
           queryClient.setQueryData(
             ["slot-spins", user?.id, today, "shared"],
-            (old: any) => old ? { ...old, spins_remaining: response.spinsRemaining } : old
+            (old: any) => old
+              ? { ...old, spins_remaining: response.spinsRemaining }
+              : { spins_remaining: response.spinsRemaining, user_id: user?.id, date: today, game_id: "shared" }
           );
           queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
         }
