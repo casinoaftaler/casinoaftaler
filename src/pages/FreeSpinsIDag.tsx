@@ -433,7 +433,7 @@ const FreeSpinsIDag = () => {
               <Sparkles className="h-5 w-5 text-primary" />Dagens Free Spins – {todayFormatted}
             </h2>
             <p className="text-sm leading-[1.75] text-muted-foreground">
-              Opdateret oversigt over free spins hos danske casinoer. Vi scraper direkte fra casinoernes kampagnesider og bruger aggregator-data som supplement – kun kampagner med tilstrækkelig datakvalitet (confidence score ≥ 60) vises. Rangeret efter spins, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og indbetalingskrav.
+              Opdateret oversigt over free spins hos danske casinoer pr. marts 2026. Vi scraper direkte fra casinoernes kampagnesider og bruger aggregator-data som supplement – kun kampagner med tilstrækkelig datakvalitet (confidence score ≥ 60) vises. Flere danske casinoer kører i øjeblikket forårs- og forårskampagner med ekstra free spins. Rangeret efter spins, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og indbetalingskrav.
             </p>
           </section>
 
@@ -454,7 +454,7 @@ const FreeSpinsIDag = () => {
               <AlertTriangle className="h-5 w-5 text-primary" />Vigtigt at vide
             </h3>
             <p className="text-sm leading-[1.75] text-muted-foreground">
-              Alle casinoer er licenserede af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Bonusser er maks. 1.000 kr. med maks. 10x omsætningskrav jf. dansk lovgivning. Vi anbefaler altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
+              Alle casinoer er licenserede af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Bonusser er maks. 1.000 kr. med maks. 10x omsætningskrav jf. dansk lovgivning. Pr. marts 2026 har Spillemyndigheden skærpet kravene til gennemsigtighed i bonusvilkår, hvilket gør det endnu vigtigere at sammenligne tilbud. Vi anbefaler altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
             </p>
           </section>
 
