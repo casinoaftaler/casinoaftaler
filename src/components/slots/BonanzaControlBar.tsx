@@ -44,6 +44,7 @@ interface BonanzaControlBarProps {
   tumbleRunningMultiplier?: number;
   tumbleCollisionPhase?: CollisionPhase;
   tumbleVisible?: boolean;
+  tumbleHideMultiplier?: boolean;
 }
 
 export function BonanzaControlBar({
@@ -75,6 +76,7 @@ export function BonanzaControlBar({
   tumbleRunningMultiplier = 0,
   tumbleCollisionPhase = 'idle',
   tumbleVisible = false,
+  tumbleHideMultiplier = false,
 }: BonanzaControlBarProps) {
   const theme = getSlotTheme(gameId);
   const canSpinNow = bonusState.isActive
@@ -234,6 +236,7 @@ export function BonanzaControlBar({
                   collisionPhase={tumbleCollisionPhase}
                   visible={true}
                   inline
+                  hideMultiplier={tumbleHideMultiplier}
                 />
               </div>
             )}
