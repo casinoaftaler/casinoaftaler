@@ -122,10 +122,20 @@ export function useSlotChat(gameId: string) {
     loadMessages();
   }, [gameId, enrichMessages]);
 
+  // Track the latest message timestamp for polling dedup
+  const latestMsgRef = useRef<string | null>(null);
+
+  // Update latest message ref when messages change
+  useEffect(() => {
+    if (messages.length > 0) {
+      latestMsgRef.current = messages[messages.length - 1].created_at;
+    }
+  }, [messages]);
+
   // Realtime subscription
   useEffect(() => {
     const channel = supabase
-      .channel(`slot-chat-${gameId}`)
+      .channel(`slot-chat-${gameId}-${Date.now()}`)
       .on(
         "postgres_changes",
         {
@@ -197,6 +207,38 @@ export function useSlotChat(gameId: string) {
       supabase.removeChannel(channel);
     };
   }, [gameId, fetchProfile]);
+
+  // Polling fallback — fetch new messages every 3 seconds in case realtime misses them
+  useEffect(() => {
+    const poll = async () => {
+      const cutoff = latestMsgRef.current;
+      const query = supabase
+        .from("slot_chat_messages")
+        .select("*")
+        .eq("game_id", gameId)
+        .order("created_at", { ascending: true })
+        .limit(MAX_MESSAGES);
+
+      if (cutoff) {
+        query.gt("created_at", cutoff);
+      }
+
+      const { data } = await query;
+      if (data && data.length > 0) {
+        const enriched = await enrichMessages(data as unknown as ChatMessage[]);
+        setMessages(prev => {
+          const existingIds = new Set(prev.map(m => m.id));
+          const newMsgs = enriched.filter(m => !existingIds.has(m.id));
+          if (newMsgs.length === 0) return prev;
+          const next = [...prev, ...newMsgs];
+          return next.length > MAX_MESSAGES ? next.slice(-MAX_MESSAGES) : next;
+        });
+      }
+    };
+
+    const interval = setInterval(poll, 3000);
+    return () => clearInterval(interval);
+  }, [gameId, enrichMessages]);
 
   // Send message
   const sendMessage = useCallback(async (text: string) => {
