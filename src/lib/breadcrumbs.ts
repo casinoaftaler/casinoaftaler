@@ -200,8 +200,11 @@ export const routeLabels: Record<string, string> = {
   "/community": "Community",
   "/community/slots": "Spillehal",
   "/community/turneringer": "Turneringer",
+  "/community/turneringer/arkiv": "Turneringsarkiv",
   "/community/rewards": "Rewards",
   "/bonus-hunt": "Bonus Hunt",
+  "/bonus-hunt/arkiv": "Bonus Hunt Arkiv",
+  "/slot-database": "Slot Database",
 };
 
 
