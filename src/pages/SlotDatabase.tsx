@@ -12,6 +12,7 @@ import { useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Search, TrendingUp, Zap, BarChart3, Gamepad2, Trophy } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Separator } from "@/components/ui/separator";
 import slotDatabaseHero from "@/assets/slot-database-hero.jpg";
@@ -113,7 +114,6 @@ export default function SlotDatabase() {
   const filtered = useMemo(() => {
     if (!slots) return [];
     let result = [...slots];
-
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       result = result.filter(s => s.slot_name.toLowerCase().includes(q) || s.provider.toLowerCase().includes(q));
@@ -124,14 +124,12 @@ export default function SlotDatabase() {
     if (volatilityFilter !== "all") {
       result = result.filter(s => s.volatility?.toLowerCase() === volatilityFilter);
     }
-
     result.sort((a, b) => {
       if (sortBy === "bonus_count") return b.bonus_count - a.bonus_count;
       if (sortBy === "highest_x") return (b.highest_x || 0) - (a.highest_x || 0);
       if (sortBy === "rtp") return (b.rtp || 0) - (a.rtp || 0);
       return 0;
     });
-
     return result;
   }, [slots, searchQuery, providerFilter, volatilityFilter, sortBy]);
 
@@ -170,7 +168,7 @@ export default function SlotDatabase() {
         jsonLd={[articleSchema, faqSchema]}
       />
 
-      {/* Hero */}
+      {/* TYPE A: Centered hero with badge */}
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
@@ -267,7 +265,6 @@ export default function SlotDatabase() {
           </Select>
         </div>
 
-        {/* Results count */}
         <p className="text-sm text-muted-foreground mb-4">
           Viser {filtered.length} af {slots?.length || 0} spillemaskiner
         </p>
@@ -370,6 +367,8 @@ export default function SlotDatabase() {
           <FAQSection faqs={faqItems} />
         </div>
 
+        <Separator className="my-12" />
+        <CommunityBrandBlock />
         <Separator className="my-12" />
         <CommunitySeoSections />
         <Separator className="my-12" />
