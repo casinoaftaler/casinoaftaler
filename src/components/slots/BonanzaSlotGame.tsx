@@ -329,8 +329,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       if (hasWins) {
         winningStepCount++;
         setTumbleChainLength(winningStepCount);
-        // Show tumble bar on first win during bonus
-        if (winningStepCount === 1 && isBonusActiveRef.current) {
+        // Show tumble bar on first win (base game + bonus)
+        if (winningStepCount === 1) {
           setTumbleBarVisible(true);
         }
 
@@ -530,18 +530,18 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       setWinAmount(prev => prev + finalWin);
     }
 
-    // Trigger collision effect if there was a win with multiplier (bonus only)
-    if (winningStepCount > 0 && isBonusActiveRef.current) {
+    // Trigger collision effect if there was a win with multiplier (bonus has bombs)
+    if (winningStepCount > 0) {
       // tumbleBarVisible already set to true on first win
-      if (lastStepWithBombs?.multiplierBombs?.some(b => b.activated)) {
+      if (isBonusActiveRef.current && lastStepWithBombs?.multiplierBombs?.some(b => b.activated)) {
         setCollisionPhase('colliding');
-        await new Promise(r => setTimeout(r, 800));
+        await new Promise(r => setTimeout(r, 600));
         setCollisionPhase('resolved');
         await new Promise(r => setTimeout(r, 1200));
         setCollisionPhase('idle');
         setTumbleBarVisible(false);
       } else {
-        // Show bar briefly then fade
+        // Show bar briefly then fade (base game or bonus without bombs)
         await new Promise(r => setTimeout(r, 800));
         setTumbleBarVisible(false);
       }
@@ -1169,7 +1169,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
             runningWin={runningWin}
             runningMultiplier={runningMultiplier}
             collisionPhase={collisionPhase}
-            visible={tumbleBarVisible && isBonusActive}
+            visible={tumbleBarVisible}
+            hideMultiplier={!isBonusActive}
           />
         )}
         {/* Bonus overlays — inside grid so they match grid size */}
@@ -1289,7 +1290,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           tumbleRunningWin={runningWin}
           tumbleRunningMultiplier={runningMultiplier}
           tumbleCollisionPhase={collisionPhase}
-          tumbleVisible={isMobile && tumbleBarVisible && isBonusActive}
+          tumbleVisible={isMobile && tumbleBarVisible}
+          tumbleHideMultiplier={!isBonusActive}
         />
       </div>
 

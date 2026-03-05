@@ -9,6 +9,7 @@ interface BonanzaTumbleWinBarProps {
   collisionPhase: CollisionPhase;
   visible: boolean;
   inline?: boolean;
+  hideMultiplier?: boolean;
 }
 
 export function BonanzaTumbleWinBar({
@@ -17,6 +18,7 @@ export function BonanzaTumbleWinBar({
   collisionPhase,
   visible,
   inline = false,
+  hideMultiplier = false,
 }: BonanzaTumbleWinBarProps) {
   const [showResult, setShowResult] = useState(false);
   const [multPop, setMultPop] = useState(false);
@@ -43,8 +45,7 @@ export function BonanzaTumbleWinBar({
   }, [runningMultiplier]);
 
   if (!visible) return null;
-
-  const finalWin = runningWin * Math.max(1, runningMultiplier);
+  const finalWin = hideMultiplier ? runningWin : runningWin * Math.max(1, runningMultiplier);
 
   return (
     <div className={cn(
@@ -61,7 +62,14 @@ export function BonanzaTumbleWinBar({
           inline ? "min-w-[200px] justify-center" : "min-w-[280px] justify-center"
         )}
       >
-        {collisionPhase === 'resolved' || showResult ? (
+        {hideMultiplier ? (
+          <div className="flex flex-col items-center">
+            <span className={cn("uppercase tracking-widest font-bold", inline ? "text-[8px] text-pink-200/80" : "text-[10px] text-pink-200/80")}>Tumble Win</span>
+            <span className={cn("font-black text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.6)] tabular-nums", inline ? "text-xl" : "text-3xl")}>
+              {runningWin.toFixed(2)}
+            </span>
+          </div>
+        ) : collisionPhase === 'resolved' || showResult ? (
           <div className="bonanza-collide-flash flex flex-col items-center">
             <span className={cn("uppercase tracking-widest font-bold", inline ? "text-[8px] text-pink-200/80" : "text-[10px] text-pink-200/80")}>Tumble Win</span>
             <span className={cn("font-black text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.6)] tabular-nums", inline ? "text-xl" : "text-3xl")}>
