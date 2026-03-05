@@ -1354,6 +1354,33 @@ export type Database = {
         }
         Relationships: []
       }
+      page_metadata: {
+        Row: {
+          changefreq: string
+          created_at: string
+          path: string
+          priority: number
+          show_updated_date: boolean
+          updated_at: string
+        }
+        Insert: {
+          changefreq?: string
+          created_at?: string
+          path: string
+          priority?: number
+          show_updated_date?: boolean
+          updated_at?: string
+        }
+        Update: {
+          changefreq?: string
+          created_at?: string
+          path?: string
+          priority?: number
+          show_updated_date?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
       page_views: {
         Row: {
           created_at: string
