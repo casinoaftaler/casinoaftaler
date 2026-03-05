@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunityConversionStrip } from "@/components/community/CommunityConversionStrip";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
@@ -97,6 +98,13 @@ export default function GameLibrary() {
       <SEO
         title="Gratis Slots i Community – Spil Book of Fedesvin & Mere"
         description="Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin. Optjen points og konkurrér mod andre spillere."
+        jsonLd={[buildArticleSchema({
+          headline: "Gratis Slots i Community – Spil Book of Fedesvin & Mere",
+          description: "Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin. Optjen points og konkurrér mod andre spillere.",
+          url: `${SITE_URL}/community/slots`,
+          datePublished: "2026-01-15",
+          dateModified: "2026-02-22",
+        })]}
       />
       <PageBackground />
       <GameLibraryHero />
