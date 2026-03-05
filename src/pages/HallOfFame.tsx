@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Trophy, Crown, Star, TrendingUp, Sparkles, Medal, Film, ArrowRight, Users } from "lucide-react";
+import { Trophy, Crown, Star, TrendingUp, Sparkles, Medal, Film, ArrowRight, Users, Play } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -391,6 +391,12 @@ export default function HallOfFame() {
                           <Film className="h-8 w-8 text-muted-foreground" />
                         </div>
                       )}
+                      {/* Play button overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="rounded-full bg-primary/80 p-3 transition-transform group-hover:scale-110 group-hover:bg-primary">
+                          <Play className="h-6 w-6 text-primary-foreground" fill="currentColor" />
+                        </div>
+                      </div>
                       <Badge className="absolute top-2 right-2 text-xs" variant="secondary">
                         ❤️ {clip.likeCount}
                       </Badge>
