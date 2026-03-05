@@ -92,7 +92,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-anmeldelser/betinia", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-14" },
   { path: "/casino-anmeldelser/swift-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
   { path: "/casino-anmeldelser/luna-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
-  { path: "/casino-anmeldelser/spildansknu", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
+  { path: "/casino-anmeldelser/spildansknu", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
   { path: "/casino-anmeldelser/danske-spil", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-01" },
   { path: "/casino-anmeldelser/comeon", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-01" },
   { path: "/casino-anmeldelser/getlucky", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-20" },
