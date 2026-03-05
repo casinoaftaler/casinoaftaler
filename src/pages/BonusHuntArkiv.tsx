@@ -49,7 +49,7 @@ export default function BonusHuntArkiv() {
     url: `${SITE_URL}/bonus-hunt/arkiv`,
     datePublished: "2026-03-05",
     dateModified: "2026-03-05",
-    author: "Kevin",
+    authorName: "Kevin",
   });
 
   const faqSchema = buildFaqSchema(faqItems);
@@ -63,7 +63,7 @@ export default function BonusHuntArkiv() {
       />
 
       <article className="mx-auto max-w-6xl px-4 py-8">
-        <AuthorMetaBar author="kevin" />
+        <AuthorMetaBar author="kevin" readTime="3 min" />
 
         {/* Hero */}
         <div className="mb-8 rounded-2xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/10 p-8 md:p-12">
@@ -184,7 +184,7 @@ export default function BonusHuntArkiv() {
         </section>
 
         <div className="mt-12">
-          <FAQSection items={faqItems} />
+          <FAQSection faqs={faqItems} />
         </div>
 
         <div className="mt-12">
