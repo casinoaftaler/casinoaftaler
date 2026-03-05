@@ -198,7 +198,7 @@ const Index = () => {
       <HeroSection />
 
       {/* Top Casinos Section with sidebar */}
-      <section id="top-casinos" className="py-8 md:py-12">
+      <section id="top-casinos" className="py-8 md:py-12" style={{ contain: 'layout style' }}>
         <div className="container relative">
           {/* Left sidebar - positioned just outside container on xl */}
           <aside className="hidden xl:block absolute right-full top-0 mr-6 w-[200px]">
