@@ -751,6 +751,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
                   setTimeout(() => setScreenShake('none'), 800);
                   setShowBonusComplete(true);
                   showBonusCompleteRef.current = true;
+                } else {
+                  // Release spin lock for normal bonus spin updates (no overlay shown)
+                  spinLockRef.current = false;
                 }
               }
             };
@@ -1031,9 +1034,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
             if (pendingBonusActionRef.current) {
               const action = pendingBonusActionRef.current;
               pendingBonusActionRef.current = null;
-              spinLockRef.current = false; // Release lock now that bonus action is executing
+              // Keep spinLockRef.current = true until action runs to prevent
+              // race condition where a rapid click starts a new spin before
+              // showBonusTriggerRef is set
               setTimeout(() => {
                 action();
+                // spinLock is released inside handleBonusEntryComplete / retrigger handler
 
                 // Only auto-continue if autospin is active
                 if (isAutoSpinning && !shouldStopAutoSpinRef.current) {
