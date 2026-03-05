@@ -765,6 +765,7 @@ function AdminDashboard() {
     { value: "community-clips", label: "Community", icon: Sparkles },
     { value: "slotmachine", label: "Spillemaskine", icon: Gamepad2 },
     
+    { value: "tournaments", label: "Turneringer", icon: Trophy },
     { value: "bonus-hunt", label: "Bonus Hunt", icon: Target },
     { value: "slot-catalog", label: "Slot Katalog", icon: Database },
     { value: "codes", label: "Koder", icon: Ticket },
@@ -1016,9 +1017,11 @@ function AdminDashboard() {
           {/* Spillemaskine Tab */}
           <TabsContent value="slotmachine">
             <SlotMachineAdminSection />
-            <div className="mt-8">
-              <MonthlyTournamentAdmin />
-            </div>
+          </TabsContent>
+
+          {/* Turneringer Tab */}
+          <TabsContent value="tournaments">
+            <MonthlyTournamentAdmin />
           </TabsContent>
 
 
