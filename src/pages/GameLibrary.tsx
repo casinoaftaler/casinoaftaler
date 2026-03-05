@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunityConversionStrip } from "@/components/community/CommunityConversionStrip";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";

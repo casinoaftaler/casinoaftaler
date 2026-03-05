@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SEO } from "@/components/SEO";
+import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

@@ -4,6 +4,7 @@ import { CommunityPageLayout } from "@/components/community/CommunityPageLayout"
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
+import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 
 
 import { EnergySweep } from "@/components/community/EnergySweep";
