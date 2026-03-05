@@ -8,6 +8,9 @@ import { Badge } from "@/components/ui/badge";
 import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Trophy, TrendingUp, Gamepad2, BarChart3, ArrowRight } from "lucide-react";
+import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { Separator } from "@/components/ui/separator";
 import bonusHuntArkivHero from "@/assets/bonus-hunt-arkiv-hero.jpg";
 
 const faqItems = [
@@ -208,9 +211,12 @@ export default function BonusHuntArkiv() {
           <FAQSection faqs={faqItems} />
         </div>
 
-        <div className="mt-12">
-          <AuthorBio author="kevin" />
-        </div>
+        <Separator className="my-12" />
+        <CommunitySeoSections />
+        <Separator className="my-12" />
+        <RelatedGuides currentPath="/bonus-hunt/arkiv" />
+        <Separator className="my-12" />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

@@ -11,6 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Search, TrendingUp, Zap, BarChart3, Gamepad2, Trophy } from "lucide-react";
+import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { Separator } from "@/components/ui/separator";
 import slotDatabaseHero from "@/assets/slot-database-hero.jpg";
 
 const SLUG_MAP: Record<string, string> = {
@@ -367,9 +370,12 @@ export default function SlotDatabase() {
           <FAQSection faqs={faqItems} />
         </div>
 
-        <div className="mt-12">
-          <AuthorBio author="jonas" />
-        </div>
+        <Separator className="my-12" />
+        <CommunitySeoSections />
+        <Separator className="my-12" />
+        <RelatedGuides currentPath="/slot-database" />
+        <Separator className="my-12" />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );
