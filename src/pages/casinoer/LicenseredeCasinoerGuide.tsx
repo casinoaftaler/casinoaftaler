@@ -236,13 +236,11 @@ const LicenseredeCasinoerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Alle casinoer vi anbefaler på Casinoaftaler.dk har gyldig dansk licens og er grundigt testet efter vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetodik</Link>. Din sikkerhed er vores topprioritet, og vi vil altid anbefale dig at vælge en licenseret platform – uanset hvor attraktive tilbud ulicenserede alternativer måtte præsentere.</p>
         </section>
 
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/casino-licenser" />
 
         <FAQSection title="Ofte stillede spørgsmål om licenserede casinoer" faqs={faqs} />
+
+        <AuthorBio />
       </div>
     </>
   );

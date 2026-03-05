@@ -537,13 +537,11 @@ const Spillemaskiner = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/casinospil/spillemaskiner" />
 
         <FAQSection faqs={spillemaskineFaqs} />
+
+        <AuthorBio />
       </div>
     </>
   );

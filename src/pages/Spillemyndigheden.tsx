@@ -446,15 +446,13 @@ const Spillemyndigheden = () => {
           </Card>
         </section>
 
-        <AuthorBio author="ajse" />
-
-        <Separator className="my-10" />
-
         <FAQSection title="Ofte Stillede Spørgsmål om Spillemyndigheden" faqs={spillemyndighedenFaqs} />
 
         <LatestNewsByCategory pagePath="/spillemyndigheden" />
 
         <RelatedGuides currentPath="/spillemyndigheden" />
+
+        <AuthorBio author="ajse" />
       </div>
     </>
   );

@@ -618,13 +618,11 @@ const HurtigUdbetalingGuide = () => {
           </p>
         </section>
 
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/casinoer/hurtig-udbetaling" />
 
         <FAQSection title="Ofte stillede spørgsmål om hurtige udbetalinger" faqs={faqs} />
+
+        <AuthorBio />
       </div>
     </>
   );

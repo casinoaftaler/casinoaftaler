@@ -193,10 +193,9 @@ const CryptoCasinoGuide = () => {
         </section>
 
         
-        <AuthorBio />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casinoer/crypto-casino" />
         <FAQSection title="Ofte stillede spørgsmål om crypto casinoer" faqs={faqs} />
+        <AuthorBio />
       </div>
     </>
   );

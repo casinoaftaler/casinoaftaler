@@ -443,11 +443,11 @@ const ResponsibleGaming = () => {
 
         <FAQSection title="Ofte Stillede Spørgsmål om Ansvarligt Spil" faqs={responsibleGamingFaqs} />
 
-        <AuthorBio author="ajse" showCommunity={false} />
-
         <LatestNewsByCategory pagePath="/ansvarligt-spil" />
 
         <RelatedGuides currentPath="/ansvarligt-spil" />
+
+        <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>
   );

@@ -789,13 +789,11 @@ const Indskudsbonus = () => {
           </div>
         </section>
 
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/indskudsbonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om indskudsbonus" faqs={indskudsbonusFaqs} />
+
+        <AuthorBio />
       </div>
     </>
   );
