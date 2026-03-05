@@ -1799,7 +1799,7 @@ Deno.serve(async (req) => {
               if (participations && participations.length > 0) {
                 const participatingIds = participations.map((p: { tournament_id: string }) => p.tournament_id);
                 const [{ data: activeTournaments }, { data: allEntries }] = await Promise.all([
-                  serviceClient.from("tournaments").select("id, exclude_from_global_leaderboard, max_credits, max_bet")
+                  serviceClient.from("tournaments").select("id, exclude_from_global_leaderboard, max_credits, max_bet, is_monthly")
                     .in("id", participatingIds).contains("game_ids", [gameId])
                     .lte("starts_at", bonanzaBonusNowISO).gte("ends_at", bonanzaBonusNowISO),
                   serviceClient.from("tournament_entries").select("tournament_id, total_credits_used")
@@ -1825,6 +1825,25 @@ Deno.serve(async (req) => {
                     });
                   }));
                 }
+              }
+
+              // Auto-join monthly tournaments (no participation check needed)
+              const participatingIdSet = new Set((cachedParticipations || []).map((p: { tournament_id: string }) => p.tournament_id));
+              const { data: monthlyTournaments } = await serviceClient
+                .from("tournaments")
+                .select("id, exclude_from_global_leaderboard, max_credits, max_bet")
+                .eq("is_monthly", true)
+                .contains("game_ids", [gameId])
+                .lte("starts_at", bonanzaBonusNowISO)
+                .gte("ends_at", bonanzaBonusNowISO);
+              if (monthlyTournaments && monthlyTournaments.length > 0) {
+                await Promise.all(monthlyTournaments.filter(t => !participatingIdSet.has(t.id)).map(async (t) => {
+                  if (t.max_bet && capturedBonanzaBet > t.max_bet) return;
+                  await serviceClient.rpc("upsert_tournament_entry", {
+                    p_tournament_id: t.id, p_user_id: userId, p_game_id: gameId,
+                    p_points: capturedBonanzaWinnings, p_bet: capturedBonanzaBet, p_is_bonus: true,
+                  });
+                }));
               }
 
               if (!skipBonusGlobal) {
