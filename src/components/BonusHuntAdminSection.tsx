@@ -10,7 +10,7 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Loader2, Plus, Trophy, Target, Coins, CheckCircle, Zap, Pencil, Save, Ticket } from "lucide-react";
+import { Loader2, Plus, Trophy, Target, Coins, CheckCircle, Zap, Pencil, Save, Ticket, Archive } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -534,6 +534,9 @@ export function BonusHuntAdminSection() {
             </TabsTrigger>
             <TabsTrigger value="coupon" className="gap-1.5">
               <Ticket className="h-3.5 w-3.5" /> Slot Kupon
+            </TabsTrigger>
+            <TabsTrigger value="archive" className="gap-1.5">
+              <Archive className="h-3.5 w-3.5" /> Arkiv
             </TabsTrigger>
           </TabsList>
 
