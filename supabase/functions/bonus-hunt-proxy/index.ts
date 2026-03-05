@@ -10,7 +10,7 @@ const STREAMSYSTEM_BASE = "https://www.streamsystem.bet/api/bonushunt/data";
 const STREAMER_ID = "959262659";
 
 // Hunt numbers to permanently exclude (test hunts)
-const BLOCKED_HUNTS = new Set([6, 7]);
+const BLOCKED_HUNTS = new Set<number>();
 
 const TITLE_CASE_LOWER = new Set(['of', 'and', 'the', 'in', 'at', 'by', 'to', 'for', 'or', 'on', 'a', 'an']);
 const ROMAN_NUMERALS = new Set(['ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi', 'xii']);

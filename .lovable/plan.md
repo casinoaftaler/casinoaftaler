@@ -1,45 +1,24 @@
 
 
-## Analysis: Bonus Hunt System Fix
+## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
 
-### Problem
-The system has **two blockers** preventing it from working:
+### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
 
-1. **Proxy Edge Function** (`bonus-hunt-proxy/index.ts`, line 13): `BLOCKED_HUNTS = new Set([6, 7])` — the current active hunt (#6 or #7) is blocked from being archived and from triggering slot catalog sync.
+The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
 
-2. **Auto-settle Edge Function** (`bonus-hunt-auto-settle/index.ts`, line 10): Same `BLOCKED_HUNTS = new Set([6, 7])` — prevents settlement from archiving the hunt snapshot.
+Specifically:
+- **Remove** Gevinst from the right zone (lines 247-261)
+- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
 
-3. **Bulk import Edge Function** (`bonus-hunt-bulk-import/index.ts`, line 11): Same block list.
+Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
 
-The frontend hook (`useBonusHuntData.ts`, line 39) already has an **empty** `BLOCKED_HUNTS` set, so no frontend changes needed.
+### 2. Add Count-Up Animation for Win Amount
 
-### What the system already does (once unblocked)
-The architecture is already correct:
-- **Live hunt**: Proxy fetches from StreamSystem API → displays on Bonus Hunt page
-- **Archiving**: Proxy upserts the full API snapshot into `bonus_hunt_archives` on every fetch (if not blocked)
-- **Slot catalog sync**: `syncSlotCatalog()` upserts each slot's name/provider into `slot_catalog` via `upsert_slot_catalog` RPC
-- **Enrichment**: After slot sync, `slot-catalog-enrich` is triggered to fill missing RTP/volatility/max_potential via AI
-- **bonus_count**: `increment_slot_bonus_counts` only fires for `isNewHunt` (first archive), preventing inflation from polling
-- **Archive page**: Reads from `bonus_hunt_archives` table
-- **Slot Database page**: Reads from `slot_catalog` table
+Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
+- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
+- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
+- The component already handles ease-out counting and bump animation on completion
 
-### Plan (3 files, same change)
-
-1. **`supabase/functions/bonus-hunt-proxy/index.ts`** — Change line 13:
-   - `const BLOCKED_HUNTS = new Set([6, 7]);` → `const BLOCKED_HUNTS = new Set<number>();`
-
-2. **`supabase/functions/bonus-hunt-auto-settle/index.ts`** — Change line 10:
-   - `const BLOCKED_HUNTS = new Set([6, 7]);` → `const BLOCKED_HUNTS = new Set<number>();`
-
-3. **`supabase/functions/bonus-hunt-bulk-import/index.ts`** — Change line 11:
-   - `const BLOCKED_HUNTS = new Set([6, 7]);` → `const BLOCKED_HUNTS = new Set<number>();`
-
-### Result
-Once unblocked, the next time the Bonus Hunt page loads:
-- The proxy will fetch the active hunt from StreamSystem
-- It will archive the snapshot to `bonus_hunt_archives`
-- New slots will be added to `slot_catalog` with name + provider
-- The Archive page will show the hunt
-- The Slot Database will reflect updated data
-- When the hunt completes, auto-settle will persist the final snapshot permanently
+### Files Modified
+- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
 
