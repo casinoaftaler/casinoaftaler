@@ -248,7 +248,7 @@ class SlotSoundEffects {
       this.backgroundMusicAudio.src = this.customSoundFiles.backgroundMusic;
       // Auto-start custom music if music was already playing
       if (this.enabled && this.musicEnabled) {
-        this.backgroundMusicAudio.volume = this.volume * 0.5;
+        this.backgroundMusicAudio.volume = this.volume * 0.25;
         this.backgroundMusicAudio.play().catch(() => {});
       }
     } else {
@@ -445,11 +445,11 @@ class SlotSoundEffects {
     }
     // Update custom background music volume
     if (this.backgroundMusicAudio) {
-      this.backgroundMusicAudio.volume = this.volume * 0.5;
+      this.backgroundMusicAudio.volume = this.volume * 0.25;
     }
     // Update default background music volume
     if (this.defaultMusicAudio) {
-      this.defaultMusicAudio.volume = this.volume * 0.5;
+      this.defaultMusicAudio.volume = this.volume * 0.25;
     }
     this.persistSettings();
   }
@@ -516,7 +516,7 @@ class SlotSoundEffects {
       }
       this.stopMusic();
       if (this.backgroundMusicAudio) {
-        this.backgroundMusicAudio.volume = this.volume * 0.5;
+        this.backgroundMusicAudio.volume = this.volume * 0.25;
         this.backgroundMusicAudio.play().catch(() => {});
       }
       return;
@@ -556,7 +556,7 @@ class SlotSoundEffects {
     }
     
     if (this.defaultMusicAudio.paused) {
-      this.defaultMusicAudio.volume = this.volume * 0.5;
+      this.defaultMusicAudio.volume = this.volume * 0.25;
       this.defaultMusicAudio.play().catch(() => {
         // If default music fails, fall back to synthesized
         this.startSynthesizedMusic();
@@ -964,7 +964,7 @@ class SlotSoundEffects {
     if (!this.canPlayEffect()) return;
     
     // Try custom spin sound first (from admin upload) - use reduced volume
-    if (this.playCustomSound('spinSound', 0.1)) return;
+    if (this.playCustomSound('spinSound', 0.7)) return;
     
     // Play default bundled spin sound at reduced volume
     const audio = new Audio(DEFAULT_SPIN_SOUND);
@@ -1294,7 +1294,7 @@ class SlotSoundEffects {
   // Candy drop-in sound for tumble refills
   playSymbolDropIn() {
     if (!this.canPlayEffect()) return;
-    if (this.playCustomSound('symbolDropInSound', 0.6)) return;
+    if (this.playCustomSound('symbolDropInSound', 1.0)) return;
     // Fallback: use the clack sound
     this.playClack();
   }
@@ -3187,7 +3187,7 @@ class SlotSoundEffects {
     if (!this.canPlayEffect()) return;
     
     // Try custom sound first
-    if (this.playCustomSound('symbolHighlightSound', 0.7)) return;
+    if (this.playCustomSound('symbolHighlightSound', 1.0)) return;
     
     const ctx = this.getContext();
     const now = ctx.currentTime;
@@ -3244,7 +3244,7 @@ class SlotSoundEffects {
   // Bomb explosion sound — plays when an activated bomb blows up
   playBombExplode() {
     if (!this.canPlayEffect()) return;
-    if (this.playCustomSound('symbolExplodeSound', 0.8)) return;
+    if (this.playCustomSound('symbolExplodeSound', 1.0)) return;
     // Fallback: heavy crackle
     this.playCrackle();
   }
@@ -3252,7 +3252,7 @@ class SlotSoundEffects {
   // Bomb fizzle sound — plays when a non-activated bomb fizzles out
   playBombFizz() {
     if (!this.canPlayEffect()) return;
-    if (this.playCustomSound('bombFizzSound', 0.6)) return;
+    if (this.playCustomSound('bombFizzSound', 1.0)) return;
     // Fallback: quiet descending tone
     const ctx = this.getContext();
     const now = ctx.currentTime;
@@ -3272,7 +3272,7 @@ class SlotSoundEffects {
   // Bonus end sound — plays when the bonus round completes
   playBonusEnd() {
     if (!this.canPlayEffect()) return;
-    if (this.playCustomSound('bonusEndSound', 0.8)) return;
+    if (this.playCustomSound('bonusEndSound', 1.0)) return;
     // Fallback: descending fanfare
     const ctx = this.getContext();
     const now = ctx.currentTime;
