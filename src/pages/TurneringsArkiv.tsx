@@ -8,7 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useMonthlyTournamentArchive } from "@/hooks/useMonthlyTournamentArchive";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Trophy, Medal, Crown, Calendar, Users, Gamepad2 } from "lucide-react";
+import { Trophy, Crown, Calendar } from "lucide-react";
+import turneringsArkivHero from "@/assets/turneringsarkiv-hero.jpg";
 
 const CATEGORY_LABELS: Record<string, { label: string; game: string; metric: string }> = {
   points: { label: "Flest Point", game: "Fedesvin Bonanza", metric: "point" },
@@ -50,7 +51,6 @@ export default function TurneringsArkiv() {
   const { data: archiveMonths, isLoading } = useMonthlyTournamentArchive(100);
   const archives = archiveMonths?.flatMap(m => m.entries) || [];
 
-  // Group by month
   const byMonth = archives.reduce((acc, entry) => {
     const month = entry.month;
     if (!acc[month]) acc[month] = [];
@@ -82,23 +82,43 @@ export default function TurneringsArkiv() {
         jsonLd={[articleSchema, faqSchema]}
       />
 
-      <article className="mx-auto max-w-6xl px-4 py-8">
+      {/* Hero */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Crown className="mr-1.5 h-3.5 w-3.5" />
+              Historik & Vindere
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Turneringsarkiv – Alle Månedlige Vindere
+            </h1>
+            <p className="text-lg text-white/80">
+              Komplet historik over alle månedlige turneringsvindere. Se hvem der dominerede{" "}
+              <Link to="/community/turneringer" className="underline hover:text-white">turneringerne</Link>
+              {" "}og tag kampen op om kontante præmier.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="3 min" />
 
-        {/* Hero */}
-        <div className="mb-8 rounded-2xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/10 p-8 md:p-12">
-          <div className="flex items-center gap-3 mb-4">
-            <Crown className="h-8 w-8 text-primary" />
-            <Badge variant="outline" className="text-xs">HISTORIK</Badge>
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl mb-4">
-            Turneringsarkiv
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
-            Komplet historik over alle månedlige turneringsvindere. Se hvem der dominerede{" "}
-            <Link to="/community/turneringer" className="text-primary hover:underline font-medium">turneringerne</Link>
-            {" "}og tag kampen op om kontante præmier.
-          </p>
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={turneringsArkivHero}
+            alt="Turneringsarkiv med vindere og leaderboards fra månedlige community-turneringer"
+            className="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+          />
         </div>
 
         {/* Archive by month */}
@@ -133,7 +153,6 @@ export default function TurneringsArkiv() {
                           </div>
                         </CardHeader>
                         <CardContent className="pt-4">
-                          {/* Winner */}
                           <div className="flex items-center gap-3 mb-4 p-3 rounded-lg bg-primary/5 border border-primary/20">
                             <Crown className="h-5 w-5 text-primary shrink-0" />
                             <Avatar className="h-8 w-8">
@@ -151,7 +170,6 @@ export default function TurneringsArkiv() {
                             <Badge className="shrink-0">500 kr</Badge>
                           </div>
 
-                          {/* Top entries */}
                           {topEntries.length > 1 && (
                             <div className="space-y-1.5">
                               {topEntries.slice(1, 5).map((te: any, i: number) => (
@@ -218,7 +236,7 @@ export default function TurneringsArkiv() {
         <div className="mt-12">
           <AuthorBio author="jonas" />
         </div>
-      </article>
+      </div>
     </>
   );
 }
