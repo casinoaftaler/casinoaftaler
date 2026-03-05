@@ -16,7 +16,7 @@ export function VolumeControl({ className }: VolumeControlProps) {
   const [volume, setVolume] = useState(slotSounds.getVolume() * 100);
   const [musicEnabled, setMusicEnabled] = useState(slotSounds.isMusicEnabled());
   const [effectsEnabled, setEffectsEnabled] = useState(slotSounds.isEffectsEnabled());
-  const [bonusSoundsOnly, setBonusSoundsOnly] = useState(slotSounds.isBonusSoundsOnly());
+  // bonusSoundsOnly removed — was causing all non-scatter sounds to be muted
 
   useEffect(() => {
     slotSounds.setEnabled(enabled);
@@ -34,9 +34,10 @@ export function VolumeControl({ className }: VolumeControlProps) {
     slotSounds.setEffectsEnabled(effectsEnabled);
   }, [effectsEnabled]);
 
+  // Force bonusSoundsOnly OFF on mount to fix stuck localStorage
   useEffect(() => {
-    slotSounds.setBonusSoundsOnly(bonusSoundsOnly);
-  }, [bonusSoundsOnly]);
+    slotSounds.setBonusSoundsOnly(false);
+  }, []);
 
   const handleToggle = () => {
     const newEnabled = !enabled;
@@ -57,9 +58,6 @@ export function VolumeControl({ className }: VolumeControlProps) {
     }
   };
 
-  const handleBonusSoundsOnlyToggle = (checked: boolean) => {
-    setBonusSoundsOnly(checked);
-  };
 
   const handleVolumeChange = (value: number[]) => {
     const newVolume = value[0];
@@ -170,23 +168,6 @@ export function VolumeControl({ className }: VolumeControlProps) {
             </p>
           </div>
 
-          {/* Bonus sounds only toggle */}
-          <div className="pt-2 border-t border-border">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Cat className="h-4 w-4 text-amber-500" />
-                <span className="text-sm font-medium">Kun bonus lyde</span>
-              </div>
-              <Switch
-                checked={bonusSoundsOnly && enabled && effectsEnabled}
-                onCheckedChange={handleBonusSoundsOnlyToggle}
-                disabled={!enabled || !effectsEnabled}
-              />
-            </div>
-            <p className="text-xs text-muted-foreground mt-1">
-              Kun scatter, tease og bonus lyde
-            </p>
-          </div>
         </div>
       </PopoverContent>
     </Popover>
