@@ -200,8 +200,11 @@ export const routeLabels: Record<string, string> = {
   "/community": "Community",
   "/community/slots": "Spillehal",
   "/community/turneringer": "Turneringer",
+  "/community/turneringer/arkiv": "Turneringsarkiv",
   "/community/rewards": "Rewards",
   "/bonus-hunt": "Bonus Hunt",
+  "/bonus-hunt/arkiv": "Bonus Hunt Arkiv",
+  "/slot-database": "Slot Database",
 };
 
 
@@ -344,10 +347,15 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
 
   // Community cluster – bundet til /community hub
   "/community/turneringer": [{ name: "Community", path: "/community" }],
+  "/community/turneringer/arkiv": [{ name: "Community", path: "/community" }, { name: "Turneringer", path: "/community/turneringer" }],
   "/community/rewards": [{ name: "Community", path: "/community" }],
 
-  // Bonus Hunt – bundet til Community
-  "/bonus-hunt": [{ name: "Community", path: "/community" }],
+  // Bonus Hunt – bundet til Forside (ikke Community, for SEO-isolation)
+  "/bonus-hunt": [],
+  "/bonus-hunt/arkiv": [{ name: "Bonus Hunt", path: "/bonus-hunt" }],
+
+  // Slot Database – standalone hub
+  "/slot-database": [],
 };
 
 /**

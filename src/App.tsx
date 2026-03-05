@@ -52,6 +52,9 @@ const GatesOfFedesvin = lazy(() => import("./pages/GatesOfFedesvin"));
 const FedesvinBonanza = lazy(() => import("./pages/FedesvinBonanza"));
 const SpinTheReel = lazy(() => import("./pages/SpinTheReel"));
 const BonusHunt = lazy(() => import("./pages/BonusHunt"));
+const BonusHuntArkiv = lazy(() => import("./pages/BonusHuntArkiv"));
+const SlotDatabase = lazy(() => import("./pages/SlotDatabase"));
+const TurneringsArkiv = lazy(() => import("./pages/TurneringsArkiv"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Auth = lazy(() => import("./pages/Auth"));
 const AuthCallback = lazy(() => import("./pages/AuthCallback"));
@@ -448,9 +451,12 @@ const App = () => (
                 
                 <Route path="/community" element={<Suspense fallback={null}><CommunityHub /></Suspense>} />
                 <Route path="/community/turneringer" element={<Leaderboard />} />
+                <Route path="/community/turneringer/arkiv" element={<TurneringsArkiv />} />
                 <Route path="/community/rewards" element={<RewardsProgram />} />
                 <Route path="/community/spin-the-reel" element={<Suspense fallback={null}><SpinTheReel /></Suspense>} />
                 <Route path="/bonus-hunt" element={<Suspense fallback={null}><BonusHunt /></Suspense>} />
+                <Route path="/bonus-hunt/arkiv" element={<BonusHuntArkiv />} />
+                <Route path="/slot-database" element={<SlotDatabase />} />
                 <Route path="/community/bonus-hunt" element={<Navigate to="/bonus-hunt" replace />} />
                 <Route 
                   path="/community/slots" 
