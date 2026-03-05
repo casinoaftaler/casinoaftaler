@@ -590,6 +590,10 @@ export function BonusHuntAdminSection() {
               </Card>
             )}
           </TabsContent>
+
+          <TabsContent value="archive">
+            <BonusHuntArchiveAdmin />
+          </TabsContent>
         </Tabs>
       )}
     </div>
