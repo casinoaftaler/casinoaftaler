@@ -205,6 +205,7 @@ export const routeLabels: Record<string, string> = {
   "/bonus-hunt": "Bonus Hunt",
   "/bonus-hunt/arkiv": "Bonus Hunt Arkiv",
   "/slot-database": "Slot Database",
+  "/community/hall-of-fame": "Hall of Fame",
 };
 
 
@@ -348,6 +349,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/community/turneringer": [{ name: "Community", path: "/community" }],
   "/community/turneringer/arkiv": [{ name: "Community", path: "/community" }, { name: "Turneringer", path: "/community/turneringer" }],
   "/community/rewards": [{ name: "Community", path: "/community" }],
+  "/community/hall-of-fame": [{ name: "Community", path: "/community" }],
 
   // Bonus Hunt – bundet til Forside (ikke Community, for SEO-isolation)
   "/bonus-hunt": [],

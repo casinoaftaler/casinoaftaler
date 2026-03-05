@@ -254,6 +254,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-03-01", showUpdatedDate: false },
   { path: "/community/turneringer", changefreq: "daily", priority: 0.6, lastmod: "2026-03-03", showUpdatedDate: false },
   { path: "/community/turneringer/arkiv", changefreq: "weekly", priority: 0.6, lastmod: "2026-03-05", showUpdatedDate: false },
+  { path: "/community/hall-of-fame", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05", showUpdatedDate: false },
   { path: "/community/slots", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },
   { path: "/community/rewards", changefreq: "weekly", priority: 0.6, lastmod: "2026-03-01", showUpdatedDate: false },
   { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-02-22", showUpdatedDate: false },
