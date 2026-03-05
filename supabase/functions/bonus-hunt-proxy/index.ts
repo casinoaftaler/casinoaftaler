@@ -277,6 +277,7 @@ serve(async (req) => {
     if (data?.data?.name) {
       const huntData = data.data;
       const huntNumber = parseInt(huntData.name.replace(/\D/g, ''), 10) || 0;
+      const stats = huntData.statistics || {};
 
       if (huntNumber > 0 && !BLOCKED_HUNTS.has(huntNumber)) {
         // Check if archive exists already
@@ -288,7 +289,6 @@ serve(async (req) => {
 
         isNewHunt = !existing;
 
-        const stats = huntData.statistics || {};
         await supabase
           .from("bonus_hunt_archives")
           .upsert({
