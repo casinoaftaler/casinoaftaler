@@ -22,6 +22,7 @@ const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
   2: {
     twitchVideoId: "2705001000",
     date: "22. februar 2026",
+    isoDate: "2026-02-22",
     casinoName: "SpilDanskNu",
     casinoSlug: "spildansknu",
     bonusCount: 24,
@@ -33,6 +34,7 @@ const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
   3: {
     twitchVideoId: "2705907775",
     date: "23. februar 2026",
+    isoDate: "2026-02-23",
     casinoName: "SpilDanskNu",
     casinoSlug: "spildansknu",
     bonusCount: 24,
@@ -44,6 +46,7 @@ const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
   4: {
     twitchVideoId: "2708438065",
     date: "26. februar 2026",
+    isoDate: "2026-02-26",
     casinoName: "SpilDanskNu",
     casinoSlug: "spildansknu",
     bonusCount: 11,
@@ -55,6 +58,7 @@ const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
   5: {
     twitchVideoId: "2710088948",
     date: "28. februar 2026",
+    isoDate: "2026-02-28",
     casinoName: "SpilDanskNu",
     casinoSlug: "spildansknu",
     bonusCount: 23,
