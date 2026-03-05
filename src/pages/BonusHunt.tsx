@@ -36,8 +36,7 @@ import { Loader2 } from "lucide-react";
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SITE_URL, buildArticleSchema, KEVIN_SAME_AS } from "@/lib/seo";
-
-
+import bonusHuntHero from "@/assets/bonus-hunt/bonus-hunt-hero.jpg";
 export default function BonusHunt() {
   const { user } = useAuth();
   const queryClient = useQueryClient();
@@ -154,13 +153,22 @@ export default function BonusHunt() {
         breadcrumbLabel="Bonus Hunt"
       />
 
-      {/* SEO Hero with gradient background */}
-      <section
-        className="relative overflow-hidden text-white"
-        style={{
-          background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
-        }}
-      >
+      {/* SEO Hero with image + gradient overlay */}
+      <section className="relative overflow-hidden text-white">
+        <div className="absolute inset-0">
+          <img
+            src={bonusHuntHero}
+            alt="Bonus Hunt hero med slots, mønter og energifyldt casino-stemning"
+            className="h-full w-full object-cover"
+            loading="eager"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(135deg, hsl(260 70% 25% / 0.88), hsl(250 60% 20% / 0.82) 40%, hsl(210 80% 25% / 0.86))',
+            }}
+          />
+        </div>
         <div className="relative container py-14 md:py-24">
           <div className="mx-auto max-w-3xl text-center space-y-5">
             <h1 className="text-3xl font-bold tracking-tight leading-tight md:text-5xl md:leading-tight">

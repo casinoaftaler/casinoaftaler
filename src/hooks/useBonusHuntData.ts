@@ -158,24 +158,41 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
 }
 
 async function fetchLatestHuntNumber(): Promise<number> {
-  const { data } = await supabase
+  const { data: archiveLatest } = await supabase
     .from('bonus_hunt_archives')
     .select('hunt_number')
     .order('hunt_number', { ascending: false })
     .limit(1)
     .maybeSingle();
 
-  return data?.hunt_number || 1;
+  if (archiveLatest?.hunt_number) return archiveLatest.hunt_number;
+
+  const { data: sessionLatest } = await supabase
+    .from('bonus_hunt_sessions')
+    .select('hunt_number')
+    .order('hunt_number', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  return sessionLatest?.hunt_number || 1;
 }
 
 async function fetchDocumentedHuntCount(): Promise<number> {
-  const { count } = await supabase
+  const { count: archiveCount } = await supabase
     .from('bonus_hunt_archives')
     .select('*', { count: 'exact', head: true })
     .gt('total_slots', 0)
     .not('hunt_number', 'in', `(${[...BLOCKED_HUNTS].join(',')})`);
 
-  return count || 0;
+  if ((archiveCount || 0) > 0) return archiveCount || 0;
+
+  const { count: sessionCount } = await supabase
+    .from('bonus_hunt_sessions')
+    .select('*', { count: 'exact', head: true })
+    .eq('status', 'completed')
+    .gte('hunt_number', 2);
+
+  return sessionCount || 0;
 }
 
 export function useBonusHuntData(huntId?: number) {

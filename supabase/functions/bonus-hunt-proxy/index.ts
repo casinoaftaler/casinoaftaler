@@ -118,10 +118,12 @@ serve(async (req) => {
 
     // If requesting a specific past hunt, try archive first
     if (huntId && fromArchive) {
+      const requestedHunt = parseInt(huntId, 10);
+
       const { data: archived } = await supabase
         .from("bonus_hunt_archives")
         .select("api_data")
-        .eq("hunt_number", parseInt(huntId))
+        .eq("hunt_number", requestedHunt)
         .maybeSingle();
 
       if (archived?.api_data) {
@@ -129,6 +131,62 @@ serve(async (req) => {
           headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' },
         });
       }
+
+      // Fallback: build a lightweight response from sessions table
+      const { data: session } = await supabase
+        .from("bonus_hunt_sessions")
+        .select("hunt_number, status, average_x, end_balance, created_at, casino_slug, streamsystem_hunt_id")
+        .eq("hunt_number", requestedHunt)
+        .maybeSingle();
+
+      if (session) {
+        const fallbackPayload = {
+          status: true,
+          data: {
+            id: session.streamsystem_hunt_id || `session-${requestedHunt}`,
+            played: session.status === 'completed',
+            started: true,
+            user: STREAMER_ID,
+            name: `bonus hunt #${requestedHunt}`,
+            currency: 'dkk',
+            end: session.end_balance || 0,
+            createdAt: Math.floor(new Date(session.created_at).getTime() / 1000),
+            casino: session.casino_slug || 'spildansknu',
+            start: 0,
+            currencySymbol: 'DKK ',
+            startFormatted: '0.0 KR.',
+            endFormatted: `${session.end_balance || 0}.0 KR.`,
+            slots: [],
+            statistics: {
+              openedSlots: 0,
+              numberOfSlots: 0,
+              averageBet: 0,
+              averageBetFormatted: '0.0 KR.',
+              averageCost: 0,
+              averageCostFormatted: '0.0 KR.',
+              winnings: session.end_balance || 0,
+              winningsFormatted: `${session.end_balance || 0}.0 KR.`,
+              progress: 0,
+              progressFormatted: '0.0 KR.',
+              reqAverage: '0',
+              bestWin: 0,
+              bestWinFormatted: '0.0 KR.',
+              bestWinX: '0.00',
+              runAverage: session.average_x ? String(session.average_x) : '0.00',
+              best_win_x_slot_name: '-',
+            },
+          },
+        };
+
+        return new Response(JSON.stringify(fallbackPayload), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' },
+        });
+      }
+
+      return new Response(
+        JSON.stringify({ error: `Archived hunt #${requestedHunt} not found` }),
+        { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
     // Fetch from StreamSystem API
