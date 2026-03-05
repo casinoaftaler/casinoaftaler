@@ -1,12 +1,14 @@
+import { forwardRef } from "react";
 import { ShieldCheck, ExternalLink } from "lucide-react";
 
 /**
  * Displays regulatory source citations for E-E-A-T trust signals.
  * Automatically included via AuthorBio on all content pages.
  */
-export function SourceCitations() {
+export const SourceCitations = forwardRef<HTMLElement>(function SourceCitations(_props, ref) {
   return (
     <aside
+      ref={ref}
       className="mt-6 rounded-lg border border-border bg-muted/30 p-4 md:p-5"
       aria-label="Kilder og regulering"
     >
@@ -73,4 +75,4 @@ export function SourceCitations() {
       </p>
     </aside>
   );
-}
+});
