@@ -29,6 +29,7 @@ import { toast } from "@/hooks/use-toast";
 import { CompletedTournamentRow } from "@/components/tournament/CompletedTournamentRow";
 import { MonthlyTournamentBoxes } from "@/components/tournament/MonthlyTournamentBoxes";
 import { TournamentSeoContent, getTournamentFaqSchema, tournamentFaqs } from "@/components/tournament/TournamentSeoContent";
+import turneringerHero from "@/assets/community/turneringer-hero.jpg";
 
 const GAME_NAMES: Record<string, string> = {
   "book-of-fedesvin": "Book of Fedesvin",
@@ -454,13 +455,18 @@ export default function Leaderboard() {
         jsonLd={jsonLd}
       />
 
-      {/* Hero Section – matching Bonus Hunt style */}
+      {/* Hero Section – with tournament image */}
       <section
         className="relative overflow-hidden text-white"
-        style={{
-          background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
-        }}
       >
+        <div className="absolute inset-0">
+          <img
+            src={turneringerHero}
+            alt="Slot turneringer med præmier – trofæ, mønter og spilleautomater"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25% / 0.85), hsl(250 60% 20% / 0.8) 40%, hsl(210 80% 25% / 0.85))' }} />
+        </div>
         <div className="relative container py-14 md:py-24">
           <div className="mx-auto max-w-3xl text-center space-y-5">
             <h1 className="text-3xl font-bold tracking-tight leading-tight md:text-5xl md:leading-tight">
