@@ -9,6 +9,7 @@ import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Trophy, TrendingUp, Gamepad2, BarChart3, ArrowRight } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { BonusHuntArkivSeoContent } from "@/components/seo-content/BonusHuntArkivSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Separator } from "@/components/ui/separator";
@@ -130,37 +131,7 @@ export default function BonusHuntArkiv() {
         </div>
 
         {/* SEO Content BEFORE cards (Type B: content-first layout) */}
-        <section className="mb-10 space-y-6 max-w-4xl">
-          <h2 className="text-2xl font-bold text-foreground">Om Bonus Hunt Arkivet</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Bonus hunt-arkivet er en komplet dokumentation af alle vores live bonus hunts på Twitch. Hver hunt
-            repræsenterer en session, hvor vi køber bonusser på en række{" "}
-            <Link to="/slot-database" className="text-primary hover:underline">spillemaskiner</Link> og åbner dem
-            én for én foran vores community.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Vi spiller altid med rigtige penge på{" "}
-            <Link to="/casino-anmeldelser/spildansknu" className="text-primary hover:underline">licenserede danske casinoer</Link>,
-            og alle resultater logges automatisk via vores StreamSystem-integration. Det sikrer 100% transparens
-            og gør det muligt at verificere alle tal.
-          </p>
-
-          <h3 className="text-xl font-bold text-foreground mt-8">Sådan læser du statistikkerne</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong>Gennemsnitlig X</strong> viser den gennemsnitlige multiplikator på tværs af alle åbnede bonusser
-            i en hunt. En X over 100 betyder, at huntens samlede gevinst oversteg den samlede investering – med andre
-            ord en profitabel session. <strong>Startbalance</strong> er det beløb, der var investeret i bonuskøb,
-            og <strong>slots</strong> viser det totale antal maskiner i hunten.
-          </p>
-
-          <h3 className="text-xl font-bold text-foreground mt-8">Community-deltagelse</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Under aktive hunts kan du deltage i community bets direkte fra{" "}
-            <Link to="/bonus-hunt" className="text-primary hover:underline font-medium">bonus hunt-siden</Link>. Gæt på
-            gennemsnitlig X eller samlet gevinst og konkurrér med andre community-medlemmer om credits og præmier
-            i vores <Link to="/community/turneringer" className="text-primary hover:underline">månedlige turneringer</Link>.
-          </p>
-        </section>
+        <BonusHuntArkivSeoContent />
 
         {/* Archive heading */}
         <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
