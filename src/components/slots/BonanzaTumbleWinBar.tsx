@@ -9,6 +9,7 @@ interface BonanzaTumbleWinBarProps {
   collisionPhase: CollisionPhase;
   visible: boolean;
   inline?: boolean;
+  hideMultiplier?: boolean;
 }
 
 export function BonanzaTumbleWinBar({
@@ -17,6 +18,7 @@ export function BonanzaTumbleWinBar({
   collisionPhase,
   visible,
   inline = false,
+  hideMultiplier = false,
 }: BonanzaTumbleWinBarProps) {
   const [showResult, setShowResult] = useState(false);
   const [multPop, setMultPop] = useState(false);
