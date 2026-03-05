@@ -796,7 +796,7 @@ export default function Forfatter() {
         </section>
 
         {/* 🎬 Casino Anmeldelse-videoer af Jonas */}
-        <CasinoReviewVideos />
+        <CasinoReviewVideosSection />
 
         <Separator className="my-10" />
         <section className="mb-12">
