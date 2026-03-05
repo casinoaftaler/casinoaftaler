@@ -9,6 +9,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useMonthlyTournamentArchive } from "@/hooks/useMonthlyTournamentArchive";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Trophy, Crown, Calendar } from "lucide-react";
+import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { RelatedGuides } from "@/components/RelatedGuides";
+import { Separator } from "@/components/ui/separator";
 import turneringsArkivHero from "@/assets/turneringsarkiv-hero.jpg";
 
 const CATEGORY_LABELS: Record<string, { label: string; game: string; metric: string }> = {
@@ -233,9 +236,12 @@ export default function TurneringsArkiv() {
           <FAQSection faqs={faqItems} />
         </div>
 
-        <div className="mt-12">
-          <AuthorBio author="jonas" />
-        </div>
+        <Separator className="my-12" />
+        <CommunitySeoSections />
+        <Separator className="my-12" />
+        <RelatedGuides currentPath="/community/turneringer/arkiv" />
+        <Separator className="my-12" />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

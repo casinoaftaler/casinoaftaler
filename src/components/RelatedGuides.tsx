@@ -272,6 +272,48 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Slot Database → money-page bridge links
+  if (path === "/slot-database") {
+    return {
+      guides: [
+        { to: "/bonus-hunt", label: "Bonus Hunt", icon: Trophy, desc: "Følg med i live bonus hunts på Twitch" },
+        { to: "/bonus-hunt/arkiv", label: "Bonus Hunt Arkiv", icon: BarChart3, desc: "Alle dokumenterede hunt-resultater" },
+        casinospilHub,
+        providerHub,
+        bonusHub,
+      ],
+      subtitle: "Udforsk bonus hunts, casinospil og de bedste spiludviklere.",
+    };
+  }
+
+  // Bonus Hunt Arkiv → bridge to money-pages and community
+  if (path === "/bonus-hunt/arkiv") {
+    return {
+      guides: [
+        { to: "/bonus-hunt", label: "Bonus Hunt Live", icon: Trophy, desc: "Se aktive og kommende bonus hunts" },
+        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "163+ spillemaskiner med community-data" },
+        { to: "/community/turneringer", label: "Turneringer", icon: Trophy, desc: "Deltag i månedlige turneringer" },
+        reviewHub,
+        bonusHub,
+      ],
+      subtitle: "Udforsk live hunts, slot-statistikker og de bedste casino bonusser.",
+    };
+  }
+
+  // Turneringsarkiv → bridge to tournaments and money-pages
+  if (path === "/community/turneringer/arkiv") {
+    return {
+      guides: [
+        { to: "/community/turneringer", label: "Aktive Turneringer", icon: Trophy, desc: "Deltag i denne måneds turnering" },
+        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "Se statistik for alle testede slots" },
+        { to: "/bonus-hunt", label: "Bonus Hunt", icon: Trophy, desc: "Live bonus hunts på Twitch" },
+        reviewHub,
+        casinospilHub,
+      ],
+      subtitle: "Udforsk aktive turneringer, slot-data og casinospil.",
+    };
+  }
+
   // Community rewards → limited bonus guides
   if (path === "/community/rewards") {
     return {
