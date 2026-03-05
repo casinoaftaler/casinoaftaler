@@ -194,7 +194,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
           "tournament-countdown absolute top-2 left-2 z-[2] flex items-center gap-1 backdrop-blur-md rounded-md px-2.5 py-1 shadow-lg bg-black/70"
         )}>
           <Clock className="h-3.5 w-3.5 text-white" />
-          <span className="text-xs font-mono text-white font-medium">Starter i morgen: 04-04-2026</span>
+          <span className="text-xs font-mono text-white font-medium">Aktiv nu</span>
         </div>
       </div>
 
