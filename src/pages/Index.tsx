@@ -13,6 +13,7 @@ import { BonusTypeCards } from "@/components/BonusTypeCards";
 import { PopularReviewsSection } from "@/components/PopularReviewsSection";
 import { FAQSection } from "@/components/FAQSection";
 import { SourceCitations } from "@/components/SourceCitations";
+import { buildFaqSchema } from "@/lib/seo";
 import { FilterTabs } from "@/components/FilterTabs";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useQuery } from "@tanstack/react-query";
