@@ -282,33 +282,67 @@ export default function Forfatter() {
 
   const faqJsonLd = buildFaqSchema(faqs);
 
-  const videoSchema = {
+  // All Jonas videos for schema
+  const allJonasVideos = [
+    // Guide videos
+    { id: "WOowRz6hnH8", title: "Hvad er en No-Sticky Bonus?" },
+    { id: "yUAcefgYfkc", title: "Hvad er en Sticky Bonus?" },
+    { id: "q4jeGo9TPEk", title: "Hvad er Free Spins?" },
+    { id: "3tXFTjmgdcE", title: "Hvad er omsætningskrav?" },
+    { id: "oK5PvebkvGY", title: "Hvad er en Velkomstbonus?" },
+    { id: "hMHHVA6vH0Y", title: "Hvad er en Indskudsbonus?" },
+    { id: "7JQ3nFTasoQ", title: "Hvad er bonus uden omsætningskrav?" },
+    { id: "XhbLda1HyOs", title: "Hvad er bonus uden indbetaling?" },
+    // Casino review videos
+    { id: "_hHQkRwUzoU", title: "SpilDanskNu Anmeldelse" },
+    { id: "L5JtdRVTNwk", title: "Spilleautomaten Anmeldelse" },
+    { id: "s7S_GRsKfK4", title: "Campobet Anmeldelse" },
+    { id: "GyqEjKQiCJU", title: "Betinia Anmeldelse" },
+    { id: "BVYnQxwqHG0", title: "Swift Casino Anmeldelse" },
+    { id: "14tI5vWShvs", title: "Luna Casino Anmeldelse" },
+    { id: "vb5nT5UGk8c", title: "bet365 Casino Anmeldelse" },
+    { id: "Uu3NBZzt-Sk", title: "Betano Anmeldelse" },
+    { id: "AuYbcBpBOxY", title: "Danske Spil Anmeldelse" },
+    { id: "tW_E0RmzSHg", title: "ComeOn Anmeldelse" },
+    { id: "N1MyxsYcmMk", title: "GetLucky Anmeldelse" },
+    { id: "htCLh4TK6tA", title: "Mr Green Anmeldelse" },
+    { id: "vSkzKvgZT_0", title: "Mr Vegas Anmeldelse" },
+    { id: "8_nQyVEJEcU", title: "LeoVegas Anmeldelse" },
+    { id: "TzSmePJgd84", title: "Expekt Anmeldelse" },
+    { id: "crhpDPocTrQ", title: "888 Casino Anmeldelse" },
+    { id: "53m8Fk6tmw8", title: "Unibet Anmeldelse" },
+    { id: "6R3Zt_ABaAo", title: "Royal Casino Anmeldelse" },
+    { id: "o9m02b_cAnE", title: "Maria Casino Anmeldelse" },
+    { id: "xo9vTabQgE8", title: "Videoslots Anmeldelse" },
+    // Highlights
+    { id: "ZKDrnL7373o", title: "Jonas' bedste highlights" },
+  ];
+
+  const videoSchemas = allJonasVideos.map((v, i) => ({
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    name: "Jonas' bedste highlights – Casinoaftaler.dk",
-    description: "Se Jonas' bedste casino-highlights og streamingøjeblikke fra Casinoaftaler.dk.",
-    thumbnailUrl: "https://img.youtube.com/vi/ZKDrnL7373o/maxresdefault.jpg",
-    uploadDate: "2025-01-15T12:00:00+01:00",
-    contentUrl: "https://www.youtube.com/watch?v=ZKDrnL7373o",
-    embedUrl: "https://www.youtube.com/embed/ZKDrnL7373o",
+    "@id": `${SITE_URL}/forfatter/jonas#video-${i + 1}`,
+    name: `${v.title} – Casinoaftaler.dk`,
+    description: `Jonas gennemgår ${v.title.toLowerCase()} på Casinoaftaler.dk.`,
+    thumbnailUrl: `https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`,
+    uploadDate: "2026-02-18T12:00:00+01:00",
+    duration: "PT2M",
+    embedUrl: `https://www.youtube.com/embed/${v.id}?rel=0&modestbranding=1`,
+    contentUrl: `https://www.youtube.com/watch?v=${v.id}`,
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "Casinoaftaler.dk",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://casinoaftaler.dk/icon-512x512.png",
-        width: 512,
-        height: 512,
-      },
+      url: SITE_URL,
     },
-  };
+  }));
 
   return (
     <>
       <SEO
         title="Jonas – Forfatter & Grundlægger | Casinoaftaler.dk"
         description="Mød Jonas, grundlæggeren af Casinoaftaler.dk og casino-streamer på Twitch. Læs om hans baggrund, streamingstil og passion for casinospil."
-        jsonLd={[faqJsonLd, personSchema, videoSchema]}
+        jsonLd={[faqJsonLd, personSchema, ...videoSchemas]}
       />
 
       {/* Hero */}
@@ -748,6 +782,69 @@ export default function Forfatter() {
                   </div>
                 </div>
                 {/* Info */}
+                <div className="flex flex-1 flex-col gap-1.5 p-4">
+                  <Badge variant="secondary" className="w-fit text-xs">
+                    {video.category}
+                  </Badge>
+                  <h3 className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors">
+                    {video.title}
+                  </h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* 🎬 Casino Anmeldelse-videoer af Jonas */}
+        <section className="mb-12">
+          <div className="mb-6 flex items-center gap-2">
+            <Tv className="h-7 w-7 text-primary" />
+            <h2 className="text-3xl font-bold">Casino Anmeldelse-videoer</h2>
+          </div>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Jonas gennemgår hvert casino indefra – navigation, spiludvalg, bonusser og features. Se videoen og læs den fulde anmeldelse.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {[
+              { videoId: "_hHQkRwUzoU", title: "SpilDanskNu Anmeldelse", path: "/casino-anmeldelser/spildansknu", category: "Anmeldelse" },
+              { videoId: "L5JtdRVTNwk", title: "Spilleautomaten Anmeldelse", path: "/casino-anmeldelser/spilleautomaten", category: "Anmeldelse" },
+              { videoId: "s7S_GRsKfK4", title: "Campobet Anmeldelse", path: "/casino-anmeldelser/campobet", category: "Anmeldelse" },
+              { videoId: "GyqEjKQiCJU", title: "Betinia Anmeldelse", path: "/casino-anmeldelser/betinia", category: "Anmeldelse" },
+              { videoId: "BVYnQxwqHG0", title: "Swift Casino Anmeldelse", path: "/casino-anmeldelser/swift-casino", category: "Anmeldelse" },
+              { videoId: "14tI5vWShvs", title: "Luna Casino Anmeldelse", path: "/casino-anmeldelser/luna-casino", category: "Anmeldelse" },
+              { videoId: "vb5nT5UGk8c", title: "bet365 Casino Anmeldelse", path: "/casino-anmeldelser/bet365", category: "Anmeldelse" },
+              { videoId: "Uu3NBZzt-Sk", title: "Betano Anmeldelse", path: "/casino-anmeldelser/betano", category: "Anmeldelse" },
+              { videoId: "AuYbcBpBOxY", title: "Danske Spil Anmeldelse", path: "/casino-anmeldelser/danske-spil", category: "Anmeldelse" },
+              { videoId: "tW_E0RmzSHg", title: "ComeOn Anmeldelse", path: "/casino-anmeldelser/comeon", category: "Anmeldelse" },
+              { videoId: "N1MyxsYcmMk", title: "GetLucky Anmeldelse", path: "/casino-anmeldelser/getlucky", category: "Anmeldelse" },
+              { videoId: "htCLh4TK6tA", title: "Mr Green Anmeldelse", path: "/casino-anmeldelser/mr-green", category: "Anmeldelse" },
+              { videoId: "vSkzKvgZT_0", title: "Mr Vegas Anmeldelse", path: "/casino-anmeldelser/mr-vegas", category: "Anmeldelse" },
+              { videoId: "8_nQyVEJEcU", title: "LeoVegas Anmeldelse", path: "/casino-anmeldelser/leovegas", category: "Anmeldelse" },
+              { videoId: "TzSmePJgd84", title: "Expekt Anmeldelse", path: "/casino-anmeldelser/expekt", category: "Anmeldelse" },
+              { videoId: "crhpDPocTrQ", title: "888 Casino Anmeldelse", path: "/casino-anmeldelser/888-casino", category: "Anmeldelse" },
+              { videoId: "53m8Fk6tmw8", title: "Unibet Anmeldelse", path: "/casino-anmeldelser/unibet", category: "Anmeldelse" },
+              { videoId: "6R3Zt_ABaAo", title: "Royal Casino Anmeldelse", path: "/casino-anmeldelser/royal-casino", category: "Anmeldelse" },
+              { videoId: "o9m02b_cAnE", title: "Maria Casino Anmeldelse", path: "/casino-anmeldelser/maria-casino", category: "Anmeldelse" },
+              { videoId: "xo9vTabQgE8", title: "Videoslots Anmeldelse", path: "/casino-anmeldelser/videoslots", category: "Anmeldelse" },
+            ].map((video) => (
+              <Link
+                key={video.videoId}
+                to={video.path}
+                className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
+              >
+                <div className="relative aspect-video w-full overflow-hidden bg-muted">
+                  <img
+                    src={`https://i.ytimg.com/vi/${video.videoId}/mqdefault.jpg`}
+                    alt={video.title}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/90 shadow-lg">
+                      <Play className="h-5 w-5 fill-primary-foreground text-primary-foreground ml-0.5" />
+                    </div>
+                  </div>
+                </div>
                 <div className="flex flex-1 flex-col gap-1.5 p-4">
                   <Badge variant="secondary" className="w-fit text-xs">
                     {video.category}
