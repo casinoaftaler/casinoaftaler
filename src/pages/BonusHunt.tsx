@@ -290,6 +290,7 @@ export default function BonusHunt() {
                         session={isArchived ? null : session}
                         bets={gtwBets}
                         userId={user?.id}
+                        openedBonuses={huntData?.stats?.openedBonuses || 0}
                         onBetPlaced={refreshBets}
                       />
                     </TabsContent>
@@ -298,6 +299,7 @@ export default function BonusHunt() {
                         session={isArchived ? null : session}
                         bets={avgxBets}
                         userId={user?.id}
+                        openedBonuses={huntData?.stats?.openedBonuses || 0}
                         onBetPlaced={refreshBets}
                       />
                     </TabsContent>
