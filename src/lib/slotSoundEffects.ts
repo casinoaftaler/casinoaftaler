@@ -330,9 +330,9 @@ class SlotSoundEffects {
     return false;
   }
 
-  // Check if regular effects can play (muted in bonus-only mode)
+  // Check if effects can play
   private canPlayEffect(): boolean {
-    return this.enabled && this.effectsEnabled && !this.bonusSoundsOnly;
+    return this.enabled && this.effectsEnabled;
   }
 
   // Check if bonus sounds can play (scatter, tease, bonus trigger)
