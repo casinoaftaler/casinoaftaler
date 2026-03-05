@@ -230,7 +230,7 @@ const TopCasinoOnline = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="12 Min." />
+        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="25 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={topCasinoHero} alt="Top 10 casino – guldtrofæ med casino chips" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
