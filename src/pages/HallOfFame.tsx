@@ -370,39 +370,47 @@ export default function HallOfFame() {
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {topClips.map((clip) => (
-                <Card key={clip.id} className="overflow-hidden group">
-                  <div className="relative aspect-video bg-muted">
-                    {clip.thumbnail_url ? (
-                      <img
-                        src={clip.thumbnail_url}
-                        alt={clip.title || "Community clip"}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <Film className="h-8 w-8 text-muted-foreground" />
-                      </div>
-                    )}
-                    <Badge className="absolute top-2 right-2 text-xs" variant="secondary">
-                      ❤️ {clip.likeCount}
-                    </Badge>
-                  </div>
-                  <CardContent className="p-4">
-                    <p className="font-medium text-sm truncate mb-1">{clip.title || "Untitled clip"}</p>
-                    <div className="flex items-center gap-2">
-                      <Avatar className="h-5 w-5">
-                        <AvatarImage src={clip.profile?.avatar_url || undefined} />
-                        <AvatarFallback className="text-[10px]">
-                          {clip.profile?.display_name?.charAt(0)?.toUpperCase() || "?"}
-                        </AvatarFallback>
-                      </Avatar>
-                      <span className="text-xs text-muted-foreground truncate">
-                        {clip.profile?.display_name || "Anonym"}
-                      </span>
+                <a
+                  key={clip.id}
+                  href={clip.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="overflow-hidden group cursor-pointer transition-shadow hover:shadow-lg">
+                    <div className="relative aspect-video bg-muted">
+                      {clip.thumbnail_url ? (
+                        <img
+                          src={clip.thumbnail_url}
+                          alt={clip.title || "Community clip"}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <Film className="h-8 w-8 text-muted-foreground" />
+                        </div>
+                      )}
+                      <Badge className="absolute top-2 right-2 text-xs" variant="secondary">
+                        ❤️ {clip.likeCount}
+                      </Badge>
                     </div>
-                  </CardContent>
-                </Card>
+                    <CardContent className="p-4">
+                      <p className="font-medium text-sm truncate mb-1 group-hover:text-primary transition-colors">{clip.title || "Untitled clip"}</p>
+                      <div className="flex items-center gap-2">
+                        <Avatar className="h-5 w-5">
+                          <AvatarImage src={clip.profile?.avatar_url || undefined} />
+                          <AvatarFallback className="text-[10px]">
+                            {clip.profile?.display_name?.charAt(0)?.toUpperCase() || "?"}
+                          </AvatarFallback>
+                        </Avatar>
+                        <span className="text-xs text-muted-foreground truncate">
+                          {clip.profile?.display_name || "Anonym"}
+                        </span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
               ))}
             </div>
           )}

@@ -147,31 +147,31 @@ export function BonusHuntArkivSeoContent() {
                 <td className="px-4 py-2 font-medium text-foreground">10</td>
                 <td className="px-4 py-2 text-center">[0x, 165x]</td>
                 <td className="px-4 py-2 text-center">~28%</td>
-                <td className="px-4 py-2 text-center">1-2 timer</td>
+                <td className="px-4 py-2 text-center">15-20 minutter</td>
               </tr>
               <tr className="border-b border-border/50">
                 <td className="px-4 py-2 font-medium text-foreground">20</td>
                 <td className="px-4 py-2 text-center">[6x, 138x]</td>
                 <td className="px-4 py-2 text-center">~30%</td>
-                <td className="px-4 py-2 text-center">2-3 timer</td>
+                <td className="px-4 py-2 text-center">25-35 minutter</td>
               </tr>
               <tr className="border-b border-border/50">
                 <td className="px-4 py-2 font-medium text-foreground">30</td>
                 <td className="px-4 py-2 text-center">[18x, 126x]</td>
                 <td className="px-4 py-2 text-center">~27%</td>
-                <td className="px-4 py-2 text-center">3-5 timer</td>
+                <td className="px-4 py-2 text-center">35-45 minutter</td>
               </tr>
               <tr className="border-b border-border/50">
                 <td className="px-4 py-2 font-medium text-foreground">50</td>
                 <td className="px-4 py-2 text-center">[30x, 114x]</td>
                 <td className="px-4 py-2 text-center">~24%</td>
-                <td className="px-4 py-2 text-center">5-8 timer</td>
+                <td className="px-4 py-2 text-center">1-1,5 timer</td>
               </tr>
               <tr>
                 <td className="px-4 py-2 font-medium text-foreground">100</td>
                 <td className="px-4 py-2 text-center">[42x, 102x]</td>
                 <td className="px-4 py-2 text-center">~18%</td>
-                <td className="px-4 py-2 text-center">10-15 timer</td>
+                <td className="px-4 py-2 text-center">2+ timer</td>
               </tr>
             </tbody>
           </table>
