@@ -143,34 +143,38 @@ serve(async (req) => {
           const apiData = await apiResponse.json();
           // Verify we got valid data with slots
           if (apiData?.data?.slots && apiData.data.slots.length > 0) {
-            // Archive this data for future requests
+            // Only accept API fallback when it actually matches requested hunt
             const huntData = apiData.data;
-            const huntNumber = parseInt(huntData.name?.replace(/\D/g, '') || '0', 10) || requestedHunt;
-            if (huntNumber > 0 && !BLOCKED_HUNTS.has(huntNumber)) {
-              const stats = huntData.statistics || {};
-              await supabase
-                .from("bonus_hunt_archives")
-                .upsert({
-                  hunt_number: huntNumber,
-                  api_data: apiData,
-                  hunt_name: huntData.name,
-                  hunt_status: huntData.played ? 'completed' : 'active',
-                  total_slots: stats.numberOfSlots || 0,
-                  opened_slots: stats.openedSlots || 0,
-                  start_balance: huntData.start || 0,
-                  end_balance: huntData.end || null,
-                  average_x: stats.runAverage ? parseFloat(stats.runAverage) : null,
-                }, { onConflict: 'hunt_number' });
+            const huntNumber = parseInt(huntData.name?.replace(/\D/g, '') || '0', 10);
+            if (huntNumber === requestedHunt) {
+              if (huntNumber > 0 && !BLOCKED_HUNTS.has(huntNumber)) {
+                const stats = huntData.statistics || {};
+                await supabase
+                  .from("bonus_hunt_archives")
+                  .upsert({
+                    hunt_number: huntNumber,
+                    api_data: apiData,
+                    hunt_name: huntData.name,
+                    hunt_status: huntData.played ? 'completed' : 'active',
+                    total_slots: stats.numberOfSlots || 0,
+                    opened_slots: stats.openedSlots || 0,
+                    start_balance: huntData.start || 0,
+                    end_balance: huntData.end || null,
+                    average_x: stats.runAverage ? parseFloat(stats.runAverage) : null,
+                  }, { onConflict: 'hunt_number' });
 
-              // Sync slot catalog
-              syncSlotCatalog(supabase, huntData, true)
-                .then(() => triggerEnrich(supabase))
-                .catch(e => console.error('Slot catalog sync error:', e));
+                // Sync slot catalog
+                syncSlotCatalog(supabase, huntData, true)
+                  .then(() => triggerEnrich(supabase))
+                  .catch(e => console.error('Slot catalog sync error:', e));
+              }
+
+              return new Response(JSON.stringify(apiData), {
+                headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' },
+              });
             }
 
-            return new Response(JSON.stringify(apiData), {
-              headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' },
-            });
+            console.info(`Fallback API returned hunt #${huntNumber}, expected #${requestedHunt}; using session fallback`);
           }
         }
       } catch (e) {

@@ -7,6 +7,7 @@ const corsHeaders = {
 
 const STREAMSYSTEM_BASE = "https://www.streamsystem.bet/api/bonushunt/data";
 const STREAMER_ID = "959262659";
+const BLOCKED_HUNTS = new Set([6, 7]);
 
 const TITLE_CASE_LOWER = new Set(['of', 'and', 'the', 'in', 'at', 'by', 'to', 'for', 'or', 'on', 'a', 'an']);
 const ROMAN_NUMERALS = new Set(['ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi', 'xii']);
@@ -112,6 +113,28 @@ Deno.serve(async (req) => {
       if (!endBalance && !averageX) {
         results.push({ huntNumber: session.hunt_number, status: 'completed_but_no_data' });
         continue;
+      }
+
+      // Persist full archive snapshot at settlement moment (before API data disappears)
+      if (!BLOCKED_HUNTS.has(session.hunt_number)) {
+        try {
+          const stats = huntData.statistics || {};
+          await admin
+            .from('bonus_hunt_archives')
+            .upsert({
+              hunt_number: session.hunt_number,
+              api_data: raw,
+              hunt_name: huntData.name || `bonus hunt #${session.hunt_number}`,
+              hunt_status: 'completed',
+              total_slots: stats.numberOfSlots || 0,
+              opened_slots: stats.openedSlots || 0,
+              start_balance: huntData.start || 0,
+              end_balance: endBalance,
+              average_x: averageX,
+            }, { onConflict: 'hunt_number' });
+        } catch (e) {
+          console.error(`Archive upsert failed for hunt #${session.hunt_number}:`, e);
+        }
       }
 
       // Sync slot catalog with final results
