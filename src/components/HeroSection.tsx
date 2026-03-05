@@ -73,7 +73,7 @@ export function HeroSection() {
             </span>
             <span className="flex items-center gap-1.5">
               <BookOpen className="h-4 w-4 text-blue-300" />
-              Opdateret feb. 2026
+              Opdateret {new Date().toLocaleDateString("da-DK", { month: "long", year: "numeric" })}
             </span>
           </div>
           <div className="flex flex-wrap justify-center gap-4">
