@@ -1,24 +1,47 @@
 
 
-## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
+## Problem Analysis
 
-### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
+Three issues found:
 
-The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
+### 1. "Arkiv" badge on the active hunt
+- `latestHuntNumber` queries `bonus_hunt_archives` for the highest `hunt_number` → returns **6** (stale/deleted archive row)
+- `isArchived = currentHuntNumber <= latestHuntNumber` → `1 <= 6` = **true**
+- So hunt #1 (the real active hunt) is incorrectly marked as archived
+- In `BonusHuntHeroBar`, when `isLive` is false, it always shows "Arkiv" badge — no concept of "active but not live-streaming"
 
-Specifically:
-- **Remove** Gevinst from the right zone (lines 247-261)
-- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
+### 2. Deleted hunts in dropdown
+- `BonusHuntHeroBar` line 94-95 generates numbers `2..maxHuntNumber` and hardcodes `.filter(num => num !== 6 && num !== 7)` — this is stale logic
+- Should only show hunts that actually exist (archived hunts from DB + current active hunt)
 
-Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
+### 3. Stale archive row for hunt #6
+- Hunt #6 exists in `bonus_hunt_archives` with `total_slots: 1` — this is test/stale data that inflates `latestHuntNumber`
 
-### 2. Add Count-Up Animation for Win Amount
+---
 
-Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
-- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
-- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
-- The component already handles ease-out counting and bump animation on completion
+## Plan
 
-### Files Modified
-- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
+### Step 1: Clean up stale archive data
+- Delete the stale rows (hunt #1 with 0 slots, hunt #6 with 1 slot) from `bonus_hunt_archives` via migration, since they are not real completed hunts
+
+### Step 2: Fix the badge logic in `BonusHuntHeroBar`
+- Add a third state: when `!isLive && !isArchived`, show **"Aktiv"** badge (or no badge) instead of "Arkiv"
+- Pass `isArchived` as a new prop alongside `isLive`
+- Only show "Arkiv" when `isArchived` is true
+
+### Step 3: Fix the dropdown to only show real hunts
+- Remove the hardcoded `.filter(num => num !== 6 && num !== 7)`
+- Instead of generating sequential numbers, pass a list of available hunt numbers (from archived hunts + current active) as a prop
+- In `BonusHunt.tsx`, create a new query hook `useArchivedHuntNumbers()` that fetches just the `hunt_number` column from `bonus_hunt_archives` where `total_slots > 0`
+- Build the dropdown items from: `[...archivedNumbers, activeHuntNumber]`
+
+### Step 4: Fix `BonusHuntNavBar` dropdown (same issue)
+- Apply the same dropdown fix — remove hardcoded number generation, use real hunt numbers list
+
+### Files to change:
+1. **Database migration** — delete stale archive rows
+2. **`src/hooks/useBonusHuntData.ts`** — add `useArchivedHuntNumbers()` hook
+3. **`src/pages/BonusHunt.tsx`** — fix `isArchived` logic, pass `isArchived` + available hunt numbers to HeroBar
+4. **`src/components/bonus-hunt/BonusHuntHeroBar.tsx`** — accept `isArchived` prop, fix badge logic, use real hunt numbers for dropdown
+5. **`src/components/bonus-hunt/BonusHuntNavBar.tsx`** — same dropdown fix
 
