@@ -132,7 +132,52 @@ serve(async (req) => {
         });
       }
 
-      // Fallback: build a lightweight response from sessions table
+      // Fallback: try StreamSystem API with visibleId before falling back to sessions
+      try {
+        const apiUrl = `${STREAMSYSTEM_BASE}/${STREAMER_ID}?visibleId=${requestedHunt}`;
+        const apiResponse = await fetch(apiUrl, {
+          headers: { 'Accept': 'application/json' },
+        });
+
+        if (apiResponse.ok) {
+          const apiData = await apiResponse.json();
+          // Verify we got valid data with slots
+          if (apiData?.data?.slots && apiData.data.slots.length > 0) {
+            // Archive this data for future requests
+            const huntData = apiData.data;
+            const huntNumber = parseInt(huntData.name?.replace(/\D/g, '') || '0', 10) || requestedHunt;
+            if (huntNumber > 0 && !BLOCKED_HUNTS.has(huntNumber)) {
+              const stats = huntData.statistics || {};
+              await supabase
+                .from("bonus_hunt_archives")
+                .upsert({
+                  hunt_number: huntNumber,
+                  api_data: apiData,
+                  hunt_name: huntData.name,
+                  hunt_status: huntData.played ? 'completed' : 'active',
+                  total_slots: stats.numberOfSlots || 0,
+                  opened_slots: stats.openedSlots || 0,
+                  start_balance: huntData.start || 0,
+                  end_balance: huntData.end || null,
+                  average_x: stats.runAverage ? parseFloat(stats.runAverage) : null,
+                }, { onConflict: 'hunt_number' });
+
+              // Sync slot catalog
+              syncSlotCatalog(supabase, huntData, true)
+                .then(() => triggerEnrich(supabase))
+                .catch(e => console.error('Slot catalog sync error:', e));
+            }
+
+            return new Response(JSON.stringify(apiData), {
+              headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' },
+            });
+          }
+        }
+      } catch (e) {
+        console.error('StreamSystem API fallback error:', e);
+      }
+
+      // Final fallback: build a lightweight response from sessions table
       const { data: session } = await supabase
         .from("bonus_hunt_sessions")
         .select("hunt_number, status, average_x, end_balance, created_at, casino_slug, streamsystem_hunt_id")
