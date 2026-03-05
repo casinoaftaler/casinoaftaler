@@ -2198,6 +2198,25 @@ Deno.serve(async (req) => {
               }
             }
 
+            // Auto-join monthly tournaments (no participation check needed)
+            const partIdSet = new Set((participations || []).map((p: { tournament_id: string }) => p.tournament_id));
+            const { data: monthlyT } = await serviceClient
+              .from("tournaments")
+              .select("id, exclude_from_global_leaderboard, max_credits, max_bet")
+              .eq("is_monthly", true)
+              .contains("game_ids", [gameId])
+              .lte("starts_at", bonusNowISO)
+              .gte("ends_at", bonusNowISO);
+            if (monthlyT && monthlyT.length > 0) {
+              await Promise.all(monthlyT.filter(t => !partIdSet.has(t.id)).map(async (t) => {
+                if (t.max_bet && capturedBet > t.max_bet) return;
+                await serviceClient.rpc("upsert_tournament_entry", {
+                  p_tournament_id: t.id, p_user_id: userId, p_game_id: gameId,
+                  p_points: capturedWinnings, p_bet: capturedBet, p_is_bonus: true,
+                });
+              }));
+            }
+
             if (!skipBonusGlobal) {
               await serviceClient.from("slot_game_results").insert({
                 user_id: userId,
@@ -2426,6 +2445,25 @@ Deno.serve(async (req) => {
               }
             }));
           }
+        }
+
+        // Auto-join monthly tournaments (no participation check needed)
+        const partIdSetReg = new Set((participations || []).map((p: { tournament_id: string }) => p.tournament_id));
+        const { data: monthlyTReg } = await serviceClient
+          .from("tournaments")
+          .select("id, exclude_from_global_leaderboard, max_credits, max_bet")
+          .eq("is_monthly", true)
+          .contains("game_ids", [gameId])
+          .lte("starts_at", nowISO)
+          .gte("ends_at", nowISO);
+        if (monthlyTReg && monthlyTReg.length > 0) {
+          await Promise.all(monthlyTReg.filter(t => !partIdSetReg.has(t.id)).map(async (t) => {
+            if (t.max_bet && bet > t.max_bet) return;
+            await serviceClient.rpc("upsert_tournament_entry", {
+              p_tournament_id: t.id, p_user_id: userId, p_game_id: gameId,
+              p_points: spinTotalWin, p_bet: bet, p_is_bonus: false,
+            });
+          }));
         }
 
         if (!skipGlobalLeaderboard) {
