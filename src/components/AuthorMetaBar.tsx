@@ -60,31 +60,35 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
   const { pathname } = useLocation();
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
 
-  // Resolve display date: prefer seoRoutes (single source of truth), fall back to prop
+  // Fetch dynamic date from DB (single source of truth)
+  const { data: dbMeta } = usePageLastmod(pathname);
+
+  // Resolve display date: prefer DB (dynamic), then seoRoutes (static fallback), then prop (legacy)
   const routeMeta = getRouteMetadata(pathname);
-  const shouldShowDate = routeMeta?.showUpdatedDate !== false;
+  const shouldShowDate = dbMeta?.show_updated_date ?? routeMeta?.showUpdatedDate !== false;
 
   const displayDate = useMemo(() => {
-    // seoRoutes lastmod is the authoritative source
+    // 1. DB date is the authoritative source (dynamic)
+    if (dbMeta?.updated_at) {
+      return formatTimestampDanish(dbMeta.updated_at);
+    }
+    // 2. seoRoutes lastmod (static fallback)
     if (routeMeta?.lastmod) {
       return formatLastmodDanish(routeMeta.lastmod);
     }
-    // Fallback: use the date prop (legacy support during migration)
+    // 3. Legacy date prop
     if (date) {
-      // If it's already ISO format (YYYY-MM-DD), convert to Danish
       if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
         return formatLastmodDanish(date);
       }
-      // If it's DD-MM-YYYY, convert
       if (/^\d{2}-\d{2}-\d{4}$/.test(date)) {
         const [d, m, y] = date.split("-");
         return formatLastmodDanish(`${y}-${m}-${d}`);
       }
-      // Already formatted (e.g. "1. februar 2026")
       return date;
     }
     return null;
-  }, [routeMeta?.lastmod, date]);
+  }, [dbMeta?.updated_at, routeMeta?.lastmod, date]);
 
   return (
     <>
