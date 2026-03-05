@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import { useTournamentCountdown } from "@/hooks/useTournamentCountdown";
+import { useMonthlyTournamentConfig } from "@/hooks/useMonthlyTournamentConfig";
 import { useMonthlyTournamentArchive } from "@/hooks/useMonthlyTournamentArchive";
 import {
   useSlotLeaderboard,
@@ -119,7 +120,13 @@ export function MonthlyLeaderboardCard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showArchive, setShowArchive] = useState(false);
   const countdown = useTournamentCountdown();
-  const { data, isLoading } = useSlotLeaderboard(category);
+  
+  // Get config to find the game_id for each category
+  const { data: configs } = useMonthlyTournamentConfig();
+  const activeConfig = configs?.find(c => c.category === category);
+  const gameId = activeConfig?.game_id;
+  
+  const { data, isLoading } = useSlotLeaderboard(category, gameId);
   const { data: archiveData } = useMonthlyTournamentArchive();
 
   const entries = data?.entries || [];
