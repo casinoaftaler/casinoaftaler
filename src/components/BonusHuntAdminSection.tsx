@@ -10,7 +10,7 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Loader2, Plus, Trophy, Target, Coins, CheckCircle, Zap, Pencil, Save, Ticket } from "lucide-react";
+import { Loader2, Plus, Trophy, Target, Coins, CheckCircle, Zap, Pencil, Save, Ticket, Archive } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -32,6 +32,7 @@ import {
 import { useBonusHuntData } from "@/hooks/useBonusHuntData";
 import { BonusHuntCouponAdmin } from "@/components/admin/BonusHuntCouponAdmin";
 import { BonusHuntCouponSubmissions } from "@/components/admin/BonusHuntCouponSubmissions";
+import { BonusHuntArchiveAdmin } from "@/components/admin/BonusHuntArchiveAdmin";
 import { useCasinos } from "@/hooks/useCasinos";
 
 
@@ -534,6 +535,9 @@ export function BonusHuntAdminSection() {
             <TabsTrigger value="coupon" className="gap-1.5">
               <Ticket className="h-3.5 w-3.5" /> Slot Kupon
             </TabsTrigger>
+            <TabsTrigger value="archive" className="gap-1.5">
+              <Archive className="h-3.5 w-3.5" /> Arkiv
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="betting">
@@ -585,6 +589,10 @@ export function BonusHuntAdminSection() {
                 </CardContent>
               </Card>
             )}
+          </TabsContent>
+
+          <TabsContent value="archive">
+            <BonusHuntArchiveAdmin />
           </TabsContent>
         </Tabs>
       )}
