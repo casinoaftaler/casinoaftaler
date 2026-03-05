@@ -9,6 +9,8 @@ interface HuntVideoData {
   twitchVideoId: string;
   huntNumber: number;
   date: string;
+  /** ISO 8601 date for JSON-LD uploadDate, e.g. "2026-02-22" */
+  isoDate: string;
   casinoName: string;
   casinoSlug: string;
   bonusCount: number;
