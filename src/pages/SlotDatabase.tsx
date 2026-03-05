@@ -327,41 +327,7 @@ export default function SlotDatabase() {
           </div>
         )}
 
-        {/* SEO Content */}
-        <section className="mt-12 space-y-6 max-w-4xl">
-          <h2 className="text-2xl font-bold text-foreground">Om Slot Databasen</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Vores slot-database er bygget på ægte test-data fra vores{" "}
-            <Link to="/bonus-hunt" className="text-primary hover:underline">live bonus hunts</Link> på Twitch. I modsætning til
-            andre sider, der kun viser teoretiske RTP-tal fra spiludviklerne, kan du her se den faktiske performance baseret på
-            hundredvis af bonusser åbnet live foran vores community.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Hver spillemaskine i databasen har en komplet historik: hvor mange gange den er blevet testet, den højeste
-            multiplikator (X) vi har ramt, og den største enkeltgevinst. Denne data opdateres automatisk efter hver
-            bonus hunt, så du altid ser de nyeste tal.
-          </p>
-
-          <h3 className="text-xl font-bold text-foreground mt-8">Sådan bruger du databasen</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Brug filterfunktionerne til at finde præcis den type spillemaskine, du søger. Du kan filtrere på udbyder
-            (f.eks. <Link to="/spiludviklere/pragmatic-play" className="text-primary hover:underline">Pragmatic Play</Link> eller{" "}
-            <Link to="/spiludviklere/hacksaw-gaming" className="text-primary hover:underline">Hacksaw Gaming</Link>), volatilitet og sortere efter performance-metrikker.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Spillemaskiner med en dybdegående guide er markeret med blå links – klik på dem for at læse vores komplette
-            analyse med strategi, RTP-beregninger og anbefalede{" "}
-            <Link to="/casino-bonus" className="text-primary hover:underline">casino bonusser</Link>.
-          </p>
-
-          <h3 className="text-xl font-bold text-foreground mt-8">Community-drevet data</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Det unikke ved vores database er, at al data stammer fra dokumenterede live-tests. Vi spiller med rigtige
-            penge på <Link to="/casino-anmeldelser/spildansknu" className="text-primary hover:underline">licenserede danske casinoer</Link>,
-            og alle resultater logges automatisk. Det giver dig et langt mere retvisende billede end teoretiske
-            RTP-specifikationer, som kan afvige markant fra den faktiske spilleroplevelse.
-          </p>
-        </section>
+        <SlotDatabaseSeoContent />
 
         <div className="mt-12">
           <FAQSection faqs={faqItems} />

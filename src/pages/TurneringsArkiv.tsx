@@ -211,31 +211,7 @@ export default function TurneringsArkiv() {
           </div>
         )}
 
-        {/* SEO Content */}
-        <section className="mt-12 space-y-6 max-w-4xl">
-          <h2 className="text-2xl font-bold text-foreground">Om Turneringsarkivet</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Hver måned kårer vi vindere i tre kategorier baseret på community-aktivitet i vores{" "}
-            <Link to="/community/turneringer" className="text-primary hover:underline">spillehal-turneringer</Link>.
-            Vinderne modtager kontante præmier – 500 kr for førstepladsen, 300 kr for andenpladsen og 200 kr for
-            tredjepladsen i hver kategori.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Turneringerne er gratis at deltage i. Alle brugere modtager 2.000 daglige credits, som bruges på
-            vores tre turneringsspil: <strong>Fedesvin Bonanza</strong> (flest point),{" "}
-            <strong>Book of Fedesvin</strong> (højeste multiplikator) og <strong>Rise of Fedesvin</strong> (største
-            enkelgevinst). Credits er en fiktiv valuta – vores platform er{" "}
-            <Link to="/ansvarligt-spil" className="text-primary hover:underline">ikke et casino</Link>.
-          </p>
-
-          <h3 className="text-xl font-bold text-foreground mt-8">Deltag i denne måneds turnering</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Gå til <Link to="/community/turneringer" className="text-primary hover:underline font-medium">turneringssiden</Link> for
-            at se den aktive turnering, dit nuværende placering på leaderboardet og resterende tid. Du kan
-            også tjekke dit spilhistorik og optimere din strategi baseret på de tidligere vinderes performance
-            i dette arkiv.
-          </p>
-        </section>
+        <TurneringsArkivSeoContent />
 
         <div className="mt-12">
           <FAQSection faqs={faqItems} />
