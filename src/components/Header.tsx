@@ -153,7 +153,7 @@ export const Header = memo(function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-4 xl:gap-6 lg:flex whitespace-nowrap">
+        <nav className="hidden items-center gap-4 xl:gap-6 lg:flex whitespace-nowrap" style={{ contain: 'layout style' }}>
           {/* Casinoer */}
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
