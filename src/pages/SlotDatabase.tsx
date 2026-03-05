@@ -274,57 +274,63 @@ export default function SlotDatabase() {
         {isLoading ? (
           <div className="text-center py-12 text-muted-foreground">Indlæser slot-database...</div>
         ) : (
-          <div className="overflow-x-auto rounded-lg border border-border">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border bg-muted/50">
-                  <th className="px-4 py-3 text-left font-medium text-foreground">Spillemaskine</th>
-                  <th className="px-4 py-3 text-left font-medium text-foreground">Udbyder</th>
-                  <th className="px-4 py-3 text-center font-medium text-foreground">RTP</th>
-                  <th className="px-4 py-3 text-center font-medium text-foreground">Volatilitet</th>
-                  <th className="px-4 py-3 text-center font-medium text-foreground">Højeste X</th>
-                  <th className="px-4 py-3 text-center font-medium text-foreground">Højeste Gevinst</th>
-                  <th className="px-4 py-3 text-center font-medium text-foreground">Antal Hunts</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.map((slot) => {
-                  const guideUrl = getSlotGuideUrl(slot.slot_name);
-                  const providerSlug = PROVIDER_SLUG_MAP[slot.provider];
-                  return (
-                    <tr key={slot.id} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                      <td className="px-4 py-3 font-medium text-foreground">
-                        {guideUrl ? (
-                          <Link to={guideUrl} className="text-primary hover:underline">{slot.slot_name}</Link>
-                        ) : slot.slot_name}
-                      </td>
-                      <td className="px-4 py-3 text-muted-foreground">
-                        {providerSlug ? (
-                          <Link to={`/spiludviklere/${providerSlug}`} className="text-primary/80 hover:underline">{slot.provider}</Link>
-                        ) : slot.provider}
-                      </td>
-                      <td className="px-4 py-3 text-center text-muted-foreground">
-                        {slot.rtp ? `${slot.rtp}%` : "–"}
-                      </td>
-                      <td className="px-4 py-3 text-center">
-                        {slot.volatility ? (
-                          <Badge variant={getVolatilityColor(slot.volatility)}>{slot.volatility}</Badge>
-                        ) : "–"}
-                      </td>
-                      <td className="px-4 py-3 text-center font-semibold text-foreground">
-                        {slot.highest_x && slot.highest_x > 0 ? `${slot.highest_x}x` : "–"}
-                      </td>
-                      <td className="px-4 py-3 text-center text-muted-foreground">
-                        {slot.highest_win && slot.highest_win > 0 ? `${slot.highest_win} kr` : "–"}
-                      </td>
-                      <td className="px-4 py-3 text-center">
-                        <Badge variant="outline">{slot.bonus_count}</Badge>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+          <div className="rounded-lg border border-border">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="sticky top-0 z-10">
+                  <tr className="border-b border-border bg-muted/50">
+                    <th className="px-4 py-3 text-left font-medium text-foreground">Spillemaskine</th>
+                    <th className="px-4 py-3 text-left font-medium text-foreground">Udbyder</th>
+                    <th className="px-4 py-3 text-center font-medium text-foreground">RTP</th>
+                    <th className="px-4 py-3 text-center font-medium text-foreground">Volatilitet</th>
+                    <th className="px-4 py-3 text-center font-medium text-foreground">Højeste X</th>
+                    <th className="px-4 py-3 text-center font-medium text-foreground">Højeste Gevinst</th>
+                    <th className="px-4 py-3 text-center font-medium text-foreground">Antal Hunts</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div className="overflow-y-auto overflow-x-auto max-h-[880px]">
+              <table className="w-full text-sm">
+                <tbody>
+                  {filtered.map((slot) => {
+                    const guideUrl = getSlotGuideUrl(slot.slot_name);
+                    const providerSlug = PROVIDER_SLUG_MAP[slot.provider];
+                    return (
+                      <tr key={slot.id} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                        <td className="px-4 py-3 font-medium text-foreground">
+                          {guideUrl ? (
+                            <Link to={guideUrl} className="text-primary hover:underline">{slot.slot_name}</Link>
+                          ) : slot.slot_name}
+                        </td>
+                        <td className="px-4 py-3 text-muted-foreground">
+                          {providerSlug ? (
+                            <Link to={`/spiludviklere/${providerSlug}`} className="text-primary/80 hover:underline">{slot.provider}</Link>
+                          ) : slot.provider}
+                        </td>
+                        <td className="px-4 py-3 text-center text-muted-foreground">
+                          {slot.rtp ? `${slot.rtp}%` : "–"}
+                        </td>
+                        <td className="px-4 py-3 text-center">
+                          {slot.volatility ? (
+                            <Badge variant={getVolatilityColor(slot.volatility)}>{slot.volatility}</Badge>
+                          ) : "–"}
+                        </td>
+                        <td className="px-4 py-3 text-center font-semibold text-foreground">
+                          {slot.highest_x && slot.highest_x > 0 ? `${slot.highest_x}x` : "–"}
+                        </td>
+                        <td className="px-4 py-3 text-center text-muted-foreground">
+                          {slot.highest_win && slot.highest_win > 0 ? `${slot.highest_win} kr` : "–"}
+                        </td>
+                        <td className="px-4 py-3 text-center">
+                          <Badge variant="outline">{slot.bonus_count}</Badge>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
 
