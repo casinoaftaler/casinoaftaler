@@ -54,7 +54,7 @@ export default function BonusHuntArkiv() {
     description: seoDesc,
     url: `${SITE_URL}/bonus-hunt/arkiv`,
     datePublished: "2026-03-05",
-    dateModified: "2026-03-05",
+    dateModified: new Date().toISOString().split("T")[0],
     authorName: "Kevin",
   });
 
@@ -118,7 +118,7 @@ export default function BonusHuntArkiv() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" readTime="3 min" />
+        <AuthorMetaBar author="kevin" readTime="25 min" />
 
         {/* Mobile hero image */}
         <div className="mb-10 overflow-hidden rounded-xl md:hidden">

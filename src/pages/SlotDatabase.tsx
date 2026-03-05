@@ -155,7 +155,7 @@ export default function SlotDatabase() {
     description: seoDesc,
     url: `${SITE_URL}/slot-database`,
     datePublished: "2026-03-05",
-    dateModified: "2026-03-05",
+    dateModified: new Date().toISOString().split("T")[0],
     authorName: "Jonas Theill",
   });
 
@@ -197,7 +197,7 @@ export default function SlotDatabase() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" readTime="5 min" />
+        <AuthorMetaBar author="jonas" readTime="28 min" />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
@@ -274,11 +274,11 @@ export default function SlotDatabase() {
         {isLoading ? (
           <div className="text-center py-12 text-muted-foreground">Indlæser slot-database...</div>
         ) : (
-          <div className="rounded-lg border border-border">
-            <div className="overflow-x-auto">
+          <div className="rounded-lg border border-border overflow-hidden">
+            <div className="overflow-y-auto overflow-x-auto max-h-[880px]">
               <table className="w-full text-sm">
-                <thead className="sticky top-0 z-10">
-                  <tr className="border-b border-border bg-muted/50">
+                <thead className="sticky top-0 z-10 bg-muted">
+                  <tr className="border-b border-border">
                     <th className="px-4 py-3 text-left font-medium text-foreground">Spillemaskine</th>
                     <th className="px-4 py-3 text-left font-medium text-foreground">Udbyder</th>
                     <th className="px-4 py-3 text-center font-medium text-foreground">RTP</th>
@@ -288,10 +288,6 @@ export default function SlotDatabase() {
                     <th className="px-4 py-3 text-center font-medium text-foreground">Antal Hunts</th>
                   </tr>
                 </thead>
-              </table>
-            </div>
-            <div className="overflow-y-auto overflow-x-auto max-h-[880px]">
-              <table className="w-full text-sm">
                 <tbody>
                   {filtered.map((slot) => {
                     const guideUrl = getSlotGuideUrl(slot.slot_name);

@@ -73,7 +73,7 @@ export default function TurneringsArkiv() {
     description: seoDesc,
     url: `${SITE_URL}/community/turneringer/arkiv`,
     datePublished: "2026-03-05",
-    dateModified: "2026-03-05",
+    dateModified: new Date().toISOString().split("T")[0],
     authorName: "Jonas Theill",
   });
 
@@ -121,7 +121,7 @@ export default function TurneringsArkiv() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" readTime="3 min" />
+        <AuthorMetaBar author="jonas" readTime="25 min" />
 
         {/* Archive by month with timeline accent */}
         {isLoading ? (
