@@ -9,6 +9,8 @@ interface HuntVideoData {
   twitchVideoId: string;
   huntNumber: number;
   date: string;
+  /** ISO 8601 date for JSON-LD uploadDate, e.g. "2026-02-22" */
+  isoDate: string;
   casinoName: string;
   casinoSlug: string;
   bonusCount: number;
@@ -22,6 +24,7 @@ const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
   2: {
     twitchVideoId: "2705001000",
     date: "22. februar 2026",
+    isoDate: "2026-02-22",
     casinoName: "SpilDanskNu",
     casinoSlug: "spildansknu",
     bonusCount: 24,
@@ -33,6 +36,7 @@ const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
   3: {
     twitchVideoId: "2705907775",
     date: "23. februar 2026",
+    isoDate: "2026-02-23",
     casinoName: "SpilDanskNu",
     casinoSlug: "spildansknu",
     bonusCount: 24,
@@ -44,6 +48,7 @@ const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
   4: {
     twitchVideoId: "2708438065",
     date: "26. februar 2026",
+    isoDate: "2026-02-26",
     casinoName: "SpilDanskNu",
     casinoSlug: "spildansknu",
     bonusCount: 11,
@@ -55,6 +60,7 @@ const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
   5: {
     twitchVideoId: "2710088948",
     date: "28. februar 2026",
+    isoDate: "2026-02-28",
     casinoName: "SpilDanskNu",
     casinoSlug: "spildansknu",
     bonusCount: 23,
@@ -98,14 +104,15 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "VideoObject",
+        "@id": `https://casinoaftaler.dk/bonus-hunt#video-${video.huntNumber}`,
         "name": `Bonus Hunt #${video.huntNumber} – ${video.casinoName} (${video.date})`,
         "description": `Live bonus hunt streamet på Twitch hos ${video.casinoName}. ${video.bonusCount} bonusser åbnet med ${video.avgX}x gennemsnit.`,
-        "uploadDate": "2026-02-28T20:00:00+01:00",
+        "uploadDate": `${video.isoDate}T20:00:00+01:00`,
         "duration": "PT2H",
-        "thumbnailUrl": twitchThumb,
+        "thumbnailUrl": video.localThumbnail || twitchThumb,
         "embedUrl": `https://player.twitch.tv/?video=${video.twitchVideoId}`,
         "contentUrl": `https://www.twitch.tv/videos/${video.twitchVideoId}`,
-        "publisher": { "@type": "Organization", "name": "Casinoaftaler.dk" },
+        "publisher": { "@type": "Organization", "@id": "https://casinoaftaler.dk/#organization", "name": "Casinoaftaler.dk" },
       }) }} />
 
       <section
