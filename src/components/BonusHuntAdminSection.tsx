@@ -76,139 +76,7 @@ function useBonusHuntBetCounts(sessionId?: string) {
   });
 }
 
-// Simplified form — only bet limits and prizes
-function CreateSessionForm({ huntNumber, huntId, onClose }: { huntNumber: number; huntId: string; onClose: () => void }) {
-  const queryClient = useQueryClient();
-  const { data: casinos } = useCasinos(true);
-  const [loading, setLoading] = useState(false);
-  const [casinoSlug, setCasinoSlug] = useState("spildansknu");
-  const [host, setHost] = useState("kevin");
-  const [form, setForm] = useState({
-    gtw_min_bet: "1",
-    gtw_max_bet: "50",
-    avgx_min_bet: "1",
-    avgx_max_bet: "50",
-    prizes: [
-      { place: 1, points: 300, credits: 0 },
-      { place: 2, points: 200, credits: 0 },
-      { place: 3, points: 100, credits: 0 },
-      { place: 4, points: 75, credits: 0 },
-      { place: 5, points: 50, credits: 0 },
-    ],
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) throw new Error("Not authenticated");
-
-      const { error } = await (supabase.from('bonus_hunt_sessions' as any) as any).insert({
-        streamsystem_hunt_id: huntId,
-        hunt_number: huntNumber,
-        gtw_min_bet: parseInt(form.gtw_min_bet),
-        gtw_max_bet: parseInt(form.gtw_max_bet),
-        avgx_min_bet: parseInt(form.avgx_min_bet),
-        avgx_max_bet: parseInt(form.avgx_max_bet),
-        gtw_prizes: form.prizes,
-        casino_slug: casinoSlug,
-        host: host,
-        created_by: user.id,
-        status: 'upcoming',
-      });
-
-      if (error) throw error;
-      toast.success(`Betting session for Hunt #${huntNumber} oprettet!`);
-      queryClient.invalidateQueries({ queryKey: ['admin-bonus-hunt-session-for-hunt'] });
-      onClose();
-    } catch (e: any) {
-      toast.error(e.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const updatePrize = (index: number, field: 'points' | 'credits', value: number) => {
-    const prizes = [...form.prizes];
-    prizes[index] = { ...prizes[index], [field]: value };
-    setForm({ ...form, prizes });
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label>Casino til denne hunt</Label>
-          <Select value={casinoSlug} onValueChange={setCasinoSlug}>
-            <SelectTrigger>
-              <SelectValue placeholder="Vælg casino" />
-            </SelectTrigger>
-            <SelectContent>
-              {(casinos || []).map((c) => (
-                <SelectItem key={c.slug} value={c.slug}>{c.name}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="space-y-2">
-          <Label>Vært</Label>
-          <Select value={host} onValueChange={setHost}>
-            <SelectTrigger>
-              <SelectValue placeholder="Vælg vært" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="kevin">Kevin</SelectItem>
-              <SelectItem value="jonas">Jonas</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-      <Separator />
-      <h4 className="font-semibold text-sm">Bet Grænser</h4>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label>GTW Min Bet</Label>
-          <Input type="number" value={form.gtw_min_bet} onChange={e => setForm({ ...form, gtw_min_bet: e.target.value })} />
-        </div>
-        <div className="space-y-2">
-          <Label>GTW Max Bet</Label>
-          <Input type="number" value={form.gtw_max_bet} onChange={e => setForm({ ...form, gtw_max_bet: e.target.value })} />
-        </div>
-        <div className="space-y-2">
-          <Label>AVG X Min Bet</Label>
-          <Input type="number" value={form.avgx_min_bet} onChange={e => setForm({ ...form, avgx_min_bet: e.target.value })} />
-        </div>
-        <div className="space-y-2">
-          <Label>AVG X Max Bet</Label>
-          <Input type="number" value={form.avgx_max_bet} onChange={e => setForm({ ...form, avgx_max_bet: e.target.value })} />
-        </div>
-      </div>
-
-      <Separator />
-      <h4 className="font-semibold text-sm">GTW Præmier</h4>
-      <div className="space-y-2">
-        {form.prizes.map((p, i) => (
-          <div key={i} className="flex items-center gap-2">
-            <span className="text-sm w-12">{p.place}. plads</span>
-            <Input type="number" value={p.points} onChange={e => updatePrize(i, 'points', parseInt(e.target.value) || 0)} className="w-20" />
-            <span className="text-xs text-muted-foreground">SE pts</span>
-            <Input type="number" value={p.credits} onChange={e => updatePrize(i, 'credits', parseInt(e.target.value) || 0)} className="w-20" />
-            <span className="text-xs text-muted-foreground">credits</span>
-          </div>
-        ))}
-        <Button type="button" variant="outline" size="sm" onClick={() => setForm({ ...form, prizes: [...form.prizes, { place: form.prizes.length + 1, points: 25, credits: 0 }] })}>
-          <Plus className="h-3 w-3 mr-1" /> Tilføj plads
-        </Button>
-      </div>
-
-      <Button type="submit" className="w-full" disabled={loading}>
-        {loading && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
-        Opret Betting Session
-      </Button>
-    </form>
-  );
-}
+// CreateSessionForm removed — sessions are now auto-created by the proxy edge function
 
 function SessionControls({ session }: { session: any }) {
   const queryClient = useQueryClient();
@@ -513,7 +381,7 @@ export function BonusHuntAdminSection() {
   const { data: huntData, isLoading: huntLoading } = useBonusHuntData();
   const huntNumber = huntData?.visibleId;
   const { data: session, isLoading: sessionLoading } = useSessionForHunt(huntNumber);
-  const [showCreateForm, setShowCreateForm] = useState(false);
+  // showCreateForm removed — sessions auto-create
 
   const isLoading = huntLoading || sessionLoading;
 
