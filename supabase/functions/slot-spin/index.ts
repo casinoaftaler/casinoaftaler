@@ -1932,6 +1932,25 @@ Deno.serve(async (req) => {
             }
           }
 
+          // Auto-join monthly tournaments (no participation check needed)
+          const participatingIdSet2 = new Set((cachedParticipations || []).map((p: { tournament_id: string }) => p.tournament_id));
+          const { data: monthlyTournaments2 } = await serviceClient
+            .from("tournaments")
+            .select("id, exclude_from_global_leaderboard, max_credits, max_bet")
+            .eq("is_monthly", true)
+            .contains("game_ids", [gameId])
+            .lte("starts_at", bonanzaNowISO)
+            .gte("ends_at", bonanzaNowISO);
+          if (monthlyTournaments2 && monthlyTournaments2.length > 0) {
+            await Promise.all(monthlyTournaments2.filter(t => !participatingIdSet2.has(t.id)).map(async (t) => {
+              if (t.max_bet && bet > t.max_bet) return;
+              await serviceClient.rpc("upsert_tournament_entry", {
+                p_tournament_id: t.id, p_user_id: userId, p_game_id: gameId,
+                p_points: bonanzaSpinWin, p_bet: bet, p_is_bonus: false,
+              });
+            }));
+          }
+
           if (!skipGlobal) {
             await serviceClient.from("slot_game_results").insert({
               user_id: userId, bet_amount: bet, win_amount: bonanzaSpinWin,
