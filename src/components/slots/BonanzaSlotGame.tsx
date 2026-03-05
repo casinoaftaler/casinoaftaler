@@ -647,13 +647,13 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         await processTumbleSteps(result.tumbleSteps);
         const totalWin = result.totalWin || 0;
 
-        // Play scatter celebration for 3+ scatters ONLY if bonus is NOT triggered
+        // Play scatter celebration for 4+ scatters ONLY if bonus is NOT triggered
         // (if bonus IS triggered, the bonus trigger code handles the celebration)
         const hasBonusState = !!response.bonusState;
         const finalGridForScatter = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
         if (!hasBonusState && finalGridForScatter && symbols) {
           const { count: scatCount, positions: scatPos } = countBonanzaScatters(finalGridForScatter, symbols);
-          if (scatCount >= 3) {
+          if (scatCount >= 4) {
             const scatterAnims = new Map<number, BonanzaCellAnimState>();
             scatPos.forEach(pos => scatterAnims.set(pos, 'scatter-pulse'));
             setCellAnimStates(scatterAnims);
