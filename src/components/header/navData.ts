@@ -200,6 +200,11 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
 
 export const COMMUNITY_LINKS: NavLinkWithIcon[] = [
   { to: "/community/slots", label: "Spillehal" },
+  { to: "/bonus-hunt", label: "Bonus Hunt" },
+  { to: "/bonus-hunt/arkiv", label: "Bonus Hunt Arkiv" },
+  { to: "/slot-database", label: "Slot Database" },
+  { to: "/community/turneringer", label: "Turneringer" },
+  { to: "/community/turneringer/arkiv", label: "Turneringsarkiv" },
   { to: "/highlights", label: "Highlights" },
   { to: "/butik", label: "Butik" },
 ];
