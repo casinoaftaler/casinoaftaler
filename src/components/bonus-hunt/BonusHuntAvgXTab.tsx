@@ -26,16 +26,18 @@ interface Props {
   session: any;
   bets: any[];
   userId?: string;
+  openedBonuses?: number;
   onBetPlaced: () => void;
 }
 
-export function BonusHuntAvgXTab({ session, bets, userId, onBetPlaced }: Props) {
+export function BonusHuntAvgXTab({ session, bets, userId, openedBonuses = 0, onBetPlaced }: Props) {
   const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
   const [betAmount, setBetAmount] = useState("");
   const [loading, setLoading] = useState(false);
 
   const userBet = bets.find(b => b.user_id === userId);
   const isOpen = session?.avgx_betting_open;
+  const remaining = Math.max(0, 3 - openedBonuses);
   const totalPot = bets.reduce((sum: number, b: any) => sum + b.bet_amount, 0);
 
   const groupStats = useMemo(() => {
@@ -164,6 +166,14 @@ export function BonusHuntAvgXTab({ session, bets, userId, onBetPlaced }: Props) 
             </p>
           </CardContent>
         </Card>
+      )}
+
+      {/* Betting countdown indicator */}
+      {isOpen && remaining > 0 && (
+        <div className="flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 text-xs text-primary">
+          <span className="inline-block h-2 w-2 rounded-full bg-primary animate-pulse" />
+          Betting lukker efter {remaining} åbne{remaining === 1 ? 't' : 'de'} bonus{remaining === 1 ? '' : 'ser'}
+        </div>
       )}
 
       {/* Betting form - show when betting open and user logged in */}

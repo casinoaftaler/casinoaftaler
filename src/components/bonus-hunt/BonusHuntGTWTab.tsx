@@ -13,16 +13,18 @@ interface Props {
   session: any;
   bets: any[];
   userId?: string;
+  openedBonuses?: number;
   onBetPlaced: () => void;
 }
 
-export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
+export function BonusHuntGTWTab({ session, bets, userId, openedBonuses = 0, onBetPlaced }: Props) {
   const [guessAmount, setGuessAmount] = useState(() => "");
   const [betAmount, setBetAmount] = useState(() => "");
   const [loading, setLoading] = useState(false);
 
   const userBet = bets.find(b => b.user_id === userId);
   const isOpen = session?.gtw_betting_open;
+  const remaining = Math.max(0, 3 - openedBonuses);
   const prizes = (session?.gtw_prizes || []) as Array<{ place: number; points: number; credits?: number }>;
 
   const rankedBets = [...bets]
@@ -160,6 +162,14 @@ export function BonusHuntGTWTab({ session, bets, userId, onBetPlaced }: Props) {
             </div>
           </CardContent>
         </Card>
+      )}
+
+      {/* Betting countdown indicator */}
+      {isOpen && remaining > 0 && (
+        <div className="flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 text-xs text-primary">
+          <span className="inline-block h-2 w-2 rounded-full bg-primary animate-pulse" />
+          Betting lukker efter {remaining} åbne{remaining === 1 ? 't' : 'de'} bonus{remaining === 1 ? '' : 'ser'}
+        </div>
       )}
 
       {/* Betting form - show when betting open and user is logged in */}
