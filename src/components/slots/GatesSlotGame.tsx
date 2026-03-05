@@ -811,6 +811,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
           setRunningMultiplier(0);
           setBonusWinnings(0);
           setRunningWin(0);
+          setWinAmount(0);
         }}
       />
 

@@ -1210,6 +1210,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
             setRunningMultiplier(0);
             setBonusWinnings(0);
             setRunningWin(0);
+            setWinAmount(0);
             setIsBuyingBonus(false);
             // Clear persisted bonus win from localStorage
             try { localStorage.removeItem(bonusWinKey); } catch {}

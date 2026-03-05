@@ -1116,6 +1116,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
           setShowBonusComplete(false);
           setBonusTotalWinnings(0);
           setBonusTotalSpinsUsed(0);
+          setWinAmount(0);
           setBonusBarsReady(false);
         }}
         gameId={gameId}
