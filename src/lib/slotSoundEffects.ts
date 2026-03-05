@@ -1242,53 +1242,78 @@ class SlotSoundEffects {
     noise.stop(now + 0.1);
   }
 
-  // Crackling electric burst for symbol explosions
+  // Heavy bomb explosion sound
   playCrackle() {
     if (!this.canPlayEffect()) return;
     
     const ctx = this.getContext();
     const now = ctx.currentTime;
+    const vol = this.volume;
     
-    // White noise burst
-    const bufferSize = ctx.sampleRate * 0.15;
+    // 1) Deep sub-bass boom (the core of the explosion)
+    const boom = ctx.createOscillator();
+    const boomGain = ctx.createGain();
+    boom.connect(boomGain);
+    boomGain.connect(ctx.destination);
+    boom.type = 'sine';
+    boom.frequency.setValueAtTime(80, now);
+    boom.frequency.exponentialRampToValueAtTime(20, now + 0.5);
+    boomGain.gain.setValueAtTime(0.5 * vol, now);
+    boomGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+    boom.start(now);
+    boom.stop(now + 0.5);
+    
+    // 2) Mid-frequency punch
+    const punch = ctx.createOscillator();
+    const punchGain = ctx.createGain();
+    punch.connect(punchGain);
+    punchGain.connect(ctx.destination);
+    punch.type = 'triangle';
+    punch.frequency.setValueAtTime(200, now);
+    punch.frequency.exponentialRampToValueAtTime(40, now + 0.3);
+    punchGain.gain.setValueAtTime(0.35 * vol, now);
+    punchGain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+    punch.start(now);
+    punch.stop(now + 0.35);
+    
+    // 3) Noise burst (shrapnel / blast wave)
+    const bufferSize = Math.floor(ctx.sampleRate * 0.4);
     const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
     const output = noiseBuffer.getChannelData(0);
     for (let i = 0; i < bufferSize; i++) {
       output[i] = Math.random() * 2 - 1;
     }
-    
     const noise = ctx.createBufferSource();
     noise.buffer = noiseBuffer;
     
-    // High-pass filter for crackle texture
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'highpass';
-    filter.frequency.value = 3000;
+    // Low-pass filter to make noise rumble, not hiss
+    const lpf = ctx.createBiquadFilter();
+    lpf.type = 'lowpass';
+    lpf.frequency.setValueAtTime(2000, now);
+    lpf.frequency.exponentialRampToValueAtTime(200, now + 0.4);
     
     const noiseGain = ctx.createGain();
-    noiseGain.gain.setValueAtTime(0.25 * this.volume, now);
-    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+    noiseGain.gain.setValueAtTime(0.3 * vol, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
     
-    noise.connect(filter);
-    filter.connect(noiseGain);
+    noise.connect(lpf);
+    lpf.connect(noiseGain);
     noiseGain.connect(ctx.destination);
     noise.start(now);
-    noise.stop(now + 0.15);
+    noise.stop(now + 0.4);
     
-    // High frequency zaps
-    for (let i = 0; i < 3; i++) {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.frequency.value = 4000 + Math.random() * 3000;
-      osc.type = 'sawtooth';
-      const t = now + i * 0.04;
-      gain.gain.setValueAtTime(0.12 * this.volume, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
-      osc.start(t);
-      osc.stop(t + 0.05);
-    }
+    // 4) Short distortion crack at the very start
+    const crack = ctx.createOscillator();
+    const crackGain = ctx.createGain();
+    crack.connect(crackGain);
+    crackGain.connect(ctx.destination);
+    crack.type = 'square';
+    crack.frequency.setValueAtTime(600, now);
+    crack.frequency.exponentialRampToValueAtTime(50, now + 0.08);
+    crackGain.gain.setValueAtTime(0.25 * vol, now);
+    crackGain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+    crack.start(now);
+    crack.stop(now + 0.1);
   }
 
   // Candy drop-in sound for tumble refills

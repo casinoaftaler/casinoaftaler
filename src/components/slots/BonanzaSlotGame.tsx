@@ -680,6 +680,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
               // to avoid stale state when deferred after win animation
               if (!wasBonusActiveBeforeSpin && bs.freeSpinsRemaining > 0) {
                 pendingBonusStateRef.current = bs;
+                // Lock spin immediately so no extra spin fires during scatter celebration
+                showBonusTriggerRef.current = true;
                 const finalGrid = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
                 if (finalGrid && symbols) {
                   const { positions: scatterPos } = countBonanzaScatters(finalGrid, symbols);
@@ -691,7 +693,6 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
                     setTimeout(() => {
                       setCellAnimStates(new Map());
                       setShowBonusTrigger(true);
-                      showBonusTriggerRef.current = true;
                       setScreenShake('intense');
                       setTimeout(() => setScreenShake('none'), 600);
                       setRunningWin(0);
@@ -701,13 +702,13 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
                   }
                 }
                 setShowBonusTrigger(true);
-                showBonusTriggerRef.current = true;
                 setScreenShake('intense');
                 setTimeout(() => setScreenShake('none'), 600);
                 setRunningWin(0);
                 setRunningMultiplier(0);
               } else if (bs.isRetrigger) {
-                // Play scatter celebration before showing retrigger overlay
+                // Lock spin immediately so no extra spin fires during scatter celebration
+                showRetriggerRef.current = true;
                 const finalGrid = result.tumbleSteps?.[result.tumbleSteps.length - 1]?.grid || grid;
                 if (finalGrid && symbols) {
                   const { positions: scatterPos } = countBonanzaScatters(finalGrid, symbols);
@@ -721,7 +722,6 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
                       setScreenShake('intense');
                       setTimeout(() => setScreenShake('none'), 500);
                       setShowRetrigger(true);
-                      showRetriggerRef.current = true;
                       setFreeSpinsRemaining(bs.freeSpinsRemaining);
                       setTotalFreeSpins(bs.totalFreeSpins);
                       setBonusWinnings(bs.bonusWinnings || 0);
@@ -734,7 +734,6 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
                 setScreenShake('intense');
                 setTimeout(() => setScreenShake('none'), 500);
                 setShowRetrigger(true);
-                showRetriggerRef.current = true;
                 setFreeSpinsRemaining(bs.freeSpinsRemaining);
                 setTotalFreeSpins(bs.totalFreeSpins);
                 setBonusWinnings(bs.bonusWinnings || 0);
