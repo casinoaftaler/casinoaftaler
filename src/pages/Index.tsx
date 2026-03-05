@@ -198,7 +198,7 @@ const Index = () => {
       <HeroSection />
 
       {/* Top Casinos Section with sidebar */}
-      <section id="top-casinos" className="py-8 md:py-12">
+      <section id="top-casinos" className="py-8 md:py-12" style={{ contain: 'layout style' }}>
         <div className="container relative">
           {/* Left sidebar - positioned just outside container on xl */}
           <aside className="hidden xl:block absolute right-full top-0 mr-6 w-[200px]">
@@ -216,7 +216,7 @@ const Index = () => {
           </div>
 
           {isLoading ? (
-            <div className="flex items-center justify-center" style={{ minHeight: '1100px' }}>
+            <div className="flex items-center justify-center" style={{ minHeight: '900px', contain: 'layout' }}>
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
             </div>
           ) : filteredCasinos.length === 0 ? (
