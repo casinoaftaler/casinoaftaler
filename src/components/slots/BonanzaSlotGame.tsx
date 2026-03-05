@@ -558,7 +558,6 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     if (showBonusTriggerRef.current || showBonusCompleteRef.current || showRetriggerRef.current) return;
 
     const isBonusSpin = isBonusActive && freeSpinsRemaining > 0;
-    const wasBonusActiveBeforeSpin = isBonusActive; // Capture BEFORE spin for closure safety
     if (!isBonusSpin && !hasEnoughSpins(bet)) return;
 
     spinLockRef.current = true;
@@ -678,9 +677,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           const bs = response.bonusState as any;
           if (bs.isActive !== undefined) {
             const executeBonusAction = () => {
-              // Use captured wasBonusActiveBeforeSpin instead of closure isBonusActive
-              // to avoid stale state when deferred after win animation
-              if (!wasBonusActiveBeforeSpin && bs.freeSpinsRemaining > 0) {
+              // Determine trigger mode from the spin that was just played (base vs bonus)
+              // to avoid stale state causing missed entry animation.
+              if (!isBonusSpin && bs.freeSpinsRemaining > 0) {
                 pendingBonusStateRef.current = bs;
                 // Lock spin immediately so no extra spin fires during scatter celebration
                 showBonusTriggerRef.current = true;
