@@ -304,8 +304,8 @@ serve(async (req) => {
           }, { onConflict: 'hunt_number' });
       }
 
-      // Auto-create betting session for new hunts
-      if (isNewHunt) {
+      // Auto-create betting session if none exists
+      {
         const { data: existingSession } = await supabase
           .from("bonus_hunt_sessions")
           .select("id")
