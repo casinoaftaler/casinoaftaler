@@ -61,6 +61,7 @@ import { NewsAdminSection } from "@/components/NewsAdminSection";
 import { FactCheckAdminSection } from "@/components/FactCheckAdminSection";
 import { BonusHuntAdminSection } from "@/components/BonusHuntAdminSection";
 import { SlotCatalogAdminSection } from "@/components/admin/SlotCatalogAdminSection";
+import { MonthlyTournamentAdmin } from "@/components/admin/MonthlyTournamentAdmin";
 import { PageMetadataAdminSection } from "@/components/PageMetadataAdminSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -1015,6 +1016,9 @@ function AdminDashboard() {
           {/* Spillemaskine Tab */}
           <TabsContent value="slotmachine">
             <SlotMachineAdminSection />
+            <div className="mt-8">
+              <MonthlyTournamentAdmin />
+            </div>
           </TabsContent>
 
 
