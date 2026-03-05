@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Switch } from "@/components/ui/switch";
-import { Volume2, VolumeX, Volume1, Music, Sparkles, Cat } from "lucide-react";
+import { Volume2, VolumeX, Volume1, Music, Sparkles } from "lucide-react";
 import { slotSounds } from "@/lib/slotSoundEffects";
 import { cn } from "@/lib/utils";
 
