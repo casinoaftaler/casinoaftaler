@@ -170,6 +170,23 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     }
   }, [symbols, grid]);
 
+  // Unlock audio on first user interaction (critical for mobile sound effects)
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      slotSounds.unlockAudio();
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+    };
+
+    document.addEventListener('click', handleFirstInteraction);
+    document.addEventListener('touchstart', handleFirstInteraction);
+
+    return () => {
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+    };
+  }, []);
+
   // Cleanup
   useEffect(() => {
     return () => {
@@ -578,6 +595,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
       }, c * STAGGER_MS);
     }
 
+    slotSounds.unlockAudio();
     slotSounds.playSpinStart();
 
     let shouldWaitForWinAnimation = false;
@@ -880,6 +898,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
         setColumnSpinStates(prev => { const next = [...prev]; next[c] = 'dropping-off'; return next; });
       }, c * STAGGER_MS);
     }
+    slotSounds.unlockAudio();
     slotSounds.playSpinStart();
 
     try {
