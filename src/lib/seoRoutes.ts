@@ -251,7 +251,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/bonus-hunt", changefreq: "daily", priority: 0.8, lastmod: "2026-02-28" },
   { path: "/bonus-hunt/arkiv", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/slot-database", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
-  { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-03-01", showUpdatedDate: false },
+  { path: "/community", changefreq: "daily", priority: 0.6, lastmod: "2026-03-05", showUpdatedDate: false },
   { path: "/community/turneringer", changefreq: "daily", priority: 0.6, lastmod: "2026-03-03", showUpdatedDate: false },
   { path: "/community/turneringer/arkiv", changefreq: "weekly", priority: 0.6, lastmod: "2026-03-05", showUpdatedDate: false },
   { path: "/community/hall-of-fame", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05", showUpdatedDate: false },
