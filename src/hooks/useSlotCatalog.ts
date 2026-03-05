@@ -81,6 +81,22 @@ export function useSlotCatalogEntry(slotName: string | null) {
   });
 }
 
+// Fetch bonus hunt archives
+export function useBonusHuntArchives() {
+  return useQuery({
+    queryKey: ['bonus-hunt-archives'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('bonus_hunt_archives')
+        .select('*')
+        .order('hunt_number', { ascending: false });
+      if (error) throw error;
+      return data || [];
+    },
+    staleTime: 300000,
+  });
+}
+
 // Fetch all slot catalog entries (for admin)
 export function useSlotCatalog() {
   return useQuery({

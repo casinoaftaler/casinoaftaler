@@ -47,8 +47,8 @@ const faqItems = [
 ];
 
 export default function TurneringsArkiv() {
-  const { data: archiveData, isLoading } = useMonthlyTournamentArchive(100);
-  const archives = archiveData?.archives || [];
+  const { data: archiveMonths, isLoading } = useMonthlyTournamentArchive(100);
+  const archives = archiveMonths?.flatMap(m => m.entries) || [];
 
   // Group by month
   const byMonth = archives.reduce((acc, entry) => {
@@ -69,7 +69,7 @@ export default function TurneringsArkiv() {
     url: `${SITE_URL}/community/turneringer/arkiv`,
     datePublished: "2026-03-05",
     dateModified: "2026-03-05",
-    author: "Jonas Theill",
+    authorName: "Jonas Theill",
   });
 
   const faqSchema = buildFaqSchema(faqItems);
@@ -83,7 +83,7 @@ export default function TurneringsArkiv() {
       />
 
       <article className="mx-auto max-w-6xl px-4 py-8">
-        <AuthorMetaBar author="jonas" />
+        <AuthorMetaBar author="jonas" readTime="3 min" />
 
         {/* Hero */}
         <div className="mb-8 rounded-2xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/10 p-8 md:p-12">
@@ -212,7 +212,7 @@ export default function TurneringsArkiv() {
         </section>
 
         <div className="mt-12">
-          <FAQSection items={faqItems} />
+          <FAQSection faqs={faqItems} />
         </div>
 
         <div className="mt-12">

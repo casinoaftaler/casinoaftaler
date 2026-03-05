@@ -153,7 +153,7 @@ export default function SlotDatabase() {
     url: `${SITE_URL}/slot-database`,
     datePublished: "2026-03-05",
     dateModified: "2026-03-05",
-    author: "Jonas Theill",
+    authorName: "Jonas Theill",
   });
 
   const faqSchema = buildFaqSchema(faqItems);
@@ -167,7 +167,7 @@ export default function SlotDatabase() {
       />
 
       <article className="mx-auto max-w-6xl px-4 py-8">
-        <AuthorMetaBar author="jonas" />
+        <AuthorMetaBar author="jonas" readTime="5 min" />
 
         {/* Hero */}
         <div className="mb-8 rounded-2xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/10 p-8 md:p-12">
@@ -343,7 +343,7 @@ export default function SlotDatabase() {
         </section>
 
         <div className="mt-12">
-          <FAQSection items={faqItems} />
+          <FAQSection faqs={faqItems} />
         </div>
 
         <div className="mt-12">
