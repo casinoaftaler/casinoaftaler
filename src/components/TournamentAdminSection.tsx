@@ -199,6 +199,7 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
   const [maxCredits, setMaxCredits] = useState(tournament.max_credits?.toString() || "");
   const [maxBet, setMaxBet] = useState((tournament as any).max_bet?.toString() || "");
   const [excludeFromGlobalLeaderboard, setExcludeFromGlobalLeaderboard] = useState(tournament.exclude_from_global_leaderboard ?? false);
+  const [isMonthly, setIsMonthly] = useState(tournament.is_monthly ?? false);
   const [gameIds, setGameIds] = useState<string[]>(tournament.game_ids);
   const [separateLeaderboards, setSeparateLeaderboards] = useState(tournament.separate_leaderboards);
   const [startsAt, setStartsAt] = useState(new Date(tournament.starts_at).toISOString().slice(0, 16));
@@ -223,6 +224,7 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
         max_credits: maxCredits ? parseInt(maxCredits) : null,
         max_bet: maxBet ? parseInt(maxBet) : null,
         exclude_from_global_leaderboard: excludeFromGlobalLeaderboard,
+        is_monthly: isMonthly,
       } as any);
       toast.success("Turnering opdateret!");
       setOpen(false);
@@ -287,6 +289,13 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
             <div>
               <Label htmlFor="edit-exclude-global" className="cursor-pointer">Ekskluder fra globalt leaderboard</Label>
               <p className="text-xs text-muted-foreground">Turneringsspins tæller ikke med i det globale leaderboard. Når maks credits er brugt, tæller spins igen.</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Switch checked={isMonthly} onCheckedChange={setIsMonthly} id="edit-is-monthly" />
+            <div>
+              <Label htmlFor="edit-is-monthly" className="cursor-pointer">Månedsturnering (auto-join)</Label>
+              <p className="text-xs text-muted-foreground">Alle spillere deltager automatisk – ingen "Deltag" knap.</p>
             </div>
           </div>
           {gameIds.length > 1 && (
