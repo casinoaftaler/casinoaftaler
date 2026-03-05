@@ -10,6 +10,7 @@ import { useMonthlyTournamentArchive } from "@/hooks/useMonthlyTournamentArchive
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Trophy, Crown, Calendar, ArrowRight } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { TurneringsArkivSeoContent } from "@/components/seo-content/TurneringsArkivSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Separator } from "@/components/ui/separator";

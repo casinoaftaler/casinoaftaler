@@ -9,6 +9,7 @@ import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Trophy, TrendingUp, Gamepad2, BarChart3, ArrowRight } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { BonusHuntArkivSeoContent } from "@/components/seo-content/BonusHuntArkivSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Separator } from "@/components/ui/separator";

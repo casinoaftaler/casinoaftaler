@@ -12,6 +12,7 @@ import { useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Search, TrendingUp, Zap, BarChart3, Gamepad2, Trophy } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { SlotDatabaseSeoContent } from "@/components/seo-content/SlotDatabaseSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Separator } from "@/components/ui/separator";
