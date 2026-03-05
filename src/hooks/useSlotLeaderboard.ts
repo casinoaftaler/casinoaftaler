@@ -71,7 +71,7 @@ export function getCategoryUnit(category: LeaderboardCategory): string {
   }
 }
 
-export function useSlotLeaderboard(category: LeaderboardCategory = "total_points") {
+export function useSlotLeaderboard(category: LeaderboardCategory = "total_points", gameId?: string) {
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -89,12 +89,17 @@ export function useSlotLeaderboard(category: LeaderboardCategory = "total_points
   const sortKey = getCategorySortKey(category);
 
   return useQuery({
-    queryKey: ["slot-leaderboard", category, currentUserId],
+    queryKey: ["slot-leaderboard", category, gameId, currentUserId],
     enabled: !!currentUserId,
     queryFn: async (): Promise<{
       entries: LeaderboardEntry[];
       currentUser: CurrentUserLeaderboard | null;
     }> => {
+      // Use per-game view when gameId is provided
+      if (gameId) {
+        return fetchPerGameLeaderboard(category, sortKey, gameId, currentUserId);
+      }
+
       const { data, error } = await supabase
         .from("slot_leaderboard")
         .select(`
