@@ -187,11 +187,12 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
     };
   }, []);
 
-  // Cleanup
+  // Cleanup — stop sounds & timers on unmount (navigating away)
   useEffect(() => {
     return () => {
       if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
       columnStopTimersRef.current.forEach(t => clearTimeout(t));
+      slotSounds.stopMusic();
     };
   }, []);
 
