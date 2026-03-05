@@ -55,6 +55,7 @@ const BonusHunt = lazy(() => import("./pages/BonusHunt"));
 const BonusHuntArkiv = lazy(() => import("./pages/BonusHuntArkiv"));
 const SlotDatabase = lazy(() => import("./pages/SlotDatabase"));
 const TurneringsArkiv = lazy(() => import("./pages/TurneringsArkiv"));
+const HallOfFame = lazy(() => import("./pages/HallOfFame"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Auth = lazy(() => import("./pages/Auth"));
 const AuthCallback = lazy(() => import("./pages/AuthCallback"));
@@ -457,6 +458,7 @@ const App = () => (
                 <Route path="/bonus-hunt" element={<Suspense fallback={null}><BonusHunt /></Suspense>} />
                 <Route path="/bonus-hunt/arkiv" element={<BonusHuntArkiv />} />
                 <Route path="/slot-database" element={<SlotDatabase />} />
+                <Route path="/community/hall-of-fame" element={<HallOfFame />} />
                 <Route path="/community/bonus-hunt" element={<Navigate to="/bonus-hunt" replace />} />
                 <Route 
                   path="/community/slots" 

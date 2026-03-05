@@ -31,6 +31,7 @@ import rewardsImg from "@/assets/community/rewards-card.jpg";
 import butikImg from "@/assets/community/butik-card.jpg";
 import spinTheReelImg from "@/assets/community/spin-the-reel-card.jpg";
 import bonusHuntImg from "@/assets/community/bonus-hunt-card.jpg";
+import hallOfFameImg from "@/assets/community/hall-of-fame-card.jpg";
 import "@/styles/energy-sweep.css";
 import "@/styles/community-micro.css";
 
@@ -84,6 +85,16 @@ const SECTIONS = [
     badge: "Bonus Spins",
     badgeColor: "bg-green-500/15 text-green-600 dark:text-green-400 border-green-500/30",
     image: rewardsImg,
+  },
+  {
+    title: "Hall of Fame",
+    description:
+      "Se community-legender, all-time leaderboards, bedste clips og turneringsvindere. Ægte data fra vores spillere.",
+    href: "/community/hall-of-fame",
+    icon: Trophy,
+    badge: "Legender",
+    badgeColor: "bg-yellow-500/15 text-yellow-600 dark:text-yellow-400 border-yellow-500/30",
+    image: hallOfFameImg,
   },
   {
     title: "Butik",
