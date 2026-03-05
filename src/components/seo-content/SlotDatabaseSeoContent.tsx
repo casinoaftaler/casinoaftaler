@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
  */
 export function SlotDatabaseSeoContent() {
   return (
-    <section className="mt-12 space-y-8 max-w-4xl">
+    <section className="mt-12 space-y-8">
       {/* Section 1: Om Slot Databasen */}
       <div className="space-y-4">
         <h2 className="text-2xl font-bold text-foreground" id="om-slot-databasen">Om Slot Databasen</h2>
