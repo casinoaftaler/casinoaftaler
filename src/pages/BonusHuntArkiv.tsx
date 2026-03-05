@@ -9,6 +9,7 @@ import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Trophy, TrendingUp, Gamepad2, BarChart3, ArrowRight } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Separator } from "@/components/ui/separator";
 import bonusHuntArkivHero from "@/assets/bonus-hunt-arkiv-hero.jpg";
@@ -66,29 +67,51 @@ export default function BonusHuntArkiv() {
         jsonLd={[articleSchema, faqSchema]}
       />
 
-      {/* Hero */}
+      {/* TYPE B: Split hero – text left, image right */}
       <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
+        className="relative overflow-hidden py-12 text-white md:py-16"
         style={{
-          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9))",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundImage: "linear-gradient(160deg, hsl(220 75% 20% / 0.97), hsl(280 60% 25% / 0.95))",
         }}
       >
         <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4">
-              <Trophy className="mr-1.5 h-3.5 w-3.5" />
-              Dokumenterede Resultater
-            </Badge>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Bonus Hunt Arkiv – Alle Live Resultater
-            </h1>
-            <p className="text-lg text-white/80">
-              Komplet arkiv over alle dokumenterede bonus hunts fra vores{" "}
-              <Link to="/bonus-hunt" className="underline hover:text-white">live Twitch-streams</Link>.
-              {" "}Ægte resultater, ægte penge, fuld transparens.
-            </p>
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <Badge variant="secondary" className="mb-4">
+                <Trophy className="mr-1.5 h-3.5 w-3.5" />
+                Dokumenterede Resultater
+              </Badge>
+              <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-5xl">
+                Bonus Hunt Arkiv
+              </h1>
+              <p className="text-lg text-white/80 mb-6">
+                Komplet arkiv over alle dokumenterede bonus hunts fra vores{" "}
+                <Link to="/bonus-hunt" className="underline hover:text-white">live Twitch-streams</Link>.
+                {" "}Ægte resultater, ægte penge, fuld transparens.
+              </p>
+              {/* Inline stats in hero */}
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { label: "Dokumenterede Hunts", value: stats.total },
+                  { label: "Slots Testet", value: stats.totalSlots },
+                  { label: "Gennemsnitlig X", value: `${stats.avgX}x` },
+                  { label: "Bedste Hunt X", value: stats.bestHunt ? `${Number(stats.bestHunt.average_x).toFixed(2)}x` : "–" },
+                ].map(({ label, value }) => (
+                  <div key={label} className="rounded-lg bg-white/10 backdrop-blur-sm p-3">
+                    <div className="text-xl font-bold">{value}</div>
+                    <div className="text-xs text-white/60">{label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <img
+                src={bonusHuntArkivHero}
+                alt="Bonus hunt arkiv med dokumenterede resultater fra live Twitch-streams"
+                className="w-full h-auto rounded-xl object-cover max-h-[360px] shadow-2xl"
+                loading="eager"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -96,34 +119,54 @@ export default function BonusHuntArkiv() {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="3 min" />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
+        {/* Mobile hero image */}
+        <div className="mb-10 overflow-hidden rounded-xl md:hidden">
           <img
             src={bonusHuntArkivHero}
             alt="Bonus hunt arkiv med dokumenterede resultater fra live Twitch-streams"
-            className="w-full h-auto object-cover max-h-[400px]"
+            className="w-full h-auto object-cover max-h-[300px]"
             loading="eager"
           />
         </div>
 
-        {/* Stats strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          {[
-            { icon: Trophy, label: "Dokumenterede Hunts", value: stats.total },
-            { icon: Gamepad2, label: "Slots Testet", value: stats.totalSlots },
-            { icon: BarChart3, label: "Gennemsnitlig X", value: `${stats.avgX}x` },
-            { icon: TrendingUp, label: "Bedste Hunt X", value: stats.bestHunt ? `${Number(stats.bestHunt.average_x).toFixed(2)}x` : "–" },
-          ].map(({ icon: Icon, label, value }) => (
-            <Card key={label}>
-              <CardContent className="flex items-center gap-3 p-4">
-                <Icon className="h-5 w-5 text-primary shrink-0" />
-                <div>
-                  <div className="text-2xl font-bold text-foreground">{value}</div>
-                  <div className="text-xs text-muted-foreground">{label}</div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        {/* SEO Content BEFORE cards (Type B: content-first layout) */}
+        <section className="mb-10 space-y-6 max-w-4xl">
+          <h2 className="text-2xl font-bold text-foreground">Om Bonus Hunt Arkivet</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Bonus hunt-arkivet er en komplet dokumentation af alle vores live bonus hunts på Twitch. Hver hunt
+            repræsenterer en session, hvor vi køber bonusser på en række{" "}
+            <Link to="/slot-database" className="text-primary hover:underline">spillemaskiner</Link> og åbner dem
+            én for én foran vores community.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vi spiller altid med rigtige penge på{" "}
+            <Link to="/casino-anmeldelser/spildansknu" className="text-primary hover:underline">licenserede danske casinoer</Link>,
+            og alle resultater logges automatisk via vores StreamSystem-integration. Det sikrer 100% transparens
+            og gør det muligt at verificere alle tal.
+          </p>
+
+          <h3 className="text-xl font-bold text-foreground mt-8">Sådan læser du statistikkerne</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            <strong>Gennemsnitlig X</strong> viser den gennemsnitlige multiplikator på tværs af alle åbnede bonusser
+            i en hunt. En X over 100 betyder, at huntens samlede gevinst oversteg den samlede investering – med andre
+            ord en profitabel session. <strong>Startbalance</strong> er det beløb, der var investeret i bonuskøb,
+            og <strong>slots</strong> viser det totale antal maskiner i hunten.
+          </p>
+
+          <h3 className="text-xl font-bold text-foreground mt-8">Community-deltagelse</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Under aktive hunts kan du deltage i community bets direkte fra{" "}
+            <Link to="/bonus-hunt" className="text-primary hover:underline font-medium">bonus hunt-siden</Link>. Gæt på
+            gennemsnitlig X eller samlet gevinst og konkurrér med andre community-medlemmer om credits og præmier
+            i vores <Link to="/community/turneringer" className="text-primary hover:underline">månedlige turneringer</Link>.
+          </p>
+        </section>
+
+        {/* Archive heading */}
+        <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+          <BarChart3 className="h-6 w-6 text-primary" />
+          Alle Dokumenterede Hunts
+        </h2>
 
         {/* Archive Cards */}
         {isLoading ? (
@@ -174,43 +217,12 @@ export default function BonusHuntArkiv() {
           </div>
         )}
 
-        {/* SEO Content */}
-        <section className="mt-12 space-y-6 max-w-4xl">
-          <h2 className="text-2xl font-bold text-foreground">Om Bonus Hunt Arkivet</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Bonus hunt-arkivet er en komplet dokumentation af alle vores live bonus hunts på Twitch. Hver hunt
-            repræsenterer en session, hvor vi køber bonusser på en række{" "}
-            <Link to="/slot-database" className="text-primary hover:underline">spillemaskiner</Link> og åbner dem
-            én for én foran vores community.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Vi spiller altid med rigtige penge på{" "}
-            <Link to="/casino-anmeldelser/spildansknu" className="text-primary hover:underline">licenserede danske casinoer</Link>,
-            og alle resultater logges automatisk via vores StreamSystem-integration. Det sikrer 100% transparens
-            og gør det muligt at verificere alle tal.
-          </p>
-
-          <h3 className="text-xl font-bold text-foreground mt-8">Sådan læser du statistikkerne</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong>Gennemsnitlig X</strong> viser den gennemsnitlige multiplikator på tværs af alle åbnede bonusser
-            i en hunt. En X over 100 betyder, at huntens samlede gevinst oversteg den samlede investering – med andre
-            ord en profitabel session. <strong>Startbalance</strong> er det beløb, der var investeret i bonuskøb,
-            og <strong>slots</strong> viser det totale antal maskiner i hunten.
-          </p>
-
-          <h3 className="text-xl font-bold text-foreground mt-8">Community-deltagelse</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Under aktive hunts kan du deltage i community bets direkte fra{" "}
-            <Link to="/bonus-hunt" className="text-primary hover:underline font-medium">bonus hunt-siden</Link>. Gæt på
-            gennemsnitlig X eller samlet gevinst og konkurrér med andre community-medlemmer om credits og præmier
-            i vores <Link to="/community/turneringer" className="text-primary hover:underline">månedlige turneringer</Link>.
-          </p>
-        </section>
-
         <div className="mt-12">
           <FAQSection faqs={faqItems} />
         </div>
 
+        <Separator className="my-12" />
+        <CommunityBrandBlock />
         <Separator className="my-12" />
         <CommunitySeoSections />
         <Separator className="my-12" />

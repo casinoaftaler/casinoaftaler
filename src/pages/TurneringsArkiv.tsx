@@ -8,8 +8,9 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useMonthlyTournamentArchive } from "@/hooks/useMonthlyTournamentArchive";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Trophy, Crown, Calendar } from "lucide-react";
+import { Trophy, Crown, Calendar, ArrowRight } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Separator } from "@/components/ui/separator";
 import turneringsArkivHero from "@/assets/turneringsarkiv-hero.jpg";
@@ -85,29 +86,35 @@ export default function TurneringsArkiv() {
         jsonLd={[articleSchema, faqSchema]}
       />
 
-      {/* Hero */}
-      <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
-        style={{
-          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9))",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="container">
+      {/* TYPE C: Full-width hero with background image overlay */}
+      <section className="relative overflow-hidden py-16 text-white md:py-24">
+        <img
+          src={turneringsArkivHero}
+          alt="Turneringsarkiv med vindere og leaderboards fra månedlige community-turneringer"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background" />
+        <div className="container relative z-10">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Crown className="mr-1.5 h-3.5 w-3.5" />
               Historik & Vindere
             </Badge>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl text-foreground">
               Turneringsarkiv – Alle Månedlige Vindere
             </h1>
-            <p className="text-lg text-white/80">
+            <p className="text-lg text-muted-foreground mb-8">
               Komplet historik over alle månedlige turneringsvindere. Se hvem der dominerede{" "}
-              <Link to="/community/turneringer" className="underline hover:text-white">turneringerne</Link>
+              <Link to="/community/turneringer" className="text-primary hover:underline">turneringerne</Link>
               {" "}og tag kampen op om kontante præmier.
             </p>
+            <Link
+              to="/community/turneringer"
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              Se aktive turneringer <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -115,16 +122,7 @@ export default function TurneringsArkiv() {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="3 min" />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={turneringsArkivHero}
-            alt="Turneringsarkiv med vindere og leaderboards fra månedlige community-turneringer"
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
-
-        {/* Archive by month */}
+        {/* Archive by month with timeline accent */}
         {isLoading ? (
           <div className="text-center py-12 text-muted-foreground">Indlæser arkiv...</div>
         ) : months.length === 0 ? (
@@ -135,11 +133,18 @@ export default function TurneringsArkiv() {
             </CardContent>
           </Card>
         ) : (
-          <div className="space-y-8">
+          <div className="relative space-y-10">
+            {/* Timeline line */}
+            <div className="absolute left-[18px] top-8 bottom-8 w-0.5 bg-border hidden md:block" />
+
             {months.map((month) => (
-              <section key={month}>
+              <section key={month} className="relative md:pl-12">
+                {/* Timeline dot */}
+                <div className="absolute left-2.5 top-1 hidden md:flex h-4 w-4 items-center justify-center rounded-full bg-primary">
+                  <div className="h-2 w-2 rounded-full bg-primary-foreground" />
+                </div>
                 <div className="flex items-center gap-3 mb-4">
-                  <Calendar className="h-5 w-5 text-primary" />
+                  <Calendar className="h-5 w-5 text-primary md:hidden" />
                   <h2 className="text-xl font-bold text-foreground">{formatMonth(month)}</h2>
                 </div>
                 <div className="grid gap-4 md:grid-cols-3">
@@ -236,6 +241,8 @@ export default function TurneringsArkiv() {
           <FAQSection faqs={faqItems} />
         </div>
 
+        <Separator className="my-12" />
+        <CommunityBrandBlock />
         <Separator className="my-12" />
         <CommunitySeoSections />
         <Separator className="my-12" />
