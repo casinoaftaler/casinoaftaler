@@ -104,14 +104,15 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "VideoObject",
+        "@id": `https://casinoaftaler.dk/bonus-hunt#video-${video.huntNumber}`,
         "name": `Bonus Hunt #${video.huntNumber} – ${video.casinoName} (${video.date})`,
         "description": `Live bonus hunt streamet på Twitch hos ${video.casinoName}. ${video.bonusCount} bonusser åbnet med ${video.avgX}x gennemsnit.`,
-        "uploadDate": "2026-02-28T20:00:00+01:00",
+        "uploadDate": `${video.isoDate}T20:00:00+01:00`,
         "duration": "PT2H",
-        "thumbnailUrl": twitchThumb,
+        "thumbnailUrl": video.localThumbnail || twitchThumb,
         "embedUrl": `https://player.twitch.tv/?video=${video.twitchVideoId}`,
         "contentUrl": `https://www.twitch.tv/videos/${video.twitchVideoId}`,
-        "publisher": { "@type": "Organization", "name": "Casinoaftaler.dk" },
+        "publisher": { "@type": "Organization", "@id": "https://casinoaftaler.dk/#organization", "name": "Casinoaftaler.dk" },
       }) }} />
 
       <section
