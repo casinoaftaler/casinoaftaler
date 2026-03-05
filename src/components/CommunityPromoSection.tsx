@@ -1,10 +1,11 @@
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowRight, Trophy, Video } from "lucide-react";
 
-export function CommunityPromoSection() {
+export const CommunityPromoSection = forwardRef<HTMLElement>(function CommunityPromoSection(_props, ref) {
   return (
-    <section className="py-6 md:py-8">
+    <section ref={ref} className="py-6 md:py-8">
       <div className="flex flex-col gap-4 p-5 md:p-6 rounded-xl bg-muted/50 border border-border/50">
           <div className="flex items-center gap-3">
             <Sparkles className="h-5 w-5 flex-shrink-0 text-primary" />
@@ -40,4 +41,4 @@ export function CommunityPromoSection() {
       </div>
     </section>
   );
-}
+});
