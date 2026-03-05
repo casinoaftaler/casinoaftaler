@@ -282,33 +282,67 @@ export default function Forfatter() {
 
   const faqJsonLd = buildFaqSchema(faqs);
 
-  const videoSchema = {
+  // All Jonas videos for schema
+  const allJonasVideos = [
+    // Guide videos
+    { id: "WOowRz6hnH8", title: "Hvad er en No-Sticky Bonus?" },
+    { id: "yUAcefgYfkc", title: "Hvad er en Sticky Bonus?" },
+    { id: "q4jeGo9TPEk", title: "Hvad er Free Spins?" },
+    { id: "3tXFTjmgdcE", title: "Hvad er omsætningskrav?" },
+    { id: "oK5PvebkvGY", title: "Hvad er en Velkomstbonus?" },
+    { id: "hMHHVA6vH0Y", title: "Hvad er en Indskudsbonus?" },
+    { id: "7JQ3nFTasoQ", title: "Hvad er bonus uden omsætningskrav?" },
+    { id: "XhbLda1HyOs", title: "Hvad er bonus uden indbetaling?" },
+    // Casino review videos
+    { id: "_hHQkRwUzoU", title: "SpilDanskNu Anmeldelse" },
+    { id: "L5JtdRVTNwk", title: "Spilleautomaten Anmeldelse" },
+    { id: "s7S_GRsKfK4", title: "Campobet Anmeldelse" },
+    { id: "GyqEjKQiCJU", title: "Betinia Anmeldelse" },
+    { id: "BVYnQxwqHG0", title: "Swift Casino Anmeldelse" },
+    { id: "14tI5vWShvs", title: "Luna Casino Anmeldelse" },
+    { id: "vb5nT5UGk8c", title: "bet365 Casino Anmeldelse" },
+    { id: "Uu3NBZzt-Sk", title: "Betano Anmeldelse" },
+    { id: "AuYbcBpBOxY", title: "Danske Spil Anmeldelse" },
+    { id: "tW_E0RmzSHg", title: "ComeOn Anmeldelse" },
+    { id: "N1MyxsYcmMk", title: "GetLucky Anmeldelse" },
+    { id: "htCLh4TK6tA", title: "Mr Green Anmeldelse" },
+    { id: "vSkzKvgZT_0", title: "Mr Vegas Anmeldelse" },
+    { id: "8_nQyVEJEcU", title: "LeoVegas Anmeldelse" },
+    { id: "TzSmePJgd84", title: "Expekt Anmeldelse" },
+    { id: "crhpDPocTrQ", title: "888 Casino Anmeldelse" },
+    { id: "53m8Fk6tmw8", title: "Unibet Anmeldelse" },
+    { id: "6R3Zt_ABaAo", title: "Royal Casino Anmeldelse" },
+    { id: "o9m02b_cAnE", title: "Maria Casino Anmeldelse" },
+    { id: "xo9vTabQgE8", title: "Videoslots Anmeldelse" },
+    // Highlights
+    { id: "ZKDrnL7373o", title: "Jonas' bedste highlights" },
+  ];
+
+  const videoSchemas = allJonasVideos.map((v, i) => ({
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    name: "Jonas' bedste highlights – Casinoaftaler.dk",
-    description: "Se Jonas' bedste casino-highlights og streamingøjeblikke fra Casinoaftaler.dk.",
-    thumbnailUrl: "https://img.youtube.com/vi/ZKDrnL7373o/maxresdefault.jpg",
-    uploadDate: "2025-01-15T12:00:00+01:00",
-    contentUrl: "https://www.youtube.com/watch?v=ZKDrnL7373o",
-    embedUrl: "https://www.youtube.com/embed/ZKDrnL7373o",
+    "@id": `${SITE_URL}/forfatter/jonas#video-${i + 1}`,
+    name: `${v.title} – Casinoaftaler.dk`,
+    description: `Jonas gennemgår ${v.title.toLowerCase()} på Casinoaftaler.dk.`,
+    thumbnailUrl: `https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`,
+    uploadDate: "2026-02-18T12:00:00+01:00",
+    duration: "PT2M",
+    embedUrl: `https://www.youtube.com/embed/${v.id}?rel=0&modestbranding=1`,
+    contentUrl: `https://www.youtube.com/watch?v=${v.id}`,
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "Casinoaftaler.dk",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://casinoaftaler.dk/icon-512x512.png",
-        width: 512,
-        height: 512,
-      },
+      url: SITE_URL,
     },
-  };
+  }));
 
   return (
     <>
       <SEO
         title="Jonas – Forfatter & Grundlægger | Casinoaftaler.dk"
         description="Mød Jonas, grundlæggeren af Casinoaftaler.dk og casino-streamer på Twitch. Læs om hans baggrund, streamingstil og passion for casinospil."
-        jsonLd={[faqJsonLd, personSchema, videoSchema]}
+        jsonLd={[faqJsonLd, personSchema, ...videoSchemas]}
       />
 
       {/* Hero */}
