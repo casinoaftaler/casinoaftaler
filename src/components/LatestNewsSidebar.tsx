@@ -36,7 +36,7 @@ export function LatestNewsSidebar() {
           {article.featured_image ? (
             <img
               src={optimizeStorageImage(article.featured_image, 112) ?? article.featured_image}
-              alt=""
+              alt={article.title || "Nyhedsbillede"}
               width={56}
               height={56}
               loading="lazy"

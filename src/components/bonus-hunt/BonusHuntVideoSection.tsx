@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { Helmet } from "react-helmet-async";
 import { Play, Monitor, Trophy, BarChart3, Video, MessageCircle, Calendar } from "lucide-react";
 import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
 import hunt4Thumbnail from "@/assets/bonus-hunt-4-thumbnail.png";
@@ -101,19 +102,21 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "VideoObject",
-        "@id": `https://casinoaftaler.dk/bonus-hunt#video-${video.huntNumber}`,
-        "name": `Bonus Hunt #${video.huntNumber} – ${video.casinoName} (${video.date})`,
-        "description": `Live bonus hunt streamet på Twitch hos ${video.casinoName}. ${video.bonusCount} bonusser åbnet med ${video.avgX}x gennemsnit.`,
-        "uploadDate": `${video.isoDate}T20:00:00+01:00`,
-        "duration": "PT2H",
-        "thumbnailUrl": video.localThumbnail || twitchThumb,
-        "embedUrl": `https://player.twitch.tv/?video=${video.twitchVideoId}`,
-        "contentUrl": `https://www.twitch.tv/videos/${video.twitchVideoId}`,
-        "publisher": { "@type": "Organization", "@id": "https://casinoaftaler.dk/#organization", "name": "Casinoaftaler.dk" },
-      }) }} />
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "@id": `https://casinoaftaler.dk/bonus-hunt#video-${video.huntNumber}`,
+          "name": `Bonus Hunt #${video.huntNumber} – ${video.casinoName} (${video.date})`,
+          "description": `Live bonus hunt streamet på Twitch hos ${video.casinoName}. ${video.bonusCount} bonusser åbnet med ${video.avgX}x gennemsnit.`,
+          "uploadDate": `${video.isoDate}T20:00:00+01:00`,
+          "duration": "PT2H",
+          "thumbnailUrl": video.localThumbnail || twitchThumb,
+          "embedUrl": `https://player.twitch.tv/?video=${video.twitchVideoId}`,
+          "contentUrl": `https://www.twitch.tv/videos/${video.twitchVideoId}`,
+          "publisher": { "@type": "Organization", "@id": "https://casinoaftaler.dk/#organization", "name": "Casinoaftaler.dk" },
+        })}</script>
+      </Helmet>
 
       <section
         className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-card overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10"
