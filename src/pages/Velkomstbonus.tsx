@@ -920,13 +920,11 @@ const Velkomstbonus = () => {
           </div>
         </section>
 
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/velkomstbonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om velkomstbonus" faqs={velkomstbonusFaqs} />
+
+        <AuthorBio />
       </div>
     </>
   );

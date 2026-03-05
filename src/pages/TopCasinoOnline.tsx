@@ -1209,13 +1209,11 @@ const TopCasinoOnline = () => {
           </p>
         </section>
 
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/top-10-casino-online" />
 
         <FAQSection title="Ofte stillede spørgsmål om online casino" faqs={topCasinoFaqs} />
+
+        <AuthorBio />
       </div>
     </>
   );

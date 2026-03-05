@@ -1379,13 +1379,11 @@ const Casinospil = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/casinospil" />
 
         <FAQSection title="Ofte stillede spørgsmål om casinospil" faqs={casinospilFaqs} />
+
+        <AuthorBio />
       </div>
     </>
   );
