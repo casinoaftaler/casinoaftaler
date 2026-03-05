@@ -213,7 +213,7 @@ const SaadanTesterVi = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="ajse" date="15-02-2026" readTime="8 Min." showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="ajse" date="15-02-2026" readTime="12 Min." showAffiliateDisclaimer={false} />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
