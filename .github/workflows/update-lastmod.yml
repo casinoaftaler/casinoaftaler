@@ -28,7 +28,29 @@ jobs:
 
       - name: Detect content changes and update lastmod
         id: update
-        run: node .github/scripts/update-lastmod.mjs
+        run: node .github/scripts/update-lastmod.mjs 2>&1 | tee /tmp/update-lastmod-output.txt
+
+      - name: Update DB page_metadata dates
+        if: steps.update.outputs.updated == 'true'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          # Extract updated routes from the update script output
+          ROUTES=$(node -e "
+            const fs = require('fs');
+            const log = fs.readFileSync('/dev/stdin', 'utf-8');
+            const paths = [...log.matchAll(/✅\s+(\S+)\s+→/g)].map(m => m[1]);
+            console.log(JSON.stringify(paths));
+          " < /tmp/update-lastmod-output.txt 2>/dev/null || echo '[]')
+          
+          if [ "$ROUTES" != "[]" ]; then
+            curl -s -X POST \
+              "${SUPABASE_URL}/functions/v1/touch-page-dates" \
+              -H "Authorization: Bearer ${SUPABASE_SERVICE_ROLE_KEY}" \
+              -H "Content-Type: application/json" \
+              -d "{\"paths\": $ROUTES}"
+          fi
 
       - name: Commit updated seoRoutes.ts
         if: steps.update.outputs.updated == 'true'

@@ -61,6 +61,7 @@ import { NewsAdminSection } from "@/components/NewsAdminSection";
 import { FactCheckAdminSection } from "@/components/FactCheckAdminSection";
 import { BonusHuntAdminSection } from "@/components/BonusHuntAdminSection";
 import { SlotCatalogAdminSection } from "@/components/admin/SlotCatalogAdminSection";
+import { PageMetadataAdminSection } from "@/components/PageMetadataAdminSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -1090,6 +1091,9 @@ function AdminDashboard() {
                 </div>
               </CardContent>
             </Card>
+            <div className="mt-6">
+              <PageMetadataAdminSection />
+            </div>
           </TabsContent>
 
           {/* Brugere Tab */}
