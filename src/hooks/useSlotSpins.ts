@@ -65,6 +65,7 @@ export function useSlotSpins(_gameId: string = "book-of-fedesvin") {
       return existing || null;
     },
     enabled: !!user?.id,
+    refetchInterval: 15000, // Poll every 15s as safety net for missed updates
   });
 
   // Function to check if user has enough spins for a given bet

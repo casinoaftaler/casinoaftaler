@@ -116,9 +116,12 @@ export function useServerSpin(gameId: string = "book-of-fedesvin") {
       // Only update spins cache immediately (spending spins is expected UX)
       if (data.spinsRemaining !== undefined) {
         const today = getTodayDanish();
+        const key = ["slot-spins", session?.user?.id, today, "shared"];
         queryClient.setQueryData(
-          ["slot-spins", session?.user?.id, today, "shared"],
-          (old: any) => old ? { ...old, spins_remaining: data.spinsRemaining } : old
+          key,
+          (old: any) => old
+            ? { ...old, spins_remaining: data.spinsRemaining }
+            : { spins_remaining: data.spinsRemaining, user_id: session?.user?.id, date: today, game_id: "shared" }
         );
       }
     },
