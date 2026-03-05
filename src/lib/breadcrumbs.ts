@@ -199,6 +199,8 @@ export const routeLabels: Record<string, string> = {
   // Community (kun indexerbare sider)
   "/community": "Community",
   "/community/slots": "Spillehal",
+  "/community/turneringer": "Turneringer",
+  "/community/rewards": "Rewards",
   "/bonus-hunt": "Bonus Hunt",
 };
 
@@ -289,6 +291,63 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/saadan-tester-vi-casinoer": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/forretningsmodel": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/redaktionel-politik": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
+
+  // Live Casino cluster – bundet til /live-casino hub
+  "/live-casino/blackjack": [{ name: "Live Casino", path: "/live-casino" }],
+  "/live-casino/roulette": [{ name: "Live Casino", path: "/live-casino" }],
+  "/live-casino/baccarat": [{ name: "Live Casino", path: "/live-casino" }],
+  "/live-casino/lightning-roulette": [{ name: "Live Casino", path: "/live-casino" }],
+  "/live-casino/monopoly-live": [{ name: "Live Casino", path: "/live-casino" }],
+
+  // Casinoer guides – bundet til /casinoer hub
+  "/casinoer/hurtig-udbetaling": [{ name: "Casinoer", path: "/casinoer" }],
+  "/casinoer/hoej-rtp": [{ name: "Casinoer", path: "/casinoer" }],
+  "/casinoer/crypto-casino": [{ name: "Casinoer", path: "/casinoer" }],
+  "/casinoer/vr-casinoer": [{ name: "Casinoer", path: "/casinoer" }],
+  "/casinoer/mobil-casinoer": [{ name: "Casinoer", path: "/casinoer" }],
+  "/casinoer/spil-casino-for-sjov": [{ name: "Casinoer", path: "/casinoer" }],
+  "/casinoer/casino-og-skat": [{ name: "Casinoer", path: "/casinoer" }],
+
+  // Spillemaskiner cluster – bundet til /casinospil/spillemaskiner hub
+  "/casinospil/spillemaskiner/hoej-rtp": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/sweet-bonanza": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/book-of-dead": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/gates-of-olympus": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/starburst": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/razor-shark": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/big-bass-bonanza": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/dead-or-alive-2": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/gonzos-quest": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/reactoonz": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/money-train-3": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/wolf-gold": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/the-dog-house": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/jammin-jars": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/bonanza": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/fire-joker": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/legacy-of-dead": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/divine-fortune": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/eye-of-horus": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/buffalo-king": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/sugar-rush": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/cleopatra": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/mega-moolah": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/thunderstruck-ii": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/immortal-romance": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/wild-west-gold": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/madame-destiny-megaways": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/extra-chilli-megaways": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/wanted-dead-or-a-wild": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/chaos-crew": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/joker-strike": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/bonus-buys": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+
+  // Community cluster – bundet til /community hub
+  "/community/turneringer": [{ name: "Community", path: "/community" }],
+  "/community/rewards": [{ name: "Community", path: "/community" }],
+
+  // Bonus Hunt – bundet til Community
+  "/bonus-hunt": [{ name: "Community", path: "/community" }],
 };
 
 /**
