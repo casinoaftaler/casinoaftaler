@@ -157,6 +157,13 @@ function CreateTournamentDialog() {
               <p className="text-xs text-muted-foreground">Turneringsspins tæller ikke med i det globale leaderboard. Når maks credits er brugt, tæller spins igen.</p>
             </div>
           </div>
+          <div className="flex items-center gap-3">
+            <Switch checked={isMonthly} onCheckedChange={setIsMonthly} id="is-monthly" />
+            <div>
+              <Label htmlFor="is-monthly" className="cursor-pointer">Månedsturnering (auto-join)</Label>
+              <p className="text-xs text-muted-foreground">Alle spillere deltager automatisk – ingen "Deltag" knap.</p>
+            </div>
+          </div>
           {gameIds.length > 1 && (
             <div className="flex items-center gap-3">
               <Switch checked={separateLeaderboards} onCheckedChange={setSeparateLeaderboards} id="separate-lb" />
