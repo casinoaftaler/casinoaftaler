@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
  */
 export function TurneringsArkivSeoContent() {
   return (
-    <section className="space-y-8 max-w-4xl">
+    <section className="space-y-8">
       {/* Section 1: Om Turneringsarkivet */}
       <div className="space-y-4">
         <h2 className="text-2xl font-bold text-foreground" id="om-turneringsarkivet">Om Turneringsarkivet</h2>
