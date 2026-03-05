@@ -1865,6 +1865,7 @@ Deno.serve(async (req) => {
       const scatterWeightMult = isDoubleChance ? 2 : 1;
 
       const bonanzaResult = await calculateBonanzaFullSpin(symbols, bet, false, 0, prng, forceScatters, scatterWeightMult);
+      console.log(`[bonanza] userId=${userId}, scatterCount=${bonanzaResult.scatterCount}, bonusTriggered=${bonanzaResult.bonusTriggered}, totalWin=${bonanzaResult.totalWin}, tumbleSteps=${bonanzaResult.tumbleSteps.length}, forceScatters=${forceScatters}`);
       let bonanzaBonusState = null;
       if (bonanzaResult.bonusTriggered) {
         const sc = bonanzaResult.scatterCount;
