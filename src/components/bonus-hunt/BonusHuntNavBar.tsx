@@ -7,11 +7,12 @@ interface Props {
   huntDate: string;
   latestHuntNumber: number;
   maxHuntNumber: number;
+  availableHuntNumbers: number[];
   onNavigate?: (direction: 'first' | 'prev' | 'next' | 'last') => void;
   onJumpToHunt?: (huntNumber: number) => void;
 }
 
-export function BonusHuntNavBar({ huntNumber, huntDate, latestHuntNumber, maxHuntNumber, onNavigate, onJumpToHunt }: Props) {
+export function BonusHuntNavBar({ huntNumber, huntDate, latestHuntNumber, maxHuntNumber, availableHuntNumbers, onNavigate, onJumpToHunt }: Props) {
   return (
     <div className="flex items-center justify-center gap-2">
       <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={() => onNavigate?.('first')}>
@@ -31,7 +32,7 @@ export function BonusHuntNavBar({ huntNumber, huntDate, latestHuntNumber, maxHun
           </span>
         </SelectTrigger>
         <SelectContent className="max-h-[300px]">
-          {Array.from({ length: maxHuntNumber - 1 }, (_, i) => maxHuntNumber - i).map(num => (
+          {availableHuntNumbers.map(num => (
             <SelectItem key={num} value={String(num)} className="text-xs">
               <span className="flex items-center gap-1.5">
                 <Target className="h-3 w-3 text-primary" />

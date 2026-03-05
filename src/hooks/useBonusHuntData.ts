@@ -230,3 +230,18 @@ export function useDocumentedHuntCount() {
     staleTime: 60000,
   });
 }
+
+export function useArchivedHuntNumbers() {
+  return useQuery({
+    queryKey: ['bonus-hunt-archived-numbers'],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from('bonus_hunt_archives')
+        .select('hunt_number')
+        .gt('total_slots', 0)
+        .order('hunt_number', { ascending: false });
+      return (data || []).map(r => r.hunt_number);
+    },
+    staleTime: 60000,
+  });
+}

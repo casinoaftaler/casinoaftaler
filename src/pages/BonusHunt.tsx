@@ -28,7 +28,7 @@ import { CommunityConversionCard } from "@/components/community/CommunityConvers
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
-import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
+import { useBonusHuntData, useLatestHuntNumber, useArchivedHuntNumbers } from "@/hooks/useBonusHuntData";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
@@ -56,6 +56,7 @@ export default function BonusHunt() {
   }, [huntIdOverride, setSearchParams]);
 
   const { data: latestHuntNumber = 1 } = useLatestHuntNumber();
+  const { data: archivedHuntNumbers = [] } = useArchivedHuntNumbers();
   const { data: huntData, isLoading: huntLoading } = useBonusHuntData(huntIdOverride);
   const { data: session } = useBonusHuntSession();
   const { data: gtwBets = [] } = useBonusHuntGtwBets(session?.id);
@@ -76,10 +77,17 @@ export default function BonusHunt() {
 
   const liveHuntNumber = getNextAllowed(huntData?.visibleId || latestHuntNumber + 1);
   const currentHuntNumber = huntIdOverride || liveHuntNumber;
-  const isArchived = currentHuntNumber <= latestHuntNumber;
+  const isArchived = archivedHuntNumbers.includes(currentHuntNumber);
   const isLive = !!(session?.status === 'active' && session?.hunt_number === currentHuntNumber && !isArchived);
   const huntVideo = getHuntVideo(currentHuntNumber);
   const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber);
+
+  // Build available hunt numbers: archived + current active hunt (descending)
+  const availableHuntNumbers = useMemo(() => {
+    const nums = new Set(archivedHuntNumbers);
+    nums.add(liveHuntNumber);
+    return [...nums].sort((a, b) => b - a);
+  }, [archivedHuntNumbers, liveHuntNumber]);
 
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
     if (!huntData) return;
@@ -239,6 +247,8 @@ export default function BonusHunt() {
                     latestHuntNumber={latestHuntNumber}
                     maxHuntNumber={maxHuntNumber}
                     isLive={isLive}
+                    isArchived={isArchived}
+                    availableHuntNumbers={availableHuntNumbers}
                     onNavigate={handleNavigate}
                     onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
                   />

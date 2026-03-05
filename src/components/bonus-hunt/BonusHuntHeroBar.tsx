@@ -12,6 +12,8 @@ interface Props {
   latestHuntNumber: number;
   maxHuntNumber: number;
   isLive: boolean;
+  isArchived: boolean;
+  availableHuntNumbers: number[];
   onNavigate?: (direction: 'first' | 'prev' | 'next' | 'last') => void;
   onJumpToHunt?: (huntNumber: number) => void;
 }
@@ -25,6 +27,8 @@ export function BonusHuntHeroBar({
   latestHuntNumber,
   maxHuntNumber,
   isLive,
+  isArchived,
+  availableHuntNumbers,
   onNavigate,
   onJumpToHunt,
 }: Props) {
@@ -60,9 +64,13 @@ export function BonusHuntHeroBar({
                   <Radio className="h-2.5 w-2.5 animate-pulse" />
                   Live
                 </Badge>
-              ) : (
+              ) : isArchived ? (
                 <Badge variant="secondary" className="text-[10px] px-1.5 py-0 gap-1 uppercase font-semibold shrink-0">
                   Arkiv
+                </Badge>
+              ) : (
+                <Badge variant="outline" className="text-[10px] px-1.5 py-0 gap-1 uppercase font-semibold shrink-0">
+                  Aktiv
                 </Badge>
               )}
             </div>
@@ -91,9 +99,7 @@ export function BonusHuntHeroBar({
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="max-h-[300px]">
-              {Array.from({ length: maxHuntNumber - 1 }, (_, i) => maxHuntNumber - i)
-                .filter(num => num !== 6 && num !== 7)
-                .map(num => (
+              {availableHuntNumbers.map(num => (
                 <SelectItem key={num} value={String(num)} className="text-xs">
                   #{num} {num > latestHuntNumber ? '🔴 LIVE' : ''}
                 </SelectItem>
