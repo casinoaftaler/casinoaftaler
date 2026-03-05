@@ -161,12 +161,20 @@ function CommunityCard({ section }: { section: typeof SECTIONS[number] }) {
 export default function CommunityHub() {
   const { user } = useAuth();
 
+  const articleSchema = buildArticleSchema({
+    headline: "Community – Gratis Slots, Turneringer & Bonus Spins",
+    description: "Spil gratis slots, deltag i turneringer og optjen points i Casinoaftaler.dk's community.",
+    url: `${SITE_URL}/community`,
+    datePublished: "2026-01-15",
+    dateModified: "2026-03-05",
+  });
+
   return (
     <>
       <SEO
         title="Community – Gratis Slots, Turneringer & Bonus Spins"
         description="Spil gratis slots, deltag i turneringer og optjen points i Casinoaftaler.dk's community. Vind spins og præmier hver dag."
-        
+        jsonLd={[articleSchema]}
       />
       <CommunityPageLayout
         title="Community"

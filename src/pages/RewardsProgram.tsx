@@ -26,7 +26,13 @@ export default function RewardsProgram() {
       <SEO
         title="Belønningsprogram – Optjen Gratis Spins | Casinoaftaler"
         description="Deltag i Casinoaftalers belønningsprogram. Optjen gratis spins, indsend clips og anmod om nye spilleautomater. Se hvordan du kan blive belønnet."
-        
+        jsonLd={[buildArticleSchema({
+          headline: "Belønningsprogram – Optjen Gratis Spins",
+          description: "Deltag i Casinoaftalers belønningsprogram. Optjen gratis spins, indsend clips og anmod om nye spilleautomater.",
+          url: `${SITE_URL}/community/rewards`,
+          datePublished: "2026-01-20",
+          dateModified: "2026-03-01",
+        })]}
       />
 
       {/* Hero Section */}
