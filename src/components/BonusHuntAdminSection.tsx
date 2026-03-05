@@ -32,6 +32,7 @@ import {
 import { useBonusHuntData } from "@/hooks/useBonusHuntData";
 import { BonusHuntCouponAdmin } from "@/components/admin/BonusHuntCouponAdmin";
 import { BonusHuntCouponSubmissions } from "@/components/admin/BonusHuntCouponSubmissions";
+import { BonusHuntArchiveAdmin } from "@/components/admin/BonusHuntArchiveAdmin";
 import { useCasinos } from "@/hooks/useCasinos";
 
 
