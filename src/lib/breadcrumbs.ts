@@ -347,10 +347,15 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
 
   // Community cluster – bundet til /community hub
   "/community/turneringer": [{ name: "Community", path: "/community" }],
+  "/community/turneringer/arkiv": [{ name: "Community", path: "/community" }, { name: "Turneringer", path: "/community/turneringer" }],
   "/community/rewards": [{ name: "Community", path: "/community" }],
 
-  // Bonus Hunt – bundet til Community
-  "/bonus-hunt": [{ name: "Community", path: "/community" }],
+  // Bonus Hunt – bundet til Forside (ikke Community, for SEO-isolation)
+  "/bonus-hunt": [],
+  "/bonus-hunt/arkiv": [{ name: "Bonus Hunt", path: "/bonus-hunt" }],
+
+  // Slot Database – standalone hub
+  "/slot-database": [],
 };
 
 /**
