@@ -205,6 +205,7 @@ export const COMMUNITY_LINKS: NavLinkWithIcon[] = [
   { to: "/slot-database", label: "Slot Database" },
   { to: "/community/turneringer", label: "Turneringer" },
   { to: "/community/turneringer/arkiv", label: "Turneringsarkiv" },
+  { to: "/community/hall-of-fame", label: "Hall of Fame" },
   { to: "/highlights", label: "Highlights" },
   { to: "/butik", label: "Butik" },
 ];
