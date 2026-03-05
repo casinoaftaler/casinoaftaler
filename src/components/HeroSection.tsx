@@ -91,8 +91,8 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-      {/* Decorative elements */}
-      <div className="absolute left-0 top-0 h-full w-full opacity-20" aria-hidden="true">
+      {/* Decorative elements – contain: strict prevents these from contributing to CLS */}
+      <div className="absolute left-0 top-0 h-full w-full opacity-20 pointer-events-none" aria-hidden="true" style={{ contain: 'strict' }}>
         <div 
           className="absolute left-10 top-10 h-32 w-32 rounded-full bg-primary/60 blur-xl will-change-transform"
           style={{ animation: "float 6s ease-in-out infinite" }}
