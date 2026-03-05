@@ -286,6 +286,10 @@ function SessionControls({ session }: { session: any }) {
     }
   };
 
+  const bettingAutoNote = session.gtw_betting_open || session.avgx_betting_open
+    ? "Betting lukker automatisk efter 3 åbnede bonusser."
+    : "Betting er lukket (auto eller manuelt).";
+
   const handleSettle = async () => {
     setLoading('settle');
     try {
@@ -332,22 +336,25 @@ function SessionControls({ session }: { session: any }) {
       {session.status !== 'completed' && (
         <>
           <Separator />
-          <div className="grid grid-cols-2 gap-4">
-            <div className="flex items-center justify-between">
-              <Label className="text-sm">GTW Betting</Label>
-              <Switch
-                checked={session.gtw_betting_open}
-                onCheckedChange={v => toggleBetting('gtw', v)}
-                disabled={loading === 'gtw'}
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <Label className="text-sm">AVG X Betting</Label>
-              <Switch
-                checked={session.avgx_betting_open}
-                onCheckedChange={v => toggleBetting('avgx', v)}
-                disabled={loading === 'avgx'}
-              />
+          <div className="text-xs text-muted-foreground space-y-1">
+            <p className="text-primary font-medium">{bettingAutoNote}</p>
+            <div className="grid grid-cols-2 gap-4 pt-1">
+              <div className="flex items-center justify-between">
+                <Label className="text-sm">GTW Betting</Label>
+                <Switch
+                  checked={session.gtw_betting_open}
+                  onCheckedChange={v => toggleBetting('gtw', v)}
+                  disabled={loading === 'gtw'}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <Label className="text-sm">AVG X Betting</Label>
+                <Switch
+                  checked={session.avgx_betting_open}
+                  onCheckedChange={v => toggleBetting('avgx', v)}
+                  disabled={loading === 'avgx'}
+                />
+              </div>
             </div>
           </div>
 
@@ -557,19 +564,13 @@ export function BonusHuntAdminSection() {
                 </div>
               </CardHeader>
               <CardContent>
-                {session ? (
+              {session ? (
                   <SessionControls session={session} />
-                ) : showCreateForm ? (
-                  <CreateSessionForm
-                    huntNumber={huntNumber!}
-                    huntId={huntData.id}
-                    onClose={() => setShowCreateForm(false)}
-                  />
                 ) : (
-                  <Button onClick={() => setShowCreateForm(true)} className="w-full">
-                    <Plus className="h-4 w-4 mr-2" />
-                    Opret Betting Session for Hunt #{huntNumber}
-                  </Button>
+                  <div className="text-center text-muted-foreground py-6">
+                    <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2" />
+                    <p className="text-sm">Betting session oprettes automatisk når en ny hunt registreres.</p>
+                  </div>
                 )}
               </CardContent>
             </Card>

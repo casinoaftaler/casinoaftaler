@@ -173,7 +173,7 @@ export type Database = {
           coupon_markets: Json
           coupon_results: Json | null
           created_at: string
-          created_by: string
+          created_by: string | null
           end_balance: number | null
           gtw_betting_open: boolean
           gtw_max_bet: number
@@ -197,7 +197,7 @@ export type Database = {
           coupon_markets?: Json
           coupon_results?: Json | null
           created_at?: string
-          created_by: string
+          created_by?: string | null
           end_balance?: number | null
           gtw_betting_open?: boolean
           gtw_max_bet?: number
@@ -221,7 +221,7 @@ export type Database = {
           coupon_markets?: Json
           coupon_results?: Json | null
           created_at?: string
-          created_by?: string
+          created_by?: string | null
           end_balance?: number | null
           gtw_betting_open?: boolean
           gtw_max_bet?: number

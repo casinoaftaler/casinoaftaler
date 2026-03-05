@@ -304,6 +304,58 @@ serve(async (req) => {
           }, { onConflict: 'hunt_number' });
       }
 
+      // Auto-create betting session for new hunts
+      if (isNewHunt) {
+        const { data: existingSession } = await supabase
+          .from("bonus_hunt_sessions")
+          .select("id")
+          .eq("hunt_number", huntNumber)
+          .maybeSingle();
+
+        if (!existingSession) {
+          const defaultPrizes = [
+            { place: 1, points: 300, credits: 0 },
+            { place: 2, points: 200, credits: 0 },
+            { place: 3, points: 100, credits: 0 },
+            { place: 4, points: 75, credits: 0 },
+            { place: 5, points: 50, credits: 0 },
+          ];
+          await supabase.from("bonus_hunt_sessions").insert({
+            streamsystem_hunt_id: huntData.id || `hunt-${huntNumber}`,
+            hunt_number: huntNumber,
+            status: 'active',
+            gtw_betting_open: true,
+            avgx_betting_open: true,
+            gtw_min_bet: 1,
+            gtw_max_bet: 50,
+            avgx_min_bet: 1,
+            avgx_max_bet: 50,
+            gtw_prizes: defaultPrizes,
+            casino_slug: huntData.casino || 'spildansknu',
+            host: 'kevin',
+          });
+          console.log(`Auto-created betting session for hunt #${huntNumber}`);
+        }
+      }
+
+      // Auto-close bets after 3 bonuses opened
+      const openedSlots = stats.openedSlots || 0;
+      if (openedSlots >= 3) {
+        const { data: openSession } = await supabase
+          .from("bonus_hunt_sessions")
+          .select("id, gtw_betting_open, avgx_betting_open")
+          .eq("hunt_number", huntNumber)
+          .maybeSingle();
+
+        if (openSession && (openSession.gtw_betting_open || openSession.avgx_betting_open)) {
+          await supabase.from("bonus_hunt_sessions").update({
+            gtw_betting_open: false,
+            avgx_betting_open: false,
+          }).eq("id", openSession.id);
+          console.log(`Auto-closed betting for hunt #${huntNumber} (${openedSlots} slots opened)`);
+        }
+      }
+
       // Fire-and-forget: sync slots + enrich (non-blocking for fast response)
       syncSlotCatalog(supabase, huntData, isNewHunt)
         .then(() => triggerEnrich(supabase))
