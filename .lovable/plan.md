@@ -1,37 +1,24 @@
 
 
-## Plan: Auto-join Monthly Tournaments
+## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
 
-### Problem
-Monthly tournaments currently require users to click "Deltag" (join) before their spins count. This should only be required for stream tournaments. Monthly tournaments should automatically track all players' spins.
+### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
 
-### Current Architecture
-- Monthly tournaments are stored in both the `tournaments` table AND `monthly_tournament_config`
-- The `slot-spin` edge function checks `tournament_participants` before recording entries -- meaning users who haven't clicked "Deltag" get no tournament entries
-- The monthly leaderboard boxes (`MonthlyTournamentBoxes`) use the `slot_leaderboard_by_game` materialized view, which works independently -- but the `TournamentCard` components also show these tournaments with a "Deltag" button
+The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
 
-### Changes
+Specifically:
+- **Remove** Gevinst from the right zone (lines 247-261)
+- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
 
-**1. Add `is_monthly` flag to tournaments table**
-- Add a boolean column `is_monthly` (default `false`) to distinguish monthly tournaments from stream tournaments
-- Update the 3 current monthly tournaments to set `is_monthly = true`
+Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
 
-**2. Update `slot-spin` edge function**
-- In all 4 tournament-entry recording paths (bonanza spin, bonanza bonus end, regular spin, regular bonus end):
-  - After checking `tournament_participants`, also query active tournaments where `is_monthly = true` that match the current `game_id`
-  - Record entries for monthly tournaments regardless of whether the user is in `tournament_participants`
+### 2. Add Count-Up Animation for Win Amount
 
-**3. Update frontend (Leaderboard page)**
-- Filter out tournaments where `is_monthly = true` from the `TournamentCard` list (they're already displayed by `MonthlyTournamentBoxes`)
-- Remove the "Deltag" button logic for monthly tournaments
+Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
+- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
+- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
+- The component already handles ease-out counting and bump animation on completion
 
-**4. Update admin create/edit tournament forms**
-- Add an `is_monthly` toggle to `CreateTournamentDialog` and `EditTournamentDialog` in `TournamentAdminSection.tsx`
-
-### Files to modify
-- `supabase/functions/slot-spin/index.ts` -- skip participation check for monthly tournaments
-- `src/pages/Leaderboard.tsx` -- filter monthly tournaments from TournamentCard list
-- `src/hooks/useTournaments.ts` -- add `is_monthly` to Tournament interface
-- `src/components/TournamentAdminSection.tsx` -- add is_monthly toggle
-- Database migration: add `is_monthly` column + update existing rows
+### Files Modified
+- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
 

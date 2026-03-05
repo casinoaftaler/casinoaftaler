@@ -16,6 +16,7 @@ export interface Tournament {
   created_at: string;
   max_credits: number | null;
   exclude_from_global_leaderboard: boolean;
+  is_monthly: boolean;
 }
 
 export interface TournamentEntry {

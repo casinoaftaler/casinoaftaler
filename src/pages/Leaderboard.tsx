@@ -403,9 +403,9 @@ export default function Leaderboard() {
   const { user, loading } = useAuth();
   const { data: tournaments, isLoading: tournamentsLoading } = useTournaments();
 
-  const active = tournaments?.filter((t) => t.status === "active") || [];
-  const upcoming = tournaments?.filter((t) => t.status === "upcoming") || [];
-  const ended = tournaments?.filter((t) => t.status === "ended") || [];
+  const active = tournaments?.filter((t) => t.status === "active" && !t.is_monthly) || [];
+  const upcoming = tournaments?.filter((t) => t.status === "upcoming" && !t.is_monthly) || [];
+  const ended = tournaments?.filter((t) => t.status === "ended" && !t.is_monthly) || [];
 
   // Build JSON-LD: Event schema + FAQ schema
   const now = new Date();

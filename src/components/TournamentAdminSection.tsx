@@ -55,6 +55,7 @@ function CreateTournamentDialog() {
   const [maxCredits, setMaxCredits] = useState("");
   const [maxBet, setMaxBet] = useState("");
   const [excludeFromGlobalLeaderboard, setExcludeFromGlobalLeaderboard] = useState(false);
+  const [isMonthly, setIsMonthly] = useState(false);
   const [startsAt, setStartsAt] = useState("");
   const [endsAt, setEndsAt] = useState("");
 
@@ -78,6 +79,7 @@ function CreateTournamentDialog() {
         max_credits: maxCredits ? parseInt(maxCredits) : null,
         max_bet: maxBet ? parseInt(maxBet) : null,
         exclude_from_global_leaderboard: excludeFromGlobalLeaderboard,
+        is_monthly: isMonthly,
       } as any);
       toast.success("Turnering oprettet!");
       setOpen(false);
@@ -89,6 +91,7 @@ function CreateTournamentDialog() {
       setMaxCredits("");
       setMaxBet("");
       setExcludeFromGlobalLeaderboard(false);
+      setIsMonthly(false);
       setStartsAt("");
       setEndsAt("");
     } catch {
@@ -154,6 +157,13 @@ function CreateTournamentDialog() {
               <p className="text-xs text-muted-foreground">Turneringsspins tæller ikke med i det globale leaderboard. Når maks credits er brugt, tæller spins igen.</p>
             </div>
           </div>
+          <div className="flex items-center gap-3">
+            <Switch checked={isMonthly} onCheckedChange={setIsMonthly} id="is-monthly" />
+            <div>
+              <Label htmlFor="is-monthly" className="cursor-pointer">Månedsturnering (auto-join)</Label>
+              <p className="text-xs text-muted-foreground">Alle spillere deltager automatisk – ingen "Deltag" knap.</p>
+            </div>
+          </div>
           {gameIds.length > 1 && (
             <div className="flex items-center gap-3">
               <Switch checked={separateLeaderboards} onCheckedChange={setSeparateLeaderboards} id="separate-lb" />
@@ -189,6 +199,7 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
   const [maxCredits, setMaxCredits] = useState(tournament.max_credits?.toString() || "");
   const [maxBet, setMaxBet] = useState((tournament as any).max_bet?.toString() || "");
   const [excludeFromGlobalLeaderboard, setExcludeFromGlobalLeaderboard] = useState(tournament.exclude_from_global_leaderboard ?? false);
+  const [isMonthly, setIsMonthly] = useState(tournament.is_monthly ?? false);
   const [gameIds, setGameIds] = useState<string[]>(tournament.game_ids);
   const [separateLeaderboards, setSeparateLeaderboards] = useState(tournament.separate_leaderboards);
   const [startsAt, setStartsAt] = useState(new Date(tournament.starts_at).toISOString().slice(0, 16));
@@ -213,6 +224,7 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
         max_credits: maxCredits ? parseInt(maxCredits) : null,
         max_bet: maxBet ? parseInt(maxBet) : null,
         exclude_from_global_leaderboard: excludeFromGlobalLeaderboard,
+        is_monthly: isMonthly,
       } as any);
       toast.success("Turnering opdateret!");
       setOpen(false);
@@ -279,6 +291,13 @@ function EditTournamentDialog({ tournament }: { tournament: Tournament }) {
               <p className="text-xs text-muted-foreground">Turneringsspins tæller ikke med i det globale leaderboard. Når maks credits er brugt, tæller spins igen.</p>
             </div>
           </div>
+          <div className="flex items-center gap-3">
+            <Switch checked={isMonthly} onCheckedChange={setIsMonthly} id="edit-is-monthly" />
+            <div>
+              <Label htmlFor="edit-is-monthly" className="cursor-pointer">Månedsturnering (auto-join)</Label>
+              <p className="text-xs text-muted-foreground">Alle spillere deltager automatisk – ingen "Deltag" knap.</p>
+            </div>
+          </div>
           {gameIds.length > 1 && (
             <div className="flex items-center gap-3">
               <Switch checked={separateLeaderboards} onCheckedChange={setSeparateLeaderboards} id="edit-separate-lb" />
@@ -316,6 +335,7 @@ function TournamentRow({ tournament }: { tournament: Tournament }) {
           <div className="flex items-center gap-2 mb-1">
             <h3 className="font-semibold truncate">{tournament.title}</h3>
             {getStatusBadge(tournament.status)}
+            {tournament.is_monthly && <Badge variant="outline" className="text-[10px]">Månedlig</Badge>}
           </div>
           <p className="text-xs text-muted-foreground">
             {format(new Date(tournament.starts_at), "d. MMM yyyy HH:mm", { locale: da })} — {format(new Date(tournament.ends_at), "d. MMM yyyy HH:mm", { locale: da })}
