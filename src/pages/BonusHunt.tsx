@@ -247,6 +247,8 @@ export default function BonusHunt() {
                     latestHuntNumber={latestHuntNumber}
                     maxHuntNumber={maxHuntNumber}
                     isLive={isLive}
+                    isArchived={isArchived}
+                    availableHuntNumbers={availableHuntNumbers}
                     onNavigate={handleNavigate}
                     onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
                   />
