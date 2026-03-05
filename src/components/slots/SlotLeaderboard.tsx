@@ -126,7 +126,8 @@ export function SlotLeaderboard({ gameId = "book-of-fedesvin" }: SlotLeaderboard
   const countdown = useTournamentCountdown();
   const { data: archiveData } = useMonthlyTournamentArchive();
 
-  const { data, isLoading } = useSlotLeaderboard(category);
+  // Use per-game leaderboard filtered to this game
+  const { data, isLoading } = useSlotLeaderboard(category, gameId);
 
   const entries = data?.entries;
   const currentUser = data?.currentUser;

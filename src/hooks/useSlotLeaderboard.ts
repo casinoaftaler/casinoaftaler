@@ -71,7 +71,67 @@ export function getCategoryUnit(category: LeaderboardCategory): string {
   }
 }
 
-export function useSlotLeaderboard(category: LeaderboardCategory = "total_points") {
+async function fetchPerGameLeaderboard(
+  category: LeaderboardCategory,
+  sortKey: string,
+  gameId: string,
+  currentUserId: string | null
+): Promise<{ entries: LeaderboardEntry[]; currentUser: CurrentUserLeaderboard | null }> {
+  const { data, error } = await supabase
+    .from("slot_leaderboard_by_game")
+    .select("user_id, monthly_winnings, monthly_biggest_win, monthly_biggest_multiplier, monthly_spins, monthly_bonuses")
+    .eq("game_id", gameId)
+    .order(sortKey === "monthly_winnings" ? "monthly_winnings" : sortKey === "monthly_biggest_win" ? "monthly_biggest_win" : "monthly_biggest_multiplier", { ascending: false })
+    .limit(100);
+
+  if (error) throw error;
+
+  const userIds = (data || []).map(d => d.user_id).filter(Boolean) as string[];
+  let profileMap = new Map<string, { display_name: string | null; avatar_url: string | null; twitch_badges?: unknown }>();
+  if (userIds.length > 0) {
+    const { data: profiles } = await supabase
+      .from("profiles_leaderboard")
+      .select("user_id, display_name, avatar_url, twitch_badges")
+      .in("user_id", userIds)
+      .limit(100);
+    profileMap = new Map(profiles?.map(p => [p.user_id, p]) || []);
+  }
+
+  const allEntries: LeaderboardEntry[] = (data || []).map(row => {
+    const profile = row.user_id ? profileMap.get(row.user_id) : null;
+    return {
+      user_id: row.user_id || "",
+      total_winnings: 0,
+      biggest_win: 0,
+      biggest_multiplier: 0,
+      total_spins: (row as any).monthly_spins || 0,
+      total_bonuses: (row as any).monthly_bonuses || 0,
+      daily_winnings: 0,
+      weekly_winnings: 0,
+      monthly_winnings: (row as any).monthly_winnings || 0,
+      monthly_biggest_win: (row as any).monthly_biggest_win || 0,
+      monthly_biggest_multiplier: (row as any).monthly_biggest_multiplier || 0,
+      display_name: profile?.display_name || "Anonym",
+      avatar_url: profile?.avatar_url || undefined,
+      twitch_badges: profile?.twitch_badges as Record<string, unknown> | null,
+    };
+  });
+
+  const filteredEntries = allEntries.filter(e => getCategoryDisplayValue(e, category) > 0);
+  filteredEntries.sort((a, b) => getCategoryDisplayValue(b, category) - getCategoryDisplayValue(a, category));
+
+  let currentUser: CurrentUserLeaderboard | null = null;
+  if (currentUserId) {
+    const userIndex = filteredEntries.findIndex(e => e.user_id === currentUserId);
+    if (userIndex !== -1) {
+      currentUser = { entry: filteredEntries[userIndex], rank: userIndex + 1 };
+    }
+  }
+
+  return { entries: filteredEntries, currentUser };
+}
+
+export function useSlotLeaderboard(category: LeaderboardCategory = "total_points", gameId?: string) {
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -89,12 +149,17 @@ export function useSlotLeaderboard(category: LeaderboardCategory = "total_points
   const sortKey = getCategorySortKey(category);
 
   return useQuery({
-    queryKey: ["slot-leaderboard", category, currentUserId],
+    queryKey: ["slot-leaderboard", category, gameId, currentUserId],
     enabled: !!currentUserId,
     queryFn: async (): Promise<{
       entries: LeaderboardEntry[];
       currentUser: CurrentUserLeaderboard | null;
     }> => {
+      // Use per-game view when gameId is provided
+      if (gameId) {
+        return fetchPerGameLeaderboard(category, sortKey, gameId, currentUserId);
+      }
+
       const { data, error } = await supabase
         .from("slot_leaderboard")
         .select(`

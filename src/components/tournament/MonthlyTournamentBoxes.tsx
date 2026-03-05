@@ -12,6 +12,7 @@ import { UserProfileLink } from "@/components/UserProfileLink";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import { useTournamentCountdown } from "@/hooks/useTournamentCountdown";
 import { useMonthlyTournamentArchive } from "@/hooks/useMonthlyTournamentArchive";
+import { useMonthlyTournamentConfig, type TournamentConfig } from "@/hooks/useMonthlyTournamentConfig";
 import {
   useSlotLeaderboard,
   getCategoryDisplayValue,
@@ -29,41 +30,34 @@ import fedesvinBonanzaPreview from "@/assets/slots/fedesvin-bonanza-preview.jpg"
 import bookOfFedesvinPreview from "@/assets/slots/book-of-fedesvin-preview.jpg";
 import riseOfFedesvinIntro from "@/assets/slots/rise/intro-screen.jpg";
 
+// Map game_id to image assets
+const GAME_IMAGES: Record<string, string> = {
+  "fedesvin-bonanza": fedesvinBonanzaPreview,
+  "book-of-fedesvin": bookOfFedesvinPreview,
+  "rise-of-fedesvin": riseOfFedesvinIntro,
+};
+
+function getCategoryIcon(category: LeaderboardCategory): React.ReactNode {
+  switch (category) {
+    case "highest_x": return <Zap className="h-3.5 w-3.5" />;
+    case "highest_win": return <Star className="h-3.5 w-3.5" />;
+    case "total_points":
+    default: return <TrendingUp className="h-3.5 w-3.5" />;
+  }
+}
+
 interface TournamentBoxConfig {
   category: LeaderboardCategory;
   gameName: string;
   gameSlug: string;
+  gameId: string;
   image: string;
   icon: React.ReactNode;
   categoryLabel: string;
+  prize_1: number;
+  prize_2: number;
+  prize_3: number;
 }
-
-const TOURNAMENT_BOXES: TournamentBoxConfig[] = [
-  {
-    category: "total_points",
-    gameName: "Fedesvin Bonanza",
-    gameSlug: "fedesvin-bonanza",
-    image: fedesvinBonanzaPreview,
-    icon: <TrendingUp className="h-3.5 w-3.5" />,
-    categoryLabel: "Flest Point",
-  },
-  {
-    category: "highest_x",
-    gameName: "Book of Fedesvin",
-    gameSlug: "book-of-fedesvin",
-    image: bookOfFedesvinPreview,
-    icon: <Zap className="h-3.5 w-3.5" />,
-    categoryLabel: "Højeste X",
-  },
-  {
-    category: "highest_win",
-    gameName: "Rise of Fedesvin",
-    gameSlug: "rise-of-fedesvin",
-    image: riseOfFedesvinIntro,
-    icon: <Star className="h-3.5 w-3.5" />,
-    categoryLabel: "Største Gevinst",
-  },
-];
 
 function RankBadge({ rank }: { rank: number }) {
   if (rank === 1) return (
@@ -128,7 +122,7 @@ function LeaderboardRow({ entry, rank, isCurrentUser, category }: {
 
 function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
   const { user } = useAuth();
-  const { data, isLoading } = useSlotLeaderboard(config.category);
+  const { data, isLoading } = useSlotLeaderboard(config.category, config.gameId);
   const countdown = useTournamentCountdown();
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
@@ -222,21 +216,21 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
                 <Trophy className="h-3.5 w-3.5 text-amber-900" />
               </div>
               <span className="text-xs text-muted-foreground">1. præmie</span>
-              <span className="text-sm font-bold text-amber-400">500 kr</span>
+              <span className="text-sm font-bold text-amber-400">{config.prize_1} kr</span>
             </div>
             <div className="flex flex-col items-center py-2.5 px-1">
               <div className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500 mb-1.5 shadow-md">
                 <Medal className="h-3.5 w-3.5 text-gray-700" />
               </div>
               <span className="text-xs text-muted-foreground">2. præmie</span>
-              <span className="text-sm font-bold text-foreground">300 kr</span>
+              <span className="text-sm font-bold text-foreground">{config.prize_2} kr</span>
             </div>
             <div className="flex flex-col items-center py-2.5 px-1">
               <div className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 mb-1.5 shadow-md">
                 <Award className="h-3.5 w-3.5 text-amber-200" />
               </div>
               <span className="text-xs text-muted-foreground">3. præmie</span>
-              <span className="text-sm font-bold text-foreground">200 kr</span>
+              <span className="text-sm font-bold text-foreground">{config.prize_3} kr</span>
             </div>
           </div>
         </div>
@@ -416,10 +410,25 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
 export function MonthlyTournamentBoxes() {
   const countdown = useTournamentCountdown();
   const { data: archiveData } = useMonthlyTournamentArchive();
+  const { data: configs, isLoading: configLoading } = useMonthlyTournamentConfig();
   const [showArchive, setShowArchive] = useState(false);
 
   const now = new Date();
   const monthLabel = `${now.toLocaleDateString("da-DK", { month: "long" }).replace(/^./, c => c.toUpperCase())} ${now.getFullYear()}`;
+
+  // Build tournament box configs from DB config
+  const tournamentBoxes: TournamentBoxConfig[] = (configs || []).map(c => ({
+    category: c.category,
+    gameName: c.game_name,
+    gameSlug: c.game_id,
+    gameId: c.game_id,
+    image: GAME_IMAGES[c.game_id] || fedesvinBonanzaPreview,
+    icon: getCategoryIcon(c.category),
+    categoryLabel: getCategoryLabel(c.category),
+    prize_1: c.prize_1,
+    prize_2: c.prize_2,
+    prize_3: c.prize_3,
+  }));
 
   return (
     <div className="space-y-3">
@@ -479,9 +488,9 @@ export function MonthlyTournamentBoxes() {
         </div>
       </div>
 
-      {/* 3 tournament boxes */}
+      {/* Tournament boxes */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {TOURNAMENT_BOXES.map((box) => (
+        {tournamentBoxes.map((box) => (
           <SingleTournamentBox key={box.category} config={box} />
         ))}
       </div>

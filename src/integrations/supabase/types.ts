@@ -1250,6 +1250,45 @@ export type Database = {
         }
         Relationships: []
       }
+      monthly_tournament_config: {
+        Row: {
+          category: string
+          created_at: string
+          game_id: string
+          game_name: string
+          id: string
+          is_active: boolean
+          prize_1: number
+          prize_2: number
+          prize_3: number
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          game_id: string
+          game_name: string
+          id?: string
+          is_active?: boolean
+          prize_1?: number
+          prize_2?: number
+          prize_3?: number
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          game_id?: string
+          game_name?: string
+          id?: string
+          is_active?: boolean
+          prize_1?: number
+          prize_2?: number
+          prize_3?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       news_generation_logs: {
         Row: {
           ai_model: string | null
@@ -2561,6 +2600,18 @@ export type Database = {
           total_winnings: number | null
           user_id: string | null
           weekly_winnings: number | null
+        }
+        Relationships: []
+      }
+      slot_leaderboard_by_game: {
+        Row: {
+          game_id: string | null
+          monthly_biggest_multiplier: number | null
+          monthly_biggest_win: number | null
+          monthly_bonuses: number | null
+          monthly_spins: number | null
+          monthly_winnings: number | null
+          user_id: string | null
         }
         Relationships: []
       }
