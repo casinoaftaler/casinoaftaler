@@ -751,6 +751,9 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
                   setTimeout(() => setScreenShake('none'), 800);
                   setShowBonusComplete(true);
                   showBonusCompleteRef.current = true;
+                } else {
+                  // Release spin lock for normal bonus spin updates (no overlay shown)
+                  spinLockRef.current = false;
                 }
               }
             };
