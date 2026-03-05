@@ -335,6 +335,7 @@ function TournamentRow({ tournament }: { tournament: Tournament }) {
           <div className="flex items-center gap-2 mb-1">
             <h3 className="font-semibold truncate">{tournament.title}</h3>
             {getStatusBadge(tournament.status)}
+            {tournament.is_monthly && <Badge variant="outline" className="text-[10px]">Månedlig</Badge>}
           </div>
           <p className="text-xs text-muted-foreground">
             {format(new Date(tournament.starts_at), "d. MMM yyyy HH:mm", { locale: da })} — {format(new Date(tournament.ends_at), "d. MMM yyyy HH:mm", { locale: da })}
