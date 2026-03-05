@@ -7,7 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Trophy, TrendingUp, Gamepad2, BarChart3, Calendar, ArrowRight } from "lucide-react";
+import { Trophy, TrendingUp, Gamepad2, BarChart3, ArrowRight } from "lucide-react";
+import bonusHuntArkivHero from "@/assets/bonus-hunt-arkiv-hero.jpg";
 
 const faqItems = [
   {
@@ -62,23 +63,43 @@ export default function BonusHuntArkiv() {
         jsonLd={[articleSchema, faqSchema]}
       />
 
-      <article className="mx-auto max-w-6xl px-4 py-8">
+      {/* Hero */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Trophy className="mr-1.5 h-3.5 w-3.5" />
+              Dokumenterede Resultater
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Bonus Hunt Arkiv – Alle Live Resultater
+            </h1>
+            <p className="text-lg text-white/80">
+              Komplet arkiv over alle dokumenterede bonus hunts fra vores{" "}
+              <Link to="/bonus-hunt" className="underline hover:text-white">live Twitch-streams</Link>.
+              {" "}Ægte resultater, ægte penge, fuld transparens.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="3 min" />
 
-        {/* Hero */}
-        <div className="mb-8 rounded-2xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/10 p-8 md:p-12">
-          <div className="flex items-center gap-3 mb-4">
-            <Trophy className="h-8 w-8 text-primary" />
-            <Badge variant="outline" className="text-xs">DOKUMENTERET</Badge>
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl mb-4">
-            Bonus Hunt Arkiv
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
-            Komplet arkiv over alle dokumenterede bonus hunts fra vores{" "}
-            <Link to="/bonus-hunt" className="text-primary hover:underline font-medium">live Twitch-streams</Link>.
-            {" "}Ægte resultater, ægte penge, fuld transparens.
-          </p>
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={bonusHuntArkivHero}
+            alt="Bonus hunt arkiv med dokumenterede resultater fra live Twitch-streams"
+            className="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+          />
         </div>
 
         {/* Stats strip */}
@@ -177,7 +198,7 @@ export default function BonusHuntArkiv() {
           <h3 className="text-xl font-bold text-foreground mt-8">Community-deltagelse</h3>
           <p className="text-muted-foreground leading-relaxed">
             Under aktive hunts kan du deltage i community bets direkte fra{" "}
-            <Link to="/bonus-hunt" className="text-primary hover:underline">bonus hunt-siden</Link>. Gæt på
+            <Link to="/bonus-hunt" className="text-primary hover:underline font-medium">bonus hunt-siden</Link>. Gæt på
             gennemsnitlig X eller samlet gevinst og konkurrér med andre community-medlemmer om credits og præmier
             i vores <Link to="/community/turneringer" className="text-primary hover:underline">månedlige turneringer</Link>.
           </p>
@@ -190,7 +211,7 @@ export default function BonusHuntArkiv() {
         <div className="mt-12">
           <AuthorBio author="kevin" />
         </div>
-      </article>
+      </div>
     </>
   );
 }

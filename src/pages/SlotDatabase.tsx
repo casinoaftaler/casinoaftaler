@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Search, TrendingUp, Zap, BarChart3, Gamepad2, Trophy } from "lucide-react";
+import slotDatabaseHero from "@/assets/slot-database-hero.jpg";
 
 const SLUG_MAP: Record<string, string> = {
   "Sweet Bonanza": "sweet-bonanza",
@@ -166,23 +167,43 @@ export default function SlotDatabase() {
         jsonLd={[articleSchema, faqSchema]}
       />
 
-      <article className="mx-auto max-w-6xl px-4 py-8">
+      {/* Hero */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
+              Live Data fra Bonus Hunts
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Slot Database – Alle Spillemaskiner Testet Live
+            </h1>
+            <p className="text-lg text-white/80">
+              Komplet oversigt over alle spillemaskiner vi har testet i vores{" "}
+              <Link to="/bonus-hunt" className="underline hover:text-white">live bonus hunts</Link>.
+              {" "}Ægte community-data fra vores Twitch-streams – ikke teoretiske tal.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="5 min" />
 
-        {/* Hero */}
-        <div className="mb-8 rounded-2xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/10 p-8 md:p-12">
-          <div className="flex items-center gap-3 mb-4">
-            <Gamepad2 className="h-8 w-8 text-primary" />
-            <Badge variant="outline" className="text-xs">LIVE DATA</Badge>
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl mb-4">
-            Slot Database
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
-            Komplet oversigt over alle spillemaskiner vi har testet i vores{" "}
-            <Link to="/bonus-hunt" className="text-primary hover:underline font-medium">live bonus hunts</Link>.
-            {" "}Hver maskine har ægte community-data fra vores Twitch-streams – ikke teoretiske tal.
-          </p>
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={slotDatabaseHero}
+            alt="Slot database med spillemaskiners RTP, volatilitet og community-statistikker"
+            className="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+          />
         </div>
 
         {/* Stats strip */}
@@ -349,7 +370,7 @@ export default function SlotDatabase() {
         <div className="mt-12">
           <AuthorBio author="jonas" />
         </div>
-      </article>
+      </div>
     </>
   );
 }
