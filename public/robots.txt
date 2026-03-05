@@ -2,6 +2,7 @@ User-agent: Googlebot
 Allow: /community
 Allow: /community/turneringer
 Allow: /highlights
+Allow: /bonus-hunt
 Disallow: /community/slots/
 Disallow: /community/spin-the-reel
 Disallow: /auth
@@ -14,6 +15,7 @@ User-agent: Bingbot
 Allow: /community
 Allow: /community/turneringer
 Allow: /highlights
+Allow: /bonus-hunt
 Disallow: /community/slots/
 Disallow: /community/spin-the-reel
 Disallow: /auth
@@ -32,6 +34,7 @@ User-agent: *
 Allow: /community
 Allow: /community/turneringer
 Allow: /highlights
+Allow: /bonus-hunt
 Disallow: /community/slots/
 Disallow: /community/spin-the-reel
 Disallow: /auth

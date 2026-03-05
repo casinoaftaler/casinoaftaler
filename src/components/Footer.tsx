@@ -517,7 +517,7 @@ export function Footer() {
               className="inline-block"
             >
               <img
-                src="https://assets.ingenco2.dk/icons/logo/regular_da.svg"
+                src="/images/ingenco2-badge.svg"
                 alt="Websites, der støtter klimaprojekter"
                 width={148}
                 height={48}
