@@ -895,17 +895,15 @@ const Betalingsmetoder = () => {
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════
-            FOOTER: AuthorBio → RelatedGuides → FAQ
+            FOOTER: LatestNews → RelatedGuides → FAQ → AuthorBio
             ═══════════════════════════════════════════ */}
-        <AuthorBio author="kevin" />
-
-        <Separator className="my-10" />
-
         <LatestNewsByCategory pagePath="/betalingsmetoder" />
 
         <RelatedGuides currentPath="/betalingsmetoder" />
 
         <FAQSection title="Ofte stillede spørgsmål om casino-betalingsmetoder" faqs={betalingsmetoderFaqs} />
+
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

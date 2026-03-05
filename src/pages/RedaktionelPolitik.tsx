@@ -391,9 +391,9 @@ const RedaktionelPolitik = () => {
           </div>
         </section>
 
-        <AuthorBio author="ajse" showCommunity={false} />
-
         <RelatedGuides currentPath="/redaktionel-politik" maxLinks={5} />
+
+        <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>
   );

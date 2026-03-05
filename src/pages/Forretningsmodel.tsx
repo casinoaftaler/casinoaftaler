@@ -365,9 +365,9 @@ const Forretningsmodel = () => {
           </p>
         </section>
 
-        <AuthorBio author="ajse" showCommunity={false} />
-
         <RelatedGuides currentPath="/forretningsmodel" maxLinks={5} />
+
+        <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>
   );

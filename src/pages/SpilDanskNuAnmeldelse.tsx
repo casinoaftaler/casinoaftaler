@@ -399,9 +399,9 @@ const SpilDanskNuAnmeldelse = () => {
         <RelatedReviews currentSlug="spildansknu" />
         <InlineCasinoCards excludeSlugs={["spildansknu"]} />
         <Separator className="my-10" />
-        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/casino-anmeldelser/spildansknu" />
         <FAQSection title="Ofte stillede spørgsmål om SpilDanskNu" faqs={spilDanskNuFaqs} />
+        <AuthorBio author="jonas" />
       </div>
       {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusAmount={casino.bonus_amount} bonusType={casino.bonus_type} freeSpins={casino.free_spins} wageringRequirements={casino.wagering_requirements} rating={casino.rating} logoUrl={casino.logo_url} isRecommended={casino.is_recommended} isHot={casino.is_hot} />}
     </>

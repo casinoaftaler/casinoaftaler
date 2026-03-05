@@ -385,10 +385,10 @@ const CasinoLicenser = () => {
 
         <InlineCasinoCards title="Anbefalede licenserede casinoer" count={4} />
 
-        <AuthorBio author="ajse" />
         <LatestNewsByCategory pagePath="/casino-licenser" />
         <RelatedGuides currentPath="/casino-licenser" />
         <FAQSection title="Ofte stillede spørgsmål om casino-licenser" faqs={faqs} />
+        <AuthorBio author="ajse" />
       </div>
     </>
   );

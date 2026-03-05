@@ -853,13 +853,11 @@ const Omsaetningskrav = () => {
           </div>
         </section>
 
-        <AuthorBio author="ajse" />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/omsaetningskrav" />
 
         <FAQSection title="Ofte stillede spørgsmål om omsætningskrav" faqs={omsaetningskravFaqs} />
+
+        <AuthorBio author="ajse" />
       </div>
     </>
   );
