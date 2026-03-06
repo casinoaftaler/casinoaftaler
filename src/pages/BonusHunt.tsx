@@ -11,8 +11,11 @@ import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/Bon
 import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream";
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
 import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent";
+import { BonusHuntSeoText } from "@/components/bonus-hunt/BonusHuntSeoText";
 // LazySection removed from SEO-critical sections for crawlability
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
 import { BonusHuntFaq, buildBonusHuntFaqSchema } from "@/components/bonus-hunt/BonusHuntFaq";
 import { BonusHuntRelatedGuides } from "@/components/bonus-hunt/BonusHuntRelatedGuides";
@@ -224,6 +227,9 @@ export default function BonusHunt() {
         </div>
 
         <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
+          {/* Author meta bar */}
+          <AuthorMetaBar author="kevin" readTime="8 Min." />
+
           {/* Stat strip */}
           <BonusHuntStatStrip />
 
@@ -261,6 +267,8 @@ export default function BonusHunt() {
                   <BonusHuntSlotTable slots={huntData.slots} />
                   {/* SEO Content – process overview, right under slots */}
                   <BonusHuntSeoContent />
+                  {/* Enterprise SEO text – deep content with money page links */}
+                  <BonusHuntSeoText />
                   {/* Host card – visible on mobile only (below slot table) */}
                   <div className="xl:hidden">
                     <BonusHuntHostCard huntNumber={currentHuntNumber} host={sessionHost} />
@@ -356,6 +364,9 @@ export default function BonusHunt() {
 
           {/* FAQ Section – must be in DOM for schema match */}
           <BonusHuntFaq />
+
+          {/* Author bio – E-E-A-T signal */}
+          <AuthorBio author="kevin" showCommunity={false} />
 
           {/* Brand block – E-E-A-T signal (last) */}
           <CommunityBrandBlock />
