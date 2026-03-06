@@ -192,7 +192,7 @@ export default function RiseOfFedesvin() {
   const sidePanelContent = null;
 
   return (
-    <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col overflow-x-hidden">
+    <div className="h-[calc(100svh-4rem)] max-h-[calc(100svh-4rem)] relative flex flex-col overflow-hidden">
       <SEO
         title="Rise of Fedesvin – Gratis Spilleautomat | Casinoaftaler"
         description="Spil Rise of Fedesvin gratis hos Casinoaftaler. Magisk tema med tryllekunstnere, drager og free spins. Optjen point og klatr på ranglisten."
@@ -219,23 +219,37 @@ export default function RiseOfFedesvin() {
           </Link>
         </Button>
       </div>
-      
-      <div className="xl:flex-1 flex items-start justify-center overflow-hidden">
-        <div 
-          className="slot-viewport-container"
-          style={{
-            width: '1280px',
-            transform: shouldScale 
-              ? `translate(${parseInt(siteSettings?.['slot_offset_x_rise-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_rise-of-fedesvin'] || '0', 10)}px) scale(${scale})`
-              : `translate(${parseInt(siteSettings?.['slot_offset_x_rise-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_rise-of-fedesvin'] || '0', 10)}px)`,
-          }}
-        >
-          <SlotPageLayout sidePanel={sidePanelContent} sidePanelGap={parseInt(siteSettings?.rise_of_fedesvin_sidepanel_gap || "24", 10)}>
-            <SlotGame gameId={GAME_ID} />
-          </SlotPageLayout>
-        </div>
-      </div>
 
+      {isMobile ? (
+        /* ── MOBILE: native width, no CSS transform scaling ── */
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="w-full px-1">
+            <SlotPageLayout sidePanel={null}>
+              <SlotGame gameId={GAME_ID} isMobile />
+            </SlotPageLayout>
+          </div>
+        </div>
+      ) : (
+        /* ── DESKTOP: CSS transform scaling ── */
+        <div className="flex-1 flex items-center justify-center overflow-hidden">
+          <div
+            className="slot-viewport-container"
+            style={{
+              width: '1880px',
+              height: '1120px',
+              transform: `scale(${scale})`,
+              marginTop: `${-(1120 * (1 - scale)) / 2}px`,
+              marginBottom: `${-(1120 * (1 - scale)) / 2}px`,
+              marginLeft: `${-(1880 * (1 - scale)) / 2}px`,
+              marginRight: `${-(1880 * (1 - scale)) / 2}px`,
+            }}
+          >
+            <SlotPageLayout sidePanel={sidePanelContent}>
+              <SlotGame gameId={GAME_ID} />
+            </SlotPageLayout>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

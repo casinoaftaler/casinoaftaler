@@ -196,7 +196,7 @@ export default function SlotMachine() {
 
   // 7. Show the game
   return (
-    <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col">
+    <div className="h-[calc(100svh-4rem)] max-h-[calc(100svh-4rem)] relative flex flex-col overflow-hidden">
       <SEO
         title="Book of Fedesvin – Gratis Spilleautomat | Casinoaftaler"
         description="Spil Book of Fedesvin gratis hos Casinoaftaler. Egyptisk-tema spilleautomat med expanding symbols, free spins og bonusrunder. Optjen point og klatr på ranglisten."
@@ -210,37 +210,50 @@ export default function SlotMachine() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
 
       {/* Back button */}
-      <div className="absolute top-3 left-3 z-20">
+      <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-20">
         <Button
           asChild
           variant="ghost"
           size="sm"
-          className="text-amber-300/80 hover:text-amber-300 hover:bg-amber-500/10 gap-1.5"
+          className="text-amber-300/80 hover:text-amber-300 hover:bg-amber-500/10 gap-1.5 h-7 px-2 text-xs sm:h-8 sm:px-3 sm:text-sm"
         >
           <Link to="/community/slots">
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4" />
             <span className="hidden sm:inline">Tilbage til spil</span>
           </Link>
         </Button>
       </div>
-      
-      {/* Scaled game area - only the game itself is scaled */}
-      <div className="xl:flex-1 flex items-start justify-center overflow-hidden">
-        <div 
-          className="slot-viewport-container"
-          style={{
-            width: '1280px',
-            transform: shouldScale 
-              ? `translate(${parseInt(siteSettings?.['slot_offset_x_book-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_book-of-fedesvin'] || '0', 10)}px) scale(${scale})`
-              : `translate(${parseInt(siteSettings?.['slot_offset_x_book-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_book-of-fedesvin'] || '0', 10)}px)`,
-          }}
-        >
-          <SlotPageLayout sidePanel={sidePanelContent} sidePanelGap={parseInt(siteSettings?.slot_sidepanel_gap || "24", 10)}>
-            <SlotGame />
-          </SlotPageLayout>
-        </div>
-      </div>
 
+      {isMobile ? (
+        /* ── MOBILE: native width, no CSS transform scaling ── */
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="w-full px-1">
+            <SlotPageLayout sidePanel={null}>
+              <SlotGame isMobile />
+            </SlotPageLayout>
+          </div>
+        </div>
+      ) : (
+        /* ── DESKTOP: CSS transform scaling ── */
+        <div className="flex-1 flex items-center justify-center overflow-hidden">
+          <div
+            className="slot-viewport-container"
+            style={{
+              width: '1880px',
+              height: '1120px',
+              transform: `scale(${scale})`,
+              marginTop: `${-(1120 * (1 - scale)) / 2}px`,
+              marginBottom: `${-(1120 * (1 - scale)) / 2}px`,
+              marginLeft: `${-(1880 * (1 - scale)) / 2}px`,
+              marginRight: `${-(1880 * (1 - scale)) / 2}px`,
+            }}
+          >
+            <SlotPageLayout sidePanel={sidePanelContent}>
+              <SlotGame />
+            </SlotPageLayout>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
