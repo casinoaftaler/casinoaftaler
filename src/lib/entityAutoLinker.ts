@@ -2,6 +2,10 @@
  * Entity auto-linker: replaces first occurrence of key entities in HTML
  * with internal links to relevant main pages.
  * 
+ * CRITICAL PRIORITY ORDER:
+ * 1. Money-pages FIRST (commercial/transactional targets)
+ * 2. Glossary-sider KUN for termer uden kommerciel modpart
+ * 
  * Rules:
  * - Only first occurrence per entity
  * - Natural anchor text
@@ -17,55 +21,19 @@ interface EntityMapping {
 }
 
 const ENTITY_MAPPINGS: EntityMapping[] = [
-  // ── Money-page entities ──────────────────────────────────────────
+  // ══════════════════════════════════════════════════════════════════
+  // ── MONEY-PAGE ENTITIES (highest priority – listed first) ───────
+  // ══════════════════════════════════════════════════════════════════
+
+  // Bonus cluster money-pages – MUST outrank glossary entries
   {
-    patterns: [/\bSpillemyndigheden\b/],
-    href: "/spillemyndigheden",
-    anchor: "Spillemyndigheden",
-  },
-  {
-    patterns: [/\bROFUS\b/],
-    href: "/ansvarligt-spil",
-    anchor: "ROFUS",
-  },
-  {
-    patterns: [/\bansvarligt spil\b/i],
-    href: "/ansvarligt-spil",
-    anchor: "ansvarligt spil",
-  },
-  {
-    patterns: [/\bTrustly\b/],
-    href: "/betalingsmetoder/trustly",
-    anchor: "Trustly",
-  },
-  {
-    patterns: [/\bMobilePay\b/],
-    href: "/betalingsmetoder/mobilepay",
-    anchor: "MobilePay",
-  },
-  {
-    patterns: [/\bdansk licens\b/i, /\bdanske licenser\b/i],
-    href: "/casino-licenser",
+    patterns: [/\bomsætningskrav\b/i, /\bomsaetningskrav\b/i, /\bwagering[\s-]?krav\b/i],
+    href: "/omsaetningskrav",
     anchor: "",
   },
   {
-    patterns: [/\bnye casinoer\b/i],
-    href: "/nye-casinoer",
-    anchor: "",
-  },
-  {
-    patterns: [/\bcashback bonus\b/i, /\bcashback-bonus\b/i],
-    href: "/cashback-bonus",
-    anchor: "",
-  },
-  {
-    patterns: [/\breload bonus\b/i, /\breload-bonus\b/i],
-    href: "/reload-bonus",
-    anchor: "",
-  },
-  {
-    patterns: [/\bhvidvask(?:regler|lovgivning|ning)?\b/i, /\bAML\b/],
-    href: "/casino-licenser",
+    patterns: [/\bfree spins\b/i, /\bgratis spins\b/i],
+    href: "/free-spins",
     anchor: "",
   },
   {
@@ -94,6 +62,35 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     anchor: "",
   },
   {
+    patterns: [/\bcashback bonus\b/i, /\bcashback-bonus\b/i],
+    href: "/cashback-bonus",
+    anchor: "",
+  },
+  {
+    patterns: [/\breload bonus\b/i, /\breload-bonus\b/i],
+    href: "/reload-bonus",
+    anchor: "",
+  },
+
+  // Casino-liste money-pages
+  {
+    patterns: [/\bnye casinoer\b/i],
+    href: "/nye-casinoer",
+    anchor: "",
+  },
+  {
+    patterns: [/\bdansk licens\b/i, /\bdanske licenser\b/i],
+    href: "/casino-licenser",
+    anchor: "",
+  },
+  {
+    patterns: [/\bhvidvask(?:regler|lovgivning|ning)?\b/i, /\bAML\b/],
+    href: "/casino-licenser",
+    anchor: "",
+  },
+
+  // Casinospil hub money-pages
+  {
     patterns: [/\bspillemaskiner\b/i],
     href: "/casinospil/spillemaskiner",
     anchor: "",
@@ -109,7 +106,39 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     anchor: "",
   },
 
-  // ── Ordbog entities (alle 15 termer) ─────────────────────────────
+  // Trust & compliance money-pages
+  {
+    patterns: [/\bSpillemyndigheden\b/],
+    href: "/spillemyndigheden",
+    anchor: "Spillemyndigheden",
+  },
+  {
+    patterns: [/\bROFUS\b/],
+    href: "/ansvarligt-spil",
+    anchor: "ROFUS",
+  },
+  {
+    patterns: [/\bansvarligt spil\b/i],
+    href: "/ansvarligt-spil",
+    anchor: "ansvarligt spil",
+  },
+
+  // Payment money-pages
+  {
+    patterns: [/\bTrustly\b/],
+    href: "/betalingsmetoder/trustly",
+    anchor: "Trustly",
+  },
+  {
+    patterns: [/\bMobilePay\b/],
+    href: "/betalingsmetoder/mobilepay",
+    anchor: "MobilePay",
+  },
+
+  // ══════════════════════════════════════════════════════════════════
+  // ── GLOSSARY ENTITIES (informational support – lower priority) ──
+  // Only for terms WITHOUT a competing money-page
+  // ══════════════════════════════════════════════════════════════════
   {
     patterns: [/\bRTP\b/],
     href: "/ordbog/rtp",
@@ -123,16 +152,6 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
   {
     patterns: [/\bhouse edge\b/i],
     href: "/ordbog/house-edge",
-    anchor: "",
-  },
-  {
-    patterns: [/\bomsætningskrav\b/i, /\bomsaetningskrav\b/i, /\bwagering[\s-]?krav\b/i],
-    href: "/ordbog/wagering",
-    anchor: "",
-  },
-  {
-    patterns: [/\bfree spins\b/i, /\bgratis spins\b/i],
-    href: "/ordbog/free-spins",
     anchor: "",
   },
   {
