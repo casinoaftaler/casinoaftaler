@@ -89,7 +89,7 @@ const casinospilFaqs: { question: string; answer: ReactNode }[] = [
   {
     question: "Hvilke trends vil forme casinospil de næste 2-3 år i Danmark?",
     answer:
-      "Fire trends dominerer: 1) AI-personalisering – casinoer bruger maskinlæring til at anbefale spil baseret på din adfærd og præferencer, med skræddersyede bonustilbud. 2) Skill-based elementer – nye spiltyper blander traditionel RNG med spiller-dygtighed, fx refleks-baserede bonusrunder. 3) Social gaming – multiplayer-funktioner og turneringer gør casinospil mere sociale (som vores eget community). 4) Regulatorisk stramning – Spillemyndigheden forventes at indføre strengere regler for indskudsgrænser og autoplay, hvilket vil gøre ansvarligt spil endnu mere centralt. VR-casino forbliver en niche – teknologien er der, men adoption er langsom i Danmark.",
+      <>Fire trends dominerer: 1) AI-personalisering – casinoer bruger maskinlæring til at anbefale spil baseret på din adfærd og præferencer, med skræddersyede bonustilbud. 2) Skill-based elementer – nye spiltyper blander traditionel RNG med spiller-dygtighed, fx refleks-baserede bonusrunder. 3) Social gaming – multiplayer-funktioner og turneringer gør casinospil mere sociale, som vores <Link to="/community/turneringer" className={linkClass}>månedlige turneringer</Link> og <Link to="/slot-database" className={linkClass}>Slot Database</Link> med community-data. 4) Regulatorisk stramning – Spillemyndigheden forventes at indføre strengere regler for indskudsgrænser og autoplay, hvilket vil gøre ansvarligt spil endnu mere centralt. VR-casino forbliver en niche – teknologien er der, men adoption er langsom i Danmark.</>,
   },
 ];
 

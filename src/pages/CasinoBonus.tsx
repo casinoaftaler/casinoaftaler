@@ -218,7 +218,7 @@ const CasinoBonus = () => {
             Denne guide er bygget på princippet om, at markedsføring og reel værdi er to fundamentalt forskellige ting. Et casino kan annoncere "100% op til 1.000 kr." – men den reelle matematiske værdi af det tilbud kan være under 200 kr., når man indregner omsætningskrav, bonusstruktur og spilbidrag. Vi giver dig værktøjerne til at beregne den faktiske værdi af ethvert bonustilbud, så du aldrig betaler overpris for din casino bonus.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Guiden dækker alle 10 primære bonustyper på det danske marked, med matematiske analyser, strategiske anbefalinger og en ærlig vurdering af, hvem der bør – og hvem der bør undlade at – bruge bonusser. Vi har testet over 25 danske casinoer i januar-februar 2026 med reelle indbetalinger for at verificere vilkårene i praksis. Det er ikke en markedsføringsguide – det er en beslutningsguide.
+            Guiden dækker alle 10 primære bonustyper på det danske marked, med matematiske analyser, strategiske anbefalinger og en ærlig vurdering af, hvem der bør – og hvem der bør undlade at – bruge bonusser. Vi har testet over 25 danske casinoer i januar-februar 2026 med reelle indbetalinger for at verificere vilkårene i praksis – alle resultater er dokumenteret i vores <Link to="/bonus-hunt/arkiv" className={linkClass}>Bonus Hunt Arkiv</Link> med gennemsnitlig X, break-even analyser og community-data. Det er ikke en markedsføringsguide – det er en beslutningsguide.
           </p>
         </section>
 

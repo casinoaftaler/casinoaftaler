@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Trophy, Video, RotateCw, Gift, ShoppingBag } from "lucide-react";
+import { Gamepad2, Trophy, Video, RotateCw, Gift, ShoppingBag, Archive, Database } from "lucide-react";
 
 const COMMUNITY_LINKS = [
   {
@@ -13,6 +13,18 @@ const COMMUNITY_LINKS = [
     title: "Turneringer",
     description: "Deltag i ugentlige turneringer og vind præmier.",
     to: "/community/turneringer",
+  },
+  {
+    icon: Archive,
+    title: "Bonus Hunt Arkiv",
+    description: "Alle dokumenterede hunt-resultater med statistik.",
+    to: "/bonus-hunt/arkiv",
+  },
+  {
+    icon: Database,
+    title: "Slot Database",
+    description: "163+ slots med community-data og performance-stats.",
+    to: "/slot-database",
   },
   {
     icon: Video,

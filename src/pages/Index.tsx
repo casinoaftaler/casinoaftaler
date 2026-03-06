@@ -584,8 +584,12 @@ const Index = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores{" "}
-            <Link to="/bonus-hunt" className="text-primary hover:underline font-medium">Bonus Hunt arkiv</Link>
-            {" "}giver dig adgang til alle tidligere hunts med detaljerede statistikker. Deltag i community bets og følg{" "}
+            <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline font-medium">Bonus Hunt Arkiv</Link>
+            {" "}giver dig adgang til alle tidligere hunts med detaljerede statistikker, gennemsnit X og break-even analyser. Udforsk vores{" "}
+            <Link to="/slot-database" className="text-primary hover:underline font-medium">Slot Database</Link>
+            {" "}med community-data fra 163+ testede spillemaskiner, eller følg med i{" "}
+            <Link to="/community/turneringer" className="text-primary hover:underline font-medium">månedlige turneringer</Link>
+            {" "}med kontante præmier. Følg{" "}
             <Link to="/om" className="text-primary hover:underline font-medium">Casinoaftaler</Link>
             {" "}live på{" "}
             <a href="https://www.twitch.tv/fedesvinsejer" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Twitch</a>.
@@ -598,6 +602,27 @@ const Index = () => {
               <Target className="h-4 w-4 text-primary flex-shrink-0" />
               Se alle bonus hunts
               <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/bonus-hunt/arkiv"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+            >
+              <BookOpen className="h-4 w-4 text-primary flex-shrink-0" />
+              Bonus Hunt Arkiv
+            </Link>
+            <Link
+              to="/slot-database"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+            >
+              <Gamepad2 className="h-4 w-4 text-primary flex-shrink-0" />
+              Slot Database
+            </Link>
+            <Link
+              to="/community/turneringer/arkiv"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+            >
+              <Trophy className="h-4 w-4 text-primary flex-shrink-0" />
+              Turneringsarkiv
             </Link>
             <Link
               to="/community"
