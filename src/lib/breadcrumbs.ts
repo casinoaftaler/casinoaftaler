@@ -78,6 +78,8 @@ export const routeLabels: Record<string, string> = {
   "/terms": "Vilkår",
   "/cookies": "Cookies",
   "/highlights": "Highlights",
+  "/butik": "Butik",
+  "/sitemap": "Sitemap",
   // Forfattere
   "/forfatter": "Forfattere",
   "/forfatter/jonas": "Jonas Theill",
@@ -294,6 +296,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/saadan-tester-vi-casinoer": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/forretningsmodel": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/redaktionel-politik": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
+  "/kontakt": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
 
   // Live Casino cluster – bundet til /live-casino hub
   "/live-casino/blackjack": [{ name: "Live Casino", path: "/live-casino" }],
