@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, ArrowLeft, ArrowRight } from "lucide-react";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { useMemo } from "react";
+import ordbogHero from "@/assets/heroes/ordbog-hero.jpg";
 
 const OrdbogTerm = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -51,7 +52,34 @@ const OrdbogTerm = () => {
         description={term.metaDescription}
         jsonLd={[articleSchema, definedTermSchema] as Record<string, unknown>[]}
       />
-      <article className="mx-auto max-w-4xl px-4 py-8 md:py-12">
+
+      {/* Hero Section */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${ordbogHero})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            {term.category && (
+              <Badge variant="secondary" className="mb-4">
+                {term.category}
+              </Badge>
+            )}
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              {term.title}
+            </h1>
+            <p className="text-lg text-white/80">
+              {term.shortDefinition}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="5 min" />
 
         <Link to="/ordbog" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-6">
@@ -59,16 +87,16 @@ const OrdbogTerm = () => {
           Tilbage til Casino Ordbog
         </Link>
 
-        <header className="mb-8">
-          <div className="flex items-center gap-3 mb-3">
-            <BookOpen className="h-7 w-7 text-primary" />
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground">{term.title}</h1>
-          </div>
-          {term.category && <Badge variant="secondary" className="mb-4">{term.category}</Badge>}
-          <p className="text-lg text-muted-foreground leading-relaxed border-l-4 border-primary/30 pl-4 bg-muted/30 py-3 rounded-r-md">
-            {term.shortDefinition}
-          </p>
-        </header>
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={ordbogHero}
+            alt={`${term.title} – casino ordbog begreb illustreret med spillekort og chips`}
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+          />
+        </div>
 
         <div
           className="prose prose-lg max-w-none dark:prose-invert mb-10 prose-headings:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:underline"
@@ -100,7 +128,7 @@ const OrdbogTerm = () => {
 
         <RelatedGuides currentPath={pathname} />
         <AuthorBio author="jonas" />
-      </article>
+      </div>
     </>
   );
 };

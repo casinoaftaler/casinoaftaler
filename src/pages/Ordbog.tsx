@@ -7,10 +7,11 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { glossaryTerms, getTermsByLetter, getGlossaryLetters } from "@/data/glossaryTerms";
-import { Search, BookOpen, ArrowRight } from "lucide-react";
+import { Search, BookOpen, ArrowRight, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import ordbogHero from "@/assets/heroes/ordbog-hero.jpg";
 
 const ORDBOG_FAQS = [
   { question: "Hvad er en casino ordbog?", answer: "En casino ordbog er en samling af definitioner og forklaringer af de mest almindelige begreber inden for online casino, spillemaskiner og bonusser." },
@@ -63,17 +64,45 @@ const Ordbog = () => {
         description="Komplet casino ordbog med forklaringer af RTP, wagering, volatilitet, free spins, house edge og 10+ andre vigtige begreber. Alt forklaret på dansk."
         jsonLd={[articleSchema, definedTermSetSchema] as Record<string, unknown>[]}
       />
-      <article className="mx-auto max-w-4xl px-4 py-8 md:py-12">
-        <AuthorMetaBar author="jonas" readTime="8 min" />
-        <header className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
-            <BookOpen className="h-8 w-8 text-primary" />
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground">Casino Ordbog</h1>
+
+      {/* Hero Section */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${ordbogHero})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              {glossaryTerms.length} begreber
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Casino Ordbog
+            </h1>
+            <p className="text-lg text-white/80">
+              Din komplette guide til alle vigtige casino-begreber. Fra RTP og volatilitet til wagering og free spins — vi forklarer hvert begreb på dansk med konkrete eksempler.
+            </p>
           </div>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Din komplette guide til alle vigtige casino-begreber. Fra RTP og volatilitet til wagering og free spins — vi forklarer hvert begreb på dansk med konkrete eksempler.
-          </p>
-        </header>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
+        <AuthorMetaBar author="jonas" readTime="8 min" />
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={ordbogHero}
+            alt="Casino ordbog – opslagsbog med terninger, chips og spillekort på et mørkt bord med lilla og teal belysning"
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+          />
+        </div>
 
         <div className="relative mb-8">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -137,7 +166,7 @@ const Ordbog = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Casino-begreber" faqs={ORDBOG_FAQS} />
         <RelatedGuides currentPath={pathname} />
         <AuthorBio author="jonas" />
-      </article>
+      </div>
     </>
   );
 };
