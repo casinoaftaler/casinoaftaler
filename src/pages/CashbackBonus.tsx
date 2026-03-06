@@ -623,15 +623,9 @@ const CashbackBonus = () => {
           title="Casinoer med stærke cashback-programmer"
         />
 
-        <Separator className="my-10" />
-
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/cashback-bonus" />
-
         <FAQSection title="Ofte stillede spørgsmål om cashback bonus" faqs={cashbackFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

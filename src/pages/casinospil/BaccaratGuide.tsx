@@ -425,12 +425,8 @@ const BaccaratGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/casinospil/baccarat" />
-
         <FAQSection faqs={baccaratFaqs} />
-
         <AuthorBio author="jonas" showCommunity={false} />
       </div>
     </>

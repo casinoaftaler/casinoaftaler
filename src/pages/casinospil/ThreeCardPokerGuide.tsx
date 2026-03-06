@@ -817,16 +817,8 @@ const ThreeCardPokerGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
-        <FAQSection faqs={faqs} />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/casinospil/poker/three-card-poker" />
-
-        <Separator className="my-10" />
-
+        <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
     </>

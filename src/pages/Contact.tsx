@@ -401,12 +401,8 @@ export default function Contact() {
           </div>
         </section>
 
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/kontakt" />
-
         <FAQSection title="Ofte stillede spørgsmål" faqs={contactFaqs} />
-
         <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>

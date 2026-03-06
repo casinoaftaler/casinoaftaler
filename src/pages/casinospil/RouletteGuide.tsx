@@ -667,12 +667,8 @@ const RouletteGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/casinospil/roulette" />
-
         <FAQSection faqs={rouletteFaqs} />
-
         <AuthorBio author="jonas" showCommunity={false} />
       </div>
     </>
