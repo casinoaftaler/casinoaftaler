@@ -209,16 +209,16 @@ const CasinoBonus = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvorfor casino bonusser stadig definerer det danske marked i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Casino bonusser er langt mere end markedsføringstricks – de er det vigtigste konkurrenceparameter mellem danske casinoer i 2026. Mens produktudbuddet (spil, betalingsmetoder, mobile oplevelser) er konvergeret til et næsten identisk niveau, er bonusvilkårene det sted, hvor casinoerne reelt differentierer sig. For spilleren betyder det, at bonusvalget har direkte indflydelse på den matematiske forventede værdi af hver spillesession.
+            Casino bonusser er langt mere end markedsføringstricks – de er det vigtigste konkurrenceparameter mellem <Link to="/casinoer" className={linkClass}>danske casinoer</Link> i 2026. Mens produktudbuddet (spil, betalingsmetoder, mobile oplevelser) er konvergeret til et næsten identisk niveau, er bonusvilkårene det sted, hvor casinoerne reelt differentierer sig. For spilleren betyder det, at bonusvalget har direkte indflydelse på den matematiske forventede værdi af hver spillesession.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det danske bonuslandskab er unikt i europæisk sammenhæng. <a href="https://www.spillemyndigheden.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>Spillemyndighedens</a> regulering med et 10x omsætningsloft har skabt et marked, der er markant mere spillervenligt end nogen anden jurisdiktion i Europa. Til sammenligning opererer britiske casinoer typisk med 35-50x omsætningskrav, maltesiske med 30-40x og Curaçao-licenserede med op til 60x. Det danske loft beskytter spillere mod de mest aggressive bonusstrukturer.
+            Det danske bonuslandskab er unikt i europæisk sammenhæng. <Link to="/spillemyndigheden" className={linkClass}>Spillemyndighedens</Link> regulering med et 10x <Link to="/ordbog/wagering" className={linkClass}>omsætningsloft</Link> har skabt et marked, der er markant mere spillervenligt end nogen anden jurisdiktion i Europa. Til sammenligning opererer britiske casinoer typisk med højere krav, maltesiske ligeledes og Curaçao-licenserede med endnu højere. Det danske loft beskytter spillere mod de mest aggressive bonusstrukturer – læs mere om <Link to="/casino-licenser" className={linkClass}>casino licenser og regulering</Link>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne guide er bygget på princippet om, at markedsføring og reel værdi er to fundamentalt forskellige ting. Et casino kan annoncere "100% op til 1.000 kr." – men den reelle matematiske værdi af det tilbud kan være under 200 kr., når man indregner omsætningskrav, bonusstruktur og spilbidrag. Vi giver dig værktøjerne til at beregne den faktiske værdi af ethvert bonustilbud, så du aldrig betaler overpris for din casino bonus.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Guiden dækker alle 10 primære bonustyper på det danske marked, med matematiske analyser, strategiske anbefalinger og en ærlig vurdering af, hvem der bør – og hvem der bør undlade at – bruge bonusser. Vi har testet over 25 danske casinoer i januar-februar 2026 med reelle indbetalinger for at verificere vilkårene i praksis – alle resultater er dokumenteret i vores <Link to="/bonus-hunt/arkiv" className={linkClass}>Bonus Hunt Arkiv</Link> med gennemsnitlig X, break-even analyser og community-data. Det er ikke en markedsføringsguide – det er en beslutningsguide.
+            Guiden dækker alle 10 primære bonustyper på det danske marked, med matematiske analyser, strategiske anbefalinger og en ærlig vurdering af, hvem der bør – og hvem der bør undlade at – bruge bonusser. Vi har testet over 25 danske casinoer i januar-februar 2026 med reelle indbetalinger for at verificere vilkårene i praksis – alle resultater er dokumenteret i vores <Link to="/bonus-hunt/arkiv" className={linkClass}>Bonus Hunt Arkiv</Link> med gennemsnitlig X, break-even analyser og community-data. Tjek også <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> for de seneste bonustilbud. Det er ikke en markedsføringsguide – det er en beslutningsguide.
           </p>
         </section>
 
@@ -383,7 +383,7 @@ const CasinoBonus = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
-                Free spins er gratis omgange på udvalgte spilleautomater, typisk tildelt som del af en velkomstpakke eller som selvstændig kampagne. Værdien af free spins varierer enormt afhængigt af spinværdi, det valgte spil og eventuelle omsætningskrav på gevinster. Et tilbud på "100 free spins" kan betyde alt fra 10 kr. til 500 kr. i reel værdi – det afhænger af spinværdien (typisk 1-5 kr. pr. spin) og spillets RTP.
+                Free spins er gratis omgange på udvalgte <Link to="/spillemaskiner" className={linkClass}>spilleautomater</Link>, typisk tildelt som del af en velkomstpakke eller som selvstændig kampagne. Værdien af free spins varierer enormt afhængigt af spinværdi, det valgte spil og eventuelle <Link to="/ordbog/wagering" className={linkClass}>omsætningskrav</Link> på gevinster. Et tilbud på "100 free spins" kan betyde alt fra 10 kr. til 500 kr. i reel værdi – det afhænger af spinværdien (typisk 1-5 kr. pr. spin) og spillets RTP. Se <Link to="/free-spins-i-dag" className={linkClass}>free spins i dag</Link> for aktuelle tilbud.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 <strong>Fordele:</strong> Risikofri afprøvning af nye spil, ingen krav om indbetaling ved no-deposit free spins. <strong>Ulemper:</strong> Ofte begrænset til specifikke spil, gevinster kan have omsætningskrav, lav spinværdi reducerer potentialet. <strong>Passer til:</strong> Slotsspillere, nye spillere der vil teste uden risiko.
@@ -518,7 +518,7 @@ const CasinoBonus = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Bonusmatematik – hvad er din bonus reelt værd?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            At forstå den matematiske værdi af en casino bonus er den vigtigste færdighed for enhver bonusspiller. Annoncerede bonusbeløb er markedsføring – den reelle værdi afhænger af omsætningskrav, bonusstruktur, spilbidrag og dit spilvalg. Her præsenterer vi de formler og cases, du har brug for.
+            At forstå den matematiske værdi af en casino bonus er den vigtigste færdighed for enhver bonusspiller. Annoncerede bonusbeløb er markedsføring – den reelle værdi afhænger af <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, bonusstruktur, spilbidrag og dit spilvalg. Nøglebegreber som <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> og <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> er afgørende for at beregne den reelle bonusværdi. Her præsenterer vi de formler og cases, du har brug for.
           </p>
 
           <h3 className="mb-3 mt-6 text-xl font-semibold">Formel: Expected Value (EV) af en casino bonus</h3>
@@ -568,12 +568,12 @@ const CasinoBonus = () => {
 
           <h3 className="mb-3 mt-6 text-xl font-semibold">RTP-valgets indflydelse på bonusværdi</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Dit valg af <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomat</Link> har enorm indflydelse på bonusværdien. En slot med 97% RTP (3% house edge) versus 94% RTP (6% house edge) ændrer EV dramatisk. For case 1 ovenfor: Med 97% RTP falder tabet til 600 kr. (EV = +400 kr.), mens 94% RTP øger tabet til 1.200 kr. (EV = −200 kr. – bonussen er nu en nettonegativ!). Populære valg til bonusomsætning inkluderer <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (96,48 % RTP) og <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (96,50 % RTP). Vælg altid spil med mindst 96% RTP under bonusomsætning.
+            Dit valg af <Link to="/spillemaskiner" className={linkClass}>spillemaskine</Link> har enorm indflydelse på bonusværdien. En slot med 97% <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> (3% house edge) versus 94% RTP (6% house edge) ændrer EV dramatisk. For case 1 ovenfor: Med 97% RTP falder tabet til 600 kr. (EV = +400 kr.), mens 94% RTP øger tabet til 1.200 kr. (EV = −200 kr. – bonussen er nu en nettonegativ!). Populære valg til bonusomsætning inkluderer <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (96,48 % RTP) og <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (96,50 % RTP). Tjek vores <Link to="/spillemaskiner-hoej-rtp" className={linkClass}>spillemaskiner med høj RTP</Link> for de bedste wagering-kandidater. Vælg altid spil med mindst 96% RTP under bonusomsætning – og vær opmærksom på spillets <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link>, der påvirker din bust-risiko.
           </p>
 
           <h3 className="mb-3 mt-6 text-xl font-semibold">Max. indsats og dens konsekvenser</h3>
           <p className="text-muted-foreground leading-relaxed">
-            De fleste danske casinoer har en max. indsats på 25-50 kr. pr. spin under bonusomsætning. Overskridelse kan annullere hele bonussen og alle gevinster. Med 20.000 kr. i omsætningskrav og 25 kr. max. indsats skal du spille mindst 800 spins for at fuldføre omsætningen. Det tager typisk 2-4 timer – en realistisk tidsramme. Men med 10 kr. max. indsats kræves 2.000 spins, hvilket kan tage 6-10 timer. Factor dette ind, når du vurderer bonusværdien.
+            De fleste danske casinoer har en <Link to="/ordbog/max-bet" className={linkClass}>max. indsats</Link> på 25-50 kr. pr. spin under bonusomsætning. Overskridelse kan annullere hele bonussen og alle gevinster. Med 20.000 kr. i omsætningskrav og 25 kr. max. indsats skal du spille mindst 800 spins for at fuldføre omsætningen. Det tager typisk 2-4 timer – en realistisk tidsramme. Men med 10 kr. max. indsats kræves 2.000 spins, hvilket kan tage 6-10 timer. Factor dette ind, når du vurderer bonusværdien.
           </p>
         </section>
 
@@ -849,11 +849,17 @@ const CasinoBonus = () => {
               { to: "/indskudsbonus", label: "Indskudsbonus Guide", icon: CreditCard },
               { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", icon: Zap },
               { to: "/bonus-uden-omsaetningskrav", label: "Uden Omsætningskrav", icon: CheckCircle2 },
+              { to: "/cashback-bonus", label: "Cashback Bonus Guide", icon: DollarSign },
+              { to: "/reload-bonus", label: "Reload Bonus Guide", icon: RefreshCw },
               { to: "/omsaetningskrav", label: "Omsætningskrav Guide", icon: Percent },
+              { to: "/free-spins-i-dag", label: "Free Spins i Dag", icon: Flame },
+              { to: "/nye-casinoer", label: "Nye Casinoer 2026", icon: Sparkles },
+              { to: "/casinoer", label: "Alle Danske Casinoer", icon: Users },
               { to: "/top-10-casino-online", label: "Top 10 Casino Online", icon: Trophy },
               { to: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: Star },
+              { to: "/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2 },
               { to: "/betalingsmetoder", label: "Betalingsmetoder", icon: CreditCard },
-              { to: "/spiludviklere", label: "Spiludviklere", icon: Gamepad2 },
+              { to: "/ordbog", label: "Casino Ordbog", icon: BookOpen },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium hover:border-primary/50 transition-colors">
                 <link.icon className="h-4 w-4 text-primary flex-shrink-0" />
