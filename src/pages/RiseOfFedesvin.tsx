@@ -18,13 +18,14 @@ import { useSlotSoundLoader } from "@/hooks/useSlotSoundLoader";
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSlotScale } from "@/hooks/useSlotScale";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/rise/background.jpg";
 
 
-import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
+
 
 const GAME_ID = "rise-of-fedesvin";
 
@@ -34,6 +35,7 @@ export default function RiseOfFedesvin() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
+  const isMobile = useIsMobile();
   
   // Load custom sound files at page level so they're ready for intro screen music
   useSlotSoundLoader(GAME_ID);
@@ -47,7 +49,13 @@ export default function RiseOfFedesvin() {
     takeOverSession,
     refreshSession 
   } = useSlotSession(GAME_ID);
-  const { scale, shouldScale } = useSlotScale();
+  const { scale } = useSlotScale({
+    baseWidth: 1880,
+    baseHeight: 1120,
+    headerHeight: 72,
+    safetyPadding: 16,
+    minScale: 0.2,
+  });
   const { isLocked, hasAccess, isLoading: accessLoading, isVerifying, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
   
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
@@ -69,8 +77,21 @@ export default function RiseOfFedesvin() {
   const topCasino = casinos?.find(c => c.is_active) || null;
 
   useEffect(() => {
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousBodyOverscroll = document.body.style.overscrollBehavior;
+    const previousHtmlOverscroll = document.documentElement.style.overscrollBehavior;
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+    document.documentElement.style.overscrollBehavior = "none";
+
     return () => {
-      slotSounds.stopMusic();
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.body.style.overscrollBehavior = previousBodyOverscroll;
+      document.documentElement.style.overscrollBehavior = previousHtmlOverscroll;
     };
   }, []);
 
@@ -171,7 +192,7 @@ export default function RiseOfFedesvin() {
   const sidePanelContent = null;
 
   return (
-    <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col overflow-x-hidden">
+    <div className="h-[calc(100svh-4rem)] max-h-[calc(100svh-4rem)] relative flex flex-col overflow-hidden">
       <SEO
         title="Rise of Fedesvin – Gratis Spilleautomat | Casinoaftaler"
         description="Spil Rise of Fedesvin gratis hos Casinoaftaler. Magisk tema med tryllekunstnere, drager og free spins. Optjen point og klatr på ranglisten."
@@ -198,23 +219,37 @@ export default function RiseOfFedesvin() {
           </Link>
         </Button>
       </div>
-      
-      <div className="xl:flex-1 flex items-start justify-center overflow-hidden">
-        <div 
-          className="slot-viewport-container"
-          style={{
-            width: '1280px',
-            transform: shouldScale 
-              ? `translate(${parseInt(siteSettings?.['slot_offset_x_rise-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_rise-of-fedesvin'] || '0', 10)}px) scale(${scale})`
-              : `translate(${parseInt(siteSettings?.['slot_offset_x_rise-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_rise-of-fedesvin'] || '0', 10)}px)`,
-          }}
-        >
-          <SlotPageLayout sidePanel={sidePanelContent} sidePanelGap={parseInt(siteSettings?.rise_of_fedesvin_sidepanel_gap || "24", 10)}>
-            <SlotGame gameId={GAME_ID} />
-          </SlotPageLayout>
-        </div>
-      </div>
 
+      {isMobile ? (
+        /* ── MOBILE: native width, no CSS transform scaling ── */
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="w-full px-1">
+            <SlotPageLayout sidePanel={null}>
+              <SlotGame gameId={GAME_ID} />
+            </SlotPageLayout>
+          </div>
+        </div>
+      ) : (
+        /* ── DESKTOP: CSS transform scaling ── */
+        <div className="flex-1 flex items-center justify-center overflow-hidden">
+          <div
+            className="slot-viewport-container"
+            style={{
+              width: '1880px',
+              height: '1120px',
+              transform: `scale(${scale})`,
+              marginTop: `${-(1120 * (1 - scale)) / 2}px`,
+              marginBottom: `${-(1120 * (1 - scale)) / 2}px`,
+              marginLeft: `${-(1880 * (1 - scale)) / 2}px`,
+              marginRight: `${-(1880 * (1 - scale)) / 2}px`,
+            }}
+          >
+            <SlotPageLayout sidePanel={sidePanelContent}>
+              <SlotGame gameId={GAME_ID} />
+            </SlotPageLayout>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

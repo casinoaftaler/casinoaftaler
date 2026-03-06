@@ -19,6 +19,7 @@ import { useSlotPageAccess } from "@/hooks/useSlotPageAccess";
 import { useSlotSession } from "@/hooks/useSlotSession";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSlotScale } from "@/hooks/useSlotScale";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Gamepad2 } from "lucide-react";
@@ -26,14 +27,13 @@ import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 
 
 
-import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
-
 type LoadingPhase = 'loading' | 'intro' | 'ready';
 
 export default function SlotMachine() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
+  const isMobile = useIsMobile();
   const { hasAccess, isLoading: accessLoading, isVerifying, verifyPassword, error: accessError } = useSlotPageAccess("book-of-fedesvin");
   
   // Load custom sound files at page level so they're ready for intro screen music
@@ -48,7 +48,13 @@ export default function SlotMachine() {
     takeOverSession,
     refreshSession 
   } = useSlotSession("book-of-fedesvin");
-  const { scale, shouldScale } = useSlotScale();
+  const { scale } = useSlotScale({
+    baseWidth: 1880,
+    baseHeight: 1120,
+    headerHeight: 72,
+    safetyPadding: 16,
+    minScale: 0.2,
+  });
   
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
   
@@ -71,8 +77,21 @@ export default function SlotMachine() {
   const topCasino = casinos?.find(c => c.is_active) || null;
 
   useEffect(() => {
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousBodyOverscroll = document.body.style.overscrollBehavior;
+    const previousHtmlOverscroll = document.documentElement.style.overscrollBehavior;
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "none";
+    document.documentElement.style.overscrollBehavior = "none";
+
     return () => {
-      slotSounds.stopMusic();
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.body.style.overscrollBehavior = previousBodyOverscroll;
+      document.documentElement.style.overscrollBehavior = previousHtmlOverscroll;
     };
   }, []);
 
@@ -175,7 +194,7 @@ export default function SlotMachine() {
 
   // 7. Show the game
   return (
-    <div className="min-h-[calc(100dvh-4rem)] relative flex flex-col">
+    <div className="h-[calc(100svh-4rem)] max-h-[calc(100svh-4rem)] relative flex flex-col overflow-hidden">
       <SEO
         title="Book of Fedesvin – Gratis Spilleautomat | Casinoaftaler"
         description="Spil Book of Fedesvin gratis hos Casinoaftaler. Egyptisk-tema spilleautomat med expanding symbols, free spins og bonusrunder. Optjen point og klatr på ranglisten."
@@ -189,37 +208,50 @@ export default function SlotMachine() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 -z-10" />
 
       {/* Back button */}
-      <div className="absolute top-3 left-3 z-20">
+      <div className="absolute top-1 left-1 sm:top-2 sm:left-2 z-20">
         <Button
           asChild
           variant="ghost"
           size="sm"
-          className="text-amber-300/80 hover:text-amber-300 hover:bg-amber-500/10 gap-1.5"
+          className="text-amber-300/80 hover:text-amber-300 hover:bg-amber-500/10 gap-1.5 h-7 px-2 text-xs sm:h-8 sm:px-3 sm:text-sm"
         >
           <Link to="/community/slots">
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-3 w-3 sm:h-4 sm:w-4" />
             <span className="hidden sm:inline">Tilbage til spil</span>
           </Link>
         </Button>
       </div>
-      
-      {/* Scaled game area - only the game itself is scaled */}
-      <div className="xl:flex-1 flex items-start justify-center overflow-hidden">
-        <div 
-          className="slot-viewport-container"
-          style={{
-            width: '1280px',
-            transform: shouldScale 
-              ? `translate(${parseInt(siteSettings?.['slot_offset_x_book-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_book-of-fedesvin'] || '0', 10)}px) scale(${scale})`
-              : `translate(${parseInt(siteSettings?.['slot_offset_x_book-of-fedesvin'] || '0', 10)}px, ${parseInt(siteSettings?.['slot_offset_y_book-of-fedesvin'] || '0', 10)}px)`,
-          }}
-        >
-          <SlotPageLayout sidePanel={sidePanelContent} sidePanelGap={parseInt(siteSettings?.slot_sidepanel_gap || "24", 10)}>
-            <SlotGame />
-          </SlotPageLayout>
-        </div>
-      </div>
 
+      {isMobile ? (
+        /* ── MOBILE: native width, no CSS transform scaling ── */
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="w-full px-1">
+            <SlotPageLayout sidePanel={null}>
+              <SlotGame />
+            </SlotPageLayout>
+          </div>
+        </div>
+      ) : (
+        /* ── DESKTOP: CSS transform scaling ── */
+        <div className="flex-1 flex items-center justify-center overflow-hidden">
+          <div
+            className="slot-viewport-container"
+            style={{
+              width: '1880px',
+              height: '1120px',
+              transform: `scale(${scale})`,
+              marginTop: `${-(1120 * (1 - scale)) / 2}px`,
+              marginBottom: `${-(1120 * (1 - scale)) / 2}px`,
+              marginLeft: `${-(1880 * (1 - scale)) / 2}px`,
+              marginRight: `${-(1880 * (1 - scale)) / 2}px`,
+            }}
+          >
+            <SlotPageLayout sidePanel={sidePanelContent}>
+              <SlotGame />
+            </SlotPageLayout>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
