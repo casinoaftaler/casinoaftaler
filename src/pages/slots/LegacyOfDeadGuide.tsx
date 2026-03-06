@@ -265,11 +265,10 @@ const LegacyOfDeadGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-8" />
-        <AuthorBio author="jonas" />
         <SlotProviderLink slotSlug="legacy-of-dead" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/legacy-of-dead" />
         <FAQSection title="Ofte Stillede Spørgsmål om Legacy of Dead" faqs={legacyOfDeadFaqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

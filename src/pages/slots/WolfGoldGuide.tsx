@@ -412,11 +412,10 @@ const WolfGoldGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-8" />
-        <AuthorBio author="kevin" />
         <SlotProviderLink slotSlug="wolf-gold" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wolf-gold" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wolf Gold" faqs={wolfGoldFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

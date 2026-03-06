@@ -140,11 +140,10 @@ const ExtraChilliMegawaysGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> for at finde det rette match til din risikoprofil.</p>
         </section>
 
-        <Separator className="my-10" />
-        <AuthorBio author="kevin" />
         <SlotProviderLink slotSlug="extra-chilli-megaways" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/extra-chilli-megaways" />
         <FAQSection title="Ofte Stillede Spørgsmål om Extra Chilli Megaways" faqs={extraChilliFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

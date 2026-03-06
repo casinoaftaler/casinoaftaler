@@ -505,14 +505,10 @@ const SweetBonanzaGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
-        <AuthorBio />
-
         <SlotProviderLink slotSlug="sweet-bonanza" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/sweet-bonanza" />
-
         <FAQSection title="Ofte Stillede Spørgsmål om Sweet Bonanza" faqs={sweetBonanzaFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

@@ -136,11 +136,10 @@ const JokerStrikeGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Joker Strike med Hi Roller er den ultimative slot for den rationelle, value-orienterede spiller. 98,11 % RTP er uovertruffen, og den lave volatilitet giver den mest forudsigelige spiloplevelse i markedet. For danske spillere, der prioriterer matematisk effektivitet over adrenalin, er Joker Strike ikke bare et godt valg – det er det eneste logiske valg. Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> for at diversificere din rotation.</p>
         </section>
 
-        <Separator className="my-8" />
-        <AuthorBio author="kevin" />
         <SlotProviderLink slotSlug="joker-strike" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/joker-strike" />
         <FAQSection title="Ofte Stillede Spørgsmål om Joker Strike" faqs={jokerStrikeFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

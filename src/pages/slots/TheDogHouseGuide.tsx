@@ -347,11 +347,10 @@ const TheDogHouseGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-8" />
-        <AuthorBio author="jonas" />
         <SlotProviderLink slotSlug="the-dog-house" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/the-dog-house" />
         <FAQSection title="Ofte Stillede Spørgsmål om The Dog House" faqs={theDogHouseFaqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

@@ -322,14 +322,10 @@ const RazorSharkGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
-        <AuthorBio />
-
         <SlotProviderLink slotSlug="razor-shark" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/razor-shark" />
-
         <FAQSection title="Ofte Stillede Spørgsmål om Razor Shark" faqs={razorSharkFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

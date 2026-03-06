@@ -529,11 +529,10 @@ const ReactoonzGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-8" />
-        <AuthorBio author="kevin" />
         <SlotProviderLink slotSlug="reactoonz" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/reactoonz" />
         <FAQSection title="Ofte Stillede Spørgsmål om Reactoonz" faqs={reactoonzFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

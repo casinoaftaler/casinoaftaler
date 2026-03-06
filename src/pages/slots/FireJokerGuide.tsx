@@ -262,11 +262,10 @@ const FireJokerGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-8" />
-        <AuthorBio author="kevin" />
         <SlotProviderLink slotSlug="fire-joker" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/fire-joker" />
         <FAQSection title="Ofte Stillede Spørgsmål om Fire Joker" faqs={fireJokerFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

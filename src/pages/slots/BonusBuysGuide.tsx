@@ -874,14 +874,10 @@ const BonusBuysGuide = () => {
           </CardContent>
         </Card>
 
-        <Separator className="my-8" />
-
-        <AuthorBio author="jonas" />
-
         <SlotProviderLink slotSlug="bonus-buys" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/bonus-buys" />
-
         <FAQSection title="Ofte Stillede Spørgsmål om Bonus Buys" faqs={bonusBuyFaqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

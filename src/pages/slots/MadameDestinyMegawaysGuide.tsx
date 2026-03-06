@@ -138,11 +138,10 @@ const MadameDestinyMegawaysGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> eller sammenlign med andre <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>-titler for at finde din ideelle match.</p>
         </section>
 
-        <Separator className="my-8" />
-        <AuthorBio author="kevin" />
         <SlotProviderLink slotSlug="madame-destiny-megaways" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/madame-destiny-megaways" />
         <FAQSection title="Ofte Stillede Spørgsmål om Madame Destiny Megaways" faqs={madameDestinyMWFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );
