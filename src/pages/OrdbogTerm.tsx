@@ -22,6 +22,15 @@ const OrdbogTerm = () => {
     return autoLinkEntities(term.fullContent);
   }, [term]);
 
+  // Calculate read time from content length (strip HTML, ~200 words/min Danish)
+  const readTime = useMemo(() => {
+    if (!term?.fullContent) return "3 min";
+    const textOnly = term.fullContent.replace(/<[^>]*>/g, "");
+    const wordCount = textOnly.split(/\s+/).filter(Boolean).length;
+    const minutes = Math.max(3, Math.ceil(wordCount / 200));
+    return `${minutes} min`;
+  }, [term]);
+
   if (!term) return <Navigate to="/ordbog" replace />;
 
   const heroImage = getGlossaryHero(term.slug);
