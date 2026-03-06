@@ -20,7 +20,7 @@ export const routeLabels: Record<string, string> = {
   "/nye-casinoer/trustly": "Med Trustly",
   "/nye-casinoer/mitid": "Med MitID",
   "/nye-casinoer/lav-wagering": "Lav Wagering",
-  "/nye-casinoer/bedste": "Bedste Nye Casinoer",
+  // "/nye-casinoer/bedste" – removed (301 redirect to /nye-casinoer)
   "/nye-casinoer/vs-etablerede": "Nye vs. Etablerede",
   // Live Casino
   "/live-casino": "Live Casino",
@@ -184,7 +184,7 @@ export const routeLabels: Record<string, string> = {
   "/casinospil/poker/poker-strategi": "Poker Strategi",
   "/casinospil/craps": "Craps",
   "/casinospil/baccarat": "Baccarat",
-  "/casinospil/roulette-strategi": "Roulette Strategi",
+  // "/casinospil/roulette-strategi" – removed (301 redirect to /casinospil/roulette)
   "/casinospil/online-lotteri": "Online Lotteri",
   "/casinospil/game-shows": "Game Shows",
   // Casinoer guides
