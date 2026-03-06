@@ -22,6 +22,17 @@ interface HuntVideoData {
 }
 
 const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
+  1: {
+    twitchVideoId: "2714677621",
+    date: "5. marts 2026",
+    isoDate: "2026-03-05",
+    casinoName: "SpilDanskNu",
+    casinoSlug: "spildansknu",
+    bonusCount: 22,
+    avgX: 115.6,
+    highestWin: 274,
+    highestMultiplier: 274,
+  },
   2: {
     twitchVideoId: "2705001000",
     date: "22. februar 2026",
