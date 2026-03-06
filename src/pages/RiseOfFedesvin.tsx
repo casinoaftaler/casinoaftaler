@@ -25,7 +25,7 @@ import { ArrowLeft, Gamepad2 } from "lucide-react";
 import defaultSlotBackground from "@/assets/slots/rise/background.jpg";
 
 
-import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
+
 
 const GAME_ID = "rise-of-fedesvin";
 

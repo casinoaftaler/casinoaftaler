@@ -27,8 +27,6 @@ import defaultSlotBackground from "@/assets/slots/slot-background.jpg";
 
 
 
-import slotCasinoCardBg from "@/assets/slots/slot-casino-card-bg.png";
-
 type LoadingPhase = 'loading' | 'intro' | 'ready';
 
 export default function SlotMachine() {
