@@ -29,8 +29,13 @@ export function TurneringerSeoText() {
             Turneringerne kører i tre uafhængige kategorier — <strong className="text-foreground">Flest Point</strong>,{" "}
             <strong className="text-foreground">Højeste Multiplikator (X)</strong> og{" "}
             <strong className="text-foreground">Største Enkeltgevinst</strong> — fordelt på tværs af vores tre
-            community-slots: Book of Fedesvin, Rise of Fedesvin og Fedesvin Bonanza. Hver kategori premierer en
-            specifik spilstil, så både volumen-spillere og high-risk-jægere har en reel chance for at vinde.
+            community-slots: Book of Fedesvin (inspireret af{" "}
+            <Link to="/casinospil/spillemaskiner/book-of-dead" className="text-primary hover:underline">Book of Dead</Link>),
+            Rise of Fedesvin (inspireret af{" "}
+            <Link to="/casinospil/spillemaskiner/legacy-of-dead" className="text-primary hover:underline">Legacy of Dead</Link>)
+            og Fedesvin Bonanza (inspireret af{" "}
+            <Link to="/casinospil/spillemaskiner/sweet-bonanza" className="text-primary hover:underline">Sweet Bonanza</Link>).
+            Hver kategori premierer en specifik spilstil, så både volumen-spillere og high-risk-jægere har en reel chance for at vinde.
           </p>
           <p>
             Præmiestrukturen er transparent: <strong className="text-foreground">500 kr</strong> til vinderen,{" "}
@@ -195,8 +200,11 @@ export function TurneringerSeoText() {
               — men det kræver tålmodighed og vilje til at acceptere mange tomme spins.
             </li>
             <li>
-              <strong className="text-foreground">Største Gevinst (balance):</strong> Rise of Fedesvin med
-              multi-expanding symbols giver de bedste odds for store enkeltgevinster. Indsæt moderate bets
+              <strong className="text-foreground">Største Gevinst (balance):</strong>{" "}
+              <Link to="/community/slots/rise-of-fedesvin" className="text-primary hover:underline">Rise of Fedesvin</Link> med
+              multi-expanding symbols — inspireret af{" "}
+              <Link to="/casinospil/spillemaskiner/legacy-of-dead" className="text-primary hover:underline">Legacy of Dead</Link> —
+              giver de bedste odds for store enkeltgevinster. Indsæt moderate bets
               (3-5 credits) for at balancere mellem spin-antal og gevinstpotentiale.
             </li>
           </ul>
