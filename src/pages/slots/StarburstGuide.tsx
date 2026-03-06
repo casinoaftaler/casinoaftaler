@@ -108,13 +108,13 @@ const StarburstGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Starburst: Nostalgi eller Substans?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Lad os starte med det kontroversielle spørgsmål: er Starburst egentlig et godt spil, eller lever det udelukkende på nostalgi og markedsføring? <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> lancerede Starburst i januar 2012, og siden da er den blevet synonymt med begrebet "online slot". Casinoer bruger Starburst free spins som standardvaluta i deres velkomstkampagner. Men tallene fortæller en mere nuanceret historie end marketingafdelingerne.
+            Lad os starte med det kontroversielle spørgsmål: er Starburst egentlig et godt spil, eller lever det udelukkende på nostalgi og markedsføring? <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> lancerede Starburst i januar 2012, og siden da er den blevet synonymt med begrebet "online slot". Casinoer bruger Starburst <Link to="/ordbog/free-spins" className={linkClass}>free spins</Link> som standardvaluta i deres velkomstkampagner. Men tallene fortæller en mere nuanceret historie end marketingafdelingerne.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Med en RTP på 96,09 % er Starburst hverken dårlig eller fremragende – den befinder sig præcist i midterfeltet. Max win på 500x din indsats er i 2026-perspektiv decideret beskedent; sammenlign med <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (21.175x) eller <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (5.000x). Det, der holder Starburst relevant, er ikke dens gevinstpotentiale – det er dens stabilitet. Og det er præcis det, vi undersøger i denne analyse.
+            Med en <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96,09 % er Starburst hverken dårlig eller fremragende – den befinder sig præcist i midterfeltet. Max win på 500x din indsats er i 2026-perspektiv decideret beskedent; sammenlign med <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (21.175x) eller <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (5.000x). Det, der holder Starburst relevant, er ikke dens gevinstpotentiale – det er dens stabilitet. Og det er præcis det, vi undersøger i denne analyse.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Vi har gennemgået Starbursts matematiske model i detaljer, testet dens wagering-egnethed med konkrete EV-beregninger, og sammenlignet den med de moderne alternativer, der har overtaget markedet. Resultatet er en ærlig vurdering af, hvornår Starburst stadig giver mening – og hvornår du bør vælge noget andet.
+            Vi har gennemgået Starbursts matematiske model i detaljer, testet dens <Link to="/ordbog/wagering" className={linkClass}>wagering</Link>-egnethed med konkrete EV-beregninger, og sammenlignet den med de moderne alternativer, der har overtaget markedet. Resultatet er en ærlig vurdering af, hvornår Starburst stadig giver mening – og hvornår du bør vælge noget andet.
           </p>
         </section>
 
