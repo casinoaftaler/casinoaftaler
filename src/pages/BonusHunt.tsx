@@ -227,6 +227,9 @@ export default function BonusHunt() {
         </div>
 
         <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
+          {/* Author meta bar */}
+          <AuthorMetaBar author="kevin" readTime="8 Min." />
+
           {/* Stat strip */}
           <BonusHuntStatStrip />
 
@@ -264,6 +267,8 @@ export default function BonusHunt() {
                   <BonusHuntSlotTable slots={huntData.slots} />
                   {/* SEO Content – process overview, right under slots */}
                   <BonusHuntSeoContent />
+                  {/* Enterprise SEO text – deep content with money page links */}
+                  <BonusHuntSeoText />
                   {/* Host card – visible on mobile only (below slot table) */}
                   <div className="xl:hidden">
                     <BonusHuntHostCard huntNumber={currentHuntNumber} host={sessionHost} />
