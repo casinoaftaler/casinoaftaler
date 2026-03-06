@@ -536,7 +536,7 @@ const App = () => (
               <Route path="/om-os" element={<Navigate to="/om" replace />} />
               <Route path="/om-teamet" element={<Navigate to="/om" replace />} />
               <Route path="/about" element={<Navigate to="/om" replace />} />
-              <Route path="/forfatter" element={<Navigate to="/forfatter/jonas" replace />} />
+              {/* /forfatter redirect handled in main routes block (line 288) */}
               <Route path="/privacy" element={<Navigate to="/privatlivspolitik" replace />} />
               <Route path="/vilkaar" element={<Navigate to="/terms" replace />} />
               <Route path="/danske-casinoer" element={<Navigate to="/top-10-casino-online" replace />} />
