@@ -320,9 +320,9 @@ const Casino888Anmeldelse = () => {
         </section>
         <RelatedReviews currentSlug="888-casino" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["888-casino"]} />
-        <AuthorBio /><Separator className="my-10" />
-        <FAQSection faqs={faqs} />
         <RelatedGuides currentPath="/casino-anmeldelser/888-casino" />
+        <FAQSection faqs={faqs} />
+        <AuthorBio />
       </div>
     </>
   );

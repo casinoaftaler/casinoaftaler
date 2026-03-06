@@ -210,11 +210,8 @@ const MariaCasinoAnmeldelse = () => {
 
         <RelatedReviews currentSlug="maria-casino" />
         <InlineCasinoCards count={3} />
-        <Separator className="my-10" />
-        <FAQSection faqs={mariaFaqs} />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/maria-casino" />
-        <Separator className="my-10" />
+        <FAQSection faqs={mariaFaqs} />
         <AuthorBio author="jonas" />
       </div>
     </>

@@ -443,11 +443,8 @@ const LeoVegasAnmeldelse = () => {
           </Card>
         </section>
 
-        <Separator className="my-10" />
-        <FAQSection faqs={faqs} />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/leovegas" />
-        <Separator className="my-10" />
+        <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
     </>

@@ -757,13 +757,9 @@ const BonusUdenIndbetaling = () => {
           </div>
         </section>
 
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/bonus-uden-indbetaling" />
-
         <FAQSection title="Tekniske spørgsmål om no deposit bonusser" faqs={bonusUdenIndbetalingFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

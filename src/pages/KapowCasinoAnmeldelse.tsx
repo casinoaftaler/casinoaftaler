@@ -262,11 +262,8 @@ const KapowCasinoAnmeldelse = () => {
 
         <RelatedReviews currentSlug="kapow-casino" />
         <InlineCasinoCards count={3} />
-        <Separator className="my-10" />
-        <FAQSection faqs={kapowFaqs} />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/kapow-casino" />
-        <Separator className="my-10" />
+        <FAQSection faqs={kapowFaqs} />
         <AuthorBio author="jonas" />
       </div>
     </>

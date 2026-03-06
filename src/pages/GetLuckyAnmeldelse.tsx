@@ -297,10 +297,9 @@ const GetLuckyAnmeldelse = () => {
         </section>
         <RelatedReviews currentSlug="getlucky" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["getlucky"]} />
-        <AuthorBio />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/getlucky" />
         <FAQSection title="Ofte stillede spørgsmål om GetLucky Casino" faqs={getluckyFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

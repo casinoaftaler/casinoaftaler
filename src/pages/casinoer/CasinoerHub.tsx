@@ -633,10 +633,9 @@ export default function CasinoerHub() {
           </p>
         </section>
 
-        <Separator className="my-10" />
-        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/casinoer" />
         <FAQSection title="Ofte Stillede Spørgsmål om Online Casinoer i Danmark" faqs={faqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

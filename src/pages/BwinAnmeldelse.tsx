@@ -577,11 +577,8 @@ const BwinAnmeldelse = () => {
           </Card>
         </section>
 
-        <Separator className="my-10" />
-        <FAQSection faqs={bwinFaqs} />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/bwin" />
-        <Separator className="my-10" />
+        <FAQSection faqs={bwinFaqs} />
         <AuthorBio author="jonas" />
       </div>
     </>

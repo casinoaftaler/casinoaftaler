@@ -443,10 +443,8 @@ const NordicBetAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
-        <FAQSection faqs={nordicbetFaqs} />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/nordicbet" />
-        <Separator className="my-10" />
+        <FAQSection faqs={nordicbetFaqs} />
         <AuthorBio author="jonas" />
       </div>
     </>

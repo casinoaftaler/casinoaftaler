@@ -315,11 +315,9 @@ const CasinostuenAnmeldelse = () => {
           </div>
         </section>
 
-        <Separator className="my-10" />
-        <AuthorBio author="jonas" />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/casinostuen" />
         <FAQSection faqs={casinostuenFaqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

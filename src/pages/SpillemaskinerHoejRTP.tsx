@@ -641,10 +641,9 @@ export default function SpillemaskinerHoejRTP() {
           </p>
         </section>
 
-        <AuthorBio />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/hoej-rtp" />
         <FAQSection title="Ofte stillede spørgsmål om RTP og volatilitet" faqs={hoejRtpFaqs} />
+        <AuthorBio />
       </div>
     </>
   );
