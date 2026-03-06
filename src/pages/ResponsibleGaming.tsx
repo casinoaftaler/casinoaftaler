@@ -439,14 +439,9 @@ const ResponsibleGaming = () => {
           </Card>
         </section>
 
-        <Separator className="my-10" />
-
-        <FAQSection title="Ofte Stillede Spørgsmål om Ansvarligt Spil" faqs={responsibleGamingFaqs} />
-
         <LatestNewsByCategory pagePath="/ansvarligt-spil" />
-
         <RelatedGuides currentPath="/ansvarligt-spil" />
-
+        <FAQSection title="Ofte Stillede Spørgsmål om Ansvarligt Spil" faqs={responsibleGamingFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>

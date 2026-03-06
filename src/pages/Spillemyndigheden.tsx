@@ -446,12 +446,9 @@ const Spillemyndigheden = () => {
           </Card>
         </section>
 
-        <FAQSection title="Ofte Stillede Spørgsmål om Spillemyndigheden" faqs={spillemyndighedenFaqs} />
-
         <LatestNewsByCategory pagePath="/spillemyndigheden" />
-
         <RelatedGuides currentPath="/spillemyndigheden" />
-
+        <FAQSection title="Ofte Stillede Spørgsmål om Spillemyndigheden" faqs={spillemyndighedenFaqs} />
         <AuthorBio author="ajse" />
       </div>
     </>

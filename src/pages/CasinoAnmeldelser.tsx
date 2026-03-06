@@ -851,17 +851,10 @@ const CasinoAnmeldelser = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <LatestNewsByCategory pagePath="/casino-anmeldelser" />
-
         <RelatedGuides currentPath="/casino-anmeldelser" />
-
         <FAQSection title="Ofte stillede spørgsmål om casino anmeldelser" faqs={faqs} />
+        <AuthorBio />
       </div>
     </>
   );

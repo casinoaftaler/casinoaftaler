@@ -570,10 +570,9 @@ const GameShowsGuide = () => {
           </p>
         </section>
 
-        <AuthorBio />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casinospil/game-shows" />
         <FAQSection title="Ofte stillede spørgsmål om casino game shows" faqs={gameShowFaqs} />
+        <AuthorBio />
       </div>
     </>
   );
