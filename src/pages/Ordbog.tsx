@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -37,13 +37,13 @@ const definedTermSetSchema = {
 const articleSchema = buildArticleSchema({
   headline: "Casino Ordbog – Alle Vigtige Casino-begreber",
   description: "Komplet ordbog over casinobegreber med 15 definitioner.",
+  url: `${SITE_URL}/ordbog`,
   datePublished: "2026-03-06",
   dateModified: "2026-03-06",
-  path: "/ordbog",
-  author: "Jonas",
 });
 
 const Ordbog = () => {
+  const { pathname } = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const termsByLetter = useMemo(() => getTermsByLetter(), []);
   const allLetters = useMemo(() => getGlossaryLetters(), []);
@@ -64,7 +64,7 @@ const Ordbog = () => {
         jsonLd={[articleSchema, definedTermSetSchema] as Record<string, unknown>[]}
       />
       <article className="mx-auto max-w-4xl px-4 py-8 md:py-12">
-        <AuthorMetaBar author="Jonas" readTime={8} />
+        <AuthorMetaBar author="jonas" readTime="8 min" />
         <header className="mb-8">
           <div className="flex items-center gap-3 mb-4">
             <BookOpen className="h-8 w-8 text-primary" />
@@ -135,16 +135,8 @@ const Ordbog = () => {
         )}
 
         <FAQSection title="Ofte Stillede Spørgsmål om Casino-begreber" faqs={ORDBOG_FAQS} />
-
-        <RelatedGuides
-          guides={[
-            { title: "Casino Bonus Guide", href: "/casino-bonus" },
-            { title: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" },
-            { title: "Omsætningskrav", href: "/omsaetningskrav" },
-            { title: "Høj RTP Spillemaskiner", href: "/casinospil/spillemaskiner/hoej-rtp" },
-          ]}
-        />
-        <AuthorBio author="Jonas" />
+        <RelatedGuides currentPath={pathname} />
+        <AuthorBio author="jonas" />
       </article>
     </>
   );

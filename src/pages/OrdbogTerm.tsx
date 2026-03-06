@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link, Navigate, useLocation } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -13,6 +13,7 @@ import { useMemo } from "react";
 
 const OrdbogTerm = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { pathname } = useLocation();
   const term = slug ? getTermBySlug(slug) : undefined;
 
   const processedContent = useMemo(() => {
@@ -38,10 +39,9 @@ const OrdbogTerm = () => {
   const articleSchema = buildArticleSchema({
     headline: term.metaTitle,
     description: term.metaDescription,
+    url: `${SITE_URL}/ordbog/${term.slug}`,
     datePublished: "2026-03-06",
     dateModified: "2026-03-06",
-    path: `/ordbog/${term.slug}`,
-    author: "Jonas",
   });
 
   return (
@@ -52,7 +52,7 @@ const OrdbogTerm = () => {
         jsonLd={[articleSchema, definedTermSchema] as Record<string, unknown>[]}
       />
       <article className="mx-auto max-w-4xl px-4 py-8 md:py-12">
-        <AuthorMetaBar author="Jonas" readTime={5} />
+        <AuthorMetaBar author="jonas" readTime="5 min" />
 
         <Link to="/ordbog" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-6">
           <ArrowLeft className="h-4 w-4" />
@@ -98,11 +98,8 @@ const OrdbogTerm = () => {
           </section>
         )}
 
-        {term.relatedPages.length > 0 && (
-          <RelatedGuides guides={term.relatedPages.map((p) => ({ title: p.label, href: p.href }))} />
-        )}
-
-        <AuthorBio author="Jonas" />
+        <RelatedGuides currentPath={pathname} />
+        <AuthorBio author="jonas" />
       </article>
     </>
   );
