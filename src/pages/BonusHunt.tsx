@@ -348,6 +348,9 @@ export default function BonusHunt() {
             </div>
           )}
 
+          {/* Enterprise SEO text – full width, after main grid */}
+          <BonusHuntSeoText />
+
           {/* Community cross-links – rendered eagerly for crawlability */}
           <BonusHuntCommunityLinks />
 
