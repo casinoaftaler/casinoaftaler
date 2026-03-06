@@ -201,6 +201,8 @@ const ForfatterAjse = lazy(() => import("./pages/ForfatterAjse"));
 const SaadanTesterVi = lazy(() => import("./pages/SaadanTesterVi"));
 const CasinoNyheder = lazy(() => import("./pages/CasinoNyheder"));
 const CasinoNyhedArticle = lazy(() => import("./pages/CasinoNyhedArticle"));
+const Ordbog = lazy(() => import("./pages/Ordbog"));
+const OrdbogTerm = lazy(() => import("./pages/OrdbogTerm"));
 
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CasinoerHub = lazy(() => import("./pages/casinoer/CasinoerHub"));
@@ -296,6 +298,8 @@ const App = () => (
                 <Route path="/nyheder" element={<Navigate to="/casino-nyheder" replace />} />
                 <Route path="/casino-nyheder" element={<CasinoNyheder />} />
                 <Route path="/casino-nyheder/:slug" element={<CasinoNyhedArticle />} />
+                <Route path="/ordbog" element={<Ordbog />} />
+                <Route path="/ordbog/:slug" element={<OrdbogTerm />} />
                 
                 <Route path="/casino-bonus" element={<CasinoBonus />} />
                 <Route path="/ansvarligt-spil" element={<AnsvarligtSpil />} />

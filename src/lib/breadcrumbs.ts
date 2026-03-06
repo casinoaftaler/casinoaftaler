@@ -198,6 +198,23 @@ export const routeLabels: Record<string, string> = {
   "/casinoer/casino-og-skat": "Casino og Skat",
   // Casino Nyheder
   "/casino-nyheder": "Casino Nyheder",
+  // Casino Ordbog
+  "/ordbog": "Casino Ordbog",
+  "/ordbog/rtp": "RTP (Return to Player)",
+  "/ordbog/wagering": "Omsætningskrav (Wagering)",
+  "/ordbog/volatilitet": "Volatilitet",
+  "/ordbog/house-edge": "House Edge",
+  "/ordbog/free-spins": "Free Spins",
+  "/ordbog/scatter": "Scatter-symbol",
+  "/ordbog/wild": "Wild-symbol",
+  "/ordbog/jackpot": "Jackpot",
+  "/ordbog/rng": "RNG (Random Number Generator)",
+  "/ordbog/paylines": "Gevinstlinjer (Paylines)",
+  "/ordbog/bonus-runde": "Bonusrunde",
+  "/ordbog/multiplikator": "Multiplikator",
+  "/ordbog/max-bet": "Max Bet",
+  "/ordbog/autoplay": "Autoplay",
+  "/ordbog/hit-frequency": "Hit Frequency",
   // Community (kun indexerbare sider)
   "/community": "Community",
   "/community/slots": "Spillehal",
@@ -360,6 +377,23 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
 
   // Slot Database – standalone hub
   "/slot-database": [],
+
+  // Ordbog cluster – alle termer bundet til /ordbog hub
+  "/ordbog/rtp": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/wagering": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/volatilitet": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/house-edge": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/free-spins": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/scatter": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/wild": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/jackpot": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/rng": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/paylines": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/bonus-runde": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/multiplikator": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/max-bet": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/autoplay": [{ name: "Casino Ordbog", path: "/ordbog" }],
+  "/ordbog/hit-frequency": [{ name: "Casino Ordbog", path: "/ordbog" }],
 };
 
 /**

@@ -247,6 +247,24 @@ export const seoRoutes: SeoRoute[] = ([
   // Hub only – article entries are dynamically generated in sitemap-news.xml
   { path: "/casino-nyheder", changefreq: "daily", priority: 0.9, lastmod: "2026-03-05" },
 
+  // ── Casino Ordbog ──
+  { path: "/ordbog", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-06" },
+  { path: "/ordbog/rtp", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/wagering", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/volatilitet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/house-edge", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/free-spins", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/scatter", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/wild", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/jackpot", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/rng", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/paylines", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/bonus-runde", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/multiplikator", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/max-bet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/autoplay", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+  { path: "/ordbog/hit-frequency", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
+
   // ── Community & Highlights ──
   { path: "/bonus-hunt", changefreq: "daily", priority: 0.8, lastmod: "2026-02-28" },
   { path: "/bonus-hunt/arkiv", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },

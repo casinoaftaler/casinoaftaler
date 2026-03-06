@@ -67,6 +67,41 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     href: "/casino-licenser",
     anchor: "", // uses matched text
   },
+  {
+    patterns: [/\bRTP\b/],
+    href: "/ordbog/rtp",
+    anchor: "RTP",
+  },
+  {
+    patterns: [/\bvolatilitet\b/i],
+    href: "/ordbog/volatilitet",
+    anchor: "", // uses matched text
+  },
+  {
+    patterns: [/\bhouse edge\b/i],
+    href: "/ordbog/house-edge",
+    anchor: "", // uses matched text
+  },
+  {
+    patterns: [/\bscatter[\s-]?symbol\b/i, /\bscatter\b/i],
+    href: "/ordbog/scatter",
+    anchor: "", // uses matched text
+  },
+  {
+    patterns: [/\bwild[\s-]?symbol\b/i],
+    href: "/ordbog/wild",
+    anchor: "", // uses matched text
+  },
+  {
+    patterns: [/\bgevinstlinjer\b/i, /\bpaylines\b/i],
+    href: "/ordbog/paylines",
+    anchor: "", // uses matched text
+  },
+  {
+    patterns: [/\bhit frequency\b/i, /\bhit-frequency\b/i],
+    href: "/ordbog/hit-frequency",
+    anchor: "", // uses matched text
+  },
 ];
 
 /**
