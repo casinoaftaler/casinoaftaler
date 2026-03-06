@@ -22,6 +22,15 @@ const OrdbogTerm = () => {
     return autoLinkEntities(term.fullContent);
   }, [term]);
 
+  // Calculate read time from content length (strip HTML, ~200 words/min Danish)
+  const readTime = useMemo(() => {
+    if (!term?.fullContent) return "3 min";
+    const textOnly = term.fullContent.replace(/<[^>]*>/g, "");
+    const wordCount = textOnly.split(/\s+/).filter(Boolean).length;
+    const minutes = Math.max(3, Math.ceil(wordCount / 200));
+    return `${minutes} min`;
+  }, [term]);
+
   if (!term) return <Navigate to="/ordbog" replace />;
 
   const heroImage = getGlossaryHero(term.slug);
@@ -82,7 +91,7 @@ const OrdbogTerm = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" readTime="5 min" />
+        <AuthorMetaBar author="jonas" readTime={readTime} />
 
         <Link to="/ordbog" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-6">
           <ArrowLeft className="h-4 w-4" />
