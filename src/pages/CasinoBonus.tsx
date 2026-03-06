@@ -55,7 +55,7 @@ const casinoBonusFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvordan beregner jeg den reelle værdi af en casino bonus?",
     answer: (
       <>
-        Brug formlen: Reel værdi = Bonusbeløb – (Total omsætning × House Edge). For en 1.000 kr. bonus med 10x omsætning og 4% house edge: 1.000 – (20.000 × 0,04) = 200 kr. i forventet reel værdi. Jo lavere omsætningskrav og jo højere RTP på de spil du vælger, jo højere er den reelle bonusværdi. En <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> øger værdien yderligere, fordi du kan hæve egne gevinster undervejs uden at miste bonussen. Sammenlign altid den matematiske værdi – ikke det annoncerede bonusbeløb.
+        Brug formlen: Reel værdi = Bonusbeløb – (Total omsætning × <Link to="/ordbog/house-edge" className={linkClass}>House Edge</Link>). For en 1.000 kr. bonus med 10x omsætning og 4% house edge: 1.000 – (20.000 × 0,04) = 200 kr. i forventet reel værdi. Jo lavere <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og jo højere <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på de spil du vælger, jo højere er den reelle bonusværdi. En <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> øger værdien yderligere, fordi du kan hæve egne gevinster undervejs uden at miste bonussen. Sammenlign altid den matematiske værdi – ikke det annoncerede bonusbeløb.
       </>
     ),
   },
@@ -71,7 +71,7 @@ const casinoBonusFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvordan adskiller danske bonusvilkår sig fra internationale casinoer?",
     answer: (
       <>
-        Danmark har de mest spillervenlige bonusvilkår i Europa takket være <a href="https://www.spillemyndigheden.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>Spillemyndighedens</a> regulering. Det danske 10x omsætningsloft er markant lavere end UK (typisk 35-50x), Malta (30-40x) og Curaçao (ofte 40-60x). Derudover kræver dansk lov, at vilkår præsenteres tydeligt, og at bonusmarkedsføring ikke er vildledende. Spillere hos danske casinoer har desuden klageadgang via Spillemyndigheden og kan selvudelukke via <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Disse fordele eksisterer ikke på uregulerede markeder.
+        Danmark har de mest spillervenlige bonusvilkår i Europa takket være <Link to="/spillemyndigheden" className={linkClass}>Spillemyndighedens</Link> regulering. Det danske 10x omsætningsloft er markant lavere end kravene i andre jurisdiktioner som UK, Malta og Curaçao, hvor omsætningskravene typisk er mange gange højere. Derudover kræver dansk lov, at vilkår præsenteres tydeligt, og at bonusmarkedsføring ikke er vildledende. Spillere hos danske casinoer har desuden klageadgang via Spillemyndigheden og kan selvudelukke via <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Disse fordele eksisterer ikke på uregulerede markeder. Læs mere om <Link to="/casino-licenser" className={linkClass}>casino licenser</Link>.
       </>
     ),
   },
