@@ -35,6 +35,7 @@ export default function RiseOfFedesvin() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
+  const isMobile = useIsMobile();
   
   // Load custom sound files at page level so they're ready for intro screen music
   useSlotSoundLoader(GAME_ID);
@@ -48,7 +49,13 @@ export default function RiseOfFedesvin() {
     takeOverSession,
     refreshSession 
   } = useSlotSession(GAME_ID);
-  const { scale, shouldScale } = useSlotScale();
+  const { scale } = useSlotScale({
+    baseWidth: 1880,
+    baseHeight: 1120,
+    headerHeight: 72,
+    safetyPadding: 16,
+    minScale: 0.2,
+  });
   const { isLocked, hasAccess, isLoading: accessLoading, isVerifying, error: accessError, verifyPassword } = useSlotPageAccess(GAME_ID);
   
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');

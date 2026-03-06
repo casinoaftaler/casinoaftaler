@@ -35,6 +35,7 @@ export default function SlotMachine() {
   const { user, loading } = useAuth();
   const { data: siteSettings } = useSiteSettings();
   const { data: casinos } = useCasinos();
+  const isMobile = useIsMobile();
   const { hasAccess, isLoading: accessLoading, isVerifying, verifyPassword, error: accessError } = useSlotPageAccess("book-of-fedesvin");
   
   // Load custom sound files at page level so they're ready for intro screen music
@@ -49,7 +50,13 @@ export default function SlotMachine() {
     takeOverSession,
     refreshSession 
   } = useSlotSession("book-of-fedesvin");
-  const { scale, shouldScale } = useSlotScale();
+  const { scale } = useSlotScale({
+    baseWidth: 1880,
+    baseHeight: 1120,
+    headerHeight: 72,
+    safetyPadding: 16,
+    minScale: 0.2,
+  });
   
   const [loadingPhase, setLoadingPhase] = useState<LoadingPhase>('loading');
   
