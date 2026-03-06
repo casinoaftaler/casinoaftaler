@@ -229,7 +229,7 @@ export default function SlotMachine() {
         <div className="flex-1 flex flex-col overflow-hidden">
           <div className="w-full px-1">
             <SlotPageLayout sidePanel={null}>
-              <SlotGame isMobile />
+              <SlotGame />
             </SlotPageLayout>
           </div>
         </div>
