@@ -49,8 +49,8 @@ export default function SlotMachine() {
     refreshSession 
   } = useSlotSession("book-of-fedesvin");
   const { scale } = useSlotScale({
-    baseWidth: 1880,
-    baseHeight: 1120,
+    baseWidth: 1200,
+    baseHeight: 920,
     headerHeight: 72,
     safetyPadding: 16,
     minScale: 0.2,
