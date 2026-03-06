@@ -17,7 +17,7 @@ const ORDBOG_FAQS = [
   { question: "Hvad er en casino ordbog?", answer: "En casino ordbog er en samling af definitioner og forklaringer af de mest almindelige begreber inden for online casino, spillemaskiner og bonusser." },
   { question: "Hvad er den vigtigste term at kende?", answer: "RTP (Return to Player) er nok den vigtigste. Den fortæller dig den langsigtede tilbagebetalingsprocent. Jo højere RTP, desto bedre statistisk chance." },
   { question: "Hvad er forskellen på RTP og volatilitet?", answer: "RTP angiver den langsigtede tilbagebetalingsprocent, mens volatilitet beskriver hvordan gevinsterne fordeler sig — hyppige små gevinster (lav) vs. sjældne store gevinster (høj)." },
-  { question: "Hvad betyder wagering?", answer: "Wagering (omsætningskrav) er det antal gange, du skal omsætte en bonus, før du kan udbetale. F.eks. 30x wagering på 100 kr. = 3.000 kr. i omsætning." },
+  { question: "Hvad betyder wagering?", answer: "Wagering (omsætningskrav) er det antal gange, du skal omsætte en bonus, før du kan udbetale. I Danmark er det maksimalt 10x. F.eks. 10x wagering på 1.000 kr. bonus = 10.000 kr. i omsætning." },
 ];
 
 const definedTermSetSchema = {

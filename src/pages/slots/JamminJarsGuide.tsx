@@ -48,7 +48,7 @@ const jamminJarsFaqs: { question: string; answer: ReactNode }[] = [
     question: "Er Jammin' Jars god til bonusomsætning?",
     answer: (
       <>
-        Med en RTP på 96,83 % er Jammin' Jars en af de bedste slots til <Link to="/omsaetningskrav" className={linkClass}>omsætning af bonus</Link>. For en 30× wagering på 500 kr. er det statistiske tab kun 476 kr., hvilket efterlader en positiv forventet bonusværdi på 24 kr. Kombinér med en <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link> for optimal EV. Den høje volatilitet kan dog skabe store saldoudsving under omsætningen.
+        Med en RTP på 96,83 % er Jammin' Jars en af de bedste slots til <Link to="/omsaetningskrav" className={linkClass}>omsætning af bonus</Link>. Med det danske 10x omsætningskrav på en 1.000 kr. bonus (10.000 kr. total omsætning) er det forventede tab kun 317 kr. – bonusværdien er +683 kr., klart positiv EV. Kombinér med en <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonus uden omsætningskrav</Link> for optimal EV. Den høje volatilitet kan dog skabe store saldoudsving under omsætningen.
       </>
     ),
   },

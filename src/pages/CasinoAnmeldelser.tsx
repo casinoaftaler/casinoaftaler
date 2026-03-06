@@ -430,7 +430,7 @@ const CasinoAnmeldelser = () => {
                   Du aktiverer altid{" "}
                   <Link to="/velkomstbonus" className={linkClass}>velkomstbonussen</Link> og vil maksimere dens værdi. For dig er{" "}
                   <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonusser</Link> med 10x{" "}
-                  <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> det absolutte sweet spot. Undgå sticky bonusser med 30x+ omsætning – den forventede værdi er for lav. Tjek altid spilbidrag og gevinstlofter.
+                  <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> det absolutte sweet spot. Med det danske 10x-krav er bonusser næsten altid positive i forventet værdi. Tjek altid spilbidrag og gevinstlofter.
                 </p>
                 <p className="font-medium text-foreground">Prioritér: Bonustype → Omsætningskrav → Gevinstloft → Spilbidrag</p>
               </CardContent>

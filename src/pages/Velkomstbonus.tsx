@@ -836,7 +836,7 @@ const Velkomstbonus = () => {
             </table>
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            <strong>Perspektiv:</strong> En "lille" dansk velkomstbonus på 1.000 kr. med 5x omsætning er reelt mere værd end en "stor" udenlandsk bonus på €2.000 med 50x omsætning. Den danske bonus giver dig ~600 kr. reel EV skattefrit; den udenlandske bonus giver dig statistisk tab OG skattepligt på eventuelle gevinster. Størrelse er ikke alt – vilkårene er det.
+            <strong>Perspektiv:</strong> En dansk velkomstbonus på 1.000 kr. med 10x omsætning er reelt langt mere værd end selv store udenlandske bonusser med markant højere omsætningskrav. Den danske bonus giver dig ~600 kr. reel EV skattefrit, mens udenlandske bonusser typisk giver statistisk tab OG skattepligt på eventuelle gevinster. Størrelse er ikke alt – vilkårene er det.
           </p>
         </section>
 
