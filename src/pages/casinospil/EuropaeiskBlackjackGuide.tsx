@@ -689,13 +689,9 @@ const EuropaeiskBlackjackGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
-        <AuthorBio />
-
         <RelatedGuides currentPath="/casinospil/blackjack/europaeisk-blackjack" />
-
         <FAQSection faqs={faqs} />
+        <AuthorBio />
       </div>
     </>
   );

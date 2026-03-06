@@ -255,11 +255,8 @@ const RoyalCasinoAnmeldelse = () => {
         <RelatedReviews currentSlug="royal-casino" />
         <InlineCasinoCards count={3} />
 
-        <Separator className="my-10" />
-        <FAQSection faqs={royalFaqs} />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/royal-casino" />
-        <Separator className="my-10" />
+        <FAQSection faqs={royalFaqs} />
         <AuthorBio author="jonas" />
       </div>
     </>

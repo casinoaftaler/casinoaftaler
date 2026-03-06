@@ -496,10 +496,8 @@ const OneCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
-        <FAQSection faqs={oneFaqs} />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/one-casino" />
-        <Separator className="my-10" />
+        <FAQSection faqs={oneFaqs} />
         <AuthorBio author="jonas" />
       </div>
     </>

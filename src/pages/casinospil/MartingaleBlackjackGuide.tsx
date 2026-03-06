@@ -812,12 +812,9 @@ const MartingaleBlackjackGuide = () => {
 
         <Separator className="mb-12" />
 
-        <FAQSection faqs={faqs} />
-
-        <Separator className="my-12" />
-        <AuthorBio author="jonas" />
-        <Separator className="my-12" />
         <RelatedGuides currentPath="/casinospil/blackjack/martingale-system" />
+        <FAQSection faqs={faqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

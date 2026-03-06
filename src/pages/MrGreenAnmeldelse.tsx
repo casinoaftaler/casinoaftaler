@@ -266,10 +266,9 @@ const MrGreenAnmeldelse = () => {
 
         <RelatedReviews currentSlug="mr-green" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["mr-green"]} />
-        <AuthorBio />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/mr-green" />
         <FAQSection title="Ofte stillede spørgsmål om Mr Green Casino" faqs={mrgreenFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

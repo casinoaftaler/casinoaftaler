@@ -860,10 +860,6 @@ const FreeSpins = () => {
           </div>
         </section>
 
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <section className="mb-8">
           <Card className="border-primary/20 bg-primary/5">
             <CardContent className="flex items-center gap-4 p-6">
@@ -884,6 +880,8 @@ const FreeSpins = () => {
         <RelatedGuides currentPath="/free-spins" />
 
         <FAQSection title="Ofte stillede spørgsmål om free spins" faqs={freeSpinsFaqs} />
+
+        <AuthorBio />
       </div>
     </>
   );

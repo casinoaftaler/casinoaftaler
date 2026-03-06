@@ -1013,18 +1013,9 @@ export default function AmerikanskRouletteGuide() {
 
         <Separator className="mb-12" />
 
-        {/* ═══════════════ FAQ ═══════════════ */}
-        <section className="mb-12">
-          <FAQSection faqs={faqs} />
-        </section>
-
-        <Separator className="mb-12" />
-
-        <AuthorBio author="jonas" />
-
-        <Separator className="my-12" />
-
         <RelatedGuides currentPath="/casinospil/roulette/amerikansk-roulette" />
+        <FAQSection faqs={faqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

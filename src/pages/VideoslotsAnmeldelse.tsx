@@ -297,11 +297,8 @@ const VideoslotsAnmeldelse = () => {
         <RelatedReviews currentSlug="videoslots" />
         <InlineCasinoCards count={3} />
 
-        <Separator className="my-10" />
-        <FAQSection faqs={faqs} />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/videoslots" />
-        <Separator className="my-10" />
+        <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
     </>

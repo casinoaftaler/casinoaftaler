@@ -627,13 +627,9 @@ const Spanish21Guide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
-        <AuthorBio />
-
         <RelatedGuides currentPath="/casinospil/blackjack/spanish-21" />
-
         <FAQSection faqs={faqs} />
+        <AuthorBio />
       </div>
     </>
   );

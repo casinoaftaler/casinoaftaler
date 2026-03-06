@@ -292,11 +292,8 @@ const MarathonBetAnmeldelse = () => {
 
         <RelatedReviews currentSlug="marathonbet" />
         <InlineCasinoCards count={3} />
-        <Separator className="my-10" />
-        <FAQSection faqs={marathonbetFaqs} />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/marathonbet" />
-        <Separator className="my-10" />
+        <FAQSection faqs={marathonbetFaqs} />
         <AuthorBio author="jonas" />
       </div>
     </>

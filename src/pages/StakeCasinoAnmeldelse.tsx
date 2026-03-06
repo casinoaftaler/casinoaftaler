@@ -327,11 +327,8 @@ const StakeCasinoAnmeldelse = () => {
           </Card>
         </section>
 
-        <Separator className="my-10" />
-        <FAQSection faqs={stakeFaqs} />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/stake-casino" />
-        <Separator className="my-10" />
+        <FAQSection faqs={stakeFaqs} />
         <AuthorBio author="jonas" />
       </div>
     </>

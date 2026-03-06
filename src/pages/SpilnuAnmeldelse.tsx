@@ -514,11 +514,8 @@ const SpilnuAnmeldelse = () => {
           </Card>
         </section>
 
-        <Separator className="my-10" />
-        <FAQSection faqs={spilnuFaqs} />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/spilnu" />
-        <Separator className="my-10" />
+        <FAQSection faqs={spilnuFaqs} />
         <AuthorBio author="jonas" />
       </div>
     </>
