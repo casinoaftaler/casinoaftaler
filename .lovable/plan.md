@@ -1,24 +1,72 @@
 
 
-## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
+## Problem
 
-### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
+The bottom-of-page structure is inconsistent across ~150 pages. The correct order (as seen on `/casinospil`) should be:
 
-The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
+```text
+─── Content ───
+  RelatedGuides
+  FAQSection
+  AuthorBio  (renders: CommunityPromoSection → Author card → SourceCitations)
+─── End ───
+```
 
-Specifically:
-- **Remove** Gevinst from the right zone (lines 247-261)
-- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
+Currently, pages have many different orderings. The most common wrong patterns:
 
-Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
+| Pattern | Example pages |
+|---------|--------------|
+| **AuthorBio → RelatedGuides → FAQ** | Most slot guides, Spiludviklere, CasinoAnmeldelser, CasinoBonus |
+| **AuthorBio → FAQ** (no RelatedGuides) | BaccaratGuide, LicenseredeCasinoerGuide, SpilForSjovGuide |
+| **RelatedGuides → FAQ → AuthorBio** | Already correct: Casinospil, ProviderPageTemplate, PaymentMethodPageTemplate |
+| **FAQ → AuthorBio → RelatedGuides** | Some casino reviews |
+| **AuthorBio → ... → RelatedGuides → FAQ** | CasinoNyhedArticle, BwinAnmeldelse |
 
-### 2. Add Count-Up Animation for Win Amount
+For slot guides specifically, `SlotProviderLink` should come before RelatedGuides (it's contextually related content).
 
-Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
-- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
-- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
-- The component already handles ease-out counting and bump animation on completion
+## Plan
 
-### Files Modified
-- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
+### Scope
+All ~150 page files under `src/pages/` that use `<AuthorBio>`. Templates (`ProviderPageTemplate`, `PaymentMethodPageTemplate`) are already correct and won't be touched.
+
+### Target structure for every page
+```text
+<SlotProviderLink />          {/* only slot guides */}
+<LatestNewsByCategory />      {/* only pages that have it */}
+<RelatedGuides />
+<FAQSection />
+<AuthorBio />                 {/* ALWAYS last */}
+```
+
+Remove unnecessary `<Separator>` elements between these bottom components (the components have their own spacing).
+
+### Implementation approach
+Batch-edit all files. For each file:
+1. Identify the bottom section (everything after main content ends)
+2. Reorder to: RelatedGuides → FAQSection → AuthorBio (always last)
+3. Remove stray `<Separator>` wrappers around these components
+4. Keep existing props (`author=`, `showCommunity=`, `currentPath=`, etc.) unchanged
+
+### Files to modify (grouped by pattern)
+
+**Slot guides (~31 files)** — current: `AuthorBio → SlotProviderLink → RelatedGuides → FAQ`  
+Target: `SlotProviderLink → RelatedGuides → FAQSection → AuthorBio`
+
+**Casino reviews (~20 files)** — various wrong orderings  
+Target: `RelatedGuides → FAQSection → AuthorBio`
+
+**Hub/guide pages (~30 files)** — various wrong orderings  
+Target: `[LatestNewsByCategory] → RelatedGuides → FAQSection → AuthorBio`
+
+**Casinospil sub-guides (~29 files)** — various wrong orderings  
+Target: `RelatedGuides → FAQSection → AuthorBio`
+
+**Live casino guides (~5 files)**, **nye-casinoer (~10 files)**, **casinoer sub-pages (~9 files)** — same fix
+
+**Author pages, bonus pages, misc** — same fix
+
+### Not modified
+- `ProviderPageTemplate.tsx` — already correct
+- `PaymentMethodPageTemplate.tsx` — already correct
+- Pages without AuthorBio (Auth, Admin, NotFound, etc.)
 
