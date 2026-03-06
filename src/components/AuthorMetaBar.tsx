@@ -1,10 +1,33 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TableOfContents } from "@/components/TableOfContents";
 import { getRouteMetadata, formatLastmodDanish } from "@/lib/seoRoutes";
 import { usePageLastmod, formatTimestampDanish } from "@/hooks/usePageLastmod";
+
+/**
+ * Auto-calculate read time from page content.
+ * Scans the closest <main> or container for text, strips HTML, counts words at ~200 words/min.
+ */
+function useAutoReadTime(minMinutes = 3): string {
+  const [readTime, setReadTime] = useState<string>(`${minMinutes} min`);
+
+  useEffect(() => {
+    // Delay slightly to ensure page content has rendered
+    const timer = setTimeout(() => {
+      const main = document.querySelector("main") || document.querySelector(".container");
+      if (!main) return;
+      const text = main.innerText || main.textContent || "";
+      const wordCount = text.split(/\s+/).filter(Boolean).length;
+      const minutes = Math.max(minMinutes, Math.ceil(wordCount / 200));
+      setReadTime(`${minutes} min`);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [minMinutes]);
+
+  return readTime;
+}
 
 const DISCLAIMER_VARIANTS = [
   <>Denne side indeholder affiliate-links. Vi modtager provision, hvis du opretter en konto via vores links – det påvirker ikke vores vurdering. <Link to="/forretningsmodel" className="underline hover:text-primary">Læs mere om vores model</Link>.</>,
@@ -50,15 +73,20 @@ interface AuthorMetaBarProps {
    * @deprecated Prefer omitting this prop to use the centralized seoRoutes lastmod.
    */
   date?: string;
-  readTime: string;
+  /**
+   * @deprecated Read time is now auto-calculated from page content.
+   * This prop is ignored – kept only for backwards compatibility.
+   */
+  readTime?: string;
   showFactCheck?: boolean;
   showVerified?: boolean;
   showAffiliateDisclaimer?: boolean;
 }
 
-export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true }: AuthorMetaBarProps) {
+export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true }: AuthorMetaBarProps) {
   const { pathname } = useLocation();
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
+  const autoReadTime = useAutoReadTime();
 
   // Fetch dynamic date from DB (single source of truth)
   const { data: dbMeta } = usePageLastmod(pathname);
@@ -126,7 +154,7 @@ export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, sh
           <div className="flex items-center gap-1.5">
             <BookOpen className="h-4 w-4" />
             <span>
-              Læsetid: <span className="font-medium text-foreground">{readTime}</span>
+              Læsetid: <span className="font-medium text-foreground">{autoReadTime}</span>
             </span>
           </div>
           {showVerified && (
