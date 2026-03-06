@@ -432,9 +432,9 @@ const NyeCasinoer2026 = () => {
           </div>
         </section>
 
-        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/nye-casinoer/2026" />
         <FAQSection title="Ofte stillede spørgsmål om nye casinoer i 2026" faqs={faqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

@@ -627,12 +627,9 @@ export default function VideoPokerGuide() {
           </p>
         </section>
 
-        <Separator className="mb-12" />
-        <section className="mb-12"><FAQSection faqs={faqs} /></section>
-        <Separator className="mb-12" />
-        <AuthorBio author="jonas" />
-        <Separator className="my-12" />
         <RelatedGuides currentPath="/casinospil/poker/video-poker" />
+        <FAQSection faqs={faqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

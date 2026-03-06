@@ -619,14 +619,9 @@ const DalembertBlackjackGuide = () => {
           </Card>
         </section>
 
-        <Separator className="mb-12" />
-
-        <FAQSection faqs={faqs} />
-
-        <Separator className="my-12" />
-        <AuthorBio author="jonas" />
-        <Separator className="my-12" />
         <RelatedGuides currentPath="/casinospil/blackjack/dalembert-system" />
+        <FAQSection faqs={faqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );
