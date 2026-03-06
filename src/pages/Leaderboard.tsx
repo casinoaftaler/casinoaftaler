@@ -29,6 +29,8 @@ import { toast } from "@/hooks/use-toast";
 import { CompletedTournamentRow } from "@/components/tournament/CompletedTournamentRow";
 import { MonthlyTournamentBoxes } from "@/components/tournament/MonthlyTournamentBoxes";
 import { TournamentSeoContent, getTournamentFaqSchema, tournamentFaqs } from "@/components/tournament/TournamentSeoContent";
+import { TurneringerSeoText } from "@/components/tournament/TurneringerSeoText";
+import { AuthorBio } from "@/components/AuthorBio";
 import turneringerHero from "@/assets/community/turneringer-hero.jpg";
 
 const GAME_NAMES: Record<string, string> = {
@@ -567,11 +569,15 @@ export default function Leaderboard() {
             </Collapsible>
           )}
 
+          {/* Deep SEO text – after ended tournaments */}
+          <TurneringerSeoText />
+
           {/* SEO sections */}
           <div className="mt-12 space-y-8">
             <CommunitySeoSections />
             <RelatedGuides currentPath="/community/turneringer" />
             <FAQSection title="Ofte stillede spørgsmål om turneringer" faqs={tournamentFaqs} />
+            <AuthorBio author="kevin" />
             <CommunityBrandBlock />
           </div>
 

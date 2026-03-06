@@ -33,6 +33,8 @@ import butikImg from "@/assets/community/butik-card.jpg";
 import spinTheReelImg from "@/assets/community/spin-the-reel-card.jpg";
 import bonusHuntImg from "@/assets/community/bonus-hunt-card.jpg";
 import hallOfFameImg from "@/assets/community/hall-of-fame-card.jpg";
+import { CommunityOverviewSeoText } from "@/components/community/CommunityOverviewSeoText";
+import { AuthorBio } from "@/components/AuthorBio";
 import "@/styles/energy-sweep.css";
 import "@/styles/community-micro.css";
 
@@ -260,7 +262,9 @@ export default function CommunityHub() {
             </EnergySweep>
           </RevealSection>
 
+          <CommunityOverviewSeoText />
           <CommunitySeoSections />
+          <AuthorBio author="kevin" />
           <CommunityBrandBlock />
         </div>
       </CommunityPageLayout>
