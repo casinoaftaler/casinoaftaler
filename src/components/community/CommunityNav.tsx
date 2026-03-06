@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Gamepad2, Trophy, Video, Gift, ShoppingBag, Home, RotateCw, Target } from "lucide-react";
+import { Gamepad2, Trophy, Video, Gift, ShoppingBag, Home, RotateCw, Target, Crown } from "lucide-react";
 import "@/styles/community-micro.css";
 
 const NAV_ITEMS = [
@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { href: "/bonus-hunt", label: "Bonus Hunt", icon: Target },
   { href: "/highlights", label: "Highlights", icon: Video },
   { href: "/community/turneringer", label: "Turneringer", icon: Trophy },
+  { href: "/community/hall-of-fame", label: "Hall of Fame", icon: Crown },
   { href: "/community/rewards", label: "Rewards", icon: Gift },
   { href: "/butik", label: "Butik", icon: ShoppingBag },
 ];
