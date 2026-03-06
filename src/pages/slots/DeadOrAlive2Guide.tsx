@@ -155,7 +155,7 @@ const DeadOrAlive2Guide = () => {
             </CardContent></Card>
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Dead or Alive 2 bruger et klassisk 5x3 grid med kun 9 gevinstlinjer – en bevidst minimalistisk opsætning, der koncentrerer gevinsterne på færre, men højere kombinationer. Basisspillet har et Wild West-tema med revolveremner, whisky-flasker, cowboyhatte og sheriff-stjerner som symboler. Hit-raten er ca. 15 % – lavere end de fleste moderne slots, men forventet for dette volatilitetsniveau.
+            Dead or Alive 2 bruger et klassisk 5x3 grid med kun 9 <Link to="/ordbog/paylines" className={linkClass}>gevinstlinjer</Link> – en bevidst minimalistisk opsætning, der koncentrerer gevinsterne på færre, men højere kombinationer. Basisspillet har et Wild West-tema med revolveremner, whisky-flasker, cowboyhatte og sheriff-stjerner som symboler. <Link to="/ordbog/hit-frequency" className={linkClass}>Hit-raten</Link> er ca. 15 % – lavere end de fleste moderne slots, men forventet for dette <Link to="/ordbog/volatilitet" className={linkClass}>volatilitetsniveau</Link>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Basisspillet bidrager med ca. 25 % af den samlede RTP, mens bonusrunden leverer 75 %. Det er en af de mest skæve fordelinger i branchen og forklarer, hvorfor Dead or Alive 2 kan føles brutal under basisspillet – du spiller effektivt med en RTP på ca. 24 % mellem bonusrunder, kompenseret af (sjældne) massive bonusgevinster.

@@ -155,13 +155,13 @@ const SweetBonanzaGuide = () => {
             </CardContent></Card>
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sweet Bonanza benytter et "Scatter Pays"-system, hvor gevinster beregnes ud fra antallet af identiske symboler, der lander hvor som helst på de synlige positioner – ikke langs faste gevinstlinjer. Du skal lande minimum 8 af samme symbol for at opnå en gevinst. Symbolværdierne skalerer med antal: 8 matcher giver basisgevinst, 9 giver mere, og så videre op til 12+ symboler for den maksimale kombination.
+            Sweet Bonanza benytter et "Scatter Pays"-system, hvor gevinster beregnes ud fra antallet af identiske symboler, der lander hvor som helst på de synlige positioner – ikke langs faste <Link to="/ordbog/paylines" className={linkClass}>gevinstlinjer</Link>. Du skal lande minimum 8 af samme symbol for at opnå en gevinst. Symbolværdierne skalerer med antal: 8 matcher giver basisgevinst, 9 giver mere, og så videre op til 12+ symboler for den maksimale kombination.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Grid-layoutet med 6 hjul og 5 rækker giver i alt 30 synlige positioner. Med 9 unikke betalende symboler (4 lavbetalende frugt-symboler og 4 højbetalende bolsje-symboler plus scatter) skaber dette et komplekst sandsynlighedsrum. Den gennemsnitlige gevinstfrekvens i basisspillet ligger på ca. 22–26 % af alle spins – men fordi tumble-mekanikken kan generere flere gevinster fra et enkelt spin, er den effektive "action"-rate højere.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Et kritisk teknisk aspekt er spillets hit-rate versus pay-rate. Sweet Bonanza rammer en gevinst relativt ofte sammenlignet med andre høj-volatilitets slots, men størstedelen af gevinsterne i basisspillet er under 1x din indsats. Den reelle værdi kommer fra free spins-runden, hvor multiplikator-bomber kan transformere selv små symbolgevinster til massive udbetalinger. Denne asymmetri er kernen i spillets matematiske model.
+            Et kritisk teknisk aspekt er spillets <Link to="/ordbog/hit-frequency" className={linkClass}>hit-rate</Link> versus pay-rate. Sweet Bonanza rammer en gevinst relativt ofte sammenlignet med andre høj-<Link to="/ordbog/volatilitet" className={linkClass}>volatilitets</Link> slots, men størstedelen af gevinsterne i basisspillet er under 1x din indsats. Den reelle værdi kommer fra <Link to="/ordbog/free-spins" className={linkClass}>free spins</Link>-runden, hvor <Link to="/ordbog/multiplikator" className={linkClass}>multiplikator</Link>-bomber kan transformere selv små symbolgevinster til massive udbetalinger. Denne asymmetri er kernen i spillets matematiske model.
           </p>
         </section>
 

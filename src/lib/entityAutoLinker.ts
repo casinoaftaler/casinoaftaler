@@ -17,6 +17,7 @@ interface EntityMapping {
 }
 
 const ENTITY_MAPPINGS: EntityMapping[] = [
+  // ── Money-page entities ──────────────────────────────────────────
   {
     patterns: [/\bSpillemyndigheden\b/],
     href: "/spillemyndigheden",
@@ -45,62 +46,144 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
   {
     patterns: [/\bdansk licens\b/i, /\bdanske licenser\b/i],
     href: "/casino-licenser",
-    anchor: "", // uses matched text
+    anchor: "",
   },
   {
     patterns: [/\bnye casinoer\b/i],
     href: "/nye-casinoer",
-    anchor: "", // uses matched text
+    anchor: "",
   },
   {
     patterns: [/\bcashback bonus\b/i, /\bcashback-bonus\b/i],
     href: "/cashback-bonus",
-    anchor: "", // uses matched text
+    anchor: "",
   },
   {
     patterns: [/\breload bonus\b/i, /\breload-bonus\b/i],
     href: "/reload-bonus",
-    anchor: "", // uses matched text
+    anchor: "",
   },
   {
     patterns: [/\bhvidvask(?:regler|lovgivning|ning)?\b/i, /\bAML\b/],
     href: "/casino-licenser",
-    anchor: "", // uses matched text
+    anchor: "",
   },
+  {
+    patterns: [/\bcasino bonus\b/i, /\bcasinobonus\b/i],
+    href: "/casino-bonus",
+    anchor: "",
+  },
+  {
+    patterns: [/\bvelkomstbonus\b/i, /\bvelkomst-bonus\b/i],
+    href: "/velkomstbonus",
+    anchor: "",
+  },
+  {
+    patterns: [/\bindskudsbonus\b/i, /\bindskuds-bonus\b/i],
+    href: "/indskudsbonus",
+    anchor: "",
+  },
+  {
+    patterns: [/\bbonus uden omsætningskrav\b/i, /\bbonus uden omsaetningskrav\b/i],
+    href: "/bonus-uden-omsaetningskrav",
+    anchor: "",
+  },
+  {
+    patterns: [/\bno[\s-]?sticky bonus\b/i],
+    href: "/no-sticky-bonus",
+    anchor: "",
+  },
+  {
+    patterns: [/\bspillemaskiner\b/i],
+    href: "/casinospil/spillemaskiner",
+    anchor: "",
+  },
+  {
+    patterns: [/\bblackjack\b/i],
+    href: "/casinospil/blackjack",
+    anchor: "",
+  },
+  {
+    patterns: [/\broulette\b/i],
+    href: "/casinospil/roulette",
+    anchor: "",
+  },
+
+  // ── Ordbog entities (alle 15 termer) ─────────────────────────────
   {
     patterns: [/\bRTP\b/],
     href: "/ordbog/rtp",
     anchor: "RTP",
   },
   {
-    patterns: [/\bvolatilitet\b/i],
+    patterns: [/\bvolatilitet\b/i, /\bvarians\b/i],
     href: "/ordbog/volatilitet",
-    anchor: "", // uses matched text
+    anchor: "",
   },
   {
     patterns: [/\bhouse edge\b/i],
     href: "/ordbog/house-edge",
-    anchor: "", // uses matched text
+    anchor: "",
+  },
+  {
+    patterns: [/\bomsætningskrav\b/i, /\bomsaetningskrav\b/i, /\bwagering[\s-]?krav\b/i],
+    href: "/ordbog/wagering",
+    anchor: "",
+  },
+  {
+    patterns: [/\bfree spins\b/i, /\bgratis spins\b/i],
+    href: "/ordbog/free-spins",
+    anchor: "",
+  },
+  {
+    patterns: [/\bjackpot\b/i],
+    href: "/ordbog/jackpot",
+    anchor: "",
+  },
+  {
+    patterns: [/\bRNG\b/, /\brandom number generator\b/i, /\btilfældighedsgenerator\b/i],
+    href: "/ordbog/rng",
+    anchor: "",
+  },
+  {
+    patterns: [/\bbonusrunde\b/i, /\bbonus[\s-]?runde\b/i],
+    href: "/ordbog/bonus-runde",
+    anchor: "",
+  },
+  {
+    patterns: [/\bmultiplikator\b/i, /\bmultiplier\b/i],
+    href: "/ordbog/multiplikator",
+    anchor: "",
+  },
+  {
+    patterns: [/\bmax[\s-]?bet\b/i],
+    href: "/ordbog/max-bet",
+    anchor: "",
+  },
+  {
+    patterns: [/\bautoplay\b/i, /\bauto[\s-]?spin\b/i],
+    href: "/ordbog/autoplay",
+    anchor: "",
   },
   {
     patterns: [/\bscatter[\s-]?symbol\b/i, /\bscatter\b/i],
     href: "/ordbog/scatter",
-    anchor: "", // uses matched text
+    anchor: "",
   },
   {
     patterns: [/\bwild[\s-]?symbol\b/i],
     href: "/ordbog/wild",
-    anchor: "", // uses matched text
+    anchor: "",
   },
   {
     patterns: [/\bgevinstlinjer\b/i, /\bpaylines\b/i],
     href: "/ordbog/paylines",
-    anchor: "", // uses matched text
+    anchor: "",
   },
   {
     patterns: [/\bhit frequency\b/i, /\bhit-frequency\b/i],
     href: "/ordbog/hit-frequency",
-    anchor: "", // uses matched text
+    anchor: "",
   },
 ];
 
