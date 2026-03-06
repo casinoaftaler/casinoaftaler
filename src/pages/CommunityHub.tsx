@@ -264,8 +264,9 @@ export default function CommunityHub() {
 
           <CommunityOverviewSeoText />
           <CommunitySeoSections />
-          <AuthorBio author="kevin" />
+          <RelatedGuides currentPath="/community" />
           <CommunityBrandBlock />
+          <AuthorBio author="kevin" />
         </div>
       </CommunityPageLayout>
     </>

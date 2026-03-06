@@ -292,6 +292,9 @@ export default function Highlights() {
           {/* ── Brand block – E-E-A-T signal ── */}
           <CommunityBrandBlock />
 
+          {/* ── Author bio – always last ── */}
+          <AuthorBio author="kevin" showCommunity={false} />
+
           <div className="pb-12" />
         </div>
       </CommunityPageLayout>

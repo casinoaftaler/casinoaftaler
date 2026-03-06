@@ -366,11 +366,11 @@ export default function BonusHunt() {
           {/* FAQ Section – must be in DOM for schema match */}
           <BonusHuntFaq />
 
-          {/* Author bio – E-E-A-T signal */}
-          <AuthorBio author="kevin" showCommunity={false} />
-
-          {/* Brand block – E-E-A-T signal (last) */}
+          {/* Brand block – E-E-A-T signal */}
           <CommunityBrandBlock />
+
+          {/* Author bio – E-E-A-T signal (always last) */}
+          <AuthorBio author="kevin" showCommunity={false} />
 
           <div className="pb-12" />
         </div>

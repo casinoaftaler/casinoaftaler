@@ -219,13 +219,16 @@ export default function GameLibrary() {
           {/* SEO bridge sections */}
           <CommunitySeoSections />
 
-          {/* Author bio */}
-          <AuthorBio author="kevin" />
+          {/* Related guides */}
+          <RelatedGuides currentPath="/community/slots" />
 
           {/* Brand block */}
-          <div className="pb-8">
-            <CommunityBrandBlock />
-          </div>
+          <CommunityBrandBlock />
+
+          {/* Author bio – always last */}
+          <AuthorBio author="kevin" />
+
+          <div className="pb-8" />
         </div>
       </div>
     </div>

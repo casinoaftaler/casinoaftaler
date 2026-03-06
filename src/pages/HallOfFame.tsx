@@ -488,16 +488,16 @@ export default function HallOfFame() {
         {/* SEO Content */}
         <HallOfFameSeoContent />
 
+        <CommunitySeoSections />
+
+        <RelatedGuides currentPath="/community/hall-of-fame" />
+
         <div className="mt-12">
           <FAQSection faqs={faqItems} />
         </div>
 
-        <Separator className="my-12" />
         <CommunityBrandBlock />
-        <Separator className="my-12" />
-        <CommunitySeoSections />
-        <Separator className="my-12" />
-        <RelatedGuides currentPath="/community/hall-of-fame" />
+
         <AuthorBio author="jonas" />
       </div>
     </>

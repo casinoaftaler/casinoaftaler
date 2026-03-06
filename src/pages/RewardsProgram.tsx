@@ -71,7 +71,7 @@ export default function RewardsProgram() {
           </div>
         </div>
         <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="5 Min." showFactCheck={false} showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="12 Min." showFactCheck={false} showAffiliateDisclaimer={false} />
 
         {/* Section: Community Highlights Rewards */}
         <section className="mb-12">
@@ -267,6 +267,8 @@ export default function RewardsProgram() {
         <RelatedGuides currentPath="/community/rewards" maxLinks={4} />
 
         <CommunityBrandBlock />
+
+        <AuthorBio author="jonas" showCommunity={false} />
 
         <div className="pb-12" />
         </div>
