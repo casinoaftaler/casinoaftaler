@@ -60,7 +60,13 @@ export function CommunityOverviewSeoText() {
           <ul className="list-disc pl-5 space-y-2">
             <li>
               <strong className="text-foreground">Spillehal:</strong> Tre eksklusive community-maskiner
-              — Book of Fedesvin, Rise of Fedesvin og Fedesvin Bonanza — med 2.000 daglige credits.
+              — Book of Fedesvin (inspireret af{" "}
+              <Link to="/casinospil/spillemaskiner/book-of-dead" className="text-primary hover:underline">Book of Dead</Link>),
+              Rise of Fedesvin (inspireret af{" "}
+              <Link to="/casinospil/spillemaskiner/legacy-of-dead" className="text-primary hover:underline">Legacy of Dead</Link>)
+              og Fedesvin Bonanza (inspireret af{" "}
+              <Link to="/casinospil/spillemaskiner/sweet-bonanza" className="text-primary hover:underline">Sweet Bonanza</Link>)
+              — med 2.000 daglige credits.
               Spillemekanikkerne afspejler populære{" "}
               <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
                 spilleautomater
