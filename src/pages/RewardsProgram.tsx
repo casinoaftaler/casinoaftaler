@@ -15,6 +15,7 @@ import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { AuthorBio } from "@/components/AuthorBio";
 
 export default function RewardsProgram() {
   const { user, loading } = useAuth();

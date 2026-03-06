@@ -5,6 +5,7 @@ import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock"
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { RelatedGuides } from "@/components/RelatedGuides";
 
 
 import { EnergySweep } from "@/components/community/EnergySweep";
