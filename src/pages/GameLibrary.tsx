@@ -25,6 +25,8 @@ import riseIntroImage from "@/assets/slots/rise/intro-screen.jpg";
 import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
 import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
 import bonanzaImage from "@/assets/slots/fedesvin-bonanza-preview.jpg";
+import { SpillehalSeoText } from "@/components/community/SpillehalSeoText";
+import { AuthorBio } from "@/components/AuthorBio";
 import "@/styles/spillehal-animations.css";
 import "@/styles/community-micro.css";
 
@@ -211,8 +213,14 @@ export default function GameLibrary() {
           {/* Section divider */}
           <div className="spillehal-divider" />
 
+          {/* Deep SEO text – before casino sections */}
+          <SpillehalSeoText />
+
           {/* SEO bridge sections */}
           <CommunitySeoSections />
+
+          {/* Author bio */}
+          <AuthorBio author="kevin" />
 
           {/* Brand block */}
           <div className="pb-8">
