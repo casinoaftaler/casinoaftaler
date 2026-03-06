@@ -5,12 +5,12 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { getTermBySlug, glossaryTerms } from "@/data/glossaryTerms";
+import { getGlossaryHero } from "@/data/glossaryHeroImages";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { useMemo } from "react";
-import ordbogHero from "@/assets/heroes/ordbog-hero.jpg";
 
 const OrdbogTerm = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -23,6 +23,8 @@ const OrdbogTerm = () => {
   }, [term]);
 
   if (!term) return <Navigate to="/ordbog" replace />;
+
+  const heroImage = getGlossaryHero(term.slug);
 
   const relatedTermData = term.relatedTerms
     .map((s) => glossaryTerms.find((t) => t.slug === s))
@@ -57,7 +59,7 @@ const OrdbogTerm = () => {
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
-          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${ordbogHero})`,
+          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -89,8 +91,8 @@ const OrdbogTerm = () => {
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
-            src={ordbogHero}
-            alt={`${term.title} – casino ordbog begreb illustreret med spillekort og chips`}
+            src={heroImage}
+            alt={`${term.title} – casino ordbog begreb illustreret`}
             width={1920}
             height={1080}
             className="w-full h-auto object-cover max-h-[400px]"
