@@ -11,8 +11,11 @@ import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/Bon
 import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream";
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
 import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent";
+import { BonusHuntSeoText } from "@/components/bonus-hunt/BonusHuntSeoText";
 // LazySection removed from SEO-critical sections for crawlability
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
 import { BonusHuntFaq, buildBonusHuntFaqSchema } from "@/components/bonus-hunt/BonusHuntFaq";
 import { BonusHuntRelatedGuides } from "@/components/bonus-hunt/BonusHuntRelatedGuides";
