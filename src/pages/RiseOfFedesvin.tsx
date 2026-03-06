@@ -50,8 +50,8 @@ export default function RiseOfFedesvin() {
     refreshSession 
   } = useSlotSession(GAME_ID);
   const { scale } = useSlotScale({
-    baseWidth: 1880,
-    baseHeight: 1120,
+    baseWidth: 1200,
+    baseHeight: 920,
     headerHeight: 72,
     safetyPadding: 16,
     minScale: 0.2,
@@ -233,15 +233,15 @@ export default function RiseOfFedesvin() {
         /* ── DESKTOP: CSS transform scaling ── */
         <div className="flex-1 flex items-center justify-center overflow-hidden">
           <div
-            className="slot-viewport-container"
+            className="slot-viewport-container flex items-center justify-center"
             style={{
-              width: '1880px',
-              height: '1120px',
+              width: '1200px',
+              height: '920px',
               transform: `scale(${scale})`,
-              marginTop: `${-(1120 * (1 - scale)) / 2}px`,
-              marginBottom: `${-(1120 * (1 - scale)) / 2}px`,
-              marginLeft: `${-(1880 * (1 - scale)) / 2}px`,
-              marginRight: `${-(1880 * (1 - scale)) / 2}px`,
+              marginTop: `${-(920 * (1 - scale)) / 2}px`,
+              marginBottom: `${-(920 * (1 - scale)) / 2}px`,
+              marginLeft: `${-(1200 * (1 - scale)) / 2}px`,
+              marginRight: `${-(1200 * (1 - scale)) / 2}px`,
             }}
           >
             <SlotPageLayout sidePanel={sidePanelContent}>
