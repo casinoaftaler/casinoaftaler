@@ -150,11 +150,10 @@ const WildWestGoldGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde andre high-value titler fra <Link to="/casinospil" className={linkClass}>Pragmatic Play</Link> og andre topudviklere.</p>
         </section>
 
-        <Separator className="my-10" />
-        <AuthorBio author="kevin" />
         <SlotProviderLink slotSlug="wild-west-gold" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wild-west-gold" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wild West Gold" faqs={wildWestGoldFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

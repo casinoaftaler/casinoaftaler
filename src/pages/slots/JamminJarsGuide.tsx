@@ -356,11 +356,10 @@ const JamminJarsGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-8" />
-        <AuthorBio author="kevin" />
         <SlotProviderLink slotSlug="jammin-jars" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/jammin-jars" />
         <FAQSection title="Ofte Stillede Spørgsmål om Jammin' Jars" faqs={jamminJarsFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

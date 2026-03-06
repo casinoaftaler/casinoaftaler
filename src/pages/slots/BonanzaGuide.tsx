@@ -357,11 +357,10 @@ const BonanzaGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-8" />
-        <AuthorBio author="jonas" />
         <SlotProviderLink slotSlug="bonanza" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/bonanza" />
         <FAQSection title="Ofte Stillede Spørgsmål om Bonanza Megaways" faqs={bonanzaFaqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

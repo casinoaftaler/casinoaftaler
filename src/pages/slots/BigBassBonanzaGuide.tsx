@@ -348,12 +348,10 @@ const BigBassBonanzaGuide = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio author="kevin" />
-
         <SlotProviderLink slotSlug="big-bass-bonanza" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/big-bass-bonanza" />
-
         <FAQSection title="Ofte Stillede Spørgsmål om Big Bass Bonanza" faqs={bigBassFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

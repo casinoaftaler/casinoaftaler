@@ -393,11 +393,10 @@ const MoneyTrain3Guide = () => {
           </p>
         </section>
 
-        <Separator className="my-8" />
-        <AuthorBio author="jonas" />
         <SlotProviderLink slotSlug="money-train-3" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/money-train-3" />
         <FAQSection title="Ofte Stillede Spørgsmål om Money Train 3" faqs={moneyTrain3Faqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

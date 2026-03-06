@@ -303,14 +303,10 @@ const DeadOrAlive2Guide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
-        <AuthorBio />
-
         <SlotProviderLink slotSlug="dead-or-alive-2" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/dead-or-alive-2" />
-
         <FAQSection title="Ofte Stillede Spørgsmål om Dead or Alive 2" faqs={doa2Faqs} />
+        <AuthorBio />
       </div>
     </>
   );

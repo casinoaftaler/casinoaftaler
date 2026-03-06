@@ -163,11 +163,10 @@ const WantedDeadOrAWildGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Men for de fleste spillere er Wanted for volatil. Kend dine grænser, forstå matematikken, og vælg et spil, der matcher din risikoprofil – ikke dit ego. Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> for at finde din ideelle match.</p>
         </section>
 
-        <Separator className="my-10" />
-        <AuthorBio author="kevin" />
         <SlotProviderLink slotSlug="wanted-dead-or-a-wild" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wanted-dead-or-a-wild" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wanted Dead or a Wild" faqs={wantedFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

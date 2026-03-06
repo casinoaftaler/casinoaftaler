@@ -333,12 +333,10 @@ const GonzosQuestGuide = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio author="kevin" />
-
         <SlotProviderLink slotSlug="gonzos-quest" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/gonzos-quest" />
-
         <FAQSection title="Ofte Stillede Spørgsmål om Gonzo's Quest" faqs={gonzosQuestFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

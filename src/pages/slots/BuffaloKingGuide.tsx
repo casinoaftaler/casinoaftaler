@@ -119,11 +119,10 @@ const BuffaloKingGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For danske spillere, der forstår og accepterer ekstremt høj volatilitet, er Buffalo King en spændende tilføjelse til slot-repertoiret. Men den bør behandles med respekt – og med en disciplineret bankroll-strategi. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide-oversigt</Link> for at finde det rette match til din risikoprofil.</p>
         </section>
 
-        <Separator className="my-8" />
-        <AuthorBio author="kevin" />
         <SlotProviderLink slotSlug="buffalo-king" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/buffalo-king" />
         <FAQSection title="Ofte Stillede Spørgsmål om Buffalo King" faqs={buffaloKingFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );
