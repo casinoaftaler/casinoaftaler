@@ -288,7 +288,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/casinospil/game-shows": [{ name: "Casinospil", path: "/casinospil" }],
   "/casinospil/online-lotteri": [{ name: "Casinospil", path: "/casinospil" }],
   "/casinospil/spillemaskiner": [{ name: "Casinospil", path: "/casinospil" }],
-  "/casinospil/roulette-strategi": [{ name: "Casinospil", path: "/casinospil" }, { name: "Roulette", path: "/casinospil/roulette" }],
+  // /casinospil/roulette-strategi – removed (301 redirect to /casinospil/roulette)
 
   // Roulette cluster – all spokes bound to /casinospil/roulette hub
   "/casinospil/roulette/amerikansk-roulette": [{ name: "Casinospil", path: "/casinospil" }, { name: "Roulette", path: "/casinospil/roulette" }],

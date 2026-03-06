@@ -282,7 +282,7 @@ const App = () => (
                 <Route path="/nye-casinoer/trustly" element={<NyeCasinoerTrustly />} />
                 <Route path="/nye-casinoer/mitid" element={<NyeCasinoerMitID />} />
                 <Route path="/nye-casinoer/lav-wagering" element={<NyeCasinoerLavWagering />} />
-                <Route path="/nye-casinoer/bedste" element={<BedsteNyeCasinoer />} />
+                <Route path="/nye-casinoer/bedste" element={<Navigate to="/nye-casinoer" replace />} />
                 <Route path="/nye-casinoer/vs-etablerede" element={<NyeVsEtablerede />} />
                 <Route path="/om" element={<OmTeamet />} />
                 <Route path="/forretningsmodel" element={<Forretningsmodel />} />
@@ -428,7 +428,7 @@ const App = () => (
                 <Route path="/casinospil/poker/poker-strategi" element={<PokerStrategiGuide />} />
                 <Route path="/casinospil/craps" element={<CrapsGuide />} />
                 <Route path="/casinospil/baccarat" element={<BaccaratGuide />} />
-                <Route path="/casinospil/roulette-strategi" element={<RouletteStrategiGuide />} />
+                <Route path="/casinospil/roulette-strategi" element={<Navigate to="/casinospil/roulette" replace />} />
                 <Route path="/casinospil/online-lotteri" element={<OnlineLotteriGuide />} />
                 <Route path="/casinospil/game-shows" element={<GameShowsGuide />} />
                 <Route path="/spiludviklere/netent" element={<NetEntGuide />} />

@@ -84,7 +84,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/nye-casinoer/trustly", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
   { path: "/nye-casinoer/mitid", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
   { path: "/nye-casinoer/lav-wagering", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
-  { path: "/nye-casinoer/bedste", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-02" },
+  // /nye-casinoer/bedste – 301 redirected to /nye-casinoer (cannibalization fix: spoke undermined hub)
   { path: "/nye-casinoer/vs-etablerede", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-02" },
   { path: "/top-10-casino-online", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-21" },
   { path: "/casino-anmeldelser/spilleautomaten", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
@@ -184,7 +184,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/poker/poker-strategi", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-02" },
   { path: "/casinospil/craps", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-04" },
   { path: "/casinospil/baccarat", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-23" },
-  { path: "/casinospil/roulette-strategi", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-11" },
+  // /casinospil/roulette-strategi – 301 redirected to /casinospil/roulette (cannibalization fix)
   { path: "/casinospil/online-lotteri", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-17" },
   { path: "/casinospil/game-shows", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-06" },
 

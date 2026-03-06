@@ -33,7 +33,7 @@ export const NYE_CASINOER_LINKS: NavLink[] = [
   { to: "/nye-casinoer/trustly", label: "Med Trustly" },
   { to: "/nye-casinoer/mitid", label: "Med MitID" },
   { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering" },
-  { to: "/nye-casinoer/bedste", label: "Bedste Nye Casinoer" },
+  
   { to: "/nye-casinoer/vs-etablerede", label: "Nye vs Etablerede" },
 ];
 
