@@ -204,6 +204,61 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     href: "/ordbog/hit-frequency",
     anchor: "",
   },
+  {
+    patterns: [/\bcascading wins\b/i, /\btumble[\s-]?wins\b/i, /\bavalanche[\s-]?wins\b/i],
+    href: "/ordbog/cascading-wins",
+    anchor: "",
+  },
+  {
+    patterns: [/\bmegaways\b/i],
+    href: "/ordbog/megaways",
+    anchor: "",
+  },
+  {
+    patterns: [/\bgamble[\s-]?feature\b/i, /\brisikospil\b/i],
+    href: "/ordbog/gamble-feature",
+    anchor: "",
+  },
+  {
+    patterns: [/\bbuy[\s-]?bonus\b/i, /\bbonus[\s-]?buy\b/i, /\bfeature[\s-]?buy\b/i],
+    href: "/ordbog/buy-bonus",
+    anchor: "",
+  },
+  {
+    patterns: [/\bbankroll[\s-]?management\b/i],
+    href: "/ordbog/bankroll-management",
+    anchor: "",
+  },
+  {
+    patterns: [/\bprogressiv jackpot\b/i, /\bprogressive jackpot\b/i],
+    href: "/ordbog/progressiv-jackpot",
+    anchor: "",
+  },
+  {
+    patterns: [/\bcluster[\s-]?pays\b/i, /\bklynge[\s-]?gevinst\b/i],
+    href: "/ordbog/cluster-pays",
+    anchor: "",
+  },
+  {
+    patterns: [/\bexpanding[\s-]?wild\b/i],
+    href: "/ordbog/expanding-wild",
+    anchor: "",
+  },
+  {
+    patterns: [/\bretrigger\b/i],
+    href: "/ordbog/retrigger",
+    anchor: "",
+  },
+  {
+    patterns: [/\bKYC\b/, /\bknow your customer\b/i],
+    href: "/ordbog/kyc",
+    anchor: "",
+  },
+  {
+    patterns: [/\bgamification\b/i],
+    href: "/ordbog/gamification",
+    anchor: "",
+  },
 ];
 
 /**
