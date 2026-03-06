@@ -73,15 +73,20 @@ interface AuthorMetaBarProps {
    * @deprecated Prefer omitting this prop to use the centralized seoRoutes lastmod.
    */
   date?: string;
-  readTime: string;
+  /**
+   * @deprecated Read time is now auto-calculated from page content.
+   * This prop is ignored – kept only for backwards compatibility.
+   */
+  readTime?: string;
   showFactCheck?: boolean;
   showVerified?: boolean;
   showAffiliateDisclaimer?: boolean;
 }
 
-export function AuthorMetaBar({ author, date, readTime, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true }: AuthorMetaBarProps) {
+export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true }: AuthorMetaBarProps) {
   const { pathname } = useLocation();
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
+  const autoReadTime = useAutoReadTime();
 
   // Fetch dynamic date from DB (single source of truth)
   const { data: dbMeta } = usePageLastmod(pathname);
