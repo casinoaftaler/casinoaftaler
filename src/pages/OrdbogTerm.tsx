@@ -91,7 +91,7 @@ const OrdbogTerm = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" readTime="5 min" />
+        <AuthorMetaBar author="jonas" readTime={readTime} />
 
         <Link to="/ordbog" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-6">
           <ArrowLeft className="h-4 w-4" />
