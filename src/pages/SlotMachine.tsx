@@ -50,7 +50,7 @@ export default function SlotMachine() {
   } = useSlotSession("book-of-fedesvin");
   const { scale } = useSlotScale({
     baseWidth: 1200,
-    baseHeight: 1100,
+    baseHeight: 920,
     headerHeight: 72,
     safetyPadding: 16,
     minScale: 0.2,
@@ -235,13 +235,13 @@ export default function SlotMachine() {
         /* ── DESKTOP: CSS transform scaling ── */
         <div className="flex-1 flex items-center justify-center overflow-hidden">
           <div
-            className="slot-viewport-container"
+            className="slot-viewport-container flex items-center justify-center"
             style={{
               width: '1200px',
-              height: '1100px',
+              height: '920px',
               transform: `scale(${scale})`,
-              marginTop: `${-(1100 * (1 - scale)) / 2}px`,
-              marginBottom: `${-(1100 * (1 - scale)) / 2}px`,
+              marginTop: `${-(920 * (1 - scale)) / 2}px`,
+              marginBottom: `${-(920 * (1 - scale)) / 2}px`,
               marginLeft: `${-(1200 * (1 - scale)) / 2}px`,
               marginRight: `${-(1200 * (1 - scale)) / 2}px`,
             }}
