@@ -1,24 +1,42 @@
 
 
-## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
+## Analyse af problemet
 
-### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
+Jeg har gennemgået alle tre sider i detaljen. Her er de præcise forskelle:
 
-The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
+### Hvorfor titlen klippes på Rise of Fedesvin
 
-Specifically:
-- **Remove** Gevinst from the right zone (lines 247-261)
-- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
+Frame-billedet (med "Rise of Fedesvin" titlen, troldmænd og krystaller) er **absolut positioneret** med `overflow: visible` og strækker sig ~150px over selve grid-indholdet. Men viewport-containerens **forælder** har `overflow-hidden`, som klipper alt der rækker ud over containerens kanter.
 
-Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
+Ved fuld skærmstørrelse (scale ≈ 1.0) er der nok plads. Når vinduet gøres mindre, skaleres containeren ned, og titlen klippes af forældrens overflow-hidden.
 
-### 2. Add Count-Up Animation for Win Amount
+**Bonanza har ikke dette problem** fordi dens container er 1880x1120 – stor nok til at rumme hele det visuelle indhold inkl. dekorative elementer.
 
-Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
-- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
-- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
-- The component already handles ease-out counting and bump animation on completion
+### Hvorfor maskinerne er mindre end Bonanza
 
-### Files Modified
-- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
+Book of Fedesvin og Rise of Fedesvin bruger `1200x920` som base-dimensioner, mens Bonanza bruger `1880x1120`. Det vigtige er at base-dimensionerne skal matche det **faktiske visuelle indhold** – inkl. frame-dekorationer og titel. De to games har et 5x3 grid med en stor dekorativ frame, som visuelt fylder ca. 1200px bredt og **1100px højt** (inkl. titel over og krystaller under).
+
+### Ekstra forskel: Bonanza har IKKE `flex items-center justify-center` på viewport-containeren
+
+Book/Rise har tilføjet `flex items-center justify-center` på `slot-viewport-container`, som Bonanza IKKE har. Dette skubber indholdet ned og skaber ekstra clipping-problemer for titlen.
+
+## Plan
+
+### 1. Øg container-højden fra 920px til 1100px
+Dette giver plads til frame-titlens visuelle udstrækning over griddet. Bredden forbliver 1200px.
+
+### 2. Opdater useSlotScale baseHeight til 1100
+Så skaleringsberegningen matcher den nye container.
+
+### 3. Fjern `flex items-center justify-center` fra viewport-containeren
+Match Bonanzas mønster – lad `SlotPageLayout` og indholdets egen centrering håndtere positionering.
+
+### 4. Opdater negative margins til ny højde
+```
+marginTop/Bottom: -(1100 * (1 - scale)) / 2
+```
+
+### Filer der ændres
+- `src/pages/RiseOfFedesvin.tsx`
+- `src/pages/SlotMachine.tsx`
 
