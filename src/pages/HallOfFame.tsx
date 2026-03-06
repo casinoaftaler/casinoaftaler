@@ -6,7 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
+
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Trophy, Crown, Star, TrendingUp, Sparkles, Medal, Film, ArrowRight, Users, Play } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
@@ -488,16 +488,16 @@ export default function HallOfFame() {
         {/* SEO Content */}
         <HallOfFameSeoContent />
 
+        <CommunitySeoSections />
+
+        <RelatedGuides currentPath="/community/hall-of-fame" />
+
         <div className="mt-12">
           <FAQSection faqs={faqItems} />
         </div>
 
-        <Separator className="my-12" />
         <CommunityBrandBlock />
-        <Separator className="my-12" />
-        <CommunitySeoSections />
-        <Separator className="my-12" />
-        <RelatedGuides currentPath="/community/hall-of-fame" />
+
         <AuthorBio author="jonas" />
       </div>
     </>

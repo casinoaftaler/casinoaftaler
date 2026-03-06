@@ -25,6 +25,7 @@ import { BonusHuntLatestNews } from "@/components/bonus-hunt/BonusHuntLatestNews
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { HighlightsFaq, buildHighlightsFaqSchema } from "@/components/highlights/HighlightsFaq";
 import { SITE_URL, buildArticleSchema, KEVIN_SAME_AS } from "@/lib/seo";
+import { AuthorBio } from "@/components/AuthorBio";
 
 function HighlightsTab() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -291,6 +292,9 @@ export default function Highlights() {
 
           {/* ── Brand block – E-E-A-T signal ── */}
           <CommunityBrandBlock />
+
+          {/* ── Author bio – always last ── */}
+          <AuthorBio author="kevin" showCommunity={false} />
 
           <div className="pb-12" />
         </div>

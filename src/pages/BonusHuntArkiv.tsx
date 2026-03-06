@@ -12,7 +12,7 @@ import { CommunitySeoSections } from "@/components/community/CommunitySeoSection
 import { BonusHuntArkivSeoContent } from "@/components/seo-content/BonusHuntArkivSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
-import { Separator } from "@/components/ui/separator";
+
 import bonusHuntArkivHero from "@/assets/bonus-hunt-arkiv-hero.jpg";
 
 const faqItems = [
@@ -188,17 +188,18 @@ export default function BonusHuntArkiv() {
           </div>
         )}
 
+        <BonusHuntArkivSeoContent />
+
+        <CommunitySeoSections />
+
+        <RelatedGuides currentPath="/bonus-hunt/arkiv" />
+
         <div className="mt-12">
           <FAQSection faqs={faqItems} />
         </div>
 
-        <Separator className="my-12" />
         <CommunityBrandBlock />
-        <Separator className="my-12" />
-        <CommunitySeoSections />
-        <Separator className="my-12" />
-        <RelatedGuides currentPath="/bonus-hunt/arkiv" />
-        <Separator className="my-12" />
+
         <AuthorBio author="kevin" />
       </div>
     </>
