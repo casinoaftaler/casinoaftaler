@@ -154,7 +154,7 @@ export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified
           <div className="flex items-center gap-1.5">
             <BookOpen className="h-4 w-4" />
             <span>
-              Læsetid: <span className="font-medium text-foreground">{readTime}</span>
+              Læsetid: <span className="font-medium text-foreground">{autoReadTime}</span>
             </span>
           </div>
           {showVerified && (
