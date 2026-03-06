@@ -915,13 +915,9 @@ const StickyBonus = () => {
           </div>
         </section>
 
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/sticky-bonus" />
-
         <FAQSection title="Ofte stillede spørgsmål om sticky bonus" faqs={stickyFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

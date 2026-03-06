@@ -498,7 +498,6 @@ export default function HallOfFame() {
         <CommunitySeoSections />
         <Separator className="my-12" />
         <RelatedGuides currentPath="/community/hall-of-fame" />
-        <Separator className="my-12" />
         <AuthorBio author="jonas" />
       </div>
     </>

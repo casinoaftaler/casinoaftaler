@@ -405,9 +405,9 @@ const NyeCasinoerTrustly = () => {
           </div>
         </section>
 
-        <AuthorBio author="jonas" />
         <RelatedGuides currentPath="/nye-casinoer/trustly" />
         <FAQSection title="Ofte stillede spørgsmål om Trustly og nye casinoer" faqs={faqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );
