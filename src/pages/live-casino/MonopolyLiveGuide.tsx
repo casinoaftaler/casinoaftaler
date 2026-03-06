@@ -565,11 +565,9 @@ const MonopolyLiveGuide = () => {
           </p>
         </section>
 
-        
-
+        <RelatedGuides currentPath="/live-casino/monopoly-live" />
         <FAQSection title="Ofte stillede spørgsmål om Monopoly Live" faqs={faqs} />
         <AuthorBio author="jonas" />
-        <RelatedGuides currentPath="/live-casino/monopoly-live" />
       </div>
     </>
   );

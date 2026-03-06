@@ -871,22 +871,10 @@ const LiveCasino = () => {
           </Card>
         </section>
 
-        <Separator className="my-10" />
-
-        {/* FAQ */}
-        <FAQSection title="Ofte stillede spørgsmål om live casino" faqs={liveCasinoFaqs} />
-
-        <Separator className="my-10" />
-
-        {/* AuthorBio */}
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <LatestNewsByCategory pagePath="/live-casino" />
-
-        {/* RelatedGuides */}
         <RelatedGuides currentPath="/live-casino" />
+        <FAQSection title="Ofte stillede spørgsmål om live casino" faqs={liveCasinoFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

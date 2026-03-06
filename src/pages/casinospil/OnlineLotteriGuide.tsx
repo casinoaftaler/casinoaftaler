@@ -552,10 +552,9 @@ const OnlineLotteriGuide = () => {
           </p>
         </section>
 
-        <AuthorBio />
-        <Separator className="my-10" />
         <RelatedGuides currentPath="/casinospil/online-lotteri" />
         <FAQSection title="Ofte stillede spørgsmål om online lotteri" faqs={lotteriFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

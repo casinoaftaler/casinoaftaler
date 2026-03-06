@@ -987,10 +987,10 @@ const NyeCasinoer = () => {
           </div>
         </section>
 
-        <AuthorBio author="jonas" />
         <LatestNewsByCategory pagePath="/nye-casinoer" />
         <RelatedGuides currentPath="/nye-casinoer" />
         <FAQSection title="Ofte stillede spørgsmål om nye casinoer i Danmark" faqs={nyeCasinoerFaqs} />
+        <AuthorBio author="jonas" />
       </div>
     </>
   );

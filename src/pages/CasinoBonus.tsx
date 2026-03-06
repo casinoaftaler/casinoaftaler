@@ -889,15 +889,10 @@ const CasinoBonus = () => {
           </Card>
         </section>
 
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
         <LatestNewsByCategory pagePath="/casino-bonus" />
-
         <RelatedGuides currentPath="/casino-bonus" />
-
         <FAQSection title="Ofte stillede spørgsmål om casino bonus i Danmark" faqs={casinoBonusFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

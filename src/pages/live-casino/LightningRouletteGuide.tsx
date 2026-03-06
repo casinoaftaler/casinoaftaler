@@ -564,11 +564,9 @@ const LightningRouletteGuide = () => {
           </p>
         </section>
 
-        
-
+        <RelatedGuides currentPath="/live-casino/lightning-roulette" />
         <FAQSection title="Ofte stillede spørgsmål om Lightning Roulette" faqs={faqs} />
         <AuthorBio author="jonas" />
-        <RelatedGuides currentPath="/live-casino/lightning-roulette" />
       </div>
     </>
   );

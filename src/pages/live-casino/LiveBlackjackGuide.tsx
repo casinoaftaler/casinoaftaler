@@ -632,15 +632,12 @@ const LiveBlackjackGuide = () => {
           </p>
         </section>
 
-        
-
+        <RelatedGuides currentPath="/live-casino/blackjack" />
         <FAQSection
           title="Ofte stillede spørgsmål om live blackjack"
           faqs={faqs}
         />
-
         <AuthorBio author="jonas" />
-        <RelatedGuides currentPath="/live-casino/blackjack" />
       </div>
     </>
   );

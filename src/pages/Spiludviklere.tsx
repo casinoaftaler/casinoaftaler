@@ -845,18 +845,9 @@ const Spiludviklere = () => {
           </Card>
         </section>
 
-        <Separator className="my-10" />
-
-        {/* ═══════════════════════════════════════════
-            FOOTER: AuthorBio → RelatedGuides → FAQ
-            ═══════════════════════════════════════════ */}
-        <AuthorBio author="kevin" />
-
-        <Separator className="my-10" />
-
         <RelatedGuides currentPath="/spiludviklere" />
-
         <FAQSection title="Ofte stillede spørgsmål om casino-spiludviklere" faqs={spiludviklereFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

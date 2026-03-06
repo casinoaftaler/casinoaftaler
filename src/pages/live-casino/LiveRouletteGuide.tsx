@@ -487,11 +487,9 @@ const LiveRouletteGuide = () => {
           </p>
         </section>
 
-        
-
+        <RelatedGuides currentPath="/live-casino/roulette" />
         <FAQSection title="Ofte stillede spørgsmål om live roulette" faqs={faqs} />
         <AuthorBio author="jonas" />
-        <RelatedGuides currentPath="/live-casino/roulette" />
       </div>
     </>
   );

@@ -413,14 +413,10 @@ const BookOfDeadGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
-        <AuthorBio />
-
         <SlotProviderLink slotSlug="book-of-dead" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/book-of-dead" />
-
         <FAQSection title="Ofte Stillede Spørgsmål om Book of Dead" faqs={bookOfDeadFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

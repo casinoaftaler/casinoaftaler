@@ -267,9 +267,8 @@ const CasinoNyhedArticle = () => {
           </section>
         )}
 
-        <AuthorBio author="ajse" showCommunity={false} />
-
         <RelatedGuides currentPath={`/casino-nyheder/${slug}`} maxLinks={5} />
+        <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>
   );

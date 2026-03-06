@@ -429,14 +429,10 @@ const GatesOfOlympusGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
-        <AuthorBio />
-
         <SlotProviderLink slotSlug="gates-of-olympus" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/gates-of-olympus" />
-
         <FAQSection title="Ofte Stillede Spørgsmål om Gates of Olympus" faqs={gatesOfOlympusFaqs} />
+        <AuthorBio />
       </div>
     </>
   );
