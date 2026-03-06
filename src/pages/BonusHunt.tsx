@@ -267,8 +267,6 @@ export default function BonusHunt() {
                   <BonusHuntSlotTable slots={huntData.slots} />
                   {/* SEO Content – process overview, right under slots */}
                   <BonusHuntSeoContent />
-                  {/* Enterprise SEO text – deep content with money page links */}
-                  <BonusHuntSeoText />
                   {/* Host card – visible on mobile only (below slot table) */}
                   <div className="xl:hidden">
                     <BonusHuntHostCard huntNumber={currentHuntNumber} host={sessionHost} />
