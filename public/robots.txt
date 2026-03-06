@@ -13,7 +13,6 @@ Disallow: /auth
 Disallow: /profil
 Disallow: /admin
 Disallow: /butik
-Disallow: /u/
 
 User-agent: Bingbot
 Allow: /community
@@ -30,7 +29,6 @@ Disallow: /auth
 Disallow: /profil
 Disallow: /admin
 Disallow: /butik
-Disallow: /u/
 
 User-agent: Twitterbot
 Allow: /
