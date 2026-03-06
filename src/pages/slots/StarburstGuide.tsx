@@ -406,14 +406,10 @@ const StarburstGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
-        <AuthorBio author="kevin" />
-
         <SlotProviderLink slotSlug="starburst" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/starburst" />
-
         <FAQSection title="Ofte Stillede Spørgsmål om Starburst" faqs={starburstFaqs} />
+        <AuthorBio author="kevin" />
       </div>
     </>
   );

@@ -936,13 +936,9 @@ const BlackjackGuide = () => {
           </p>
         </section>
 
-        <Separator className="my-10" />
-
-        <AuthorBio />
-
         <RelatedGuides currentPath="/casinospil/blackjack" />
-
         <FAQSection faqs={blackjackFaqs} />
+        <AuthorBio />
       </div>
     </>
   );

@@ -582,9 +582,9 @@ const LiveBaccaratGuide = () => {
 
         
 
+        <RelatedGuides currentPath="/live-casino/baccarat" />
         <FAQSection title="Ofte stillede spørgsmål om live baccarat" faqs={faqs} />
         <AuthorBio author="jonas" />
-        <RelatedGuides currentPath="/live-casino/baccarat" />
       </div>
     </>
   );
