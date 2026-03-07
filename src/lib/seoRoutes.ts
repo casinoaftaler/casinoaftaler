@@ -335,7 +335,8 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-03-05" },
 
   // ── Info & Ansvarligt Spil ──
-  { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
+  { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-07" },
+  { path: "/ansvarligt-spil/rofus", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/om", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
   { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },

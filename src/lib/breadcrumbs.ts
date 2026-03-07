@@ -70,6 +70,7 @@ export const routeLabels: Record<string, string> = {
   "/spiludviklere/evolution-gaming": "Evolution Gaming",
   // Ansvarligt Spil & Info
   "/ansvarligt-spil": "Ansvarligt Spil",
+  "/ansvarligt-spil/rofus": "ROFUS – Selvudelukkelse",
   "/om": "Om Casinoaftaler.dk",
   "/forretningsmodel": "Forretningsmodel",
   "/redaktionel-politik": "Redaktionel Politik",
@@ -329,6 +330,9 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/forretningsmodel": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/redaktionel-politik": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/kontakt": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
+
+  // Ansvarligt Spil cluster – bundet til /ansvarligt-spil hub
+  "/ansvarligt-spil/rofus": [{ name: "Ansvarligt Spil", path: "/ansvarligt-spil" }],
 
   // Live Casino cluster – bundet til /live-casino hub
   "/live-casino/blackjack": [{ name: "Live Casino", path: "/live-casino" }],
