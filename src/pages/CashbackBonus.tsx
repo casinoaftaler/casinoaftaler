@@ -191,13 +191,6 @@ const CashbackBonus = () => {
           <img src={cashbackHero} alt="Cashback bonus – casino chips der returneres til spilleren" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="epl204siMF0" title="Hvad er en Cashback-Bonus? – Forklaret på dansk" description="Jonas gennemgår hvad en cashback bonus er og hvordan den fungerer." uploadDate="2026-03-07" duration="PT1M12S" />
-        <VideoContextBox heading="Her gennemgår vores forfatter cashback-bonussen">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer hvad en cashback bonus er, hvordan den beregnes, og hvornår den er mere fordelagtig end en{" "}
-          <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link>. Videoen er en del af vores{" "}
-          <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>-indhold.
-        </VideoContextBox>
-
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvad er en cashback bonus?</h2>
@@ -222,6 +215,13 @@ const CashbackBonus = () => {
             <Link to="/reload-bonus" className={linkClass}>reload bonus</Link>, har vi en dedikeret guide til det.
           </p>
         </section>
+
+        <YoutubeEmbed videoId="epl204siMF0" title="Hvad er en Cashback-Bonus? – Forklaret på dansk" description="Jonas gennemgår hvad en cashback bonus er og hvordan den fungerer." uploadDate="2026-03-07" duration="PT1M12S" />
+        <VideoContextBox heading="Her gennemgår vores forfatter cashback-bonussen">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer hvad en cashback bonus er, hvordan den beregnes, og hvornår den er mere fordelagtig end en{" "}
+          <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link>. Videoen er en del af vores{" "}
+          <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>-indhold.
+        </VideoContextBox>
 
         {/* Cashback typer */}
         <section className="mb-12">

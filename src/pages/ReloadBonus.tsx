@@ -196,13 +196,6 @@ const ReloadBonus = () => {
           <img src={reloadHero} alt="Reload bonus – tilbagevendende casinobonus med genopladningssymbol" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="ReM4PBQ30rw" title="Hvad er en Reload Bonus? – Forklaret på dansk" description="Jonas gennemgår hvad en reload bonus er og hvordan den fungerer." uploadDate="2026-03-07" duration="PT1M" />
-        <VideoContextBox heading="Her gennemgår vores forfatter reload-bonussen">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer hvad en reload bonus er, hvordan den adskiller sig fra{" "}
-          <Link to="/velkomstbonus" className={linkClass}>velkomstbonussen</Link>, og hvornår den er mest fordelagtig. Videoen er en del af vores{" "}
-          <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>-indhold.
-        </VideoContextBox>
-
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvad er en reload bonus?</h2>
@@ -227,6 +220,13 @@ const ReloadBonus = () => {
             <Link to="/cashback-bonus" className={linkClass}>cashback bonus</Link> adskiller sig fra reload, har vi en dedikeret guide.
           </p>
         </section>
+
+        <YoutubeEmbed videoId="ReM4PBQ30rw" title="Hvad er en Reload Bonus? – Forklaret på dansk" description="Jonas gennemgår hvad en reload bonus er og hvordan den fungerer." uploadDate="2026-03-07" duration="PT1M" />
+        <VideoContextBox heading="Her gennemgår vores forfatter reload-bonussen">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer hvad en reload bonus er, hvordan den adskiller sig fra{" "}
+          <Link to="/velkomstbonus" className={linkClass}>velkomstbonussen</Link>, og hvornår den er mest fordelagtig. Videoen er en del af vores{" "}
+          <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>-indhold.
+        </VideoContextBox>
 
         {/* Reload-typer */}
         <section className="mb-12">

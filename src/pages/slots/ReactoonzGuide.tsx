@@ -136,13 +136,6 @@ const ReactoonzGuide = () => {
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Reactoonz spillemaskine" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="ybFWBECwKbo" title="Reactoonz gennemgang – Cluster pays og Quantum-features" description="Se en komplet gennemgang af Reactoonz: cluster pays-mekanikken og Quantum-features forklaret i praksis." uploadDate="2026-03-07" duration="PT0M57S" />
-        <VideoContextBox heading="Her gennemgår vores streamer Reactoonz i praksis">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser cluster pays-mekanikken, Quantum-meters og Gargantoon-funktionen i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
-          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
-          <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>.
-        </VideoContextBox>
-
         {/* ── Udviklerkontekst ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -159,6 +152,13 @@ const ReactoonzGuide = () => {
             Play'n GO's filosofi bag Reactoonz afspejler en bredere trend: at gøre slots mere interaktive og belønne spillerengagement over tid. Dette princip er synligt i hele deres portefølje, fra <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link>'s expanding symbols til Reactoonz' Quantum-meters. Forskellen er, at Reactoonz tilføjer et lag af progression, der giver spilleren en følelse af kontrol – selv om det matematiske resultat stadig er bestemt af RNG.
           </p>
         </section>
+
+        <YoutubeEmbed videoId="ybFWBECwKbo" title="Reactoonz gennemgang – Cluster pays og Quantum-features" description="Se en komplet gennemgang af Reactoonz: cluster pays-mekanikken og Quantum-features forklaret i praksis." uploadDate="2026-03-07" duration="PT0M57S" />
+        <VideoContextBox heading="Her gennemgår vores streamer Reactoonz i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser cluster pays-mekanikken, Quantum-meters og Gargantoon-funktionen i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
+          <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>.
+        </VideoContextBox>
 
         <InlineCasinoCards />
 
