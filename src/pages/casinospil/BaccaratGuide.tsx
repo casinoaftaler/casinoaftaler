@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -429,6 +430,7 @@ const BaccaratGuide = () => {
         <FAQSection faqs={baccaratFaqs} />
         <AuthorBio author="jonas" showCommunity={false} />
       </div>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };
