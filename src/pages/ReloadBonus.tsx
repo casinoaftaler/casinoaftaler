@@ -5,7 +5,9 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import reloadHero from "@/assets/heroes/reload-bonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -145,12 +147,19 @@ const ReloadBonus = () => {
     dateModified: "2026-02-27",
   });
 
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/reload-bonus`, "ReM4PBQ30rw", {
+    title: "Hvad er en Reload Bonus? – Forklaret på dansk",
+    description: "Jonas gennemgår hvad en reload bonus er, hvordan den adskiller sig fra velkomstbonussen, og hvornår den er mest fordelagtig.",
+    uploadDate: "2026-03-07",
+    duration: "PT1M",
+  });
+
   return (
     <>
       <SEO
         title="Reload Bonus – Bonusser for Eksisterende Spillere 2026 | Casinoaftaler"
         description="Alt om reload bonusser på danske casinoer. Lær hvordan reload fungerer, hvornår de tilbydes, og find de bedste tilbud til eksisterende spillere."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       {/* Hero */}
@@ -186,6 +195,13 @@ const ReloadBonus = () => {
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={reloadHero} alt="Reload bonus – tilbagevendende casinobonus med genopladningssymbol" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
+
+        <YoutubeEmbed videoId="ReM4PBQ30rw" title="Hvad er en Reload Bonus? – Forklaret på dansk" description="Jonas gennemgår hvad en reload bonus er og hvordan den fungerer." uploadDate="2026-03-07" duration="PT1M" />
+        <VideoContextBox heading="Her gennemgår vores forfatter reload-bonussen">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer hvad en reload bonus er, hvordan den adskiller sig fra{" "}
+          <Link to="/velkomstbonus" className={linkClass}>velkomstbonussen</Link>, og hvornår den er mest fordelagtig. Videoen er en del af vores{" "}
+          <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>-indhold.
+        </VideoContextBox>
 
         {/* Intro */}
         <section className="mb-12">
