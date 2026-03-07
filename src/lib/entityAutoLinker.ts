@@ -139,6 +139,137 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     href: "/betalingsmetoder/mobilepay",
     anchor: "MobilePay",
   },
+  {
+    patterns: [/\bPayPal\b/],
+    href: "/betalingsmetoder/paypal",
+    anchor: "PayPal",
+  },
+  {
+    patterns: [/\bVisa\b/, /\bMastercard\b/],
+    href: "/betalingsmetoder/visa-mastercard",
+    anchor: "",
+  },
+  {
+    patterns: [/\bSkrill\b/],
+    href: "/betalingsmetoder/skrill",
+    anchor: "Skrill",
+  },
+  {
+    patterns: [/\bPaysafecard\b/i],
+    href: "/betalingsmetoder/paysafecard",
+    anchor: "",
+  },
+  {
+    patterns: [/\bApple Pay\b/],
+    href: "/betalingsmetoder/apple-pay",
+    anchor: "Apple Pay",
+  },
+  {
+    patterns: [/\bZimpler\b/],
+    href: "/betalingsmetoder/zimpler",
+    anchor: "Zimpler",
+  },
+  {
+    patterns: [/\bRevolut\b/],
+    href: "/betalingsmetoder/revolut",
+    anchor: "Revolut",
+  },
+
+  // Spiludviklere money-pages
+  {
+    patterns: [/\bEvolution Gaming\b/i, /\bEvolution\b/],
+    href: "/spiludviklere/evolution-gaming",
+    anchor: "",
+  },
+  {
+    patterns: [/\bPragmatic Play\b/i],
+    href: "/spiludviklere/pragmatic-play",
+    anchor: "Pragmatic Play",
+  },
+  {
+    patterns: [/\bNetEnt\b/],
+    href: "/spiludviklere/netent",
+    anchor: "NetEnt",
+  },
+  {
+    patterns: [/\bPlay'?n.?GO\b/i, /\bPlay n Go\b/i],
+    href: "/spiludviklere/play-n-go",
+    anchor: "",
+  },
+  {
+    patterns: [/\bHacksaw Gaming\b/i],
+    href: "/spiludviklere/hacksaw-gaming",
+    anchor: "Hacksaw Gaming",
+  },
+  {
+    patterns: [/\bNolimit City\b/i, /\bNoLimit City\b/i],
+    href: "/spiludviklere/nolimit-city",
+    anchor: "",
+  },
+  {
+    patterns: [/\bBig Time Gaming\b/i],
+    href: "/spiludviklere/big-time-gaming",
+    anchor: "Big Time Gaming",
+  },
+  {
+    patterns: [/\bRed Tiger\b/i],
+    href: "/spiludviklere/red-tiger",
+    anchor: "Red Tiger",
+  },
+  {
+    patterns: [/\bELK Studios\b/i],
+    href: "/spiludviklere/elk-studios",
+    anchor: "ELK Studios",
+  },
+  {
+    patterns: [/\bYggdrasil\b/],
+    href: "/spiludviklere/yggdrasil",
+    anchor: "Yggdrasil",
+  },
+  {
+    patterns: [/\bMicrogaming\b/],
+    href: "/spiludviklere/microgaming",
+    anchor: "Microgaming",
+  },
+  {
+    patterns: [/\bRelax Gaming\b/i],
+    href: "/spiludviklere/relax-gaming",
+    anchor: "Relax Gaming",
+  },
+
+  // Game type money-pages
+  {
+    patterns: [/\blive casino\b/i, /\blive-casino\b/i],
+    href: "/live-casino",
+    anchor: "",
+  },
+  {
+    patterns: [/\bpoker\b/i],
+    href: "/casinospil/poker",
+    anchor: "",
+  },
+  {
+    patterns: [/\bbaccarat\b/i],
+    href: "/casinospil/baccarat",
+    anchor: "",
+  },
+  {
+    patterns: [/\bcraps\b/i],
+    href: "/casinospil/craps",
+    anchor: "",
+  },
+  {
+    patterns: [/\bgame shows?\b/i, /\btv[\s-]?spil\b/i],
+    href: "/live-casino/monopoly-live",
+    anchor: "",
+  },
+
+  // Bonus money-pages (additional)
+  {
+    patterns: [/\bbonus uden indbetaling\b/i],
+    href: "/bonus-uden-indbetaling",
+    anchor: "",
+  },
 
   // ══════════════════════════════════════════════════════════════════
   // ── GLOSSARY ENTITIES (informational support – lower priority) ──
