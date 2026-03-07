@@ -198,7 +198,7 @@ const ReloadBonus = () => {
             <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> der er lavere end velkomstbonussens. Det er denne kombination af gentagelse og favorable vilkår, der gør reload-bonussen til en af de mest undervurderede bonustyper.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Overraskende nok er reload-bonussen matematisk ofte mere fordelagtig end velkomstbonussen, når man beregner den reelle forventede værdi (EV). En reload på 50% match med 3x (b) omsætning har typisk en EV på 85-90% af bonusbeløbet – sammenlignet med velkomstbonussens typiske 60-80%. Grunden er enkel: lavere matchprocent kompenseres af markant lavere omsætningskrav.
+            Overraskende nok er reload-bonussen matematisk ofte mere fordelagtig end velkomstbonussen, når man beregner den reelle forventede værdi (EV). En reload på 50% match med 3x (b) omsætning har typisk en EV på 85-90% af bonusbeløbet – sammenlignet med velkomstbonussens typiske 60-80%. Grunden er enkel: lavere matchprocent kompenseres af markant lavere omsætningskrav. Brug altid spil med høj <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> til at maksimere din EV.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Reload-bonusser er særligt attraktive for spillere, der allerede har brugt deres velkomstbonus og leder efter løbende fordele. I modsætning til{" "}

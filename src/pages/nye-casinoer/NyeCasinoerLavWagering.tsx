@@ -111,7 +111,7 @@ const NyeCasinoerLavWagering = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">EV-modeller: Reel bonusværdi hos nye casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Expected Value (EV) er den matematisk korrekte måde at sammenligne bonusser på tværs af nye casinoer. Vi bruger formlen: <strong>Reel værdi ≈ Bonusbeløb × (1 – Husets fordel × Omsætningskrav)</strong>. Med en gennemsnitlig husets fordel på 4% for spilleautomater (96% RTP) ser beregningerne således ud:
+            Expected Value (EV) er den matematisk korrekte måde at sammenligne bonusser på tværs af nye casinoer. Vi bruger formlen: <strong>Reel værdi ≈ Bonusbeløb × (1 – Husets fordel × Omsætningskrav)</strong>. Med en gennemsnitlig husets fordel på 4% for spilleautomater (96% <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>) ser beregningerne således ud:
           </p>
           <div className="overflow-x-auto rounded-lg border border-border mb-4">
             <table className="w-full text-sm">

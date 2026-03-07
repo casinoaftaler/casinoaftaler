@@ -185,7 +185,7 @@ const CashbackBonus = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvad er en cashback bonus?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Cashback er den eneste bonustype, der belønner dig for at tabe. I stedet for at lokke med store matchbonusser ved indbetaling, returnerer casinoet en procentdel af dine nettotab – typisk 5-15% – over en bestemt periode. Det er et sikkerhedsnet, der reducerer din reelle house edge og giver dig en anden chance, når heldet ikke er med dig.
+            Cashback er den eneste bonustype, der belønner dig for at tabe. I stedet for at lokke med store matchbonusser ved indbetaling, returnerer casinoet en procentdel af dine nettotab – typisk 5-15% – over en bestemt periode. Det er et sikkerhedsnet, der reducerer din reelle <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> og giver dig en anden chance, når heldet ikke er med dig.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For den matematisk orienterede spiller er cashback den mest gennemsigtige bonustype. Du ved præcis hvad du får: Taber du 1.000 kr. med 10% cashback, modtager du 100 kr. tilbage. Ingen skjulte vilkår, ingen komplicerede{" "}

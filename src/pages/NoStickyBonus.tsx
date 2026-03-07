@@ -281,7 +281,7 @@ const NoStickyBonus = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2 text-sm text-muted-foreground leading-relaxed">
-                <p><strong className="text-foreground">Forudsætning:</strong> 500 kr. indbetaling + 500 kr. No-Sticky Bonus. Du spiller Starburst (96,09% RTP) med 5 kr. per spin.</p>
+                <p><strong className="text-foreground">Forudsætning:</strong> 500 kr. indbetaling + 500 kr. No-Sticky Bonus. Du spiller Starburst (96,09% <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>) med 5 kr. per spin.</p>
                 <p><strong className="text-foreground">Forløb:</strong> Efter 60 spins (300 kr. satset) rammer du en stor gevinst på 1.800 kr. Din Cash Balance er nu 2.000 kr. (500 - 300 + 1.800).</p>
                 <p><strong className="text-foreground">Resultat:</strong> Du hæver 2.000 kr. med det samme. Bonusmidlerne (500 kr.) annulleres. Din nettogevinst er 1.500 kr. (2.000 - 500 kr. indbetaling).</p>
                 <p><strong className="text-foreground">Med sticky bonus:</strong> Samme scenarie ville give dig 2.500 kr. saldo (500 + 500 + 1.800 - 300), men du kan INTET hæve. Du skal stadig satse for 10.000 kr. Under gennemspilningen mister du statistisk 400 kr. (4% af 10.000). Forventet resultat: ~2.100 kr. minus 500 kr. bonusfradrag = 1.600 kr., men med risiko for at tabe alt.</p>
