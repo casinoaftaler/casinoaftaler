@@ -16,7 +16,13 @@ export function HeroSection() {
   const contentReady = !settingsLoading;
 
   return (
-    <section 
+    <>
+      {heroBackgroundImage && (
+        <Helmet>
+          <link rel="preload" as="image" href={heroBackgroundImage} />
+        </Helmet>
+      )}
+    <section
       className="relative overflow-hidden py-6 text-white md:py-8 min-h-[280px] md:min-h-[320px] max-h-[85vh] md:max-h-[70vh]"
       style={{
         contain: 'layout style',
