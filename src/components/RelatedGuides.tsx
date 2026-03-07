@@ -13,6 +13,7 @@ import {
   BookOpen,
   Tv,
   ShieldCheck,
+  Shield,
   Star,
   Gamepad2,
   Wallet,
