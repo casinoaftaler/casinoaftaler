@@ -2,7 +2,8 @@ import React from "react";
 import liveBlackjackHero from "@/assets/heroes/live-blackjack-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -71,13 +72,23 @@ const LiveBlackjackGuide = () => {
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
+  const videoJsonLd = buildVideoSchema(
+    `${SITE_URL}/live-casino/blackjack`,
+    "v7UupDiycVM",
+    {
+      title: "Live gennemgang af Blackjack-regler og strategi – Dansk casino-underholdning",
+      description: "Se en live gennemgang af blackjack-regler, basisstrategi og house edge. Vi demonstrerer optimal spilstrategi ved et rigtigt live blackjack-bord.",
+      uploadDate: "2026-03-07",
+      duration: "PT10M",
+    }
+  );
 
   return (
     <>
       <SEO
         title="Live Blackjack – Regler, Strategi & House Edge"
         description="Live blackjack 2026: Basisstrategi med 0,5 % house edge. Regler, card counting-analyse, bankroll management og de bedste varianter. Dansk licens."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       {/* Hero */}
@@ -118,6 +129,14 @@ const LiveBlackjackGuide = () => {
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Vi har testet samtlige live blackjack-varianter hos danske licenserede casinoer i januar og februar 2026 – fra Evolution Gamings Classic Blackjack til Infinite Blackjack og Lightning Blackjack. Vores analyse bygger på observationer af 2.000+ hænder, regelverifikation på 8 forskellige bordtyper, og matematiske beregninger, der er krydsvalideret mod publicerede RTP-data fra uafhængige testlaboratorier.
         </p>
+
+        <YoutubeEmbed
+          videoId="v7UupDiycVM"
+          title="Live gennemgang af Blackjack-regler og strategi"
+          description="Se en live gennemgang af blackjack-regler, basisstrategi og house edge. Vi demonstrerer optimal spilstrategi ved et rigtigt live blackjack-bord."
+          uploadDate="2026-03-07"
+          duration="PT10M"
+        />
 
         <InlineCasinoCards title="Bedste casinoer til live blackjack" count={6} />
 
