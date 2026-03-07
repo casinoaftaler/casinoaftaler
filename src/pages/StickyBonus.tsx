@@ -1,4 +1,5 @@
 import React from "react";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -915,6 +916,7 @@ const StickyBonus = () => {
         <FAQSection title="Ofte stillede spørgsmål om sticky bonus" faqs={stickyFaqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -761,6 +762,7 @@ const BonusUdenIndbetaling = () => {
         <FAQSection title="Tekniske spørgsmål om no deposit bonusser" faqs={bonusUdenIndbetalingFaqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

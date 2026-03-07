@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
 import { AuthorBio } from "@/components/AuthorBio";
@@ -832,6 +833,7 @@ const CasinoBonus = () => {
         <FAQSection title="Ofte stillede spørgsmål om casino bonus i Danmark" faqs={casinoBonusFaqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

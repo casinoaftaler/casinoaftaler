@@ -1,4 +1,5 @@
 import React from "react";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -580,6 +581,7 @@ const ReloadBonus = () => {
 
         <FAQSection title="Ofte stillede spørgsmål om reload bonus" faqs={reloadFaqs} />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

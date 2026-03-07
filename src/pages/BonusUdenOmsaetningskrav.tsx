@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -753,6 +754,7 @@ const BonusUdenOmsaetningskrav = () => {
 
         <FAQSection title="Tekniske spørgsmål om omsætningsfrie bonusser" faqs={faqs} />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };
