@@ -753,7 +753,7 @@ export default function Forfatter() {
             Jonas' anmeldelser bygger på en dokumenteret testmetode og klare redaktionelle retningslinjer.
             Læs mere om vores tilgang til test, forretningsmodel og redaktionel politik.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             <Link
               to="/saadan-tester-vi-casinoer"
               className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
@@ -782,6 +782,66 @@ export default function Forfatter() {
               <div>
                 <h3 className="font-semibold text-sm">Redaktionel politik</h3>
                 <p className="text-xs text-muted-foreground">Vores redaktionelle retningslinjer</p>
+              </div>
+            </Link>
+            <Link
+              to="/casino-bonus"
+              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+            >
+              <BookOpen className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold text-sm">Casino Bonus Guide</h3>
+                <p className="text-xs text-muted-foreground">Komplet guide til alle bonustyper</p>
+              </div>
+            </Link>
+            <Link
+              to="/casinoer"
+              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+            >
+              <Star className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold text-sm">Alle Casinoer</h3>
+                <p className="text-xs text-muted-foreground">Kategoriguides og dybdegående analyser</p>
+              </div>
+            </Link>
+            <Link
+              to="/nye-casinoer"
+              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+            >
+              <Trophy className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold text-sm">Nye Casinoer</h3>
+                <p className="text-xs text-muted-foreground">De nyeste casinoer med dansk licens</p>
+              </div>
+            </Link>
+            <Link
+              to="/casinospil"
+              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+            >
+              <Gamepad2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold text-sm">Casinospil</h3>
+                <p className="text-xs text-muted-foreground">Guides til slots, blackjack og roulette</p>
+              </div>
+            </Link>
+            <Link
+              to="/live-casino"
+              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+            >
+              <Tv className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold text-sm">Live Casino</h3>
+                <p className="text-xs text-muted-foreground">Guide til live dealer-spil</p>
+              </div>
+            </Link>
+            <Link
+              to="/ordbog"
+              className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+            >
+              <BookOpen className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+              <div>
+                <h3 className="font-semibold text-sm">Casino Ordbog</h3>
+                <p className="text-xs text-muted-foreground">30+ casino-begreber forklaret</p>
               </div>
             </Link>
           </div>
