@@ -70,6 +70,7 @@ export const routeLabels: Record<string, string> = {
   "/spiludviklere/evolution-gaming": "Evolution Gaming",
   // Ansvarligt Spil & Info
   "/ansvarligt-spil": "Ansvarligt Spil",
+  "/ansvarligt-spil/rofus": "ROFUS – Selvudelukkelse",
   "/om": "Om Casinoaftaler.dk",
   "/forretningsmodel": "Forretningsmodel",
   "/redaktionel-politik": "Redaktionel Politik",
