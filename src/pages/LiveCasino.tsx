@@ -260,7 +260,7 @@ const LiveCasino = () => {
             Live dealers vs. RNG-spil – den matematiske forskel
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Der er en udbredt misforståelse om, at live casino og RNG-baserede spil har identisk matematik. Det er delvist rigtigt – house edge er den samme for et givent regelsæt – men der er fundamentale forskelle i, hvordan tilfældigheden genereres, og hvordan det påvirker din spilleoplevelse og strategi.
+            Der er en udbredt misforståelse om, at live casino og RNG-baserede spil har identisk matematik. Det er delvist rigtigt – <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> er den samme for et givent regelsæt – men der er fundamentale forskelle i, hvordan tilfældigheden genereres, og hvordan det påvirker din spilleoplevelse og strategi.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             I et RNG-spil bestemmes udfaldet af en pseudorandom number generator – en algoritme, der producerer tilsyneladende tilfældige tal baseret på en seed-værdi. Algoritmen er certificeret af uafhængige testlaboratorier og genererer milliarder af udfald med statistisk perfekt fordeling. Der er ingen fysiske elementer, ingen usikkerhed – kun ren matematik.

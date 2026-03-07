@@ -131,7 +131,7 @@ const LiveBaccaratGuide = () => {
             <strong>Tredje-kort-reglen i detaljer:</strong> Banker trækker altid ved 0-2 uanset players kort. Ved banker-total 3 trækker banker medmindre players tredje kort er 8. Ved banker-total 4 trækker banker hvis players tredje kort er 2-7. Ved banker-total 5 trækker banker hvis players tredje kort er 4-7. Ved banker-total 6 trækker banker kun hvis players tredje kort er 6 eller 7. Ved banker-total 7 står banker altid. Disse asymmetriske regler er præcis det, der giver banker sin statistiske fordel.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Denne simplicitet er baccarats største fordel – og dens største risiko. Fordi ingen strategiske beslutninger kræves, kan spillere let falde ind i en mekanisk rytme af hurtige indsatser uden refleksion. I min erfaring fra 300+ timer ved live baccarat-borde har jeg observeret, at de fleste spillere øger deres indsatser gradvist uden at bemærke det – en psykologisk fælde, der er langt mere farlig end selve house edge. Tempo-management er derfor det vigtigste værktøj i din baccarat-arsenal.
+            Denne simplicitet er baccarats største fordel – og dens største risiko. Fordi ingen strategiske beslutninger kræves, kan spillere let falde ind i en mekanisk rytme af hurtige indsatser uden refleksion. I min erfaring fra 300+ timer ved live baccarat-borde har jeg observeret, at de fleste spillere øger deres indsatser gradvist uden at bemærke det – en psykologisk fælde, der er langt mere farlig end selve <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>. Tempo-management er derfor det vigtigste værktøj i din baccarat-arsenal.
           </p>
         </section>
 

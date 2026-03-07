@@ -220,7 +220,7 @@ const MonopolyLiveGuide = () => {
             </CardContent>
           </Card>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Bemærk den markante forskel i house edge: alle fire tal-segmenter har en uniform 3,70 % house edge, mens Chance har 8,70 % og bonusrunder har 6,20-6,40 %. Det matematisk optimale er udelukkende at bette på tal-segmenter. Bonusrunden er det mest underholdende element, men det er også det dyreste per indsat krone – ca. 70 % dyrere end tal-bets.
+            Bemærk den markante forskel i <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>: alle fire tal-segmenter har en uniform 3,70 % house edge, mens Chance har 8,70 % og bonusrunder har 6,20-6,40 %. Det matematisk optimale er udelukkende at bette på tal-segmenter. Bonusrunden er det mest underholdende element, men det er også det dyreste per indsat krone – ca. 70 % dyrere end tal-bets.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong>Kritisk observation:</strong> Tal-segmenterne (1, 2, 5, 10) har alle præcis 3,70 % house edge – men med vidt forskellige volatilitetsprofiler. "1" (40,74 % sandsynlighed) giver hyppige, små gevinster. "10" (7,41 %) giver sjældne, større gevinster. Forventet tab pr. krone er identisk, men din bankroll-kurve vil se dramatisk anderledes ud. Konservative spillere bør fokusere på "1" og "2", mens risiko-tolerante spillere kan foretrække "5" og "10".

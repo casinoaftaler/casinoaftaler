@@ -173,7 +173,7 @@ const SweetBonanzaGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> RTP-Varianter: Den Skjulte Forskel Mellem Casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Sweet Bonanza tilbydes i tre RTP-konfigurationer, og forskellen er langt fra triviel. Standardversionen på 96,48 % har en house edge på 3,52 %, men mange casinoer – især dem uden dansk licens – kører den reducerede version på 91,76 %, der har en house edge på 8,24 %. Det er mere end en fordobling af casinoets fordel.
+            Sweet Bonanza tilbydes i tre <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>-konfigurationer, og forskellen er langt fra triviel. Standardversionen på 96,48 % har en <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> på 3,52 %, men mange casinoer – især dem uden dansk licens – kører den reducerede version på 91,76 %, der har en house edge på 8,24 %. Det er mere end en fordobling af casinoets fordel.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Lad os kvantificere forskellen med et konkret scenarie. En spiller, der satser 10 kr. pr. spin og spiller 500 spins (en typisk session), vil opleve følgende forskelle i forventet tab:

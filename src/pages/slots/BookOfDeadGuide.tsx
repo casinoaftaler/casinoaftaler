@@ -194,7 +194,7 @@ const BookOfDeadGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> RTP-Anatomi: Hvor Kommer de 96,21 % Fra?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Book of Deads samlede RTP på 96,21 % fordeles mellem basisspillet og bonusrunden. Baseret på matematisk analyse bidrager basisspillet med ca. 60–65 % af den samlede RTP (ca. 57,7–62,5 procentpoint), mens free spins bidrager med ca. 35–40 % (ca. 33,7–38,5 procentpoint). Gamble-featuren er RTP-neutral (50/50 double-or-nothing).
+            Book of Deads samlede <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96,21 % fordeles mellem basisspillet og bonusrunden. Baseret på matematisk analyse bidrager basisspillet med ca. 60–65 % af den samlede RTP (ca. 57,7–62,5 procentpoint), mens free spins bidrager med ca. 35–40 % (ca. 33,7–38,5 procentpoint). Gamble-featuren er RTP-neutral (50/50 double-or-nothing).
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne fordeling er markant anderledes end cluster-pays slots som <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link>, hvor basisspillet kun bidrager med 55–60 % af RTP. Book of Deads højere basisspil-andel betyder, at du oplever mere konsistent flow i det daglige spil – du taber langsommere mellem bonusrunder, og bonusrunderne er relativt set mindre afgørende for den samlede oplevelse.
@@ -266,7 +266,7 @@ const BookOfDeadGuide = () => {
             <CardContent className="pt-6">
               <p className="font-semibold mb-2">📊 Session-simulation: 300 spins á 10 kr. (3.000 kr. total action)</p>
               <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>• Forventet tab: <strong>113,70 kr.</strong> (3,79 % house edge)</li>
+                <li>• Forventet tab: <strong>113,70 kr.</strong> (3,79 % <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>)</li>
                 <li>• Vindende spins: ca. <strong>90–105 (30–35 %)</strong></li>
                 <li>• Forventede bonusrunder: <strong>1,5–2</strong></li>
                 <li>• Realistisk udfaldsspænd: <strong>−50 % til +200 %</strong></li>

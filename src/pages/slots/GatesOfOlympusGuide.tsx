@@ -199,7 +199,7 @@ const GatesOfOlympusGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> RTP-Varianter og Deres Reelle Omkostning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Gates of Olympus fås i tre RTP-varianter: 96,50 %, 95,51 % og 91,50 %. Ligesom med Sweet Bonanza er forskellen mellem den højeste og laveste variant dramatisk. Her er de konkrete tal:
+            Gates of Olympus fås i tre <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>-varianter: 96,50 %, 95,51 % og 91,50 %. Ligesom med Sweet Bonanza er forskellen mellem den højeste og laveste variant dramatisk. Her er de konkrete tal:
           </p>
 
           <div className="overflow-x-auto mb-6">
