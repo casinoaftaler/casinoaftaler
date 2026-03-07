@@ -150,6 +150,7 @@ export function PaymentMethodPage({
   howToSteps,
   howToName,
   howToTotalTime,
+  ctaCasinoSlug,
 }: PaymentMethodPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
@@ -450,6 +451,7 @@ export function PaymentMethodPage({
 
         <AuthorBio author="kevin" showCommunity={false} />
       </div>
+      {ctaCasinoSlug && <StickyCtaBySlug slug={ctaCasinoSlug} />}
     </>
   );
 }

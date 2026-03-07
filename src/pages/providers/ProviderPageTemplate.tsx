@@ -107,6 +107,7 @@ export function ProviderPage({
   responsibleGamingText, strategicAnalysis, technicalProfile,
   sectionOrder, updatedDate = "15-02-2026", readTime = "14 Min.",
   strategicTitle, technicalTitle, gamesTitle, licensesTitle, prosConsTitle, responsibleTitle,
+  ctaCasinoSlug,
 }: ProviderPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
@@ -384,6 +385,7 @@ export function ProviderPage({
 
         <AuthorBio author="jonas" showCommunity={false} />
       </div>
+      {ctaCasinoSlug && <StickyCtaBySlug slug={ctaCasinoSlug} />}
     </>
   );
 }
