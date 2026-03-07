@@ -129,7 +129,7 @@ export default function FibonacciRouletteGuide() {
             I denne guide gennemgår vi systemets mekanik i detaljer, analyserer den underliggende matematik, præsenterer resultater fra en 10.000-spins Monte Carlo-simulering, og giver vores ærlige vurdering baseret på data – ikke anekdoter. Vi sammenligner også direkte med Martingale, D'Alembert og <Link to="/casinospil/roulette/labouchere-roulette" className={linkClass}>Labouchère</Link> for at give et komplet billede.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Spoiler: Fibonacci er matematisk elegant men fundamentalt begrænset af det samme princip som alle andre systemer – ingen indsatsstrategi kan overkomme house edge i det lange løb. Men forståelsen af HVORFOR det er tilfældet, gør dig til en mere informeret spiller.
+            Spoiler: Fibonacci er matematisk elegant men fundamentalt begrænset af det samme princip som alle andre systemer – ingen indsatsstrategi kan overkomme <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> i det lange løb. Men forståelsen af HVORFOR det er tilfældet, gør dig til en mere informeret spiller.
           </p>
         </section>
 

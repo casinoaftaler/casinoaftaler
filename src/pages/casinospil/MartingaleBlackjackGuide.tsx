@@ -282,7 +282,7 @@ const MartingaleBlackjackGuide = () => {
             Det Matematiske Bevis: Hvorfor Martingale Ikke Kan Slå House Edge
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For at forstå hvorfor Martingale fejler, skal vi præcisere, hvad det vil sige at "slå" et casino. I <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> med perfekt basic strategy er house edge ca. 0,5 %. Det betyder, at for hver 100 kr. du indsætter, forventer du at miste 0,50 kr. over tid. Martingale ændrer ikke dette tal – det ændrer kun <em>fordelingen</em> af dine gevinster og tab.
+            For at forstå hvorfor Martingale fejler, skal vi præcisere, hvad det vil sige at "slå" et casino. I <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> med perfekt basic strategy er <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> ca. 0,5 %. Det betyder, at for hver 100 kr. du indsætter, forventer du at miste 0,50 kr. over tid. Martingale ændrer ikke dette tal – det ændrer kun <em>fordelingen</em> af dine gevinster og tab.
           </p>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">

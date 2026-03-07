@@ -298,7 +298,7 @@ export default function MartingaleRouletteGuide() {
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">
-            Dette er en fundamental matematisk sandhed, der ikke kan omgås med noget indsatssystem. Det er det samme princip, der gælder for <Link to="/casinospil/roulette/fibonacci-roulette" className={linkClass}>Fibonacci</Link>, <Link to="/casinospil/roulette/dalembert-roulette" className={linkClass}>D'Alembert</Link> og alle andre systemer. House edge er indbygget i hjulets design og kan kun reduceres ved at vælge en bedre variant (f.eks. <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette</Link> med La Partage).
+            Dette er en fundamental matematisk sandhed, der ikke kan omgås med noget indsatssystem. Det er det samme princip, der gælder for <Link to="/casinospil/roulette/fibonacci-roulette" className={linkClass}>Fibonacci</Link>, <Link to="/casinospil/roulette/dalembert-roulette" className={linkClass}>D'Alembert</Link> og alle andre systemer. <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> er indbygget i hjulets design og kan kun reduceres ved at vælge en bedre variant (f.eks. <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette</Link> med La Partage).
           </p>
         </section>
 

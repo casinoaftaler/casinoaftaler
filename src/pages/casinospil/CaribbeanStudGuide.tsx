@@ -175,7 +175,7 @@ export default function CaribbeanStudGuide() {
 
           <h3 className="text-xl font-semibold text-foreground mb-3">Dealer-qualifying frekvens og dens strategiske implikationer</h3>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Dealeren qualifier (har mindst Ace-King high) i cirka 56,3 % af alle hænder. Det betyder, at i 43,7 % af hænderne modtager du kun 1:1 på ante, uanset om du har en flush eller fire ens. Dette er en kritisk faktor i spillets matematik – store hænder mister deres fulde udbetalingspotentiale næsten halvdelen af tiden. Denne mekanik er designet til at beskytte casinoet mod store tab og er den primære kilde til husets fordel.
+            Dealeren qualifier (har mindst Ace-King high) i cirka 56,3 % af alle hænder. Det betyder, at i 43,7 % af hænderne modtager du kun 1:1 på ante, uanset om du har en flush eller fire ens. Dette er en kritisk faktor i spillets matematik – store hænder mister deres fulde udbetalingspotentiale næsten halvdelen af tiden. Denne mekanik er designet til at beskytte casinoet mod store tab og er den primære kilde til <Link to="/ordbog/house-edge" className={linkClass}>husets fordel</Link>.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Implikationen for din strategi er subtil men vigtig: selv med en stærk hånd som fuldt hus modtager du den fulde 7:1 udbetaling kun i 56,3 % af tilfældene. Den effektive gennemsnitlige udbetaling for fuldt hus er derfor ca. 4,45:1 (0,563 × 7 + 0,437 × 1 = 4,38:1 inklusive ante). Denne reduktion gælder for alle hænder og er grunden til, at Caribbean Stud har en højere husets fordel end man umiddelbart ville formode baseret på udbetalingstabellen alene.

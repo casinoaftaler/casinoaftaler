@@ -132,7 +132,7 @@ const OnlineLotteriGuide = () => {
             Hvad er online lotteri – matematisk defineret
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Lotteri er den simpleste og samtidig den mest asymmetriske form for gambling. Matematisk defineret er et lotteri et spil, hvor spilleren vælger en kombination af tal fra en defineret pool, og en tilfældig trækning afgør, om kombinationen matcher. Sandsynligheden for en fuldstændig match er ekstremt lav – typisk i intervallet 1:1 million til 1:300 millioner – og house edge er den højeste af alle regulerede spilformer: 40-60 % mod 0,5-6 % for casinospil.
+            Lotteri er den simpleste og samtidig den mest asymmetriske form for gambling. Matematisk defineret er et lotteri et spil, hvor spilleren vælger en kombination af tal fra en defineret pool, og en tilfældig trækning afgør, om kombinationen matcher. Sandsynligheden for en fuldstændig match er ekstremt lav – typisk i intervallet 1:1 million til 1:300 millioner – og <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> er den højeste af alle regulerede spilformer: 40-60 % mod 0,5-6 % for casinospil.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne asymmetri er ikke en fejl – den er designets kerne. Lotterier fungerer ved at opkræve en høj pris (i form af house edge) for at finansiere en enkelt, livsendrende gevinst. I stedet for at returnere 97 % af indsatserne i form af hyppige, små gevinster (som spillemaskiner), koncentrerer lotterier præmiepuljen i få, massive udbetalinger. Resultatet er et spil med den laveste forventede tilbagebetaling – men det højeste maksimale gevinstpotentiale pr. indsat krone.
