@@ -200,7 +200,7 @@ const BigBassBonanzaGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> RTP-Varianter: Den Usynlige Forskel</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Ligesom <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> tilbyder Big Bass Bonanza tre RTP-konfigurationer. Standardversionen på 96,71 % har en house edge på 3,29 % – bedre end de fleste konkurrenter. Men den reducerede version på 91,60 % har en house edge på 8,40 %, hvilket er næsten uacceptabelt for et moderne slot-produkt.
+            Ligesom <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> tilbyder Big Bass Bonanza tre <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>-konfigurationer. Standardversionen på 96,71 % har en <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> på 3,29 % – bedre end de fleste konkurrenter. Men den reducerede version på 91,60 % har en house edge på 8,40 %, hvilket er næsten uacceptabelt for et moderne slot-produkt.
           </p>
 
           <div className="overflow-x-auto mb-6">
