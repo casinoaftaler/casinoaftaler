@@ -2,7 +2,9 @@ import React from "react";
 import lightningRouletteHero from "@/assets/heroes/lightning-roulette-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -69,13 +71,23 @@ const LightningRouletteGuide = () => {
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
+  const videoJsonLd = buildVideoSchema(
+    `${SITE_URL}/live-casino/lightning-roulette`,
+    "fdvXU75QFNg",
+    {
+      title: "Lightning Roulette gennemgang – Multiplikatorer og strategi forklaret",
+      description: "Se en live gennemgang af Lightning Roulette: multiplikator-mekanikken, house edge og strategisk tilgang til 500x potentialet.",
+      uploadDate: "2026-03-07",
+      duration: "PT10M",
+    }
+  );
 
   return (
     <>
       <SEO
         title="Lightning Roulette – Multiplikator EV & Analyse"
         description="Lightning Roulette 2026: House edge 2,78 %, multiplikatorer op til 500x, EV-analyse og strategi. Sammenlign med standard roulette. Dansk licens."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       <section
@@ -108,6 +120,20 @@ const LightningRouletteGuide = () => {
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="18 Min." />
 
         <img src={lightningRouletteHero} alt="Lightning Roulette hjul med elektriske lyn-effekter i Evolution studio" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
+
+        <YoutubeEmbed
+          videoId="fdvXU75QFNg"
+          title="Lightning Roulette gennemgang – Multiplikatorer og strategi"
+          description="Se en live gennemgang af Lightning Roulette: multiplikator-mekanikken, house edge og strategisk tilgang til 500x potentialet."
+          uploadDate="2026-03-07"
+          duration="PT10M"
+        />
+
+        <VideoContextBox heading="Her gennemgår vores streamer Lightning Roulette i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> demonstrerer multiplikator-mekanikken, viser hvordan Lightning-numrene vælges, og forklarer den strategiske tilgang. Videoen er en del af vores indhold om{" "}
+          <Link to="/live-casino" className={linkClass}>live casino</Link> og{" "}
+          <Link to="/live-casino/roulette" className={linkClass}>live roulette</Link>.
+        </VideoContextBox>
 
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her dykker vi specifikt ned i Lightning Roulette – Evolutions mest populære innovation, der kombinerer klassisk roulette med RNG-multiplikatorer op til 500x. Fokus er udelukkende på multiplikator-mekanikken og dens matematiske implikationer – for generelle rouletteregler og bordtyper, se vores <Link to="/live-casino/roulette" className={linkClass}>live roulette guide</Link>.

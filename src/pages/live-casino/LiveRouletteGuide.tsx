@@ -2,7 +2,9 @@ import React from "react";
 import liveRouletteHero from "@/assets/heroes/live-roulette-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -69,13 +71,23 @@ const LiveRouletteGuide = () => {
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
+  const videoJsonLd = buildVideoSchema(
+    `${SITE_URL}/live-casino/roulette`,
+    "xKaQ0XGEKuU",
+    {
+      title: "Live Roulette gennemgang – Bordtyper, regler og strategi",
+      description: "Se en live gennemgang af roulette: bordtyper, house edge-forskelle og bankroll management forklaret ved et rigtigt live roulette-bord.",
+      uploadDate: "2026-03-07",
+      duration: "PT10M",
+    }
+  );
 
   return (
     <>
       <SEO
         title="Live Roulette – Bordtyper, Edge & Strategi"
         description="Live roulette 2026: House edge 2,70 % (EU) vs. 1,35 % (French). Bordtyper, tempoanalyse, betting-systemer og bankroll management. Dansk licens."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       <section
@@ -108,6 +120,20 @@ const LiveRouletteGuide = () => {
         <AuthorMetaBar author="jonas" date="18-02-2026" readTime="20 Min." />
 
         <img src={liveRouletteHero} alt="Live roulette hjul i et elegant casino studio med dealer" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
+
+        <YoutubeEmbed
+          videoId="xKaQ0XGEKuU"
+          title="Live Roulette gennemgang – Bordtyper, regler og strategi"
+          description="Se en live gennemgang af roulette: bordtyper, house edge-forskelle og bankroll management forklaret ved et rigtigt live roulette-bord."
+          uploadDate="2026-03-07"
+          duration="PT10M"
+        />
+
+        <VideoContextBox heading="Her gennemgår vores streamer live roulette i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> demonstrerer de forskellige bordtyper, forklarer house edge-forskelle og viser bankroll management i praksis. Videoen er en del af vores indhold om{" "}
+          <Link to="/live-casino" className={linkClass}>live casino</Link> og{" "}
+          <Link to="/live-casino/lightning-roulette" className={linkClass}>Lightning Roulette</Link>.
+        </VideoContextBox>
 
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her fokuserer vi udelukkende på live roulette med rigtig dealer – det mest ikoniske casinospil, nu tilgængeligt i HD med multi-angle kameraer og op til 80 spins i timen. Vi adskiller os fra den overordnede pillar-guide ved at dykke ekstremt dybt ned i bordtyper, matematiske modeller for hvert bet-type, og en ærlig analyse af populære betting-systemer.
