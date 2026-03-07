@@ -277,6 +277,62 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     href: "/ordbog/minimum-indbetaling",
     anchor: "",
   },
+  // Batch 3 – high-value terms only (avoid overlinking)
+  {
+    patterns: [/\bstacked wilds?\b/i],
+    href: "/ordbog/stacked-wilds",
+    anchor: "",
+  },
+  {
+    patterns: [/\bsticky wilds?\b/i],
+    href: "/ordbog/sticky-wilds",
+    anchor: "",
+  },
+  {
+    patterns: [/\bwalking wilds?\b/i],
+    href: "/ordbog/walking-wilds",
+    anchor: "",
+  },
+  {
+    patterns: [/\bhold[\s-]?and[\s-]?spin\b/i],
+    href: "/ordbog/hold-and-spin",
+    anchor: "",
+  },
+  {
+    patterns: [/\binfinity reels\b/i],
+    href: "/ordbog/infinity-reels",
+    anchor: "",
+  },
+  {
+    patterns: [/\bxWays\b/, /\bx[\s-]?Ways\b/i],
+    href: "/ordbog/xways",
+    anchor: "",
+  },
+  {
+    patterns: [/\bxNudge\b/, /\bx[\s-]?Nudge\b/i],
+    href: "/ordbog/xnudge",
+    anchor: "",
+  },
+  {
+    patterns: [/\bante[\s-]?bet\b/i],
+    href: "/ordbog/ante-bet",
+    anchor: "",
+  },
+  {
+    patterns: [/\bwin[\s-]?cap\b/i],
+    href: "/ordbog/win-cap",
+    anchor: "",
+  },
+  {
+    patterns: [/\brisk of ruin\b/i],
+    href: "/ordbog/risk-of-ruin",
+    anchor: "",
+  },
+  {
+    patterns: [/\bside[\s-]?bet\b/i],
+    href: "/ordbog/side-bet",
+    anchor: "",
+  },
 ];
 
 /**

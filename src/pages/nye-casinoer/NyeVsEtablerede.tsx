@@ -36,7 +36,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
   { question: "Kan man have konti hos både nye og etablerede casinoer?", answer: "Ja, der er ingen begrænsning. Mange erfarne spillere kombinerer strategisk: velkomstbonusser hos nye casinoer og VIP-fordele hos etablerede. Husk altid at spille ansvarligt og holde øje med dit samlede forbrug på tværs af alle casinoer." },
   { question: "Hvornår skal jeg vælge et nyt casino frem for et etableret?", answer: (
     <>
-      Vælg nyt casino for: bedste velkomstbonus, hurtigste udbetalinger, moderneste platform og laveste omsætningskrav. Vælg etableret for: bredt spiludvalg, VIP-program, lang track record og telefonisk kundeservice. Se <Link to="/nye-casinoer/bedste" className={linkClass}>bedste nye casinoer</Link>.
+      Vælg nyt casino for: bedste velkomstbonus, hurtigste udbetalinger, moderneste platform og laveste omsætningskrav. Vælg etableret for: bredt spiludvalg, VIP-program, lang track record og telefonisk kundeservice. Se <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link>.
     </>
   )},
   { question: "Hvad er den typiske levetid for et nyt dansk casino?", answer: "Nye casinoer med dansk licens har generelt lang levetid. Siden liberaliseringen i 2012 har meget få licenserede operatører trukket sig fra det danske marked. De der har lukket, har typisk gjort det pga. konsolidering (opkøb af større grupper), ikke pga. dårlig forretning. Din saldo er altid beskyttet via bankgarantien." },
@@ -75,7 +75,7 @@ const NyeVsEtablerede = () => {
             I denne guide giver vi dig en ærlig, datadrevet sammenligning baseret på vores omfattende testerfaring. Vi har testet hundredvis af casinoer med vores strukturerede <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> og deler resultaterne åbent. Denne guide handler ikke om at vælge side – men om at hjælpe dig med at træffe det rigtige valg baseret på fakta.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For at gøre sammenligningen så fair som mulig har vi evalueret begge kategorier på de samme 6 parametre og tilføjet kvantitativ data fra vores testresultater. Denne side er specifikt designet som en sammenligningsguide – for vores topvalg blandt nye casinoer, se <Link to="/nye-casinoer/bedste" className={linkClass}>bedste nye casinoer</Link>.
+            For at gøre sammenligningen så fair som muligt har vi evalueret begge kategorier på de samme 6 parametre og tilføjet kvantitativ data fra vores testresultater. Denne side er specifikt designet som en sammenligningsguide – for vores topvalg blandt nye casinoer, se <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link>.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Konklusionen (spoiler): de fleste spillere vil have gavn af at have konti hos begge typer. Men rækkefølgen – og hvilken der får din primære opmærksomhed – afhænger af din spillerprofil.
@@ -359,7 +359,7 @@ const NyeVsEtablerede = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
               { to: "/nye-casinoer", label: "Nye Casinoer – Hovedside", desc: "Alle nye casinoer i Danmark" },
-              { to: "/nye-casinoer/bedste", label: "Bedste Nye Casinoer", desc: "Vores topvalg i 2026" },
+              { to: "/nye-casinoer", label: "Bedste Nye Casinoer", desc: "Vores topvalg i 2026" },
               { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", desc: "Nye casinoer med hurtigste udbetalinger" },
               { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", desc: "Nye casinoer med lave omsætningskrav" },
             ].map((link) => (

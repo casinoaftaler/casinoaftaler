@@ -288,9 +288,9 @@ export const Header = memo(function Header() {
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
               <DropdownMenuItem asChild>
-                <Link to="/casinospil/roulette-strategi" className="flex items-center gap-2">
+                <Link to="/casinospil/roulette" className="flex items-center gap-2">
                   <Star className="h-3 w-3" />
-                  Roulette Strategi
+                  Roulette Guide
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuSub>
@@ -732,7 +732,7 @@ export const Header = memo(function Header() {
                     </Link>
                   ))}
                 </div>
-                <MobileLinks links={[{ to: "/casinospil/roulette-strategi", label: "Roulette Strategi" }, ...OTHER_CASINOSPIL_LINKS]} onClose={closeMobile} />
+                <MobileLinks links={[{ to: "/casinospil/roulette", label: "Roulette Guide" }, ...OTHER_CASINOSPIL_LINKS]} onClose={closeMobile} />
               </div>
             )}
 

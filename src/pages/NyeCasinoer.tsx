@@ -399,7 +399,7 @@ const NyeCasinoer = () => {
           </div>
 
           <p className="text-muted-foreground leading-relaxed">
-            Et nyt casino skal opnå minimum 7/10 i samlet score for at komme på vores generelle liste, og 8/10 for at kvalificere sig til <Link to="/nye-casinoer/bedste" className={linkClass}>bedste nye casinoer</Link>. Læs den fulde gennemgang af vores metode på <Link to="/saadan-tester-vi-casinoer" className={linkClass}>Sådan tester vi casinoer</Link>.
+            Et nyt casino skal opnå minimum 7/10 i samlet score for at komme på vores generelle liste, og 8/10 for at kvalificere sig til vores topvalg. Læs den fulde gennemgang af vores metode på <Link to="/saadan-tester-vi-casinoer" className={linkClass}>Sådan tester vi casinoer</Link>.
           </p>
         </section>
 

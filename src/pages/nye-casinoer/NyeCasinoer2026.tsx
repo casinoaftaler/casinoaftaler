@@ -49,7 +49,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvordan finder jeg det bedste nye casino i 2026?",
     answer: (
       <>
-        Start med vores <Link to="/nye-casinoer/bedste" className={linkClass}>guide til de bedste nye casinoer</Link>. Prioriter derefter baseret på dine præferencer: <Link to="/nye-casinoer/lav-wagering" className={linkClass}>lav wagering</Link> for bedste bonusvilkår, <Link to="/nye-casinoer/hurtig-udbetaling" className={linkClass}>hurtig udbetaling</Link> for hurtigste pengene. Sammenlign altid minimum 3 casinoer.
+        Start med vores <Link to="/nye-casinoer" className={linkClass}>oversigt over nye casinoer</Link>. Prioriter derefter baseret på dine præferencer: <Link to="/nye-casinoer/lav-wagering" className={linkClass}>lav wagering</Link> for bedste bonusvilkår, <Link to="/nye-casinoer/hurtig-udbetaling" className={linkClass}>hurtig udbetaling</Link> for hurtigste pengene. Sammenlign altid minimum 3 casinoer.
       </>
     ),
   },

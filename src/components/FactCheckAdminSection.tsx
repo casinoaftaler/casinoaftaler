@@ -67,7 +67,7 @@ const VALID_ROUTES = new Set([
   "/casinospil/spillemaskiner/chaos-crew", "/casinospil/spillemaskiner/joker-strike",
   "/casinospil/spillemaskiner/bonus-buys",
   "/casinospil/blackjack", "/casinospil/roulette", "/casinospil/poker",
-  "/casinospil/craps", "/casinospil/baccarat", "/casinospil/roulette-strategi",
+  "/casinospil/craps", "/casinospil/baccarat",
   "/casinospil/online-lotteri", "/casinospil/game-shows",
   "/spiludviklere/netent", "/spiludviklere/pragmatic-play",
   "/spiludviklere/relax-gaming", "/spiludviklere/play-n-go",

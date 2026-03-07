@@ -33,7 +33,7 @@ export const SLOT_TO_PROVIDER: Record<string, string> = {
   "razor-shark": "hacksaw-gaming",
   "jammin-jars": "hacksaw-gaming",
   "money-train-3": "relax-gaming",
-  "cleopatra": "",
+  "cleopatra": "igt",
   "bonus-buys": "",
 };
 

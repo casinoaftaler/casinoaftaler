@@ -687,7 +687,7 @@ export default function LabouchereRouletteGuide() {
             Men sofistikering ændrer ikke matematik. House edge er 2,70 % per spin uanset sekvensdesign, og over tilstrækkeligt mange spins vil den negative forventede værdi dominere. Vores udvidede simulering viser en RoR på 28,9 % over 1.000 spins med den flade sekvens – stiger til 51,3 % over 10.000 spins. Sekvensdesignet kan reducere denne risiko (flad sekvens → lavere RoR) men aldrig eliminere den.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            For spillere der nyder den strategiske proces og har disciplin til at respektere deres grænser, er Labouchère et underholdende og intellektuelt stimulerende valg. Men behandl det som det er – et struktureret underholdningssystem, ikke en vej til profit. Se vores <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategiguide</Link> for den komplette oversigt, og konsulter vores <Link to="/ansvarligt-spil" className={linkClass}>guide til ansvarligt spil</Link> for at holde det sundt.
+            For spillere der nyder den strategiske proces og har disciplin til at respektere deres grænser, er Labouchère et underholdende og intellektuelt stimulerende valg. Men behandl det som det er – et struktureret underholdningssystem, ikke en vej til profit. Se vores <Link to="/casinospil/roulette" className={linkClass}>roulette strategiguide</Link> for den komplette oversigt, og konsulter vores <Link to="/ansvarligt-spil" className={linkClass}>guide til ansvarligt spil</Link> for at holde det sundt.
           </p>
         </section>
 
