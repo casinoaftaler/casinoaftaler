@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 import hacksawHero from "@/assets/heroes/hacksaw-gaming-hero.jpg";
 
 const HacksawGamingGuide = () => (
@@ -46,6 +48,22 @@ const HacksawGamingGuide = () => (
         <p className="text-muted-foreground leading-relaxed">
           Denne guide er en komplet analyse af Hacksaw Gaming – ikke en marketingbrochure. Vi dissekerer deres matematiske modeller, evaluerer deres spildesign med konkrete data, sammenligner dem ærligt med konkurrenter og vurderer hvem der reelt har gavn af at spille deres titler. Og hvem der kategorisk bør undgå dem.
         </p>
+
+        <YoutubeEmbed
+          videoId="SQqTH2EgYTM"
+          title="Jonas åbner bonusser på Hacksaw Gaming slots"
+          description="Se Jonas fra Casinoaftaler.dk åbne super bonusser på populære Hacksaw Gaming spillemaskiner – bl.a. Wanted Dead or a Wild, Chaos Crew og Dork Unit."
+          uploadDate="2026-03-07"
+          duration="PT25M30S"
+        />
+        <VideoContextBox heading="Se live bonus-åbninger på Hacksaw Gaming slots">
+          Jonas gennemgår de mest populære Hacksaw Gaming-maskiner og åbner super bonusser live.
+          Oplev den ekstreme volatilitet i praksis – fra lange tørkeperioder til massive hits.
+          Læs mere om de enkelte slots i vores{" "}
+          <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className="text-primary underline hover:text-primary/80">Wanted Dead or a Wild guide</Link>{" "}
+          eller udforsk vores{" "}
+          <Link to="/casinospil/spillemaskiner/chaos-crew" className="text-primary underline hover:text-primary/80">Chaos Crew guide</Link>.
+        </VideoContextBox>
       </>
     }
     strategicAnalysis={

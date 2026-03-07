@@ -212,6 +212,7 @@ const jonasGuideVideos: AuthorVideo[] = [
   { videoId: "epl204siMF0", title: "Hvad er en Cashback-Bonus?", path: "/cashback-bonus", category: "Bonus" },
   { videoId: "ReM4PBQ30rw", title: "Hvad er en Reload Bonus?", path: "/reload-bonus", category: "Bonus" },
   { videoId: "5OBGaiJDHVM", title: "Sådan fungerer vores turneringer", path: "/community/turneringer", category: "Community" },
+  { videoId: "SQqTH2EgYTM", title: "Hacksaw Gaming – Bonus åbninger", path: "/spiludviklere/hacksaw-gaming", category: "Spiludvikler" },
 ];
 
 // ─── Kevin – Articles ───────────────────────────────────────────────────
