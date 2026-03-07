@@ -151,7 +151,7 @@ Deno.serve(async (req) => {
 
       // --- Auto-settle: same logic as bonus-hunt-settle ---
       const settleResults: Record<string, unknown> = {};
-      const today = new Date().toISOString().split('T')[0];
+      const today = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Copenhagen", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 
       // --- Settle GTW ---
       if (endBalance) {
