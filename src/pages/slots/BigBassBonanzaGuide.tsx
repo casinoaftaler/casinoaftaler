@@ -128,20 +128,6 @@ const BigBassBonanzaGuide = () => {
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Big Bass Bonanza spillemaskine" loading="eager" />
         </div>
 
-        <YoutubeEmbed
-          videoId="Hguc2V01ouQ"
-          title="Big Bass Bonanza gennemgang – Money Collect-mekanik og RTP"
-          description="Se en komplet gennemgang af Big Bass Bonanza: Money Collect-mekanikken, RTP på 96,71 % og free spins-matematik forklaret i praksis."
-          uploadDate="2026-03-07"
-          duration="PT10M"
-        />
-
-        <VideoContextBox heading="Her gennemgår vores streamer Big Bass Bonanza i praksis">
-          <Link to="/forfatter/kevin" className={linkClass}>Kevin</Link> viser Money Collect-mekanikken, fisker-symbolernes funktion og free spins-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
-          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
-          <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
-        </VideoContextBox>
-
         {/* ── ÅBNINGSVINKEL: UDVIKLERKONTEKST ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvordan Pragmatic Play Opfandt en Helt Ny Slot-Genre</h2>
@@ -155,6 +141,20 @@ const BigBassBonanzaGuide = () => {
             Denne analyse fokuserer på den originale Big Bass Bonanza – den simpleste og mest rene version af Money Collect-systemet. Vi gennemgår den matematiske model bag fisker-mekanikken, beregner EV for forskellige scenarier, og vurderer, om spillets popularitet er fortjent ud fra et rent statistisk perspektiv.
           </p>
         </section>
+
+        <YoutubeEmbed
+          videoId="Hguc2V01ouQ"
+          title="Big Bass Bonanza gennemgang – Money Collect-mekanik og RTP"
+          description="Se en komplet gennemgang af Big Bass Bonanza: Money Collect-mekanikken, RTP på 96,71 % og free spins-matematik forklaret i praksis."
+          uploadDate="2026-03-07"
+          duration="PT10M"
+        />
+
+        <VideoContextBox heading="Her gennemgår vores streamer Big Bass Bonanza i praksis">
+          <Link to="/forfatter/kevin" className={linkClass}>Kevin</Link> viser Money Collect-mekanikken, fisker-symbolernes funktion og free spins-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
+          <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
+        </VideoContextBox>
 
         <Separator className="my-10" />
 
