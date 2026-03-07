@@ -20,6 +20,11 @@ import {
   HandCoins,
   Eye,
   BarChart3,
+  Star,
+  Trophy,
+  Gamepad2,
+  CreditCard,
+  Sparkles,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -363,6 +368,48 @@ const Forretningsmodel = () => {
             <Link to="/kontakt" className="text-primary underline hover:text-primary/80">kontakte os</Link>. 
             Vi svarer åbent og ærligt på alle henvendelser om vores økonomi og kommercielle relationer.
           </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Hub-links – intern link equity distribution */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <ArrowRight className="h-7 w-7 text-primary" />
+            Udforsk vores indhold
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Vi producerer dybdegående guides, anmeldelser og analyser inden for alle aspekter af online casino i Danmark. 
+            Her er et overblik over vores vigtigste indholdsområder:
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { to: "/casino-bonus", icon: BookOpen, title: "Casino Bonus Guide", desc: "Komplet guide til alle bonustyper i Danmark" },
+              { to: "/casinoer", icon: Star, title: "Alle Casinoer", desc: "Dybdegående kategoriguides og analyser" },
+              { to: "/nye-casinoer", icon: Trophy, title: "Nye Casinoer", desc: "De nyeste casinoer med dansk licens" },
+              { to: "/casino-anmeldelser", icon: FileText, title: "Casino Anmeldelser", desc: "29+ detaljerede casinoanmeldelser" },
+              { to: "/casinospil", icon: Gamepad2, title: "Casinospil", desc: "Guides til blackjack, roulette, poker og slots" },
+              { to: "/casinospil/spillemaskiner", icon: Star, title: "Spillemaskiner", desc: "30+ dybdegående spillemaskineguides" },
+              { to: "/live-casino", icon: Users, title: "Live Casino", desc: "Guide til live dealer-spil i Danmark" },
+              { to: "/betalingsmetoder", icon: CreditCard, title: "Betalingsmetoder", desc: "Alle godkendte betalingsmetoder" },
+              { to: "/spiludviklere", icon: Search, title: "Spiludviklere", desc: "12 ledende studier analyseret" },
+              { to: "/ordbog", icon: BookOpen, title: "Casino Ordbog", desc: "30+ tekniske termer forklaret" },
+              { to: "/free-spins", icon: Sparkles, title: "Free Spins", desc: "Alt om gratis spins på danske casinoer" },
+              { to: "/omsaetningskrav", icon: Scale, title: "Omsætningskrav", desc: "Forstå bonusvilkår og omsætning" },
+            ].map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+              >
+                <item.icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <h3 className="font-semibold text-sm">{item.title}</h3>
+                  <p className="text-xs text-muted-foreground">{item.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </section>
 
         <RelatedGuides currentPath="/forretningsmodel" maxLinks={5} />

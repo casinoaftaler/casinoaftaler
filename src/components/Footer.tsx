@@ -228,6 +228,12 @@ export function Footer() {
             <h4 className="mb-4 text-sm font-semibold">Bonusguides</h4>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link to="/casino-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium">
+                  <BookOpen className="h-4 w-4" />
+                  Casino Bonus Guide
+                </Link>
+              </li>
+              <li>
                 <Link to="/velkomstbonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Trophy className="h-4 w-4" />
                   Velkomstbonus
