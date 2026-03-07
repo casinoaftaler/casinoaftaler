@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import trustlyHero from "@/assets/heroes/nye-casinoer-trustly-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -409,6 +410,7 @@ const NyeCasinoerTrustly = () => {
         <FAQSection title="Ofte stillede spørgsmål om Trustly og nye casinoer" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };

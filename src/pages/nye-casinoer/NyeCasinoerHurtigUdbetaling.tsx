@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import hurtigUdbetalingHero from "@/assets/heroes/nye-casinoer-hurtig-udbetaling-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -498,6 +499,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
         <FAQSection title="Ofte stillede spørgsmål om hurtige udbetalinger" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

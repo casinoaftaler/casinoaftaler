@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import mitidHero from "@/assets/heroes/nye-casinoer-mitid-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -447,6 +448,7 @@ const NyeCasinoerMitID = () => {
         <FAQSection title="Ofte stillede spørgsmål om MitID og nye casinoer" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

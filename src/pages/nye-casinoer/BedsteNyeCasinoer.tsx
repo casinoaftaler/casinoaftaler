@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import bedsteNyeCasinoerHero from "@/assets/heroes/bedste-nye-casinoer-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -333,6 +334,7 @@ const BedsteNyeCasinoer = () => {
         <FAQSection title="Ofte stillede spørgsmål om de bedste nye casinoer" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

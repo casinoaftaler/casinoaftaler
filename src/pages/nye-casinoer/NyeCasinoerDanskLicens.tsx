@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import danskLicensHero from "@/assets/heroes/nye-casinoer-dansk-licens-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -398,6 +399,7 @@ const NyeCasinoerDanskLicens = () => {
         <FAQSection title="Ofte stillede spørgsmål om nye casinoer med dansk licens" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };
