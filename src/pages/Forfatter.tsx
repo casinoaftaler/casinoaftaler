@@ -240,39 +240,8 @@ export default function Forfatter() {
 
   const faqJsonLd = buildFaqSchema(faqs);
 
-  // All Jonas videos for schema
   const allJonasVideos = [
-    // Guide videos
-    { id: "WOowRz6hnH8", title: "Hvad er en No-Sticky Bonus?" },
-    { id: "yUAcefgYfkc", title: "Hvad er en Sticky Bonus?" },
-    { id: "q4jeGo9TPEk", title: "Hvad er Free Spins?" },
-    { id: "3tXFTjmgdcE", title: "Hvad er omsætningskrav?" },
-    { id: "oK5PvebkvGY", title: "Hvad er en Velkomstbonus?" },
-    { id: "hMHHVA6vH0Y", title: "Hvad er en Indskudsbonus?" },
-    { id: "7JQ3nFTasoQ", title: "Hvad er bonus uden omsætningskrav?" },
-    { id: "XhbLda1HyOs", title: "Hvad er bonus uden indbetaling?" },
-    // Casino review videos
-    { id: "_hHQkRwUzoU", title: "SpilDanskNu Anmeldelse" },
-    { id: "L5JtdRVTNwk", title: "Spilleautomaten Anmeldelse" },
-    { id: "s7S_GRsKfK4", title: "Campobet Anmeldelse" },
-    { id: "GyqEjKQiCJU", title: "Betinia Anmeldelse" },
-    { id: "BVYnQxwqHG0", title: "Swift Casino Anmeldelse" },
-    { id: "14tI5vWShvs", title: "Luna Casino Anmeldelse" },
-    { id: "vb5nT5UGk8c", title: "bet365 Casino Anmeldelse" },
-    { id: "Uu3NBZzt-Sk", title: "Betano Anmeldelse" },
-    { id: "AuYbcBpBOxY", title: "Danske Spil Anmeldelse" },
-    { id: "tW_E0RmzSHg", title: "ComeOn Anmeldelse" },
-    { id: "N1MyxsYcmMk", title: "GetLucky Anmeldelse" },
-    { id: "htCLh4TK6tA", title: "Mr Green Anmeldelse" },
-    { id: "vSkzKvgZT_0", title: "Mr Vegas Anmeldelse" },
-    { id: "8_nQyVEJEcU", title: "LeoVegas Anmeldelse" },
-    { id: "TzSmePJgd84", title: "Expekt Anmeldelse" },
-    { id: "crhpDPocTrQ", title: "888 Casino Anmeldelse" },
-    { id: "53m8Fk6tmw8", title: "Unibet Anmeldelse" },
-    { id: "6R3Zt_ABaAo", title: "Royal Casino Anmeldelse" },
-    { id: "o9m02b_cAnE", title: "Maria Casino Anmeldelse" },
-    { id: "xo9vTabQgE8", title: "Videoslots Anmeldelse" },
-    // Highlights
+    ...getAuthorAllVideos("jonas"),
     { id: "ZKDrnL7373o", title: "Jonas' bedste highlights" },
   ];
 

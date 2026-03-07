@@ -517,27 +517,16 @@ export default function ForfatterAjse() {
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-3 text-muted-foreground">Sider</h3>
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                { to: "/om", label: "Om Casinoaftaler.dk", desc: "Om teamet bag sitet" },
-                { to: "/saadan-tester-vi-casinoer", label: "Sådan tester vi casinoer", desc: "Vores testmetode og kriterier" },
-                { to: "/forretningsmodel", label: "Forretningsmodel", desc: "Sådan finansieres Casinoaftaler.dk" },
-                { to: "/redaktionel-politik", label: "Redaktionel Politik", desc: "Casinoaftaler.dk's retningslinjer" },
-                { to: "/ansvarligt-spil", label: "Ansvarligt Spil", desc: "Ressourcer til ansvarligt spil" },
-                { to: "/casino-licenser", label: "Casino Licenser", desc: "Guide til danske casinolicenser" },
-                { to: "/spillemyndigheden", label: "Spillemyndigheden", desc: "Danmarks regulering af online spil" },
-                { to: "/omsaetningskrav", label: "Omsætningskrav", desc: "Komplet guide til gennemspilningskrav" },
-                { to: "/kontakt", label: "Kontakt", desc: "Kontakt Casinoaftaler.dk" },
-                { to: "/casino-nyheder", label: "Casino Nyheder", desc: "Seneste nyheder fra branchen" },
-              ].map((page) => (
+              {ajseStaticArticles.map((page) => (
                 <Link
-                  key={page.to}
-                  to={page.to}
+                  key={page.path}
+                  to={page.path}
                   className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
                 >
                   <Pen className="h-5 w-5 shrink-0 text-primary" />
                   <div className="min-w-0">
-                    <h4 className="text-sm font-semibold group-hover:text-primary transition-colors">{page.label}</h4>
-                    <p className="text-xs text-muted-foreground">{page.desc}</p>
+                    <h4 className="text-sm font-semibold group-hover:text-primary transition-colors">{page.title}</h4>
+                    <p className="text-xs text-muted-foreground">{page.excerpt}</p>
                   </div>
                 </Link>
               ))}
