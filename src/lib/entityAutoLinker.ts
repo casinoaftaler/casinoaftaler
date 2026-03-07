@@ -62,6 +62,11 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     anchor: "",
   },
   {
+    patterns: [/\bsticky bonus\b/i],
+    href: "/sticky-bonus",
+    anchor: "",
+  },
+  {
     patterns: [/\bcashback bonus\b/i, /\bcashback-bonus\b/i],
     href: "/cashback-bonus",
     anchor: "",

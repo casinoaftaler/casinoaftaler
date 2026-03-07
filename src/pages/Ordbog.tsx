@@ -37,7 +37,7 @@ const definedTermSetSchema = {
 
 const articleSchema = buildArticleSchema({
   headline: "Casino Ordbog – Alle Vigtige Casino-begreber",
-  description: "Komplet ordbog over casinobegreber med 15 definitioner.",
+  description: `Komplet ordbog over casinobegreber med ${glossaryTerms.length} definitioner.`,
   url: `${SITE_URL}/ordbog`,
   datePublished: "2026-03-06",
   dateModified: "2026-03-06",
