@@ -3,7 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.39.3";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
 interface TwitchTokenResponse {
@@ -22,8 +22,10 @@ interface TwitchUser {
   profile_image_url: string;
 }
 
+const json = (body: object, status = 200) =>
+  new Response(JSON.stringify(body), { status, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -32,10 +34,7 @@ serve(async (req) => {
     const { code, redirect_uri, state, link_to_user_id } = await req.json();
 
     if (!code) {
-      return new Response(
-        JSON.stringify({ error: "Authorization code is required" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return json({ error: "Authorization code is required" });
     }
 
     const clientId = Deno.env.get("TWITCH_CLIENT_ID");
@@ -43,20 +42,9 @@ serve(async (req) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL");
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 
-    if (!clientId || !clientSecret) {
-      console.error("Missing Twitch credentials");
-      return new Response(
-        JSON.stringify({ error: "Server configuration error" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    if (!supabaseUrl || !supabaseServiceKey) {
-      console.error("Missing Supabase credentials");
-      return new Response(
-        JSON.stringify({ error: "Server configuration error" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    if (!clientId || !clientSecret || !supabaseUrl || !supabaseServiceKey) {
+      console.error("Missing credentials");
+      return json({ error: "Server configuration error" });
     }
 
     console.log("Exchanging code for token...");
@@ -65,9 +53,7 @@ serve(async (req) => {
     // Exchange code for access token
     const tokenResponse = await fetch("https://id.twitch.tv/oauth2/token", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
         client_id: clientId,
         client_secret: clientSecret,
@@ -80,10 +66,7 @@ serve(async (req) => {
     if (!tokenResponse.ok) {
       const errorText = await tokenResponse.text();
       console.error("Token exchange failed:", errorText);
-      return new Response(
-        JSON.stringify({ error: "Failed to exchange authorization code" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return json({ error: "Failed to exchange authorization code" });
     }
 
     const tokenData: TwitchTokenResponse = await tokenResponse.json();
@@ -100,10 +83,7 @@ serve(async (req) => {
     if (!userResponse.ok) {
       const errorText = await userResponse.text();
       console.error("Failed to fetch user info:", errorText);
-      return new Response(
-        JSON.stringify({ error: "Failed to fetch user information" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return json({ error: "Failed to fetch user information" });
     }
 
     const userData = await userResponse.json();
@@ -112,17 +92,13 @@ serve(async (req) => {
 
     // Create Supabase admin client
     const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-      },
+      auth: { autoRefreshToken: false, persistSession: false },
     });
 
     // LINKING MODE: If link_to_user_id is provided, just update the profile
     if (link_to_user_id) {
       console.log("Linking Twitch to existing user:", link_to_user_id);
 
-      // Check if this Twitch account is already linked to another user
       const { data: existingTwitchProfile } = await supabaseAdmin
         .from("profiles")
         .select("user_id")
@@ -130,14 +106,9 @@ serve(async (req) => {
         .maybeSingle();
 
       if (existingTwitchProfile && existingTwitchProfile.user_id !== link_to_user_id) {
-        console.error("Twitch account already linked to another user");
-        return new Response(
-          JSON.stringify({ error: "Denne Twitch-konto er allerede tilknyttet en anden bruger" }),
-          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
+        return json({ error: "Denne Twitch-konto er allerede tilknyttet en anden bruger" });
       }
 
-      // Update or create profile for the existing user
       const { error: profileError } = await supabaseAdmin
         .from("profiles")
         .upsert({
@@ -148,34 +119,25 @@ serve(async (req) => {
           avatar_url: twitchUser.profile_image_url,
           twitch_access_token: tokenData.access_token,
           twitch_refresh_token: tokenData.refresh_token,
-        }, {
-          onConflict: "user_id",
-        });
+        }, { onConflict: "user_id" });
 
       if (profileError) {
         console.error("Profile update error:", profileError);
-        return new Response(
-          JSON.stringify({ error: "Failed to link Twitch account" }),
-          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
+        return json({ error: "Failed to link Twitch account" });
       }
 
       console.log("Successfully linked Twitch to user:", link_to_user_id);
-
-      return new Response(
-        JSON.stringify({
-          success: true,
-          linked: true,
-          user: {
-            id: link_to_user_id,
-            twitch_id: twitchUser.id,
-            twitch_username: twitchUser.login,
-            display_name: twitchUser.display_name,
-            avatar_url: twitchUser.profile_image_url,
-          },
-        }),
-        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return json({
+        success: true,
+        linked: true,
+        user: {
+          id: link_to_user_id,
+          twitch_id: twitchUser.id,
+          twitch_username: twitchUser.login,
+          display_name: twitchUser.display_name,
+          avatar_url: twitchUser.profile_image_url,
+        },
+      });
     }
 
     // NORMAL LOGIN MODE: Check if user already exists by looking up profile with twitch_id
@@ -190,11 +152,9 @@ serve(async (req) => {
     const email = twitchUser.email || `${twitchUser.id}@twitch.placeholder`;
 
     if (existingProfileByTwitch) {
-      // User already logged in with this Twitch account before
       userId = existingProfileByTwitch.user_id;
       console.log("Found existing user by Twitch ID:", userId);
 
-      // Update their profile with latest Twitch data + store tokens
       await supabaseAdmin
         .from("profiles")
         .update({
@@ -206,16 +166,16 @@ serve(async (req) => {
         })
         .eq("user_id", userId);
     } else {
-      // No profile with this Twitch ID - check if user exists by email first
-      const { data: existingUsers } = await supabaseAdmin.auth.admin.listUsers();
-      const existingUserByEmail = existingUsers?.users.find(u => u.email === email);
+      // No profile with this Twitch ID - check if user exists by email
+      // Use the DB function instead of listUsers() to avoid the 1000 user limit
+      const { data: existingUserId } = await supabaseAdmin
+        .rpc("get_user_id_by_email", { lookup_email: email });
 
-      if (existingUserByEmail) {
-        // User exists (e.g., admin account) - link Twitch to this existing user
-        userId = existingUserByEmail.id;
+      if (existingUserId) {
+        // User exists by email - link Twitch to this existing user
+        userId = existingUserId;
         console.log("Found existing user by email (linking Twitch):", userId, email);
 
-        // Check if this user already has a profile
         const { data: existingUserProfile } = await supabaseAdmin
           .from("profiles")
           .select("id")
@@ -223,7 +183,6 @@ serve(async (req) => {
           .maybeSingle();
 
         if (existingUserProfile) {
-          // Update existing profile with Twitch data + tokens
           const { error: updateError } = await supabaseAdmin
             .from("profiles")
             .update({
@@ -242,7 +201,6 @@ serve(async (req) => {
             console.log("Updated existing profile with Twitch data for user:", userId);
           }
         } else {
-          // Create new profile for existing user
           const { error: insertError } = await supabaseAdmin
             .from("profiles")
             .insert({
@@ -279,16 +237,12 @@ serve(async (req) => {
 
         if (createError) {
           console.error("Create user error:", createError);
-          return new Response(
-            JSON.stringify({ error: "Failed to create user account" }),
-            { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-          );
+          return json({ error: "Failed to create user account" });
         }
 
         userId = newUser.user.id;
         console.log("Created new user:", userId);
 
-        // Create profile for new user
         const { error: profileError } = await supabaseAdmin
           .from("profiles")
           .insert({
@@ -303,21 +257,15 @@ serve(async (req) => {
 
         if (profileError) {
           console.error("Profile creation error:", profileError);
-          // Non-fatal, continue with login
         }
       }
     }
 
     // Generate a magic link for the user to establish a session
-    // IMPORTANT: Use the email from the existing auth user, not from Twitch API,
-    // because the auth user may have been created with a placeholder email
     const { data: authUser, error: authUserError } = await supabaseAdmin.auth.admin.getUserById(userId);
     if (authUserError || !authUser?.user?.email) {
       console.error("Failed to fetch auth user for magic link:", authUserError);
-      return new Response(
-        JSON.stringify({ error: "Failed to generate session" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return json({ error: "Failed to generate session" });
     }
 
     const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
@@ -327,37 +275,27 @@ serve(async (req) => {
 
     if (linkError) {
       console.error("Generate link error:", linkError);
-      return new Response(
-        JSON.stringify({ error: "Failed to generate session" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+      return json({ error: "Failed to generate session" });
     }
 
-    // Return the full action link - frontend will redirect to it
     const actionLink = linkData.properties.action_link;
     console.log("Login successful for:", twitchUser.login);
 
-    return new Response(
-      JSON.stringify({
-        success: true,
-        action_link: actionLink,
-        user: {
-          id: userId,
-          twitch_id: twitchUser.id,
-          twitch_username: twitchUser.login,
-          display_name: twitchUser.display_name,
-          avatar_url: twitchUser.profile_image_url,
-        },
-        is_new_user: isNewUser,
-      }),
-      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    return json({
+      success: true,
+      action_link: actionLink,
+      user: {
+        id: userId,
+        twitch_id: twitchUser.id,
+        twitch_username: twitchUser.login,
+        display_name: twitchUser.display_name,
+        avatar_url: twitchUser.profile_image_url,
+      },
+      is_new_user: isNewUser,
+    });
   } catch (error: unknown) {
     console.error("Error in twitch-auth function:", error);
     const message = error instanceof Error ? error.message : "An unexpected error occurred";
-    return new Response(
-      JSON.stringify({ error: message }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-    );
+    return json({ error: message });
   }
 });
