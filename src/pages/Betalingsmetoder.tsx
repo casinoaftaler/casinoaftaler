@@ -333,7 +333,7 @@ const Betalingsmetoder = () => {
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
                 <p>
-                  Alle danske licenserede casinoer kræver MitID-godkendelse ved registrering. Dette er ikke blot et sikkerhedstiltag – det er en juridisk forpligtelse under Spillemyndighedens bekendtgørelse. MitID verificerer din identitet via CPR-nummer, hvilket automatisk opfylder KYC-kravet (Know Your Customer). Konsekvensen for betalinger er positiv: da identiteten allerede er bekræftet, kan de fleste transaktioner processeres uden yderligere dokumentation. Det eliminerer den forsinkelse, som spillere på uregulerede markeder oplever ved første udbetaling, hvor de skal uploade pas, regninger og bankudtog.
+                  Alle danske licenserede casinoer kræver MitID-godkendelse ved registrering. Dette er ikke blot et sikkerhedstiltag – det er en juridisk forpligtelse under Spillemyndighedens bekendtgørelse. MitID verificerer din identitet via CPR-nummer, hvilket automatisk opfylder <Link to="/ordbog/kyc" className="text-primary underline hover:text-primary/80">KYC</Link>-kravet (Know Your Customer). Konsekvensen for betalinger er positiv: da identiteten allerede er bekræftet, kan de fleste transaktioner processeres uden yderligere dokumentation. Det eliminerer den forsinkelse, som spillere på uregulerede markeder oplever ved første udbetaling, hvor de skal uploade pas, regninger og bankudtog.
                 </p>
               </CardContent>
             </Card>
