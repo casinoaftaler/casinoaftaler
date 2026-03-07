@@ -264,6 +264,21 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     href: "/ordbog/gamification",
     anchor: "",
   },
+  {
+    patterns: [/\bMitID\b/],
+    href: "/ordbog/mitid-casino",
+    anchor: "MitID",
+  },
+  {
+    patterns: [/\bgevinstprocent\b/i, /\bwin rate\b/i],
+    href: "/ordbog/gevinstprocent",
+    anchor: "",
+  },
+  {
+    patterns: [/\bminimum indbetaling\b/i, /\bmin\.? indbetaling\b/i],
+    href: "/ordbog/minimum-indbetaling",
+    anchor: "",
+  },
 ];
 
 /**
