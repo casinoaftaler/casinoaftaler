@@ -8,8 +8,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { CasinoCard } from "@/components/CasinoCard";
-import { CASINO_SCORES } from "@/lib/reviewScoring";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -27,7 +26,6 @@ import {
   Users,
   TrendingUp,
   CheckCircle2,
-  Loader2,
   Gift,
   RefreshCw,
   Zap,
