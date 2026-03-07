@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { Gamepad2, Trophy, BarChart3, Gift } from "lucide-react";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 
 const steps = [
   {
