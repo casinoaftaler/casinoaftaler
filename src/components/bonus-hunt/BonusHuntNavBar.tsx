@@ -15,10 +15,10 @@ interface Props {
 export function BonusHuntNavBar({ huntNumber, huntDate, latestHuntNumber, maxHuntNumber, availableHuntNumbers, onNavigate, onJumpToHunt }: Props) {
   return (
     <div className="flex items-center justify-center gap-2">
-      <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={() => onNavigate?.('first')}>
+      <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={() => onNavigate?.('first')} aria-label="Første hunt">
         <ChevronsLeft className="h-3.5 w-3.5" />
       </Button>
-      <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={() => onNavigate?.('prev')}>
+      <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={() => onNavigate?.('prev')} aria-label="Forrige hunt">
         <ChevronLeft className="h-3.5 w-3.5" />
       </Button>
       <Select
@@ -42,10 +42,10 @@ export function BonusHuntNavBar({ huntNumber, huntDate, latestHuntNumber, maxHun
           ))}
         </SelectContent>
       </Select>
-      <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={() => onNavigate?.('next')}>
+      <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={() => onNavigate?.('next')} aria-label="Næste hunt">
         <ChevronRight className="h-3.5 w-3.5" />
       </Button>
-      <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={() => onNavigate?.('last')}>
+      <Button variant="ghost" size="icon" className="h-7 w-7 shrink-0" onClick={() => onNavigate?.('last')} aria-label="Sidste hunt">
         <ChevronsRight className="h-3.5 w-3.5" />
       </Button>
     </div>

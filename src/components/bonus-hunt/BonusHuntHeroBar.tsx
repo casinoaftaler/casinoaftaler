@@ -84,10 +84,10 @@ export function BonusHuntHeroBar({
 
         {/* Right: Navigation */}
         <div className="flex items-center gap-1 shrink-0">
-          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('first')}>
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('first')} aria-label="Første hunt">
             <ChevronsLeft className="h-3.5 w-3.5" />
           </Button>
-          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('prev')}>
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('prev')} aria-label="Forrige hunt">
             <ChevronLeft className="h-3.5 w-3.5" />
           </Button>
 
@@ -107,10 +107,10 @@ export function BonusHuntHeroBar({
             </SelectContent>
           </Select>
 
-          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('next')}>
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('next')} aria-label="Næste hunt">
             <ChevronRight className="h-3.5 w-3.5" />
           </Button>
-          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('last')}>
+          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => onNavigate?.('last')} aria-label="Sidste hunt">
             <ChevronsRight className="h-3.5 w-3.5" />
           </Button>
         </div>
