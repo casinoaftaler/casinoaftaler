@@ -138,6 +138,15 @@ const LiveBlackjackGuide = () => {
           duration="PT10M"
         />
 
+        <div className="rounded-xl border border-border/50 bg-muted/30 p-5 space-y-2">
+          <p className="text-sm font-semibold text-foreground">
+            Her gennemgår vores streamer og forfatter Jonas, hvordan live blackjack fungerer i praksis
+          </p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> demonstrerer regler, basisstrategi og beslutningsprocessen ved et rigtigt live blackjack-bord med dealer. Videoen er en del af vores dybdegående indhold om <Link to="/live-casino" className={linkClass}>live casino</Link>, <Link to="/casinospil/blackjack" className={linkClass}>blackjack-regler</Link> og <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>.
+          </p>
+        </div>
+
         <InlineCasinoCards title="Bedste casinoer til live blackjack" count={6} />
 
         {/* ═══ H2 #1 – Reglerne i live blackjack ═══ */}
