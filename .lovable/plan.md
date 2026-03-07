@@ -1,24 +1,87 @@
 
 
-## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
+## Plan: Add StickyCTA to All Money Pages
 
-### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
+### Current State
+StickyCTA already exists on 6 casino review pages (SpilDanskNu, Spilleautomaten, Betinia, Campobet, Swift Casino, Luna Casino). Each fetches casino data via `useCasinos()` and renders `<StickyCTA>` at the bottom of the page.
 
-The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
+### Approach
+Create a wrapper component `StickyCtaBySlug` that accepts a casino slug, fetches data internally, and renders the StickyCTA. This avoids duplicating the `useCasinos()` + `.find()` logic across 50+ pages.
 
-Specifically:
-- **Remove** Gevinst from the right zone (lines 247-261)
-- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
+Then add this component to:
 
-Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
+**1. Template-based pages (2 templates, covers many pages at once):**
 
-### 2. Add Count-Up Animation for Win Amount
+- **`PaymentMethodPageTemplate.tsx`** — Add a `ctaCasinoSlug` prop, render `StickyCtaBySlug` at the bottom
+- **`ProviderPageTemplate.tsx`** — Same approach with `ctaCasinoSlug` prop
 
-Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
-- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
-- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
-- The component already handles ease-out counting and bump animation on completion
+**2. Payment guide pages (pass slug via prop):**
+| Page | Casino Slug |
+|------|------------|
+| ApplePayGuide | `spildansknu` |
+| MobilePayGuide | `spildansknu` |
+| PayPalGuide | `campobet` |
+| SkrillGuide | `campobet` |
+| TrustlyGuide | `campobet` |
+| ZimplerGuide | `betinia` |
+| PaysafecardGuide | `campobet` |
+| BankTransferGuide | `spilleautomaten` |
+| VisaMastercardGuide | `spilleautomaten` |
+| RevolutGuide | `betinia` |
 
-### Files Modified
-- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
+**3. Provider guide pages (pass slug via prop):**
+| Page | Casino Slug |
+|------|------------|
+| PragmaticPlayGuide | `spildansknu` |
+| HacksawGamingGuide | `spilleautomaten` |
+| NolimitCityGuide | `campobet` |
+| NetEntGuide | `campobet` |
+| EvolutionGamingGuide | `campobet` |
+| RelaxGamingGuide | `betinia` |
+| ELKStudiosGuide | `betinia` |
+| YggdrasilGuide | `betinia` |
+| MicrogamingGuide | `campobet` |
+| RedTigerGuide | `betinia` |
+| BigTimeGamingGuide | `campobet` |
+| PlayNGoGuide (Play'n GO) | `betinia` |
+
+**4. Standalone money pages (add directly with StickyCtaBySlug):**
+
+These are the pages under the main nav dropdowns (Casinoer, Nye Casinoer, Casinospil, Live Casino, Casino Bonus) and their sub-pages:
+
+| Category | Pages | Casino (rotating) |
+|----------|-------|-------------------|
+| **Casino Bonus cluster** | Velkomstbonus, StickyBonus, NoStickyBonus, CashbackBonus, ReloadBonus, Indskudsbonus, BonusUdenIndbetaling, BonusUdenOmsaetningskrav, Omsaetningskrav, CasinoBonus, FreeSpins, FreeSpinsIDag | Rotate: betinia, campobet, spildansknu, spilleautomaten |
+| **Casinoer hub** | CasinoerHub, CasinoLicenser, Spillemyndigheden, Betalingsmetoder, CasinoAnmeldelser, TopCasinoOnline + sub-guides (HoejRTP, HurtigUdbetaling, MobilCasinoer, etc.) | Rotate: betinia, campobet, spildansknu, spilleautomaten |
+| **Nye Casinoer** | NyeCasinoer + all sub-pages (2026, DanskLicens, Trustly, MitID, etc.) | Rotate |
+| **Casinospil** | Casinospil hub, BlackjackGuide, RouletteGuide, BaccaratGuide, PokerGuide + all strategy sub-pages | Rotate |
+| **Live Casino** | LiveCasino hub, LiveBlackjackGuide, LiveRouletteGuide, LightningRouletteGuide, LiveBaccaratGuide, MonopolyLiveGuide | Rotate |
+| **Spillemaskiner** | Spillemaskiner, SpillemaskinerHoejRTP + all 31 slot guides | Rotate |
+| **Spiludviklere** | Spiludviklere hub | campobet |
+
+### New Component
+
+```tsx
+// src/components/StickyCtaBySlug.tsx
+import { useCasinos } from "@/hooks/useCasinos";
+import { StickyCTA } from "@/components/StickyCTA";
+
+export function StickyCtaBySlug({ slug }: { slug: string }) {
+  const { data: casinos } = useCasinos();
+  const casino = casinos?.find((c) => c.slug === slug);
+  if (!casino) return null;
+  return <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} ... />;
+}
+```
+
+### Implementation Steps
+
+1. **Create `StickyCtaBySlug` component** — encapsulates data fetching + StickyCTA rendering
+2. **Update `PaymentMethodPageTemplate`** — add optional `ctaCasinoSlug` prop, render `StickyCtaBySlug` after closing `</div>`
+3. **Update `ProviderPageTemplate`** — same approach
+4. **Update all 10 payment guide pages** with correct slug
+5. **Update all 12 provider guide pages** with correct slug
+6. **Update all standalone money pages** (~60+ pages) — add import + `<StickyCtaBySlug slug="xxx" />` before closing `</>`
+
+This is a large but mechanical task. Every page gets the same pattern: import + one line of JSX.
 
