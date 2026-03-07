@@ -271,6 +271,66 @@ serve(async (req) => {
 
     const data = await response.json();
 
+    // If StreamSystem returns {data: false}, fall back to our active session
+    if (data?.data === false || !data?.data) {
+      const { data: activeSession } = await supabase
+        .from("bonus_hunt_sessions")
+        .select("*")
+        .eq("status", "active")
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (activeSession) {
+        const fallbackPayload = {
+          status: true,
+          data: {
+            id: activeSession.streamsystem_hunt_id || `session-${activeSession.hunt_number}`,
+            visibleId: activeSession.hunt_number,
+            played: false,
+            started: true,
+            user: STREAMER_ID,
+            name: `bonus hunt #${activeSession.hunt_number}`,
+            currency: 'dkk',
+            end: activeSession.end_balance || 0,
+            start: 0,
+            createdAt: Math.floor(new Date(activeSession.created_at).getTime() / 1000),
+            casino: activeSession.casino_slug || 'spildansknu',
+            currencySymbol: 'DKK ',
+            startFormatted: '0.0 KR.',
+            endFormatted: `${activeSession.end_balance || 0}.0 KR.`,
+            slots: [],
+            statistics: {
+              openedSlots: 0,
+              numberOfSlots: 0,
+              averageBet: 0,
+              averageBetFormatted: '0.0 KR.',
+              averageCost: 0,
+              averageCostFormatted: '0.0 KR.',
+              winnings: activeSession.end_balance || 0,
+              winningsFormatted: `${activeSession.end_balance || 0}.0 KR.`,
+              progress: 0,
+              progressFormatted: '0.0 KR.',
+              reqAverage: '0',
+              bestWin: 0,
+              bestWinFormatted: '0.0 KR.',
+              bestWinX: '0.00',
+              runAverage: activeSession.average_x ? String(activeSession.average_x) : '0.00',
+              best_win_x_slot_name: '-',
+            },
+          },
+        };
+
+        return new Response(JSON.stringify(fallbackPayload), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=30' },
+        });
+      }
+
+      return new Response(JSON.stringify(data), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=30' },
+      });
+    }
+
     // Archive the hunt data (upsert by hunt_number)
     // Check if this hunt is already archived to determine isNewHunt
     let isNewHunt = false;
@@ -340,10 +400,12 @@ serve(async (req) => {
 
       // Auto-close bets after 3 bonuses opened
       const openedSlots = stats.openedSlots || 0;
+      const totalSlots = stats.numberOfSlots || 0;
+
       if (openedSlots >= 3) {
         const { data: openSession } = await supabase
           .from("bonus_hunt_sessions")
-          .select("id, gtw_betting_open, avgx_betting_open")
+          .select("id, gtw_betting_open, avgx_betting_open, status")
           .eq("hunt_number", huntNumber)
           .maybeSingle();
 
@@ -353,6 +415,18 @@ serve(async (req) => {
             avgx_betting_open: false,
           }).eq("id", openSession.id);
           console.log(`Auto-closed betting for hunt #${huntNumber} (${openedSlots} slots opened)`);
+        }
+
+        // Auto-complete hunt when ALL bonuses have been opened
+        if (totalSlots > 0 && openedSlots >= totalSlots && openSession?.status === 'active') {
+          const avgX = stats.runAverage ? parseFloat(stats.runAverage) : null;
+          const endBal = huntData.end || null;
+          await supabase.from("bonus_hunt_sessions").update({
+            status: 'completed',
+            average_x: avgX,
+            end_balance: endBal,
+          }).eq("id", openSession.id);
+          console.log(`Auto-completed hunt #${huntNumber} (all ${totalSlots} bonuses opened)`);
         }
       }
 
