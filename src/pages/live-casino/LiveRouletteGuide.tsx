@@ -518,6 +518,7 @@ const LiveRouletteGuide = () => {
         <FAQSection title="Ofte stillede spørgsmål om live roulette" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

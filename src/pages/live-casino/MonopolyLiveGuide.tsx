@@ -570,6 +570,7 @@ const MonopolyLiveGuide = () => {
         <FAQSection title="Ofte stillede spørgsmål om Monopoly Live" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

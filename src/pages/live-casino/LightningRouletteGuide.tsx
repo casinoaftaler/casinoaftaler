@@ -595,6 +595,7 @@ const LightningRouletteGuide = () => {
         <FAQSection title="Ofte stillede spørgsmål om Lightning Roulette" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

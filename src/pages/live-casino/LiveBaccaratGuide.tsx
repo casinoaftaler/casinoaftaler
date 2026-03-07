@@ -587,6 +587,7 @@ const LiveBaccaratGuide = () => {
         <FAQSection title="Ofte stillede spørgsmål om live baccarat" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

@@ -667,6 +667,7 @@ const LiveBlackjackGuide = () => {
         />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };
