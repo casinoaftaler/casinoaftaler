@@ -23,12 +23,6 @@ const TERM_REDIRECTS: Record<string, string> = {
 const OrdbogTerm = () => {
   const { slug } = useParams<{ slug: string }>();
   const { pathname } = useLocation();
-
-  // Redirect removed terms to their canonical pages
-  if (slug && TERM_REDIRECTS[slug]) {
-    return <Navigate to={TERM_REDIRECTS[slug]} replace />;
-  }
-
   const term = slug ? getTermBySlug(slug) : undefined;
 
   const processedContent = useMemo(() => {
@@ -36,7 +30,6 @@ const OrdbogTerm = () => {
     return autoLinkEntities(term.fullContent);
   }, [term]);
 
-  // Calculate read time from content length (strip HTML, ~200 words/min Danish)
   const readTime = useMemo(() => {
     if (!term?.fullContent) return "3 min";
     const textOnly = term.fullContent.replace(/<[^>]*>/g, "");
@@ -44,6 +37,11 @@ const OrdbogTerm = () => {
     const minutes = Math.max(3, Math.ceil(wordCount / 200));
     return `${minutes} min`;
   }, [term]);
+
+  // Redirect removed terms to their canonical pages (cannibalization fixes)
+  if (slug && TERM_REDIRECTS[slug]) {
+    return <Navigate to={TERM_REDIRECTS[slug]} replace />;
+  }
 
   if (!term) return <Navigate to="/ordbog" replace />;
 
