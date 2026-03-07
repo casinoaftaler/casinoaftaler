@@ -75,9 +75,9 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     slug: "free-spins",
     title: "Free Spins (Gratis Spins)",
-    shortDefinition: "Free spins er gratis spilleomgange på en spillemaskine, enten som del af spillets bonusfunktion eller som en casinobonus.",
-    metaTitle: "Hvad er Free Spins? Gratis Spins Guide",
-    metaDescription: "Alt om free spins: hvordan de fungerer som bonusfunktion i slots og som casinobonus. Find de bedste free spins tilbud.",
+    shortDefinition: "Free spins er gratis spilleomgange på en spillemaskine, typisk udløst af scatter-symboler som del af spillets bonusfunktion.",
+    metaTitle: "Hvad er Free Spins? Betydning og Funktion",
+    metaDescription: "Forstå hvad free spins betyder i spillemaskiner: hvordan de udløses af scatter-symboler, forskellen på in-game og bonus free spins, og vigtige vilkår.",
     category: "Bonus",
     relatedTerms: ["wagering", "scatter", "bonus-runde"],
     relatedPages: [
