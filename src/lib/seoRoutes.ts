@@ -344,6 +344,11 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/mobil-casino", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
   { path: "/casino-app", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
 
+  // ── Slot Kategorier ──
+  { path: "/megaways-slots", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
+  { path: "/jackpot-slots", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
+  { path: "/bonus-buy-slots", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
+
   { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/om", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
   { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
