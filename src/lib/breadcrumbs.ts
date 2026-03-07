@@ -73,6 +73,9 @@ export const routeLabels: Record<string, string> = {
   "/ansvarligt-spil/rofus": "ROFUS – Selvudelukkelse",
   "/ansvarligt-spil/ludomani": "Ludomani – Spilleafhængighed",
   "/ansvarligt-spil/stopspillet": "StopSpillet – Gratis Rådgivning",
+  // Mobil Casino
+  "/mobil-casino": "Mobil Casino",
+  "/casino-app": "Casino App",
   "/om": "Om Casinoaftaler.dk",
   "/forretningsmodel": "Forretningsmodel",
   "/redaktionel-politik": "Redaktionel Politik",
@@ -382,6 +385,9 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/ansvarligt-spil/rofus": [{ name: "Ansvarligt Spil", path: "/ansvarligt-spil" }],
   "/ansvarligt-spil/ludomani": [{ name: "Ansvarligt Spil", path: "/ansvarligt-spil" }],
   "/ansvarligt-spil/stopspillet": [{ name: "Ansvarligt Spil", path: "/ansvarligt-spil" }],
+
+  // Mobil Casino cluster – bundet til /mobil-casino hub
+  "/casino-app": [{ name: "Mobil Casino", path: "/mobil-casino" }],
 
   // Live Casino cluster – bundet til /live-casino hub
   "/live-casino/blackjack": [{ name: "Live Casino", path: "/live-casino" }],
