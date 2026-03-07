@@ -12,6 +12,14 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { useMemo } from "react";
 
+// 301-equivalent redirects for removed terms (cannibalization fixes)
+const TERM_REDIRECTS: Record<string, string> = {
+  "sticky-bonus-term": "/sticky-bonus",
+  "mitid-casino": "/nye-casinoer/mitid",
+  "gevinstprocent": "/ordbog/hit-frequency",
+  "progressiv-jackpot": "/ordbog/jackpot",
+};
+
 const OrdbogTerm = () => {
   const { slug } = useParams<{ slug: string }>();
   const { pathname } = useLocation();
@@ -22,7 +30,6 @@ const OrdbogTerm = () => {
     return autoLinkEntities(term.fullContent);
   }, [term]);
 
-  // Calculate read time from content length (strip HTML, ~200 words/min Danish)
   const readTime = useMemo(() => {
     if (!term?.fullContent) return "3 min";
     const textOnly = term.fullContent.replace(/<[^>]*>/g, "");
@@ -30,6 +37,11 @@ const OrdbogTerm = () => {
     const minutes = Math.max(3, Math.ceil(wordCount / 200));
     return `${minutes} min`;
   }, [term]);
+
+  // Redirect removed terms to their canonical pages (cannibalization fixes)
+  if (slug && TERM_REDIRECTS[slug]) {
+    return <Navigate to={TERM_REDIRECTS[slug]} replace />;
+  }
 
   if (!term) return <Navigate to="/ordbog" replace />;
 
