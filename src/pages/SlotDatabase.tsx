@@ -190,7 +190,7 @@ export default function SlotDatabase() {
             <p className="text-lg text-white/80">
               Komplet oversigt over alle spillemaskiner vi har testet i vores{" "}
               <Link to="/bonus-hunt" className="underline hover:text-white">live bonus hunts</Link>.
-              {" "}Ægte community-data fra vores Twitch-streams – ikke teoretiske tal.
+              {" "}Ægte community-data fra vores Twitch-streams – ikke teoretiske tal. Se <Link to="/ordbog/rtp" className="underline hover:text-white">RTP</Link>, <Link to="/ordbog/volatilitet" className="underline hover:text-white">volatilitet</Link> og performance for 163+ slots.
             </p>
           </div>
         </div>
