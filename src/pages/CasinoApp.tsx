@@ -22,7 +22,7 @@ import {
   Lock,
   Scale,
   BarChart3,
-  BookOpen,
+  
   ExternalLink,
   HelpCircle,
   Phone,
