@@ -5,6 +5,7 @@ import paypalHero from "@/assets/heroes/paypal-hero.jpg";
 const PayPalGuide = () => {
   return (
     <PaymentMethodPage
+      ctaCasinoSlug="campobet"
       seoTitle="PayPal Casino 2026 – E-Wallet med Køberbeskyttelse"
       seoDescription="Dybdegående analyse af PayPal på danske casinoer: e-wallet-sammenligning, bonusbegrænsninger, vores praktiske test, køberbeskyttelse og regulatorisk kontekst."
       name="PayPal"

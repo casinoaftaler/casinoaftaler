@@ -5,6 +5,7 @@ import paysafecardHero from "@/assets/heroes/paysafecard-hero.jpg";
 const PaysafecardGuide = () => {
   return (
     <PaymentMethodPage
+      ctaCasinoSlug="campobet"
       seoTitle="Paysafecard Casino 2026 – Anonym Indbetaling"
       seoDescription="Alt om Paysafecard på danske casinoer. Forudbetalt og anonym indbetaling, sikkerhed, begrænsninger og de bedste Paysafecard casinoer i Danmark."
       name="Paysafecard"

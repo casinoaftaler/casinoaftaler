@@ -5,6 +5,7 @@ import bankTransferHero from "@/assets/heroes/bank-transfer-hero.jpg";
 const BankTransferGuide = () => {
   return (
     <PaymentMethodPage
+      ctaCasinoSlug="spilleautomaten"
       seoTitle="Bankoverførsel Casino 2026 – Sikker men Langsom"
       seoDescription="Alt om bankoverførsler på danske casinoer. Direkte banktransaktioner, sikkerhed, behandlingstider, gebyrer og sammenligninger med hurtigere alternativer."
       name="Bankoverførsel"

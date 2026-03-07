@@ -5,6 +5,7 @@ import skrillHero from "@/assets/heroes/skrill-hero.jpg";
 const SkrillGuide = () => {
   return (
     <PaymentMethodPage
+      ctaCasinoSlug="campobet"
       seoTitle="Skrill Casino 2026 – VIP, Gebyrer & Alternativer"
       seoDescription="Dybdegående analyse af Skrill: VIP-programmet dissekeret, praktisk test på danske casinoer, bonusbegrænsninger, gebyrstruktur og sammenligning med PayPal og Trustly."
       name="Skrill"

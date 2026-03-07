@@ -5,6 +5,7 @@ import applePayHero from "@/assets/heroes/apple-pay-hero.jpg";
 const ApplePayGuide = () => {
   return (
     <PaymentMethodPage
+      ctaCasinoSlug="spildansknu"
       seoTitle="Apple Pay Casino 2026 – Face ID & Instant Betaling"
       seoDescription="Dybdegående analyse af Apple Pay på danske casinoer: tokenisering, Face ID-sikkerhed, vores praktiske test, bonusregler, regulatorisk kontekst og sammenligning med MobilePay og Trustly."
       name="Apple Pay"
