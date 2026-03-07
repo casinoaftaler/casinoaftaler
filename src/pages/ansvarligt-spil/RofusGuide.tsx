@@ -1124,10 +1124,10 @@ const RofusGuide = () => {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { to: "/ansvarligt-spil", title: "Ansvarligt Spil", desc: "Komplet guide til ansvarligt casinospil" },
+              { to: "/ansvarligt-spil/ludomani", title: "Ludomani Guide", desc: "Alt om spilleafhængighed i Danmark" },
+              { to: "/ansvarligt-spil/stopspillet", title: "StopSpillet Guide", desc: "Gratis rådgivning for spillere og pårørende" },
               { to: "/spillemyndigheden", title: "Spillemyndigheden", desc: "Danmarks tilsynsmyndighed for spil" },
               { to: "/casino-licenser", title: "Casino Licenser", desc: "Forstå det danske licenssystem" },
-              { to: "/casino-bonus", title: "Casino Bonus Guide", desc: "Forstå bonusvilkår og omsætningskrav" },
-              { to: "/casinoer", title: "Alle Casinoer", desc: "Find casinoer med dansk licens" },
               { to: "/ordbog", title: "Casino Ordbog", desc: "Forstå alle casino-termer" },
             ].map((item) => (
               <Link
