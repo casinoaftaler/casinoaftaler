@@ -538,6 +538,33 @@ const Spillemaskiner = () => {
 
         <Separator className="my-10" />
 
+        {/* ── Slot Kategorier ── */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Layers className="h-7 w-7 text-primary" />
+            Slot Kategorier
+          </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Udforsk vores dybdegående guides til de mest populære slot-kategorier – fra dynamiske Megaways-mekanikker til progressive millionjackpots og bonus buy-funktioner:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <Link to="/megaways-slots" className="flex flex-col gap-1 rounded-lg border border-border bg-card p-4 hover:border-primary/50 transition-colors">
+              <span className="font-semibold text-foreground flex items-center gap-2"><Zap className="h-4 w-4 text-primary" /> Megaways Slots</span>
+              <span className="text-xs text-muted-foreground">Dynamiske hjul med op til 117.649 vinderkombinationer</span>
+            </Link>
+            <Link to="/jackpot-slots" className="flex flex-col gap-1 rounded-lg border border-border bg-card p-4 hover:border-primary/50 transition-colors">
+              <span className="font-semibold text-foreground flex items-center gap-2"><Trophy className="h-4 w-4 text-primary" /> Jackpot Slots</span>
+              <span className="text-xs text-muted-foreground">Progressive jackpots med milliongevinster på tværs af netværk</span>
+            </Link>
+            <Link to="/bonus-buy-slots" className="flex flex-col gap-1 rounded-lg border border-border bg-card p-4 hover:border-primary/50 transition-colors">
+              <span className="font-semibold text-foreground flex items-center gap-2"><Star className="h-4 w-4 text-primary" /> Bonus Buy Slots</span>
+              <span className="text-xs text-muted-foreground">Køb bonusrunden direkte – spring base game over</span>
+            </Link>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
         <RelatedGuides currentPath="/casinospil/spillemaskiner" />
 
         <FAQSection faqs={spillemaskineFaqs} />

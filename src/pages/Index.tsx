@@ -753,10 +753,33 @@ const Index = () => {
               {" "}– Den progressive jackpot-legende fra Microgaming med milliongevinster.
             </li>
           </ul>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Udforsk alle vores dybdegående analyser i{" "}
             <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline font-medium">den komplette spillemaskine-guide</Link>.
           </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <Link
+              to="/megaways-slots"
+              className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+            >
+              <Zap className="h-4 w-4 text-primary flex-shrink-0" />
+              Megaways Slots
+            </Link>
+            <Link
+              to="/jackpot-slots"
+              className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+            >
+              <Trophy className="h-4 w-4 text-primary flex-shrink-0" />
+              Jackpot Slots
+            </Link>
+            <Link
+              to="/bonus-buy-slots"
+              className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+            >
+              <Gift className="h-4 w-4 text-primary flex-shrink-0" />
+              Bonus Buy Slots
+            </Link>
+          </div>
         </section>
 
         <Separator className="my-10" />

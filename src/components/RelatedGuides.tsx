@@ -49,6 +49,11 @@ const slotDatabaseHub: GuideLink = { to: "/slot-database", label: "Slot Database
 const bonusHuntArkivHub: GuideLink = { to: "/bonus-hunt/arkiv", label: "Bonus Hunt Arkiv", icon: Trophy, desc: "Alle dokumenterede hunt-resultater" };
 const turneringsArkivHub: GuideLink = { to: "/community/turneringer/arkiv", label: "Turneringsarkiv", icon: Trophy, desc: "Månedlige vindere og leaderboards" };
 
+// === SLOT KATEGORI HUBS ===
+const megawaysSlotsHub: GuideLink = { to: "/megaways-slots", label: "Megaways Slots", icon: Layers, desc: "Op til 117.649 ways med dynamiske hjul" };
+const jackpotSlotsHub: GuideLink = { to: "/jackpot-slots", label: "Jackpot Slots", icon: Trophy, desc: "Progressive jackpots med milliongevinster" };
+const bonusBuySlotsHub: GuideLink = { to: "/bonus-buy-slots", label: "Bonus Buy Slots", icon: ShoppingCart, desc: "Køb bonus direkte – spring base game over" };
+
 // === SIBLING LINKS (max 2-3 per cluster) ===
 const bonusSiblings: GuideLink[] = [
   { to: "/velkomstbonus", label: "Velkomstbonus", icon: Trophy, desc: "Få mest ud af din første indbetaling" },
@@ -140,6 +145,9 @@ const casinospilSiblings: GuideLink[] = [
   { to: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2, desc: "Guide til alle typer online slots" },
   { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Find spillemaskiner med bedst tilbagebetaling" },
   { to: "/casinospil/spillemaskiner/bonus-buys", label: "Bonus Buys Guide", icon: ShoppingCart, desc: "Matematik og strategi bag buy feature" },
+  { to: "/megaways-slots", label: "Megaways Slots", icon: Layers, desc: "Dynamiske hjul med op til 117.649 ways" },
+  { to: "/jackpot-slots", label: "Jackpot Slots", icon: Trophy, desc: "Progressive jackpots med milliongevinster" },
+  { to: "/bonus-buy-slots", label: "Bonus Buy Slots", icon: ShoppingCart, desc: "Køb bonus direkte og skip base game" },
   { to: "/casinospil/blackjack", label: "Blackjack Regler", icon: Gamepad2, desc: "Komplet guide til online blackjack" },
   { to: "/casinospil/roulette", label: "Roulette Regler", icon: Target, desc: "Lær roulettens væddemål og varianter" },
   { to: "/casinospil/poker", label: "Poker Regler", icon: Gamepad2, desc: "Guide til casino poker og Video Poker" },
@@ -285,6 +293,46 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Slot Kategorier → dedicated entries for each category page
+  if (path === "/megaways-slots") {
+    return {
+      guides: [
+        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner Guide", icon: Gamepad2, desc: "Komplet guide til alle spilleautomater" },
+        jackpotSlotsHub,
+        bonusBuySlotsHub,
+        { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Slots med bedst tilbagebetaling" },
+        slotDatabaseHub,
+      ],
+      subtitle: "Udforsk andre slot-kategorier, RTP-guides og community slot-data.",
+    };
+  }
+
+  if (path === "/jackpot-slots") {
+    return {
+      guides: [
+        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner Guide", icon: Gamepad2, desc: "Komplet guide til alle spilleautomater" },
+        megawaysSlotsHub,
+        bonusBuySlotsHub,
+        slotDatabaseHub,
+        bonusHub,
+      ],
+      subtitle: "Udforsk andre slot-kategorier, community-data og de bedste bonusser.",
+    };
+  }
+
+  if (path === "/bonus-buy-slots") {
+    return {
+      guides: [
+        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner Guide", icon: Gamepad2, desc: "Komplet guide til alle spilleautomater" },
+        megawaysSlotsHub,
+        jackpotSlotsHub,
+        { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Slots med bedst tilbagebetaling" },
+        providerHub,
+      ],
+      subtitle: "Udforsk andre slot-kategorier, høj RTP-slots og spiludviklere.",
+    };
+  }
+
   // Slot Database → money-page bridge links
   if (path === "/slot-database") {
     return {
@@ -292,10 +340,10 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/bonus-hunt", label: "Bonus Hunt", icon: Trophy, desc: "Følg med i live bonus hunts på Twitch" },
         { to: "/bonus-hunt/arkiv", label: "Bonus Hunt Arkiv", icon: BarChart3, desc: "Alle dokumenterede hunt-resultater" },
         casinospilHub,
-        providerHub,
+        megawaysSlotsHub,
         bonusHub,
       ],
-      subtitle: "Udforsk bonus hunts, casinospil og de bedste spiludviklere.",
+      subtitle: "Udforsk bonus hunts, slot-kategorier og de bedste spiludviklere.",
     };
   }
 
