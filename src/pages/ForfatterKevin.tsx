@@ -62,65 +62,8 @@ const faqs = [
   },
 ];
 
-const kevinArticles = [
-  // Hub-sider
-  { title: "Betalingsmetoder – Komplet Guide", path: "/betalingsmetoder", category: "Guide", date: "18-02-2026", readTime: "28 min.", excerpt: "Overblik over alle betalingsmetoder hos danske online casinoer." },
-  { title: "Spiludviklere – Komplet Guide", path: "/spiludviklere", category: "Guide", date: "18-02-2026", readTime: "30 min.", excerpt: "Overblik over de bedste spiludviklere til danske online casinoer." },
-  { title: "Spillemyndigheden Guide", path: "/spillemyndigheden", category: "Guide", date: "14-02-2026", readTime: "8 min.", excerpt: "Alt om Spillemyndigheden og dansk casinoregulering." },
-  // Betalingsmetoder
-  { title: "MobilePay Casino Guide", path: "/betalingsmetoder/mobilepay", category: "Guide", date: "17-02-2026", readTime: "10 min.", excerpt: "Alt om MobilePay som betalingsmetode hos danske online casinoer." },
-  { title: "Trustly Casino Guide", path: "/betalingsmetoder/trustly", category: "Guide", date: "17-02-2026", readTime: "9 min.", excerpt: "Hurtige indbetalinger og udbetalinger med Trustly." },
-  { title: "Visa & Mastercard Casino Guide", path: "/betalingsmetoder/visa-mastercard", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Brug Visa eller Mastercard til sikre casino-transaktioner." },
-  { title: "Skrill Casino Guide", path: "/betalingsmetoder/skrill", category: "Guide", date: "17-02-2026", readTime: "7 min.", excerpt: "Skrill som betalingsmetode hos online casinoer." },
-  { title: "Apple Pay Casino Guide", path: "/betalingsmetoder/apple-pay", category: "Guide", date: "17-02-2026", readTime: "7 min.", excerpt: "Betal med Apple Pay på danske online casinoer." },
-  { title: "Paysafecard Casino Guide", path: "/betalingsmetoder/paysafecard", category: "Guide", date: "17-02-2026", readTime: "7 min.", excerpt: "Anonym indbetaling med Paysafecard." },
-  { title: "PayPal Casino Guide", path: "/betalingsmetoder/paypal", category: "Guide", date: "17-02-2026", readTime: "7 min.", excerpt: "PayPal som betalingsmetode hos danske casinoer." },
-  { title: "Zimpler Casino Guide", path: "/betalingsmetoder/zimpler", category: "Guide", date: "17-02-2026", readTime: "7 min.", excerpt: "Zimpler – hurtig mobilbetaling til casinoer." },
-  { title: "Bankoverførsel Casino Guide", path: "/betalingsmetoder/bankoverforsler", category: "Guide", date: "17-02-2026", readTime: "7 min.", excerpt: "Direkte bankoverførsel til og fra casinoer." },
-  { title: "Revolut Casino Guide", path: "/betalingsmetoder/revolut", category: "Guide", date: "17-02-2026", readTime: "7 min.", excerpt: "Revolut som betalingsmetode hos online casinoer." },
-  // Spiludviklere
-  { title: "NetEnt – Spiludvikler Guide", path: "/spiludviklere/netent", category: "Guide", date: "17-02-2026", readTime: "10 min.", excerpt: "Alt om NetEnt – en af verdens førende spiludviklere." },
-  { title: "Pragmatic Play Guide", path: "/spiludviklere/pragmatic-play", category: "Guide", date: "17-02-2026", readTime: "9 min.", excerpt: "Pragmatic Play – populære slots og live casino-spil." },
-  { title: "Play'n GO Guide", path: "/spiludviklere/play-n-go", category: "Guide", date: "17-02-2026", readTime: "9 min.", excerpt: "Play'n GO – innovativ spiludvikler med dansk fokus." },
-  { title: "Evolution Gaming Guide", path: "/spiludviklere/evolution-gaming", category: "Guide", date: "17-02-2026", readTime: "10 min.", excerpt: "Evolution – markedsleder inden for live casino." },
-  { title: "Nolimit City Guide", path: "/spiludviklere/nolimit-city", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Nolimit City – høj volatilitet og unikke mekanikker." },
-  { title: "Push Gaming Guide", path: "/spiludviklere/push-gaming", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Push Gaming – kreative slots med innovative features." },
-  { title: "Hacksaw Gaming Guide", path: "/spiludviklere/hacksaw-gaming", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Hacksaw Gaming – moderne slots med høj gevinst-potentiale." },
-  { title: "Relax Gaming Guide", path: "/spiludviklere/relax-gaming", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Relax Gaming – innovativ aggregator og spiludvikler." },
-  { title: "Yggdrasil Guide", path: "/spiludviklere/yggdrasil", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Yggdrasil – visuel innovation og unikke spillemekanikker." },
-  { title: "Microgaming Guide", path: "/spiludviklere/microgaming", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Microgaming – en af branchens ældste og mest anerkendte udviklere." },
-  { title: "Red Tiger Guide", path: "/spiludviklere/red-tiger", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Red Tiger – daglige jackpots og innovative features." },
-  { title: "Big Time Gaming Guide", path: "/spiludviklere/big-time-gaming", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "Big Time Gaming – skaberne af Megaways-mekanikken." },
-  { title: "ELK Studios Guide", path: "/spiludviklere/elk-studios", category: "Guide", date: "17-02-2026", readTime: "8 min.", excerpt: "ELK Studios – svensk kreativitet og unikke spilleoplevelser." },
-  // Slot guides (Kevin)
-  { title: "Big Bass Bonanza – Komplet Guide", path: "/casinospil/spillemaskiner/big-bass-bonanza", category: "Slot Guide", date: "18-02-2026", readTime: "23 min.", excerpt: "Big Bass Bonanza – fisherman-tema, free spins og money collect." },
-  { title: "Gonzo's Quest – Komplet Guide", path: "/casinospil/spillemaskiner/gonzos-quest", category: "Slot Guide", date: "18-02-2026", readTime: "22 min.", excerpt: "Gonzo's Quest – avalanche-mekanik, RTP og free falls." },
-  { title: "Starburst – Komplet Guide", path: "/casinospil/spillemaskiner/starburst", category: "Slot Guide", date: "18-02-2026", readTime: "20 min.", excerpt: "Starburst – expanding wilds, RTP-analyse og volatilitet." },
-  { title: "Wanted Dead or a Wild – Komplet Guide", path: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", category: "Slot Guide", date: "18-02-2026", readTime: "17 min.", excerpt: "Wanted Dead or a Wild – duel-feature, VS-multiplikatorer og RTP." },
-  { title: "Thunderstruck II – Komplet Guide", path: "/casinospil/spillemaskiner/thunderstruck-ii", category: "Slot Guide", date: "18-02-2026", readTime: "16 min.", excerpt: "Thunderstruck II – Great Hall of Spins og fire bonusmodi." },
-  { title: "Wild West Gold – Komplet Guide", path: "/casinospil/spillemaskiner/wild-west-gold", category: "Slot Guide", date: "18-02-2026", readTime: "16 min.", excerpt: "Wild West Gold – sticky wilds, free spins og volatilitetsanalyse." },
-  { title: "Mega Moolah – Komplet Guide", path: "/casinospil/spillemaskiner/mega-moolah", category: "Slot Guide", date: "18-02-2026", readTime: "17 min.", excerpt: "Mega Moolah – progressiv jackpot, RTP og EV-analyse." },
-  { title: "Buffalo King – Komplet Guide", path: "/casinospil/spillemaskiner/buffalo-king", category: "Slot Guide", date: "18-02-2026", readTime: "18 min.", excerpt: "Buffalo King – stacked wilds, free spins og multiplikatorer." },
-  { title: "Reactoonz – Komplet Guide", path: "/casinospil/spillemaskiner/reactoonz", category: "Slot Guide", date: "18-02-2026", readTime: "20 min.", excerpt: "Reactoonz – cluster pays, quantum-features og Gargantoon." },
-  { title: "Joker Strike – Komplet Guide", path: "/casinospil/spillemaskiner/joker-strike", category: "Slot Guide", date: "18-02-2026", readTime: "14 min.", excerpt: "Joker Strike – Hi Roller-mode, klassisk tema og RTP." },
-  { title: "Cleopatra – Komplet Guide", path: "/casinospil/spillemaskiner/cleopatra", category: "Slot Guide", date: "18-02-2026", readTime: "16 min.", excerpt: "Cleopatra – free spins, egyptisk tema og IGT-klassiker." },
-  { title: "Chaos Crew – Komplet Guide", path: "/casinospil/spillemaskiner/chaos-crew", category: "Slot Guide", date: "18-02-2026", readTime: "15 min.", excerpt: "Chaos Crew – dual-feature, wild multipliers og volatilitet." },
-  { title: "Wolf Gold – Komplet Guide", path: "/casinospil/spillemaskiner/wolf-gold", category: "Slot Guide", date: "18-02-2026", readTime: "18 min.", excerpt: "Wolf Gold – Money Respin, jackpots og free spins." },
-  { title: "Jammin' Jars – Komplet Guide", path: "/casinospil/spillemaskiner/jammin-jars", category: "Slot Guide", date: "18-02-2026", readTime: "19 min.", excerpt: "Jammin' Jars – cluster pays, walking wilds og multiplikatorer." },
-  { title: "Divine Fortune – Komplet Guide", path: "/casinospil/spillemaskiner/divine-fortune", category: "Slot Guide", date: "18-02-2026", readTime: "19 min.", excerpt: "Divine Fortune – progressiv jackpot, free spins og falling wilds." },
-  { title: "Immortal Romance – Komplet Guide", path: "/casinospil/spillemaskiner/immortal-romance", category: "Slot Guide", date: "18-02-2026", readTime: "17 min.", excerpt: "Immortal Romance – Chamber of Spins og fire bonusmodi." },
-  { title: "Extra Chilli Megaways – Komplet Guide", path: "/casinospil/spillemaskiner/extra-chilli-megaways", category: "Slot Guide", date: "18-02-2026", readTime: "17 min.", excerpt: "Extra Chilli Megaways – gamble-feature, free spins og RTP." },
-  { title: "Madame Destiny Megaways – Komplet Guide", path: "/casinospil/spillemaskiner/madame-destiny-megaways", category: "Slot Guide", date: "18-02-2026", readTime: "15 min.", excerpt: "Madame Destiny Megaways – ante bet, free spins og multiplikatorer." },
-  { title: "Fire Joker – Komplet Guide", path: "/casinospil/spillemaskiner/fire-joker", category: "Slot Guide", date: "18-02-2026", readTime: "17 min.", excerpt: "Fire Joker – Wheel of Multipliers, respin og klassisk design." },
-  // Anmeldelse
-  { title: "Videoslots Anmeldelse", path: "/casino-anmeldelser/videoslots", category: "Anmeldelse", date: "17-02-2026", readTime: "28 min.", excerpt: "Videoslots – kæmpe spiludvalg med unikke features." },
-  // Mere-sider
-  { title: "Ansvarligt Spil Guide", path: "/ansvarligt-spil", category: "Guide", date: "17-02-2026", readTime: "12 min.", excerpt: "Alt om ansvarligt spil, selvudelukkelse og hjælp til spilleproblemer." },
-  { title: "Casino Licenser Guide", path: "/casino-licenser", category: "Guide", date: "16-02-2026", readTime: "14 min.", excerpt: "Overblik over casinolicenser og hvad de betyder for danske spillere." },
-  { title: "Forretningsmodel", path: "/forretningsmodel", category: "Guide", date: "15-02-2026", readTime: "5 min.", excerpt: "Sådan finansieres Casinoaftaler.dk og vores affiliate-model." },
-  { title: "Redaktionel Politik", path: "/redaktionel-politik", category: "Guide", date: "15-02-2026", readTime: "6 min.", excerpt: "Vores redaktionelle retningslinjer og uafhængighed." },
-  { title: "Kontakt", path: "/kontakt", category: "Guide", date: "16-02-2026", readTime: "3 min.", excerpt: "Kontakt Casinoaftaler.dk – vi svarer på dine spørgsmål." },
-];
+import { getAuthorArticles } from "@/data/authorContent";
+const kevinArticles = getAuthorArticles("kevin");
 
 const expertiseItems = [
   { icon: Gamepad2, label: "Slots & RTP-forståelse" },
@@ -560,13 +503,6 @@ export default function ForfatterKevin() {
                   <Badge variant="secondary" className="text-xs">
                     {article.category}
                   </Badge>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Clock className="h-3 w-3" />
-                    {article.readTime}
-                  </span>
-                  <span className="text-xs text-muted-foreground ml-auto">
-                    {article.date}
-                  </span>
                 </div>
                 <h3 className="text-base font-semibold group-hover:text-primary transition-colors mb-1">
                   {article.title}
