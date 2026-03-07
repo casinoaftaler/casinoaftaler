@@ -213,6 +213,9 @@ const jonasGuideVideos: AuthorVideo[] = [
   { videoId: "ReM4PBQ30rw", title: "Hvad er en Reload Bonus?", path: "/reload-bonus", category: "Bonus" },
   { videoId: "5OBGaiJDHVM", title: "Sådan fungerer vores turneringer", path: "/community/turneringer", category: "Community" },
   { videoId: "SQqTH2EgYTM", title: "Hacksaw Gaming – Bonus åbninger", path: "/spiludviklere/hacksaw-gaming", category: "Spiludvikler" },
+  { videoId: "FKKroDKN6e0", title: "Gates of Olympus – Bonus åbning", path: "/casinospil/spillemaskiner/gates-of-olympus", category: "Bonus Åbning" },
+  { videoId: "jn5JOzWL-sY", title: "Wanted Dead or a Wild – Fuldscreen VS", path: "/casinospil/spillemaskiner/wanted-dead-or-a-wild", category: "Bonus Åbning" },
+  { videoId: "oLToV0bHrjU", title: "Nolimit City – Bonus åbninger", path: "/spiludviklere/nolimit-city", category: "Spiludvikler" },
 ];
 
 // ─── Kevin – Articles ───────────────────────────────────────────────────
