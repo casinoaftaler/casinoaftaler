@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/wanted-dead-or-a-wild-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -168,6 +169,7 @@ const WantedDeadOrAWildGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Wanted Dead or a Wild" faqs={wantedFaqs} />
         <AuthorBio author="kevin" />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

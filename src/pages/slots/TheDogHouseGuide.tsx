@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/the-dog-house-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -352,6 +353,7 @@ const TheDogHouseGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om The Dog House" faqs={theDogHouseFaqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };
