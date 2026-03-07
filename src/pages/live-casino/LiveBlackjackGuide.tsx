@@ -75,7 +75,7 @@ const LiveBlackjackGuide = () => {
   });
   const videoJsonLd = buildVideoSchema(
     `${SITE_URL}/live-casino/blackjack`,
-    "v7UupDiycVM",
+    "usd8Vl4rpjM",
     {
       title: "Live gennemgang af Blackjack-regler og strategi – Dansk casino-underholdning",
       description: "Se en live gennemgang af blackjack-regler, basisstrategi og house edge. Vi demonstrerer optimal spilstrategi ved et rigtigt live blackjack-bord.",
@@ -132,7 +132,7 @@ const LiveBlackjackGuide = () => {
         </p>
 
         <YoutubeEmbed
-          videoId="v7UupDiycVM"
+          videoId="usd8Vl4rpjM"
           title="Live gennemgang af Blackjack-regler og strategi"
           description="Se en live gennemgang af blackjack-regler, basisstrategi og house edge. Vi demonstrerer optimal spilstrategi ved et rigtigt live blackjack-bord."
           uploadDate="2026-03-07"
