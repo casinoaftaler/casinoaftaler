@@ -307,7 +307,7 @@ const RouletteGuide = () => {
             <strong>Nøglepunkt:</strong> Udbetalingen bestemmer din potentielle gevinst, men vindchancen bestemmer din forventede værdi. Et 35:1 væddemål lyder fantastisk, men når vindchancen kun er 2,70 %, er den forventede værdi negativ. Intet væddemål i roulette har en positiv forventet værdi – udbetalingen kompenserer aldrig fuldt ud for den lave vindchance. Det er den matematiske kerne i casinoets forretningsmodel.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            For spillere, der ønsker en mere detaljeret matematisk analyse af forventet værdi, varians og væddemålssystemer, har vi skrevet en separat <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategi-guide</Link> med formler, simuleringer og risk of ruin-beregninger. Denne side fokuserer på at forklare, hvad tingene er – strategi-siden forklarer, hvad de betyder matematisk.
+            For spillere, der ønsker en mere detaljeret matematisk analyse af forventet værdi, varians og væddemålssystemer, har vi udarbejdet dybdegående guides til hvert enkelt system med formler, simuleringer og risk of ruin-beregninger – se oversigten nedenfor.
           </p>
         </section>
 
@@ -463,7 +463,7 @@ const RouletteGuide = () => {
             <strong>"Man kan observere dealerens kast og forudsige resultatet"</strong> – Denne teori (kaldet "dealer signature" eller "visual ballistics") antager, at live-dealere kaster kuglen med konsistent kraft og timing, så man kan forudsige den omtrentlige landingszone. Moderne roulettehjul har anti-prediktion-funktioner: "ball deflectors" (små metalfremspring, der ændrer kuglens bane tilfældigt), varierende hjulhastighed og automatisk kugleskift. Selv hvis en dealer havde en perfekt konsistent kasteteknik, ville ball deflectors introducere tilstrækkelig tilfældighed til at gøre forudsigelse umulig i praksis.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>"Systemer kan slå roulette"</strong> – Ingen kombination af indsatsstørrelser kan ændre den matematiske forventede værdi. Martingale, Fibonacci, D'Alembert og alle andre progressive systemer omfordeler risiko – de eliminerer den ikke. En detaljeret matematisk analyse af hvert system finder du i vores <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategi-guide</Link>.
+            <strong>"Systemer kan slå roulette"</strong> – Ingen kombination af indsatsstørrelser kan ændre den matematiske forventede værdi. Martingale, Fibonacci, D'Alembert og alle andre progressive systemer omfordeler risiko – de eliminerer den ikke. En detaljeret matematisk analyse af hvert system finder du i strategi-guiderne nedenfor.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong>"Inside bets har dårligere odds end outside bets"</strong> – House edge er identisk for alle væddemål i europæisk roulette: 2,70 %. Hvad der ændrer sig, er volatiliteten. En straight-up bet (35:1) har ekstrem høj varians, mens rød/sort (1:1) har lav varians. Over mange spins taber du den samme procentdel uanset bet-type. Valget mellem inside og outside handler om din risikoappetit, ikke om matematisk fordel.
@@ -567,7 +567,7 @@ const RouletteGuide = () => {
 
           <h3 className="mb-3 text-xl font-semibold">Indsatsstrategier: Matematik og Simuleringer</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Ingen indsatsstrategi kan overvinde house edge – men de påvirker din risikoprofil, session-dynamik og bankroll survival markant. Vores strategi-guides analyserer hvert system med Monte Carlo-simuleringer, Risk of Ruin-tabeller og EV-beregninger for dansk bonus wagering. Start med den overordnede <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategi-oversigt</Link>, eller dyk direkte ned i et specifikt system:
+            Ingen indsatsstrategi kan overvinde house edge – men de påvirker din risikoprofil, session-dynamik og bankroll survival markant. Vores strategi-guides analyserer hvert system med Monte Carlo-simuleringer, Risk of Ruin-tabeller og EV-beregninger for dansk bonus wagering. Dyk direkte ned i et specifikt system:
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -614,9 +614,9 @@ const RouletteGuide = () => {
             <Card className="hover:border-primary/40 transition-colors">
               <CardContent className="pt-6">
                 <h4 className="font-bold mb-1">
-                  <Link to="/casinospil/roulette-strategi" className={linkClass}>Roulette Strategi – Oversigt</Link>
+                  <Link to="/ordbog/bankroll-management" className={linkClass}>Bankroll Management</Link>
                 </h4>
-                <p className="text-xs text-muted-foreground">Samlet guide med alle systemer, forventet værdi-formler, varians-beregninger og bankroll management-modeller.</p>
+                <p className="text-xs text-muted-foreground">Komplet guide til styring af dit spilbudget: session-grænser, stop-loss og optimal indsatsstørrelse.</p>
               </CardContent>
             </Card>
           </div>
