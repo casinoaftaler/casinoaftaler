@@ -5,6 +5,7 @@ import trustlyHero from "@/assets/heroes/trustly-hero.jpg";
 const TrustlyGuide = () => {
   return (
     <PaymentMethodPage
+      ctaCasinoSlug="campobet"
       seoTitle="Trustly Casino 2026 – Hurtig Ind- & Udbetaling"
       seoDescription="Dybdegående teknisk analyse af Trustly: open banking under PSD2, Pay N Play dissekeret, vores test på fire casinoer, MitID-integration og sammenligning med Zimpler og MobilePay."
       name="Trustly"

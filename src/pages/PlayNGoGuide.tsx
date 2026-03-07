@@ -5,6 +5,7 @@ import playNGoHero from "@/assets/heroes/play-n-go-hero.jpg";
 
 const PlayNGoGuide = () => (
   <ProviderPage
+    ctaCasinoSlug="betinia"
     seoTitle="Play'n GO Spillemaskiner – Bedste Spil & RTP (2026)"
     seoDescription="Dybdegående analyse af Play'n GO – 5x Slot Provider of the Year, 300+ spil, Book of Dead, Reactoonz. Fast RTP, ingen Bonus Buy, franchise-building."
     name="Play'n GO"

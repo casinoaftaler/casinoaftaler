@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import nyeVsEtableredeHero from "@/assets/heroes/nye-vs-etablerede-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -373,6 +374,7 @@ const NyeVsEtablerede = () => {
         <FAQSection title="Ofte stillede spørgsmål om nye vs. etablerede casinoer" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

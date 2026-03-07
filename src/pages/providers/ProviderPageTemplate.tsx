@@ -27,6 +27,7 @@ import {
   Target,
 } from "lucide-react";
 import { ReactNode, Fragment } from "react";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 interface GameInfo {
   name: string;
@@ -75,6 +76,8 @@ interface ProviderPageProps {
   licensesTitle?: string;
   prosConsTitle?: string;
   responsibleTitle?: string;
+  /** Casino slug for sticky CTA bar */
+  ctaCasinoSlug?: string;
 }
 
 const providerLinks = [
@@ -104,6 +107,7 @@ export function ProviderPage({
   responsibleGamingText, strategicAnalysis, technicalProfile,
   sectionOrder, updatedDate = "15-02-2026", readTime = "14 Min.",
   strategicTitle, technicalTitle, gamesTitle, licensesTitle, prosConsTitle, responsibleTitle,
+  ctaCasinoSlug,
 }: ProviderPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
@@ -381,6 +385,7 @@ export function ProviderPage({
 
         <AuthorBio author="jonas" showCommunity={false} />
       </div>
+      {ctaCasinoSlug && <StickyCtaBySlug slug={ctaCasinoSlug} />}
     </>
   );
 }

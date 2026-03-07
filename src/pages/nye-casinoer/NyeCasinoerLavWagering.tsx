@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import lavWageringHero from "@/assets/heroes/nye-casinoer-lav-wagering-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -425,6 +426,7 @@ const NyeCasinoerLavWagering = () => {
         <FAQSection title="Ofte stillede spørgsmål om lav wagering" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };

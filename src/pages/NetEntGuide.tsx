@@ -6,6 +6,7 @@ import netentHero from "@/assets/heroes/netent-hero.jpg";
 
 const NetEntGuide = () => (
   <ProviderPage
+    ctaCasinoSlug="campobet"
     seoTitle="NetEnt Spillemaskiner – Bedste Slots & RTP Guide (2026)"
     seoDescription="Komplet guide til NetEnt – svensk spiludvikler med ikoniske titler som Starburst og Gonzo's Quest. RTP 95-98%, medium volatilitet, 200+ spil."
     name="NetEnt"

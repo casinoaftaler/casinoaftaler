@@ -5,6 +5,7 @@ import microgamingHero from "@/assets/heroes/microgaming-hero.jpg";
 
 const MicrogamingGuide = () => (
   <ProviderPage
+    ctaCasinoSlug="campobet"
     seoTitle="Microgaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
     seoDescription="Komplet guide til Microgaming – branchens pioner siden 1994. Mega Moolah: €1 milliard+ udbetalt. 900+ spil, Quickfire-aggregator, eCOGRA-medstifter."
     name="Microgaming"

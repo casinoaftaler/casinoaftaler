@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import bonusUdenIndbetalingHero from "@/assets/heroes/nye-casinoer-bonus-uden-indbetaling-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -413,6 +414,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
         <FAQSection title="FAQ om nye casinoer med bonus uden indbetaling" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

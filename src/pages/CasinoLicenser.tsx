@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import casinoLicenserHero from "@/assets/heroes/casino-licenser-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -390,6 +391,7 @@ const CasinoLicenser = () => {
         <FAQSection title="Ofte stillede spørgsmål om casino-licenser" faqs={faqs} />
         <AuthorBio author="ajse" />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

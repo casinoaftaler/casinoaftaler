@@ -5,6 +5,7 @@ import nolimitHero from "@/assets/heroes/nolimit-city-hero.jpg";
 
 const NolimitCityGuide = () => (
   <ProviderPage
+    ctaCasinoSlug="campobet"
     seoTitle="Nolimit City Spillemaskiner – xWays & High Vol (2026)"
     seoDescription="Komplet guide til Nolimit City – opkøbt af Evolution for €340M. xWays, xNudge, xBomb-patenter. San Quentin xWays: 2.084.000x maks. gevinst."
     name="Nolimit City"

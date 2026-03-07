@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
@@ -521,6 +522,7 @@ const FreeSpinsIDag = () => {
         .animate-fade-in { animation: fs-fade-in 0.5s ease-out both; }
         @keyframes fs-fade-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
       `}</style>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };
