@@ -23,9 +23,9 @@ export function HeroSection() {
         </Helmet>
       )}
     <section
-      className="relative overflow-hidden py-6 text-white md:py-8 min-h-[280px] md:min-h-[320px] max-h-[85vh] md:max-h-[70vh]"
+      className="relative overflow-hidden py-6 text-white md:py-8 min-h-[320px] md:min-h-[320px] max-h-[85vh] md:max-h-[70vh]"
       style={{
-        contain: 'layout style',
+        contain: 'layout style paint',
         backgroundImage: heroBackgroundImage 
           ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
           : 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',

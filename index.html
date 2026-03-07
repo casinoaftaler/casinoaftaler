@@ -17,7 +17,13 @@
     <link rel="dns-prefetch" href="https://zhpbqqhtgnblaugrqhqi.supabase.co" />
     <link rel="preconnect" href="https://zhpbqqhtgnblaugrqhqi.supabase.co" />
 
-    <!-- Single consolidated Google Fonts request -->
+    <!-- Font-face fallback to prevent FOIT while Google Fonts loads -->
+    <style>
+      @font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:swap;src:local('Inter')}
+      @font-face{font-family:'Lora';font-style:normal;font-weight:400 700;font-display:swap;src:local('Lora')}
+      @font-face{font-family:'Space Mono';font-style:normal;font-weight:400 700;font-display:swap;src:local('Space Mono')}
+    </style>
+    <!-- Single consolidated Google Fonts request – non-render-blocking -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" /></noscript>
 
