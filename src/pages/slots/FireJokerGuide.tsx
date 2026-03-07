@@ -99,7 +99,7 @@ const FireJokerGuide = () => {
             Hvem Er Fire Joker Designet Til?
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Fire Joker er <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO's</Link> svar på den evige efterspørgsel efter enkelhed i en stadig mere kompleks slot-verden. Mens industrien kappes om at tilføje flere hjul, flere funktioner og mere volatilitet, vender Fire Joker bevidst tilbage til grundelementerne: 3 hjul, 3 rækker, 5 gevinstlinjer og to enkle bonusfunktioner. Det er anti-tesen til moderne megaways-slots – og det er præcis derfor, den fungerer.
+            Fire Joker er <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO's</Link> svar på den evige efterspørgsel efter enkelhed i en stadig mere kompleks slot-verden. Mens industrien kappes om at tilføje flere hjul, flere funktioner og mere <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link>, vender Fire Joker bevidst tilbage til grundelementerne: 3 hjul, 3 rækker, 5 <Link to="/ordbog/paylines" className={linkClass}>gevinstlinjer</Link> og to enkle bonusfunktioner. Det er anti-tesen til moderne megaways-slots – og det er præcis derfor, den fungerer.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Spillets primære målgruppe er tredelt: (1) Nye spillere, der ønsker at forstå slot-mekanik uden at drukne i kompleksitet. (2) Erfarne spillere, der søger en afslappet, lav-risk session som pause fra high-volatility grind. (3) Bonus-spillere, der har brug for en stabil slot til at gennemspille <Link to="/casino-bonus" className={linkClass}>omsætningskrav</Link> uden ekstreme bankroll-udsving.

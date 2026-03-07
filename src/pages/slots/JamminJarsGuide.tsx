@@ -132,7 +132,7 @@ const JamminJarsGuide = () => {
             Efter hver cascade bevæger hvert aktivt jar sig til en tilfældig tilstødende position (op, ned, venstre eller højre). Denne bevægelse er central for spillets strategi-oplevelse: et jar der bevæger sig ind i en tæt gruppe af identiske symboler kan udløse nye clusters og yderligere forhøje sin multiplikator. Den tilfældige bevægelse skaber en konstant følelse af spænding, da hvert cascade-trin potentielt kan repositionere jars til optimale positioner.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Når to eller flere jars indgår i samme vindende cluster, ganges deres individuelle multiplikatorer. Denne mekanik er matematisk essentiel: to jars med multiplikatorer på 3× og 4× giver ikke 7× men 12×. Med tre jars kan den samlede multiplikator nå astronomiske niveauer – eksempelvis 5× × 4× × 3× = 60×. Denne eksponentielle multiplikator-stacking er kernen i Jammin' Jars' gevinstpotentiale og den primære årsag til den høje volatilitet.
+            Når to eller flere jars indgår i samme vindende cluster, ganges deres individuelle <Link to="/ordbog/multiplikator" className={linkClass}>multiplikatorer</Link>. Denne mekanik er matematisk essentiel: to jars med multiplikatorer på 3× og 4× giver ikke 7× men 12×. Med tre jars kan den samlede multiplikator nå astronomiske niveauer – eksempelvis 5× × 4× × 3× = 60×. Denne eksponentielle multiplikator-stacking er kernen i Jammin' Jars' gevinstpotentiale og den primære årsag til den høje <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link>.
           </p>
         </section>
 
