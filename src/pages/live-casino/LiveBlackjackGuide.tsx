@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -138,14 +139,12 @@ const LiveBlackjackGuide = () => {
           duration="PT10M"
         />
 
-        <div className="rounded-xl border border-border/50 bg-muted/30 p-5 space-y-2">
-          <p className="text-sm font-semibold text-foreground">
-            Her gennemgår vores streamer og forfatter Jonas, hvordan live blackjack fungerer i praksis
-          </p>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> demonstrerer regler, basisstrategi og beslutningsprocessen ved et rigtigt live blackjack-bord med dealer. Videoen er en del af vores dybdegående indhold om <Link to="/live-casino" className={linkClass}>live casino</Link>, <Link to="/casinospil/blackjack" className={linkClass}>blackjack-regler</Link> og <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>.
-          </p>
-        </div>
+        <VideoContextBox heading="Her gennemgår vores streamer og forfatter Jonas, hvordan live blackjack fungerer i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> demonstrerer regler, basisstrategi og beslutningsprocessen ved et rigtigt live blackjack-bord med dealer. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/live-casino" className={linkClass}>live casino</Link>,{" "}
+          <Link to="/casinospil/blackjack" className={linkClass}>blackjack-regler</Link> og{" "}
+          <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>.
+        </VideoContextBox>
 
         <InlineCasinoCards title="Bedste casinoer til live blackjack" count={6} />
 
