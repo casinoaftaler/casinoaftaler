@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/reactoonz-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -534,6 +535,7 @@ const ReactoonzGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Reactoonz" faqs={reactoonzFaqs} />
         <AuthorBio author="kevin" />
       </div>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };
