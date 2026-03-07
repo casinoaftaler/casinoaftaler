@@ -58,7 +58,7 @@ serve(async (req) => {
       return json({ error: 'Session not found' });
     }
 
-    const today = new Date().toISOString().split('T')[0];
+    const today = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Copenhagen", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 
     if (betType === 'gtw') {
       if (!session.gtw_betting_open) {
