@@ -76,6 +76,10 @@ export const routeLabels: Record<string, string> = {
   // Mobil Casino
   "/mobil-casino": "Mobil Casino",
   "/casino-app": "Casino App",
+  // Slot Kategorier
+  "/megaways-slots": "Megaways Slots",
+  "/jackpot-slots": "Jackpot Slots",
+  "/bonus-buy-slots": "Bonus Buy Slots",
   "/om": "Om Casinoaftaler.dk",
   "/forretningsmodel": "Forretningsmodel",
   "/redaktionel-politik": "Redaktionel Politik",
@@ -388,6 +392,11 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
 
   // Mobil Casino cluster – bundet til /mobil-casino hub
   "/casino-app": [{ name: "Mobil Casino", path: "/mobil-casino" }],
+
+  // Slot Kategorier – bundet til /casinospil/spillemaskiner hub
+  "/megaways-slots": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/jackpot-slots": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/bonus-buy-slots": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
 
   // Live Casino cluster – bundet til /live-casino hub
   "/live-casino/blackjack": [{ name: "Live Casino", path: "/live-casino" }],
