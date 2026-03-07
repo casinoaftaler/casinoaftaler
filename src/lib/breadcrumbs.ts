@@ -331,6 +331,9 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/redaktionel-politik": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/kontakt": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
 
+  // Ansvarligt Spil cluster – bundet til /ansvarligt-spil hub
+  "/ansvarligt-spil/rofus": [{ name: "Ansvarligt Spil", path: "/ansvarligt-spil" }],
+
   // Live Casino cluster – bundet til /live-casino hub
   "/live-casino/blackjack": [{ name: "Live Casino", path: "/live-casino" }],
   "/live-casino/roulette": [{ name: "Live Casino", path: "/live-casino" }],

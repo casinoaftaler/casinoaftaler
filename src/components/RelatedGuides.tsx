@@ -270,9 +270,12 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   }
 
   // Legal pages → show other legal links only
-  if (path === "/privatlivspolitik" || path === "/terms" || path === "/cookies" || path === "/ansvarligt-spil" || path === "/spillemyndigheden") {
+  if (path === "/privatlivspolitik" || path === "/terms" || path === "/cookies" || path === "/ansvarligt-spil" || path === "/spillemyndigheden" || path.startsWith("/ansvarligt-spil/")) {
     return {
-      guides: legalLinks,
+      guides: [
+        ...legalLinks,
+        ...(path !== "/ansvarligt-spil/rofus" ? [{ to: "/ansvarligt-spil/rofus", label: "ROFUS Guide", icon: Shield, desc: "Alt om selvudelukkelse fra danske casinoer" } as GuideLink] : []),
+      ].filter(g => g.to !== path),
       subtitle: "Udforsk vores andre sider om ansvarligt spil, databeskyttelse og juridiske vilkår.",
     };
   }

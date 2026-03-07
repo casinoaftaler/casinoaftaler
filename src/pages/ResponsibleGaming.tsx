@@ -349,7 +349,7 @@ const ResponsibleGaming = () => {
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">
             Kontakt casinoets kundesupport for at lære om deres specifikke
-            værktøjer og muligheder for ansvarligt spil. Læs mere om dansk spilleregulering på vores <Link to="/spillemyndigheden" className="text-primary hover:underline font-medium">guide til Spillemyndigheden</Link>.
+            værktøjer og muligheder for ansvarligt spil. Læs mere om dansk spilleregulering på vores <Link to="/spillemyndigheden" className="text-primary hover:underline font-medium">guide til Spillemyndigheden</Link>, eller se vores <Link to="/ansvarligt-spil/rofus" className="text-primary hover:underline font-medium">komplette ROFUS-guide</Link> for alt om selvudelukkelse.
           </p>
         </section>
 
