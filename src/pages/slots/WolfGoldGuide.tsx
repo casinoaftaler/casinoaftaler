@@ -232,7 +232,7 @@ const WolfGoldGuide = () => {
             Under Money Respin er kun moon-symboler aktive. Du starter med 3 respins, og hvert nyt moon-symbol nulstiller tælleren. Alle symbolværdier summeres ved runden slutning. Mega Jackpot (1.000×) vises kun, når alle 15 positioner er fyldt med moon-symboler – en begivenhed med en estimeret sandsynlighed på under 1/100.000 Money Respin-runder.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Den gennemsnitlige Money Respin-gevinst er estimeret til 30-50× indsatsen, drevet primært af Mini og Minor jackpots. Money Respin udløses gennemsnitligt én gang pr. 80-120 basespil-spins, hvilket giver en forventet bonus-bidrag til RTP på cirka 15-20 % af den samlede tilbagebetaling.
+            Den gennemsnitlige Money Respin-gevinst er estimeret til 30-50× indsatsen, drevet primært af Mini og Minor jackpots. Money Respin udløses gennemsnitligt én gang pr. 80-120 basespil-spins, hvilket giver en forventet bonus-bidrag til <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på cirka 15-20 % af den samlede tilbagebetaling.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             En vigtig forskel mellem Wolf Gold's jackpot og progressive systemer er forudsigeligeheden. Fordi alle jackpot-værdier er faste multiplikatorer af din indsats, kan du præcist beregne den maksimale gevinst ved enhver indsatsniveau. Ved en indsats på 10 kr. er Mega Jackpot 10.000 kr. – ikke millioner, som i progressive systemer. Til gengæld er RTP'en konstant og ikke afhængig af poolens størrelse.

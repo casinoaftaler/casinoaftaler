@@ -228,7 +228,7 @@ const Casinospil = () => {
 
           <h3 className="mb-3 text-xl font-semibold">RTP og volatilitet – de to tal, du altid bør tjekke</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            RTP (Return to Player) angiver, hvor stor en procentdel af alle indsatser en spilleautomat tilbagebetaler over tid. En slot med 96 % RTP beholder statistisk 4 kr. pr. 100 kr. satset. Men RTP er et langsigtet gennemsnit – i en enkelt session er alt muligt. Volatilitet beskriver gevinstfordelingen: lav volatilitet (fx Starburst fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>) giver hyppige, små gevinster. Høj volatilitet (fx <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link>) giver sjældnere, men potentielt massive gevinster. Find <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>spillemaskiner med høj RTP</Link> i vores dedikerede guide.
+            <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> (Return to Player) angiver, hvor stor en procentdel af alle indsatser en spilleautomat tilbagebetaler over tid. En slot med 96 % RTP beholder statistisk 4 kr. pr. 100 kr. satset. Men RTP er et langsigtet gennemsnit – i en enkelt session er alt muligt. <Link to="/ordbog/volatilitet" className={linkClass}>Volatilitet</Link> beskriver gevinstfordelingen: lav volatilitet (fx Starburst fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>) giver hyppige, små gevinster. Høj volatilitet (fx <Link to="/casinospil/spillemaskiner/wanted-dead-or-a-wild" className={linkClass}>Wanted Dead or a Wild</Link>) giver sjældnere, men potentielt massive gevinster. Find <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>spillemaskiner med høj RTP</Link> i vores dedikerede guide.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Bonusfunktioner som free spins, wilds, scatters og multiplikatorer er det, der gør spilleautomater spændende – men de er også en del af den matematiske model. Bonusrunder med høje multiplikatorer øger typisk volatiliteten. Forstår du dette samspil, kan du vælge slots, der matcher din risikotolerance og dit budget.
@@ -301,7 +301,7 @@ const Casinospil = () => {
 
           <h3 className="mb-3 text-xl font-semibold">House edge forklaret med konkrete eksempler</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            House edge er casinoets matematiske fordel udtrykt som en procentdel af din indsats. Det er den "pris", du betaler for underholdningen. Her er konkrete eksempler for de mest populære casinospil:
+            <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> er casinoets matematiske fordel udtrykt som en procentdel af din indsats. Det er den "pris", du betaler for underholdningen. Her er konkrete eksempler for de mest populære casinospil:
           </p>
 
           <div className="overflow-x-auto mb-6">

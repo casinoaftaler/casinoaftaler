@@ -210,7 +210,7 @@ const FreeSpins = () => {
             Populariteten bag free spins skyldes netop denne kombination af nul
             risiko og reel gevinstmulighed. For nye spillere fungerer gratis
             spins som en tryg introduktion til casinoet, mens erfarne spillere
-            bruger dem til at udforske nye spil uden at belaste budgettet.
+            bruger dem til at udforske nye spil uden at belaste budgettet – vælg gerne spil med høj <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> og lav <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link> for mest spilletid.
             Desuden indgår free spins ofte i{" "}
             <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
               velkomstbonusser
