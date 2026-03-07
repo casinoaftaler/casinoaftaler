@@ -127,7 +127,7 @@ const TheDogHouseGuide = () => {
             Teknisk Profil: RTP, Volatilitet og Kernetal
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            The Dog House lanceret af <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> i 2019 etablerede en ny standard for sticky wild-mekanikken i online slots. Med en standard RTP på 96,51 % placerer den sig i den øvre ende af Pragmatic Play's portefølje – over Wolf Gold (96,01 %) og på niveau med <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (96,48 %).
+            The Dog House lanceret af <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> i 2019 etablerede en ny standard for sticky wild-mekanikken i online slots. Med en standard <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96,51 % placerer den sig i den øvre ende af Pragmatic Play's portefølje – over Wolf Gold (96,01 %) og på niveau med <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (96,48 %).
           </p>
           <Card className="border-border/50 bg-card/50 mb-4">
             <CardContent className="pt-6">

@@ -113,7 +113,7 @@ const RazorSharkGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Mystery Stacks: Mekanikken der Definerer en Generation</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Push Gamings Razor Shark er ikke bare endnu en havtema-slot. Den er et masterclass i, hvordan en enkelt mekanik – Mystery Stacks – kan transformere en standard 5x4-slot til et af de mest eksplosive gevinstpotentialer i branchen. Med 50.000x max win og en RTP på 96,70 % placerer Razor Shark sig i den absolutte elite blandt høj-volatilitets slots. Men det er Mystery Stack-systemet, der gør den unik.
+            Push Gamings Razor Shark er ikke bare endnu en havtema-slot. Den er et masterclass i, hvordan en enkelt mekanik – Mystery Stacks – kan transformere en standard 5x4-slot til et af de mest eksplosive gevinstpotentialer i branchen. Med 50.000x max win og en <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96,70 % placerer Razor Shark sig i den absolutte elite blandt høj-<Link to="/ordbog/volatilitet" className={linkClass}>volatilitets</Link> slots. Men det er Mystery Stack-systemet, der gør den unik.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Mystery Stacks fungerer som en progressiv afsløring: symboler lander som ukendte "mystery"-positioner og afslører derefter identiske symboler. I basisspillet er dette interessant men ikke revolutionerende. Under free spins forvandles mekanikken til en potentiel gevinstmaskine, fordi mystery-symboler kan afsløre massive multiplikatorer. Det er denne dualitet – moderat action i basisspillet, eksplosiv potentiale i bonus – der definerer Razor Sharks spilloplevelse.
