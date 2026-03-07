@@ -123,5 +123,6 @@ export function HeroSection() {
         }
       `}</style>
     </section>
+    </>
   );
 }
