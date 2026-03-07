@@ -1,24 +1,66 @@
 
 
-## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
+## Audit: Money Pages → Ordbog Linking
 
-### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
+### Status
 
-The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
+**Ordbog → Money pages**: Fungerer via `relatedPages` kort på alle 66 termer. ✅
 
-Specifically:
-- **Remove** Gevinst from the right zone (lines 247-261)
-- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
+**Money pages → Ordbog**: Delvist implementeret. Auto-linkeren (`entityAutoLinker.ts`) virker KUN på HTML-strenge (nyhedsartikler + ordbog-termer). Alle money pages er statisk JSX og kræver manuelle `<Link>` indsættelser.
 
-Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
+### Nuværende dækning
 
-### 2. Add Count-Up Animation for Win Amount
+**Money pages MED ordbog-links** (13 sider — allerede gode):
+- CasinoBonus.tsx (rtp, house-edge, wagering, volatilitet)
+- Spillemaskiner.tsx (rtp, volatilitet, house-edge)
+- FreeSpins.tsx (rtp, volatilitet)
+- Omsaetningskrav.tsx (wagering)
+- Velkomstbonus.tsx (rtp)
+- NoStickyBonus.tsx (rtp)
+- CashbackBonus.tsx (house-edge)
+- Indskudsbonus.tsx (rtp)
+- StickyBonus.tsx (house-edge)
+- ReloadBonus.tsx (rtp)
+- Casinospil.tsx (rtp, volatilitet, house-edge)
+- SpillemaskinerHoejRTP.tsx (house-edge)
+- LiveCasino.tsx (house-edge)
+- BonusUdenOmsaetningskrav.tsx (house-edge)
+- 27+ casinospil/slot/live-casino guides (house-edge, rtp, etc.)
 
-Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
-- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
-- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
-- The component already handles ease-out counting and bump animation on completion
+### Money pages UDEN ordbog-links (mangler)
 
-### Files Modified
-- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
+| Side | Naturlige ordbog-termer at linke |
+|---|---|
+| NyeCasinoer.tsx | `kyc`, `rng`, `gamification`, `ssl-kryptering` |
+| BonusUdenIndbetaling.tsx | `rtp`, `volatilitet`, `house-edge`, `max-bet` |
+| FreeSpinsIDag.tsx | `rtp`, `volatilitet`, `wagering` |
+| CasinoAnmeldelser.tsx | `rtp`, `house-edge`, `rng` |
+| Betalingsmetoder.tsx | `pending-time`, `ssl-kryptering`, `kyc` |
+| CasinoLicenser.tsx | `rng`, `kyc`, `fairness-audit` |
+| Spillemyndigheden.tsx | `kyc`, `rng`, `spillicens` |
+| TopCasinoOnline.tsx | `rtp`, `house-edge`, `volatilitet` |
+| SlotDatabase.tsx | `rtp`, `volatilitet`, `hit-frequency` |
+| Payment guides (alle) | `pending-time`, `ssl-kryptering`, `kyc` |
+
+### Plan
+
+**Tilføj naturlige `<Link to="/ordbog/...">` i 10 money pages** ved at indsætte ordbog-links i eksisterende tekst hvor termerne allerede nævnes (ingen ny tekst). Maks 2-4 ordbog-links per side for at undgå overlinking.
+
+**Filer der redigeres:**
+1. `NyeCasinoer.tsx` — link KYC, RNG, gamification ved naturlige forekomster
+2. `BonusUdenIndbetaling.tsx` — link RTP, volatilitet, house-edge, max-bet
+3. `FreeSpinsIDag.tsx` — link RTP, volatilitet, wagering
+4. `CasinoAnmeldelser.tsx` — link RTP, house-edge
+5. `Betalingsmetoder.tsx` — link KYC, SSL-kryptering
+6. `CasinoLicenser.tsx` — link RNG, KYC, fairness-audit
+7. `Spillemyndigheden.tsx` — link KYC, spillicens
+8. `TopCasinoOnline.tsx` — link RTP, house-edge
+9. `SlotDatabase.tsx` — link RTP, volatilitet
+10. Evt. 1-2 payment guides som eksempel (Trustly, MobilePay)
+
+**Regler:**
+- Kun første forekomst per term per side
+- Kun i brødtekst (aldrig headings/buttons)
+- Naturlig kontekst — ingen forceret linking
+- `className={linkClass}` pattern som alle andre sider
 
