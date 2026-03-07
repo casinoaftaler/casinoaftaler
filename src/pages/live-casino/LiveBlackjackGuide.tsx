@@ -1,4 +1,5 @@
 import React from "react";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import liveBlackjackHero from "@/assets/heroes/live-blackjack-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
