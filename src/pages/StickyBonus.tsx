@@ -47,6 +47,7 @@ import {
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -199,17 +200,12 @@ const StickyBonus = () => {
             articleUrl="https://casinoaftaler.dk/sticky-bonus"
           />
 
-          <div className="rounded-lg border border-border bg-muted/30 p-5">
-            <h3 className="mb-2 text-lg font-semibold">
-              Her gennemgår vores streamer og forfatter Jonas, hvad en sticky bonus er
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
+          <VideoContextBox heading="Her gennemgår vores streamer og forfatter Jonas, hvad en sticky bonus er">
               <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer hvad en sticky bonus er, og hvad det betyder at dine penge og bonusmidler sammenblandes fra sekund ét. Videoen er en del af vores indhold om{" "}
               <Link to="/casino-bonus" className={linkClass}>casino bonusser</Link>,{" "}
               <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> og{" "}
               <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
-            </p>
-          </div>
+          </VideoContextBox>
         </section>
 
         <Separator className="my-10" />
