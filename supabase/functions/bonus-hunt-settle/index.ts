@@ -75,7 +75,7 @@ serve(async (req) => {
           .sort((a, b) => a.difference - b.difference);
 
         const prizes = (session.gtw_prizes as Array<{ place: number; points: number; credits?: number }>) || [];
-        const today = new Date().toISOString().split('T')[0];
+        const today = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Copenhagen", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 
         for (let i = 0; i < ranked.length; i++) {
           const bet = ranked[i];
@@ -188,7 +188,7 @@ serve(async (req) => {
         const winners = allAvgxBets.filter(b => b.group_letter === winningGroup);
         const totalWinnerBets = winners.reduce((sum, b) => sum + b.bet_amount, 0);
 
-        const today = new Date().toISOString().split('T')[0];
+        const today = new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Copenhagen", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
 
         for (const bet of allAvgxBets) {
           if (bet.group_letter === winningGroup && totalWinnerBets > 0) {
