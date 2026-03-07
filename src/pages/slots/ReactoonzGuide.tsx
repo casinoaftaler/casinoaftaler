@@ -154,7 +154,7 @@ const ReactoonzGuide = () => {
             Cluster Pays-Mekanikken Forklaret
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Reactoonz opererer på et 7×7 grid med 49 positioner. Gevinster dannes, når 5 eller flere identiske symboler rører hinanden horisontalt eller vertikalt – diagonale forbindelser tæller ikke. Denne mekanik erstatter traditionelle paylines og åbner for langt større cluster-formationer: teoretisk kan en single cluster omfatte alle 49 positioner, selvom dette er astronomisk usandsynligt.
+            Reactoonz opererer på et 7×7 grid med 49 positioner. Gevinster dannes, når 5 eller flere identiske symboler rører hinanden horisontalt eller vertikalt – diagonale forbindelser tæller ikke. Denne <Link to="/ordbog/cluster-pays" className={linkClass}>cluster pays</Link>-mekanik erstatter traditionelle <Link to="/ordbog/paylines" className={linkClass}>gevinstlinjer</Link> og åbner for langt større cluster-formationer: teoretisk kan en single cluster omfatte alle 49 positioner, selvom dette er astronomisk usandsynligt.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Når en vindende cluster fjernes fra griddet, falder eksisterende symboler nedad, og nye symboler fylder de tomme pladser oppefra. Denne cascade-effekt – også kaldet tumble eller avalanche i andre slots – kan generere flere på hinanden følgende gevinster fra ét enkelt spin. I praksis ser vi typisk 1-3 cascades pr. vindende spin, men sjældne kæder på 6+ cascades er mulige og dér, de store akkumulerede gevinster opstår.

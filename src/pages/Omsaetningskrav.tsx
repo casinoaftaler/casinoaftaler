@@ -193,7 +193,7 @@ const Omsaetningskrav = () => {
             inden du accepterer et tilbud.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Udtrykket stammer fra det engelske "Wagering Requirement" og
+            Udtrykket stammer fra det engelske "<Link to="/ordbog/wagering" className={linkClass}>Wagering Requirement</Link>" og
             betyder i bund og grund, at casinoet kræver, at du satser et
             bestemt beløb, før du kan hæve penge. Ønsker du at undgå dette
             helt, kan du kigge efter{" "}

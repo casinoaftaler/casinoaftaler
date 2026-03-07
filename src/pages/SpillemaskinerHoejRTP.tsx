@@ -171,7 +171,7 @@ export default function SpillemaskinerHoejRTP() {
             RTP vs House Edge – samme tal, forskellig vinkel
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            RTP og house edge er aritmetiske spejlbilleder af hinanden. Relationen er simpel: <strong>House Edge = 100 % – RTP</strong>. En spillemaskine med 96 % RTP har derfor 4 % house edge. Begge tal beskriver præcis den samme matematiske virkelighed – blot fra henholdsvis spillerens og casinoets perspektiv.
+            RTP og <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> er aritmetiske spejlbilleder af hinanden. Relationen er simpel: <strong>House Edge = 100 % – RTP</strong>. En spillemaskine med 96 % RTP har derfor 4 % house edge. Begge tal beskriver præcis den samme matematiske virkelighed – blot fra henholdsvis spillerens og casinoets perspektiv.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             House edge repræsenterer casinoets forventede profit pr. indsat krone. Ved 4 % house edge tjener casinoet gennemsnitligt 4 kr. for hver 100 kr., der indsættes. Denne margin er casinoets forretningsmodel – og grunden til, at casinoer er profitable virksomheder uanset individuelle spilleres kortsigtede resultater.

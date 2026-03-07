@@ -181,7 +181,7 @@ const MoneyTrain3Guide = () => {
             RTP-Variationer og House Edge Implikationer
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Money Train 3 er en af de slots, hvor RTP-konfigurationen har størst praktisk betydning. <Link to="/spiludviklere/relax-gaming" className={linkClass}>Relax Gaming</Link> tilbyder tre versioner, og forskellen mellem dem er ikke triviel:
+            Money Train 3 er en af de slots, hvor <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>-konfigurationen har størst praktisk betydning. <Link to="/spiludviklere/relax-gaming" className={linkClass}>Relax Gaming</Link> tilbyder tre versioner, og forskellen mellem dem er ikke triviel:
           </p>
           <Card className="border-border/50 bg-card/50 mb-4">
             <CardContent className="pt-6">
