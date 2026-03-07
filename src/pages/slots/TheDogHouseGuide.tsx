@@ -128,13 +128,6 @@ const TheDogHouseGuide = () => {
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="The Dog House spillemaskine" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="_rC_ONf72gk" title="The Dog House gennemgang – Sticky Wilds og multiplikatorer" description="Se en komplet gennemgang af The Dog House: sticky wild-mekanikken og multiplikator-stacking forklaret i praksis." uploadDate="2026-03-07" duration="PT1M49S" />
-        <VideoContextBox heading="Her gennemgår vores streamer The Dog House i praksis">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser sticky wild-mekanikken, multiplikator-stacking og free spins-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
-          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
-          <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
-        </VideoContextBox>
-
         {/* ── Data First: RTP & Teknisk profil ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -166,6 +159,13 @@ const TheDogHouseGuide = () => {
             Volatiliteten klassificeres som høj af Pragmatic Play, men den oplevede volatilitet er moderat-høj takket være den relativt generøse hit frequency på ~25 %. Standardafvigelsen estimeres til ~6-8, hvilket placerer The Dog House mellem Wolf Gold (~5-7) og <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> (~10-12) på volatilitetsskalaen.
           </p>
         </section>
+
+        <YoutubeEmbed videoId="_rC_ONf72gk" title="The Dog House gennemgang – Sticky Wilds og multiplikatorer" description="Se en komplet gennemgang af The Dog House: sticky wild-mekanikken og multiplikator-stacking forklaret i praksis." uploadDate="2026-03-07" duration="PT1M49S" />
+        <VideoContextBox heading="Her gennemgår vores streamer The Dog House i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser sticky wild-mekanikken, multiplikator-stacking og free spins-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
+          <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
+        </VideoContextBox>
 
         <InlineCasinoCards />
 

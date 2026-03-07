@@ -116,13 +116,6 @@ const BookOfDeadGuide = () => {
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Book of Dead spillemaskine" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="Jw--inO4LNk" title="Book of Dead gennemgang – Expanding symbols og RTP" description="Se en komplet gennemgang af Book of Dead: expanding symbol-mekanikken og free spins-matematik forklaret i praksis." uploadDate="2026-03-07" duration="PT1M55S" />
-        <VideoContextBox heading="Her gennemgår vores streamer Book of Dead i praksis">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser expanding symbol-mekanikken, free spins-systemet og risikoprofilen i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
-          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
-          <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>.
-        </VideoContextBox>
-
         {/* ── ÅBNINGSVINKEL: RISIKOPROFIL FØRST ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Risikoprofilen Bag Dansk Casinospils Mest Betroede Slot</h2>
@@ -136,6 +129,13 @@ const BookOfDeadGuide = () => {
             Spoiler: Book of Deads ry som "det sikre valg" er matematisk velfunderet – men der er nuancer, som de fleste spilguides ikke fortæller dig. Den expanding symbol-mekanik er ikke bare en gimmick; den repræsenterer en grundlæggende anderledes gevinstfordelingsmodel end cluster-pays slots som Sweet Bonanza. Forståelse af denne forskel kan spare dig tusindvis af kroner i forkerte valg.
           </p>
         </section>
+
+        <YoutubeEmbed videoId="Jw--inO4LNk" title="Book of Dead gennemgang – Expanding symbols og RTP" description="Se en komplet gennemgang af Book of Dead: expanding symbol-mekanikken og free spins-matematik forklaret i praksis." uploadDate="2026-03-07" duration="PT1M55S" />
+        <VideoContextBox heading="Her gennemgår vores streamer Book of Dead i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser expanding symbol-mekanikken, free spins-systemet og risikoprofilen i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
+          <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>.
+        </VideoContextBox>
 
         <Separator className="my-10" />
 

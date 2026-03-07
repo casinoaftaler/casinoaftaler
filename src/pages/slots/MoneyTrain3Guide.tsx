@@ -128,13 +128,6 @@ const MoneyTrain3Guide = () => {
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Money Train 3 spillemaskine" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="f9GAKjf63uo" title="Money Train 3 gennemgang – Money Cart-bonus og max win" description="Se en komplet gennemgang af Money Train 3: Money Cart-bonusrunden, modifiers og max win forklaret i praksis." uploadDate="2026-03-07" duration="PT3M16S" />
-        <VideoContextBox heading="Her gennemgår vores streamer Money Train 3 i praksis">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser Money Cart-bonusrunden, de syv special modifiers og respin-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
-          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
-          <Link to="/spiludviklere/relax-gaming" className={linkClass}>Relax Gaming</Link>.
-        </VideoContextBox>
-
         {/* ── Bonusfunktioner først (Anti-template: Bonus First) ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -186,6 +179,13 @@ const MoneyTrain3Guide = () => {
             Den matematiske magi i Money Cart opstår, når modifiers interagerer. Et scenarie med Persistent Payer + Collector + Sniper kan akkumulere hundreder af gange indsatsen på en enkelt bonusrunde. Max win-cappen på 100.000× nås typisk kun, når flere high-value modifiers kombineres i en lang bonussekvens – et scenarie, der er ekstremt sjældent men teknisk muligt.
           </p>
         </section>
+
+        <YoutubeEmbed videoId="f9GAKjf63uo" title="Money Train 3 gennemgang – Money Cart-bonus og max win" description="Se en komplet gennemgang af Money Train 3: Money Cart-bonusrunden, modifiers og max win forklaret i praksis." uploadDate="2026-03-07" duration="PT3M16S" />
+        <VideoContextBox heading="Her gennemgår vores streamer Money Train 3 i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser Money Cart-bonusrunden, de syv special modifiers og respin-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
+          <Link to="/spiludviklere/relax-gaming" className={linkClass}>Relax Gaming</Link>.
+        </VideoContextBox>
 
         <InlineCasinoCards />
 

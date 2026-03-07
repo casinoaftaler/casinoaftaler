@@ -112,13 +112,6 @@ const LegacyOfDeadGuide = () => {
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Legacy of Dead spillemaskine" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="Ss2ZRXT0jCI" title="Legacy of Dead gennemgang – Progressiv expanding symbol" description="Se en komplet gennemgang af Legacy of Dead: det progressive expanding symbol-system forklaret i praksis." uploadDate="2026-03-07" duration="PT1M41S" />
-        <VideoContextBox heading="Her gennemgår vores streamer Legacy of Dead i praksis">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser det progressive expanding symbol-system, retrigger-mekanikken og forskellen til Book of Dead. Videoen er en del af vores dybdegående indhold om{" "}
-          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
-          <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>.
-        </VideoContextBox>
-
         {/* ── Experience First: Book of Dead-arven ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -138,6 +131,13 @@ const LegacyOfDeadGuide = () => {
             Æstetisk fortsætter Legacy of Dead den egyptiske tematik fra Book of Dead, men med moderniseret grafik og forbedret animation. Symbologien er genkendelig – faraoner, Anubis, Horus og standard kortsymboler – men redesignet med mere detaljerede texturer og dynamisk belysning. Lyddesignet er ligeledes opgraderet med mere atmosfærisk scoring, der intensiveres under bonusrunder.
           </p>
         </section>
+
+        <YoutubeEmbed videoId="Ss2ZRXT0jCI" title="Legacy of Dead gennemgang – Progressiv expanding symbol" description="Se en komplet gennemgang af Legacy of Dead: det progressive expanding symbol-system forklaret i praksis." uploadDate="2026-03-07" duration="PT1M41S" />
+        <VideoContextBox heading="Her gennemgår vores streamer Legacy of Dead i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser det progressive expanding symbol-system, retrigger-mekanikken og forskellen til Book of Dead. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
+          <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>.
+        </VideoContextBox>
 
         {/* ── Teknisk profil ── */}
         <section className="mb-10">

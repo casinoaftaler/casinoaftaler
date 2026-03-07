@@ -117,13 +117,6 @@ const DeadOrAlive2Guide = () => {
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Dead or Alive 2 spillemaskine" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="oz_VUxjLXZ0" title="Dead or Alive 2 gennemgang – Tre bonusmodes og max win" description="Se en komplet gennemgang af Dead or Alive 2: sticky wilds, tre free spins-modes og max win forklaret i praksis." uploadDate="2026-03-07" duration="PT2M30S" />
-        <VideoContextBox heading="Her gennemgår vores streamer Dead or Alive 2 i praksis">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser de tre free spins-modes, sticky wilds-mekanikken og multiplikator-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
-          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
-          <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>.
-        </VideoContextBox>
-
         {/* ── ÅBNINGSVINKEL: MAX WIN FOKUS ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">111.111x: Anatomien af den Største Gevinst i Online Slots</h2>
@@ -137,6 +130,13 @@ const DeadOrAlive2Guide = () => {
             Men det er netop denne asymmetri mellem risiko og belønning, der definerer Dead or Alive 2. Det er et spil for spillere, der forstår og accepterer, at de sandsynligvis aldrig rammer max win – men nyder jagten alligevel. Denne guide analyserer hvert aspekt af spillets matematiske model, fra bonusmode-valg til optimal bankroll-strategi, for at give dig det mest ærlige billede af, hvad du kan forvente.
           </p>
         </section>
+
+        <YoutubeEmbed videoId="oz_VUxjLXZ0" title="Dead or Alive 2 gennemgang – Tre bonusmodes og max win" description="Se en komplet gennemgang af Dead or Alive 2: sticky wilds, tre free spins-modes og max win forklaret i praksis." uploadDate="2026-03-07" duration="PT2M30S" />
+        <VideoContextBox heading="Her gennemgår vores streamer Dead or Alive 2 i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser de tre free spins-modes, sticky wilds-mekanikken og multiplikator-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
+          <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>.
+        </VideoContextBox>
 
         <Separator className="my-10" />
 

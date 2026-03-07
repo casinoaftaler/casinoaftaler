@@ -65,12 +65,6 @@ const EyeOfHorusGuide = () => {
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Eye of Horus spillemaskine" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="G8beL2DD1sI" title="Eye of Horus gennemgang – Symbol upgrade og RTP" description="Se en komplet gennemgang af Eye of Horus: symbol upgrade-mekanikken og expanding symbols forklaret i praksis." uploadDate="2026-03-07" duration="PT2M45S" />
-        <VideoContextBox heading="Her gennemgår vores streamer Eye of Horus i praksis">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser symbol upgrade-mekanikken, expanding symbols og retrigger-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
-          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og spiludviklerne bag spillet.
-        </VideoContextBox>
-
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" />Fra Spillehal til Online: Eye of Horus' Rejse</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Eye of Horus har en unik oprindelse i online slot-verdenen. Mens de fleste online slots er designet digitalt fra bunden, blev Eye of Horus oprindeligt skabt af Merkur Gaming (en del af den tyske Gauselmann Group) til fysiske spilleautomater i europæiske spillehaller. Spillets mekanikker – expanding symbols, symbol upgrades og den egyptiske tematik – blev optimeret til den landbaserede oplevelse, hvor spillere interagerer fysisk med maskinen.</p>
@@ -78,6 +72,12 @@ const EyeOfHorusGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Denne landbaserede arv giver Eye of Horus en særlig karakter, der adskiller den fra rent digitale slots. Interfacet er bevidst minimalistisk, lyddesignet er atmosfærisk men ikke overvældende, og gameplay-tempoet er lidt langsommere end moderne online-designede slots. For spillere, der kender Merkur-automater fra europæiske spillehaller, er Eye of Horus et nostalgisk gensyn med et velkendt matematisk fundament.</p>
           <p className="text-muted-foreground leading-relaxed">Spillets popularitet i Danmark – særligt blandt erfarne casino-spillere – skyldes delvist denne autenticitet. Hvor mange moderne slots føles "designet af algoritmer", har Eye of Horus en håndbygget kvalitet, der afspejler Merkurs årtiers erfaring med spilleautomatdesign. Det er en slot, der respekterer sine spillere med gennemsigtig matematik og ren mekanik.</p>
         </section>
+
+        <YoutubeEmbed videoId="G8beL2DD1sI" title="Eye of Horus gennemgang – Symbol upgrade og RTP" description="Se en komplet gennemgang af Eye of Horus: symbol upgrade-mekanikken og expanding symbols forklaret i praksis." uploadDate="2026-03-07" duration="PT2M45S" />
+        <VideoContextBox heading="Her gennemgår vores streamer Eye of Horus i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser symbol upgrade-mekanikken, expanding symbols og retrigger-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og spiludviklerne bag spillet.
+        </VideoContextBox>
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil: Kernetal og Matematisk Fundament</h2>

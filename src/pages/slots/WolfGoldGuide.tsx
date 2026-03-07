@@ -144,13 +144,6 @@ const WolfGoldGuide = () => {
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Wolf Gold spillemaskine" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="wk34dIvTJ-c" title="Wolf Gold gennemgang – Money Respin og jackpot" description="Se en komplet gennemgang af Wolf Gold: Money Respin-funktionen og jackpot-strukturen forklaret i praksis." uploadDate="2026-03-07" duration="PT0M59S" />
-        <VideoContextBox heading="Her gennemgår vores streamer Wolf Gold i praksis">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser Money Respin-funktionen, jackpot-niveauerne og Mega Symbol free spins i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
-          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
-          <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
-        </VideoContextBox>
-
         {/* ── Segment First: Hvem er spillet til? ── */}
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -167,6 +160,13 @@ const WolfGoldGuide = () => {
             <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> har designet Wolf Gold som en "crossover"-slot: den tiltrækker både spillere, der migrerer fra land-baserede automater (genkendelig 5×3-struktur) og digitale natives, der søger moderne bonusmekanikker (Money Respin). Denne dobbelte appel forklarer delvist spillets vedvarende popularitet.
           </p>
         </section>
+
+        <YoutubeEmbed videoId="wk34dIvTJ-c" title="Wolf Gold gennemgang – Money Respin og jackpot" description="Se en komplet gennemgang af Wolf Gold: Money Respin-funktionen og jackpot-strukturen forklaret i praksis." uploadDate="2026-03-07" duration="PT0M59S" />
+        <VideoContextBox heading="Her gennemgår vores streamer Wolf Gold i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser Money Respin-funktionen, jackpot-niveauerne og Mega Symbol free spins i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
+          <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
+        </VideoContextBox>
 
         <InlineCasinoCards />
 
