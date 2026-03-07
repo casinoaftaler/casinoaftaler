@@ -117,13 +117,6 @@ const SweetBonanzaGuide = () => {
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Sweet Bonanza spillemaskine" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="vai9EyLLpfU" title="Sweet Bonanza gennemgang – Tumble-mekanik og RTP" description="Se en komplet gennemgang af Sweet Bonanza: tumble-mekanikken, multiplikatorer og free spins-matematik forklaret i praksis." uploadDate="2026-03-07" duration="PT1M30S" />
-        <VideoContextBox heading="Her gennemgår vores streamer Sweet Bonanza i praksis">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser tumble-mekanikken, multiplikator-bomberne og free spins-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
-          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
-          <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
-        </VideoContextBox>
-
         {/* ── ÅBNINGSVINKEL: MATEMATIK FØRST ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvorfor Tallene Bag Sweet Bonanza Fortæller en Anden Historie</h2>
@@ -137,6 +130,13 @@ const SweetBonanzaGuide = () => {
             Vi har analyseret tusenvis af simulerede spins, sammenlignet RTP-varianterne, beregnet Expected Value for bonus buy versus organisk trigger, og vurderet spillets risikoprofil for forskellige spillertyper. Resultatet er den mest dybdegående Sweet Bonanza-analyse tilgængelig på dansk.
           </p>
         </section>
+
+        <YoutubeEmbed videoId="vai9EyLLpfU" title="Sweet Bonanza gennemgang – Tumble-mekanik og RTP" description="Se en komplet gennemgang af Sweet Bonanza: tumble-mekanikken, multiplikatorer og free spins-matematik forklaret i praksis." uploadDate="2026-03-07" duration="PT1M30S" />
+        <VideoContextBox heading="Her gennemgår vores streamer Sweet Bonanza i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser tumble-mekanikken, multiplikator-bomberne og free spins-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
+          <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
+        </VideoContextBox>
 
         <Separator className="my-10" />
 

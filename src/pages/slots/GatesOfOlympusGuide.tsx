@@ -113,13 +113,6 @@ const GatesOfOlympusGuide = () => {
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Gates of Olympus spillemaskine" loading="eager" />
         </div>
 
-        <YoutubeEmbed videoId="uUZOHtTgFW4" title="Gates of Olympus gennemgang – Multiplikator-mekanik" description="Se en komplet gennemgang af Gates of Olympus: multiplikator-systemet og free spins-matematik forklaret i praksis." uploadDate="2026-03-07" duration="PT2M51S" />
-        <VideoContextBox heading="Her gennemgår vores streamer Gates of Olympus i praksis">
-          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser multiplikator-systemet, Zeus' lyn-mekanik og free spins i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
-          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
-          <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
-        </VideoContextBox>
-
         {/* ── ÅBNINGSVINKEL: FEATURE-MEKANIK FØRST ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Zeus' Multiplikator-System: Hvorfor Mekanikken Er Alt</h2>
@@ -133,6 +126,13 @@ const GatesOfOlympusGuide = () => {
             Denne fundamentale mekaniske forskel har massive implikationer for volatilitet, gevinstfordeling og spilleroplevelse. I denne analyse fokuserer vi på, hvad denne multiplikatorstruktur matematisk betyder, og hvordan det bør påvirke dine strategiske beslutninger – fra bankroll management til bonusvalg.
           </p>
         </section>
+
+        <YoutubeEmbed videoId="uUZOHtTgFW4" title="Gates of Olympus gennemgang – Multiplikator-mekanik" description="Se en komplet gennemgang af Gates of Olympus: multiplikator-systemet og free spins-matematik forklaret i praksis." uploadDate="2026-03-07" duration="PT2M51S" />
+        <VideoContextBox heading="Her gennemgår vores streamer Gates of Olympus i praksis">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser multiplikator-systemet, Zeus' lyn-mekanik og free spins i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
+          <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og{" "}
+          <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
+        </VideoContextBox>
 
         <Separator className="my-10" />
 
