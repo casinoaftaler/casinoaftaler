@@ -480,7 +480,7 @@ const DalembertBlackjackGuide = () => {
             Optimalt Bordvalg for D'Alembert-Spillere
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Fordi D'Alembert sjældent rammer bordmaksimum, er bordvalg primært et spørgsmål om at minimere house edge:
+            Fordi D'Alembert sjældent rammer bordmaksimum, er bordvalg primært et spørgsmål om at minimere <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>:
           </p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full border-collapse text-sm">
