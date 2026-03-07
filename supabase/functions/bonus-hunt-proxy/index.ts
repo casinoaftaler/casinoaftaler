@@ -417,16 +417,20 @@ serve(async (req) => {
           console.log(`Auto-closed betting for hunt #${huntNumber} (${openedSlots} slots opened)`);
         }
 
-        // Auto-complete hunt when ALL bonuses have been opened
+        // Auto-settle hunt when ALL bonuses have been opened
         if (totalSlots > 0 && openedSlots >= totalSlots && openSession?.status === 'active') {
-          const avgX = stats.runAverage ? parseFloat(stats.runAverage) : null;
-          const endBal = huntData.end || null;
-          await supabase.from("bonus_hunt_sessions").update({
-            status: 'completed',
-            average_x: avgX,
-            end_balance: endBal,
-          }).eq("id", openSession.id);
-          console.log(`Auto-completed hunt #${huntNumber} (all ${totalSlots} bonuses opened)`);
+          console.log(`All ${totalSlots} bonuses opened for hunt #${huntNumber} — triggering auto-settle`);
+          // Fire-and-forget: call the auto-settle edge function
+          const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+          const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+          fetch(`${supabaseUrl}/functions/v1/bonus-hunt-auto-settle`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${serviceRoleKey}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({}),
+          }).catch(e => console.error('Auto-settle trigger error:', e));
         }
       }
 

@@ -101,13 +101,18 @@ Deno.serve(async (req) => {
         continue;
       }
 
-      if (!huntData.played) {
-        results.push({ huntNumber: session.hunt_number, status: 'still_active' });
+      const stats = huntData.statistics || {};
+      const openedSlots = stats.openedSlots || 0;
+      const totalSlots = stats.numberOfSlots || 0;
+      const allOpened = totalSlots > 0 && openedSlots >= totalSlots;
+
+      // Only settle if the hunt is marked as played OR all bonuses are opened
+      if (!huntData.played && !allOpened) {
+        results.push({ huntNumber: session.hunt_number, status: 'still_active', openedSlots, totalSlots });
         continue;
       }
 
       const endBalance = huntData.end || null;
-      const stats = huntData.statistics || {};
       const averageX = stats.runAverage ? parseFloat(stats.runAverage) : null;
 
       if (!endBalance && !averageX) {
