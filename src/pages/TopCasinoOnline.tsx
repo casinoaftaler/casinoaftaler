@@ -363,7 +363,7 @@ const TopCasinoOnline = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Det absolut vigtigste kriterium. Alle casinoer på vores liste har dansk licens fra Spillemyndigheden, anvender SSL-kryptering og er tilsluttet ROFUS. Vi verificerer licensen direkte og tjekker, at casinoet overholder dansk lovgivning til punkt og prikke.
+                  Det absolut vigtigste kriterium. Alle casinoer på vores liste har dansk licens fra Spillemyndigheden, anvender <Link to="/ordbog/ssl-kryptering" className={linkClass}>SSL-kryptering</Link> og er tilsluttet ROFUS. Vi verificerer licensen direkte og tjekker, at casinoet overholder dansk lovgivning til punkt og prikke.
                 </p>
               </CardContent>
             </Card>
@@ -517,7 +517,7 @@ const TopCasinoOnline = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Klassiske bordspil som blackjack, roulette, baccarat og craps er tilgængelige i digitale versioner med RNG (Random Number Generator). Disse spil har typisk en lavere husfodel end spilleautomater, hvilket giver bedre odds for erfarne spillere.
+                  Klassiske bordspil som blackjack, roulette, baccarat og craps er tilgængelige i digitale versioner med <Link to="/ordbog/rng" className={linkClass}>RNG</Link> (Random Number Generator). Disse spil har typisk en lavere <Link to="/ordbog/house-edge" className={linkClass}>husfodel</Link> end spilleautomater, hvilket giver bedre odds for erfarne spillere.
                 </p>
               </CardContent>
             </Card>

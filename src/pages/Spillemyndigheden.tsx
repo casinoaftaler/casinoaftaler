@@ -91,7 +91,7 @@ const spillemyndighedenFaqs: { question: string; answer: string | React.ReactNod
   {
     question: "Hvad risikerer jeg ved at spille på et casino uden dansk licens?",
     answer:
-      "Konsekvenserne er vidtrækkende. Du mister adgang til ROFUS-selvudelukkelse, klageadgang via Spillemyndigheden og garantien for, at dine indbetalinger og gevinster er sikre. Ulicenserede casinoer er ikke forpligtet til at bruge certificerede tilfældighedsgeneratorer (RNG), hvilket betyder, at spilresultater potentielt kan manipuleres. Gevinster fra ulicenserede casinoer er desuden skattepligtige i Danmark, i modsætning til skattefri gevinster fra licenserede operatører. Spillemyndigheden blokkerede 178 ulovlige spillesider i 2025, og tallet stiger hvert år. Der er også ingen garanti for, at dine persondata håndteres forsvarligt.",
+      <>Konsekvenserne er vidtrækkende. Du mister adgang til ROFUS-selvudelukkelse, klageadgang via Spillemyndigheden og garantien for, at dine indbetalinger og gevinster er sikre. Ulicenserede casinoer er ikke forpligtet til at bruge certificerede tilfældighedsgeneratorer (<Link to="/ordbog/rng" className="text-primary underline hover:text-primary/80">RNG</Link>), hvilket betyder, at spilresultater potentielt kan manipuleres. Gevinster fra ulicenserede casinoer er desuden skattepligtige i Danmark, i modsætning til skattefri gevinster fra licenserede operatører. Spillemyndigheden blokkerede 178 ulovlige spillesider i 2025, og tallet stiger hvert år. Der er også ingen garanti for, at dine persondata håndteres forsvarligt.</>,
   },
   {
     question: "Hvad er ROFUS, og hvordan fungerer selvudelukkelsessystemet teknisk?",
@@ -415,7 +415,7 @@ const Spillemyndigheden = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Alle digitale spil skal anvende certificerede tilfældighedsgeneratorer (Random Number Generators), der er testet og godkendt af uafhængige testlaboratorier. Dette sikrer, at udfaldet af hvert spil er genuint tilfældigt og ikke kan manipuleres af operatøren. De <Link to="/spiludviklere" className="text-primary hover:underline font-medium">spiludviklere</Link>, der leverer spil til danske casinoer, skal alle have deres software certificeret.
+                  Alle digitale spil skal anvende certificerede tilfældighedsgeneratorer (Random Number Generators), der er testet og godkendt af uafhængige testlaboratorier. Dette sikrer, at udfaldet af hvert spil er genuint tilfældigt og ikke kan manipuleres af operatøren – en proces der verificeres via <Link to="/ordbog/fairness-audit" className="text-primary underline hover:text-primary/80">fairness-audits</Link>. De <Link to="/spiludviklere" className="text-primary hover:underline font-medium">spiludviklere</Link>, der leverer spil til danske casinoer, skal alle have deres software certificeret.
                 </p>
               </CardContent>
             </Card>

@@ -139,7 +139,7 @@ const Betalingsmetoder = () => {
           <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link> og{" "}
           <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link> er sammenlignelige, men pengene lander på din wallet-saldo – ikke direkte i banken. Kortbetalinger via{" "}
           <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link> tager 1–3 bankdage, mens traditionelle{" "}
-          <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link> kan tage op til 5 hverdage. Da alle danske casinoer bruger MitID, er identitetsverifikation allerede gennemført ved login, hvilket eliminerer KYC-forsinkelser ved første udbetaling.
+          <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link> kan tage op til 5 hverdage. Da alle danske casinoer bruger MitID, er identitetsverifikation allerede gennemført ved login, hvilket eliminerer <Link to="/ordbog/kyc" className="text-primary underline hover:text-primary/80">KYC</Link>-forsinkelser ved første udbetaling.
         </>
       ),
     },
@@ -333,7 +333,7 @@ const Betalingsmetoder = () => {
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
                 <p>
-                  Alle danske licenserede casinoer kræver MitID-godkendelse ved registrering. Dette er ikke blot et sikkerhedstiltag – det er en juridisk forpligtelse under Spillemyndighedens bekendtgørelse. MitID verificerer din identitet via CPR-nummer, hvilket automatisk opfylder KYC-kravet (Know Your Customer). Konsekvensen for betalinger er positiv: da identiteten allerede er bekræftet, kan de fleste transaktioner processeres uden yderligere dokumentation. Det eliminerer den forsinkelse, som spillere på uregulerede markeder oplever ved første udbetaling, hvor de skal uploade pas, regninger og bankudtog.
+                  Alle danske licenserede casinoer kræver MitID-godkendelse ved registrering. Dette er ikke blot et sikkerhedstiltag – det er en juridisk forpligtelse under Spillemyndighedens bekendtgørelse. MitID verificerer din identitet via CPR-nummer, hvilket automatisk opfylder <Link to="/ordbog/kyc" className="text-primary underline hover:text-primary/80">KYC</Link>-kravet (Know Your Customer). Konsekvensen for betalinger er positiv: da identiteten allerede er bekræftet, kan de fleste transaktioner processeres uden yderligere dokumentation. Det eliminerer den forsinkelse, som spillere på uregulerede markeder oplever ved første udbetaling, hvor de skal uploade pas, regninger og bankudtog.
                 </p>
               </CardContent>
             </Card>
