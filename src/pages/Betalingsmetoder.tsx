@@ -139,7 +139,7 @@ const Betalingsmetoder = () => {
           <Link to="/betalingsmetoder/paypal" className="text-primary underline hover:text-primary/80">PayPal</Link> og{" "}
           <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link> er sammenlignelige, men pengene lander på din wallet-saldo – ikke direkte i banken. Kortbetalinger via{" "}
           <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">Visa/Mastercard</Link> tager 1–3 bankdage, mens traditionelle{" "}
-          <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link> kan tage op til 5 hverdage. Da alle danske casinoer bruger MitID, er identitetsverifikation allerede gennemført ved login, hvilket eliminerer KYC-forsinkelser ved første udbetaling.
+          <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link> kan tage op til 5 hverdage. Da alle danske casinoer bruger MitID, er identitetsverifikation allerede gennemført ved login, hvilket eliminerer <Link to="/ordbog/kyc" className="text-primary underline hover:text-primary/80">KYC</Link>-forsinkelser ved første udbetaling.
         </>
       ),
     },

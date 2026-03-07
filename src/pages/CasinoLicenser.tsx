@@ -112,7 +112,7 @@ const CasinoLicenser = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvad er en casino-licens?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            En casino-licens er en officiel tilladelse udstedt af en regulerende myndighed, der giver en operatør lov til at udbyde online casinospil. Licensen sikrer, at casinoet overholder specifikke regler om fairness, spillerbeskyttelse, hvidvaskforebyggelse og datasikkerhed. For dig som spiller er casinoets licens den vigtigste indikator for troværdighed og sikkerhed.
+            En casino-licens er en officiel tilladelse udstedt af en regulerende myndighed, der giver en operatør lov til at udbyde online casinospil. Licensen sikrer, at casinoet overholder specifikke regler om <Link to="/ordbog/fairness-audit" className={linkClass}>fairness</Link>, spillerbeskyttelse, hvidvaskforebyggelse og datasikkerhed. For dig som spiller er casinoets licens den vigtigste indikator for troværdighed og sikkerhed.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Ikke alle licenser er lige gode. Forskellen mellem en dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og en Curaçao-licens er enorm – både hvad angår din juridiske beskyttelse, dine skatteforhold og dine rettigheder som forbruger. Et casino med dansk licens giver dig skattefri gevinster, ROFUS-selvudelukkelse og dansk klageadgang. Et casino med Curaçao-licens giver dig ingen af disse fordele.
@@ -131,7 +131,7 @@ const CasinoLicenser = () => {
             Den danske licens udstedes af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, som er den regulerende myndighed under Skatteministeriet. Det er den eneste licens, der giver fuld juridisk beskyttelse for danske spillere. Alle <Link to="/nye-casinoer/dansk-licens" className={linkClass}>nye casinoer med dansk licens</Link> skal gennemgå en omfattende godkendelsesproces, der typisk tager 3–6 måneder.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Licensprocessen kræver: fit &amp; proper-test af ejere og ledelse, bankgaranti på minimum 750.000 kr., teknisk audit af spilplatformen, RNG-certificering fra akkrediterede laboratorier (eCOGRA, iTech Labs), dokumenteret compliance-plan for ansvarligt spil og hvidvaskforebyggelse, samt ROFUS-integration og <Link to="/nye-casinoer/mitid" className={linkClass}>MitID-verifikation</Link>.
+            Licensprocessen kræver: fit &amp; proper-test af ejere og ledelse, bankgaranti på minimum 750.000 kr., teknisk audit af spilplatformen, <Link to="/ordbog/rng" className={linkClass}>RNG</Link>-certificering fra akkrediterede laboratorier (eCOGRA, iTech Labs), dokumenteret compliance-plan for ansvarligt spil og hvidvaskforebyggelse, samt ROFUS-integration og <Link to="/nye-casinoer/mitid" className={linkClass}>MitID-verifikation</Link>.
           </p>
           <div className="space-y-3 mb-6">
             {[

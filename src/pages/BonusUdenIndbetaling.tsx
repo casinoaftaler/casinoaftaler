@@ -50,7 +50,7 @@ const bonusUdenIndbetalingFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er den matematiske forventningsværdi af en no deposit bonus på 50 kr.?",
     answer: (
       <>
-        Med en typisk no deposit bonus på 50 kr. og 10x omsætningskrav skal du satse for 500 kr. Med en gennemsnitlig RTP på 96% taber du statistisk 20 kr. under omsætningen, hvilket efterlader dig med 30 kr. i forventet værdi – men det er før gevinstloftet. Med et loft på 500 kr. og variansen fra slots er den reelle EV typisk 15-25 kr. Til sammenligning har en <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> en højere nominel værdi, men kræver din egen indbetaling. No deposit bonussens EV er lavere, men risikoen er nul.
+        Med en typisk no deposit bonus på 50 kr. og 10x omsætningskrav skal du satse for 500 kr. Med en gennemsnitlig <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96% taber du statistisk 20 kr. under omsætningen, hvilket efterlader dig med 30 kr. i forventet værdi – men det er før gevinstloftet. Med et loft på 500 kr. og variansen fra slots er den reelle EV typisk 15-25 kr. Til sammenligning har en <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> en højere nominel værdi, men kræver din egen indbetaling. No deposit bonussens EV er lavere, men risikoen er nul.
       </>
     ),
   },
@@ -384,7 +384,7 @@ const BonusUdenIndbetaling = () => {
                   <strong>Bonus:</strong> 50 kr. bonuspenge | <strong>Omsætning:</strong> 10x (= 500 kr.) | <strong>Gevinstloft:</strong> 1.000 kr.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Du vælger Book of Dead (RTP: 96,2%, høj volatilitet) og rammer en bonusrunde efter 80 kr. satset. Bonusrunden giver 850 kr. i gevinst. Din saldo er nu 820 kr. (50 - 80 + 850). Du fortsætter omsætningen (420 kr. resterende) og ender med 803 kr. – men gevinstloftet er 1.000 kr., så du kan hæve hele beløbet.
+                  Du vælger Book of Dead (RTP: 96,2%, høj <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link>) og rammer en bonusrunde efter 80 kr. satset. Bonusrunden giver 850 kr. i gevinst. Din saldo er nu 820 kr. (50 - 80 + 850). Du fortsætter omsætningen (420 kr. resterende) og ender med 803 kr. – men gevinstloftet er 1.000 kr., så du kan hæve hele beløbet.
                 </p>
                 <div className="rounded-md bg-accent/40 p-3">
                   <p className="text-xs font-medium text-muted-foreground">

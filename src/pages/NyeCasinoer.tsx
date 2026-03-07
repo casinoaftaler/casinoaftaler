@@ -78,7 +78,7 @@ const nyeCasinoerFaqs: { question: string; answer: ReactNode }[] = [
     question: "Er nye casinoer lige så sikre som etablerede spillesteder?",
     answer: (
       <>
-        Ja, sikkerhedsniveauet er identisk, fordi begge typer kræver nøjagtig samme <Link to="/nye-casinoer/dansk-licens" className={linkClass}>danske licens</Link> fra Spillemyndigheden. Licensbetingelserne omfatter bankgaranti på minimum 750.000 kr., ROFUS-tilslutning, RNG-certificering fra akkrediterede testlabs (som eCOGRA eller iTech Labs), SSL-kryptering og årlige compliance-audits. Mange nye casinoer drives desuden af erfarne operatørselskaber med dokumenteret track record fra andre europæiske markeder, hvilket giver ekstra sikkerhedsmargin. Den reelle risiko ved nye casinoer er ikke sikkerhed, men potentielt umodne processer – langsommere KYC, mindre erfaren support – som vi specifikt tester for i vores evaluering.
+        Ja, sikkerhedsniveauet er identisk, fordi begge typer kræver nøjagtig samme <Link to="/nye-casinoer/dansk-licens" className={linkClass}>danske licens</Link> fra Spillemyndigheden. Licensbetingelserne omfatter bankgaranti på minimum 750.000 kr., ROFUS-tilslutning, <Link to="/ordbog/rng" className={linkClass}>RNG</Link>-certificering fra akkrediterede testlabs (som eCOGRA eller iTech Labs), <Link to="/ordbog/ssl-kryptering" className={linkClass}>SSL-kryptering</Link> og årlige compliance-audits. Mange nye casinoer drives desuden af erfarne operatørselskaber med dokumenteret track record fra andre europæiske markeder, hvilket giver ekstra sikkerhedsmargin. Den reelle risiko ved nye casinoer er ikke sikkerhed, men potentielt umodne processer – langsommere <Link to="/ordbog/kyc" className={linkClass}>KYC</Link>, mindre erfaren support – som vi specifikt tester for i vores evaluering.
       </>
     ),
   },
@@ -298,7 +298,7 @@ const NyeCasinoer = () => {
             Teknologisk innovation er den anden store fordel. Nye casinoer i 2026 bygges med moderne tech-stacks: React-baserede frontends, WebSocket-baseret realtidskommunikation, og cloud-native backend-arkitekturer der muliggør sub-2-sekunders sideloading og instant-udbetalinger. Mange nye platforme er mobile-first – designet primært til smartphones med desktop som sekundær platform – i modsætning til etablerede casinoer der ofte kæmper med legacy-kode fra desktop-æraen.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Innovation i brugeroplevelsen er også markant. Nye casinoer eksperimenterer med gamification-elementer som daglige udfordringer, achievement-systemer og personaliserede bonustilbud baseret på spilleadfærd. Mange tilbyder hurtigere onboarding – fra klik til første spin på under 3 minutter via integreret MitID og Trustly Pay N Play.
+            Innovation i brugeroplevelsen er også markant. Nye casinoer eksperimenterer med <Link to="/ordbog/gamification" className={linkClass}>gamification</Link>-elementer som daglige udfordringer, achievement-systemer og personaliserede bonustilbud baseret på spilleadfærd. Mange tilbyder hurtigere onboarding – fra klik til første spin på under 3 minutter via integreret MitID og Trustly Pay N Play.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">

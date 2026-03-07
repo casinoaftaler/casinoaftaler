@@ -100,7 +100,7 @@ const faqs = [
         Baseret på vores udbetalingstests i januar–februar 2026 er{" "}
         <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> den hurtigste metode med gennemsnitlig behandlingstid på 2–6 timer.{" "}
         <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> følger tæt efter med 4–12 timer, mens{" "}
-        <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> typisk tager 1–3 bankdage. Bemærk, at førstegangsudbetalinger altid tager længere tid pga. obligatorisk KYC-verifikation via MitID. E-wallets som{" "}
+        <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> typisk tager 1–3 bankdage. Bemærk, at førstegangsudbetalinger altid tager længere tid pga. obligatorisk <Link to="/ordbog/kyc" className={linkClass}>KYC</Link>-verifikation via MitID. E-wallets som{" "}
         <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> kan være hurtige, men udløser ofte ekstra KYC-kontrol. Se vores{" "}
         <Link to="/betalingsmetoder" className={linkClass}>betalingsmetodeguide</Link> for den fulde sammenligning.
       </>
@@ -210,7 +210,7 @@ const CasinoAnmeldelser = () => {
             <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>. Men under overfladen er der markante forskelle – forskelle, der direkte påvirker din spilleoplevelse, dine vinderchancer og din adgang til dine egne penge.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Problemet er, at disse forskelle sjældent fremgår af casinoernes egen markedsføring. En bonus på "100 % op til 1.000 kr." kan lyde generøs – men hvis den er sticky med 40x omsætningskrav og 30 dages gyldighed, er den matematiske forventede værdi tæt på nul. En udbetaling "inden for 24 timer" kan i praksis betyde 72 timer, fordi KYC-verifikationen ikke tæller med i den annoncerede tid. Og "2.000+ spil" er meningsløst, hvis 70 % af dem er fra obskure udviklere med lav RTP.
+            Problemet er, at disse forskelle sjældent fremgår af casinoernes egen markedsføring. En bonus på "100 % op til 1.000 kr." kan lyde generøs – men hvis den er sticky med 40x omsætningskrav og 30 dages gyldighed, er den matematiske forventede værdi tæt på nul. En udbetaling "inden for 24 timer" kan i praksis betyde 72 timer, fordi KYC-verifikationen ikke tæller med i den annoncerede tid. Og "2.000+ spil" er meningsløst, hvis 70 % af dem er fra obskure udviklere med lav <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Det er præcis disse forskelle, vores testcenter afdækker. Siden juni 2025 har vi systematisk testet 29 danske casinoer med rigtige penge – fra kontooprettelse via MitID til endelig udbetaling. Vi har dokumenteret behandlingstider med minutpræcision, beregnet forventede bonusværdier, og kontaktet kundeservice med tekniske spørgsmål for at teste kompetenceniveauet. Resultatet er denne side: ikke en liste over casinoer, men et analysecenter, der giver dig grundlaget for at træffe et informeret valg.
@@ -310,7 +310,7 @@ const CasinoAnmeldelser = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Gamepad2 className="h-5 w-5 text-primary" />
-                  Fase 5: Spiludvalg, RTP og fairness-kontrol (Løbende)
+                  Fase 5: Spiludvalg, RTP og <Link to="/ordbog/fairness-audit" className={linkClass}>fairness</Link>-kontrol (Løbende)
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-sm text-muted-foreground leading-relaxed">
