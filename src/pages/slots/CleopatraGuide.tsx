@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/cleopatra-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -143,6 +144,7 @@ const CleopatraGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Cleopatra" faqs={cleopatraFaqs} />
         <AuthorBio author="kevin" />
       </div>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };

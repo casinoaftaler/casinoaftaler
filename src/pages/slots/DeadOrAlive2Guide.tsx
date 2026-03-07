@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/dead-or-alive-2-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -308,6 +309,7 @@ const DeadOrAlive2Guide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Dead or Alive 2" faqs={doa2Faqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

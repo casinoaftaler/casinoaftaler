@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/eye-of-horus-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -125,6 +126,7 @@ const EyeOfHorusGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Eye of Horus" faqs={eyeOfHorusFaqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 };

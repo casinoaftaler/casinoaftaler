@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/chaos-crew-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -139,6 +140,7 @@ const ChaosCrewGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Chaos Crew" faqs={chaosCrewFaqs} />
         <AuthorBio author="kevin" />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };
