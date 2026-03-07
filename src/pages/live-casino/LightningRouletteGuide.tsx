@@ -121,6 +121,10 @@ const LightningRouletteGuide = () => {
 
         <img src={lightningRouletteHero} alt="Lightning Roulette hjul med elektriske lyn-effekter i Evolution studio" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
 
+        <p className="mb-6 text-muted-foreground leading-relaxed">
+          Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her dykker vi specifikt ned i Lightning Roulette – Evolutions mest populære innovation, der kombinerer klassisk roulette med RNG-multiplikatorer op til 500x. Fokus er udelukkende på multiplikator-mekanikken og dens matematiske implikationer – for generelle rouletteregler og bordtyper, se vores <Link to="/live-casino/roulette" className={linkClass}>live roulette guide</Link>.
+        </p>
+
         <YoutubeEmbed
           videoId="fdvXU75QFNg"
           title="Lightning Roulette gennemgang – Multiplikatorer og strategi"
@@ -134,10 +138,6 @@ const LightningRouletteGuide = () => {
           <Link to="/live-casino" className={linkClass}>live casino</Link> og{" "}
           <Link to="/live-casino/roulette" className={linkClass}>live roulette</Link>.
         </VideoContextBox>
-
-        <p className="mb-6 text-muted-foreground leading-relaxed">
-          Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her dykker vi specifikt ned i Lightning Roulette – Evolutions mest populære innovation, der kombinerer klassisk roulette med RNG-multiplikatorer op til 500x. Fokus er udelukkende på multiplikator-mekanikken og dens matematiske implikationer – for generelle rouletteregler og bordtyper, se vores <Link to="/live-casino/roulette" className={linkClass}>live roulette guide</Link>.
-        </p>
 
         <InlineCasinoCards title="Spil Lightning Roulette her" count={6} />
 
