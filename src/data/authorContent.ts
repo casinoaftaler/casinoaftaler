@@ -211,6 +211,7 @@ const jonasGuideVideos: AuthorVideo[] = [
   { videoId: "wk34dIvTJ-c", title: "Vi gennemgår Wolf Gold", path: "/casinospil/spillemaskiner/wolf-gold", category: "Slot Guide" },
   { videoId: "epl204siMF0", title: "Hvad er en Cashback-Bonus?", path: "/cashback-bonus", category: "Bonus" },
   { videoId: "ReM4PBQ30rw", title: "Hvad er en Reload Bonus?", path: "/reload-bonus", category: "Bonus" },
+  { videoId: "5OBGaiJDHVM", title: "Sådan fungerer vores turneringer", path: "/community/turneringer", category: "Community" },
 ];
 
 // ─── Kevin – Articles ───────────────────────────────────────────────────
