@@ -51,6 +51,7 @@ const DYNAMIC_PATTERNS = [
   /^\/casino-nyheder\/.+$/,
   /^\/highlights\/.+$/,
   /^\/profil\/.+$/,
+  /^\/ordbog\/.+$/,
 ];
 
 // External link prefixes to ignore
