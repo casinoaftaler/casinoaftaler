@@ -158,7 +158,7 @@ const DeadOrAlive2Guide = () => {
             Dead or Alive 2 bruger et klassisk 5x3 grid med kun 9 <Link to="/ordbog/paylines" className={linkClass}>gevinstlinjer</Link> – en bevidst minimalistisk opsætning, der koncentrerer gevinsterne på færre, men højere kombinationer. Basisspillet har et Wild West-tema med revolveremner, whisky-flasker, cowboyhatte og sheriff-stjerner som symboler. <Link to="/ordbog/hit-frequency" className={linkClass}>Hit-raten</Link> er ca. 15 % – lavere end de fleste moderne slots, men forventet for dette <Link to="/ordbog/volatilitet" className={linkClass}>volatilitetsniveau</Link>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Basisspillet bidrager med ca. 25 % af den samlede RTP, mens bonusrunden leverer 75 %. Det er en af de mest skæve fordelinger i branchen og forklarer, hvorfor Dead or Alive 2 kan føles brutal under basisspillet – du spiller effektivt med en RTP på ca. 24 % mellem bonusrunder, kompenseret af (sjældne) massive bonusgevinster.
+            Basisspillet bidrager med ca. 25 % af den samlede <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>, mens bonusrunden leverer 75 %. Det er en af de mest skæve fordelinger i branchen og forklarer, hvorfor Dead or Alive 2 kan føles brutal under basisspillet – du spiller effektivt med en RTP på ca. 24 % mellem bonusrunder, kompenseret af (sjældne) massive bonusgevinster.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Det unikke ved Dead or Alive 2 er valget mellem tre bonusmodes. Ingen andre mainstream-slots tilbyder denne grad af spiller-kontrol over risikoprofilen. Det gør spillet til det mest strategisk interessante slot-produkt på markedet – du vælger ikke bare, hvornår du spiller, men også hvordan du spiller.
@@ -192,7 +192,7 @@ const DeadOrAlive2Guide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" /> 96,82 % RTP: Hvad Det Betyder i Kontekst</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Dead or Alive 2's RTP på 96,82 % er en af de bedste i branchen – house edge er kun 3,18 %. Over 1.000 spins á 10 kr. er det forventede tab 318 kr. – ca. 70 kr. mindre end Sweet Bonanza og 73 kr. mindre end Starburst. Den høje RTP gør Dead or Alive 2 til et af de matematisk mest fair slot-produkter.
+            Dead or Alive 2's RTP på 96,82 % er en af de bedste i branchen – <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> er kun 3,18 %. Over 1.000 spins á 10 kr. er det forventede tab 318 kr. – ca. 70 kr. mindre end Sweet Bonanza og 73 kr. mindre end Starburst. Den høje RTP gør Dead or Alive 2 til et af de matematisk mest fair slot-produkter.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Men RTP er en langsigtet statistik, og Dead or Alive 2's ekstreme volatilitet (især i High Noon mode) betyder, at korte sessioner kan afvige voldsomt fra forventningen. Over 200 spins kan din oplevede RTP variere fra 0 % (total bust) til 1.000 %+ (massiv bonusgevinst). Det er først over 50.000+ spins, at den teoretiske RTP konsistent materialiserer sig.

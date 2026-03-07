@@ -127,7 +127,7 @@ const LiveBlackjackGuide = () => {
             Reglerne i live blackjack – trin for trin
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Live blackjack med en rigtig dealer følger de klassiske regler, men med vigtige variationer, der påvirker din strategi og house edge direkte. At forstå de præcise regler ved dit bord er det første skridt mod optimal spil – og det er her, de fleste spillere allerede taber ground.
+            Live blackjack med en rigtig dealer følger de klassiske regler, men med vigtige variationer, der påvirker din strategi og <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> direkte. At forstå de præcise regler ved dit bord er det første skridt mod optimal spil – og det er her, de fleste spillere allerede taber ground.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Målet er simpelt: slå dealeren ved at komme tættere på 21 uden at gå over. Billedkort tæller 10, es tæller 1 eller 11, og alle andre kort tæller deres pålydende. En "blackjack" – et es plus et 10-værdikort – udbetaler typisk 3:2 (1,5x din indsats), men visse borde udbetaler kun 6:5, hvilket øger house edge med hele 1,39 procentpoint. Det er den enkeltfaktor, der har størst negativ indvirkning på din RTP.

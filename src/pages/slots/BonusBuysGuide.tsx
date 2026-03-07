@@ -308,7 +308,7 @@ const BonusBuysGuide = () => {
             Fra spiludviklerens perspektiv er bonus buy en elegant løsning på et fundamentalt designproblem: spillere vil have action og store gevinster, men bonusrunder trigges statistisk sjældent. I en typisk høj-volatilitet slot trigges bonusrunden i gennemsnit hver 150.–300. spin. Ved en indsats på 5 kr. betyder det, at du potentielt skal investere 750–1.500 kr. i basespillet, før du oplever bonusrunden.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Buy-featuren fjerner denne friktion. Spillere, der vil have øjeblikkelig adgang til den mest spændende del af spillet, kan betale for det direkte. For udviklerens forretningsmodel er det win-win: spillerens spiloplevelse forbedres (mere action pr. tidsenhed), og casinoets omsætning stiger, fordi bonus buys typisk har en lavere RTP end organisk spil.
+            Buy-featuren fjerner denne friktion. Spillere, der vil have øjeblikkelig adgang til den mest spændende del af spillet, kan betale for det direkte. For udviklerens forretningsmodel er det win-win: spillerens spiloplevelse forbedres (mere action pr. tidsenhed), og casinoets omsætning stiger, fordi bonus buys typisk har en lavere <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> end organisk spil.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Et andet perspektiv er streamingkulturen. Casino-streamere – som bruger timer foran kameraet – har behov for konstant action og spændende øjeblikke. Bonus buy giver dem mulighed for at levere dramatisk indhold uden lange perioder med gentagne basespins. Denne efterspørgsel fra streamingmiljøet har accelereret udbredelsen af buy features markant.

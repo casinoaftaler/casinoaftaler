@@ -204,7 +204,7 @@ const BonanzaGuide = () => {
             EV-Analyse og Volatilitetsprofil
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Bonanzas EV-profil (Expected Value) er defineret af dens 96,00 % RTP, som giver en house edge på 4,00 %. For hver 100 kr. indsat returneres gennemsnitligt 96 kr. over tid. Men det er volatiliteten – ikke RTP'en – der definerer spillets karakter. Bonanza klassificeres som høj volatilitet (4/5 på de fleste skalaer), med en standardafvigelse pr. spin estimeret til 15-20× indsatsen.
+            Bonanzas EV-profil (Expected Value) er defineret af dens 96,00 % <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>, som giver en <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> på 4,00 %. For hver 100 kr. indsat returneres gennemsnitligt 96 kr. over tid. Men det er volatiliteten – ikke RTP'en – der definerer spillets karakter. Bonanza klassificeres som høj volatilitet (4/5 på de fleste skalaer), med en standardafvigelse pr. spin estimeret til 15-20× indsatsen.
           </p>
           <Card className="mb-6">
             <CardContent className="pt-6">

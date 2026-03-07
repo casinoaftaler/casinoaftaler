@@ -138,7 +138,7 @@ const LightningRouletteGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Udbetalingsstrukturen – hvad den reducerede 29:1 reelt koster dig</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Den mest fundamentale ændring i Lightning Roulette vs. standard roulette er straight-up udbetalingen: 29:1 i stedet for 35:1. Denne reduktion er ikke vilkårlig – den er præcis kalibreret til at finansiere multiplikator-systemet, samtidig med at den holder house edge tæt på standard roulette.
+            Den mest fundamentale ændring i Lightning Roulette vs. standard roulette er straight-up udbetalingen: 29:1 i stedet for 35:1. Denne reduktion er ikke vilkårlig – den er præcis kalibreret til at finansiere multiplikator-systemet, samtidig med at den holder <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> tæt på standard roulette.
           </p>
           <Card className="border-border bg-card mb-6">
             <CardHeader className="pb-2">

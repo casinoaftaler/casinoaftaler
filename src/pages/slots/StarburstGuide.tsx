@@ -190,7 +190,7 @@ const StarburstGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> House Edge og Statistisk Forventning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Starbursts faste RTP på 96,09 % giver en house edge på 3,91 %. Det placerer den lidt under gennemsnittet for moderne slots, der typisk ligger på 96,20–96,50 %. Men i kontekst er forskellen minimal. Lad os sammenligne det forventede tab over en standardsession:
+            Starbursts faste RTP på 96,09 % giver en <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> på 3,91 %. Det placerer den lidt under gennemsnittet for moderne slots, der typisk ligger på 96,20–96,50 %. Men i kontekst er forskellen minimal. Lad os sammenligne det forventede tab over en standardsession:
           </p>
 
           <div className="overflow-x-auto mb-6">
