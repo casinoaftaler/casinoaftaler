@@ -258,6 +258,25 @@ const Privacy = () => {
 
         <Separator className="my-10" />
 
+        {/* Hub-links for equity distribution */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-2xl font-bold">Udforsk Casinoaftaler.dk</h2>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { to: "/casino-bonus", title: "Casino Bonus Guide" },
+              { to: "/casinoer", title: "Alle Casinoer" },
+              { to: "/nye-casinoer", title: "Nye Casinoer" },
+              { to: "/casinospil", title: "Casinospil" },
+              { to: "/ordbog", title: "Casino Ordbog" },
+              { to: "/live-casino", title: "Live Casino" },
+            ].map((item) => (
+              <Link key={item.to} to={item.to} className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:bg-muted">
+                {item.title}
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* Related Guides */}
         <RelatedGuides currentPath="/privatlivspolitik" />
       </div>

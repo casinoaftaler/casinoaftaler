@@ -138,15 +138,51 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Hurtige Links</h4>
+            <h4 className="mb-4 text-sm font-semibold">Casino Guides</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   to="/casinoer"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium"
                 >
                   <Star className="h-4 w-4" />
                   Alle Casinoer
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/casino-bonus"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  Casino Bonus
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/nye-casinoer"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium"
+                >
+                  <Trophy className="h-4 w-4" />
+                  Nye Casinoer
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/casino-anmeldelser"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium"
+                >
+                  <Star className="h-4 w-4" />
+                  Casino Anmeldelser
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/live-casino"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium"
+                >
+                  <Tv className="h-4 w-4" />
+                  Live Casino
                 </Link>
               </li>
               <li>
@@ -160,24 +196,6 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/nye-casinoer"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <Trophy className="h-4 w-4" />
-                  Nye Casinoer
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/casino-bonus"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <BookOpen className="h-4 w-4" />
-                  Casino Bonus Oversigt
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="/free-spins-i-dag"
                   className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
@@ -187,37 +205,10 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to="/casinospil"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <Dices className="h-4 w-4" />
-                  Casinospil
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/casino-anmeldelser"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <Star className="h-4 w-4" />
-                  Casino Anmeldelser
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/spiludviklere"
-                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <Gamepad2 className="h-4 w-4" />
-                  Spiludviklere
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="/casino-nyheder"
                   className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  <BookOpen className="h-4 w-4" />
+                  <Newspaper className="h-4 w-4" />
                   Casino Nyheder
                 </Link>
               </li>
@@ -225,12 +216,30 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold">Bonusguides</h4>
+            <h4 className="mb-4 text-sm font-semibold">Casinospil & Viden</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/casino-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium">
+                <Link to="/casinospil" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium">
+                  <Dices className="h-4 w-4" />
+                  Casinospil
+                </Link>
+              </li>
+              <li>
+                <Link to="/casinospil/spillemaskiner" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium">
+                  <Gamepad2 className="h-4 w-4" />
+                  Spillemaskiner
+                </Link>
+              </li>
+              <li>
+                <Link to="/spiludviklere" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium">
+                  <Gamepad2 className="h-4 w-4" />
+                  Spiludviklere
+                </Link>
+              </li>
+              <li>
+                <Link to="/ordbog" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium">
                   <BookOpen className="h-4 w-4" />
-                  Casino Bonus Guide
+                  Casino Ordbog
                 </Link>
               </li>
               <li>
@@ -252,51 +261,15 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/sticky-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <Target className="h-4 w-4" />
-                  Sticky Bonus
-                </Link>
-              </li>
-              <li>
-                <Link to="/indskudsbonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <CreditCard className="h-4 w-4" />
-                  Indskudsbonus
-                </Link>
-              </li>
-              <li>
                 <Link to="/bonus-uden-indbetaling" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Gift className="h-4 w-4" />
                   Bonus uden Indbetaling
                 </Link>
               </li>
               <li>
-                <Link to="/bonus-uden-omsaetningskrav" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <Sparkles className="h-4 w-4" />
-                  Bonus u. Omsætningskrav
-                </Link>
-              </li>
-              <li>
-                <Link to="/cashback-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <TrendingUp className="h-4 w-4" />
-                  Cashback Bonus
-                </Link>
-              </li>
-              <li>
-                <Link to="/reload-bonus" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <RefreshCw className="h-4 w-4" />
-                  Reload Bonus
-                </Link>
-              </li>
-              <li>
                 <Link to="/omsaetningskrav" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Target className="h-4 w-4" />
                   Omsætningskrav
-                </Link>
-              </li>
-              <li>
-                <Link to="/live-casino" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
-                  <Tv className="h-4 w-4" />
-                  Live Casino
                 </Link>
               </li>
             </ul>
