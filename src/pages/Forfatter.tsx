@@ -638,13 +638,6 @@ export default function Forfatter() {
                   <Badge variant="secondary" className="text-xs">
                     {article.category}
                   </Badge>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Clock className="h-3 w-3" />
-                    {article.readTime}
-                  </span>
-                  <span className="text-xs text-muted-foreground ml-auto">
-                    {article.date}
-                  </span>
                 </div>
                 <h3 className="text-base font-semibold group-hover:text-primary transition-colors mb-1">
                   {article.title}
