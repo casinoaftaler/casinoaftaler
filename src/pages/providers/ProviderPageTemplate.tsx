@@ -27,6 +27,7 @@ import {
   Target,
 } from "lucide-react";
 import { ReactNode, Fragment } from "react";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 interface GameInfo {
   name: string;
@@ -75,6 +76,8 @@ interface ProviderPageProps {
   licensesTitle?: string;
   prosConsTitle?: string;
   responsibleTitle?: string;
+  /** Casino slug for sticky CTA bar */
+  ctaCasinoSlug?: string;
 }
 
 const providerLinks = [

@@ -24,6 +24,7 @@ import {
   Banknote,
 } from "lucide-react";
 import { ReactNode } from "react";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 
 interface FAQ {
   question: string;
@@ -82,6 +83,8 @@ interface PaymentMethodPageProps {
   howToName?: string;
   /** Estimated total time in ISO 8601 duration, e.g. "PT5M" */
   howToTotalTime?: string;
+  /** Casino slug for sticky CTA bar */
+  ctaCasinoSlug?: string;
 }
 
 const paymentLinks = [
