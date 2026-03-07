@@ -163,7 +163,7 @@ const Indskudsbonus = () => {
           </h2>
 
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Med en indbetaling på 500 kr. og 100 % match får du 1.000 kr. at spille for – men hvad er bonussen reelt værd efter omsætningskravene? En indskudsbonus (også kaldet matchbonus) matcher din indbetaling med en procentdel og bruges ofte som{" "}
+            Med en indbetaling på 500 kr. og 100 % match får du 1.000 kr. at spille for – men hvad er bonussen reelt værd efter omsætningskravene? Den reelle værdi afhænger af <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>'en på de spil du vælger. En indskudsbonus (også kaldet matchbonus) matcher din indbetaling med en procentdel og bruges ofte som{" "}
             <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">
               velkomstbonus
             </Link>{" "}

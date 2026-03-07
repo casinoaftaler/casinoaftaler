@@ -663,7 +663,7 @@ const StickyBonus = () => {
             Matematisk EV-analyse: Den reelle værdi af en Sticky Bonus
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For at forstå den reelle værdi af en sticky bonus skal vi beregne dens Expected Value (EV) – altså den statistisk forventede gevinst eller tab. Formlen er enkel men afslørende: <strong>EV = (Indbetaling + Bonus) – (Total omsætning × House Edge) – Bonusbeløb</strong>. Lad os gennemgå tre konkrete scenarier med danske vilkår og Spillemyndighedens 10x (d+b) loft.
+            For at forstå den reelle værdi af en sticky bonus skal vi beregne dens Expected Value (EV) – altså den statistisk forventede gevinst eller tab. Formlen er enkel men afslørende: <strong>EV = (Indbetaling + Bonus) – (Total omsætning × <Link to="/ordbog/house-edge" className={linkClass}>House Edge</Link>) – Bonusbeløb</strong>. Lad os gennemgå tre konkrete scenarier med danske vilkår og Spillemyndighedens 10x (d+b) loft.
           </p>
 
           <div className="space-y-4">

@@ -609,7 +609,7 @@ const Velkomstbonus = () => {
             EV-analyse: Hvad er din velkomstbonus reelt værd?
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Velkomstbonussens nominelle værdi (f.eks. "1.000 kr.") er næsten aldrig den reelle værdi. For at beregne Expected Value (EV) skal du indregne omsætningskrav, RTP og bonusstruktur. Her er de tre mest almindelige velkomstbonus-pakker sammenlignet.
+            Velkomstbonussens nominelle værdi (f.eks. "1.000 kr.") er næsten aldrig den reelle værdi. For at beregne Expected Value (EV) skal du indregne omsætningskrav, <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> og bonusstruktur. Her er de tre mest almindelige velkomstbonus-pakker sammenlignet.
           </p>
 
           <div className="space-y-4">
