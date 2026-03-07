@@ -197,27 +197,6 @@ const StopSpilletGuide = () => {
           />
         </div>
 
-        {/* ── Indholdsfortegnelse ── */}
-        <nav className="mb-10 rounded-xl border border-border bg-card p-6" aria-label="Indholdsfortegnelse">
-          <h2 className="text-lg font-bold mb-3 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
-            Indholdsfortegnelse
-          </h2>
-          <ol className="space-y-1.5 text-sm text-muted-foreground list-decimal list-inside">
-            <li><a href="#hvad-er-stopspillet" className="hover:text-primary transition-colors">Hvad er StopSpillet?</a></li>
-            <li><a href="#kontakt" className="hover:text-primary transition-colors">Sådan kontakter du StopSpillet</a></li>
-            <li><a href="#hvad-kan-du-forvente" className="hover:text-primary transition-colors">Hvad kan du forvente af en samtale?</a></li>
-            <li><a href="#hvem-henvender-sig" className="hover:text-primary transition-colors">Hvem henvender sig til StopSpillet?</a></li>
-            <li><a href="#statistik" className="hover:text-primary transition-colors">StopSpillet i tal</a></li>
-            <li><a href="#paaroerende" className="hover:text-primary transition-colors">Støtte til pårørende</a></li>
-            <li><a href="#behandlingsnetvaerk" className="hover:text-primary transition-colors">StopSpillets behandlingsnetværk</a></li>
-            <li><a href="#forebyggelse" className="hover:text-primary transition-colors">Forebyggende rådgivning</a></li>
-            <li><a href="#organisationen" className="hover:text-primary transition-colors">Om organisationen bag StopSpillet</a></li>
-            <li><a href="#selvhjaelp" className="hover:text-primary transition-colors">Selvhjælpsressourcer</a></li>
-            <li><a href="#sammenligning" className="hover:text-primary transition-colors">StopSpillet vs. andre tilbud</a></li>
-            <li><a href="#hjaelp" className="hover:text-primary transition-colors">Få hjælp nu</a></li>
-          </ol>
-        </nav>
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER STOPSPILLET?

@@ -199,27 +199,6 @@ const LudomaniGuide = () => {
           />
         </div>
 
-        {/* ── Indholdsfortegnelse ── */}
-        <nav className="mb-10 rounded-xl border border-border bg-card p-6" aria-label="Indholdsfortegnelse">
-          <h2 className="text-lg font-bold mb-3 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
-            Indholdsfortegnelse
-          </h2>
-          <ol className="space-y-1.5 text-sm text-muted-foreground list-decimal list-inside">
-            <li><a href="#hvad-er-ludomani" className="hover:text-primary transition-colors">Hvad er ludomani?</a></li>
-            <li><a href="#statistik" className="hover:text-primary transition-colors">Ludomani i tal – Dansk statistik</a></li>
-            <li><a href="#symptomer" className="hover:text-primary transition-colors">Symptomer og advarselstegn</a></li>
-            <li><a href="#aarsager" className="hover:text-primary transition-colors">Årsager og risikofaktorer</a></li>
-            <li><a href="#neurobiologi" className="hover:text-primary transition-colors">Neurobiologien bag ludomani</a></li>
-            <li><a href="#selvtest" className="hover:text-primary transition-colors">Selvtest – er du i risikozonen?</a></li>
-            <li><a href="#behandling" className="hover:text-primary transition-colors">Behandlingsmuligheder i Danmark</a></li>
-            <li><a href="#kognitiv-terapi" className="hover:text-primary transition-colors">Kognitiv adfærdsterapi (KAT)</a></li>
-            <li><a href="#paaroerende" className="hover:text-primary transition-colors">Hjælp til pårørende</a></li>
-            <li><a href="#forebyggelse" className="hover:text-primary transition-colors">Forebyggelse og selvhjaælpsværktøjer</a></li>
-            <li><a href="#lovgivning" className="hover:text-primary transition-colors">Lovgivning og spillerbeskyttelse</a></li>
-            <li><a href="#hjaelp" className="hover:text-primary transition-colors">Få hjælp nu</a></li>
-          </ol>
-        </nav>
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER LUDOMANI?

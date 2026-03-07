@@ -226,27 +226,6 @@ const MobilCasino = () => {
           />
         </div>
 
-        {/* ── Indholdsfortegnelse ── */}
-        <nav className="mb-10 rounded-xl border border-border bg-card p-6" aria-label="Indholdsfortegnelse">
-          <h2 className="text-lg font-bold mb-3 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
-            Indholdsfortegnelse
-          </h2>
-          <ol className="space-y-1.5 text-sm text-muted-foreground list-decimal list-inside">
-            <li><a href="#hvad-er-mobil-casino" className="hover:text-primary transition-colors">Hvad er mobil casino?</a></li>
-            <li><a href="#markedet" className="hover:text-primary transition-colors">Mobil casino-markedet i Danmark</a></li>
-            <li><a href="#app-vs-browser" className="hover:text-primary transition-colors">App vs. browser – hvad er bedst?</a></li>
-            <li><a href="#teknologi" className="hover:text-primary transition-colors">Teknologien bag mobil casino</a></li>
-            <li><a href="#spil" className="hover:text-primary transition-colors">Spil tilgængelige på mobil</a></li>
-            <li><a href="#live-casino-mobil" className="hover:text-primary transition-colors">Live casino på mobilen</a></li>
-            <li><a href="#betaling" className="hover:text-primary transition-colors">Betalingsmetoder på mobil</a></li>
-            <li><a href="#sikkerhed" className="hover:text-primary transition-colors">Sikkerhed og licens</a></li>
-            <li><a href="#performance" className="hover:text-primary transition-colors">Performance og optimering</a></li>
-            <li><a href="#ansvarligt-spil" className="hover:text-primary transition-colors">Ansvarligt spil på mobil</a></li>
-            <li><a href="#vurderingskriterier" className="hover:text-primary transition-colors">Sådan vurderer vi mobilcasinoer</a></li>
-            <li><a href="#hjaelp" className="hover:text-primary transition-colors">Hjælp og ressourcer</a></li>
-          </ol>
-        </nav>
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER MOBIL CASINO?
