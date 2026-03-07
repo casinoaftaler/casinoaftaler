@@ -300,38 +300,6 @@ const CasinoBonus = () => {
 
         <Separator className="my-10" />
 
-        {/* ========== CASINO LIST ========== */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Bedste casino bonus – Top tilbud i Danmark 2026</h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Herunder finder du vores håndplukkede liste over de mest attraktive casino bonusser på det danske marked. Hvert casino er testet med reelle indbetalinger, og bonusvilkårene er verificeret direkte hos operatøren. Listen opdateres løbende, og vi prioriterer no-sticky bonusser med lave omsætningskrav.
-          </p>
-          {isLoading ? (
-            <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            </div>
-          ) : activeCasinos.length === 0 ? (
-            <p className="py-8 text-center text-muted-foreground">Ingen casino bonusser tilgængelige i øjeblikket.</p>
-          ) : (
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-                {activeCasinos.slice(0, 2).map((casino, index) => (
-                  <CasinoCard key={casino.id} casino={mapCasino(casino)} rank={index + 1} open={openCasinoId === casino.id} onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)} />
-                ))}
-              </div>
-              {activeCasinos.length > 2 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-                  {activeCasinos.slice(2).map((casino, index) => (
-                    <CasinoCard key={casino.id} casino={mapCasino(casino)} rank={index + 3} open={openCasinoId === casino.id} onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)} />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        </section>
-
-        <Separator className="my-10" />
-
         {/* ========== 3. GENNEMGANG AF ALLE BONUSTYPER ========== */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Alle bonustyper på det danske marked – dybdegående analyse</h2>
