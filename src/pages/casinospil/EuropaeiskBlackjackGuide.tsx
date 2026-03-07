@@ -151,7 +151,7 @@ const EuropaeiskBlackjackGuide = () => {
             Europæisk Blackjack i Tal – House Edge-Oversigt
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Før vi dykker ned i regler og strategi, lad os etablere det vigtigste: hvad koster det at spille europæisk blackjack? Svaret afhænger af ét centralt spørgsmål: anvender bordet ENHC- eller OBO-regler?
+            Før vi dykker ned i regler og strategi, lad os etablere det vigtigste: hvad koster det at spille europæisk blackjack? Svaret afhænger af ét centralt spørgsmål: anvender bordet ENHC- eller OBO-regler? <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> varierer markant afhængigt af dette valg.
           </p>
           <Card className="border-border bg-card my-6">
             <CardHeader>
