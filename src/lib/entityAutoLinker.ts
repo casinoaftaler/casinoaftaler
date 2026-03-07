@@ -234,11 +234,7 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     href: "/ordbog/bankroll-management",
     anchor: "",
   },
-  {
-    patterns: [/\bprogressiv jackpot\b/i, /\bprogressive jackpot\b/i],
-    href: "/ordbog/progressiv-jackpot",
-    anchor: "",
-  },
+  // progressiv-jackpot removed – merged into /ordbog/jackpot
   {
     patterns: [/\bcluster[\s-]?pays\b/i, /\bklynge[\s-]?gevinst\b/i],
     href: "/ordbog/cluster-pays",
@@ -264,14 +260,16 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     href: "/ordbog/gamification",
     anchor: "",
   },
+  // mitid-casino removed – cannibalization with /nye-casinoer/mitid
+  // gevinstprocent removed – cannibalization with RTP + hit-frequency
   {
-    patterns: [/\bMitID\b/],
-    href: "/ordbog/mitid-casino",
-    anchor: "MitID",
+    patterns: [/\bexpected value\b/i, /\bforventet værdi\b/i],
+    href: "/ordbog/expected-value",
+    anchor: "",
   },
   {
-    patterns: [/\bgevinstprocent\b/i, /\bwin rate\b/i],
-    href: "/ordbog/gevinstprocent",
+    patterns: [/\bspillicens\b/i, /\bcasino[\s-]?licens\b/i],
+    href: "/ordbog/spillicens",
     anchor: "",
   },
   {
