@@ -1,4 +1,5 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
+import { getAuthorArticles } from "@/data/authorContent";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -517,7 +518,7 @@ export default function ForfatterAjse() {
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-3 text-muted-foreground">Sider</h3>
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-              {ajseStaticArticles.map((page) => (
+              {getAuthorArticles("ajse").map((page) => (
                 <Link
                   key={page.path}
                   to={page.path}
