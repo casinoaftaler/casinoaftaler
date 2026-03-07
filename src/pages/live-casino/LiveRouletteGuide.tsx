@@ -121,6 +121,13 @@ const LiveRouletteGuide = () => {
 
         <img src={liveRouletteHero} alt="Live roulette hjul i et elegant casino studio med dealer" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
 
+        <p className="mb-6 text-muted-foreground leading-relaxed">
+          Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her fokuserer vi udelukkende på live roulette med rigtig dealer – det mest ikoniske casinospil, nu tilgængeligt i HD med multi-angle kameraer og op til 80 spins i timen. Vi adskiller os fra den overordnede pillar-guide ved at dykke ekstremt dybt ned i bordtyper, matematiske modeller for hvert bet-type, og en ærlig analyse af populære betting-systemer.
+        </p>
+        <p className="mb-6 text-muted-foreground leading-relaxed">
+          Vores analyse bygger på observation af 1.500+ spins fordelt over 6 forskellige bordtyper hos danske licenserede casinoer i januar-februar 2026. Vi har dokumenteret tempoforskelle, latency, UI-kvalitet og dealerinteraktion på tværs af Evolution Gaming, Pragmatic Play Live og Playtech-platforme. Alt data er verificeret mod officielle RTP-specifikationer fra spiludviklerne.
+        </p>
+
         <YoutubeEmbed
           videoId="xKaQ0XGEKuU"
           title="Live Roulette gennemgang – Bordtyper, regler og strategi"
@@ -134,13 +141,6 @@ const LiveRouletteGuide = () => {
           <Link to="/live-casino" className={linkClass}>live casino</Link> og{" "}
           <Link to="/live-casino/lightning-roulette" className={linkClass}>Lightning Roulette</Link>.
         </VideoContextBox>
-
-        <p className="mb-6 text-muted-foreground leading-relaxed">
-          Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her fokuserer vi udelukkende på live roulette med rigtig dealer – det mest ikoniske casinospil, nu tilgængeligt i HD med multi-angle kameraer og op til 80 spins i timen. Vi adskiller os fra den overordnede pillar-guide ved at dykke ekstremt dybt ned i bordtyper, matematiske modeller for hvert bet-type, og en ærlig analyse af populære betting-systemer.
-        </p>
-        <p className="mb-6 text-muted-foreground leading-relaxed">
-          Vores analyse bygger på observation af 1.500+ spins fordelt over 6 forskellige bordtyper hos danske licenserede casinoer i januar-februar 2026. Vi har dokumenteret tempoforskelle, latency, UI-kvalitet og dealerinteraktion på tværs af Evolution Gaming, Pragmatic Play Live og Playtech-platforme. Alt data er verificeret mod officielle RTP-specifikationer fra spiludviklerne.
-        </p>
 
         <InlineCasinoCards title="Bedste casinoer til live roulette" count={6} />
 
