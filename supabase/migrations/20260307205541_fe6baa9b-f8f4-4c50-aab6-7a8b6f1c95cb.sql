@@ -1,0 +1,1 @@
+UPDATE bonus_hunt_sessions SET gtw_betting_open = true, avgx_betting_open = true, gtw_prizes = '[{"place":1,"points":300,"credits":0},{"place":2,"points":200,"credits":0},{"place":3,"points":100,"credits":0},{"place":4,"points":75,"credits":0},{"place":5,"points":50,"credits":0}]'::jsonb WHERE hunt_number = 2 AND status = 'active';
