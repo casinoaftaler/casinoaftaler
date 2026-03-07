@@ -109,23 +109,23 @@ Deno.serve(async (req: Request) => {
       if (existing) {
         const diff = betAmount - existing.bet_amount;
         if (diff > 0) {
-          const { data: rem, error: de } = await admin.rpc('deduct_spin', { p_user_id: userId, p_date: today, p_bet: diff, p_max_spins: 200 });
+          const { data: rem, error: de } = await admin.rpc('deduct_spin', { p_user_id: userId, p_date: today, p_bet: diff, p_max_spins: 200, p_game_id: 'shared' });
           if (de || rem === -1) return reply('@' + twitchUsername + ', ikke nok credits.');
           const { error: ue } = await admin.from('bonus_hunt_avgx_bets').update({ group_letter: groupLetter, bet_amount: betAmount }).eq('id', existing.id);
-          if (ue) { await admin.from('slot_spins').update({ spins_remaining: rem + diff }).eq('user_id', userId).eq('date', today); return reply('@' + twitchUsername + ', fejl. Credits refunderet.'); }
+          if (ue) { await admin.from('slot_spins').update({ spins_remaining: rem + diff }).eq('user_id', userId).eq('date', today).eq('game_id', 'shared'); return reply('@' + twitchUsername + ', fejl. Credits refunderet.'); }
         } else if (diff < 0) {
           const refund = Math.abs(diff);
-          const { data: cs } = await admin.from('slot_spins').select('spins_remaining').eq('user_id', userId).eq('date', today).maybeSingle();
+          const { data: cs } = await admin.from('slot_spins').select('spins_remaining').eq('user_id', userId).eq('date', today).eq('game_id', 'shared').maybeSingle();
           const nb = (cs?.spins_remaining || 0) + refund;
-          await admin.from('slot_spins').update({ spins_remaining: nb }).eq('user_id', userId).eq('date', today);
+          await admin.from('slot_spins').update({ spins_remaining: nb }).eq('user_id', userId).eq('date', today).eq('game_id', 'shared');
           const { error: ue } = await admin.from('bonus_hunt_avgx_bets').update({ group_letter: groupLetter, bet_amount: betAmount }).eq('id', existing.id);
-          if (ue) { await admin.from('slot_spins').update({ spins_remaining: nb - refund }).eq('user_id', userId).eq('date', today); return reply('@' + twitchUsername + ', fejl. Credits refunderet.'); }
+          if (ue) { await admin.from('slot_spins').update({ spins_remaining: nb - refund }).eq('user_id', userId).eq('date', today).eq('game_id', 'shared'); return reply('@' + twitchUsername + ', fejl. Credits refunderet.'); }
         } else {
           await admin.from('bonus_hunt_avgx_bets').update({ group_letter: groupLetter }).eq('id', existing.id);
         }
         return reply('@' + twitchUsername + ', AVG X bet opdateret! Gruppe: ' + groupLetter + ' (' + betAmount + ' credits)');
       } else {
-        const { data: rem, error: de } = await admin.rpc('deduct_spin', { p_user_id: userId, p_date: today, p_bet: betAmount, p_max_spins: 200 });
+        const { data: rem, error: de } = await admin.rpc('deduct_spin', { p_user_id: userId, p_date: today, p_bet: betAmount, p_max_spins: 200, p_game_id: 'shared' });
         if (de || rem === -1) return reply('@' + twitchUsername + ', ikke nok credits.');
         const { error: ie } = await admin.from('bonus_hunt_avgx_bets').insert({ session_id: session.id, user_id: userId, group_letter: groupLetter, bet_amount: betAmount });
         if (ie) { await admin.from('slot_spins').update({ spins_remaining: rem + betAmount }).eq('user_id', userId).eq('date', today); return reply('@' + twitchUsername + ', fejl. Credits refunderet.'); }
