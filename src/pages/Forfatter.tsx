@@ -83,6 +83,7 @@ const faqs = [
 /** Articles sourced from centralized registry */
 import { getAuthorArticles, getAuthorReviewVideos, getAuthorGuideVideos, getAuthorAllVideos } from "@/data/authorContent";
 const jonasArticles = getAuthorArticles("jonas");
+const jonasGuideVideos = getAuthorGuideVideos("jonas");
 
 const expertiseItems = [
   { icon: CalendarDays, label: "4+ års erfaring med online casino" },
@@ -628,59 +629,10 @@ export default function Forfatter() {
             <h2 className="text-3xl font-bold">YouTube-guides af Jonas</h2>
           </div>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Jonas har produceret en serie af undervisningsvideoer, der forklarer de vigtigste begreber inden for casino-bonusser. Klik på en video for at læse den fulde guide.
+            Jonas har produceret en serie af undervisningsvideoer, der forklarer de vigtigste begreber inden for casino-bonusser og spillemaskiner. Klik på en video for at læse den fulde guide.
           </p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {[
-              {
-                videoId: "WOowRz6hnH8",
-                title: "Hvad er en No-Sticky Bonus?",
-                path: "/no-sticky-bonus",
-                category: "Bonus",
-              },
-              {
-                videoId: "yUAcefgYfkc",
-                title: "Hvad er en Sticky Bonus?",
-                path: "/sticky-bonus",
-                category: "Bonus",
-              },
-              {
-                videoId: "q4jeGo9TPEk",
-                title: "Hvad er Free Spins?",
-                path: "/free-spins",
-                category: "Free Spins",
-              },
-              {
-                videoId: "3tXFTjmgdcE",
-                title: "Hvad er omsætningskrav?",
-                path: "/omsaetningskrav",
-                category: "Guide",
-              },
-              {
-                videoId: "oK5PvebkvGY",
-                title: "Hvad er en Velkomstbonus?",
-                path: "/velkomstbonus",
-                category: "Bonus",
-              },
-              {
-                videoId: "hMHHVA6vH0Y",
-                title: "Hvad er en Indskudsbonus?",
-                path: "/indskudsbonus",
-                category: "Bonus",
-              },
-              {
-                videoId: "7JQ3nFTasoQ",
-                title: "Hvad er bonus uden omsætningskrav?",
-                path: "/bonus-uden-omsaetningskrav",
-                category: "Bonus",
-              },
-              {
-                videoId: "XhbLda1HyOs",
-                title: "Hvad er bonus uden indbetaling?",
-                path: "/bonus-uden-indbetaling",
-                category: "Bonus",
-              },
-            ].map((video) => (
+            {jonasGuideVideos.map((video) => (
               <Link
                 key={video.videoId}
                 to={video.path}
