@@ -5,7 +5,9 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -75,6 +77,13 @@ const WantedDeadOrAWildGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Når to versus-symboler lander på samme spin, duellerer de: vinderen forbliver som en sticky wild med en multiplikator (typisk 2× eller 3×). Hvis en versus-symbol lander ved siden af en eksisterende sticky wild, kan multiplikatorerne adderes eller multipliceres – afhængigt af symboltypen. Denne mekanisme skaber eksponentielt voksende gevinstpotentiale med hver succesfuld duel.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Den gennemsnitlige Duel at Dawn-runde (10 spins) leverer estimeret 20-50× indsatsen – men medianen er markant lavere (10-20×). Fordelingen er ekstremt skæv: de fleste bonusrunder producerer beskeden return (mange runder har 0-1 dueller), mens de sjældne runder med 3-5+ dueller og akkumulerede multiplikatorer kan ramme 500-5.000×+ indsatsen.</p>
           <p className="text-muted-foreground leading-relaxed">Retrigger er muligt med 3+ scatters under free spins, hvilket giver yderligere 5 spins. Med retrigger og multiple sticky duel-wilds kan den forlængede runde producere max win (12.500×). Sandsynligheden for retrigger estimeres til 5-8 % pr. bonusrunde – sjælden men med enormt impact, når det sker.</p>
+
+          <YoutubeEmbed videoId="jn5JOzWL-sY" title="Wanted Dead or a Wild – Fuldscreen VS (sjælden bonus)" description="Se Jonas ramme en ekstremt sjælden fuldscreen versus-duel på Wanted Dead or a Wild – en af de mest eksplosive bonus-åbninger på Hacksaw Gaming." uploadDate="2026-03-07" duration="PT15M0S" />
+          <VideoContextBox heading="Sjælden fuldscreen VS-duel på Wanted Dead or a Wild">
+            Jonas rammer en ekstremt sjælden fuldscreen versus-duel – en af de mest spektakulære bonus-åbninger
+            på <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>.
+            Se hvordan sticky wilds og multiplikatorer akkumulerer eksponentielt i Duel at Dawn-runden.
+          </VideoContextBox>
         </section>
 
         <Separator className="my-10" />

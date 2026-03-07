@@ -134,6 +134,14 @@ const GatesOfOlympusGuide = () => {
           <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>.
         </VideoContextBox>
 
+        <YoutubeEmbed videoId="FKKroDKN6e0" title="Gates of Olympus – Bonus åbning live" description="Se Jonas åbne bonusser på Gates of Olympus live – oplev multiplikator-systemet i praksis med reelle resultater." uploadDate="2026-03-07" duration="PT20M0S" />
+        <VideoContextBox heading="Se live bonus-åbninger på Gates of Olympus">
+          Jonas åbner bonusser live og viser hvordan multiplikatorerne kan stacke i praksis.
+          Oplev de sjældne "guld-spins" hvor store multiplikatorer og premium-symboler rammer samtidig.
+          Læs mere om{" "}
+          <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> for at sammenligne multiplikator-systemer.
+        </VideoContextBox>
+
         <Separator className="my-10" />
 
         {/* ── SEKTION: TEKNISK PROFIL ── */}

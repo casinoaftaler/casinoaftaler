@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 import nolimitHero from "@/assets/heroes/nolimit-city-hero.jpg";
 
 const NolimitCityGuide = () => (
@@ -47,6 +49,15 @@ const NolimitCityGuide = () => (
         <p className="text-muted-foreground leading-relaxed">
           Nolimit Citys produktionskvalitet per titel er branchens højeste, målt på udviklingstid og QA-indsats. Mens <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> udgiver 6-8 titler månedligt og <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link> 3-4, udgiver Nolimit City kun 1-2. Denne kadence er bevidst: hvert spil gennemgår en langvarig QA-proces for at sikre at de patenterede mekanikkers interaktion er fejlfri, at lyddesignet er originalt, og at den matematiske model er balanceret trods de ekstreme gevinstpotentialer. Resultatet er en portefølje hvor praktisk taget ingen titler er "fillers" – hver udgivelse er et event i sig selv, ventet og analyseret af streamer-communityet uger inden lanceringen.
         </p>
+
+        <YoutubeEmbed videoId="oLToV0bHrjU" title="Nolimit City – Bonus åbninger live" description="Se Jonas åbne bonusser på populære Nolimit City spillemaskiner live – xWays, xNudge og xBomb mekanikker i praksis." uploadDate="2026-03-07" duration="PT25M0S" />
+        <VideoContextBox heading="Se live bonus-åbninger på Nolimit City slots">
+          Jonas åbner bonusser på populære Nolimit City-maskiner og viser xWays, xNudge og xBomb-mekanikkerne i praksis.
+          Oplev den ultra-høje volatilitet live – fra San Quentin til Mental og Tombstone RIP.
+          Læs mere om{" "}
+          <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link>{" "}
+          for at sammenligne med en anden high-volatility specialist.
+        </VideoContextBox>
       </>
     }
     strategicAnalysis={
