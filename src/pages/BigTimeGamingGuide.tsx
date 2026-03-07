@@ -5,6 +5,7 @@ import btgHero from "@/assets/heroes/big-time-gaming-hero.jpg";
 
 const BigTimeGamingGuide = () => (
   <ProviderPage
+    ctaCasinoSlug="campobet"
     seoTitle="Big Time Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
     seoDescription="Komplet guide til Big Time Gaming – Megaways-opfinderne. 117.649+ vinderkombinationer, licenseret til 100+ spil fra andre studios. Opkøbt af Evolution."
     name="Big Time Gaming"

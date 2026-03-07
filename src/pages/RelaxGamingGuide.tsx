@@ -5,6 +5,7 @@ import relaxHero from "@/assets/heroes/relax-gaming-hero.jpg";
 
 const RelaxGamingGuide = () => (
   <ProviderPage
+    ctaCasinoSlug="betinia"
     seoTitle="Relax Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
     seoDescription="Komplet guide til Relax Gaming – innovativ spiludvikler bag Money Train og Dream Drop Jackpots. 150+ titler, mekanik-drevet design, aggregator-platform."
     name="Relax Gaming"

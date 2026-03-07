@@ -5,6 +5,7 @@ import yggdrasilHero from "@/assets/heroes/yggdrasil-hero.jpg";
 
 const YggdrasilGuide = () => (
   <ProviderPage
+    ctaCasinoSlug="betinia"
     seoTitle="Yggdrasil Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
     seoDescription="Komplet guide til Yggdrasil Gaming – grundlagt af NetEnts tidligere CEO. BOOST tools, Gigablox, Splitz. 230+ spil, platform-innovation."
     name="Yggdrasil Gaming"

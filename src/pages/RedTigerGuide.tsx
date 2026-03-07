@@ -5,6 +5,7 @@ import redTigerHero from "@/assets/heroes/red-tiger-hero.jpg";
 
 const RedTigerGuide = () => (
   <ProviderPage
+    ctaCasinoSlug="betinia"
     seoTitle="Red Tiger Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
     seoDescription="Komplet guide til Red Tiger Gaming – opkøbt af NetEnt for £200M. Daily Jackpots, Tournaments, Megaways-specialist. 220+ spil under Evolution."
     name="Red Tiger Gaming"

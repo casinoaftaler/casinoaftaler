@@ -5,6 +5,7 @@ import evolutionHero from "@/assets/heroes/evolution-gaming-hero.jpg";
 
 const EvolutionGamingGuide = () => (
   <ProviderPage
+    ctaCasinoSlug="campobet"
     seoTitle="Evolution Gaming – Live Casino-Monopolisten og Koncern-Arkitekten 2026"
     seoDescription="Dybdegående analyse af Evolution Gaming – 70%+ live casino-markedsandel, Crazy Time, Lightning Roulette, NetEnt + BTG opkøb. 16.000+ ansatte."
     name="Evolution Gaming"

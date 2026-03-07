@@ -5,6 +5,7 @@ import elkHero from "@/assets/heroes/elk-studios-hero.jpg";
 
 const ELKStudiosGuide = () => (
   <ProviderPage
+    ctaCasinoSlug="betinia"
     seoTitle="ELK Studios – Præcisionsingeniørerne bag Avalanche og Precision Spins 2026"
     seoDescription="Dybdegående analyse af ELK Studios – svenske præcisionsingeniører med 80+ titler, Avalanche-mekanik, Precision Spins-teknologi og 95-96,5% RTP."
     name="ELK Studios"
