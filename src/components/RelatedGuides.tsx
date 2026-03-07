@@ -276,6 +276,8 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       guides: [
         ...legalLinks,
         ...(path !== "/ansvarligt-spil/rofus" ? [{ to: "/ansvarligt-spil/rofus", label: "ROFUS Guide", icon: Shield, desc: "Alt om selvudelukkelse fra danske casinoer" } as GuideLink] : []),
+        ...(path !== "/ansvarligt-spil/ludomani" ? [{ to: "/ansvarligt-spil/ludomani", label: "Ludomani Guide", icon: Shield, desc: "Alt om spilleafhængighed i Danmark" } as GuideLink] : []),
+        ...(path !== "/ansvarligt-spil/stopspillet" ? [{ to: "/ansvarligt-spil/stopspillet", label: "StopSpillet Guide", icon: Shield, desc: "Gratis rådgivning for spillere og pårørende" } as GuideLink] : []),
       ].filter(g => g.to !== path),
       subtitle: "Udforsk vores andre sider om ansvarligt spil, databeskyttelse og juridiske vilkår.",
     };
