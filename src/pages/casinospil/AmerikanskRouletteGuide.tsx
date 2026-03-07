@@ -64,7 +64,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Kan man vinde på amerikansk roulette på lang sigt?",
     answer: (
       <>
-        Nej. Med en house edge på 5,26 % er det matematisk umuligt at opnå en positiv forventet værdi over tid. Ingen <Link to="/casinospil/roulette-strategi" className={linkClass}>indsatsstrategi</Link> kan overvinde denne matematiske fordel. Roulette bør betragtes som underholdning med en pris, ikke en investeringsmulighed.
+        Nej. Med en house edge på 5,26 % er det matematisk umuligt at opnå en positiv forventet værdi over tid. Ingen <Link to="/casinospil/roulette" className={linkClass}>indsatsstrategi</Link> kan overvinde denne matematiske fordel. Roulette bør betragtes som underholdning med en pris, ikke en investeringsmulighed.
       </>
     ),
   },

@@ -631,7 +631,7 @@ export default function JamesBondRouletteGuide() {
             Ian Fleming vidste det selv: casinoets matematiske fordel er uovervindelig. Men han forstod også, at roulette handler om oplevelsen, ikke profitjagten. Brug Mini Bond (100 kr.) for længere spilletid, vælg altid <Link to="/casinospil/roulette/europaeisk-roulette" className={linkClass}>europæisk roulette</Link> (aldrig <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>amerikansk</Link>), og gem dine Favourite Bets i live casinoet for et sømløst Bond-setup.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Overhold altid principperne i vores <Link to="/ansvarligt-spil" className={linkClass}>guide til ansvarligt spil</Link>. For den komplette oversigt over alle systemer, se vores <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategiguide</Link>. The name is Bond – not broke.
+            Overhold altid principperne i vores <Link to="/ansvarligt-spil" className={linkClass}>guide til ansvarligt spil</Link>. For den komplette oversigt over alle systemer, se vores <Link to="/casinospil/roulette" className={linkClass}>roulette strategiguide</Link>. The name is Bond – not broke.
           </p>
         </section>
 

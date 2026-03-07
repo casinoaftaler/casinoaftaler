@@ -553,7 +553,7 @@ export default function MartingaleRouletteGuide() {
             Martingale har klart den højeste bankerot-rate pga. sin eksponentielle eskalering. D'Alembert er den mest konservative, mens Fibonacci og <Link to="/casinospil/roulette/labouchere-roulette" className={linkClass}>Labouchère</Link> ligger i midten. Ingen af dem ændrer den fundamentale matematik: over tilstrækkeligt mange spins vil house edge altid vinde.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            For spillere der insisterer på at bruge et system, anbefaler vi enten <Link to="/casinospil/roulette/dalembert-roulette" className={linkClass}>D'Alembert</Link> (laveste risiko) eller Mini-Martingale med 3-4 fordoblinger (balanceret risiko/reward). Men den bedste strategi er altid flat betting med fast budgetgrænse – se vores <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategiguide</Link> for detaljer.
+            For spillere der insisterer på at bruge et system, anbefaler vi enten <Link to="/casinospil/roulette/dalembert-roulette" className={linkClass}>D'Alembert</Link> (laveste risiko) eller Mini-Martingale med 3-4 fordoblinger (balanceret risiko/reward). Men den bedste strategi er altid flat betting med fast budgetgrænse – se vores <Link to="/casinospil/roulette" className={linkClass}>roulette strategiguide</Link> for detaljer.
           </p>
         </section>
 
@@ -810,7 +810,7 @@ export default function MartingaleRouletteGuide() {
             <li><strong>Ansvarlige spilgrænser</strong> via <Link to="/ansvarligt-spil" className={linkClass}>selvbegrænsningsværktøjer</Link></li>
           </ul>
           <p className="text-muted-foreground leading-relaxed">
-            For en bredere gennemgang af alle tilgængelige systemer, se vores <Link to="/casinospil/roulette-strategi" className={linkClass}>komplette roulette strategiguide</Link>. Og husk: det bedste system er det, der holder dig inden for dit budget og giver dig en underholdende oplevelse – ikke det, der lover dig profit.
+            For en bredere gennemgang af alle tilgængelige systemer, se vores <Link to="/casinospil/roulette" className={linkClass}>komplette roulette strategiguide</Link>. Og husk: det bedste system er det, der holder dig inden for dit budget og giver dig en underholdende oplevelse – ikke det, der lover dig profit.
           </p>
         </section>
 

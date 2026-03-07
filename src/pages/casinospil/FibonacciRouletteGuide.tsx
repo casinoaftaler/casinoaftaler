@@ -785,7 +785,7 @@ export default function FibonacciRouletteGuide() {
             Vores 10.000-spins simulering viser, at Fibonacci producerer en jævnere bankrollkurve end Martingale – færre dramatiske sammenbrud og mere gradvis erosion. For spillere der prioriterer underholdning og spilletid over profit-illusion, er Fibonacci det overlegne valg.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Den ultimative anbefaling forbliver: spil for underholdning med et fast budget, brug <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette</Link> for lavest mulig house edge, og konsulter vores <Link to="/ansvarligt-spil" className={linkClass}>guide til ansvarligt spil</Link> for at holde det sundt. For en komplet oversigt over alle systemer, se vores <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategiguide</Link>.
+            Den ultimative anbefaling forbliver: spil for underholdning med et fast budget, brug <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette</Link> for lavest mulig house edge, og konsulter vores <Link to="/ansvarligt-spil" className={linkClass}>guide til ansvarligt spil</Link> for at holde det sundt. For en komplet oversigt over alle systemer, se vores <Link to="/casinospil/roulette" className={linkClass}>roulette strategiguide</Link>.
           </p>
         </section>
 

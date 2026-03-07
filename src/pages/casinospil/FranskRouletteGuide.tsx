@@ -578,7 +578,7 @@ export default function FranskRouletteGuide() {
             Bemærk at <strong>gennemsnitstabet er halveret</strong> for alle systemer på fransk roulette. Bankerot-raterne er også markant lavere: Martingale falder fra 18 % til 10,2 %, Fibonacci fra 12 % til 7,1 %, og D'Alembert fra 8 % til 4,8 %. Men alle systemer har stadig negativ EV – ingen af dem er "profitable" over tid.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Vores anbefaling forbliver den samme uanset variant: flat betting med fast budget er den statistisk sikreste tilgang. Hvis du vil bruge et progressivt system for underholdningsværdien, gør det på fransk roulette med La Partage – det er det mindst skadelige miljø for sådanne systemer. For detaljerede guides til specifikke systemer, se vores <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategiguide</Link>.
+            Vores anbefaling forbliver den samme uanset variant: flat betting med fast budget er den statistisk sikreste tilgang. Hvis du vil bruge et progressivt system for underholdningsværdien, gør det på fransk roulette med La Partage – det er det mindst skadelige miljø for sådanne systemer. For detaljerede guides til specifikke systemer, se vores <Link to="/casinospil/roulette" className={linkClass}>roulette strategiguide</Link>.
           </p>
         </section>
 
@@ -626,7 +626,7 @@ export default function FranskRouletteGuide() {
             De psykologiske fordele er ligeledes markante: reduceret tilt-risiko, længere spilletid og en mere balanceret oplevelse med hyppigere positive outcomes. For spillere der prioriterer underholdningsværdi per krone, er fransk roulette det entydigt bedste valg.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            For danske spillere er anbefalingen klar: find et La Partage-bord hos <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link>, <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> eller <Link to="/casino-anmeldelser/spilleautomaten" className={linkClass}>Spilleautomaten</Link>, spil udelukkende even-money væddemål, og nyd den laveste house edge i standard roulette. Husk: uanset variant er roulette underholdning med en pris – kend prisen, og spil inden for dine grænser. For mere om strategi, se vores <Link to="/casinospil/roulette-strategi" className={linkClass}>roulette strategi-guide</Link>, og for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>, se vores dedikerede guide.
+            For danske spillere er anbefalingen klar: find et La Partage-bord hos <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link>, <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> eller <Link to="/casino-anmeldelser/spilleautomaten" className={linkClass}>Spilleautomaten</Link>, spil udelukkende even-money væddemål, og nyd den laveste house edge i standard roulette. Husk: uanset variant er roulette underholdning med en pris – kend prisen, og spil inden for dine grænser. For mere om strategi, se vores <Link to="/casinospil/roulette" className={linkClass}>roulette strategi-guide</Link>, og for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>, se vores dedikerede guide.
           </p>
         </section>
 
