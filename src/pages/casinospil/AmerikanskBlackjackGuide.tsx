@@ -936,6 +936,7 @@ const AmerikanskBlackjackGuide = () => {
 
         <FAQSection faqs={faqs} />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };
