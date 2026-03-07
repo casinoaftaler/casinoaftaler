@@ -199,6 +199,18 @@ const jonasGuideVideos: AuthorVideo[] = [
   { videoId: "hMHHVA6vH0Y", title: "Hvad er en Indskudsbonus?", path: "/indskudsbonus", category: "Bonus" },
   { videoId: "7JQ3nFTasoQ", title: "Hvad er bonus uden omsætningskrav?", path: "/bonus-uden-omsaetningskrav", category: "Bonus" },
   { videoId: "XhbLda1HyOs", title: "Hvad er bonus uden indbetaling?", path: "/bonus-uden-indbetaling", category: "Bonus" },
+  { videoId: "vai9EyLLpfU", title: "Vi gennemgår Sweet Bonanza", path: "/casinospil/spillemaskiner/sweet-bonanza", category: "Slot Guide" },
+  { videoId: "uUZOHtTgFW4", title: "Vi gennemgår Gates of Olympus", path: "/casinospil/spillemaskiner/gates-of-olympus", category: "Slot Guide" },
+  { videoId: "oz_VUxjLXZ0", title: "Vi gennemgår Dead or Alive 2", path: "/casinospil/spillemaskiner/dead-or-alive-2", category: "Slot Guide" },
+  { videoId: "f9GAKjf63uo", title: "Vi gennemgår Money Train 3", path: "/casinospil/spillemaskiner/money-train-3", category: "Slot Guide" },
+  { videoId: "_rC_ONf72gk", title: "Vi gennemgår The Dog House", path: "/casinospil/spillemaskiner/the-dog-house", category: "Slot Guide" },
+  { videoId: "Ss2ZRXT0jCI", title: "Vi gennemgår Legacy of Dead", path: "/casinospil/spillemaskiner/legacy-of-dead", category: "Slot Guide" },
+  { videoId: "Jw--inO4LNk", title: "Vi gennemgår Book of Dead", path: "/casinospil/spillemaskiner/book-of-dead", category: "Slot Guide" },
+  { videoId: "ybFWBECwKbo", title: "Vi gennemgår Reactoonz", path: "/casinospil/spillemaskiner/reactoonz", category: "Slot Guide" },
+  { videoId: "G8beL2DD1sI", title: "Vi gennemgår Eye of Horus", path: "/casinospil/spillemaskiner/eye-of-horus", category: "Slot Guide" },
+  { videoId: "wk34dIvTJ-c", title: "Vi gennemgår Wolf Gold", path: "/casinospil/spillemaskiner/wolf-gold", category: "Slot Guide" },
+  { videoId: "epl204siMF0", title: "Hvad er en Cashback-Bonus?", path: "/cashback-bonus", category: "Bonus" },
+  { videoId: "ReM4PBQ30rw", title: "Hvad er en Reload Bonus?", path: "/reload-bonus", category: "Bonus" },
 ];
 
 // ─── Kevin – Articles ───────────────────────────────────────────────────

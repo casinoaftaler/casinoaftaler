@@ -5,7 +5,9 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import cashbackHero from "@/assets/heroes/cashback-bonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -140,12 +142,19 @@ const CashbackBonus = () => {
     dateModified: "2026-02-27",
   });
 
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/cashback-bonus`, "epl204siMF0", {
+    title: "Hvad er en Cashback-Bonus? – Forklaret på dansk",
+    description: "Jonas gennemgår hvad en cashback bonus er, hvordan den fungerer, og hvornår den er mere fordelagtig end en matchbonus.",
+    uploadDate: "2026-03-07",
+    duration: "PT1M12S",
+  });
+
   return (
     <>
       <SEO
         title="Cashback Bonus – Få Penge Tilbage fra Dit Casino 2026 | Casinoaftaler"
         description="Alt om cashback bonusser på danske casinoer. Lær hvordan cashback fungerer, hvilke typer der findes, og find de bedste cashback-tilbud i Danmark."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       {/* Hero */}
@@ -181,6 +190,13 @@ const CashbackBonus = () => {
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={cashbackHero} alt="Cashback bonus – casino chips der returneres til spilleren" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
         </div>
+
+        <YoutubeEmbed videoId="epl204siMF0" title="Hvad er en Cashback-Bonus? – Forklaret på dansk" description="Jonas gennemgår hvad en cashback bonus er og hvordan den fungerer." uploadDate="2026-03-07" duration="PT1M12S" />
+        <VideoContextBox heading="Her gennemgår vores forfatter cashback-bonussen">
+          <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer hvad en cashback bonus er, hvordan den beregnes, og hvornår den er mere fordelagtig end en{" "}
+          <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link>. Videoen er en del af vores{" "}
+          <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>-indhold.
+        </VideoContextBox>
 
         {/* Intro */}
         <section className="mb-12">
