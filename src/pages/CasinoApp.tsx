@@ -22,7 +22,7 @@ import {
   Lock,
   Scale,
   BarChart3,
-  BookOpen,
+  
   ExternalLink,
   HelpCircle,
   Phone,
@@ -194,27 +194,6 @@ const CasinoApp = () => {
           />
         </div>
 
-        {/* ── Indholdsfortegnelse ── */}
-        <nav className="mb-10 rounded-xl border border-border bg-card p-6" aria-label="Indholdsfortegnelse">
-          <h2 className="text-lg font-bold mb-3 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
-            Indholdsfortegnelse
-          </h2>
-          <ol className="space-y-1.5 text-sm text-muted-foreground list-decimal list-inside">
-            <li><a href="#hvad-er-casino-app" className="hover:text-primary transition-colors">Hvad er en casino app?</a></li>
-            <li><a href="#typer" className="hover:text-primary transition-colors">Typer af casino apps</a></li>
-            <li><a href="#ios-vs-android" className="hover:text-primary transition-colors">iOS vs. Android – forskelle</a></li>
-            <li><a href="#download" className="hover:text-primary transition-colors">Sådan downloader du en casino app</a></li>
-            <li><a href="#sikkerhed" className="hover:text-primary transition-colors">Sikkerhed og privatlivsbeskyttelse</a></li>
-            <li><a href="#spiludvalg" className="hover:text-primary transition-colors">Spiludvalg i casino apps</a></li>
-            <li><a href="#betaling" className="hover:text-primary transition-colors">Betalinger via casino apps</a></li>
-            <li><a href="#native-vs-pwa" className="hover:text-primary transition-colors">Native app vs. PWA</a></li>
-            <li><a href="#fordele-ulemper" className="hover:text-primary transition-colors">Fordele og ulemper ved casino apps</a></li>
-            <li><a href="#ansvarligt-spil" className="hover:text-primary transition-colors">Ansvarligt spil i apps</a></li>
-            <li><a href="#fremtiden" className="hover:text-primary transition-colors">Fremtidens casino apps</a></li>
-            <li><a href="#hjaelp" className="hover:text-primary transition-colors">Hjælp og ressourcer</a></li>
-          </ol>
-        </nav>
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER EN CASINO APP?

@@ -232,27 +232,6 @@ const RofusGuide = () => {
           />
         </div>
 
-        {/* ── Indholdsfortegnelse ── */}
-        <nav className="mb-10 rounded-xl border border-border bg-card p-6" aria-label="Indholdsfortegnelse">
-          <h2 className="text-lg font-bold mb-3 flex items-center gap-2">
-            <BookOpen className="h-5 w-5 text-primary" />
-            Indholdsfortegnelse
-          </h2>
-          <ol className="space-y-1.5 text-sm text-muted-foreground list-decimal list-inside">
-            <li><a href="#hvad-er-rofus" className="hover:text-primary transition-colors">Hvad er ROFUS?</a></li>
-            <li><a href="#statistik" className="hover:text-primary transition-colors">ROFUS i tal – Statistik og udvikling</a></li>
-            <li><a href="#tilmelding" className="hover:text-primary transition-colors">Sådan tilmelder du dig ROFUS</a></li>
-            <li><a href="#udelukkelsestyper" className="hover:text-primary transition-colors">Midlertidig vs. permanent udelukkelse</a></li>
-            <li><a href="#ophaevelse" className="hover:text-primary transition-colors">Ophævelse af ROFUS-registrering</a></li>
-            <li><a href="#lovgivning" className="hover:text-primary transition-colors">Lovgivning og juridisk grundlag</a></li>
-            <li><a href="#daekningsomraade" className="hover:text-primary transition-colors">Hvad dækker ROFUS?</a></li>
-            <li><a href="#begransninger" className="hover:text-primary transition-colors">Begrænsninger ved ROFUS</a></li>
-            <li><a href="#alternativer" className="hover:text-primary transition-colors">Supplerende selvudelukkelsesværktøjer</a></li>
-            <li><a href="#psykologi" className="hover:text-primary transition-colors">Psykologien bag selvudelukkelse</a></li>
-            <li><a href="#international" className="hover:text-primary transition-colors">International sammenligning</a></li>
-            <li><a href="#hjaelp" className="hover:text-primary transition-colors">Få hjælp og støtte</a></li>
-          </ol>
-        </nav>
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER ROFUS?
