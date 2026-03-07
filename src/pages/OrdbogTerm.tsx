@@ -114,6 +114,24 @@ const OrdbogTerm = () => {
           dangerouslySetInnerHTML={{ __html: processedContent }}
         />
 
+        {term.relatedPages && term.relatedPages.length > 0 && (
+          <section className="mb-10">
+            <h2 className="text-xl font-bold text-foreground mb-4">Relaterede Guides</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {term.relatedPages.map((page) => (
+                <Card key={page.href} className="group hover:border-primary/50 transition-colors">
+                  <CardContent className="p-4">
+                    <Link to={page.href} className="flex items-center justify-between">
+                      <span className="font-semibold text-foreground group-hover:text-primary transition-colors">{page.label}</span>
+                      <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+        )}
+
         {relatedTermData.length > 0 && (
           <section className="mb-10">
             <h2 className="text-xl font-bold text-foreground mb-4">Relaterede Begreber</h2>

@@ -62,6 +62,11 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     anchor: "",
   },
   {
+    patterns: [/\bsticky bonus\b/i],
+    href: "/sticky-bonus",
+    anchor: "",
+  },
+  {
     patterns: [/\bcashback bonus\b/i, /\bcashback-bonus\b/i],
     href: "/cashback-bonus",
     anchor: "",
@@ -257,6 +262,21 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
   {
     patterns: [/\bgamification\b/i],
     href: "/ordbog/gamification",
+    anchor: "",
+  },
+  {
+    patterns: [/\bMitID\b/],
+    href: "/ordbog/mitid-casino",
+    anchor: "MitID",
+  },
+  {
+    patterns: [/\bgevinstprocent\b/i, /\bwin rate\b/i],
+    href: "/ordbog/gevinstprocent",
+    anchor: "",
+  },
+  {
+    patterns: [/\bminimum indbetaling\b/i, /\bmin\.? indbetaling\b/i],
+    href: "/ordbog/minimum-indbetaling",
     anchor: "",
   },
 ];
