@@ -2,7 +2,9 @@ import React from "react";
 import lightningRouletteHero from "@/assets/heroes/lightning-roulette-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -69,13 +71,23 @@ const LightningRouletteGuide = () => {
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
+  const videoJsonLd = buildVideoSchema(
+    `${SITE_URL}/live-casino/lightning-roulette`,
+    "fdvXU75QFNg",
+    {
+      title: "Lightning Roulette gennemgang – Multiplikatorer og strategi forklaret",
+      description: "Se en live gennemgang af Lightning Roulette: multiplikator-mekanikken, house edge og strategisk tilgang til 500x potentialet.",
+      uploadDate: "2026-03-07",
+      duration: "PT10M",
+    }
+  );
 
   return (
     <>
       <SEO
         title="Lightning Roulette – Multiplikator EV & Analyse"
         description="Lightning Roulette 2026: House edge 2,78 %, multiplikatorer op til 500x, EV-analyse og strategi. Sammenlign med standard roulette. Dansk licens."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       <section

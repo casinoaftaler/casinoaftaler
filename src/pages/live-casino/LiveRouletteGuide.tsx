@@ -2,7 +2,9 @@ import React from "react";
 import liveRouletteHero from "@/assets/heroes/live-roulette-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
+import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { VideoContextBox } from "@/components/VideoContextBox";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -69,13 +71,23 @@ const LiveRouletteGuide = () => {
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
+  const videoJsonLd = buildVideoSchema(
+    `${SITE_URL}/live-casino/roulette`,
+    "xKaQ0XGEKuU",
+    {
+      title: "Live Roulette gennemgang – Bordtyper, regler og strategi",
+      description: "Se en live gennemgang af roulette: bordtyper, house edge-forskelle og bankroll management forklaret ved et rigtigt live roulette-bord.",
+      uploadDate: "2026-03-07",
+      duration: "PT10M",
+    }
+  );
 
   return (
     <>
       <SEO
         title="Live Roulette – Bordtyper, Edge & Strategi"
         description="Live roulette 2026: House edge 2,70 % (EU) vs. 1,35 % (French). Bordtyper, tempoanalyse, betting-systemer og bankroll management. Dansk licens."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
       <section
