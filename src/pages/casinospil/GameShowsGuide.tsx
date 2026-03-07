@@ -129,7 +129,7 @@ const GameShowsGuide = () => {
             Hvad er casino game shows – matematisk defineret
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Casino game shows er en hybrid mellem gambling og tv-underholdning. Bag de farverige studier og energiske værter ligger en præcis matematisk struktur: hvert spil har en defineret sandsynlighedsfordeling, en fastlagt house edge og en kontrolleret volatilitets­profil. Det er denne matematik, der gør game shows til en af de mest profitable spilkategorier for casinoerne – og en af de dyreste for spillerne.
+            Casino game shows er en hybrid mellem gambling og tv-underholdning. Bag de farverige studier og energiske værter ligger en præcis matematisk struktur: hvert spil har en defineret sandsynlighedsfordeling, en fastlagt <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> og en kontrolleret volatilitets­profil. Det er denne matematik, der gør game shows til en af de mest profitable spilkategorier for casinoerne – og en af de dyreste for spillerne.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Definitionen er vigtig: et casino game show er et live-streamet spil med visuelle og interaktive underholdningselementer (hjul, multiplikatorer, bonusrunder, AR-effekter), hvor udfaldet er styret af enten mekanisk tilfældighed (fysisk hjul), RNG (Random Number Generator) eller en kombination. Spilleren vælger et væddemål, og udfaldet afgøres uden spillerens indflydelse – der er ingen strategisk komponent.

@@ -246,7 +246,7 @@ const BlackjackGuide = () => {
             Hvorfor blackjack er det eneste casinospil med reel spiller-edge
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            I ethvert casinospil har huset en matematisk fordel – det er forretningsmodellen. Men blackjack er unikt, fordi den fordel ikke er fast. Den varierer baseret på dine beslutninger. Når du følger basic strategy, reducerer du house edge til ca. 0,5 %. Når du spiller efter mavefornemmelse, kan den stige til 2–4 %. Ingen anden casinodisciplin giver dig den kontrol.
+            I ethvert casinospil har huset en matematisk fordel – det er forretningsmodellen. Men blackjack er unikt, fordi den fordel ikke er fast. Den varierer baseret på dine beslutninger. Når du følger basic strategy, reducerer du <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> til ca. 0,5 %. Når du spiller efter mavefornemmelse, kan den stige til 2–4 %. Ingen anden casinodisciplin giver dig den kontrol.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Sammenlign med alternativerne: <Link to="/casinospil/roulette" className={linkClass}>europæisk roulette</Link> har en fast house edge på 2,7 % uanset din indsatsstrategi. <Link to="/casinospil/spillemaskiner" className={linkClass}>Spilleautomater</Link> har en fast RTP, som du ikke kan påvirke overhovedet – du trykker på en knap, og algoritmen bestemmer resten. <Link to="/casinospil/baccarat" className={linkClass}>Baccarat</Link> har en edge på 1,06 % (banker) eller 1,24 % (player), men dine "beslutninger" er begrænsede til at vælge side.
