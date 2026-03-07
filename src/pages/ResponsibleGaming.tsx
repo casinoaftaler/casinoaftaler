@@ -353,7 +353,7 @@ const ResponsibleGaming = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Casinoer med ansvarligt spil-værktøjer" />
+        
 
         <Separator className="my-10" />
 
