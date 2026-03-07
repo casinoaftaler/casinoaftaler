@@ -13,9 +13,8 @@ import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
-import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import casinoBonusHero from "@/assets/heroes/casino-bonus-hero.jpg";
 import {
   Sparkles,
