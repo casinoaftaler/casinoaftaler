@@ -679,6 +679,7 @@ const TexasHoldemGuide = () => {
 
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

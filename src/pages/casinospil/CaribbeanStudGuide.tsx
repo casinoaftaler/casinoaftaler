@@ -628,6 +628,7 @@ export default function CaribbeanStudGuide() {
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 }

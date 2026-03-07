@@ -694,6 +694,7 @@ const EuropaeiskBlackjackGuide = () => {
         <FAQSection faqs={faqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

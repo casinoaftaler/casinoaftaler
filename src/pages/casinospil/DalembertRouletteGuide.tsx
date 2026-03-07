@@ -637,6 +637,7 @@ export default function DalembertRouletteGuide() {
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 }

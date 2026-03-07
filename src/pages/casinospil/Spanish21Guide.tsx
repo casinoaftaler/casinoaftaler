@@ -632,6 +632,7 @@ const Spanish21Guide = () => {
         <FAQSection faqs={faqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

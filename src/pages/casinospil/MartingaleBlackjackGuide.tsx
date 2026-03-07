@@ -817,6 +817,7 @@ const MartingaleBlackjackGuide = () => {
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };
