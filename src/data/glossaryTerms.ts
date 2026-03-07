@@ -112,14 +112,15 @@ export const glossaryTerms: GlossaryTerm[] = [
     slug: "jackpot",
     title: "Jackpot",
     shortDefinition: "En jackpot er den største mulige gevinst på et casinospil. Progressive jackpots vokser med hver indsats og kan nå millionbeløb.",
-    metaTitle: "Hvad er en Jackpot? Typer og Odds",
-    metaDescription: "Alt om jackpots: progressive vs. faste jackpots, hvordan de fungerer, og hvad oddssene er for at vinde.",
+    metaTitle: "Hvad er en Jackpot? Progressive & Faste",
+    metaDescription: "Alt om jackpots: progressive vs. faste jackpots, standalone vs. netværks-jackpots, rekordgevinster og RTP-konsekvenser forklaret.",
     category: "Grundbegreber",
     relatedTerms: ["rtp", "volatilitet", "max-bet"],
     relatedPages: [
       { label: "Mega Moolah Guide", href: "/casinospil/spillemaskiner/mega-moolah" },
+      { label: "Divine Fortune", href: "/casinospil/spillemaskiner/divine-fortune" },
     ],
-    fullContent: `<h2>Hvad er en jackpot?</h2><p>En <strong>jackpot</strong> er den højeste mulige gevinst i et casinospil. På <a href="/casinospil/spillemaskiner" class="text-primary hover:underline">spillemaskiner</a> varierer jackpotten fra faste topgevinster til progressive millionbeløb.</p><h2>Typer</h2><h3>Fast jackpot</h3><p>Forudbestemt topgevinst, f.eks. 5.000x indsats.</p><h3>Progressiv jackpot</h3><p>Vokser med en andel af hver indsats. Tre typer: standalone, lokal og netværks-progressiv.</p><h2>Berømte jackpots</h2><ul><li><strong>Mega Moolah</strong>: Rekord €18,9 millioner</li><li><strong>Mega Fortune</strong>: Over €10 millioner</li><li><strong>Divine Fortune</strong>: Hyppigere, mindre jackpots</li></ul><h2>RTP og jackpots</h2><p>Progressive slots har typisk lavere base <a href="/ordbog/rtp" class="text-primary hover:underline">RTP</a>, fordi en del af indsatsen går til jackpot-puljen. Overvej <a href="/ordbog/volatilitet" class="text-primary hover:underline">volatiliteten</a> – jackpot-slots er næsten altid høj-volatile.</p>`,
+    fullContent: `<h2>Hvad er en jackpot?</h2><p>En <strong>jackpot</strong> er den højeste mulige gevinst i et casinospil. På <a href="/casinospil/spillemaskiner" class="text-primary hover:underline">spillemaskiner</a> varierer jackpotten fra faste topgevinster til progressive millionbeløb.</p><h2>Fast jackpot</h2><p>En fast jackpot har en forudbestemt topgevinst, f.eks. 5.000x indsats. Beløbet ændrer sig ikke uanset hvor mange der spiller.</p><h2>Progressiv jackpot</h2><p>En <strong>progressiv jackpot</strong> er en voksende præmiepulje, der øges med en lille procentdel af <em>hver indsats</em> fra alle spillere. Den har ingen øvre grænse – den vokser til den vindes.</p><h3>Tre typer progressiv jackpot</h3><ul><li><strong>Standalone progressiv</strong>: Begrænset til én specifik maskine. Typisk mindre beløb.</li><li><strong>Lokal progressiv</strong>: Forbundet på tværs af et enkelt casino. Moderate beløb.</li><li><strong>Netværks-progressiv</strong>: Forbundet på tværs af <strong>alle casinoer</strong> der tilbyder spillet. Her opstår milliongevinsterne.</li></ul><h2>Rekordgevinster</h2><ul><li><strong>Mega Moolah</strong>: €21,7 millioner (2021)</li><li><strong>Mega Fortune</strong>: €17,8 millioner (2013)</li><li><strong>Arabian Nights</strong>: €8,6 millioner</li><li><strong>Divine Fortune</strong>: Hyppigere, mindre jackpots – populær i Danmark</li></ul><h2>RTP og jackpots</h2><p>Progressive slots har typisk lavere base <a href="/ordbog/rtp" class="text-primary hover:underline">RTP</a>, fordi en del af indsatsen bidrager til jackpot-puljen. Mega Moolah har kun 88,12% RTP. Det er prisen for drømmen om milliongevinsten. Overvej <a href="/ordbog/volatilitet" class="text-primary hover:underline">volatiliteten</a> – jackpot-slots er næsten altid høj-volatile.</p>`,
   },
   {
     slug: "rng",
@@ -277,21 +278,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     ],
     fullContent: `<h2>Hvad er buy bonus?</h2><p><strong>Buy bonus</strong> (også kaldet bonus buy eller feature buy) er en funktion i mange moderne <a href="/casinospil/spillemaskiner" class="text-primary hover:underline">spillemaskiner</a>, der lader dig købe direkte adgang til <a href="/ordbog/bonus-runde" class="text-primary hover:underline">bonusrunden</a> for et fast beløb – typisk 60x til 100x din indsats.</p><h2>Priser for bonus buy</h2><ul><li><strong>60x</strong>: The Dog House, Wolf Gold</li><li><strong>80x</strong>: <a href="/casinospil/spillemaskiner/gates-of-olympus" class="text-primary hover:underline">Gates of Olympus</a></li><li><strong>100x</strong>: <a href="/casinospil/spillemaskiner/sweet-bonanza" class="text-primary hover:underline">Sweet Bonanza</a></li><li><strong>200-500x</strong>: Premium slots med højere max win</li></ul><h2>EV-analyse</h2><p>Buy bonus-prisen er designet til at matche den <strong>gennemsnitlige bonusværdi</strong>. Det fjerner variansen fra at vente på <a href="/ordbog/scatter" class="text-primary hover:underline">scatter-symboler</a>, men ændrer ikke den langsigtede <a href="/ordbog/rtp" class="text-primary hover:underline">RTP</a>. Nogle slots har endda en lidt højere RTP ved buy bonus.</p><h2>Regulering</h2><ul><li><strong>UK</strong>: Buy bonus er forbudt af UKGC</li><li><strong>Danmark</strong>: Tilladt under <a href="/spillemyndigheden" class="text-primary hover:underline">Spillemyndighedens</a> regulering</li><li><strong>Sverige</strong>: Forbudt siden 2022</li></ul><h2>Se vores guide</h2><p>For en komplet liste og analyse af de bedste bonus buy slots, se vores <a href="/casinospil/spillemaskiner/bonus-buys" class="text-primary hover:underline">bonus buys guide</a>.</p>`,
   },
-  {
-    slug: "sticky-bonus-term",
-    title: "Sticky Bonus",
-    shortDefinition: "En sticky bonus sammenblander din indbetaling og bonusmidler til én saldo. Du kan spille med det fulde beløb, men bonusdelen kan ikke udbetales – kun gevinster over bonusbeløbet.",
-    metaTitle: "Hvad er Sticky Bonus? Bonustype Forklaret",
-    metaDescription: "Forstå sticky bonus i online casino. Lær forskellen mellem sticky og no-sticky bonus og hvordan det påvirker din EV.",
-    category: "Bonus",
-    relatedTerms: ["wagering", "max-bet", "free-spins"],
-    relatedPages: [
-      { label: "Sticky Bonus Guide", href: "/sticky-bonus" },
-      { label: "No-Sticky Bonus", href: "/no-sticky-bonus" },
-      { label: "Casino Bonus", href: "/casino-bonus" },
-    ],
-    fullContent: `<h2>Hvad er sticky bonus?</h2><p>En <strong>sticky bonus</strong> sammenblander din indbetaling og bonusmidler til én samlet saldo. Du kan spille med det fulde beløb fra start, men bonusdelen kan aldrig udbetales – kun gevinster <em>over</em> bonusbeløbet, efter <a href="/ordbog/wagering" class="text-primary hover:underline">omsætningskravet</a> er opfyldt.</p><h2>Sticky vs. no-sticky</h2><ul><li><strong>Sticky</strong>: Bonus + indbetaling i én pulje. Bonus fjernes ved udbetaling.</li><li><strong><a href="/no-sticky-bonus" class="text-primary hover:underline">No-sticky</a></strong>: Din indbetaling holdes adskilt. Du kan udbetale indbetalingen når som helst.</li></ul><h2>EV-beregning for sticky bonus</h2><p>Med en 1.000 kr. sticky bonus (10x wagering, 4% <a href="/ordbog/house-edge" class="text-primary hover:underline">house edge</a>):</p><p><strong>EV = 1.000 − (10.000 × 0,04) − 1.000 = −400 kr.</strong></p><p>Sticky bonusser har lavere EV end no-sticky, fordi bonusbeløbet fratrækkes ved udbetaling.</p><h2>Hvornår er sticky bonus værd at tage?</h2><ul><li>Ved lav wagering (dansk 10x-loft)</li><li>Når bonusbeløbet er stort relativt til indbetalingen</li><li>Når du spiller slots med høj <a href="/ordbog/rtp" class="text-primary hover:underline">RTP</a></li></ul><p>Læs vores komplette <a href="/sticky-bonus" class="text-primary hover:underline">sticky bonus guide</a> for dybdegående analyse.</p>`,
-  },
+  // sticky-bonus-term REMOVED – cannibalization with /sticky-bonus money-page
   {
     slug: "bankroll-management",
     title: "Bankroll Management",
@@ -306,34 +293,8 @@ export const glossaryTerms: GlossaryTerm[] = [
     ],
     fullContent: `<h2>Hvad er bankroll management?</h2><p><strong>Bankroll management</strong> handler om at styre dit casinobudget disciplineret – så du spiller inden for dine rammer og minimerer risikoen for at tabe mere, end du kan tåle.</p><h2>Grundregler</h2><ul><li><strong>Fastlæg et samlet budget</strong>: Aldrig spil for penge, du ikke har råd til at tabe</li><li><strong>Sessionsbudget</strong>: Del dit budget i separate sessioner</li><li><strong>Indsatsgrænse</strong>: Max 1-2% af dit samlede bankroll per spin</li><li><strong>Stop-loss</strong>: Stop når du har tabt dit sessionsbudget</li><li><strong>Gevinstgrænse</strong>: Overvej at stoppe efter en stor gevinst</li></ul><h2>Bankroll efter volatilitet</h2><p>Din bankroll skal matche spillets <a href="/ordbog/volatilitet" class="text-primary hover:underline">volatilitet</a>:</p><ul><li><strong>Lav volatilitet</strong>: 50-100 spins i bankroll er tilstrækkeligt</li><li><strong>Medium volatilitet</strong>: 150-300 spins anbefales</li><li><strong>Høj volatilitet</strong>: Minimum 300-500 spins for at overleve tørkeperioder</li></ul><h2>Under bonusspil</h2><p>Under <a href="/ordbog/wagering" class="text-primary hover:underline">bonusomsætning</a> er bankroll management endnu vigtigere. Overhold altid <a href="/ordbog/max-bet" class="text-primary hover:underline">max bet</a>-reglerne og vælg slots med høj <a href="/ordbog/rtp" class="text-primary hover:underline">RTP</a> for at maksimere din EV.</p><h2>Ansvarligt spil</h2><p>Bankroll management er fundamentet for <a href="/ansvarligt-spil" class="text-primary hover:underline">ansvarligt spil</a>. Benyt ROFUS eller casinoets egne grænseværktøjer, hvis du har svært ved at overholde dine grænser.</p>`,
   },
-  {
-    slug: "progressiv-jackpot",
-    title: "Progressiv Jackpot",
-    shortDefinition: "En progressiv jackpot vokser løbende med en andel af hver indsats på tværs af spillere og casinoer, indtil én heldig spiller vinder hele puljen.",
-    metaTitle: "Hvad er en Progressiv Jackpot? Milliongevinster",
-    metaDescription: "Forstå progressive jackpots: netværk, standalone og lokale jackpots. Lær oddssene og de største gevinster nogensinde.",
-    category: "Grundbegreber",
-    relatedTerms: ["jackpot", "rtp", "volatilitet"],
-    relatedPages: [
-      { label: "Mega Moolah Guide", href: "/casinospil/spillemaskiner/mega-moolah" },
-      { label: "Divine Fortune", href: "/casinospil/spillemaskiner/divine-fortune" },
-    ],
-    fullContent: `<h2>Hvad er en progressiv jackpot?</h2><p>En <strong>progressiv jackpot</strong> er en voksende præmiepulje, der øges med en lille procentdel af <em>hver indsats</em> fra alle spillere. I modsætning til en fast <a href="/ordbog/jackpot" class="text-primary hover:underline">jackpot</a> har den progressiva variant ingen øvre grænse – den vokser til den vindes.</p><h2>Tre typer</h2><h3>Standalone progressiv</h3><p>Jackpotten er begrænset til én specifik maskine. Typisk mindre beløb.</p><h3>Lokal progressiv</h3><p>Forbundet på tværs af et enkelt casino. Moderate beløb.</p><h3>Netværks-progressiv</h3><p>Forbundet på tværs af <strong>alle casinoer</strong> der tilbyder spillet. Her opstår milliongevinsterne. Eksempler: <a href="/casinospil/spillemaskiner/mega-moolah" class="text-primary hover:underline">Mega Moolah</a> (Microgaming-netværk).</p><h2>Rekordgevinster</h2><ul><li><strong>Mega Moolah</strong>: €21,7 millioner (2021)</li><li><strong>Mega Fortune</strong>: €17,8 millioner (2013)</li><li><strong>Arabian Nights</strong>: €8,6 millioner</li></ul><h2>RTP-konsekvenser</h2><p>Progressive slots har lavere base <a href="/ordbog/rtp" class="text-primary hover:underline">RTP</a>, fordi en del af indsatsen bidrager til jackpot-puljen. Mega Moolah har kun 88,12% RTP. Det er prisen for drømmen om milliongevinsten.</p>`,
-  },
-  {
-    slug: "gevinstprocent",
-    title: "Gevinstprocent",
-    shortDefinition: "Gevinstprocent er et mål for hvor stor en del af dine spins der resulterer i gevinst. Ofte forvekslet med RTP, men de to begreber er fundamentalt forskellige.",
-    metaTitle: "Hvad er Gevinstprocent? Forskellen fra RTP",
-    metaDescription: "Forstå gevinstprocent vs. RTP i spillemaskiner. Lær hvorfor en høj gevinstprocent ikke nødvendigvis betyder bedre odds.",
-    category: "Grundbegreber",
-    relatedTerms: ["rtp", "hit-frequency", "volatilitet"],
-    relatedPages: [
-      { label: "Høj RTP Slots", href: "/casinospil/spillemaskiner/hoej-rtp" },
-      { label: "Spillemaskiner", href: "/casinospil/spillemaskiner" },
-    ],
-    fullContent: `<h2>Hvad er gevinstprocent?</h2><p><strong>Gevinstprocent</strong> (win rate) angiver, hvor stor en andel af dine spins der resulterer i en gevinst – uanset gevinstens størrelse. Det er beslægtet med <a href="/ordbog/hit-frequency" class="text-primary hover:underline">hit frequency</a>, men bruges ofte i en bredere kontekst.</p><h2>Gevinstprocent vs. RTP</h2><p>De to begreber forveksles ofte, men er fundamentalt forskellige:</p><ul><li><strong>Gevinstprocent</strong>: Hvor <em>ofte</em> du vinder (f.eks. 35% af spins)</li><li><strong><a href="/ordbog/rtp" class="text-primary hover:underline">RTP</a></strong>: Hvor <em>meget</em> der returneres over tid (f.eks. 96% af indsats)</li></ul><h2>Eksempel</h2><p>En slot kan have 35% gevinstprocent men kun 94% RTP – fordi de fleste gevinster er under din indsats. Omvendt kan en slot med 20% gevinstprocent have 97% RTP, fordi gevinsterne er større.</p><h2>Gevinstprocent og volatilitet</h2><ul><li><strong>Lav <a href="/ordbog/volatilitet" class="text-primary hover:underline">volatilitet</a></strong>: Høj gevinstprocent (30-40%)</li><li><strong>Høj volatilitet</strong>: Lav gevinstprocent (15-25%)</li></ul><h2>Praktisk anvendelse</h2><p>Gevinstprocenten er mest relevant for din <strong>spiloplevelse</strong>, mens RTP er vigtigst for din <strong>langsigtede økonomi</strong>. Til <a href="/ordbog/wagering" class="text-primary hover:underline">bonusomsætning</a> er høj RTP vigtigere end høj gevinstprocent.</p>`,
-  },
+  // progressiv-jackpot REMOVED – cannibalization with /ordbog/jackpot (content merged into jackpot term)
+  // gevinstprocent REMOVED – overlaps with RTP + hit-frequency terms
   {
     slug: "minimum-indbetaling",
     title: "Minimum Indbetaling",
@@ -356,7 +317,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     metaTitle: "Hvad er KYC? Casino Verifikation Forklaret",
     metaDescription: "Forstå KYC-processen på online casinoer. Lær hvilke dokumenter der kræves, hvor lang tid det tager, og hvorfor det er påkrævet.",
     category: "Teknisk",
-    relatedTerms: ["rng", "mitid-casino"],
+    relatedTerms: ["rng"],
     relatedPages: [
       { label: "Spillemyndigheden", href: "/spillemyndigheden" },
       { label: "Casino Licenser", href: "/casino-licenser" },
@@ -364,21 +325,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     ],
     fullContent: `<h2>Hvad er KYC?</h2><p><strong>KYC</strong> (Know Your Customer) er den lovpligtige identitetsverifikation, som alle licenserede casinoer skal udføre. Det sikrer, at spilleren er den, de udgiver sig for at være, og er et centralt element i anti-hvidvask (AML) og <a href="/ansvarligt-spil" class="text-primary hover:underline">ansvarligt spil</a>.</p><h2>KYC-processen</h2><ol><li><strong>Identitetsbevis</strong>: Pas, kørekort eller MitID-verifikation</li><li><strong>Adressebevis</strong>: Elregning, kontoudtog (max 3 måneder gammel)</li><li><strong>Betalingsverifikation</strong>: Foto af betalingskort (med skjulte cifre) eller screenshot af e-wallet</li></ol><h2>KYC i Danmark</h2><p>Danske casinoer med licens fra <a href="/spillemyndigheden" class="text-primary hover:underline">Spillemyndigheden</a> bruger <a href="/ordbog/mitid-casino" class="text-primary hover:underline">MitID</a> til automatisk verifikation. Det gør processen hurtigere end i andre lande, da MitID bekræfter identitet, alder og ROFUS-status i ét step.</p><h2>Hvornår kræves KYC?</h2><ul><li>Ved registrering (altid i Danmark pga. MitID)</li><li>Ved første udbetaling</li><li>Ved store transaktioner (AML-regulering)</li><li>Ved mistanke om svindel</li></ul><h2>Tip til hurtig KYC</h2><p>Indsend dokumenter med god belysning og skarp opløsning. Ufuldstændige dokumenter forsinker processen med 24-72 timer.</p>`,
   },
-  {
-    slug: "mitid-casino",
-    title: "MitID Casino",
-    shortDefinition: "MitID er Danmarks digitale identitetsløsning, der bruges til at verificere din identitet når du registrerer dig på et dansk online casino med Spillemyndighedens licens.",
-    metaTitle: "MitID Casino – Digital ID Verifikation",
-    metaDescription: "Forstå MitID til casino: hvordan verifikationen fungerer, hvorfor det kræves, og sammenhængen med ROFUS og dansk casinolovgivning.",
-    category: "Teknisk",
-    relatedTerms: ["kyc", "rng"],
-    relatedPages: [
-      { label: "Nye Casinoer med MitID", href: "/nye-casinoer/mitid" },
-      { label: "Spillemyndigheden", href: "/spillemyndigheden" },
-      { label: "Casino Licenser", href: "/casino-licenser" },
-    ],
-    fullContent: `<h2>Hvad er MitID casino?</h2><p><strong>MitID</strong> er Danmarks nationale digitale identitetsløsning, der erstattede NemID i 2022. Alle danske casinoer med licens fra <a href="/spillemyndigheden" class="text-primary hover:underline">Spillemyndigheden</a> er forpligtet til at verificere spillere via MitID ved registrering.</p><h2>Sådan fungerer MitID-verifikation</h2><ol><li>Du klikker "Opret konto" på casinoet</li><li>Du viderestilles til MitID-login</li><li>Godkend med MitID-appen eller kodeviser</li><li>Casinoet modtager bekræftelse af identitet + alder + CPR</li><li>ROFUS-status tjekkes automatisk</li></ol><h2>Hvad verificerer MitID?</h2><ul><li><strong>Identitet</strong>: Fuldt navn og CPR-nummer</li><li><strong>Alder</strong>: Bekræftelse af 18+ (lovkrav)</li><li><strong>ROFUS</strong>: Automatisk kontrol af selvudelukkelsesstatus</li></ul><h2>MitID og betalingsmetoder</h2><p>MitID bruges også til at godkende <a href="/betalingsmetoder/trustly" class="text-primary hover:underline">Trustly</a>-betalinger direkte fra din bank. <a href="/betalingsmetoder/mobilepay" class="text-primary hover:underline">MobilePay</a> og kortbetalinger kræver separat godkendelse.</p><h2>Find MitID-casinoer</h2><p>Se vores oversigt over <a href="/nye-casinoer/mitid" class="text-primary hover:underline">nye casinoer med MitID</a> for en komplet liste.</p>`,
-  },
+  // mitid-casino REMOVED – cannibalization with /nye-casinoer/mitid money-page
   {
     slug: "gamification",
     title: "Gamification",

@@ -22,13 +22,13 @@ import gambleFeatureHero from "@/assets/heroes/ordbog-gamble-feature-hero.jpg";
 import cascadingWinsHero from "@/assets/heroes/ordbog-cascading-wins-hero.jpg";
 import megawaysHero from "@/assets/heroes/ordbog-megaways-hero.jpg";
 import buyBonusHero from "@/assets/heroes/ordbog-buy-bonus-hero.jpg";
-import stickyBonusHero from "@/assets/heroes/ordbog-sticky-bonus-hero.jpg";
+// stickyBonusHero removed – term deleted (cannibalization)
 import bankrollManagementHero from "@/assets/heroes/ordbog-bankroll-management-hero.jpg";
-import progressivJackpotHero from "@/assets/heroes/ordbog-progressiv-jackpot-hero.jpg";
-import gevinstprocentHero from "@/assets/heroes/ordbog-gevinstprocent-hero.jpg";
+// progressivJackpotHero removed – merged into jackpot term
+// gevinstprocentHero removed – term deleted (cannibalization)
 import minimumIndbetalingHero from "@/assets/heroes/ordbog-minimum-indbetaling-hero.jpg";
 import kycHero from "@/assets/heroes/ordbog-kyc-hero.jpg";
-import mitidHero from "@/assets/heroes/ordbog-mitid-hero.jpg";
+// mitidHero removed – term deleted (cannibalization with /nye-casinoer/mitid)
 import gamificationHero from "@/assets/heroes/ordbog-gamification-hero.jpg";
 import retriggerHero from "@/assets/heroes/ordbog-retrigger-hero.jpg";
 import clusterPaysHero from "@/assets/heroes/ordbog-cluster-pays-hero.jpg";
@@ -56,13 +56,11 @@ export const glossaryHeroImages: Record<string, string> = {
   "cascading-wins": cascadingWinsHero,
   megaways: megawaysHero,
   "buy-bonus": buyBonusHero,
-  "sticky-bonus-term": stickyBonusHero,
+  
   "bankroll-management": bankrollManagementHero,
-  "progressiv-jackpot": progressivJackpotHero,
-  gevinstprocent: gevinstprocentHero,
   "minimum-indbetaling": minimumIndbetalingHero,
   kyc: kycHero,
-  "mitid-casino": mitidHero,
+  
   gamification: gamificationHero,
   retrigger: retriggerHero,
   "cluster-pays": clusterPaysHero,
