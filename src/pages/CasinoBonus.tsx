@@ -8,14 +8,11 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { CasinoCard } from "@/components/CasinoCard";
-import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
-import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import casinoBonusHero from "@/assets/heroes/casino-bonus-hero.jpg";
 import {
   Sparkles,
@@ -28,7 +25,6 @@ import {
   Users,
   TrendingUp,
   CheckCircle2,
-  Loader2,
   Gift,
   RefreshCw,
   Zap,
@@ -114,41 +110,9 @@ const casinoBonusFaqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const CasinoBonus = () => {
-  const { data: casinos, isLoading } = useCasinos();
   const { data: siteSettings } = useSiteSettings();
-  const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
 
   const heroBackgroundImage = siteSettings?.hero_background_image;
-
-  const activeCasinos =
-    casinos
-      ?.filter((c) => c.is_active)
-      ?.sort((a, b) => a.position - b.position)
-      ?.slice(0, 8) ?? [];
-
-  const mapCasino = (casino: (typeof activeCasinos)[0]) => ({
-    id: casino.id,
-    name: casino.name,
-    slug: casino.slug,
-    rating: CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating),
-    bonusTitle: casino.bonus_title,
-    bonusAmount: casino.bonus_amount,
-    bonusType: casino.bonus_type,
-    wageringRequirements: casino.wagering_requirements,
-    validity: casino.validity,
-    minDeposit: casino.min_deposit,
-    payoutTime: casino.payout_time,
-    freeSpins: casino.free_spins,
-    features: casino.features ?? [],
-    pros: casino.pros ?? [],
-    cons: casino.cons ?? [],
-    description: casino.description ?? "",
-    isRecommended: casino.is_recommended,
-    isHot: casino.is_hot,
-    logoUrl: casino.logo_url,
-    affiliateUrl: casino.affiliate_url,
-    gameProviders: casino.game_providers ?? [],
-  });
 
   const faqJsonLd = buildFaqSchema(casinoBonusFaqs);
 
@@ -297,38 +261,6 @@ const CasinoBonus = () => {
         </section>
 
         <InlineCasinoCards title="Bedste casino bonus tilbud" count={6} />
-
-        <Separator className="my-10" />
-
-        {/* ========== CASINO LIST ========== */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Bedste casino bonus – Top tilbud i Danmark 2026</h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Herunder finder du vores håndplukkede liste over de mest attraktive casino bonusser på det danske marked. Hvert casino er testet med reelle indbetalinger, og bonusvilkårene er verificeret direkte hos operatøren. Listen opdateres løbende, og vi prioriterer no-sticky bonusser med lave omsætningskrav.
-          </p>
-          {isLoading ? (
-            <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            </div>
-          ) : activeCasinos.length === 0 ? (
-            <p className="py-8 text-center text-muted-foreground">Ingen casino bonusser tilgængelige i øjeblikket.</p>
-          ) : (
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-                {activeCasinos.slice(0, 2).map((casino, index) => (
-                  <CasinoCard key={casino.id} casino={mapCasino(casino)} rank={index + 1} open={openCasinoId === casino.id} onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)} />
-                ))}
-              </div>
-              {activeCasinos.length > 2 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-                  {activeCasinos.slice(2).map((casino, index) => (
-                    <CasinoCard key={casino.id} casino={mapCasino(casino)} rank={index + 3} open={openCasinoId === casino.id} onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)} />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        </section>
 
         <Separator className="my-10" />
 
