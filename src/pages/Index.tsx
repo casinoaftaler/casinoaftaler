@@ -216,8 +216,13 @@ const Index = () => {
           </div>
 
           {isLoading ? (
-            <div className="flex items-center justify-center" style={{ minHeight: '900px', contain: 'layout' }}>
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <div className="flex items-center justify-center" style={{ minHeight: '600px', contain: 'layout style' }}>
+              {/* Skeleton placeholders to reserve space and prevent CLS */}
+              <div className="w-full space-y-4">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="h-[160px] rounded-2xl bg-muted animate-pulse" />
+                ))}
+              </div>
             </div>
           ) : filteredCasinos.length === 0 ? (
             <p className="py-12 text-center text-muted-foreground">

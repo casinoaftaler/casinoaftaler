@@ -13,7 +13,7 @@ interface FilterTabsProps {
 
 export function FilterTabs({ activeFilter, onFilterChange }: FilterTabsProps) {
   return (
-    <div className="flex h-auto flex-wrap justify-start gap-2" role="group" aria-label="Filtrer casinoer">
+    <div className="flex h-auto flex-wrap justify-start gap-2" role="group" aria-label="Filtrer casinoer" style={{ minHeight: '44px' }}>
       {filters.map((filter) => (
         <button
           key={filter.id}
