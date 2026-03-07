@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -849,6 +850,7 @@ const Spiludviklere = () => {
         <FAQSection title="Ofte stillede spørgsmål om casino-spiludviklere" faqs={spiludviklereFaqs} />
         <AuthorBio author="kevin" />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };
