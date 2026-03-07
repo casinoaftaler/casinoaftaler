@@ -132,6 +132,8 @@ const casinoGuidesSiblings: GuideLink[] = [
   { to: "/casinoer/mobil-casinoer", label: "Mobil Casinoer", icon: Zap, desc: "Casino på din smartphone" },
   { to: "/casinoer/spil-casino-for-sjov", label: "Spil for Sjov", icon: Sparkles, desc: "Gratis casinospil uden risiko" },
   { to: "/casinoer/casino-og-skat", label: "Casino og Skat", icon: Target, desc: "Skatteforhold ved casinogevinster" },
+  { to: "/mobil-casino", label: "Mobil Casino", icon: Smartphone, desc: "Komplet guide til casino på mobilen" },
+  { to: "/casino-app", label: "Casino App", icon: Smartphone, desc: "Guide til casino apps i Danmark" },
 ];
 
 const casinospilSiblings: GuideLink[] = [

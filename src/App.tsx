@@ -38,6 +38,8 @@ const AnsvarligtSpil = lazy(() => import("./pages/ResponsibleGaming"));
 const RofusGuide = lazy(() => import("./pages/ansvarligt-spil/RofusGuide"));
 const LudomaniGuide = lazy(() => import("./pages/ansvarligt-spil/LudomaniGuide"));
 const StopSpilletGuide = lazy(() => import("./pages/ansvarligt-spil/StopSpilletGuide"));
+const MobilCasino = lazy(() => import("./pages/MobilCasino"));
+const CasinoApp = lazy(() => import("./pages/CasinoApp"));
 const Spillemyndigheden = lazy(() => import("./pages/Spillemyndigheden"));
 const Privatlivspolitik = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
@@ -309,6 +311,8 @@ const App = () => (
                 <Route path="/ansvarligt-spil/rofus" element={<RofusGuide />} />
                 <Route path="/ansvarligt-spil/ludomani" element={<LudomaniGuide />} />
                 <Route path="/ansvarligt-spil/stopspillet" element={<StopSpilletGuide />} />
+                <Route path="/mobil-casino" element={<MobilCasino />} />
+                <Route path="/casino-app" element={<CasinoApp />} />
                 <Route path="/spillemyndigheden" element={<Spillemyndigheden />} />
                 <Route path="/privatlivspolitik" element={<Privatlivspolitik />} />
                 <Route path="/terms" element={<Terms />} />
