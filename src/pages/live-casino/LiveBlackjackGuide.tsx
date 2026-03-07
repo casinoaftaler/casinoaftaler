@@ -130,6 +130,14 @@ const LiveBlackjackGuide = () => {
           Vi har testet samtlige live blackjack-varianter hos danske licenserede casinoer i januar og februar 2026 – fra Evolution Gamings Classic Blackjack til Infinite Blackjack og Lightning Blackjack. Vores analyse bygger på observationer af 2.000+ hænder, regelverifikation på 8 forskellige bordtyper, og matematiske beregninger, der er krydsvalideret mod publicerede RTP-data fra uafhængige testlaboratorier.
         </p>
 
+        <YoutubeEmbed
+          videoId="v7UupDiycVM"
+          title="Live gennemgang af Blackjack-regler og strategi"
+          description="Se en live gennemgang af blackjack-regler, basisstrategi og house edge. Vi demonstrerer optimal spilstrategi ved et rigtigt live blackjack-bord."
+          uploadDate="2026-03-07"
+          duration="PT10M"
+        />
+
         <InlineCasinoCards title="Bedste casinoer til live blackjack" count={6} />
 
         {/* ═══ H2 #1 – Reglerne i live blackjack ═══ */}
