@@ -1,4 +1,5 @@
 import React from "react";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import lightningRouletteHero from "@/assets/heroes/lightning-roulette-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
@@ -594,6 +595,7 @@ const LightningRouletteGuide = () => {
         <FAQSection title="Ofte stillede spørgsmål om Lightning Roulette" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

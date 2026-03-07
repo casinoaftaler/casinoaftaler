@@ -818,6 +818,7 @@ export default function MartingaleRouletteGuide() {
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 }

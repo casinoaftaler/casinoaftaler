@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/book-of-dead-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -418,6 +419,7 @@ const BookOfDeadGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Book of Dead" faqs={bookOfDeadFaqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

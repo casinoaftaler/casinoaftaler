@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/divine-fortune-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -142,6 +143,7 @@ const DivineFortuneGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Divine Fortune" faqs={divineFortuneFaqs} />
         <AuthorBio author="kevin" />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

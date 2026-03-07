@@ -638,6 +638,7 @@ const DoubleExposureBlackjackGuide = () => {
 
         <FAQSection faqs={faqs} />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

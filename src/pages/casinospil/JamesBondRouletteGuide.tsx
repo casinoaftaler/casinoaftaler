@@ -642,6 +642,7 @@ export default function JamesBondRouletteGuide() {
         <Separator className="my-12" />
         <RelatedGuides currentPath="/casinospil/roulette/james-bond-roulette" />
       </div>
+      <StickyCtaBySlug slug="spildansknu" />
     </>
   );
 }

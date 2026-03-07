@@ -1,4 +1,5 @@
 import React from "react";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import monopolyLiveHero from "@/assets/heroes/monopoly-live-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
@@ -569,6 +570,7 @@ const MonopolyLiveGuide = () => {
         <FAQSection title="Ofte stillede spørgsmål om Monopoly Live" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };

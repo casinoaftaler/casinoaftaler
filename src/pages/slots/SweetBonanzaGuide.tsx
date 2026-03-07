@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/sweet-bonanza-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -510,6 +511,7 @@ const SweetBonanzaGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Sweet Bonanza" faqs={sweetBonanzaFaqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

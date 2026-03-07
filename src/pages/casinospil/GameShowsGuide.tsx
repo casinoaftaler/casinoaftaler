@@ -575,6 +575,7 @@ const GameShowsGuide = () => {
         <FAQSection title="Ofte stillede spørgsmål om casino game shows" faqs={gameShowFaqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

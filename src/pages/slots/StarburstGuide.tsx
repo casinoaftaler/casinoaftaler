@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/starburst-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -411,6 +412,7 @@ const StarburstGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Starburst" faqs={starburstFaqs} />
         <AuthorBio author="kevin" />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

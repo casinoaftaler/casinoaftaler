@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/extra-chilli-megaways-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -145,6 +146,7 @@ const ExtraChilliMegawaysGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Extra Chilli Megaways" faqs={extraChilliFaqs} />
         <AuthorBio author="kevin" />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

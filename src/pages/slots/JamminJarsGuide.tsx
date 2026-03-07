@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/jammin-jars-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -361,6 +362,7 @@ const JamminJarsGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Jammin' Jars" faqs={jamminJarsFaqs} />
         <AuthorBio author="kevin" />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

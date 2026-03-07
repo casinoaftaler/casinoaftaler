@@ -475,6 +475,7 @@ const CrapsGuide = () => {
         <FAQSection faqs={crapsFaqs} />
         <AuthorBio author="jonas" showCommunity={false} />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

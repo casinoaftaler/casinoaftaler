@@ -557,6 +557,7 @@ const OnlineLotteriGuide = () => {
         <FAQSection title="Ofte stillede spørgsmål om online lotteri" faqs={lotteriFaqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
 };

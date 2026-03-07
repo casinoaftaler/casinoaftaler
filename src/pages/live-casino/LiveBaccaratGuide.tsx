@@ -1,4 +1,5 @@
 import React from "react";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import liveBaccaratHero from "@/assets/heroes/live-baccarat-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
@@ -586,6 +587,7 @@ const LiveBaccaratGuide = () => {
         <FAQSection title="Ofte stillede spørgsmål om live baccarat" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

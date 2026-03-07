@@ -523,6 +523,7 @@ const RouletteStrategiGuide = () => {
 
         <AuthorBio author="jonas" showCommunity={false} />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

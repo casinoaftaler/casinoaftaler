@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/razor-shark-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -327,6 +328,7 @@ const RazorSharkGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Razor Shark" faqs={razorSharkFaqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };

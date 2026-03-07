@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/gates-of-olympus-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -434,6 +435,7 @@ const GatesOfOlympusGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Gates of Olympus" faqs={gatesOfOlympusFaqs} />
         <AuthorBio />
       </div>
+      <StickyCtaBySlug slug="betinia" />
     </>
   );
 };
