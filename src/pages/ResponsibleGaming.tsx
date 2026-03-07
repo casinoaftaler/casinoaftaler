@@ -439,6 +439,31 @@ const ResponsibleGaming = () => {
           </Card>
         </section>
 
+        {/* Hub-links for equity distribution */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-2xl font-bold">Udforsk Casinoaftaler.dk</h2>
+          <p className="text-muted-foreground mb-6 leading-relaxed">
+            Ansvarligt spil er fundamentet for en god casinooplevelse. Udforsk vores guides for at lære mere om bonusser, casinoer og spil med dansk licens.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { to: "/casino-bonus", title: "Casino Bonus Guide", desc: "Sammenlign bonusser fra licenserede casinoer" },
+              { to: "/casinoer", title: "Alle Casinoer", desc: "Find casinoer med dansk licens" },
+              { to: "/nye-casinoer", title: "Nye Casinoer", desc: "De nyeste casinoer på markedet" },
+              { to: "/casinospil", title: "Casinospil", desc: "Blackjack, roulette, poker og mere" },
+              { to: "/ordbog", title: "Casino Ordbog", desc: "Forstå alle casino-termer" },
+              { to: "/betalingsmetoder", title: "Betalingsmetoder", desc: "MobilePay, Trustly og flere" },
+            ].map((item) => (
+              <Link key={item.to} to={item.to} className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 text-sm transition-colors hover:bg-muted">
+                <div>
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="text-xs text-muted-foreground">{item.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         <LatestNewsByCategory pagePath="/ansvarligt-spil" />
         <RelatedGuides currentPath="/ansvarligt-spil" />
         <FAQSection title="Ofte Stillede Spørgsmål om Ansvarligt Spil" faqs={responsibleGamingFaqs} />
