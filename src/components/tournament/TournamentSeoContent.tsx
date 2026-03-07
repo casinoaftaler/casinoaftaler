@@ -103,6 +103,24 @@ export function TournamentSeoContent() {
         </div>
       </section>
 
+      {/* Video guide */}
+      <div className="space-y-3">
+        <YoutubeEmbed
+          videoId="5OBGaiJDHVM"
+          title="Guide: Sådan fungerer vores turneringer"
+          description="Jonas forklarer credit-systemet, turneringskategorierne og præmiestrukturen."
+          uploadDate="2026-03-07"
+          duration="PT5M"
+        />
+        <VideoContextBox heading="Jonas forklarer turneringerne trin for trin">
+          I denne video gennemgår Jonas hvordan vores{" "}
+          <Link to="/community/turneringer" className="text-primary hover:underline">månedlige turneringer</Link>{" "}
+          fungerer — herunder credit-systemet, de tre turneringskategorier og hvordan præmierne fordeles.
+          Du lærer hvordan du får dine daglige credits, og hvordan dine spins automatisk tæller med i{" "}
+          <Link to="/community/slots" className="text-primary hover:underline">community-spillehallen</Link>.
+        </VideoContextBox>
+      </div>
+
       {/* Rules & tournament structure – card style */}
       <section className="rounded-xl border border-border/50 bg-card p-6 md:p-8 space-y-4">
         <h2 className="text-lg font-bold text-foreground">
