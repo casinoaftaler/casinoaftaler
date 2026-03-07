@@ -147,7 +147,7 @@ serve(async (req) => {
         }
       } else {
         const { data: remaining, error: deductError } = await adminClient.rpc('deduct_spin', {
-          p_user_id: userId, p_date: today, p_bet: betAmount, p_max_spins: 200,
+          p_user_id: userId, p_date: today, p_bet: betAmount, p_max_spins: 200, p_game_id: 'shared',
         });
 
         if (deductError || remaining === -1) {
@@ -189,7 +189,7 @@ serve(async (req) => {
 
         if (diff > 0) {
           const { data: remaining, error: deductError } = await adminClient.rpc('deduct_spin', {
-            p_user_id: userId, p_date: today, p_bet: diff, p_max_spins: 200,
+            p_user_id: userId, p_date: today, p_bet: diff, p_max_spins: 200, p_game_id: 'shared',
           });
           if (deductError || remaining === -1) {
             return json({ error: 'Not enough credits' });
@@ -252,7 +252,7 @@ serve(async (req) => {
         }
       } else {
         const { data: remaining, error: deductError } = await adminClient.rpc('deduct_spin', {
-          p_user_id: userId, p_date: today, p_bet: betAmount, p_max_spins: 200,
+          p_user_id: userId, p_date: today, p_bet: betAmount, p_max_spins: 200, p_game_id: 'shared',
         });
 
         if (deductError || remaining === -1) {
