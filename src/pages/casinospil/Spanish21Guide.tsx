@@ -204,7 +204,7 @@ const Spanish21Guide = () => {
             <strong>EV-beregning for Super Bonus:</strong> Med en sandsynlighed på 0,00015 % og en gennemsnitlig udbetaling på 3.000 kr. er den forventede værdi pr. hånd kun 0,0045 kr. (0,45 øre). Over 10.000 hænder: 45 kr. Det er negligibelt i EV-termer, men den psykologiske effekt – muligheden for en stor engangsgevinst – er en del af Spanish 21's tiltrækningskraft.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Total EV fra bonusregler:</strong> Alle bonusregler tilsammen bidrager med ca. 0,51 % til spillerens EV. Det er disse regler der kompenserer for de manglende 10'ere (som koster ca. 0,80 %) og bringer house edge ned til 0,40 % ved perfekt spil. Uden bonusreglerne ville Spanish 21 have en house edge på over 1,2 % – dyrere end standard blackjack.
+            <strong>Total EV fra bonusregler:</strong> Alle bonusregler tilsammen bidrager med ca. 0,51 % til spillerens EV. Det er disse regler der kompenserer for de manglende 10'ere (som koster ca. 0,80 %) og bringer <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> ned til 0,40 % ved perfekt spil. Uden bonusreglerne ville Spanish 21 have en house edge på over 1,2 % – dyrere end standard blackjack.
           </p>
         </section>
 

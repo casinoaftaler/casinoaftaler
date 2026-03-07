@@ -118,7 +118,7 @@ export default function LabouchereRouletteGuide() {
             Konceptet er elegant: du skriver en talrække (f.eks. 1-2-3-2-1), og summen af rækken er dit profitmål (i dette tilfælde 9 enheder = 450 kr. med 50 kr. basisenhed). Din indsats er altid summen af det første og sidste tal i rækken. Ved gevinst sletter du de to tal; ved tab tilføjer du det tabte beløb til rækkens ende.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Det giver en unik fordel: du har kontrol over eskalering, risikoprofil og profitmål. Men det ændrer ikke den fundamentale matematik – house edge er stadig 2,70% per spin. I denne guide gennemgår vi systemet i detaljer, tester det med 10.000 spins og giver vores ærlige vurdering.
+            Det giver en unik fordel: du har kontrol over eskalering, risikoprofil og profitmål. Men det ændrer ikke den fundamentale matematik – <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> er stadig 2,70% per spin. I denne guide gennemgår vi systemet i detaljer, tester det med 10.000 spins og giver vores ærlige vurdering.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Labouchère er særligt populært blandt erfarne spillere, der finder Martingale for aggressivt og <Link to="/casinospil/roulette/dalembert-roulette" className={linkClass}>D'Alembert</Link> for passivt. Det repræsenterer en mellemvej – men som vi vil demonstrere, er det stadig en vej med negativ forventet værdi i enden.

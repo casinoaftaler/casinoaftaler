@@ -332,7 +332,7 @@ export default function DalembertRouletteGuide() {
             D'Alembert på Forskellige Roulette-Varianter: Hvad Dataen Viser
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            D'Alemberts performance varierer markant afhængigt af den underliggende house edge. Vi simulerede 1.000 spins med 100 kr. basisenhed på alle tre hovedvarianter:
+            D'Alemberts performance varierer markant afhængigt af den underliggende <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>. Vi simulerede 1.000 spins med 100 kr. basisenhed på alle tre hovedvarianter:
           </p>
 
           <Card className="border-border bg-card my-4">

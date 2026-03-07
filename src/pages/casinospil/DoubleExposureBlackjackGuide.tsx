@@ -153,7 +153,7 @@ const DoubleExposureBlackjackGuide = () => {
             Advarsel: Hvorfor 90 % af Spillere Taber Mere på Double Exposure
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Lad os starte med den vigtigste pointe, som de fleste Double Exposure-guides overser: <strong>denne variant har en højere house edge end standard blackjack</strong>. Ja, du kan se begge dealerens kort. Ja, det føles som en kæmpe fordel. Men nej, det er det ikke – fordi casinoet har kompenseret med regler der koster dig mere, end informationen er værd.
+            Lad os starte med den vigtigste pointe, som de fleste Double Exposure-guides overser: <strong>denne variant har en højere <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> end standard blackjack</strong>. Ja, du kan se begge dealerens kort. Ja, det føles som en kæmpe fordel. Men nej, det er det ikke – fordi casinoet har kompenseret med regler der koster dig mere, end informationen er værd.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den typiske Double Exposure-spiller tror, at fuld information eliminerer usikkerhed. Det gør det – men casinoet har ikke givet dig denne fordel gratis. De har fjernet 3:2 blackjack-udbetaling (koster dig 1,39 %), tilføjet "dealer vinder ties" (koster dig 0,50 %), og begrænset dine splits og fordoblinger (koster dig 0,24 %). Den samlede kompensation (2,13 %) overstiger informationsfordelens værdi (ca. 2,00 %).

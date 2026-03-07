@@ -166,7 +166,7 @@ const FibonacciBlackjackGuide = () => {
             Fibonacci-sekvensen dukker op overalt i naturen: i solsikkers frøarrangementer, nautilussneglens spiral, galaksers rotationsmønstre og menneskets DNA-helix. Denne naturlige universalitet har skabt en <em>mystisk aura</em> omkring sekvensen – en tro på, at der er noget fundamentalt "rigtigt" ved disse tal. Den tro er forkert i casino-kontekst, men den er forståelig.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            I denne guide dissekerer jeg Fibonacci-systemet med samme analytiske precision, som jeg brugte på <Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale-analysen</Link>. Men hvor Martingale er en hammer – brutal, direkte, ødelæggende – er Fibonacci en skalpel: mere elegant, mere nuanceret, og i sidste ende stadig ude af stand til at overvinde house edge. Lad os begynde med mekanikken.
+            I denne guide dissekerer jeg Fibonacci-systemet med samme analytiske precision, som jeg brugte på <Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale-analysen</Link>. Men hvor Martingale er en hammer – brutal, direkte, ødelæggende – er Fibonacci en skalpel: mere elegant, mere nuanceret, og i sidste ende stadig ude af stand til at overvinde <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>. Lad os begynde med mekanikken.
           </p>
 
           <Card className="mb-6 border-primary/30 bg-primary/5">

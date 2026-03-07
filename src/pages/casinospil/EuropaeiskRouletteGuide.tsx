@@ -110,7 +110,7 @@ export default function EuropaeiskRouletteGuide() {
             Hvad er Europæisk Roulette? Den Matematisk Optimale Standard
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Europæisk roulette er den mest populære roulette-variant på danske online casinoer – og med god grund. Med kun ét nulfel (0) og 36 nummererede felter (1-36) giver det en house edge på 2,70 %, som er næsten halvt så lav som <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>amerikansk roulettes</Link> 5,26 %. For spillere der søger den bedste balance mellem underholdning og matematisk fairness, er europæisk roulette den gyldne standard.
+            Europæisk roulette er den mest populære roulette-variant på danske online casinoer – og med god grund. Med kun ét nulfel (0) og 36 nummererede felter (1-36) giver det en <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> på 2,70 %, som er næsten halvt så lav som <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>amerikansk roulettes</Link> 5,26 %. For spillere der søger den bedste balance mellem underholdning og matematisk fairness, er europæisk roulette den gyldne standard.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Det europæiske hjuls design er en triumf af matematisk elegance. De 37 felter er arrangeret i en specifik rækkefølge designet til at sikre maksimal spredning: høje og lave tal alternerer, røde og sorte felter veksler, og lige og ulige tal distribueres jævnt. Rækkefølgen (med uret fra nul) er: <strong>0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26</strong>.

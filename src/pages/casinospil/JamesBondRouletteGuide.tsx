@@ -234,7 +234,7 @@ export default function JamesBondRouletteGuide() {
           </Card>
 
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Den forventede værdi er præcis -2,70% – identisk med et simpelt rød/sort-væddemål. Dette er en fundamental egenskab ved roulette: uanset hvordan du fordeler dine chips, er house edge konstant. Du kan dække 1 tal eller 36 tal – EV forbliver -1/37 per indsats.
+            Den forventede værdi er præcis -2,70% – identisk med et simpelt rød/sort-væddemål. Dette er en fundamental egenskab ved roulette: uanset hvordan du fordeler dine chips, er <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> konstant. Du kan dække 1 tal eller 36 tal – EV forbliver -1/37 per indsats.
           </p>
 
           <h3 className="text-lg font-semibold text-foreground mb-3">Resultatfordeling vs. progressionssystemer</h3>

@@ -153,7 +153,7 @@ export default function AmerikanskRouletteGuide() {
             Hvor <Link to="/casinospil/roulette/europaeisk-roulette" className={linkClass}>europæisk roulette</Link> har 37 felter (0-36), har det amerikanske hjul 38 felter (0, 00, 1-36). Men udbetalingerne er identiske: et straight-up væddemål betaler stadig 35:1, som om der kun var 36 talfelter. Det er dette misforhold mellem de faktiske odds (1/38 = 2,63 %) og udbetalingen (35:1, beregnet som 1/36 = 2,78 %) der skaber casinoets fordel.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Resultatet er brutalt simpelt: house edge på amerikansk roulette er 5,26 % – næsten dobbelt så høj som europæisk roulettes 2,70 %. For danske spillere, der har adgang til europæiske borde på casinoer som <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> og <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link>, er der sjældent en rationel grund til at vælge det amerikanske hjul.
+            Resultatet er brutalt simpelt: <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> på amerikansk roulette er 5,26 % – næsten dobbelt så høj som europæisk roulettes 2,70 %. For danske spillere, der har adgang til europæiske borde på casinoer som <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> og <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link>, er der sjældent en rationel grund til at vælge det amerikanske hjul.
           </p>
 
           <Card className="mb-6 border-destructive/30 bg-destructive/5">

@@ -106,7 +106,7 @@ export default function FranskRouletteGuide() {
             Hvad er Fransk Roulette? Det Originale – og Stadig Det Bedste
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Fransk roulette er roulettens originale form – spillet der startede i Pariser-salonerne i 1700-tallet og siden har defineret casino-kultur verden over. Det bruger det samme single-zero hjul som <Link to="/casinospil/roulette/europaeisk-roulette" className={linkClass}>europæisk roulette</Link> (37 felter, 0-36), men tilføjer to afgørende regler der sænker house edge til det laveste niveau i standard roulette: <strong>La Partage</strong> og <strong>En Prison</strong>.
+            Fransk roulette er roulettens originale form – spillet der startede i Pariser-salonerne i 1700-tallet og siden har defineret casino-kultur verden over. Det bruger det samme single-zero hjul som <Link to="/casinospil/roulette/europaeisk-roulette" className={linkClass}>europæisk roulette</Link> (37 felter, 0-36), men tilføjer to afgørende regler der sænker <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> til det laveste niveau i standard roulette: <strong>La Partage</strong> og <strong>En Prison</strong>.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Med La Partage-reglen reduceres house edge for even-money væddemål (rød/sort, lige/ulige, 1-18/19-36) fra 2,70 % til <strong>1,35 %</strong>. Det er halvdelen af europæisk roulette, en fjerdedel af <Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>amerikansk roulette</Link>, og gør fransk roulette til det matematisk mest fordelagtige roulettespil der eksisterer i standardformat.
