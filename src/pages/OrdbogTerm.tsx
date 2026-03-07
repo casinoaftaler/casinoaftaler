@@ -12,9 +12,23 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { useMemo } from "react";
 
+// 301-equivalent redirects for removed terms (cannibalization fixes)
+const TERM_REDIRECTS: Record<string, string> = {
+  "sticky-bonus-term": "/sticky-bonus",
+  "mitid-casino": "/nye-casinoer/mitid",
+  "gevinstprocent": "/ordbog/hit-frequency",
+  "progressiv-jackpot": "/ordbog/jackpot",
+};
+
 const OrdbogTerm = () => {
   const { slug } = useParams<{ slug: string }>();
   const { pathname } = useLocation();
+
+  // Redirect removed terms to their canonical pages
+  if (slug && TERM_REDIRECTS[slug]) {
+    return <Navigate to={TERM_REDIRECTS[slug]} replace />;
+  }
+
   const term = slug ? getTermBySlug(slug) : undefined;
 
   const processedContent = useMemo(() => {
