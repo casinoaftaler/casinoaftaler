@@ -114,41 +114,9 @@ const casinoBonusFaqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const CasinoBonus = () => {
-  const { data: casinos, isLoading } = useCasinos();
   const { data: siteSettings } = useSiteSettings();
-  const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
 
   const heroBackgroundImage = siteSettings?.hero_background_image;
-
-  const activeCasinos =
-    casinos
-      ?.filter((c) => c.is_active)
-      ?.sort((a, b) => a.position - b.position)
-      ?.slice(0, 8) ?? [];
-
-  const mapCasino = (casino: (typeof activeCasinos)[0]) => ({
-    id: casino.id,
-    name: casino.name,
-    slug: casino.slug,
-    rating: CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating),
-    bonusTitle: casino.bonus_title,
-    bonusAmount: casino.bonus_amount,
-    bonusType: casino.bonus_type,
-    wageringRequirements: casino.wagering_requirements,
-    validity: casino.validity,
-    minDeposit: casino.min_deposit,
-    payoutTime: casino.payout_time,
-    freeSpins: casino.free_spins,
-    features: casino.features ?? [],
-    pros: casino.pros ?? [],
-    cons: casino.cons ?? [],
-    description: casino.description ?? "",
-    isRecommended: casino.is_recommended,
-    isHot: casino.is_hot,
-    logoUrl: casino.logo_url,
-    affiliateUrl: casino.affiliate_url,
-    gameProviders: casino.game_providers ?? [],
-  });
 
   const faqJsonLd = buildFaqSchema(casinoBonusFaqs);
 
