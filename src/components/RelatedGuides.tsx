@@ -143,7 +143,7 @@ const casinospilSiblings: GuideLink[] = [
   { to: "/casinospil/poker", label: "Poker Regler", icon: Gamepad2, desc: "Guide til casino poker og Video Poker" },
   { to: "/casinospil/craps", label: "Craps Regler", icon: Gamepad2, desc: "Terningspillet med de bedste odds" },
   { to: "/casinospil/baccarat", label: "Baccarat Regler", icon: Trophy, desc: "Elegancens kortspil med lav house edge" },
-  { to: "/casinospil/roulette-strategi", label: "Roulette Strategi", icon: BarChart3, desc: "Martingale, Fibonacci og mere" },
+  { to: "/casinospil/roulette", label: "Roulette Strategi", icon: BarChart3, desc: "Martingale, Fibonacci og mere" },
   { to: "/casinospil/online-lotteri", label: "Online Lotteri", icon: Sparkles, desc: "Lotto, Keno og skrabespil" },
   { to: "/casinospil/game-shows", label: "Game Shows", icon: Tv, desc: "Crazy Time, Monopoly Live og mere" },
   { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil med rigtige dealere i realtid" },
