@@ -135,6 +135,10 @@ const FordeleOgUlemperGuide = () => {
         </div>
       </section>
 
+      <div className="w-full">
+        <img src={heroFordeleUlemper} alt="Fordele og ulemper ved casino uden konto – balanceret vurdering" width={1920} height={1080} loading="eager" className="w-full h-auto object-cover max-h-[400px]" />
+      </div>
+
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" date="2026-03-08" readTime="32 Min." />
 
