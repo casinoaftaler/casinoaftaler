@@ -508,7 +508,8 @@ const Betalingsmetoder = () => {
                 </p>
                 <p>
                   <strong>Bekvemmelighedsfordel:</strong> Hele transaktionen gennemføres med Face ID, Touch ID eller fingeraftryk – ingen kortnumre, ingen passwords, ingen PIN-koder. MobilePays gennemsnitlige transaktions-tid var 2,1 sekunder i vores test. Læs vores komplette{" "}
-                  <Link to="/mobil-casino" className="text-primary underline hover:text-primary/80">mobil casino guide</Link> for dybdegående test af alle mobile betalingsløsninger.
+                  <Link to="/casino-med-mobilepay" className="text-primary underline hover:text-primary/80">Casino med MobilePay guide</Link> for en dybdegående gennemgang af gebyrer, grænser og bonuskvalificering, eller besøg vores{" "}
+                  <Link to="/mobil-casino" className="text-primary underline hover:text-primary/80">mobil casino guide</Link> for test af alle mobile betalingsløsninger.
                 </p>
                 <p>
                   <strong>Primær ulempe:</strong> Udbetalingssupport er begrænset. MobilePay sender udbetalinger til din tilknyttede bankkonto (ikke direkte til appen), og Apple Pay har varierende udbetalingssupport fra casino til casino. Begge kvalificerer til bonusser, da de teknisk registreres som bankbaserede betalinger.

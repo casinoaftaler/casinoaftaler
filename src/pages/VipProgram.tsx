@@ -225,6 +225,9 @@ const VipProgram = () => {
             1.000 kr. i bonus og maksimalt 10x{" "}
             <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">
               omsætningskrav
+            </Link>. For en komplet oversigt over alle bonustyper, se vores{" "}
+            <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">
+              casino bonus guide
             </Link>.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">

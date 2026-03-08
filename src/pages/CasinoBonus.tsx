@@ -147,6 +147,7 @@ const CasinoBonus = () => {
             { "@type": "ListItem", position: 7, name: "Cashback Bonus", url: `${SITE_URL}/cashback-bonus` },
             { "@type": "ListItem", position: 8, name: "Reload Bonus", url: `${SITE_URL}/reload-bonus` },
             { "@type": "ListItem", position: 9, name: "Sticky Bonus", url: `${SITE_URL}/sticky-bonus` },
+            { "@type": "ListItem", position: 10, name: "VIP Program", url: `${SITE_URL}/vip-program` },
           ],
         }]}
       />
@@ -772,7 +773,7 @@ const CasinoBonus = () => {
 
           <h3 className="mb-3 mt-6 text-xl font-semibold">Gamification og loyalitetsbonusser vokser</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Traditionelle reload-bonusser suppleres i stigende grad af gamification-elementer: lykkehjul, missioner, turneringspoint og leveling-systemer. Disse mekanismer giver spillere løbende bonusværdi uden formelle omsætningskrav. <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> og <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> har implementeret avancerede loyalitetsprogrammer, der belønner aktivt spil med kontante belønninger, free spins og eksklusive kampagner.
+            Traditionelle reload-bonusser suppleres i stigende grad af gamification-elementer: lykkehjul, missioner, turneringspoint og leveling-systemer. Disse mekanismer giver spillere løbende bonusværdi uden formelle omsætningskrav. <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> og <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> har implementeret avancerede loyalitetsprogrammer, der belønner aktivt spil med kontante belønninger, free spins og eksklusive kampagner. Læs vores komplette <Link to="/vip-program" className={linkClass}>VIP-program guide</Link> for en dybdegående analyse af tier-systemer, comp points og matematisk EV-beregning.
           </p>
 
           <h3 className="mb-3 mt-6 text-xl font-semibold">Øget gennemsigtighed i bonusmarkedsføring</h3>
@@ -801,6 +802,7 @@ const CasinoBonus = () => {
               { to: "/cashback-bonus", label: "Cashback Bonus Guide", icon: DollarSign },
               { to: "/reload-bonus", label: "Reload Bonus Guide", icon: RefreshCw },
               { to: "/omsaetningskrav", label: "Omsætningskrav Guide", icon: Percent },
+              { to: "/vip-program", label: "VIP Program Guide", icon: Crown },
               { to: "/free-spins-i-dag", label: "Free Spins i Dag", icon: Flame },
               { to: "/nye-casinoer", label: "Nye Casinoer 2026", icon: Sparkles },
               { to: "/casinoer", label: "Alle Danske Casinoer", icon: Users },
