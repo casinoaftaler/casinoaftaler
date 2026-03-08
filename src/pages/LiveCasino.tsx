@@ -7,6 +7,7 @@ import { FAQSection } from "@/components/FAQSection";
 import liveCasinoHero from "@/assets/heroes/live-casino-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -873,6 +874,7 @@ const LiveCasino = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/live-casino" />
+        <LiveCommunityDataStrip context="casino" />
         <RelatedGuides currentPath="/live-casino" />
         <FAQSection title="Ofte stillede spørgsmål om live casino" faqs={liveCasinoFaqs} />
         <AuthorBio />

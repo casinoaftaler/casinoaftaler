@@ -23,6 +23,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { CommunityActivityWidget } from "@/components/CommunityActivityWidget";
+import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
@@ -399,6 +400,7 @@ const SpilDanskNuAnmeldelse = () => {
         <RelatedReviews currentSlug="spildansknu" />
         <InlineCasinoCards excludeSlugs={["spildansknu"]} />
         <Separator className="my-10" />
+        <LiveCommunityDataStrip context="casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/spildansknu" />
         <FAQSection title="Ofte stillede spørgsmål om SpilDanskNu" faqs={spilDanskNuFaqs} />
         <AuthorBio author="jonas" />
