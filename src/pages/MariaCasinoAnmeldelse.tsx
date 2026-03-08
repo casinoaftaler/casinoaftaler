@@ -86,6 +86,7 @@ const MariaCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="Maria Casino" intro={TEST_LOG_DATA["maria-casino"].intro} entries={TEST_LOG_DATA["maria-casino"].entries} />
 
         {/* Bonusanalyse */}
         <section className="mb-12">
@@ -211,8 +212,6 @@ const MariaCasinoAnmeldelse = () => {
         <RelatedReviews currentSlug="maria-casino" />
         <InlineCasinoCards count={3} />
         <RelatedGuides currentPath="/casino-anmeldelser/maria-casino" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Maria Casino" intro={TEST_LOG_DATA["maria-casino"].intro} entries={TEST_LOG_DATA["maria-casino"].entries} />
         <FAQSection faqs={mariaFaqs} />
         <AuthorBio author="jonas" />
       </div>

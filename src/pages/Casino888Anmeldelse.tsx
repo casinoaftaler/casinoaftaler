@@ -103,6 +103,7 @@ const Casino888Anmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="888 Casino" intro={TEST_LOG_DATA["888-casino"].intro} entries={TEST_LOG_DATA["888-casino"].entries} />
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Bonusanalyse – matematik og realiteter</h2>
@@ -323,8 +324,6 @@ const Casino888Anmeldelse = () => {
         <RelatedReviews currentSlug="888-casino" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["888-casino"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/888-casino" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="888 Casino" intro={TEST_LOG_DATA["888-casino"].intro} entries={TEST_LOG_DATA["888-casino"].entries} />
         <FAQSection faqs={faqs} />
         <AuthorBio />
       </div>

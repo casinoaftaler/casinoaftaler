@@ -101,6 +101,7 @@ const MrGreenAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="Mr Green" intro={TEST_LOG_DATA["mr-green"].intro} entries={TEST_LOG_DATA["mr-green"].entries} />
 
         {/* Bonusanalyse */}
         <section className="mb-12">
@@ -269,8 +270,6 @@ const MrGreenAnmeldelse = () => {
         <RelatedReviews currentSlug="mr-green" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["mr-green"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/mr-green" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Mr Green" intro={TEST_LOG_DATA["mr-green"].intro} entries={TEST_LOG_DATA["mr-green"].entries} />
         <FAQSection title="Ofte stillede spørgsmål om Mr Green Casino" faqs={mrgreenFaqs} />
         <AuthorBio />
       </div>

@@ -274,6 +274,7 @@ const CampobetAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="Campobet" intro={TEST_LOG_DATA["campobet"].intro} entries={TEST_LOG_DATA["campobet"].entries} />
 
         {/* No-Sticky Bonusanalyse */}
         <section className="mb-12">
@@ -561,8 +562,6 @@ const CampobetAnmeldelse = () => {
         <RelatedReviews currentSlug="campobet" />
         <InlineCasinoCards excludeSlugs={["campobet"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/campobet" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Campobet" intro={TEST_LOG_DATA["campobet"].intro} entries={TEST_LOG_DATA["campobet"].entries} />
         <FAQSection title="Ofte stillede spørgsmål om Campobet" faqs={campobetFaqs} />
         <AuthorBio author="jonas" />
       </div>

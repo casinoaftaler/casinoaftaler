@@ -195,6 +195,7 @@ const ComeOnAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="ComeOn" intro={TEST_LOG_DATA["comeon"].intro} entries={TEST_LOG_DATA["comeon"].entries} />
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Spiludvalget – bredde med personlighed</h2>
@@ -344,8 +345,6 @@ const ComeOnAnmeldelse = () => {
         <RelatedReviews currentSlug="comeon" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["comeon"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/comeon" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="ComeOn" intro={TEST_LOG_DATA["comeon"].intro} entries={TEST_LOG_DATA["comeon"].entries} />
         <FAQSection title="Ofte stillede spørgsmål om ComeOn Casino" faqs={comeonFaqs} />
         <AuthorBio />
       </div>

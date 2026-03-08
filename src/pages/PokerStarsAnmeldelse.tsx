@@ -97,6 +97,7 @@ const PokerStarsAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="PokerStars" intro={TEST_LOG_DATA["pokerstars"].intro} entries={TEST_LOG_DATA["pokerstars"].entries} />
 
         {/* Casino og sport */}
         <section className="mb-12">

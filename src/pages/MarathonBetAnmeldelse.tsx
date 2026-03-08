@@ -97,6 +97,7 @@ const MarathonBetAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="MarathonBet" intro={TEST_LOG_DATA["marathonbet"].intro} entries={TEST_LOG_DATA["marathonbet"].entries} />
 
         {/* Sportsbog – detaljeret analyse */}
         <section className="mb-12">
@@ -293,8 +294,6 @@ const MarathonBetAnmeldelse = () => {
         <RelatedReviews currentSlug="marathonbet" />
         <InlineCasinoCards count={3} />
         <RelatedGuides currentPath="/casino-anmeldelser/marathonbet" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="MarathonBet" intro={TEST_LOG_DATA["marathonbet"].intro} entries={TEST_LOG_DATA["marathonbet"].entries} />
         <FAQSection faqs={marathonbetFaqs} />
         <AuthorBio author="jonas" />
       </div>
