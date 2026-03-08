@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
-import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -182,9 +180,6 @@ const NordicBetAnmeldelse = () => {
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Casino-sektionen er sekundær til sport i design og navigation", "Mangler Nolimit City og ELK Studios i spiludvalget", "Sticky bonus – no-sticky er mere fordelagtig", "Ingen eksklusive live casino-borde", "Casino-kampagner er sjældnere end hos casino-specialister", "Mobiloplevelsen halter bag LeoVegas og bet365", "Brandet er mindre kendt end Unibet og bet365 i DK"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
           </div>
         </section>
-
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="NordicBet" intro={TEST_LOG_DATA["nordicbet"].intro} entries={TEST_LOG_DATA["nordicbet"].entries} />
 
         <Separator className="my-10" />
 

@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
-import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -152,9 +150,6 @@ const RoyalCasinoAnmeldelse = () => {
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Svagheder</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Spiludvalg kan variere i praksis trods stort katalog", "Mangler enkelte nicheudviklere", "Ingen internationale e-wallets (Skrill, PayPal)", "Konservativ bonusstrategi uden no-sticky option", "Ingen dedikeret mobilapp", "Ingen kryptovaluta-muligheder", "Sticky bonus-model", "Udbetaling kan tage op til 7 hverdage"].map((con) => (<li key={con} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{con}</span></li>))}</ul></CardContent></Card>
           </div>
         </section>
-
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Royal Casino" intro={TEST_LOG_DATA["royal-casino"].intro} entries={TEST_LOG_DATA["royal-casino"].entries} />
 
         <Separator className="my-10" />
 

@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
-import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -178,9 +176,6 @@ const StakeCasinoAnmeldelse = () => {
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Krypto-betalinger muligvis ikke tilgængelige i DK", "VIP-program kan være modificeret under dansk regulering", "Nyt brand på det danske marked uden track record", "Originals kræver regulatorisk godkendelse (muligvis ikke alle tilgængelige)", "Community-features kan være begrænsede i DK-version", "Udbetalingstider langsommere end på den internationale krypto-version", "Dansk kundeservice stadig under opbygning", "Begrænset erfaring med danske spillere", "Bonusvilkår tilpasset dansk lovgivning (omsætningskrav)"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
           </div>
         </section>
-
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Stake Casino" intro={TEST_LOG_DATA["stake-casino"].intro} entries={TEST_LOG_DATA["stake-casino"].entries} />
 
         <Separator className="my-10" />
 

@@ -299,8 +299,6 @@ const PokerStarsAnmeldelse = () => {
         <InlineCasinoCards count={3} />
         <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/pokerstars" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="PokerStars" intro={TEST_LOG_DATA["pokerstars"].intro} entries={TEST_LOG_DATA["pokerstars"].entries} />
         <FAQSection faqs={pokerstarsFaqs} />
         <AuthorBio author="jonas" />
       </div>
