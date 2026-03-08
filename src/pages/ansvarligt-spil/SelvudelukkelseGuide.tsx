@@ -38,6 +38,7 @@ import {
   FileText,
   Smartphone,
   Key,
+  Wallet,
 } from "lucide-react";
 
 // ────────────────────────────────────────────────────────────────
@@ -134,12 +135,13 @@ const SelvudelukkelseGuide = () => {
   const { data: settings } = useSiteSettings();
 
   const articleSchema = buildArticleSchema({
-    title: "Selvudelukkelse fra Casino – Komplet Guide til ROFUS og Alle Muligheder",
+    headline: "Selvudelukkelse fra Casino – Komplet Guide til ROFUS og Alle Muligheder",
     description: "Dybdegående guide til selvudelukkelse fra danske casinoer. ROFUS vs. casinoernes egne værktøjer, trin-for-trin vejledning, internationale ordninger og juridiske rettigheder.",
-    path: "/ansvarligt-spil/selvudelukkelse-guide",
+    url: `${SITE_URL}/ansvarligt-spil/selvudelukkelse-guide`,
     datePublished: "2026-03-08",
     dateModified: "2026-03-08",
-    author: "Ajse",
+    authorName: "Ajse",
+    authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
 
   const faqSchema = buildFaqSchema(
@@ -152,6 +154,7 @@ const SelvudelukkelseGuide = () => {
   const howToSchema = buildHowToSchema({
     name: "Sådan udelukker du dig selv fra danske casinoer via ROFUS",
     description: "Trin-for-trin guide til at tilmelde dig ROFUS og udelukke dig selv fra alle danske licenserede casinoer.",
+    pageUrl: `${SITE_URL}/ansvarligt-spil/selvudelukkelse-guide`,
     steps: [
       { name: "Gå til ROFUS", text: "Besøg spillemyndigheden.dk/rofus i din browser." },
       { name: "Log ind med MitID", text: "Brug dit MitID til at identificere dig i systemet." },

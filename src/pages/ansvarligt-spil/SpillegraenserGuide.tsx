@@ -156,12 +156,13 @@ const SpillegraenserGuide = () => {
   const { data: settings } = useSiteSettings();
 
   const articleSchema = buildArticleSchema({
-    title: "Spillegrænser i Danmark – Komplet Guide til Indbetalings-, Tids- og Tabsgrænser",
+    headline: "Spillegrænser i Danmark – Komplet Guide til Indbetalings-, Tids- og Tabsgrænser",
     description: "Dybdegående guide til alle typer spillegrænser på danske casinoer. Lær om indbetalingsgrænser, tidsgrænser, tabsgrænser, selvtest (PGSI) og dansk lovgivning (BEK 1494).",
-    path: "/ansvarligt-spil/spillegraenser",
+    url: `${SITE_URL}/ansvarligt-spil/spillegraenser`,
     datePublished: "2026-03-08",
     dateModified: "2026-03-08",
-    author: "Ajse",
+    authorName: "Ajse",
+    authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
 
   const faqSchema = buildFaqSchema(

@@ -39,6 +39,7 @@ import {
   UserCheck,
   MapPin,
   Building,
+  Ban,
 } from "lucide-react";
 
 // ────────────────────────────────────────────────────────────────
@@ -124,12 +125,13 @@ const HjaelpelinjerGuide = () => {
   const { data: settings } = useSiteSettings();
 
   const articleSchema = buildArticleSchema({
-    title: "Hjælpelinjer for Spilleproblemer – Komplet Oversigt over Danske Hjælpemuligheder",
+    headline: "Hjælpelinjer for Spilleproblemer – Komplet Oversigt over Danske Hjælpemuligheder",
     description: "Samlet oversigt over alle danske hjælpelinjer for spilleproblemer: StopSpillet, Center for Ludomani, Anonyme Gamblere, kommunale tilbud og pårørendestøtte.",
-    path: "/ansvarligt-spil/hjaelpelinjer",
+    url: `${SITE_URL}/ansvarligt-spil/hjaelpelinjer`,
     datePublished: "2026-03-08",
     dateModified: "2026-03-08",
-    author: "Ajse",
+    authorName: "Ajse",
+    authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
 
   const faqSchema = buildFaqSchema(
