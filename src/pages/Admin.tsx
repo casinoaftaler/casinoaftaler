@@ -824,6 +824,7 @@ function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-background">
+      <LinkDensityMonitor />
       <header className="border-b border-border bg-card">
         <div className="container flex h-16 items-center justify-between gap-2">
           <div className="flex items-center gap-2">
