@@ -272,12 +272,6 @@ const kevinArticles: AuthorArticle[] = [
   { title: "Fire Joker – Komplet Guide", path: "/casinospil/spillemaskiner/fire-joker", category: "Slot Guide", excerpt: "Fire Joker – Wheel of Multipliers, respin og klassisk design." },
   // Anmeldelse
   { title: "Videoslots Anmeldelse", path: "/casino-anmeldelser/videoslots", category: "Anmeldelse", excerpt: "Videoslots – kæmpe spiludvalg med unikke features." },
-  // Mere-sider
-  { title: "Ansvarligt Spil Guide", path: "/ansvarligt-spil", category: "Guide", excerpt: "Alt om ansvarligt spil, selvudelukkelse og hjælp til spilleproblemer." },
-  { title: "Casino Licenser Guide", path: "/casino-licenser", category: "Guide", excerpt: "Overblik over casinolicenser og hvad de betyder for danske spillere." },
-  { title: "Forretningsmodel", path: "/forretningsmodel", category: "Guide", excerpt: "Sådan finansieres Casinoaftaler.dk og vores affiliate-model." },
-  { title: "Redaktionel Politik", path: "/redaktionel-politik", category: "Guide", excerpt: "Vores redaktionelle retningslinjer og uafhængighed." },
-  { title: "Kontakt", path: "/kontakt", category: "Guide", excerpt: "Kontakt Casinoaftaler.dk – vi svarer på dine spørgsmål." },
   // Bonus Hunt
   { title: "Bonus Hunt Live", path: "/bonus-hunt", category: "Community", excerpt: "Følg vores live bonus hunts med betting-spil og community-events." },
   { title: "Bonus Hunt Arkiv", path: "/bonus-hunt/arkiv", category: "Community", excerpt: "Komplet arkiv over alle tidligere bonus hunts med statistikker." },
@@ -292,6 +286,12 @@ const ajseArticles: AuthorArticle[] = [
   { title: "Forretningsmodel", path: "/forretningsmodel", category: "Guide", excerpt: "Sådan finansieres Casinoaftaler.dk." },
   { title: "Redaktionel Politik", path: "/redaktionel-politik", category: "Guide", excerpt: "Casinoaftaler.dk's retningslinjer." },
   { title: "Ansvarligt Spil", path: "/ansvarligt-spil", category: "Guide", excerpt: "Ressourcer til ansvarligt spil." },
+  { title: "ROFUS – Selvudelukkelse", path: "/ansvarligt-spil/rofus", category: "Guide", excerpt: "Komplet guide til ROFUS og selvudelukkelse fra danske casinoer." },
+  { title: "Ludomani – Spilleafhængighed", path: "/ansvarligt-spil/ludomani", category: "Guide", excerpt: "Dybdegående guide til ludomani og spilleafhængighed i Danmark." },
+  { title: "StopSpillet – Gratis Rådgivning", path: "/ansvarligt-spil/stopspillet", category: "Guide", excerpt: "Guide til StopSpillet og gratis rådgivning for spillere og pårørende." },
+  { title: "Spillegrænser – Komplet Guide", path: "/ansvarligt-spil/spillegraenser", category: "Guide", excerpt: "Alt om indbetalingsgrænser, tidsgrænser og tabsgrænser." },
+  { title: "Selvudelukkelse – ROFUS og Alle Muligheder", path: "/ansvarligt-spil/selvudelukkelse-guide", category: "Guide", excerpt: "Step-by-step guide til selvudelukkelse via ROFUS og casinoernes egne værktøjer." },
+  { title: "Hjælpelinjer for Spilleproblemer", path: "/ansvarligt-spil/hjaelpelinjer", category: "Guide", excerpt: "Samlet oversigt over alle danske hjælpemuligheder for spilleproblemer." },
   { title: "Casino Licenser", path: "/casino-licenser", category: "Guide", excerpt: "Guide til danske casinolicenser." },
   { title: "Spillemyndigheden", path: "/spillemyndigheden", category: "Guide", excerpt: "Danmarks regulering af online spil." },
   { title: "Omsætningskrav", path: "/omsaetningskrav", category: "Guide", excerpt: "Komplet guide til gennemspilningskrav." },
