@@ -1,24 +1,32 @@
 
 
-## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
+## Investigation Results & Fix Plan
 
-### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
+### Bug 1: Auto-spin blocked after bonus retrigger
 
-The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
+**Root cause**: When a retrigger occurs during bonus with auto-spin active, `spinLockRef.current` is never released.
 
-Specifically:
-- **Remove** Gevinst from the right zone (lines 247-261)
-- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
+The flow:
+1. Retrigger detected → `showRetriggerRef.current = true` (line 712)
+2. If deferred via `pendingBonusActionRef`: the win animation completes, calls `action()` (line 1041), and comment says "spinLock is released inside retrigger handler" (line 1042)
+3. But `handleRetriggerComplete` (line 829-837) **never sets `spinLockRef.current = false`**
+4. Auto-spin fires → `handleSpin()` → blocked by `spinLockRef.current` check on line 557
 
-Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
+**Fix**: Add `spinLockRef.current = false;` to `handleRetriggerComplete` before the auto-spin scheduling (around line 831).
 
-### 2. Add Count-Up Animation for Win Amount
+### Bug 2: Auto-spin continues without enough credits
 
-Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
-- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
-- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
-- The component already handles ease-out counting and bump animation on completion
+**Root cause**: The auto-spin continuation logic in the `finally` block (lines 807-821) schedules the next `handleSpin()` without checking if the user has enough credits. `handleSpin` does check `hasEnoughSpins(bet)` at line 561 and silently returns, but by then:
+- The spin attempt is visible to the user
+- The server call may fire and return an error
+- The error toast "Der opstod en fejl" is shown
 
-### Files Modified
-- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
+**Fix**: Add a credit check before scheduling the next auto-spin in the `finally` block. If `!hasEnoughSpins(bet)`, call `stopAutoSpin()` and return instead of scheduling.
+
+### Files to modify
+
+**`src/components/slots/BonanzaSlotGame.tsx`** — two targeted fixes:
+
+1. **Line ~831**: In `handleRetriggerComplete`, add `spinLockRef.current = false;` before the auto-spin resume logic
+2. **Lines ~807-821**: In the `finally` block's base-game auto-spin branch, add a `hasEnoughSpins(bet)` check. If insufficient credits → `stopAutoSpin()` and skip scheduling
 
