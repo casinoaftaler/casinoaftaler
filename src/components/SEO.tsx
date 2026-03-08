@@ -46,7 +46,7 @@ function formatTitle(raw: string): string {
   return `${stripped} | ${SITE_BRAND}`;
 }
 
-export function SEO({ title, description, type = "website", image = `${SITE_URL}/og-image.png`, noindex, jsonLd, breadcrumbLabel }: SEOProps) {
+export function SEO({ title, description, type = "website", image = `${SITE_URL}/og-image.png`, noindex, jsonLd, breadcrumbLabel, datePublished, dateModified }: SEOProps) {
   const { pathname } = useLocation();
   const canonicalUrl = getCanonicalUrl(pathname);
   const formattedTitle = formatTitle(title);
