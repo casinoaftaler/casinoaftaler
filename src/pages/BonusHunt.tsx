@@ -78,19 +78,26 @@ export default function BonusHunt() {
     return n;
   }, []);
 
-  const liveHuntNumber = getNextAllowed(huntData?.visibleId || latestHuntNumber + 1);
+  const fallbackNextHuntNumber = getNextAllowed(latestHuntNumber + 1);
+  const liveHuntNumber = huntData?.status === 'active' && huntData?.visibleId
+    ? getNextAllowed(huntData.visibleId)
+    : fallbackNextHuntNumber;
   const currentHuntNumber = huntData?.visibleId || huntIdOverride || liveHuntNumber;
   const isArchived = archivedHuntNumbers.includes(currentHuntNumber);
-  const isLive = !!(session?.status === 'active' && session?.hunt_number === currentHuntNumber && !isArchived);
+  const isLive = !!(
+    (session?.status === 'active' && session?.hunt_number === currentHuntNumber && !isArchived)
+    || (huntData?.status === 'active' && currentHuntNumber >= latestHuntNumber)
+  );
   const huntVideo = getHuntVideo(currentHuntNumber);
-  const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber);
+  const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber, currentHuntNumber);
 
-  // Build available hunt numbers: archived + current active hunt (descending)
+  // Build available hunt numbers: archived + current visible/live hunt (descending)
   const availableHuntNumbers = useMemo(() => {
     const nums = new Set(archivedHuntNumbers);
     nums.add(liveHuntNumber);
+    nums.add(currentHuntNumber);
     return [...nums].sort((a, b) => b - a);
-  }, [archivedHuntNumbers, liveHuntNumber]);
+  }, [archivedHuntNumbers, liveHuntNumber, currentHuntNumber]);
 
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
     if (!availableHuntNumbers.length) return;
