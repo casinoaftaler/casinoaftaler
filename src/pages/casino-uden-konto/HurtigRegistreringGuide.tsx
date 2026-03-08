@@ -1,4 +1,5 @@
 import React from "react";
+import heroHurtigReg from "@/assets/hero-hurtig-registrering.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

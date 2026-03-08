@@ -1,4 +1,5 @@
 import React from "react";
+import heroPayNPlay from "@/assets/hero-pay-n-play.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

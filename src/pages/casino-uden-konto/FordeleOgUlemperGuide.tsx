@@ -1,4 +1,5 @@
 import React from "react";
+import heroFordeleUlemper from "@/assets/hero-fordele-og-ulemper.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
