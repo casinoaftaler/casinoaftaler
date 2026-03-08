@@ -233,6 +233,28 @@ const MAX_SIBLINGS = 3;
 const MAX_CROSS_CLUSTER = 3;
 
 /**
+ * Deterministically pick up to MAX_CROSS_CLUSTER links from a pool,
+ * ensuring no two links share the same cluster prefix.
+ */
+function pickCrossCluster(crossClusterOptions: GuideLink[], path: string): GuideLink[] {
+  const hash = pathHash(path);
+  const selected: GuideLink[] = [];
+  const usedClusters = new Set<string>();
+
+  for (let attempt = 0; attempt < crossClusterOptions.length && selected.length < MAX_CROSS_CLUSTER; attempt++) {
+    const idx = (hash + attempt * 7) % crossClusterOptions.length;
+    const candidate = crossClusterOptions[idx];
+    const clusterKey = candidate.to.split("/").slice(0, 2).join("/");
+    if (!usedClusters.has(clusterKey)) {
+      usedClusters.add(clusterKey);
+      selected.push(candidate);
+    }
+  }
+
+  return selected;
+}
+
+/**
  * Governance-compliant guide selection:
  * 1. Always include primary hub
  * 2. Max 3 sibling links from same cluster
