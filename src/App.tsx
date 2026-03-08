@@ -44,6 +44,10 @@ const SelvudelukkelseGuide = lazy(() => import("./pages/ansvarligt-spil/Selvudel
 const HjaelpelinjerGuide = lazy(() => import("./pages/ansvarligt-spil/HjaelpelinjerGuide"));
 const MobilCasino = lazy(() => import("./pages/MobilCasino"));
 const CasinoApp = lazy(() => import("./pages/CasinoApp"));
+const IPhoneCasinoGuide = lazy(() => import("./pages/mobil-casino/IPhoneCasinoGuide"));
+const AndroidCasinoGuide = lazy(() => import("./pages/mobil-casino/AndroidCasinoGuide"));
+const TabletCasinoGuide = lazy(() => import("./pages/mobil-casino/TabletCasinoGuide"));
+const BedsteAppsGuide = lazy(() => import("./pages/mobil-casino/BedsteAppsGuide"));
 const CasinoUdenKonto = lazy(() => import("./pages/casino-uden-konto/CasinoUdenKonto"));
 const PayNPlayGuide = lazy(() => import("./pages/casino-uden-konto/PayNPlayGuide"));
 const HurtigRegistreringGuide = lazy(() => import("./pages/casino-uden-konto/HurtigRegistreringGuide"));
