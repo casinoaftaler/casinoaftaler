@@ -137,7 +137,8 @@ export function ComparisonPageTemplate({
       <SEO
         title={metaTitle}
         description={metaDescription}
-        canonical={canonicalUrl}
+        type="article"
+        datePublished={datePublished}
         jsonLd={[articleSchema, faqSchema]}
       />
 
