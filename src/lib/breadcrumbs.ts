@@ -397,6 +397,9 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/ansvarligt-spil/rofus": [{ name: "Ansvarligt Spil", path: "/ansvarligt-spil" }],
   "/ansvarligt-spil/ludomani": [{ name: "Ansvarligt Spil", path: "/ansvarligt-spil" }],
   "/ansvarligt-spil/stopspillet": [{ name: "Ansvarligt Spil", path: "/ansvarligt-spil" }],
+  "/ansvarligt-spil/spillegraenser": [{ name: "Ansvarligt Spil", path: "/ansvarligt-spil" }],
+  "/ansvarligt-spil/selvudelukkelse-guide": [{ name: "Ansvarligt Spil", path: "/ansvarligt-spil" }],
+  "/ansvarligt-spil/hjaelpelinjer": [{ name: "Ansvarligt Spil", path: "/ansvarligt-spil" }],
 
   // Mobil Casino cluster – bundet til /mobil-casino hub
   "/casino-app": [{ name: "Mobil Casino", path: "/mobil-casino" }],
