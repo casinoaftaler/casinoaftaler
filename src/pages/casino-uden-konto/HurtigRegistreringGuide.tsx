@@ -127,8 +127,8 @@ const HurtigRegistreringGuide = () => {
         </div>
       </section>
 
-      <div className="w-full">
-        <img src={heroHurtigReg} alt="Hurtig casino-registrering med biometrisk identitetsverifikation" width={1920} height={1080} loading="eager" className="w-full h-auto object-cover max-h-[400px]" />
+      <div className="container py-6">
+        <img src={heroHurtigReg} alt="Hurtig casino-registrering med biometrisk identitetsverifikation" width={1920} height={1080} loading="eager" className="w-full h-auto object-cover rounded-lg max-h-[400px]" />
       </div>
 
       <div className="container py-8 md:py-12">

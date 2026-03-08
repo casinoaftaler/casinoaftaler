@@ -119,8 +119,8 @@ const PayNPlayGuide = () => {
         </div>
       </section>
 
-      <div className="w-full">
-        <img src={heroPayNPlay} alt="Pay N Play bankteknologi – øjeblikkelig casino-betaling via Trustly" width={1920} height={1080} loading="eager" className="w-full h-auto object-cover max-h-[400px]" />
+      <div className="container py-6">
+        <img src={heroPayNPlay} alt="Pay N Play bankteknologi – øjeblikkelig casino-betaling via Trustly" width={1920} height={1080} loading="eager" className="w-full h-auto object-cover rounded-lg max-h-[400px]" />
       </div>
 
       <div className="container py-8 md:py-12">
