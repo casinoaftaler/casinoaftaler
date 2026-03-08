@@ -14,6 +14,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
@@ -38,7 +39,7 @@ const DanskeSpilAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
 
-  const articleSchema = buildArticleSchema({ headline: "Danske Spil Casino Anmeldelse 2026 – Bonus, Spil & Sikkerhed", description: "Komplet og ærlig anmeldelse af Danske Spil Casino. Danmarks statsligt forankrede casino med dansk licens, bredt spiludvalg og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/danske-spil", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", image: "https://casinoaftaler.dk/assets/heroes/danske-spil-hero.jpg", videoId: "AuYbcBpBOxY", aggregateRating: { ratingValue: "4.4", ratingCount: "195" } });
+  const articleSchema = buildArticleSchema({ headline: "Danske Spil Casino Anmeldelse 2026 – Bonus, Spil & Sikkerhed", description: "Komplet og ærlig anmeldelse af Danske Spil Casino. Danmarks statsligt forankrede casino med dansk licens, bredt spiludvalg og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/danske-spil", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", image: "https://casinoaftaler.dk/assets/heroes/danske-spil-hero.jpg", videoId: "AuYbcBpBOxY", ...casinoReviewEntities("Danske Spil Casino", "danske-spil") });
   const faqJsonLd = buildFaqSchema(danskeSpilFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Danske Spil Casino", itemUrl: "https://www.danskespil.dk/casino", ratingValue: "4.4", ratingCount: "195", reviewBody: "Danske Spil Casino er Danmarks mest troværdige online casino med dansk licens, statsligt ejerskab og et solidt spiludvalg fra topudbydere." });
 

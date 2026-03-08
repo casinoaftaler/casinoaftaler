@@ -17,6 +17,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { StickyCTA } from "@/components/StickyCTA";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
@@ -120,7 +121,7 @@ const CampobetAnmeldelse = () => {
   };
 
   const faqJsonLd = buildFaqSchema(campobetFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Campobet Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Campobet. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/campobet", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "s7S_GRsKfK4", aggregateRating: { ratingValue: "4.7", ratingCount: "156" } });
+  const articleSchema = buildArticleSchema({ headline: "Campobet Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Campobet. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/campobet", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "s7S_GRsKfK4", ...casinoReviewEntities("Campobet", "campobet") });
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Campobet", itemUrl: "https://www.campobet.dk", ratingValue: "4.7", ratingCount: "156", reviewBody: "Campobet er et internationalt casino med dansk licens, No-Sticky velkomstbonus på 100% op til 1.000 kr., 10x omsætning, sportsbetting og tusindvis af spil." });
 

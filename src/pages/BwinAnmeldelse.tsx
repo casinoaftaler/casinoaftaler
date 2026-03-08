@@ -13,6 +13,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -88,7 +89,7 @@ const BwinAnmeldelse = () => {
     dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
-    aggregateRating: { ratingValue: "3.9", ratingCount: "131" },
+    ...casinoReviewEntities("bwin", "bwin"),
   });
   const faqJsonLd = buildFaqSchema(bwinFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "bwin", itemUrl: "https://www.bwin.dk/", ratingValue: "3.9", ratingCount: "131", reviewBody: "bwin er en europæisk sportsbetting-gigant med et voksende casino-tilbud under dansk licens." });
