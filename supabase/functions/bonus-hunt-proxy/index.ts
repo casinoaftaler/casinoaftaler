@@ -15,6 +15,42 @@ const BLOCKED_HUNTS = new Set<number>();
 const TITLE_CASE_LOWER = new Set(['of', 'and', 'the', 'in', 'at', 'by', 'to', 'for', 'or', 'on', 'a', 'an']);
 const ROMAN_NUMERALS = new Set(['ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi', 'xii']);
 
+async function fetchStreamSystemData(options: {
+  streamsystemHuntId?: string | null;
+  visibleId?: number | string | null;
+  includeLiveEndpoint?: boolean;
+}) {
+  const urls: string[] = [];
+
+  if (options.streamsystemHuntId) {
+    urls.push(`${STREAMSYSTEM_BASE}/${options.streamsystemHuntId}`);
+  }
+
+  if (options.visibleId !== undefined && options.visibleId !== null && options.visibleId !== '') {
+    urls.push(`${STREAMSYSTEM_BASE}/${STREAMER_ID}?visibleId=${options.visibleId}`);
+  }
+
+  if (options.includeLiveEndpoint) {
+    urls.push(`${STREAMSYSTEM_BASE}/${STREAMER_ID}`);
+  }
+
+  for (const apiUrl of urls) {
+    try {
+      const apiResponse = await fetch(apiUrl, { headers: { Accept: 'application/json' } });
+      if (!apiResponse.ok) continue;
+
+      const apiData = await apiResponse.json();
+      if (apiData?.data) {
+        return apiData;
+      }
+    } catch (e) {
+      console.error(`StreamSystem fetch failed for ${apiUrl}:`, e);
+    }
+  }
+
+  return null;
+}
+
 function toTitleCase(str: string): string {
   return str.split(' ').map((word, i) => {
     const lower = word.toLowerCase();
@@ -132,50 +168,49 @@ serve(async (req) => {
         });
       }
 
-      // Fallback: try StreamSystem API with visibleId before falling back to sessions
+      // Fallback: try StreamSystem API (hunt-id endpoint first, then visibleId)
       try {
-        const apiUrl = `${STREAMSYSTEM_BASE}/${STREAMER_ID}?visibleId=${requestedHunt}`;
-        const apiResponse = await fetch(apiUrl, {
-          headers: { 'Accept': 'application/json' },
+        const { data: sessionRef } = await supabase
+          .from("bonus_hunt_sessions")
+          .select("streamsystem_hunt_id")
+          .eq("hunt_number", requestedHunt)
+          .maybeSingle();
+
+        const apiData = await fetchStreamSystemData({
+          streamsystemHuntId: sessionRef?.streamsystem_hunt_id,
+          visibleId: requestedHunt,
         });
 
-        if (apiResponse.ok) {
-          const apiData = await apiResponse.json();
-          // Verify we got valid data with slots
-          if (apiData?.data?.slots && apiData.data.slots.length > 0) {
-            // Only accept API fallback when it actually matches requested hunt
-            const huntData = apiData.data;
-            const huntNumber = parseInt(huntData.name?.replace(/\D/g, '') || '0', 10);
-            if (huntNumber === requestedHunt) {
-              if (huntNumber > 0 && !BLOCKED_HUNTS.has(huntNumber)) {
-                const stats = huntData.statistics || {};
-                await supabase
-                  .from("bonus_hunt_archives")
-                  .upsert({
-                    hunt_number: huntNumber,
-                    api_data: apiData,
-                    hunt_name: huntData.name,
-                    hunt_status: huntData.played ? 'completed' : 'active',
-                    total_slots: stats.numberOfSlots || 0,
-                    opened_slots: stats.openedSlots || 0,
-                    start_balance: huntData.start || 0,
-                    end_balance: huntData.end || null,
-                    average_x: stats.runAverage ? parseFloat(stats.runAverage) : null,
-                  }, { onConflict: 'hunt_number' });
+        if (apiData?.data) {
+          const huntData = apiData.data;
+          const huntNumber = parseInt(huntData.name?.replace(/\D/g, '') || String(requestedHunt), 10) || requestedHunt;
+          const stats = huntData.statistics || {};
 
-                // Sync slot catalog
-                syncSlotCatalog(supabase, huntData, true)
-                  .then(() => triggerEnrich(supabase))
-                  .catch(e => console.error('Slot catalog sync error:', e));
-              }
+          // Persist full hunt snapshots when slot data exists
+          if ((huntData.slots?.length || 0) > 0 && huntNumber > 0 && !BLOCKED_HUNTS.has(huntNumber)) {
+            await supabase
+              .from("bonus_hunt_archives")
+              .upsert({
+                hunt_number: huntNumber,
+                api_data: apiData,
+                hunt_name: huntData.name,
+                hunt_status: huntData.played ? 'completed' : 'active',
+                total_slots: stats.numberOfSlots || 0,
+                opened_slots: stats.openedSlots || 0,
+                start_balance: huntData.start || 0,
+                end_balance: huntData.end || null,
+                average_x: stats.runAverage ? parseFloat(stats.runAverage) : null,
+              }, { onConflict: 'hunt_number' });
 
-              return new Response(JSON.stringify(apiData), {
-                headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' },
-              });
-            }
-
-            console.info(`Fallback API returned hunt #${huntNumber}, expected #${requestedHunt}; using session fallback`);
+            // Sync slot catalog
+            syncSlotCatalog(supabase, huntData, true)
+              .then(() => triggerEnrich(supabase))
+              .catch(e => console.error('Slot catalog sync error:', e));
           }
+
+          return new Response(JSON.stringify(apiData), {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' },
+          });
         }
       } catch (e) {
         console.error('StreamSystem API fallback error:', e);
@@ -239,15 +274,25 @@ serve(async (req) => {
     }
 
     // Fetch from StreamSystem API
-    const apiUrl = huntId
-      ? `${STREAMSYSTEM_BASE}/${STREAMER_ID}?visibleId=${huntId}`
-      : `${STREAMSYSTEM_BASE}/${STREAMER_ID}`;
+    let data: any = null;
 
-    const response = await fetch(apiUrl, {
-      headers: { 'Accept': 'application/json' },
-    });
+    if (huntId) {
+      const requestedHunt = parseInt(huntId, 10);
+      const { data: sessionRef } = await supabase
+        .from("bonus_hunt_sessions")
+        .select("streamsystem_hunt_id")
+        .eq("hunt_number", requestedHunt)
+        .maybeSingle();
 
-    if (!response.ok) {
+      data = await fetchStreamSystemData({
+        streamsystemHuntId: sessionRef?.streamsystem_hunt_id,
+        visibleId: huntId,
+      });
+    } else {
+      data = await fetchStreamSystemData({ includeLiveEndpoint: true });
+    }
+
+    if (!data) {
       // If API fails for a past hunt, try archive as fallback
       if (huntId) {
         const { data: archived } = await supabase
@@ -264,12 +309,10 @@ serve(async (req) => {
       }
 
       return new Response(
-        JSON.stringify({ error: `StreamSystem API returned ${response.status}` }),
-        { status: response.status, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        JSON.stringify({ error: `StreamSystem API returned no data` }),
+        { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
-
-    const data = await response.json();
 
     // If StreamSystem returns {data: false}, fall back to our active session
     if (data?.data === false || !data?.data) {
