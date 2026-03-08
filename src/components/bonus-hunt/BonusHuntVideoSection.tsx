@@ -34,9 +34,9 @@ const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
     highestMultiplier: 274,
   },
   2: {
-    twitchVideoId: "2705001000",
-    date: "22. februar 2026",
-    isoDate: "2026-02-22",
+    twitchVideoId: "2716498380",
+    date: "8. marts 2026",
+    isoDate: "2026-03-08",
     casinoName: "SpilDanskNu",
     casinoSlug: "spildansknu",
     bonusCount: 24,
