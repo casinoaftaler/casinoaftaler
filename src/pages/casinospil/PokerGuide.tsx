@@ -159,7 +159,7 @@ const PokerGuide = () => {
   return (
     <>
       <SEO
-        title="Poker Guide 2026 – Strategi, Varianter, Matematik og Odds"
+        title="Poker Guide 2026 – Varianter, Matematik og Odds"
         description="Komplet poker-guide: Hold'em, Omaha, Video Poker, håndrangeringer, pot odds, varians, rake og bankroll management. Hub for alle poker-guides."
         jsonLd={[faqJsonLd, articleSchema]}
       />
