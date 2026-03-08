@@ -1010,18 +1010,7 @@ const CasinoMedMobilePay = () => {
 
         <Separator className="my-12" />
 
-        <RelatedGuides
-          guides={[
-            { title: "MobilePay Betalingsguide", path: "/betalingsmetoder/mobilepay" },
-            { title: "Trustly Guide", path: "/betalingsmetoder/trustly" },
-            { title: "Apple Pay Casino", path: "/betalingsmetoder/apple-pay" },
-            { title: "Mobil Casino Guide", path: "/mobil-casino" },
-            { title: "Casino Bonus Guide", path: "/casino-bonus" },
-            { title: "Velkomstbonus", path: "/velkomstbonus" },
-            { title: "VIP Program Guide", path: "/vip-program" },
-            { title: "Ansvarligt Spil", path: "/ansvarligt-spil" },
-          ]}
-        />
+        <RelatedGuides currentPath="/casino-med-mobilepay" />
       </div>
 
       <StickyCtaBySlug slug="spildansknu" />

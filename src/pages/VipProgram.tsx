@@ -1122,18 +1122,7 @@ const VipProgram = () => {
 
         <Separator className="my-12" />
 
-        <RelatedGuides
-          guides={[
-            { title: "Casino Bonus Guide", path: "/casino-bonus" },
-            { title: "Cashback Bonus", path: "/cashback-bonus" },
-            { title: "Reload Bonus", path: "/reload-bonus" },
-            { title: "Velkomstbonus", path: "/velkomstbonus" },
-            { title: "Omsætningskrav Forklaret", path: "/omsaetningskrav" },
-            { title: "Live Casino Guide", path: "/live-casino" },
-            { title: "Ansvarligt Spil", path: "/ansvarligt-spil" },
-            { title: "Casino Anmeldelser", path: "/casino-anmeldelser" },
-          ]}
-        />
+        <RelatedGuides currentPath="/vip-program" />
       </div>
 
       <StickyCtaBySlug slug="spildansknu" />
