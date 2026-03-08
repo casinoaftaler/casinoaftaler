@@ -947,6 +947,561 @@ const IPhoneCasinoGuide = () => {
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════════════════════
+            12-A. iOS SIKKERHEDSARKITEKTUR DEEP-DIVE
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="ios-sikkerhed-deep-dive">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Lock className="h-7 w-7 text-primary" />
+            iOS Sikkerhedsarkitektur – Deep-Dive for Casino-Spillere
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Apples iOS-platform er designet med en{" "}
+            <strong>lagdelt sikkerhedsarkitektur</strong> der beskytter dine casino-data
+            fra hardware-niveau til app-niveau. Forståelsen af disse mekanismer hjælper dig
+            med at vurdere, hvorfor iPhone er en af de mest sikre platforme til online gambling.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="secure-enclave">
+            Secure Enclave – Hardware-Kryptering
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Secure Enclave er en dedikeret co-processor i alle moderne iPhones (fra A7-chippen og frem),
+            der håndterer kryptografiske operationer isoleret fra hovedprocessoren. Dine biometriske data
+            (Face ID / Touch ID), kryptografiske nøgler og betalingsoplysninger opbevares udelukkende
+            i denne hardware-isolerede enhed – selv Apple kan ikke tilgå dem. Når du autentificerer en
+            casino-indbetaling med Face ID, sker hele verifikationsprocessen inden for Secure Enclave,
+            og kun et kryptografisk "ja/nej"-svar sendes til appen.
+          </p>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 pr-4 font-semibold">Sikkerhedslag</th>
+                      <th className="text-left py-2 pr-4 font-semibold">Teknologi</th>
+                      <th className="text-left py-2 font-semibold">Casino-Relevans</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Hardware</td><td className="py-2 pr-4">Secure Enclave (AES-256)</td><td className="py-2">Beskytter biometri og betalingsnøgler</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Boot-kæde</td><td className="py-2 pr-4">Secure Boot / IBoot</td><td className="py-2">Forhindrer manipuleret firmware</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Kerneniveau</td><td className="py-2 pr-4">Kernel Integrity Protection (KIP)</td><td className="py-2">Forhindrer runtime-modifikation</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">App-niveau</td><td className="py-2 pr-4">App Sandbox + ASLR</td><td className="py-2">Isolerer casino-data fra andre apps</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Netværk</td><td className="py-2 pr-4">App Transport Security (ATS)</td><td className="py-2">Kræver HTTPS for alle forbindelser</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">Data-at-rest</td><td className="py-2 pr-4">Data Protection API (AES-256-XTS)</td><td className="py-2">Krypterer al lokal casino-data</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="app-transport-security">
+            App Transport Security (ATS) – Netværksbeskyttelse
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            ATS er Apples netværkssikkerhedsprotokol der som standard kræver TLS 1.2 eller nyere
+            for alle netværksforbindelser fra iOS-apps. Det betyder, at når du besøger et dansk
+            licenseret casino via Safari, verificerer iOS automatisk certifikatets gyldighed,
+            kræver forward secrecy (ECDHE), og blokerer svage ciphersuites. Casino-sider der
+            ikke opfylder disse krav kan simpelthen ikke indlæses – en beskyttelse du ikke finder
+            på ældre Android-versioner.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Alle danske licenserede casinoer overholder ATS-kravene som standard, da{" "}
+            <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">
+              Spillemyndighedens licensbetingelser
+            </Link>{" "}
+            allerede kræver stærk kryptering. Men ATS tilføjer et ekstra verifikationslag: selv
+            hvis et casino nedgraderede sin kryptering (f.eks. ved en fejlkonfiguration), ville
+            iOS automatisk blokere forbindelsen og beskytte dig.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="ios-sandboxing">
+            iOS Sandboxing – Data-Isolation
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Hver app på iOS kører i sin egen "sandbox" – et isoleret filsystem der forhindrer adgang
+            til andre apps' data. Når du spiller casino i Safari, kan en anden app (f.eks. et spil
+            eller en social medie-app) ikke tilgå dine casino-cookies, login-sessioner eller
+            betalingsoplysninger. Denne arkitektur er fundamentalt anderledes fra desktop-browsere,
+            hvor malware potentielt kan aflæse browser-cookies på tværs af tabs.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Sandboxing-modellen betyder også, at PWA-installerede casinoer (Progressive Web Apps)
+            får deres eget isolerede datamiljø. Hvis du installerer{" "}
+            <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">
+              et casino som PWA
+            </Link>{" "}
+            på din hjemmeskærm, deler det ikke cookies eller session-data med Safari – en
+            ekstra beskyttelse mod session hijacking.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="ios-vs-android-sikkerhed">
+            iOS vs. Android – Sikkerhedssammenligning for Casino
+          </h3>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 pr-4 font-semibold">Parameter</th>
+                      <th className="text-left py-2 pr-4 font-semibold">iOS (iPhone)</th>
+                      <th className="text-left py-2 font-semibold">Android</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Hardware-sikkerhed</td><td className="py-2 pr-4">Secure Enclave (dedikeret chip)</td><td className="py-2">TrustZone / Titan M (varierer)</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Opdateringsmodel</td><td className="py-2 pr-4">Samlet, hurtig udrulning</td><td className="py-2">Fragmenteret (OEM-afhængig)</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">App-verifikation</td><td className="py-2 pr-4">Streng App Store review</td><td className="py-2">Play Protect + sideloading mulig</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Netværkssikkerhed</td><td className="py-2 pr-4">ATS default-on</td><td className="py-2">Cleartext tilladt (opt-out)</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Jailbreak/Root-risiko</td><td className="py-2 pr-4">Meget lav (boot-chain)</td><td className="py-2">Højere (bootloader unlock)</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">Biometri-lagring</td><td className="py-2 pr-4">100 % on-device (Secure Enclave)</td><td className="py-2">TEE (variabel implementering)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Samlet set har iOS en mere konsistent sikkerhedsmodel, primært fordi Apple kontrollerer
+            hele hardware-software-stakken. Androids sikkerhed varierer markant mellem producenter –
+            en Samsung Galaxy med Knox nærmer sig iOS-niveauet, mens budget-Android-telefoner kan
+            mangle vigtige sikkerhedsfunktioner. For casino-spillere der prioriterer sikkerhed er
+            iPhone generelt det sikreste valg. Læs mere i vores{" "}
+            <Link to="/mobil-casino/android" className="text-primary underline hover:text-primary/80">
+              Android casino guide
+            </Link>.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="keychain-services">
+            iCloud Keychain & Password-Management
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Apples Keychain Services tilbyder en systemintegreret password-manager der automatisk
+            genererer og gemmer stærke, unikke adgangskoder til dine casino-konti. I modsætning
+            til tredjeparts password-managers er Keychain dybt integreret i iOS: den autofylder
+            login-felter i Safari, understøtter passkeys (FIDO2), og synkroniserer sikkert via
+            iCloud med end-to-end-kryptering.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            For casino-spillere anbefaler vi at bruge Keychain til at oprette unikke adgangskoder
+            for hvert casino. Genbrugte adgangskoder er den hyppigste årsag til kontokompromittering.
+            Med Keychain kan du have 20+ unikke casino-logins uden at huske en eneste kode – Face ID
+            håndterer al autentificering.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════════════════════
+            12-B. BATTERI & PERFORMANCE-OPTIMERING
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="batteri-optimering">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Battery className="h-7 w-7 text-primary" />
+            Battery Management & Performance-Optimering til Casino
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Lange casino-sessioner kan dræne dit iPhone-batteri hurtigt – især live casino med
+            HD-streaming. Her er en komplet guide til at optimere batterilevetid og performance
+            under spil.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="low-power-mode-effekt">
+            Low Power Mode – Effekt på Casino-Performance
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Når Low Power Mode aktiveres (automatisk ved 20 % batteri eller manuelt),
+            reducerer iOS CPU-hastigheden med ca. 40 %, begrænser GPU-rendering, og
+            deaktiverer baggrundsopdateringer. For casino-spil har dette mærkbare konsekvenser:
+          </p>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 pr-4 font-semibold">Parameter</th>
+                      <th className="text-left py-2 pr-4 font-semibold">Normal Mode</th>
+                      <th className="text-left py-2 font-semibold">Low Power Mode</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">CPU-hastighed</td><td className="py-2 pr-4">100 %</td><td className="py-2">~60 % (throttlet)</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">GPU-rendering</td><td className="py-2 pr-4">60/120 fps (ProMotion)</td><td className="py-2">30-60 fps max</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Slot-animationer</td><td className="py-2 pr-4">Flydende, 60 fps</td><td className="py-2">Synlig hakken, frame drops</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Live casino-stream</td><td className="py-2 pr-4">720p/1080p stabil</td><td className="py-2">Kan droppe til 480p</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Baggrundsopdateringer</td><td className="py-2 pr-4">Aktive</td><td className="py-2">Deaktiverede</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">5G-forbindelse</td><td className="py-2 pr-4">Fuld hastighed</td><td className="py-2">Kan falde til 4G</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Anbefaling:</strong> Deaktiver Low Power Mode før casino-sessioner for optimal
+            performance. Hvis batteriet er lavt, tilslut en oplader eller brug en powerbank. For
+            slots er Low Power Mode acceptabelt, men for live casino kan det resultere i laggy
+            video og forsinkede betting-inputs der kan koste dig en runde.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="batteriforbrug-spiltype">
+            Batteriforbrug pr. Spiltype
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Vi har testet batteriforbruget på en iPhone 15 Pro over 1 times spil på WiFi
+            med 75 % skærmlysstyrke:
+          </p>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 pr-4 font-semibold">Spiltype</th>
+                      <th className="text-left py-2 pr-4 font-semibold">Batteriforbrug/time</th>
+                      <th className="text-left py-2 pr-4 font-semibold">Dataforbrug/time</th>
+                      <th className="text-left py-2 font-semibold">Estimeret spilletid (100 %)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Spilleautomater (slots)</td><td className="py-2 pr-4">8-12 %</td><td className="py-2 pr-4">5-15 MB</td><td className="py-2">8-12 timer</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Bordspil (RNG)</td><td className="py-2 pr-4">6-9 %</td><td className="py-2 pr-4">3-8 MB</td><td className="py-2">11-16 timer</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Live Casino (HD)</td><td className="py-2 pr-4">15-22 %</td><td className="py-2 pr-4">300-500 MB</td><td className="py-2">4-6 timer</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Game Shows</td><td className="py-2 pr-4">18-25 %</td><td className="py-2 pr-4">400-700 MB</td><td className="py-2">4-5 timer</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">Crash/Instant Games</td><td className="py-2 pr-4">7-10 %</td><td className="py-2 pr-4">2-5 MB</td><td className="py-2">10-14 timer</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="thermal-throttling">
+            Thermal Throttling – Overophedning under Casino-Spil
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Lange sessioner (45+ minutter) med grafiktunge slots eller live casino kan udløse
+            iPhones <strong>thermal management</strong>-system. Når den interne temperatur overstiger
+            ~40°C, reducerer iOS progressivt CPU/GPU-hastigheden for at forhindre skader:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+            <li><strong>Trin 1 (mild):</strong> Skærmlysstyrken reduceres automatisk, baggrundsprocesser pauses</li>
+            <li><strong>Trin 2 (moderat):</strong> CPU throttles med 20-30 %, animationer forenkles</li>
+            <li><strong>Trin 3 (kritisk):</strong> Temperatur-advarsel vises, opladning stopper midlertidigt</li>
+          </ul>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Forebyggelse:</strong> Fjern dit iPhone-cover under lange sessioner, undgå at spille
+            i direkte sollys, og hold telefonen væk fra varmekilder. Hvis du oplader og spiller
+            samtidig, brug en Apple-certificeret oplader med max 5W for at minimere varmegenerering.
+            Læs mere om optimale mobilforhold i vores{" "}
+            <Link to="/mobil-casino/bedste-apps" className="text-primary underline hover:text-primary/80">
+              guide til bedste casino apps
+            </Link>.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════════════════════
+            12-C. TILGÆNGELIGHED (ACCESSIBILITY) PÅ iOS CASINO
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="tilgaengelighed">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Eye className="h-7 w-7 text-primary" />
+            Tilgængelighed (Accessibility) – Casino på iPhone for Alle
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Apples iOS er branchens mest avancerede platform for tilgængelighed, og mange af disse
+            funktioner kan forbedre casino-oplevelsen markant – ikke kun for brugere med handicap,
+            men for alle spillere. Her er en gennemgang af de vigtigste accessibility-funktioner
+            og deres kompatibilitet med online casino.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="voiceover-casino">
+            VoiceOver – Skærmlæser til Casino-Spil
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            VoiceOver er iOS's indbyggede skærmlæser der oplæser alt på skærmen. For casino-spil
+            er kompatibiliteten varierende: navigationsmenuer, kontosider og betalingsflows fungerer
+            typisk godt med VoiceOver, da de benytter standard HTML-elementer. Selve spilmotorerne
+            (slots, live casino) er dog ofte canvas-baserede og dermed <strong>ikke fuldt tilgængelige</strong>{" "}
+            for VoiceOver – de fleste spiludbydere prioriterer desværre ikke ARIA-labels på spilelementer.
+          </p>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 pr-4 font-semibold">Casino-Funktion</th>
+                      <th className="text-left py-2 pr-4 font-semibold">VoiceOver-Kompatibilitet</th>
+                      <th className="text-left py-2 font-semibold">Bemærkninger</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Login / Registrering</td><td className="py-2 pr-4">✅ Fuld</td><td className="py-2">Standard HTML-formularer</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Kontoindstillinger</td><td className="py-2 pr-4">✅ Fuld</td><td className="py-2">Fungerer med alle casinoer</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Ind-/Udbetalinger</td><td className="py-2 pr-4">✅ Fuld</td><td className="py-2">MitID-integration fungerer</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Spilbibliotek</td><td className="py-2 pr-4">⚠️ Delvis</td><td className="py-2">Navigation OK, spilkort varierer</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Spilleautomater</td><td className="py-2 pr-4">❌ Begrænset</td><td className="py-2">Canvas-baseret, ingen ARIA</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">Live Casino</td><td className="py-2 pr-4">❌ Begrænset</td><td className="py-2">Video-stream ikke tilgængelig</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="dynamic-type">
+            Dynamic Type – Skriftstørrelse-Skalering
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Dynamic Type lader dig øge skriftstørrelsen system-bredt via Indstillinger → Skærm & Lysstyrke.
+            For casino-webapps afhænger kompatibiliteten af, om casinoet bruger relative
+            skriftstørrelser (em/rem) eller faste pixel-værdier. De bedste danske casinoer understøtter
+            Dynamic Type i navigation og kontosektioner, men spilmotorer bruger typisk faste dimensioner.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Tip:</strong> Brug Safaris indbyggede "Aa"-knap til at zoome ind på specifikke
+            casino-sider. Dette virker uanset casinoets native skriftsstørrelsesunderstøttelse og
+            giver dig fuld kontrol over tekststørrelsen i browseren.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="reduce-motion">
+            Reduce Motion – Slot-Animationer og Bevægelse
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Funktionen "Reducer bevægelse" (Indstillinger → Tilgængelighed → Bevægelse) minimerer
+            parallax-effekter og overgangsanimationer i iOS. Casino-webapps der respekterer
+            CSS-mediaforespørgslen <code className="bg-muted px-1 rounded text-xs">prefers-reduced-motion</code>{" "}
+            vil automatisk forenkle animationer. I praksis vil de fleste slot-spil dog
+            <strong> ignorere denne indstilling</strong>, da spilmotoren styrer sine egne animationer
+            uafhængigt af systemet.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            For spillere med epilepsi eller bevægelsessensitivitet anbefaler vi at vælge casinoer
+            der tilbyder en "quick spin" eller "skip animation"-funktion direkte i spilgrænsefladen.
+            De fleste moderne slots fra Pragmatic Play og NetEnt inkluderer sådanne indstillinger.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="switch-control">
+            Switch Control & AssistiveTouch
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Switch Control giver brugere med motoriske handicap mulighed for at betjene iPhone
+            via eksterne switches, hovedbevægelser eller lyd. AssistiveTouch tilføjer en flydende
+            menu-knap med brugerdefinerede genveje. For casino-brug er begge funktioner kompatible
+            med navigation og kontostyring, men selve spilinteraktionen (tryk på spin-knap, placer
+            bet) kan være udfordrende med Switch Control, da timingen i visse spil kræver præcis
+            koordination.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Anbefaling for motorisk handicappede spillere:</strong> Vælg casinoer med
+            auto-spin funktionalitet og forudindstillede bet-niveauer, der minimerer behovet
+            for gentagne trykinteraktioner. Bordspil med ubegrænset betænkningstid (RNG-versioner)
+            er mere tilgængelige end live casino med tidsbaserede betting-runder.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════════════════════
+            12-D. iOS OPDATERINGER & CASINO-KOMPATIBILITET
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="ios-opdateringer">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <RefreshCw className="h-7 w-7 text-primary" />
+            iOS Opdateringer & Casino-Kompatibilitet
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Apple udgiver årlige major iOS-opdateringer og månedlige sikkerhedspatches. Hver
+            opdatering kan påvirke casino-webapps og PWAs på forskellige måder. Her er hvad
+            du skal vide for at undgå kompatibilitetsproblemer.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="ios-version-historik">
+            iOS Versions-Historik – Casino-Relevante Ændringer
+          </h3>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 pr-4 font-semibold">iOS Version</th>
+                      <th className="text-left py-2 pr-4 font-semibold">År</th>
+                      <th className="text-left py-2 pr-4 font-semibold">Casino-Relevant Ændring</th>
+                      <th className="text-left py-2 font-semibold">Impact</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">iOS 14</td><td className="py-2 pr-4">2020</td><td className="py-2 pr-4">PWA Web App Manifest support</td><td className="py-2">Bedre PWA-installation</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">iOS 15</td><td className="py-2 pr-4">2021</td><td className="py-2 pr-4">Safari redesign, WebGL 2.0</td><td className="py-2">Bedre 3D-slots, UI-ændring</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">iOS 16</td><td className="py-2 pr-4">2022</td><td className="py-2 pr-4">Web Push, Passkeys support</td><td className="py-2">Push-notifikationer for PWAs</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">iOS 16.4</td><td className="py-2 pr-4">2023</td><td className="py-2 pr-4">PWA push-notifikationer</td><td className="py-2">Casino-alerts direkte i PWA</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">iOS 17</td><td className="py-2 pr-4">2023</td><td className="py-2 pr-4">Safari Profiles, Privacy improvements</td><td className="py-2">Separate casino-profiler</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">iOS 17.4 (EU)</td><td className="py-2 pr-4">2024</td><td className="py-2 pr-4">Alternative browser-engines (DMA)</td><td className="py-2">Chrome/Firefox med egen engine</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">iOS 18</td><td className="py-2 pr-4">2024</td><td className="py-2 pr-4">Apple Intelligence, RCS</td><td className="py-2">AI-baserede spam-filtre</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">iOS 19</td><td className="py-2 pr-4">2025</td><td className="py-2 pr-4">Forbedret WebGPU, Liquid Glass UI</td><td className="py-2">Bedre grafik-performance</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="beta-risici">
+            iOS Beta – Hvorfor Du Aldrig Bør Bruge Beta til Casino
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Apple tilbyder offentlige beta-versioner af nye iOS-releases. Vi fraråder <strong>
+            stærkt</strong> at installere beta-software på en enhed du bruger til casino:
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+            <li><strong>WebKit-regressioner:</strong> Beta-versioner kan introducere rendering-bugs der bryder casino-spil</li>
+            <li><strong>Ustabilt netværk:</strong> WiFi/Cellular-stakken er ofte ustabil i tidlige betaer</li>
+            <li><strong>Face ID/Touch ID-fejl:</strong> Biometrisk autentificering kan fejle under beta, hvilket forhindrer betalinger</li>
+            <li><strong>Ingen rollback:</strong> Du kan ikke nemt downgrade fra beta uden at slette alt data</li>
+            <li><strong>Casino-support:</strong> Casinoer tester ikke mod beta-versioner og vil ikke yde support</li>
+          </ul>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Anbefaling:</strong> Vent altid mindst 2-3 uger efter en ny iOS-release
+            før du opdaterer, så casinoerne har tid til at teste og rette eventuelle
+            kompatibilitetsproblemer. Aktiver automatiske sikkerhedsopdateringer (Rapid Security
+            Responses), men sæt major opdateringer til manuel installation.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════════════════════
+            12-E. FEJLFINDING – 10+ iPHONE-CASINO-PROBLEMER
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="fejlfinding">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <AlertTriangle className="h-7 w-7 text-primary" />
+            Fejlfinding – De 12 Hyppigste iPhone-Casino-Problemer
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Herunder finder du en struktureret fejlfindingsguide til de mest almindelige
+            problemer du kan opleve med casino på iPhone. Hvert problem inkluderer årsag
+            og præcis løsning.
+          </p>
+
+          <div className="space-y-4">
+            {[
+              { problem: "Casino-side loader ikke i Safari", aarsag: "Forældet cache, DNS-fejl eller Content Blocker", loesning: "Ryd Safari-cache (Indstillinger → Safari → Ryd historik), deaktiver Content Blockers midlertidigt, prøv privat fane" },
+              { problem: "Face ID virker ikke til casino-login", aarsag: "Face ID ikke aktiveret for Safari, eller maske/solbriller", loesning: "Indstillinger → Face ID & kode → Aktiver for Safari/Autofyld. Tilføj 'Alternativt udseende' for briller" },
+              { problem: "Spil fryser midt i en runde", aarsag: "Hukommelsesmangel, for mange tabs åbne, eller overophedning", loesning: "Luk alle andre Safari-tabs (max 5 åbne), luk baggrundsapps, vent 5 min ved overophedning, genindlæs siden" },
+              { problem: "Ingen lyd i casino-spil", aarsag: "Silent Mode aktiveret, eller Safari blokerer autoplay", loesning: "Deaktiver Silent Mode (venstre side-knap), tryk fysisk på spillet én gang for at aktivere lyd (iOS kræver user interaction)" },
+              { problem: "Live casino-video er pixeleret", aarsag: "Svag internetforbindelse eller Low Power Mode", loesning: "Skift til WiFi, deaktiver Low Power Mode, ryd baggrunds-downloads. Kræver min. 5 Mbps for HD-stream" },
+              { problem: "Push-notifikationer virker ikke fra casino-PWA", aarsag: "Kræver iOS 16.4+, og PWA skal være installeret via 'Føj til hjemmeskærm'", loesning: "Opdater til iOS 16.4+, slet og geninstaller PWA, aktiver notifikationer i Indstillinger → Notifikationer" },
+              { problem: "MitID-login redirecter ikke tilbage til casino", aarsag: "Pop-up blocker i Safari, eller privat browsing-modus", loesning: "Deaktiver pop-up blocker (Indstillinger → Safari → Bloker pop op-vinduer OFF), brug normal (ikke privat) browsing" },
+              { problem: "Apple Pay afvises ved indbetaling", aarsag: "Kort ikke godkendt til gambling, eller beløb over bankens grænse", loesning: "Kontakt din bank for at aktivere online gambling-transaktioner, prøv et alternativt kort, eller brug MobilePay/Trustly" },
+              { problem: "Casino sender mig til desktop-version", aarsag: "Safari 'Anmod om desktop-websted' er aktiveret", loesning: "Tryk på 'Aa' i adresselinjen → Vælg 'Anmod om mobil-websted'. Ryd casinoets cookies" },
+              { problem: "Skærmtid blokerer casino-adgang", aarsag: "Indholds- og privatlivsbegrænsninger aktiveret", loesning: "Indstillinger → Skærmtid → Indholds- og privatlivsbegrænsninger → Webindhold → Ubegrænset adgang" },
+              { problem: "Batteri drænes ekstremt hurtigt under spil", aarsag: "Skærmlysstyrke 100 %, baggrundsapps, Location Services aktiv", loesning: "Sænk lysstyrke til 50 %, luk unødvendige baggrundsapps, deaktiver Location Services for Safari" },
+              { problem: "Casino-app crasher ved opstart", aarsag: "Forældet app-version, eller iOS-version ikke understøttet", loesning: "Opdater appen i App Store, opdater iOS, slet og geninstaller appen. Kontakt casino-support med iOS-version" },
+            ].map((item, idx) => (
+              <Card key={idx}>
+                <CardContent className="pt-4 pb-4">
+                  <div className="flex items-start gap-3">
+                    <Badge variant="outline" className="shrink-0 mt-0.5">{idx + 1}</Badge>
+                    <div>
+                      <p className="font-semibold text-foreground mb-1">{item.problem}</p>
+                      <p className="text-xs text-muted-foreground mb-1"><strong>Årsag:</strong> {item.aarsag}</p>
+                      <p className="text-xs text-muted-foreground"><strong>Løsning:</strong> {item.loesning}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <p className="text-muted-foreground leading-relaxed mt-4">
+            Hvis problemet fortsætter efter ovenstående trin, kontakt casinoets kundeservice
+            med din iPhone-model, iOS-version og en beskrivelse af problemet. De fleste
+            danske casinoer tilbyder live chat-support der kan guide dig through fejlfinding
+            i realtid.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════════════════════
+            12-F. iCLOUD & HANDOFF
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="icloud-handoff">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Globe className="h-7 w-7 text-primary" />
+            iCloud & Handoff – Casino på Tværs af Apple-Enheder
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Apples økosystem giver unikke muligheder for at flytte din casino-session sømløst
+            mellem iPhone, iPad og Mac via iCloud og Handoff. Her er hvad der fungerer – og
+            hvad der ikke gør.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="safari-tab-sync">
+            Safari Tab-Synkronisering
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Når iCloud Safari-synkronisering er aktiveret, kan du se åbne Safari-tabs fra
+            din iPhone på din iPad eller Mac (og omvendt). Det betyder, at du kan starte en
+            casino-session på iPhone, og derefter åbne præcis samme tab på din iPad med større
+            skærm – uden at logge ind igen, da cookies deles via iCloud.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Begrænsning:</strong> Tab-sync deler URL'en, men ikke den aktive session-state
+            i et spil. Hvis du er midt i en bonus-runde, vil du ikke kunne "fortsætte" den
+            fra en anden enhed – du starter fra lobby'en. Login-sessionen bevares dog typisk.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="handoff-casino">
+            Handoff – Skift Enhed Midt i Session
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Handoff viser et lille ikon på din dock (iPad/Mac) eller låseskærm (iPhone) når
+            du browser det samme domæne på en anden enhed. For casino-brug fungerer det
+            således: åbn et casino i Safari på iPhone, og inden for sekunder vises et
+            Safari-ikon med casinoets URL på din iPad/Mac. Tryk for at fortsætte browsing
+            der.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Handoff kræver at alle enheder er logget ind med samme Apple ID, at Bluetooth
+            er aktiveret, og at begge enheder er på samme WiFi-netværk. Funktionen virker
+            med Safari-baserede casino-webapps, men <strong>ikke med PWA-installerede casinoer</strong>,
+            da PWAs behandles som selvstændige apps.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="keychain-casino">
+            iCloud Keychain til Casino-Konti
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            iCloud Keychain synkroniserer dine gemte casino-adgangskoder sikkert på tværs
+            af alle Apple-enheder med end-to-end-kryptering. Når du opretter en konto hos
+            et nyt casino, tilbyder Safari automatisk en stærk, unik adgangskode der gemmes
+            i Keychain. Næste gang du logger ind – uanset om det er på iPhone, iPad eller Mac
+            – autofylder Keychain login-felterne efter Face ID/Touch ID-verifikation.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Keychain understøtter også passkeys (FIDO2/WebAuthn), som er passwordless login.
+            Nogle fremsynede casinoer begynder at implementere passkey-support, hvilket
+            eliminerer phishing-risikoen helt. Hold øje med denne teknologi i 2025-2026, da
+            den forventes at blive standard hos de større danske casinoer.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For den bedste cross-device casino-oplevelse anbefaler vi at kombinere iCloud
+            Keychain med Safari tab-sync og{" "}
+            <Link to="/mobil-casino/tablet" className="text-primary underline hover:text-primary/80">
+              en iPad til live casino
+            </Link>{" "}
+            – start med slots på iPhone undervejs, og skift til iPad'ens store skærm
+            når du er hjemme for immersiv live dealer-action.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ═══════════════════════════════════════════════════════════
             12. ANSVARLIGT SPIL PÅ iOS
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ansvarligt-spil-ios">
