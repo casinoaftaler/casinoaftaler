@@ -342,6 +342,9 @@ const BwinAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="bwin" intro={TEST_LOG_DATA["bwin"].intro} entries={TEST_LOG_DATA["bwin"].entries} />
+
+        <Separator className="my-10" />
 
         {/* Payment Methods Table */}
         <section className="mb-12">
@@ -580,8 +583,6 @@ const BwinAnmeldelse = () => {
         </section>
 
         <RelatedGuides currentPath="/casino-anmeldelser/bwin" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="bwin" intro={TEST_LOG_DATA["bwin"].intro} entries={TEST_LOG_DATA["bwin"].entries} />
         <FAQSection faqs={bwinFaqs} />
         <AuthorBio author="jonas" />
       </div>

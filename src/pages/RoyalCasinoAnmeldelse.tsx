@@ -258,8 +258,6 @@ const RoyalCasinoAnmeldelse = () => {
         <InlineCasinoCards count={3} />
 
         <RelatedGuides currentPath="/casino-anmeldelser/royal-casino" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Royal Casino" intro={TEST_LOG_DATA["royal-casino"].intro} entries={TEST_LOG_DATA["royal-casino"].entries} />
         <FAQSection faqs={royalFaqs} />
         <AuthorBio author="jonas" />
       </div>

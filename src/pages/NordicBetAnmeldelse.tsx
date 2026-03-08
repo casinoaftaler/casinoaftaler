@@ -184,6 +184,9 @@ const NordicBetAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="NordicBet" intro={TEST_LOG_DATA["nordicbet"].intro} entries={TEST_LOG_DATA["nordicbet"].entries} />
+
+        <Separator className="my-10" />
 
         {/* Payment Methods */}
         <section className="mb-12">
@@ -446,8 +449,6 @@ const NordicBetAnmeldelse = () => {
 
         <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/nordicbet" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="NordicBet" intro={TEST_LOG_DATA["nordicbet"].intro} entries={TEST_LOG_DATA["nordicbet"].entries} />
         <FAQSection faqs={nordicbetFaqs} />
         <AuthorBio author="jonas" />
       </div>

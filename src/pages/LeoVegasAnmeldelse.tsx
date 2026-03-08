@@ -223,6 +223,9 @@ const LeoVegasAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="LeoVegas" intro={TEST_LOG_DATA["leovegas"].intro} entries={TEST_LOG_DATA["leovegas"].entries} />
+
+        <Separator className="my-10" />
 
         {/* Payment Methods */}
         <section className="mb-12">
@@ -446,8 +449,6 @@ const LeoVegasAnmeldelse = () => {
         </section>
 
         <RelatedGuides currentPath="/casino-anmeldelser/leovegas" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="LeoVegas" intro={TEST_LOG_DATA["leovegas"].intro} entries={TEST_LOG_DATA["leovegas"].entries} />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
