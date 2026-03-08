@@ -144,6 +144,7 @@ export const BONUS_LINKS: NavLinkWithIcon[] = [
   { to: "/bonus-uden-omsaetningskrav", label: "Bonus uden Omsætningskrav" },
   { to: "/cashback-bonus", label: "Cashback Bonus" },
   { to: "/reload-bonus", label: "Reload Bonus" },
+  { to: "/vip-program", label: "VIP Program" },
 ];
 
 export const PAYMENT_LINKS: NavLink[] = [
@@ -157,6 +158,7 @@ export const PAYMENT_LINKS: NavLink[] = [
   { to: "/betalingsmetoder/bankoverforsler", label: "Bankoverførsel" },
   { to: "/betalingsmetoder/visa-mastercard", label: "Visa / Mastercard" },
   { to: "/betalingsmetoder/revolut", label: "Revolut" },
+  { to: "/casino-med-mobilepay", label: "Casino med MobilePay" },
 ];
 
 export const PROVIDER_LINKS: NavLink[] = [
