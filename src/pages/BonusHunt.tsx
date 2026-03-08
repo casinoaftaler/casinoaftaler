@@ -70,22 +70,21 @@ export default function BonusHunt() {
     queryClient.invalidateQueries({ queryKey: ['bonus-hunt-avgx-bets'] });
   }, [queryClient]);
 
-  // Hard cap: we only have hunts 1, 2, and 3
-  const MAX_HUNT_NUMBER = 3;
+  const maxHuntNumber = latestHuntNumber;
 
-  const currentHuntNumber = Math.min(
-    huntData?.visibleId || huntIdOverride || latestHuntNumber,
-    MAX_HUNT_NUMBER
-  );
+  const currentHuntNumber = huntData?.visibleId || huntIdOverride || latestHuntNumber;
   const isSessionCurrentActive = session?.status === 'active' && session?.hunt_number === currentHuntNumber;
-  const isDataCurrentActive = huntData?.status === 'active' && currentHuntNumber === MAX_HUNT_NUMBER;
+  const isDataCurrentActive = huntData?.status === 'active' && currentHuntNumber === maxHuntNumber;
   const isLive = !!(isSessionCurrentActive || isDataCurrentActive);
   const isArchived = !isLive && archivedHuntNumbers.includes(currentHuntNumber);
   const huntVideo = getHuntVideo(currentHuntNumber);
-  const maxHuntNumber = MAX_HUNT_NUMBER;
 
-  // Only valid hunts
-  const availableHuntNumbers = useMemo(() => [3, 2, 1], []);
+  // Build available hunt numbers from archived data, sorted descending
+  const availableHuntNumbers = useMemo(() => {
+    const numbers = new Set(archivedHuntNumbers);
+    numbers.add(latestHuntNumber);
+    return [...numbers].sort((a, b) => b - a);
+  }, [archivedHuntNumbers, latestHuntNumber]);
 
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
     const orderedHunts = [...availableHuntNumbers].sort((a, b) => a - b);
@@ -93,8 +92,8 @@ export default function BonusHunt() {
 
     const navigateTo = (target?: number) => {
       if (!target) return;
-      // Hunt #3 is the live route (no override), 1-2 are archived routes
-      setHuntIdOverride(target === MAX_HUNT_NUMBER ? undefined : target);
+      // Latest hunt is the live route (no override), others are archived routes
+      setHuntIdOverride(target === maxHuntNumber ? undefined : target);
     };
 
     switch (dir) {
@@ -250,7 +249,7 @@ export default function BonusHunt() {
                     isArchived={isArchived}
                     availableHuntNumbers={availableHuntNumbers}
                     onNavigate={handleNavigate}
-                    onJumpToHunt={(num) => setHuntIdOverride(num === MAX_HUNT_NUMBER ? undefined : Math.min(num, MAX_HUNT_NUMBER))}
+                    onJumpToHunt={(num) => setHuntIdOverride(num === maxHuntNumber ? undefined : num)}
                   />
                   {isLive ? (
                     <BonusHuntLiveStream huntNumber={currentHuntNumber} />
