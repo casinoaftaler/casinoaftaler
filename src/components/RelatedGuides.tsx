@@ -231,7 +231,7 @@ const MAX_CROSS_CLUSTER = 1;
  */
 function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtitle: string } {
   const path = currentPath.toLowerCase();
-  const { bonusHub, paymentHub, providerHub, reviewHub, casinospilHub } = resolveHubs(path);
+  const { bonusHub, paymentHub, providerHub, reviewHub, casinospilHub, spillemaskinerHub } = resolveHubs(path);
 
   // Casino Nyheder hub → strategic money-page links
   if (path === "/casino-nyheder") {
