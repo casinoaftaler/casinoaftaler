@@ -124,6 +124,10 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/live-casino/baccarat", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-13" },
   { path: "/live-casino/lightning-roulette", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-16" },
   { path: "/live-casino/monopoly-live", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-12" },
+  { path: "/live-casino/game-shows", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-08" },
+  { path: "/live-casino/crazy-time", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
+  { path: "/live-casino/dream-catcher", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
+  { path: "/live-casino/deal-or-no-deal", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casinospil", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-02" },
   { path: "/casinospil/spillemaskiner", changefreq: "daily", priority: 0.8, lastmod: "2026-02-18" },
   { path: "/casinospil/spillemaskiner/hoej-rtp", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-15" },
@@ -186,7 +190,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/baccarat", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-23" },
   // /casinospil/roulette-strategi – 301 redirected to /casinospil/roulette (cannibalization fix)
   { path: "/casinospil/online-lotteri", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-17" },
-  { path: "/casinospil/game-shows", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-06" },
+  // /casinospil/game-shows – 301 redirected to /live-casino/game-shows
 
   // ── Bonus Guides ──
   { path: "/casino-bonus", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-19" },

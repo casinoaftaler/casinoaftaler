@@ -96,6 +96,9 @@ const LiveRouletteGuide = lazy(() => import("./pages/live-casino/LiveRouletteGui
 const LiveBaccaratGuide = lazy(() => import("./pages/live-casino/LiveBaccaratGuide"));
 const LightningRouletteGuide = lazy(() => import("./pages/live-casino/LightningRouletteGuide"));
 const MonopolyLiveGuide = lazy(() => import("./pages/live-casino/MonopolyLiveGuide"));
+const CrazyTimeGuide = lazy(() => import("./pages/live-casino/CrazyTimeGuide"));
+const DreamCatcherGuide = lazy(() => import("./pages/live-casino/DreamCatcherGuide"));
+const DealOrNoDealGuide = lazy(() => import("./pages/live-casino/DealOrNoDealGuide"));
 const NoStickyBonus = lazy(() => import("./pages/NoStickyBonus"));
 const StickyBonus = lazy(() => import("./pages/StickyBonus"));
 const CashbackBonus = lazy(() => import("./pages/CashbackBonus"));
@@ -368,6 +371,10 @@ const App = () => (
                 <Route path="/live-casino/baccarat" element={<LiveBaccaratGuide />} />
                 <Route path="/live-casino/lightning-roulette" element={<LightningRouletteGuide />} />
                 <Route path="/live-casino/monopoly-live" element={<MonopolyLiveGuide />} />
+                <Route path="/live-casino/game-shows" element={<GameShowsGuide />} />
+                <Route path="/live-casino/crazy-time" element={<CrazyTimeGuide />} />
+                <Route path="/live-casino/dream-catcher" element={<DreamCatcherGuide />} />
+                <Route path="/live-casino/deal-or-no-deal" element={<DealOrNoDealGuide />} />
                 <Route path="/casino-anmeldelser/spilleautomaten" element={<SpilleautomatenAnmeldelse />} />
                 <Route path="/casino-anmeldelser/spildansknu" element={<SpilDanskNuAnmeldelse />} />
                 <Route path="/casino-anmeldelser/campobet" element={<CampobetAnmeldelse />} />
@@ -470,7 +477,7 @@ const App = () => (
                 <Route path="/casinospil/baccarat" element={<BaccaratGuide />} />
                 <Route path="/casinospil/roulette-strategi" element={<Navigate to="/casinospil/roulette" replace />} />
                 <Route path="/casinospil/online-lotteri" element={<OnlineLotteriGuide />} />
-                <Route path="/casinospil/game-shows" element={<GameShowsGuide />} />
+                <Route path="/casinospil/game-shows" element={<Navigate to="/live-casino/game-shows" replace />} />
                 <Route path="/spiludviklere/netent" element={<NetEntGuide />} />
                 <Route path="/spiludviklere/pragmatic-play" element={<PragmaticPlayGuide />} />
                 <Route path="/spiludviklere/relax-gaming" element={<RelaxGamingGuide />} />
