@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { TestMetodeSeoContent } from "@/components/test-metode/TestMetodeSeoContent";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -393,6 +394,11 @@ const SaadanTesterVi = () => {
             </CardContent>
           </Card>
         </section>
+
+        <Separator className="my-10" />
+
+        {/* Deep SEO content: case studies, aggregerede data, scoring-metodik */}
+        <TestMetodeSeoContent />
 
         <Separator className="my-10" />
 
