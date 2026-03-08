@@ -878,7 +878,7 @@ function AdminDashboard() {
 
       <main className="container py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="hidden lg:grid w-full grid-cols-12 mb-8 h-auto">
+            <TabsList className="hidden lg:grid w-full grid-cols-14 mb-8 h-auto">
               {navItems.map((item) => (
                 <TabsTrigger key={item.value} value={item.value} className="flex items-center gap-2 py-3">
                   <item.icon className="h-4 w-4" />
@@ -1103,6 +1103,43 @@ function AdminDashboard() {
             <div className="mt-6">
               <PageMetadataAdminSection />
             </div>
+          </TabsContent>
+
+          {/* Link Density Monitor Tab */}
+          <TabsContent value="link-density">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Link2 className="h-5 w-5 text-primary" />
+                  Link Density Monitor
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-muted-foreground text-sm">
+                  Monitoren viser antal interne og eksterne links på den aktuelle side. Brug den ved at navigere til en side i preview og aktivere monitoren der.
+                </p>
+                <div className="rounded-lg border border-border p-4 space-y-3">
+                  <h3 className="font-semibold text-sm">Retningslinjer for link-densitet</h3>
+                  <div className="grid grid-cols-3 gap-4 text-sm">
+                    <div className="rounded-md bg-emerald-500/10 p-3 text-center">
+                      <div className="text-lg font-bold text-emerald-600">&lt; 40</div>
+                      <div className="text-muted-foreground text-xs">Optimal</div>
+                    </div>
+                    <div className="rounded-md bg-yellow-500/10 p-3 text-center">
+                      <div className="text-lg font-bold text-yellow-600">40–60</div>
+                      <div className="text-muted-foreground text-xs">Grænseområde</div>
+                    </div>
+                    <div className="rounded-md bg-destructive/10 p-3 text-center">
+                      <div className="text-lg font-bold text-destructive">&gt; 60</div>
+                      <div className="text-muted-foreground text-xs">Over-optimeret</div>
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Link Density Monitor er en floating widget der vises på alle sider for admin-brugere. Klik på badget for at se en komplet liste over alle links på den aktuelle side.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           {/* Brugere Tab */}
