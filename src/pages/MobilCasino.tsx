@@ -995,11 +995,14 @@ const MobilCasino = () => {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { to: "/casino-app", title: "Casino App Guide", desc: "App vs. browser – komplet sammenligning" },
+              { to: "/mobil-casino/iphone", title: "Casino på iPhone", desc: "iOS-guide: Safari PWA, Face ID og performance" },
+              { to: "/mobil-casino/android", title: "Casino på Android", desc: "APK-sikkerhed, Google Play og fragmentering" },
+              { to: "/mobil-casino/tablet", title: "Casino på Tablet", desc: "iPad vs. Android tablets til live casino" },
+              { to: "/mobil-casino/bedste-apps", title: "Bedste Casino Apps 2026", desc: "Top 10 apps med vægtet scoring-model" },
               { to: "/casino-anmeldelser", title: "Casino Anmeldelser", desc: "Detaljerede anmeldelser med mobiltest" },
               { to: "/betalingsmetoder", title: "Betalingsmetoder", desc: "Alle betalingsløsninger sammenlignet" },
               { to: "/ansvarligt-spil", title: "Ansvarligt Spil", desc: "Ressourcer og værktøjer til ansvarligt spil" },
               { to: "/casino-licenser", title: "Casino Licenser", desc: "Forstå det danske licenssystem" },
-              { to: "/ordbog", title: "Casino Ordbog", desc: "Forstå alle casino-termer" },
             ].map((item) => (
               <Link
                 key={item.to}

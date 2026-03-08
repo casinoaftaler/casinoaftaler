@@ -122,6 +122,13 @@ const jonasArticles: AuthorArticle[] = [
   { title: "Mobil Casinoer Guide", path: "/casinoer/mobil-casinoer", category: "Guide", excerpt: "De bedste mobilvenlige casinoer i Danmark." },
   { title: "Spil Casino for Sjov", path: "/casinoer/spil-casino-for-sjov", category: "Guide", excerpt: "Prøv casinospil gratis uden risiko – komplet guide." },
   { title: "Casino og Skat Guide", path: "/casinoer/casino-og-skat", category: "Guide", excerpt: "Alt om skat på casinogevinster i Danmark." },
+  // Mobil Casino cluster
+  { title: "Mobil Casino Guide", path: "/mobil-casino", category: "Guide", excerpt: "Komplet guide til casino på mobilen – app vs. browser, betalinger og performance." },
+  { title: "Casino App Guide", path: "/casino-app", category: "Guide", excerpt: "Alt om casino apps i Danmark – native app vs. PWA vs. browser." },
+  { title: "Casino på iPhone Guide", path: "/mobil-casino/iphone", category: "Guide", excerpt: "iOS-specifik guide: Face ID, Safari PWA, Apple Pay og performance-benchmarks." },
+  { title: "Casino på Android Guide", path: "/mobil-casino/android", category: "Guide", excerpt: "Android casino guide: APK-sikkerhed, Google Play og fragmenteringshåndtering." },
+  { title: "Casino på Tablet Guide", path: "/mobil-casino/tablet", category: "Guide", excerpt: "iPad vs. Android tablets – landskab, multi-tabling og live casino." },
+  { title: "Bedste Casino Apps 2026", path: "/mobil-casino/bedste-apps", category: "Guide", excerpt: "Top 10 ranking af danske casino apps med vægtet scoring-model." },
   // Anmeldelser
   { title: "SpilDanskNu Anmeldelse", path: "/casino-anmeldelser/spildansknu", category: "Anmeldelse", excerpt: "Dybdegående anmeldelse af SpilDanskNu med bonus, spil og brugeroplevelse." },
   { title: "Spilleautomaten Anmeldelse", path: "/casino-anmeldelser/spilleautomaten", category: "Anmeldelse", excerpt: "Anmeldelse af Spilleautomaten med 3.000+ spil og hurtige udbetalinger." },

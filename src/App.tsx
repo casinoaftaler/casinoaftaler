@@ -332,6 +332,10 @@ const App = () => (
                 <Route path="/ansvarligt-spil/hjaelpelinjer" element={<HjaelpelinjerGuide />} />
                 <Route path="/mobil-casino" element={<MobilCasino />} />
                 <Route path="/casino-app" element={<CasinoApp />} />
+                <Route path="/mobil-casino/iphone" element={<IPhoneCasinoGuide />} />
+                <Route path="/mobil-casino/android" element={<AndroidCasinoGuide />} />
+                <Route path="/mobil-casino/tablet" element={<TabletCasinoGuide />} />
+                <Route path="/mobil-casino/bedste-apps" element={<BedsteAppsGuide />} />
                 <Route path="/casino-uden-konto" element={<CasinoUdenKonto />} />
                 <Route path="/casino-uden-konto/pay-n-play" element={<PayNPlayGuide />} />
                 <Route path="/casino-uden-konto/hurtig-registrering" element={<HurtigRegistreringGuide />} />

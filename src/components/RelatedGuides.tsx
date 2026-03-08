@@ -139,6 +139,10 @@ const casinoGuidesSiblings: GuideLink[] = [
   { to: "/casinoer/casino-og-skat", label: "Casino og Skat", icon: Target, desc: "Skatteforhold ved casinogevinster" },
   { to: "/mobil-casino", label: "Mobil Casino", icon: Smartphone, desc: "Komplet guide til casino på mobilen" },
   { to: "/casino-app", label: "Casino App", icon: Smartphone, desc: "Guide til casino apps i Danmark" },
+  { to: "/mobil-casino/iphone", label: "Casino på iPhone", icon: Smartphone, desc: "iOS-guide med Face ID og Safari PWA" },
+  { to: "/mobil-casino/android", label: "Casino på Android", icon: Smartphone, desc: "APK-sikkerhed og Google Play" },
+  { to: "/mobil-casino/tablet", label: "Casino på Tablet", icon: Smartphone, desc: "iPad og tablet-optimeret casino" },
+  { to: "/mobil-casino/bedste-apps", label: "Bedste Casino Apps", icon: Smartphone, desc: "Top 10 apps i Danmark 2026" },
 ];
 
 const casinospilSiblings: GuideLink[] = [

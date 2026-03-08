@@ -79,6 +79,10 @@ export const routeLabels: Record<string, string> = {
   // Mobil Casino
   "/mobil-casino": "Mobil Casino",
   "/casino-app": "Casino App",
+  "/mobil-casino/iphone": "Casino på iPhone",
+  "/mobil-casino/android": "Casino på Android",
+  "/mobil-casino/tablet": "Casino på Tablet",
+  "/mobil-casino/bedste-apps": "Bedste Casino Apps 2026",
   // Casino uden Konto cluster
   "/casino-uden-konto": "Casino uden Konto",
   "/casino-uden-konto/pay-n-play": "Pay N Play",
@@ -403,6 +407,10 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
 
   // Mobil Casino cluster – bundet til /mobil-casino hub
   "/casino-app": [{ name: "Mobil Casino", path: "/mobil-casino" }],
+  "/mobil-casino/iphone": [{ name: "Mobil Casino", path: "/mobil-casino" }],
+  "/mobil-casino/android": [{ name: "Mobil Casino", path: "/mobil-casino" }],
+  "/mobil-casino/tablet": [{ name: "Mobil Casino", path: "/mobil-casino" }],
+  "/mobil-casino/bedste-apps": [{ name: "Mobil Casino", path: "/mobil-casino" }],
 
   // Casino uden Konto cluster – spokes bound to hub
   "/casino-uden-konto/pay-n-play": [{ name: "Casino uden Konto", path: "/casino-uden-konto" }],
