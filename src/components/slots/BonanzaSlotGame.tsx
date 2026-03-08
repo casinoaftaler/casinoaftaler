@@ -805,6 +805,11 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
           autoSpinTimeoutRef.current = setTimeout(() => handleSpin(), 500);
         }
       } else if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current && !pendingBonusActionRef.current) {
+        // Stop auto-spin if not enough credits for next bet
+        if (!hasEnoughSpins(bet)) {
+          stopAutoSpin();
+          return;
+        }
         // Use ref to avoid stale closure — decrement auto-spin counter
         if (autoSpinsRemainingRef.current !== null) {
           const newCount = autoSpinsRemainingRef.current - 1;
@@ -829,6 +834,8 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const handleRetriggerComplete = useCallback(() => {
     setShowRetrigger(false);
     showRetriggerRef.current = false;
+    // Release spin lock so next spin can proceed
+    spinLockRef.current = false;
     // Resume auto-spin in bonus after retrigger
     if (isAutoSpinningRef.current && !shouldStopAutoSpinRef.current) {
       if (autoSpinTimeoutRef.current) clearTimeout(autoSpinTimeoutRef.current);
