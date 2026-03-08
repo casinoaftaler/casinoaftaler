@@ -60,7 +60,7 @@ function buildArchiveRow(huntNumber: number, summary: any, detail: any) {
 
   return {
     hunt_number: huntNumber,
-    hunt_name: summary.name,
+    hunt_name: `Bonus Hunt #${huntNumber}`,
     hunt_status: huntStatus,
     start_balance: startBalance,
     end_balance: endBalance && endBalance > 0 ? endBalance : null,
