@@ -145,14 +145,29 @@ export function BonusHuntArchiveAdmin() {
       const { data, error } = await supabase.functions.invoke("bonus-hunt-full-import", {
         body: { singleHuntId: importId.trim(), huntNumber: parseInt(importNumber) },
       });
-      if (error) throw error;
+      if (error) {
+        // supabase client wraps non-2xx responses - extract the actual body
+        const ctx = (error as any)?.context;
+        if (ctx instanceof Response) {
+          const body = await ctx.json().catch(() => null);
+          if (body?.duplicate) {
+            toast.error(`Denne hunt findes allerede som Bonus Hunt #${body.existingHuntNumber}`);
+            return;
+          }
+          if (body?.error) {
+            toast.error(body.error);
+            return;
+          }
+        }
+        throw error;
+      }
       if (data?.error) throw new Error(data.error);
       toast.success(`Importeret: ${data.name} som Hunt #${data.huntNumber} (${data.slots} slots)`);
       queryClient.invalidateQueries({ queryKey: ["bonus-hunt-archives"] });
       setImportId("");
       setImportNumber("");
     } catch (e: any) {
-      toast.error(e.message);
+      toast.error(e.message || "Import fejlede");
     } finally {
       setImporting(false);
     }
