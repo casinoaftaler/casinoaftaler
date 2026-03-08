@@ -70,46 +70,37 @@ export default function BonusHunt() {
     queryClient.invalidateQueries({ queryKey: ['bonus-hunt-avgx-bets'] });
   }, [queryClient]);
 
-  const blockedHunts = new Set<number>();
+  // Hard cap: we only have hunts 1, 2, and 3
+  const MAX_HUNT_NUMBER = 3;
 
-  const getNextAllowed = useCallback((start: number) => {
-    let n = start;
-    while (blockedHunts.has(n)) n += 1;
-    return n;
-  }, []);
-
-  const fallbackNextHuntNumber = getNextAllowed(latestHuntNumber + 1);
-  const liveHuntNumber = huntData?.status === 'active' && huntData?.visibleId
-    ? getNextAllowed(huntData.visibleId)
-    : fallbackNextHuntNumber;
-  const currentHuntNumber = huntData?.visibleId || huntIdOverride || liveHuntNumber;
+  const currentHuntNumber = Math.min(
+    huntData?.visibleId || huntIdOverride || latestHuntNumber,
+    MAX_HUNT_NUMBER
+  );
   const isArchived = archivedHuntNumbers.includes(currentHuntNumber);
   const isLive = !!(
     (session?.status === 'active' && session?.hunt_number === currentHuntNumber && !isArchived)
-    || (huntData?.status === 'active' && currentHuntNumber >= latestHuntNumber)
+    || (huntData?.status === 'active' && currentHuntNumber === MAX_HUNT_NUMBER)
   );
   const huntVideo = getHuntVideo(currentHuntNumber);
-  const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber, currentHuntNumber);
+  const maxHuntNumber = MAX_HUNT_NUMBER;
 
-  // Build available hunt numbers: archived + current visible/live hunt (descending)
+  // Build available hunt numbers: only 1, 2, 3 (descending)
   const availableHuntNumbers = useMemo(() => {
-    const nums = new Set(archivedHuntNumbers);
-    nums.add(liveHuntNumber);
+    const nums = new Set(archivedHuntNumbers.filter(n => n <= MAX_HUNT_NUMBER));
     nums.add(currentHuntNumber);
     return [...nums].sort((a, b) => b - a);
-  }, [archivedHuntNumbers, liveHuntNumber, currentHuntNumber]);
+  }, [archivedHuntNumbers, currentHuntNumber]);
 
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
     if (!availableHuntNumbers.length) return;
 
-    const orderedHunts = [...availableHuntNumbers].sort((a, b) => a - b); // oldest -> newest
-    const current = huntData?.visibleId || huntIdOverride || liveHuntNumber;
-    const currentIndex = orderedHunts.indexOf(current);
+    const orderedHunts = [...availableHuntNumbers].sort((a, b) => a - b);
+    const currentIndex = orderedHunts.indexOf(currentHuntNumber);
 
     const navigateTo = (target?: number) => {
       if (!target) return;
-      if (target > latestHuntNumber) setHuntIdOverride(undefined);
-      else setHuntIdOverride(target);
+      setHuntIdOverride(target);
     };
 
     switch (dir) {
@@ -128,7 +119,7 @@ export default function BonusHunt() {
         }
         break;
     }
-  }, [availableHuntNumbers, huntData?.visibleId, huntIdOverride, latestHuntNumber, liveHuntNumber]);
+  }, [availableHuntNumbers, currentHuntNumber]);
 
   const huntDate = huntData?.date
     ? new Date(huntData.date).toLocaleDateString('da-DK', { day: 'numeric', month: 'short' }).toUpperCase()
@@ -265,7 +256,7 @@ export default function BonusHunt() {
                     isArchived={isArchived}
                     availableHuntNumbers={availableHuntNumbers}
                     onNavigate={handleNavigate}
-                    onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
+                    onJumpToHunt={(num) => setHuntIdOverride(Math.min(num, MAX_HUNT_NUMBER))}
                   />
                   {isLive ? (
                     <BonusHuntLiveStream huntNumber={currentHuntNumber} />
