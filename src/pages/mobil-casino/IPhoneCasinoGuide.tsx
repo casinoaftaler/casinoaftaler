@@ -112,6 +112,7 @@ const IPhoneCasinoGuide = () => {
     name: "Sådan installerer du et casino som PWA på iPhone",
     description: "Trin-for-trin guide til at installere et online casino som Progressive Web App (PWA) på din iPhone for en app-lignende oplevelse.",
     steps: pwaSteps,
+    pageUrl: `${SITE_URL}/mobil-casino/iphone`,
   });
 
   return (

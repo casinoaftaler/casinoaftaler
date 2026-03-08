@@ -108,6 +108,7 @@ const AndroidCasinoGuide = () => {
     name: "Sådan sikrer du dig mod usikre casino-APK'er på Android",
     description: "Trin-for-trin guide til at beskytte din Android-enhed mod usikre casino-apps og APK-filer.",
     steps: apkSafetySteps,
+    pageUrl: `${SITE_URL}/mobil-casino/android`,
   });
 
   return (
