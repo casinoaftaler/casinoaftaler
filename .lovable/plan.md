@@ -1,24 +1,20 @@
 
 
-## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
+## Plan: Fix Bonus Hunt VOD Registry
 
-### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
+### Problem
+The `HUNT_VIDEOS` registry in `BonusHuntVideoSection.tsx` has incorrect Twitch video IDs. The user confirmed:
+- Hunt #1: `2714677621` (already correct)
+- Hunt #2: should be `2716498380` (currently `2705001000` which is wrong)
 
-The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
+Additionally, the chronology is inconsistent -- Hunt #1 is dated March 5 but Hunt #2 is dated February 22, and Hunt #2's new video ID (`2716498380`) is numerically higher (= newer) than Hunt #1's. This suggests Hunt #2 happened **after** Hunt #1, so the date for Hunt #2 needs updating as well.
 
-Specifically:
-- **Remove** Gevinst from the right zone (lines 247-261)
-- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
+### Changes
 
-Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
+**File: `src/components/bonus-hunt/BonusHuntVideoSection.tsx`**
+1. Update Hunt #2's `twitchVideoId` from `"2705001000"` to `"2716498380"`
+2. Update Hunt #2's `date` and `isoDate` to reflect the correct (post-March 5) date -- will need user confirmation on the exact date, or derive from the VOD publish date
 
-### 2. Add Count-Up Animation for Win Amount
-
-Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
-- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
-- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
-- The component already handles ease-out counting and bump animation on completion
-
-### Files Modified
-- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
+### Question
+I'll ask the user to confirm Hunt #2's date since the current "22. februar" is clearly wrong if this VOD is newer than Hunt #1 (March 5).
 
