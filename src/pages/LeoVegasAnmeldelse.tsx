@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
-import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -221,9 +219,6 @@ const LeoVegasAnmeldelse = () => {
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Sticky bonus – no-sticky er mere fordelagtig for spilleren", "VIP-program er invitationsbaseret – ikke tilgængeligt for alle", "Ingen dedikeret downloadbar app i Danmark (kun PWA)", "Velkomstbonus på 1.000 kr. er markedsstandard, ikke over gennemsnittet", "Kan virke overvældende for helt nye casino-spillere", "Ingen poker-sektion (til forskel fra Unibet og bwin)"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
           </div>
         </section>
-
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="LeoVegas" intro={TEST_LOG_DATA["leovegas"].intro} entries={TEST_LOG_DATA["leovegas"].entries} />
 
         <Separator className="my-10" />
 
