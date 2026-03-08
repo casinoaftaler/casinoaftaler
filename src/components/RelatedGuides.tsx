@@ -37,12 +37,58 @@ interface GuideLink {
   desc: string;
 }
 
-// === HUB LINKS (always link to primary hub) ===
-const bonusHub: GuideLink = { to: "/casino-bonus", label: "Casino Bonus Oversigt", icon: Trophy, desc: "Komplet oversigt over alle bonustyper" };
-const paymentHub: GuideLink = { to: "/betalingsmetoder", label: "Betalingsmetoder Oversigt", icon: Wallet, desc: "Sammenlign alle betalingsløsninger" };
-const providerHub: GuideLink = { to: "/spiludviklere", label: "Spiludviklere Oversigt", icon: Gamepad2, desc: "Alle spiludbydere på danske casinoer" };
-const reviewHub: GuideLink = { to: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: BookOpen, desc: "Oversigt over alle anmeldelser" };
-const casinospilHub: GuideLink = { to: "/casinospil", label: "Casinospil", icon: Gamepad2, desc: "Udforsk alle typer casinospil" };
+// === ANCHOR ROTATION ===
+// Deterministic rotation based on path hash to ensure consistency per page
+// while varying anchors across pages to avoid template footprints.
+function pathHash(path: string): number {
+  let hash = 0;
+  for (let i = 0; i < path.length; i++) {
+    hash = ((hash << 5) - hash + path.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
+}
+
+function pick(path: string, salt: string, items: string[]): string {
+  return items[pathHash(path + salt) % items.length];
+}
+
+// Hub label + desc rotation pools (natural, non-aggressive variations)
+const BONUS_HUB_POOL = {
+  labels: ["Casino Bonus", "Alle Casino Bonusser", "Bonus Oversigt", "Casino Bonus Guide"],
+  descs: ["Komplet oversigt over alle bonustyper", "Sammenlign bonusser fra danske casinoer", "Guide til velkomstbonus, free spins og mere", "Find den rette bonus til din spillestil"],
+};
+const PAYMENT_HUB_POOL = {
+  labels: ["Betalingsmetoder", "Betalingsmetoder Oversigt", "Casino Betalingsløsninger", "Indbetaling & Udbetaling"],
+  descs: ["Sammenlign alle betalingsløsninger", "Guide til ind- og udbetalinger", "Find den hurtigste betalingsmetode", "MobilePay, Trustly, kort og mere"],
+};
+const PROVIDER_HUB_POOL = {
+  labels: ["Spiludviklere", "Spiludviklere Oversigt", "Casino Spiludbydere", "Alle Spiludviklere"],
+  descs: ["Alle spiludbydere på danske casinoer", "Udforsk de bedste spiludviklere", "NetEnt, Pragmatic Play og flere", "Guide til spiludviklere i Danmark"],
+};
+const REVIEW_HUB_POOL = {
+  labels: ["Casino Anmeldelser", "Alle Anmeldelser", "Anmeldelser Oversigt", "Casino Anmeldelser Guide"],
+  descs: ["Oversigt over alle anmeldelser", "Dybdegående casino anmeldelser", "Læs vores ærlige vurderinger", "Find det rette casino til dig"],
+};
+const CASINOSPIL_HUB_POOL = {
+  labels: ["Casinospil", "Casinospil Oversigt", "Alle Casinospil", "Guide til Casinospil"],
+  descs: ["Udforsk alle typer casinospil", "Slots, blackjack, roulette og mere", "Komplet guide til online casinospil", "Find dit foretrukne casinospil"],
+};
+const SPILLEMASKINER_HUB_POOL = {
+  labels: ["Spillemaskiner", "Spillemaskiner Guide", "Online Spillemaskiner", "Slots Guide"],
+  descs: ["Guide til alle typer online slots", "Komplet guide til spilleautomater", "Find de bedste online slots", "Alt om spillemaskiner i Danmark"],
+};
+
+/** Resolves all 5 hub links with rotated anchors for the given page path */
+function resolveHubs(p: string) {
+  return {
+    bonusHub: { to: "/casino-bonus", label: pick(p, "bl", BONUS_HUB_POOL.labels), icon: Trophy, desc: pick(p, "bd", BONUS_HUB_POOL.descs) } as GuideLink,
+    paymentHub: { to: "/betalingsmetoder", label: pick(p, "pl", PAYMENT_HUB_POOL.labels), icon: Wallet, desc: pick(p, "pd", PAYMENT_HUB_POOL.descs) } as GuideLink,
+    providerHub: { to: "/spiludviklere", label: pick(p, "prl", PROVIDER_HUB_POOL.labels), icon: Gamepad2, desc: pick(p, "prd", PROVIDER_HUB_POOL.descs) } as GuideLink,
+    reviewHub: { to: "/casino-anmeldelser", label: pick(p, "rl", REVIEW_HUB_POOL.labels), icon: BookOpen, desc: pick(p, "rd", REVIEW_HUB_POOL.descs) } as GuideLink,
+    casinospilHub: { to: "/casinospil", label: pick(p, "cl", CASINOSPIL_HUB_POOL.labels), icon: Gamepad2, desc: pick(p, "cd", CASINOSPIL_HUB_POOL.descs) } as GuideLink,
+    spillemaskinerHub: { to: "/casinospil/spillemaskiner", label: pick(p, "sl", SPILLEMASKINER_HUB_POOL.labels), icon: Gamepad2, desc: pick(p, "sd", SPILLEMASKINER_HUB_POOL.descs) } as GuideLink,
+  };
+}
 
 // === COMMUNITY ENTERPRISE HUBS ===
 const slotDatabaseHub: GuideLink = { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "163+ slots med community-data og statistik" };
@@ -185,6 +231,7 @@ const MAX_CROSS_CLUSTER = 1;
  */
 function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtitle: string } {
   const path = currentPath.toLowerCase();
+  const { bonusHub, paymentHub, providerHub, reviewHub, casinospilHub, spillemaskinerHub } = resolveHubs(path);
 
   // Casino Nyheder hub → strategic money-page links
   if (path === "/casino-nyheder") {
@@ -304,7 +351,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   if (path === "/megaways-slots") {
     return {
       guides: [
-        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner Guide", icon: Gamepad2, desc: "Komplet guide til alle spilleautomater" },
+        spillemaskinerHub,
         jackpotSlotsHub,
         bonusBuySlotsHub,
         { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Slots med bedst tilbagebetaling" },
@@ -317,7 +364,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   if (path === "/jackpot-slots") {
     return {
       guides: [
-        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner Guide", icon: Gamepad2, desc: "Komplet guide til alle spilleautomater" },
+        spillemaskinerHub,
         megawaysSlotsHub,
         bonusBuySlotsHub,
         slotDatabaseHub,
@@ -330,7 +377,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   if (path === "/bonus-buy-slots") {
     return {
       guides: [
-        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner Guide", icon: Gamepad2, desc: "Komplet guide til alle spilleautomater" },
+        spillemaskinerHub,
         megawaysSlotsHub,
         jackpotSlotsHub,
         { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Slots med bedst tilbagebetaling" },
