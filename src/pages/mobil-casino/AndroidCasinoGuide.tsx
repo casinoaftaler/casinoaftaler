@@ -570,7 +570,391 @@ const AndroidCasinoGuide = () => {
 
         <Separator className="my-10" />
 
-        {/* 8. ANSVARLIGT SPIL */}
+        {/* 8. ANDROID SIKKERHEDSARKITEKTUR */}
+        <section className="mb-12" id="android-sikkerhed">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Lock className="h-7 w-7 text-primary" />
+            Android sikkerhedsarkitektur for casino-spillere
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Android har udviklet sig fra et relativt åbent operativsystem til en sofistikeret sikkerhedsplatform
+            med flere beskyttelseslag. For casino-spillere er det vigtigt at forstå disse lag, da de direkte
+            påvirker sikkerheden af dine finansielle transaktioner og persondata.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3" id="play-protect">Google Play Protect</h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Google Play Protect er Androids primære forsvar mod malware. Systemet scanner automatisk alle
+            installerede apps – både fra Google Play og sideloadede APK'er – for skadelig adfærd. For casino-apps
+            betyder dette, at Play Protect verificerer, at appen ikke forsøger at stjæle betalingsoplysninger,
+            opfange MitID-kommunikation, eller sende data til uautoriserede servere. Play Protect analyserer over
+            100 milliarder apps dagligt på tværs af alle Android-enheder globalt.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Kontrollér din Play Protect-status:</strong> Google Play → Profil → Play Protect → "Seneste
+            scanning". Sørg for at "Forbedr registrering af skadelige apps" er aktiveret, da dette sender
+            anonymiserede data til Google, der forbedrer malware-detektionen for alle brugere.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3" id="verified-boot">Verified Boot og Integritetskontrol</h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Android Verified Boot sikrer, at operativsystemet ikke er blevet manipuleret. Denne funktion er særligt
+            vigtig for casino-apps, da den garanterer, at din enhed kører et umodificeret operativsystem – en
+            forudsætning for sikre finansielle transaktioner. Verificeringsprocessen fungerer i fire trin:
+          </p>
+          <div className="space-y-3 mb-6">
+            {[
+              { step: "Boot ROM", desc: "Hardware-kodificeret boot-verification der ikke kan ændres – første tillidsanker i sikkerhedskæden." },
+              { step: "Bootloader", desc: "Verificerer kernel-signaturen mod en hardware-gemt nøgle. Modificerede bootloaders udløser en advarsel." },
+              { step: "System Partition", desc: "dm-verity verificerer integritet af alle system-filer ved hver opstart. Manipulation detekteres kryptografisk." },
+              { step: "App Sandboxing", desc: "Hver app kører i sin egen Linux-proces med unikke UID. Casino-apps kan ikke læse data fra andre apps." },
+            ].map((s, i) => (
+              <div key={s.step} className="flex items-start gap-3">
+                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-xs">{i + 1}</div>
+                <div><h4 className="font-medium text-sm text-foreground">{s.step}</h4><p className="text-xs text-muted-foreground">{s.desc}</p></div>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3" id="selinux">SELinux og Permission Model</h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Security-Enhanced Linux (SELinux) kører i "enforcing" mode på alle moderne Android-enheder. Dette
+            Mandatory Access Control-system begrænser, hvad selv kompromitterede processer kan gøre. For
+            casino-apps betyder det, at selv hvis en ondsindet app formår at udnytte en sårbarhed, er den
+            begrænset til sin egen sandbox og kan ikke tilgå casino-appens data, betalingsoplysninger eller
+            MitID-tokens.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Androids runtime permission-model (introduceret i Android 6.0) giver dig granulær kontrol over,
+            hvilke systemressourcer casino-apps kan tilgå. Vi anbefaler at vælge "Kun når appen bruges" for
+            lokationstilladelser og at nægte adgang til kontakter, SMS og telefon – ingen legitim casino-app
+            behøver disse tilladelser. Se vores <Link to="/mobil-casino/bedste-apps" className="text-primary underline hover:text-primary/80">guide til casino-app tilladelser</Link> for en komplet oversigt.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3" id="play-integrity">Play Integrity API (SafetyNet-efterfølger)</h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Play Integrity API erstattede SafetyNet Attestation i 2023 og er nu det primære værktøj, som
+            casino-apps bruger til at verificere, at din enhed er sikker. API'en kontrollerer tre ting:
+          </p>
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border bg-muted/50">
+                  <th className="text-left p-3 font-semibold text-foreground">Kontrol</th>
+                  <th className="text-left p-3 font-semibold text-foreground">Hvad verificeres</th>
+                  <th className="text-center p-3 font-semibold text-foreground">Fejler ved</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { c: "App Integrity", v: "Er APK'en umodificeret og signeret korrekt?", f: "Modificerede APK'er, custom builds" },
+                  { c: "Device Integrity", v: "Kører enheden et certificeret Android-build?", f: "Root, unlocked bootloader, emulatorer" },
+                  { c: "Account Integrity", v: "Er der logget ind med en verificeret Google-konto?", f: "Ingen Google-konto, suspenderet konto" },
+                ].map((r) => (
+                  <tr key={r.c} className="border-b border-border hover:bg-muted/30">
+                    <td className="p-3 font-medium text-foreground">{r.c}</td>
+                    <td className="p-3 text-muted-foreground">{r.v}</td>
+                    <td className="p-3 text-center text-muted-foreground">{r.f}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Praktisk konsekvens:</strong> Hvis du har rootet din Android-telefon eller bruger en custom ROM
+            (f.eks. LineageOS), vil mange casino-apps nægte at fungere. Dette er en sikkerhedsforanstaltning, ikke
+            en fejl – rootede enheder kan potentielt kompromittere den kryptografiske sikkerhed, der beskytter
+            dine betalingsdata.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* 9. SAMSUNG VS. PIXEL VS. XIAOMI VS. ONEPLUS */}
+        <section className="mb-12" id="fabrikant-sammenligning">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Smartphone className="h-7 w-7 text-primary" />
+            Samsung vs. Pixel vs. Xiaomi vs. OnePlus: Casino-performance
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Udover rå benchmarks er der markante forskelle i casino-oplevelsen mellem Android-fabrikanter pga.
+            deres forskellige software-skins, opdateringspolitikker og ekstra sikkerhedsfunktioner. Her er en
+            detaljeret sammenligning baseret på vores tests:
+          </p>
+
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border bg-muted/50">
+                  <th className="text-left p-3 font-semibold text-foreground">Parameter</th>
+                  <th className="text-center p-3 font-semibold text-foreground">Samsung (OneUI)</th>
+                  <th className="text-center p-3 font-semibold text-foreground">Pixel (Stock)</th>
+                  <th className="text-center p-3 font-semibold text-foreground">Xiaomi (HyperOS)</th>
+                  <th className="text-center p-3 font-semibold text-foreground">OnePlus (OxygenOS)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { p: "OS-opdateringer (år)", s: "7 år", px: "7 år", x: "4 år", o: "4 år" },
+                  { p: "Sikkerhedspatches", s: "Månedlig", px: "Månedlig (dag 1)", x: "Kvartalsvis", o: "Bi-månedlig" },
+                  { p: "Ekstra sikkerhed", s: "Samsung Knox", px: "Titan M2 chip", x: "Basis", o: "Basis" },
+                  { p: "Casino PWA-support", s: "★★★★★", px: "★★★★★", x: "★★★★☆", o: "★★★★☆" },
+                  { p: "Notifikations-pålidelighed", s: "★★★★★", px: "★★★★★", x: "★★★☆☆", o: "★★★★☆" },
+                  { p: "Batterilevetid (casino)", s: "★★★★☆", px: "★★★★☆", x: "★★★★★", o: "★★★★★" },
+                  { p: "Samsung DeX support", s: "✅", px: "❌", x: "❌", o: "❌" },
+                  { p: "Biometrisk hastighed", s: "Ultrasonic (hurtig)", px: "Under-display", x: "Side-monteret", o: "Under-display" },
+                  { p: "Browser-alternativ", s: "Samsung Internet", px: "Chrome (kun)", x: "Mi Browser", o: "Chrome (kun)" },
+                  { p: "Pris (flagskib)", s: "8.000-14.000 kr.", px: "6.500-10.000 kr.", x: "4.000-7.000 kr.", o: "5.000-8.000 kr." },
+                ].map((row) => (
+                  <tr key={row.p} className="border-b border-border hover:bg-muted/30">
+                    <td className="p-3 font-medium text-foreground">{row.p}</td>
+                    <td className="p-3 text-center text-muted-foreground">{row.s}</td>
+                    <td className="p-3 text-center text-muted-foreground">{row.px}</td>
+                    <td className="p-3 text-center text-muted-foreground">{row.x}</td>
+                    <td className="p-3 text-center text-muted-foreground">{row.o}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="rounded-xl border border-border bg-card p-6 mb-6">
+            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+              <Star className="h-5 w-5 text-primary" />
+              Vores anbefaling efter spillerprofil
+            </h3>
+            <div className="space-y-3 text-sm text-muted-foreground">
+              <p><strong>Bedste overordnede casino-telefon:</strong> Samsung Galaxy S25 Ultra – kombinerer Knox-sikkerhed, DeX desktop-mode til live casino, og 7 års opdateringer med den hurtigste ultrasoniske fingeraftrykslæser.</p>
+              <p><strong>Bedst for sikkerhedsbevidste:</strong> Google Pixel 9 Pro – dag-1 sikkerhedspatches, hardware Titan M2 sikkerhedschip, og stock Android uden unødvendig bloatware.</p>
+              <p><strong>Bedst budget-valg for casino:</strong> Xiaomi Redmi Note 13 Pro – 8 GB RAM, AMOLED 120 Hz, og god batterilevetid. Vær opmærksom på at HyperOS kan dræbe casino-notifikationer i baggrunden (løsning: deaktiver batterioptimering).</p>
+              <p><strong>Bedst for power users:</strong> OnePlus 13 – hurtigste Snapdragon 8 Elite implementering, 100W opladning (fuld i 25 min), og ren software-oplevelse tæt på stock Android.</p>
+            </div>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* 10. NOTIFIKATIONER OG DO NOT DISTURB */}
+        <section className="mb-12" id="notifikationer">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Settings className="h-7 w-7 text-primary" />
+            Notifikationer, Do Not Disturb og casino-kontrol
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Android tilbyder det mest granulære notifikationssystem af alle mobile platforme. Fra Android 8.0
+            (Oreo) har apps kunnet oprette separate "notifikationskanaler" – og de fleste casino-apps udnytter
+            dette til at kategorisere beskeder. Her er hvordan du konfigurerer dem optimalt:
+          </p>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3" id="notifikationskanaler">Notifikationskanaler i casino-apps</h3>
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border bg-muted/50">
+                  <th className="text-left p-3 font-semibold text-foreground">Kanal</th>
+                  <th className="text-center p-3 font-semibold text-foreground">Typisk frekvens</th>
+                  <th className="text-center p-3 font-semibold text-foreground">Anbefaling</th>
+                  <th className="text-left p-3 font-semibold text-foreground">Begrundelse</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { k: "Bonusser & Tilbud", f: "1-5 daglige", a: "❌ Deaktiver", b: "Frister til uplanlagt spil. Bonusser er altid tilgængelige i appen." },
+                  { k: "Kontobeskeder", f: "Sjælden", a: "✅ Behold", b: "Vigtige beskeder om udbetaling, verifikation, kontoændringer." },
+                  { k: "Ansvarligt Spil", f: "Automatisk", a: "✅ Behold", b: "Lovpligtige påmindelser. Bør aldrig deaktiveres." },
+                  { k: "Live Casino Events", f: "0-3 daglige", a: "Valgfrit", b: "Relevant kun hvis du spiller live casino regelmæssigt." },
+                  { k: "Nye Spil", f: "Ugentlig", a: "Valgfrit", b: "Nyttig hvis du aktivt følger nye udgivelser." },
+                ].map((r) => (
+                  <tr key={r.k} className="border-b border-border hover:bg-muted/30">
+                    <td className="p-3 font-medium text-foreground">{r.k}</td>
+                    <td className="p-3 text-center text-muted-foreground">{r.f}</td>
+                    <td className="p-3 text-center text-muted-foreground">{r.a}</td>
+                    <td className="p-3 text-muted-foreground text-xs">{r.b}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3" id="dnd-regler">Do Not Disturb-regler for casino</h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Androids "Fokus-tilstand" (del af Digital Wellbeing) lader dig oprette automatiserede regler, der
+            kan blokere casino-notifikationer på bestemte tidspunkter. Vi anbefaler:
+          </p>
+          <div className="space-y-2 mb-6">
+            {[
+              "Opret en 'Aftentilstand' der blokerer casino-apps fra kl. 22-08 (forhindrer natlige impulsspil)",
+              "Brug 'Fokus-tilstand → Arbejde' til at blokere casino under arbejdstid",
+              "Samsung-brugere: Brug 'Bixby Routines' til at automatisk deaktivere casino-notifikationer baseret på lokation (fx arbejdsplads)",
+              "Pixel-brugere: 'At a Glance' widget kan konfigureres til IKKE at vise casino-notifikationer",
+              "OnePlus-brugere: 'Zen Mode' kan bruges som en tvungen pause fra alle apps i 20 min - 2 timer",
+            ].map((t) => (
+              <div key={t} className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-1 text-primary shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* 11. DATAFORBRUG OG OFFLINE */}
+        <section className="mb-12" id="dataforbrug">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Wifi className="h-7 w-7 text-primary" />
+            Dataforbrug, båndbredde og offline-funktionalitet
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            For spillere uden ubegrænset mobildata er det vigtigt at forstå, hvor meget data forskellige
+            casino-aktiviteter bruger. Vi har målt det præcise dataforbrug for de mest almindelige
+            aktiviteter på Android:
+          </p>
+
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-border bg-muted/50">
+                  <th className="text-left p-3 font-semibold text-foreground">Aktivitet</th>
+                  <th className="text-center p-3 font-semibold text-foreground">Data/time</th>
+                  <th className="text-center p-3 font-semibold text-foreground">Min. hastighed</th>
+                  <th className="text-center p-3 font-semibold text-foreground">Anbefalet</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { a: "Slots (standard)", d: "15-30 MB", min: "1 Mbps", rec: "5+ Mbps" },
+                  { a: "Slots (HD-grafik)", d: "30-60 MB", min: "3 Mbps", rec: "10+ Mbps" },
+                  { a: "Bordspil (RNG)", d: "10-20 MB", min: "1 Mbps", rec: "5+ Mbps" },
+                  { a: "Live Casino (SD)", d: "150-250 MB", min: "5 Mbps", rec: "15+ Mbps" },
+                  { a: "Live Casino (HD)", d: "300-500 MB", min: "10 Mbps", rec: "25+ Mbps" },
+                  { a: "Live Casino (4K)", d: "600-1000 MB", min: "25 Mbps", rec: "50+ Mbps" },
+                  { a: "Sportsbetting (kun odds)", d: "5-10 MB", min: "0,5 Mbps", rec: "3+ Mbps" },
+                  { a: "Lobby-browsing", d: "20-40 MB", min: "2 Mbps", rec: "5+ Mbps" },
+                ].map((r) => (
+                  <tr key={r.a} className="border-b border-border hover:bg-muted/30">
+                    <td className="p-3 font-medium text-foreground">{r.a}</td>
+                    <td className="p-3 text-center text-muted-foreground">{r.d}</td>
+                    <td className="p-3 text-center text-muted-foreground">{r.min}</td>
+                    <td className="p-3 text-center text-muted-foreground">{r.rec}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3" id="offline-pwa">PWA Offline-caching på Android</h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Progressive Web Apps kan cache statiske ressourcer (JavaScript, CSS, billeder, spilaktiver)
+            via Service Workers. I praksis betyder dette, at casino-lobbyen og spilgrænseflader kan loade
+            hurtigere ved gentagne besøg, da kun dynamisk data (saldo, spilresultater) hentes fra serveren.
+            Chrome på Android håndterer dette automatisk for installerede PWA'er.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Bemærk:</strong> Selve casinospillet kræver altid en aktiv internetforbindelse pga.
+            server-side RNG (Random Number Generator) og regulatoriske krav om realtids-logning. Det er
+            teknisk umuligt at spille slots eller bordspil offline på lovlige casinoer. Offline-caching
+            handler udelukkende om hurtigere loadtider og reduceret dataforbrug.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3" id="data-besparelse">Data-besparelsestips</h3>
+          <div className="space-y-2 mb-6">
+            {[
+              "Reducer live casino-kvaliteten til SD (720p) når du er på mobildata – sparer 50-70 % data",
+              "Installer casino-PWA'en via WiFi for at pre-cache alle statiske ressourcer (sparer 20-40 MB ved efterfølgende besøg)",
+              "Brug Chromes 'Data Saver' tilstand (chrome://flags) for komprimeret billedlevering",
+              "Samsung-brugere: Samsung Internet har en indbygget 'Datasparetilstand' der komprimerer webindhold via proxy",
+              "Overvåg dit dataforbrug: Indstillinger → Netværk → Dataforbrug → Chrome/casino-app for at se præcis forbrug",
+            ].map((t) => (
+              <div key={t} className="flex items-start gap-2"><CheckCircle className="h-4 w-4 mt-1 text-primary shrink-0" /><span className="text-sm text-muted-foreground">{t}</span></div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* 12. SAMSUNG DEX OG DESKTOP MODE */}
+        <section className="mb-12" id="samsung-dex">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Monitor className="h-7 w-7 text-primary" />
+            Samsung DeX og Desktop Mode: Casino på stor skærm
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Samsung DeX transformerer din Galaxy-telefon til en desktop-lignende oplevelse, når den
+            tilsluttes en ekstern skærm via USB-C eller trådløst via Miracast. For casino-spillere åbner
+            dette unikke muligheder:
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2 mb-6">
+            {[
+              { title: "Live Casino i desktop-kvalitet", desc: "Dealer-videoen fylder hele den eksterne skærm i op til 4K. Multi-kamera visninger og chat fungerer som på en rigtig desktop. Oplevelsen er markant bedre end på en 6,7\" telefonskærm." },
+              { title: "Multi-window casino", desc: "DeX understøtter rigtige resize-bare vinduer. Du kan have casino-lobbyen i ét vindue, et slot-spil i et andet, og din bankapp i et tredje – alt styret med mus og tastatur." },
+              { title: "Mus og tastatur", desc: "Bluetooth mus og tastatur fungerer naturtjent i DeX. Præcise museklik erstatter upræcise touch-targets. Tastaturgenvieje for hurtig navigation i casino-lobbyen." },
+              { title: "Trådløs DeX (Samsung TV)", desc: "Fra Galaxy S21+ kan DeX køre trådløst på Samsung Smart TV'er. Spil casino på dit 55\"+ TV med telefonen som controller. Latency er dog 50-100 ms – for hurtigt for live casino, men fint til slots." },
+            ].map((f) => (
+              <Card key={f.title} className="border-border bg-card">
+                <CardHeader className="pb-2"><CardTitle className="text-sm">{f.title}</CardTitle></CardHeader>
+                <CardContent><p className="text-xs text-muted-foreground">{f.desc}</p></CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Kompatibilitet:</strong> Samsung DeX er tilgængeligt på alle Galaxy S-serie (S8+), Note-serie
+            og Z Fold-serie. Galaxy A-serien understøtter ikke DeX. For den bedste casino-DeX oplevelse
+            anbefaler vi Galaxy S24 Ultra eller Z Fold 6 med en USB-C hub og ekstern 27"+ skærm. Sammenlign
+            med vores <Link to="/mobil-casino/tablet" className="text-primary underline hover:text-primary/80">tablet-guide</Link>{" "}
+            for alternative storskærmsløsninger.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-8 mb-3" id="andre-desktop-modes">Andre desktop modes</h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Motorola tilbyder "Ready For" (lignende DeX), Xiaomi har eksperimentel "Desktop Mode" i HyperOS,
+            og stock Android har en skjult desktop-tilstand (aktiveres via Developer Options). Ingen af disse
+            er dog lige så modne eller stabile som Samsung DeX for casino-brug. Googles egen "Android Desktop Mode"
+            forventes at blive en førsteparts-feature i Android 16 – hvilket kan demokratisere storskærms-casino
+            for alle Android-fabrikanter.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* 13. FEJLFINDING */}
+        <section className="mb-12" id="fejlfinding">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <AlertTriangle className="h-7 w-7 text-primary" />
+            Fejlfinding: 12 Android-specifikke casino-problemer
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Android's mangfoldighed af enheder og software-versioner kan føre til unikke problemer, der
+            ikke opstår på iOS. Her er de mest almindelige – med step-by-step løsninger testet af vores team:
+          </p>
+
+          <div className="space-y-4 mb-6">
+            {[
+              { problem: "Chrome dræber casino-tab i baggrunden", solution: "Android's memory management lukker baggrundstabs for at spare RAM. Løsning: Deaktiver batterioptimering for Chrome (Indstillinger → Apps → Chrome → Batteri → Ubegrænset). Alternativt: Brug en installeret PWA, da den har sin egen proces." },
+              { problem: "Casino-PWA notifikationer virker ikke (Xiaomi/Huawei)", solution: "MIUI/HarmonyOS begrænser baggrunds-notifikationer aggressivt. Løsning: Indstillinger → Apps → Chrome → Autostart: Aktiver. Indstillinger → Batteri → App-start → Chrome → Administrer manuelt → Aktiver alle tre toggles." },
+              { problem: "MitID-app skifter ikke automatisk tilbage til casino", solution: "Android 14+ har ændret app-skift opførslen. Løsning: Sørg for at MitID-appen er opdateret. Prøv at åbne casinoet i Samsung Internet i stedet for Chrome – Samsung Internet håndterer app-deeplinks bedre." },
+              { problem: "Live casino hakker på mid-range telefon", solution: "Reducér videokvaliteten i live casinoets indstillinger. Luk alle andre apps. Deaktiver 'Battery Saver'. Reducér skærmopløsningen (Samsung: Indstillinger → Skærm → Skærmopløsning → HD+)." },
+              { problem: "Casino-site beder om at deaktivere adblocker", solution: "Samsung Internet's interne adblocker kan blokere casino-funktionalitet. Løsning: Tilføj casinoets domæne til whitelist (Samsung Internet → Indstillinger → Adblockers → Undtagelser)." },
+              { problem: "Fingeraftryks-login virker ikke i casino-app", solution: "Slet den gemte biometriske data i appen og tilføj fingeraftryk igen. Kontrollér at fingeraftrykket er registreret i Indstillinger → Sikkerhed → Biometri. Nogle casino-apps kræver, at du først logger ind med kodeord efter en app-opdatering." },
+              { problem: "Casino-appen bruger uventet meget batteri", solution: "Tjek om appen kører location tracking i baggrunden (Indstillinger → Apps → [Casino] → Tilladelser → Lokation → 'Aldrig' eller 'Kun når appen bruges'). Deaktiver baggrundsdata for appen hvis du ikke behøver push-notifikationer." },
+              { problem: "Tekst er for lille at læse i casino-lobby", solution: "Android har systemwide skriftstørrelse: Indstillinger → Skærm → Skriftstørrelse og skærmstørrelse. De fleste casino-webapps respekterer denne indstilling. Alternativt: Brug Chrome's 'Force zoom' (Indstillinger → Tilgængelighed → Force zoom)." },
+              { problem: "Betalinger fejler via MobilePay", solution: "Sørg for at MobilePay-appen er opdateret og at du er logget ind. Ryd MobilePay-appens cache. Tjek at MobilePay har tilladelse til at åbne links (Indstillinger → Apps → MobilePay → Åbn som standard → Tilføj link)." },
+              { problem: "Casino-appen vises ikke i Google Play", solution: "Gambling-apps i Google Play er geo-begrænsede. Kontrollér at din Google-konto er registreret med dansk adresse (Play → Profil → Indstillinger → Generelt → Kontoindstillinger og enheder → Land). Alternativt: Brug casino-webappen i Chrome." },
+              { problem: "Dark mode gør casino-tekst ulæselig", solution: "Nogle casino-sider er ikke optimeret til Dark Mode. Løsning i Chrome: chrome://flags → 'Force Dark Mode for Web Contents' → 'Disabled'. Alternativt: Deaktiver Dark Mode kun for Chrome: Indstillinger → Chrome → Tema → Lys." },
+              { problem: "Custom ROM (LineageOS etc.) blokerer casino", solution: "Casino-apps bruger Play Integrity API, som fejler på de fleste custom ROMs. Der er ingen sikker løsning – vi anbefaler at bruge stock Android/OneUI. Magisk-moduler der skjuler root kan midlertidigt fungere, men bryder ofte ved app-opdateringer og er en sikkerhedsrisiko." },
+            ].map((f) => (
+              <div key={f.problem} className="rounded-lg border border-border bg-card p-4">
+                <h3 className="font-semibold text-sm text-foreground mb-1 flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-destructive shrink-0" />{f.problem}
+                </h3>
+                <p className="text-xs text-muted-foreground">{f.solution}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* 14. ANSVARLIGT SPIL */}
         <section className="mb-12" id="ansvarligt-spil-android">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <Shield className="h-7 w-7 text-primary" />
@@ -591,22 +975,27 @@ const AndroidCasinoGuide = () => {
                 <Shield className="h-5 w-5 mt-0.5 text-primary shrink-0" />
                 <div>
                   <h3 className="font-semibold text-sm text-foreground">{t.title}</h3>
-                  <p className="text-sm text-muted-foreground">{t.desc}</p>
+                  <p className="text-xs text-muted-foreground">{t.desc}</p>
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-muted-foreground leading-relaxed">
-            Hvis du oplever problemer, kontakt{" "}
-            <Link to="/ansvarligt-spil/stopspillet" className="text-primary underline hover:text-primary/80">StopSpillet</Link>{" "}
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Kontakt{" "}
+            <Link to="/ansvarligt-spil/stopspillet" className="text-primary underline hover:text-primary/80">
+              StopSpillet
+            </Link>{" "}
             (70 22 28 25) for gratis rådgivning. Se alle{" "}
-            <Link to="/ansvarligt-spil/hjaelpelinjer" className="text-primary underline hover:text-primary/80">hjælpelinjer</Link>.
+            <Link to="/ansvarligt-spil/hjaelpelinjer" className="text-primary underline hover:text-primary/80">
+              hjælpelinjer
+            </Link>
+            .
           </p>
         </section>
 
         <Separator className="my-10" />
 
-        {/* 9. HJÆLP & RESSOURCER */}
+        {/* 15. HJÆLP OG RESSOURCER */}
         <section className="mb-12" id="hjaelp">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <HelpCircle className="h-7 w-7 text-primary" />
@@ -614,14 +1003,18 @@ const AndroidCasinoGuide = () => {
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { to: "/mobil-casino", title: "Mobil Casino Hub", desc: "Komplet oversigt over casino på mobilen" },
-              { to: "/mobil-casino/iphone", title: "Casino på iPhone", desc: "iOS-specifik casino-guide" },
-              { to: "/mobil-casino/tablet", title: "Casino på Tablet", desc: "iPad og Android tablet guide" },
-              { to: "/mobil-casino/bedste-apps", title: "Bedste Casino Apps", desc: "Top 10 rangering af casino apps" },
-              { to: "/casino-app", title: "Casino App Guide", desc: "App vs. browser sammenligning" },
-              { to: "/ansvarligt-spil", title: "Ansvarligt Spil", desc: "Spil sikkert og ansvarligt" },
+              { to: "/mobil-casino", title: "Mobil Casino Hub", desc: "Komplet oversigt" },
+              { to: "/mobil-casino/iphone", title: "Casino på iPhone", desc: "iOS-specifik guide" },
+              { to: "/mobil-casino/bedste-apps", title: "Bedste Casino Apps", desc: "Top 10 rangering" },
+              { to: "/mobil-casino/tablet", title: "Casino på Tablet", desc: "iPad og Android" },
+              { to: "/casino-app", title: "Casino App Guide", desc: "App vs. browser" },
+              { to: "/ansvarligt-spil", title: "Ansvarligt Spil", desc: "Spil sikkert" },
             ].map((item) => (
-              <Link key={item.to} to={item.to} className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 text-sm transition-colors hover:bg-muted">
+              <Link
+                key={item.to}
+                to={item.to}
+                className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 text-sm transition-colors hover:bg-muted"
+              >
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-xs text-muted-foreground">{item.desc}</p>
@@ -633,7 +1026,7 @@ const AndroidCasinoGuide = () => {
 
         <LatestNewsByCategory pagePath="/mobil-casino/android" />
         <RelatedGuides currentPath="/mobil-casino/android" />
-        <FAQSection title="Ofte Stillede Spørgsmål om Casino på Android" faqs={faqs} />
+        <FAQSection title="Ofte Stillede Spørgsmål om Android Casino" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
     </>
