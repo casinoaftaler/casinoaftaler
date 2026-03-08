@@ -118,7 +118,6 @@ export const OTHER_CASINOSPIL_LINKS: NavLink[] = [
   { to: "/casinospil/craps", label: "Craps" },
   { to: "/casinospil/baccarat", label: "Baccarat" },
   { to: "/casinospil/online-lotteri", label: "Online Lotteri" },
-  { to: "/casinospil/game-shows", label: "Game Shows" },
 ];
 
 export const LIVE_CASINO_LINKS: NavLink[] = [
@@ -127,6 +126,10 @@ export const LIVE_CASINO_LINKS: NavLink[] = [
   { to: "/live-casino/baccarat", label: "Live Baccarat" },
   { to: "/live-casino/lightning-roulette", label: "Lightning Roulette" },
   { to: "/live-casino/monopoly-live", label: "Monopoly Live" },
+  { to: "/live-casino/game-shows", label: "Game Shows" },
+  { to: "/live-casino/crazy-time", label: "Crazy Time" },
+  { to: "/live-casino/dream-catcher", label: "Dream Catcher" },
+  { to: "/live-casino/deal-or-no-deal", label: "Deal or No Deal" },
 ];
 
 export const BONUS_LINKS: NavLinkWithIcon[] = [
