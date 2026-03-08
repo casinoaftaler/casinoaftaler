@@ -77,30 +77,24 @@ export default function BonusHunt() {
     huntData?.visibleId || huntIdOverride || latestHuntNumber,
     MAX_HUNT_NUMBER
   );
-  const isArchived = archivedHuntNumbers.includes(currentHuntNumber);
-  const isLive = !!(
-    (session?.status === 'active' && session?.hunt_number === currentHuntNumber && !isArchived)
-    || (huntData?.status === 'active' && currentHuntNumber === MAX_HUNT_NUMBER)
-  );
+  const isSessionCurrentActive = session?.status === 'active' && session?.hunt_number === currentHuntNumber;
+  const isDataCurrentActive = huntData?.status === 'active' && currentHuntNumber === MAX_HUNT_NUMBER;
+  const isLive = !!(isSessionCurrentActive || isDataCurrentActive);
+  const isArchived = !isLive && archivedHuntNumbers.includes(currentHuntNumber);
   const huntVideo = getHuntVideo(currentHuntNumber);
   const maxHuntNumber = MAX_HUNT_NUMBER;
 
-  // Build available hunt numbers: only 1, 2, 3 (descending)
-  const availableHuntNumbers = useMemo(() => {
-    const nums = new Set(archivedHuntNumbers.filter(n => n <= MAX_HUNT_NUMBER));
-    nums.add(currentHuntNumber);
-    return [...nums].sort((a, b) => b - a);
-  }, [archivedHuntNumbers, currentHuntNumber]);
+  // Only valid hunts
+  const availableHuntNumbers = useMemo(() => [3, 2, 1], []);
 
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
-    if (!availableHuntNumbers.length) return;
-
     const orderedHunts = [...availableHuntNumbers].sort((a, b) => a - b);
     const currentIndex = orderedHunts.indexOf(currentHuntNumber);
 
     const navigateTo = (target?: number) => {
       if (!target) return;
-      setHuntIdOverride(target);
+      // Hunt #3 is the live route (no override), 1-2 are archived routes
+      setHuntIdOverride(target === MAX_HUNT_NUMBER ? undefined : target);
     };
 
     switch (dir) {
@@ -256,7 +250,7 @@ export default function BonusHunt() {
                     isArchived={isArchived}
                     availableHuntNumbers={availableHuntNumbers}
                     onNavigate={handleNavigate}
-                    onJumpToHunt={(num) => setHuntIdOverride(Math.min(num, MAX_HUNT_NUMBER))}
+                    onJumpToHunt={(num) => setHuntIdOverride(num === MAX_HUNT_NUMBER ? undefined : Math.min(num, MAX_HUNT_NUMBER))}
                   />
                   {isLive ? (
                     <BonusHuntLiveStream huntNumber={currentHuntNumber} />

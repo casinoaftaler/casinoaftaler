@@ -5,9 +5,22 @@ export function useBonusHuntSession() {
   return useQuery({
     queryKey: ['bonus-hunt-session'],
     queryFn: async () => {
+      const { data: activeSession, error: activeError } = await supabase
+        .from('bonus_hunt_sessions' as any)
+        .select('*')
+        .eq('status', 'active')
+        .in('hunt_number', [1, 2, 3])
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (activeError) throw activeError;
+      if (activeSession) return activeSession as any;
+
       const { data, error } = await supabase
         .from('bonus_hunt_sessions' as any)
         .select('*')
+        .in('hunt_number', [1, 2, 3])
         .order('created_at', { ascending: false })
         .limit(1)
         .maybeSingle();
