@@ -571,6 +571,58 @@ const GameShowsGuide = () => {
           </p>
         </section>
 
+        {/* ── Spoke Navigation ── */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-2xl font-bold md:text-3xl flex items-center gap-2">
+            <Crown className="h-6 w-6 text-primary" />
+            Dybdegående guides til populære game shows
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Vil du dykke ned i matematikken bag de enkelte game shows? Vores dedikerede guides analyserer hvert spil i detaljer – RTP, volatilitet, EV-beregninger og strategiske overvejelser.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link to="/live-casino/crazy-time" className="group">
+              <Card className="border-border h-full transition-colors hover:border-primary/50">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg flex items-center gap-2 group-hover:text-primary transition-colors">
+                    <Flame className="h-5 w-5 text-primary" />
+                    Crazy Time
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">RTP 95,5 % · Max 25.000x · 4 bonusspil · Top Slot-multiplikatorer. Det mest populære game show analyseret.</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/live-casino/dream-catcher" className="group">
+              <Card className="border-border h-full transition-colors hover:border-primary/50">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg flex items-center gap-2 group-hover:text-primary transition-colors">
+                    <Sparkles className="h-5 w-5 text-primary" />
+                    Dream Catcher
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">RTP op til 96,6 % · Simpelt hjulspil · 2x/7x multiplikatorer. Det originale Money Wheel forklaret.</p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link to="/live-casino/deal-or-no-deal" className="group">
+              <Card className="border-border h-full transition-colors hover:border-primary/50">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg flex items-center gap-2 group-hover:text-primary transition-colors">
+                    <Scale className="h-5 w-5 text-primary" />
+                    Deal or No Deal
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">RTP 95,42 % · Bankier-tilbud · Prospect theory-analyse. Det interaktive game show med beslutningskomponent.</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </section>
+
         <RelatedGuides currentPath="/live-casino/game-shows" />
         <FAQSection title="Ofte stillede spørgsmål om casino game shows" faqs={gameShowFaqs} />
         <AuthorBio />
