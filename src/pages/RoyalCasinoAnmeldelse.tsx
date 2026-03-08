@@ -154,6 +154,9 @@ const RoyalCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="Royal Casino" intro={TEST_LOG_DATA["royal-casino"].intro} entries={TEST_LOG_DATA["royal-casino"].entries} />
+
+        <Separator className="my-10" />
 
         {/* Betalingsmetoder med Test */}
         <section className="mb-12">
