@@ -178,6 +178,15 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  to="/casino-uden-konto"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Zap className="h-4 w-4" />
+                  Casino uden Konto
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/live-casino"
                   className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium"
                 >

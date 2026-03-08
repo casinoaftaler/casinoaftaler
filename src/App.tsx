@@ -40,6 +40,10 @@ const LudomaniGuide = lazy(() => import("./pages/ansvarligt-spil/LudomaniGuide")
 const StopSpilletGuide = lazy(() => import("./pages/ansvarligt-spil/StopSpilletGuide"));
 const MobilCasino = lazy(() => import("./pages/MobilCasino"));
 const CasinoApp = lazy(() => import("./pages/CasinoApp"));
+const CasinoUdenKonto = lazy(() => import("./pages/casino-uden-konto/CasinoUdenKonto"));
+const PayNPlayGuide = lazy(() => import("./pages/casino-uden-konto/PayNPlayGuide"));
+const HurtigRegistreringGuide = lazy(() => import("./pages/casino-uden-konto/HurtigRegistreringGuide"));
+const FordeleOgUlemperGuide = lazy(() => import("./pages/casino-uden-konto/FordeleOgUlemperGuide"));
 const MegawaysSlots = lazy(() => import("./pages/MegawaysSlots"));
 const JackpotSlots = lazy(() => import("./pages/JackpotSlots"));
 const BonusBuySlots = lazy(() => import("./pages/BonusBuySlots"));
@@ -316,6 +320,10 @@ const App = () => (
                 <Route path="/ansvarligt-spil/stopspillet" element={<StopSpilletGuide />} />
                 <Route path="/mobil-casino" element={<MobilCasino />} />
                 <Route path="/casino-app" element={<CasinoApp />} />
+                <Route path="/casino-uden-konto" element={<CasinoUdenKonto />} />
+                <Route path="/casino-uden-konto/pay-n-play" element={<PayNPlayGuide />} />
+                <Route path="/casino-uden-konto/hurtig-registrering" element={<HurtigRegistreringGuide />} />
+                <Route path="/casino-uden-konto/fordele-og-ulemper" element={<FordeleOgUlemperGuide />} />
                 <Route path="/megaways-slots" element={<MegawaysSlots />} />
                 <Route path="/jackpot-slots" element={<JackpotSlots />} />
                 <Route path="/bonus-buy-slots" element={<BonusBuySlots />} />

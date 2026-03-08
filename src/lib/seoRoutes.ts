@@ -344,6 +344,12 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/mobil-casino", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
   { path: "/casino-app", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
 
+  // ── Casino uden Konto ──
+  { path: "/casino-uden-konto", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-08" },
+  { path: "/casino-uden-konto/pay-n-play", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-08" },
+  { path: "/casino-uden-konto/hurtig-registrering", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-08" },
+  { path: "/casino-uden-konto/fordele-og-ulemper", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-08" },
+
   // ── Slot Kategorier ──
   { path: "/megaways-slots", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
   { path: "/jackpot-slots", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
