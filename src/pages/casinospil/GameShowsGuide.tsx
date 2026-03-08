@@ -25,6 +25,10 @@ import {
   Gauge,
   Dices,
   LineChart,
+  Crown,
+  Flame,
+  Sparkles,
+  Scale,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
