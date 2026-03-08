@@ -44,6 +44,7 @@ import {
   Lock,
   Flame,
   Info,
+  Crown,
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
