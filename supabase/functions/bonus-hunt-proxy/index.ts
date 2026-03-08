@@ -187,7 +187,7 @@ serve(async (req) => {
 
         if (apiData?.data) {
           const huntData = apiData.data;
-          const huntNumber = parseInt(huntData.name?.replace(/\D/g, '') || String(requestedHunt), 10) || requestedHunt;
+          const huntNumber = requestedHunt;
           const stats = huntData.statistics || {};
 
           // Persist full hunt snapshots when slot data exists
@@ -197,8 +197,8 @@ serve(async (req) => {
               .upsert({
                 hunt_number: huntNumber,
                 api_data: apiData,
-                hunt_name: huntData.name,
-                hunt_status: huntData.played ? 'completed' : 'active',
+                hunt_name: `Bonus Hunt #${huntNumber}`,
+                hunt_status: 'completed',
                 total_slots: stats.numberOfSlots || 0,
                 opened_slots: stats.openedSlots || 0,
                 start_balance: huntData.start || 0,
