@@ -156,6 +156,11 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
     );
 
     if (resolvedHuntId || !latestHuntNumber) {
+      // If a specific hunt resolves but has no slots, fall back to latest archived hunt
+      if (latestHuntNumber && directData.stats.totalBonuses === 0) {
+        const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
+        if (archivedFallback) return archivedFallback;
+      }
       return directData;
     }
 
@@ -172,11 +177,9 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
     const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
     return archivedFallback ?? directData;
   } catch (error) {
-    // If live endpoint fails (e.g. 404), always fall back to latest archived hunt
-    if (!resolvedHuntId) {
-      const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
-      if (archivedFallback) return archivedFallback;
-    }
+    // On any proxy failure, fall back to latest archived hunt
+    const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
+    if (archivedFallback) return archivedFallback;
     throw error;
   }
 }
