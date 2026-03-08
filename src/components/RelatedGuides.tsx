@@ -77,8 +77,16 @@ const SPILLEMASKINER_HUB_POOL = {
   labels: ["Spillemaskiner", "Spillemaskiner Guide", "Online Spillemaskiner", "Slots Guide"],
   descs: ["Guide til alle typer online slots", "Komplet guide til spilleautomater", "Find de bedste online slots", "Alt om spillemaskiner i Danmark"],
 };
+const NYE_CASINOER_HUB_POOL = {
+  labels: ["Nye Casinoer", "Nye Casinoer 2026", "Nyeste Casinoer", "Nye Casino Sider"],
+  descs: ["De nyeste casinoer på det danske marked", "Alle nye casinoer i 2026", "Find de seneste casino-lanceringer", "Nye licenserede casinoer i Danmark"],
+};
+const LIVE_CASINO_HUB_POOL = {
+  labels: ["Live Casino", "Live Casino Guide", "Live Dealer Casino", "Live Casino Spil"],
+  descs: ["Spil med rigtige dealere i realtid", "Komplet guide til live casino", "Live blackjack, roulette og game shows", "Alt om live casino i Danmark"],
+};
 
-/** Resolves all 5 hub links with rotated anchors for the given page path */
+/** Resolves all hub links with rotated anchors for the given page path */
 function resolveHubs(p: string) {
   return {
     bonusHub: { to: "/casino-bonus", label: pick(p, "bl", BONUS_HUB_POOL.labels), icon: Trophy, desc: pick(p, "bd", BONUS_HUB_POOL.descs) } as GuideLink,
@@ -87,6 +95,8 @@ function resolveHubs(p: string) {
     reviewHub: { to: "/casino-anmeldelser", label: pick(p, "rl", REVIEW_HUB_POOL.labels), icon: BookOpen, desc: pick(p, "rd", REVIEW_HUB_POOL.descs) } as GuideLink,
     casinospilHub: { to: "/casinospil", label: pick(p, "cl", CASINOSPIL_HUB_POOL.labels), icon: Gamepad2, desc: pick(p, "cd", CASINOSPIL_HUB_POOL.descs) } as GuideLink,
     spillemaskinerHub: { to: "/casinospil/spillemaskiner", label: pick(p, "sl", SPILLEMASKINER_HUB_POOL.labels), icon: Gamepad2, desc: pick(p, "sd", SPILLEMASKINER_HUB_POOL.descs) } as GuideLink,
+    nyeCasinoerHub: { to: "/nye-casinoer", label: pick(p, "nl", NYE_CASINOER_HUB_POOL.labels), icon: Sparkles, desc: pick(p, "nd", NYE_CASINOER_HUB_POOL.descs) } as GuideLink,
+    liveCasinoHub: { to: "/live-casino", label: pick(p, "ll", LIVE_CASINO_HUB_POOL.labels), icon: Tv, desc: pick(p, "ld", LIVE_CASINO_HUB_POOL.descs) } as GuideLink,
   };
 }
 
@@ -220,7 +230,7 @@ const legalLinks: GuideLink[] = [
 // Max siblings to show from same cluster
 const MAX_SIBLINGS = 3;
 // Max cross-cluster contextual links
-const MAX_CROSS_CLUSTER = 1;
+const MAX_CROSS_CLUSTER = 3;
 
 /**
  * Governance-compliant guide selection:
@@ -231,7 +241,7 @@ const MAX_CROSS_CLUSTER = 1;
  */
 function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtitle: string } {
   const path = currentPath.toLowerCase();
-  const { bonusHub, paymentHub, providerHub, reviewHub, casinospilHub, spillemaskinerHub } = resolveHubs(path);
+  const { bonusHub, paymentHub, providerHub, reviewHub, casinospilHub, spillemaskinerHub, nyeCasinoerHub, liveCasinoHub } = resolveHubs(path);
 
   // Casino Nyheder hub → strategic money-page links
   if (path === "/casino-nyheder") {
@@ -452,20 +462,20 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = filtered.slice(0, MAX_SIBLINGS);
     }
-    const crossCluster = currentIndex % 2 === 0 ? bonusHub : reviewHub;
+    const crossClusterOptions = [nyeCasinoerHub, reviewHub, bonusHub];
+    const h = pathHash(path);
+    const crossClusterLinks = crossClusterOptions.filter((_, i) => i < MAX_CROSS_CLUSTER);
     return {
-      guides: [paymentHub, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
-      subtitle: currentIndex % 2 === 0
-        ? "Udforsk andre betalingsmetoder og de bedste casino bonusser."
-        : "Udforsk andre betalingsmetoder og læs vores casino anmeldelser.",
+      guides: [paymentHub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk andre betalingsmetoder, nye casinoer og casino anmeldelser.",
     };
   }
 
-  // Payment hub → 3 popular siblings + 1 cross-cluster
+  // Payment hub → 3 popular siblings + 3 cross-cluster
   if (path === "/betalingsmetoder") {
     return {
-      guides: [...paymentSiblings.slice(0, MAX_SIBLINGS), casinospilHub],
-      subtitle: "Udforsk vores dybdegående guides til populære betalingsmetoder.",
+      guides: [...paymentSiblings.slice(0, MAX_SIBLINGS), nyeCasinoerHub, reviewHub, bonusHub],
+      subtitle: "Udforsk vores dybdegående guides til populære betalingsmetoder og casinoer.",
     };
   }
 
@@ -484,24 +494,18 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = filtered.slice(0, MAX_SIBLINGS);
     }
-    const crossClusterOptions = [casinospilHub, bonusHub, reviewHub];
-    const crossCluster = crossClusterOptions[currentIndex >= 0 ? currentIndex % 3 : 0];
-    const subtitles = [
-      "Udforsk andre spiludviklere og find de bedste casinospil.",
-      "Udforsk andre spiludviklere og sammenlign bonusser.",
-      "Udforsk andre spiludviklere og læs casino anmeldelser.",
-    ];
+    const crossClusterLinks = [casinospilHub, spillemaskinerHub, reviewHub];
     return {
-      guides: [providerHub, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
-      subtitle: subtitles[currentIndex >= 0 ? currentIndex % 3 : 0],
+      guides: [providerHub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk andre spiludviklere, casinospil og casino anmeldelser.",
     };
   }
 
-  // Provider hub → 3 popular siblings + 1 cross-cluster
+  // Provider hub → 3 popular siblings + 3 cross-cluster
   if (path === "/spiludviklere") {
     return {
-      guides: [...providerSiblings.slice(0, MAX_SIBLINGS), casinospilHub],
-      subtitle: "Udforsk vores dybdegående guides til populære spiludviklere.",
+      guides: [...providerSiblings.slice(0, MAX_SIBLINGS), casinospilHub, spillemaskinerHub, reviewHub],
+      subtitle: "Udforsk vores dybdegående guides til populære spiludviklere og casinospil.",
     };
   }
 
@@ -521,16 +525,16 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       siblings = filtered.slice(0, MAX_SIBLINGS);
     }
     return {
-      guides: [reviewHub, ...siblings, paymentHub, bonusHub].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER + 1),
-      subtitle: "Udforsk andre casino anmeldelser, betalingsmetoder og bonusser.",
+      guides: [reviewHub, ...siblings, paymentHub, casinospilHub, bonusHub].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk andre casino anmeldelser, betalingsmetoder og casinospil.",
     };
   }
 
   // Casino review hub
   if (path === "/casino-anmeldelser") {
     return {
-      guides: [...allReviews.slice(0, MAX_SIBLINGS), bonusHub, bonusHuntArkivHub],
-      subtitle: "Udforsk vores dybdegående casino anmeldelser og dokumenterede bonus hunt-resultater.",
+      guides: [...allReviews.slice(0, MAX_SIBLINGS), paymentHub, casinospilHub, bonusHub],
+      subtitle: "Udforsk vores dybdegående casino anmeldelser, betalingsmetoder og bonusser.",
     };
   }
 
@@ -870,11 +874,10 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     const len = udenKontoSiblings.length;
     const siblings = udenKontoSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     const udenKontoHub: GuideLink = { to: "/casino-uden-konto", label: "Casino uden Konto", icon: Globe, desc: "Komplet guide til casino uden registrering" };
-    const crossClusterOptions = [paymentHub, bonusHub, reviewHub];
-    const crossCluster = crossClusterOptions[currentIndex >= 0 ? currentIndex % 3 : 0];
+    const crossClusterLinks = [paymentHub, bonusHub, reviewHub];
     return {
-      guides: [udenKontoHub, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
-      subtitle: "Udforsk flere guides om casino uden konto og de bedste betalingsmetoder.",
+      guides: [udenKontoHub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk flere guides om casino uden konto, betalingsmetoder og bonusser.",
     };
   }
 
@@ -899,12 +902,11 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = liveCasinoSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     }
-    const liveCasinoHub: GuideLink = { to: "/live-casino", label: "Live Casino Hub", icon: Tv, desc: "Komplet guide til live casino" };
-    const crossClusterOptions = [casinospilHub, bonusHub, reviewHub];
-    const crossCluster = crossClusterOptions[currentIndex >= 0 ? currentIndex % 3 : 0];
+    const liveCasinoHubLocal: GuideLink = { to: "/live-casino", label: "Live Casino Hub", icon: Tv, desc: "Komplet guide til live casino" };
+    const crossClusterLinks = [providerHub, reviewHub, bonusHub];
     return {
-      guides: [liveCasinoHub, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
-      subtitle: "Udforsk flere live casino-spil og de bedste bonusser til live dealer-borde.",
+      guides: [liveCasinoHubLocal, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk flere live casino-spil, spiludviklere og casino anmeldelser.",
     };
   }
 
@@ -923,16 +925,10 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = filtered.slice(0, MAX_SIBLINGS);
     }
-    const crossClusterOptions = [providerHub, bonusHub, slotDatabaseHub];
-    const crossCluster = crossClusterOptions[currentIndex >= 0 ? currentIndex % 3 : 0];
-    const subtitles = [
-      "Udforsk andre casinospil og spiludviklere.",
-      "Udforsk andre casinospil og de bedste bonusser.",
-      "Udforsk andre casinospil og community slot-data.",
-    ];
+    const crossClusterLinks = [providerHub, bonusHub, reviewHub];
     return {
-      guides: [casinospilHub, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
-      subtitle: subtitles[currentIndex >= 0 ? currentIndex % 3 : 0],
+      guides: [casinospilHub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk andre casinospil, spiludviklere og de bedste bonusser.",
     };
   }
 
@@ -957,16 +953,10 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = bonusSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     }
-    const crossClusterOptions = [reviewHub, bonusHuntArkivHub, casinospilHub];
-    const crossCluster = crossClusterOptions[currentIndex >= 0 ? currentIndex % 3 : 0];
-    const subtitles = [
-      "Udforsk andre bonustyper og læs vores casino anmeldelser.",
-      "Udforsk andre bonusguides og se dokumenterede bonus hunt-resultater.",
-      "Udforsk andre bonusser og find de bedste casinospil.",
-    ];
+    const crossClusterLinks = [reviewHub, nyeCasinoerHub, casinospilHub];
     return {
-      guides: [...hub, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
-      subtitle: subtitles[currentIndex >= 0 ? currentIndex % 3 : 0],
+      guides: [...hub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk andre bonustyper, casino anmeldelser og nye casinoer.",
     };
   }
 
@@ -992,16 +982,10 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = nyeCasinoerSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     }
-    const crossClusterOptions = [bonusHub, slotDatabaseHub, turneringsArkivHub];
-    const crossCluster = crossClusterOptions[currentIndex >= 0 ? currentIndex % 3 : 0];
-    const subtitles = [
-      "Udforsk flere nye casinoer og de bedste bonusser.",
-      "Udforsk flere nye casinoer og community slot-statistikker.",
-      "Udforsk flere nye casinoer og se turneringsresultater.",
-    ];
+    const crossClusterLinks = [bonusHub, reviewHub, paymentHub];
     return {
-      guides: [...hub, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
-      subtitle: subtitles[currentIndex >= 0 ? currentIndex % 3 : 0],
+      guides: [...hub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk flere nye casinoer, bonusser og casino anmeldelser.",
     };
   }
 
@@ -1019,16 +1003,10 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = casinoGuidesSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     }
-    const crossClusterOptions = [bonusHub, reviewHub, casinospilHub];
-    const crossCluster = crossClusterOptions[currentIndex >= 0 ? currentIndex % 3 : 0];
-    const subtitles = [
-      "Udforsk andre casino-guides og de bedste bonusser.",
-      "Udforsk andre casino-guides og læs anmeldelser.",
-      "Udforsk andre casino-guides og casinospil.",
-    ];
+    const crossClusterLinks = [bonusHub, reviewHub, paymentHub];
     return {
-      guides: [{ to: "/casinoer", label: "Alle Casinoer", icon: Layers, desc: "Komplet hub for alle casino-kategorier" }, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
-      subtitle: subtitles[currentIndex >= 0 ? currentIndex % 3 : 0],
+      guides: [{ to: "/casinoer", label: "Alle Casinoer", icon: Layers, desc: "Komplet hub for alle casino-kategorier" }, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk andre casino-guides, bonusser og anmeldelser.",
     };
   }
 
@@ -1050,11 +1028,10 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       siblings = mobilSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     }
     const hub: GuideLink[] = path === "/mobil-casino" ? [] : [{ to: "/mobil-casino", label: "Mobil Casino Hub", icon: Smartphone, desc: "Komplet guide til casino på mobilen" }];
-    const crossClusterOptions = [paymentHub, bonusHub, reviewHub];
-    const crossCluster = crossClusterOptions[currentIndex >= 0 ? currentIndex % 3 : 0];
+    const crossClusterLinks = [paymentHub, bonusHub, reviewHub];
     return {
-      guides: [...hub, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
-      subtitle: "Udforsk flere mobil casino-guides og de bedste betalingsløsninger til mobilen.",
+      guides: [...hub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk flere mobil casino-guides, betalingsmetoder og bonusser.",
     };
   }
 
@@ -1084,7 +1061,7 @@ interface RelatedGuidesProps {
   maxLinks?: number;
 }
 
-export const RelatedGuides = React.forwardRef<HTMLElement, RelatedGuidesProps>(function RelatedGuides({ currentPath, maxLinks = 5 }, ref) {
+export const RelatedGuides = React.forwardRef<HTMLElement, RelatedGuidesProps>(function RelatedGuides({ currentPath, maxLinks = 7 }, ref) {
   const { guides, subtitle } = getContextualGuides(currentPath);
   const filteredLinks = guides.filter((link) => link.to !== currentPath).slice(0, maxLinks);
 
