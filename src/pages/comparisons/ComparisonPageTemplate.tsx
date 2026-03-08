@@ -10,7 +10,8 @@ import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Check, X, Star, Clock, Shield, Smartphone, Trophy, Zap } from "lucide-react";
+import { Check, X, Star, Smartphone, Trophy, Zap, Scale } from "lucide-react";
+import type { ReactNode } from "react";
 
 export interface ComparisonCategory {
   label: string;
@@ -42,15 +43,18 @@ export interface ComparisonPageProps {
   path: string;
   datePublished: string;
   author: "jonas" | "kevin" | "ajse";
+  heroImage: string;
+  heroAlt: string;
   casinoA: ComparisonCasino;
   casinoB: ComparisonCasino;
   categories: ComparisonCategory[];
   verdict: string;
   verdictWinner: "A" | "B" | "draw";
-  faqs: { question: string; answer: string }[];
+  faqs: { question: string; answer: ReactNode }[];
   ctaSlug: string;
-  /** Additional body content sections rendered between comparison table and verdict */
-  children?: React.ReactNode;
+  readTime?: string;
+  /** Full enterprise body content rendered between comparison table and verdict */
+  children?: ReactNode;
 }
 
 function ScoreStars({ score }: { score: number }) {
@@ -91,6 +95,8 @@ export function ComparisonPageTemplate({
   path,
   datePublished,
   author,
+  heroImage,
+  heroAlt,
   casinoA,
   casinoB,
   categories,
@@ -98,6 +104,7 @@ export function ComparisonPageTemplate({
   verdictWinner,
   faqs,
   ctaSlug,
+  readTime = "30 min",
   children,
 }: ComparisonPageProps) {
   const canonicalUrl = `${SITE_URL}${path}`;
@@ -142,11 +149,41 @@ export function ComparisonPageTemplate({
         jsonLd={[articleSchema, faqSchema]}
       />
 
-      <div className="container py-8 md:py-12">
-        <AuthorMetaBar author={author} date={datePublished} readTime="12 min" />
+      {/* Hero section matching /casinospil structure */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Scale className="mr-1.5 h-3.5 w-3.5" />
+              Sammenligning 2026
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">{h1}</h1>
+            <p className="text-lg text-white/80">{intro}</p>
+          </div>
+        </div>
+      </section>
 
-        <h1 className="text-3xl md:text-4xl font-bold mb-6">{h1}</h1>
-        <p className="text-lg text-muted-foreground mb-8 max-w-4xl leading-relaxed">{intro}</p>
+      <div className="container py-8 md:py-12">
+        <AuthorMetaBar author={author} date={datePublished} readTime={readTime} />
+
+        {/* Hero image */}
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img
+            src={heroImage}
+            alt={heroAlt}
+            className="w-full h-auto object-cover max-h-[400px]"
+            loading="eager"
+            width={1920}
+            height={600}
+          />
+        </div>
 
         {/* Quick comparison cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
@@ -249,6 +286,7 @@ export function ComparisonPageTemplate({
           </table>
         </div>
 
+        {/* Enterprise body content */}
         {children}
 
         {/* Verdict */}
