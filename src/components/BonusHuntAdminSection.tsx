@@ -385,8 +385,9 @@ export function BonusHuntAdminSection() {
 
   const isLoading = huntLoading || sessionLoading;
 
-  const statusLabel = huntData?.status === 'completed' ? 'Afsluttet' : 'Aktiv';
-  const statusColor = huntData?.status === 'completed'
+  const effectiveStatus = session?.status === 'completed' ? 'completed' : huntData?.status;
+  const statusLabel = effectiveStatus === 'completed' ? 'Afsluttet' : 'Aktiv';
+  const statusColor = effectiveStatus === 'completed'
     ? 'bg-muted text-muted-foreground'
     : 'bg-green-500/20 text-green-400';
 
