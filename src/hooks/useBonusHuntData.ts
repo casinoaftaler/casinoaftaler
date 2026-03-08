@@ -145,10 +145,47 @@ async function fetchLatestArchivedHunt(latestHuntNumber?: number): Promise<Bonus
   }
 }
 
+function createPendingLiveHuntData(huntNumber: number): BonusHuntData {
+  const now = new Date().toISOString();
+  return {
+    id: '',
+    visibleId: huntNumber,
+    date: now,
+    status: 'active',
+    slots: [],
+    stats: {
+      totalBonuses: 0,
+      openedBonuses: 0,
+      startBalance: 0,
+      endBalance: null,
+      targetBalance: 0,
+      averageBet: 0,
+      averageX: null,
+      breakEvenX: 0,
+      highestWin: 0,
+      highestMultiplier: 0,
+      huntStart: null,
+      huntDuration: null,
+      openingStart: null,
+      openingDuration: null,
+      bonusHuntEnd: null,
+      totalDuration: null,
+    },
+  };
+}
+
 async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): Promise<BonusHuntData> {
   const resolvedHuntId = huntId && BLOCKED_HUNTS.has(huntId)
     ? (latestHuntNumber ? getLatestAllowedHunt(latestHuntNumber) : undefined)
     : huntId;
+
+  const inferredLiveHuntId = latestHuntNumber
+    ? getLatestAllowedHunt(latestHuntNumber + 1)
+    : undefined;
+  const shouldTryInferredLive = !resolvedHuntId
+    && !!inferredLiveHuntId
+    && !!latestHuntNumber
+    && inferredLiveHuntId > latestHuntNumber;
 
   try {
     const isArchivedRequest = Boolean(
@@ -158,6 +195,23 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
     const directData = await proxyFetch(
       buildProxyUrl(resolvedHuntId, isArchivedRequest)
     );
+
+    if (
+      shouldTryInferredLive
+      && inferredLiveHuntId
+      && (
+        directData.visibleId <= (latestHuntNumber || 0)
+        || directData.stats.totalBonuses === 0
+        || directData.status !== 'active'
+      )
+    ) {
+      try {
+        const inferredLiveData = await proxyFetch(buildProxyUrl(inferredLiveHuntId, false));
+        if (inferredLiveData.visibleId >= inferredLiveHuntId) return inferredLiveData;
+      } catch {
+        return createPendingLiveHuntData(inferredLiveHuntId);
+      }
+    }
 
     if (resolvedHuntId || !latestHuntNumber) {
       // If a specific hunt resolves but has no slots, fall back to latest archived hunt
@@ -181,6 +235,10 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
     const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
     return archivedFallback ?? directData;
   } catch (error) {
+    if (shouldTryInferredLive && inferredLiveHuntId) {
+      return createPendingLiveHuntData(inferredLiveHuntId);
+    }
+
     // On any proxy failure, fall back to latest archived hunt
     const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
     if (archivedFallback) return archivedFallback;
