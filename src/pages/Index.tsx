@@ -6,6 +6,7 @@ import { WhyTrustUs } from "@/components/WhyTrustUs";
 import { QuickNavSidebar } from "@/components/QuickNavBar";
 import { TodayUpdatedSection } from "@/components/TodayUpdatedSection";
 import { WeeklyRotationReviews } from "@/components/WeeklyRotationReviews";
+import { HomepageLiveCommunity } from "@/components/HomepageLiveCommunity";
 
 import { CasinoCard } from "@/components/CasinoCard";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -278,6 +279,9 @@ const Index = () => {
 
       {/* Opdateret i dag – under casinokort */}
       <TodayUpdatedSection />
+
+      {/* Live fra communityet */}
+      <HomepageLiveCommunity />
 
       <WhyTrustUs />
 
