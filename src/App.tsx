@@ -39,6 +39,9 @@ const AnsvarligtSpil = lazy(() => import("./pages/ResponsibleGaming"));
 const RofusGuide = lazy(() => import("./pages/ansvarligt-spil/RofusGuide"));
 const LudomaniGuide = lazy(() => import("./pages/ansvarligt-spil/LudomaniGuide"));
 const StopSpilletGuide = lazy(() => import("./pages/ansvarligt-spil/StopSpilletGuide"));
+const SpillegraenserGuide = lazy(() => import("./pages/ansvarligt-spil/SpillegraenserGuide"));
+const SelvudelukkelseGuide = lazy(() => import("./pages/ansvarligt-spil/SelvudelukkelseGuide"));
+const HjaelpelinjerGuide = lazy(() => import("./pages/ansvarligt-spil/HjaelpelinjerGuide"));
 const MobilCasino = lazy(() => import("./pages/MobilCasino"));
 const CasinoApp = lazy(() => import("./pages/CasinoApp"));
 const CasinoUdenKonto = lazy(() => import("./pages/casino-uden-konto/CasinoUdenKonto"));
@@ -320,6 +323,9 @@ const App = () => (
                 <Route path="/ansvarligt-spil/rofus" element={<RofusGuide />} />
                 <Route path="/ansvarligt-spil/ludomani" element={<LudomaniGuide />} />
                 <Route path="/ansvarligt-spil/stopspillet" element={<StopSpilletGuide />} />
+                <Route path="/ansvarligt-spil/spillegraenser" element={<SpillegraenserGuide />} />
+                <Route path="/ansvarligt-spil/selvudelukkelse-guide" element={<SelvudelukkelseGuide />} />
+                <Route path="/ansvarligt-spil/hjaelpelinjer" element={<HjaelpelinjerGuide />} />
                 <Route path="/mobil-casino" element={<MobilCasino />} />
                 <Route path="/casino-app" element={<CasinoApp />} />
                 <Route path="/casino-uden-konto" element={<CasinoUdenKonto />} />

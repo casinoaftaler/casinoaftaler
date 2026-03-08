@@ -73,6 +73,9 @@ export const routeLabels: Record<string, string> = {
   "/ansvarligt-spil/rofus": "ROFUS – Selvudelukkelse",
   "/ansvarligt-spil/ludomani": "Ludomani – Spilleafhængighed",
   "/ansvarligt-spil/stopspillet": "StopSpillet – Gratis Rådgivning",
+  "/ansvarligt-spil/spillegraenser": "Spillegrænser – Indbetalings- og Tidsgrænser",
+  "/ansvarligt-spil/selvudelukkelse-guide": "Selvudelukkelse – Komplet Guide",
+  "/ansvarligt-spil/hjaelpelinjer": "Hjælpelinjer – Danske Støttetilbud",
   // Mobil Casino
   "/mobil-casino": "Mobil Casino",
   "/casino-app": "Casino App",
