@@ -70,26 +70,20 @@ export default function BonusHunt() {
     queryClient.invalidateQueries({ queryKey: ['bonus-hunt-avgx-bets'] });
   }, [queryClient]);
 
-  const blockedHunts = new Set<number>();
+  // Hard cap: we only have hunts 1, 2, and 3
+  const MAX_HUNT_NUMBER = 3;
 
-  const getNextAllowed = useCallback((start: number) => {
-    let n = start;
-    while (blockedHunts.has(n)) n += 1;
-    return n;
-  }, []);
-
-  const fallbackNextHuntNumber = getNextAllowed(latestHuntNumber + 1);
-  const liveHuntNumber = huntData?.status === 'active' && huntData?.visibleId
-    ? getNextAllowed(huntData.visibleId)
-    : fallbackNextHuntNumber;
-  const currentHuntNumber = huntData?.visibleId || huntIdOverride || liveHuntNumber;
+  const currentHuntNumber = Math.min(
+    huntData?.visibleId || huntIdOverride || latestHuntNumber,
+    MAX_HUNT_NUMBER
+  );
   const isArchived = archivedHuntNumbers.includes(currentHuntNumber);
   const isLive = !!(
     (session?.status === 'active' && session?.hunt_number === currentHuntNumber && !isArchived)
-    || (huntData?.status === 'active' && currentHuntNumber >= latestHuntNumber)
+    || (huntData?.status === 'active' && currentHuntNumber === MAX_HUNT_NUMBER)
   );
   const huntVideo = getHuntVideo(currentHuntNumber);
-  const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber, currentHuntNumber);
+  const maxHuntNumber = MAX_HUNT_NUMBER;
 
   // Build available hunt numbers: archived + current visible/live hunt (descending)
   const availableHuntNumbers = useMemo(() => {
