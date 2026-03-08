@@ -163,7 +163,11 @@ serve(async (req) => {
         .maybeSingle();
 
       if (archived?.api_data) {
-        return new Response(JSON.stringify(archived.api_data), {
+        // Inject correct visibleId so the frontend uses the archive hunt_number, not the API name
+        const archiveResponse = typeof archived.api_data === 'object' && archived.api_data !== null
+          ? { ...archived.api_data, data: { ...(archived.api_data as any).data || archived.api_data, visibleId: requestedHunt } }
+          : archived.api_data;
+        return new Response(JSON.stringify(archiveResponse), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=60' },
         });
       }
