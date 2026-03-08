@@ -1,50 +1,24 @@
 
 
-## Plan: Automatisk freshness-opdatering ved artikelpublicering
+## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
 
-### Problemet
-Når en ny artikel publiceres (eller ændres til "published"), sker der ingen automatisk opdatering af `/casino-nyheder`-sidens `page_metadata.updated_at` i databasen. Det betyder, at sitemappet og freshness-signalerne forbliver statiske, medmindre vi manuelt kører SQL.
+### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
 
-### Løsning: Database trigger på `casino_news`
-Opretter en PostgreSQL trigger der automatisk opdaterer `page_metadata.updated_at` for `/casino-nyheder` hver gang en artikel publiceres eller opdateres. Dette dækker **alle** publiceringsflows: admin UI, generate-news-draft edge function, og direkte DB-operationer.
+The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
 
-### Implementering
+Specifically:
+- **Remove** Gevinst from the right zone (lines 247-261)
+- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
 
-**1. Database migration — trigger-funktion + trigger**
+Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
 
-```sql
-CREATE OR REPLACE FUNCTION public.touch_news_hub_on_publish()
-RETURNS trigger
-LANGUAGE plpgsql
-SECURITY DEFINER
-SET search_path = public
-AS $$
-BEGIN
-  -- Only fire when status becomes 'published'
-  IF NEW.status = 'published' THEN
-    UPDATE page_metadata 
-    SET updated_at = now() 
-    WHERE path = '/casino-nyheder';
-  END IF;
-  RETURN NEW;
-END;
-$$;
+### 2. Add Count-Up Animation for Win Amount
 
-CREATE TRIGGER on_news_publish_touch_hub
-AFTER INSERT OR UPDATE OF status ON casino_news
-FOR EACH ROW
-EXECUTE FUNCTION touch_news_hub_on_publish();
-```
+Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
+- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
+- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
+- The component already handles ease-out counting and bump animation on completion
 
-Dette giver:
-- Automatisk `lastmod`-opdatering af `/casino-nyheder` i sitemappet ved enhver ny publicering
-- Nul kodeændringer — triggeren kører på databaseniveau
-- Dækker alle flows (admin UI, edge functions, direkte SQL)
-
-**2. Ingen kodeændringer påkrævet**
-Den eksisterende `sitemap-dynamic` edge function læser allerede `page_metadata.updated_at`, så opdateringen propagerer automatisk til Google via sitemappet.
-
-| # | Hvad | Hvor |
-|---|------|------|
-| 1 | Trigger-funktion + trigger | Database migration |
+### Files Modified
+- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
 
