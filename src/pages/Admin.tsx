@@ -64,6 +64,8 @@ import { BonusHuntAdminSection } from "@/components/BonusHuntAdminSection";
 import { SlotCatalogAdminSection } from "@/components/admin/SlotCatalogAdminSection";
 import { MonthlyTournamentAdmin } from "@/components/admin/MonthlyTournamentAdmin";
 import { PageMetadataAdminSection } from "@/components/PageMetadataAdminSection";
+import { PageMetadataSyncSection } from "@/components/admin/PageMetadataSyncSection";
+import { ErrorLogsSection } from "@/components/admin/ErrorLogsSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";

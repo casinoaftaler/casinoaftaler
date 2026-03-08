@@ -1,6 +1,15 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
+import { trackError } from "./lib/errorTracker";
+
+// Global error listeners for production error tracking
+window.addEventListener("error", (event) => {
+  trackError(event.error ?? event.message, { componentName: "window.onerror" });
+});
+window.addEventListener("unhandledrejection", (event) => {
+  trackError(event.reason, { componentName: "unhandledrejection" });
+});
 
 const root = createRoot(document.getElementById("root")!);
 root.render(<App />);

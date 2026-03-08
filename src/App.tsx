@@ -1,4 +1,5 @@
 import { lazy, Suspense, Component, type ReactNode, type ErrorInfo } from "react";
+import { trackError } from "./lib/errorTracker";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -252,6 +253,7 @@ class ChunkErrorBoundary extends Component<{ children: ReactNode }, ErrorBoundar
   }
   componentDidCatch(error: Error, info: ErrorInfo) {
     console.error("ChunkErrorBoundary caught:", error, info);
+    trackError(error, { componentName: info.componentStack?.slice(0, 200) ?? "ChunkErrorBoundary" });
   }
   render() {
     if (this.state.hasError) {
