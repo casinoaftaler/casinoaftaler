@@ -22,7 +22,7 @@ export function ErrorLogsSection() {
   const { data: logs, isLoading } = useQuery({
     queryKey: ["admin-error-logs"],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from("error_logs")
         .select("*")
         .order("created_at", { ascending: false })
@@ -34,7 +34,7 @@ export function ErrorLogsSection() {
 
   const clearMutation = useMutation({
     mutationFn: async () => {
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from("error_logs")
         .delete()
         .neq("id", "00000000-0000-0000-0000-000000000000");
@@ -44,7 +44,7 @@ export function ErrorLogsSection() {
       toast.success("Alle fejl-logs slettet");
       queryClient.invalidateQueries({ queryKey: ["admin-error-logs"] });
     },
-    onError: (err) => toast.error("Fejl: " + (err as Error).message),
+    onError: (err: unknown) => toast.error("Fejl: " + (err as Error).message),
   });
 
   const formatDate = (iso: string) =>

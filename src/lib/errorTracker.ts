@@ -27,7 +27,7 @@ export async function trackError(
 
     lastErrorTime = now;
 
-    await supabase.from("error_logs").insert({
+    await (supabase as any).from("error_logs").insert({
       error_message: message.slice(0, 2000),
       error_stack: stack?.slice(0, 5000) ?? null,
       component_name: context?.componentName ?? null,
