@@ -1,24 +1,46 @@
 
 
-## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
+## Analyse af de 3 handlingspunkter
 
-### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
+### 1. Fix SlotGameSeoCta links (forkerte paths)
 
-The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
+**Problemet:** `SlotGameSeoCta.tsx` linker til to stier der **ikke eksisterer**:
+- `/casinoer/spillemaskiner` — korrekt sti er `/casinospil/spillemaskiner`
+- `/casinoer/casino-bonus` — korrekt sti er `/casino-bonus`
 
-Specifically:
-- **Remove** Gevinst from the right zone (lines 247-261)
-- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
+Disse er **broken internal links** der lækker link equity ud i 404-tomrum. Komponenten vises på alle community slot-sider, så det er potentielt mange crawlede sider med døde links.
 
-Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
+**Fix:** Ret de to `to`-props i `SlotGameSeoCta.tsx`.
 
-### 2. Add Count-Up Animation for Win Amount
+---
 
-Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
-- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
-- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
-- The component already handles ease-out counting and bump animation on completion
+### 2. Synkronisér seoRoutes.ts ↔ page_metadata
 
-### Files Modified
-- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
+**Problemet:** `seoRoutes.ts` (kode) og `page_metadata` (database) driver hver sit output — seoRoutes styrer build-time sitemap, page_metadata styrer dynamic sitemap og admin-UI. Hvis de er ude af sync, kan Google se modstridende `lastmod`-datoer eller manglende URLs mellem de to sitemaps.
+
+**Fix:** Kør en diff-query der sammenligner alle paths i `seoRoutes.ts` mod `page_metadata`-tabellen og udbedrer manglende/afvigende rækker. Dette kræver at jeg læser begge datasæt og identificerer konkrete afvigelser før implementering.
+
+---
+
+### 3. Tilføj article:modified_time OG meta
+
+**Problemet:** Bekræftet — `article:modified_time` meta-tagget eksisterer **ingen steder** i kodebasen. Dette Open Graph tag fortæller Google og sociale platforme præcis hvornår indholdet sidst blev opdateret. Det er et direkte freshness-signal der supplerer sitemap `lastmod`.
+
+**Fix:** Tilføj i `SEO.tsx`:
+```tsx
+<meta property="article:modified_time" content={dateModified} />
+```
+Værdien kan udledes fra `seoRoutes`-lastmod eller en ny prop. Kun relevant for `type="article"` sider.
+
+---
+
+### Implementeringsplan
+
+| # | Fil | Ændring |
+|---|-----|---------|
+| 1 | `src/components/community/SlotGameSeoCta.tsx` | Ret 2 link-paths |
+| 2 | `src/components/SEO.tsx` | Tilføj `article:modified_time` og `article:published_time` OG meta tags |
+| 3 | Database | Synkroniser `page_metadata` mod `seoRoutes.ts` (kræver diff-analyse først) |
+
+Punkt 1 og 3 er ren fejlrettelse. Punkt 2 er et nyt freshness-signal. Alle tre er lavrisiko-ændringer med direkte SEO-gevinst.
 
