@@ -85,25 +85,22 @@ export default function BonusHunt() {
   const huntVideo = getHuntVideo(currentHuntNumber);
   const maxHuntNumber = MAX_HUNT_NUMBER;
 
-  // Build available hunt numbers: archived + current visible/live hunt (descending)
+  // Build available hunt numbers: only 1, 2, 3 (descending)
   const availableHuntNumbers = useMemo(() => {
-    const nums = new Set(archivedHuntNumbers);
-    nums.add(liveHuntNumber);
+    const nums = new Set(archivedHuntNumbers.filter(n => n <= MAX_HUNT_NUMBER));
     nums.add(currentHuntNumber);
     return [...nums].sort((a, b) => b - a);
-  }, [archivedHuntNumbers, liveHuntNumber, currentHuntNumber]);
+  }, [archivedHuntNumbers, currentHuntNumber]);
 
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
     if (!availableHuntNumbers.length) return;
 
-    const orderedHunts = [...availableHuntNumbers].sort((a, b) => a - b); // oldest -> newest
-    const current = huntData?.visibleId || huntIdOverride || liveHuntNumber;
-    const currentIndex = orderedHunts.indexOf(current);
+    const orderedHunts = [...availableHuntNumbers].sort((a, b) => a - b);
+    const currentIndex = orderedHunts.indexOf(currentHuntNumber);
 
     const navigateTo = (target?: number) => {
       if (!target) return;
-      if (target > latestHuntNumber) setHuntIdOverride(undefined);
-      else setHuntIdOverride(target);
+      setHuntIdOverride(target);
     };
 
     switch (dir) {
@@ -122,7 +119,7 @@ export default function BonusHunt() {
         }
         break;
     }
-  }, [availableHuntNumbers, huntData?.visibleId, huntIdOverride, latestHuntNumber, liveHuntNumber]);
+  }, [availableHuntNumbers, currentHuntNumber]);
 
   const huntDate = huntData?.date
     ? new Date(huntData.date).toLocaleDateString('da-DK', { day: 'numeric', month: 'short' }).toUpperCase()
