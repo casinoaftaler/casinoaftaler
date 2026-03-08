@@ -29,6 +29,10 @@ interface SEOProps {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   /** Override the last breadcrumb label (for dynamic pages like news articles). */
   breadcrumbLabel?: string;
+  /** ISO 8601 date for article:published_time (only emitted when type="article") */
+  datePublished?: string;
+  /** ISO 8601 date for article:modified_time (only emitted when type="article") */
+  dateModified?: string;
 }
 
 /**
@@ -42,7 +46,7 @@ function formatTitle(raw: string): string {
   return `${stripped} | ${SITE_BRAND}`;
 }
 
-export function SEO({ title, description, type = "website", image = `${SITE_URL}/og-image.png`, noindex, jsonLd, breadcrumbLabel }: SEOProps) {
+export function SEO({ title, description, type = "website", image = `${SITE_URL}/og-image.png`, noindex, jsonLd, breadcrumbLabel, datePublished, dateModified }: SEOProps) {
   const { pathname } = useLocation();
   const canonicalUrl = getCanonicalUrl(pathname);
   const formattedTitle = formatTitle(title);
@@ -119,6 +123,13 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
       <meta property="og:description" content={safeDescription} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={image} />
+
+      {type === "article" && datePublished && (
+        <meta property="article:published_time" content={datePublished} />
+      )}
+      {type === "article" && dateModified && (
+        <meta property="article:modified_time" content={dateModified} />
+      )}
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={formattedTitle} />
