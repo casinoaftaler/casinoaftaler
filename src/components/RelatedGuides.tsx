@@ -351,7 +351,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   if (path === "/megaways-slots") {
     return {
       guides: [
-        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner Guide", icon: Gamepad2, desc: "Komplet guide til alle spilleautomater" },
+        spillemaskinerHub,
         jackpotSlotsHub,
         bonusBuySlotsHub,
         { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Slots med bedst tilbagebetaling" },
@@ -364,7 +364,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   if (path === "/jackpot-slots") {
     return {
       guides: [
-        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner Guide", icon: Gamepad2, desc: "Komplet guide til alle spilleautomater" },
+        spillemaskinerHub,
         megawaysSlotsHub,
         bonusBuySlotsHub,
         slotDatabaseHub,
@@ -377,7 +377,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   if (path === "/bonus-buy-slots") {
     return {
       guides: [
-        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner Guide", icon: Gamepad2, desc: "Komplet guide til alle spilleautomater" },
+        spillemaskinerHub,
         megawaysSlotsHub,
         jackpotSlotsHub,
         { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Slots med bedst tilbagebetaling" },
