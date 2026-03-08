@@ -175,7 +175,18 @@ const NyeCasinoer = () => {
       <SEO
         title="Nye Casinoer 2026 – Testet & Rangeret med DK Licens"
         description="Nye casinoer i Danmark 2026. Testet med rigtige penge over 14 dage. Dansk licens, lave omsætningskrav og hurtige udbetalinger. Se toplisten."
-        jsonLd={[articleSchema, faqSchema]}
+        jsonLd={[articleSchema, faqSchema, {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: `Nye Casinoer i Danmark – ${getDanishMonthYear()}`,
+          numberOfItems: newCasinos.length,
+          itemListElement: newCasinos.map((c, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: c.name,
+            url: `${SITE_URL}/casino-anmeldelser/${c.slug}`,
+          })),
+        }]}
       />
 
       {/* Hero Section */}
