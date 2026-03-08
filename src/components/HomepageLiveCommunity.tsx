@@ -99,19 +99,26 @@ export function HomepageLiveCommunity() {
           . Alle resultater er dokumenterede og verificerbare – fra live bonus hunts til månedlige turneringer.
         </p>
 
-        {/* Quick stats strip */}
-        <div className="grid grid-cols-3 gap-3 mb-6">
+        {/* Quick stats strip – semantic HTML for crawlers */}
+        <dl className="grid grid-cols-3 gap-3 mb-6" itemScope itemType="https://schema.org/Organization">
+          <meta itemProp="name" content="Casinoaftaler.dk" />
           {quickStats.map((stat) => (
             <div
               key={stat.label}
               className="flex flex-col items-center gap-1.5 rounded-xl border border-border/50 bg-card p-4 text-center"
+              itemProp="interactionStatistic"
+              itemScope
+              itemType="https://schema.org/InteractionCounter"
             >
-              <stat.icon className={`h-5 w-5 ${stat.color}`} />
-              <span className="text-xl md:text-2xl font-bold text-foreground">{stat.value}</span>
-              <span className="text-[11px] text-muted-foreground">{stat.label}</span>
+              <stat.icon className={`h-5 w-5 ${stat.color}`} aria-hidden="true" />
+              <dd className="text-xl md:text-2xl font-bold text-foreground" itemProp="userInteractionCount">{stat.value}</dd>
+              <dt className="text-[11px] text-muted-foreground">{stat.label}</dt>
             </div>
           ))}
-        </div>
+        </dl>
+        <noscript>
+          <p>Casinoaftaler.dk community: 100+ aktive medlemmer, 50.000+ spins spillet, 3+ turneringer denne måned.</p>
+        </noscript>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Recent bonus hunts */}
