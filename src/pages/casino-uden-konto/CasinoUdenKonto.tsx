@@ -7,7 +7,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -718,17 +718,6 @@ const CasinoUdenKonto = () => {
 
         <Separator className="my-10" />
 
-        {/* ══════════════════════════════════════════════════════════════
-            8. TESTLOG – E-E-A-T EXPERIENCE
-        ══════════════════════════════════════════════════════════════ */}
-        <CasinoTestLog
-          casinoName="Pay N Play Casinoer"
-          intro="Vi har gennemført en systematisk 14-dages test af 4 Pay N Play-casinoer med
-          dansk licens for at dokumentere den reelle brugeroplevelse: registreringstider,
-          udbetalingshastighed, bonusvilkår, sikkerhed og ansvarligt spil-compliance.
-          Alle test er udført med en startkapital på 2.000 kr. per casino."
-          entries={testLogEntries}
-        />
 
         <Separator className="my-10" />
 

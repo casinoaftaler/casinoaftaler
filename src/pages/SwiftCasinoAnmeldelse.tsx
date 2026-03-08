@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
+
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
@@ -239,36 +239,6 @@ const SwiftCasinoAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <CasinoTestLog
-          casinoName="Swift Casino"
-          intro="Vi testede Swift Casino kontinuerligt over 14 dage med en startkapital på 500 kr. plus 500 kr. i bonus (bonuskode SWIFT). Fokusområder: bonusgennemspilning, Hot Or Cold-funktionens præcision, udbetalingshastigheder og den brede spiloplevelse."
-          entries={[
-            {
-              title: "Dag 1–2: Oprettelse, bonuskode og Hot Or Cold",
-              content: "MitID-registrering gennemført på 4 minutter. Indbetalte 500 kr. via MobilePay. Vigtigt: bonussen aktiveres IKKE automatisk – du skal indtaste koden SWIFT i bonuskodefeltet efter indbetalingen. Vi glemte det næsten og opdagede først efter at kontakte live chat (svar: 1 minut). Bonussen blev tilføjet manuelt. Første indtryk af Hot Or Cold: forsiden viser 8–10 \"Hot\" slots markeret med 🔥 og tilsvarende \"Cold\" slots med ❄️. Startede med en \"Hot\"-markeret Sweet Bonanza (96,48 % RTP) – ramte en 85x-gevinst på spin 12. Tilfældig varians eller Hot-effekt? Umuligt at sige, men underholdende. Omsatte 2.800 kr. på dag 1.",
-            },
-            {
-              title: "Dag 3–5: Hot Or Cold-eksperiment og spiludvalg",
-              content: "Designede et mini-eksperiment: 50 spins på \"Hot\"-markerede slots og 50 spins på \"Cold\"-markerede slots med samme indsats (10 kr.). Resultat: \"Hot\"-spins gav 620 kr. tilbage (124 % RTP), \"Cold\"-spins gav 380 kr. (76 % RTP). Interessant, men for lille stikprøve til konklusion. Browsede det massive spiludvalg: 3.300+ titler er imponerende. Fandt Nolimit City-titler (San Quentin xWays, Mental), Hacksaw Gaming (Wanted Dead or a Wild) og Push Gaming (Jammin' Jars 2) – alle mangler hos søstercasinoet Luna Casino. Filtreringssystemet: kategori, provider, popularitet, A-Z. Fungerer godt.",
-            },
-            {
-              title: "Dag 6–8: Bonusomsætning og bordspilstest",
-              content: "Nåede 7.200 kr. i omsætning. Testede bordspilssektionen: europæisk roulette (97,3 % RTP), blackjack multi-hand og baccarat. God grafik, hurtige loadtider. Bordspil bidrager typisk med 10 % til omsætningskravet – ikke effektivt for bonusgennemspilning. Skiftede tilbage til slots: Gates of Olympus, Reactoonz 2 og Big Bass Bonanza. Daglig kampagne modtaget via e-mail: 20 free spins på Starburst uden yderligere omsætningskrav. Positiv overraskelse.",
-            },
-            {
-              title: "Dag 9–11: Omsætningskrav gennemført, PayPal-test",
-              content: "Gennemførte 10x omsætningskravet (10.000 kr.) på dag 10. Saldo: 720 kr. Forventet tab under gennemspilning: 400 kr. (beregnet), faktisk tab: 280 kr. – bedre end gennemsnittet i vores tests. Anmodede om udbetaling af 600 kr. via PayPal kl. 10:45. Pengene var på PayPal-kontoen kl. 16:30 – 5 timer og 45 minutter. Markant hurtigere end Visa/Mastercard (2–3 dage). PayPal-support er en reel konkurrencefordel overfor Luna Casino.",
-            },
-            {
-              title: "Dag 12–13: Live casino og Trustly-test",
-              content: "Testede live casinoet fra Evolution Gaming: Lightning Roulette, Blackjack VIP og Crazy Time. Streamingkvalitet: excellent på Wi-Fi, god på 4G (minimal forsinkelse). Dealere: professionelle, engagerede. Indbetalte 200 kr. via Trustly for at teste: transaktionen gennemført på under 30 sekunder via NemID/MitID-flow. Anmodede om udbetaling via Trustly kl. 14:00 – modtaget kl. 17:20 (3 timer 20 minutter). Endnu en hurtig udbetalingsmetode.",
-            },
-            {
-              title: "Dag 14: Kundeservice, mobiltest og afsluttende vurdering",
-              content: "Mobiltest på iPhone 15 Pro og Samsung S24: alle funktioner tilgængelige, inkl. Hot Or Cold. Hurtige loadtider, smidig navigation. Live chat-test kl. 19:00: spurgte om kampagneoversigt for næste uge. Svar efter 2 minutter med detaljeret forklaring af kommende reload-bonus og turnering. Afsluttende saldo: 120 kr. + 600 kr. udbetalt. Swift Casino leverer bredde, data-transparens og betalingsfleksibilitet – tre ting der sammen skaber en unik position i markedet.",
-            },
-          ]}
-        />
 
         <Separator className="my-10" />
 

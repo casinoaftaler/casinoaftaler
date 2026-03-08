@@ -7,7 +7,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -459,12 +459,6 @@ const FordeleOgUlemperGuide = () => {
 
         <Separator className="my-10" />
 
-        {/* 8. TESTLOG – E-E-A-T */}
-        <CasinoTestLog
-          casinoName="Casino uden Konto Evaluering"
-          intro="Vi har gennemført en systematisk 14-dages evaluering af casino uden konto vs. traditionelle casinoer. 4 Pay N Play-casinoer + 4 traditionelle casinoer, alle med dansk licens. Fokus: sikkerhed, compliance, brugeroplevelse og ansvarligt spil."
-          entries={testLogEntries}
-        />
 
         <Separator className="my-10" />
 

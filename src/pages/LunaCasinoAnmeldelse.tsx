@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
+
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
@@ -231,36 +231,6 @@ const LunaCasinoAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <CasinoTestLog
-          casinoName="Luna Casino"
-          intro="Vi testede Luna Casino kontinuerligt over 14 dage med en startkapital på 500 kr. plus 500 kr. i bonus. Formålet var at vurdere bonusgennemspilning, loyalitetsprogrammets progression, daglige kampagners reelle værdi og den kuraterede spiloplevelse."
-          entries={[
-            {
-              title: "Dag 1–2: Oprettelse, bonus og første indtryk",
-              content: "MitID-registrering gennemført på 3 minutter. Indbetalte 500 kr. via MobilePay – bonussen på 500 kr. var tilgængelig øjeblikkeligt uden bonuskode. Startede med Starburst XXXtreme (96,26 % RTP) og Dead or Alive 2 (96,82 % RTP). Bemærkede straks det kuraterede udvalg: ingen \"filler\"-slots. Hvert spil virkede nøje udvalgt. Omsatte 2.200 kr. på dag 1. Dag 2 aktiverede vi en daglig reload-bonus (25 % op til 200 kr.) – omsætningskravet var igen 10x.",
-            },
-            {
-              title: "Dag 3–5: Loyalitetsprogrammet begynder at vise sig",
-              content: "Steg fra Level 1 til Level 3 i loyalitetsprogrammet. Hver level gav en lille bonus (25 free spins til Level 2, 50 kr. cash til Level 3). Testede bordspilssektionen – blackjack og roulette i digitale versioner med god grafik. Bordspil bidrager med 10 % til omsætningskravet, så vi skiftede hurtigt tilbage til slots. Daglig kampagne dag 4: 10 free spins på Book of Dead uden omsætningskrav. Dag 5: cashback-kampagne på 10 % op til 100 kr. på nettotab.",
-            },
-            {
-              title: "Dag 6–8: Bonusomsætning og turnering",
-              content: "Nåede 7.500 kr. i omsætning. Deltog i en ugentlig turnering på Gonzo's Quest Megaways – gratis deltagelse, præmiepulje på 5.000 kr. Endte på 12. plads af 78 deltagere. Ingen præmie, men turneringen tilføjede motivation. Level 4 i loyalitetsprogrammet gav adgang til personlige kampagner via e-mail. Daglige deals fortsatte: reload, free spins, cashback i rotation.",
-            },
-            {
-              title: "Dag 9–11: Omsætningskrav gennemført",
-              content: "Gennemførte 10x omsætningskravet (10.000 kr.) på dag 9 – tre dage hurtigere end gennemsnittet i vores tests. Saldo på det tidspunkt: 680 kr. (inkl. bonus-gevinster). Det lave omsætningskrav gør en markant forskel: vi tabte kun 320 kr. under gennemspilningen, hvor gennemsnittet hos andre casinoer typisk er 40-60 % tab. Anmodede om udbetaling af 500 kr. via Payz kl. 14:12.",
-            },
-            {
-              title: "Dag 12–13: Live casino og mobiltest",
-              content: "Udbetalingen via Payz modtaget efter 26 timer – inden for det annoncerede vindue. Testede live casinoet fra Evolution Gaming: Lightning Roulette, Blackjack og Dream Catcher. God kvalitet, ingen buffering. Mobiltest på iPhone 15 Pro og Samsung S24: hjemmesiden tilpassede sig smukt, MobilePay-indbetaling gennemført med ét swipe, og live casino streamede i HD selv på 4G. Level 5 nået i loyalitetsprogrammet.",
-            },
-            {
-              title: "Dag 14: Kundeservice og afsluttende vurdering",
-              content: "Kontaktede live chat kl. 11:30 med spørgsmål om loyalitetsprogrammets øverste niveauer. Svar inden for 2 minutter. Rådgiveren forklarede detaljeret om Level 10+ fordele (dedikeret kontaktperson, højere cashback, eksklusive turneringer). Afsluttende saldo: 180 kr. + 500 kr. udbetalt. Samlet vurdering: det kuraterede koncept fungerer. Du finder ikke 5.000 spil her – men du finder heller ikke 4.500 middelmådige slots.",
-            },
-          ]}
-        />
 
         <Separator className="my-10" />
 
