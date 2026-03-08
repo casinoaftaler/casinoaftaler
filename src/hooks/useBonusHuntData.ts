@@ -132,29 +132,53 @@ function getLatestAllowedHunt(latestHuntNumber: number) {
   return candidate;
 }
 
+async function fetchLatestArchivedHunt(latestHuntNumber?: number): Promise<BonusHuntData | null> {
+  if (!latestHuntNumber) return null;
+
+  const fallbackHuntId = getLatestAllowedHunt(latestHuntNumber);
+  if (fallbackHuntId <= 1) return null;
+
+  try {
+    return await proxyFetch(buildProxyUrl(fallbackHuntId, true));
+  } catch {
+    return null;
+  }
+}
+
 async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): Promise<BonusHuntData> {
   const resolvedHuntId = huntId && BLOCKED_HUNTS.has(huntId)
     ? (latestHuntNumber ? getLatestAllowedHunt(latestHuntNumber) : undefined)
     : huntId;
 
-  const directData = await proxyFetch(
-    buildProxyUrl(resolvedHuntId, Boolean(resolvedHuntId && latestHuntNumber))
-  );
+  try {
+    const directData = await proxyFetch(
+      buildProxyUrl(resolvedHuntId, Boolean(resolvedHuntId && latestHuntNumber))
+    );
 
-  if (resolvedHuntId || !latestHuntNumber) {
-    return directData;
+    if (resolvedHuntId || !latestHuntNumber) {
+      return directData;
+    }
+
+    // If live endpoint has no slot data, show the latest archived hunt instead
+    if (directData.stats.totalBonuses === 0) {
+      const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
+      if (archivedFallback) return archivedFallback;
+    }
+
+    if (!BLOCKED_HUNTS.has(directData.visibleId)) {
+      return directData;
+    }
+
+    const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
+    return archivedFallback ?? directData;
+  } catch (error) {
+    // If live endpoint fails (e.g. 404), always fall back to latest archived hunt
+    if (!resolvedHuntId) {
+      const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
+      if (archivedFallback) return archivedFallback;
+    }
+    throw error;
   }
-
-  if (!BLOCKED_HUNTS.has(directData.visibleId)) {
-    return directData;
-  }
-
-  const fallbackHuntId = getLatestAllowedHunt(latestHuntNumber);
-  if (fallbackHuntId <= 1) {
-    return directData;
-  }
-
-  return proxyFetch(buildProxyUrl(fallbackHuntId, true));
 }
 
 async function fetchLatestHuntNumber(): Promise<number> {
