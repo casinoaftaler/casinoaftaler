@@ -115,8 +115,22 @@ serve(async (req) => {
 
       const row = buildArchiveRow(singleHuntNumber, summary, huntDetail);
 
-      // Delete existing row with same hunt_number (if any)
-      await supabase.from('bonus_hunt_archives').delete().eq('hunt_number', singleHuntNumber);
+      // Shift existing hunts at or after this position up by 1
+      // Fetch all hunts at or after the target position, ordered descending to avoid conflicts
+      const { data: existingHunts } = await supabase
+        .from('bonus_hunt_archives')
+        .select('id, hunt_number')
+        .gte('hunt_number', singleHuntNumber)
+        .order('hunt_number', { ascending: false });
+
+      if (existingHunts && existingHunts.length > 0) {
+        for (const hunt of existingHunts) {
+          await supabase
+            .from('bonus_hunt_archives')
+            .update({ hunt_number: hunt.hunt_number + 1 })
+            .eq('id', hunt.id);
+        }
+      }
 
       const { error: insertError } = await supabase.from('bonus_hunt_archives').insert(row);
       if (insertError) throw insertError;
