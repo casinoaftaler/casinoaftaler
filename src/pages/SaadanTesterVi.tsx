@@ -3,7 +3,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
-import { buildFaqSchema } from "@/lib/seo";
+import { buildFaqSchema, buildArticleSchema, AJSE_SAME_AS } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -150,28 +150,15 @@ const faqs = [
 
 const faqJsonLd = buildFaqSchema(faqs);
 
-const webPageJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: "Sådan tester vi casinoer",
+const articleJsonLd = buildArticleSchema({
+  headline: "Sådan tester vi casinoer",
   description: "Se hvordan vi tester og vurderer online casinoer i Danmark. Læs om vores testkriterier, vurderingsmodel og gennemsigtige metode.",
   url: "https://casinoaftaler.dk/saadan-tester-vi-casinoer",
-  publisher: {
-    "@type": "Organization",
-    name: "Casinoaftaler",
-    url: "https://casinoaftaler.dk",
-  },
-  author: {
-    "@id": "https://casinoaftaler.dk/forfatter/ajse#person",
-  },
-  breadcrumb: {
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Forside", item: "https://casinoaftaler.dk/" },
-      { "@type": "ListItem", position: 2, name: "Sådan tester vi casinoer", item: "https://casinoaftaler.dk/saadan-tester-vi-casinoer" },
-    ],
-  },
-};
+  datePublished: "2026-02-15",
+  authorName: "Ajse",
+  authorUrl: "https://casinoaftaler.dk/forfatter/ajse",
+  authorSameAs: AJSE_SAME_AS,
+});
 
 const SaadanTesterVi = () => {
   const { data: siteSettings } = useSiteSettings();
@@ -182,7 +169,7 @@ const SaadanTesterVi = () => {
       <SEO
         title="Sådan tester vi casinoer | Vores testmetode hos Casinoaftaler.dk"
         description="Se hvordan vi tester og vurderer online casinoer i Danmark. Læs om vores testkriterier, vurderingsmodel og gennemsigtige metode."
-        jsonLd={[webPageJsonLd, faqJsonLd]}
+        jsonLd={[articleJsonLd, faqJsonLd]}
       />
 
       {/* Hero */}
