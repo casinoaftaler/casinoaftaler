@@ -68,7 +68,7 @@ const faqs: { question: string; answer: string | React.ReactNode }[] = [
 ];
 
 const CrazyTimeGuide = () => {
-  const { showCasinoCards } = useSiteSettings();
+  const { data: siteSettings } = useSiteSettings();
   const faqJsonLd = buildFaqSchema(faqs);
   const articleSchema = buildArticleSchema({
     headline: "Crazy Time – Komplet Guide til Evolutions Populære Game Show",

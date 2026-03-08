@@ -56,7 +56,7 @@ const faqs: { question: string; answer: string | React.ReactNode }[] = [
 ];
 
 const DealOrNoDealGuide = () => {
-  const { showCasinoCards } = useSiteSettings();
+  const { data: siteSettings } = useSiteSettings();
   const faqJsonLd = buildFaqSchema(faqs);
   const articleSchema = buildArticleSchema({
     headline: "Deal or No Deal Live – Komplet Guide til Casino Game Show",

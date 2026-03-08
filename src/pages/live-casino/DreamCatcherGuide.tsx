@@ -56,7 +56,7 @@ const faqs: { question: string; answer: string | React.ReactNode }[] = [
 ];
 
 const DreamCatcherGuide = () => {
-  const { showCasinoCards } = useSiteSettings();
+  const { data: siteSettings } = useSiteSettings();
   const faqJsonLd = buildFaqSchema(faqs);
   const articleSchema = buildArticleSchema({
     headline: "Dream Catcher – Komplet Guide til Money Wheel Game Show",
