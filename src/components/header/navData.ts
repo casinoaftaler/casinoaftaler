@@ -72,6 +72,12 @@ export const SLOT_LINKS: NavLink[] = [
   { to: "/casinospil/spillemaskiner/joker-strike", label: "Joker Strike" },
 ];
 
+export const SLOT_CATEGORY_LINKS: NavLink[] = [
+  { to: "/megaways-slots", label: "Megaways Slots" },
+  { to: "/jackpot-slots", label: "Jackpot Slots" },
+  { to: "/bonus-buy-slots", label: "Bonus Buy Slots" },
+];
+
 export const BLACKJACK_LINKS: NavLink[] = [
   { to: "/casinospil/blackjack/amerikansk-blackjack", label: "Amerikansk Blackjack" },
   { to: "/casinospil/blackjack/europaeisk-blackjack", label: "Europæisk Blackjack" },

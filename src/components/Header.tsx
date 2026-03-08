@@ -6,6 +6,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuSub,
   DropdownMenuSubContent,
@@ -27,7 +28,7 @@ import { NotificationDropdown } from "./NotificationDropdown";
 import { RedeemCodeDialog } from "./RedeemCodeDialog";
 import { getTodayDanish } from "@/lib/danishDate";
 import {
-  CASINO_LINKS, NYE_CASINOER_LINKS, SLOT_LINKS, BLACKJACK_LINKS,
+  CASINO_LINKS, NYE_CASINOER_LINKS, SLOT_LINKS, SLOT_CATEGORY_LINKS, BLACKJACK_LINKS,
   BLACKJACK_STRATEGY_LINKS, ROULETTE_LINKS, ROULETTE_STRATEGY_LINKS,
   POKER_LINKS, OTHER_CASINOSPIL_LINKS, LIVE_CASINO_LINKS, BONUS_LINKS,
   PAYMENT_LINKS, PROVIDER_LINKS, REVIEW_TOP_LINKS, REVIEW_ALL_LINKS,
@@ -224,6 +225,8 @@ export const Header = memo(function Header() {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
+                  <DropdownMenuLabel className="text-xs text-muted-foreground uppercase tracking-wider">Kategorier</DropdownMenuLabel>
+                  <NavItems links={SLOT_CATEGORY_LINKS} />
                   <DropdownMenuItem asChild>
                     <Link to="/casinospil/spillemaskiner/hoej-rtp" className="flex items-center gap-2">
                       <Star className="h-3 w-3" />
@@ -684,6 +687,7 @@ export const Header = memo(function Header() {
                 {(() => {
                   const allSlots = [
                     { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Spillemaskiner" },
+                    ...SLOT_CATEGORY_LINKS,
                     ...SLOT_LINKS,
                   ];
                   const visible = expandedMobileSlots ? allSlots : allSlots.slice(0, 8);
