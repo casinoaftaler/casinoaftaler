@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ShieldCheck, BarChart3, Scale, Eye } from "lucide-react";
 
 const trustPoints = [
@@ -6,24 +7,29 @@ const trustPoints = [
     title: "Kun dansk licens",
     description:
       "Vi anbefaler udelukkende casinoer med aktiv licens fra Spillemyndigheden. Hver licens verificeres direkte mod det officielle register.",
+    stat: "29+ casinoer testet",
   },
   {
     icon: BarChart3,
     title: "Matematisk bonusanalyse",
     description:
       "Vi beregner EV (expected value) og RTP-justering for hver bonus – ikke bare omsætningskrav, men reel spillerværdi i kroner og øre.",
+    stat: "163+ slots i database",
   },
   {
     icon: Scale,
     title: "Uafhængig redaktion",
     description:
       "Vores anmeldelser er udarbejdet af forfattere med 5+ års erfaring i den danske gambling-branche. Affiliate-links påvirker aldrig vurderinger.",
+    stat: "263 indexerede sider",
+    link: { to: "/saadan-tester-vi-casinoer", label: "Læs vores metode →" },
   },
   {
     icon: Eye,
     title: "Løbende compliance-overvågning",
     description:
       "Vi scanner casinoers bonusvilkår og licensstatus automatisk og dagligt, så vi opdager ændringer før du gør.",
+    stat: "Daglig scanning",
   },
 ];
 
@@ -47,9 +53,18 @@ export function WhyTrustUs() {
                 <point.icon className="h-6 w-6" />
               </div>
               <h3 className="mb-2 text-lg font-semibold">{point.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 {point.description}
               </p>
+              <p className="text-xs font-semibold text-primary">{point.stat}</p>
+              {point.link && (
+                <Link
+                  to={point.link.to}
+                  className="mt-2 inline-block text-xs text-primary hover:underline font-medium"
+                >
+                  {point.link.label}
+                </Link>
+              )}
             </div>
           ))}
         </div>

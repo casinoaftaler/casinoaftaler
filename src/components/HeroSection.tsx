@@ -99,29 +99,12 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-      {/* Decorative elements – contain: strict prevents these from contributing to CLS */}
+      {/* Decorative elements */}
       <div className="absolute left-0 top-0 h-full w-full opacity-20 pointer-events-none" aria-hidden="true" style={{ contain: 'strict' }}>
-        <div 
-          className="absolute left-10 top-10 h-32 w-32 rounded-full bg-primary/60 blur-xl will-change-transform"
-          style={{ animation: "float 6s ease-in-out infinite" }}
-        />
-        <div 
-          className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-accent/60 blur-xl will-change-transform"
-          style={{ animation: "float 8s ease-in-out infinite 1s" }}
-        />
-        <div 
-          className="absolute left-1/3 top-1/2 h-24 w-24 rounded-full bg-primary/40 blur-xl will-change-transform"
-          style={{ animation: "float 7s ease-in-out infinite 0.5s" }}
-        />
+        <div className="absolute left-10 top-10 h-32 w-32 rounded-full bg-primary/60 blur-xl will-change-transform animate-hero-float" />
+        <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-accent/60 blur-xl will-change-transform animate-hero-float-slow" />
+        <div className="absolute left-1/3 top-1/2 h-24 w-24 rounded-full bg-primary/40 blur-xl will-change-transform animate-hero-float-mid" />
       </div>
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          25% { transform: translateY(-15px) translateX(5px); }
-          50% { transform: translateY(-8px) translateX(-5px); }
-          75% { transform: translateY(-20px) translateX(3px); }
-        }
-      `}</style>
     </section>
     </>
   );
