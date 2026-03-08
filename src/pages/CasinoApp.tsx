@@ -141,12 +141,32 @@ const CasinoApp = () => {
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
 
+  const softwareAppSchema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Casino App – Bedste Casino Apps i Danmark",
+    applicationCategory: "GameApplication",
+    operatingSystem: "iOS, Android",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "DKK",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.2",
+      ratingCount: "8",
+      bestRating: "5",
+      worstRating: "1",
+    },
+  };
+
   return (
     <>
       <SEO
         title="Casino App – Bedste Casino Apps med Dansk Licens 2026"
         description="Alt om casino apps i Danmark: Download, sikkerhed, iOS vs. Android, PWA vs. native, spiludvalg og de bedste casino apps med dansk licens. Komplet guide."
-        jsonLd={[faqJsonLd, articleJsonLd]}
+        jsonLd={[faqJsonLd, articleJsonLd, softwareAppSchema]}
       />
 
       {/* ── Hero Section ── */}

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -10,17 +11,23 @@ import {
   CheckCircle2,
   Flame,
   PartyPopper,
+  Trophy,
+  BookOpen,
+  Scale,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import "@/styles/community-micro.css";
 
-const LINKS = [
-  { href: "/nye-casinoer", label: "Nye Casinoer", icon: Star, primary: true },
+const ALL_LINKS = [
+  { href: "/nye-casinoer", label: "Nye Casinoer", icon: Star },
   { href: "/velkomstbonus", label: "Velkomstbonus", icon: PartyPopper },
   { href: "/free-spins", label: "Free Spins", icon: Zap },
   { href: "/casino-bonus", label: "Casino Bonus", icon: Gift },
   { href: "/live-casino", label: "Live Casino", icon: Tv },
   { href: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2 },
+  { href: "/top-10-casino-online", label: "Top 10 Casinoer", icon: Trophy },
+  { href: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: BookOpen },
+  { href: "/omsaetningskrav", label: "Omsætningskrav", icon: Scale },
 ];
 
 const TRUST_POINTS = [
@@ -28,6 +35,14 @@ const TRUST_POINTS = [
   "Eksklusive free spins",
   "Opdateret dagligt",
 ];
+
+function getISOWeek(): number {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + 3 - ((d.getDay() + 6) % 7));
+  const week1 = new Date(d.getFullYear(), 0, 4);
+  return 1 + Math.round(((d.getTime() - week1.getTime()) / 86400000 - 3 + ((week1.getDay() + 6) % 7)) / 7);
+}
 
 function trackClick(label: string) {
   try {
@@ -46,13 +61,28 @@ function trackClick(label: string) {
 export function CommunitySeoBridge() {
   const { pathname } = useLocation();
   const isSlotPage = pathname.startsWith("/community/slots");
+  const isBonusHuntPage = pathname.startsWith("/bonus-hunt");
 
-  const links = isSlotPage
-    ? [LINKS[5], LINKS[0], LINKS[1], LINKS[2], LINKS[3], LINKS[4]]
-    : LINKS;
+  const { primaryLink, secondaryLinks } = useMemo(() => {
+    const week = getISOWeek();
 
-  const primaryLink = links.find((l) => l.primary) || links[0];
-  const secondaryLinks = links.filter((l) => l !== primaryLink);
+    // Context-aware pool: slot pages prioritise slot links, bonus-hunt → bonus links
+    let pool: typeof ALL_LINKS;
+    if (isSlotPage) {
+      pool = [ALL_LINKS[5], ALL_LINKS[0], ALL_LINKS[1], ALL_LINKS[2], ALL_LINKS[3], ALL_LINKS[4], ALL_LINKS[6], ALL_LINKS[7], ALL_LINKS[8]];
+    } else if (isBonusHuntPage) {
+      pool = [ALL_LINKS[3], ALL_LINKS[1], ALL_LINKS[2], ALL_LINKS[0], ALL_LINKS[4], ALL_LINKS[5], ALL_LINKS[6], ALL_LINKS[7], ALL_LINKS[8]];
+    } else {
+      pool = [...ALL_LINKS];
+    }
+
+    // Rotate primary based on ISO week
+    const primaryIdx = week % pool.length;
+    const primary = pool[primaryIdx];
+    const rest = pool.filter((_, i) => i !== primaryIdx).slice(0, 5);
+
+    return { primaryLink: primary, secondaryLinks: rest };
+  }, [isSlotPage, isBonusHuntPage]);
 
   return (
     <nav
@@ -97,7 +127,7 @@ export function CommunitySeoBridge() {
               "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))",
           }}
         >
-          <Star className="h-4 w-4" />
+          <primaryLink.icon className="h-4 w-4" />
           {primaryLink.label}
           <ArrowRight className="h-3.5 w-3.5 ml-auto" />
         </Button>
