@@ -93,33 +93,35 @@ export default function BonusHunt() {
   }, [archivedHuntNumbers, liveHuntNumber]);
 
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
-    if (!huntData) return;
-    const current = huntIdOverride || liveHuntNumber;
+    if (!availableHuntNumbers.length) return;
 
-    const findNext = (from: number, step: number, limit: number) => {
-      let n = from + step;
-      while (blockedHunts.has(n) && ((step > 0 && n < limit) || (step < 0 && n > limit))) n += step;
-      return blockedHunts.has(n) ? null : n;
+    const orderedHunts = [...availableHuntNumbers].sort((a, b) => a - b); // oldest -> newest
+    const current = huntData?.visibleId || huntIdOverride || liveHuntNumber;
+    const currentIndex = orderedHunts.indexOf(current);
+
+    const navigateTo = (target?: number) => {
+      if (!target) return;
+      if (target > latestHuntNumber) setHuntIdOverride(undefined);
+      else setHuntIdOverride(target);
     };
 
     switch (dir) {
-      case 'prev': {
-        const n = findNext(current, -1, 2);
-        if (n && n >= 2) setHuntIdOverride(n);
+      case 'first':
+        navigateTo(orderedHunts[0]);
         break;
-      }
-      case 'next': {
-        const n = findNext(current, 1, maxHuntNumber);
-        if (n && n <= maxHuntNumber) {
-          if (n > latestHuntNumber) setHuntIdOverride(undefined);
-          else setHuntIdOverride(n);
+      case 'last':
+        navigateTo(orderedHunts[orderedHunts.length - 1]);
+        break;
+      case 'prev':
+        if (currentIndex > 0) navigateTo(orderedHunts[currentIndex - 1]);
+        break;
+      case 'next':
+        if (currentIndex >= 0 && currentIndex < orderedHunts.length - 1) {
+          navigateTo(orderedHunts[currentIndex + 1]);
         }
         break;
-      }
-      case 'first': setHuntIdOverride(2); break;
-      case 'last': setHuntIdOverride(undefined); break;
     }
-  }, [huntData, huntIdOverride, latestHuntNumber, liveHuntNumber, maxHuntNumber]);
+  }, [availableHuntNumbers, huntData?.visibleId, huntIdOverride, latestHuntNumber, liveHuntNumber]);
 
   const huntDate = huntData?.date
     ? new Date(huntData.date).toLocaleDateString('da-DK', { day: 'numeric', month: 'short' }).toUpperCase()
