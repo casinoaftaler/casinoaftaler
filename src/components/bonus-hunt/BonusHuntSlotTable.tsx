@@ -211,10 +211,10 @@ export function BonusHuntSlotTable({ slots }: Props) {
                   </td>
                   <td className="px-3 py-2 font-mono text-xs">{slot.bet.toFixed(2)} kr</td>
                   <td className="px-3 py-2 font-mono text-xs">
-                    {slot.opened ? <MultiplierBadge value={slot.multiplier} /> : '—'}
+                    {slot.opened ? <MultiplierBadge value={slot.multiplier} /> : <MultiplierBadge value={0} />}
                   </td>
                   <td className="px-3 py-2 font-mono text-xs">
-                    {slot.opened ? <WinBadge win={slot.win} multiplier={slot.multiplier} /> : '—'}
+                    {slot.opened ? <WinBadge win={slot.win} multiplier={slot.multiplier} /> : <WinBadge win={0} multiplier={0} />}
                   </td>
                 </tr>
               ))}
