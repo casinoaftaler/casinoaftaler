@@ -221,6 +221,15 @@ export function Footer() {
                   Casino Nyheder
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/mobil-casino"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Gamepad2 className="h-4 w-4" />
+                  Mobil Casino
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -279,6 +288,12 @@ export function Footer() {
                 <Link to="/omsaetningskrav" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Target className="h-4 w-4" />
                   Omsætningskrav
+                </Link>
+              </li>
+              <li>
+                <Link to="/slot-database" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Gamepad2 className="h-4 w-4" />
+                  Slot Database
                 </Link>
               </li>
             </ul>
