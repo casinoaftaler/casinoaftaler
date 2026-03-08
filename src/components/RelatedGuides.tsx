@@ -37,12 +37,49 @@ interface GuideLink {
   desc: string;
 }
 
-// === HUB LINKS (always link to primary hub) ===
-const bonusHub: GuideLink = { to: "/casino-bonus", label: "Casino Bonus Oversigt", icon: Trophy, desc: "Komplet oversigt over alle bonustyper" };
-const paymentHub: GuideLink = { to: "/betalingsmetoder", label: "Betalingsmetoder Oversigt", icon: Wallet, desc: "Sammenlign alle betalingsløsninger" };
-const providerHub: GuideLink = { to: "/spiludviklere", label: "Spiludviklere Oversigt", icon: Gamepad2, desc: "Alle spiludbydere på danske casinoer" };
-const reviewHub: GuideLink = { to: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: BookOpen, desc: "Oversigt over alle anmeldelser" };
-const casinospilHub: GuideLink = { to: "/casinospil", label: "Casinospil", icon: Gamepad2, desc: "Udforsk alle typer casinospil" };
+// === ANCHOR ROTATION ===
+// Deterministic rotation based on path hash to ensure consistency per page
+// while varying anchors across pages to avoid template footprints.
+function pathHash(path: string): number {
+  let hash = 0;
+  for (let i = 0; i < path.length; i++) {
+    hash = ((hash << 5) - hash + path.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
+}
+
+function rotateLabel(path: string, labels: string[]): string {
+  return labels[pathHash(path) % labels.length];
+}
+
+// Hub label + desc rotation pools (natural, non-aggressive)
+const BONUS_HUB_LABELS = ["Casino Bonus", "Alle Casino Bonusser", "Bonus Oversigt", "Casino Bonus Guide"];
+const BONUS_HUB_DESCS = ["Komplet oversigt over alle bonustyper", "Sammenlign bonusser fra danske casinoer", "Guide til velkomstbonus, free spins og mere", "Find den rette bonus til din spillestil"];
+
+const PAYMENT_HUB_LABELS = ["Betalingsmetoder", "Betalingsmetoder Oversigt", "Casino Betalingsløsninger", "Indbetaling & Udbetaling"];
+const PAYMENT_HUB_DESCS = ["Sammenlign alle betalingsløsninger", "Guide til ind- og udbetalinger", "Find den hurtigste betalingsmetode", "MobilePay, Trustly, kort og mere"];
+
+const PROVIDER_HUB_LABELS = ["Spiludviklere", "Spiludviklere Oversigt", "Casino Spiludbydere", "Alle Spiludviklere"];
+const PROVIDER_HUB_DESCS = ["Alle spiludbydere på danske casinoer", "Udforsk de bedste spiludviklere", "NetEnt, Pragmatic Play og flere", "Guide til spiludviklere i Danmark"];
+
+const REVIEW_HUB_LABELS = ["Casino Anmeldelser", "Alle Anmeldelser", "Anmeldelser Oversigt", "Casino Anmeldelser Guide"];
+const REVIEW_HUB_DESCS = ["Oversigt over alle anmeldelser", "Dybdegående casino anmeldelser", "Læs vores ærlige vurderinger", "Find det rette casino til dig"];
+
+const CASINOSPIL_HUB_LABELS = ["Casinospil", "Casinospil Oversigt", "Alle Casinospil", "Guide til Casinospil"];
+const CASINOSPIL_HUB_DESCS = ["Udforsk alle typer casinospil", "Slots, blackjack, roulette og mere", "Komplet guide til online casinospil", "Find dit foretrukne casinospil"];
+
+const SPILLEMASKINER_HUB_LABELS = ["Spillemaskiner", "Spillemaskiner Guide", "Online Spillemaskiner", "Slots Guide"];
+
+// Hub link factories (rotated per calling page)
+let _currentPath = "";
+
+function setRotationContext(path: string) { _currentPath = path; }
+
+function bonusHub(): GuideLink { return { to: "/casino-bonus", label: rotateLabel(_currentPath, BONUS_HUB_LABELS), icon: Trophy, desc: rotateLabel(_currentPath + "#bd", BONUS_HUB_DESCS) }; }
+function paymentHub(): GuideLink { return { to: "/betalingsmetoder", label: rotateLabel(_currentPath, PAYMENT_HUB_LABELS), icon: Wallet, desc: rotateLabel(_currentPath + "#pd", PAYMENT_HUB_DESCS) }; }
+function providerHub(): GuideLink { return { to: "/spiludviklere", label: rotateLabel(_currentPath, PROVIDER_HUB_LABELS), icon: Gamepad2, desc: rotateLabel(_currentPath + "#prd", PROVIDER_HUB_DESCS) }; }
+function reviewHub(): GuideLink { return { to: "/casino-anmeldelser", label: rotateLabel(_currentPath, REVIEW_HUB_LABELS), icon: BookOpen, desc: rotateLabel(_currentPath + "#rd", REVIEW_HUB_DESCS) }; }
+function casinospilHub(): GuideLink { return { to: "/casinospil", label: rotateLabel(_currentPath, CASINOSPIL_HUB_LABELS), icon: Gamepad2, desc: rotateLabel(_currentPath + "#cd", CASINOSPIL_HUB_DESCS) }; }
 
 // === COMMUNITY ENTERPRISE HUBS ===
 const slotDatabaseHub: GuideLink = { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "163+ slots med community-data og statistik" };
