@@ -1,16 +1,15 @@
 import { useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
-import { Play, Monitor, Trophy, BarChart3, Video, MessageCircle, Calendar } from "lucide-react";
+import { Play, Monitor, Video, MessageCircle, Calendar } from "lucide-react";
 import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
 import hunt4Thumbnail from "@/assets/bonus-hunt-4-thumbnail.png";
 import hunt3Thumbnail from "@/assets/bonus-hunt-3-thumbnail.png";
 import hunt2Thumbnail from "@/assets/bonus-hunt-2-thumbnail.png";
 
-interface HuntVideoData {
+export interface HuntVideoData {
   twitchVideoId: string;
   huntNumber: number;
   date: string;
-  /** ISO 8601 date for JSON-LD uploadDate, e.g. "2026-02-22" */
   isoDate: string;
   casinoName: string;
   casinoSlug: string;
@@ -21,73 +20,62 @@ interface HuntVideoData {
   localThumbnail?: string;
 }
 
-const HUNT_VIDEOS: Record<number, Omit<HuntVideoData, "huntNumber">> = {
-  1: {
-    twitchVideoId: "2708438065",
-    date: "26. februar 2026",
-    isoDate: "2026-02-26",
-    casinoName: "Casinoaftaler.dk",
-    casinoSlug: "casinoaftaler",
-    bonusCount: 35,
-    avgX: 89.4,
-    highestWin: 341,
-    highestMultiplier: 341,
-    localThumbnail: hunt4Thumbnail,
-  },
-  2: {
-    twitchVideoId: "2710088948",
-    date: "28. februar 2026",
-    isoDate: "2026-02-28",
-    casinoName: "SpilDanskNu",
-    casinoSlug: "spildansknu",
-    bonusCount: 33,
-    avgX: 88.2,
-    highestWin: 656,
-    highestMultiplier: 328,
-    localThumbnail: hunt5Thumbnail,
-  },
-  3: {
-    twitchVideoId: "2705907775",
-    date: "28. februar 2026",
-    isoDate: "2026-02-28",
-    casinoName: "Casinoaftaler.dk",
-    casinoSlug: "casinoaftaler",
-    bonusCount: 23,
-    avgX: 76.71,
-    highestWin: 226,
-    highestMultiplier: 226,
-    localThumbnail: hunt3Thumbnail,
-  },
-  // Hunts 4 & 5 are small test hunts — no video
-  6: {
-    twitchVideoId: "2714677621",
-    date: "5. marts 2026",
-    isoDate: "2026-03-05",
-    casinoName: "SpilDanskNu",
-    casinoSlug: "spildansknu",
-    bonusCount: 22,
-    avgX: 115.6,
-    highestWin: 274,
-    highestMultiplier: 274,
-  },
-  7: {
-    twitchVideoId: "2716498380",
-    date: "8. marts 2026",
-    isoDate: "2026-03-08",
-    casinoName: "SpilDanskNu",
-    casinoSlug: "spildansknu",
-    bonusCount: 39,
-    avgX: 128,
-    highestWin: 587,
-    highestMultiplier: 587,
-    localThumbnail: hunt2Thumbnail,
-  },
+// Fallback thumbnails by VOD ID
+const LOCAL_THUMBNAILS: Record<string, string> = {
+  "2708438065": hunt4Thumbnail,
+  "2710088948": hunt5Thumbnail,
+  "2705907775": hunt3Thumbnail,
+  "2716498380": hunt2Thumbnail,
 };
 
-export function getHuntVideo(huntNumber: number): HuntVideoData | null {
-  const entry = HUNT_VIDEOS[huntNumber];
-  if (!entry) return null;
-  return { ...entry, huntNumber };
+/**
+ * Build HuntVideoData from archive DB row.
+ * Returns null if no twitch_vod_id is set on the archive.
+ */
+export function getHuntVideoFromArchive(archive: any): HuntVideoData | null {
+  if (!archive?.twitch_vod_id) return null;
+
+  const apiData = archive.api_data?.data || archive.api_data || {};
+  const slots = apiData.slots || [];
+  const openedSlots = slots.filter((s: any) => s.played);
+  const openedWithWins = openedSlots.filter((s: any) => (s.bet || 0) > 0 && (s.win || 0) > 0);
+
+  const avgX = archive.average_x
+    ? Number(archive.average_x)
+    : openedWithWins.length > 0
+      ? openedWithWins.reduce((sum: number, s: any) => sum + ((s.win || 0) / (s.bet || 1)), 0) / openedWithWins.length
+      : 0;
+
+  const highestWin = openedSlots.reduce((max: number, s: any) => Math.max(max, s.win || 0), 0);
+  const highestMultiplier = openedSlots.reduce((max: number, s: any) => {
+    const bet = s.bet || 0;
+    return bet > 0 ? Math.max(max, (s.win || 0) / bet) : max;
+  }, 0);
+
+  // Try to build a reasonable ISO date from vod_date or created_at
+  let isoDate = "";
+  if (archive.created_at) {
+    isoDate = archive.created_at.slice(0, 10);
+  }
+
+  return {
+    twitchVideoId: archive.twitch_vod_id,
+    huntNumber: archive.hunt_number,
+    date: archive.vod_date || archive.hunt_name || `Hunt #${archive.hunt_number}`,
+    isoDate,
+    casinoName: archive.casino_name || "Casino",
+    casinoSlug: (archive.casino_name || "casino").toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+    bonusCount: archive.total_slots || slots.length,
+    avgX: Math.round(avgX * 100) / 100,
+    highestWin: Math.round(highestWin),
+    highestMultiplier: Math.round(highestMultiplier * 100) / 100,
+    localThumbnail: LOCAL_THUMBNAILS[archive.twitch_vod_id] || undefined,
+  };
+}
+
+/** @deprecated Use getHuntVideoFromArchive instead */
+export function getHuntVideo(_huntNumber: number): HuntVideoData | null {
+  return null;
 }
 
 interface BonusHuntVideoSectionProps {
@@ -148,7 +136,6 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
             </p>
           </div>
 
-          {/* Video container */}
           <div className="relative w-full overflow-hidden rounded-2xl border border-border/50" style={{ aspectRatio: "16/9" }}>
             {iframeLoaded ? (
               <iframe
@@ -186,7 +173,6 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
             )}
           </div>
 
-          {/* Status badges */}
           <div className="flex flex-wrap gap-2">
             {[
               { icon: Monitor, label: "Streamet live", color: "text-green-500" },

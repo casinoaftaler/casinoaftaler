@@ -1,67 +1,24 @@
 
 
-## Plan: Enhanced Bonus Hunt Admin Panel
+## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
 
-### Problem
-- No way to import individual hunts by StreamSystem ID from the admin UI
-- Edit dialog is limited (missing hunt_number, total_slots, opened_slots, VOD link)
-- Video registry is hardcoded in `BonusHuntVideoSection.tsx` — cannot be changed from admin
-- No sorting/reordering capability
+### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
 
-### Solution
+The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
 
-#### 1. Database: Add VOD columns to `bonus_hunt_archives`
-New columns via migration:
-- `twitch_vod_id` (text, nullable) — Twitch video ID
-- `vod_date` (text, nullable) — display date like "5. marts 2026"
-- `casino_name` (text, nullable) — casino display name for the VOD card
+Specifically:
+- **Remove** Gevinst from the right zone (lines 247-261)
+- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
 
-This moves the hardcoded `HUNT_VIDEOS` registry into the database.
+Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
 
-#### 2. Expand Edit Dialog in `BonusHuntArchiveAdmin.tsx`
-Add fields to the edit form:
-- **Hunt Number** (editable — allows reordering)
-- **Total Slots** / **Opened Slots**
-- **Twitch VOD ID** (text input)
-- **VOD Date** (text input)
-- **Casino Name** (text input)
+### 2. Add Count-Up Animation for Win Amount
 
-#### 3. Add "Import by ID" Section in `BonusHuntArchiveAdmin.tsx`
-A small form at the top of the archive tab:
-- Text input for StreamSystem Hunt ID (e.g. `GnDyjvFOon828YPh3WOL`)
-- Number input for desired Hunt Number
-- "Import" button that calls the existing `bonus-hunt-full-import` edge function with a new `{ singleHuntId, huntNumber }` mode
-- Or simpler: a new lightweight edge function `bonus-hunt-single-import` that fetches one hunt by ID and inserts it
+Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
+- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
+- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
+- The component already handles ease-out counting and bump animation on completion
 
-#### 4. Update Edge Function for Single Import
-Modify `bonus-hunt-full-import` to accept optional `{ singleHuntId, huntNumber }` body params. When provided, it imports only that one hunt at the specified number instead of doing a full re-import.
-
-#### 5. Update `BonusHuntVideoSection.tsx` to Read from DB
-- Remove the hardcoded `HUNT_VIDEOS` object
-- `getHuntVideo()` becomes a hook or accepts archive data as param
-- The `BonusHunt.tsx` page already has archive data — pass the VOD fields through
-
-#### 6. Sort Controls
-Add column header click-to-sort on the archive table (by hunt_number asc/desc). Simple client-side sort since the dataset is small.
-
-### Files Changed
-
-| File | Change |
-|---|---|
-| `bonus_hunt_archives` table | Add `twitch_vod_id`, `vod_date`, `casino_name` columns |
-| `src/components/admin/BonusHuntArchiveAdmin.tsx` | Expand edit dialog, add import-by-ID form, add sort controls |
-| `supabase/functions/bonus-hunt-full-import/index.ts` | Support single-hunt import mode via body params |
-| `src/components/bonus-hunt/BonusHuntVideoSection.tsx` | Read VOD data from archive DB instead of hardcoded registry |
-| `src/pages/BonusHunt.tsx` | Pass archive VOD data to video section |
-| `src/hooks/useBonusHuntData.ts` | Possibly expose archive VOD fields |
-
-### Migration SQL
-```sql
-ALTER TABLE bonus_hunt_archives
-  ADD COLUMN IF NOT EXISTS twitch_vod_id text,
-  ADD COLUMN IF NOT EXISTS vod_date text,
-  ADD COLUMN IF NOT EXISTS casino_name text;
-```
-
-Then seed existing VOD data from the current hardcoded registry via an UPDATE statement.
+### Files Modified
+- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
 

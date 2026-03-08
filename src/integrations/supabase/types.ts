@@ -18,6 +18,7 @@ export type Database = {
         Row: {
           api_data: Json
           average_x: number | null
+          casino_name: string | null
           created_at: string
           end_balance: number | null
           hunt_name: string | null
@@ -27,11 +28,14 @@ export type Database = {
           opened_slots: number | null
           start_balance: number | null
           total_slots: number | null
+          twitch_vod_id: string | null
           updated_at: string
+          vod_date: string | null
         }
         Insert: {
           api_data: Json
           average_x?: number | null
+          casino_name?: string | null
           created_at?: string
           end_balance?: number | null
           hunt_name?: string | null
@@ -41,11 +45,14 @@ export type Database = {
           opened_slots?: number | null
           start_balance?: number | null
           total_slots?: number | null
+          twitch_vod_id?: string | null
           updated_at?: string
+          vod_date?: string | null
         }
         Update: {
           api_data?: Json
           average_x?: number | null
+          casino_name?: string | null
           created_at?: string
           end_balance?: number | null
           hunt_name?: string | null
@@ -55,7 +62,9 @@ export type Database = {
           opened_slots?: number | null
           start_balance?: number | null
           total_slots?: number | null
+          twitch_vod_id?: string | null
           updated_at?: string
+          vod_date?: string | null
         }
         Relationships: []
       }

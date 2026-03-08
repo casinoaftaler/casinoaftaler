@@ -7,7 +7,7 @@ import { BonusHuntGTWTab } from "@/components/bonus-hunt/BonusHuntGTWTab";
 import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
 import { BonusHuntSlotCoupon } from "@/components/bonus-hunt/BonusHuntSlotCoupon";
 
-import { BonusHuntVideoSection, getHuntVideo } from "@/components/bonus-hunt/BonusHuntVideoSection";
+import { BonusHuntVideoSection, getHuntVideoFromArchive } from "@/components/bonus-hunt/BonusHuntVideoSection";
 import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream";
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
 import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent";
@@ -32,6 +32,7 @@ import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { useBonusHuntData, useLatestHuntNumber, useArchivedHuntNumbers } from "@/hooks/useBonusHuntData";
+import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
@@ -61,6 +62,7 @@ export default function BonusHunt() {
   const { data: latestHuntNumber = 1 } = useLatestHuntNumber();
   const { data: archivedHuntNumbers = [] } = useArchivedHuntNumbers();
   const { data: huntData, isLoading: huntLoading } = useBonusHuntData(huntIdOverride);
+  const { data: allArchives = [] } = useBonusHuntArchives();
   const { data: session } = useBonusHuntSession();
   const { data: gtwBets = [] } = useBonusHuntGtwBets(session?.id);
   const { data: avgxBets = [] } = useBonusHuntAvgxBets(session?.id);
@@ -77,7 +79,8 @@ export default function BonusHunt() {
   const isDataCurrentActive = huntData?.status === 'active' && currentHuntNumber === maxHuntNumber;
   const isLive = !!(isSessionCurrentActive || isDataCurrentActive);
   const isArchived = !isLive && archivedHuntNumbers.includes(currentHuntNumber);
-  const huntVideo = getHuntVideo(currentHuntNumber);
+  const currentArchive = useMemo(() => allArchives.find((a: any) => a.hunt_number === currentHuntNumber), [allArchives, currentHuntNumber]);
+  const huntVideo = useMemo(() => getHuntVideoFromArchive(currentArchive), [currentArchive]);
 
   // Build available hunt numbers from archived data, sorted descending
   const availableHuntNumbers = useMemo(() => {
