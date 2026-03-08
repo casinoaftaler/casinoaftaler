@@ -29,6 +29,10 @@ interface SEOProps {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   /** Override the last breadcrumb label (for dynamic pages like news articles). */
   breadcrumbLabel?: string;
+  /** ISO 8601 date for article:published_time (only emitted when type="article") */
+  datePublished?: string;
+  /** ISO 8601 date for article:modified_time (only emitted when type="article") */
+  dateModified?: string;
 }
 
 /**

@@ -11,14 +11,14 @@ export function SlotGameSeoCta() {
       <p className="text-sm text-muted-foreground leading-relaxed">
         Se de bedste{" "}
         <Link
-          to="/casinoer/spillemaskiner"
+          to="/casinospil/spillemaskiner"
           className="text-primary hover:underline font-medium"
         >
           spillemaskiner
         </Link>{" "}
         og{" "}
         <Link
-          to="/casinoer/casino-bonus"
+          to="/casino-bonus"
           className="text-primary hover:underline font-medium"
         >
           casino bonusser
