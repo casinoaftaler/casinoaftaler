@@ -161,10 +161,6 @@ const SpilnuAnmeldelse = () => {
                   <p className="text-xs text-muted-foreground uppercase mb-1">Licens</p>
                   <p className="text-lg font-bold text-foreground">Spillemyndigheden</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Ejer</p>
-                  <p className="text-lg font-bold text-foreground">Danske Spil A/S</p>
-                </div>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center mt-4">
                 <div className="rounded-lg border border-border p-3">
