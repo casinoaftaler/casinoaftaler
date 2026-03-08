@@ -79,7 +79,7 @@ export default function BonusHunt() {
   }, []);
 
   const liveHuntNumber = getNextAllowed(huntData?.visibleId || latestHuntNumber + 1);
-  const currentHuntNumber = huntIdOverride || liveHuntNumber;
+  const currentHuntNumber = huntData?.visibleId || huntIdOverride || liveHuntNumber;
   const isArchived = archivedHuntNumbers.includes(currentHuntNumber);
   const isLive = !!(session?.status === 'active' && session?.hunt_number === currentHuntNumber && !isArchived);
   const huntVideo = getHuntVideo(currentHuntNumber);
