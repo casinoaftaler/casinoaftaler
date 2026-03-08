@@ -936,6 +936,32 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Mobil Casino cluster → rotated siblings + cross-cluster
+  if (path.startsWith("/mobil-casino") || path === "/casino-app") {
+    const mobilSiblings: GuideLink[] = casinoGuidesSiblings.filter(g =>
+      g.to.startsWith("/mobil-casino") || g.to === "/casino-app"
+    );
+    const currentIndex = mobilSiblings.findIndex(g => g.to === path);
+    const len = mobilSiblings.length;
+    let siblings: GuideLink[];
+    if (currentIndex >= 0 && len > 1) {
+      siblings = [
+        mobilSiblings[(currentIndex + 1) % len],
+        mobilSiblings[(currentIndex + 2) % len],
+        mobilSiblings[(currentIndex + 3) % len],
+      ].filter(g => g.to !== path);
+    } else {
+      siblings = mobilSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
+    }
+    const hub: GuideLink[] = path === "/mobil-casino" ? [] : [{ to: "/mobil-casino", label: "Mobil Casino Hub", icon: Smartphone, desc: "Komplet guide til casino på mobilen" }];
+    const crossClusterOptions = [paymentHub, bonusHub, reviewHub];
+    const crossCluster = crossClusterOptions[currentIndex >= 0 ? currentIndex % 3 : 0];
+    return {
+      guides: [...hub, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk flere mobil casino-guides og de bedste betalingsløsninger til mobilen.",
+    };
+  }
+
   // Ordbog hub → community hubs + money-page bridges
   if (path === "/ordbog" || path.startsWith("/ordbog/")) {
     return {

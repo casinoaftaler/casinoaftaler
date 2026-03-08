@@ -676,7 +676,7 @@ const Index = () => {
           <div className="space-y-3">
             {[
               { title: "Øjeblikkelige betalinger", desc: "MobilePay, Trustly og Apple Pay gør ind- og udbetalinger øjeblikkelige. Nye løsninger som Revolut og Zimpler vinder også frem hos danske online casinoer." },
-              { title: "Mobil-first design", desc: "Nye online casinoer designes med mobilen i centrum – fuldt optimeret til smartphones og tablets med hurtig loading og intuitive menuer." },
+              { title: "Mobil-first design", desc: "Nye online casinoer designes med mobilen i centrum – fuldt optimeret til smartphones og tablets med hurtig loading og intuitive menuer.", link: "/mobil-casino" },
               { title: "Gamification og belønninger", desc: "Missioner, achievements og loyalitetsprogrammer gør spiloplevelsen mere engagerende og giver ekstra værdi for dit spil." },
               { title: "Personlige tilbud", desc: "Online casinoer bruger spilleradfærd til at skræddersy tilbud, der passer til den enkelte. Det betyder mere relevante kampagner og bedre værdi." },
               { title: "Udvidet live casino", desc: "Live dealer-sektioner vokser med nye spiltyper, game shows og interaktive funktioner fra Evolution Gaming og andre førende udbydere." },
@@ -689,10 +689,19 @@ const Index = () => {
                 <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{trend.title}</h3>
-                  <p className="text-sm text-muted-foreground">{trend.desc}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {trend.desc}
+                    {trend.link && (
+                      <>
+                        {" "}
+                        <Link to={trend.link} className="text-primary hover:underline font-medium">Læs mere →</Link>
+                      </>
+                    )}
+                  </p>
                 </div>
               </div>
             ))}
+
           </div>
         </section>
 
