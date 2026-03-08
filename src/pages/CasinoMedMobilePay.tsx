@@ -241,7 +241,11 @@ const CasinoMedMobilePay = () => {
             Der er ingen gebyrer, ingen kortoplysninger at indtaste, og ingen risiko for, at din
             bank blokerer transaktionen – et problem der ofte opstår med kreditkort på casinoer.
             Derudover kvalificerer MobilePay-indbetalinger altid til bonustilbud, i modsætning til
-            e-wallets som Skrill og Neteller, der ofte er ekskluderet fra bonusprogrammer.
+            e-wallets som Skrill og Neteller, der ofte er ekskluderet fra bonusprogrammer. Se vores komplette{" "}
+            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">
+              oversigt over betalingsmetoder
+            </Link>{" "}
+            for en sammenligning af alle tilgængelige muligheder.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Ifølge vores testdata fra 2026 vælger over 45 % af danske casinospillere MobilePay som
