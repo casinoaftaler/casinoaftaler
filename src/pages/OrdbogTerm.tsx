@@ -18,6 +18,7 @@ const TERM_REDIRECTS: Record<string, string> = {
   "mitid-casino": "/nye-casinoer/mitid",
   "gevinstprocent": "/ordbog/hit-frequency",
   "progressiv-jackpot": "/ordbog/jackpot",
+  "free-spins": "/free-spins",
 };
 
 const OrdbogTerm = () => {
