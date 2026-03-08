@@ -21,7 +21,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import {
-  ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
+  ShieldCheck, Shield, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
   Smartphone, Headphones, Users, Globe, AlertTriangle, Target,
   BarChart3, Activity, Crown,

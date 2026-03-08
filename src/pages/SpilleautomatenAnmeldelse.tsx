@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
-import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,26 +15,47 @@ import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { StickyCTA } from "@/components/StickyCTA";
-import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, buildReviewSchema, buildVideoSchema } from "@/lib/seo";
 import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
-import { buildVideoSchema } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import {
   ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, BookOpen, Smartphone, Headphones,
   Gamepad2, Wallet, Zap, RotateCcw, Check, X, Globe, Award,
   Clock, Target, TrendingUp, Users, Lock, Layers, Flame,
-  BarChart3, Activity, ShoppingBag, BadgeCheck,
+  BarChart3, Activity, ShoppingBag, BadgeCheck, CalendarDays,
+  Calculator, AlertTriangle, Timer, MessageSquare, Mail,
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
-// ... keep existing code for spilleautomatenFaqs ...
+const spilleautomatenFaqs = [
+  {
+    question: "Hvad er velkomstbonussen hos Spilleautomaten?",
+    answer: "Spilleautomaten tilbyder en 5-dages velkomstbonus på 100% op til 1.000 kr. Du aktiverer den med koderne VELKOMMEN1–5 over fem separate indbetalinger á min. 100 kr.",
+  },
+  {
+    question: "Hvad er omsætningskravet hos Spilleautomaten?",
+    answer: "Omsætningskravet er 10x bonus+indbetaling, hvilket er blandt de laveste i Danmark. Du har 60 dage til at gennemspille.",
+  },
+  {
+    question: "Har Spilleautomaten dansk licens?",
+    answer: "Ja, Spilleautomaten.dk drives af SkillOnNet Ltd og har dansk licens fra Spillemyndigheden. Casinoet er fuldt tilsluttet ROFUS.",
+  },
+  {
+    question: "Hvor hurtigt udbetaler Spilleautomaten?",
+    answer: "MobilePay-udbetalinger behandles typisk inden for 2-3 timer. Trustly tager 3-4 timer, mens bankoverførsel og Visa tager 1-3 bankdage.",
+  },
+  {
+    question: "Hvad er Præmieshoppen hos Spilleautomaten?",
+    answer: "Præmieshoppen er Spilleautomatens loyalitetsprogram, hvor du optjener points ved spil og kan indløse dem til kontante bonusmidler og andre præmier.",
+  },
+];
 
 const SpilleautomatenAnmeldelse = () => {
   const { data: casinos } = useCasinos();
