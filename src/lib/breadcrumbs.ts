@@ -96,6 +96,9 @@ export const routeLabels: Record<string, string> = {
   "/megaways-slots": "Megaways Slots",
   "/jackpot-slots": "Jackpot Slots",
   "/bonus-buy-slots": "Bonus Buy Slots",
+  // Batch 2 – VIP & MobilePay
+  "/vip-program": "VIP Program",
+  "/casino-med-mobilepay": "Casino med MobilePay",
   "/om": "Om Casinoaftaler.dk",
   "/forretningsmodel": "Forretningsmodel",
   "/redaktionel-politik": "Redaktionel Politik",
@@ -367,6 +370,8 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/free-spins-i-dag": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/cashback-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/reload-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
+  "/vip-program": [{ name: "Casino Bonus", path: "/casino-bonus" }],
+  "/casino-med-mobilepay": [{ name: "Betalingsmetoder", path: "/betalingsmetoder" }],
 
   // Casinospil cluster – sub-hubs bound to /casinospil
   "/casinospil/roulette": [{ name: "Casinospil", path: "/casinospil" }],

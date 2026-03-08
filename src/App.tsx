@@ -232,6 +232,9 @@ const Bet365VsUnibet = lazy(() => import("./pages/comparisons/Bet365VsUnibet"));
 const LeoVegasVsMrGreen = lazy(() => import("./pages/comparisons/LeoVegasVsMrGreen"));
 const DanskeSpilVsSpilnu = lazy(() => import("./pages/comparisons/DanskeSpilVsSpilnu"));
 
+const VipProgram = lazy(() => import("./pages/VipProgram"));
+const CasinoMedMobilePay = lazy(() => import("./pages/CasinoMedMobilePay"));
+
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CasinoerHub = lazy(() => import("./pages/casinoer/CasinoerHub"));
 const HurtigUdbetalingGuide = lazy(() => import("./pages/casinoer/HurtigUdbetalingGuide"));
@@ -508,6 +511,8 @@ const App = () => (
                 <Route path="/betalingsmetoder/bankoverforsler" element={<BankTransferGuide />} />
                 <Route path="/betalingsmetoder/visa-mastercard" element={<VisaMastercardGuide />} />
                 <Route path="/betalingsmetoder/revolut" element={<RevolutGuide />} />
+                <Route path="/vip-program" element={<VipProgram />} />
+                <Route path="/casino-med-mobilepay" element={<CasinoMedMobilePay />} />
                 
                 <Route path="/community" element={<Suspense fallback={null}><CommunityHub /></Suspense>} />
                 <Route path="/community/turneringer" element={<Leaderboard />} />
