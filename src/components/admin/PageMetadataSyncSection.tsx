@@ -115,7 +115,7 @@ export function PageMetadataSyncSection() {
             Klik "Kør check" for at sammenligne.
           </p>
         ) : issues.length === 0 ? (
-          <div className="flex items-center gap-2 text-sm text-green-600">
+          <div className="flex items-center gap-2 text-sm text-primary">
             <CheckCircle className="h-4 w-4" />
             Alt er synkroniseret — ingen uoverensstemmelser fundet.
           </div>
