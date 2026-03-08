@@ -929,6 +929,20 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Ordbog hub → community hubs + money-page bridges
+  if (path === "/ordbog" || path.startsWith("/ordbog/")) {
+    return {
+      guides: [
+        slotDatabaseHub,
+        bonusHuntArkivHub,
+        turneringsArkivHub,
+        bonusHub,
+        casinospilHub,
+      ],
+      subtitle: "Udforsk community-data og dybdegående guides til casinospil og bonusser.",
+    };
+  }
+
   // General / fallback pages → balanced mix (hub links only)
   return {
     guides: [bonusHub, paymentHub, providerHub, reviewHub],
