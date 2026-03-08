@@ -131,7 +131,7 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
   },
   {
     patterns: [/\bROFUS\b/],
-    href: "/ansvarligt-spil",
+    href: "/ansvarligt-spil/rofus",
     anchor: "ROFUS",
   },
   {
@@ -139,6 +139,29 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     href: "/ansvarligt-spil",
     anchor: "ansvarligt spil",
   },
+
+  // Ansvarligt Spil spoke money-pages
+  {
+    patterns: [/\bludomani\b/i, /\bspilleafhængighed\b/i, /\bspilafhaengighed\b/i],
+    href: "/ansvarligt-spil/ludomani",
+    anchor: "",
+  },
+  {
+    patterns: [/\bStopSpillet\b/],
+    href: "/ansvarligt-spil/stopspillet",
+    anchor: "StopSpillet",
+  },
+  {
+    patterns: [/\bspillegrænser\b/i, /\bindbetalingsgrænse\b/i, /\bindbetalingsgraense\b/i],
+    href: "/ansvarligt-spil/spillegraenser",
+    anchor: "",
+  },
+  {
+    patterns: [/\bselvudelukkelse\b/i],
+    href: "/ansvarligt-spil/selvudelukkelse-guide",
+    anchor: "",
+  },
+
 
   // Payment money-pages
   {
@@ -251,6 +274,26 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
 
   // Game type money-pages
   {
+    patterns: [/\blive blackjack\b/i],
+    href: "/live-casino/blackjack",
+    anchor: "",
+  },
+  {
+    patterns: [/\blive roulette\b/i],
+    href: "/live-casino/roulette",
+    anchor: "",
+  },
+  {
+    patterns: [/\blightning roulette\b/i],
+    href: "/live-casino/lightning-roulette",
+    anchor: "",
+  },
+  {
+    patterns: [/\blive baccarat\b/i],
+    href: "/live-casino/baccarat",
+    anchor: "",
+  },
+  {
     patterns: [/\blive casino\b/i, /\blive-casino\b/i],
     href: "/live-casino",
     anchor: "",
@@ -275,6 +318,24 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     href: "/live-casino/monopoly-live",
     anchor: "",
   },
+
+  // Slot kategori money-pages
+  {
+    patterns: [/\bmegaways slots?\b/i, /\bmegaways spillemaskiner\b/i],
+    href: "/megaways-slots",
+    anchor: "",
+  },
+  {
+    patterns: [/\bjackpot slots?\b/i, /\bprogressive? jackpot slots?\b/i],
+    href: "/jackpot-slots",
+    anchor: "",
+  },
+  {
+    patterns: [/\bbonus buy slots?\b/i, /\bfeature buy slots?\b/i],
+    href: "/bonus-buy-slots",
+    anchor: "",
+  },
+
 
   // Bonus money-pages (additional)
   {
@@ -381,7 +442,7 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
   },
   {
     patterns: [/\bmegaways\b/i],
-    href: "/ordbog/megaways",
+    href: "/megaways-slots",
     anchor: "",
   },
   {

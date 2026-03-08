@@ -812,6 +812,55 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Casino uden Konto cluster → rotated siblings + cross-cluster
+  if (path.startsWith("/casino-uden-konto/")) {
+    const udenKontoSiblings: GuideLink[] = [
+      { to: "/casino-uden-konto/pay-n-play", label: "Pay N Play", icon: Zap, desc: "Spil uden registrering via Trustly" },
+      { to: "/casino-uden-konto/hurtig-registrering", label: "Hurtig Registrering", icon: Zap, desc: "Minimalt signup-flow" },
+      { to: "/casino-uden-konto/fordele-og-ulemper", label: "Fordele og Ulemper", icon: Target, desc: "Er casino uden konto det rigtige for dig?" },
+    ];
+    const currentIndex = udenKontoSiblings.findIndex(g => g.to === path);
+    const len = udenKontoSiblings.length;
+    const siblings = udenKontoSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
+    const udenKontoHub: GuideLink = { to: "/casino-uden-konto", label: "Casino uden Konto", icon: Globe, desc: "Komplet guide til casino uden registrering" };
+    const crossClusterOptions = [paymentHub, bonusHub, reviewHub];
+    const crossCluster = crossClusterOptions[currentIndex >= 0 ? currentIndex % 3 : 0];
+    return {
+      guides: [udenKontoHub, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk flere guides om casino uden konto og de bedste betalingsmetoder.",
+    };
+  }
+
+  // Live Casino spokes → hub + rotated siblings + cross-cluster
+  if (path.startsWith("/live-casino/")) {
+    const liveCasinoSiblings: GuideLink[] = [
+      { to: "/live-casino/blackjack", label: "Live Blackjack", icon: Gamepad2, desc: "Blackjack med live dealere" },
+      { to: "/live-casino/roulette", label: "Live Roulette", icon: Target, desc: "Europæisk og Speed Roulette" },
+      { to: "/live-casino/baccarat", label: "Live Baccarat", icon: Trophy, desc: "Elegant kortspil med live dealer" },
+      { to: "/live-casino/lightning-roulette", label: "Lightning Roulette", icon: Zap, desc: "Multiplied payouts op til 500x" },
+      { to: "/live-casino/monopoly-live", label: "Monopoly Live", icon: Tv, desc: "Game show med bonusrunder" },
+    ];
+    const currentIndex = liveCasinoSiblings.findIndex(g => g.to === path);
+    const len = liveCasinoSiblings.length;
+    let siblings: GuideLink[];
+    if (currentIndex >= 0) {
+      siblings = [
+        liveCasinoSiblings[(currentIndex + 1) % len],
+        liveCasinoSiblings[(currentIndex + 2) % len],
+        liveCasinoSiblings[(currentIndex + 3) % len],
+      ].filter(g => g.to !== path);
+    } else {
+      siblings = liveCasinoSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
+    }
+    const liveCasinoHub: GuideLink = { to: "/live-casino", label: "Live Casino Hub", icon: Tv, desc: "Komplet guide til live casino" };
+    const crossClusterOptions = [casinospilHub, bonusHub, reviewHub];
+    const crossCluster = crossClusterOptions[currentIndex >= 0 ? currentIndex % 3 : 0];
+    return {
+      guides: [liveCasinoHub, ...siblings, crossCluster].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      subtitle: "Udforsk flere live casino-spil og de bedste bonusser til live dealer-borde.",
+    };
+  }
+
   // Casinospil subpages (generic fallback) → hub + 3 rotated siblings + 1 varied cross-cluster
   if (path.startsWith("/casinospil/") || path === "/live-casino") {
     const currentIndex = casinospilSiblings.findIndex(g => g.to === path);
