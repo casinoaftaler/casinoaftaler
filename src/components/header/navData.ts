@@ -207,6 +207,9 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/pokerstars", label: "PokerStars" },
   { to: "/casino-anmeldelser/bwin", label: "bwin" },
   { to: "/casino-anmeldelser/marathonbet", label: "MarathonBet" },
+  { to: "/casino-anmeldelser/bet365-vs-unibet", label: "bet365 vs Unibet" },
+  { to: "/casino-anmeldelser/leovegas-vs-mr-green", label: "LeoVegas vs Mr Green" },
+  { to: "/casino-anmeldelser/danske-spil-vs-spilnu", label: "Danske Spil vs Spilnu" },
 ];
 
 export const COMMUNITY_LINKS: NavLinkWithIcon[] = [

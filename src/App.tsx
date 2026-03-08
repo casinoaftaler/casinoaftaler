@@ -227,6 +227,11 @@ const CasinoNyhedArticle = lazy(() => import("./pages/CasinoNyhedArticle"));
 const Ordbog = lazy(() => import("./pages/Ordbog"));
 const OrdbogTerm = lazy(() => import("./pages/OrdbogTerm"));
 
+// VS / Comparison pages
+const Bet365VsUnibet = lazy(() => import("./pages/comparisons/Bet365VsUnibet"));
+const LeoVegasVsMrGreen = lazy(() => import("./pages/comparisons/LeoVegasVsMrGreen"));
+const DanskeSpilVsSpilnu = lazy(() => import("./pages/comparisons/DanskeSpilVsSpilnu"));
+
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CasinoerHub = lazy(() => import("./pages/casinoer/CasinoerHub"));
 const HurtigUdbetalingGuide = lazy(() => import("./pages/casinoer/HurtigUdbetalingGuide"));
@@ -405,6 +410,9 @@ const App = () => (
                 <Route path="/casino-anmeldelser/pokerstars" element={<PokerStarsAnmeldelse />} />
                 <Route path="/casino-anmeldelser/bwin" element={<BwinAnmeldelse />} />
                 <Route path="/casino-anmeldelser/marathonbet" element={<MarathonBetAnmeldelse />} />
+                <Route path="/casino-anmeldelser/bet365-vs-unibet" element={<Bet365VsUnibet />} />
+                <Route path="/casino-anmeldelser/leovegas-vs-mr-green" element={<LeoVegasVsMrGreen />} />
+                <Route path="/casino-anmeldelser/danske-spil-vs-spilnu" element={<DanskeSpilVsSpilnu />} />
                 <Route path="/casinospil" element={<Casinospil />} />
                 <Route path="/casinoer" element={<CasinoerHub />} />
                 <Route path="/casinoer/hurtig-udbetaling" element={<HurtigUdbetalingGuide />} />
