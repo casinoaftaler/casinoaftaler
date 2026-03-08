@@ -124,6 +124,13 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={image} />
 
+      {type === "article" && datePublished && (
+        <meta property="article:published_time" content={datePublished} />
+      )}
+      {type === "article" && dateModified && (
+        <meta property="article:modified_time" content={dateModified} />
+      )}
+
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={formattedTitle} />
       <meta name="twitter:description" content={safeDescription} />
