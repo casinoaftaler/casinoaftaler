@@ -1,0 +1,1 @@
+ALTER TABLE public.slot_catalog ADD CONSTRAINT slot_catalog_slot_name_unique UNIQUE (slot_name);
