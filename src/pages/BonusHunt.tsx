@@ -62,6 +62,7 @@ export default function BonusHunt() {
   const { data: latestHuntNumber = 1 } = useLatestHuntNumber();
   const { data: archivedHuntNumbers = [] } = useArchivedHuntNumbers();
   const { data: huntData, isLoading: huntLoading } = useBonusHuntData(huntIdOverride);
+  const { data: allArchives = [] } = useBonusHuntArchives();
   const { data: session } = useBonusHuntSession();
   const { data: gtwBets = [] } = useBonusHuntGtwBets(session?.id);
   const { data: avgxBets = [] } = useBonusHuntAvgxBets(session?.id);
@@ -78,7 +79,8 @@ export default function BonusHunt() {
   const isDataCurrentActive = huntData?.status === 'active' && currentHuntNumber === maxHuntNumber;
   const isLive = !!(isSessionCurrentActive || isDataCurrentActive);
   const isArchived = !isLive && archivedHuntNumbers.includes(currentHuntNumber);
-  const huntVideo = getHuntVideo(currentHuntNumber);
+  const currentArchive = useMemo(() => allArchives.find((a: any) => a.hunt_number === currentHuntNumber), [allArchives, currentHuntNumber]);
+  const huntVideo = useMemo(() => getHuntVideoFromArchive(currentArchive), [currentArchive]);
 
   // Build available hunt numbers from archived data, sorted descending
   const availableHuntNumbers = useMemo(() => {
