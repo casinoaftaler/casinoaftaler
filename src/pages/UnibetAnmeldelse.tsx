@@ -109,6 +109,7 @@ const UnibetAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="Unibet" intro={TEST_LOG_DATA["unibet"].intro} entries={TEST_LOG_DATA["unibet"].entries} />
 
         {/* Bonusanalyse */}
         <section className="mb-12">
@@ -344,8 +345,6 @@ const UnibetAnmeldelse = () => {
         <RelatedReviews currentSlug="unibet" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["unibet"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/unibet" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Unibet" intro={TEST_LOG_DATA["unibet"].intro} entries={TEST_LOG_DATA["unibet"].entries} />
         <FAQSection faqs={faqs} />
         <AuthorBio />
       </div>

@@ -100,6 +100,7 @@ const ExpektAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="Expekt" intro={TEST_LOG_DATA["expekt"].intro} entries={TEST_LOG_DATA["expekt"].entries} />
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Bonusvilkår – casino vs. sport</h2>
@@ -259,8 +260,6 @@ const ExpektAnmeldelse = () => {
         <RelatedReviews currentSlug="expekt" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["expekt"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/expekt" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Expekt" intro={TEST_LOG_DATA["expekt"].intro} entries={TEST_LOG_DATA["expekt"].entries} />
         <FAQSection faqs={faqs} />
         <AuthorBio />
       </div>

@@ -105,6 +105,7 @@ const CasinostuenAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="Casinostuen" intro={TEST_LOG_DATA["casinostuen"].intro} entries={TEST_LOG_DATA["casinostuen"].entries} />
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Bonusanalyse – hvad får du reelt?</h2>
@@ -318,8 +319,6 @@ const CasinostuenAnmeldelse = () => {
         </section>
 
         <RelatedGuides currentPath="/casino-anmeldelser/casinostuen" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Casinostuen" intro={TEST_LOG_DATA["casinostuen"].intro} entries={TEST_LOG_DATA["casinostuen"].entries} />
         <FAQSection faqs={casinostuenFaqs} />
         <AuthorBio author="jonas" />
       </div>
