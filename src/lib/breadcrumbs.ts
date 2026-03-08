@@ -29,6 +29,10 @@ export const routeLabels: Record<string, string> = {
   "/live-casino/baccarat": "Live Baccarat",
   "/live-casino/lightning-roulette": "Lightning Roulette",
   "/live-casino/monopoly-live": "Monopoly Live",
+  "/live-casino/game-shows": "Game Shows",
+  "/live-casino/crazy-time": "Crazy Time",
+  "/live-casino/dream-catcher": "Dream Catcher",
+  "/live-casino/deal-or-no-deal": "Deal or No Deal",
   // Casino Bonus
   "/casino-bonus": "Casino Bonus",
   "/free-spins": "Free Spins",
@@ -367,7 +371,11 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/casinospil/poker/video-poker": [{ name: "Casinospil", path: "/casinospil" }, { name: "Poker", path: "/casinospil/poker" }],
   "/casinospil/poker/poker-strategi": [{ name: "Casinospil", path: "/casinospil" }, { name: "Poker", path: "/casinospil/poker" }],
   "/casinospil/craps": [{ name: "Casinospil", path: "/casinospil" }],
-  "/casinospil/game-shows": [{ name: "Casinospil", path: "/casinospil" }],
+  "/casinospil/game-shows": [{ name: "Live Casino", path: "/live-casino" }],
+  "/live-casino/game-shows": [{ name: "Live Casino", path: "/live-casino" }],
+  "/live-casino/crazy-time": [{ name: "Live Casino", path: "/live-casino" }, { name: "Game Shows", path: "/live-casino/game-shows" }],
+  "/live-casino/dream-catcher": [{ name: "Live Casino", path: "/live-casino" }, { name: "Game Shows", path: "/live-casino/game-shows" }],
+  "/live-casino/deal-or-no-deal": [{ name: "Live Casino", path: "/live-casino" }, { name: "Game Shows", path: "/live-casino/game-shows" }],
   "/casinospil/online-lotteri": [{ name: "Casinospil", path: "/casinospil" }],
   "/casinospil/spillemaskiner": [{ name: "Casinospil", path: "/casinospil" }],
   // /casinospil/roulette-strategi – removed (301 redirect to /casinospil/roulette)
