@@ -248,7 +248,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-nyheder", changefreq: "daily", priority: 0.9, lastmod: "2026-03-05" },
 
   // ── Casino Ordbog ──
-  { path: "/ordbog", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-06" },
+  { path: "/ordbog", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-07" },
   { path: "/ordbog/rtp", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
   { path: "/ordbog/wagering", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
   { path: "/ordbog/volatilitet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-06" },
