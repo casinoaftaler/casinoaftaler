@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CasinoTestLog } from "@/components/CasinoTestLog";
+import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -257,6 +259,8 @@ const ExpektAnmeldelse = () => {
         <RelatedReviews currentSlug="expekt" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["expekt"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/expekt" />
+        <Separator className="my-10" />
+        <CasinoTestLog casinoName="Expekt" intro={TEST_LOG_DATA["expekt"].intro} entries={TEST_LOG_DATA["expekt"].entries} />
         <FAQSection faqs={faqs} />
         <AuthorBio />
       </div>

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CasinoTestLog } from "@/components/CasinoTestLog";
+import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -559,6 +561,8 @@ const CampobetAnmeldelse = () => {
         <RelatedReviews currentSlug="campobet" />
         <InlineCasinoCards excludeSlugs={["campobet"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/campobet" />
+        <Separator className="my-10" />
+        <CasinoTestLog casinoName="Campobet" intro={TEST_LOG_DATA["campobet"].intro} entries={TEST_LOG_DATA["campobet"].entries} />
         <FAQSection title="Ofte stillede spørgsmål om Campobet" faqs={campobetFaqs} />
         <AuthorBio author="jonas" />
       </div>

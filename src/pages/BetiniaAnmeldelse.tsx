@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CasinoTestLog } from "@/components/CasinoTestLog";
+import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -941,6 +943,8 @@ const BetiniaAnmeldelse = () => {
 
         <RelatedGuides currentPath="/casino-anmeldelser/betinia" />
 
+        <Separator className="my-10" />
+        <CasinoTestLog casinoName="Betinia" intro={TEST_LOG_DATA["betinia"].intro} entries={TEST_LOG_DATA["betinia"].entries} />
         <FAQSection title="Ofte stillede spørgsmål om Betinia" faqs={betiniaFaqs} />
       </div>
       {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusAmount={casino.bonus_amount} bonusType={casino.bonus_type} freeSpins={casino.free_spins} wageringRequirements={casino.wagering_requirements} rating={casino.rating} logoUrl={casino.logo_url} isRecommended={casino.is_recommended} isHot={casino.is_hot} />}

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CasinoTestLog } from "@/components/CasinoTestLog";
+import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -342,6 +344,8 @@ const ComeOnAnmeldelse = () => {
         <RelatedReviews currentSlug="comeon" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["comeon"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/comeon" />
+        <Separator className="my-10" />
+        <CasinoTestLog casinoName="ComeOn" intro={TEST_LOG_DATA["comeon"].intro} entries={TEST_LOG_DATA["comeon"].entries} />
         <FAQSection title="Ofte stillede spørgsmål om ComeOn Casino" faqs={comeonFaqs} />
         <AuthorBio />
       </div>
