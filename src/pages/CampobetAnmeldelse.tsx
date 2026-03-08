@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
-import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -274,7 +272,6 @@ const CampobetAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
-        <CasinoTestLog casinoName="Campobet" intro={TEST_LOG_DATA["campobet"].intro} entries={TEST_LOG_DATA["campobet"].entries} />
 
         {/* No-Sticky Bonusanalyse */}
         <section className="mb-12">

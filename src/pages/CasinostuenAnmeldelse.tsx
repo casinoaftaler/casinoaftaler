@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
-import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -105,7 +103,6 @@ const CasinostuenAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
-        <CasinoTestLog casinoName="Casinostuen" intro={TEST_LOG_DATA["casinostuen"].intro} entries={TEST_LOG_DATA["casinostuen"].entries} />
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Bonusanalyse – hvad får du reelt?</h2>
