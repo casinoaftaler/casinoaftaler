@@ -14,6 +14,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
@@ -41,30 +42,17 @@ const comeonFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad koster det at komme i gang på ComeOn Casino?",
     answer: (
       <>
-        Minimumsindbetalingen hos ComeOn er 100 kr. Du kan indbetale via <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>,{" "}
-        <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> og{" "}
-        <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>. Registrering sker via MitID og tager under to minutter. <Link to="/velkomstbonus" className={linkClass}>Velkomstbonussen</Link> på 100% op til 1.000 kr. aktiveres automatisk. Indbetaler du 1.000 kr., får du 1.000 kr. i bonus. Med ComeOns lave 5x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> (d+b) skal de 2.000 kr. (indskud + bonus) omsættes for 10.000 kr. inden 30 dage.
+        Minimumsindbetalingen hos ComeOn er 100 kr. Du kan bruge <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, Dankort,{" "}
+        <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>,{" "}
+        <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> og{" "}
+        <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>. Registrering sker via MitID og tager under 2 minutter.
       </>
     ),
   },
-  {
-    question: "Har ComeOn Casino et VIP-program?",
-    answer:
-      "ComeOn har ikke et dedikeret, offentligt tilgængeligt VIP-program med navngivne niveauer som f.eks. 888 Club. I stedet tilbyder ComeOn personlige bonustilbud og kampagner baseret på din spilleaktivitet. Aktive spillere modtager regelmæssigt tilpassede free spins, reload-bonusser og eksklusve tilbud via e-mail. Det er en mere diskret tilgang til loyalitetsbelønning – mindre transparent, men potentielt mere personlig.",
-  },
-  {
-    question: "Hvor hurtigt udbetaler ComeOn Casino?",
-    answer: (
-      <>
-        Udbetalingstiden afhænger af din <Link to="/betalingsmetoder" className={linkClass}>betalingsmetode</Link>. I vores test tog en MobilePay-udbetaling 14 timer – hurtigere end gennemsnittet. E-wallets som Skrill behandles typisk inden for 24 timer. Visa/Mastercard tager 2–5 hverdage. ComeOns interne behandlingstid er op til 24 timer for verificerede konti. Sammenlignet med <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' 4-6 timer er det langsommere, men det er blandt de hurtigere i mellemklassen.
-      </>
-    ),
-  },
-  {
-    question: "Hvordan adskiller ComeOn sig fra andre mellemstore casinoer?",
-    answer:
-      "ComeOns primære differentiator er gennemsigtighed. Hvor mange casinoer pakker bonusvilkår ind i langt juridisk tekst, er ComeOns tilgang direkte: korte, klare vilkår uden skjulte begrænsninger. Spilbidragsprocenter er eksplicit angivet, og der er ingen overraskelser i småtskriften. Det er ikke det mest spændende casino, men det er et af de mest ærlige. For spillere, der er trætte af forvirrende bonusstrukturer, er det et frisk pust.",
-  },
+  { question: "Hvad er ComeOn Casinos velkomstbonus?", answer: (<>ComeOn tilbyder en <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på 100% op til 2.000 kr. ved første indbetaling med <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x (d+b). Minimumsindbetalingen er 100 kr. Bonussen er gyldig i 60 dage. Kun spilleautomater bidrager fuldt til omsætningen.</>) },
+  { question: "Hvor hurtigt udbetaler ComeOn Casino?", answer: (<>I vores test tog en <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>-udbetaling 14 timer – blandt de hurtigste i branchen. E-wallets behandles inden for 24 timer, kortbetalinger tager 1-3 hverdage.</>) },
+  { question: "Har ComeOn Casino en mobilapp?", answer: "ComeOn tilbyder en responsiv mobilversion, der fungerer i alle browsere. Der er ingen dedikeret app, men mobiloplevelsen er hurtig og stabil med nem navigation." },
+  { question: "Hvilke spiludbydere samarbejder ComeOn med?", answer: (<>ComeOn samarbejder med førende udbydere som <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>, <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og mange flere med 1.000+ spiltitler.</>) },
 ];
 
 const ComeOnAnmeldelse = () => {
@@ -81,6 +69,7 @@ const ComeOnAnmeldelse = () => {
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     videoId: "tW_E0RmzSHg",
     aggregateRating: { ratingValue: "4.0", ratingCount: "136" },
+    ...casinoReviewEntities("ComeOn Casino", "comeon"),
   });
 
   const faqJsonLd = buildFaqSchema(comeonFaqs);

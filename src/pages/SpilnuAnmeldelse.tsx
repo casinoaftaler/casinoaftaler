@@ -13,6 +13,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -43,32 +44,32 @@ const spilnuFaqs: { question: string; answer: ReactNode }[] = [
     ),
   },
   {
-    question: "Kan man vinde rigtige penge på Spilnus bingo?",
-    answer:
-      "Absolut. Spilnus bingo-sektion tilbyder spil med rigtige pengepræmier, progressive jackpots og daglige turneringer med garanterede præmiepuljer. Indsatserne starter fra helt ned til 1 kr. per plade, hvilket gør det tilgængeligt for alle budgetter. De progressive jackpots kan akkumulere beløb på flere hundrede tusinde kroner. Bingo-gevinsterne udbetales via de samme betalingsmetoder som casinogevinster og behandles inden for 1–3 hverdage. Der er ingen forskel i udbetalingsprocessen mellem bingo- og casinogevinster.",
-  },
-  {
-    question: "Hvilken velkomstbonus har Spilnu?",
+    question: "Hvad er Spilnus velkomstbonus, og er den god?",
     answer: (
       <>
-        Spilnu tilbyder en <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> til nye spillere med match op til 1.000 kr. og et{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x (indskud + bonus). Ved en indbetaling på 500 kr. modtager du 500 kr. i bonus, og du skal omsætte for i alt 10.000 kr. (1.000 kr. × 10), før du kan hæve bonusgevinster. Bingo-spillere får ofte separate velkomsttilbud med gratis bingoplader. Bonussen er en sticky bonus, hvilket betyder, at dine egne penge og bonuspenge blandes – modsat en{" "}
-        <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link>, hvor saldoerne holdes adskilt.
+        Spilnu tilbyder typisk en moderat <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> med lavt{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x. Bonusbeløbet er typisk beskedent sammenlignet med internationale konkurrenter, men det lave omsætningskrav gør den faktisk mere realistisk at gennemspille. Spilnu fokuserer mere på løbende kampagner og bingo-jackpots end på aggressive velkomsttilbud.
       </>
     ),
+  },
+  {
+    question: "Hvordan er Spilnus bingo sammenlignet med konkurrenterne?",
+    answer:
+      "Spilnus bingo-sektion er den mest omfattende på det danske marked. Platformen tilbyder flere daglige bingo-rum med varierende indsatsniveauer, progressive jackpots der regelmæssigt overstiger 100.000 kr., og et aktivt community med live chat under spillene. Bingo-formater inkluderer 75-bolde, 90-bolde og hurtigvarianter. Konkurrenter som Maria Casino tilbyder bingo, men Spilnus dedikation til produktet – med daglige turneringer, sæsonkampagner og et loyalt community – gør det til den ubestridte bingo-destination i Danmark.",
   },
   {
     question: "Hvilke betalingsmetoder understøtter Spilnu?",
     answer: (
       <>
-        Spilnu understøtter Dankort, <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>,{" "}
+        Spilnu understøtter de mest populære danske betalingsmetoder:{" "}
+        <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, Dankort,{" "}
         <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> og{" "}
-        <Link to="/betalingsmetoder/bankoverforsler" className={linkClass}>bankoverførsel</Link>. Registrering og verifikation sker via MitID, hvilket eliminerer behovet for manuel dokumentverifikation. Udvalget af betalingsmetoder er mere begrænset end hos internationale operatører – der er ingen e-wallets som PayPal eller Skrill. For spillere, der foretrækker alternative betalingsmetoder, kan dette være en begrænsning.
+        <Link to="/betalingsmetoder/bankoverforsler" className={linkClass}>bankoverførsel</Link>. Internationale e-wallets som Skrill eller PayPal er typisk ikke tilgængelige, da Spilnu primært fokuserer på danske betalingsløsninger. MobilePay er den mest populære metode blandt Spilnus brugere.
       </>
     ),
   },
   {
-    question: "Hvordan er Spilnus mobiloplevelse?",
+    question: "Kan man spille Spilnu på mobilen?",
     answer:
       "Spilnu har ikke en dedikeret app, men hjemmesiden er fuldt responsiv og fungerer i alle mobilbrowsere på iOS og Android. Interfacet tilpasser sig automatisk til skærmstørrelsen med touchvenlige knapper og forenklet navigation. Bingo-sektionen fungerer overraskende godt på mobil med automatisk pladekøb og realtidsopdateringer. Casinospillene indlæses direkte i browseren uden behov for plugins. Hastigheden er acceptabel, men ikke markedsledende – der kan opstå korte indlæsningstider på ældre enheder, særligt i live casino-sektionen.",
   },
@@ -94,6 +95,7 @@ const SpilnuAnmeldelse = () => {
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     aggregateRating: { ratingValue: "3.9", ratingCount: "143" },
+    ...casinoReviewEntities("Spilnu", "spilnu"),
   });
   const faqJsonLd = buildFaqSchema(spilnuFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Spilnu.dk", itemUrl: "https://www.spilnu.dk/", ratingValue: "3.9", ratingCount: "143", reviewBody: "Spilnu er Danmarks foretrukne platform for online bingo med et aktivt community og statslig sikkerhed. Casino-sektionen er et solidt supplement, men kan ikke konkurrere med dedikerede casino-specialister på bredde eller innovation." });
