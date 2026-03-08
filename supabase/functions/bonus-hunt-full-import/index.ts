@@ -93,6 +93,21 @@ serve(async (req) => {
     if (singleHuntId && singleHuntNumber) {
       console.log(`Single import: ${singleHuntId} as hunt #${singleHuntNumber}`);
 
+      // Check for duplicate hunt ID
+      const { data: existingHunt } = await supabase
+        .from('bonus_hunt_archives')
+        .select('id, hunt_number')
+        .filter('api_data->>id', 'eq', singleHuntId)
+        .maybeSingle();
+
+      if (existingHunt) {
+        return new Response(JSON.stringify({
+          error: `Hunt with API ID "${singleHuntId}" already exists as Bonus Hunt #${existingHunt.hunt_number}`,
+          duplicate: true,
+          existingHuntNumber: existingHunt.hunt_number,
+        }), { status: 409, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+      }
+
       const detailRes = await fetch(`${STREAMSYSTEM_BASE}/${singleHuntId}`, {
         headers: { Accept: 'application/json' },
       });
