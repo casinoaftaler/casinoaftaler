@@ -689,10 +689,19 @@ const Index = () => {
                 <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                 <div>
                   <h3 className="font-semibold">{trend.title}</h3>
-                  <p className="text-sm text-muted-foreground">{trend.desc}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {trend.desc}
+                    {trend.link && (
+                      <>
+                        {" "}
+                        <Link to={trend.link} className="text-primary hover:underline font-medium">Læs mere →</Link>
+                      </>
+                    )}
+                  </p>
                 </div>
               </div>
             ))}
+
           </div>
         </section>
 
