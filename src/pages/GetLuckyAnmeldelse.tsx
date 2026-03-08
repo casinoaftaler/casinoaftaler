@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CasinoTestLog } from "@/components/CasinoTestLog";
+import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -298,6 +300,8 @@ const GetLuckyAnmeldelse = () => {
         <RelatedReviews currentSlug="getlucky" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["getlucky"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/getlucky" />
+        <Separator className="my-10" />
+        <CasinoTestLog casinoName="GetLucky" intro={TEST_LOG_DATA["getlucky"].intro} entries={TEST_LOG_DATA["getlucky"].entries} />
         <FAQSection title="Ofte stillede spørgsmål om GetLucky Casino" faqs={getluckyFaqs} />
         <AuthorBio />
       </div>

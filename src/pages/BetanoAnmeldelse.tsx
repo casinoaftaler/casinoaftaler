@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CasinoTestLog } from "@/components/CasinoTestLog";
+import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -588,6 +590,8 @@ const BetanoAnmeldelse = () => {
         <RelatedReviews currentSlug="betano" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["betano"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/betano" />
+        <Separator className="my-10" />
+        <CasinoTestLog casinoName="Betano" intro={TEST_LOG_DATA["betano"].intro} entries={TEST_LOG_DATA["betano"].entries} />
         <FAQSection title="Ofte stillede spørgsmål om Betano" faqs={faqs} />
         <AuthorBio />
       </div>

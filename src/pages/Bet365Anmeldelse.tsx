@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CasinoTestLog } from "@/components/CasinoTestLog";
+import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -631,6 +633,8 @@ const Bet365Anmeldelse = () => {
         <RelatedReviews currentSlug="bet365" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["bet365"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/bet365" />
+        <Separator className="my-10" />
+        <CasinoTestLog casinoName="bet365" intro={TEST_LOG_DATA["bet365"].intro} entries={TEST_LOG_DATA["bet365"].entries} />
         <FAQSection title="Ofte stillede spørgsmål om bet365" faqs={faqs} />
         <AuthorBio />
       </div>

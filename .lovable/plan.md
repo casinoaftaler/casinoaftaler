@@ -1,55 +1,24 @@
 
 
-## Plan: 3 forbedringer fra audit
+## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
 
-### Status på hvad der allerede er implementeret
-- **ItemList schema** på `/top-10-casino-online` og `/nye-casinoer` → **allerede implementeret** ✅
-- **CasinoTestLog** → kun på Luna, Swift + casino-uden-konto siderne. **27 anmeldelsessider mangler det.**
+### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
 
-### 1. SoftwareApplication schema på /casino-app
+The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
 
-Tilføj et `SoftwareApplication` JSON-LD schema til CasinoApp.tsx for app-relaterede rich snippets i SERP.
+Specifically:
+- **Remove** Gevinst from the right zone (lines 247-261)
+- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
 
-**Fil**: `src/pages/CasinoApp.tsx`
-- Byg et schema med `@type: SoftwareApplication`, `applicationCategory: GameApplication`, `operatingSystem: iOS, Android`, `offers: Free`, og `aggregateRating` baseret på testede apps.
-- Tilføj til `jsonLd`-arrayet i `<SEO>`.
+Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
 
----
+### 2. Add Count-Up Animation for Win Amount
 
-### 2. Dynamisk CommunitySeoBridge
+Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
+- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
+- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
+- The component already handles ease-out counting and bump animation on completion
 
-Gør bridge-komponentens primære CTA og link-rækkefølge sæson-/tidsbaseret i stedet for altid statisk.
-
-**Fil**: `src/components/community/CommunitySeoBridge.tsx`
-- Rotér primær-link baseret på ISO-uge (ligesom `WeeklyRotationReviews` gør) — forskellige uger promoterer forskellige sider.
-- Tilføj 2-3 ekstra links til puljen (f.eks. `/top-10-casino-online`, `/casino-anmeldelser`, `/omsaetningskrav`) så der er variation.
-- Behold slot-page kontekst-logik, men gør den bredere (bonus-hunt sider → bonus-fokus, etc.).
-
----
-
-### 3. TestLog på alle casino-anmeldelser
-
-Det største stykke arbejde. 27 anmeldelsessider mangler `CasinoTestLog`. Hver TestLog kræver unikt, autentisk indhold (dag-for-dag entries).
-
-**Tilgang**: Tilføj `CasinoTestLog` til alle review-sider med casino-specifikke test-entries der dokumenterer:
-- Kontooprettelse og verifikation
-- Indbetaling og bonusaktivering
-- Spiludvalg og performance-test
-- Udbetalingsanmodning og faktisk behandlingstid
-- Kundeservice-kontakt
-
-**Filer** (27 sider):
-`Bet365`, `Betano`, `Betinia`, `Bwin`, `Campobet`, `Casino888`, `Casinostuen`, `ComeOn`, `DanskeSpil`, `Expekt`, `GetLucky`, `KapowCasino`, `LeoVegas`, `MarathonBet`, `MariaCasino`, `MrGreen`, `MrVegas`, `NordicBet`, `OneCasino`, `PokerStars`, `RoyalCasino`, `SpilDanskNu`, `Spilleautomaten`, `Spilnu`, `StakeCasino`, `Unibet`, `Videoslots`
-
-Alle importerer `CasinoTestLog` og indsætter den før FAQ-sektionen med 7-10 unikke dag-entries.
-
----
-
-### Filændringer oversigt
-
-| # | Fil | Ændring |
-|---|-----|---------|
-| 1 | `src/pages/CasinoApp.tsx` | Tilføj SoftwareApplication JSON-LD |
-| 2 | `src/components/community/CommunitySeoBridge.tsx` | Dynamisk rotation baseret på uge + kontekst |
-| 3-29 | 27 `*Anmeldelse.tsx` filer | Tilføj `CasinoTestLog` med unikke entries |
+### Files Modified
+- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
 

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CasinoTestLog } from "@/components/CasinoTestLog";
+import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -267,6 +269,8 @@ const MrGreenAnmeldelse = () => {
         <RelatedReviews currentSlug="mr-green" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["mr-green"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/mr-green" />
+        <Separator className="my-10" />
+        <CasinoTestLog casinoName="Mr Green" intro={TEST_LOG_DATA["mr-green"].intro} entries={TEST_LOG_DATA["mr-green"].entries} />
         <FAQSection title="Ofte stillede spørgsmål om Mr Green Casino" faqs={mrgreenFaqs} />
         <AuthorBio />
       </div>

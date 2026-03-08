@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CasinoTestLog } from "@/components/CasinoTestLog";
+import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -342,6 +344,8 @@ const UnibetAnmeldelse = () => {
         <RelatedReviews currentSlug="unibet" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["unibet"]} />
         <RelatedGuides currentPath="/casino-anmeldelser/unibet" />
+        <Separator className="my-10" />
+        <CasinoTestLog casinoName="Unibet" intro={TEST_LOG_DATA["unibet"].intro} entries={TEST_LOG_DATA["unibet"].entries} />
         <FAQSection faqs={faqs} />
         <AuthorBio />
       </div>

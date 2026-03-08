@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { CasinoTestLog } from "@/components/CasinoTestLog";
+import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -316,6 +318,8 @@ const CasinostuenAnmeldelse = () => {
         </section>
 
         <RelatedGuides currentPath="/casino-anmeldelser/casinostuen" />
+        <Separator className="my-10" />
+        <CasinoTestLog casinoName="Casinostuen" intro={TEST_LOG_DATA["casinostuen"].intro} entries={TEST_LOG_DATA["casinostuen"].entries} />
         <FAQSection faqs={casinostuenFaqs} />
         <AuthorBio author="jonas" />
       </div>
