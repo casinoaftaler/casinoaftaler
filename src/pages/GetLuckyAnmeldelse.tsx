@@ -121,6 +121,7 @@ const GetLuckyAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="GetLucky" intro={TEST_LOG_DATA["getlucky"].intro} entries={TEST_LOG_DATA["getlucky"].entries} />
 
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Bonusanalyse – velkomst, free spins og loyalitet</h2>
