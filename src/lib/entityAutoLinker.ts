@@ -85,8 +85,13 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
   },
   {
     patterns: [/\bPay N Play\b/],
-    href: "/casino-uden-konto",
+    href: "/casino-uden-konto/pay-n-play",
     anchor: "Pay N Play",
+  },
+  {
+    patterns: [/\bhurtig registrering\b/i],
+    href: "/casino-uden-konto/hurtig-registrering",
+    anchor: "",
   },
 
   // Casino-liste money-pages
@@ -161,7 +166,11 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     href: "/ansvarligt-spil/selvudelukkelse-guide",
     anchor: "",
   },
-
+  {
+    patterns: [/\bhjælpelinjer\b/i, /\bhjaelpelinjer\b/i],
+    href: "/ansvarligt-spil/hjaelpelinjer",
+    anchor: "",
+  },
 
   // Payment money-pages
   {
@@ -363,6 +372,11 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
   {
     patterns: [/\bcasino på android\b/i, /\bandroid casino\b/i],
     href: "/mobil-casino/android",
+    anchor: "",
+  },
+  {
+    patterns: [/\bcasino på tablet\b/i, /\btablet casino\b/i],
+    href: "/mobil-casino/tablet",
     anchor: "",
   },
 
