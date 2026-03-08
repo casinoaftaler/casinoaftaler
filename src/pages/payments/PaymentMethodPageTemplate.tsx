@@ -165,6 +165,14 @@ export function PaymentMethodPage({
     dateModified: "2026-02-21",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
+    about: [
+      { "@type": "Product", name, url: `${SITE_URL}${currentPath}` },
+    ],
+    mentions: [
+      { "@type": "Thing", name: "Online Casino", url: `${SITE_URL}/casino-anmeldelser` },
+      { "@type": "GovernmentOrganization", name: "Spillemyndigheden", url: `${SITE_URL}/spillemyndigheden` },
+      { "@type": "Thing", name: "Casino Bonus", url: `${SITE_URL}/casino-bonus` },
+    ],
   });
 
   const howToJsonLd = howToSteps && howToSteps.length >= 3 ? {

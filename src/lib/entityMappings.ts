@@ -14,6 +14,33 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   // ── MONEY-PAGE ENTITIES (highest priority – listed first) ───────
   // ══════════════════════════════════════════════════════════════════
 
+  // Casino Brand entities (top-10 most mentioned)
+  { patterns: [/\bSpilDanskNu\b/], href: "/casino-anmeldelser/spildansknu", anchor: "SpilDanskNu" },
+  { patterns: [/\bLeoVegas\b/], href: "/casino-anmeldelser/leovegas", anchor: "LeoVegas" },
+  { patterns: [/\bUnibet\b/], href: "/casino-anmeldelser/unibet", anchor: "Unibet" },
+  { patterns: [/\bbet365\b/], href: "/casino-anmeldelser/bet365", anchor: "bet365" },
+  { patterns: [/\bDanske Spil Casino\b/i, /\bDanske Spil\b/], href: "/casino-anmeldelser/danske-spil", anchor: "" },
+  { patterns: [/\bMr Green\b/i], href: "/casino-anmeldelser/mr-green", anchor: "Mr Green" },
+  { patterns: [/\bComeOn Casino\b/i, /\bComeOn\b/], href: "/casino-anmeldelser/comeon", anchor: "" },
+  { patterns: [/\bBetinia\b/], href: "/casino-anmeldelser/betinia", anchor: "Betinia" },
+  { patterns: [/\bCampobet\b/], href: "/casino-anmeldelser/campobet", anchor: "Campobet" },
+  { patterns: [/\bNordicBet\b/], href: "/casino-anmeldelser/nordicbet", anchor: "NordicBet" },
+  { patterns: [/\bSpilnu\b/], href: "/casino-anmeldelser/spilnu", anchor: "Spilnu" },
+  { patterns: [/\bVideoslots\b/], href: "/casino-anmeldelser/videoslots", anchor: "Videoslots" },
+
+  // Hub-termer (nævnes ofte men var ikke i auto-linker)
+  { patterns: [/\bbetalingsmetoder\b/i], href: "/betalingsmetoder", anchor: "" },
+  { patterns: [/\bspiludviklere\b/i], href: "/spiludviklere", anchor: "" },
+  { patterns: [/\bcasinospil\b/i], href: "/casinospil", anchor: "" },
+
+  // Live casino game shows
+  { patterns: [/\bCrazy Time\b/], href: "/live-casino/crazy-time", anchor: "Crazy Time" },
+  { patterns: [/\bDream Catcher\b/], href: "/live-casino/dream-catcher", anchor: "Dream Catcher" },
+  { patterns: [/\bDeal or No Deal\b/], href: "/live-casino/deal-or-no-deal", anchor: "Deal or No Deal" },
+
+  // Bankoverførsler
+  { patterns: [/\bbankoverførsel\b/i, /\bbankoverførsler\b/i, /\bbankoverforsler\b/i], href: "/betalingsmetoder/bankoverforsler", anchor: "" },
+
   // Bonus cluster money-pages
   { patterns: [/\bomsætningskrav\b/i, /\bomsaetningskrav\b/i, /\bwagering[\s-]?krav\b/i], href: "/omsaetningskrav", anchor: "" },
   { patterns: [/\bfree spins\b/i, /\bgratis spins\b/i], href: "/free-spins", anchor: "" },

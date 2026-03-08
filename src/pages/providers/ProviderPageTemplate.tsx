@@ -122,6 +122,14 @@ export function ProviderPage({
     dateModified: "2026-02-15",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
+    about: [
+      { "@type": "Organization", name, url: `${SITE_URL}${currentPath}` },
+    ],
+    mentions: [
+      { "@type": "Thing", name: "Spillemaskiner", url: `${SITE_URL}/casinospil/spillemaskiner` },
+      { "@type": "Thing", name: "Casino Bonus", url: `${SITE_URL}/casino-bonus` },
+      { "@type": "GovernmentOrganization", name: "Spillemyndigheden", url: `${SITE_URL}/spillemyndigheden` },
+    ],
   });
 
   const sectionMap: Record<string, ReactNode> = {
