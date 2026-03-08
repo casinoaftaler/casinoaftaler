@@ -89,7 +89,7 @@ const GameShowsGuide = () => {
   const articleSchema = buildArticleSchema({
     headline: "Casino Game Shows – Matematisk Analyse af House Edge og Volatilitet",
     description: "Dybdegående analyse af casino game shows: house edge, RTP, volatilitet, EV og multiplier-matematik. Sammenligningstabeller og risikovurdering.",
-    url: `${SITE_URL}/casinospil/game-shows`,
+    url: `${SITE_URL}/live-casino/game-shows`,
     datePublished: "2026-02-15",
     dateModified: "2026-02-18",
     authorName: "Jonas",
