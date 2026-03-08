@@ -254,7 +254,7 @@ export default function BonusHunt() {
                 {/* Left column (60%) */}
                 <div className="lg:col-span-3 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
                   <BonusHuntHeroBar
-                    huntNumber={huntIdOverride || liveHuntNumber}
+                    huntNumber={currentHuntNumber}
                     huntDate={huntDate}
                     huntDateLong={huntDateLong}
                     casinoName={casinoName}
