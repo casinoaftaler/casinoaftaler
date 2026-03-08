@@ -86,6 +86,9 @@ const KapowCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="Kapow Casino" intro={TEST_LOG_DATA["kapow-casino"].intro} entries={TEST_LOG_DATA["kapow-casino"].entries} />
+
+        <Separator className="my-10" />
 
         {/* Bonusanalyse */}
         <section className="mb-12">
@@ -263,8 +266,6 @@ const KapowCasinoAnmeldelse = () => {
         <RelatedReviews currentSlug="kapow-casino" />
         <InlineCasinoCards count={3} />
         <RelatedGuides currentPath="/casino-anmeldelser/kapow-casino" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Kapow Casino" intro={TEST_LOG_DATA["kapow-casino"].intro} entries={TEST_LOG_DATA["kapow-casino"].entries} />
         <FAQSection faqs={kapowFaqs} />
         <AuthorBio author="jonas" />
       </div>

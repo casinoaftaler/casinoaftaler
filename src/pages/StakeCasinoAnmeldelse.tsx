@@ -180,6 +180,9 @@ const StakeCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="Stake Casino" intro={TEST_LOG_DATA["stake-casino"].intro} entries={TEST_LOG_DATA["stake-casino"].entries} />
+
+        <Separator className="my-10" />
 
         {/* Kundeservice */}
         <section className="mb-12">
@@ -330,8 +333,6 @@ const StakeCasinoAnmeldelse = () => {
         </section>
 
         <RelatedGuides currentPath="/casino-anmeldelser/stake-casino" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Stake Casino" intro={TEST_LOG_DATA["stake-casino"].intro} entries={TEST_LOG_DATA["stake-casino"].entries} />
         <FAQSection faqs={stakeFaqs} />
         <AuthorBio author="jonas" />
       </div>

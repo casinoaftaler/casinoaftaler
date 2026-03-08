@@ -364,6 +364,9 @@ const SpilnuAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <CasinoTestLog casinoName="Spilnu" intro={TEST_LOG_DATA["spilnu"].intro} entries={TEST_LOG_DATA["spilnu"].entries} />
+
+        <Separator className="my-10" />
 
         {/* Customer Support */}
         <section className="mb-12">
@@ -517,8 +520,6 @@ const SpilnuAnmeldelse = () => {
         </section>
 
         <RelatedGuides currentPath="/casino-anmeldelser/spilnu" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="Spilnu" intro={TEST_LOG_DATA["spilnu"].intro} entries={TEST_LOG_DATA["spilnu"].entries} />
         <FAQSection faqs={spilnuFaqs} />
         <AuthorBio author="jonas" />
       </div>
