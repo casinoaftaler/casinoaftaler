@@ -374,7 +374,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/privatlivspolitik", changefreq: "yearly", priority: 0.3, lastmod: "2026-03-05" },
   { path: "/terms", changefreq: "yearly", priority: 0.3, lastmod: "2026-03-05" },
   { path: "/cookies", changefreq: "yearly", priority: 0.3, lastmod: "2026-03-05" },
-  { path: "/sitemap", changefreq: "weekly", priority: 0.4, lastmod: "2026-03-05" },
+  // /sitemap – excluded: has noindex in Sitemap.tsx (noindex + sitemap = conflicting signals)
 
 ] as const).map((route): SeoRoute => {
   // Auto-set lastmod to today (Danish timezone) for daily-changing pages
