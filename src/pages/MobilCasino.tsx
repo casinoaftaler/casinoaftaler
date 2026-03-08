@@ -857,6 +857,613 @@ const MobilCasino = () => {
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
+            10-A. TEKNISK ARKITEKTUR BAG MOBIL CASINO
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="teknisk-arkitektur">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Settings className="h-7 w-7 text-primary" />
+            Teknisk Arkitektur bag Mobil Casino
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Moderne mobil casinoer er komplekse tekniske systemer der kombinerer flere
+            web-teknologier for at levere en flydende spiloplevelse på tværs af hundredvis
+            af forskellige enheder. Her er en dybdegående analyse af den tekniske arkitektur
+            der driver dit mobilcasino.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="html5-revolution">
+            HTML5-Revolutionen – Fra Flash til Mobil-First
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Indtil 2017 var de fleste online casino-spil bygget med Adobe Flash – en teknologi
+            der aldrig fungerede på mobile enheder. Apples beslutning om at blokere Flash på
+            iPhone i 2010 katalyserede en brancheomspændende overgang til HTML5. Denne overgang
+            tog 5-7 år og resulterede i en fundamental ændring: alle nye spil designes nu
+            "mobile-first" med HTML5 Canvas API som primær renderingsplatform.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            HTML5-baserede casino-spil bruger typisk en kombination af <strong>Canvas 2D API</strong>{" "}
+            til grundlæggende slot-rendering, <strong>WebGL</strong> til 3D-effekter og avancerede
+            animationer, og <strong>Web Audio API</strong> til lydeffekter. Denne arkitektur giver
+            cross-platform kompatibilitet uden behov for app-downloads eller plugins. Udbydere
+            som Pragmatic Play, NetEnt og Play'n GO har alle fuldt omfavnet HTML5, og deres
+            spilmotorer er optimeret til at køre flydende på enheder med A12-chippen og nyere
+            (iPhone XS og frem) samt sammenlignelige Android-processorer.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="webgl-3d-slots">
+            WebGL & 3D-Slots
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            WebGL (Web Graphics Library) giver casino-spiludbydere adgang til GPU-accelereret
+            3D-rendering direkte i browseren. Moderne slots som "Gonzo's Quest Megaways" og
+            "Vikings Go Berzerk" bruger WebGL til partikeleffekter, 3D-symbolrotationer og
+            cinematiske bonussekvenser. Performance varierer efter enhed:
+          </p>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 pr-4 font-semibold">Teknologi</th>
+                      <th className="text-left py-2 pr-4 font-semibold">Anvendelse</th>
+                      <th className="text-left py-2 pr-4 font-semibold">GPU-krav</th>
+                      <th className="text-left py-2 font-semibold">Kompatibilitet</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Canvas 2D</td><td className="py-2 pr-4">Klassiske slots, UI-elementer</td><td className="py-2 pr-4">Minimal</td><td className="py-2">Alle enheder</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">WebGL 1.0</td><td className="py-2 pr-4">Basis 3D-effekter, partikler</td><td className="py-2 pr-4">Lav</td><td className="py-2">97 %+ af enheder</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">WebGL 2.0</td><td className="py-2 pr-4">Avancerede 3D-slots, shadere</td><td className="py-2 pr-4">Moderat</td><td className="py-2">90 %+ (iOS 15+)</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">WebGPU</td><td className="py-2 pr-4">Next-gen rendering (kommende)</td><td className="py-2 pr-4">Høj</td><td className="py-2">Safari 17+ / Chrome 113+</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">WebAssembly</td><td className="py-2 pr-4">Tung beregning, kryptografi</td><td className="py-2 pr-4">CPU-intensiv</td><td className="py-2">Alle moderne browsere</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="webrtc-live-casino">
+            WebRTC & Live Casino-Streaming
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Live casino benytter <strong>WebRTC</strong> (Web Real-Time Communication) til at
+            streame HD-video fra studier i realtid med minimal latency (typisk 1-3 sekunder).
+            WebRTC erstatter ældre HLS-streaming (HTTP Live Streaming) der havde 10-30 sekunders
+            forsinkelse – uacceptabelt for interaktive spil som live blackjack.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Evolution Gaming, den dominerende live casino-udbyder, bruger en proprietær
+            WebRTC-implementering med adaptive bitrate (ABR) der automatisk justerer
+            videokvaliteten baseret på din forbindelseshastighed: 1080p på WiFi, 720p på
+            stabil 4G, og 480p som fallback på svag forbindelse. Denne teknologi er grunden
+            til at live casino fungerer overraskende godt på mobil i dag. Læs mere om
+            device-specifikke anbefalinger i vores{" "}
+            <Link to="/mobil-casino/iphone" className="text-primary underline hover:text-primary/80">
+              iPhone casino guide
+            </Link>{" "}
+            og{" "}
+            <Link to="/mobil-casino/android" className="text-primary underline hover:text-primary/80">
+              Android casino guide
+            </Link>.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="service-workers-caching">
+            Service Workers & Offline-Caching
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Progressive Web Apps (PWAs) bruger <strong>Service Workers</strong> til at cache
+            statiske ressourcer (JavaScript, CSS, billeder, spil-assets) lokalt på din enhed.
+            Dette betyder at casino-grænsefladen kan indlæses næsten øjeblikkeligt ved
+            efterfølgende besøg – selv med langsom mobildata. Nogle avancerede casinoer
+            cacher endda spilmotorer, så selve spillene starter uden synlig loading-tid.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Vigtig nuance:</strong> Service Workers kan cache UI og spilkode, men
+            casino-spil kræver altid en aktiv internetforbindelse til serveren for at
+            generere og verificere resultater via{" "}
+            <Link to="/casino-ordbog/rng" className="text-primary underline hover:text-primary/80">
+              Random Number Generator (RNG)
+            </Link>. Du kan aldrig spille casino offline – caching handler om performance,
+            ikke offline-funktionalitet. Læs mere om PWA-installation i vores{" "}
+            <Link to="/casino-app" className="text-primary underline hover:text-primary/80">
+              casino app guide
+            </Link>.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            10-B. NETVÆRK & LATENCY
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="netvaerk-latency">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Wifi className="h-7 w-7 text-primary" />
+            Netværk & Latency – WiFi vs. 4G vs. 5G til Casino
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Din netværksforbindelse har direkte indflydelse på casino-oplevelsen – fra slot-loading
+            til live casino-interaktioner. Vi har benchmarket de typiske danske netværksforhold
+            for at give dig præcise anbefalinger.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="netvaerk-benchmarks">
+            Performance-Benchmarks pr. Netværkstype
+          </h3>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 pr-4 font-semibold">Parameter</th>
+                      <th className="text-left py-2 pr-4 font-semibold">WiFi 5 (AC)</th>
+                      <th className="text-left py-2 pr-4 font-semibold">WiFi 6E</th>
+                      <th className="text-left py-2 pr-4 font-semibold">4G LTE</th>
+                      <th className="text-left py-2 pr-4 font-semibold">5G Sub-6</th>
+                      <th className="text-left py-2 font-semibold">5G mmWave</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Typisk ping</td><td className="py-2 pr-4">5-15 ms</td><td className="py-2 pr-4">2-8 ms</td><td className="py-2 pr-4">30-60 ms</td><td className="py-2 pr-4">10-25 ms</td><td className="py-2">5-12 ms</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Jitter</td><td className="py-2 pr-4">1-3 ms</td><td className="py-2 pr-4">&lt;1 ms</td><td className="py-2 pr-4">5-20 ms</td><td className="py-2 pr-4">2-8 ms</td><td className="py-2">1-3 ms</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Pakketab</td><td className="py-2 pr-4">&lt;0,1 %</td><td className="py-2 pr-4">&lt;0,05 %</td><td className="py-2 pr-4">0,5-2 %</td><td className="py-2 pr-4">0,1-0,5 %</td><td className="py-2">&lt;0,1 %</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Download</td><td className="py-2 pr-4">50-200 Mbps</td><td className="py-2 pr-4">200-1000 Mbps</td><td className="py-2 pr-4">20-80 Mbps</td><td className="py-2 pr-4">100-300 Mbps</td><td className="py-2">500-2000 Mbps</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Slots-egnet</td><td className="py-2 pr-4">✅ Perfekt</td><td className="py-2 pr-4">✅ Perfekt</td><td className="py-2 pr-4">✅ God</td><td className="py-2 pr-4">✅ Perfekt</td><td className="py-2">✅ Perfekt</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">Live casino-egnet</td><td className="py-2 pr-4">✅ Perfekt</td><td className="py-2 pr-4">✅ Perfekt</td><td className="py-2 pr-4">⚠️ Variabel</td><td className="py-2 pr-4">✅ God</td><td className="py-2">✅ Perfekt</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="5g-casino-dk">
+            5G i Danmark – Realistisk Casino-Performance
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Danmarks 5G-netværk opererer primært på sub-6 GHz-båndet (3,5 GHz) via TDC NET, Telia
+            og 3/Telenor. mmWave (26 GHz) er endnu ikke udbredt i Danmark og forventes tidligst
+            i 2026-2027 i større byer. For casino-spillere betyder dette at danske 5G-forbindelser
+            typisk leverer 100-300 Mbps med 10-25 ms ping – markant bedre end 4G, men ikke den
+            sub-5ms latency som mmWave lover.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            I praksis er 5G sub-6 mere end tilstrækkeligt til alle former for mobilcasino, inklusiv
+            live casino i HD. Den primære fordel over WiFi er mobiliteten: du kan spille i toget,
+            i parken eller på caféen med konsistent performance. For live casino anbefaler vi dog
+            stadig WiFi som førstevalg grundet lavere og mere stabil latency.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="vpn-casino">
+            VPN & Casino – Latency-Overhead
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Brug af VPN tilføjer typisk 10-30 ms ekstra latency og kan reducere throughput med
+            10-20 % grundet krypteringsoverhead. For danske spillere på danske casinoer er VPN
+            generelt <strong>ikke nødvendigt</strong> og kan faktisk skabe problemer: mange
+            casinoer blokerer VPN-forbindelser for at forhindre geo-spoofing, og din konto kan
+            blive suspenderet hvis casinoet detekterer en VPN.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Undtagelse:</strong> Hvis du bruger offentligt WiFi (lufthavne, caféer,
+            hoteller), anbefaler vi at bruge VPN for at beskytte mod Man-in-the-Middle-angreb.
+            Vælg en dansk VPN-server for minimal latency-overhead. Casinoer med{" "}
+            <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">
+              dansk licens
+            </Link>{" "}
+            kræver at du befinder dig i Danmark, så brug aldrig en udenlandsk VPN-server.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="netvaerk-anbefalinger">
+            Netværksanbefalinger pr. Spiltype
+          </h3>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 pr-4 font-semibold">Spiltype</th>
+                      <th className="text-left py-2 pr-4 font-semibold">Min. hastighed</th>
+                      <th className="text-left py-2 pr-4 font-semibold">Max ping</th>
+                      <th className="text-left py-2 font-semibold">Anbefalet netværk</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Spilleautomater</td><td className="py-2 pr-4">2 Mbps</td><td className="py-2 pr-4">200 ms</td><td className="py-2">Alle (inkl. 3G)</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Bordspil (RNG)</td><td className="py-2 pr-4">1 Mbps</td><td className="py-2 pr-4">300 ms</td><td className="py-2">Alle (inkl. 3G)</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Live Blackjack</td><td className="py-2 pr-4">5 Mbps</td><td className="py-2 pr-4">100 ms</td><td className="py-2">WiFi / 5G</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Live Roulette</td><td className="py-2 pr-4">5 Mbps</td><td className="py-2 pr-4">150 ms</td><td className="py-2">WiFi / 5G / stabil 4G</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Game Shows (HD)</td><td className="py-2 pr-4">8 Mbps</td><td className="py-2 pr-4">100 ms</td><td className="py-2">WiFi / 5G</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">Crash / Instant</td><td className="py-2 pr-4">1 Mbps</td><td className="py-2 pr-4">80 ms</td><td className="py-2">WiFi / 5G (lav jitter)</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            10-C. MOBIL CASINO UX-ANALYSE
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="ux-analyse">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Eye className="h-7 w-7 text-primary" />
+            Mobil Casino UX-Analyse – Brugervenlighed i Dybden
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            User Experience (UX) på mobil casino adskiller sig fundamentalt fra desktop. Mindre
+            skærme, touch-baseret input og varierende enhedsformater skaber unikke designudfordringer
+            som de bedste casinoer mestrer – og de værste ignorerer.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="touch-targets">
+            Touch-Targets – WCAG vs. Casino-Virkelighed
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            WCAG 2.1 (Web Content Accessibility Guidelines) anbefaler minimum 44×44 CSS-pixels
+            for touch-targets. Apple specificerer 44pt (ca. 48px) som minimum i deres Human
+            Interface Guidelines. I praksis er mange casino-knapper – især bet-justeringer og
+            quick-action knapper i spilmotorer – betydeligt mindre, typisk 28-36px. Dette skaber
+            frustrerende misklick-situationer, især under tidsbaserede live casino-runder.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            De bedste danske casinoer kompenserer med intelligent spacing: selv om individuelle
+            knapper kan være under 44px, sikrer de tilstrækkeligt "dead space" mellem interaktive
+            elementer for at minimere fejltryk. Look for casinoer der tilbyder adjustable bet-knapper
+            eller pre-set bet-niveauer – disse har typisk bedre mobile UX.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="gesture-navigation">
+            Gesture-Navigation i Casino-Kontekst
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Moderne smartphones bruger gesture-baseret navigation (swipe fra bund for hjem,
+            swipe fra kant for tilbage). Disse system-gestures kan konflikte med casino-spil:
+            et uforvarende back-swipe kan lukke et spil midt i en bonus-runde, og swipe-up
+            kan aktivere Control Center over et kritisk interface-element.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Best practice:</strong> Brug Guided Access (iOS: Indstillinger → Tilgængelighed →
+            Guided Access) eller App Pinning (Android) for at låse skærmen til casino-browseren
+            under spil. Dette deaktiverer system-gestures og forhindrer utilsigtede afbrydelser.
+            Alternativt kan du installere casinoet som PWA – PWA-apps kører i fullscreen-mode
+            uden browser-chrome, hvilket eliminerer de fleste gesture-konflikter.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="haptic-feedback">
+            Haptic Feedback – Taktil Respons i Casino
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Apples Taptic Engine og Androids Vibration API giver mulighed for sofistikeret
+            haptisk feedback i casino-webapps. Nogle avancerede spiludbydere implementerer
+            vibrationer ved wins, bonus-triggers og knaptryk for at forstærke den taktile
+            oplevelse. Web Vibration API'en er dog kun tilgængelig i Chrome/Android – Safari
+            på iOS understøtter den <strong>ikke</strong>, hvilket betyder at iPhone-brugere
+            mister denne dimension medmindre de bruger en native casino-app.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="portrait-vs-landscape">
+            Portrait vs. Landscape – Orienterings-Analyse
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Spilorienteringen har markant indflydelse på oplevelsen, og den optimale
+            orientering varierer efter spiltype:
+          </p>
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 pr-4 font-semibold">Spiltype</th>
+                      <th className="text-left py-2 pr-4 font-semibold">Bedste Orientering</th>
+                      <th className="text-left py-2 font-semibold">Begrundelse</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Klassiske slots (3×3, 5×3)</td><td className="py-2 pr-4">Portrait</td><td className="py-2">Hjulene fylder skærmen bedst vertikalt</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Megaways slots (6×7+)</td><td className="py-2 pr-4">Landscape</td><td className="py-2">Stort grid kræver bredde</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Live Blackjack</td><td className="py-2 pr-4">Landscape</td><td className="py-2">Bord + kort + video kræver bredde</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Live Roulette</td><td className="py-2 pr-4">Landscape</td><td className="py-2">Betting-grid er bredere end højt</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Game Shows</td><td className="py-2 pr-4">Landscape</td><td className="py-2">Video-stream i 16:9</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">Crash / Instant Games</td><td className="py-2 pr-4">Portrait</td><td className="py-2">Simpelt UI, grafen er vertikal</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            De fleste moderne casino-spil understøtter begge orienteringer, men UI-layoutet
+            ændres: i portrait flyttes kontroller typisk under spilområdet, mens de i landscape
+            placeres ved siden af. Test begge orienteringer for at finde din foretrukne
+            opsætning. For den mest immersive oplevelse kan du overveje en{" "}
+            <Link to="/mobil-casino/tablet" className="text-primary underline hover:text-primary/80">
+              tablet til casino
+            </Link>{" "}
+            der eliminerer orienterings-kompromiser.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            10-D. SIKKERHEDSARKITEKTUR I DYBDEN
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="sikkerhed-deep-dive">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Lock className="h-7 w-7 text-primary" />
+            Sikkerhedsarkitektur i Dybden – Sådan Beskyttes Dit Casino
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Online casino-sikkerhed på mobil involverer flere lag af beskyttelse – fra
+            transportkryptering til biometrisk autentificering. Her er en teknisk gennemgang
+            af de vigtigste sikkerhedsmekanismer.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="tls-handshake">
+            TLS 1.3 Handshake – Hvad Sker Ved Hvert Casino-Besøg
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Når du åbner et casino på din mobil, sker følgende kryptografiske handshake
+            inden for millisekunder: Din browser og casinoets server udveksler kryptografiske
+            nøgler via TLS 1.3-protokollen. I modsætning til TLS 1.2 kræver TLS 1.3 kun
+            én roundtrip (1-RTT), hvilket reducerer connection-time med ~50 ms. Hele din
+            session – fra login til indbetaling til spilresultater – er derefter krypteret
+            med AES-256-GCM.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Danske casinoer med{" "}
+            <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">
+              Spillemyndigheden-licens
+            </Link>{" "}
+            er forpligtede til at bruge stærk kryptering. Du kan verificere et casinos
+            TLS-version ved at trykke på hængelåsikonet i Safari/Chrome og inspicere
+            certifikatet. Look for: TLS 1.3, 256-bit kryptering, og et gyldigt
+            EV (Extended Validation) eller OV (Organization Validated) certifikat.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="certificate-pinning">
+            Certificate Pinning i Casino-Apps
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Native casino-apps kan implementere <strong>certificate pinning</strong> – en
+            teknik der hardcoder casinoets specifikke SSL-certifikat i appen. Dette forhindrer
+            Man-in-the-Middle-angreb selv med et kompromitteret Certificate Authority (CA).
+            Webapp-baserede casinoer kan ikke bruge certificate pinning, men kompenserer
+            med HSTS (HTTP Strict Transport Security) headers der forhindrer HTTPS-downgrade.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="biometrisk-flow">
+            Biometrisk Autentificering – Teknisk Flow
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Når du logger ind på et casino med Face ID eller fingeraftryk, sker følgende
+            tekniske process:
+          </p>
+          <ol className="list-decimal pl-6 space-y-2 text-muted-foreground mb-4">
+            <li>Du trykker på login-feltet – Safari foreslår gemt password fra Keychain</li>
+            <li>iOS aktiverer biometrisk sensor (Face ID / Touch ID)</li>
+            <li>Secure Enclave matcher biometri mod gemt reference – hele processen sker on-device</li>
+            <li>Ved match: Secure Enclave frigiver den kryptografiske nøgle til Keychain-entry</li>
+            <li>Keychain dekrypterer og autofylder brugernavn + password i Safari</li>
+            <li>Safari sender credentials til casinoet via TLS 1.3-forbindelsen</li>
+            <li>Casinoet verificerer og returnerer en session-token</li>
+          </ol>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Bemærk: Dine biometriske data forlader <strong>aldrig</strong> din enhed. Casinoet
+            modtager kun dit brugernavn og password – det ved ikke om du brugte Face ID, Touch
+            ID eller tastaturet til at logge ind. Dette er en fundamental sikkerhedsfordel ved
+            Apples arkitektur.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="offentligt-wifi">
+            Sikkerhed på Offentligt WiFi
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Offentlige WiFi-netværk (lufthavne, hoteller, caféer) udgør en potentiel
+            sikkerhedsrisiko for casino-spil, da angribere kan opsætte "evil twin"-netværk
+            der efterligner legitime access points. Selv med TLS-kryptering kan metadata
+            (hvilke sider du besøger, hvornår) potentielt opfanges.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            <strong>Anbefalinger for casino på offentligt WiFi:</strong>
+          </p>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+            <li>Brug altid VPN med en dansk server</li>
+            <li>Verificer netværksnavnet med personalet (undgå "Free Airport WiFi"-kloner)</li>
+            <li>Brug mobildata i stedet – det er inherent mere sikkert end offentligt WiFi</li>
+            <li>Undgå store transaktioner (indbetalinger/udbetalinger) på offentligt WiFi</li>
+            <li>Aktiver "Privat WiFi-adresse" i iOS (Indstillinger → WiFi → [netværk] → Privat adresse)</li>
+          </ul>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            iOS's iCloud Private Relay (kræver iCloud+-abonnement) kan også beskytte din
+            browsing ved at route trafik via to separate relays, så hverken Apple eller
+            netværksudbyderen kan se både din IP-adresse og de sider du besøger.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            10-E. MOBIL CASINO VS. DESKTOP – KOMPLET SAMMENLIGNING
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="mobil-vs-desktop">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Monitor className="h-7 w-7 text-primary" />
+            Mobil Casino vs. Desktop – Den Komplette Sammenligning
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Er mobil eller desktop bedst til casino? Svaret afhænger af din spillestil,
+            spiltyper og prioriteringer. Her er en udtømmende sammenligning på tværs af 16
+            parametre baseret på vores test af 10+ danske casinoer.
+          </p>
+
+          <Card className="mb-6">
+            <CardContent className="pt-6">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 pr-4 font-semibold">Parameter</th>
+                      <th className="text-left py-2 pr-4 font-semibold">Mobil</th>
+                      <th className="text-left py-2 pr-4 font-semibold">Desktop</th>
+                      <th className="text-left py-2 font-semibold">Vinder</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-muted-foreground">
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Tilgængelighed</td><td className="py-2 pr-4">Spil overalt, 24/7</td><td className="py-2 pr-4">Begrænset til skrivebord</td><td className="py-2">📱 Mobil</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Skærmstørrelse</td><td className="py-2 pr-4">5,4-6,9" (13-17 cm)</td><td className="py-2 pr-4">13-32" (33-81 cm)</td><td className="py-2">🖥️ Desktop</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Live casino-oplevelse</td><td className="py-2 pr-4">God (landscape)</td><td className="py-2 pr-4">Fremragende (multi-table)</td><td className="py-2">🖥️ Desktop</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Slots-performance</td><td className="py-2 pr-4">Fremragende</td><td className="py-2 pr-4">Fremragende</td><td className="py-2">🤝 Uafgjort</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Biometrisk login</td><td className="py-2 pr-4">Face ID / fingeraftryk</td><td className="py-2 pr-4">Begrænset (Windows Hello)</td><td className="py-2">📱 Mobil</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Betalingshastighed</td><td className="py-2 pr-4">Apple Pay / MobilePay instant</td><td className="py-2 pr-4">Kreditkort / bankoverførsel</td><td className="py-2">📱 Mobil</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Multi-tasking</td><td className="py-2 pr-4">Split view (begrænset)</td><td className="py-2 pr-4">Flere vinduer, monitore</td><td className="py-2">🖥️ Desktop</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Spiludvalg</td><td className="py-2 pr-4">90-95 % af katalog</td><td className="py-2 pr-4">100 % af katalog</td><td className="py-2">🖥️ Desktop</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Dataforbrug</td><td className="py-2 pr-4">Begrænset mobildata</td><td className="py-2 pr-4">Ubegrænset (typisk)</td><td className="py-2">🖥️ Desktop</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Sikkerhed</td><td className="py-2 pr-4">Sandbox + biometri</td><td className="py-2 pr-4">Åben – malware-risiko</td><td className="py-2">📱 Mobil</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Push-notifikationer</td><td className="py-2 pr-4">Ja (PWA / native app)</td><td className="py-2 pr-4">Browser-notifikationer</td><td className="py-2">📱 Mobil</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Ansvarligt spil</td><td className="py-2 pr-4">Skærmtid + spillegrænser</td><td className="py-2 pr-4">Kun spillegrænser</td><td className="py-2">📱 Mobil</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Batteribegrænsning</td><td className="py-2 pr-4">2-12 timer (spilafhængigt)</td><td className="py-2 pr-4">Ingen (stikkontakt)</td><td className="py-2">🖥️ Desktop</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Ergonomi</td><td className="py-2 pr-4">Håndholdt, nak/hånd-belastning</td><td className="py-2 pr-4">Mus + tastatur, bedre holdning</td><td className="py-2">🖥️ Desktop</td></tr>
+                    <tr className="border-b"><td className="py-2 pr-4 font-medium text-foreground">Bonusser</td><td className="py-2 pr-4">Samme (+ mobil-eksklusive)</td><td className="py-2 pr-4">Samme</td><td className="py-2">📱 Mobil</td></tr>
+                    <tr><td className="py-2 pr-4 font-medium text-foreground">Loading-tid</td><td className="py-2 pr-4">1-3 sek (PWA cached)</td><td className="py-2 pr-4">1-5 sek (browser)</td><td className="py-2">📱 Mobil</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="hvornaar-mobil-bedst">
+            Hvornår er Mobil Bedst?
+          </h3>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+            <li><strong>Quick sessions:</strong> 5-30 minutters slots eller bordspil undervejs</li>
+            <li><strong>Indbetalinger:</strong> Apple Pay / MobilePay er hurtigere end desktop</li>
+            <li><strong>Casual spil:</strong> Slots, crash games, instant wins</li>
+            <li><strong>Bonusjagt:</strong> Hurtig aktivering af daglige free spins og kampagner</li>
+            <li><strong>Ansvarligt spil:</strong> iOS Skærmtid giver ekstra kontrol</li>
+          </ul>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="hvornaar-desktop-bedst">
+            Hvornår er Desktop Bedst?
+          </h3>
+          <ul className="list-disc pl-6 space-y-2 text-muted-foreground mb-4">
+            <li><strong>Live casino:</strong> Større skærm giver bedre overblik og multi-table</li>
+            <li><strong>Strategi-spil:</strong> Blackjack/poker kræver overblik over kort og statistics</li>
+            <li><strong>Lange sessioner:</strong> Ingen batteribekymring, bedre ergonomi</li>
+            <li><strong>Research:</strong> Sammenligning af casinoer, bonusvilkår, paytables</li>
+            <li><strong>Komplekse spil:</strong> De 5 % af spil der kun findes på desktop</li>
+          </ul>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            10-F. FREMTIDENS MOBIL CASINO
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12" id="fremtiden">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <TrendingUp className="h-7 w-7 text-primary" />
+            Fremtidens Mobil Casino – Teknologier 2025-2030
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Mobil casino-industrien er i konstant evolution. Her er de teknologier der vil
+            forme de næste 5 års mobile casino-oplevelser.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="ar-vr-casino">
+            AR/VR – Immersiv Casino i Stuen
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Apple Vision Pro (lanceret 2024) og Meta Quest 3 åbner for augmented og virtual
+            reality casino-oplevelser. Forestil dig at sidde i din stue mens et virtuelt
+            roulette-bord materialiserer sig foran dig, eller at se en live dealer i fuld
+            størrelse via AR-overlays. Flere udbydere eksperimenterer allerede med VR-casino:
+            Evolution Gaming har vist prototyper af VR-live casino, og PokerStars VR har været
+            tilgængelig i flere år.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            For danske spillere er VR-casino stadig i sin spæde fase: ingen danske licenserede
+            casinoer tilbyder dedikerede VR-oplevelser endnu. Teknologien kræver desuden
+            regulatorisk afklaring – Spillemyndigheden har endnu ikke udgivet guidelines
+            for VR-gambling. Vi forventer de første danske VR-casino-piloter i 2026-2027.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="ai-personalisering">
+            AI-Personalisering & Ansvarligt Spil-AI
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Kunstig intelligens revolutionerer allerede mobil casino på to fronter: på
+            den kommercielle side bruger casinoer AI til at personalisere spilanbefalinger,
+            bonustilbud og UI-layout baseret på din spilleadfærd. På den ansvarlige side
+            udvikler udbydere AI-modeller der detekterer problematisk spilleadfærd i realtid –
+            f.eks. pludselige stigninger i indsatsniveau, øget sessionsfrekvens eller "chasing
+            losses"-mønstre.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            I 2025 kræver nye EU-regulativer at casinoer implementerer
+            "early warning systems" for ludomani. Disse AI-systemer vil analysere
+            spillemønstre på tværs af enheder og proaktivt foreslå{" "}
+            <Link to="/ansvarligt-spil/spillegraenser" className="text-primary underline hover:text-primary/80">
+              spillegrænser
+            </Link>{" "}
+            eller pauser før spilleren selv erkender behovet. Apple Intelligence på iOS 18+
+            kan i fremtiden integrere med disse systemer for at give notifikationer direkte
+            i iOS's Focus-mode.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="wearables-casino">
+            Wearables – Casino på Håndleddet
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Apple Watch og Android Wear-enheder er (endnu) for små til egentligt casino-spil,
+            men de spiller en voksende rolle i casino-økosystemet som notifikationsenheder:
+            real-time alerts for bonusaktiveringer, turneringsresultater, jackpot-opdateringer
+            og sessionsvarslinger. Nogle casinoer eksperimenterer med Watch-kompatible
+            micro-games (scratch cards, simple wheel-of-fortune spil), men den begrænsede
+            skærmstørrelse (41-49mm) gør meningfuldt gameplay udfordrende.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Mere spændende er sundhedsintegration: Apple Watch kan måle pulsfrekvens og
+            stresskurver under spil, hvilket i teorien kunne bruges som input til ansvarligt
+            spil-systemer – en forhøjet puls kombineret med eskalerende indsatser kunne
+            trigger en automatisk pause-anbefaling.
+          </p>
+
+          <h3 className="text-xl font-semibold mt-6 mb-3" id="6g-edge-computing">
+            6G & Edge Computing – Sub-Millisekund Casino
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            6G-netværk, forventet i 2030+, lover latency under 1 millisekund – usynlig for
+            mennesket. Kombineret med Multi-access Edge Computing (MEC), hvor casino-servere
+            fysisk placeres tættere på brugeren (i mobilmasten), vil fremtidens mobile
+            casino-oplevelse være umulig at skelne fra en lokal applikation.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Edge computing muliggør også server-side rendering af komplekse spilscener: i stedet
+            for at din telefon beregner 3D-grafik lokalt, streames færdig-renderede frames fra
+            en edge-server med GPU-acceleration – ligesom cloud gaming (Xbox Cloud Gaming,
+            GeForce NOW). For casino-spil betyder dette at selv budget-telefoner vil kunne
+            køre de mest grafisk krævende spil flydende.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Indtil 6G ankommer, kan du allerede nu opleve den bedste mobile casino-teknologi
+            via vores{" "}
+            <Link to="/mobil-casino/bedste-apps" className="text-primary underline hover:text-primary/80">
+              rangering af de bedste casino apps
+            </Link>{" "}
+            – testet og rangeret af vores redaktion.
+          </p>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
             10. ANSVARLIGT SPIL PÅ MOBIL
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="ansvarligt-spil">
