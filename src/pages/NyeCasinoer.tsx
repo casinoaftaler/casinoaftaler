@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import { CasinoCard } from "@/components/CasinoCard";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { useCasinos } from "@/hooks/useCasinos";
@@ -1000,6 +1001,7 @@ const NyeCasinoer = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/nye-casinoer" />
+        <LiveCommunityDataStrip context="casino" />
         <RelatedGuides currentPath="/nye-casinoer" />
         <FAQSection title="Ofte stillede spørgsmål om nye casinoer i Danmark" faqs={nyeCasinoerFaqs} />
         <AuthorBio author="jonas" />
