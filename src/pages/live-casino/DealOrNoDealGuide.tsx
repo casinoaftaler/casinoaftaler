@@ -260,7 +260,7 @@ const DealOrNoDealGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Deal or No Deal Live er tilgængeligt hos alle danske Evolution Gaming-casinoer. Spillet er identisk uanset operatør – vælg baseret på <Link to="/casino-bonus" className={linkClass}>bonus</Link>, udbetalingshastighed og kundeservice. Husk: live casino bidrager typisk kun 10 % til <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
           </p>
-          {showCasinoCards && <InlineCasinoCards maxCards={3} />}
+          <InlineCasinoCards title="Spil Deal or No Deal her" count={3} />
         </section>
 
         <Separator className="my-10" />
@@ -275,7 +275,7 @@ const DealOrNoDealGuide = () => {
           </p>
         </section>
 
-        <StickyCtaBySlug />
+        <StickyCtaBySlug slug="betinia" />
         <FAQSection title="Ofte Stillede Spørgsmål om Deal or No Deal Live" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/deal-or-no-deal" />
         <AuthorBio author="jonas" />

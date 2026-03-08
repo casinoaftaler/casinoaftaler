@@ -255,7 +255,7 @@ const DreamCatcherGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Dream Catcher er tilgængeligt hos alle danske Evolution Gaming-casinoer. Da spillet er identisk på tværs af operatører, handler valget om <Link to="/casino-bonus" className={linkClass}>bonus</Link>, udbetalingshastighed og brugeroplevelse. Vær opmærksom på, at live casino typisk kun bidrager 10 % til <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
           </p>
-          {showCasinoCards && <InlineCasinoCards maxCards={3} />}
+          <InlineCasinoCards title="Spil Dream Catcher her" count={3} />
         </section>
 
         <Separator className="my-10" />
@@ -270,7 +270,7 @@ const DreamCatcherGuide = () => {
           </p>
         </section>
 
-        <StickyCtaBySlug />
+        <StickyCtaBySlug slug="betinia" />
         <FAQSection title="Ofte Stillede Spørgsmål om Dream Catcher" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/dream-catcher" />
         <AuthorBio author="jonas" />

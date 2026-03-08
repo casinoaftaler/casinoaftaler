@@ -349,7 +349,7 @@ const CrazyTimeGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Bemærk: De fleste <Link to="/casino-bonus" className={linkClass}>casinobonusser</Link> bidrager kun 10 % fra live casino til omsætningskrav. En 1.000 kr. bonus med 10x wagering kræver 100.000 kr. omsætning på live spil vs. 10.000 kr. på <Link to="/spillemaskiner" className={linkClass}>spillemaskiner</Link>. Spil Crazy Time med egne midler, ikke bonuspenge.
           </p>
-          {showCasinoCards && <InlineCasinoCards maxCards={3} />}
+          <InlineCasinoCards title="Spil Crazy Time her" count={3} />
         </section>
 
         <Separator className="my-10" />
@@ -371,7 +371,7 @@ const CrazyTimeGuide = () => {
           </p>
         </section>
 
-        <StickyCtaBySlug />
+        <StickyCtaBySlug slug="betinia" />
         <FAQSection title="Ofte Stillede Spørgsmål om Crazy Time" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/crazy-time" />
         <AuthorBio author="jonas" />
