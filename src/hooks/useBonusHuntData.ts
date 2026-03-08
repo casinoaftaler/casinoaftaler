@@ -151,8 +151,12 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
     : huntId;
 
   try {
+    const isArchivedRequest = Boolean(
+      resolvedHuntId && latestHuntNumber && resolvedHuntId <= latestHuntNumber
+    );
+
     const directData = await proxyFetch(
-      buildProxyUrl(resolvedHuntId, Boolean(resolvedHuntId && latestHuntNumber))
+      buildProxyUrl(resolvedHuntId, isArchivedRequest)
     );
 
     if (resolvedHuntId || !latestHuntNumber) {
