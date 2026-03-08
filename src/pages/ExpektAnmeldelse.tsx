@@ -14,6 +14,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
@@ -34,7 +35,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const ExpektAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Expekt Anmeldelse 2026 – Sports & Casino i Danmark", description: "Komplet anmeldelse af Expekt. Betsson Group-casino og sportsbook med dansk licens, kombineret sports- og casino-tilbud.", url: "https://casinoaftaler.dk/casino-anmeldelser/expekt", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "TzSmePJgd84", aggregateRating: { ratingValue: "3.6", ratingCount: "104" } });
+  const articleSchema = buildArticleSchema({ headline: "Expekt Anmeldelse 2026 – Sports & Casino i Danmark", description: "Komplet anmeldelse af Expekt. Betsson Group-casino og sportsbook med dansk licens, kombineret sports- og casino-tilbud.", url: "https://casinoaftaler.dk/casino-anmeldelser/expekt", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "TzSmePJgd84", aggregateRating: { ratingValue: "3.6", ratingCount: "104" }, ...casinoReviewEntities("Expekt", "expekt") });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Expekt", itemUrl: "https://www.expekt.dk/", ratingValue: "3.6", ratingCount: "104", reviewBody: "Expekt tilbyder en unik kombination af sportsbetting og casino under Betsson Group med dansk licens." });
 

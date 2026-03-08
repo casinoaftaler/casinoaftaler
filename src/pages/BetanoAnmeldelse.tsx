@@ -14,89 +14,28 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import {
-  Star,
-  CreditCard,
-  Trophy,
-  Sparkles,
-  Gamepad2,
-  Zap,
-  Check,
-  X,
-  Globe,
-  Shield,
-  Smartphone,
-  Headphones,
-  TrendingUp,
-  Target,
-  BarChart3,
+  ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
+  Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
+  Smartphone, Headphones, Users, Globe, AlertTriangle, Target,
+  BarChart3, Activity, Crown,
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const faqs: { question: string; answer: ReactNode }[] = [
-  {
-    question: "Er Betano lovligt i Danmark?",
-    answer: (
-      <>
-        Ja. Betano har dansk licens fra Spillemyndigheden og er tilsluttet{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>.
-        Platformen drives af Kaizen Gaming, som opererer i 17+ regulerede markeder. Alle krav til{" "}
-        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> overholdes.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er Betanos velkomstbonus?",
-    answer: (
-      <>
-        Betano tilbyder en <Link to="/velkomstbonus" className={linkClass}>matchbonus</Link> op til 1.000 kr.
-        til nye casino-spillere. <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravet</Link>{" "}
-        er 10x (indskud + bonus). Sportsspillere modtager et separat risikofrit væddemål.
-      </>
-    ),
-  },
-  {
-    question: "Hvem ejer Betano?",
-    answer:
-      "Betano ejes af Kaizen Gaming, et græsk tech-selskab grundlagt i 2012. Virksomheden har over 2.000 medarbejdere og er til stede i 17+ markeder. Kaizen Gaming er privatejet og har modtaget betydelige investeringer fra institutionelle fonde, men er ikke børsnoteret. De udvikler hele deres teknologiplatform internt.",
-  },
-  {
-    question: "Har Betano en mobilapp?",
-    answer:
-      "Betano tilbyder en mobilapp til iOS og Android samt en fuldt optimeret mobilsite. Appen inkluderer live-streaming af sportsbegivenheder, casino-spil og kontostyring. Den er blandt de mere veldesignede apps på det danske marked, men kræver regelmæssige opdateringer, der kan være irriterende for nogle brugere.",
-  },
-  {
-    question: "Hvor hurtigt udbetaler Betano?",
-    answer: (
-      <>
-        Via <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> behandles
-        udbetalinger typisk inden for 24 timer. Kortudbetalinger tager 1-3 hverdage.
-        Førstegangsudbetalinger kræver KYC-verifikation, som normalt afsluttes samme dag.
-      </>
-    ),
-  },
-  {
-    question: "Har Betano live casino?",
-    answer: (
-      <>
-        Ja. <Link to="/live-casino" className={linkClass}>Live casinoet</Link> drives af{" "}
-        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> med
-        et standardudvalg af blackjack, roulette og game shows. Udvalget er solidt men ikke dybere
-        end hvad de fleste konkurrenter tilbyder.
-      </>
-    ),
-  },
-  {
-    question: "Hvordan er Betanos odds sammenlignet med konkurrenter?",
-    answer:
-      "Betano er generelt konkurrencedygtig på odds, særligt på europæisk fodbold og store internationale turneringer. På nichemarkeder og mindre sportsgrene kan oddsene være lidt højere (dårligere for spilleren) end hos specialister som bet365. Marginen på de mest populære markeder ligger typisk på niveau med Unibet.",
-  },
+  { question: "Er Betano lovligt i Danmark?", answer: (<>Ja, Betano har en gyldig dansk licens fra Spillemyndigheden, udstedt til Kaizen Gaming International Ltd. Platformen er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> og overholder alle danske krav til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Registrering sker via MitID.</>) },
+  { question: "Hvad er Betanos velkomstbonus?", answer: (<>Betano tilbyder en <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> på 100% op til 1.000 kr. med <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x (d+b). Minimumsindbetalingen er 100 kr. Bonussen aktiveres automatisk.</>) },
+  { question: "Hvem ejer Betano?", answer: "Betano ejes af Kaizen Gaming International Ltd, et græsk-baseret spiludbyder grundlagt i 2012. Kaizen Gaming er en af Europas hurtigst voksende gambling-virksomheder med tilstedeværelse i 17+ lande." },
+  { question: "Hvordan er Betanos casino sammenlignet med konkurrenterne?", answer: (<>Betano har et bredt spiludvalg fra førende udbydere inkl. <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>. Platformens teknologi er moderne med hurtige indlæsninger og intuitiv navigation.</>) },
+  { question: "Hvor hurtigt udbetaler Betano?", answer: (<>I vores test tog en <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>-udbetaling 16 timer. E-wallets som <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> behandles inden for 24 timer. <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link> tager 1-3 hverdage.</>) },
+  { question: "Har Betano sportsbetting?", answer: "Ja, Betano tilbyder en af markedets mest avancerede sportsbooks med live-betting, Bet Builder og odds på 30+ sportsgrene. Sports-produktet er Betanos oprindelige kerneforretning." },
 ];
 
 const BetanoAnmeldelse = () => {
@@ -114,6 +53,7 @@ const BetanoAnmeldelse = () => {
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     videoId: "Uu3NBZzt-Sk",
     aggregateRating: { ratingValue: "4.1", ratingCount: "152" },
+    ...casinoReviewEntities("Betano", "betano"),
   });
 
   const faqJsonLd = buildFaqSchema(faqs);

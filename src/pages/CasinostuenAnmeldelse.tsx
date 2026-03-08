@@ -14,6 +14,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
@@ -32,7 +33,7 @@ const casinostuenFaqs: { question: string; answer: ReactNode }[] = [
 const CasinostuenAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Casinostuen Anmeldelse 2026 – Hyggelig Dansk Casino", description: "Dybdegående anmeldelse af Casinostuen. Dansk licens, hyggelig atmosfære og fokus på det danske marked.", url: "https://casinoaftaler.dk/casino-anmeldelser/casinostuen", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "3.4", ratingCount: "89" } });
+  const articleSchema = buildArticleSchema({ headline: "Casinostuen Anmeldelse 2026 – Hyggelig Dansk Casino", description: "Dybdegående anmeldelse af Casinostuen. Dansk licens, hyggelig atmosfære og fokus på det danske marked.", url: "https://casinoaftaler.dk/casino-anmeldelser/casinostuen", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", aggregateRating: { ratingValue: "3.4", ratingCount: "89" }, ...casinoReviewEntities("Casinostuen", "casinostuen") });
   const faqJsonLd = buildFaqSchema(casinostuenFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Casinostuen", itemUrl: "https://www.casinostuen.dk/", ratingValue: "3.4", ratingCount: "89", reviewBody: "Casinostuen er en hyggelig dansk casinoplatform med fokus på overskuelighed og lokalt marked, men begrænset spiludvalg og langsom udbetaling holder den tilbage." });
 

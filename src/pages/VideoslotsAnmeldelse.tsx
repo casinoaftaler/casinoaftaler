@@ -13,6 +13,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
@@ -35,7 +36,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const VideoslotsAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Videoslots Casino Anmeldelse 2026 – 5.000+ Spil, Battle of Slots & Ærlig Test", description: "Komplet anmeldelse af Videoslots Casino. Verdens største spiludvalg med 5.000+ titler fra 170+ udbydere, Battle of Slots-turneringer og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/videoslots", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "xo9vTabQgE8", aggregateRating: { ratingValue: "4.1", ratingCount: "167" } });
+  const articleSchema = buildArticleSchema({ headline: "Videoslots Casino Anmeldelse 2026 – 5.000+ Spil, Battle of Slots & Ærlig Test", description: "Komplet anmeldelse af Videoslots Casino. Verdens største spiludvalg med 5.000+ titler fra 170+ udbydere, Battle of Slots-turneringer og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/videoslots", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "xo9vTabQgE8", aggregateRating: { ratingValue: "4.1", ratingCount: "167" }, ...casinoReviewEntities("Videoslots Casino", "videoslots") });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Videoslots Casino", itemUrl: "https://www.videoslots.com/da/", ratingValue: "4.1", ratingCount: "167", reviewBody: "Videoslots Casino har det suverænt største spiludvalg på det danske marked med over 5.000 titler fra 170+ udbydere. Battle of Slots-turneringerne og Weekend Boosters gør platformen unik, men det funktionelle design og den beskedne bonus vil ikke appellere til alle." });
 

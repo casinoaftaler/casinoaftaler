@@ -17,113 +17,36 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { StickyCTA } from "@/components/StickyCTA";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { useAuth } from "@/hooks/useAuth";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
-
+import { AuthorBio } from "@/components/AuthorBio";
 import {
-  ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
-  HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
-  Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
-  AlertTriangle, BarChart3, Layers, Timer, Shield, Flame, ArrowRight,
-  Percent, DollarSign, Eye, Search, ShoppingBag, Tag, Target,
-  MessageSquare, Mail, Calculator
+  ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
+  HelpCircle, User, BookOpen, Smartphone, Headphones,
+  Gamepad2, Wallet, Zap, RotateCcw, Check, X, Globe, Award,
+  Clock, Target, TrendingUp, Users, Lock, Layers, Flame,
+  BarChart3, Activity, ShoppingBag, BadgeCheck,
 } from "lucide-react";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
-const spilleautomatenFaqs: { question: string; answer: ReactNode }[] = [
-  {
-    question: "Hvad gør Spilleautomatens velkomstbonus unik sammenlignet med andre danske casinoer?",
-    answer: (
-      <>
-        Spilleautomatens velkomstbonus skiller sig markant ud ved at fordele bonussen over 5 dage med individuelle bonuskoder (VELKOMMEN1 til VELKOMMEN5). Hver dag kan du indbetale op til 200 kr. og modtage 100 % matchbonus, hvilket giver en samlet bonusværdi på op til 1.000 kr. Denne struktur giver spillere mulighed for at sprede deres risiko over flere dage i stedet for at binde hele beløbet på én gang. Med et omsætningskrav på kun 10x (indskud + bonus) og 60 dages gyldighed er det en af de mest fleksible bonusmodeller på det danske marked. Læs mere om{" "}
-        <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link> og{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvordan fungerer Spilleautomatens Præmieshop og loyalitetsprogram?",
-    answer:
-      "Spilleautomatens loyalitetsprogram er automatisk aktivt fra registrering og nyhedsbrevstilmelding. For hver 5 kr. du omsætter på spilleautomater, optjener du 1 loyalitetspoint. Disse points akkumuleres og kan indløses til kontante bonusmidler i Præmieshoppen. Det særlige ved Spilleautomatens model er, at den belønner konsistent spil frem for store enkeltstående indbetalinger. Programmet har ingen tidsbegrænsning på optjente points, og du kan selv vælge, hvornår du vil indløse dem. Det gør systemet mere fleksibelt end traditionelle VIP-programmer, der ofte kræver et bestemt aktivitetsniveau for at bevare din status.",
-  },
-  {
-    question: "Er Spilleautomaten et sikkert og troværdigt casino?",
-    answer: (
-      <>
-        Spilleautomaten drives af Winteq ApS, et dansk selskab med gyldig licens fra Spillemyndigheden (licensnr. 21-67980). Platformen benytter 256-bit SSL-kryptering til beskyttelse af alle transaktioner og persondata. Casinoet er fuldt tilsluttet{" "}
-        <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>{" "}
-        (Register Over Frivilligt Udelukkede Spillere). Winteq ApS driver også Bingo.dk og{" "}
-        <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link>, hvilket understreger deres erfaring og pålidelighed på det danske marked. Læs mere om{" "}
-        <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Hvilke spiludviklere leverer spil til Spilleautomaten?",
-    answer: (
-      <>
-        Spilleautomaten samarbejder med en bred vifte af anerkendte spiludviklere, herunder{" "}
-        <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
-        <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>,{" "}
-        <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>,{" "}
-        <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> og{" "}
-        <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>. Kataloget fokuserer primært på spilleautomater med over 2.000 titler, men inkluderer også{" "}
-        <Link to="/live-casino" className={linkClass}>live casino</Link> fra{" "}
-        <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>. RTP-niveauerne ligger typisk mellem 94 % og 97 %.
-      </>
-    ),
-  },
-  {
-    question: "Hvor hurtigt behandler Spilleautomaten udbetalinger?",
-    answer: (
-      <>
-        MobilePay og{" "}
-        <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>{" "}
-        er de hurtigste med behandlingstider på typisk under 4 timer i hverdagene. Kortbetalinger via Visa og Mastercard tager normalt 1–3 hverdage. Minimum udbetalingsbeløb er 75 kr. Vi testede MobilePay-udbetaling og modtog pengene efter 2 timer og 15 minutter. Se vores guide til{" "}
-        <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>.
-      </>
-    ),
-  },
-  {
-    question: "Kan Spilleautomaten bruges som app på mobilen?",
-    answer:
-      "Spilleautomaten har ikke en dedikeret app, men hele platformen er udviklet som en responsiv web-app, der fungerer fejlfrit i mobilbrowseren. Alle spil, bonusser, Præmieshoppen, indbetalinger og udbetalinger er tilgængelige fra din smartphone eller tablet. Vi testede mobilversionen på iPhone 15 og Samsung Galaxy S24 – begge med hurtige loadtider og stabil performance. Fordelen er, at du altid bruger den nyeste version uden manuelle opdateringer.",
-  },
-  {
-    question: "Hvad adskiller Spilleautomaten fra SpilDanskNu?",
-    answer: (
-      <>
-        Begge drives af Winteq ApS, men Spilleautomaten har en skarpere niche-profil: specialisering i spilleautomater med Præmieshoppen som unik loyalitetsfunktion. SpilDanskNu har et bredere spiludvalg og mere generel casinoprofil. Spilleautomatens 5-dages bonusmodel er unik, mens SpilDanskNu har en standard matchbonus. Begge har 10x omsætningskrav. Spilleautomaten har flere slots-specifikke kampagner, mens SpilDanskNu har et større live casino-udvalg. Læs vores{" "}
-        <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu-anmeldelse</Link> for en direkte sammenligning.
-      </>
-    ),
-  },
-  {
-    question: "Hvordan fungerer 5-dages bonusmodellen rent praktisk?",
-    answer:
-      "5-dages bonusmodellen er designet til at give dig en kontrolleret opstart. Dag 1 bruger du koden VELKOMMEN1 ved en indbetaling på 75–200 kr. og modtager 100 % matchbonus. Dag 2 bruger du VELKOMMEN2, dag 3 VELKOMMEN3, osv. op til VELKOMMEN5. Hvert trin er uafhængigt – du kan stoppe når som helst og beholde, hvad du har indsat og vundet. Det smarte er risikospredningen: i stedet for at binde 1.000 kr. på én gang, investerer du 200 kr. ad gangen over 5 dage, hvilket giver dig tid til at vurdere casinoet og justere din strategi undervejs.",
-  },
-];
+// ... keep existing code for spilleautomatenFaqs ...
 
 const SpilleautomatenAnmeldelse = () => {
   const { data: casinos } = useCasinos();
   const { data: siteSettings } = useSiteSettings();
   const { user } = useAuth();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-
   const casino = casinos?.find((c) => c.slug === "spilleautomaten");
-
-  const handleBonusClick = () => {
-    if (casino) getAffiliateRedirect(casino.slug, user?.id);
-  };
+  const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(spilleautomatenFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus & Præmieshop", description: "Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. over 5 dage, 10x omsætning, Præmieshop og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "L5JtdRVTNwk" });
+  const articleSchema = buildArticleSchema({ headline: "Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus & Præmieshop", description: "Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. over 5 dage, 10x omsætning, Præmieshop og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "L5JtdRVTNwk", ...casinoReviewEntities("Spilleautomaten", "spilleautomaten") });
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Spilleautomaten", itemUrl: "https://www.spilleautomaten.dk", ratingValue: "4.8", ratingCount: "203", reviewBody: "Spilleautomaten er et dansk slots-specialiseret casino med 5-dages velkomstbonus op til 1.000 kr., 10x omsætning, Præmieshop med kontante præmier, 2.000+ spilleautomater og hurtige MobilePay-udbetalinger." });
   const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", "L5JtdRVTNwk", { title: "Spilleautomaten Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Spilleautomaten ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features.", uploadDate: "2026-02-18", duration: "PT2M" });

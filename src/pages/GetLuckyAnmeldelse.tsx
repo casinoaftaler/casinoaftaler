@@ -14,6 +14,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
@@ -36,7 +37,7 @@ const getluckyFaqs: { question: string; answer: ReactNode }[] = [
 const GetLuckyAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "GetLucky Anmeldelse 2026 – 1.500+ Spil & Loyalitetsprogram", description: "Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens og loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/getlucky", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "N1MyxsYcmMk", aggregateRating: { ratingValue: "3.8", ratingCount: "119" } });
+  const articleSchema = buildArticleSchema({ headline: "GetLucky Anmeldelse 2026 – 1.500+ Spil & Loyalitetsprogram", description: "Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens og loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/getlucky", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "N1MyxsYcmMk", aggregateRating: { ratingValue: "3.8", ratingCount: "119" }, ...casinoReviewEntities("GetLucky Casino", "getlucky") });
   const faqJsonLd = buildFaqSchema(getluckyFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "GetLucky Casino", itemUrl: "https://www.getlucky.com/da/", ratingValue: "3.8", ratingCount: "119", reviewBody: "GetLucky Casino byder på et massivt spiludvalg med over 1.500 titler, dansk licens og et loyalitetsprogram der belønner aktive spillere." });
 
