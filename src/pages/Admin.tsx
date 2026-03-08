@@ -1106,6 +1106,12 @@ function AdminDashboard() {
             <div className="mt-6">
               <PageMetadataAdminSection />
             </div>
+            <div className="mt-6">
+              <PageMetadataSyncSection />
+            </div>
+            <div className="mt-6">
+              <ErrorLogsSection />
+            </div>
           </TabsContent>
 
           {/* Link Density Monitor Tab */}
