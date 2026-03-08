@@ -290,6 +290,12 @@ export function Footer() {
                   Omsætningskrav
                 </Link>
               </li>
+              <li>
+                <Link to="/slot-database" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Gamepad2 className="h-4 w-4" />
+                  Slot Database
+                </Link>
+              </li>
             </ul>
           </div>
 
