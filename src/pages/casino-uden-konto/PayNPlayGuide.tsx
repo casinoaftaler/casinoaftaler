@@ -7,7 +7,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -540,12 +540,6 @@ const PayNPlayGuide = () => {
 
         <Separator className="my-10" />
 
-        {/* 10. TESTLOG – E-E-A-T */}
-        <CasinoTestLog
-          casinoName="Pay N Play-Teknologi"
-          intro="Vi har gennemført en systematisk 14-dages teknisk test af Trustly Pay N Play's casino-integration. Testmiljø: 4 danske licenserede casinoer, 5 danske banker, desktop (Chrome 122, Windows 11) og mobil (iPhone 15 Pro, Samsung Galaxy S24). Alle transaktioner er reelle og dokumenteret med skærmbilleder og timestamps."
-          entries={testLogEntries}
-        />
 
         <Separator className="my-10" />
 

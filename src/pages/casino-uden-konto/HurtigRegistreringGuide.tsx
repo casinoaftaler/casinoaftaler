@@ -7,7 +7,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -662,12 +662,6 @@ const HurtigRegistreringGuide = () => {
 
         <Separator className="my-10" />
 
-        {/* 8. TESTLOG */}
-        <CasinoTestLog
-          casinoName="Registreringsmetoder"
-          intro="Vi har gennemført en systematisk 14-dages sammenlignende test af alle tre registreringsmetoder på 12 danske licenserede casinoer. Alle test er udført med standardbeløb (500 kr. indbetaling) og dokumenteret med skærmoptagelse."
-          entries={testLogEntries}
-        />
 
         <Separator className="my-10" />
 
