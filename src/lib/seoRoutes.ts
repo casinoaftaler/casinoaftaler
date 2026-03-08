@@ -371,6 +371,10 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/jackpot-slots", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
   { path: "/bonus-buy-slots", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
 
+  // ── Batch 2: VIP & MobilePay ──
+  { path: "/vip-program", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-08" },
+  { path: "/casino-med-mobilepay", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-08" },
+
   { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/om", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
   { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
