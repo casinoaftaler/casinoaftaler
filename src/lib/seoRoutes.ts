@@ -190,7 +190,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/baccarat", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-23" },
   // /casinospil/roulette-strategi – 301 redirected to /casinospil/roulette (cannibalization fix)
   { path: "/casinospil/online-lotteri", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-17" },
-  { path: "/casinospil/game-shows", changefreq: "weekly", priority: 0.8, lastmod: "2026-02-06" },
+  // /casinospil/game-shows – 301 redirected to /live-casino/game-shows
 
   // ── Bonus Guides ──
   { path: "/casino-bonus", changefreq: "weekly", priority: 0.9, lastmod: "2026-02-19" },
