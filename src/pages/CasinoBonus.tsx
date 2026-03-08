@@ -132,7 +132,22 @@ const CasinoBonus = () => {
       <SEO
         title="Bedste Casino Bonus 2026 – Komplet Guide til Alle Bonustyper"
         description="Den ultimative guide til casino bonus i Danmark 2026. Sammenlign no-sticky, free spins, velkomstbonus og 7+ bonustyper. Matematiske analyser og strategier."
-        jsonLd={[faqJsonLd, articleSchema]}
+        jsonLd={[faqJsonLd, articleSchema, {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Bonustyper i Danmark 2026",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "No-Sticky Bonus", url: `${SITE_URL}/no-sticky-bonus` },
+            { "@type": "ListItem", position: 2, name: "Free Spins", url: `${SITE_URL}/free-spins` },
+            { "@type": "ListItem", position: 3, name: "Velkomstbonus", url: `${SITE_URL}/velkomstbonus` },
+            { "@type": "ListItem", position: 4, name: "Indskudsbonus", url: `${SITE_URL}/indskudsbonus` },
+            { "@type": "ListItem", position: 5, name: "Bonus uden Indbetaling", url: `${SITE_URL}/bonus-uden-indbetaling` },
+            { "@type": "ListItem", position: 6, name: "Bonus uden Omsætningskrav", url: `${SITE_URL}/bonus-uden-omsaetningskrav` },
+            { "@type": "ListItem", position: 7, name: "Cashback Bonus", url: `${SITE_URL}/cashback-bonus` },
+            { "@type": "ListItem", position: 8, name: "Reload Bonus", url: `${SITE_URL}/reload-bonus` },
+            { "@type": "ListItem", position: 9, name: "Sticky Bonus", url: `${SITE_URL}/sticky-bonus` },
+          ],
+        }]}
       />
 
       {/* Hero Section */}
