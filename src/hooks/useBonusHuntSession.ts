@@ -9,7 +9,6 @@ export function useBonusHuntSession() {
         .from('bonus_hunt_sessions' as any)
         .select('*')
         .eq('status', 'active')
-        .in('hunt_number', [1, 2, 3])
         .order('created_at', { ascending: false })
         .limit(1)
         .maybeSingle();
@@ -20,7 +19,6 @@ export function useBonusHuntSession() {
       const { data, error } = await supabase
         .from('bonus_hunt_sessions' as any)
         .select('*')
-        .in('hunt_number', [1, 2, 3])
         .order('created_at', { ascending: false })
         .limit(1)
         .maybeSingle();
