@@ -154,25 +154,45 @@ const HjaelpelinjerGuide = () => {
         dateModified="2026-03-08"
       />
 
-      <div className="container max-w-4xl py-8">
-        {/* Hero */}
-        <div className="relative mb-8 overflow-hidden rounded-xl">
+      {/* Hero Section */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: `linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Shield className="mr-1.5 h-3.5 w-3.5" />
+              Ansvarligt Spil
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Hjælpelinjer for Spilleproblemer – Alle Danske Hjælpemuligheder
+            </h1>
+            <p className="text-lg text-white/80">
+              Samlet oversigt over StopSpillet, Center for Ludomani, Anonyme Gamblere, kommunale tilbud og pårørendestøtte.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
+        <AuthorMetaBar author="ajse" date="2026-03-08" readTime="25 Min." showAffiliateDisclaimer={false} />
+        <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
+
+        <div className="mb-10 overflow-hidden rounded-xl">
           <img
             src={hjaelpelinjerHero}
             alt="Hjælpelinjer for spilleproblemer i Danmark"
-            className="h-[260px] w-full object-cover sm:h-[320px] md:h-[380px]"
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover max-h-[400px]"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
-          <div className="absolute bottom-6 left-6 right-6">
-            <Badge className="mb-2 bg-primary/90 text-primary-foreground">Ansvarligt Spil</Badge>
-            <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl">
-              Hjælpelinjer for Spilleproblemer – Alle Danske Hjælpemuligheder
-            </h1>
-          </div>
         </div>
-
-        <AuthorMetaBar author="ajse" showAffiliateDisclaimer={false} />
 
         {/* ── Intro ── */}
         <section className="mb-12">
