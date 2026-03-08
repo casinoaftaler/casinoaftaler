@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { CasinoTestLog } from "@/components/CasinoTestLog";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
@@ -25,7 +26,7 @@ import { buildVideoSchema } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import {
   ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
-  HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
+  HelpCircle, User, BookOpen, Smartphone, Headphones,
   Gamepad2, Wallet, Zap, RotateCcw, Check, X, Globe, Award,
   Clock, Target, TrendingUp, Users, Lock, Layers, Flame,
   BarChart3, Activity,
