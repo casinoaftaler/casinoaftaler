@@ -38,7 +38,7 @@ function buildArchiveRow(huntNumber: number, summary: any, detail: any) {
   const totalWins = openedSlots.reduce((sum: number, s: any) => sum + (s.win || 0), 0);
   const endBalance = (detail.end && detail.end > 0) ? detail.end : (totalWins > 0 ? totalWins : null);
   const allOpened = slots.length > 0 && openedSlots.length === slots.length;
-  const huntStatus = allOpened ? 'completed' : (summary.started ? 'active' : 'upcoming');
+  const huntStatus = 'completed';
 
   const apiData = {
     id: summary.id,
@@ -60,7 +60,7 @@ function buildArchiveRow(huntNumber: number, summary: any, detail: any) {
 
   return {
     hunt_number: huntNumber,
-    hunt_name: summary.name,
+    hunt_name: `Bonus Hunt #${huntNumber}`,
     hunt_status: huntStatus,
     start_balance: startBalance,
     end_balance: endBalance && endBalance > 0 ? endBalance : null,
