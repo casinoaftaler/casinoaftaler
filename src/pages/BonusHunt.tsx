@@ -256,7 +256,7 @@ export default function BonusHunt() {
                     isArchived={isArchived}
                     availableHuntNumbers={availableHuntNumbers}
                     onNavigate={handleNavigate}
-                    onJumpToHunt={(num) => num > latestHuntNumber ? setHuntIdOverride(undefined) : setHuntIdOverride(num || undefined)}
+                    onJumpToHunt={(num) => setHuntIdOverride(Math.min(num, MAX_HUNT_NUMBER))}
                   />
                   {isLive ? (
                     <BonusHuntLiveStream huntNumber={currentHuntNumber} />
