@@ -167,6 +167,16 @@ export function buildArticleSchema(opts: {
   /** YouTube video ID – when provided, creates hasPart ↔ isPartOf binding */
   videoId?: string;
   /**
+   * Primary topic of the article – strengthens Knowledge Graph entity recognition.
+   * Pass a Thing with @type and name, e.g. { "@type": "Thing", name: "Casino Bonus" }
+   */
+  about?: { "@type": string; name: string; url?: string }[];
+  /**
+   * Secondary entities mentioned in the article – broadens Knowledge Graph signals.
+   * E.g. game providers, payment methods, regulatory bodies.
+   */
+  mentions?: { "@type": string; name: string; url?: string }[];
+  /**
    * @deprecated This parameter is intentionally ignored. AggregateRating is NOT valid
    * on Article type per Google. Use buildReviewSchema() instead, which attaches it
    * to itemReviewed (SoftwareApplication). Kept only for backward compatibility.
@@ -224,6 +234,20 @@ export function buildArticleSchema(opts: {
       hasPart: {
         "@id": videoId,
       },
+    }),
+    ...(opts.about && opts.about.length > 0 && {
+      about: opts.about.map((a) => ({
+        "@type": a["@type"],
+        name: a.name,
+        ...(a.url ? { url: a.url } : {}),
+      })),
+    }),
+    ...(opts.mentions && opts.mentions.length > 0 && {
+      mentions: opts.mentions.map((m) => ({
+        "@type": m["@type"],
+        name: m.name,
+        ...(m.url ? { url: m.url } : {}),
+      })),
     }),
     // NOTE: aggregateRating is NOT valid on Article type per Google.
     // Use buildReviewSchema() to attach it to the Review's itemReviewed instead.

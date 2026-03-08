@@ -154,6 +154,21 @@ const Index = () => {
               },
             ],
           },
+          // ItemList schema for partner casinos – enables Google Carousel rich snippets
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Bedste Online Casinoer i Danmark 2026",
+            numberOfItems: PARTNER_SLUGS.length,
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "SpilDanskNu", url: "https://casinoaftaler.dk/casino-anmeldelser/spildansknu" },
+              { "@type": "ListItem", position: 2, name: "Spilleautomaten", url: "https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten" },
+              { "@type": "ListItem", position: 3, name: "Betinia", url: "https://casinoaftaler.dk/casino-anmeldelser/betinia" },
+              { "@type": "ListItem", position: 4, name: "Campobet", url: "https://casinoaftaler.dk/casino-anmeldelser/campobet" },
+              { "@type": "ListItem", position: 5, name: "Swift Casino", url: "https://casinoaftaler.dk/casino-anmeldelser/swift-casino" },
+              { "@type": "ListItem", position: 6, name: "Luna Casino", url: "https://casinoaftaler.dk/casino-anmeldelser/luna-casino" },
+            ],
+          },
           buildFaqSchema([
             {
               question: "Hvad er det vigtigste at vide, før man spiller på online casino i Danmark?",
