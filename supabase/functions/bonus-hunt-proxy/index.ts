@@ -31,7 +31,7 @@ async function fetchStreamSystemData(options: {
   }
 
   if (options.includeLiveEndpoint) {
-    urls.push(`${STREAMSYSTEM_BASE}/${STREAMER_ID}`);
+    urls.push(`${STREAMSYSTEM_BASE}/latest/${STREAMER_ID}`);
   }
 
   for (const apiUrl of urls) {
