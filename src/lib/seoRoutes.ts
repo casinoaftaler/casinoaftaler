@@ -339,6 +339,9 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/ansvarligt-spil/rofus", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ansvarligt-spil/ludomani", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ansvarligt-spil/stopspillet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
+  { path: "/ansvarligt-spil/spillegraenser", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
+  { path: "/ansvarligt-spil/selvudelukkelse-guide", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
+  { path: "/ansvarligt-spil/hjaelpelinjer", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
 
   // ── Mobil Casino ──
   { path: "/mobil-casino", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
