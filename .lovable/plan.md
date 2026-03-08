@@ -1,66 +1,24 @@
 
 
-## Plan: 3 nye Ansvarligt Spil spoke-sider (Enterprise SEO)
+## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
 
-### Nye sider
+### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
 
-1. **`/ansvarligt-spil/spillegraenser`** – Selvtest og grænser (indbetalingsgrænser, tidsgrænser, tabsgrænser, selvtest-værktøjer)
-2. **`/ansvarligt-spil/selvudelukkelse-guide`** – Step-by-step guide til alle selvudelukkelsesformer (ROFUS, casinoernes egne værktøjer, midlertidig vs. permanent)
-3. **`/ansvarligt-spil/hjaelpelinjer`** – Samlet oversigt over alle danske hjælpemuligheder (StopSpillet, Center for Ludomani, Anonyme Gamblere, kommunale tilbud)
+The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
 
-### Krav pr. side (Enterprise SEO standard)
-- 7.000+ ord dybdegående indhold
-- Unik H2-struktur (ingen template-footprint)
-- Article + FAQ JSON-LD schemas, HowTo hvor relevant
-- Hero-billede (genbruger eksisterende assets da nye ikke kan genereres)
-- AuthorMetaBar (author: "ajse") + AuthorBio
-- Fuld intern cross-linking til hele ansvarligt-spil clusteret + money-pages
-- RelatedGuides + LatestNewsByCategory
-- Dansk lovgivning (BEK 1494, Spilleloven, ROFUS-regler)
-- Ingen casino-kort eller affiliate-promovering (compliance)
+Specifically:
+- **Remove** Gevinst from the right zone (lines 247-261)
+- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
 
-### Fil-ændringer
+Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
 
-**Nye filer (3):**
-- `src/pages/ansvarligt-spil/SpillegraenserGuide.tsx`
-- `src/pages/ansvarligt-spil/SelvudelukkelseGuide.tsx`
-- `src/pages/ansvarligt-spil/HjaelpelinjerGuide.tsx`
+### 2. Add Count-Up Animation for Win Amount
 
-**Opdaterede filer (4):**
-- `src/App.tsx` – 3 nye lazy imports + `<Route>` entries
-- `src/lib/breadcrumbs.ts` – routeLabels + PARENT_OVERRIDES for de 3 nye ruter
-- `src/lib/seoRoutes.ts` – 3 nye entries (priority 0.7, changefreq monthly)
-- `src/components/RelatedGuides.tsx` – Tilføj de 3 nye sider til ansvarligt-spil cluster-filteret, så de cross-linkes fra eksisterende spoke-sider
+Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
+- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
+- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
+- The component already handles ease-out counting and bump animation on completion
 
-**Hub-opdatering:**
-- `src/pages/ResponsibleGaming.tsx` – Tilføj links til de 3 nye guides i hub-sektionerne (selvudelukkelse + hjælp sektioner)
-
-**Cross-linking i eksisterende spokes:**
-- `src/pages/ansvarligt-spil/RofusGuide.tsx` – Tilføj links til nye sider i grid-sektionen
-- `src/pages/ansvarligt-spil/LudomaniGuide.tsx` – Tilføj links til nye sider
-- `src/pages/ansvarligt-spil/StopSpilletGuide.tsx` – Tilføj links til nye sider
-
-### Indholdsstruktur (unikt pr. side)
-
-**Spillegrænser** – Layout arketype B (data-tables + selvtest):
-- Typer af grænser (indbetalings-, tids-, tabs-, sessions-, nettotabsgrænser)
-- Lovkrav i Danmark (BEK 1494, 24-timers afkøling ved forhøjelse)
-- Selvtest-spørgsmål (PGSI-baseret)
-- Casino-for-casino sammenligning af grænseværktøjer
-- Matematiske modeller: EV ved forskellige grænseniveauer
-
-**Selvudelukkelse-guide** – Layout arketype C (step-by-step + HowTo schema):
-- ROFUS vs. casinoernes egne værktøjer
-- Midlertidig vs. permanent udelukkelse
-- Trin-for-trin (MitID, valg, bekræftelse, ophævelse)
-- Internationale ordninger (GamStop UK, Spelpaus SE) til kontekst
-- Juridiske rettigheder ved overtrædelse
-
-**Hjælpelinjer** – Layout arketype A (ressource-oversigt):
-- StopSpillet (telefon, chat, åbningstider)
-- Center for Ludomani (behandlingsformer, ventetid)
-- Anonyme Gamblere (mødeformat, lokationer)
-- Kommunale tilbud (misbrugscentre)
-- Pårørende-støtte (særskilt sektion)
-- Sammenligningstabel: hvem hjælper med hvad
+### Files Modified
+- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
 
