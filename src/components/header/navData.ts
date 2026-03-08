@@ -17,6 +17,7 @@ export const CASINO_LINKS: NavLink[] = [
   { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling" },
   { to: "/casinoer/hoej-rtp", label: "Høj RTP" },
   { to: "/casino-licenser", label: "Licenserede Casinoer" },
+  { to: "/casino-uden-konto", label: "Casino uden Konto" },
   { to: "/casinoer/mobil-casinoer", label: "Mobil Casinoer" },
   { to: "/casinoer/crypto-casino", label: "Crypto Casino" },
   { to: "/casinoer/vr-casinoer", label: "VR Casinoer" },

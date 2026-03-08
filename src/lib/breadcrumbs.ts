@@ -76,6 +76,11 @@ export const routeLabels: Record<string, string> = {
   // Mobil Casino
   "/mobil-casino": "Mobil Casino",
   "/casino-app": "Casino App",
+  // Casino uden Konto cluster
+  "/casino-uden-konto": "Casino uden Konto",
+  "/casino-uden-konto/pay-n-play": "Pay N Play",
+  "/casino-uden-konto/hurtig-registrering": "Hurtig Registrering",
+  "/casino-uden-konto/fordele-og-ulemper": "Fordele og Ulemper",
   // Slot Kategorier
   "/megaways-slots": "Megaways Slots",
   "/jackpot-slots": "Jackpot Slots",
@@ -392,6 +397,11 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
 
   // Mobil Casino cluster – bundet til /mobil-casino hub
   "/casino-app": [{ name: "Mobil Casino", path: "/mobil-casino" }],
+
+  // Casino uden Konto cluster – spokes bound to hub
+  "/casino-uden-konto/pay-n-play": [{ name: "Casino uden Konto", path: "/casino-uden-konto" }],
+  "/casino-uden-konto/hurtig-registrering": [{ name: "Casino uden Konto", path: "/casino-uden-konto" }],
+  "/casino-uden-konto/fordele-og-ulemper": [{ name: "Casino uden Konto", path: "/casino-uden-konto" }],
 
   // Slot Kategorier – bundet til /casinospil/spillemaskiner hub
   "/megaways-slots": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],

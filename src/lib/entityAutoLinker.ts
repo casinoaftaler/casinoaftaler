@@ -77,6 +77,18 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     anchor: "",
   },
 
+  // Casino uden konto money-page
+  {
+    patterns: [/\bcasino uden konto\b/i, /\bcasino uden registrering\b/i],
+    href: "/casino-uden-konto",
+    anchor: "",
+  },
+  {
+    patterns: [/\bPay N Play\b/],
+    href: "/casino-uden-konto",
+    anchor: "Pay N Play",
+  },
+
   // Casino-liste money-pages
   {
     patterns: [/\bnye casinoer\b/i],
