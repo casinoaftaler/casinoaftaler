@@ -179,14 +179,6 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
     ? (latestHuntNumber ? getLatestAllowedHunt(latestHuntNumber) : undefined)
     : huntId;
 
-  const inferredLiveHuntId = latestHuntNumber
-    ? getLatestAllowedHunt(latestHuntNumber + 1)
-    : undefined;
-  const shouldTryInferredLive = !resolvedHuntId
-    && !!inferredLiveHuntId
-    && !!latestHuntNumber
-    && inferredLiveHuntId > latestHuntNumber;
-
   try {
     const isArchivedRequest = Boolean(
       resolvedHuntId && latestHuntNumber && resolvedHuntId <= latestHuntNumber
@@ -196,49 +188,19 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
       buildProxyUrl(resolvedHuntId, isArchivedRequest)
     );
 
-    if (
-      shouldTryInferredLive
-      && inferredLiveHuntId
-      && (
-        directData.visibleId <= (latestHuntNumber || 0)
-        || directData.stats.totalBonuses === 0
-        || directData.status !== 'active'
-      )
-    ) {
-      try {
-        const inferredLiveData = await proxyFetch(buildProxyUrl(inferredLiveHuntId, false));
-        if (inferredLiveData.visibleId >= inferredLiveHuntId) return inferredLiveData;
-      } catch {
-        return createPendingLiveHuntData(inferredLiveHuntId);
-      }
-    }
-
-    if (resolvedHuntId || !latestHuntNumber) {
-      // If a specific hunt resolves but has no slots, fall back to latest archived hunt
-      if (latestHuntNumber && directData.stats.totalBonuses === 0) {
-        const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
-        if (archivedFallback) return archivedFallback;
-      }
+    // If we got data with slots, return it
+    if (directData.stats.totalBonuses > 0) {
       return directData;
     }
 
-    // If live endpoint has no slot data, show the latest archived hunt instead
-    if (directData.stats.totalBonuses === 0) {
+    // If a specific hunt was requested but has no slots, try latest archived
+    if (latestHuntNumber) {
       const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
       if (archivedFallback) return archivedFallback;
     }
 
-    if (!BLOCKED_HUNTS.has(directData.visibleId)) {
-      return directData;
-    }
-
-    const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
-    return archivedFallback ?? directData;
+    return directData;
   } catch (error) {
-    if (shouldTryInferredLive && inferredLiveHuntId) {
-      return createPendingLiveHuntData(inferredLiveHuntId);
-    }
-
     // On any proxy failure, fall back to latest archived hunt
     const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
     if (archivedFallback) return archivedFallback;
