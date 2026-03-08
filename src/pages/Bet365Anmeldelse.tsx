@@ -14,6 +14,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";
+import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";
 import { QuickFactsProviders } from "@/components/QuickFactsProviders";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
@@ -109,7 +110,7 @@ const Bet365Anmeldelse = () => {
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     videoId: "vb5nT5UGk8c",
-    aggregateRating: { ratingValue: "4.4", ratingCount: "267" },
+    ...casinoReviewEntities("bet365", "bet365"),
   });
 
   const faqJsonLd = buildFaqSchema(faqs);
