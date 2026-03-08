@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { CasinoTestLog } from "@/components/CasinoTestLog";
-import { TEST_LOG_DATA } from "@/lib/casinoTestLogData";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -402,8 +400,6 @@ const SpilDanskNuAnmeldelse = () => {
         <InlineCasinoCards excludeSlugs={["spildansknu"]} />
         <Separator className="my-10" />
         <RelatedGuides currentPath="/casino-anmeldelser/spildansknu" />
-        <Separator className="my-10" />
-        <CasinoTestLog casinoName="SpilDanskNu" intro={TEST_LOG_DATA["spildansknu"].intro} entries={TEST_LOG_DATA["spildansknu"].entries} />
         <FAQSection title="Ofte stillede spørgsmål om SpilDanskNu" faqs={spilDanskNuFaqs} />
         <AuthorBio author="jonas" />
       </div>
