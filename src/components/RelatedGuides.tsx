@@ -509,7 +509,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
-  // Casino review subpages → hub + 3 rotated siblings + 1 cross-cluster
+  // Casino review subpages → hub + 3 rotated siblings + 3 cross-cluster (with mobil-casino, casino-uden-konto, live-casino rotation)
   if (path.includes("-anmeldelse") || path.startsWith("/casino-anmeldelser/")) {
     const currentIndex = allReviews.findIndex(g => g.to === path);
     const filtered = allReviews.filter(g => g.to !== path);
@@ -524,8 +524,18 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = filtered.slice(0, MAX_SIBLINGS);
     }
+    // Expanded cross-cluster pool including mobil-casino, casino-uden-konto, live-casino spokes
+    const crossClusterPool: GuideLink[] = [
+      paymentHub, casinospilHub, bonusHub, nyeCasinoerHub, liveCasinoHub,
+      { to: "/mobil-casino", label: "Mobil Casino", icon: Smartphone, desc: "Komplet guide til casino på mobilen" },
+      { to: "/casino-uden-konto", label: "Casino uden Konto", icon: Zap, desc: "Spil uden registrering via Pay N Play" },
+      { to: "/live-casino/blackjack", label: "Live Blackjack", icon: Tv, desc: "Spil blackjack med live dealer" },
+      { to: "/live-casino/roulette", label: "Live Roulette", icon: Tv, desc: "Roulette med rigtige dealere i realtid" },
+      { to: "/casino-app", label: "Casino App", icon: Smartphone, desc: "Guide til casino apps i Danmark" },
+    ];
+    const crossClusterLinks = pickCrossCluster(crossClusterPool, path);
     return {
-      guides: [reviewHub, ...siblings, paymentHub, casinospilHub, bonusHub].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
+      guides: [reviewHub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
       subtitle: "Udforsk andre casino anmeldelser, betalingsmetoder og casinospil.",
     };
   }
