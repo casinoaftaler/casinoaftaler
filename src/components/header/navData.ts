@@ -19,6 +19,7 @@ export const CASINO_LINKS: NavLink[] = [
   { to: "/casino-licenser", label: "Licenserede Casinoer" },
   { to: "/casino-uden-konto", label: "Casino uden Konto" },
   { to: "/casinoer/mobil-casinoer", label: "Mobil Casinoer" },
+  { to: "/mobil-casino", label: "Mobil Casino Guide" },
   { to: "/casinoer/crypto-casino", label: "Crypto Casino" },
   { to: "/casinoer/vr-casinoer", label: "VR Casinoer" },
   { to: "/casinoer/spil-casino-for-sjov", label: "Spil Casino for Sjov" },

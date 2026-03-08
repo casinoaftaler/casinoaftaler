@@ -283,6 +283,28 @@ const ENTITY_MAPPINGS: EntityMapping[] = [
     anchor: "",
   },
 
+  // Mobil Casino cluster money-pages
+  {
+    patterns: [/\bmobil casino\b/i, /\bcasino på mobilen\b/i, /\bmobilcasino\b/i],
+    href: "/mobil-casino",
+    anchor: "",
+  },
+  {
+    patterns: [/\bcasino app\b/i, /\bcasino apps\b/i, /\bcasino-app\b/i],
+    href: "/casino-app",
+    anchor: "",
+  },
+  {
+    patterns: [/\bcasino på iphone\b/i, /\biphone casino\b/i],
+    href: "/mobil-casino/iphone",
+    anchor: "",
+  },
+  {
+    patterns: [/\bcasino på android\b/i, /\bandroid casino\b/i],
+    href: "/mobil-casino/android",
+    anchor: "",
+  },
+
   // ══════════════════════════════════════════════════════════════════
   // ── GLOSSARY ENTITIES (informational support – lower priority) ──
   // Only for terms WITHOUT a competing money-page

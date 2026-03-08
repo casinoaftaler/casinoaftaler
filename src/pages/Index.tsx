@@ -676,7 +676,7 @@ const Index = () => {
           <div className="space-y-3">
             {[
               { title: "Øjeblikkelige betalinger", desc: "MobilePay, Trustly og Apple Pay gør ind- og udbetalinger øjeblikkelige. Nye løsninger som Revolut og Zimpler vinder også frem hos danske online casinoer." },
-              { title: "Mobil-first design", desc: "Nye online casinoer designes med mobilen i centrum – fuldt optimeret til smartphones og tablets med hurtig loading og intuitive menuer." },
+              { title: "Mobil-first design", desc: "Nye online casinoer designes med mobilen i centrum – fuldt optimeret til smartphones og tablets med hurtig loading og intuitive menuer.", link: "/mobil-casino" },
               { title: "Gamification og belønninger", desc: "Missioner, achievements og loyalitetsprogrammer gør spiloplevelsen mere engagerende og giver ekstra værdi for dit spil." },
               { title: "Personlige tilbud", desc: "Online casinoer bruger spilleradfærd til at skræddersy tilbud, der passer til den enkelte. Det betyder mere relevante kampagner og bedre værdi." },
               { title: "Udvidet live casino", desc: "Live dealer-sektioner vokser med nye spiltyper, game shows og interaktive funktioner fra Evolution Gaming og andre førende udbydere." },

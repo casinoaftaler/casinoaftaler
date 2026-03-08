@@ -507,7 +507,8 @@ const Betalingsmetoder = () => {
                   <Link to="/betalingsmetoder/apple-pay" className="text-primary underline hover:text-primary/80">Apple Pay</Link> repræsenterer den nyeste generation af casinobetalinger: biometrisk godkendelse, øjeblikkelig processering og minimal friktion. MobilePay bruger push-baseret API via din tilknyttede bankkonto med MitID-integration, mens Apple Pay anvender tokenisering via iPhonens Secure Element-chip.
                 </p>
                 <p>
-                  <strong>Bekvemmelighedsfordel:</strong> Hele transaktionen gennemføres med Face ID, Touch ID eller fingeraftryk – ingen kortnumre, ingen passwords, ingen PIN-koder. MobilePays gennemsnitlige transaktions-tid var 2,1 sekunder i vores test.
+                  <strong>Bekvemmelighedsfordel:</strong> Hele transaktionen gennemføres med Face ID, Touch ID eller fingeraftryk – ingen kortnumre, ingen passwords, ingen PIN-koder. MobilePays gennemsnitlige transaktions-tid var 2,1 sekunder i vores test. Læs vores komplette{" "}
+                  <Link to="/mobil-casino" className="text-primary underline hover:text-primary/80">mobil casino guide</Link> for dybdegående test af alle mobile betalingsløsninger.
                 </p>
                 <p>
                   <strong>Primær ulempe:</strong> Udbetalingssupport er begrænset. MobilePay sender udbetalinger til din tilknyttede bankkonto (ikke direkte til appen), og Apple Pay har varierende udbetalingssupport fra casino til casino. Begge kvalificerer til bonusser, da de teknisk registreres som bankbaserede betalinger.
