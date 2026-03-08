@@ -9,6 +9,32 @@ const STREAMSYSTEM_BASE = "https://www.streamsystem.bet/api/bonushunt/data";
 const STREAMER_ID = "959262659";
 const BLOCKED_HUNTS = new Set<number>();
 
+async function fetchStreamSystemData(streamsystemHuntId?: string | null, visibleId?: number) {
+  const urls: string[] = [];
+
+  if (streamsystemHuntId) {
+    urls.push(`${STREAMSYSTEM_BASE}/${streamsystemHuntId}`);
+  }
+
+  if (visibleId) {
+    urls.push(`${STREAMSYSTEM_BASE}/${STREAMER_ID}?visibleId=${visibleId}`);
+  }
+
+  for (const apiUrl of urls) {
+    try {
+      const response = await fetch(apiUrl, { headers: { Accept: 'application/json' } });
+      if (!response.ok) continue;
+
+      const raw = await response.json();
+      if (raw?.data) return raw;
+    } catch (e) {
+      console.error(`StreamSystem fetch failed for ${apiUrl}:`, e);
+    }
+  }
+
+  return null;
+}
+
 const TITLE_CASE_LOWER = new Set(['of', 'and', 'the', 'in', 'at', 'by', 'to', 'for', 'or', 'on', 'a', 'an']);
 const ROMAN_NUMERALS = new Set(['ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi', 'xii']);
 
@@ -85,19 +111,15 @@ Deno.serve(async (req) => {
     const results: any[] = [];
 
     for (const session of sessions) {
-      const apiUrl = `${STREAMSYSTEM_BASE}/${STREAMER_ID}?visibleId=${session.hunt_number}`;
-      const response = await fetch(apiUrl, { headers: { 'Accept': 'application/json' } });
-
-      if (!response.ok) {
-        results.push({ huntNumber: session.hunt_number, status: 'api_error', code: response.status });
-        continue;
-      }
-
-      const raw = await response.json();
+      const raw = await fetchStreamSystemData(session.streamsystem_hunt_id, session.hunt_number);
       const huntData = raw?.data;
 
       if (!huntData) {
-        results.push({ huntNumber: session.hunt_number, status: 'no_data' });
+        results.push({
+          huntNumber: session.hunt_number,
+          status: 'no_data',
+          streamsystemHuntId: session.streamsystem_hunt_id || null,
+        });
         continue;
       }
 
