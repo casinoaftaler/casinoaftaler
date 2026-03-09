@@ -693,19 +693,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
-  // Roulette strategi overview
-  if (path === "/casinospil/roulette-strategi") {
-    return {
-      guides: [
-        { to: "/casinospil/roulette", label: "Roulette Regler", icon: Target, desc: "Grundlæggende regler og varianter" },
-        { to: "/casinospil/roulette/martingale-roulette", label: "Martingale", icon: TrendingUp, desc: "Dobling efter tab – komplet analyse" },
-        { to: "/casinospil/roulette/fibonacci-roulette", label: "Fibonacci", icon: BarChart3, desc: "Naturlig talserie-progression" },
-        { to: "/casinospil/roulette/labouchere-roulette", label: "Labouchère", icon: BookOpen, desc: "Avanceret sekvens-system" },
-        { to: "/casinospil/blackjack", label: "Blackjack Strategi", icon: Gamepad2, desc: "Bordspil med skill-baseret edge" },
-      ],
-      subtitle: "Dyk ned i specifikke strategier og sammenlign med andre bordspil.",
-    };
-  }
+  // Roulette strategi overview → redirects to /casinospil/roulette (handled in App.tsx)
 
   // ── BLACKJACK CLUSTER: unique per-page related guides ──
   if (path === "/casinospil/blackjack/martingale") {
@@ -1002,7 +990,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       { to: "/nye-casinoer/2026", label: "Nye Casinoer 2026", icon: Sparkles, desc: "Alle nye casinoer i 2026" },
       { to: "/nye-casinoer/dansk-licens", label: "Med Dansk Licens", icon: ShieldCheck, desc: "Licenserede nye casinoer" },
       { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", icon: Zap, desc: "De hurtigste nye casinoer" },
-      { to: "/nye-casinoer/bedste", label: "Bedste Nye Casinoer", icon: Trophy, desc: "Vores topvalg i 2026" },
+      { to: "/nye-casinoer/vs-etablerede", label: "Nye vs. Etablerede", icon: Trophy, desc: "Datadrevet sammenligning" },
       { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", icon: Target, desc: "Lave omsætningskrav" },
     ];
     const currentIndex = nyeCasinoerSiblings.findIndex(g => g.to === path);

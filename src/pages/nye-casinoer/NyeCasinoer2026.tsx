@@ -420,7 +420,7 @@ const NyeCasinoer2026 = () => {
               { to: "/nye-casinoer", label: "Nye Casinoer – Hovedside", desc: "Komplet hub med alle nye casinoer" },
               { to: "/nye-casinoer/dansk-licens", label: "Med Dansk Licens", desc: "Kun licenserede nye casinoer" },
               { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", desc: "De hurtigste nye casinoer" },
-              { to: "/nye-casinoer/bedste", label: "Bedste Nye Casinoer", desc: "Vores topvalg i 2026" },
+              { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", desc: "Lave omsætningskrav" },
             ].map((link) => (
               <Link key={link.to} to={link.to} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
                 <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
