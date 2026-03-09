@@ -47,15 +47,30 @@ function SeedDatabaseSection() {
   const [isSeeding, setIsSeeding] = useState(false);
   const [currentProvider, setCurrentProvider] = useState<string | null>(null);
   const [completedProviders, setCompletedProviders] = useState<string[]>([]);
-  const [results, setResults] = useState<Record<string, { slots_processed: number; errors: string[] }>>({});
+  const [results, setResults] = useState<Record<string, { slots_processed: number; skipped: number; errors: string[] }>>({});
+  const [selectedProviders, setSelectedProviders] = useState<string[]>([...SEED_PROVIDERS]);
+
+  const toggleProvider = (provider: string) => {
+    setSelectedProviders(prev =>
+      prev.includes(provider) ? prev.filter(p => p !== provider) : [...prev, provider]
+    );
+  };
+
+  const toggleAll = () => {
+    setSelectedProviders(prev => prev.length === SEED_PROVIDERS.length ? [] : [...SEED_PROVIDERS]);
+  };
 
   const handleSeed = useCallback(async () => {
+    if (selectedProviders.length === 0) {
+      toast.error("Vælg mindst én provider");
+      return;
+    }
     setIsSeeding(true);
     setCompletedProviders([]);
     setResults({});
     let totalNew = 0;
 
-    for (const provider of SEED_PROVIDERS) {
+    for (const provider of selectedProviders) {
       setCurrentProvider(provider);
       try {
         const { data, error } = await supabase.functions.invoke("slot-catalog-seed", {
@@ -63,24 +78,24 @@ function SeedDatabaseSection() {
         });
 
         if (error) {
-          setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, errors: [error.message] } }));
+          setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, skipped: 0, errors: [error.message] } }));
         } else {
-          const providerResult = data?.providers?.[provider] || { slots_processed: 0, errors: [] };
+          const providerResult = data?.providers?.[provider] || { slots_processed: 0, skipped: 0, errors: [] };
           totalNew += providerResult.slots_processed;
           setResults(prev => ({ ...prev, [provider]: providerResult }));
         }
       } catch (e: any) {
-        setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, errors: [e.message] } }));
+        setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, skipped: 0, errors: [e.message] } }));
       }
       setCompletedProviders(prev => [...prev, provider]);
     }
 
     setCurrentProvider(null);
     setIsSeeding(false);
-    toast.success(`Seeding færdig! ${totalNew} slots behandlet.`);
-  }, []);
+    toast.success(`Seeding færdig! ${totalNew} nye slots tilføjet.`);
+  }, [selectedProviders]);
 
-  const progress = (completedProviders.length / SEED_PROVIDERS.length) * 100;
+  const progress = selectedProviders.length > 0 ? (completedProviders.length / selectedProviders.length) * 100 : 0;
 
   return (
     <Card>
