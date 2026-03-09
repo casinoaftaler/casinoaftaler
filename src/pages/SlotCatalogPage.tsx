@@ -320,7 +320,11 @@ export default function SlotCatalogPage() {
         )}
       </Helmet>
 
-      {/* Hero Section – same gradient as /nye-casinoer */}
+      <div className="container py-4">
+        <Breadcrumbs dynamicLabel={slot.slot_name} />
+      </div>
+
+      {/* Hero Section */}
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
@@ -344,8 +348,7 @@ export default function SlotCatalogPage() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <Breadcrumbs dynamicLabel={slot.slot_name} />
-        <AuthorMetaBar author="redaktionen" />
+        <AuthorMetaBar author="redaktionen" showAffiliateDisclaimer={false} />
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
