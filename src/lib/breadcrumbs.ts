@@ -317,6 +317,7 @@ export const routeLabels: Record<string, string> = {
   "/bonus-hunt": "Bonus Hunt",
   "/bonus-hunt/arkiv": "Bonus Hunt Arkiv",
   "/slot-database": "Slot Database",
+  "/slot-katalog": "Slot Database",
   "/community/hall-of-fame": "Hall of Fame",
 };
 
@@ -612,15 +613,25 @@ export function getBreadcrumbItems(
     return items;
   }
 
+  // Dynamic prefix overrides (e.g. /slot-katalog/:slug → Slot Database)
+  const DYNAMIC_PARENT_MAP: Record<string, { name: string; path: string }> = {
+    "/slot-katalog": { name: "Slot Database", path: "/slot-database" },
+  };
+
   const segments = pathname.split("/").filter(Boolean);
 
   if (segments.length > 1) {
     let currentPath = "";
     for (let i = 0; i < segments.length - 1; i++) {
       currentPath += `/${segments[i]}`;
-      const parentLabel =
-        routeLabels[currentPath] || segments[i].replace(/-/g, " ");
-      items.push({ name: parentLabel, path: currentPath });
+      const dynamicParent = DYNAMIC_PARENT_MAP[currentPath];
+      if (dynamicParent) {
+        items.push(dynamicParent);
+      } else {
+        const parentLabel =
+          routeLabels[currentPath] || segments[i].replace(/-/g, " ");
+        items.push({ name: parentLabel, path: currentPath });
+      }
     }
   }
 

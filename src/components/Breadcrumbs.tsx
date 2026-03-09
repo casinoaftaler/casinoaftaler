@@ -6,7 +6,7 @@ import { getBreadcrumbItems } from "@/lib/breadcrumbs";
  * Dynamic route prefixes where the global breadcrumb should NOT render,
  * because the page itself renders <Breadcrumbs dynamicLabel="..." />.
  */
-const DYNAMIC_PREFIXES: string[] = ["/casino-nyheder/"];
+const DYNAMIC_PREFIXES: string[] = ["/casino-nyheder/", "/slot-katalog/"];
 
 interface BreadcrumbsProps {
   /** Override the last breadcrumb label for dynamic pages (e.g. article title). */

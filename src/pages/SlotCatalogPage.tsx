@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { SITE_URL } from "@/lib/seo";
 import { slugifySlotName } from "@/lib/slugify";
 import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
-import { Badge } from "@/components/ui/badge";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash } from "lucide-react";
 
 /** Reverse lookup: display name → provider slug */
@@ -166,18 +166,7 @@ export default function SlotCatalogPage() {
       </Helmet>
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Breadcrumbs */}
-        <nav className="mb-6 text-sm text-muted-foreground" aria-label="Breadcrumb">
-          <ol className="flex items-center gap-1.5 flex-wrap">
-            <li><Link to="/" className="hover:text-primary">Forside</Link></li>
-            <li>/</li>
-            <li><Link to="/casinospil/spillemaskiner" className="hover:text-primary">Spillemaskiner</Link></li>
-            <li>/</li>
-            <li><Link to="/slot-database" className="hover:text-primary">Slot Database</Link></li>
-            <li>/</li>
-            <li className="text-foreground font-medium">{slot.slot_name}</li>
-          </ol>
-        </nav>
+        <Breadcrumbs dynamicLabel={slot.slot_name} />
 
         {/* Header */}
         <div className="mb-8">
