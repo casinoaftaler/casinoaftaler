@@ -483,7 +483,7 @@ const BonusBuySlots = () => {
               { to: "/jackpot-slots", title: "Jackpot Slots", desc: "Progressive jackpots med milliongevinster" },
               { to: "/casinospil/spillemaskiner", title: "Spillemaskiner Guide", desc: "Komplet guide til alle spilleautomater" },
               { to: "/casinospil/spillemaskiner/bonus-buys", title: "Bonus Buys Matematik", desc: "Dybdegående EV-analyse af bonus buys" },
-              { to: "/slot-database", title: "Slot Database", desc: "163+ slots med community-statistik" },
+              { to: "/slot-database", title: "Slot Database", desc: "1.400+ slots med community-statistik" },
               { to: "/ordbog", title: "Casino Ordbog", desc: "Forstå alle casino-termer" },
             ].map((item) => (
               <Link

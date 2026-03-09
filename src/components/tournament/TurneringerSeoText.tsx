@@ -288,7 +288,7 @@ export function TurneringerSeoText() {
             Derudover bidrager turneringsdata til vores{" "}
             <Link to="/slot-database" className="text-primary hover:underline">
               Slot Database
-            </Link>, som samler performance-statistik på tværs af 163+ spilleautomater — inklusiv
+            </Link>, som samler performance-statistik på tværs af 1.400+ spilleautomater — inklusiv
             community-maskinerne. Data fra hundredvis af daglige spins giver et statistisk grundlag,
             som langt overgår det, man kan opnå ved individuel test. Det er denne datamængde, der gør
             vores{" "}

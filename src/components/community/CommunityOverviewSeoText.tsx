@@ -42,7 +42,7 @@ export function CommunityOverviewSeoText() {
             <Link to="/slot-database" className="text-primary hover:underline">
               Slot Database
             </Link>{" "}
-            med 163+ analyserede spilleautomater.
+            med 1.400+ analyserede spilleautomater.
           </p>
           <p>
             Idéen bag communityet opstod fra Jonas' erfaring som casino-streamer. I stedet for kun at se
@@ -246,7 +246,7 @@ export function CommunityOverviewSeoText() {
             <Link to="/slot-database" className="text-primary hover:underline">
               Slot Database
             </Link>{" "}
-            samler performance-data på tværs af 163+ spilleautomater med metrics som bonus-frekvens,
+            samler performance-data på tværs af 1.400+ spilleautomater med metrics som bonus-frekvens,
             gennemsnitlige multiplikatorer og community-performance. Denne data er tilgængelig for alle
             og giver et statistisk grundlag for at vurdere, hvilke spil der performer bedst under
             forskellige forhold. For eksempel viser vores data, at{" "}

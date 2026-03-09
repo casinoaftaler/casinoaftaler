@@ -101,7 +101,7 @@ function resolveHubs(p: string) {
 }
 
 // === COMMUNITY ENTERPRISE HUBS ===
-const slotDatabaseHub: GuideLink = { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "163+ slots med community-data og statistik" };
+const slotDatabaseHub: GuideLink = { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "1.400+ slots med community-data og statistik" };
 const bonusHuntArkivHub: GuideLink = { to: "/bonus-hunt/arkiv", label: "Bonus Hunt Arkiv", icon: Trophy, desc: "Alle dokumenterede hunt-resultater" };
 const turneringsArkivHub: GuideLink = { to: "/community/turneringer/arkiv", label: "Turneringsarkiv", icon: Trophy, desc: "Månedlige vindere og leaderboards" };
 
@@ -442,7 +442,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [
         { to: "/bonus-hunt", label: "Bonus Hunt Live", icon: Trophy, desc: "Se aktive og kommende bonus hunts" },
-        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "163+ spillemaskiner med community-data" },
+        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "1.400+ spillemaskiner med community-data" },
         { to: "/community/turneringer", label: "Turneringer", icon: Trophy, desc: "Deltag i månedlige turneringer" },
         reviewHub,
         bonusHub,

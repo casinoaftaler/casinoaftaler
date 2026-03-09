@@ -8,9 +8,10 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Search, TrendingUp, Zap, BarChart3, Gamepad2, Trophy } from "lucide-react";
+import { Search, TrendingUp, BarChart3, Gamepad2, Trophy, ChevronLeft, ChevronRight } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { SlotDatabaseSeoContent } from "@/components/seo-content/SlotDatabaseSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
@@ -80,6 +81,8 @@ const PROVIDER_SLUG_MAP: Record<string, string> = {
   "Evolution Gaming": "evolution-gaming",
 };
 
+const ROWS_PER_PAGE = 100;
+
 const faqItems = [
   {
     question: "Hvad er slot-databasen?",
@@ -105,6 +108,7 @@ export default function SlotDatabase() {
   const [providerFilter, setProviderFilter] = useState("all");
   const [volatilityFilter, setVolatilityFilter] = useState("all");
   const [sortBy, setSortBy] = useState<"bonus_count" | "highest_x" | "rtp">("bonus_count");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const providers = useMemo(() => {
     if (!slots) return [];
@@ -134,6 +138,15 @@ export default function SlotDatabase() {
     return result;
   }, [slots, searchQuery, providerFilter, volatilityFilter, sortBy]);
 
+  // Reset page when filters change
+  useMemo(() => { setCurrentPage(1); }, [searchQuery, providerFilter, volatilityFilter, sortBy]);
+
+  const totalPages = Math.ceil(filtered.length / ROWS_PER_PAGE);
+  const paginatedSlots = useMemo(() => {
+    const start = (currentPage - 1) * ROWS_PER_PAGE;
+    return filtered.slice(start, start + ROWS_PER_PAGE);
+  }, [filtered, currentPage]);
+
   const stats = useMemo(() => {
     if (!slots) return { total: 0, providers: 0, avgRtp: 0, totalHunts: 0 };
     const providersSet = new Set(slots.map(s => s.provider).filter(p => p && p !== "Custom Slot" && p !== "Unknown"));
@@ -147,8 +160,11 @@ export default function SlotDatabase() {
     };
   }, [slots]);
 
-  const seoTitle = "Slot Database – 163+ Spillemaskiner Testet i Live Bonus Hunts";
-  const seoDesc = "Komplet database over spillemaskiner testet i vores live bonus hunts på Twitch. Se RTP, volatilitet, højeste gevinster og community-statistikker for 163+ slots.";
+  const slotCount = stats.total || 1400;
+  const slotCountLabel = `${slotCount}+`;
+
+  const seoTitle = `Slot Database – ${slotCountLabel} Spillemaskiner med Community Data`;
+  const seoDesc = `Komplet database over ${slotCountLabel} spillemaskiner testet i live bonus hunts. Se RTP, volatilitet, højeste gevinster og community-statistikker for alle slots.`;
 
   const articleSchema = buildArticleSchema({
     headline: seoTitle,
@@ -185,12 +201,12 @@ export default function SlotDatabase() {
               Live Data fra Bonus Hunts
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Slot Database – Alle Spillemaskiner Testet Live
+              Slot Database – {slotCountLabel} Spillemaskiner Testet Live
             </h1>
             <p className="text-lg text-white/80">
               Komplet oversigt over alle spillemaskiner vi har testet i vores{" "}
               <Link to="/bonus-hunt" className="underline hover:text-white">live bonus hunts</Link>.
-              {" "}Ægte community-data fra vores Twitch-streams – ikke teoretiske tal. Se <Link to="/ordbog/rtp" className="underline hover:text-white">RTP</Link>, <Link to="/ordbog/volatilitet" className="underline hover:text-white">volatilitet</Link> og performance for 163+ slots.
+              {" "}Ægte community-data fra vores Twitch-streams – ikke teoretiske tal. Se <Link to="/ordbog/rtp" className="underline hover:text-white">RTP</Link>, <Link to="/ordbog/volatilitet" className="underline hover:text-white">volatilitet</Link> og performance for {slotCountLabel} slots.
             </p>
           </div>
         </div>
@@ -267,18 +283,18 @@ export default function SlotDatabase() {
         </div>
 
         <p className="text-sm text-muted-foreground mb-4">
-          Viser {filtered.length} af {slots?.length || 0} spillemaskiner
+          Viser {(currentPage - 1) * ROWS_PER_PAGE + 1}–{Math.min(currentPage * ROWS_PER_PAGE, filtered.length)} af {filtered.length} spillemaskiner
         </p>
 
         {/* noscript fallback for crawlers that don't execute JS */}
         <noscript>
           <div className="rounded-lg border border-border p-6 my-8 bg-muted/30">
-            <h2 className="text-xl font-bold mb-3">Slot Database – 163+ Spillemaskiner</h2>
+            <h2 className="text-xl font-bold mb-3">Slot Database – 1.400+ Spillemaskiner</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Denne database indeholder over 163 spillemaskiner testet i vores live bonus hunts på Twitch.
+              Denne database indeholder over 1.400 spillemaskiner testet og catalogiseret med data fra vores live bonus hunts på Twitch.
               Hver maskine har detaljerede data om RTP, volatilitet, højeste multiplikator (X) og antal
               bonus hunt-optrædener. Databasen dækker udbydere som Pragmatic Play, Hacksaw Gaming,
-              Nolimit City, Play'n GO, NetEnt, Big Time Gaming, Red Tiger og mange flere.
+              Nolimit City, Play'n GO, NetEnt, Big Time Gaming, Red Tiger, ELK Studios, Yggdrasil og mange flere.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Populære spillemaskiner i databasen inkluderer Sweet Bonanza, Book of Dead, Gates of Olympus,
@@ -297,60 +313,114 @@ export default function SlotDatabase() {
         {isLoading ? (
           <div className="text-center py-12 text-muted-foreground">Indlæser slot-database...</div>
         ) : (
-          <div className="rounded-lg border border-border overflow-hidden">
-            <div className="overflow-y-auto overflow-x-auto max-h-[880px]">
-              <table className="w-full text-sm">
-                <thead className="sticky top-0 z-10 bg-muted">
-                  <tr className="border-b border-border">
-                    <th className="px-4 py-3 text-left font-medium text-foreground">Spillemaskine</th>
-                    <th className="px-4 py-3 text-left font-medium text-foreground">Udbyder</th>
-                    <th className="px-4 py-3 text-center font-medium text-foreground">RTP</th>
-                    <th className="px-4 py-3 text-center font-medium text-foreground">Volatilitet</th>
-                    <th className="px-4 py-3 text-center font-medium text-foreground">Højeste X</th>
-                    <th className="px-4 py-3 text-center font-medium text-foreground">Højeste Gevinst</th>
-                    <th className="px-4 py-3 text-center font-medium text-foreground">Antal Hunts</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filtered.map((slot) => {
-                    const guideUrl = getSlotGuideUrl(slot.slot_name);
-                    const providerSlug = PROVIDER_SLUG_MAP[slot.provider];
+          <>
+            <div className="rounded-lg border border-border overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="bg-muted">
+                    <tr className="border-b border-border">
+                      <th className="px-4 py-3 text-left font-medium text-foreground">Spillemaskine</th>
+                      <th className="px-4 py-3 text-left font-medium text-foreground">Udbyder</th>
+                      <th className="px-4 py-3 text-center font-medium text-foreground">RTP</th>
+                      <th className="px-4 py-3 text-center font-medium text-foreground">Volatilitet</th>
+                      <th className="px-4 py-3 text-center font-medium text-foreground">Højeste X</th>
+                      <th className="px-4 py-3 text-center font-medium text-foreground">Højeste Gevinst</th>
+                      <th className="px-4 py-3 text-center font-medium text-foreground">Antal Hunts</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {paginatedSlots.map((slot) => {
+                      const guideUrl = getSlotGuideUrl(slot.slot_name);
+                      const providerSlug = PROVIDER_SLUG_MAP[slot.provider];
+                      return (
+                        <tr key={slot.id} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                          <td className="px-4 py-3 font-medium text-foreground">
+                            {guideUrl ? (
+                              <Link to={guideUrl} className="text-primary hover:underline">{slot.slot_name}</Link>
+                            ) : slot.slot_name}
+                          </td>
+                          <td className="px-4 py-3 text-muted-foreground">
+                            {providerSlug ? (
+                              <Link to={`/spiludviklere/${providerSlug}`} className="text-primary/80 hover:underline">{slot.provider}</Link>
+                            ) : slot.provider}
+                          </td>
+                          <td className="px-4 py-3 text-center text-muted-foreground">
+                            {slot.rtp ? `${slot.rtp}%` : "–"}
+                          </td>
+                          <td className="px-4 py-3 text-center">
+                            {slot.volatility ? (
+                              <Badge variant={getVolatilityColor(slot.volatility)}>{slot.volatility}</Badge>
+                            ) : "–"}
+                          </td>
+                          <td className="px-4 py-3 text-center font-semibold text-foreground">
+                            {slot.highest_x && slot.highest_x > 0 ? `${Number(slot.highest_x.toFixed(1))}x` : "–"}
+                          </td>
+                          <td className="px-4 py-3 text-center text-muted-foreground">
+                            {slot.highest_win && slot.highest_win > 0 ? `${Number(slot.highest_win.toFixed(1))} kr` : "–"}
+                          </td>
+                          <td className="px-4 py-3 text-center">
+                            <Badge variant="outline">{slot.bonus_count}</Badge>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex items-center justify-between mt-4">
+                <p className="text-sm text-muted-foreground">
+                  Side {currentPage} af {totalPages}
+                </p>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    disabled={currentPage === 1}
+                    onClick={() => { setCurrentPage(p => p - 1); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                  >
+                    <ChevronLeft className="h-4 w-4 mr-1" />
+                    Forrige
+                  </Button>
+                  {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+                    let page: number;
+                    if (totalPages <= 5) {
+                      page = i + 1;
+                    } else if (currentPage <= 3) {
+                      page = i + 1;
+                    } else if (currentPage >= totalPages - 2) {
+                      page = totalPages - 4 + i;
+                    } else {
+                      page = currentPage - 2 + i;
+                    }
                     return (
-                      <tr key={slot.id} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                        <td className="px-4 py-3 font-medium text-foreground">
-                          {guideUrl ? (
-                            <Link to={guideUrl} className="text-primary hover:underline">{slot.slot_name}</Link>
-                          ) : slot.slot_name}
-                        </td>
-                        <td className="px-4 py-3 text-muted-foreground">
-                          {providerSlug ? (
-                            <Link to={`/spiludviklere/${providerSlug}`} className="text-primary/80 hover:underline">{slot.provider}</Link>
-                          ) : slot.provider}
-                        </td>
-                        <td className="px-4 py-3 text-center text-muted-foreground">
-                          {slot.rtp ? `${slot.rtp}%` : "–"}
-                        </td>
-                        <td className="px-4 py-3 text-center">
-                          {slot.volatility ? (
-                            <Badge variant={getVolatilityColor(slot.volatility)}>{slot.volatility}</Badge>
-                          ) : "–"}
-                        </td>
-                        <td className="px-4 py-3 text-center font-semibold text-foreground">
-                          {slot.highest_x && slot.highest_x > 0 ? `${Number(slot.highest_x.toFixed(1))}x` : "–"}
-                        </td>
-                        <td className="px-4 py-3 text-center text-muted-foreground">
-                          {slot.highest_win && slot.highest_win > 0 ? `${Number(slot.highest_win.toFixed(1))} kr` : "–"}
-                        </td>
-                        <td className="px-4 py-3 text-center">
-                          <Badge variant="outline">{slot.bonus_count}</Badge>
-                        </td>
-                      </tr>
+                      <Button
+                        key={page}
+                        variant={page === currentPage ? "default" : "outline"}
+                        size="sm"
+                        className="w-9"
+                        onClick={() => { setCurrentPage(page); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                      >
+                        {page}
+                      </Button>
                     );
                   })}
-                </tbody>
-              </table>
-            </div>
-          </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    disabled={currentPage === totalPages}
+                    onClick={() => { setCurrentPage(p => p + 1); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                  >
+                    Næste
+                    <ChevronRight className="h-4 w-4 ml-1" />
+                  </Button>
+                </div>
+              </div>
+            )}
+          </>
         )}
 
         <SlotDatabaseSeoContent />

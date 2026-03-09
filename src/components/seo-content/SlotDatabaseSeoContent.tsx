@@ -20,7 +20,7 @@ export function SlotDatabaseSeoContent() {
         <p className="text-muted-foreground leading-relaxed">
           Hver spillemaskine i databasen har en komplet historik: hvor mange gange den er blevet testet, den højeste
           multiplikator (X) vi har ramt, og den største enkeltgevinst. Denne data opdateres automatisk efter hver
-          bonus hunt, så du altid ser de nyeste tal. Vi har i skrivende stund testet over 163 unikke spillemaskiner
+          bonus hunt, så du altid ser de nyeste tal. Vi har i skrivende stund catalogiseret over 1.400 unikke spillemaskiner
           på tværs af mere end 15 forskellige spiludviklere – og tallet vokser konstant.
         </p>
         <p className="text-muted-foreground leading-relaxed">
@@ -594,7 +594,7 @@ export function SlotDatabaseSeoContent() {
 
         <h3 className="text-xl font-bold text-foreground mt-6">Statistisk pålidelighed</h3>
         <p className="text-muted-foreground leading-relaxed">
-          Det er vigtigt at anerkende begrænsningerne i vores data. Med 163+ spillemaskiner og hundredvis af
+          Det er vigtigt at anerkende begrænsningerne i vores data. Med 1.400+ spillemaskiner og hundredvis af
           bonusåbninger har vi en solid datamængde, men det er stadig en relativt lille sample size i statistisk
           forstand. For de mest testede maskiner (30-50+ hunts) er vores data rimelig pålidelig som indikator
           for generel performance, men for maskiner med kun 1-5 hunts bør tallene betragtes som anekdotiske
