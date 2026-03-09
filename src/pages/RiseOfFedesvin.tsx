@@ -221,9 +221,19 @@ export default function RiseOfFedesvin() {
       </div>
 
       {isMobile ? (
-        /* ── MOBILE: native width, no CSS transform scaling ── */
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="w-full px-1">
+        /* ── MOBILE: CSS transform scaling (same as desktop) ── */
+        <div className="flex-1 flex items-start justify-center overflow-hidden">
+          <div
+            className="slot-viewport-container"
+            style={{
+              width: '1200px',
+              transform: `scale(${scale})`,
+              transformOrigin: 'top center',
+              marginBottom: `${-(920 * (1 - scale))}px`,
+              marginLeft: `${-(1200 * (1 - scale)) / 2}px`,
+              marginRight: `${-(1200 * (1 - scale)) / 2}px`,
+            }}
+          >
             <SlotPageLayout sidePanel={null}>
               <SlotGame gameId={GAME_ID} />
             </SlotPageLayout>
