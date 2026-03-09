@@ -1,44 +1,24 @@
 
 
-## Problem: Supabase 1.000 rækker default limit
+## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
 
-Ingen af slot catalog queries har en eksplicit `.limit()`, så Supabase's standard cap på 1.000 rækker træder i kraft. Når databasen nu har >1.000 slots, vises kun de første 1.000.
+### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
 
-### Berørte steder
+The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
 
-1. **`useSlotCatalog()`** (admin) — `.select('*').order('slot_name')` — mangler range/limit
-2. **`useSlotCatalogMap()`** (bonus hunt display) — `.select('slot_name, provider')` — mangler range/limit  
-3. **`useSlotCatalog()` i `SlotDatabase.tsx`** — bruger `useSlotCatalog()` som returnerer max 1.000
+Specifically:
+- **Remove** Gevinst from the right zone (lines 247-261)
+- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
 
-### Plan
+Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
 
-**Trin 1: Tilføj pagination til alle slot catalog queries**
+### 2. Add Count-Up Animation for Win Amount
 
-For queries der skal returnere ALLE slots (map-lookup, admin, slot database page), brug en pagineringsfunktion der henter i batches af 1.000 og sammensætter:
+Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
+- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
+- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
+- The component already handles ease-out counting and bump animation on completion
 
-```typescript
-async function fetchAllSlots(selectQuery: string) {
-  let allData = [];
-  let from = 0;
-  const batchSize = 1000;
-  while (true) {
-    const { data, error } = await supabase
-      .from('slot_catalog')
-      .select(selectQuery)
-      .range(from, from + batchSize - 1);
-    if (error) throw error;
-    allData = allData.concat(data || []);
-    if (!data || data.length < batchSize) break;
-    from += batchSize;
-  }
-  return allData;
-}
-```
-
-Opdater disse tre hooks:
-- `useSlotCatalog()` — hent alle med pagination
-- `useSlotCatalogMap()` — hent alle med pagination
-- `SlotDatabase.tsx` — bruger allerede `useSlotCatalog()`, så den fixes automatisk
-
-**Resultat:** Alle 1.000+ slots vises korrekt på /slot-katalog og i admin.
+### Files Modified
+- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
 
