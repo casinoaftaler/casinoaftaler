@@ -237,6 +237,15 @@ export default function SlotDatabase() {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="28 min" />
 
+        {freshnessLabel && (
+          <div className="flex items-center gap-2 mb-4 mt-2">
+            <Badge variant="outline" className="text-xs">
+              <RefreshCw className="h-3 w-3 mr-1" />
+              {freshnessLabel}
+            </Badge>
+          </div>
+        )}
+
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
             src={slotDatabaseHero}
