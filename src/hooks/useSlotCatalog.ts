@@ -59,18 +59,14 @@ export function useSlotCatalogMap() {
   return useQuery({
     queryKey: ['slot-catalog-map'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('slot_catalog')
-        .select('slot_name, provider');
-      if (error) throw error;
+      const data = await fetchAllFromSlotCatalog<{ slot_name: string; provider: string }>('slot_name, provider');
       const providerMap = new Map<string, string>();
       const nameMap = new Map<string, string>();
-      data?.forEach(row => {
+      data.forEach(row => {
         const key = row.slot_name.toLowerCase();
         if (row.provider && row.provider !== 'Custom Slot') {
           providerMap.set(key, row.provider);
         }
-        // Always store the canonical name from catalog
         nameMap.set(key, row.slot_name);
       });
       return { providerMap, nameMap };
