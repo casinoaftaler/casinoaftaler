@@ -289,12 +289,15 @@ export default function SlotCatalogPage() {
         <Breadcrumbs dynamicLabel={slot.slot_name} />
 
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-3 flex items-center gap-3">
-            <Gamepad2 className="h-8 w-8 text-primary" />
+        <div className="mb-6">
+          <Badge variant="outline" className="mb-3 gap-1.5 text-xs font-medium">
+            <Gamepad2 className="h-3.5 w-3.5" />
+            Slot Data
+          </Badge>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">
             {slot.slot_name}
           </h1>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
             {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" ? (
               <>
                 Udviklet af{" "}
@@ -308,9 +311,15 @@ export default function SlotCatalogPage() {
                 {" · "}
               </>
             ) : null}
+            {slot.rtp ? `RTP ${slot.rtp}%` : ""}
+            {slot.rtp && slot.volatility ? " · " : ""}
+            {slot.volatility ? `${slot.volatility} volatilitet` : ""}
+            {" · "}
             Testet i {slot.bonus_count} bonus hunt{slot.bonus_count !== 1 ? "s" : ""} med ægte community-data.
           </p>
         </div>
+
+        <AuthorMetaBar author="redaktionen" />
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
