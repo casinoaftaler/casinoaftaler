@@ -523,6 +523,7 @@ const App = () => (
                 <Route path="/bonus-hunt" element={<Suspense fallback={null}><BonusHunt /></Suspense>} />
                 <Route path="/bonus-hunt/arkiv" element={<BonusHuntArkiv />} />
                 <Route path="/slot-database" element={<SlotDatabase />} />
+                <Route path="/slot-katalog/:slug" element={<SlotCatalogPage />} />
                 <Route path="/community/hall-of-fame" element={<HallOfFame />} />
                 <Route path="/community/bonus-hunt" element={<Navigate to="/bonus-hunt" replace />} />
                 <Route 
