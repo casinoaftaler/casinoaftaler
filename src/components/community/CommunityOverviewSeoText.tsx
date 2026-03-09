@@ -42,7 +42,7 @@ export function CommunityOverviewSeoText() {
             <Link to="/slot-database" className="text-primary hover:underline">
               Slot Database
             </Link>{" "}
-            med 163+ analyserede spilleautomater.
+            med 1.400+ analyserede spilleautomater.
           </p>
           <p>
             Idéen bag communityet opstod fra Jonas' erfaring som casino-streamer. I stedet for kun at se
