@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { SEO } from "@/components/SEO";
 import { seoRoutes } from "@/lib/seoRoutes";
 
 /** Extract all bonus-related routes from seoRoutes */
