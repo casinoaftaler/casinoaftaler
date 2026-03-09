@@ -8,12 +8,10 @@ const corsHeaders = {
 };
 
 const DEFAULT_PROVIDERS = [
-  "Pragmatic Play", "NetEnt", "Microgaming", "Playtech", "Play'n GO",
-  "Evolution", "Betsoft", "Blueprint Gaming", "Relax Gaming", "Push Gaming",
-  "ELK Studios", "Big Time Gaming", "Quickspin", "Yggdrasil Gaming", "Nolimit City",
-  "Hacksaw Gaming", "BGaming", "Red Tiger Gaming", "Thunderkick", "Endorphina",
-  "Kalamba Games", "Reel Kingdom", "Fantasma Games", "PearFiction Studios",
-  "Gameburger Studios", "Spadegaming", "Booming Games", "AvatarUX", "Print Studios",
+  "Pragmatic Play", "NetEnt", "Microgaming", "Playtech", "Thunderkick",
+  "Play'n GO", "Red Tiger Gaming", "Big Time Gaming", "Betsoft",
+  "Blueprint Gaming", "Relax Gaming", "Push Gaming", "ELK Studios",
+  "Quickspin", "Yggdrasil Gaming", "Nolimit City", "Hacksaw Gaming",
 ];
 
 interface SlotData {
