@@ -1,25 +1,24 @@
 
 
-## Problem: Falsk "Bonus Hunt Tests" tal
+## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
 
-### Årsag
+### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
 
-`upsert_slot_catalog` RPC'en indsætter nye slots med `bonus_count = 1` som default:
+The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
 
-```sql
-INSERT INTO slot_catalog (..., bonus_count)
-VALUES (..., 1);  -- <-- BUG: skal være 0
-```
+Specifically:
+- **Remove** Gevinst from the right zone (lines 247-261)
+- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
 
-Når seed-funktionen tilføjede ~500 nye slots, fik hver enkelt `bonus_count = 1` — selvom de **aldrig** har optrådt i en bonus hunt. Det blæser "Bonus Hunt Tests"-tallet op med ~500.
+Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
 
-### Plan
+### 2. Add Count-Up Animation for Win Amount
 
-**1. Fix `upsert_slot_catalog` RPC** (database migration)
-- Ændr INSERT-linjen fra `bonus_count, 1` til `bonus_count, 0` for nye slots.
+Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
+- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
+- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
+- The component already handles ease-out counting and bump animation on completion
 
-**2. Nulstil seeded slots' bonus_count** (database migration)
-- Sæt `bonus_count = 0` for alle slots der aldrig har optrådt i en bonus hunt (dvs. `highest_win = 0 AND highest_x = 0`).
-
-**Resultat:** "Bonus Hunt Tests" viser kun reelle optræden i bonus hunts — ikke AI-seedede slots.
+### Files Modified
+- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
 
