@@ -29,16 +29,24 @@ function useSlotBySlug(slug: string) {
   return useQuery({
     queryKey: ["slot-catalog-slug", slug],
     queryFn: async () => {
-      // Fetch all slots and find by slugified name
-      const { data, error } = await supabase
-        .from("slot_catalog")
-        .select("*")
-        .order("slot_name");
-      if (error) throw error;
-      const match = (data || []).find(
-        (s) => slugifySlotName(s.slot_name) === slug
-      );
-      return match || null;
+      // Paginate through all slots to find by slugified name (bypasses 1000-row limit)
+      const batchSize = 1000;
+      let from = 0;
+      while (true) {
+        const { data, error } = await supabase
+          .from("slot_catalog")
+          .select("*")
+          .order("slot_name")
+          .range(from, from + batchSize - 1);
+        if (error) throw error;
+        const match = (data || []).find(
+          (s) => slugifySlotName(s.slot_name) === slug
+        );
+        if (match) return match;
+        if (!data || data.length < batchSize) break;
+        from += batchSize;
+      }
+      return null;
     },
     staleTime: 300000,
   });
