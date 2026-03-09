@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,9 +8,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-import { Plus, Trash2, Pencil, Search, Loader2, Check, ChevronsUpDown } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { Plus, Trash2, Pencil, Search, Loader2, Check, ChevronsUpDown, Database } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import {
   useSlotCatalog,
   useCreateSlotCatalogEntry,
@@ -22,12 +24,115 @@ import {
   type SlotCatalogEntry,
 } from "@/hooks/useSlotCatalog";
 
+const SEED_PROVIDERS = [
+  "Pragmatic Play", "NetEnt", "Play'n GO", "Hacksaw Gaming", "Nolimit City",
+  "Big Time Gaming", "Red Tiger", "ELK Studios", "Yggdrasil", "Microgaming",
+  "Relax Gaming", "Push Gaming", "Thunderkick", "Blueprint Gaming", "iSoftBet",
+];
+
 export function SlotCatalogAdminSection() {
   return (
     <div className="space-y-8">
+      <SeedDatabaseSection />
       <ProviderOverridesSection />
       <SlotCatalogSection />
     </div>
+  );
+}
+
+// ── Seed Database ──
+function SeedDatabaseSection() {
+  const [isSeeding, setIsSeeding] = useState(false);
+  const [currentProvider, setCurrentProvider] = useState<string | null>(null);
+  const [completedProviders, setCompletedProviders] = useState<string[]>([]);
+  const [results, setResults] = useState<Record<string, { slots_processed: number; errors: string[] }>>({});
+
+  const handleSeed = useCallback(async () => {
+    setIsSeeding(true);
+    setCompletedProviders([]);
+    setResults({});
+    let totalNew = 0;
+
+    for (const provider of SEED_PROVIDERS) {
+      setCurrentProvider(provider);
+      try {
+        const { data, error } = await supabase.functions.invoke("slot-catalog-seed", {
+          body: { provider },
+        });
+
+        if (error) {
+          setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, errors: [error.message] } }));
+        } else {
+          const providerResult = data?.providers?.[provider] || { slots_processed: 0, errors: [] };
+          totalNew += providerResult.slots_processed;
+          setResults(prev => ({ ...prev, [provider]: providerResult }));
+        }
+      } catch (e: any) {
+        setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, errors: [e.message] } }));
+      }
+      setCompletedProviders(prev => [...prev, provider]);
+    }
+
+    setCurrentProvider(null);
+    setIsSeeding(false);
+    toast.success(`Seeding færdig! ${totalNew} slots behandlet.`);
+  }, []);
+
+  const progress = (completedProviders.length / SEED_PROVIDERS.length) * 100;
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Database className="h-5 w-5" />
+          Seed Slot Database
+        </CardTitle>
+        <p className="text-sm text-muted-foreground">
+          Udvid slot-kataloget med populære slots fra 15 top-providers via AI. Eksisterende data (gevinster, bonus count) røres ikke.
+        </p>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <Button onClick={handleSeed} disabled={isSeeding} size="lg">
+          {isSeeding ? (
+            <>
+              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+              Seeder {currentProvider}...
+            </>
+          ) : (
+            <>
+              <Database className="h-4 w-4 mr-2" />
+              Start Seeding (15 providers)
+            </>
+          )}
+        </Button>
+
+        {isSeeding && (
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm text-muted-foreground">
+              <span>{currentProvider}</span>
+              <span>{completedProviders.length}/{SEED_PROVIDERS.length}</span>
+            </div>
+            <Progress value={progress} className="h-2" />
+          </div>
+        )}
+
+        {Object.keys(results).length > 0 && (
+          <div className="border border-border rounded-lg divide-y divide-border text-sm max-h-60 overflow-auto">
+            {Object.entries(results).map(([provider, r]) => (
+              <div key={provider} className="flex items-center justify-between px-3 py-2">
+                <span className="font-medium">{provider}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-muted-foreground">{r.slots_processed} slots</span>
+                  {r.errors.length > 0 && (
+                    <span className="text-destructive">{r.errors.length} fejl</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }
 
