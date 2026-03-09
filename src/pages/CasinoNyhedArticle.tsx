@@ -9,7 +9,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { NewsContextualCTA } from "@/components/NewsContextualCTA";
 import { useNewsArticle } from "@/hooks/useCasinoNews";
 import { useRelatedNews } from "@/hooks/useRelatedNews";
-import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, SITE_URL, AJSE_SAME_AS } from "@/lib/seo";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { CalendarDays, Loader2, Newspaper, Crown, RefreshCw } from "lucide-react";
@@ -110,7 +110,7 @@ const CasinoNyhedArticle = () => {
     image: article.featured_image || undefined,
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
-    authorSameAs: [],
+    authorSameAs: AJSE_SAME_AS,
   });
 
   const faqJsonLd = faqs.length > 0 ? buildFaqSchema(faqs) : null;
