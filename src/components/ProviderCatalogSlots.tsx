@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PROVIDER_TO_SLOTS, PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
 import { useProviderSlots, useLatestCatalogUpdate } from "@/hooks/useProviderSlots";
+import { slugifySlotName } from "@/lib/slugify";
 
 interface ProviderCatalogSlotsProps {
   providerSlug: string;
