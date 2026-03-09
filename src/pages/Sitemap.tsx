@@ -70,9 +70,6 @@ export default function Sitemap() {
         description="Komplet oversigt over alle sider på Casinoaftaler.dk – find hurtigt casino anmeldelser, bonusguides, spiludviklere og meget mere."
         noindex
       />
-      <div className="container py-4">
-        <Breadcrumbs />
-      </div>
       <div className="container py-8">
         <h1 className="text-3xl font-bold mb-4">Sitemap</h1>
         <p className="text-muted-foreground mb-6">
