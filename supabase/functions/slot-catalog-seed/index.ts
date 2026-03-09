@@ -66,6 +66,7 @@ async function fetchSlotsForProvider(
     : "";
 
   const prompt = `List the 40 most popular and well-known online casino slot machines made by "${provider}".
+CRITICAL: Return all slot names in their original English titles only. Do NOT translate names into any other language.
 ${existingList}
 
 For each slot return a JSON object with these fields:
@@ -91,7 +92,7 @@ Return ONLY a JSON array, no markdown, no explanation. Example:
           {
             role: "system",
             content:
-              "You are an expert on online casino slot machines. Return only valid JSON arrays. Be accurate with RTP values and volatility ratings. Only include slots that are genuinely made by the requested provider.",
+              "You are an expert on online casino slot machines. Return only valid JSON arrays. Be accurate with RTP values and volatility ratings. Only include slots that are genuinely made by the requested provider. CRITICAL: Always return slot names in their original English titles only. Never translate slot names into any other language.",
           },
           { role: "user", content: prompt },
         ],
@@ -115,7 +116,8 @@ Return ONLY a JSON array, no markdown, no explanation. Example:
   }
 
   const slots: SlotData[] = JSON.parse(jsonMatch[0]);
-  return slots.filter((s) => s.name && typeof s.name === "string");
+  // Filter out non-ASCII names (prevents Hindi/Devanagari translations from AI)
+  return slots.filter((s) => s.name && typeof s.name === "string" && !/[^\x00-\x7F]/.test(s.name));
 }
 
 serve(async (req) => {
