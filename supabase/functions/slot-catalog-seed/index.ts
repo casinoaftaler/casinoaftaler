@@ -116,7 +116,8 @@ Return ONLY a JSON array, no markdown, no explanation. Example:
   }
 
   const slots: SlotData[] = JSON.parse(jsonMatch[0]);
-  return slots.filter((s) => s.name && typeof s.name === "string");
+  // Filter out non-ASCII names (prevents Hindi/Devanagari translations from AI)
+  return slots.filter((s) => s.name && typeof s.name === "string" && !/[^\x00-\x7F]/.test(s.name));
 }
 
 serve(async (req) => {
