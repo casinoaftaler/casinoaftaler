@@ -345,6 +345,11 @@ export const EXCLUDED_PREFIXES = [
  * Value: ordered list of ancestor { name, path } to inject between Forside and the page itself.
  */
 const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
+  // Sitemap sub-pages
+  "/sitemap/casino-anmeldelser": [{ name: "Sitemap", path: "/sitemap" }],
+  "/sitemap/casino-bonus": [{ name: "Sitemap", path: "/sitemap" }],
+  "/sitemap/casinospil": [{ name: "Sitemap", path: "/sitemap" }],
+
   "/licenserede-casinoer": [{ name: "Casinoer", path: "/casinoer" }],
 
   // Casinoer cluster – orphan pages bound to /casinoer hub
