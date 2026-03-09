@@ -524,6 +524,7 @@ const App = () => (
                 <Route path="/bonus-hunt/arkiv" element={<BonusHuntArkiv />} />
                 <Route path="/slot-database" element={<SlotDatabase />} />
                 <Route path="/slot-katalog/:slug" element={<SlotCatalogPage />} />
+                <Route path="/slot-katalog" element={<Navigate to="/slot-database" replace />} />
                 <Route path="/community/hall-of-fame" element={<HallOfFame />} />
                 <Route path="/community/bonus-hunt" element={<Navigate to="/bonus-hunt" replace />} />
                 <Route 
