@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { seoRoutes } from "@/lib/seoRoutes";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
-import { slugifySlotName } from "@/lib/slugify";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
-// ── Static sitemap grouping (Tab 1) ──
+// ── Static sitemap grouping ──
 
 interface RouteGroup {
   title: string;
@@ -64,213 +61,9 @@ function pathToLabel(path: string): string {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-// ── Alphabetical grouping helper ──
-
-const ALPHABET = [
-  "#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-  "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å",
-];
-
-function groupAlphabetically<T>(items: T[], getName: (item: T) => string) {
-  const groups = new Map<string, T[]>();
-  for (const letter of ALPHABET) groups.set(letter, []);
-
-  for (const item of items) {
-    const firstChar = getName(item).charAt(0).toUpperCase();
-    if (/[A-ZÆØÅ]/.test(firstChar)) {
-      const bucket = groups.get(firstChar);
-      if (bucket) bucket.push(item);
-      else groups.get("#")!.push(item);
-    } else {
-      groups.get("#")!.push(item);
-    }
-  }
-
-  return ALPHABET
-    .filter((letter) => (groups.get(letter)?.length ?? 0) > 0)
-    .map((letter) => ({ letter, items: groups.get(letter)! }));
-}
-
-// ── Data hooks ──
-
-function useSitemapCasinos() {
-  return useQuery({
-    queryKey: ["sitemap-casinos"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("casinos_public")
-        .select("name, slug")
-        .eq("is_active", true)
-        .order("name");
-      if (error) throw error;
-      return (data || []) as { name: string; slug: string }[];
-    },
-    staleTime: 3600000, // 1 hour
-  });
-}
-
-function useSitemapSlots() {
-  return useQuery({
-    queryKey: ["sitemap-slots"],
-    queryFn: async () => {
-      const batchSize = 1000;
-      let allData: { slot_name: string; slug: string | null }[] = [];
-      let from = 0;
-      while (true) {
-        const { data, error } = await supabase
-          .from("slot_catalog")
-          .select("slot_name, slug")
-          .order("slot_name")
-          .range(from, from + batchSize - 1);
-        if (error) throw error;
-        allData = allData.concat((data || []) as { slot_name: string; slug: string | null }[]);
-        if (!data || data.length < batchSize) break;
-        from += batchSize;
-      }
-      return allData;
-    },
-    staleTime: 3600000,
-  });
-}
-
-// ── Tab Components ──
-
-function StaticSitemapTab() {
-  const groups = groupRoutes();
-  return (
-    <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {groups.map((group) => (
-        <section key={group.title}>
-          <h2 className="text-lg font-semibold mb-3 text-foreground">{group.title}</h2>
-          <ul className="space-y-1.5">
-            {group.routes.map((route) => (
-              <li key={route.path}>
-                <Link
-                  to={route.path}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {pathToLabel(route.path)}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
-    </div>
-  );
-}
-
-function CasinoSitemapTab() {
-  const { data: casinos, isLoading } = useSitemapCasinos();
-
-  if (isLoading) return <p className="text-muted-foreground">Indlæser casinoer…</p>;
-  if (!casinos?.length) return <p className="text-muted-foreground">Ingen casinoer fundet.</p>;
-
-  const grouped = groupAlphabetically(casinos, (c) => c.name);
-
-  return (
-    <div>
-      <div className="flex flex-wrap gap-1.5 mb-6">
-        {grouped.map(({ letter }) => (
-          <a
-            key={letter}
-            href={`#casino-${letter}`}
-            className="px-2 py-1 text-xs font-medium rounded bg-muted text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-          >
-            {letter}
-          </a>
-        ))}
-      </div>
-
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {grouped.map(({ letter, items }) => (
-          <section key={letter} id={`casino-${letter}`}>
-            <h2 className="text-lg font-semibold mb-3 text-foreground">{letter}</h2>
-            <ul className="space-y-1.5">
-              {items.map((casino) => (
-                <li key={casino.slug}>
-                  <Link
-                    to={`/casino-anmeldelser/${casino.slug}`}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {casino.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function SlotSitemapTab() {
-  const { data: slots, isLoading } = useSitemapSlots();
-
-  if (isLoading) return <p className="text-muted-foreground">Indlæser spillemaskiner…</p>;
-  if (!slots?.length) return <p className="text-muted-foreground">Ingen spillemaskiner fundet.</p>;
-
-  const grouped = groupAlphabetically(slots, (s) => s.slot_name);
-
-  return (
-    <div>
-      <div className="flex flex-wrap gap-1.5 mb-6">
-        {grouped.map(({ letter }) => (
-          <a
-            key={letter}
-            href={`#slot-${letter}`}
-            className="px-2 py-1 text-xs font-medium rounded bg-muted text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-          >
-            {letter}
-          </a>
-        ))}
-      </div>
-
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {grouped.map(({ letter, items }) => (
-          <section key={letter} id={`slot-${letter}`}>
-            <h2 className="text-lg font-semibold mb-3 text-foreground">{letter}</h2>
-            <ul className="space-y-1.5">
-              {items.map((slot) => {
-                const slug = slot.slug || slugifySlotName(slot.slot_name);
-                return (
-                  <li key={slug}>
-                    <Link
-                      to={`/slot-katalog/${slug}`}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {slot.slot_name}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ── Noscript fallback for crawlers ──
-
-function NoscriptFallback() {
-  return (
-    <noscript>
-      <div>
-        <h2>Casino Anmeldelser</h2>
-        <p>Se alle vores casino anmeldelser på <a href="/casino-anmeldelser">Casino Anmeldelser</a>.</p>
-        <h2>Slot Katalog</h2>
-        <p>Udforsk alle spillemaskiner i vores <a href="/slot-katalog">Slot Katalog</a> med over 1.400 slots inklusiv statistik fra live bonus hunts.</p>
-      </div>
-    </noscript>
-  );
-}
-
-// ── Main Component ──
-
 export default function Sitemap() {
+  const groups = groupRoutes();
+
   return (
     <>
       <SEO
@@ -278,33 +71,59 @@ export default function Sitemap() {
         description="Komplet oversigt over alle sider på Casinoaftaler.dk – find hurtigt casino anmeldelser, bonusguides, spiludviklere og meget mere."
         noindex
       />
-      <div className="container py-12">
-        <h1 className="text-3xl font-bold mb-8">Sitemap</h1>
-        <p className="text-muted-foreground mb-8">
-          Her finder du en komplet oversigt over alle sider på vores website. Klik på et link for at navigere direkte til siden.
+      <div className="container py-4">
+        <Breadcrumbs />
+      </div>
+      <div className="container py-8">
+        <h1 className="text-3xl font-bold mb-4">Sitemap</h1>
+        <p className="text-muted-foreground mb-6">
+          Komplet oversigt over alle sider på vores website.
         </p>
 
-        <Tabs defaultValue="sitemap" className="w-full">
-          <TabsList className="mb-6">
-            <TabsTrigger value="sitemap">Sitemap</TabsTrigger>
-            <TabsTrigger value="casinos">Anmeldelser af Casinoer</TabsTrigger>
-            <TabsTrigger value="slots">Casinospil</TabsTrigger>
-          </TabsList>
+        {/* Navigation to sub-sitemaps */}
+        <nav className="flex flex-wrap gap-2 mb-8 border-b border-border pb-4">
+          <span className="px-3 py-1.5 text-sm font-medium rounded-md bg-primary text-primary-foreground">Sitemap</span>
+          <Link to="/sitemap/casino-anmeldelser" className="px-3 py-1.5 text-sm font-medium rounded-md bg-muted text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
+            Casino Anmeldelser
+          </Link>
+          <Link to="/sitemap/casino-bonus" className="px-3 py-1.5 text-sm font-medium rounded-md bg-muted text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
+            Casino Bonus
+          </Link>
+          <Link to="/sitemap/casinospil" className="px-3 py-1.5 text-sm font-medium rounded-md bg-muted text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
+            Casinospil
+          </Link>
+        </nav>
 
-          <TabsContent value="sitemap">
-            <StaticSitemapTab />
-          </TabsContent>
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {groups.map((group) => (
+            <section key={group.title}>
+              <h2 className="text-lg font-semibold mb-3 text-foreground">{group.title}</h2>
+              <ul className="space-y-1.5">
+                {group.routes.map((route) => (
+                  <li key={route.path}>
+                    <a
+                      href={route.path}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {pathToLabel(route.path)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
 
-          <TabsContent value="casinos">
-            <CasinoSitemapTab />
-          </TabsContent>
-
-          <TabsContent value="slots">
-            <SlotSitemapTab />
-          </TabsContent>
-        </Tabs>
-
-        <NoscriptFallback />
+        <noscript>
+          <div>
+            <h2>Casino Anmeldelser</h2>
+            <p>Se alle vores casino anmeldelser på <a href="/sitemap/casino-anmeldelser">Casino Anmeldelser Sitemap</a>.</p>
+            <h2>Casino Bonus</h2>
+            <p>Se alle bonustilbud på <a href="/sitemap/casino-bonus">Casino Bonus Sitemap</a>.</p>
+            <h2>Casinospil</h2>
+            <p>Se alle spillemaskiner på <a href="/sitemap/casinospil">Casinospil Sitemap</a>.</p>
+          </div>
+        </noscript>
       </div>
     </>
   );
