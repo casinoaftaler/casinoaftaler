@@ -169,23 +169,42 @@ export default function SlotDatabase() {
   const seoTitle = `Slot Database – ${slotCountLabel} Spillemaskiner med Community Data`;
   const seoDesc = `Komplet database over ${slotCountLabel} spillemaskiner testet i live bonus hunts. Se RTP, volatilitet, højeste gevinster og community-statistikker for alle slots.`;
 
+  // Dynamic dateModified from real catalog data
+  const dynamicDateModified = freshness?.lastUpdated
+    ? freshness.lastUpdated.split("T")[0]
+    : new Date().toISOString().split("T")[0];
+
   const articleSchema = buildArticleSchema({
     headline: seoTitle,
     description: seoDesc,
     url: `${SITE_URL}/slot-database`,
     datePublished: "2026-03-05",
-    dateModified: new Date().toISOString().split("T")[0],
+    dateModified: dynamicDateModified,
     authorName: "Jonas Theill",
   });
 
   const faqSchema = buildFaqSchema(faqItems);
+
+  // SoftwareApplication schema for the current page of slots
+  const slotSchema = paginatedSlots.length > 0
+    ? buildSlotCatalogSchema(paginatedSlots, `${SITE_URL}/slot-katalog`)
+    : null;
+
+  const jsonLdSchemas = [articleSchema, faqSchema, ...(slotSchema ? [slotSchema] : [])];
+
+  // Freshness label
+  const freshnessLabel = freshness?.latestHuntNumber
+    ? `Data opdateret efter Bonus Hunt #${freshness.latestHuntNumber}${
+        freshness.latestHuntDate ? ` · ${freshness.latestHuntDate}` : ""
+      }`
+    : null;
 
   return (
     <>
       <SEO
         title={seoTitle}
         description={seoDesc}
-        jsonLd={[articleSchema, faqSchema]}
+        jsonLd={jsonLdSchemas}
       />
 
       {/* TYPE A: Centered hero with badge */}
