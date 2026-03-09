@@ -312,19 +312,16 @@ export default function SlotCatalogPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={pageUrl} />
-        {isThinContent && <meta name="robots" content="noindex, follow" />}
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={pageUrl} />
-        <meta property="og:type" content="website" />
-        {jsonLd && (
-          <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-        )}
-      </Helmet>
+      <SEO
+        title={title}
+        description={description}
+        type="article"
+        noindex={isThinContent || false}
+        jsonLd={jsonLd || undefined}
+        breadcrumbLabel={slot.slot_name}
+        datePublished={slot.created_at?.slice(0, 10)}
+        dateModified={slot.updated_at?.slice(0, 10)}
+      />
 
       <div className="container py-4">
         <Breadcrumbs dynamicLabel={slot.slot_name} />
