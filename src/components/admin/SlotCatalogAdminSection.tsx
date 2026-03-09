@@ -43,12 +43,24 @@ export function SlotCatalogAdminSection() {
 }
 
 // ── Seed Database ──
+interface PreviewSlot {
+  name: string;
+  provider: string;
+  rtp: number | null;
+  volatility: string | null;
+  max_potential: string | null;
+  selected: boolean;
+}
+
 function SeedDatabaseSection() {
   const [isSeeding, setIsSeeding] = useState(false);
+  const [isConfirming, setIsConfirming] = useState(false);
   const [currentProvider, setCurrentProvider] = useState<string | null>(null);
   const [completedProviders, setCompletedProviders] = useState<string[]>([]);
-  const [results, setResults] = useState<Record<string, { slots_processed: number; skipped: number; errors: string[] }>>({});
+  const [results, setResults] = useState<Record<string, { found: number; new: number; skipped: number; errors: string[] }>>({});
   const [selectedProviders, setSelectedProviders] = useState<string[]>([...SEED_PROVIDERS]);
+  const [previewSlots, setPreviewSlots] = useState<PreviewSlot[]>([]);
+  const [showPreview, setShowPreview] = useState(false);
 
   const toggleProvider = (provider: string) => {
     setSelectedProviders(prev =>
@@ -68,33 +80,82 @@ function SeedDatabaseSection() {
     setIsSeeding(true);
     setCompletedProviders([]);
     setResults({});
-    let totalNew = 0;
+    setPreviewSlots([]);
+    setShowPreview(false);
+    const allSlots: PreviewSlot[] = [];
 
     for (const provider of selectedProviders) {
       setCurrentProvider(provider);
       try {
         const { data, error } = await supabase.functions.invoke("slot-catalog-seed", {
-          body: { provider },
+          body: { provider, mode: "preview" },
         });
 
         if (error) {
-          setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, skipped: 0, errors: [error.message] } }));
+          setResults(prev => ({ ...prev, [provider]: { found: 0, new: 0, skipped: 0, errors: [error.message] } }));
         } else {
-          const providerResult = data?.providers?.[provider] || { slots_processed: 0, skipped: 0, errors: [] };
-          totalNew += providerResult.slots_processed;
+          const providerResult = data?.providers?.[provider] || { found: 0, new: 0, skipped: 0, errors: [] };
           setResults(prev => ({ ...prev, [provider]: providerResult }));
+          const newSlots = (data?.slots || [])
+            .filter((s: any) => s.provider === provider)
+            .map((s: any) => ({ ...s, selected: true }));
+          allSlots.push(...newSlots);
         }
       } catch (e: any) {
-        setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, skipped: 0, errors: [e.message] } }));
+        setResults(prev => ({ ...prev, [provider]: { found: 0, new: 0, skipped: 0, errors: [e.message] } }));
       }
       setCompletedProviders(prev => [...prev, provider]);
     }
 
     setCurrentProvider(null);
     setIsSeeding(false);
-    toast.success(`Seeding færdig! ${totalNew} nye slots tilføjet.`);
+    setPreviewSlots(allSlots);
+    if (allSlots.length > 0) {
+      setShowPreview(true);
+      toast.info(`${allSlots.length} nye slots fundet. Gennemgå og godkend nedenfor.`);
+    } else {
+      toast.success("Ingen nye slots fundet — alt er allerede i databasen.");
+    }
   }, [selectedProviders]);
 
+  const toggleSlot = (index: number) => {
+    setPreviewSlots(prev => prev.map((s, i) => i === index ? { ...s, selected: !s.selected } : s));
+  };
+
+  const toggleAllSlots = () => {
+    const allSelected = previewSlots.every(s => s.selected);
+    setPreviewSlots(prev => prev.map(s => ({ ...s, selected: !allSelected })));
+  };
+
+  const handleConfirm = useCallback(async () => {
+    const slotsToInsert = previewSlots.filter(s => s.selected);
+    if (slotsToInsert.length === 0) {
+      toast.error("Vælg mindst én slot at tilføje");
+      return;
+    }
+    setIsConfirming(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("slot-catalog-seed", {
+        body: {
+          mode: "confirm",
+          slots: slotsToInsert.map(({ selected, ...rest }) => rest),
+        },
+      });
+
+      if (error) {
+        toast.error(`Fejl: ${error.message}`);
+      } else {
+        toast.success(`${data?.inserted || 0} slots tilføjet til databasen!`);
+        setShowPreview(false);
+        setPreviewSlots([]);
+      }
+    } catch (e: any) {
+      toast.error(`Fejl: ${e.message}`);
+    }
+    setIsConfirming(false);
+  }, [previewSlots]);
+
+  const selectedCount = previewSlots.filter(s => s.selected).length;
   const progress = selectedProviders.length > 0 ? (completedProviders.length / selectedProviders.length) * 100 : 0;
 
   return (
@@ -123,7 +184,7 @@ function SeedDatabaseSection() {
                 <Checkbox
                   checked={selectedProviders.includes(provider)}
                   onCheckedChange={() => toggleProvider(provider)}
-                  disabled={isSeeding}
+                  disabled={isSeeding || showPreview}
                 />
                 {provider}
               </label>
@@ -131,19 +192,21 @@ function SeedDatabaseSection() {
           </div>
         </div>
 
-        <Button onClick={handleSeed} disabled={isSeeding || selectedProviders.length === 0} size="lg">
-          {isSeeding ? (
-            <>
-              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              Seeder {currentProvider}...
-            </>
-          ) : (
-            <>
-              <Database className="h-4 w-4 mr-2" />
-              Start Seeding ({selectedProviders.length} providers)
-            </>
-          )}
-        </Button>
+        {!showPreview && (
+          <Button onClick={handleSeed} disabled={isSeeding || selectedProviders.length === 0} size="lg">
+            {isSeeding ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Finder slots fra {currentProvider}...
+              </>
+            ) : (
+              <>
+                <Search className="h-4 w-4 mr-2" />
+                Find nye slots ({selectedProviders.length} providers)
+              </>
+            )}
+          </Button>
+        )}
 
         {isSeeding && (
           <div className="space-y-2">
@@ -155,13 +218,14 @@ function SeedDatabaseSection() {
           </div>
         )}
 
-        {Object.keys(results).length > 0 && (
+        {/* Provider results summary */}
+        {Object.keys(results).length > 0 && !showPreview && (
           <div className="border border-border rounded-lg divide-y divide-border text-sm max-h-60 overflow-auto">
             {Object.entries(results).map(([provider, r]) => (
               <div key={provider} className="flex items-center justify-between px-3 py-2">
                 <span className="font-medium">{provider}</span>
                 <div className="flex items-center gap-3">
-                  <span className="text-muted-foreground">{r.slots_processed} nye</span>
+                  <span className="text-muted-foreground">{r.new} nye</span>
                   {r.skipped > 0 && (
                     <span className="text-muted-foreground/60">{r.skipped} sprunget over</span>
                   )}
@@ -171,6 +235,57 @@ function SeedDatabaseSection() {
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Preview / approval list */}
+        {showPreview && previewSlots.length > 0 && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-semibold">
+                {previewSlots.length} nye slots fundet — vælg hvilke der skal tilføjes:
+              </h3>
+              <Button variant="ghost" size="sm" onClick={toggleAllSlots}>
+                {previewSlots.every(s => s.selected) ? "Fravælg alle" : "Vælg alle"}
+              </Button>
+            </div>
+            <div className="border border-border rounded-lg divide-y divide-border text-sm max-h-96 overflow-auto">
+              {previewSlots.map((slot, i) => (
+                <label key={`${slot.provider}-${slot.name}-${i}`} className="flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-muted/50">
+                  <Checkbox
+                    checked={slot.selected}
+                    onCheckedChange={() => toggleSlot(i)}
+                  />
+                  <div className="flex-1 min-w-0">
+                    <span className="font-medium">{slot.name}</span>
+                    <span className="text-muted-foreground ml-2">({slot.provider})</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground shrink-0">
+                    {slot.rtp && <span>RTP: {slot.rtp}%</span>}
+                    {slot.volatility && <span>{slot.volatility}</span>}
+                    {slot.max_potential && <span>{slot.max_potential}</span>}
+                  </div>
+                </label>
+              ))}
+            </div>
+            <div className="flex items-center gap-3">
+              <Button onClick={handleConfirm} disabled={isConfirming || selectedCount === 0} size="lg">
+                {isConfirming ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Tilføjer...
+                  </>
+                ) : (
+                  <>
+                    <Check className="h-4 w-4 mr-2" />
+                    Godkend og tilføj {selectedCount} slots
+                  </>
+                )}
+              </Button>
+              <Button variant="outline" size="lg" onClick={() => { setShowPreview(false); setPreviewSlots([]); }}>
+                Annuller
+              </Button>
+            </div>
           </div>
         )}
       </CardContent>
