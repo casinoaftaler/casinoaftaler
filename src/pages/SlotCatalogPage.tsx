@@ -1,4 +1,7 @@
 import { useParams, Link } from "react-router-dom";
+import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
+import { useAuth } from "@/hooks/useAuth";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
