@@ -94,10 +94,10 @@ export const PROVIDER_DISPLAY_NAMES: Record<string, string> = {
   "big-time-gaming": "Big Time Gaming",
   "hacksaw-gaming": "Hacksaw Gaming",
   "relax-gaming": "Relax Gaming",
-  "evolution-gaming": "Evolution Gaming",
+  "evolution-gaming": "Evolution",
   "elk-studios": "ELK Studios",
-  "yggdrasil": "Yggdrasil",
+  "yggdrasil": "Yggdrasil Gaming",
   "nolimit-city": "Nolimit City",
-  "red-tiger": "Red Tiger",
+  "red-tiger": "Red Tiger Gaming",
   "igt": "IGT",
 };
