@@ -22,13 +22,13 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Find slots missing metadata OR description (max 5 per run)
+    // Find slots missing metadata OR description (max 10 per run)
     const { data: slots, error } = await admin
       .from('slot_catalog')
-      .select('id, slot_name, provider, rtp, volatility, max_potential, description')
+      .select('id, slot_name, provider, rtp, volatility, max_potential, description, meta_description')
       .or('volatility.is.null,max_potential.is.null,description.is.null')
       .order('bonus_count', { ascending: false })
-      .limit(5);
+      .limit(10);
 
     if (error) throw error;
     if (!slots || slots.length === 0) {

@@ -104,3 +104,6 @@ verify_jwt = false
 
 [functions.archive-monthly-tournament]
 verify_jwt = false
+
+[functions.slot-meta-descriptions]
+verify_jwt = false

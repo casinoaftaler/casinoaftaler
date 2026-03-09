@@ -1,0 +1,1 @@
+ALTER TABLE public.slot_catalog ADD COLUMN meta_description text;

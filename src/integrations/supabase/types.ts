@@ -1872,6 +1872,7 @@ export type Database = {
           highest_x: number | null
           id: string
           max_potential: string | null
+          meta_description: string | null
           provider: string
           rtp: number | null
           slot_name: string
@@ -1887,6 +1888,7 @@ export type Database = {
           highest_x?: number | null
           id?: string
           max_potential?: string | null
+          meta_description?: string | null
           provider?: string
           rtp?: number | null
           slot_name: string
@@ -1902,6 +1904,7 @@ export type Database = {
           highest_x?: number | null
           id?: string
           max_potential?: string | null
+          meta_description?: string | null
           provider?: string
           rtp?: number | null
           slot_name?: string
@@ -2717,6 +2720,7 @@ export type Database = {
           highest_x: number | null
           id: string
           max_potential: string | null
+          meta_description: string | null
           provider: string
           rtp: number | null
           slot_name: string
