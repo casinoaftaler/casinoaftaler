@@ -123,6 +123,185 @@ function useSimilarSlots(provider: string | null, currentName: string | null, vo
   });
 }
 
+// ─── Deep Content Generators ───────────────────────────────
+
+/** RTP & Matematik deep-dive (~400 words) */
+function generateRTPSection(slot: any): string[] {
+  const name = slot.slot_name;
+  const paragraphs: string[] = [];
+
+  if (slot.rtp) {
+    const houseEdge = (100 - slot.rtp).toFixed(2);
+    const ev1000 = (1000 * (slot.rtp / 100)).toFixed(0);
+    paragraphs.push(
+      `${name} opererer med en teoretisk Return to Player (RTP) på ${slot.rtp}%. RTP er den statistiske tilbagebetalingsprocent beregnet over millioner af spins og angiver, hvor stor en andel af de samlede indsatser maskinen returnerer til spillerne over tid. En RTP på ${slot.rtp}% betyder, at house edge – altså casinoets matematiske fordel – er ${houseEdge}%. For hver 100 kr. der indsættes, kan spilleren statistisk forvente at få ${slot.rtp} kr. tilbage, selvom dette naturligvis varierer voldsomt i praksis.`
+    );
+    paragraphs.push(
+      `For at sætte dette i perspektiv: Hvis du spiller 1.000 spins med en fast indsats på 1 kr. pr. spin, vil den forventede tilbagebetaling være cirka ${ev1000} kr. Det er vigtigt at understrege, at dette er en langsigtet gennemsnitsværdi. I kortere sessioner kan resultaterne afvige markant fra RTP-værdien – særligt på spillemaskiner med ${slot.volatility ? slot.volatility.toLowerCase() : "varierende"} volatilitet, hvor gevinsterne er ujævnt fordelt.`
+    );
+    paragraphs.push(
+      `Det er værd at bemærke, at RTP kan variere mellem forskellige casinoer. Nogle spiludviklere, herunder ${slot.provider || "udbyderen"}, tilbyder casinoer muligheden for at vælge mellem forskellige RTP-niveauer. Spillemyndigheden i Danmark kræver, at casinoer oplyser den faktiske RTP for hvert spil, så vi anbefaler altid at tjekke det specifikke casinos spilinformation for at bekræfte den præcise RTP-værdi, inden du spiller.`
+    );
+  } else {
+    paragraphs.push(
+      `RTP-værdien (Return to Player) for ${name} er endnu ikke registreret i vores database. RTP er en af de mest fundamentale parametre ved enhver spillemaskin, da den angiver den teoretiske tilbagebetalingsprocent over tid. Vi arbejder løbende på at berige vores data, og RTP-værdien vil blive tilføjet, så snart den er verificeret fra en pålidelig kilde.`
+    );
+    paragraphs.push(
+      `Generelt anbefaler vi spillere altid at prioritere spillemaskiner med en RTP på 96% eller derover, da dette reducerer house edge til under 4%. Spillemaskiner med lavere RTP kan stadig give store enkeltgevinster – særligt high-volatility slots – men over tid vil den matematiske fordel flytte sig mere til casinoets side. Du kan altid filtrere efter RTP i vores slot database for at finde de mest favorable maskiner.`
+    );
+  }
+
+  return paragraphs;
+}
+
+/** Volatility & Risk Analysis (~350 words) */
+function generateVolatilitySection(slot: any): string[] {
+  const name = slot.slot_name;
+  const paragraphs: string[] = [];
+  const vol = slot.volatility?.toLowerCase() || null;
+
+  if (vol === "high" || vol === "extreme") {
+    paragraphs.push(
+      `${name} er klassificeret som en spillemaskin med ${vol === "extreme" ? "ekstrem" : "høj"} volatilitet. Dette er en afgørende faktor for spilleoplevelsen, da volatiliteten bestemmer gevinsternes fordeling. Med ${vol === "extreme" ? "ekstrem" : "høj"} volatilitet kan du forvente længere perioder uden betydelige gevinster (ofte kaldet "tørke"), men til gengæld er de gevinster, der rammer, typisk markant større. Denne type spillemaskiner er designet til spillere, der har tålmodigheden og bankrollet til at ride de nedadgående perioder igennem.`
+    );
+    paragraphs.push(
+      `Fra et matematisk perspektiv har ${vol === "extreme" ? "ekstremt" : "højt"}-volatile spillemaskiner en højere standardafvigelse i gevinstfordelingen. Det betyder, at variansen (coefficient of variation) er betydeligt højere sammenlignet med lav- eller medium-volatile maskiner. I praksis betyder dette, at din session-til-session oplevelse vil variere enormt. Én session kan ende med et stort tab, mens den næste kan producere en gevinst på flere hundrede gange din indsats – eller endda mere, som vores bonus hunt data kan bekræfte.`
+    );
+    paragraphs.push(
+      `Vores anbefaling for ${name} er at tilpasse din indsatsstørrelse til volatiliteten. Som tommelfingerregel bør dit samlede bankroll dække minimum 200-300 spins ved din valgte indsats for en ${vol === "extreme" ? "ekstremt" : "højt"}-volatil maskine. Dette giver dig den bedste chance for at opleve maskinens fulde potentiale, herunder eventuelle bonusrunder, hvor de store gevinster typisk falder.`
+    );
+  } else if (vol === "low") {
+    paragraphs.push(
+      `${name} har lav volatilitet, hvilket gør den til et af de mere forudsigelige valg i spillemaskinernes verden. Lav-volatile spillemaskiner leverer hyppigere gevinster, men de individuelle gevinster er typisk mindre i forhold til indsatsen. Dette skaber en mere jævn og stabil spilleoplevelse, som er ideel for spillere der foretrækker længere sessioner med mindre udsving i deres saldo.`
+    );
+    paragraphs.push(
+      `Den lave volatilitet betyder, at standardafvigelsen i gevinstfordelingen er relativt lille. Din faktiske tilbagebetaling vil i kortere sessioner ligge tættere på den teoretiske RTP${slot.rtp ? ` på ${slot.rtp}%` : ""}, sammenlignet med højt-volatile maskiner. For bankroll management kan du typisk klare dig med et mindre budget – 100-150 spins ved din valgte indsats er ofte tilstrækkeligt til en fornøjelig session.`
+    );
+    paragraphs.push(
+      `Lav-volatile spillemaskiner som ${name} er populære blandt underholdningsspillere, der prioriterer spilletid over store single-win potentialer. De er også velegnede som "warmup" maskiner i bonus hunts, hvor de kan stabilisere den samlede bankroll, inden man bevæger sig over til mere volatile titler.`
+    );
+  } else if (vol === "medium" || vol === "medium-high" || vol === "medium-low") {
+    paragraphs.push(
+      `${name} har ${vol.includes("high") ? "medium-høj" : vol.includes("low") ? "medium-lav" : "medium"} volatilitet, hvilket placerer den i mellemklassen af risikospektret. Denne kategori af spillemaskiner tilbyder en balanceret oplevelse, hvor gevinsterne hverken er ekstremt sjældne eller trivielt hyppige. Det er ofte den mest populære volatilitetsklasse, da den appellerer til et bredt spektrum af spillere.`
+    );
+    paragraphs.push(
+      `Med medium volatilitet kan du forvente en blanding af mindre, hyppige gevinster og periodiske større hits. Standardafvigelsen er moderat, hvilket betyder, at dine sessioner vil have nogen variation, men uden de ekstreme udsving der karakteriserer high-volatility slots. Et bankroll på 150-200 spins ved din valgte indsats er typisk et godt udgangspunkt for ${name}.`
+    );
+    paragraphs.push(
+      `I vores bonus hunts har medium-volatile spillemaskiner en tendens til at levere konsistente, om end sjældent spektakulære, resultater. De bidrager positivt til den samlede average X uden at skabe store udsving i hunt-resultaterne. Det gør dem til pålidelige valg i en diversificeret bonus hunt-strategi.`
+    );
+  } else {
+    paragraphs.push(
+      `Volatiliteten for ${name} er endnu ikke klassificeret i vores database. Volatilitet er en kritisk parameter, der beskriver gevinstfordelingens spredning – altså hvor ofte og hvor store gevinsterne er i forhold til indsatsen. Vi kategoriserer typisk volatilitet som lav, medium, medium-høj, høj eller ekstrem baseret på data fra spiludvikleren og vores egne bonus hunt resultater.`
+    );
+    paragraphs.push(
+      `Indtil vi har verificeret volatiliteten, anbefaler vi at starte med en konservativ indsatsstørrelse og observere gevinstmønstret over 50-100 spins. Hvis du oplever lange perioder uden gevinster efterfulgt af store enkelt-hits, tyder det på høj volatilitet. Hyppige, men mindre gevinster indikerer lav volatilitet. Vores database opdateres løbende, og volatilitetsklassificeringen vil blive tilføjet snarest.`
+    );
+  }
+
+  return paragraphs;
+}
+
+/** Bonus Hunt Performance Analysis (~350 words) */
+function generateBonusHuntAnalysis(slot: any): string[] {
+  const name = slot.slot_name;
+  const paragraphs: string[] = [];
+
+  if (slot.bonus_count > 0) {
+    const huntLabel = slot.bonus_count === 1 ? "bonus hunt" : "bonus hunts";
+    paragraphs.push(
+      `${name} har optrådt i ${slot.bonus_count} ${huntLabel} på Casinoaftaler.dk's Twitch-kanal, hvilket giver os et solidt datagrundlag for at vurdere maskinens performance i et bonus hunt-format. Vores bonus hunts streames live, og alle resultater verificeres i realtid af community'et – dette sikrer fuldstændig transparens og dataintegritet.`
+    );
+
+    if (slot.highest_x && slot.highest_x > 0) {
+      const xVal = Number(slot.highest_x.toFixed(1));
+      const rating = xVal >= 500 ? "exceptionelt stærkt" : xVal >= 200 ? "meget solidt" : xVal >= 100 ? "respektabelt" : xVal >= 50 ? "moderat" : "beskedent";
+      paragraphs.push(
+        `Den højeste registrerede multiplikator for ${name} i vores bonus hunts er ${xVal}x, hvilket er et ${rating} resultat. Multiplikatoren (X-værdien) beregnes som forholdet mellem bonusgevinsten og indsatsen: en 200x gevinst på en 10 kr. indsats ville eksempelvis give en gevinst på 2.000 kr. Denne metric er central i vores community, da den tillader sammenligning af resultater på tværs af forskellige indsatsniveauer og spillemaskiner.`
+      );
+    }
+
+    if (slot.highest_win && slot.highest_win > 0) {
+      paragraphs.push(
+        `Den største absolutte gevinst registreret på ${name} i vores hunts er ${slot.highest_win.toLocaleString("da-DK")} kr. Det er vigtigt at bemærke, at absolutte gevinstbeløb afhænger af indsatsstørrelsen, hvorfor multiplikator-værdien (X) giver et mere retfærdigt sammenligningsgrundlag. Ikke desto mindre demonstrerer dette beløb maskinens reelle gevinstpotentiale under faktiske spilforhold.`
+      );
+    }
+
+    paragraphs.push(
+      `I vores bonus hunt arkiv kan du finde detaljerede resultater for hver enkelt hunt, hvor ${name} har optrådt. Bonus hunts er et unikt format, hvor et stort antal spillemaskiner åbnes i rækkefølge, og den samlede performance måles via average X – gennemsnitsmultiplikatoren på tværs af alle åbnede maskiner. En average X over 100x betragtes generelt som en succesfuld hunt, og ${name}'s bidrag til disse resultater kan følges individuelt i arkivet.`
+    );
+  } else {
+    paragraphs.push(
+      `${name} er endnu ikke blevet inkluderet i vores bonus hunts på Twitch-kanalen. Vores bonus hunts fokuserer typisk på de mest populære og efterspurgte spillemaskiner, og udvalget roterer løbende baseret på community-anmodninger, nye udgivelser og strategiske overvejelser omkring volatilitet og gevinstpotentiale.`
+    );
+    paragraphs.push(
+      `Selvom ${name} ikke har bonus hunt-data endnu, kan maskinen stadig være et godt valg for individuel spilning. Vi anbefaler at holde øje med vores Twitch-kanal og community, da nye maskiner regelmæssigt tilføjes til bonus hunt-programmet. Du kan også anmode om specifikke maskiner via vores community-platform, og vi prioriterer de mest efterspurgte titler.`
+    );
+  }
+
+  return paragraphs;
+}
+
+/** Provider & Game Design Analysis (~300 words) */
+function generateProviderSection(slot: any): string[] {
+  const name = slot.slot_name;
+  const provider = slot.provider;
+  const paragraphs: string[] = [];
+
+  if (!provider || provider === "Unknown" || provider === "Custom Slot") {
+    paragraphs.push(
+      `Udbyderen af ${name} er endnu ikke registreret i vores database. Spiludvikleren er en vigtig faktor at overveje, da den påvirker alt fra grafisk kvalitet og gameplay-mekanik til RTP-konsistens og mobiloptimering. Vi opdaterer løbende vores database med provider-information og anbefaler at tjekke casinoets spilinformation for at identificere udbyderen.`
+    );
+    return paragraphs;
+  }
+
+  paragraphs.push(
+    `${name} er udviklet af ${provider}, som er en etableret aktør i den globale online casino-industri. Spiludvikleren er ansvarlig for maskinens matematiske model, grafiske design, lydeffekter og overordnede gameplay-oplevelse. Valget af udbyder er relevant for spillere, da det ofte indikerer en bestemt designfilosofi og kvalitetsstandard.`
+  );
+  paragraphs.push(
+    `${provider} er kendt for at levere spillemaskiner med ${slot.volatility === "High" || slot.volatility === "Extreme" ? "høj gevinstpotentiale og innovativ bonus-mekanik" : slot.volatility === "Low" ? "stabil og underholdende gameplay med hyppige gevinster" : "en balanceret tilgang til risiko og belønning"}. Udbyderens spil er tilgængelige på de fleste danske online casinoer med dansk licens, og de er certificeret af uafhængige testinstitutter, der bekræfter, at spillenes RNG (Random Number Generator) fungerer korrekt og retfærdigt.`
+  );
+  paragraphs.push(
+    `I vores slot database kan du udforske det fulde katalog af spillemaskiner fra ${provider} og sammenligne deres RTP-værdier, volatilitet og bonus hunt-performance. Dette giver dig mulighed for at identificere de bedst performende titler fra udbyderen og træffe informerede valg baseret på data frem for tilfældigheder. Spiludviklere som ${provider} opdaterer løbende deres portefølje, og nye udgivelser tilføjes automatisk til vores database, når de optræder i bonus hunts eller registreres manuelt af redaktionen.`
+  );
+
+  return paragraphs;
+}
+
+/** Responsible Gambling Section (~300 words) */
+function generateResponsibleGambling(slot: any): string[] {
+  const name = slot.slot_name;
+  return [
+    `Når du spiller ${name} – eller enhver anden spillemaskin – er det afgørende at praktisere ansvarligt spil. Spillemaskiner er underholdningsprodukter designet til at give casinoet en matematisk fordel over tid (house edge), og ingen strategi kan ændre dette fundamentale faktum. Al spil bør betragtes som underholdning med en tilknyttet omkostning, ikke som en indtægtskilde.`,
+    `Vi anbefaler altid at sætte et fast budget, inden du begynder at spille, og at overholde dette budget uanset resultaterne. Danske online casinoer med licens fra Spillemyndigheden tilbyder værktøjer til at sætte indbetalingsgrænser, tabsgrænser og sessionsgrænser, og vi opfordrer alle spillere til at benytte disse funktioner aktivt. Du kan også aktivere selvudelukkelse via ROFUS (Register Over Frivilligt Udelukkede Spillere) på rofus.nu, hvis du oplever, at dit spil bliver problematisk.`,
+    `Vores community og bonus hunts på Twitch er designet til at give indsigt i spillemaskiners faktiske performance og matematik – ikke til at opfordre til spil. De data, vi præsenterer for ${name}, er baseret på historiske resultater og bør ikke opfattes som garantier for fremtidige resultater. Hver spin er uafhængig og styres af en certificeret tilfældighedsgenerator (RNG). Hvis du eller nogen du kender har brug for hjælp med spilleproblemer, kan du kontakte StopSpillet på telefon 70 22 28 25 eller besøge stopspillet.dk for gratis og anonym rådgivning.`,
+  ];
+}
+
+/** Bankroll Management Strategy (~250 words) */
+function generateBankrollSection(slot: any): string[] {
+  const name = slot.slot_name;
+  const vol = slot.volatility?.toLowerCase() || "medium";
+  const recommendedSpins = vol === "extreme" ? "300-500" : vol === "high" ? "200-300" : vol === "low" ? "100-150" : "150-200";
+  const sessionBudget = vol === "extreme" || vol === "high" ? "større" : "moderat";
+
+  return [
+    `Effektiv bankroll management er essentiel, når du spiller ${name}${slot.volatility ? `, særligt givet maskinens ${slot.volatility.toLowerCase()} volatilitet` : ""}. Et velplanlagt budget beskytter dig mod store tab og sikrer, at du kan nyde spilleoplevelsen over længere tid. Den grundlæggende regel er enkel: spil aldrig for penge, du ikke har råd til at tabe.`,
+    `For ${name} anbefaler vi et bankroll, der dækker minimum ${recommendedSpins} spins ved din valgte indsats. Med ${slot.volatility?.toLowerCase() || "ukendt"} volatilitet kræver maskinen et ${sessionBudget} budget for at give en repræsentativ oplevelse. For eksempel: Hvis du spiller med 2 kr. pr. spin, bør dit sessionsbudget være mindst ${vol === "extreme" || vol === "high" ? "600-1.000" : vol === "low" ? "200-300" : "300-400"} kr. Dette giver dig tilstrækkelig spilletid til potentielt at ramme bonusrunder og større gevinster.`,
+    `En populær bankroll-strategi blandt erfarne spillere er "session budgeting": Del dit samlede underholdningsbudget op i individuelle sessioner og stop, når sessionsbudgettet er brugt – uanset om du er i plus eller minus. Denne disciplinerede tilgang forhindrer "chasing losses" (at jagte tab) og sikrer, at du altid spiller inden for dine økonomiske rammer. Husk at ${name} – ligesom alle spillemaskiner – er designet med en house edge${slot.rtp ? ` på ${(100 - slot.rtp).toFixed(2)}%` : ""}, og det er umuligt at "vinde maskinen tilbage" over tid.`,
+  ];
+}
+
+/** How Slot Machines Work (~250 words) */
+function generateHowItWorks(slot: any): string[] {
+  const name = slot.slot_name;
+  return [
+    `${name} fungerer, ligesom alle moderne online spillemaskiner, via en Random Number Generator (RNG) – en algoritme, der genererer tilfældige tal med en hastighed på tusindvis pr. sekund. Hvert tal korresponderer til en specifik symbolkombination på hjulene. Når du trykker på spin-knappen, vælger RNG'en det næste tal i sekvensen, og resultatet bestemmes øjeblikkeligt. Den visuelle animation af hjulene, der snurrer, er udelukkende en grafisk præsentation – resultatet er allerede fastlagt, inden hjulene stopper.`,
+    `Denne tilfældighedsmekanisme er certificeret og regelmæssigt testet af uafhængige tredjepartsauditorer som eCOGRA, iTech Labs eller GLI. I Danmark overvåger Spillemyndigheden, at alle spillemaskiner på licenserede casinoer overholder kravene til fair play og tilfældighed. Det betyder, at hverken casinoet eller spilleren kan forudsige eller påvirke udfaldet af et enkelt spin – hver spin er fuldstændig uafhængig af alle tidligere og fremtidige spins.`,
+    `${name}'s gevinststruktur er defineret af en matematisk model kaldet "paytable" (gevinst-tabel), som specificerer betalingen for hver mulig symbolkombination. Denne model, kombineret med symbolernes vægtning på hjulene, bestemmer den samlede RTP${slot.rtp ? ` (${slot.rtp}% for denne maskine)` : ""}. Gevinst-tabellen er altid tilgængelig i spillets informationssektion, og vi anbefaler at studere den, inden du begynder at spille, for at forstå hvilke symboler og kombinationer der giver de højeste gevinster.`,
+  ];
+}
+
 // ─── FAQ Generator ─────────────────────────────────────────
 
 function generateFAQ(slot: any) {
@@ -131,7 +310,7 @@ function generateFAQ(slot: any) {
   faqs.push({
     question: `Hvad er RTP'en på ${slot.slot_name}?`,
     answer: slot.rtp
-      ? `${slot.slot_name} har en Return to Player (RTP) på ${slot.rtp}%. Det betyder, at maskinen statistisk set betaler ${slot.rtp} kr. tilbage for hver 100 kr., der indsættes over lang tid.`
+      ? `${slot.slot_name} har en Return to Player (RTP) på ${slot.rtp}%. Det betyder, at maskinen statistisk set betaler ${slot.rtp} kr. tilbage for hver 100 kr., der indsættes over lang tid. House edge er dermed ${(100 - slot.rtp).toFixed(2)}%.`
       : `RTP-værdien for ${slot.slot_name} er ikke tilgængelig i vores database endnu. RTP kan variere mellem casinoer, da nogle udbydere tilbyder justerbare RTP-niveauer.`,
   });
 
@@ -172,6 +351,21 @@ function generateFAQ(slot: any) {
       answer: `${slot.slot_name} er udviklet af ${slot.provider}, som er en af de anerkendte spiludviklere i online casino-industrien. Du kan se alle spillemaskiner fra ${slot.provider} i vores slot database.`,
     });
   }
+
+  faqs.push({
+    question: `Hvor kan jeg spille ${slot.slot_name}?`,
+    answer: `${slot.slot_name} er tilgængelig på de fleste danske online casinoer med licens fra Spillemyndigheden. Vi anbefaler at vælge et casino med dansk licens for at sikre spillerbeskyttelse, fair play og adgang til ROFUS. Se vores casino-anmeldelser for anbefalede casinoer.`,
+  });
+
+  faqs.push({
+    question: `Er ${slot.slot_name} fair og tilfældig?`,
+    answer: `Ja. ${slot.slot_name} bruger en certificeret Random Number Generator (RNG), der er testet af uafhængige auditorer. Alle danske licenserede casinoer er under tilsyn af Spillemyndigheden, som sikrer, at alle spil fungerer retfærdigt og tilfældigt.`,
+  });
+
+  faqs.push({
+    question: `Hvad er den bedste strategi til ${slot.slot_name}?`,
+    answer: `Da spillemaskiner er baseret på tilfældighed (RNG), er der ingen strategi der kan ændre house edge. Den bedste tilgang er effektiv bankroll management: sæt et fast budget, vælg en passende indsats i forhold til din bankroll, og spil for underholdningens skyld. ${slot.volatility === "High" || slot.volatility === "Extreme" ? "Med høj volatilitet anbefaler vi et større bankroll for at dække længere tørkeperioder." : ""}`,
+  });
 
   return faqs;
 }
