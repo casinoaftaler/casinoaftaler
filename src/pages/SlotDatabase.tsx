@@ -11,7 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Search, TrendingUp, BarChart3, Gamepad2, Trophy, ChevronLeft, ChevronRight } from "lucide-react";
+import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
+import { useLatestCatalogUpdate } from "@/hooks/useProviderSlots";
+import { Search, TrendingUp, BarChart3, Gamepad2, Trophy, ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { SlotDatabaseSeoContent } from "@/components/seo-content/SlotDatabaseSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
