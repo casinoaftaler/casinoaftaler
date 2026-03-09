@@ -732,6 +732,14 @@ export default function SlotCatalogPage() {
           </section>
         )}
 
+        {/* Responsible Gambling */}
+        <section className="mb-8 rounded-lg border border-primary/20 bg-primary/5 p-6">
+          <h2 className="text-2xl font-bold mb-4">Ansvarligt Spil</h2>
+          <div className="text-muted-foreground leading-relaxed space-y-4">
+            {generateResponsibleGambling(slot).map((p, i) => <p key={`rg-${i}`}>{p}</p>)}
+          </div>
+        </section>
+
         {/* FAQ Section */}
         {faqs.length > 0 && (
           <FAQSection
