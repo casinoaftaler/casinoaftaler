@@ -14,7 +14,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers, Gift, Star } from "lucide-react";
+import { Sparkles, Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers, Gift, Star, ShieldCheck, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
 import type { ReactNode } from "react";
