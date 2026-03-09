@@ -111,7 +111,7 @@ function useSimilarSlots(provider: string | null, currentName: string | null, vo
       if (!provider || provider === "Unknown" || provider === "Custom Slot") return [];
       const { data, error } = await supabase
         .from("slot_catalog")
-        .select("slot_name, rtp, volatility, bonus_count, highest_x")
+        .select("slot_name, rtp, volatility, bonus_count, highest_x, slug")
         .eq("provider", provider)
         .order("bonus_count", { ascending: false })
         .limit(20);
@@ -124,10 +124,46 @@ function useSimilarSlots(provider: string | null, currentName: string | null, vo
           if (aMatch !== bMatch) return bMatch - aMatch;
           return (b.bonus_count || 0) - (a.bonus_count || 0);
         })
-        .slice(0, 6);
+        .slice(0, 8);
     },
     enabled: !!provider && !!currentName,
     staleTime: 300000,
+  });
+}
+
+function useCasinosForSlot(provider: string | null) {
+  return useQuery({
+    queryKey: ["casinos-for-slot", provider],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("casinos_public")
+        .select("*")
+        .eq("is_active", true)
+        .order("position", { ascending: true });
+      if (error) throw error;
+      if (!data) return [];
+
+      // Match casinos whose game_providers array contains this provider
+      const matched = data.filter((casino: any) => {
+        if (!provider || provider === "Unknown" || provider === "Custom Slot") return false;
+        const providers = casino.game_providers as any[];
+        if (!Array.isArray(providers)) return false;
+        return providers.some((gp: any) => {
+          const name = typeof gp === "string" ? gp : gp?.name;
+          return name?.toLowerCase() === provider.toLowerCase();
+        });
+      });
+
+      // If no match on provider, show top recommended casinos
+      if (matched.length === 0) {
+        return data
+          .filter((c: any) => c.is_recommended)
+          .slice(0, 5);
+      }
+      return matched.slice(0, 6);
+    },
+    enabled: true,
+    staleTime: 3600000, // 1 hour
   });
 }
 
