@@ -59,7 +59,7 @@ export function useSlotCatalogMap() {
   return useQuery({
     queryKey: ['slot-catalog-map'],
     queryFn: async () => {
-      const data = await fetchAllSlotCatalogRows<{ slot_name: string; provider: string }>('slot_name, provider');
+      const data = await fetchAllSlotCatalogRows<{ slot_name: string; provider: string }>('slot_name, provider', 'slot_name');
       const providerMap = new Map<string, string>();
       const nameMap = new Map<string, string>();
       data.forEach(row => {
