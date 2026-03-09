@@ -1,41 +1,24 @@
-## Problem
 
-Google viser den **tomme/tynde** meta description fra `index.html`:
 
-> *"Casinoaftaler.dk – Din guide til online casinoer i Danmark."*
+## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
 
-Dette er fallback-teksten i `index.html` linje 32. Fordi Google crawler (Googlebot) renderer JavaScript, burde React Helmet overskrive den – men i praksis vælger Google ofte den **statiske HTML-fallback** fra `<head>`, især for forsiden.
+### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
 
-Casino Holdet har til sammenligning en rig, keyword-tung description med "bedste casinobonusser, eksklusive tilbud og gratis spins".
+The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
 
-## Løsning
+Specifically:
+- **Remove** Gevinst from the right zone (lines 247-261)
+- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
 
-Opdater fallback meta description i `index.html` (linje 32) til at matche den rigtige SEO-description fra `Index.tsx`:
+Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
 
-**Fra:**
+### 2. Add Count-Up Animation for Win Amount
 
-```
-Casinoaftaler.dk – Din guide til online casinoer i Danmark.
-```
+Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
+- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
+- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
+- The component already handles ease-out counting and bump animation on completion
 
-**Til:**
+### Files Modified
+- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
 
-```
-Find de bedste nye casinoer med bonus hos Casinoaftaler. Sammenlign nye casinoer, live casino, free spins og spil ansvarligt med vores uafhængige anmeldelser.
-```
-
-Også opdater `<title>` (linje 31) fra bare "Casinoaftaler" til det fulde title tag:
-
-```
-Casinoaftaler.dk - De bedste Online Casinoer 2026
-```
-
-## Hvorfor det virker
-
-- Google ser den korrekte description allerede i den statiske HTML, **uden at vente på JavaScript-rendering**
-- Matcher 1:1 med hvad React Helmet sætter dynamisk, så der er ingen konflikt
-- Giver en fyldig, keyword-rig snippet der konkurrerer med Casino Holdet
-
-## Fil der ændres
-
-- `index.html` – linje 31-32: title + meta description
