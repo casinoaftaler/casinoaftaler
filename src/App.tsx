@@ -34,6 +34,9 @@ const Forretningsmodel = lazy(() => import("./pages/Forretningsmodel"));
 const RedaktionelPolitik = lazy(() => import("./pages/RedaktionelPolitik"));
 const Kontakt = lazy(() => import("./pages/Contact"));
 const SitemapPage = lazy(() => import("./pages/Sitemap"));
+const SitemapCasinos = lazy(() => import("./pages/SitemapCasinos"));
+const SitemapBonus = lazy(() => import("./pages/SitemapBonus"));
+const SitemapSlots = lazy(() => import("./pages/SitemapSlots"));
 
 const AnsvarligtSpil = lazy(() => import("./pages/ResponsibleGaming"));
 const RofusGuide = lazy(() => import("./pages/ansvarligt-spil/RofusGuide"));
@@ -328,6 +331,9 @@ const App = () => (
                 
                 <Route path="/kontakt" element={<Kontakt />} />
                 <Route path="/sitemap" element={<SitemapPage />} />
+                <Route path="/sitemap/casino-anmeldelser" element={<SitemapCasinos />} />
+                <Route path="/sitemap/casino-bonus" element={<SitemapBonus />} />
+                <Route path="/sitemap/casinospil" element={<SitemapSlots />} />
                 <Route path="/nyheder" element={<Navigate to="/casino-nyheder" replace />} />
                 <Route path="/casino-nyheder" element={<CasinoNyheder />} />
                 <Route path="/casino-nyheder/:slug" element={<CasinoNyhedArticle />} />
