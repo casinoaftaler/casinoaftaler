@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { seoRoutes } from "@/lib/seoRoutes";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 // ── Static sitemap grouping ──
 

@@ -10,6 +10,11 @@ export const BASE_URL = "https://casinoaftaler.dk";
 
 export const routeLabels: Record<string, string> = {
   "/": "Forside",
+  // Sitemap
+  "/sitemap": "Sitemap",
+  "/sitemap/casino-anmeldelser": "Casino Anmeldelser",
+  "/sitemap/casino-bonus": "Casino Bonus",
+  "/sitemap/casinospil": "Casinospil",
   // Nye Casinoer
   "/nye-casinoer": "Nye Casinoer",
   "/nye-casinoer/2026": "Nye Casinoer 2026",
