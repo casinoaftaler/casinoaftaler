@@ -115,12 +115,7 @@ export function useSlotCatalog() {
   return useQuery({
     queryKey: ['slot-catalog-all'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('slot_catalog')
-        .select('*')
-        .order('slot_name');
-      if (error) throw error;
-      return (data || []) as SlotCatalogEntry[];
+      return await fetchAllFromSlotCatalog<SlotCatalogEntry>('*', 'slot_name');
     },
   });
 }
