@@ -22,12 +22,12 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Find slots missing metadata (max 5 per run)
+    // Find slots missing metadata OR description (max 5 per run)
     const { data: slots, error } = await admin
       .from('slot_catalog')
-      .select('id, slot_name, provider, rtp, volatility, max_potential')
-      .or('volatility.is.null,max_potential.is.null')
-      .order('updated_at', { ascending: false })
+      .select('id, slot_name, provider, rtp, volatility, max_potential, description')
+      .or('volatility.is.null,max_potential.is.null,description.is.null')
+      .order('bonus_count', { ascending: false })
       .limit(5);
 
     if (error) throw error;
@@ -41,13 +41,42 @@ Deno.serve(async (req) => {
 
     for (const slot of slots) {
       try {
-        const prompt = `For the online slot machine "${slot.slot_name}"${slot.provider && slot.provider !== 'Unknown' ? ` by ${slot.provider}` : ''}:
-1. What is the RTP? If available on SpilDanskNu (Danish casino), use that value. Give as a number like 96.5
-2. What is the volatility level? Answer with exactly one of: Low, Medium, High, Extreme
-3. What is the maximum win potential? Answer like "10,000x" or "50,000x"
-4. Who is the game provider/developer? Answer with the studio name.
+        const needsMetadata = !slot.volatility || !slot.max_potential;
+        const needsDescription = !slot.description;
 
-Return ONLY valid JSON with no extra text: {"rtp": number|null, "volatility": "Low"|"Medium"|"High"|"Extreme"|null, "max_potential": "string"|null, "provider": "string"|null}`;
+        if (!needsMetadata && !needsDescription) {
+          results.push({ slot: slot.slot_name, status: 'no_updates_needed' });
+          continue;
+        }
+
+        let prompt = '';
+        
+        if (needsMetadata && needsDescription) {
+          prompt = `For the online slot machine "${slot.slot_name}"${slot.provider && slot.provider !== 'Unknown' ? ` by ${slot.provider}` : ''}:
+
+1. RTP: If available on SpilDanskNu (Danish casino), use that value. Give as a number like 96.5
+2. Volatility: Answer with exactly one of: Low, Medium, High, Extreme
+3. Max win potential: Answer like "10,000x" or "50,000x"
+4. Provider/developer: Answer with the studio name.
+5. Description: Write a unique 300-400 word description in DANISH about this slot. Cover: theme and visual design, key game mechanics (reels, paylines, special features), bonus rounds and free spins mechanics, who the slot appeals to, and how it compares to similar slots from the same provider. Write in an informative, expert tone. Do NOT include the slot name as a heading.
+
+Return ONLY valid JSON: {"rtp": number|null, "volatility": "Low"|"Medium"|"High"|"Extreme"|null, "max_potential": "string"|null, "provider": "string"|null, "description": "string"}`;
+        } else if (needsDescription) {
+          prompt = `Write a unique 300-400 word description in DANISH about the online slot machine "${slot.slot_name}"${slot.provider && slot.provider !== 'Unknown' ? ` by ${slot.provider}` : ''}.
+RTP: ${slot.rtp || 'unknown'}%, Volatility: ${slot.volatility || 'unknown'}, Max win: ${slot.max_potential || 'unknown'}.
+
+Cover: theme and visual design, key game mechanics (reels, paylines, special features), bonus rounds and free spins mechanics, who the slot appeals to, and how it compares to similar slots from the same provider. Write in an informative, expert tone. Do NOT include the slot name as a heading.
+
+Return ONLY valid JSON: {"description": "string"}`;
+        } else {
+          prompt = `For the online slot machine "${slot.slot_name}"${slot.provider && slot.provider !== 'Unknown' ? ` by ${slot.provider}` : ''}:
+1. RTP: number like 96.5
+2. Volatility: Low, Medium, High, or Extreme
+3. Max win potential: like "10,000x"
+4. Provider name
+
+Return ONLY valid JSON: {"rtp": number|null, "volatility": "Low"|"Medium"|"High"|"Extreme"|null, "max_potential": "string"|null, "provider": "string"|null}`;
+        }
 
         const aiResponse = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
           method: 'POST',
@@ -58,7 +87,7 @@ Return ONLY valid JSON with no extra text: {"rtp": number|null, "volatility": "L
           body: JSON.stringify({
             model: 'google/gemini-2.5-flash',
             messages: [
-              { role: 'system', content: 'You are a slot machine database expert. Return ONLY valid JSON, no markdown, no explanation.' },
+              { role: 'system', content: 'You are a slot machine database expert writing for a Danish casino community site. Return ONLY valid JSON, no markdown, no explanation.' },
               { role: 'user', content: prompt },
             ],
           }),
@@ -74,8 +103,7 @@ Return ONLY valid JSON with no extra text: {"rtp": number|null, "volatility": "L
         const aiData = await aiResponse.json();
         const rawContent = aiData.choices?.[0]?.message?.content || '';
         
-        // Extract JSON from response (handle markdown code blocks)
-        const jsonMatch = rawContent.match(/\{[\s\S]*?\}/);
+        const jsonMatch = rawContent.match(/\{[\s\S]*\}/);
         if (!jsonMatch) {
           console.error(`No JSON found for ${slot.slot_name}:`, rawContent);
           results.push({ slot: slot.slot_name, status: 'parse_error' });
@@ -84,7 +112,6 @@ Return ONLY valid JSON with no extra text: {"rtp": number|null, "volatility": "L
 
         const parsed = JSON.parse(jsonMatch[0]);
         
-        // Build update - only fill NULL fields, never overwrite existing data
         const update: Record<string, any> = {};
         
         if (!slot.volatility && parsed.volatility) {
@@ -98,6 +125,9 @@ Return ONLY valid JSON with no extra text: {"rtp": number|null, "volatility": "L
         }
         if (slot.provider === 'Unknown' && parsed.provider) {
           update.provider = parsed.provider;
+        }
+        if (!slot.description && parsed.description && parsed.description.length > 100) {
+          update.description = parsed.description;
         }
 
         if (Object.keys(update).length > 0) {
