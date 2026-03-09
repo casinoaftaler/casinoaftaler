@@ -29,11 +29,7 @@ function normalizeSlotName(name: string): string {
     .trim();
 }
 
-async function fetchExistingSlotNames(
-  supabase: any,
-  provider: string
-): Promise<Set<string>> {
-  // Fetch ALL existing slot names (not just this provider) to avoid cross-provider duplicates
+async function fetchExistingSlotNames(supabase: any): Promise<Set<string>> {
   const { data, error } = await supabase
     .from("slot_catalog")
     .select("slot_name");
@@ -122,92 +118,112 @@ serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     const body = await req.json().catch(() => ({}));
-    const requestedProviders: string[] = body.providers || DEFAULT_PROVIDERS;
-    const singleProvider: string | undefined = body.provider;
-    const providers = singleProvider ? [singleProvider] : requestedProviders;
+    
+    // Mode: "preview" = fetch slots from AI but don't insert, "confirm" = insert approved slots
+    const mode: string = body.mode || "preview";
 
-    const results: Record<string, { slots_processed: number; skipped: number; errors: string[] }> = {};
-
-    for (const provider of providers) {
-      console.log(`Seeding slots for provider: ${provider}`);
-      const providerResult = { slots_processed: 0, skipped: 0, errors: [] as string[] };
-
-      try {
-        // Fetch existing slot names to avoid duplicates
-        const existingNames = await fetchExistingSlotNames(supabase, provider);
-        console.log(`Found ${existingNames.size} existing slots in database`);
-
-        const slots = await fetchSlotsForProvider(provider, LOVABLE_API_KEY, existingNames);
-        console.log(`Got ${slots.length} slots from AI for ${provider}`);
-
-        // Filter out slots that already exist (case-insensitive)
-        const newSlots = slots.filter(s => !existingNames.has(normalizeSlotName(s.name)));
-        const skippedCount = slots.length - newSlots.length;
-        providerResult.skipped = skippedCount;
-        console.log(`${newSlots.length} new slots, ${skippedCount} already exist`);
-
-        for (const slot of newSlots) {
-          try {
-            const { error } = await supabase.rpc("upsert_slot_catalog", {
-              p_slot_name: slot.name,
-              p_provider: provider,
-              p_rtp: slot.rtp,
-              p_win: 0,
-              p_multiplier: 0,
-            });
-
-            if (error) {
-              console.error(`Upsert error for ${slot.name}:`, error.message);
-              providerResult.errors.push(`${slot.name}: ${error.message}`);
-            } else {
-              providerResult.slots_processed++;
-            }
-          } catch (e) {
-            providerResult.errors.push(`${slot.name}: ${e.message}`);
-          }
-        }
-
-        // Update volatility and max_potential for newly seeded slots
-        for (const slot of newSlots) {
-          if (slot.volatility || slot.max_potential) {
-            await supabase
-              .from("slot_catalog")
-              .update({
-                volatility: slot.volatility || undefined,
-                max_potential: slot.max_potential || undefined,
-              })
-              .ilike("slot_name", slot.name)
-              .is("volatility", null);
-          }
-        }
-      } catch (e) {
-        providerResult.errors.push(`Provider-level error: ${e.message}`);
+    // ── CONFIRM MODE: insert approved slots ──
+    if (mode === "confirm") {
+      const approvedSlots: { name: string; provider: string; rtp: number | null; volatility: string | null; max_potential: string | null }[] = body.slots || [];
+      
+      if (approvedSlots.length === 0) {
+        return new Response(
+          JSON.stringify({ success: true, inserted: 0 }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
       }
 
-      results[provider] = providerResult;
+      let inserted = 0;
+      let errors: string[] = [];
+
+      for (const slot of approvedSlots) {
+        try {
+          const { error } = await supabase.rpc("upsert_slot_catalog", {
+            p_slot_name: slot.name,
+            p_provider: slot.provider,
+            p_rtp: slot.rtp,
+            p_win: 0,
+            p_multiplier: 0,
+          });
+
+          if (error) {
+            errors.push(`${slot.name}: ${error.message}`);
+          } else {
+            inserted++;
+            // Update volatility and max_potential
+            if (slot.volatility || slot.max_potential) {
+              await supabase
+                .from("slot_catalog")
+                .update({
+                  volatility: slot.volatility || undefined,
+                  max_potential: slot.max_potential || undefined,
+                })
+                .ilike("slot_name", slot.name)
+                .is("volatility", null);
+            }
+          }
+        } catch (e) {
+          errors.push(`${slot.name}: ${e.message}`);
+        }
+      }
+
+      return new Response(
+        JSON.stringify({ success: true, inserted, errors }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
-    const totalProcessed = Object.values(results).reduce(
-      (sum, r) => sum + r.slots_processed, 0
-    );
-    const totalSkipped = Object.values(results).reduce(
-      (sum, r) => sum + r.skipped, 0
-    );
-    const totalErrors = Object.values(results).reduce(
-      (sum, r) => sum + r.errors.length, 0
-    );
+    // ── PREVIEW MODE: fetch from AI, return without inserting ──
+    const singleProvider: string | undefined = body.provider;
+    const requestedProviders: string[] = body.providers || DEFAULT_PROVIDERS;
+    const providers = singleProvider ? [singleProvider] : requestedProviders;
+
+    const existingNames = await fetchExistingSlotNames(supabase);
+    console.log(`Found ${existingNames.size} existing slots in database`);
+
+    const allNewSlots: { name: string; provider: string; rtp: number | null; volatility: string | null; max_potential: string | null }[] = [];
+    const providerResults: Record<string, { found: number; new: number; skipped: number; errors: string[] }> = {};
+
+    for (const provider of providers) {
+      console.log(`Fetching slots for provider: ${provider}`);
+      const result = { found: 0, new: 0, skipped: 0, errors: [] as string[] };
+
+      try {
+        const slots = await fetchSlotsForProvider(provider, LOVABLE_API_KEY, existingNames);
+        result.found = slots.length;
+
+        const newSlots = slots.filter(s => !existingNames.has(normalizeSlotName(s.name)));
+        result.new = newSlots.length;
+        result.skipped = slots.length - newSlots.length;
+
+        for (const slot of newSlots) {
+          allNewSlots.push({
+            name: slot.name,
+            provider,
+            rtp: slot.rtp,
+            volatility: slot.volatility,
+            max_potential: slot.max_potential,
+          });
+          // Add to existing names so next provider doesn't suggest same slot
+          existingNames.add(normalizeSlotName(slot.name));
+        }
+      } catch (e) {
+        result.errors.push(e.message);
+      }
+
+      providerResults[provider] = result;
+    }
 
     return new Response(
       JSON.stringify({
         success: true,
-        total_processed: totalProcessed,
-        total_skipped: totalSkipped,
-        total_errors: totalErrors,
-        providers: results,
+        mode: "preview",
+        total_new: allNewSlots.length,
+        total_skipped: Object.values(providerResults).reduce((s, r) => s + r.skipped, 0),
+        slots: allNewSlots,
+        providers: providerResults,
       }),
-      {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
+      { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (e) {
     console.error("slot-catalog-seed error:", e);
