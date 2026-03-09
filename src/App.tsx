@@ -74,6 +74,7 @@ const SpinTheReel = lazy(() => import("./pages/SpinTheReel"));
 const BonusHunt = lazy(() => import("./pages/BonusHunt"));
 const BonusHuntArkiv = lazy(() => import("./pages/BonusHuntArkiv"));
 const SlotDatabase = lazy(() => import("./pages/SlotDatabase"));
+const SlotCatalogPage = lazy(() => import("./pages/SlotCatalogPage"));
 const TurneringsArkiv = lazy(() => import("./pages/TurneringsArkiv"));
 const HallOfFame = lazy(() => import("./pages/HallOfFame"));
 const Admin = lazy(() => import("./pages/Admin"));
