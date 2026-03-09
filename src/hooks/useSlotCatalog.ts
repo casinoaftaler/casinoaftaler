@@ -1,23 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
-// Fetch all rows from slot_catalog, bypassing the 1000-row default limit
-async function fetchAllFromSlotCatalog<T = any>(selectQuery: string, orderBy?: string): Promise<T[]> {
-  let allData: T[] = [];
-  let from = 0;
-  const batchSize = 1000;
-  while (true) {
-    let query = supabase.from('slot_catalog').select(selectQuery).range(from, from + batchSize - 1);
-    if (orderBy) query = query.order(orderBy);
-    const { data, error } = await query;
-    if (error) throw error;
-    allData = allData.concat((data || []) as T[]);
-    if (!data || data.length < batchSize) break;
-    from += batchSize;
-  }
-  return allData;
-}
-
 export interface SlotCatalogEntry {
   id: string;
   slot_name: string;
@@ -59,14 +42,18 @@ export function useSlotCatalogMap() {
   return useQuery({
     queryKey: ['slot-catalog-map'],
     queryFn: async () => {
-      const data = await fetchAllFromSlotCatalog<{ slot_name: string; provider: string }>('slot_name, provider');
+      const { data, error } = await supabase
+        .from('slot_catalog')
+        .select('slot_name, provider');
+      if (error) throw error;
       const providerMap = new Map<string, string>();
       const nameMap = new Map<string, string>();
-      data.forEach(row => {
+      data?.forEach(row => {
         const key = row.slot_name.toLowerCase();
         if (row.provider && row.provider !== 'Custom Slot') {
           providerMap.set(key, row.provider);
         }
+        // Always store the canonical name from catalog
         nameMap.set(key, row.slot_name);
       });
       return { providerMap, nameMap };
@@ -115,7 +102,12 @@ export function useSlotCatalog() {
   return useQuery({
     queryKey: ['slot-catalog-all'],
     queryFn: async () => {
-      return await fetchAllFromSlotCatalog<SlotCatalogEntry>('*', 'slot_name');
+      const { data, error } = await supabase
+        .from('slot_catalog')
+        .select('*')
+        .order('slot_name');
+      if (error) throw error;
+      return (data || []) as SlotCatalogEntry[];
     },
   });
 }
