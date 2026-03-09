@@ -110,17 +110,12 @@ export function useBonusHuntArchives() {
   });
 }
 
-// Fetch all slot catalog entries (for admin)
+// Fetch all slot catalog entries (for admin + slot database page)
 export function useSlotCatalog() {
   return useQuery({
     queryKey: ['slot-catalog-all'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('slot_catalog')
-        .select('*')
-        .order('slot_name');
-      if (error) throw error;
-      return (data || []) as SlotCatalogEntry[];
+      return await fetchAllSlotCatalogRows<SlotCatalogEntry>('*', 'slot_name');
     },
   });
 }

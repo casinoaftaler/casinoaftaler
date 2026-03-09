@@ -25,9 +25,12 @@ import {
 } from "@/hooks/useSlotCatalog";
 
 const SEED_PROVIDERS = [
-  "Pragmatic Play", "NetEnt", "Play'n GO", "Hacksaw Gaming", "Nolimit City",
-  "Big Time Gaming", "Red Tiger", "ELK Studios", "Yggdrasil", "Microgaming",
-  "Relax Gaming", "Push Gaming", "Thunderkick", "Blueprint Gaming", "iSoftBet",
+  "Pragmatic Play", "NetEnt", "Microgaming", "Playtech", "Play'n GO",
+  "Evolution", "Betsoft", "Blueprint Gaming", "Relax Gaming", "Push Gaming",
+  "ELK Studios", "Big Time Gaming", "Quickspin", "Yggdrasil Gaming", "Nolimit City",
+  "Hacksaw Gaming", "BGaming", "Red Tiger Gaming", "Thunderkick", "Endorphina",
+  "Kalamba Games", "Reel Kingdom", "Fantasma Games", "PearFiction Studios",
+  "Gameburger Studios", "Spadegaming", "Booming Games", "AvatarUX", "Print Studios",
 ];
 
 export function SlotCatalogAdminSection() {
