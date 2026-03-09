@@ -781,6 +781,24 @@ export default function SlotCatalogPage() {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="redaktionen" showAffiliateDisclaimer={false} />
 
+        {/* Human-edited signal: editor note + verification badge */}
+        <div className="flex flex-wrap items-center gap-3 mb-6 text-xs text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/50 px-3 py-1.5 font-medium">
+            <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />
+            Sidst verificeret: marts 2026
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/50 px-3 py-1.5 font-medium">
+            <CheckCircle className="h-3.5 w-3.5 text-primary" />
+            Redaktionelt gennemgået
+          </span>
+          {slot.bonus_count > 0 && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted/50 px-3 py-1.5 font-medium">
+              <BarChart3 className="h-3.5 w-3.5 text-amber-500" />
+              Baseret på {slot.bonus_count} bonus hunt{slot.bonus_count !== 1 ? "s" : ""}
+            </span>
+          )}
+        </div>
+
         {/* Slot Statistik Infobox */}
         <div className="rounded-lg border border-border overflow-hidden mb-8">
           <h2 className="text-lg font-bold px-4 py-3 bg-muted/50 border-b border-border">Slot Statistik</h2>
