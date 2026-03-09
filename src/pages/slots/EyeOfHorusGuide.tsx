@@ -10,6 +10,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -134,6 +135,7 @@ const EyeOfHorusGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For danske spillere, der søger den autentiske spillehal-oplevelse med moderne convenience, er Eye of Horus det perfekte valg. Udforsk flere guides i vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide-oversigt</Link>.</p>
         </section>
 
+        <SlotDataLink slotSlug="eye-of-horus" slotName="Eye of Horus" />
         <SlotProviderLink slotSlug="eye-of-horus" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/eye-of-horus" />
         <FAQSection title="Ofte Stillede Spørgsmål om Eye of Horus" faqs={eyeOfHorusFaqs} />

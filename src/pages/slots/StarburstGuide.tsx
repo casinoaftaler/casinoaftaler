@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -407,6 +408,7 @@ const StarburstGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="starburst" slotName="Starburst" />
         <SlotProviderLink slotSlug="starburst" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/starburst" />
         <FAQSection title="Ofte Stillede Spørgsmål om Starburst" faqs={starburstFaqs} />

@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -135,6 +136,7 @@ const ChaosCrewGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Chaos Crew er Hacksaw Gaming's mest tilgængelige high-volatility slot – en titel, der balancerer punk-anarki med matematisk disciplin. For danske spillere, der søger en unik cluster pays-oplevelse med god RTP og innovativ dual-wild mekanik, er Chaos Crew et fremragende tilskud til slot-repertoiret. Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> for at finde din ideelle match.</p>
         </section>
 
+        <SlotDataLink slotSlug="chaos-crew" slotName="Chaos Crew" />
         <SlotProviderLink slotSlug="chaos-crew" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/chaos-crew" />
         <FAQSection title="Ofte Stillede Spørgsmål om Chaos Crew" faqs={chaosCrewFaqs} />

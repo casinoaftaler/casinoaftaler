@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -139,6 +140,7 @@ const SugarRushGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For danske spillere, der søger en cluster pays-oplevelse med en unik twist, er Sugar Rush vores top-anbefaling i Pragmatic Play's portefølje. Den kombinerer det bedste fra tumble-mekanik, cluster pays og progressiv multiplikator-opbygning i en tilgængelig og visuelt tiltalende pakke. Udforsk flere guides på vores <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskineguide-oversigt</Link>.</p>
         </section>
 
+        <SlotDataLink slotSlug="sugar-rush" slotName="Sugar Rush" />
         <SlotProviderLink slotSlug="sugar-rush" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/sugar-rush" />
         <FAQSection title="Ofte Stillede Spørgsmål om Sugar Rush" faqs={sugarRushFaqs} />

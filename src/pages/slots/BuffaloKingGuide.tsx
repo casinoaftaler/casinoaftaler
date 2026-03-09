@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -120,6 +121,7 @@ const BuffaloKingGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For danske spillere, der forstår og accepterer ekstremt høj volatilitet, er Buffalo King en spændende tilføjelse til slot-repertoiret. Men den bør behandles med respekt – og med en disciplineret bankroll-strategi. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide-oversigt</Link> for at finde det rette match til din risikoprofil.</p>
         </section>
 
+        <SlotDataLink slotSlug="buffalo-king" slotName="Buffalo King" />
         <SlotProviderLink slotSlug="buffalo-king" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/buffalo-king" />
         <FAQSection title="Ofte Stillede Spørgsmål om Buffalo King" faqs={buffaloKingFaqs} />

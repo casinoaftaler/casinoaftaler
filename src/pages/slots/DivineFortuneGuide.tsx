@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -138,6 +139,7 @@ const DivineFortuneGuide = () => {
           <p className="text-muted-foreground leading-relaxed">NetEnt har med Divine Fortune bevist, at jackpot-mekanikker og fair matematik kan sameksistere. For danske spillere, der søger den ultimative jackpot-oplevelse med <Link to="/casinospil" className={linkClass}>fornuftig risikoprofil</Link>, er Divine Fortune det oplagte valg. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide-oversigt</Link> for flere anbefalinger.</p>
         </section>
 
+        <SlotDataLink slotSlug="divine-fortune" slotName="Divine Fortune" />
         <SlotProviderLink slotSlug="divine-fortune" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/divine-fortune" />
         <FAQSection title="Ofte Stillede Spørgsmål om Divine Fortune" faqs={divineFortuneFaqs} />

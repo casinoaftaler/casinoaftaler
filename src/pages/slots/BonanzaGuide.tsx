@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -358,6 +359,7 @@ const BonanzaGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="bonanza" slotName="Bonanza" />
         <SlotProviderLink slotSlug="bonanza" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/bonanza" />
         <FAQSection title="Ofte Stillede Spørgsmål om Bonanza Megaways" faqs={bonanzaFaqs} />

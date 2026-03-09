@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -132,6 +133,7 @@ const MegaMoolahGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Men for spillere, der søger optimal value pr. krone, er Mega Moolah objektivt et af de dårligste valg i markedet. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde slots med bedre base game-økonomi, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-oversigten for aktuelle tilbud.</p>
         </section>
 
+        <SlotDataLink slotSlug="mega-moolah" slotName="Mega Moolah" />
         <SlotProviderLink slotSlug="mega-moolah" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/mega-moolah" />
         <FAQSection title="Ofte Stillede Spørgsmål om Mega Moolah" faqs={megaMoolahFaqs} />

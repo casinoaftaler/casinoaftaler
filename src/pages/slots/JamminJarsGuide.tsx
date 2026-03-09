@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -357,6 +358,7 @@ const JamminJarsGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="jammin-jars" slotName="Jammin' Jars" />
         <SlotProviderLink slotSlug="jammin-jars" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/jammin-jars" />
         <FAQSection title="Ofte Stillede Spørgsmål om Jammin' Jars" faqs={jamminJarsFaqs} />

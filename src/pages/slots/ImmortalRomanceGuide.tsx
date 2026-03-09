@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -137,6 +138,7 @@ const ImmortalRomanceGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde det rette match til din risikoprofil, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>-tilbud.</p>
         </section>
 
+        <SlotDataLink slotSlug="immortal-romance" slotName="Immortal Romance" />
         <SlotProviderLink slotSlug="immortal-romance" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/immortal-romance" />
         <FAQSection title="Ofte Stillede Spørgsmål om Immortal Romance" faqs={immortalRomanceFaqs} />

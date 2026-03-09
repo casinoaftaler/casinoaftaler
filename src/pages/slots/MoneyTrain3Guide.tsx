@@ -10,6 +10,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -408,6 +409,7 @@ const MoneyTrain3Guide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="money-train-3" slotName="Money Train 3" />
         <SlotProviderLink slotSlug="money-train-3" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/money-train-3" />
         <FAQSection title="Ofte Stillede Spørgsmål om Money Train 3" faqs={moneyTrain3Faqs} />

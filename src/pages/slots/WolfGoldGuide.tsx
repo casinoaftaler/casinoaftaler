@@ -10,6 +10,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -427,6 +428,7 @@ const WolfGoldGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="wolf-gold" slotName="Wolf Gold" />
         <SlotProviderLink slotSlug="wolf-gold" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wolf-gold" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wolf Gold" faqs={wolfGoldFaqs} />

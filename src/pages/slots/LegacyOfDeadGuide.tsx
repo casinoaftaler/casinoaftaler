@@ -10,6 +10,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -280,6 +281,7 @@ const LegacyOfDeadGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="legacy-of-dead" slotName="Legacy of Dead" />
         <SlotProviderLink slotSlug="legacy-of-dead" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/legacy-of-dead" />
         <FAQSection title="Ofte Stillede Spørgsmål om Legacy of Dead" faqs={legacyOfDeadFaqs} />

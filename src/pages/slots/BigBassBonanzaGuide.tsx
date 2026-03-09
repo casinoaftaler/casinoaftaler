@@ -10,6 +10,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -374,6 +375,7 @@ const BigBassBonanzaGuide = () => {
 
         <Separator className="my-10" />
 
+        <SlotDataLink slotSlug="big-bass-bonanza" slotName="Big Bass Bonanza" />
         <SlotProviderLink slotSlug="big-bass-bonanza" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/big-bass-bonanza" />
         <FAQSection title="Ofte Stillede Spørgsmål om Big Bass Bonanza" faqs={bigBassFaqs} />

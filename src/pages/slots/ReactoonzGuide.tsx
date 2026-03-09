@@ -10,6 +10,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -544,6 +545,7 @@ const ReactoonzGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="reactoonz" slotName="Reactoonz" />
         <SlotProviderLink slotSlug="reactoonz" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/reactoonz" />
         <FAQSection title="Ofte Stillede Spørgsmål om Reactoonz" faqs={reactoonzFaqs} />

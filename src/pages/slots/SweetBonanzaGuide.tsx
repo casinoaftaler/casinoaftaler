@@ -10,6 +10,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -520,6 +521,7 @@ const SweetBonanzaGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="sweet-bonanza" slotName="Sweet Bonanza" />
         <SlotProviderLink slotSlug="sweet-bonanza" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/sweet-bonanza" />
         <FAQSection title="Ofte Stillede Spørgsmål om Sweet Bonanza" faqs={sweetBonanzaFaqs} />

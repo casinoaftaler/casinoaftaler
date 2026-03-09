@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -334,6 +335,7 @@ const GonzosQuestGuide = () => {
 
         <Separator className="my-10" />
 
+        <SlotDataLink slotSlug="gonzos-quest" slotName="Gonzo's Quest" />
         <SlotProviderLink slotSlug="gonzos-quest" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/gonzos-quest" />
         <FAQSection title="Ofte Stillede Spørgsmål om Gonzo's Quest" faqs={gonzosQuestFaqs} />

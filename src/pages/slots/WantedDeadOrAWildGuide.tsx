@@ -10,6 +10,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -173,6 +174,7 @@ const WantedDeadOrAWildGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Men for de fleste spillere er Wanted for volatil. Kend dine grænser, forstå matematikken, og vælg et spil, der matcher din risikoprofil – ikke dit ego. Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> for at finde din ideelle match.</p>
         </section>
 
+        <SlotDataLink slotSlug="wanted-dead-or-a-wild" slotName="Wanted Dead or a Wild" />
         <SlotProviderLink slotSlug="wanted-dead-or-a-wild" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wanted-dead-or-a-wild" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wanted Dead or a Wild" faqs={wantedFaqs} />

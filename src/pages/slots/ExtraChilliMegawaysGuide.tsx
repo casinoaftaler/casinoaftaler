@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -141,6 +142,7 @@ const ExtraChilliMegawaysGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Udforsk <Link to="/casinospil" className={linkClass}>flere casinospil</Link> for at finde det rette match til din risikoprofil.</p>
         </section>
 
+        <SlotDataLink slotSlug="extra-chilli-megaways" slotName="Extra Chilli Megaways" />
         <SlotProviderLink slotSlug="extra-chilli-megaways" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/extra-chilli-megaways" />
         <FAQSection title="Ofte Stillede Spørgsmål om Extra Chilli Megaways" faqs={extraChilliFaqs} />

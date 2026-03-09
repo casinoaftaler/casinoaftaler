@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
+import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -151,6 +152,7 @@ const WildWestGoldGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde andre high-value titler fra <Link to="/casinospil" className={linkClass}>Pragmatic Play</Link> og andre topudviklere.</p>
         </section>
 
+        <SlotDataLink slotSlug="wild-west-gold" slotName="Wild West Gold" />
         <SlotProviderLink slotSlug="wild-west-gold" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wild-west-gold" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wild West Gold" faqs={wildWestGoldFaqs} />
