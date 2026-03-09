@@ -23,7 +23,7 @@ const COMMUNITY_LINKS = [
   {
     icon: Database,
     title: "Slot Database",
-    description: "163+ slots med community-data og performance-stats.",
+    description: "1.400+ slots med community-data og performance-stats.",
     to: "/slot-database",
   },
   {
