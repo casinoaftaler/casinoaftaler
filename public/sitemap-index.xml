@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  This file is OVERWRITTEN at build time by the Vite sitemapPlugin in vite.config.ts.
+  The build generates all sub-sitemaps on the same domain (casinoaftaler.dk).
+  DO NOT reference cross-domain URLs here – Google ignores them.
+-->
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://casinoaftaler.dk/sitemap.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/functions/v1/sitemap-news</loc>
+    <loc>https://casinoaftaler.dk/sitemap-slots.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/functions/v1/sitemap-images</loc>
-  </sitemap>
-  <sitemap>
-    <loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/functions/v1/sitemap-slots</loc>
+    <loc>https://casinoaftaler.dk/sitemap-articles.xml</loc>
   </sitemap>
 </sitemapindex>
