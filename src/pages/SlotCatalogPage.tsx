@@ -863,7 +863,73 @@ export default function SlotCatalogPage() {
           )}
         </section>
 
-        {/* RTP & Mathematics Deep Dive */}
+        {/* Casinoer der har denne slot */}
+        {casinosForSlot && casinosForSlot.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold mb-4">Casinoer hvor du kan spille {slotName}</h2>
+            <p className="text-muted-foreground mb-4">
+              Disse danske casinoer tilbyder spillemaskiner fra {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" ? providerLink(slot.provider) : "denne udbyder"}, herunder {slotName}.
+            </p>
+            <div className="rounded-lg border border-border overflow-hidden">
+              <table className="w-full text-sm">
+                <thead className="bg-muted">
+                  <tr className="border-b border-border">
+                    <th className="px-4 py-2.5 text-left font-medium">Casino</th>
+                    <th className="px-4 py-2.5 text-left font-medium hidden sm:table-cell">Bonus</th>
+                    <th className="px-4 py-2.5 text-left font-medium hidden md:table-cell">Gennemspil</th>
+                    <th className="px-4 py-2.5 text-right font-medium">Link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {casinosForSlot.map((casino: any) => (
+                    <tr key={casino.id} className="border-b border-border/50 hover:bg-muted/30">
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          {casino.logo_url && (
+                            <img
+                              src={optimizeStorageImage(casino.logo_url, 64) ?? casino.logo_url}
+                              alt={casino.name}
+                              width={24}
+                              height={24}
+                              loading="lazy"
+                              className="h-6 w-6 rounded object-contain"
+                            />
+                          )}
+                          <a href={`/casino-anmeldelser/${casino.slug}`} className="text-primary hover:underline font-medium">
+                            {casino.name}
+                          </a>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 hidden sm:table-cell text-muted-foreground">{casino.bonus_amount}</td>
+                      <td className="px-4 py-3 hidden md:table-cell text-muted-foreground">{casino.wagering_requirements}</td>
+                      <td className="px-4 py-3 text-right">
+                        {casino.has_affiliate ? (
+                          <Button
+                            size="sm"
+                            variant="default"
+                            data-sponsored="true"
+                            onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
+                            className="text-xs"
+                          >
+                            <Gift className="h-3 w-3 mr-1" />
+                            Hent Bonus
+                          </Button>
+                        ) : (
+                          <a href={`/casino-anmeldelser/${casino.slug}`} className="text-xs text-primary hover:underline">
+                            Læs anmeldelse
+                          </a>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <CasinoCardDisclaimer />
+          </section>
+        )}
+
+
         <section className="mb-8">
           <h2 className="text-2xl font-bold mb-4">{H2_RTP(slotName, slotName)}</h2>
           <div className="text-muted-foreground leading-relaxed space-y-4">
