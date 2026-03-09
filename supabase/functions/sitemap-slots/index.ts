@@ -49,8 +49,8 @@ Deno.serve(async (req) => {
       from += batchSize;
     }
 
-    // Only include slots with >= 3 bonus hunts (non-thin content)
-    const indexableSlots = allSlots.filter((s) => s.bonus_count >= 3);
+    // All pages have 2000+ words of generated content – include everything
+    const indexableSlots = allSlots;
 
     const urls = indexableSlots.map((slot) => {
       const slug = slugifySlotName(slot.slot_name);
