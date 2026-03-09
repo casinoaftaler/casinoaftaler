@@ -113,7 +113,7 @@ export const routeLabels: Record<string, string> = {
   "/cookies": "Cookies",
   "/highlights": "Highlights",
   "/butik": "Butik",
-  "/sitemap": "Sitemap",
+  // "/sitemap" already defined above
   // Forfattere
   "/forfatter": "Forfattere",
   "/forfatter/jonas": "Jonas Theill",

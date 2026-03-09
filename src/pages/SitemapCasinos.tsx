@@ -31,9 +31,6 @@ export default function SitemapCasinos() {
         description="Komplet liste over alle casino anmeldelser på Casinoaftaler.dk. Find din næste casino med vores dybdegående anmeldelser."
         noindex
       />
-      <div className="container py-4">
-        <Breadcrumbs />
-      </div>
       <div className="container py-8">
         <h1 className="text-3xl font-bold mb-4">Sitemap: Casino Anmeldelser</h1>
         <p className="text-muted-foreground mb-6">
