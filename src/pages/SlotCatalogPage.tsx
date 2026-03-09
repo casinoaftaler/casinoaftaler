@@ -9,7 +9,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Badge } from "@/components/ui/badge";
-import { Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers } from "lucide-react";
+import { Sparkles, Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers } from "lucide-react";
 
 /** Reverse lookup: display name → provider slug */
 const PROVIDER_NAME_TO_SLUG: Record<string, string> = {};
@@ -175,6 +175,38 @@ function generateFAQ(slot: any) {
   return faqs;
 }
 
+// ─── Hero description generator ────────────────────────────
+
+function generateHeroDescription(slot: any): string {
+  const parts: string[] = [];
+  
+  if (slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot") {
+    parts.push(`Komplet community-data og statistik for ${slot.slot_name} fra ${slot.provider}.`);
+  } else {
+    parts.push(`Komplet community-data og statistik for ${slot.slot_name}.`);
+  }
+
+  if (slot.rtp && slot.volatility) {
+    parts.push(`Med en RTP på ${slot.rtp}% og ${slot.volatility.toLowerCase()} volatilitet`);
+  } else if (slot.rtp) {
+    parts.push(`Med en RTP på ${slot.rtp}%`);
+  } else if (slot.volatility) {
+    parts.push(`Med ${slot.volatility.toLowerCase()} volatilitet`);
+  }
+
+  if (slot.bonus_count > 0) {
+    parts.push(
+      `er denne spillemaskin testet i ${slot.bonus_count} bonus hunt${slot.bonus_count !== 1 ? "s" : ""} på vores Twitch-kanal${
+        slot.highest_x && slot.highest_x > 0 ? ` med en top-multiplikator på ${Number(slot.highest_x.toFixed(1))}x` : ""
+      }.`
+    );
+  } else {
+    parts.push("– følg med når den bliver testet i kommende bonus hunts.");
+  }
+
+  return parts.join(" ");
+}
+
 // ─── Main Component ────────────────────────────────────────
 
 export default function SlotCatalogPage() {
@@ -269,6 +301,8 @@ export default function SlotCatalogPage() {
     );
   }
 
+  const heroDescription = generateHeroDescription(slot);
+
   return (
     <>
       <Helmet>
@@ -285,40 +319,31 @@ export default function SlotCatalogPage() {
         )}
       </Helmet>
 
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        <Breadcrumbs dynamicLabel={slot.slot_name} />
-
-        {/* Header */}
-        <div className="mb-6">
-          <Badge variant="outline" className="mb-3 gap-1.5 text-xs font-medium">
-            <Gamepad2 className="h-3.5 w-3.5" />
-            Slot Data
-          </Badge>
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">
-            {slot.slot_name}
-          </h1>
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-            {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" ? (
-              <>
-                Udviklet af{" "}
-                {providerSlug ? (
-                  <Link to={`/spiludviklere/${providerSlug}`} className="text-primary hover:underline">
-                    {slot.provider}
-                  </Link>
-                ) : (
-                  slot.provider
-                )}
-                {" · "}
-              </>
-            ) : null}
-            {slot.rtp ? `RTP ${slot.rtp}%` : ""}
-            {slot.rtp && slot.volatility ? " · " : ""}
-            {slot.volatility ? `${slot.volatility} volatilitet` : ""}
-            {" · "}
-            Testet i {slot.bonus_count} bonus hunt{slot.bonus_count !== 1 ? "s" : ""} med ægte community-data.
-          </p>
+      {/* Hero Section – same gradient as /nye-casinoer */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+              Slot Data
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              {slot.slot_name}
+            </h1>
+            <p className="text-lg text-white/80">
+              {heroDescription}
+            </p>
+          </div>
         </div>
+      </section>
 
+      <div className="container py-8 md:py-12">
+        <Breadcrumbs dynamicLabel={slot.slot_name} />
         <AuthorMetaBar author="redaktionen" />
 
         {/* Stats Grid */}
