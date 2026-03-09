@@ -265,9 +265,9 @@ export const seoRoutes: SeoRoute[] = ([
   // /ordbog/free-spins – 301 redirected to /free-spins (cannibalization fix)
   { path: "/ordbog/scatter", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/wild", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
-  { path: "/ordbog/jackpot", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
-  { path: "/ordbog/rng", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
-  { path: "/ordbog/paylines", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
+  { path: "/ordbog/jackpot", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
+  { path: "/ordbog/rng", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
+  { path: "/ordbog/paylines", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
   { path: "/ordbog/bonus-runde", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/multiplikator", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/max-bet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
