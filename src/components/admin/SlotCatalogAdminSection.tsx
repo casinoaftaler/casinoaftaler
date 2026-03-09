@@ -161,7 +161,10 @@ function SeedDatabaseSection() {
               <div key={provider} className="flex items-center justify-between px-3 py-2">
                 <span className="font-medium">{provider}</span>
                 <div className="flex items-center gap-3">
-                  <span className="text-muted-foreground">{r.slots_processed} slots</span>
+                  <span className="text-muted-foreground">{r.slots_processed} nye</span>
+                  {r.skipped > 0 && (
+                    <span className="text-muted-foreground/60">{r.skipped} sprunget over</span>
+                  )}
                   {r.errors.length > 0 && (
                     <span className="text-destructive">{r.errors.length} fejl</span>
                   )}
