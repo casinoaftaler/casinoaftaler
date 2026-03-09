@@ -534,6 +534,12 @@ function generateFAQ(slot: any) {
 // ─── Hero description generator ────────────────────────────
 
 function generateHeroDescription(slot: any): string {
+  // Use AI-generated unique description when available
+  if (slot.meta_description) {
+    return slot.meta_description;
+  }
+
+  // Fallback template for slots without meta_description yet
   const parts: string[] = [];
   if (slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot") {
     parts.push(`Komplet community-data og statistik for ${slot.slot_name} fra ${slot.provider}.`);
