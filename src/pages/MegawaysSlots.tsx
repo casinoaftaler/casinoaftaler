@@ -682,7 +682,7 @@ const MegawaysSlots = () => {
               { to: "/bonus-buy-slots", title: "Bonus Buy Slots", desc: "Køb bonus direkte – spring base game over" },
               { to: "/casinospil/spillemaskiner", title: "Spillemaskiner Guide", desc: "Komplet guide til alle spilleautomater" },
               { to: "/casinospil/spillemaskiner/hoej-rtp", title: "Høj RTP Slots", desc: "Spillemaskiner med bedst tilbagebetaling" },
-              { to: "/slot-database", title: "Slot Database", desc: "163+ slots med community-statistik" },
+              { to: "/slot-database", title: "Slot Database", desc: "1.400+ slots med community-statistik" },
               { to: "/ordbog", title: "Casino Ordbog", desc: "Forstå alle casino-termer" },
             ].map((item) => (
               <Link
