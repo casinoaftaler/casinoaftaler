@@ -1006,23 +1006,23 @@ export default function SlotCatalogPage() {
           </section>
         )}
 
-        {/* Similar slots */}
+        {/* Flere slots fra provider */}
         {similarSlots && similarSlots.length > 0 && (
           <section className="mb-8">
             <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
               <Layers className="h-6 w-6 text-primary" />
-              Lignende Spillemaskiner
+              Flere slots fra {slot.provider}
             </h2>
             <p className="text-muted-foreground mb-4">
-              Andre populære slots fra {providerLink(slot.provider)} med lignende karakteristika.
+              Andre populære spillemaskiner fra {providerLink(slot.provider)}.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {similarSlots.map((s) => {
-                const simSlug = slugifySlotName(s.slot_name);
+                const simSlug = (s as any).slug || slugifySlotName(s.slot_name);
                 return (
-                  <Link
+                  <a
                     key={s.slot_name}
-                    to={`/slot-katalog/${simSlug}`}
+                    href={`/slot-katalog/${simSlug}`}
                     className="rounded-lg border border-border p-4 hover:border-primary/50 hover:bg-muted/30 transition-colors"
                   >
                     <p className="font-medium mb-1">{s.slot_name}</p>
@@ -1033,7 +1033,7 @@ export default function SlotCatalogPage() {
                         <span>{Number(s.highest_x.toFixed(1))}x</span>
                       )}
                     </div>
-                  </Link>
+                  </a>
                 );
               })}
             </div>
