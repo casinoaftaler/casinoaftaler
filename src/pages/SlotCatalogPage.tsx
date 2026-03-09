@@ -595,7 +595,8 @@ export default function SlotCatalogPage() {
   })();
 
   const description = slot
-    ? `${slot.slot_name} fra ${slot.provider}: RTP ${slot.rtp || "N/A"}%, volatilitet ${slot.volatility || "N/A"}, testet i ${slot.bonus_count} bonus hunts. Se community-data og statistikker.`
+    ? ((slot as any).meta_description as string | null)
+      || `${slot.slot_name} fra ${slot.provider}: RTP ${slot.rtp || "N/A"}%, volatilitet ${slot.volatility || "N/A"}, testet i ${slot.bonus_count} bonus hunts. Se community-data og statistikker.`
     : "";
 
   const hasRating = slot && slot.bonus_count > 0 && slot.highest_x && slot.highest_x > 0;
