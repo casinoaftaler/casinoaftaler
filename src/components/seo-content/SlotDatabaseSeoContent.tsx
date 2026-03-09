@@ -594,7 +594,7 @@ export function SlotDatabaseSeoContent() {
 
         <h3 className="text-xl font-bold text-foreground mt-6">Statistisk pålidelighed</h3>
         <p className="text-muted-foreground leading-relaxed">
-          Det er vigtigt at anerkende begrænsningerne i vores data. Med 163+ spillemaskiner og hundredvis af
+          Det er vigtigt at anerkende begrænsningerne i vores data. Med 1.400+ spillemaskiner og hundredvis af
           bonusåbninger har vi en solid datamængde, men det er stadig en relativt lille sample size i statistisk
           forstand. For de mest testede maskiner (30-50+ hunts) er vores data rimelig pålidelig som indikator
           for generel performance, men for maskiner med kun 1-5 hunts bør tallene betragtes som anekdotiske

@@ -442,7 +442,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [
         { to: "/bonus-hunt", label: "Bonus Hunt Live", icon: Trophy, desc: "Se aktive og kommende bonus hunts" },
-        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "163+ spillemaskiner med community-data" },
+        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "1.400+ spillemaskiner med community-data" },
         { to: "/community/turneringer", label: "Turneringer", icon: Trophy, desc: "Deltag i månedlige turneringer" },
         reviewHub,
         bonusHub,
