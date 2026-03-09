@@ -34,6 +34,9 @@ const Forretningsmodel = lazy(() => import("./pages/Forretningsmodel"));
 const RedaktionelPolitik = lazy(() => import("./pages/RedaktionelPolitik"));
 const Kontakt = lazy(() => import("./pages/Contact"));
 const SitemapPage = lazy(() => import("./pages/Sitemap"));
+const SitemapCasinos = lazy(() => import("./pages/SitemapCasinos"));
+const SitemapBonus = lazy(() => import("./pages/SitemapBonus"));
+const SitemapSlots = lazy(() => import("./pages/SitemapSlots"));
 
 const AnsvarligtSpil = lazy(() => import("./pages/ResponsibleGaming"));
 const RofusGuide = lazy(() => import("./pages/ansvarligt-spil/RofusGuide"));
