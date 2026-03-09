@@ -11,7 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
-import { Search, TrendingUp, BarChart3, Gamepad2, Trophy, ChevronLeft, ChevronRight } from "lucide-react";
+import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
+import { useLatestCatalogUpdate } from "@/hooks/useProviderSlots";
+import { Search, TrendingUp, BarChart3, Gamepad2, Trophy, ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { SlotDatabaseSeoContent } from "@/components/seo-content/SlotDatabaseSeoContent";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
@@ -104,6 +106,7 @@ const faqItems = [
 
 export default function SlotDatabase() {
   const { data: slots, isLoading } = useSlotCatalog();
+  const { data: freshness } = useLatestCatalogUpdate();
   const [searchQuery, setSearchQuery] = useState("");
   const [providerFilter, setProviderFilter] = useState("all");
   const [volatilityFilter, setVolatilityFilter] = useState("all");
@@ -166,23 +169,42 @@ export default function SlotDatabase() {
   const seoTitle = `Slot Database – ${slotCountLabel} Spillemaskiner med Community Data`;
   const seoDesc = `Komplet database over ${slotCountLabel} spillemaskiner testet i live bonus hunts. Se RTP, volatilitet, højeste gevinster og community-statistikker for alle slots.`;
 
+  // Dynamic dateModified from real catalog data
+  const dynamicDateModified = freshness?.lastUpdated
+    ? freshness.lastUpdated.split("T")[0]
+    : new Date().toISOString().split("T")[0];
+
   const articleSchema = buildArticleSchema({
     headline: seoTitle,
     description: seoDesc,
     url: `${SITE_URL}/slot-database`,
     datePublished: "2026-03-05",
-    dateModified: new Date().toISOString().split("T")[0],
+    dateModified: dynamicDateModified,
     authorName: "Jonas Theill",
   });
 
   const faqSchema = buildFaqSchema(faqItems);
+
+  // SoftwareApplication schema for the current page of slots
+  const slotSchema = paginatedSlots.length > 0
+    ? buildSlotCatalogSchema(paginatedSlots, `${SITE_URL}/slot-katalog`)
+    : null;
+
+  const jsonLdSchemas = [articleSchema, faqSchema, ...(slotSchema ? [slotSchema] : [])];
+
+  // Freshness label
+  const freshnessLabel = freshness?.latestHuntNumber
+    ? `Data opdateret efter Bonus Hunt #${freshness.latestHuntNumber}${
+        freshness.latestHuntDate ? ` · ${freshness.latestHuntDate}` : ""
+      }`
+    : null;
 
   return (
     <>
       <SEO
         title={seoTitle}
         description={seoDesc}
-        jsonLd={[articleSchema, faqSchema]}
+        jsonLd={jsonLdSchemas}
       />
 
       {/* TYPE A: Centered hero with badge */}
@@ -214,6 +236,15 @@ export default function SlotDatabase() {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="28 min" />
+
+        {freshnessLabel && (
+          <div className="flex items-center gap-2 mb-4 mt-2">
+            <Badge variant="outline" className="text-xs">
+              <RefreshCw className="h-3 w-3 mr-1" />
+              {freshnessLabel}
+            </Badge>
+          </div>
+        )}
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
