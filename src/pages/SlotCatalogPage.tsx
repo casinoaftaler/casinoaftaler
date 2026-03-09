@@ -2,15 +2,17 @@ import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
-import { SITE_URL } from "@/lib/seo";
+import { SITE_URL, buildArticleSchema, JONAS_SAME_AS } from "@/lib/seo";
 import { slugifySlotName } from "@/lib/slugify";
 import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers } from "lucide-react";
+import type { ReactNode } from "react";
 
 /** Reverse lookup: display name → provider slug */
 const PROVIDER_NAME_TO_SLUG: Record<string, string> = {};
@@ -28,6 +30,22 @@ const GUIDE_SLUGS = new Set([
   "bonanza", "extra-chilli-megaways", "chaos-crew", "wanted-dead-or-a-wild",
   "razor-shark", "jammin-jars", "money-train-3", "cleopatra",
 ]);
+
+// ─── Hash-based variant selection ──────────────────────────
+
+/** Simple deterministic hash from string → integer */
+function hashStr(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) {
+    h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h);
+}
+
+/** Pick a variant index from an array based on slot name hash */
+function pickVariant<T>(variants: T[], slotName: string, salt = 0): T {
+  return variants[(hashStr(slotName) + salt) % variants.length];
+}
 
 // ─── Data hooks ────────────────────────────────────────────
 
@@ -94,8 +112,6 @@ function useSimilarSlots(provider: string | null, currentName: string | null, vo
     queryKey: ["similar-slots", provider, currentName],
     queryFn: async () => {
       if (!provider || provider === "Unknown" || provider === "Custom Slot") return [];
-      
-      // Get slots from same provider
       const { data, error } = await supabase
         .from("slot_catalog")
         .select("slot_name, rtp, volatility, bonus_count, highest_x")
@@ -103,202 +119,314 @@ function useSimilarSlots(provider: string | null, currentName: string | null, vo
         .order("bonus_count", { ascending: false })
         .limit(20);
       if (error) throw error;
-      
-      // Filter out current slot, prefer same volatility, take top 6
-      const filtered = (data || [])
+      return (data || [])
         .filter((s) => s.slot_name !== currentName)
         .sort((a, b) => {
-          // Prioritize same volatility
           const aMatch = a.volatility === volatility ? 1 : 0;
           const bMatch = b.volatility === volatility ? 1 : 0;
           if (aMatch !== bMatch) return bMatch - aMatch;
           return (b.bonus_count || 0) - (a.bonus_count || 0);
         })
         .slice(0, 6);
-      
-      return filtered;
     },
     enabled: !!provider && !!currentName,
     staleTime: 300000,
   });
 }
 
-// ─── Deep Content Generators ───────────────────────────────
+// ─── H2 Variant Pools ─────────────────────────────────────
 
-/** RTP & Matematik deep-dive (~400 words) */
-function generateRTPSection(slot: any): string[] {
+const H2_RTP = (name: string, slotName: string) => pickVariant([
+  `RTP & Matematik: ${name}`,
+  `Tilbagebetalingsprocent og House Edge for ${name}`,
+  `${name} – Matematisk Analyse af RTP`,
+  `Statistisk Gennemgang: RTP på ${name}`,
+  `Hvad er RTP'en på ${name}? Komplet Analyse`,
+], slotName, 0);
+
+const H2_VOL = (name: string, slotName: string) => pickVariant([
+  `Volatilitet & Risikoanalyse for ${name}`,
+  `${name}: Risikovurdering og Variansanalyse`,
+  `Hvor Volatil er ${name}? Dybdegående Gennemgang`,
+  `Gevinstfordeling og Risikoprofil: ${name}`,
+], slotName, 1);
+
+const H2_BH = (name: string, slotName: string) => pickVariant([
+  `Bonus Hunt Performance: ${name}`,
+  `${name} i Bonus Hunts – Resultater og Data`,
+  `Live-testede Resultater for ${name}`,
+  `Hvordan Klarer ${name} sig i Bonus Hunts?`,
+  `Community-data: ${name} Bonus Hunt Statistik`,
+], slotName, 2);
+
+const H2_PROV = (provider: string, slotName: string) => pickVariant([
+  `Spiludvikler: ${provider}`,
+  `Om ${provider} – Udvikleren bag Spillet`,
+  `${provider}: Designfilosofi og Kvalitetsstandard`,
+  `Hvem har Lavet ${slotName}? Alt om ${provider}`,
+], slotName, 3);
+
+const H2_HOW = (name: string, slotName: string) => pickVariant([
+  `Sådan Fungerer ${name}`,
+  `Spillemekanik og RNG: ${name}`,
+  `Teknisk Guide: Hvordan ${name} Virker`,
+  `${name} – Mekanik, Hjul og Gevinsttabel`,
+], slotName, 4);
+
+const H2_BANK = (name: string, slotName: string) => pickVariant([
+  `Bankroll Management for ${name}`,
+  `Budgetstrategi: Spil ${name} Fornuftigt`,
+  `${name} – Optimal Indsats og Bankroll`,
+  `Sessionsbudget og Indsatsstrategi til ${name}`,
+], slotName, 5);
+
+const H2_RG = (slotName: string) => pickVariant([
+  `Ansvarligt Spil`,
+  `Spil Sikkert og Ansvarligt`,
+  `Vigtig Information om Ansvarligt Spil`,
+  `Beskyt Dig Selv: Ansvarlige Spillevaner`,
+], slotName, 6);
+
+// ─── Deep Content Generators (JSX with internal links) ─────
+
+/** Helper: provider link if available */
+function providerLink(provider: string): ReactNode {
+  const slug = PROVIDER_NAME_TO_SLUG[provider];
+  if (slug) return <Link to={`/spiludviklere/${slug}`} className="text-primary hover:underline">{provider}</Link>;
+  return <>{provider}</>;
+}
+
+function generateRTPSection(slot: any): ReactNode[] {
   const name = slot.slot_name;
-  const paragraphs: string[] = [];
+  const nodes: ReactNode[] = [];
+  const h = hashStr(name);
 
   if (slot.rtp) {
     const houseEdge = (100 - slot.rtp).toFixed(2);
     const ev1000 = (1000 * (slot.rtp / 100)).toFixed(0);
-    paragraphs.push(
-      `${name} opererer med en teoretisk Return to Player (RTP) på ${slot.rtp}%. RTP er den statistiske tilbagebetalingsprocent beregnet over millioner af spins og angiver, hvor stor en andel af de samlede indsatser maskinen returnerer til spillerne over tid. En RTP på ${slot.rtp}% betyder, at house edge – altså casinoets matematiske fordel – er ${houseEdge}%. For hver 100 kr. der indsættes, kan spilleren statistisk forvente at få ${slot.rtp} kr. tilbage, selvom dette naturligvis varierer voldsomt i praksis.`
+
+    // Variant intro paragraph based on hash
+    const intros = [
+      <>{name} opererer med en teoretisk <Link to="/ordbog/rtp" className="text-primary hover:underline">Return to Player (RTP)</Link> på {slot.rtp}%. RTP er den statistiske tilbagebetalingsprocent beregnet over millioner af spins og angiver, hvor stor en andel af de samlede indsatser maskinen returnerer til spillerne over tid. En RTP på {slot.rtp}% betyder, at <Link to="/ordbog/house-edge" className="text-primary hover:underline">house edge</Link> – altså casinoets matematiske fordel – er {houseEdge}%. For hver 100 kr. der indsættes, kan spilleren statistisk forvente at få {slot.rtp} kr. tilbage, selvom dette naturligvis varierer voldsomt i praksis.</>,
+      <>Med en <Link to="/ordbog/rtp" className="text-primary hover:underline">RTP</Link> på {slot.rtp}% placerer {name} sig {slot.rtp >= 96.5 ? "i den øverste kvartil" : slot.rtp >= 96 ? "solidt i midterfeltet" : "under gennemsnittet"} sammenlignet med andre <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link> på markedet. <Link to="/ordbog/house-edge" className="text-primary hover:underline">House edge</Link> er {houseEdge}%, hvilket i praksis betyder, at casinoet beholder {houseEdge} kr. af hver 100 kr., der indsættes – over lang tid og mange spins.</>,
+      <>{name} har en <Link to="/ordbog/rtp" className="text-primary hover:underline">tilbagebetalingsprocent (RTP)</Link> på {slot.rtp}%, verificeret af {providerLink(slot.provider || "udbyderen")}. Denne procentsats bestemmer den langsigtede <Link to="/ordbog/house-edge" className="text-primary hover:underline">house edge</Link> på {houseEdge}% – casinoets indbyggede matematiske fordel. RTP er beregnet over millioner af simulerede spins, og din faktiske oplevelse kan afvige markant i begge retninger.</>,
+    ];
+    nodes.push(intros[h % intros.length]);
+
+    nodes.push(
+      <>For at sætte dette i perspektiv: Hvis du spiller 1.000 spins med en fast indsats på 1 kr. pr. spin, vil den forventede tilbagebetaling være cirka {ev1000} kr. Det er vigtigt at understrege, at dette er en langsigtet gennemsnitsværdi. I kortere sessioner kan resultaterne afvige markant fra RTP-værdien – særligt på <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link> med {slot.volatility ? slot.volatility.toLowerCase() : "varierende"} <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link>, hvor gevinsterne er ujævnt fordelt.</>
     );
-    paragraphs.push(
-      `For at sætte dette i perspektiv: Hvis du spiller 1.000 spins med en fast indsats på 1 kr. pr. spin, vil den forventede tilbagebetaling være cirka ${ev1000} kr. Det er vigtigt at understrege, at dette er en langsigtet gennemsnitsværdi. I kortere sessioner kan resultaterne afvige markant fra RTP-værdien – særligt på spillemaskiner med ${slot.volatility ? slot.volatility.toLowerCase() : "varierende"} volatilitet, hvor gevinsterne er ujævnt fordelt.`
-    );
-    paragraphs.push(
-      `Det er værd at bemærke, at RTP kan variere mellem forskellige casinoer. Nogle spiludviklere, herunder ${slot.provider || "udbyderen"}, tilbyder casinoer muligheden for at vælge mellem forskellige RTP-niveauer. Spillemyndigheden i Danmark kræver, at casinoer oplyser den faktiske RTP for hvert spil, så vi anbefaler altid at tjekke det specifikke casinos spilinformation for at bekræfte den præcise RTP-værdi, inden du spiller.`
-    );
+
+    // Data-driven variant paragraph
+    if (slot.bonus_count > 10 && slot.highest_x && slot.highest_x > 100) {
+      nodes.push(
+        <>Baseret på vores {slot.bonus_count} <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunts</Link> med {name} kan vi observere, at den faktiske performance med en top-multiplikator på {Number(slot.highest_x.toFixed(1))}x stemmer {slot.rtp >= 96 ? "godt overens med" : "rimeligt overens med"} den teoretiske RTP. Bonus hunt-formatet giver et unikt empirisk datasæt, der supplerer den rene matematik med reelle resultater fra live-spil.</>
+      );
+    } else {
+      nodes.push(
+        <>Det er værd at bemærke, at RTP kan variere mellem forskellige casinoer. Nogle spiludviklere, herunder {providerLink(slot.provider || "udbyderen")}, tilbyder casinoer muligheden for at vælge mellem forskellige RTP-niveauer. <Link to="/ansvarligt-spil" className="text-primary hover:underline">Spillemyndigheden</Link> i Danmark kræver, at casinoer oplyser den faktiske RTP for hvert spil, så vi anbefaler altid at tjekke det specifikke casinos spilinformation for at bekræfte den præcise RTP-værdi, inden du spiller.</>
+      );
+    }
   } else {
-    paragraphs.push(
-      `RTP-værdien (Return to Player) for ${name} er endnu ikke registreret i vores database. RTP er en af de mest fundamentale parametre ved enhver spillemaskin, da den angiver den teoretiske tilbagebetalingsprocent over tid. Vi arbejder løbende på at berige vores data, og RTP-værdien vil blive tilføjet, så snart den er verificeret fra en pålidelig kilde.`
+    nodes.push(
+      <><Link to="/ordbog/rtp" className="text-primary hover:underline">RTP-værdien (Return to Player)</Link> for {name} er endnu ikke registreret i vores database. RTP er en af de mest fundamentale parametre ved enhver spillemaskin, da den angiver den teoretiske tilbagebetalingsprocent over tid. Vi arbejder løbende på at berige vores data, og RTP-værdien vil blive tilføjet, så snart den er verificeret fra en pålidelig kilde.</>
     );
-    paragraphs.push(
-      `Generelt anbefaler vi spillere altid at prioritere spillemaskiner med en RTP på 96% eller derover, da dette reducerer house edge til under 4%. Spillemaskiner med lavere RTP kan stadig give store enkeltgevinster – særligt high-volatility slots – men over tid vil den matematiske fordel flytte sig mere til casinoets side. Du kan altid filtrere efter RTP i vores slot database for at finde de mest favorable maskiner.`
+    nodes.push(
+      <>Generelt anbefaler vi spillere altid at prioritere spillemaskiner med en RTP på 96% eller derover, da dette reducerer <Link to="/ordbog/house-edge" className="text-primary hover:underline">house edge</Link> til under 4%. Spillemaskiner med lavere RTP kan stadig give store enkeltgevinster – særligt <Link to="/ordbog/volatilitet" className="text-primary hover:underline">high-volatility</Link> slots – men over tid vil den matematiske fordel flytte sig mere til casinoets side. Du kan altid filtrere efter RTP i vores <Link to="/slot-database" className="text-primary hover:underline">slot database</Link> for at finde de mest favorable maskiner.</>
     );
   }
 
-  return paragraphs;
+  return nodes;
 }
 
-/** Volatility & Risk Analysis (~350 words) */
-function generateVolatilitySection(slot: any): string[] {
+function generateVolatilitySection(slot: any): ReactNode[] {
   const name = slot.slot_name;
-  const paragraphs: string[] = [];
+  const nodes: ReactNode[] = [];
   const vol = slot.volatility?.toLowerCase() || null;
+  const h = hashStr(name);
 
   if (vol === "high" || vol === "extreme") {
-    paragraphs.push(
-      `${name} er klassificeret som en spillemaskin med ${vol === "extreme" ? "ekstrem" : "høj"} volatilitet. Dette er en afgørende faktor for spilleoplevelsen, da volatiliteten bestemmer gevinsternes fordeling. Med ${vol === "extreme" ? "ekstrem" : "høj"} volatilitet kan du forvente længere perioder uden betydelige gevinster (ofte kaldet "tørke"), men til gengæld er de gevinster, der rammer, typisk markant større. Denne type spillemaskiner er designet til spillere, der har tålmodigheden og bankrollet til at ride de nedadgående perioder igennem.`
+    const volLabel = vol === "extreme" ? "ekstrem" : "høj";
+    const intros = [
+      <>{name} er klassificeret som en spillemaskin med {volLabel} <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link>. Dette er en afgørende faktor for spilleoplevelsen, da volatiliteten bestemmer gevinsternes fordeling. Med {volLabel} volatilitet kan du forvente længere perioder uden betydelige gevinster (ofte kaldet "tørke"), men til gengæld er de gevinster, der rammer, typisk markant større.</>,
+      <>Med {volLabel} <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link> hører {name} til den mest risikofyldte kategori af <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link>. Det betyder, at gevinstmønsteret er kendetegnet ved lange, resultatløse perioder afbrudt af potentielt massive udbetalinger – en profil der tiltrækker erfarne spillere med tålmodighed og passende bankroll.</>,
+      <>{name} er bygget til spillere, der kan håndtere risiko. Med {volLabel} <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link> er gevinstfordelingen karakteriseret ved høj varians: de fleste spins giver intet, men de spins der rammer, kan levere multiplikatorer på {slot.highest_x && slot.highest_x > 100 ? `op til ${Number(slot.highest_x.toFixed(0))}x eller mere` : "hundredvis af gange indsatsen"}.</>,
+    ];
+    nodes.push(intros[h % intros.length]);
+
+    nodes.push(
+      <>Fra et matematisk perspektiv har {volLabel}-volatile spillemaskiner en højere standardafvigelse i gevinstfordelingen. Det betyder, at variansen er betydeligt højere sammenlignet med lav- eller medium-volatile maskiner. I praksis betyder dette, at din session-til-session oplevelse vil variere enormt. Én session kan ende med et stort tab, mens den næste kan producere en gevinst på flere hundrede gange din indsats – {slot.bonus_count > 0 ? <>som vores <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunt data</Link> kan bekræfte</> : "eller endda mere"}.</>
     );
-    paragraphs.push(
-      `Fra et matematisk perspektiv har ${vol === "extreme" ? "ekstremt" : "højt"}-volatile spillemaskiner en højere standardafvigelse i gevinstfordelingen. Det betyder, at variansen (coefficient of variation) er betydeligt højere sammenlignet med lav- eller medium-volatile maskiner. I praksis betyder dette, at din session-til-session oplevelse vil variere enormt. Én session kan ende med et stort tab, mens den næste kan producere en gevinst på flere hundrede gange din indsats – eller endda mere, som vores bonus hunt data kan bekræfte.`
-    );
-    paragraphs.push(
-      `Vores anbefaling for ${name} er at tilpasse din indsatsstørrelse til volatiliteten. Som tommelfingerregel bør dit samlede bankroll dække minimum 200-300 spins ved din valgte indsats for en ${vol === "extreme" ? "ekstremt" : "højt"}-volatil maskine. Dette giver dig den bedste chance for at opleve maskinens fulde potentiale, herunder eventuelle bonusrunder, hvor de store gevinster typisk falder.`
+
+    const spinReco = vol === "extreme" ? "300-500" : "200-300";
+    nodes.push(
+      <>Vores anbefaling for {name} er at tilpasse din indsatsstørrelse til volatiliteten. Som tommelfingerregel bør dit samlede bankroll dække minimum {spinReco} spins ved din valgte indsats for en {volLabel}-volatil maskine. Dette giver dig den bedste chance for at opleve maskinens fulde potentiale, herunder eventuelle bonusrunder, hvor de store gevinster typisk falder.</>
     );
   } else if (vol === "low") {
-    paragraphs.push(
-      `${name} har lav volatilitet, hvilket gør den til et af de mere forudsigelige valg i spillemaskinernes verden. Lav-volatile spillemaskiner leverer hyppigere gevinster, men de individuelle gevinster er typisk mindre i forhold til indsatsen. Dette skaber en mere jævn og stabil spilleoplevelse, som er ideel for spillere der foretrækker længere sessioner med mindre udsving i deres saldo.`
+    nodes.push(
+      <>{name} har lav <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link>, hvilket gør den til et af de mere forudsigelige valg i <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskinernes</Link> verden. Lav-volatile spillemaskiner leverer hyppigere gevinster, men de individuelle gevinster er typisk mindre i forhold til indsatsen. Dette skaber en mere jævn og stabil spilleoplevelse, som er ideel for spillere der foretrækker længere sessioner med mindre udsving i deres saldo.</>
     );
-    paragraphs.push(
-      `Den lave volatilitet betyder, at standardafvigelsen i gevinstfordelingen er relativt lille. Din faktiske tilbagebetaling vil i kortere sessioner ligge tættere på den teoretiske RTP${slot.rtp ? ` på ${slot.rtp}%` : ""}, sammenlignet med højt-volatile maskiner. For bankroll management kan du typisk klare dig med et mindre budget – 100-150 spins ved din valgte indsats er ofte tilstrækkeligt til en fornøjelig session.`
+    nodes.push(
+      <>Den lave volatilitet betyder, at standardafvigelsen i gevinstfordelingen er relativt lille. Din faktiske tilbagebetaling vil i kortere sessioner ligge tættere på den teoretiske <Link to="/ordbog/rtp" className="text-primary hover:underline">RTP</Link>{slot.rtp ? ` på ${slot.rtp}%` : ""}, sammenlignet med højt-volatile maskiner. For bankroll management kan du typisk klare dig med et mindre budget – 100-150 spins ved din valgte indsats er ofte tilstrækkeligt til en fornøjelig session.</>
     );
-    paragraphs.push(
-      `Lav-volatile spillemaskiner som ${name} er populære blandt underholdningsspillere, der prioriterer spilletid over store single-win potentialer. De er også velegnede som "warmup" maskiner i bonus hunts, hvor de kan stabilisere den samlede bankroll, inden man bevæger sig over til mere volatile titler.`
-    );
+    const closings = [
+      <>Lav-volatile spillemaskiner som {name} er populære blandt underholdningsspillere, der prioriterer spilletid over store single-win potentialer. De er også velegnede som "warmup" maskiner i <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunts</Link>, hvor de kan stabilisere den samlede bankroll, inden man bevæger sig over til mere volatile titler.</>,
+      <>For spillere der nyder stabil underholdning, er {name} et oplagt valg. Den lave varians sikrer, at du sjældent oplever dramatiske tab inden for en enkelt session – men det begrænser naturligvis også det eksplosive gevinstpotentiale, som <Link to="/ordbog/volatilitet" className="text-primary hover:underline">high-volatility</Link> maskiner tilbyder.</>,
+    ];
+    nodes.push(closings[h % closings.length]);
   } else if (vol === "medium" || vol === "medium-high" || vol === "medium-low") {
-    paragraphs.push(
-      `${name} har ${vol.includes("high") ? "medium-høj" : vol.includes("low") ? "medium-lav" : "medium"} volatilitet, hvilket placerer den i mellemklassen af risikospektret. Denne kategori af spillemaskiner tilbyder en balanceret oplevelse, hvor gevinsterne hverken er ekstremt sjældne eller trivielt hyppige. Det er ofte den mest populære volatilitetsklasse, da den appellerer til et bredt spektrum af spillere.`
+    const volLabel = vol.includes("high") ? "medium-høj" : vol.includes("low") ? "medium-lav" : "medium";
+    nodes.push(
+      <>{name} har {volLabel} <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link>, hvilket placerer den i mellemklassen af risikospektret. Denne kategori af <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link> tilbyder en balanceret oplevelse, hvor gevinsterne hverken er ekstremt sjældne eller trivielt hyppige. Det er ofte den mest populære volatilitetsklasse, da den appellerer til et bredt spektrum af spillere.</>
     );
-    paragraphs.push(
-      `Med medium volatilitet kan du forvente en blanding af mindre, hyppige gevinster og periodiske større hits. Standardafvigelsen er moderat, hvilket betyder, at dine sessioner vil have nogen variation, men uden de ekstreme udsving der karakteriserer high-volatility slots. Et bankroll på 150-200 spins ved din valgte indsats er typisk et godt udgangspunkt for ${name}.`
+    nodes.push(
+      <>Med {volLabel} volatilitet kan du forvente en blanding af mindre, hyppige gevinster og periodiske større hits. Standardafvigelsen er moderat, hvilket betyder, at dine sessioner vil have nogen variation, men uden de ekstreme udsving der karakteriserer high-volatility slots. Et bankroll på 150-200 spins ved din valgte indsats er typisk et godt udgangspunkt for {name}.</>
     );
-    paragraphs.push(
-      `I vores bonus hunts har medium-volatile spillemaskiner en tendens til at levere konsistente, om end sjældent spektakulære, resultater. De bidrager positivt til den samlede average X uden at skabe store udsving i hunt-resultaterne. Det gør dem til pålidelige valg i en diversificeret bonus hunt-strategi.`
-    );
+    const closings = [
+      <>I vores <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunts</Link> har medium-volatile spillemaskiner en tendens til at levere konsistente, om end sjældent spektakulære, resultater. De bidrager positivt til den samlede average X uden at skabe store udsving i hunt-resultaterne.</>,
+      <>{name} er et solidt mellemoptions-valg der kombinerer {slot.bonus_count > 5 ? `dokumenteret stabilitet over ${slot.bonus_count} bonus hunts` : "en pålidelig gevinstmodel"} med tilstrækkelig variation til at holde spilleoplevelsen spændende over tid.</>,
+    ];
+    nodes.push(closings[h % closings.length]);
   } else {
-    paragraphs.push(
-      `Volatiliteten for ${name} er endnu ikke klassificeret i vores database. Volatilitet er en kritisk parameter, der beskriver gevinstfordelingens spredning – altså hvor ofte og hvor store gevinsterne er i forhold til indsatsen. Vi kategoriserer typisk volatilitet som lav, medium, medium-høj, høj eller ekstrem baseret på data fra spiludvikleren og vores egne bonus hunt resultater.`
+    nodes.push(
+      <><Link to="/ordbog/volatilitet" className="text-primary hover:underline">Volatiliteten</Link> for {name} er endnu ikke klassificeret i vores database. Volatilitet er en kritisk parameter, der beskriver gevinstfordelingens spredning – altså hvor ofte og hvor store gevinsterne er i forhold til indsatsen. Vi kategoriserer typisk volatilitet som lav, medium, medium-høj, høj eller ekstrem baseret på data fra spiludvikleren og vores egne <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunt</Link> resultater.</>
     );
-    paragraphs.push(
-      `Indtil vi har verificeret volatiliteten, anbefaler vi at starte med en konservativ indsatsstørrelse og observere gevinstmønstret over 50-100 spins. Hvis du oplever lange perioder uden gevinster efterfulgt af store enkelt-hits, tyder det på høj volatilitet. Hyppige, men mindre gevinster indikerer lav volatilitet. Vores database opdateres løbende, og volatilitetsklassificeringen vil blive tilføjet snarest.`
+    nodes.push(
+      <>Indtil vi har verificeret volatiliteten, anbefaler vi at starte med en konservativ indsatsstørrelse og observere gevinstmønstret over 50-100 spins. Du kan altid konsultere vores <Link to="/slot-database" className="text-primary hover:underline">slot database</Link> for opdateret information.</>
     );
   }
 
-  return paragraphs;
+  return nodes;
 }
 
-/** Bonus Hunt Performance Analysis (~350 words) */
-function generateBonusHuntAnalysis(slot: any): string[] {
+function generateBonusHuntAnalysis(slot: any): ReactNode[] {
   const name = slot.slot_name;
-  const paragraphs: string[] = [];
+  const nodes: ReactNode[] = [];
+  const h = hashStr(name);
 
   if (slot.bonus_count > 0) {
     const huntLabel = slot.bonus_count === 1 ? "bonus hunt" : "bonus hunts";
-    paragraphs.push(
-      `${name} har optrådt i ${slot.bonus_count} ${huntLabel} på Casinoaftaler.dk's Twitch-kanal, hvilket giver os et solidt datagrundlag for at vurdere maskinens performance i et bonus hunt-format. Vores bonus hunts streames live, og alle resultater verificeres i realtid af community'et – dette sikrer fuldstændig transparens og dataintegritet.`
-    );
+
+    const intros = [
+      <>{name} har optrådt i {slot.bonus_count} {huntLabel} på Casinoaftaler.dk's Twitch-kanal, hvilket giver os et {slot.bonus_count >= 10 ? "solidt" : "indledende"} datagrundlag for at vurdere maskinens performance i et <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunt</Link>-format. Vores bonus hunts streames live, og alle resultater verificeres i realtid af community'et.</>,
+      <>Med {slot.bonus_count} registrerede optrædener i vores <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunt arkiv</Link> har {name} {slot.bonus_count >= 20 ? "en omfattende track record" : slot.bonus_count >= 5 ? "et voksende datasæt" : "et tidligt, men interessant datasæt"} i vores community. Hvert resultat er streamet live på Twitch og dokumenteret transparent.</>,
+      <>{name} er en {slot.bonus_count >= 15 ? "hyppig genganger" : "velkendt deltager"} i vores <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunts</Link> med {slot.bonus_count} optrædener registreret. Alle data er indsamlet under live-streams og verificeret af community'et i realtid – fuld gennemsigtighed er kernen i vores tilgang.</>,
+    ];
+    nodes.push(intros[h % intros.length]);
 
     if (slot.highest_x && slot.highest_x > 0) {
       const xVal = Number(slot.highest_x.toFixed(1));
       const rating = xVal >= 500 ? "exceptionelt stærkt" : xVal >= 200 ? "meget solidt" : xVal >= 100 ? "respektabelt" : xVal >= 50 ? "moderat" : "beskedent";
-      paragraphs.push(
-        `Den højeste registrerede multiplikator for ${name} i vores bonus hunts er ${xVal}x, hvilket er et ${rating} resultat. Multiplikatoren (X-værdien) beregnes som forholdet mellem bonusgevinsten og indsatsen: en 200x gevinst på en 10 kr. indsats ville eksempelvis give en gevinst på 2.000 kr. Denne metric er central i vores community, da den tillader sammenligning af resultater på tværs af forskellige indsatsniveauer og spillemaskiner.`
+      nodes.push(
+        <>Den højeste registrerede multiplikator for {name} i vores bonus hunts er {xVal}x, hvilket er et {rating} resultat. Multiplikatoren (X-værdien) beregnes som forholdet mellem bonusgevinsten og indsatsen: en 200x gevinst på en 10 kr. indsats ville eksempelvis give en gevinst på 2.000 kr. Denne metric er central i vores community, da den tillader sammenligning af resultater på tværs af forskellige indsatsniveauer og <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link>.</>
       );
     }
 
     if (slot.highest_win && slot.highest_win > 0) {
-      paragraphs.push(
-        `Den største absolutte gevinst registreret på ${name} i vores hunts er ${slot.highest_win.toLocaleString("da-DK")} kr. Det er vigtigt at bemærke, at absolutte gevinstbeløb afhænger af indsatsstørrelsen, hvorfor multiplikator-værdien (X) giver et mere retfærdigt sammenligningsgrundlag. Ikke desto mindre demonstrerer dette beløb maskinens reelle gevinstpotentiale under faktiske spilforhold.`
+      nodes.push(
+        <>Den største absolutte gevinst registreret på {name} i vores hunts er {slot.highest_win.toLocaleString("da-DK")} kr. Det er vigtigt at bemærke, at absolutte gevinstbeløb afhænger af indsatsstørrelsen, hvorfor multiplikator-værdien (X) giver et mere retfærdigt sammenligningsgrundlag.</>
       );
     }
 
-    paragraphs.push(
-      `I vores bonus hunt arkiv kan du finde detaljerede resultater for hver enkelt hunt, hvor ${name} har optrådt. Bonus hunts er et unikt format, hvor et stort antal spillemaskiner åbnes i rækkefølge, og den samlede performance måles via average X – gennemsnitsmultiplikatoren på tværs af alle åbnede maskiner. En average X over 100x betragtes generelt som en succesfuld hunt, og ${name}'s bidrag til disse resultater kan følges individuelt i arkivet.`
+    nodes.push(
+      <>I vores <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunt arkiv</Link> kan du finde detaljerede resultater for hver enkelt hunt, hvor {name} har optrådt. Bonus hunts er et unikt format, hvor et stort antal spillemaskiner åbnes i rækkefølge, og den samlede performance måles via average X. En average X over 100x betragtes generelt som en succesfuld hunt, og {name}'s bidrag kan følges individuelt i arkivet.</>
     );
   } else {
-    paragraphs.push(
-      `${name} er endnu ikke blevet inkluderet i vores bonus hunts på Twitch-kanalen. Vores bonus hunts fokuserer typisk på de mest populære og efterspurgte spillemaskiner, og udvalget roterer løbende baseret på community-anmodninger, nye udgivelser og strategiske overvejelser omkring volatilitet og gevinstpotentiale.`
-    );
-    paragraphs.push(
-      `Selvom ${name} ikke har bonus hunt-data endnu, kan maskinen stadig være et godt valg for individuel spilning. Vi anbefaler at holde øje med vores Twitch-kanal og community, da nye maskiner regelmæssigt tilføjes til bonus hunt-programmet. Du kan også anmode om specifikke maskiner via vores community-platform, og vi prioriterer de mest efterspurgte titler.`
+    const intros = [
+      <>{name} er endnu ikke blevet inkluderet i vores <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunts</Link> på Twitch-kanalen. Vores bonus hunts fokuserer typisk på de mest populære og efterspurgte <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link>, og udvalget roterer løbende baseret på community-anmodninger og nye udgivelser.</>,
+      <>Vi har endnu ikke streamet {name} i en <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunt</Link>, men maskinen er registreret i vores <Link to="/slot-database" className="text-primary hover:underline">slot database</Link> og kan blive inkluderet i fremtidige hunts baseret på community-efterspørgsel.</>,
+    ];
+    nodes.push(intros[h % intros.length]);
+    nodes.push(
+      <>Selvom {name} ikke har bonus hunt-data endnu, kan maskinen stadig være et godt valg for individuel spilning. Vi anbefaler at holde øje med vores Twitch-kanal og community, da nye maskiner regelmæssigt tilføjes til bonus hunt-programmet.</>
     );
   }
 
-  return paragraphs;
+  return nodes;
 }
 
-/** Provider & Game Design Analysis (~300 words) */
-function generateProviderSection(slot: any): string[] {
+function generateProviderSection(slot: any): ReactNode[] {
   const name = slot.slot_name;
   const provider = slot.provider;
-  const paragraphs: string[] = [];
+  const nodes: ReactNode[] = [];
+  const h = hashStr(name);
 
   if (!provider || provider === "Unknown" || provider === "Custom Slot") {
-    paragraphs.push(
-      `Udbyderen af ${name} er endnu ikke registreret i vores database. Spiludvikleren er en vigtig faktor at overveje, da den påvirker alt fra grafisk kvalitet og gameplay-mekanik til RTP-konsistens og mobiloptimering. Vi opdaterer løbende vores database med provider-information og anbefaler at tjekke casinoets spilinformation for at identificere udbyderen.`
+    nodes.push(
+      <>Udbyderen af {name} er endnu ikke registreret i vores database. Spiludvikleren er en vigtig faktor at overveje, da den påvirker alt fra grafisk kvalitet og gameplay-mekanik til <Link to="/ordbog/rtp" className="text-primary hover:underline">RTP</Link>-konsistens og mobiloptimering. Vi opdaterer løbende vores <Link to="/slot-database" className="text-primary hover:underline">database</Link> med provider-information.</>
     );
-    return paragraphs;
+    return nodes;
   }
 
-  paragraphs.push(
-    `${name} er udviklet af ${provider}, som er en etableret aktør i den globale online casino-industri. Spiludvikleren er ansvarlig for maskinens matematiske model, grafiske design, lydeffekter og overordnede gameplay-oplevelse. Valget af udbyder er relevant for spillere, da det ofte indikerer en bestemt designfilosofi og kvalitetsstandard.`
-  );
-  paragraphs.push(
-    `${provider} er kendt for at levere spillemaskiner med ${slot.volatility === "High" || slot.volatility === "Extreme" ? "høj gevinstpotentiale og innovativ bonus-mekanik" : slot.volatility === "Low" ? "stabil og underholdende gameplay med hyppige gevinster" : "en balanceret tilgang til risiko og belønning"}. Udbyderens spil er tilgængelige på de fleste danske online casinoer med dansk licens, og de er certificeret af uafhængige testinstitutter, der bekræfter, at spillenes RNG (Random Number Generator) fungerer korrekt og retfærdigt.`
-  );
-  paragraphs.push(
-    `I vores slot database kan du udforske det fulde katalog af spillemaskiner fra ${provider} og sammenligne deres RTP-værdier, volatilitet og bonus hunt-performance. Dette giver dig mulighed for at identificere de bedst performende titler fra udbyderen og træffe informerede valg baseret på data frem for tilfældigheder. Spiludviklere som ${provider} opdaterer løbende deres portefølje, og nye udgivelser tilføjes automatisk til vores database, når de optræder i bonus hunts eller registreres manuelt af redaktionen.`
+  const intros = [
+    <>{name} er udviklet af {providerLink(provider)}, som er en etableret aktør i den globale online casino-industri. Spiludvikleren er ansvarlig for maskinens matematiske model, grafiske design, lydeffekter og overordnede gameplay-oplevelse.</>,
+    <>{providerLink(provider)} står bag {name} – en udbyder der har markeret sig med {slot.volatility === "High" || slot.volatility === "Extreme" ? "high-risk/high-reward mekanikker" : "en bred vifte af spilleoplevelser"} i det danske online casino-marked. Valget af udbyder signalerer en bestemt kvalitets- og designstandard.</>,
+    <>Bag {name} står {providerLink(provider)}, en af de {slot.bonus_count > 20 ? "mest populære" : "anerkendte"} spiludviklere i vores <Link to="/slot-database" className="text-primary hover:underline">database</Link>. Udbyderen er kendt for spil, der kombinerer stærk matematik med engagerende gameplay.</>,
+  ];
+  nodes.push(intros[h % intros.length]);
+
+  nodes.push(
+    <>{providerLink(provider)} er kendt for at levere <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link> med {slot.volatility === "High" || slot.volatility === "Extreme" ? "høj gevinstpotentiale og innovativ bonus-mekanik" : slot.volatility === "Low" ? "stabil og underholdende gameplay med hyppige gevinster" : "en balanceret tilgang til risiko og belønning"}. Udbyderens spil er tilgængelige på de fleste danske <Link to="/casino-anmeldelser" className="text-primary hover:underline">online casinoer</Link> med dansk licens, og de er certificeret af uafhængige testinstitutter, der bekræfter, at spillenes <Link to="/ordbog/rng" className="text-primary hover:underline">RNG (Random Number Generator)</Link> fungerer korrekt og retfærdigt.</>
   );
 
-  return paragraphs;
+  nodes.push(
+    <>I vores <Link to="/slot-database" className="text-primary hover:underline">slot database</Link> kan du udforske det fulde katalog af spillemaskiner fra {providerLink(provider)} og sammenligne deres <Link to="/ordbog/rtp" className="text-primary hover:underline">RTP</Link>-værdier, <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link> og bonus hunt-performance. Spiludviklere som {provider} opdaterer løbende deres portefølje, og nye udgivelser tilføjes automatisk til vores database, når de optræder i <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunts</Link>.</>
+  );
+
+  return nodes;
 }
 
-/** Responsible Gambling Section (~300 words) */
-function generateResponsibleGambling(slot: any): string[] {
+function generateResponsibleGambling(slot: any): ReactNode[] {
   const name = slot.slot_name;
+  const h = hashStr(name);
+
+  const intros = [
+    <>Når du spiller {name} – eller enhver anden spillemaskin – er det afgørende at praktisere <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>. Spillemaskiner er underholdningsprodukter designet til at give casinoet en matematisk fordel over tid (<Link to="/ordbog/house-edge" className="text-primary hover:underline">house edge</Link>), og ingen strategi kan ændre dette fundamentale faktum.</>,
+    <><Link to="/ansvarligt-spil" className="text-primary hover:underline">Ansvarligt spil</Link> er det vigtigste aspekt ved enhver spilleoplevelse, også med {name}. Uanset maskinens <Link to="/ordbog/rtp" className="text-primary hover:underline">RTP</Link> eller <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link> er alle spillemaskiner designet med en <Link to="/ordbog/house-edge" className="text-primary hover:underline">house edge</Link>, der sikrer casinoet en fordel over tid.</>,
+    <>Uanset om du spiller {name} for sjov eller som en del af en <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunt</Link>-strategi, er <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link> altid det vigtigste hensyn. Spillemaskiner er underholdning med en tilknyttet omkostning, ikke en indtægtskilde.</>,
+  ];
+
   return [
-    `Når du spiller ${name} – eller enhver anden spillemaskin – er det afgørende at praktisere ansvarligt spil. Spillemaskiner er underholdningsprodukter designet til at give casinoet en matematisk fordel over tid (house edge), og ingen strategi kan ændre dette fundamentale faktum. Al spil bør betragtes som underholdning med en tilknyttet omkostning, ikke som en indtægtskilde.`,
-    `Vi anbefaler altid at sætte et fast budget, inden du begynder at spille, og at overholde dette budget uanset resultaterne. Danske online casinoer med licens fra Spillemyndigheden tilbyder værktøjer til at sætte indbetalingsgrænser, tabsgrænser og sessionsgrænser, og vi opfordrer alle spillere til at benytte disse funktioner aktivt. Du kan også aktivere selvudelukkelse via ROFUS (Register Over Frivilligt Udelukkede Spillere) på rofus.nu, hvis du oplever, at dit spil bliver problematisk.`,
-    `Vores community og bonus hunts på Twitch er designet til at give indsigt i spillemaskiners faktiske performance og matematik – ikke til at opfordre til spil. De data, vi præsenterer for ${name}, er baseret på historiske resultater og bør ikke opfattes som garantier for fremtidige resultater. Hver spin er uafhængig og styres af en certificeret tilfældighedsgenerator (RNG). Hvis du eller nogen du kender har brug for hjælp med spilleproblemer, kan du kontakte StopSpillet på telefon 70 22 28 25 eller besøge stopspillet.dk for gratis og anonym rådgivning.`,
+    intros[h % intros.length],
+    <>Vi anbefaler altid at sætte et fast budget, inden du begynder at spille, og at overholde dette budget uanset resultaterne. Danske <Link to="/casino-anmeldelser" className="text-primary hover:underline">online casinoer</Link> med licens fra Spillemyndigheden tilbyder værktøjer til at sætte <Link to="/ordbog/spilgraenser" className="text-primary hover:underline">indbetalingsgrænser</Link>, tabsgrænser og sessionsgrænser. Du kan også aktivere selvudelukkelse via ROFUS (Register Over Frivilligt Udelukkede Spillere) på rofus.nu.</>,
+    <>Vores community og <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunts</Link> på Twitch er designet til at give indsigt i spillemaskiners faktiske performance og matematik – ikke til at opfordre til spil. De data, vi præsenterer for {name}, er baseret på historiske resultater og bør ikke opfattes som garantier. Hver spin er uafhængig og styres af en certificeret <Link to="/ordbog/rng" className="text-primary hover:underline">tilfældighedsgenerator (RNG)</Link>. Hvis du har brug for hjælp med spilleproblemer, kan du kontakte StopSpillet på telefon 70 22 28 25 eller besøge stopspillet.dk.</>,
   ];
 }
 
-/** Bankroll Management Strategy (~250 words) */
-function generateBankrollSection(slot: any): string[] {
+function generateBankrollSection(slot: any): ReactNode[] {
   const name = slot.slot_name;
   const vol = slot.volatility?.toLowerCase() || "medium";
   const recommendedSpins = vol === "extreme" ? "300-500" : vol === "high" ? "200-300" : vol === "low" ? "100-150" : "150-200";
   const sessionBudget = vol === "extreme" || vol === "high" ? "større" : "moderat";
+  const budgetRange = vol === "extreme" || vol === "high" ? "600-1.000" : vol === "low" ? "200-300" : "300-400";
+  const h = hashStr(name);
+
+  const intros = [
+    <>Effektiv bankroll management er essentiel, når du spiller {name}{slot.volatility ? <>, særligt givet maskinens {slot.volatility.toLowerCase()} <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link></> : ""}. Et velplanlagt budget beskytter dig mod store tab og sikrer, at du kan nyde spilleoplevelsen over længere tid.</>,
+    <>For at få mest ud af {name} kræves en disciplineret tilgang til bankroll management. Med {slot.volatility ? <>{slot.volatility.toLowerCase()} <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link></> : "ukendt risikoniveau"} er det afgørende at tilpasse dit budget til maskinens gevinstmønster – den grundlæggende regel er enkel: spil aldrig for penge, du ikke har råd til at tabe.</>,
+  ];
 
   return [
-    `Effektiv bankroll management er essentiel, når du spiller ${name}${slot.volatility ? `, særligt givet maskinens ${slot.volatility.toLowerCase()} volatilitet` : ""}. Et velplanlagt budget beskytter dig mod store tab og sikrer, at du kan nyde spilleoplevelsen over længere tid. Den grundlæggende regel er enkel: spil aldrig for penge, du ikke har råd til at tabe.`,
-    `For ${name} anbefaler vi et bankroll, der dækker minimum ${recommendedSpins} spins ved din valgte indsats. Med ${slot.volatility?.toLowerCase() || "ukendt"} volatilitet kræver maskinen et ${sessionBudget} budget for at give en repræsentativ oplevelse. For eksempel: Hvis du spiller med 2 kr. pr. spin, bør dit sessionsbudget være mindst ${vol === "extreme" || vol === "high" ? "600-1.000" : vol === "low" ? "200-300" : "300-400"} kr. Dette giver dig tilstrækkelig spilletid til potentielt at ramme bonusrunder og større gevinster.`,
-    `En populær bankroll-strategi blandt erfarne spillere er "session budgeting": Del dit samlede underholdningsbudget op i individuelle sessioner og stop, når sessionsbudgettet er brugt – uanset om du er i plus eller minus. Denne disciplinerede tilgang forhindrer "chasing losses" (at jagte tab) og sikrer, at du altid spiller inden for dine økonomiske rammer. Husk at ${name} – ligesom alle spillemaskiner – er designet med en house edge${slot.rtp ? ` på ${(100 - slot.rtp).toFixed(2)}%` : ""}, og det er umuligt at "vinde maskinen tilbage" over tid.`,
+    intros[h % intros.length],
+    <>For {name} anbefaler vi et bankroll, der dækker minimum {recommendedSpins} spins ved din valgte indsats. Med {slot.volatility?.toLowerCase() || "ukendt"} volatilitet kræver maskinen et {sessionBudget} budget for at give en repræsentativ oplevelse. For eksempel: Hvis du spiller med 2 kr. pr. spin, bør dit sessionsbudget være mindst {budgetRange} kr. Dette giver dig tilstrækkelig spilletid til potentielt at ramme bonusrunder og større gevinster.</>,
+    <>En populær bankroll-strategi blandt erfarne spillere er "session budgeting": Del dit samlede underholdningsbudget op i individuelle sessioner og stop, når sessionsbudgettet er brugt – uanset resultaterne. Denne disciplinerede tilgang forhindrer "chasing losses" og sikrer, at du altid spiller inden for dine økonomiske rammer. Husk at {name} – ligesom alle <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link> – er designet med en <Link to="/ordbog/house-edge" className="text-primary hover:underline">house edge</Link>{slot.rtp ? ` på ${(100 - slot.rtp).toFixed(2)}%` : ""}, og det er umuligt at "vinde maskinen tilbage" over tid.</>,
   ];
 }
 
-/** How Slot Machines Work (~250 words) */
-function generateHowItWorks(slot: any): string[] {
+function generateHowItWorks(slot: any): ReactNode[] {
   const name = slot.slot_name;
+  const h = hashStr(name);
+
+  const intros = [
+    <>{name} fungerer, ligesom alle moderne online <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link>, via en <Link to="/ordbog/rng" className="text-primary hover:underline">Random Number Generator (RNG)</Link> – en algoritme, der genererer tilfældige tal med en hastighed på tusindvis pr. sekund. Hvert tal korresponderer til en specifik symbolkombination på hjulene. Når du trykker på spin-knappen, vælger RNG'en det næste tal, og resultatet bestemmes øjeblikkeligt.</>,
+    <>Bag enhver spin på {name} ligger en <Link to="/ordbog/rng" className="text-primary hover:underline">tilfældighedsgenerator (RNG)</Link>, der sikrer, at hvert resultat er fuldstændig uforudsigeligt og uafhængigt af alle tidligere spins. Denne teknologi er hjørnestenen i alle moderne <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">online spillemaskiner</Link> og garanterer fair play for alle spillere.</>,
+    <>Som alle certificerede <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">spillemaskiner</Link> drives {name} af en <Link to="/ordbog/rng" className="text-primary hover:underline">Random Number Generator (RNG)</Link>. Denne algoritme genererer et tilfældigt tal for hvert spin – resultatet er fastlagt, inden hjulene overhovedet begynder at dreje, og den visuelle animation er udelukkende kosmetisk.</>,
+  ];
+
   return [
-    `${name} fungerer, ligesom alle moderne online spillemaskiner, via en Random Number Generator (RNG) – en algoritme, der genererer tilfældige tal med en hastighed på tusindvis pr. sekund. Hvert tal korresponderer til en specifik symbolkombination på hjulene. Når du trykker på spin-knappen, vælger RNG'en det næste tal i sekvensen, og resultatet bestemmes øjeblikkeligt. Den visuelle animation af hjulene, der snurrer, er udelukkende en grafisk præsentation – resultatet er allerede fastlagt, inden hjulene stopper.`,
-    `Denne tilfældighedsmekanisme er certificeret og regelmæssigt testet af uafhængige tredjepartsauditorer som eCOGRA, iTech Labs eller GLI. I Danmark overvåger Spillemyndigheden, at alle spillemaskiner på licenserede casinoer overholder kravene til fair play og tilfældighed. Det betyder, at hverken casinoet eller spilleren kan forudsige eller påvirke udfaldet af et enkelt spin – hver spin er fuldstændig uafhængig af alle tidligere og fremtidige spins.`,
-    `${name}'s gevinststruktur er defineret af en matematisk model kaldet "paytable" (gevinst-tabel), som specificerer betalingen for hver mulig symbolkombination. Denne model, kombineret med symbolernes vægtning på hjulene, bestemmer den samlede RTP${slot.rtp ? ` (${slot.rtp}% for denne maskine)` : ""}. Gevinst-tabellen er altid tilgængelig i spillets informationssektion, og vi anbefaler at studere den, inden du begynder at spille, for at forstå hvilke symboler og kombinationer der giver de højeste gevinster.`,
+    intros[h % intros.length],
+    <>Denne tilfældighedsmekanisme er certificeret og regelmæssigt testet af uafhængige tredjepartsauditorer som eCOGRA, iTech Labs eller GLI. I Danmark overvåger <Link to="/ansvarligt-spil" className="text-primary hover:underline">Spillemyndigheden</Link>, at alle spillemaskiner på licenserede <Link to="/casino-anmeldelser" className="text-primary hover:underline">casinoer</Link> overholder kravene til fair play og tilfældighed. Det betyder, at hverken casinoet eller spilleren kan forudsige eller påvirke udfaldet af et enkelt spin.</>,
+    <>{name}'s gevinststruktur er defineret af en matematisk model kaldet "paytable" (gevinst-tabel), som specificerer betalingen for hver mulig symbolkombination. Denne model, kombineret med symbolernes vægtning på hjulene, bestemmer den samlede <Link to="/ordbog/rtp" className="text-primary hover:underline">RTP</Link>{slot.rtp ? ` (${slot.rtp}% for denne maskine)` : ""}. Gevinst-tabellen er altid tilgængelig i spillets informationssektion, og vi anbefaler at studere den inden du begynder at spille.</>,
   ];
 }
 
@@ -374,13 +502,11 @@ function generateFAQ(slot: any) {
 
 function generateHeroDescription(slot: any): string {
   const parts: string[] = [];
-  
   if (slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot") {
     parts.push(`Komplet community-data og statistik for ${slot.slot_name} fra ${slot.provider}.`);
   } else {
     parts.push(`Komplet community-data og statistik for ${slot.slot_name}.`);
   }
-
   if (slot.rtp && slot.volatility) {
     parts.push(`Med en RTP på ${slot.rtp}% og ${slot.volatility.toLowerCase()} volatilitet`);
   } else if (slot.rtp) {
@@ -388,7 +514,6 @@ function generateHeroDescription(slot: any): string {
   } else if (slot.volatility) {
     parts.push(`Med ${slot.volatility.toLowerCase()} volatilitet`);
   }
-
   if (slot.bonus_count > 0) {
     parts.push(
       `er denne spillemaskin testet i ${slot.bonus_count} bonus hunt${slot.bonus_count !== 1 ? "s" : ""} på vores Twitch-kanal${
@@ -398,7 +523,6 @@ function generateHeroDescription(slot: any): string {
   } else {
     parts.push("– følg med når den bliver testet i kommende bonus hunts.");
   }
-
   return parts.join(" ");
 }
 
@@ -419,7 +543,7 @@ export default function SlotCatalogPage() {
 
   const pageUrl = `${SITE_URL}/slot-katalog/${slug}`;
 
-  // SEO-optimized title with provider + RTP for long-tail ranking
+  // SEO-optimized title
   const titleParts = [slot?.slot_name];
   if (slot?.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot") titleParts.push(slot.provider);
   if (slot?.rtp) titleParts.push(`RTP ${slot.rtp}%`);
@@ -436,10 +560,38 @@ export default function SlotCatalogPage() {
 
   const faqs = slot ? generateFAQ(slot) : [];
 
+  // Build Article + Person JSON-LD (E-E-A-T signals)
+  const articleSchema = slot
+    ? buildArticleSchema({
+        headline: `${slot.slot_name} – Komplet Data & Statistik`,
+        description: description,
+        url: pageUrl,
+        datePublished: slot.created_at?.slice(0, 10) || "2025-01-01",
+        dateModified: slot.updated_at?.slice(0, 10),
+        authorName: "Jonas",
+        authorUrl: `${SITE_URL}/forfatter/jonas`,
+        authorSameAs: JONAS_SAME_AS,
+        about: [
+          { "@type": "Thing", name: slot.slot_name },
+          { "@type": "Thing", name: "Spillemaskiner", url: `${SITE_URL}/casinospil/spillemaskiner` },
+        ],
+        mentions: [
+          ...(slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot"
+            ? [{ "@type": "Organization", name: slot.provider }]
+            : []),
+          { "@type": "Thing", name: "Return to Player (RTP)", url: `${SITE_URL}/ordbog/rtp` },
+        ],
+      })
+    : null;
+
+  // Merge Article @graph with SoftwareApplication + FAQPage
   const jsonLd = slot
     ? {
         "@context": "https://schema.org",
         "@graph": [
+          // Article + Person entities from buildArticleSchema
+          ...((articleSchema as any)?.["@graph"] || []),
+          // SoftwareApplication
           {
             "@type": "SoftwareApplication",
             name: slot.slot_name,
@@ -459,6 +611,7 @@ export default function SlotCatalogPage() {
               },
             }),
           },
+          // FAQPage
           ...(faqs.length > 0
             ? [{
                 "@type": "FAQPage",
@@ -476,9 +629,7 @@ export default function SlotCatalogPage() {
       }
     : null;
 
-  // All pages now have 2000+ words of generated content – no thin content
   const slotDescription = slot ? (slot as any).description : null;
-  const isThinContent = false;
 
   if (isLoading) {
     return (
@@ -503,6 +654,7 @@ export default function SlotCatalogPage() {
   }
 
   const heroDescription = generateHeroDescription(slot);
+  const slotName = slot.slot_name;
 
   return (
     <>
@@ -510,15 +662,14 @@ export default function SlotCatalogPage() {
         title={title}
         description={description}
         type="article"
-        noindex={isThinContent || false}
         jsonLd={jsonLd || undefined}
-        breadcrumbLabel={slot.slot_name}
+        breadcrumbLabel={slotName}
         datePublished={slot.created_at?.slice(0, 10)}
         dateModified={slot.updated_at?.slice(0, 10)}
       />
 
       <div className="container py-4">
-        <Breadcrumbs dynamicLabel={slot.slot_name} />
+        <Breadcrumbs dynamicLabel={slotName} />
       </div>
 
       {/* Hero Section */}
@@ -535,7 +686,7 @@ export default function SlotCatalogPage() {
               Slot Data
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              {slot.slot_name}
+              {slotName}
             </h1>
             <p className="text-lg text-white/80">
               {heroDescription}
@@ -583,14 +734,14 @@ export default function SlotCatalogPage() {
               to={`/casinospil/spillemaskiner/${slug}`}
               className="text-primary hover:underline font-semibold"
             >
-              Læs den dybdegående {slot.slot_name} guide med matematik, strategi og EV-analyse →
+              Læs den dybdegående {slotName} guide med matematik, strategi og EV-analyse →
             </Link>
           </div>
         )}
 
         {/* AI-generated description OR fallback */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Om {slot.slot_name}</h2>
+          <h2 className="text-2xl font-bold mb-4">Om {slotName}</h2>
           {slotDescription ? (
             <div className="text-muted-foreground leading-relaxed space-y-4">
               {slotDescription.split("\n").filter(Boolean).map((p: string, i: number) => (
@@ -600,15 +751,15 @@ export default function SlotCatalogPage() {
           ) : (
             <>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                {slot.slot_name} er en {slot.volatility ? slot.volatility.toLowerCase() + " volatilitet" : ""} spillemaskin
+                {slotName} er en {slot.volatility ? slot.volatility.toLowerCase() + " volatilitet" : ""} spillemaskin
                 {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot"
-                  ? ` fra ${slot.provider}`
+                  ? <> fra {providerLink(slot.provider)}</>
                   : ""}
-                {slot.rtp ? ` med en Return to Player (RTP) på ${slot.rtp}%` : ""}.
+                {slot.rtp ? <> med en <Link to="/ordbog/rtp" className="text-primary hover:underline">Return to Player (RTP)</Link> på {slot.rtp}%</> : ""}.
                 {slot.max_potential ? ` Max win potentiale er ${slot.max_potential}.` : ""}
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Maskinen er blevet testet i {slot.bonus_count} bonus hunt{slot.bonus_count !== 1 ? "s" : ""} på vores Twitch-kanal,
+                Maskinen er blevet testet i {slot.bonus_count} <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">bonus hunt{slot.bonus_count !== 1 ? "s" : ""}</Link> på vores Twitch-kanal,
                 hvor community'et tracker resultater i realtid.
                 {slot.highest_x && slot.highest_x > 0
                   ? ` Den højeste registrerede multiplikator er ${Number(slot.highest_x.toFixed(1))}x.`
@@ -623,7 +774,7 @@ export default function SlotCatalogPage() {
 
         {/* RTP & Mathematics Deep Dive */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">RTP & Matematik: {slot.slot_name}</h2>
+          <h2 className="text-2xl font-bold mb-4">{H2_RTP(slotName, slotName)}</h2>
           <div className="text-muted-foreground leading-relaxed space-y-4">
             {generateRTPSection(slot).map((p, i) => <p key={`rtp-${i}`}>{p}</p>)}
           </div>
@@ -631,7 +782,7 @@ export default function SlotCatalogPage() {
 
         {/* Volatility & Risk Analysis */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Volatilitet & Risikoanalyse</h2>
+          <h2 className="text-2xl font-bold mb-4">{H2_VOL(slotName, slotName)}</h2>
           <div className="text-muted-foreground leading-relaxed space-y-4">
             {generateVolatilitySection(slot).map((p, i) => <p key={`vol-${i}`}>{p}</p>)}
           </div>
@@ -639,7 +790,7 @@ export default function SlotCatalogPage() {
 
         {/* Bonus Hunt Performance */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Bonus Hunt Performance: {slot.slot_name}</h2>
+          <h2 className="text-2xl font-bold mb-4">{H2_BH(slotName, slotName)}</h2>
           <div className="text-muted-foreground leading-relaxed space-y-4">
             {generateBonusHuntAnalysis(slot).map((p, i) => <p key={`bh-${i}`}>{p}</p>)}
           </div>
@@ -647,7 +798,7 @@ export default function SlotCatalogPage() {
 
         {/* Provider & Game Design */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Spiludvikler: {slot.provider || "Ukendt"}</h2>
+          <h2 className="text-2xl font-bold mb-4">{H2_PROV(slot.provider || "Ukendt", slotName)}</h2>
           <div className="text-muted-foreground leading-relaxed space-y-4">
             {generateProviderSection(slot).map((p, i) => <p key={`prov-${i}`}>{p}</p>)}
           </div>
@@ -655,7 +806,7 @@ export default function SlotCatalogPage() {
 
         {/* How Slot Machines Work */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Sådan Fungerer {slot.slot_name}</h2>
+          <h2 className="text-2xl font-bold mb-4">{H2_HOW(slotName, slotName)}</h2>
           <div className="text-muted-foreground leading-relaxed space-y-4">
             {generateHowItWorks(slot).map((p, i) => <p key={`how-${i}`}>{p}</p>)}
           </div>
@@ -663,13 +814,13 @@ export default function SlotCatalogPage() {
 
         {/* Bankroll Management */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Bankroll Management for {slot.slot_name}</h2>
+          <h2 className="text-2xl font-bold mb-4">{H2_BANK(slotName, slotName)}</h2>
           <div className="text-muted-foreground leading-relaxed space-y-4">
             {generateBankrollSection(slot).map((p, i) => <p key={`bank-${i}`}>{p}</p>)}
           </div>
         </section>
 
-
+        {/* Bonus Hunt Appearances Table */}
         {huntData && huntData.length > 0 && (
           <section className="mb-8">
             <h2 className="text-2xl font-bold mb-4">Seneste Bonus Hunt Optrædener</h2>
@@ -706,7 +857,7 @@ export default function SlotCatalogPage() {
               Lignende Spillemaskiner
             </h2>
             <p className="text-muted-foreground mb-4">
-              Andre populære slots fra {slot.provider} med lignende karakteristika.
+              Andre populære slots fra {providerLink(slot.provider)} med lignende karakteristika.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {similarSlots.map((s) => {
@@ -734,7 +885,7 @@ export default function SlotCatalogPage() {
 
         {/* Responsible Gambling */}
         <section className="mb-8 rounded-lg border border-primary/20 bg-primary/5 p-6">
-          <h2 className="text-2xl font-bold mb-4">Ansvarligt Spil</h2>
+          <h2 className="text-2xl font-bold mb-4">{H2_RG(slotName)}</h2>
           <div className="text-muted-foreground leading-relaxed space-y-4">
             {generateResponsibleGambling(slot).map((p, i) => <p key={`rg-${i}`}>{p}</p>)}
           </div>
@@ -743,7 +894,7 @@ export default function SlotCatalogPage() {
         {/* FAQ Section */}
         {faqs.length > 0 && (
           <FAQSection
-            title={`Ofte stillede spørgsmål om ${slot.slot_name}`}
+            title={`Ofte stillede spørgsmål om ${slotName}`}
             faqs={faqs.map((faq) => ({
               question: faq.question,
               answer: faq.answer,
@@ -756,7 +907,7 @@ export default function SlotCatalogPage() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold mb-4">Mere fra {slot.provider}</h2>
             <p className="text-muted-foreground mb-3">
-              Se alle spillemaskiner fra {slot.provider} og læs vores dybdegående provider-analyse.
+              Se alle spillemaskiner fra {providerLink(slot.provider)} og læs vores dybdegående provider-analyse.
             </p>
             <Link
               to={`/spiludviklere/${providerSlug}`}
@@ -770,19 +921,8 @@ export default function SlotCatalogPage() {
         {/* Author bio */}
         <AuthorBio author="jonas" showCommunity={false} />
 
-        {/* Cross-links */}
-        <section className="mb-8 rounded-lg border border-border p-4 bg-muted/20">
-          <h2 className="text-lg font-bold mb-3">Udforsk Mere</h2>
-          <div className="flex flex-wrap gap-3 text-sm">
-            <Link to="/slot-database" className="text-primary hover:underline">Slot Database</Link>
-            <span className="text-muted-foreground">·</span>
-            <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">Bonus Hunt Arkiv</Link>
-            <span className="text-muted-foreground">·</span>
-            <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">Spillemaskiner Guide</Link>
-            <span className="text-muted-foreground">·</span>
-            <Link to="/casino-nyheder" className="text-primary hover:underline">Casino Nyheder</Link>
-          </div>
-        </section>
+        {/* RelatedGuides – replaces static "Udforsk Mere" box */}
+        <RelatedGuides currentPath={`/slot-katalog/${slug}`} />
 
         {/* Back link */}
         <div className="pt-4 border-t border-border">
