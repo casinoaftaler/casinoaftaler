@@ -38,6 +38,7 @@ async function fetchExistingSlotNames(supabase: any): Promise<Set<string>> {
     const { data, error } = await supabase
       .from("slot_catalog")
       .select("slot_name")
+      .order("slot_name")
       .range(from, from + pageSize - 1);
 
     if (error) {
