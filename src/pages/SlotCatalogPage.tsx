@@ -53,23 +53,15 @@ function useSlotBySlug(slug: string) {
   return useQuery({
     queryKey: ["slot-catalog-slug", slug],
     queryFn: async () => {
-      const batchSize = 1000;
-      let from = 0;
-      while (true) {
-        const { data, error } = await supabase
-          .from("slot_catalog")
-          .select("*")
-          .order("slot_name")
-          .range(from, from + batchSize - 1);
-        if (error) throw error;
-        const match = (data || []).find(
-          (s) => slugifySlotName(s.slot_name) === slug
-        );
-        if (match) return match;
-        if (!data || data.length < batchSize) break;
-        from += batchSize;
-      }
-      return null;
+      // O(1) lookup via indexed slug column
+      const { data, error } = await supabase
+        .from("slot_catalog")
+        .select("*")
+        .eq("slug", slug)
+        .limit(1)
+        .maybeSingle();
+      if (error) throw error;
+      return data;
     },
     staleTime: 300000,
   });
@@ -543,11 +535,21 @@ export default function SlotCatalogPage() {
 
   const pageUrl = `${SITE_URL}/slot-katalog/${slug}`;
 
-  // SEO-optimized title
-  const titleParts = [slot?.slot_name];
-  if (slot?.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot") titleParts.push(slot.provider);
-  if (slot?.rtp) titleParts.push(`RTP ${slot.rtp}%`);
-  const title = slot ? `${titleParts.join(" – ")} | Stats & Data` : "Spillemaskin";
+  // SEO-optimized title – kept under 60 chars for SERP display
+  const title = (() => {
+    if (!slot) return "Spillemaskin";
+    const name = slot.slot_name;
+    const rtp = slot.rtp ? ` – RTP ${slot.rtp}%` : "";
+    const suffix = " | Slot Data";
+    // Try name + RTP + suffix first
+    const full = `${name}${rtp}${suffix}`;
+    if (full.length <= 55) return full;
+    // Fallback: name + suffix only
+    const short = `${name}${suffix}`;
+    if (short.length <= 55) return short;
+    // Ultra-long slot names: truncate name
+    return `${name.slice(0, 42)}…${suffix}`;
+  })();
 
   const description = slot
     ? `${slot.slot_name} fra ${slot.provider}: RTP ${slot.rtp || "N/A"}%, volatilitet ${slot.volatility || "N/A"}, testet i ${slot.bonus_count} bonus hunts. Se community-data og statistikker.`
@@ -641,15 +643,22 @@ export default function SlotCatalogPage() {
 
   if (!slot) {
     return (
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-2xl font-bold mb-4">Slot ikke fundet</h1>
-        <p className="text-muted-foreground mb-6">
-          Vi kunne ikke finde en spillemaskin med dette navn i vores database.
-        </p>
-        <Link to="/slot-database" className="text-primary hover:underline flex items-center gap-2">
-          <ArrowLeft className="h-4 w-4" /> Gå til Slot Database
-        </Link>
-      </div>
+      <>
+        <SEO
+          title="Slot ikke fundet"
+          description="Den ønskede spillemaskine blev ikke fundet i vores database."
+          noindex
+        />
+        <div className="container mx-auto px-4 py-16">
+          <h1 className="text-2xl font-bold mb-4">Slot ikke fundet</h1>
+          <p className="text-muted-foreground mb-6">
+            Vi kunne ikke finde en spillemaskin med dette navn i vores database.
+          </p>
+          <Link to="/slot-database" className="text-primary hover:underline flex items-center gap-2">
+            <ArrowLeft className="h-4 w-4" /> Gå til Slot Database
+          </Link>
+        </div>
+      </>
     );
   }
 
@@ -667,6 +676,30 @@ export default function SlotCatalogPage() {
         datePublished={slot.created_at?.slice(0, 10)}
         dateModified={slot.updated_at?.slice(0, 10)}
       />
+
+      {/* Static fallback for crawlers that don't execute JS */}
+      <noscript>
+        <div className="container py-8">
+          <h1>{slotName}</h1>
+          <p>
+            {slotName} er en {slot.volatility ? `${slot.volatility.toLowerCase()} volatilitet ` : ""}spillemaskine
+            {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" ? ` fra ${slot.provider}` : ""}
+            {slot.rtp ? ` med en RTP på ${slot.rtp}%` : ""}.
+            {slot.bonus_count > 0 ? ` Testet i ${slot.bonus_count} bonus hunts.` : ""}
+            {slot.highest_x && slot.highest_x > 0 ? ` Højeste multiplikator: ${Number(slot.highest_x.toFixed(1))}x.` : ""}
+          </p>
+          <ul>
+            <li><a href="/slot-database">Se alle spillemaskiner i Slot Database</a></li>
+            <li><a href="/bonus-hunt/arkiv">Bonus Hunt Arkiv</a></li>
+            <li><a href="/casinospil/spillemaskiner">Spillemaskiner Hub</a></li>
+            <li><a href="/ordbog/rtp">Hvad er RTP?</a></li>
+            <li><a href="/ordbog/volatilitet">Hvad er Volatilitet?</a></li>
+            {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" && providerSlug && (
+              <li><a href={`/spiludviklere/${providerSlug}`}>Læs om {slot.provider}</a></li>
+            )}
+          </ul>
+        </div>
+      </noscript>
 
       <div className="container py-4">
         <Breadcrumbs dynamicLabel={slotName} />

@@ -11,13 +11,14 @@ const SITE_URL = "https://casinoaftaler.dk";
 /**
  * Slugify a slot name the same way the frontend does.
  * Must match src/lib/slugify.ts → slugifySlotName()
+ * SYNCED: 2026-03-09
  */
 function slugifySlotName(name: string): string {
   return name
     .toLowerCase()
-    .replace(/['´`']/g, "")
-    .replace(/[^a-z0-9æøåäöü]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+    .replace(/[''""'"]+/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 Deno.serve(async (req) => {
