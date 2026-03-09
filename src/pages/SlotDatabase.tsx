@@ -403,21 +403,31 @@ export default function SlotDatabase() {
               </div>
             </div>
 
-            {/* Pagination */}
+            {/* Pagination – uses <a href> for crawlability alongside onClick for SPA nav */}
             {totalPages > 1 && (
               <div className="flex items-center justify-between mt-4">
                 <p className="text-sm text-muted-foreground">
                   Side {currentPage} af {totalPages}
                 </p>
-                <div className="flex items-center gap-2">
+                <nav aria-label="Sidenavigation" className="flex items-center gap-2">
                   <Button
                     variant="outline"
                     size="sm"
                     disabled={currentPage === 1}
                     onClick={() => { setCurrentPage(p => p - 1); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                    asChild={currentPage > 1}
                   >
-                    <ChevronLeft className="h-4 w-4 mr-1" />
-                    Forrige
+                    {currentPage > 1 ? (
+                      <a href={`/slot-database?side=${currentPage - 1}`} onClick={(e) => e.preventDefault()}>
+                        <ChevronLeft className="h-4 w-4 mr-1" />
+                        Forrige
+                      </a>
+                    ) : (
+                      <span>
+                        <ChevronLeft className="h-4 w-4 mr-1" />
+                        Forrige
+                      </span>
+                    )}
                   </Button>
                   {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
                     let page: number;
@@ -437,8 +447,15 @@ export default function SlotDatabase() {
                         size="sm"
                         className="w-9"
                         onClick={() => { setCurrentPage(page); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                        asChild={page !== currentPage}
                       >
-                        {page}
+                        {page !== currentPage ? (
+                          <a href={`/slot-database?side=${page}`} onClick={(e) => e.preventDefault()}>
+                            {page}
+                          </a>
+                        ) : (
+                          <span>{page}</span>
+                        )}
                       </Button>
                     );
                   })}
@@ -447,11 +464,21 @@ export default function SlotDatabase() {
                     size="sm"
                     disabled={currentPage === totalPages}
                     onClick={() => { setCurrentPage(p => p + 1); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                    asChild={currentPage < totalPages}
                   >
-                    Næste
-                    <ChevronRight className="h-4 w-4 ml-1" />
+                    {currentPage < totalPages ? (
+                      <a href={`/slot-database?side=${currentPage + 1}`} onClick={(e) => e.preventDefault()}>
+                        Næste
+                        <ChevronRight className="h-4 w-4 ml-1" />
+                      </a>
+                    ) : (
+                      <span>
+                        Næste
+                        <ChevronRight className="h-4 w-4 ml-1" />
+                      </span>
+                    )}
                   </Button>
-                </div>
+                </nav>
               </div>
             )}
           </>
