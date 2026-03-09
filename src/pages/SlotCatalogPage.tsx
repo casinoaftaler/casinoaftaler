@@ -489,20 +489,13 @@ export default function SlotCatalogPage() {
 
         {/* FAQ Section */}
         {faqs.length > 0 && (
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <HelpCircle className="h-6 w-6 text-primary" />
-              Ofte Stillede Spørgsmål
-            </h2>
-            <div className="space-y-4">
-              {faqs.map((faq, i) => (
-                <div key={i} className="rounded-lg border border-border p-4">
-                  <h3 className="font-semibold mb-2">{faq.question}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+          <FAQSection
+            title={`Ofte stillede spørgsmål om ${slot.slot_name}`}
+            faqs={faqs.map((faq) => ({
+              question: faq.question,
+              answer: faq.answer,
+            }))}
+          />
         )}
 
         {/* Provider link */}
