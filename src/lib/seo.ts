@@ -274,15 +274,19 @@ export function buildReviewSchema(opts: {
   ratingCount: string;
   reviewBody: string;
   authorUrl?: string;
-  /** Canonical URL of the page – used to generate stable @id for the Review entity */
-  pageUrl?: string;
 }) {
   const authorUrl = opts.authorUrl || `${SITE_URL}/forfatter/jonas`;
-  const reviewId = opts.pageUrl ? `${opts.pageUrl}#review` : undefined;
+  // Derive a stable slug from the external URL domain for the @id
+  const slug = opts.itemUrl
+    .replace(/^https?:\/\/(www\.)?/, "")
+    .replace(/\.dk\/?$|\.com\/?$/, "")
+    .replace(/[^a-z0-9]+/gi, "-")
+    .toLowerCase();
+  const reviewId = `${SITE_URL}/casino-anmeldelser/${slug}#review`;
   return {
     "@context": "https://schema.org",
     "@type": "Review",
-    ...(reviewId && { "@id": reviewId }),
+    "@id": reviewId,
     name: `${opts.itemName} Anmeldelse`,
     itemReviewed: {
       "@type": "SoftwareApplication",
