@@ -633,15 +633,22 @@ export default function SlotCatalogPage() {
 
   if (!slot) {
     return (
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-2xl font-bold mb-4">Slot ikke fundet</h1>
-        <p className="text-muted-foreground mb-6">
-          Vi kunne ikke finde en spillemaskin med dette navn i vores database.
-        </p>
-        <Link to="/slot-database" className="text-primary hover:underline flex items-center gap-2">
-          <ArrowLeft className="h-4 w-4" /> Gå til Slot Database
-        </Link>
-      </div>
+      <>
+        <SEO
+          title="Slot ikke fundet"
+          description="Den ønskede spillemaskine blev ikke fundet i vores database."
+          noindex
+        />
+        <div className="container mx-auto px-4 py-16">
+          <h1 className="text-2xl font-bold mb-4">Slot ikke fundet</h1>
+          <p className="text-muted-foreground mb-6">
+            Vi kunne ikke finde en spillemaskin med dette navn i vores database.
+          </p>
+          <Link to="/slot-database" className="text-primary hover:underline flex items-center gap-2">
+            <ArrowLeft className="h-4 w-4" /> Gå til Slot Database
+          </Link>
+        </div>
+      </>
     );
   }
 
