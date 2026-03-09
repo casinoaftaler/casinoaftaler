@@ -1,4 +1,7 @@
 import { useParams, Link } from "react-router-dom";
+import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
+import { useAuth } from "@/hooks/useAuth";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
@@ -11,7 +14,9 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers } from "lucide-react";
+import { Sparkles, Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers, Gift, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
 import type { ReactNode } from "react";
 
 /** Reverse lookup: display name → provider slug */
@@ -106,7 +111,7 @@ function useSimilarSlots(provider: string | null, currentName: string | null, vo
       if (!provider || provider === "Unknown" || provider === "Custom Slot") return [];
       const { data, error } = await supabase
         .from("slot_catalog")
-        .select("slot_name, rtp, volatility, bonus_count, highest_x")
+        .select("slot_name, rtp, volatility, bonus_count, highest_x, slug")
         .eq("provider", provider)
         .order("bonus_count", { ascending: false })
         .limit(20);
@@ -119,10 +124,46 @@ function useSimilarSlots(provider: string | null, currentName: string | null, vo
           if (aMatch !== bMatch) return bMatch - aMatch;
           return (b.bonus_count || 0) - (a.bonus_count || 0);
         })
-        .slice(0, 6);
+        .slice(0, 8);
     },
     enabled: !!provider && !!currentName,
     staleTime: 300000,
+  });
+}
+
+function useCasinosForSlot(provider: string | null) {
+  return useQuery({
+    queryKey: ["casinos-for-slot", provider],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("casinos_public")
+        .select("*")
+        .eq("is_active", true)
+        .order("position", { ascending: true });
+      if (error) throw error;
+      if (!data) return [];
+
+      // Match casinos whose game_providers array contains this provider
+      const matched = data.filter((casino: any) => {
+        if (!provider || provider === "Unknown" || provider === "Custom Slot") return false;
+        const providers = casino.game_providers as any[];
+        if (!Array.isArray(providers)) return false;
+        return providers.some((gp: any) => {
+          const name = typeof gp === "string" ? gp : gp?.name;
+          return name?.toLowerCase() === provider.toLowerCase();
+        });
+      });
+
+      // If no match on provider, show top recommended casinos
+      if (matched.length === 0) {
+        return data
+          .filter((c: any) => c.is_recommended)
+          .slice(0, 5);
+      }
+      return matched.slice(0, 6);
+    },
+    enabled: true,
+    staleTime: 3600000, // 1 hour
   });
 }
 
@@ -522,6 +563,7 @@ function generateHeroDescription(slot: any): string {
 
 export default function SlotCatalogPage() {
   const { slug } = useParams<{ slug: string }>();
+  const { user } = useAuth();
   const { data: slot, isLoading } = useSlotBySlug(slug || "");
   const { data: huntData } = useSlotBonusHuntData(slot?.slot_name || null);
   const { data: similarSlots } = useSimilarSlots(
@@ -529,6 +571,7 @@ export default function SlotCatalogPage() {
     slot?.slot_name || null,
     slot?.volatility || null
   );
+  const { data: casinosForSlot } = useCasinosForSlot(slot?.provider || null);
 
   const hasGuide = slug ? GUIDE_SLUGS.has(slug) : false;
   const providerSlug = slot?.provider ? PROVIDER_NAME_TO_SLUG[slot.provider] : null;
@@ -731,32 +774,47 @@ export default function SlotCatalogPage() {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="redaktionen" showAffiliateDisclaimer={false} />
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="rounded-lg border border-border p-4 text-center">
-            <BarChart3 className="h-5 w-5 mx-auto mb-2 text-primary" />
-            <p className="text-2xl font-bold">{slot.rtp ? `${slot.rtp}%` : "N/A"}</p>
-            <p className="text-xs text-muted-foreground">RTP</p>
-          </div>
-          <div className="rounded-lg border border-border p-4 text-center">
-            <Zap className="h-5 w-5 mx-auto mb-2 text-primary" />
-            <p className="text-2xl font-bold">{slot.volatility || "N/A"}</p>
-            <p className="text-xs text-muted-foreground">Volatilitet</p>
-          </div>
-          <div className="rounded-lg border border-border p-4 text-center">
-            <Trophy className="h-5 w-5 mx-auto mb-2 text-primary" />
-            <p className="text-2xl font-bold">
-              {slot.highest_x && slot.highest_x > 0
-                ? `${Number(slot.highest_x.toFixed(1))}x`
-                : "N/A"}
-            </p>
-            <p className="text-xs text-muted-foreground">Højeste X</p>
-          </div>
-          <div className="rounded-lg border border-border p-4 text-center">
-            <Hash className="h-5 w-5 mx-auto mb-2 text-primary" />
-            <p className="text-2xl font-bold">{slot.bonus_count}</p>
-            <p className="text-xs text-muted-foreground">Bonus Hunts</p>
-          </div>
+        {/* Slot Statistik Infobox */}
+        <div className="rounded-lg border border-border overflow-hidden mb-8">
+          <h2 className="text-lg font-bold px-4 py-3 bg-muted/50 border-b border-border">Slot Statistik</h2>
+          <table className="w-full text-sm">
+            <tbody>
+              {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" && (
+                <tr className="border-b border-border/50">
+                  <td className="px-4 py-2.5 font-medium text-muted-foreground w-1/3">Udbyder</td>
+                  <td className="px-4 py-2.5">
+                    {providerSlug ? (
+                      <a href={`/spiludviklere/${providerSlug}`} className="text-primary hover:underline">{slot.provider}</a>
+                    ) : slot.provider}
+                  </td>
+                </tr>
+              )}
+              <tr className="border-b border-border/50">
+                <td className="px-4 py-2.5 font-medium text-muted-foreground">RTP</td>
+                <td className="px-4 py-2.5">{slot.rtp ? `${slot.rtp}%` : "N/A"}</td>
+              </tr>
+              <tr className="border-b border-border/50">
+                <td className="px-4 py-2.5 font-medium text-muted-foreground">Volatilitet</td>
+                <td className="px-4 py-2.5">{slot.volatility || "N/A"}</td>
+              </tr>
+              <tr className="border-b border-border/50">
+                <td className="px-4 py-2.5 font-medium text-muted-foreground">Max Win</td>
+                <td className="px-4 py-2.5">{(slot as any).max_potential || "N/A"}</td>
+              </tr>
+              <tr className="border-b border-border/50">
+                <td className="px-4 py-2.5 font-medium text-muted-foreground">Højeste X</td>
+                <td className="px-4 py-2.5">
+                  {slot.highest_x && slot.highest_x > 0
+                    ? `${Number(slot.highest_x.toFixed(1))}x`
+                    : "N/A"}
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-medium text-muted-foreground">Bonus Hunts</td>
+                <td className="px-4 py-2.5">{slot.bonus_count}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         {/* Guide link if exists */}
@@ -805,7 +863,73 @@ export default function SlotCatalogPage() {
           )}
         </section>
 
-        {/* RTP & Mathematics Deep Dive */}
+        {/* Casinoer der har denne slot */}
+        {casinosForSlot && casinosForSlot.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold mb-4">Casinoer hvor du kan spille {slotName}</h2>
+            <p className="text-muted-foreground mb-4">
+              Disse danske casinoer tilbyder spillemaskiner fra {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" ? providerLink(slot.provider) : "denne udbyder"}, herunder {slotName}.
+            </p>
+            <div className="rounded-lg border border-border overflow-hidden">
+              <table className="w-full text-sm">
+                <thead className="bg-muted">
+                  <tr className="border-b border-border">
+                    <th className="px-4 py-2.5 text-left font-medium">Casino</th>
+                    <th className="px-4 py-2.5 text-left font-medium hidden sm:table-cell">Bonus</th>
+                    <th className="px-4 py-2.5 text-left font-medium hidden md:table-cell">Gennemspil</th>
+                    <th className="px-4 py-2.5 text-right font-medium">Link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {casinosForSlot.map((casino: any) => (
+                    <tr key={casino.id} className="border-b border-border/50 hover:bg-muted/30">
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          {casino.logo_url && (
+                            <img
+                              src={optimizeStorageImage(casino.logo_url, 64) ?? casino.logo_url}
+                              alt={casino.name}
+                              width={24}
+                              height={24}
+                              loading="lazy"
+                              className="h-6 w-6 rounded object-contain"
+                            />
+                          )}
+                          <a href={`/casino-anmeldelser/${casino.slug}`} className="text-primary hover:underline font-medium">
+                            {casino.name}
+                          </a>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 hidden sm:table-cell text-muted-foreground">{casino.bonus_amount}</td>
+                      <td className="px-4 py-3 hidden md:table-cell text-muted-foreground">{casino.wagering_requirements}</td>
+                      <td className="px-4 py-3 text-right">
+                        {casino.has_affiliate ? (
+                          <Button
+                            size="sm"
+                            variant="default"
+                            data-sponsored="true"
+                            onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
+                            className="text-xs"
+                          >
+                            <Gift className="h-3 w-3 mr-1" />
+                            Hent Bonus
+                          </Button>
+                        ) : (
+                          <a href={`/casino-anmeldelser/${casino.slug}`} className="text-xs text-primary hover:underline">
+                            Læs anmeldelse
+                          </a>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <CasinoCardDisclaimer />
+          </section>
+        )}
+
+
         <section className="mb-8">
           <h2 className="text-2xl font-bold mb-4">{H2_RTP(slotName, slotName)}</h2>
           <div className="text-muted-foreground leading-relaxed space-y-4">
@@ -882,23 +1006,23 @@ export default function SlotCatalogPage() {
           </section>
         )}
 
-        {/* Similar slots */}
+        {/* Flere slots fra provider */}
         {similarSlots && similarSlots.length > 0 && (
           <section className="mb-8">
             <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
               <Layers className="h-6 w-6 text-primary" />
-              Lignende Spillemaskiner
+              Flere slots fra {slot.provider}
             </h2>
             <p className="text-muted-foreground mb-4">
-              Andre populære slots fra {providerLink(slot.provider)} med lignende karakteristika.
+              Andre populære spillemaskiner fra {providerLink(slot.provider)}.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {similarSlots.map((s) => {
-                const simSlug = slugifySlotName(s.slot_name);
+                const simSlug = (s as any).slug || slugifySlotName(s.slot_name);
                 return (
-                  <Link
+                  <a
                     key={s.slot_name}
-                    to={`/slot-katalog/${simSlug}`}
+                    href={`/slot-katalog/${simSlug}`}
                     className="rounded-lg border border-border p-4 hover:border-primary/50 hover:bg-muted/30 transition-colors"
                   >
                     <p className="font-medium mb-1">{s.slot_name}</p>
@@ -909,7 +1033,7 @@ export default function SlotCatalogPage() {
                         <span>{Number(s.highest_x.toFixed(1))}x</span>
                       )}
                     </div>
-                  </Link>
+                  </a>
                 );
               })}
             </div>
