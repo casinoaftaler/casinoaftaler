@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { SITE_URL } from "@/lib/seo";
 import { slugifySlotName } from "@/lib/slugify";
 import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
@@ -224,7 +224,13 @@ export default function SlotCatalogPage() {
   const providerSlug = slot?.provider ? PROVIDER_NAME_TO_SLUG[slot.provider] : null;
 
   const pageUrl = `${SITE_URL}/slot-katalog/${slug}`;
-  const title = slot ? `${slot.slot_name} – Stats & Community Data` : "Spillemaskin";
+
+  // SEO-optimized title with provider + RTP for long-tail ranking
+  const titleParts = [slot?.slot_name];
+  if (slot?.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot") titleParts.push(slot.provider);
+  if (slot?.rtp) titleParts.push(`RTP ${slot.rtp}%`);
+  const title = slot ? `${titleParts.join(" – ")} | Stats & Data` : "Spillemaskin";
+
   const description = slot
     ? `${slot.slot_name} fra ${slot.provider}: RTP ${slot.rtp || "N/A"}%, volatilitet ${slot.volatility || "N/A"}, testet i ${slot.bonus_count} bonus hunts. Se community-data og statistikker.`
     : "";
@@ -306,19 +312,16 @@ export default function SlotCatalogPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={pageUrl} />
-        {isThinContent && <meta name="robots" content="noindex, follow" />}
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={pageUrl} />
-        <meta property="og:type" content="website" />
-        {jsonLd && (
-          <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-        )}
-      </Helmet>
+      <SEO
+        title={title}
+        description={description}
+        type="article"
+        noindex={isThinContent || false}
+        jsonLd={jsonLd || undefined}
+        breadcrumbLabel={slot.slot_name}
+        datePublished={slot.created_at?.slice(0, 10)}
+        dateModified={slot.updated_at?.slice(0, 10)}
+      />
 
       <div className="container py-4">
         <Breadcrumbs dynamicLabel={slot.slot_name} />

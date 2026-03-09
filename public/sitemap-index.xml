@@ -9,4 +9,7 @@
   <sitemap>
     <loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/functions/v1/sitemap-images</loc>
   </sitemap>
+  <sitemap>
+    <loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/functions/v1/sitemap-slots</loc>
+  </sitemap>
 </sitemapindex>
