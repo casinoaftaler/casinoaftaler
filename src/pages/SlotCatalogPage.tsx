@@ -175,6 +175,38 @@ function generateFAQ(slot: any) {
   return faqs;
 }
 
+// ─── Hero description generator ────────────────────────────
+
+function generateHeroDescription(slot: any): string {
+  const parts: string[] = [];
+  
+  if (slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot") {
+    parts.push(`Komplet community-data og statistik for ${slot.slot_name} fra ${slot.provider}.`);
+  } else {
+    parts.push(`Komplet community-data og statistik for ${slot.slot_name}.`);
+  }
+
+  if (slot.rtp && slot.volatility) {
+    parts.push(`Med en RTP på ${slot.rtp}% og ${slot.volatility.toLowerCase()} volatilitet`);
+  } else if (slot.rtp) {
+    parts.push(`Med en RTP på ${slot.rtp}%`);
+  } else if (slot.volatility) {
+    parts.push(`Med ${slot.volatility.toLowerCase()} volatilitet`);
+  }
+
+  if (slot.bonus_count > 0) {
+    parts.push(
+      `er denne spillemaskin testet i ${slot.bonus_count} bonus hunt${slot.bonus_count !== 1 ? "s" : ""} på vores Twitch-kanal${
+        slot.highest_x && slot.highest_x > 0 ? ` med en top-multiplikator på ${Number(slot.highest_x.toFixed(1))}x` : ""
+      }.`
+    );
+  } else {
+    parts.push("– følg med når den bliver testet i kommende bonus hunts.");
+  }
+
+  return parts.join(" ");
+}
+
 // ─── Main Component ────────────────────────────────────────
 
 export default function SlotCatalogPage() {
