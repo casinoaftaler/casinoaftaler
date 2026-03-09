@@ -91,7 +91,7 @@ Return ONLY a JSON array, no markdown, no explanation. Example:
           {
             role: "system",
             content:
-              "You are an expert on online casino slot machines. Return only valid JSON arrays. Be accurate with RTP values and volatility ratings. Only include slots that are genuinely made by the requested provider.",
+              "You are an expert on online casino slot machines. Return only valid JSON arrays. Be accurate with RTP values and volatility ratings. Only include slots that are genuinely made by the requested provider. CRITICAL: Always return slot names in their original English titles only. Never translate slot names into any other language.",
           },
           { role: "user", content: prompt },
         ],
