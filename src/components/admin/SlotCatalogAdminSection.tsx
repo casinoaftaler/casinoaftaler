@@ -109,7 +109,29 @@ function SeedDatabaseSection() {
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
-        <Button onClick={handleSeed} disabled={isSeeding} size="lg">
+        {/* Provider checkboxes */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label className="text-sm font-medium">Vælg providers</Label>
+            <Button variant="ghost" size="sm" onClick={toggleAll}>
+              {selectedProviders.length === SEED_PROVIDERS.length ? "Fravælg alle" : "Vælg alle"}
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            {SEED_PROVIDERS.map(provider => (
+              <label key={provider} className="flex items-center gap-2 text-sm cursor-pointer">
+                <Checkbox
+                  checked={selectedProviders.includes(provider)}
+                  onCheckedChange={() => toggleProvider(provider)}
+                  disabled={isSeeding}
+                />
+                {provider}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <Button onClick={handleSeed} disabled={isSeeding || selectedProviders.length === 0} size="lg">
           {isSeeding ? (
             <>
               <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -118,7 +140,7 @@ function SeedDatabaseSection() {
           ) : (
             <>
               <Database className="h-4 w-4 mr-2" />
-              Start Seeding (15 providers)
+              Start Seeding ({selectedProviders.length} providers)
             </>
           )}
         </Button>
@@ -127,7 +149,7 @@ function SeedDatabaseSection() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm text-muted-foreground">
               <span>{currentProvider}</span>
-              <span>{completedProviders.length}/{SEED_PROVIDERS.length}</span>
+              <span>{completedProviders.length}/{selectedProviders.length}</span>
             </div>
             <Progress value={progress} className="h-2" />
           </div>
