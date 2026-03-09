@@ -66,6 +66,7 @@ async function fetchSlotsForProvider(
     : "";
 
   const prompt = `List the 40 most popular and well-known online casino slot machines made by "${provider}".
+CRITICAL: Return all slot names in their original English titles only. Do NOT translate names into any other language.
 ${existingList}
 
 For each slot return a JSON object with these fields:
