@@ -11,6 +11,7 @@ interface ProviderCatalogSlotsProps {
 }
 
 const INITIAL_SHOW = 20;
+const BATCH_SIZE = 50;
 
 export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps) {
   const providerName = PROVIDER_DISPLAY_NAMES[providerSlug] || providerSlug;
