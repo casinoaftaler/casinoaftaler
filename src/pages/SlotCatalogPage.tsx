@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { SITE_URL } from "@/lib/seo";
 import { slugifySlotName } from "@/lib/slugify";
 import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
