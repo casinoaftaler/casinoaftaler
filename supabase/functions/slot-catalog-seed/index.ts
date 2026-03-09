@@ -21,6 +21,14 @@ interface SlotData {
   max_potential: string | null;
 }
 
+function normalizeSlotName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[''`']/g, "")
+    .replace(/\bteh\b/g, "the")
+    .trim();
+}
+
 async function fetchExistingSlotNames(
   supabase: any,
   provider: string
@@ -35,7 +43,7 @@ async function fetchExistingSlotNames(
     return new Set();
   }
 
-  return new Set((data || []).map((s: any) => s.slot_name.toLowerCase()));
+  return new Set((data || []).map((s: any) => normalizeSlotName(s.slot_name)));
 }
 
 async function fetchSlotsForProvider(
@@ -133,7 +141,7 @@ serve(async (req) => {
         console.log(`Got ${slots.length} slots from AI for ${provider}`);
 
         // Filter out slots that already exist (case-insensitive)
-        const newSlots = slots.filter(s => !existingNames.has(s.name.toLowerCase()));
+        const newSlots = slots.filter(s => !existingNames.has(normalizeSlotName(s.name)));
         const skippedCount = slots.length - newSlots.length;
         providerResult.skipped = skippedCount;
         console.log(`${newSlots.length} new slots, ${skippedCount} already exist`);
