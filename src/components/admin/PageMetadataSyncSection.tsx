@@ -5,7 +5,8 @@ import { seoRoutes } from "@/lib/seoRoutes";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Loader2, AlertTriangle, CheckCircle, RefreshCw } from "lucide-react";
+import { Loader2, AlertTriangle, CheckCircle, RefreshCw, Zap } from "lucide-react";
+import { toast } from "sonner";
 
 interface SyncIssue {
   type: "missing_in_db" | "orphaned_in_db" | "priority_mismatch";
@@ -16,8 +17,9 @@ interface SyncIssue {
 export function PageMetadataSyncSection() {
   const [issues, setIssues] = useState<SyncIssue[] | null>(null);
   const [checking, setChecking] = useState(false);
+  const [syncing, setSyncing] = useState(false);
 
-  const { data: dbPages } = useQuery({
+  const { data: dbPages, refetch } = useQuery({
     queryKey: ["sync-page-metadata"],
     queryFn: async () => {
       const { data, error } = await supabase
@@ -36,7 +38,6 @@ export function PageMetadataSyncSection() {
     const codeSet = new Set(seoRoutes.map((r) => r.path));
     const found: SyncIssue[] = [];
 
-    // Routes in code but not in DB
     for (const route of seoRoutes) {
       const dbEntry = dbMap.get(route.path);
       if (!dbEntry) {
@@ -54,7 +55,6 @@ export function PageMetadataSyncSection() {
       }
     }
 
-    // Routes in DB but not in code
     for (const dbPage of dbPages) {
       if (!codeSet.has(dbPage.path)) {
         found.push({
@@ -67,6 +67,63 @@ export function PageMetadataSyncSection() {
 
     setIssues(found);
     setChecking(false);
+  };
+
+  const runAutoSync = async () => {
+    if (!issues || issues.length === 0) return;
+    setSyncing(true);
+
+    try {
+      const missing = issues.filter((i) => i.type === "missing_in_db");
+      const orphaned = issues.filter((i) => i.type === "orphaned_in_db");
+      const mismatched = issues.filter((i) => i.type === "priority_mismatch");
+
+      // Insert missing routes
+      if (missing.length > 0) {
+        const rows = missing.map((i) => {
+          const route = seoRoutes.find((r) => r.path === i.path)!;
+          return {
+            path: route.path,
+            priority: route.priority,
+            changefreq: route.changefreq,
+            show_updated_date: true,
+          };
+        });
+        const { error } = await supabase.from("page_metadata").insert(rows);
+        if (error) throw error;
+      }
+
+      // Delete orphaned routes
+      if (orphaned.length > 0) {
+        const paths = orphaned.map((i) => i.path);
+        const { error } = await supabase
+          .from("page_metadata")
+          .delete()
+          .in("path", paths);
+        if (error) throw error;
+      }
+
+      // Fix priority mismatches (update DB to match code)
+      for (const issue of mismatched) {
+        const route = seoRoutes.find((r) => r.path === issue.path);
+        if (!route) continue;
+        const { error } = await supabase
+          .from("page_metadata")
+          .update({ priority: route.priority, changefreq: route.changefreq })
+          .eq("path", route.path);
+        if (error) throw error;
+      }
+
+      toast.success(
+        `Synkroniseret: ${missing.length} indsat, ${orphaned.length} slettet, ${mismatched.length} prioriteter rettet`
+      );
+      await refetch();
+      setIssues([]);
+    } catch (err) {
+      toast.error("Sync fejl: " + (err as Error).message);
+    } finally {
+      setSyncing(false);
+    }
   };
 
   const badgeVariant = (type: SyncIssue["type"]) => {
@@ -95,18 +152,36 @@ export function PageMetadataSyncSection() {
               page_metadata ({dbPages?.length ?? "…"} rækker)
             </p>
           </div>
-          <Button
-            onClick={runCheck}
-            disabled={!dbPages || checking}
-            size="sm"
-          >
-            {checking ? (
-              <Loader2 className="h-4 w-4 animate-spin mr-1" />
-            ) : (
-              <RefreshCw className="h-4 w-4 mr-1" />
+          <div className="flex gap-2">
+            {issues && issues.length > 0 && (
+              <Button
+                onClick={runAutoSync}
+                disabled={syncing}
+                size="sm"
+                variant="default"
+              >
+                {syncing ? (
+                  <Loader2 className="h-4 w-4 animate-spin mr-1" />
+                ) : (
+                  <Zap className="h-4 w-4 mr-1" />
+                )}
+                Synkronisér nu
+              </Button>
             )}
-            Kør check
-          </Button>
+            <Button
+              onClick={runCheck}
+              disabled={!dbPages || checking}
+              size="sm"
+              variant="outline"
+            >
+              {checking ? (
+                <Loader2 className="h-4 w-4 animate-spin mr-1" />
+              ) : (
+                <RefreshCw className="h-4 w-4 mr-1" />
+              )}
+              Kør check
+            </Button>
+          </div>
         </div>
       </CardHeader>
       <CardContent>
