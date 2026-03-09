@@ -148,19 +148,10 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
             <Button
               variant="outline"
               className="mt-3 w-full"
-              onClick={() => setShowAll(!showAll)}
+              onClick={() => setVisibleCount((prev) => prev + BATCH_SIZE)}
             >
-              {showAll ? (
-                <>
-                  <ChevronUp className="h-4 w-4 mr-2" />
-                  Vis færre
-                </>
-              ) : (
-                <>
-                  <ChevronDown className="h-4 w-4 mr-2" />
-                  Vis alle {catalogOnly.length} slots
-                </>
-              )}
+              <ChevronDown className="h-4 w-4 mr-2" />
+              Vis {Math.min(BATCH_SIZE, remaining)} mere ({remaining} tilbage)
             </Button>
           )}
         </>
