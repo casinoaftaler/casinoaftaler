@@ -1,0 +1,1 @@
+ALTER TABLE public.slot_catalog ADD COLUMN IF NOT EXISTS description text;

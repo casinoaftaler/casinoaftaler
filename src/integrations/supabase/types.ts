@@ -1867,6 +1867,7 @@ export type Database = {
         Row: {
           bonus_count: number
           created_at: string
+          description: string | null
           highest_win: number | null
           highest_x: number | null
           id: string
@@ -1880,6 +1881,7 @@ export type Database = {
         Insert: {
           bonus_count?: number
           created_at?: string
+          description?: string | null
           highest_win?: number | null
           highest_x?: number | null
           id?: string
@@ -1893,6 +1895,7 @@ export type Database = {
         Update: {
           bonus_count?: number
           created_at?: string
+          description?: string | null
           highest_win?: number | null
           highest_x?: number | null
           id?: string
