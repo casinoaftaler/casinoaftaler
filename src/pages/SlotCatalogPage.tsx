@@ -701,6 +701,7 @@ export default function SlotCatalogPage() {
         </div>
       </noscript>
 
+      <div className="container py-4">
         <Breadcrumbs dynamicLabel={slotName} />
       </div>
 
