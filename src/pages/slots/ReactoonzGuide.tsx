@@ -545,6 +545,7 @@ const ReactoonzGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="reactoonz" slotName="Reactoonz" />
         <SlotProviderLink slotSlug="reactoonz" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/reactoonz" />
         <FAQSection title="Ofte Stillede Spørgsmål om Reactoonz" faqs={reactoonzFaqs} />

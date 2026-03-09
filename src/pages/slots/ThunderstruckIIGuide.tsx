@@ -147,6 +147,7 @@ const ThunderstruckIIGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde andre høj-RTP titler, og tjek <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle tilbud på <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>-slots.</p>
         </section>
 
+        <SlotDataLink slotSlug="thunderstruck-ii" slotName="Thunderstruck II" />
         <SlotProviderLink slotSlug="thunderstruck-ii" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/thunderstruck-ii" />
         <FAQSection title="Ofte Stillede Spørgsmål om Thunderstruck II" faqs={thunderstruckIIFaqs} />

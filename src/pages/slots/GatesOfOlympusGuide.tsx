@@ -446,6 +446,7 @@ const GatesOfOlympusGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="gates-of-olympus" slotName="Gates of Olympus" />
         <SlotProviderLink slotSlug="gates-of-olympus" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/gates-of-olympus" />
         <FAQSection title="Ofte Stillede Spørgsmål om Gates of Olympus" faqs={gatesOfOlympusFaqs} />

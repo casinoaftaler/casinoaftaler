@@ -140,6 +140,7 @@ const CleopatraGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For spillere, der prioriterer matematisk optimering, er nyere alternativer objektivt bedre. Men for dem, der værdsætter den klassiske slot-oplevelse, er Cleopatra tidløs. Udforsk vores <Link to="/casinospil/spillemaskiner" className={linkClass}>komplette spillemaskineguide</Link> for at finde det rette match til din spillestil, og besøg <Link to="/free-spins" className={linkClass}>free spins</Link>-siden for aktuelle tilbud.</p>
         </section>
 
+        <SlotDataLink slotSlug="cleopatra" slotName="Cleopatra" />
         <SlotProviderLink slotSlug="cleopatra" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/cleopatra" />
         <FAQSection title="Ofte Stillede Spørgsmål om Cleopatra" faqs={cleopatraFaqs} />

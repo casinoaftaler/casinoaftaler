@@ -408,6 +408,7 @@ const StarburstGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="starburst" slotName="Starburst" />
         <SlotProviderLink slotSlug="starburst" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/starburst" />
         <FAQSection title="Ofte Stillede Spørgsmål om Starburst" faqs={starburstFaqs} />

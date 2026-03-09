@@ -429,6 +429,7 @@ const BookOfDeadGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="book-of-dead" slotName="Book of Dead" />
         <SlotProviderLink slotSlug="book-of-dead" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/book-of-dead" />
         <FAQSection title="Ofte Stillede Spørgsmål om Book of Dead" faqs={bookOfDeadFaqs} />

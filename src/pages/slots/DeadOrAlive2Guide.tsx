@@ -319,6 +319,7 @@ const DeadOrAlive2Guide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="dead-or-alive-2" slotName="Dead or Alive 2" />
         <SlotProviderLink slotSlug="dead-or-alive-2" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/dead-or-alive-2" />
         <FAQSection title="Ofte Stillede Spørgsmål om Dead or Alive 2" faqs={doa2Faqs} />

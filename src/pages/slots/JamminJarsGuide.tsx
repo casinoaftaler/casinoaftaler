@@ -358,6 +358,7 @@ const JamminJarsGuide = () => {
           </p>
         </section>
 
+        <SlotDataLink slotSlug="jammin-jars" slotName="Jammin' Jars" />
         <SlotProviderLink slotSlug="jammin-jars" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/jammin-jars" />
         <FAQSection title="Ofte Stillede Spørgsmål om Jammin' Jars" faqs={jamminJarsFaqs} />
