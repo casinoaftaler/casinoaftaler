@@ -774,32 +774,47 @@ export default function SlotCatalogPage() {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="redaktionen" showAffiliateDisclaimer={false} />
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <div className="rounded-lg border border-border p-4 text-center">
-            <BarChart3 className="h-5 w-5 mx-auto mb-2 text-primary" />
-            <p className="text-2xl font-bold">{slot.rtp ? `${slot.rtp}%` : "N/A"}</p>
-            <p className="text-xs text-muted-foreground">RTP</p>
-          </div>
-          <div className="rounded-lg border border-border p-4 text-center">
-            <Zap className="h-5 w-5 mx-auto mb-2 text-primary" />
-            <p className="text-2xl font-bold">{slot.volatility || "N/A"}</p>
-            <p className="text-xs text-muted-foreground">Volatilitet</p>
-          </div>
-          <div className="rounded-lg border border-border p-4 text-center">
-            <Trophy className="h-5 w-5 mx-auto mb-2 text-primary" />
-            <p className="text-2xl font-bold">
-              {slot.highest_x && slot.highest_x > 0
-                ? `${Number(slot.highest_x.toFixed(1))}x`
-                : "N/A"}
-            </p>
-            <p className="text-xs text-muted-foreground">Højeste X</p>
-          </div>
-          <div className="rounded-lg border border-border p-4 text-center">
-            <Hash className="h-5 w-5 mx-auto mb-2 text-primary" />
-            <p className="text-2xl font-bold">{slot.bonus_count}</p>
-            <p className="text-xs text-muted-foreground">Bonus Hunts</p>
-          </div>
+        {/* Slot Statistik Infobox */}
+        <div className="rounded-lg border border-border overflow-hidden mb-8">
+          <h2 className="text-lg font-bold px-4 py-3 bg-muted/50 border-b border-border">Slot Statistik</h2>
+          <table className="w-full text-sm">
+            <tbody>
+              {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" && (
+                <tr className="border-b border-border/50">
+                  <td className="px-4 py-2.5 font-medium text-muted-foreground w-1/3">Udbyder</td>
+                  <td className="px-4 py-2.5">
+                    {providerSlug ? (
+                      <a href={`/spiludviklere/${providerSlug}`} className="text-primary hover:underline">{slot.provider}</a>
+                    ) : slot.provider}
+                  </td>
+                </tr>
+              )}
+              <tr className="border-b border-border/50">
+                <td className="px-4 py-2.5 font-medium text-muted-foreground">RTP</td>
+                <td className="px-4 py-2.5">{slot.rtp ? `${slot.rtp}%` : "N/A"}</td>
+              </tr>
+              <tr className="border-b border-border/50">
+                <td className="px-4 py-2.5 font-medium text-muted-foreground">Volatilitet</td>
+                <td className="px-4 py-2.5">{slot.volatility || "N/A"}</td>
+              </tr>
+              <tr className="border-b border-border/50">
+                <td className="px-4 py-2.5 font-medium text-muted-foreground">Max Win</td>
+                <td className="px-4 py-2.5">{(slot as any).max_potential || "N/A"}</td>
+              </tr>
+              <tr className="border-b border-border/50">
+                <td className="px-4 py-2.5 font-medium text-muted-foreground">Højeste X</td>
+                <td className="px-4 py-2.5">
+                  {slot.highest_x && slot.highest_x > 0
+                    ? `${Number(slot.highest_x.toFixed(1))}x`
+                    : "N/A"}
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2.5 font-medium text-muted-foreground">Bonus Hunts</td>
+                <td className="px-4 py-2.5">{slot.bonus_count}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         {/* Guide link if exists */}
