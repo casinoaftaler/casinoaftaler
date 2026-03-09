@@ -621,7 +621,55 @@ export default function SlotCatalogPage() {
           )}
         </section>
 
-        {/* Bonus hunt appearances */}
+        {/* RTP & Mathematics Deep Dive */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">RTP & Matematik: {slot.slot_name}</h2>
+          <div className="text-muted-foreground leading-relaxed space-y-4">
+            {generateRTPSection(slot).map((p, i) => <p key={`rtp-${i}`}>{p}</p>)}
+          </div>
+        </section>
+
+        {/* Volatility & Risk Analysis */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Volatilitet & Risikoanalyse</h2>
+          <div className="text-muted-foreground leading-relaxed space-y-4">
+            {generateVolatilitySection(slot).map((p, i) => <p key={`vol-${i}`}>{p}</p>)}
+          </div>
+        </section>
+
+        {/* Bonus Hunt Performance */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Bonus Hunt Performance: {slot.slot_name}</h2>
+          <div className="text-muted-foreground leading-relaxed space-y-4">
+            {generateBonusHuntAnalysis(slot).map((p, i) => <p key={`bh-${i}`}>{p}</p>)}
+          </div>
+        </section>
+
+        {/* Provider & Game Design */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Spiludvikler: {slot.provider || "Ukendt"}</h2>
+          <div className="text-muted-foreground leading-relaxed space-y-4">
+            {generateProviderSection(slot).map((p, i) => <p key={`prov-${i}`}>{p}</p>)}
+          </div>
+        </section>
+
+        {/* How Slot Machines Work */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Sådan Fungerer {slot.slot_name}</h2>
+          <div className="text-muted-foreground leading-relaxed space-y-4">
+            {generateHowItWorks(slot).map((p, i) => <p key={`how-${i}`}>{p}</p>)}
+          </div>
+        </section>
+
+        {/* Bankroll Management */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Bankroll Management for {slot.slot_name}</h2>
+          <div className="text-muted-foreground leading-relaxed space-y-4">
+            {generateBankrollSection(slot).map((p, i) => <p key={`bank-${i}`}>{p}</p>)}
+          </div>
+        </section>
+
+
         {huntData && huntData.length > 0 && (
           <section className="mb-8">
             <h2 className="text-2xl font-bold mb-4">Seneste Bonus Hunt Optrædener</h2>
