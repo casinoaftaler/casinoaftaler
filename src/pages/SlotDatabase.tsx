@@ -369,7 +369,9 @@ export default function SlotDatabase() {
                           <td className="px-4 py-3 font-medium text-foreground">
                             {guideUrl ? (
                               <Link to={guideUrl} className="text-primary hover:underline">{slot.slot_name}</Link>
-                            ) : slot.slot_name}
+                            ) : (
+                              <Link to={`/slot-katalog/${slugifySlotName(slot.slot_name)}`} className="text-primary hover:underline">{slot.slot_name}</Link>
+                            )}
                           </td>
                           <td className="px-4 py-3 text-muted-foreground">
                             {providerSlug ? (
