@@ -43,8 +43,9 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
     (s) => !featuredNames.has(s.slot_name.toLowerCase())
   );
 
-  const visibleCatalog = showAll ? catalogOnly : catalogOnly.slice(0, INITIAL_SHOW);
-  const hasMore = catalogOnly.length > INITIAL_SHOW;
+  const visibleCatalog = catalogOnly.slice(0, visibleCount);
+  const hasMore = visibleCount < catalogOnly.length;
+  const remaining = catalogOnly.length - visibleCount;
 
   // Format freshness date
   const freshnessLabel = freshness?.latestHuntNumber
