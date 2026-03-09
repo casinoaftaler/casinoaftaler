@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Gamepad2, ArrowRight, ChevronDown, ChevronUp, RefreshCw } from "lucide-react";
+import { Gamepad2, ArrowRight, ChevronDown, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PROVIDER_TO_SLOTS, PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
