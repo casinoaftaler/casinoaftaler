@@ -106,6 +106,7 @@ const faqItems = [
 
 export default function SlotDatabase() {
   const { data: slots, isLoading } = useSlotCatalog();
+  const { data: freshness } = useLatestCatalogUpdate();
   const [searchQuery, setSearchQuery] = useState("");
   const [providerFilter, setProviderFilter] = useState("all");
   const [volatilityFilter, setVolatilityFilter] = useState("all");
