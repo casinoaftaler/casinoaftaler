@@ -8,6 +8,7 @@ import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
+import { FAQSection } from "@/components/FAQSection";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers } from "lucide-react";
 
