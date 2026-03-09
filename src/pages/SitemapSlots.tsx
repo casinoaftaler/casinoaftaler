@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { slugifySlotName } from "@/lib/slugify";
@@ -41,9 +40,6 @@ export default function SitemapSlots() {
         description="Komplet liste over alle 1.400+ spillemaskiner på Casinoaftaler.dk med statistik, RTP og bonus hunt data."
         noindex
       />
-      <div className="container py-4">
-        <Breadcrumbs />
-      </div>
       <div className="container py-8">
         <h1 className="text-3xl font-bold mb-4">Sitemap: Casinospil</h1>
         <p className="text-muted-foreground mb-6">

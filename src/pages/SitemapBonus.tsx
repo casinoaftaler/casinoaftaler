@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { seoRoutes } from "@/lib/seoRoutes";
 
 /** Extract all bonus-related routes from seoRoutes */
@@ -52,9 +51,6 @@ export default function SitemapBonus() {
         description="Komplet oversigt over alle casino bonus guides på Casinoaftaler.dk – velkomstbonus, free spins, omsætningskrav og mere."
         noindex
       />
-      <div className="container py-4">
-        <Breadcrumbs />
-      </div>
       <div className="container py-8">
         <h1 className="text-3xl font-bold mb-4">Sitemap: Casino Bonus</h1>
         <p className="text-muted-foreground mb-6">
