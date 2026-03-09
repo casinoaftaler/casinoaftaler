@@ -258,10 +258,10 @@ export const seoRoutes: SeoRoute[] = ([
 
   // ── Casino Ordbog ──
   { path: "/ordbog", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-07" },
-  { path: "/ordbog/rtp", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
-  { path: "/ordbog/wagering", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
-  { path: "/ordbog/volatilitet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
-  { path: "/ordbog/house-edge", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
+  { path: "/ordbog/rtp", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
+  { path: "/ordbog/wagering", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
+  { path: "/ordbog/volatilitet", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
+  { path: "/ordbog/house-edge", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
   // /ordbog/free-spins – 301 redirected to /free-spins (cannibalization fix)
   { path: "/ordbog/scatter", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/wild", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
