@@ -983,7 +983,6 @@ const NyeCasinoer = () => {
               { to: "/nye-casinoer/mitid", label: "Med MitID", desc: "Hurtig verifikation og kontooprettelse" },
               { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", desc: "Matematisk analyse af omsætningskravs reel værdi" },
               { to: "/nye-casinoer/vs-etablerede", label: "Nye vs. Etablerede", desc: "Datadrevet sammenligning på 12 parametre" },
-              { to: "/nye-casinoer/vs-etablerede", label: "Nye vs. Etablerede", desc: "Datadrevet sammenligning på 12 parametre" },
             ].map((link) => (
               <Link
                 key={link.to}
