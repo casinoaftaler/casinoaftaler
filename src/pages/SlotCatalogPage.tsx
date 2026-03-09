@@ -677,7 +677,30 @@ export default function SlotCatalogPage() {
         dateModified={slot.updated_at?.slice(0, 10)}
       />
 
-      <div className="container py-4">
+      {/* Static fallback for crawlers that don't execute JS */}
+      <noscript>
+        <div className="container py-8">
+          <h1>{slotName}</h1>
+          <p>
+            {slotName} er en {slot.volatility ? `${slot.volatility.toLowerCase()} volatilitet ` : ""}spillemaskine
+            {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" ? ` fra ${slot.provider}` : ""}
+            {slot.rtp ? ` med en RTP på ${slot.rtp}%` : ""}.
+            {slot.bonus_count > 0 ? ` Testet i ${slot.bonus_count} bonus hunts.` : ""}
+            {slot.highest_x && slot.highest_x > 0 ? ` Højeste multiplikator: ${Number(slot.highest_x.toFixed(1))}x.` : ""}
+          </p>
+          <ul>
+            <li><a href="/slot-database">Se alle spillemaskiner i Slot Database</a></li>
+            <li><a href="/bonus-hunt/arkiv">Bonus Hunt Arkiv</a></li>
+            <li><a href="/casinospil/spillemaskiner">Spillemaskiner Hub</a></li>
+            <li><a href="/ordbog/rtp">Hvad er RTP?</a></li>
+            <li><a href="/ordbog/volatilitet">Hvad er Volatilitet?</a></li>
+            {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" && providerSlug && (
+              <li><a href={`/spiludviklere/${providerSlug}`}>Læs om {slot.provider}</a></li>
+            )}
+          </ul>
+        </div>
+      </noscript>
+
         <Breadcrumbs dynamicLabel={slotName} />
       </div>
 
