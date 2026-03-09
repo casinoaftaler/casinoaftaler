@@ -114,7 +114,7 @@ const jonasArticles: AuthorArticle[] = [
   { title: "Dream Catcher Guide", path: "/live-casino/dream-catcher", category: "Guide", excerpt: "Dream Catcher – money wheel game show med multiplikatorer." },
   // Nye Casinoer cluster
   { title: "Nye Casinoer 2026 – Komplet Liste", path: "/nye-casinoer/2026", category: "Guide", excerpt: "Alle nye danske casinoer lanceret i 2026 – testet og vurderet." },
-  { title: "Bedste Nye Casinoer", path: "/nye-casinoer/bedste", category: "Guide", excerpt: "Vores topvalg blandt nye casinoer i Danmark 2026." },
+  // "/nye-casinoer/bedste" – removed (301 redirect to /nye-casinoer)
   { title: "Nye Casinoer med Dansk Licens", path: "/nye-casinoer/dansk-licens", category: "Guide", excerpt: "Nye casinoer med officiel dansk spillelicens fra Spillemyndigheden." },
   { title: "Nye Casinoer med MitID", path: "/nye-casinoer/mitid", category: "Guide", excerpt: "Nye casinoer med hurtig MitID-verifikation." },
   { title: "Nye Casinoer med Hurtig Udbetaling", path: "/nye-casinoer/hurtig-udbetaling", category: "Guide", excerpt: "Nye casinoer med de hurtigste udbetalingstider i Danmark." },
