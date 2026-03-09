@@ -109,6 +109,9 @@ const jonasArticles: AuthorArticle[] = [
   { title: "Live Baccarat Guide", path: "/live-casino/live-baccarat", category: "Guide", excerpt: "Live baccarat – regler, strategi og squeeze-funktioner." },
   { title: "Lightning Roulette Guide", path: "/live-casino/lightning-roulette", category: "Guide", excerpt: "Lightning Roulette – lyn-multiplikatorer, RTP og strategi." },
   { title: "Monopoly Live Guide", path: "/live-casino/monopoly-live", category: "Guide", excerpt: "Monopoly Live – game show med bonusrunder og Mr. Monopoly." },
+  { title: "Crazy Time Guide", path: "/live-casino/crazy-time", category: "Guide", excerpt: "Crazy Time – det ultimative live casino game show med fire bonusrunder." },
+  { title: "Deal or No Deal Guide", path: "/live-casino/deal-or-no-deal", category: "Guide", excerpt: "Deal or No Deal Live – spil game showet med ægte dealer og kufferter." },
+  { title: "Dream Catcher Guide", path: "/live-casino/dream-catcher", category: "Guide", excerpt: "Dream Catcher – money wheel game show med multiplikatorer." },
   // Nye Casinoer cluster
   { title: "Nye Casinoer 2026 – Komplet Liste", path: "/nye-casinoer/2026", category: "Guide", excerpt: "Alle nye danske casinoer lanceret i 2026 – testet og vurderet." },
   { title: "Bedste Nye Casinoer", path: "/nye-casinoer/bedste", category: "Guide", excerpt: "Vores topvalg blandt nye casinoer i Danmark 2026." },
