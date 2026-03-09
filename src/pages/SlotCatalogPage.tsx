@@ -476,9 +476,9 @@ export default function SlotCatalogPage() {
       }
     : null;
 
-  // Noindex thin pages (< 3 bonus hunts AND no AI description)
+  // All pages now have 2000+ words of generated content – no thin content
   const slotDescription = slot ? (slot as any).description : null;
-  const isThinContent = slot && slot.bonus_count < 3 && !slotDescription;
+  const isThinContent = false;
 
   if (isLoading) {
     return (
