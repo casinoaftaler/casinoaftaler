@@ -141,7 +141,7 @@ serve(async (req) => {
         console.log(`Got ${slots.length} slots from AI for ${provider}`);
 
         // Filter out slots that already exist (case-insensitive)
-        const newSlots = slots.filter(s => !existingNames.has(s.name.toLowerCase()));
+        const newSlots = slots.filter(s => !existingNames.has(normalizeSlotName(s.name)));
         const skippedCount = slots.length - newSlots.length;
         providerResult.skipped = skippedCount;
         console.log(`${newSlots.length} new slots, ${skippedCount} already exist`);
