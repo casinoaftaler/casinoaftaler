@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { SITE_URL } from "@/lib/seo";
 import { slugifySlotName } from "@/lib/slugify";
 import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
-import { Badge } from "@/components/ui/badge";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash } from "lucide-react";
 
 /** Reverse lookup: display name → provider slug */
