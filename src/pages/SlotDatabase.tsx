@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
+import { slugifySlotName } from "@/lib/slugify";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
 import { useLatestCatalogUpdate } from "@/hooks/useProviderSlots";
@@ -368,7 +369,9 @@ export default function SlotDatabase() {
                           <td className="px-4 py-3 font-medium text-foreground">
                             {guideUrl ? (
                               <Link to={guideUrl} className="text-primary hover:underline">{slot.slot_name}</Link>
-                            ) : slot.slot_name}
+                            ) : (
+                              <Link to={`/slot-katalog/${slugifySlotName(slot.slot_name)}`} className="text-primary hover:underline">{slot.slot_name}</Link>
+                            )}
                           </td>
                           <td className="px-4 py-3 text-muted-foreground">
                             {providerSlug ? (
