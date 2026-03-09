@@ -272,7 +272,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/ordbog/multiplikator", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/max-bet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/autoplay", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
-  { path: "/ordbog/hit-frequency", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
+  { path: "/ordbog/hit-frequency", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
   { path: "/ordbog/gamble-feature", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/cascading-wins", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/megaways", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
