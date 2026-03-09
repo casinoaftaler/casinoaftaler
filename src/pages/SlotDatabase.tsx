@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
+import { slugifySlotName } from "@/lib/slugify";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
 import { useLatestCatalogUpdate } from "@/hooks/useProviderSlots";
