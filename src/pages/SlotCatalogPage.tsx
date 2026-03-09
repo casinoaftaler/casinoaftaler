@@ -53,23 +53,15 @@ function useSlotBySlug(slug: string) {
   return useQuery({
     queryKey: ["slot-catalog-slug", slug],
     queryFn: async () => {
-      const batchSize = 1000;
-      let from = 0;
-      while (true) {
-        const { data, error } = await supabase
-          .from("slot_catalog")
-          .select("*")
-          .order("slot_name")
-          .range(from, from + batchSize - 1);
-        if (error) throw error;
-        const match = (data || []).find(
-          (s) => slugifySlotName(s.slot_name) === slug
-        );
-        if (match) return match;
-        if (!data || data.length < batchSize) break;
-        from += batchSize;
-      }
-      return null;
+      // O(1) lookup via indexed slug column
+      const { data, error } = await supabase
+        .from("slot_catalog")
+        .select("*")
+        .eq("slug", slug)
+        .limit(1)
+        .maybeSingle();
+      if (error) throw error;
+      return data;
     },
     staleTime: 300000,
   });
