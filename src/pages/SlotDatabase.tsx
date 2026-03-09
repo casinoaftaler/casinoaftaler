@@ -270,6 +270,29 @@ export default function SlotDatabase() {
           Viser {filtered.length} af {slots?.length || 0} spillemaskiner
         </p>
 
+        {/* noscript fallback for crawlers that don't execute JS */}
+        <noscript>
+          <div className="rounded-lg border border-border p-6 my-8 bg-muted/30">
+            <h2 className="text-xl font-bold mb-3">Slot Database – 163+ Spillemaskiner</h2>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Denne database indeholder over 163 spillemaskiner testet i vores live bonus hunts på Twitch.
+              Hver maskine har detaljerede data om RTP, volatilitet, højeste multiplikator (X) og antal
+              bonus hunt-optrædener. Databasen dækker udbydere som Pragmatic Play, Hacksaw Gaming,
+              Nolimit City, Play'n GO, NetEnt, Big Time Gaming, Red Tiger og mange flere.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              Populære spillemaskiner i databasen inkluderer Sweet Bonanza, Book of Dead, Gates of Olympus,
+              Wanted Dead or a Wild, Big Bass Bonanza, Starburst, Money Train 3, Sugar Rush, Wolf Gold
+              og Chaos Crew. Se den fulde interaktive tabel ved at aktivere JavaScript.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Læs mere om <a href="/casinospil/spillemaskiner" className="text-primary underline">spillemaskiner</a>,
+              <a href="/bonus-hunt" className="text-primary underline"> bonus hunts</a> og
+              <a href="/casino-bonus" className="text-primary underline"> casino bonusser</a>.
+            </p>
+          </div>
+        </noscript>
+
         {/* Slot Table */}
         {isLoading ? (
           <div className="text-center py-12 text-muted-foreground">Indlæser slot-database...</div>
