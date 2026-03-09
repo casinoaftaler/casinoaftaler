@@ -17,7 +17,7 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
   const providerName = PROVIDER_DISPLAY_NAMES[providerSlug] || providerSlug;
   const { data: catalogSlots, isLoading } = useProviderSlots(providerSlug);
   const { data: freshness } = useLatestCatalogUpdate();
-  const [showAll, setShowAll] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_SHOW);
 
   // Featured guide slots (manually mapped)
   const featuredSlugs = PROVIDER_TO_SLOTS[providerSlug] || [];
