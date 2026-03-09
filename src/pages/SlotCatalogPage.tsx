@@ -6,7 +6,7 @@ import { SITE_URL } from "@/lib/seo";
 import { slugifySlotName } from "@/lib/slugify";
 import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash } from "lucide-react";
+import { Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers } from "lucide-react";
 
 /** Reverse lookup: display name → provider slug */
 const PROVIDER_NAME_TO_SLUG: Record<string, string> = {};
@@ -25,11 +25,12 @@ const GUIDE_SLUGS = new Set([
   "razor-shark", "jammin-jars", "money-train-3", "cleopatra",
 ]);
 
+// ─── Data hooks ────────────────────────────────────────────
+
 function useSlotBySlug(slug: string) {
   return useQuery({
     queryKey: ["slot-catalog-slug", slug],
     queryFn: async () => {
-      // Paginate through all slots to find by slugified name (bypasses 1000-row limit)
       const batchSize = 1000;
       let from = 0;
       while (true) {
@@ -57,7 +58,6 @@ function useSlotBonusHuntData(slotName: string | null) {
     queryKey: ["slot-hunt-data", slotName],
     queryFn: async () => {
       if (!slotName) return null;
-      // Get bonus hunt archives that contain this slot in api_data
       const { data, error } = await supabase
         .from("bonus_hunt_archives")
         .select("hunt_number, vod_date, api_data")
@@ -78,17 +78,111 @@ function useSlotBonusHuntData(slotName: string | null) {
           }
         }
       }
-      return appearances.slice(0, 10); // Latest 10
+      return appearances.slice(0, 10);
     },
     enabled: !!slotName,
     staleTime: 300000,
   });
 }
 
+function useSimilarSlots(provider: string | null, currentName: string | null, volatility: string | null) {
+  return useQuery({
+    queryKey: ["similar-slots", provider, currentName],
+    queryFn: async () => {
+      if (!provider || provider === "Unknown" || provider === "Custom Slot") return [];
+      
+      // Get slots from same provider
+      const { data, error } = await supabase
+        .from("slot_catalog")
+        .select("slot_name, rtp, volatility, bonus_count, highest_x")
+        .eq("provider", provider)
+        .order("bonus_count", { ascending: false })
+        .limit(20);
+      if (error) throw error;
+      
+      // Filter out current slot, prefer same volatility, take top 6
+      const filtered = (data || [])
+        .filter((s) => s.slot_name !== currentName)
+        .sort((a, b) => {
+          // Prioritize same volatility
+          const aMatch = a.volatility === volatility ? 1 : 0;
+          const bMatch = b.volatility === volatility ? 1 : 0;
+          if (aMatch !== bMatch) return bMatch - aMatch;
+          return (b.bonus_count || 0) - (a.bonus_count || 0);
+        })
+        .slice(0, 6);
+      
+      return filtered;
+    },
+    enabled: !!provider && !!currentName,
+    staleTime: 300000,
+  });
+}
+
+// ─── FAQ Generator ─────────────────────────────────────────
+
+function generateFAQ(slot: any) {
+  const faqs: { question: string; answer: string }[] = [];
+
+  faqs.push({
+    question: `Hvad er RTP'en på ${slot.slot_name}?`,
+    answer: slot.rtp
+      ? `${slot.slot_name} har en Return to Player (RTP) på ${slot.rtp}%. Det betyder, at maskinen statistisk set betaler ${slot.rtp} kr. tilbage for hver 100 kr., der indsættes over lang tid.`
+      : `RTP-værdien for ${slot.slot_name} er ikke tilgængelig i vores database endnu. RTP kan variere mellem casinoer, da nogle udbydere tilbyder justerbare RTP-niveauer.`,
+  });
+
+  faqs.push({
+    question: `Hvor volatil er ${slot.slot_name}?`,
+    answer: slot.volatility
+      ? `${slot.slot_name} har ${slot.volatility.toLowerCase()} volatilitet. ${
+          slot.volatility === "High" || slot.volatility === "Extreme"
+            ? "Det betyder sjældnere, men potentielt større gevinster – ideelt for spillere med tålmodighed og et passende budget."
+            : slot.volatility === "Low"
+            ? "Det betyder hyppigere, men typisk mindre gevinster – velegnet til spillere der foretrækker stabil underholdning."
+            : "Det giver en balanceret oplevelse med en blanding af små og store gevinster."
+        }`
+      : `Volatiliteten for ${slot.slot_name} er ikke registreret i vores database endnu.`,
+  });
+
+  if (slot.max_potential) {
+    faqs.push({
+      question: `Hvad er max win på ${slot.slot_name}?`,
+      answer: `Det maksimale gevinstpotentiale på ${slot.slot_name} er ${slot.max_potential}. Denne værdi repræsenterer den teoretisk højeste gevinst, du kan opnå i en enkelt spin eller bonusrunde.`,
+    });
+  }
+
+  faqs.push({
+    question: `Er ${slot.slot_name} testet i bonus hunts?`,
+    answer: slot.bonus_count > 0
+      ? `Ja, ${slot.slot_name} er blevet testet i ${slot.bonus_count} bonus hunt${slot.bonus_count !== 1 ? "s" : ""} på vores Twitch-kanal.${
+          slot.highest_x && slot.highest_x > 0
+            ? ` Den højeste registrerede multiplikator er ${Number(slot.highest_x.toFixed(1))}x.`
+            : ""
+        } Alle resultater er verificeret af vores community i realtid.`
+      : `${slot.slot_name} er endnu ikke blevet testet i vores bonus hunts, men den er registreret i vores database og kan blive inkluderet i fremtidige hunts.`,
+  });
+
+  if (slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot") {
+    faqs.push({
+      question: `Hvem har udviklet ${slot.slot_name}?`,
+      answer: `${slot.slot_name} er udviklet af ${slot.provider}, som er en af de anerkendte spiludviklere i online casino-industrien. Du kan se alle spillemaskiner fra ${slot.provider} i vores slot database.`,
+    });
+  }
+
+  return faqs;
+}
+
+// ─── Main Component ────────────────────────────────────────
+
 export default function SlotCatalogPage() {
   const { slug } = useParams<{ slug: string }>();
   const { data: slot, isLoading } = useSlotBySlug(slug || "");
   const { data: huntData } = useSlotBonusHuntData(slot?.slot_name || null);
+  const { data: similarSlots } = useSimilarSlots(
+    slot?.provider || null,
+    slot?.slot_name || null,
+    slot?.volatility || null
+  );
 
   const hasGuide = slug ? GUIDE_SLUGS.has(slug) : false;
   const providerSlug = slot?.provider ? PROVIDER_NAME_TO_SLUG[slot.provider] : null;
@@ -99,34 +193,56 @@ export default function SlotCatalogPage() {
     ? `${slot.slot_name} fra ${slot.provider}: RTP ${slot.rtp || "N/A"}%, volatilitet ${slot.volatility || "N/A"}, testet i ${slot.bonus_count} bonus hunts. Se community-data og statistikker.`
     : "";
 
-  // SoftwareApplication schema
   const hasRating = slot && slot.bonus_count > 0 && slot.highest_x && slot.highest_x > 0;
   const ratingValue = hasRating
     ? Math.min(5, 1 + ((slot.highest_x || 0) / 500) * 4).toFixed(1)
     : null;
 
+  const faqs = slot ? generateFAQ(slot) : [];
+
   const jsonLd = slot
     ? {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        name: slot.slot_name,
-        applicationCategory: "GameApplication",
-        operatingSystem: "Web",
-        url: pageUrl,
-        ...(slot.provider && slot.provider !== "Custom Slot" && slot.provider !== "Unknown" && {
-          author: { "@type": "Organization", name: slot.provider },
-        }),
-        ...(hasRating && {
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue,
-            ratingCount: String(slot.bonus_count),
-            bestRating: "5",
-            worstRating: "1",
+        "@graph": [
+          {
+            "@type": "SoftwareApplication",
+            name: slot.slot_name,
+            applicationCategory: "GameApplication",
+            operatingSystem: "Web",
+            url: pageUrl,
+            ...(slot.provider && slot.provider !== "Custom Slot" && slot.provider !== "Unknown" && {
+              author: { "@type": "Organization", name: slot.provider },
+            }),
+            ...(hasRating && {
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue,
+                ratingCount: String(slot.bonus_count),
+                bestRating: "5",
+                worstRating: "1",
+              },
+            }),
           },
-        }),
+          ...(faqs.length > 0
+            ? [{
+                "@type": "FAQPage",
+                mainEntity: faqs.map((faq) => ({
+                  "@type": "Question",
+                  name: faq.question,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: faq.answer,
+                  },
+                })),
+              }]
+            : []),
+        ],
       }
     : null;
+
+  // Noindex thin pages (< 3 bonus hunts AND no AI description)
+  const slotDescription = slot ? (slot as any).description : null;
+  const isThinContent = slot && slot.bonus_count < 3 && !slotDescription;
 
   if (isLoading) {
     return (
@@ -156,6 +272,7 @@ export default function SlotCatalogPage() {
         <title>{title}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={pageUrl} />
+        {isThinContent && <meta name="robots" content="noindex, follow" />}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={pageUrl} />
@@ -233,27 +350,37 @@ export default function SlotCatalogPage() {
           </div>
         )}
 
-        {/* About section */}
+        {/* AI-generated description OR fallback */}
         <section className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Om {slot.slot_name}</h2>
-          <p className="text-muted-foreground leading-relaxed mb-4">
-            {slot.slot_name} er en {slot.volatility ? slot.volatility.toLowerCase() + " volatilitet" : ""} spillemaskin
-            {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot"
-              ? ` fra ${slot.provider}`
-              : ""}
-            {slot.rtp ? ` med en Return to Player (RTP) på ${slot.rtp}%` : ""}.
-            {slot.max_potential ? ` Max win potentiale er ${slot.max_potential}.` : ""}
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Maskinen er blevet testet i {slot.bonus_count} bonus hunt{slot.bonus_count !== 1 ? "s" : ""} på vores Twitch-kanal,
-            hvor community'et tracker resultater i realtid.
-            {slot.highest_x && slot.highest_x > 0
-              ? ` Den højeste registrerede multiplikator er ${Number(slot.highest_x.toFixed(1))}x.`
-              : ""}
-            {slot.highest_win && slot.highest_win > 0
-              ? ` Største gevinst: ${slot.highest_win.toLocaleString("da-DK")} kr.`
-              : ""}
-          </p>
+          {slotDescription ? (
+            <div className="text-muted-foreground leading-relaxed space-y-4">
+              {slotDescription.split("\n").filter(Boolean).map((p: string, i: number) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          ) : (
+            <>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                {slot.slot_name} er en {slot.volatility ? slot.volatility.toLowerCase() + " volatilitet" : ""} spillemaskin
+                {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot"
+                  ? ` fra ${slot.provider}`
+                  : ""}
+                {slot.rtp ? ` med en Return to Player (RTP) på ${slot.rtp}%` : ""}.
+                {slot.max_potential ? ` Max win potentiale er ${slot.max_potential}.` : ""}
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Maskinen er blevet testet i {slot.bonus_count} bonus hunt{slot.bonus_count !== 1 ? "s" : ""} på vores Twitch-kanal,
+                hvor community'et tracker resultater i realtid.
+                {slot.highest_x && slot.highest_x > 0
+                  ? ` Den højeste registrerede multiplikator er ${Number(slot.highest_x.toFixed(1))}x.`
+                  : ""}
+                {slot.highest_win && slot.highest_win > 0
+                  ? ` Største gevinst: ${slot.highest_win.toLocaleString("da-DK")} kr.`
+                  : ""}
+              </p>
+            </>
+          )}
         </section>
 
         {/* Bonus hunt appearances */}
@@ -285,6 +412,58 @@ export default function SlotCatalogPage() {
           </section>
         )}
 
+        {/* Similar slots */}
+        {similarSlots && similarSlots.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <Layers className="h-6 w-6 text-primary" />
+              Lignende Spillemaskiner
+            </h2>
+            <p className="text-muted-foreground mb-4">
+              Andre populære slots fra {slot.provider} med lignende karakteristika.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {similarSlots.map((s) => {
+                const simSlug = slugifySlotName(s.slot_name);
+                return (
+                  <Link
+                    key={s.slot_name}
+                    to={`/slot-katalog/${simSlug}`}
+                    className="rounded-lg border border-border p-4 hover:border-primary/50 hover:bg-muted/30 transition-colors"
+                  >
+                    <p className="font-medium mb-1">{s.slot_name}</p>
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                      {s.rtp && <span>RTP {s.rtp}%</span>}
+                      {s.volatility && <span>{s.volatility}</span>}
+                      {s.highest_x && s.highest_x > 0 && (
+                        <span>{Number(s.highest_x.toFixed(1))}x</span>
+                      )}
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* FAQ Section */}
+        {faqs.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <HelpCircle className="h-6 w-6 text-primary" />
+              Ofte Stillede Spørgsmål
+            </h2>
+            <div className="space-y-4">
+              {faqs.map((faq, i) => (
+                <div key={i} className="rounded-lg border border-border p-4">
+                  <h3 className="font-semibold mb-2">{faq.question}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Provider link */}
         {providerSlug && (
           <section className="mb-8">
@@ -300,6 +479,20 @@ export default function SlotCatalogPage() {
             </Link>
           </section>
         )}
+
+        {/* Cross-links */}
+        <section className="mb-8 rounded-lg border border-border p-4 bg-muted/20">
+          <h2 className="text-lg font-bold mb-3">Udforsk Mere</h2>
+          <div className="flex flex-wrap gap-3 text-sm">
+            <Link to="/slot-database" className="text-primary hover:underline">Slot Database</Link>
+            <span className="text-muted-foreground">·</span>
+            <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline">Bonus Hunt Arkiv</Link>
+            <span className="text-muted-foreground">·</span>
+            <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">Spillemaskiner Guide</Link>
+            <span className="text-muted-foreground">·</span>
+            <Link to="/casino-nyheder" className="text-primary hover:underline">Casino Nyheder</Link>
+          </div>
+        </section>
 
         {/* Back link */}
         <div className="pt-4 border-t border-border">
