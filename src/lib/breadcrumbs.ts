@@ -317,6 +317,7 @@ export const routeLabels: Record<string, string> = {
   "/bonus-hunt": "Bonus Hunt",
   "/bonus-hunt/arkiv": "Bonus Hunt Arkiv",
   "/slot-database": "Slot Database",
+  "/slot-katalog": "Slot Database",
   "/community/hall-of-fame": "Hall of Fame",
 };
 
