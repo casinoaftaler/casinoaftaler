@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -46,15 +47,30 @@ function SeedDatabaseSection() {
   const [isSeeding, setIsSeeding] = useState(false);
   const [currentProvider, setCurrentProvider] = useState<string | null>(null);
   const [completedProviders, setCompletedProviders] = useState<string[]>([]);
-  const [results, setResults] = useState<Record<string, { slots_processed: number; errors: string[] }>>({});
+  const [results, setResults] = useState<Record<string, { slots_processed: number; skipped: number; errors: string[] }>>({});
+  const [selectedProviders, setSelectedProviders] = useState<string[]>([...SEED_PROVIDERS]);
+
+  const toggleProvider = (provider: string) => {
+    setSelectedProviders(prev =>
+      prev.includes(provider) ? prev.filter(p => p !== provider) : [...prev, provider]
+    );
+  };
+
+  const toggleAll = () => {
+    setSelectedProviders(prev => prev.length === SEED_PROVIDERS.length ? [] : [...SEED_PROVIDERS]);
+  };
 
   const handleSeed = useCallback(async () => {
+    if (selectedProviders.length === 0) {
+      toast.error("Vælg mindst én provider");
+      return;
+    }
     setIsSeeding(true);
     setCompletedProviders([]);
     setResults({});
     let totalNew = 0;
 
-    for (const provider of SEED_PROVIDERS) {
+    for (const provider of selectedProviders) {
       setCurrentProvider(provider);
       try {
         const { data, error } = await supabase.functions.invoke("slot-catalog-seed", {
@@ -62,24 +78,24 @@ function SeedDatabaseSection() {
         });
 
         if (error) {
-          setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, errors: [error.message] } }));
+          setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, skipped: 0, errors: [error.message] } }));
         } else {
-          const providerResult = data?.providers?.[provider] || { slots_processed: 0, errors: [] };
+          const providerResult = data?.providers?.[provider] || { slots_processed: 0, skipped: 0, errors: [] };
           totalNew += providerResult.slots_processed;
           setResults(prev => ({ ...prev, [provider]: providerResult }));
         }
       } catch (e: any) {
-        setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, errors: [e.message] } }));
+        setResults(prev => ({ ...prev, [provider]: { slots_processed: 0, skipped: 0, errors: [e.message] } }));
       }
       setCompletedProviders(prev => [...prev, provider]);
     }
 
     setCurrentProvider(null);
     setIsSeeding(false);
-    toast.success(`Seeding færdig! ${totalNew} slots behandlet.`);
-  }, []);
+    toast.success(`Seeding færdig! ${totalNew} nye slots tilføjet.`);
+  }, [selectedProviders]);
 
-  const progress = (completedProviders.length / SEED_PROVIDERS.length) * 100;
+  const progress = selectedProviders.length > 0 ? (completedProviders.length / selectedProviders.length) * 100 : 0;
 
   return (
     <Card>
@@ -93,7 +109,29 @@ function SeedDatabaseSection() {
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
-        <Button onClick={handleSeed} disabled={isSeeding} size="lg">
+        {/* Provider checkboxes */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label className="text-sm font-medium">Vælg providers</Label>
+            <Button variant="ghost" size="sm" onClick={toggleAll}>
+              {selectedProviders.length === SEED_PROVIDERS.length ? "Fravælg alle" : "Vælg alle"}
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            {SEED_PROVIDERS.map(provider => (
+              <label key={provider} className="flex items-center gap-2 text-sm cursor-pointer">
+                <Checkbox
+                  checked={selectedProviders.includes(provider)}
+                  onCheckedChange={() => toggleProvider(provider)}
+                  disabled={isSeeding}
+                />
+                {provider}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <Button onClick={handleSeed} disabled={isSeeding || selectedProviders.length === 0} size="lg">
           {isSeeding ? (
             <>
               <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -102,7 +140,7 @@ function SeedDatabaseSection() {
           ) : (
             <>
               <Database className="h-4 w-4 mr-2" />
-              Start Seeding (15 providers)
+              Start Seeding ({selectedProviders.length} providers)
             </>
           )}
         </Button>
@@ -111,7 +149,7 @@ function SeedDatabaseSection() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm text-muted-foreground">
               <span>{currentProvider}</span>
-              <span>{completedProviders.length}/{SEED_PROVIDERS.length}</span>
+              <span>{completedProviders.length}/{selectedProviders.length}</span>
             </div>
             <Progress value={progress} className="h-2" />
           </div>
@@ -123,7 +161,10 @@ function SeedDatabaseSection() {
               <div key={provider} className="flex items-center justify-between px-3 py-2">
                 <span className="font-medium">{provider}</span>
                 <div className="flex items-center gap-3">
-                  <span className="text-muted-foreground">{r.slots_processed} slots</span>
+                  <span className="text-muted-foreground">{r.slots_processed} nye</span>
+                  {r.skipped > 0 && (
+                    <span className="text-muted-foreground/60">{r.skipped} sprunget over</span>
+                  )}
                   {r.errors.length > 0 && (
                     <span className="text-destructive">{r.errors.length} fejl</span>
                   )}
@@ -265,8 +306,8 @@ function SlotCatalogSection() {
                     <td className="px-3 py-2 font-mono">{slot.rtp ? `${slot.rtp}%` : '—'}</td>
                     <td className="px-3 py-2">{slot.volatility || '—'}</td>
                     <td className="px-3 py-2">{slot.max_potential || '—'}</td>
-                    <td className="px-3 py-2 font-mono">{slot.highest_win ? `${slot.highest_win} (${slot.bonus_count})` : '—'}</td>
-                    <td className="px-3 py-2 font-mono">{slot.highest_x ? `${slot.highest_x}x (${slot.bonus_count})` : '—'}</td>
+                    <td className="px-3 py-2 font-mono">{slot.highest_win ? `${Number(slot.highest_win.toFixed(1))} (${slot.bonus_count})` : '—'}</td>
+                    <td className="px-3 py-2 font-mono">{slot.highest_x ? `${Number(slot.highest_x.toFixed(1))}x (${slot.bonus_count})` : '—'}</td>
                     <td className="px-3 py-2 font-mono text-muted-foreground">{slot.bonus_count}</td>
                     <td className="px-3 py-2 text-right">
                       <div className="flex items-center justify-end gap-1">

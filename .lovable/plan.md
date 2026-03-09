@@ -1,46 +1,24 @@
 
 
-## Problems Identified
+## Plan: Center Gevinst between `[+]` and AutoSpin + Add Count-Up Animation
 
-1. **Duplicate slots**: The AI seeder can create near-duplicate entries (e.g. "Big Bass Secret Of Teh Golden Lake" vs "Big Bass Secret Of The Golden Lake") because `upsert_slot_catalog` matches on exact `LOWER(slot_name)`. Typos from AI = new rows.
+### 1. Reposition Gevinst (`BonanzaControlBar.tsx`)
 
-2. **Decimal precision**: `highest_x` values like `16.66666666666668x` and `70.71428571428572x` are displayed raw. Need to round to 1 decimal place.
+The Gevinst is currently in the right zone div alongside AutoSpin. To center it **between** the `[+]` button and AutoSpin, I'll move it out of the right zone and instead place it as a **new absolute zone** positioned between the center zone's right edge and the AutoSpin button. 
 
-3. **No provider selection in Seed UI**: The "Start Seeding" button seeds all 17 providers at once with no ability to pick individual ones.
+Specifically:
+- **Remove** Gevinst from the right zone (lines 247-261)
+- **Add a new absolute div** positioned to sit between `[+]` and AutoSpin. Use `right-[calc position]` or a flex approach: place Gevinst as the last item inside the center zone (after the `[+]` button), with a left margin/gap to separate it from `[+]`.
 
-4. **`upsert_slot_catalog` counts "updates" as new**: The function always increments `slots_processed` even when the slot already existed, giving misleading results.
+Simpler approach: Add Gevinst **inside the center zone** after the `[+]` button with appropriate gap. This naturally centers it relative to the `[+]` button while keeping it left of the AutoSpin area.
 
-## Plan
+### 2. Add Count-Up Animation for Win Amount
 
-### 1. Fix decimal display on `/slot-database`
-In `src/pages/SlotDatabase.tsx`, format `highest_x` and `highest_win` to max 1 decimal:
-- Line 339: `${slot.highest_x}x` → `${Number(slot.highest_x.toFixed(1))}x`
-- Line 342: `${slot.highest_win} kr` → `${Number(slot.highest_win.toFixed(1))} kr`
+Use the existing `AnimatedWinCounter` component to animate the win value counting up when a win hits:
+- Import `AnimatedWinCounter` in `BonanzaControlBar.tsx`
+- Replace `{winAmount.toLocaleString()}` with `<AnimatedWinCounter targetValue={winAmount} />`
+- The component already handles ease-out counting and bump animation on completion
 
-Also fix in admin table (`SlotCatalogAdminSection.tsx` lines 269-270).
-
-### 2. Add provider selection to Seed UI
-In `SeedDatabaseSection` (`SlotCatalogAdminSection.tsx`):
-- Add state for `selectedProviders: string[]` (default: all)
-- Render checkboxes for each provider in `SEED_PROVIDERS`
-- "Select All / Deselect All" toggle
-- Only seed `selectedProviders` instead of all `SEED_PROVIDERS`
-- Update button text to show count: `Start Seeding (X providers)`
-
-### 3. Prevent duplicate slot entries
-In the edge function `slot-catalog-seed/index.ts`:
-- Before calling AI, fetch existing slot names for the provider from `slot_catalog`
-- Pass these names to the AI prompt: "Do NOT include any of these slots that already exist: [list]"
-- After AI response, filter out any slots whose `LOWER(name)` already exists in the database
-- Track `skipped` count separately from `slots_processed` and return it in results
-
-### 4. Database cleanup: remove existing duplicates
-- Run a migration/data query to find near-duplicate slot names and merge them (keep the one with highest `bonus_count`/`highest_x`, delete the other)
-- Specifically fix known typos like "Big Bass Secret Of Teh Golden Lake"
-
-### Files to change
-- `src/pages/SlotDatabase.tsx` — decimal formatting
-- `src/components/admin/SlotCatalogAdminSection.tsx` — provider selection UI + decimal formatting
-- `supabase/functions/slot-catalog-seed/index.ts` — pre-check existing slots, filter duplicates
-- Data cleanup via insert tool for known duplicates
+### Files Modified
+- `src/components/slots/BonanzaControlBar.tsx` — move Gevinst into center zone after `[+]`, use `AnimatedWinCounter`
 

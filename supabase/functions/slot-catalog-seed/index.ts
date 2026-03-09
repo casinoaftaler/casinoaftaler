@@ -21,11 +21,34 @@ interface SlotData {
   max_potential: string | null;
 }
 
+async function fetchExistingSlotNames(
+  supabase: any,
+  provider: string
+): Promise<Set<string>> {
+  // Fetch ALL existing slot names (not just this provider) to avoid cross-provider duplicates
+  const { data, error } = await supabase
+    .from("slot_catalog")
+    .select("slot_name");
+
+  if (error) {
+    console.error("Error fetching existing slots:", error.message);
+    return new Set();
+  }
+
+  return new Set((data || []).map((s: any) => s.slot_name.toLowerCase()));
+}
+
 async function fetchSlotsForProvider(
   provider: string,
-  apiKey: string
+  apiKey: string,
+  existingNames: Set<string>
 ): Promise<SlotData[]> {
+  const existingList = existingNames.size > 0
+    ? `\n\nIMPORTANT: Do NOT include any of these slots that already exist in our database:\n${[...existingNames].slice(0, 200).join(", ")}`
+    : "";
+
   const prompt = `List the 40 most popular and well-known online casino slot machines made by "${provider}".
+${existingList}
 
 For each slot return a JSON object with these fields:
 - "name": the official slot name (English title, no provider prefix)
@@ -50,7 +73,7 @@ Return ONLY a JSON array, no markdown, no explanation. Example:
           {
             role: "system",
             content:
-              "You are an expert on online casino slot machines. Return only valid JSON arrays. Be accurate with RTP values and volatility ratings.",
+              "You are an expert on online casino slot machines. Return only valid JSON arrays. Be accurate with RTP values and volatility ratings. Only include slots that are genuinely made by the requested provider.",
           },
           { role: "user", content: prompt },
         ],
@@ -67,7 +90,6 @@ Return ONLY a JSON array, no markdown, no explanation. Example:
   const data = await response.json();
   const content = data.choices?.[0]?.message?.content || "";
 
-  // Extract JSON array from response (strip markdown fences if present)
   const jsonMatch = content.match(/\[[\s\S]*\]/);
   if (!jsonMatch) {
     console.error(`No JSON array found in AI response for ${provider}:`, content.substring(0, 500));
@@ -93,21 +115,30 @@ serve(async (req) => {
 
     const body = await req.json().catch(() => ({}));
     const requestedProviders: string[] = body.providers || DEFAULT_PROVIDERS;
-    // Allow seeding a single provider at a time for progress tracking
     const singleProvider: string | undefined = body.provider;
     const providers = singleProvider ? [singleProvider] : requestedProviders;
 
-    const results: Record<string, { slots_processed: number; errors: string[] }> = {};
+    const results: Record<string, { slots_processed: number; skipped: number; errors: string[] }> = {};
 
     for (const provider of providers) {
       console.log(`Seeding slots for provider: ${provider}`);
-      const providerResult = { slots_processed: 0, errors: [] as string[] };
+      const providerResult = { slots_processed: 0, skipped: 0, errors: [] as string[] };
 
       try {
-        const slots = await fetchSlotsForProvider(provider, LOVABLE_API_KEY);
+        // Fetch existing slot names to avoid duplicates
+        const existingNames = await fetchExistingSlotNames(supabase, provider);
+        console.log(`Found ${existingNames.size} existing slots in database`);
+
+        const slots = await fetchSlotsForProvider(provider, LOVABLE_API_KEY, existingNames);
         console.log(`Got ${slots.length} slots from AI for ${provider}`);
 
-        for (const slot of slots) {
+        // Filter out slots that already exist (case-insensitive)
+        const newSlots = slots.filter(s => !existingNames.has(s.name.toLowerCase()));
+        const skippedCount = slots.length - newSlots.length;
+        providerResult.skipped = skippedCount;
+        console.log(`${newSlots.length} new slots, ${skippedCount} already exist`);
+
+        for (const slot of newSlots) {
           try {
             const { error } = await supabase.rpc("upsert_slot_catalog", {
               p_slot_name: slot.name,
@@ -128,18 +159,17 @@ serve(async (req) => {
           }
         }
 
-        // Now update volatility and max_potential for newly seeded slots
-        // (upsert_slot_catalog doesn't handle these fields, so we update directly)
-        for (const slot of slots) {
+        // Update volatility and max_potential for newly seeded slots
+        for (const slot of newSlots) {
           if (slot.volatility || slot.max_potential) {
-            const { error } = await supabase
+            await supabase
               .from("slot_catalog")
               .update({
                 volatility: slot.volatility || undefined,
                 max_potential: slot.max_potential || undefined,
               })
               .ilike("slot_name", slot.name)
-              .is("volatility", null); // Only update if not already set
+              .is("volatility", null);
           }
         }
       } catch (e) {
@@ -150,18 +180,20 @@ serve(async (req) => {
     }
 
     const totalProcessed = Object.values(results).reduce(
-      (sum, r) => sum + r.slots_processed,
-      0
+      (sum, r) => sum + r.slots_processed, 0
+    );
+    const totalSkipped = Object.values(results).reduce(
+      (sum, r) => sum + r.skipped, 0
     );
     const totalErrors = Object.values(results).reduce(
-      (sum, r) => sum + r.errors.length,
-      0
+      (sum, r) => sum + r.errors.length, 0
     );
 
     return new Response(
       JSON.stringify({
         success: true,
         total_processed: totalProcessed,
+        total_skipped: totalSkipped,
         total_errors: totalErrors,
         providers: results,
       }),
