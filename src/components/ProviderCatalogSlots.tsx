@@ -118,8 +118,7 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
                     <tr key={slot.slot_name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                       <td className="px-4 py-2.5 font-medium text-foreground">
                         <Link
-                          to={`/slot-katalog?search=${encodeURIComponent(slot.slot_name)}`}
-                          className="text-primary/80 hover:underline"
+                          to={`/slot-database?search=${encodeURIComponent(slot.slot_name)}`}
                         >
                           {slot.slot_name}
                         </Link>
