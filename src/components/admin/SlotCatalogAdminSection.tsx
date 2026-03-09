@@ -265,8 +265,8 @@ function SlotCatalogSection() {
                     <td className="px-3 py-2 font-mono">{slot.rtp ? `${slot.rtp}%` : '—'}</td>
                     <td className="px-3 py-2">{slot.volatility || '—'}</td>
                     <td className="px-3 py-2">{slot.max_potential || '—'}</td>
-                    <td className="px-3 py-2 font-mono">{slot.highest_win ? `${slot.highest_win} (${slot.bonus_count})` : '—'}</td>
-                    <td className="px-3 py-2 font-mono">{slot.highest_x ? `${slot.highest_x}x (${slot.bonus_count})` : '—'}</td>
+                    <td className="px-3 py-2 font-mono">{slot.highest_win ? `${Number(slot.highest_win.toFixed(1))} (${slot.bonus_count})` : '—'}</td>
+                    <td className="px-3 py-2 font-mono">{slot.highest_x ? `${Number(slot.highest_x.toFixed(1))}x (${slot.bonus_count})` : '—'}</td>
                     <td className="px-3 py-2 font-mono text-muted-foreground">{slot.bonus_count}</td>
                     <td className="px-3 py-2 text-right">
                       <div className="flex items-center justify-end gap-1">

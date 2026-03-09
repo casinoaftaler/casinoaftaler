@@ -339,7 +339,7 @@ export default function SlotDatabase() {
                           {slot.highest_x && slot.highest_x > 0 ? `${Number(slot.highest_x.toFixed(1))}x` : "–"}
                         </td>
                         <td className="px-4 py-3 text-center text-muted-foreground">
-                          {slot.highest_win && slot.highest_win > 0 ? `${slot.highest_win} kr` : "–"}
+                          {slot.highest_win && slot.highest_win > 0 ? `${Number(slot.highest_win.toFixed(1))} kr` : "–"}
                         </td>
                         <td className="px-4 py-3 text-center">
                           <Badge variant="outline">{slot.bonus_count}</Badge>
