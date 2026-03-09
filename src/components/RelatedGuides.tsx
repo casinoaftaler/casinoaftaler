@@ -1002,7 +1002,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       { to: "/nye-casinoer/2026", label: "Nye Casinoer 2026", icon: Sparkles, desc: "Alle nye casinoer i 2026" },
       { to: "/nye-casinoer/dansk-licens", label: "Med Dansk Licens", icon: ShieldCheck, desc: "Licenserede nye casinoer" },
       { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", icon: Zap, desc: "De hurtigste nye casinoer" },
-      { to: "/nye-casinoer/bedste", label: "Bedste Nye Casinoer", icon: Trophy, desc: "Vores topvalg i 2026" },
+      { to: "/nye-casinoer/vs-etablerede", label: "Nye vs. Etablerede", icon: Trophy, desc: "Datadrevet sammenligning" },
       { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", icon: Target, desc: "Lave omsætningskrav" },
     ];
     const currentIndex = nyeCasinoerSiblings.findIndex(g => g.to === path);
