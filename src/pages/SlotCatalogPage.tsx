@@ -224,7 +224,13 @@ export default function SlotCatalogPage() {
   const providerSlug = slot?.provider ? PROVIDER_NAME_TO_SLUG[slot.provider] : null;
 
   const pageUrl = `${SITE_URL}/slot-katalog/${slug}`;
-  const title = slot ? `${slot.slot_name} – Stats & Community Data` : "Spillemaskin";
+
+  // SEO-optimized title with provider + RTP for long-tail ranking
+  const titleParts = [slot?.slot_name];
+  if (slot?.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot") titleParts.push(slot.provider);
+  if (slot?.rtp) titleParts.push(`RTP ${slot.rtp}%`);
+  const title = slot ? `${titleParts.join(" – ")} | Stats & Data` : "Spillemaskin";
+
   const description = slot
     ? `${slot.slot_name} fra ${slot.provider}: RTP ${slot.rtp || "N/A"}%, volatilitet ${slot.volatility || "N/A"}, testet i ${slot.bonus_count} bonus hunts. Se community-data og statistikker.`
     : "";
