@@ -318,7 +318,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/ordbog/risk-of-ruin", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
   { path: "/ordbog/payout-table", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/coin-value", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
-  { path: "/ordbog/spillicens", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
+  { path: "/ordbog/spillicens", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
   { path: "/ordbog/fairness-audit", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/ssl-kryptering", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/geo-blocking", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
