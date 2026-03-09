@@ -492,6 +492,9 @@ export default function SlotCatalogPage() {
           </section>
         )}
 
+        {/* Author bio */}
+        <AuthorBio author="jonas" showCommunity={false} />
+
         {/* Cross-links */}
         <section className="mb-8 rounded-lg border border-border p-4 bg-muted/20">
           <h2 className="text-lg font-bold mb-3">Udforsk Mere</h2>
