@@ -6,6 +6,9 @@ import { SITE_URL } from "@/lib/seo";
 import { slugifySlotName } from "@/lib/slugify";
 import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
+import { Badge } from "@/components/ui/badge";
 import { Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers } from "lucide-react";
 
 /** Reverse lookup: display name → provider slug */
