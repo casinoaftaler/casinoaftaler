@@ -1875,6 +1875,7 @@ export type Database = {
           provider: string
           rtp: number | null
           slot_name: string
+          slug: string | null
           updated_at: string
           volatility: string | null
         }
@@ -1889,6 +1890,7 @@ export type Database = {
           provider?: string
           rtp?: number | null
           slot_name: string
+          slug?: string | null
           updated_at?: string
           volatility?: string | null
         }
@@ -1903,6 +1905,7 @@ export type Database = {
           provider?: string
           rtp?: number | null
           slot_name?: string
+          slug?: string | null
           updated_at?: string
           volatility?: string | null
         }
@@ -2704,6 +2707,30 @@ export type Database = {
         }[]
       }
       get_community_stats: { Args: never; Returns: Json }
+      get_slot_by_slug: {
+        Args: { p_slug: string }
+        Returns: {
+          bonus_count: number
+          created_at: string
+          description: string | null
+          highest_win: number | null
+          highest_x: number | null
+          id: string
+          max_potential: string | null
+          provider: string
+          rtp: number | null
+          slot_name: string
+          slug: string | null
+          updated_at: string
+          volatility: string | null
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "slot_catalog"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
       get_user_id_by_email: { Args: { lookup_email: string }; Returns: string }
       has_role: {
         Args: {
