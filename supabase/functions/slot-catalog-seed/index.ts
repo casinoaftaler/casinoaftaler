@@ -30,16 +30,29 @@ function normalizeSlotName(name: string): string {
 }
 
 async function fetchExistingSlotNames(supabase: any): Promise<Set<string>> {
-  const { data, error } = await supabase
-    .from("slot_catalog")
-    .select("slot_name");
+  const allNames: string[] = [];
+  let from = 0;
+  const pageSize = 1000;
 
-  if (error) {
-    console.error("Error fetching existing slots:", error.message);
-    return new Set();
+  while (true) {
+    const { data, error } = await supabase
+      .from("slot_catalog")
+      .select("slot_name")
+      .range(from, from + pageSize - 1);
+
+    if (error) {
+      console.error("Error fetching existing slots:", error.message);
+      break;
+    }
+
+    if (!data || data.length === 0) break;
+    allNames.push(...data.map((s: any) => normalizeSlotName(s.slot_name)));
+    if (data.length < pageSize) break;
+    from += pageSize;
   }
 
-  return new Set((data || []).map((s: any) => normalizeSlotName(s.slot_name)));
+  console.log(`Fetched ${allNames.length} existing slot names total`);
+  return new Set(allNames);
 }
 
 async function fetchSlotsForProvider(
