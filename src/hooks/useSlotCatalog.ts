@@ -1,6 +1,23 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
+// Fetch all rows from slot_catalog, bypassing the 1000-row default limit
+async function fetchAllFromSlotCatalog<T = any>(selectQuery: string, orderBy?: string): Promise<T[]> {
+  let allData: T[] = [];
+  let from = 0;
+  const batchSize = 1000;
+  while (true) {
+    let query = supabase.from('slot_catalog').select(selectQuery).range(from, from + batchSize - 1);
+    if (orderBy) query = query.order(orderBy);
+    const { data, error } = await query;
+    if (error) throw error;
+    allData = allData.concat((data || []) as T[]);
+    if (!data || data.length < batchSize) break;
+    from += batchSize;
+  }
+  return allData;
+}
+
 export interface SlotCatalogEntry {
   id: string;
   slot_name: string;
