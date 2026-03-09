@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Gamepad2, ArrowRight, ChevronDown, ChevronUp, RefreshCw } from "lucide-react";
+import { Gamepad2, ArrowRight, ChevronDown, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PROVIDER_TO_SLOTS, PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
@@ -11,12 +11,13 @@ interface ProviderCatalogSlotsProps {
 }
 
 const INITIAL_SHOW = 20;
+const BATCH_SIZE = 50;
 
 export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps) {
   const providerName = PROVIDER_DISPLAY_NAMES[providerSlug] || providerSlug;
   const { data: catalogSlots, isLoading } = useProviderSlots(providerSlug);
   const { data: freshness } = useLatestCatalogUpdate();
-  const [showAll, setShowAll] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_SHOW);
 
   // Featured guide slots (manually mapped)
   const featuredSlugs = PROVIDER_TO_SLOTS[providerSlug] || [];
@@ -42,8 +43,9 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
     (s) => !featuredNames.has(s.slot_name.toLowerCase())
   );
 
-  const visibleCatalog = showAll ? catalogOnly : catalogOnly.slice(0, INITIAL_SHOW);
-  const hasMore = catalogOnly.length > INITIAL_SHOW;
+  const visibleCatalog = catalogOnly.slice(0, visibleCount);
+  const hasMore = visibleCount < catalogOnly.length;
+  const remaining = catalogOnly.length - visibleCount;
 
   // Format freshness date
   const freshnessLabel = freshness?.latestHuntNumber
@@ -116,8 +118,7 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
                     <tr key={slot.slot_name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                       <td className="px-4 py-2.5 font-medium text-foreground">
                         <Link
-                          to={`/slot-katalog?search=${encodeURIComponent(slot.slot_name)}`}
-                          className="text-primary/80 hover:underline"
+                          to={`/slot-database?search=${encodeURIComponent(slot.slot_name)}`}
                         >
                           {slot.slot_name}
                         </Link>
@@ -147,19 +148,10 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
             <Button
               variant="outline"
               className="mt-3 w-full"
-              onClick={() => setShowAll(!showAll)}
+              onClick={() => setVisibleCount((prev) => prev + BATCH_SIZE)}
             >
-              {showAll ? (
-                <>
-                  <ChevronUp className="h-4 w-4 mr-2" />
-                  Vis færre
-                </>
-              ) : (
-                <>
-                  <ChevronDown className="h-4 w-4 mr-2" />
-                  Vis alle {catalogOnly.length} slots
-                </>
-              )}
+              <ChevronDown className="h-4 w-4 mr-2" />
+              Vis {Math.min(BATCH_SIZE, remaining)} mere ({remaining} tilbage)
             </Button>
           )}
         </>
