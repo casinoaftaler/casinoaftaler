@@ -8,6 +8,7 @@ import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
+import { FAQSection } from "@/components/FAQSection";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Gamepad2, ArrowLeft, BarChart3, Zap, Trophy, Hash, HelpCircle, Layers } from "lucide-react";
 
@@ -319,7 +320,11 @@ export default function SlotCatalogPage() {
         )}
       </Helmet>
 
-      {/* Hero Section – same gradient as /nye-casinoer */}
+      <div className="container py-4">
+        <Breadcrumbs dynamicLabel={slot.slot_name} />
+      </div>
+
+      {/* Hero Section */}
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
@@ -343,8 +348,7 @@ export default function SlotCatalogPage() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <Breadcrumbs dynamicLabel={slot.slot_name} />
-        <AuthorMetaBar author="redaktionen" />
+        <AuthorMetaBar author="redaktionen" showAffiliateDisclaimer={false} />
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -485,20 +489,13 @@ export default function SlotCatalogPage() {
 
         {/* FAQ Section */}
         {faqs.length > 0 && (
-          <section className="mb-8">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <HelpCircle className="h-6 w-6 text-primary" />
-              Ofte Stillede Spørgsmål
-            </h2>
-            <div className="space-y-4">
-              {faqs.map((faq, i) => (
-                <div key={i} className="rounded-lg border border-border p-4">
-                  <h3 className="font-semibold mb-2">{faq.question}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+          <FAQSection
+            title={`Ofte stillede spørgsmål om ${slot.slot_name}`}
+            faqs={faqs.map((faq) => ({
+              question: faq.question,
+              answer: faq.answer,
+            }))}
+          />
         )}
 
         {/* Provider link */}
