@@ -563,6 +563,7 @@ function generateHeroDescription(slot: any): string {
 
 export default function SlotCatalogPage() {
   const { slug } = useParams<{ slug: string }>();
+  const { user } = useAuth();
   const { data: slot, isLoading } = useSlotBySlug(slug || "");
   const { data: huntData } = useSlotBonusHuntData(slot?.slot_name || null);
   const { data: similarSlots } = useSimilarSlots(
@@ -570,6 +571,7 @@ export default function SlotCatalogPage() {
     slot?.slot_name || null,
     slot?.volatility || null
   );
+  const { data: casinosForSlot } = useCasinosForSlot(slot?.provider || null);
 
   const hasGuide = slug ? GUIDE_SLUGS.has(slug) : false;
   const providerSlug = slot?.provider ? PROVIDER_NAME_TO_SLUG[slot.provider] : null;
