@@ -21,6 +21,14 @@ interface SlotData {
   max_potential: string | null;
 }
 
+function normalizeSlotName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[''`']/g, "")
+    .replace(/\bteh\b/g, "the")
+    .trim();
+}
+
 async function fetchExistingSlotNames(
   supabase: any,
   provider: string
@@ -35,7 +43,7 @@ async function fetchExistingSlotNames(
     return new Set();
   }
 
-  return new Set((data || []).map((s: any) => s.slot_name.toLowerCase()));
+  return new Set((data || []).map((s: any) => normalizeSlotName(s.slot_name)));
 }
 
 async function fetchSlotsForProvider(
