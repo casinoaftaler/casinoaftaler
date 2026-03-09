@@ -278,7 +278,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/ordbog/megaways", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
   { path: "/ordbog/buy-bonus", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   // removed: sticky-bonus-term, progressiv-jackpot, gevinstprocent, mitid-casino (cannibalization fixes – 301 redirected)
-  { path: "/ordbog/bankroll-management", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
+  { path: "/ordbog/bankroll-management", changefreq: "monthly", priority: 0.75, lastmod: "2026-03-07" },
   { path: "/ordbog/minimum-indbetaling", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/kyc", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ordbog/gamification", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
