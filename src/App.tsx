@@ -331,6 +331,9 @@ const App = () => (
                 
                 <Route path="/kontakt" element={<Kontakt />} />
                 <Route path="/sitemap" element={<SitemapPage />} />
+                <Route path="/sitemap/casino-anmeldelser" element={<SitemapCasinos />} />
+                <Route path="/sitemap/casino-bonus" element={<SitemapBonus />} />
+                <Route path="/sitemap/casinospil" element={<SitemapSlots />} />
                 <Route path="/nyheder" element={<Navigate to="/casino-nyheder" replace />} />
                 <Route path="/casino-nyheder" element={<CasinoNyheder />} />
                 <Route path="/casino-nyheder/:slug" element={<CasinoNyhedArticle />} />
