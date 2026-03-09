@@ -535,11 +535,21 @@ export default function SlotCatalogPage() {
 
   const pageUrl = `${SITE_URL}/slot-katalog/${slug}`;
 
-  // SEO-optimized title
-  const titleParts = [slot?.slot_name];
-  if (slot?.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot") titleParts.push(slot.provider);
-  if (slot?.rtp) titleParts.push(`RTP ${slot.rtp}%`);
-  const title = slot ? `${titleParts.join(" – ")} | Stats & Data` : "Spillemaskin";
+  // SEO-optimized title – kept under 60 chars for SERP display
+  const title = (() => {
+    if (!slot) return "Spillemaskin";
+    const name = slot.slot_name;
+    const rtp = slot.rtp ? ` – RTP ${slot.rtp}%` : "";
+    const suffix = " | Slot Data";
+    // Try name + RTP + suffix first
+    const full = `${name}${rtp}${suffix}`;
+    if (full.length <= 55) return full;
+    // Fallback: name + suffix only
+    const short = `${name}${suffix}`;
+    if (short.length <= 55) return short;
+    // Ultra-long slot names: truncate name
+    return `${name.slice(0, 42)}…${suffix}`;
+  })();
 
   const description = slot
     ? `${slot.slot_name} fra ${slot.provider}: RTP ${slot.rtp || "N/A"}%, volatilitet ${slot.volatility || "N/A"}, testet i ${slot.bonus_count} bonus hunts. Se community-data og statistikker.`
