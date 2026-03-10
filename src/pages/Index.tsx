@@ -171,6 +171,7 @@ const Index = () => {
               { "@type": "ListItem", position: 6, name: "Luna Casino", url: "https://casinoaftaler.dk/casino-anmeldelser/luna-casino" },
             ],
           },
+          ...(latestSlots?.length ? [buildLatestSlotsSchema(latestSlots)] : []),
           buildFaqSchema([
             {
               question: "Hvad er det vigtigste at vide, før man spiller på online casino i Danmark?",
