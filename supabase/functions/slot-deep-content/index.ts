@@ -126,13 +126,31 @@ VIGTIGT: Skriv IKKE i template-stil. Hvert afsnit skal læses som om det er skre
         try {
           parsed = JSON.parse(cleaned);
         } catch {
+          // Try extracting JSON array
           const jsonMatch = cleaned.match(/\[[\s\S]*\]/);
           if (!jsonMatch) {
-            console.error(`Parse error batch ${Math.floor(i / BATCH_SIZE)}:`, cleaned.slice(0, 200));
+            console.error(`No JSON array found in batch ${Math.floor(i / BATCH_SIZE)}:`, cleaned.slice(0, 300));
             errors += batch.length;
             continue;
           }
-          parsed = JSON.parse(jsonMatch[0]);
+          let fixedJson = jsonMatch[0];
+          // Fix common AI JSON issues: trailing commas before ] or }
+          fixedJson = fixedJson.replace(/,\s*([}\]])/g, '$1');
+          // Fix single quotes to double quotes (naive but catches most)
+          // Only do this if double-quote parse still fails
+          try {
+            parsed = JSON.parse(fixedJson);
+          } catch {
+            // Try replacing unescaped single quotes used as JSON delimiters
+            fixedJson = fixedJson.replace(/'/g, '"');
+            try {
+              parsed = JSON.parse(fixedJson);
+            } catch (e3) {
+              console.error(`JSON parse failed batch ${Math.floor(i / BATCH_SIZE)} after fixes:`, (e3 as Error).message, fixedJson.slice(0, 300));
+              errors += batch.length;
+              continue;
+            }
+          }
         }
 
         for (const item of parsed) {
