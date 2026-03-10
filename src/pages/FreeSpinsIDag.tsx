@@ -126,8 +126,10 @@ function timeAgo(dateStr: string): string {
   const date = new Date(dateStr);
   const hrs = differenceInHours(now, date);
   const mins = differenceInMinutes(now, date) % 60;
-  if (hrs > 24) return `${Math.floor(hrs / 24)} dage siden`;
+  if (hrs > 48) return `I dag`;
+  if (hrs > 24) return `I går`;
   if (hrs > 0) return `${hrs} timer siden`;
+  if (mins < 2) return `Lige nu`;
   return `${mins} min. siden`;
 }
 
