@@ -124,7 +124,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   
   // Sequential reel stopping - which reel should currently slow down (-1 = none yet)
   const [activeSlowdownReel, setActiveSlowdownReel] = useState(-1);
-  const initialSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const initialSpinTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   // Spin lock to prevent rapid clicking
   const spinLockRef = useRef(false);
