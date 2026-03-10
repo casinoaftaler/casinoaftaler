@@ -162,7 +162,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "elk-studios": {
     displayName: "ELK Studios",
-    seoTitle: "ELK Studios Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "ELK Studios Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Se alle ELK Studios spillemaskiner med RTP, volatilitet og bonus hunt data. Ægte performance-statistik fra danske streams.",
     datePublished: "2026-03-10",
     introHtml: `
