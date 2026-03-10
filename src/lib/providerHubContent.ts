@@ -94,7 +94,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "big-time-gaming": {
     displayName: "Big Time Gaming",
-    seoTitle: "Big Time Gaming Slots – Spillemaskiner & Statistik 2026",
+    seoTitle: "Big Time Gaming Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle Big Time Gaming spillemaskiner inkl. Megaways-titler. RTP, volatilitet og bonus hunt data fra ægte danske streams.",
     datePublished: "2026-03-10",
     introHtml: `
