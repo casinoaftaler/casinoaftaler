@@ -128,7 +128,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "nolimit-city": {
     displayName: "Nolimit City",
-    seoTitle: "Nolimit City Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Nolimit City Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle Nolimit City spillemaskiner med xWays og xBet mekanikker. RTP, volatilitet og max win fra ægte bonus hunt data.",
     datePublished: "2026-03-10",
     introHtml: `
