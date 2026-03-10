@@ -159,6 +159,13 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
           {/* noscript fallback – full list of slot links for crawlers */}
           <noscript>
             <ul>
+              {featuredSlugs.map((slot) => (
+                <li key={slot.slug}>
+                  <a href={`/casinospil/spillemaskiner/${slot.slug}`}>
+                    {slot.name} – komplet guide
+                  </a>
+                </li>
+              ))}
               {catalogOnly.map((slot) => (
                 <li key={slot.slot_name}>
                   <a href={`/slot-katalog/${slugifySlotName(slot.slot_name)}`}>
