@@ -1,0 +1,1 @@
+UPDATE free_spin_campaigns SET last_checked = now(), last_verified_at = now(), updated_at = now() WHERE is_active = true
