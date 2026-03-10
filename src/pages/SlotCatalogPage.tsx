@@ -589,6 +589,14 @@ function parseDeepContent(slot: any): DeepContent | null {
   }
 }
 
+/**
+ * Wraps plain text in <p> tags and runs it through the entity auto-linker
+ * to inject internal links to money-pages and glossary terms.
+ */
+function autoLinkedParagraph(text: string): string {
+  return autoLinkEntities(`<p>${text}</p>`);
+}
+
 // ─── Main Component ────────────────────────────────────────
 
 export default function SlotCatalogPage() {
