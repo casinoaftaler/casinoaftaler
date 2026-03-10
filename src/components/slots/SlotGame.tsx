@@ -134,7 +134,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const winLinesTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   // Debounced leaderboard invalidation (5s cooldown to avoid thundering herd)
-  const leaderboardInvalidateRef = useRef<NodeJS.Timeout | null>(null);
+  const leaderboardInvalidateRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const debouncedLeaderboardInvalidate = useCallback(() => {
     if (leaderboardInvalidateRef.current) return; // Already scheduled
     leaderboardInvalidateRef.current = setTimeout(() => {
