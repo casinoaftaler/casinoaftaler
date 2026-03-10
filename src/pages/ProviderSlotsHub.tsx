@@ -24,14 +24,14 @@ import {
 
 export default function ProviderSlotsHub() {
   const { providerSlug } = useParams<{ providerSlug: string }>();
+  const validSlug = providerSlug && PROVIDER_HUB_SLUGS.includes(providerSlug) ? providerSlug : null;
+  const content = validSlug ? PROVIDER_HUB_CONTENT[validSlug] : null;
+  const { data: slots } = useProviderSlots(validSlug || "");
+  const { data: freshness } = useLatestCatalogUpdate();
 
-  if (!providerSlug || !PROVIDER_HUB_SLUGS.includes(providerSlug)) {
+  if (!validSlug || !content) {
     return <Navigate to="/casinospil/spillemaskiner" replace />;
   }
-
-  const content = PROVIDER_HUB_CONTENT[providerSlug];
-  const { data: slots, isLoading } = useProviderSlots(providerSlug);
-  const { data: freshness } = useLatestCatalogUpdate();
 
   // Compute dynamic stats
   const stats = useMemo(() => {
