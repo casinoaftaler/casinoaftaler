@@ -213,7 +213,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "red-tiger": {
     displayName: "Red Tiger Gaming",
-    seoTitle: "Red Tiger Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Red Tiger Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Komplet Red Tiger Gaming slot-katalog med RTP, volatilitet og jackpot-data. Ægte statistik fra bonus hunts.",
     datePublished: "2026-03-10",
     introHtml: `
