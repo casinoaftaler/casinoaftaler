@@ -43,7 +43,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "netent": {
     displayName: "NetEnt",
-    seoTitle: "NetEnt Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "NetEnt Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Se alle NetEnt spillemaskiner med detaljeret RTP, volatilitet og bonus hunt data. Komplet katalog med ægte community-statistik.",
     datePublished: "2026-03-10",
     introHtml: `
