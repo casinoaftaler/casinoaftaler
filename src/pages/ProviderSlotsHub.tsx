@@ -2,11 +2,13 @@ import { useMemo } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { AuthorBio } from "@/components/AuthorBio";
+import { FAQSection } from "@/components/FAQSection";
 import { ProviderCatalogSlots } from "@/components/ProviderCatalogSlots";
 import { useProviderSlots, useLatestCatalogUpdate } from "@/hooks/useProviderSlots";
 import { PROVIDER_HUB_CONTENT, PROVIDER_HUB_SLUGS } from "@/lib/providerHubContent";
 import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
-import { buildArticleSchema, SITE_URL, JONAS_SAME_AS } from "@/lib/seo";
+import { buildArticleSchema, buildFaqSchema, SITE_URL, JONAS_SAME_AS } from "@/lib/seo";
 import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Badge } from "@/components/ui/badge";
@@ -79,6 +81,8 @@ export default function ProviderSlotsHub() {
     ],
   });
 
+  const faqSchema = content.faqs.length > 0 ? buildFaqSchema(content.faqs) : null;
+
   const catalogSchema =
     slots && slots.length > 0
       ? buildSlotCatalogSchema(
@@ -95,6 +99,7 @@ export default function ProviderSlotsHub() {
 
   const jsonLd = [
     articleSchema,
+    ...(faqSchema ? [faqSchema as Record<string, unknown>] : []),
     ...(catalogSchema ? [catalogSchema as Record<string, unknown>] : []),
   ];
 
@@ -115,7 +120,7 @@ export default function ProviderSlotsHub() {
         breadcrumbLabel={`${content.displayName} Slots`}
       />
 
-      {/* Hero – matches ProviderPageTemplate */}
+      {/* Hero */}
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
@@ -133,7 +138,7 @@ export default function ProviderSlotsHub() {
               Spillemaskiner
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              {content.displayName} Slots
+              {content.displayName} Slots – Statistik & Alle Spillemaskiner
             </h1>
             <p className="text-lg text-white/80">
               Komplet oversigt over alle {content.displayName} spillemaskiner med ægte statistik fra vores bonus hunts.
@@ -149,7 +154,7 @@ export default function ProviderSlotsHub() {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Om {content.displayName} Spillemaskiner</h2>
           <div
-            className="text-muted-foreground leading-relaxed space-y-4 [&>p]:leading-relaxed"
+            className="text-muted-foreground leading-relaxed space-y-4 [&>p]:leading-relaxed [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-primary/80"
             dangerouslySetInnerHTML={{ __html: content.introHtml }}
           />
         </section>
@@ -225,7 +230,7 @@ export default function ProviderSlotsHub() {
                       </div>
                     </div>
                     <div className="text-right flex-shrink-0">
-                      <Badge variant="secondary">{slot.bonus_count} hunts</Badge>
+                      <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold">{slot.bonus_count} hunts</span>
                       {slot.highest_x && slot.highest_x > 0 && (
                         <p className="text-sm font-semibold mt-1">
                           <TrendingUp className="h-3 w-3 inline mr-1" />
@@ -244,7 +249,23 @@ export default function ProviderSlotsHub() {
         )}
 
         {/* Full catalog table */}
-        <ProviderCatalogSlots providerSlug={validSlug} />
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Gamepad2 className="h-7 w-7 text-primary" />
+            Alle {content.displayName} Spillemaskiner
+          </h2>
+          <ProviderCatalogSlots providerSlug={validSlug} />
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* FAQ Section */}
+        {content.faqs.length > 0 && (
+          <FAQSection
+            title={`Ofte stillede spørgsmål om ${content.displayName} slots`}
+            faqs={content.faqs}
+          />
+        )}
 
         <Separator className="my-10" />
 
@@ -252,7 +273,7 @@ export default function ProviderSlotsHub() {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <BookOpen className="h-7 w-7 text-primary" />
-            Læs mere om {content.displayName}
+            Mere om {content.displayName}
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Udforsk vores dybdegående guide om {content.displayName} med historik, teknologi, licenser og ekspertanalyse.
@@ -271,6 +292,9 @@ export default function ProviderSlotsHub() {
             <ArrowRight className="h-4 w-4 text-muted-foreground" />
           </Link>
         </section>
+
+        {/* Author bio */}
+        <AuthorBio author="jonas" showCommunity={false} />
       </div>
     </>
   );
