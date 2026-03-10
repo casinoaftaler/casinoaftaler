@@ -179,7 +179,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "yggdrasil": {
     displayName: "Yggdrasil Gaming",
-    seoTitle: "Yggdrasil Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Yggdrasil Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle Yggdrasil spillemaskiner med RTP, volatilitet og max win. Ægte bonus hunt data fra danske community streams.",
     datePublished: "2026-03-10",
     introHtml: `
