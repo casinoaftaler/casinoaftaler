@@ -82,7 +82,7 @@ export default function ProviderSlotsHub() {
       ? buildSlotCatalogSchema(
           slots.map((s) => ({
             slot_name: s.slot_name,
-            provider: PROVIDER_DISPLAY_NAMES[providerSlug] || providerSlug,
+            provider: PROVIDER_DISPLAY_NAMES[validSlug] || validSlug,
             rtp: s.rtp,
             highest_x: s.highest_x,
             bonus_count: s.bonus_count,
