@@ -11,6 +11,7 @@ import { WeeklyRotationReviews } from "@/components/WeeklyRotationReviews";
 import { HomepageLiveCommunity } from "@/components/HomepageLiveCommunity";
 import { HomepageSeoSections } from "@/components/HomepageSeoSections";
 import { HomepagePaymentSection, HomepageProviderSection } from "@/components/HomepagePaymentProviders";
+import { HomepageTopProviders } from "@/components/HomepageTopProviders";
 import {
   HomepageCasinospilSection,
   HomepageAnmeldelserSection,
@@ -281,6 +282,7 @@ const Index = () => {
       <TodayUpdatedSection />
       <HomepageLatestSlots />
       <HomepagePopularSlots />
+      <HomepageTopProviders />
       <HomepageLiveCommunity />
       <WhyTrustUs />
 
