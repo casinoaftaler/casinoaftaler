@@ -464,69 +464,162 @@ function generateHowItWorks(slot: any): ReactNode[] {
   ];
 }
 
-// ─── FAQ Generator ─────────────────────────────────────────
+// ─── FAQ Generator (hash-rotated for uniqueness) ──────────
 
 function generateFAQ(slot: any) {
   const faqs: { question: string; answer: string }[] = [];
+  const h = hashStr(slot.slot_name);
 
-  faqs.push({
-    question: `Hvad er RTP'en på ${slot.slot_name}?`,
-    answer: slot.rtp
-      ? `${slot.slot_name} har en Return to Player (RTP) på ${slot.rtp}%. Det betyder, at maskinen statistisk set betaler ${slot.rtp} kr. tilbage for hver 100 kr., der indsættes over lang tid. House edge er dermed ${(100 - slot.rtp).toFixed(2)}%.`
-      : `RTP-værdien for ${slot.slot_name} er ikke tilgængelig i vores database endnu. RTP kan variere mellem casinoer, da nogle udbydere tilbyder justerbare RTP-niveauer.`,
-  });
+  // ── RTP FAQ ──
+  const rtpQuestions = [
+    `Hvad er RTP'en på ${slot.slot_name}?`,
+    `Hvad er tilbagebetalingsprocenten for ${slot.slot_name}?`,
+    `Hvilken RTP har ${slot.slot_name}?`,
+  ];
+  if (slot.rtp) {
+    const houseEdge = (100 - slot.rtp).toFixed(2);
+    const rtpAnswers = [
+      `${slot.slot_name} har en Return to Player (RTP) på ${slot.rtp}%. Det betyder, at maskinen statistisk set betaler ${slot.rtp} kr. tilbage for hver 100 kr., der indsættes over lang tid. House edge er dermed ${houseEdge}%.`,
+      `RTP-værdien for ${slot.slot_name} er ${slot.rtp}%, hvilket giver en house edge på ${houseEdge}%. Denne tilbagebetalingsprocent er beregnet over millioner af spins og kan variere markant i kortere sessioner.`,
+      `Med en RTP på ${slot.rtp}% placerer ${slot.slot_name} sig ${slot.rtp >= 96.5 ? "over branchens gennemsnit" : slot.rtp >= 96 ? "tæt på gennemsnittet" : "under gennemsnittet for moderne spillemaskiner"}. Casinoets fordel (house edge) er ${houseEdge}%.`,
+      `${slot.slot_name} opererer med ${slot.rtp}% RTP. I praksis betyder det, at for hver 1.000 kr. i indsatser, returneres statistisk set ${(slot.rtp * 10).toFixed(0)} kr. til spillerne. House edge: ${houseEdge}%.`,
+    ];
+    faqs.push({ question: rtpQuestions[h % rtpQuestions.length], answer: rtpAnswers[(h + 1) % rtpAnswers.length] });
+  } else {
+    faqs.push({
+      question: rtpQuestions[h % rtpQuestions.length],
+      answer: pickVariant([
+        `RTP-værdien for ${slot.slot_name} er ikke tilgængelig i vores database endnu. RTP kan variere mellem casinoer, da nogle udbydere tilbyder justerbare RTP-niveauer.`,
+        `Vi har endnu ikke registreret den præcise RTP for ${slot.slot_name}. Tjek spillets informationsmenu direkte i casinoet for den gældende tilbagebetalingsprocent.`,
+        `Den nøjagtige RTP for ${slot.slot_name} er under verifikation. Generelt anbefaler vi at vælge maskiner med en RTP på 96% eller højere.`,
+      ], slot.slot_name, 10),
+    });
+  }
 
-  faqs.push({
-    question: `Hvor volatil er ${slot.slot_name}?`,
-    answer: slot.volatility
-      ? `${slot.slot_name} har ${slot.volatility.toLowerCase()} volatilitet. ${
-          slot.volatility === "High" || slot.volatility === "Extreme"
-            ? "Det betyder sjældnere, men potentielt større gevinster – ideelt for spillere med tålmodighed og et passende budget."
-            : slot.volatility === "Low"
-            ? "Det betyder hyppigere, men typisk mindre gevinster – velegnet til spillere der foretrækker stabil underholdning."
-            : "Det giver en balanceret oplevelse med en blanding af små og store gevinster."
-        }`
-      : `Volatiliteten for ${slot.slot_name} er ikke registreret i vores database endnu.`,
-  });
+  // ── Volatilitet FAQ ──
+  const volQuestions = [
+    `Hvor volatil er ${slot.slot_name}?`,
+    `Hvad er volatiliteten på ${slot.slot_name}?`,
+    `Er ${slot.slot_name} en high volatility slot?`,
+  ];
+  if (slot.volatility) {
+    const vol = slot.volatility.toLowerCase();
+    const volAnswers = [
+      `${slot.slot_name} har ${vol} volatilitet. ${vol === "high" || vol === "extreme" ? "Det betyder sjældnere, men potentielt større gevinster – ideelt for spillere med tålmodighed og et passende budget." : vol === "low" ? "Det betyder hyppigere, men typisk mindre gevinster – velegnet til spillere der foretrækker stabil underholdning." : "Det giver en balanceret oplevelse med en blanding af små og store gevinster."}`,
+      `Volatiliteten er klassificeret som ${vol}. ${vol === "high" || vol === "extreme" ? "Forvent lange tørkeperioder mellem store hits – bankroll management er afgørende." : vol === "low" ? "Gevinsterne falder ofte, men er typisk beskedne i størrelse. God til længere sessioner." : "En mellemvej der kombinerer rimelig hitfrekvens med moderate gevinstmuligheder."}`,
+      `${slot.slot_name} er en ${vol}-volatil spillemaskin. ${vol === "high" || vol === "extreme" ? `Vi anbefaler minimum ${vol === "extreme" ? "300-500" : "200-300"} spins i dit bankroll for at opleve maskinens potentiale.` : vol === "low" ? "Et budget på 100-150 spins er typisk tilstrækkeligt for en god session." : "150-200 spins er et godt udgangspunkt for denne volatilitetsprofil."}`,
+    ];
+    faqs.push({ question: volQuestions[(h + 2) % volQuestions.length], answer: volAnswers[(h + 3) % volAnswers.length] });
+  } else {
+    faqs.push({
+      question: volQuestions[(h + 2) % volQuestions.length],
+      answer: `Volatiliteten for ${slot.slot_name} er ikke registreret i vores database endnu. Start med konservative indsatser og observer gevinstmønstret.`,
+    });
+  }
 
+  // ── Max Win FAQ ──
   if (slot.max_potential) {
+    const maxWinAnswers = [
+      `Det maksimale gevinstpotentiale på ${slot.slot_name} er ${slot.max_potential}. Denne værdi repræsenterer den teoretisk højeste gevinst i en enkelt spin eller bonusrunde.`,
+      `${slot.slot_name} har et max win på ${slot.max_potential}, som er den absolutte øvre grænse for, hvad maskinen kan udbetale på et enkelt spin.`,
+      `Max win for ${slot.slot_name} er sat til ${slot.max_potential}. Husk at dette er et teoretisk maksimum – i praksis opnås det ekstremt sjældent.`,
+      `Med et gevinstpotentiale på op til ${slot.max_potential} ${slot.volatility === "High" || slot.volatility === "Extreme" ? "matcher max win den høje risikoprofil" : "tilbyder maskinen et solidt potentiale relativt til volatiliteten"}.`,
+    ];
     faqs.push({
-      question: `Hvad er max win på ${slot.slot_name}?`,
-      answer: `Det maksimale gevinstpotentiale på ${slot.slot_name} er ${slot.max_potential}. Denne værdi repræsenterer den teoretisk højeste gevinst, du kan opnå i en enkelt spin eller bonusrunde.`,
+      question: pickVariant([
+        `Hvad er max win på ${slot.slot_name}?`,
+        `Hvor meget kan man vinde på ${slot.slot_name}?`,
+        `Hvad er det maksimale gevinstpotentiale for ${slot.slot_name}?`,
+      ], slot.slot_name, 20),
+      answer: maxWinAnswers[(h + 4) % maxWinAnswers.length],
     });
   }
 
-  faqs.push({
-    question: `Er ${slot.slot_name} testet i bonus hunts?`,
-    answer: slot.bonus_count > 0
-      ? `Ja, ${slot.slot_name} er blevet testet i ${slot.bonus_count} bonus hunt${slot.bonus_count !== 1 ? "s" : ""} på vores Twitch-kanal.${
-          slot.highest_x && slot.highest_x > 0
-            ? ` Den højeste registrerede multiplikator er ${Number(slot.highest_x.toFixed(1))}x.`
-            : ""
-        } Alle resultater er verificeret af vores community i realtid.`
-      : `${slot.slot_name} er endnu ikke blevet testet i vores bonus hunts, men den er registreret i vores database og kan blive inkluderet i fremtidige hunts.`,
-  });
+  // ── Bonus Hunt FAQ ──
+  const bhQuestions = [
+    `Er ${slot.slot_name} testet i bonus hunts?`,
+    `Har ${slot.slot_name} været med i en bonus hunt?`,
+    `Hvad er ${slot.slot_name}'s bonus hunt track record?`,
+  ];
+  if (slot.bonus_count > 0) {
+    const bhAnswers = [
+      `Ja, ${slot.slot_name} er testet i ${slot.bonus_count} bonus hunt${slot.bonus_count !== 1 ? "s" : ""} på vores Twitch-kanal.${slot.highest_x && slot.highest_x > 0 ? ` Højeste registrerede multiplikator: ${Number(slot.highest_x.toFixed(1))}x.` : ""} Alle resultater er verificeret live af community'et.`,
+      `${slot.slot_name} har ${slot.bonus_count} bonus hunt-optrædener i vores arkiv.${slot.highest_x && slot.highest_x > 0 ? ` Top-multiplikator: ${Number(slot.highest_x.toFixed(1))}x.` : ""} Resultaterne er streamet live og kan gennemgås i bonus hunt-arkivet.`,
+      `Med ${slot.bonus_count} registrerede bonus hunts har ${slot.slot_name} ${slot.bonus_count >= 10 ? "et solidt" : "et voksende"} datasæt i vores community.${slot.highest_x && slot.highest_x > 0 ? ` Bedste X-værdi: ${Number(slot.highest_x.toFixed(1))}x.` : ""}`,
+    ];
+    faqs.push({ question: bhQuestions[(h + 5) % bhQuestions.length], answer: bhAnswers[(h + 6) % bhAnswers.length] });
+  } else {
+    faqs.push({
+      question: bhQuestions[(h + 5) % bhQuestions.length],
+      answer: pickVariant([
+        `${slot.slot_name} er endnu ikke blevet testet i vores bonus hunts, men den er registreret i databasen og kan blive inkluderet fremover.`,
+        `Vi har ikke streamet ${slot.slot_name} i en bonus hunt endnu. Maskinen kan blive tilføjet baseret på community-efterspørgsel.`,
+      ], slot.slot_name, 30),
+    });
+  }
 
+  // ── Provider FAQ ──
   if (slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot") {
+    const provAnswers = [
+      `${slot.slot_name} er udviklet af ${slot.provider}, en anerkendt spiludvikler i online casino-industrien. Se alle ${slot.provider}-slots i vores database.`,
+      `Bag ${slot.slot_name} står ${slot.provider}. Studiet er kendt for ${slot.volatility === "High" || slot.volatility === "Extreme" ? "high-risk/high-reward mekanikker" : "velbalancerede spilleoplevelser"} og har et bredt katalog i vores database.`,
+      `${slot.provider} har udviklet ${slot.slot_name}. Udbyderen er tilgængelig på de fleste danske licenserede casinoer og leverer regelmæssigt nye titler.`,
+    ];
     faqs.push({
-      question: `Hvem har udviklet ${slot.slot_name}?`,
-      answer: `${slot.slot_name} er udviklet af ${slot.provider}, som er en af de anerkendte spiludviklere i online casino-industrien. Du kan se alle spillemaskiner fra ${slot.provider} i vores slot database.`,
+      question: pickVariant([
+        `Hvem har udviklet ${slot.slot_name}?`,
+        `Hvilken spiludvikler står bag ${slot.slot_name}?`,
+        `Hvem er producenten af ${slot.slot_name}?`,
+      ], slot.slot_name, 40),
+      answer: provAnswers[(h + 7) % provAnswers.length],
     });
   }
 
+  // ── Tilgængelighed FAQ ──
+  const whereAnswers = [
+    `${slot.slot_name} er tilgængelig på de fleste danske online casinoer med licens fra Spillemyndigheden. Vi anbefaler at vælge et casino med dansk licens for spillerbeskyttelse og adgang til ROFUS.`,
+    `Du kan spille ${slot.slot_name} på danske licenserede casinoer. Tjek vores casino-anmeldelser for at finde det bedste match baseret på bonus, udbetalingstid og spiludvalg.`,
+    `${slot.slot_name} findes på størstedelen af casinoer med dansk licens. Vælg altid et casino reguleret af Spillemyndigheden for at sikre fair play og spillerbeskyttelse.`,
+    `For at spille ${slot.slot_name} anbefaler vi et casino med dansk licens. Se vores anmeldelser for at sammenligne bonusser og vilkår på tværs af de bedste danske casinoer.`,
+  ];
   faqs.push({
-    question: `Hvor kan jeg spille ${slot.slot_name}?`,
-    answer: `${slot.slot_name} er tilgængelig på de fleste danske online casinoer med licens fra Spillemyndigheden. Vi anbefaler at vælge et casino med dansk licens for at sikre spillerbeskyttelse, fair play og adgang til ROFUS. Se vores casino-anmeldelser for anbefalede casinoer.`,
+    question: pickVariant([
+      `Hvor kan jeg spille ${slot.slot_name}?`,
+      `Hvilke casinoer har ${slot.slot_name}?`,
+      `På hvilke casinoer kan man finde ${slot.slot_name}?`,
+    ], slot.slot_name, 50),
+    answer: whereAnswers[(h + 8) % whereAnswers.length],
   });
 
+  // ── Fairness FAQ ──
+  const fairAnswers = [
+    `Ja. ${slot.slot_name} bruger en certificeret Random Number Generator (RNG), der er testet af uafhængige auditorer. Danske licenserede casinoer er under tilsyn af Spillemyndigheden.`,
+    `Absolut. Alle spins på ${slot.slot_name} styres af en RNG, der regelmæssigt auditeres af tredjeparter som eCOGRA eller iTech Labs. Spillemyndigheden overvåger retfærdigheden.`,
+    `${slot.slot_name} er fuldt certificeret med en uafhængigt testet tilfældighedsgenerator. Hvert spin-resultat er matematisk uforudsigeligt og kan ikke påvirkes af hverken casino eller spiller.`,
+  ];
   faqs.push({
-    question: `Er ${slot.slot_name} fair og tilfældig?`,
-    answer: `Ja. ${slot.slot_name} bruger en certificeret Random Number Generator (RNG), der er testet af uafhængige auditorer. Alle danske licenserede casinoer er under tilsyn af Spillemyndigheden, som sikrer, at alle spil fungerer retfærdigt og tilfældigt.`,
+    question: pickVariant([
+      `Er ${slot.slot_name} fair og tilfældig?`,
+      `Kan man stole på ${slot.slot_name}'s resultater?`,
+      `Er ${slot.slot_name} certificeret til fair play?`,
+    ], slot.slot_name, 60),
+    answer: fairAnswers[(h + 9) % fairAnswers.length],
   });
 
+  // ── Strategi FAQ ──
+  const stratAnswers = [
+    `Da spillemaskiner er baseret på tilfældighed (RNG), er der ingen strategi der kan ændre house edge. Den bedste tilgang er effektiv bankroll management: sæt et fast budget, vælg en passende indsats, og spil for underholdningens skyld.${slot.volatility === "High" || slot.volatility === "Extreme" ? " Med høj volatilitet anbefaler vi et større bankroll." : ""}`,
+    `Der findes ingen strategi der kan overvinde RNG'en i ${slot.slot_name}. Fokusér i stedet på disciplineret budgetstyring: fastlæg din session-bankroll på forhånd og hold dig til den, uanset resultaterne.${slot.volatility === "Low" ? " Den lave volatilitet tillader relativt mindre budgetter." : ""}`,
+    `${slot.slot_name} er 100% tilfældighedsbaseret – ingen spinteknik eller mønstergenkendelse virker. Det smarteste du kan gøre er at tilpasse din indsats til maskinens volatilitet og sætte klare tab- og gevinstgrænser inden du starter.`,
+    `Den eneste "strategi" for ${slot.slot_name} er god pengestyring. Bestem dit budget, del det i sessioner, og stop når budgettet er brugt. Ingen indsatssystem kan ændre den matematiske fordel på ${slot.rtp ? (100 - slot.rtp).toFixed(2) + "%" : "casinoets side"}.`,
+  ];
   faqs.push({
-    question: `Hvad er den bedste strategi til ${slot.slot_name}?`,
-    answer: `Da spillemaskiner er baseret på tilfældighed (RNG), er der ingen strategi der kan ændre house edge. Den bedste tilgang er effektiv bankroll management: sæt et fast budget, vælg en passende indsats i forhold til din bankroll, og spil for underholdningens skyld. ${slot.volatility === "High" || slot.volatility === "Extreme" ? "Med høj volatilitet anbefaler vi et større bankroll for at dække længere tørkeperioder." : ""}`,
+    question: pickVariant([
+      `Hvad er den bedste strategi til ${slot.slot_name}?`,
+      `Kan man bruge en strategi på ${slot.slot_name}?`,
+      `Hvordan vinder man på ${slot.slot_name}?`,
+    ], slot.slot_name, 70),
+    answer: stratAnswers[(h + 10) % stratAnswers.length],
   });
 
   return faqs;
