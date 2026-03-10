@@ -174,6 +174,7 @@ const Index = () => {
             ],
           },
           ...(latestSlots?.length ? [buildLatestSlotsSchema(latestSlots)] : []),
+          ...(popularSlots?.length ? [buildPopularSlotsSchema(popularSlots)] : []),
           buildFaqSchema([
             {
               question: "Hvad er det vigtigste at vide, før man spiller på online casino i Danmark?",
