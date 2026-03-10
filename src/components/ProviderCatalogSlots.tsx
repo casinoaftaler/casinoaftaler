@@ -155,6 +155,21 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
               Vis {Math.min(BATCH_SIZE, remaining)} mere ({remaining} tilbage)
             </Button>
           )}
+
+          {/* noscript fallback – full list of slot links for crawlers */}
+          <noscript>
+            <ul>
+              {catalogOnly.map((slot) => (
+                <li key={slot.slot_name}>
+                  <a href={`/slot-katalog/${slugifySlotName(slot.slot_name)}`}>
+                    {slot.slot_name}
+                    {slot.rtp ? ` – RTP: ${slot.rtp}%` : ""}
+                    {slot.volatility ? ` – ${slot.volatility}` : ""}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </noscript>
         </>
       )}
     </section>

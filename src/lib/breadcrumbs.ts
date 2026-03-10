@@ -419,19 +419,19 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/casinospil/spillemaskiner": [{ name: "Casinospil", path: "/casinospil" }],
 
   // Provider Slot Hubs – bound to /casinospil/spillemaskiner
-  "/spillemaskiner/pragmatic-play": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/netent": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/play-n-go": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/hacksaw-gaming": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/big-time-gaming": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/microgaming": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/nolimit-city": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/evolution-gaming": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/elk-studios": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/yggdrasil": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/relax-gaming": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/red-tiger": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
-  "/spillemaskiner/igt": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/pragmatic-play": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/netent": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/play-n-go": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/hacksaw-gaming": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/big-time-gaming": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/microgaming": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/nolimit-city": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/evolution-gaming": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/elk-studios": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/yggdrasil": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/relax-gaming": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/red-tiger": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/igt": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
 
   // /casinospil/roulette-strategi – removed (301 redirect to /casinospil/roulette)
 

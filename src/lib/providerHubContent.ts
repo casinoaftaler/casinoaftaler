@@ -230,7 +230,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "igt": {
     displayName: "IGT",
-    seoTitle: "IGT Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "IGT Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle IGT spillemaskiner med RTP, volatilitet og bonus hunt data. Klassiske og moderne slots fra den amerikanske gigant.",
     datePublished: "2026-03-10",
     introHtml: `
