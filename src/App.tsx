@@ -140,6 +140,7 @@ const CasinoAnmeldelser = lazy(() => import("./pages/CasinoAnmeldelser"));
 const Casinospil = lazy(() => import("./pages/Casinospil"));
 const Spillemaskiner = lazy(() => import("./pages/Spillemaskiner"));
 const SpillemaskinerHoejRTP = lazy(() => import("./pages/SpillemaskinerHoejRTP"));
+const ProviderSlotsHub = lazy(() => import("./pages/ProviderSlotsHub"));
 const SweetBonanzaGuide = lazy(() => import("./pages/slots/SweetBonanzaGuide"));
 const BookOfDeadGuide = lazy(() => import("./pages/slots/BookOfDeadGuide"));
 const GatesOfOlympusGuide = lazy(() => import("./pages/slots/GatesOfOlympusGuide"));
@@ -436,6 +437,7 @@ const App = () => (
                 <Route path="/casinoer/casino-og-skat" element={<CasinoOgSkatGuide />} />
                 <Route path="/casinospil/spillemaskiner" element={<Spillemaskiner />} />
                 <Route path="/casinospil/spillemaskiner/hoej-rtp" element={<SpillemaskinerHoejRTP />} />
+                <Route path="/spillemaskiner/:providerSlug" element={<ProviderSlotsHub />} />
                 <Route path="/casinospil/spillemaskiner/sweet-bonanza" element={<SweetBonanzaGuide />} />
                 <Route path="/casinospil/spillemaskiner/book-of-dead" element={<BookOfDeadGuide />} />
                 <Route path="/casinospil/spillemaskiner/gates-of-olympus" element={<GatesOfOlympusGuide />} />

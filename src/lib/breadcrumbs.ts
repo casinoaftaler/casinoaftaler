@@ -101,6 +101,20 @@ export const routeLabels: Record<string, string> = {
   "/megaways-slots": "Megaways Slots",
   "/jackpot-slots": "Jackpot Slots",
   "/bonus-buy-slots": "Bonus Buy Slots",
+  // Provider Slot Hubs
+  "/spillemaskiner/pragmatic-play": "Pragmatic Play Slots",
+  "/spillemaskiner/netent": "NetEnt Slots",
+  "/spillemaskiner/play-n-go": "Play'n GO Slots",
+  "/spillemaskiner/hacksaw-gaming": "Hacksaw Gaming Slots",
+  "/spillemaskiner/big-time-gaming": "Big Time Gaming Slots",
+  "/spillemaskiner/microgaming": "Microgaming Slots",
+  "/spillemaskiner/nolimit-city": "Nolimit City Slots",
+  "/spillemaskiner/evolution-gaming": "Evolution Slots",
+  "/spillemaskiner/elk-studios": "ELK Studios Slots",
+  "/spillemaskiner/yggdrasil": "Yggdrasil Slots",
+  "/spillemaskiner/relax-gaming": "Relax Gaming Slots",
+  "/spillemaskiner/red-tiger": "Red Tiger Slots",
+  "/spillemaskiner/igt": "IGT Slots",
   // Batch 2 – VIP & MobilePay
   "/vip-program": "VIP Program",
   "/casino-med-mobilepay": "Casino med MobilePay",
@@ -403,6 +417,22 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/live-casino/deal-or-no-deal": [{ name: "Live Casino", path: "/live-casino" }, { name: "Game Shows", path: "/live-casino/game-shows" }],
   "/casinospil/online-lotteri": [{ name: "Casinospil", path: "/casinospil" }],
   "/casinospil/spillemaskiner": [{ name: "Casinospil", path: "/casinospil" }],
+
+  // Provider Slot Hubs – bound to /casinospil/spillemaskiner
+  "/spillemaskiner/pragmatic-play": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/netent": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/play-n-go": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/hacksaw-gaming": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/big-time-gaming": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/microgaming": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/nolimit-city": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/evolution-gaming": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/elk-studios": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/yggdrasil": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/relax-gaming": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/red-tiger": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/igt": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+
   // /casinospil/roulette-strategi – removed (301 redirect to /casinospil/roulette)
 
   // Roulette cluster – all spokes bound to /casinospil/roulette hub

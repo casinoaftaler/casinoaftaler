@@ -226,6 +226,21 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/spiludviklere/elk-studios", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
   { path: "/spiludviklere/evolution-gaming", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
 
+  // ── Provider Slot Hubs ──
+  { path: "/spillemaskiner/pragmatic-play", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/netent", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/play-n-go", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/hacksaw-gaming", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/big-time-gaming", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/microgaming", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/nolimit-city", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/evolution-gaming", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/elk-studios", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/yggdrasil", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/relax-gaming", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/red-tiger", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/igt", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+
   // ── Betalingsmetoder ──
   { path: "/betalingsmetoder", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
   { path: "/betalingsmetoder/apple-pay", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
