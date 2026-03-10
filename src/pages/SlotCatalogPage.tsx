@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
