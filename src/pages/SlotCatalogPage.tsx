@@ -565,6 +565,29 @@ function generateHeroDescription(slot: any): string {
   return parts.join(" ");
 }
 
+// ─── Deep Content Parser ───────────────────────────────────
+
+interface DeepContent {
+  rtp_analysis: string;
+  volatility_insight: string;
+  bonus_hunt_analysis: string;
+  provider_context: string;
+  game_mechanics: string;
+  bankroll_advice: string;
+}
+
+function parseDeepContent(slot: any): DeepContent | null {
+  const raw = (slot as any).deep_content;
+  if (!raw) return null;
+  try {
+    const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    if (parsed.rtp_analysis && parsed.volatility_insight) return parsed as DeepContent;
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 // ─── Main Component ────────────────────────────────────────
 
 export default function SlotCatalogPage() {
