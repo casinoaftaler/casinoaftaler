@@ -53,6 +53,7 @@ const Index = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const { data: casinos, isLoading } = useCasinos();
+  const { data: latestSlots } = useLatestSlots();
 
   const { data: latestNewsDate } = useQuery({
     queryKey: ["homepage-latest-news-date"],
