@@ -891,11 +891,13 @@ export default function SlotCatalogPage() {
         <section className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Om {slotName}</h2>
           {slotDescription ? (
-            <div className="text-muted-foreground leading-relaxed space-y-4">
-              {slotDescription.split("\n").filter(Boolean).map((p: string, i: number) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+            <div className="text-muted-foreground leading-relaxed space-y-4"
+              dangerouslySetInnerHTML={{
+                __html: autoLinkEntities(
+                  slotDescription.split("\n").filter(Boolean).map((p: string) => `<p>${p}</p>`).join("")
+                )
+              }}
+            />
           ) : (
             <>
               <p className="text-muted-foreground leading-relaxed mb-4">
