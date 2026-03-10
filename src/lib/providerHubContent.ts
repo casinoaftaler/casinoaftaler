@@ -145,7 +145,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "evolution-gaming": {
     displayName: "Evolution",
-    seoTitle: "Evolution Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Evolution Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Komplet oversigt over Evolution/NetEnt slots med RTP og volatilitet. Bonus hunt statistik fra ægte danske community streams.",
     datePublished: "2026-03-10",
     introHtml: `
