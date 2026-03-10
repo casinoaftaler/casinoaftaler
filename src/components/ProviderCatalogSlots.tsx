@@ -57,10 +57,10 @@ export function ProviderCatalogSlots({ providerSlug }: ProviderCatalogSlotsProps
 
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+      <h3 className="mb-4 text-xl font-bold flex items-center gap-2">
         <Gamepad2 className="h-7 w-7 text-primary" />
         Alle spillemaskiner fra {providerName}
-      </h2>
+      </h3>
       <p className="mb-2 text-muted-foreground leading-relaxed">
         Komplet oversigt over {allSlots.length} spillemaskiner fra {providerName} i vores database.
         Hver maskine er testet i vores live bonus hunts med ægte community-data.
