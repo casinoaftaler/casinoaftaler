@@ -1,24 +1,54 @@
-## Enterprise SEO Expansion – Implementeret ✅
 
-### 1. Dynamiske Provider-Hubs ✅
-- `src/hooks/useProviderSlots.ts` – `useProviderSlots()` + `useLatestCatalogUpdate()` hooks
-- `src/components/ProviderCatalogSlots.tsx` – erstatter ProviderSlotLinks med live database-data
-- `src/pages/providers/ProviderPageTemplate.tsx` – swappet til ProviderCatalogSlots
 
-### 2. Live Freshness-signaler ✅
-- Dynamisk `dateModified` fra reel `slot_catalog.updated_at`
-- Synlig freshness-badge: "Data opdateret efter Bonus Hunt #X · dato"
-- Implementeret på både /slot-database og provider-sider
+# Plan: Freshness-strategi for forsiden – daglige/ugentlige rotationer
 
-### 3. SoftwareApplication Schema ✅
-- `src/lib/slotCatalogSchema.ts` – `buildSlotCatalogSchema()` genererer ItemList + SoftwareApplication
-- Injiceret per pagineret side på /slot-database
-- aggregateRating baseret på highest_x og bonus_count
+## Problemet
+Google ser forsiden som "statisk" mellem builds, fordi det meste dynamiske indhold kræver JS-rendering. Vi mangler synlige indholdsrotationer der ændrer sig dagligt/ugentligt og er synlige i HTML for crawlere.
 
-### 4. Provider Slot Hub Pages ✅
-- `src/lib/providerHubContent.ts` – unik SEO-tekst, meta, intro per provider (13 stk)
-- `src/pages/ProviderSlotsHub.tsx` – template med dynamisk stats, top 5, full catalog, cross-links
-- Ruter: `/spillemaskiner/{provider}` for alle 13 providers
-- Breadcrumbs: Forside > Casinospil > Spillemaskiner > [Provider] Slots
-- seoRoutes + page_metadata registreret
-- Article + ItemList JSON-LD schema per side
+## Nuværende freshness-signaler
+- `TodayUpdatedSection`: Viser dagens dato + seneste nyhed (DB-drevet, kræver JS)
+- `WeeklyRotationReviews`: Roterer 3 anmeldelser ugentligt (client-side, kræver JS)
+- `HomepageLatestSlots/PopularSlots`: DB-drevet, kræver JS
+- HeroSection: Statisk "marts 2026" tekst
+
+## Nye komponenter
+
+### 1. `DailyRotatingTip` – Dagligt skiftende indhold (ingen DB)
+- Pool af 30+ danske casino-tips/facts (statisk array i koden)
+- Vælger tip baseret på `dayOfYear % tips.length` – ændrer sig hver dag
+- Renderet som synlig tekst med dato i `<time datetime="...">` tag
+- Inkluderer `<noscript>` fallback med alle tips som `<ul>` (crawlbar)
+- Placeres lige efter `TodayUpdatedSection`
+- Hvert tip indeholder et dofollow `<Link>` til en relevant underside
+
+### 2. `DailyCasinoSpotlight` – Dagligt roterende casino-fokus
+- Roterer gennem de 6 partner-casinoer baseret på `dayOfYear % 6`
+- Viser et kort highlight-card med navn, score, og "Dagens anbefaling" badge
+- Linker til casino-anmeldelsen (dofollow)
+- Placeres i `TodayUpdatedSection` som et 3. kort (grid udvides til 3 kolonner)
+
+### 3. `WeeklyGuideRotation` – Ugentlig guide-rotation
+- Roterer 3 guide-links ugentligt fra en pool af alle hub/spoke-sider
+- Supplement til `WeeklyRotationReviews` men for guides (bonus, spil, betalingsmetoder)
+- Baseret på `ISOWeek` ligesom den eksisterende komponent
+- Placeres efter `WeeklyRotationReviews`
+
+### 4. Noscript-fallbacks for eksisterende sektioner
+- `TodayUpdatedSection`: Tilføj `<noscript>` med statiske links til `/free-spins-i-dag` og `/casino-nyheder`
+- `HomepageLiveCommunity`: Tilføj `<noscript>` med links til `/bonus-hunt`, `/community/slots`
+
+## Teknisk tilgang
+- **Ingen nye DB-kald** – alle rotationer er deterministiske (dag/uge-baserede)
+- Alle nye komponenter renderer synlig HTML med `<a>`/`<Link>` tags
+- `<time>` tags med ISO-datoer for maskinlæsbar freshness
+- `<noscript>` fallbacks sikrer crawl-discovery uden JS
+
+## Filer der oprettes/ændres
+| Fil | Handling |
+|-----|---------|
+| `src/components/DailyRotatingTip.tsx` | **Ny** – 30+ tips med daglig rotation |
+| `src/components/DailyCasinoSpotlight.tsx` | **Ny** – dagligt casino-highlight |
+| `src/components/WeeklyGuideRotation.tsx` | **Ny** – ugentlig guide-rotation |
+| `src/components/TodayUpdatedSection.tsx` | **Ændring** – tilføj noscript fallback |
+| `src/pages/Index.tsx` | **Ændring** – indsæt nye komponenter |
+
