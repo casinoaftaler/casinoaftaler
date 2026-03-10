@@ -77,7 +77,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "hacksaw-gaming": {
     displayName: "Hacksaw Gaming",
-    seoTitle: "Hacksaw Gaming Slots – Spillemaskiner & Statistik 2026",
+    seoTitle: "Hacksaw Gaming Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle Hacksaw Gaming slots med RTP, volatilitet og max win-data. Se ægte bonus hunt resultater fra danske community streams.",
     datePublished: "2026-03-10",
     introHtml: `
