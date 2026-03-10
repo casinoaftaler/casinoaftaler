@@ -37,7 +37,7 @@ export function TodayUpdatedSection() {
           <RefreshCw className="h-4 w-4 text-primary" />
           <span className="text-sm font-semibold text-primary">Opdateret i dag – {todayFormatted}</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {/* Free Spins i dag link */}
           <Link
             to="/free-spins-i-dag"
