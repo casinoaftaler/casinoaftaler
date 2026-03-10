@@ -217,7 +217,7 @@ export default function ProviderSlotsHub() {
         <Separator className="my-8" />
 
         {/* Full catalog table (reuses existing component) */}
-        <ProviderCatalogSlots providerSlug={providerSlug} />
+        <ProviderCatalogSlots providerSlug={validSlug} />
 
         <Separator className="my-8" />
 
