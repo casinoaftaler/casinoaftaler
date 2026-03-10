@@ -217,7 +217,7 @@ function toDanishISO(date: Date): string {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   build: {
-    sourcemap: true,
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: {
