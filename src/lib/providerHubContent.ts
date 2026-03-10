@@ -60,7 +60,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "play-n-go": {
     displayName: "Play'n GO",
-    seoTitle: "Play'n GO Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Play'n GO Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Komplet liste over Play'n GO spillemaskiner med RTP, volatilitet og bonus hunt resultater. Ægte data fra danske streams.",
     datePublished: "2026-03-10",
     introHtml: `
