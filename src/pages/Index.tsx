@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { WhyTrustUs } from "@/components/WhyTrustUs";
 import { QuickNavSidebar } from "@/components/QuickNavBar";
 import { TodayUpdatedSection } from "@/components/TodayUpdatedSection";
+import { HomepageLatestSlots, useLatestSlots, buildLatestSlotsSchema } from "@/components/HomepageLatestSlots";
 import { WeeklyRotationReviews } from "@/components/WeeklyRotationReviews";
 import { HomepageLiveCommunity } from "@/components/HomepageLiveCommunity";
 import { HomepageSeoSections } from "@/components/HomepageSeoSections";
