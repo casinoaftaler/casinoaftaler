@@ -8,6 +8,8 @@ import { TodayUpdatedSection } from "@/components/TodayUpdatedSection";
 import { HomepageLatestSlots, useLatestSlots, buildLatestSlotsSchema } from "@/components/HomepageLatestSlots";
 import { HomepagePopularSlots, usePopularSlots, buildPopularSlotsSchema } from "@/components/HomepagePopularSlots";
 import { WeeklyRotationReviews } from "@/components/WeeklyRotationReviews";
+import { DailyRotatingTip } from "@/components/DailyRotatingTip";
+import { WeeklyGuideRotation } from "@/components/WeeklyGuideRotation";
 import { HomepageLiveCommunity } from "@/components/HomepageLiveCommunity";
 import { HomepageSeoSections } from "@/components/HomepageSeoSections";
 import { HomepagePaymentSection, HomepageProviderSection } from "@/components/HomepagePaymentProviders";
