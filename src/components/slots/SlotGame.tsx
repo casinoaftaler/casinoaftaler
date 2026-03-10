@@ -162,7 +162,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
   const [autoSpinCount, setAutoSpinCount] = useState<AutoSpinCount>(10);
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
-  const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoSpinTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
   const autoSpinScheduledRef = useRef(false);
   

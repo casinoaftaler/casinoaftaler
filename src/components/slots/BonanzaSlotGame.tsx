@@ -143,7 +143,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const [autoSpinCount, setAutoSpinCount] = useState<AutoSpinCount>(10);
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
   const autoSpinsRemainingRef = useRef<number | null>(null);
-  const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoSpinTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
   const isAutoSpinningRef = useRef(false);
   const pendingPostWinSpinRef = useRef<"bonus" | "auto" | null>(null);

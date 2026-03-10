@@ -79,7 +79,7 @@ class SlotSoundEffects {
   private currentGameId: string = "book-of-fedesvin";
   private musicGainNode: GainNode | null = null;
   private currentMusic: OscillatorNode[] = [];
-  private musicInterval: NodeJS.Timeout | null = null;
+  private musicInterval: ReturnType<typeof setInterval> | null = null;
 
   // Custom uploaded sound files
   private customSoundFiles: CustomSoundFiles = {};
