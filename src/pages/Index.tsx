@@ -280,6 +280,7 @@ const Index = () => {
 
       <TodayUpdatedSection />
       <HomepageLatestSlots />
+      <HomepagePopularSlots />
       <HomepageLiveCommunity />
       <WhyTrustUs />
 
