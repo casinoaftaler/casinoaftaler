@@ -225,6 +225,20 @@ export function HomepageLiveCommunity() {
             </Link>
           </Button>
         </div>
+
+        {/* Noscript fallback for crawlers */}
+        <noscript>
+          <div style={{ marginTop: "12px" }}>
+            <strong>Casinoaftaler Community:</strong>
+            <ul>
+              <li><a href="/bonus-hunt">Se live bonus hunt resultater</a></li>
+              <li><a href="/bonus-hunt/arkiv">Bonus Hunt Arkiv – alle tidligere hunts</a></li>
+              <li><a href="/community/slots">Prøv spillehallen</a></li>
+              <li><a href="/community/turneringer">Community turneringer</a></li>
+              <li><a href="/slot-database">Slot Database – 1.400+ spilleautomater</a></li>
+            </ul>
+          </div>
+        </noscript>
       </div>
     </section>
   );

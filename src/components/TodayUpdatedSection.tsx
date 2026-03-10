@@ -83,7 +83,26 @@ export function TodayUpdatedSection() {
               </div>
             </div>
           )}
+
+          {/* Daily rotating casino spotlight */}
+          <DailyCasinoSpotlight />
         </div>
+
+        {/* Noscript fallback for crawlers */}
+        <noscript>
+          <div style={{ marginTop: "8px" }}>
+            <ul>
+              <li><a href="/free-spins-i-dag">Free Spins i Dag – dagligt opdaterede tilbud</a></li>
+              <li><a href="/casino-nyheder">Seneste casino-nyheder fra Danmark</a></li>
+              <li><a href="/casino-anmeldelser/spildansknu">SpilDanskNu Anmeldelse</a></li>
+              <li><a href="/casino-anmeldelser/spilleautomaten">Spilleautomaten Anmeldelse</a></li>
+              <li><a href="/casino-anmeldelser/betinia">Betinia Anmeldelse</a></li>
+              <li><a href="/casino-anmeldelser/campobet">Campobet Anmeldelse</a></li>
+              <li><a href="/casino-anmeldelser/swift-casino">Swift Casino Anmeldelse</a></li>
+              <li><a href="/casino-anmeldelser/luna-casino">Luna Casino Anmeldelse</a></li>
+            </ul>
+          </div>
+        </noscript>
       </div>
     </section>
   );

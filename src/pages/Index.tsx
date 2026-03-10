@@ -302,6 +302,9 @@ const Index = () => {
         <WeeklyRotationReviews />
         <Separator className="my-10" />
 
+        <WeeklyGuideRotation />
+        <Separator className="my-10" />
+
         {/* Sikkerhed og licens */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sikkerhed og Licens – Spil Trygt på Online Casino</h2>
