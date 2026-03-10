@@ -55,6 +55,7 @@ const Index = () => {
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const { data: casinos, isLoading } = useCasinos();
   const { data: latestSlots } = useLatestSlots();
+  const { data: popularSlots } = usePopularSlots();
 
   const { data: latestNewsDate } = useQuery({
     queryKey: ["homepage-latest-news-date"],
