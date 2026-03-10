@@ -446,6 +446,34 @@ const Spillemaskiner = () => {
               <CardContent><p className="text-sm text-muted-foreground">Opfinderne af Megaways-mekanikken. Bonanza, Extra Chilli og Danger High Voltage har defineret en hel genre. Licenserer Megaways-teknologien til andre udviklere.</p></CardContent>
             </Card>
           </div>
+
+          <h3 className="mb-3 text-xl font-semibold mt-8">Udforsk Spillemaskiner fra Hver Udbyder</h3>
+          <p className="mb-4 text-sm text-muted-foreground">Se alle spillemaskiner fra de største udbydere – med RTP, volatilitet og community data.</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {[
+              { name: "Pragmatic Play", slug: "pragmatic-play" },
+              { name: "NetEnt", slug: "netent" },
+              { name: "Play'n GO", slug: "play-n-go" },
+              { name: "Hacksaw Gaming", slug: "hacksaw-gaming" },
+              { name: "Big Time Gaming", slug: "big-time-gaming" },
+              { name: "Microgaming", slug: "microgaming" },
+              { name: "Nolimit City", slug: "nolimit-city" },
+              { name: "Evolution Gaming", slug: "evolution-gaming" },
+              { name: "ELK Studios", slug: "elk-studios" },
+              { name: "Yggdrasil", slug: "yggdrasil" },
+              { name: "Relax Gaming", slug: "relax-gaming" },
+              { name: "Red Tiger", slug: "red-tiger" },
+              { name: "IGT", slug: "igt" },
+            ].map((p) => (
+              <Link
+                key={p.slug}
+                to={`/spillemaskiner/${p.slug}`}
+                className="rounded-lg border border-border bg-card p-3 text-sm font-medium text-foreground hover:border-primary/40 hover:text-primary transition-colors text-center"
+              >
+                {p.name} Slots
+              </Link>
+            ))}
+          </div>
         </section>
 
         <Separator className="my-10" />

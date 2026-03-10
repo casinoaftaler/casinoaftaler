@@ -276,6 +276,7 @@ const Index = () => {
       </section>
 
       <TodayUpdatedSection />
+      <HomepageLatestSlots />
       <HomepageLiveCommunity />
       <WhyTrustUs />
 
