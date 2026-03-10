@@ -56,7 +56,11 @@ export default function ProviderSlotsHub() {
     };
   }, [slots]);
 
-  const pageUrl = `${SITE_URL}/spillemaskiner/${providerSlug}`;
+  if (!validSlug || !content) {
+    return <Navigate to="/casinospil/spillemaskiner" replace />;
+  }
+
+  const pageUrl = `${SITE_URL}/spillemaskiner/${validSlug}`;
 
   // Build JSON-LD
   const articleSchema = buildArticleSchema({
