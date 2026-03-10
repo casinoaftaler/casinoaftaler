@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { WhyTrustUs } from "@/components/WhyTrustUs";
 import { QuickNavSidebar } from "@/components/QuickNavBar";
 import { TodayUpdatedSection } from "@/components/TodayUpdatedSection";
+import { HomepageLatestSlots, useLatestSlots, buildLatestSlotsSchema } from "@/components/HomepageLatestSlots";
 import { WeeklyRotationReviews } from "@/components/WeeklyRotationReviews";
 import { HomepageLiveCommunity } from "@/components/HomepageLiveCommunity";
 import { HomepageSeoSections } from "@/components/HomepageSeoSections";
@@ -52,6 +53,7 @@ const Index = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const { data: casinos, isLoading } = useCasinos();
+  const { data: latestSlots } = useLatestSlots();
 
   const { data: latestNewsDate } = useQuery({
     queryKey: ["homepage-latest-news-date"],
@@ -169,6 +171,7 @@ const Index = () => {
               { "@type": "ListItem", position: 6, name: "Luna Casino", url: "https://casinoaftaler.dk/casino-anmeldelser/luna-casino" },
             ],
           },
+          ...(latestSlots?.length ? [buildLatestSlotsSchema(latestSlots)] : []),
           buildFaqSchema([
             {
               question: "Hvad er det vigtigste at vide, før man spiller på online casino i Danmark?",
@@ -273,6 +276,7 @@ const Index = () => {
       </section>
 
       <TodayUpdatedSection />
+      <HomepageLatestSlots />
       <HomepageLiveCommunity />
       <WhyTrustUs />
 
