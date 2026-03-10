@@ -421,43 +421,31 @@ const Spillemaskiner = () => {
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link></CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground">Skandinavisk kvalitetsudbyder bag Starburst, Gonzo's Quest, Dead or Alive og Blood Suckers. Kendt for poleret grafik, ikoniske titler og konsekvent høj RTP (95–98 %). Deres klassikere definerer genren.</p></CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link></CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground">Markedsleder med over 200 slots og enorm produktionskapacitet. Gates of Olympus, Sweet Bonanza og Dog House Megaways er blandt verdens mest spillede. Varieret volatilitet og stærk bonus buy-integration.</p></CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link></CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground">Specialiseret i ekstremt høj volatilitet med unikke mekanikker: xNudge, xWays, xBomb og Infectious xWays. Mental, San Quentin og Tombstone R.I.P. er legendariske. Max wins op til 150.000x.</p></CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link></CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground">Innovativ studio med fokus på minimalistisk design og høj volatilitet. Wanted Dead or a Wild, Chaos Crew og Itero er populære. Stærke scratch card-spil og unikke gridmekanikker.</p></CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link></CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground">Svensk udvikler bag Book of Dead – en af verdens mest populære slots. Bredt katalog fra lav til høj volatilitet. Moon Princess, Reactoonz og Rich Wilde-serien er kerneprodukter.</p></CardContent>
-            </Card>
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link></CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground">Opfinderne af Megaways-mekanikken. Bonanza, Extra Chilli og Danger High Voltage har defineret en hel genre. Licenserer Megaways-teknologien til andre udviklere.</p></CardContent>
-            </Card>
+            {[
+              { name: "NetEnt", devSlug: "netent", hubSlug: "netent", desc: "Skandinavisk kvalitetsudbyder bag Starburst, Gonzo's Quest, Dead or Alive og Blood Suckers. Kendt for poleret grafik, ikoniske titler og konsekvent høj RTP (95–98 %). Deres klassikere definerer genren." },
+              { name: "Pragmatic Play", devSlug: "pragmatic-play", hubSlug: "pragmatic-play", desc: "Markedsleder med over 200 slots og enorm produktionskapacitet. Gates of Olympus, Sweet Bonanza og Dog House Megaways er blandt verdens mest spillede. Varieret volatilitet og stærk bonus buy-integration." },
+              { name: "Nolimit City", devSlug: "nolimit-city", hubSlug: "nolimit-city", desc: "Specialiseret i ekstremt høj volatilitet med unikke mekanikker: xNudge, xWays, xBomb og Infectious xWays. Mental, San Quentin og Tombstone R.I.P. er legendariske. Max wins op til 150.000x." },
+              { name: "Hacksaw Gaming", devSlug: "hacksaw-gaming", hubSlug: "hacksaw-gaming", desc: "Innovativ studio med fokus på minimalistisk design og høj volatilitet. Wanted Dead or a Wild, Chaos Crew og Itero er populære. Stærke scratch card-spil og unikke gridmekanikker." },
+              { name: "Play'n GO", devSlug: "play-n-go", hubSlug: "play-n-go", desc: "Svensk udvikler bag Book of Dead – en af verdens mest populære slots. Bredt katalog fra lav til høj volatilitet. Moon Princess, Reactoonz og Rich Wilde-serien er kerneprodukter." },
+              { name: "Big Time Gaming", devSlug: "big-time-gaming", hubSlug: "big-time-gaming", desc: "Opfinderne af Megaways-mekanikken. Bonanza, Extra Chilli og Danger High Voltage har defineret en hel genre. Licenserer Megaways-teknologien til andre udviklere." },
+            ].map((p) => (
+              <Card key={p.devSlug} className="border-border bg-card">
+                <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Star className="h-4 w-4 text-primary" /><Link to={`/spiludviklere/${p.devSlug}`} className={linkClass}>{p.name}</Link></CardTitle></CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground mb-3">{p.desc}</p>
+                  <div className="flex flex-wrap gap-2">
+                    <Link to={`/spiludviklere/${p.devSlug}`} className="text-xs text-primary hover:underline font-medium">Læs dybdegående artikel →</Link>
+                    <Link to={`/spillemaskiner/${p.hubSlug}`} className="text-xs text-muted-foreground hover:text-primary hover:underline font-medium">Se alle slots →</Link>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
 
-          <h3 className="mb-3 text-xl font-semibold mt-8">Udforsk Spillemaskiner fra Hver Udbyder</h3>
-          <p className="mb-4 text-sm text-muted-foreground">Se alle spillemaskiner fra de største udbydere – med RTP, volatilitet og community data.</p>
+          <p className="mb-4 text-sm text-muted-foreground">Udforsk spillemaskiner fra alle udbydere – med RTP, volatilitet og community data:</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {[
-              { name: "Pragmatic Play", slug: "pragmatic-play" },
-              { name: "NetEnt", slug: "netent" },
-              { name: "Play'n GO", slug: "play-n-go" },
-              { name: "Hacksaw Gaming", slug: "hacksaw-gaming" },
-              { name: "Big Time Gaming", slug: "big-time-gaming" },
               { name: "Microgaming", slug: "microgaming" },
-              { name: "Nolimit City", slug: "nolimit-city" },
               { name: "Evolution Gaming", slug: "evolution-gaming" },
               { name: "ELK Studios", slug: "elk-studios" },
               { name: "Yggdrasil", slug: "yggdrasil" },
