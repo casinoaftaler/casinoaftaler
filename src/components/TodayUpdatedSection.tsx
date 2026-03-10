@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Sparkles, Newspaper, ArrowRight, RefreshCw } from "lucide-react";
 import { format } from "date-fns";
 import { da } from "date-fns/locale";
+import { DailyCasinoSpotlight } from "./DailyCasinoSpotlight";
 
 /**
  * "Opdateret i dag" section for the homepage.
@@ -36,7 +37,7 @@ export function TodayUpdatedSection() {
           <RefreshCw className="h-4 w-4 text-primary" />
           <span className="text-sm font-semibold text-primary">Opdateret i dag – {todayFormatted}</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {/* Free Spins i dag link */}
           <Link
             to="/free-spins-i-dag"
@@ -82,7 +83,26 @@ export function TodayUpdatedSection() {
               </div>
             </div>
           )}
+
+          {/* Daily rotating casino spotlight */}
+          <DailyCasinoSpotlight />
         </div>
+
+        {/* Noscript fallback for crawlers */}
+        <noscript>
+          <div style={{ marginTop: "8px" }}>
+            <ul>
+              <li><a href="/free-spins-i-dag">Free Spins i Dag – dagligt opdaterede tilbud</a></li>
+              <li><a href="/casino-nyheder">Seneste casino-nyheder fra Danmark</a></li>
+              <li><a href="/casino-anmeldelser/spildansknu">SpilDanskNu Anmeldelse</a></li>
+              <li><a href="/casino-anmeldelser/spilleautomaten">Spilleautomaten Anmeldelse</a></li>
+              <li><a href="/casino-anmeldelser/betinia">Betinia Anmeldelse</a></li>
+              <li><a href="/casino-anmeldelser/campobet">Campobet Anmeldelse</a></li>
+              <li><a href="/casino-anmeldelser/swift-casino">Swift Casino Anmeldelse</a></li>
+              <li><a href="/casino-anmeldelser/luna-casino">Luna Casino Anmeldelse</a></li>
+            </ul>
+          </div>
+        </noscript>
       </div>
     </section>
   );
