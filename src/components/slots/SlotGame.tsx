@@ -129,7 +129,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   // Spin lock to prevent rapid clicking
   const spinLockRef = useRef(false);
   const [isSpinLocked, setIsSpinLocked] = useState(false);
-  const spinLockTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const spinLockTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   const winLinesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
