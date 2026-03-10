@@ -79,7 +79,7 @@ export function HomepagePopularSlots() {
       <div className="mt-4 text-center">
         <Link
           to="/slot-database"
-          className="text-sm text-primary hover:underline font    -medium"
+          className="text-sm text-primary hover:underline font-medium"
         >
           Udforsk hele slot-databasen →
         </Link>
@@ -88,7 +88,7 @@ export function HomepagePopularSlots() {
       <noscript>
         <ul>
           {slots.map((slot) => (
-            <li key={slot.slug}>uzione
+            <li key={slot.slug}>
               <a href={`/slot-katalog/${slot.slug}`}>
                 {slot.slot_name} – {slot.provider}
                 {slot.rtp ? ` (RTP: ${slot.rtp}%)` : ""}
