@@ -26,7 +26,7 @@ export interface ProviderHubContent {
 export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   "pragmatic-play": {
     displayName: "Pragmatic Play",
-    seoTitle: "Pragmatic Play Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Pragmatic Play Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Komplet oversigt over alle Pragmatic Play spillemaskiner med RTP, volatilitet og bonus hunt statistik fra ægte danske streams.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -43,7 +43,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "netent": {
     displayName: "NetEnt",
-    seoTitle: "NetEnt Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "NetEnt Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Se alle NetEnt spillemaskiner med detaljeret RTP, volatilitet og bonus hunt data. Komplet katalog med ægte community-statistik.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -60,7 +60,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "play-n-go": {
     displayName: "Play'n GO",
-    seoTitle: "Play'n GO Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Play'n GO Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Komplet liste over Play'n GO spillemaskiner med RTP, volatilitet og bonus hunt resultater. Ægte data fra danske streams.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -77,7 +77,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "hacksaw-gaming": {
     displayName: "Hacksaw Gaming",
-    seoTitle: "Hacksaw Gaming Slots – Spillemaskiner & Statistik 2026",
+    seoTitle: "Hacksaw Gaming Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle Hacksaw Gaming slots med RTP, volatilitet og max win-data. Se ægte bonus hunt resultater fra danske community streams.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -94,7 +94,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "big-time-gaming": {
     displayName: "Big Time Gaming",
-    seoTitle: "Big Time Gaming Slots – Spillemaskiner & Statistik 2026",
+    seoTitle: "Big Time Gaming Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle Big Time Gaming spillemaskiner inkl. Megaways-titler. RTP, volatilitet og bonus hunt data fra ægte danske streams.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -111,7 +111,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "microgaming": {
     displayName: "Microgaming",
-    seoTitle: "Microgaming Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Microgaming Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Komplet Microgaming slot-katalog med RTP, volatilitet og jackpot-data. Ægte statistik fra bonus hunts og community streams.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -128,7 +128,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "nolimit-city": {
     displayName: "Nolimit City",
-    seoTitle: "Nolimit City Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Nolimit City Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle Nolimit City spillemaskiner med xWays og xBet mekanikker. RTP, volatilitet og max win fra ægte bonus hunt data.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -145,7 +145,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "evolution-gaming": {
     displayName: "Evolution",
-    seoTitle: "Evolution Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Evolution Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Komplet oversigt over Evolution/NetEnt slots med RTP og volatilitet. Bonus hunt statistik fra ægte danske community streams.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -162,7 +162,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "elk-studios": {
     displayName: "ELK Studios",
-    seoTitle: "ELK Studios Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "ELK Studios Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Se alle ELK Studios spillemaskiner med RTP, volatilitet og bonus hunt data. Ægte performance-statistik fra danske streams.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -179,7 +179,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "yggdrasil": {
     displayName: "Yggdrasil Gaming",
-    seoTitle: "Yggdrasil Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Yggdrasil Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle Yggdrasil spillemaskiner med RTP, volatilitet og max win. Ægte bonus hunt data fra danske community streams.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -196,7 +196,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "relax-gaming": {
     displayName: "Relax Gaming",
-    seoTitle: "Relax Gaming Slots – Spillemaskiner & Statistik 2026",
+    seoTitle: "Relax Gaming Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle Relax Gaming spillemaskiner inkl. Money Train-serien. RTP, volatilitet og bonus hunt statistik fra danske streams.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -213,7 +213,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "red-tiger": {
     displayName: "Red Tiger Gaming",
-    seoTitle: "Red Tiger Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Red Tiger Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Komplet Red Tiger Gaming slot-katalog med RTP, volatilitet og jackpot-data. Ægte statistik fra bonus hunts.",
     datePublished: "2026-03-10",
     introHtml: `
@@ -230,7 +230,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "igt": {
     displayName: "IGT",
-    seoTitle: "IGT Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "IGT Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle IGT spillemaskiner med RTP, volatilitet og bonus hunt data. Klassiske og moderne slots fra den amerikanske gigant.",
     datePublished: "2026-03-10",
     introHtml: `
