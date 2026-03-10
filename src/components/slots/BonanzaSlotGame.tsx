@@ -104,7 +104,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const [columnSpinStates, setColumnSpinStates] = useState<BonanzaColumnSpinState[]>(
     Array(BONANZA_COLS).fill('idle')
   );
-  const columnStopTimersRef = useRef<NodeJS.Timeout[]>([]);
+  const columnStopTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const serverResultRef = useRef<any>(null);
   const [cellAnimStates, setCellAnimStates] = useState<Map<number, BonanzaCellAnimState>>(new Map());
   const [cellDropOffsets, setCellDropOffsets] = useState<Map<number, number>>(new Map());
