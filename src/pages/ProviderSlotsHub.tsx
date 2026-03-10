@@ -47,7 +47,7 @@ export default function ProviderSlotsHub() {
     const topSlots = [...slots]
       .sort((a, b) => (b.bonus_count || 0) - (a.bonus_count || 0))
       .slice(0, 5);
-    const highestX = Math.max(...slots.map((s) => s.highest_x || 0));
+    const highestX = slots.reduce((max, s) => Math.max(max, s.highest_x || 0), 0);
     const totalBonusHunts = slots.reduce((sum, s) => sum + (s.bonus_count || 0), 0);
 
     return {
