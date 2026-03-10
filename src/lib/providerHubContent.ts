@@ -196,7 +196,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "relax-gaming": {
     displayName: "Relax Gaming",
-    seoTitle: "Relax Gaming Slots – Spillemaskiner & Statistik 2026",
+    seoTitle: "Relax Gaming Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Alle Relax Gaming spillemaskiner inkl. Money Train-serien. RTP, volatilitet og bonus hunt statistik fra danske streams.",
     datePublished: "2026-03-10",
     introHtml: `
