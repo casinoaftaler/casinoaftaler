@@ -994,44 +994,44 @@ export default function SlotCatalogPage() {
               <>
                 <section className="mb-8">
                   <h2 className="text-2xl font-bold mb-4">{H2_RTP(slotName, slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4">
-                    <p>{dc.rtp_analysis}</p>
-                  </div>
+                  <div className="text-muted-foreground leading-relaxed space-y-4"
+                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.rtp_analysis) }}
+                  />
                 </section>
 
                 <section className="mb-8">
                   <h2 className="text-2xl font-bold mb-4">{H2_VOL(slotName, slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4">
-                    <p>{dc.volatility_insight}</p>
-                  </div>
+                  <div className="text-muted-foreground leading-relaxed space-y-4"
+                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.volatility_insight) }}
+                  />
                 </section>
 
                 <section className="mb-8">
                   <h2 className="text-2xl font-bold mb-4">{H2_BH(slotName, slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4">
-                    <p>{dc.bonus_hunt_analysis}</p>
-                  </div>
+                  <div className="text-muted-foreground leading-relaxed space-y-4"
+                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.bonus_hunt_analysis) }}
+                  />
                 </section>
 
                 <section className="mb-8">
                   <h2 className="text-2xl font-bold mb-4">{H2_PROV(slot.provider || "Ukendt", slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4">
-                    <p>{dc.provider_context}</p>
-                  </div>
+                  <div className="text-muted-foreground leading-relaxed space-y-4"
+                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.provider_context) }}
+                  />
                 </section>
 
                 <section className="mb-8">
                   <h2 className="text-2xl font-bold mb-4">{H2_HOW(slotName, slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4">
-                    <p>{dc.game_mechanics}</p>
-                  </div>
+                  <div className="text-muted-foreground leading-relaxed space-y-4"
+                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.game_mechanics) }}
+                  />
                 </section>
 
                 <section className="mb-8">
                   <h2 className="text-2xl font-bold mb-4">{H2_BANK(slotName, slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4">
-                    <p>{dc.bankroll_advice}</p>
-                  </div>
+                  <div className="text-muted-foreground leading-relaxed space-y-4"
+                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.bankroll_advice) }}
+                  />
                 </section>
               </>
             );
