@@ -683,11 +683,16 @@ function parseDeepContent(slot: any): DeepContent | null {
 }
 
 /**
- * Wraps plain text in <p> tags and runs it through the entity auto-linker
- * to inject internal links to money-pages and glossary terms.
+ * Splits text on double-newlines (or single newlines) into separate <p> tags,
+ * then runs the result through the entity auto-linker for internal links.
+ * This ensures AI-generated prose renders as natural multi-paragraph content.
  */
 function autoLinkedParagraph(text: string): string {
-  return autoLinkEntities(`<p>${text}</p>`);
+  if (!text) return "";
+  // Split on double newlines first, then single newlines as fallback
+  const paragraphs = text.split(/\n\n|\n/).filter(p => p.trim().length > 0);
+  const html = paragraphs.map(p => `<p>${p.trim()}</p>`).join("");
+  return autoLinkEntities(html);
 }
 
 // ─── Main Component ────────────────────────────────────────
