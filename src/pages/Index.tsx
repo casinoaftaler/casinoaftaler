@@ -282,6 +282,7 @@ const Index = () => {
       <TodayUpdatedSection />
       <HomepageLatestSlots />
       <HomepagePopularSlots />
+      <HomepageTopProviders />
       <HomepageLiveCommunity />
       <WhyTrustUs />
 
