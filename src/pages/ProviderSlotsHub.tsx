@@ -29,10 +29,6 @@ export default function ProviderSlotsHub() {
   const { data: slots } = useProviderSlots(validSlug || "");
   const { data: freshness } = useLatestCatalogUpdate();
 
-  if (!validSlug || !content) {
-    return <Navigate to="/casinospil/spillemaskiner" replace />;
-  }
-
   // Compute dynamic stats
   const stats = useMemo(() => {
     if (!slots || slots.length === 0) return null;
