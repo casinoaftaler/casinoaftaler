@@ -23,7 +23,7 @@ export function GatesBonusEndOverlay({
   const [displayedWin, setDisplayedWin] = useState(0);
   const [thunderFlash, setThunderFlash] = useState(false);
   const animFrameRef = useRef<number | null>(null);
-  const thunderIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const thunderIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Determine win tier for effects
   const winTier = totalWin >= 5000 ? 'very-large' : totalWin >= 1000 ? 'large' : totalWin >= 200 ? 'medium' : 'small';

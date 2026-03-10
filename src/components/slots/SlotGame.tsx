@@ -124,17 +124,17 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   
   // Sequential reel stopping - which reel should currently slow down (-1 = none yet)
   const [activeSlowdownReel, setActiveSlowdownReel] = useState(-1);
-  const initialSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const initialSpinTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   // Spin lock to prevent rapid clicking
   const spinLockRef = useRef(false);
   const [isSpinLocked, setIsSpinLocked] = useState(false);
-  const spinLockTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const spinLockTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
-  const winLinesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const winLinesTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   // Debounced leaderboard invalidation (5s cooldown to avoid thundering herd)
-  const leaderboardInvalidateRef = useRef<NodeJS.Timeout | null>(null);
+  const leaderboardInvalidateRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const debouncedLeaderboardInvalidate = useCallback(() => {
     if (leaderboardInvalidateRef.current) return; // Already scheduled
     leaderboardInvalidateRef.current = setTimeout(() => {
@@ -162,7 +162,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
   const [autoSpinCount, setAutoSpinCount] = useState<AutoSpinCount>(10);
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
-  const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoSpinTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
   const autoSpinScheduledRef = useRef(false);
   

@@ -55,7 +55,7 @@ export function useSlotSession(gameId?: string) {
   const { user } = useAuth();
   const navigate = useNavigate();
   const sessionId = useRef(getOrCreateSessionId());
-  const heartbeatIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const heartbeatIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
   const isActiveRef = useRef(false);
   const [state, setState] = useState<SlotSessionState>({

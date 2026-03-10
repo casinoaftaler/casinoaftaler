@@ -27,9 +27,9 @@ export function BonusSymbolPicker({
   const theme = getSlotTheme(gameId);
   const [currentSymbol, setCurrentSymbol] = useState<SlotSymbol | null>(null);
   const [phase, setPhase] = useState<"spinning" | "slowing" | "landed">("spinning");
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const phaseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const slowdownTimeoutsRef = useRef<NodeJS.Timeout[]>([]);
+  const intervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const phaseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const slowdownTimeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const stopScrollSoundRef = useRef<(() => void) | null>(null);
 
   // Filter to only non-scatter symbols, excluding already active expanding symbols

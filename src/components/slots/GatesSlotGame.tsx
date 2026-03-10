@@ -73,7 +73,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [columnSpinStates, setColumnSpinStates] = useState<ColumnSpinState[]>(
     Array(GATES_COLS).fill('idle')
   );
-  const columnStopTimersRef = useRef<NodeJS.Timeout[]>([]);
+  const columnStopTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const serverResultRef = useRef<any>(null);
   const [cellAnimStates, setCellAnimStates] = useState<Map<number, CellAnimState>>(new Map());
   const [cellDropOffsets, setCellDropOffsets] = useState<Map<number, number>>(new Map());
@@ -104,7 +104,7 @@ export function GatesSlotGame({ gameId = "gates-of-fedesvin" }: GatesSlotGamePro
   const [isAutoSpinning, setIsAutoSpinning] = useState(false);
   const [autoSpinCount, setAutoSpinCount] = useState<AutoSpinCount>(10);
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
-  const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoSpinTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
   const [spinPressed, setSpinPressed] = useState(false);
   const [showReelFlash, setShowReelFlash] = useState(false);

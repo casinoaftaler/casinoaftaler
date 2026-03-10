@@ -36,7 +36,7 @@ export const WinLines = React.memo(function WinLines({ wins, symbolSize, gap, is
     }
 
     // Show all lines at once with a stagger effect
-    const timeouts: NodeJS.Timeout[] = [];
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
     wins.forEach((win, index) => {
       const timeout = setTimeout(() => {
         setVisibleLines(prev => [...prev, win.lineIndex]);

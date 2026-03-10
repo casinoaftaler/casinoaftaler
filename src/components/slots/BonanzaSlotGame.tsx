@@ -104,7 +104,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const [columnSpinStates, setColumnSpinStates] = useState<BonanzaColumnSpinState[]>(
     Array(BONANZA_COLS).fill('idle')
   );
-  const columnStopTimersRef = useRef<NodeJS.Timeout[]>([]);
+  const columnStopTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const serverResultRef = useRef<any>(null);
   const [cellAnimStates, setCellAnimStates] = useState<Map<number, BonanzaCellAnimState>>(new Map());
   const [cellDropOffsets, setCellDropOffsets] = useState<Map<number, number>>(new Map());
@@ -143,7 +143,7 @@ export function BonanzaSlotGame({ gameId = "fedesvin-bonanza", isMobile = false 
   const [autoSpinCount, setAutoSpinCount] = useState<AutoSpinCount>(10);
   const [autoSpinsRemaining, setAutoSpinsRemaining] = useState<number | null>(null);
   const autoSpinsRemainingRef = useRef<number | null>(null);
-  const autoSpinTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoSpinTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const shouldStopAutoSpinRef = useRef(false);
   const isAutoSpinningRef = useRef(false);
   const pendingPostWinSpinRef = useRef<"bonus" | "auto" | null>(null);
