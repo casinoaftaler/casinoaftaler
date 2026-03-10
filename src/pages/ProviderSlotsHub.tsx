@@ -269,7 +269,7 @@ export default function ProviderSlotsHub() {
 
         <Separator className="my-10" />
 
-        {/* Cross-link to developer guide */}
+        {/* Cross-link to developer guide + slot database */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <BookOpen className="h-7 w-7 text-primary" />
@@ -278,19 +278,34 @@ export default function ProviderSlotsHub() {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Udforsk vores dybdegående guide om {content.displayName} med historik, teknologi, licenser og ekspertanalyse.
           </p>
-          <Link
-            to={`/spiludviklere/${validSlug}`}
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
-          >
-            <Gamepad2 className="h-5 w-5 text-primary flex-shrink-0" />
-            <div className="flex-1">
-              <p className="font-semibold">{content.displayName} – Dybdegående Udvikler-guide</p>
-              <p className="text-sm text-muted-foreground">
-                Historik, teknologi, licenser og ekspertanalyse af {content.displayName}.
-              </p>
-            </div>
-            <ArrowRight className="h-4 w-4 text-muted-foreground" />
-          </Link>
+          <div className="space-y-3">
+            <Link
+              to={`/spiludviklere/${validSlug}`}
+              className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+            >
+              <Gamepad2 className="h-5 w-5 text-primary flex-shrink-0" />
+              <div className="flex-1">
+                <p className="font-semibold">{content.displayName} – Dybdegående Udvikler-guide</p>
+                <p className="text-sm text-muted-foreground">
+                  Historik, teknologi, licenser og ekspertanalyse af {content.displayName}.
+                </p>
+              </div>
+              <ArrowRight className="h-4 w-4 text-muted-foreground" />
+            </Link>
+            <Link
+              to="/slot-database"
+              className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+            >
+              <BarChart3 className="h-5 w-5 text-primary flex-shrink-0" />
+              <div className="flex-1">
+                <p className="font-semibold">Slot Database – Alle Spillemaskiner</p>
+                <p className="text-sm text-muted-foreground">
+                  Udforsk vores komplette database med {stats?.totalSlots ? `${stats.totalSlots}+` : "1400+"} spillemaskiner og ægte statistik.
+                </p>
+              </div>
+              <ArrowRight className="h-4 w-4 text-muted-foreground" />
+            </Link>
+          </div>
         </section>
 
         {/* Author bio */}

@@ -1165,12 +1165,20 @@ export default function SlotCatalogPage() {
             <p className="text-muted-foreground mb-3">
               Se alle spillemaskiner fra {providerLink(slot.provider)} og læs vores dybdegående provider-analyse.
             </p>
-            <Link
-              to={`/spiludviklere/${providerSlug}`}
-              className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
-            >
-              Gå til {slot.provider} →
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link
+                to={`/spillemaskiner/${providerSlug}`}
+                className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+              >
+                Alle {slot.provider} spillemaskiner →
+              </Link>
+              <Link
+                to={`/spiludviklere/${providerSlug}`}
+                className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+              >
+                {slot.provider} udvikler-guide →
+              </Link>
+            </div>
           </section>
         )}
 
