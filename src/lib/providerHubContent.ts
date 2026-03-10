@@ -111,7 +111,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   },
   "microgaming": {
     displayName: "Microgaming",
-    seoTitle: "Microgaming Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Microgaming Slots – Alle Spillemaskiner, RTP & Statistik",
     metaDescription: "Komplet Microgaming slot-katalog med RTP, volatilitet og jackpot-data. Ægte statistik fra bonus hunts og community streams.",
     datePublished: "2026-03-10",
     introHtml: `
