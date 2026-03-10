@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Sparkles, Newspaper, ArrowRight, RefreshCw } from "lucide-react";
 import { format } from "date-fns";
 import { da } from "date-fns/locale";
+import { DailyCasinoSpotlight } from "./DailyCasinoSpotlight";
 
 /**
  * "Opdateret i dag" section for the homepage.
