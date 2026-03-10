@@ -2,13 +2,13 @@ import { useMemo } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ProviderCatalogSlots } from "@/components/ProviderCatalogSlots";
 import { useProviderSlots, useLatestCatalogUpdate } from "@/hooks/useProviderSlots";
 import { PROVIDER_HUB_CONTENT, PROVIDER_HUB_SLUGS } from "@/lib/providerHubContent";
 import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
 import { buildArticleSchema, SITE_URL, JONAS_SAME_AS } from "@/lib/seo";
 import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -28,6 +28,8 @@ export default function ProviderSlotsHub() {
   const content = validSlug ? PROVIDER_HUB_CONTENT[validSlug] : null;
   const { data: slots } = useProviderSlots(validSlug || "");
   const { data: freshness } = useLatestCatalogUpdate();
+  const { data: siteSettings } = useSiteSettings();
+  const heroBackgroundImage = siteSettings?.hero_background;
 
   // Compute dynamic stats
   const stats = useMemo(() => {
@@ -113,31 +115,52 @@ export default function ProviderSlotsHub() {
         breadcrumbLabel={`${content.displayName} Slots`}
       />
 
-      <main className="container mx-auto px-4 py-8 max-w-5xl">
-        <Breadcrumbs />
+      {/* Hero – matches ProviderPageTemplate */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: heroBackgroundImage
+            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
+            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
+              Spillemaskiner
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              {content.displayName} Slots
+            </h1>
+            <p className="text-lg text-white/80">
+              Komplet oversigt over alle {content.displayName} spillemaskiner med ægte statistik fra vores bonus hunts.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" />
 
-        {/* Hero */}
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold mb-4 flex items-center gap-3">
-            <Gamepad2 className="h-9 w-9 text-primary flex-shrink-0" />
-            {content.displayName} Slots
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Komplet oversigt over alle {content.displayName} spillemaskiner med ægte statistik fra vores bonus hunts.
-          </p>
-        </header>
-
         {/* Unique intro text */}
-        <section className="prose prose-lg max-w-none mb-8">
-          <div dangerouslySetInnerHTML={{ __html: content.introHtml }} />
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Om {content.displayName} Spillemaskiner</h2>
+          <div
+            className="text-muted-foreground leading-relaxed space-y-4 [&>p]:leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: content.introHtml }}
+          />
         </section>
+
+        <Separator className="my-10" />
 
         {/* Dynamic stats cards */}
         {stats && (
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <BarChart3 className="h-6 w-6 text-primary" />
+          <section className="mb-12">
+            <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+              <BarChart3 className="h-7 w-7 text-primary" />
               {content.displayName} i tal
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -174,62 +197,69 @@ export default function ProviderSlotsHub() {
           </section>
         )}
 
+        <Separator className="my-10" />
+
         {/* Top 5 popular slots */}
         {stats && stats.topSlots.length > 0 && (
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Award className="h-6 w-6 text-primary" />
-              Top 5 mest testede {content.displayName} slots
-            </h2>
-            <div className="space-y-3">
-              {stats.topSlots.map((slot, i) => (
-                <Link
-                  key={slot.slot_name}
-                  to={`/slot-katalog/${slugifySlotName(slot.slot_name)}`}
-                  className="flex items-center gap-4 rounded-lg border border-border p-4 transition-colors hover:bg-muted/50"
-                >
-                  <span className="text-2xl font-bold text-primary w-8 text-center">
-                    {i + 1}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold truncate">{slot.slot_name}</p>
-                    <div className="flex gap-3 text-sm text-muted-foreground">
-                      {slot.rtp && <span>RTP: {slot.rtp}%</span>}
-                      {slot.volatility && <span>{slot.volatility}</span>}
+          <>
+            <section className="mb-12">
+              <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+                <Award className="h-7 w-7 text-primary" />
+                Top 5 mest testede {content.displayName} slots
+              </h2>
+              <div className="space-y-3">
+                {stats.topSlots.map((slot, i) => (
+                  <Link
+                    key={slot.slot_name}
+                    to={`/slot-katalog/${slugifySlotName(slot.slot_name)}`}
+                    className="flex items-center gap-4 rounded-lg border border-border p-4 transition-colors hover:bg-muted/50"
+                  >
+                    <span className="text-2xl font-bold text-primary w-8 text-center">
+                      {i + 1}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold truncate">{slot.slot_name}</p>
+                      <div className="flex gap-3 text-sm text-muted-foreground">
+                        {slot.rtp && <span>RTP: {slot.rtp}%</span>}
+                        {slot.volatility && <span>{slot.volatility}</span>}
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-right flex-shrink-0">
-                    <Badge variant="secondary">{slot.bonus_count} hunts</Badge>
-                    {slot.highest_x && slot.highest_x > 0 && (
-                      <p className="text-sm font-semibold mt-1">
-                        <TrendingUp className="h-3 w-3 inline mr-1" />
-                        {slot.highest_x.toFixed(1)}x
-                      </p>
-                    )}
-                  </div>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                </Link>
-              ))}
-            </div>
-          </section>
+                    <div className="text-right flex-shrink-0">
+                      <Badge variant="secondary">{slot.bonus_count} hunts</Badge>
+                      {slot.highest_x && slot.highest_x > 0 && (
+                        <p className="text-sm font-semibold mt-1">
+                          <TrendingUp className="h-3 w-3 inline mr-1" />
+                          {slot.highest_x.toFixed(1)}x
+                        </p>
+                      )}
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                  </Link>
+                ))}
+              </div>
+            </section>
+
+            <Separator className="my-10" />
+          </>
         )}
 
-        <Separator className="my-8" />
-
-        {/* Full catalog table (reuses existing component) */}
+        {/* Full catalog table */}
         <ProviderCatalogSlots providerSlug={validSlug} />
 
-        <Separator className="my-8" />
+        <Separator className="my-10" />
 
         {/* Cross-link to developer guide */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-            <BookOpen className="h-6 w-6 text-primary" />
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <BookOpen className="h-7 w-7 text-primary" />
             Læs mere om {content.displayName}
           </h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Udforsk vores dybdegående guide om {content.displayName} med historik, teknologi, licenser og ekspertanalyse.
+          </p>
           <Link
             to={`/spiludviklere/${validSlug}`}
-            className="flex items-center gap-3 rounded-lg border border-primary/30 bg-primary/5 p-4 transition-all hover:border-primary/50 hover:shadow-sm"
+            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
           >
             <Gamepad2 className="h-5 w-5 text-primary flex-shrink-0" />
             <div className="flex-1">
@@ -241,7 +271,7 @@ export default function ProviderSlotsHub() {
             <ArrowRight className="h-4 w-4 text-muted-foreground" />
           </Link>
         </section>
-      </main>
+      </div>
     </>
   );
 }
