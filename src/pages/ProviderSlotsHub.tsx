@@ -228,7 +228,7 @@ export default function ProviderSlotsHub() {
             Læs mere om {content.displayName}
           </h2>
           <Link
-            to={`/spiludviklere/${providerSlug}`}
+            to={`/spiludviklere/${validSlug}`}
             className="flex items-center gap-3 rounded-lg border border-primary/30 bg-primary/5 p-4 transition-all hover:border-primary/50 hover:shadow-sm"
           >
             <Gamepad2 className="h-5 w-5 text-primary flex-shrink-0" />
