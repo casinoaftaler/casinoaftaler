@@ -977,53 +977,104 @@ export default function SlotCatalogPage() {
           </section>
         )}
 
+        {(() => {
+          const dc = parseDeepContent(slot);
+          if (dc) {
+            // Render unique AI-generated deep content
+            return (
+              <>
+                <section className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4">{H2_RTP(slotName, slotName)}</h2>
+                  <div className="text-muted-foreground leading-relaxed space-y-4">
+                    <p>{dc.rtp_analysis}</p>
+                  </div>
+                </section>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">{H2_RTP(slotName, slotName)}</h2>
-          <div className="text-muted-foreground leading-relaxed space-y-4">
-            {generateRTPSection(slot).map((p, i) => <p key={`rtp-${i}`}>{p}</p>)}
-          </div>
-        </section>
+                <section className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4">{H2_VOL(slotName, slotName)}</h2>
+                  <div className="text-muted-foreground leading-relaxed space-y-4">
+                    <p>{dc.volatility_insight}</p>
+                  </div>
+                </section>
 
-        {/* Volatility & Risk Analysis */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">{H2_VOL(slotName, slotName)}</h2>
-          <div className="text-muted-foreground leading-relaxed space-y-4">
-            {generateVolatilitySection(slot).map((p, i) => <p key={`vol-${i}`}>{p}</p>)}
-          </div>
-        </section>
+                <section className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4">{H2_BH(slotName, slotName)}</h2>
+                  <div className="text-muted-foreground leading-relaxed space-y-4">
+                    <p>{dc.bonus_hunt_analysis}</p>
+                  </div>
+                </section>
 
-        {/* Bonus Hunt Performance */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">{H2_BH(slotName, slotName)}</h2>
-          <div className="text-muted-foreground leading-relaxed space-y-4">
-            {generateBonusHuntAnalysis(slot).map((p, i) => <p key={`bh-${i}`}>{p}</p>)}
-          </div>
-        </section>
+                <section className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4">{H2_PROV(slot.provider || "Ukendt", slotName)}</h2>
+                  <div className="text-muted-foreground leading-relaxed space-y-4">
+                    <p>{dc.provider_context}</p>
+                  </div>
+                </section>
 
-        {/* Provider & Game Design */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">{H2_PROV(slot.provider || "Ukendt", slotName)}</h2>
-          <div className="text-muted-foreground leading-relaxed space-y-4">
-            {generateProviderSection(slot).map((p, i) => <p key={`prov-${i}`}>{p}</p>)}
-          </div>
-        </section>
+                <section className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4">{H2_HOW(slotName, slotName)}</h2>
+                  <div className="text-muted-foreground leading-relaxed space-y-4">
+                    <p>{dc.game_mechanics}</p>
+                  </div>
+                </section>
 
-        {/* How Slot Machines Work */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">{H2_HOW(slotName, slotName)}</h2>
-          <div className="text-muted-foreground leading-relaxed space-y-4">
-            {generateHowItWorks(slot).map((p, i) => <p key={`how-${i}`}>{p}</p>)}
-          </div>
-        </section>
+                <section className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4">{H2_BANK(slotName, slotName)}</h2>
+                  <div className="text-muted-foreground leading-relaxed space-y-4">
+                    <p>{dc.bankroll_advice}</p>
+                  </div>
+                </section>
+              </>
+            );
+          }
 
-        {/* Bankroll Management */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">{H2_BANK(slotName, slotName)}</h2>
-          <div className="text-muted-foreground leading-relaxed space-y-4">
-            {generateBankrollSection(slot).map((p, i) => <p key={`bank-${i}`}>{p}</p>)}
-          </div>
-        </section>
+          // Fallback: original template sections
+          return (
+            <>
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold mb-4">{H2_RTP(slotName, slotName)}</h2>
+                <div className="text-muted-foreground leading-relaxed space-y-4">
+                  {generateRTPSection(slot).map((p, i) => <p key={`rtp-${i}`}>{p}</p>)}
+                </div>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold mb-4">{H2_VOL(slotName, slotName)}</h2>
+                <div className="text-muted-foreground leading-relaxed space-y-4">
+                  {generateVolatilitySection(slot).map((p, i) => <p key={`vol-${i}`}>{p}</p>)}
+                </div>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold mb-4">{H2_BH(slotName, slotName)}</h2>
+                <div className="text-muted-foreground leading-relaxed space-y-4">
+                  {generateBonusHuntAnalysis(slot).map((p, i) => <p key={`bh-${i}`}>{p}</p>)}
+                </div>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold mb-4">{H2_PROV(slot.provider || "Ukendt", slotName)}</h2>
+                <div className="text-muted-foreground leading-relaxed space-y-4">
+                  {generateProviderSection(slot).map((p, i) => <p key={`prov-${i}`}>{p}</p>)}
+                </div>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold mb-4">{H2_HOW(slotName, slotName)}</h2>
+                <div className="text-muted-foreground leading-relaxed space-y-4">
+                  {generateHowItWorks(slot).map((p, i) => <p key={`how-${i}`}>{p}</p>)}
+                </div>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold mb-4">{H2_BANK(slotName, slotName)}</h2>
+                <div className="text-muted-foreground leading-relaxed space-y-4">
+                  {generateBankrollSection(slot).map((p, i) => <p key={`bank-${i}`}>{p}</p>)}
+                </div>
+              </section>
+            </>
+          );
+        })()}
 
         {/* Bonus Hunt Appearances Table */}
         {huntData && huntData.length > 0 && (
