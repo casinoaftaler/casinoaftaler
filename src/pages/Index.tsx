@@ -6,6 +6,7 @@ import { WhyTrustUs } from "@/components/WhyTrustUs";
 import { QuickNavSidebar } from "@/components/QuickNavBar";
 import { TodayUpdatedSection } from "@/components/TodayUpdatedSection";
 import { HomepageLatestSlots, useLatestSlots, buildLatestSlotsSchema } from "@/components/HomepageLatestSlots";
+import { HomepagePopularSlots, usePopularSlots, buildPopularSlotsSchema } from "@/components/HomepagePopularSlots";
 import { WeeklyRotationReviews } from "@/components/WeeklyRotationReviews";
 import { HomepageLiveCommunity } from "@/components/HomepageLiveCommunity";
 import { HomepageSeoSections } from "@/components/HomepageSeoSections";
@@ -54,6 +55,7 @@ const Index = () => {
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const { data: casinos, isLoading } = useCasinos();
   const { data: latestSlots } = useLatestSlots();
+  const { data: popularSlots } = usePopularSlots();
 
   const { data: latestNewsDate } = useQuery({
     queryKey: ["homepage-latest-news-date"],
@@ -172,6 +174,7 @@ const Index = () => {
             ],
           },
           ...(latestSlots?.length ? [buildLatestSlotsSchema(latestSlots)] : []),
+          ...(popularSlots?.length ? [buildPopularSlotsSchema(popularSlots)] : []),
           buildFaqSchema([
             {
               question: "Hvad er det vigtigste at vide, før man spiller på online casino i Danmark?",
@@ -277,6 +280,7 @@ const Index = () => {
 
       <TodayUpdatedSection />
       <HomepageLatestSlots />
+      <HomepagePopularSlots />
       <HomepageLiveCommunity />
       <WhyTrustUs />
 
