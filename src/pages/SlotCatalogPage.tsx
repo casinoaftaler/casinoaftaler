@@ -1106,50 +1106,38 @@ export default function SlotCatalogPage() {
         {(() => {
           const dc = parseDeepContent(slot);
           if (dc) {
-            // Render unique AI-generated deep content
+            // Build sections array, then rotate order based on slot hash
+            const allSections = [
+              { key: 'rtp', heading: H2_RTP(slotName, slotName), body: dc.rtp_analysis },
+              { key: 'vol', heading: H2_VOL(slotName, slotName), body: dc.volatility_insight },
+              { key: 'bh', heading: H2_BH(slotName, slotName), body: dc.bonus_hunt_analysis },
+              { key: 'prov', heading: H2_PROV(slot.provider || "Ukendt", slotName), body: dc.provider_context },
+              { key: 'mech', heading: H2_HOW(slotName, slotName), body: dc.game_mechanics },
+              { key: 'bank', heading: H2_BANK(slotName, slotName), body: dc.bankroll_advice },
+            ];
+            // Deterministic shuffle using hash to create unique section order per slot
+            const h = hashStr(slotName);
+            const offset = h % allSections.length;
+            const rotated = [...allSections.slice(offset), ...allSections.slice(0, offset)];
+            // Additionally swap pairs based on secondary hash bits for more variation
+            const h2 = hashStr(slotName + '_order');
+            if (h2 % 3 === 0 && rotated.length >= 4) {
+              [rotated[1], rotated[3]] = [rotated[3], rotated[1]];
+            }
+            if (h2 % 5 === 0 && rotated.length >= 6) {
+              [rotated[2], rotated[4]] = [rotated[4], rotated[2]];
+            }
+
             return (
               <>
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold mb-4">{H2_RTP(slotName, slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4"
-                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.rtp_analysis) }}
-                  />
-                </section>
-
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold mb-4">{H2_VOL(slotName, slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4"
-                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.volatility_insight) }}
-                  />
-                </section>
-
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold mb-4">{H2_BH(slotName, slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4"
-                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.bonus_hunt_analysis) }}
-                  />
-                </section>
-
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold mb-4">{H2_PROV(slot.provider || "Ukendt", slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4"
-                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.provider_context) }}
-                  />
-                </section>
-
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold mb-4">{H2_HOW(slotName, slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4"
-                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.game_mechanics) }}
-                  />
-                </section>
-
-                <section className="mb-8">
-                  <h2 className="text-2xl font-bold mb-4">{H2_BANK(slotName, slotName)}</h2>
-                  <div className="text-muted-foreground leading-relaxed space-y-4"
-                    dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(dc.bankroll_advice) }}
-                  />
-                </section>
+                {rotated.map((sec) => (
+                  <section key={sec.key} className="mb-8">
+                    <h2 className="text-2xl font-bold mb-4">{sec.heading}</h2>
+                    <div className="text-muted-foreground leading-relaxed space-y-4"
+                      dangerouslySetInnerHTML={{ __html: autoLinkedParagraph(sec.body) }}
+                    />
+                  </section>
+                ))}
               </>
             );
           }
