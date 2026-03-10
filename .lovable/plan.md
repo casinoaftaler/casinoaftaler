@@ -1,21 +1,24 @@
+## Enterprise SEO Expansion – Implementeret ✅
 
+### 1. Dynamiske Provider-Hubs ✅
+- `src/hooks/useProviderSlots.ts` – `useProviderSlots()` + `useLatestCatalogUpdate()` hooks
+- `src/components/ProviderCatalogSlots.tsx` – erstatter ProviderSlotLinks med live database-data
+- `src/pages/providers/ProviderPageTemplate.tsx` – swappet til ProviderCatalogSlots
 
-# Plan: Opdater slot-katalog sitemap parametre
+### 2. Live Freshness-signaler ✅
+- Dynamisk `dateModified` fra reel `slot_catalog.updated_at`
+- Synlig freshness-badge: "Data opdateret efter Bonus Hunt #X · dato"
+- Implementeret på både /slot-database og provider-sider
 
-## Ændringer
+### 3. SoftwareApplication Schema ✅
+- `src/lib/slotCatalogSchema.ts` – `buildSlotCatalogSchema()` genererer ItemList + SoftwareApplication
+- Injiceret per pagineret side på /slot-database
+- aggregateRating baseret på highest_x og bonus_count
 
-Tre steder skal opdateres med `changefreq: "weekly"` og `priority: 0.6`:
-
-### 1. `vite.config.ts` (build-time sitemap)
-- Linje 122: `monthly` → `weekly`
-- Linje 123: `0.5` → `0.6`
-
-### 2. `supabase/functions/sitemap-slots/index.ts` (edge function sitemap)
-- Linje 65: `monthly` → `weekly`
-- Linje 66: `0.5` → `0.6`
-
-### 3. `supabase/functions/sitemap-dynamic/index.ts`
-- Ingen ændring nødvendig – denne bruger `page_metadata` tabellen, som ikke dækker slot-katalog sider.
-
-Forsiden (`/`) er allerede korrekt håndteret via `seoRoutes.ts` med `changefreq: "daily"` og lastmod auto-resolved til dagens dato.
-
+### 4. Provider Slot Hub Pages ✅
+- `src/lib/providerHubContent.ts` – unik SEO-tekst, meta, intro per provider (13 stk)
+- `src/pages/ProviderSlotsHub.tsx` – template med dynamisk stats, top 5, full catalog, cross-links
+- Ruter: `/spillemaskiner/{provider}` for alle 13 providers
+- Breadcrumbs: Forside > Casinospil > Spillemaskiner > [Provider] Slots
+- seoRoutes + page_metadata registreret
+- Article + ItemList JSON-LD schema per side

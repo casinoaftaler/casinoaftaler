@@ -62,8 +62,8 @@ Deno.serve(async (req) => {
       return `  <url>
     <loc>${SITE_URL}/slot-katalog/${slug}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>`;
     });
 

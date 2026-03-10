@@ -119,8 +119,8 @@ ${staticUrls.join("\n")}
             return `  <url>
     <loc>${SITE_URL}/slot-katalog/${s}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>`;
           });
 
