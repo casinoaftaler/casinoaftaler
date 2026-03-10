@@ -107,3 +107,6 @@ verify_jwt = false
 
 [functions.slot-meta-descriptions]
 verify_jwt = false
+
+[functions.slot-deep-content]
+verify_jwt = false
