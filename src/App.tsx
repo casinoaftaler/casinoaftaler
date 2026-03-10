@@ -437,6 +437,7 @@ const App = () => (
                 <Route path="/casinoer/casino-og-skat" element={<CasinoOgSkatGuide />} />
                 <Route path="/casinospil/spillemaskiner" element={<Spillemaskiner />} />
                 <Route path="/casinospil/spillemaskiner/hoej-rtp" element={<SpillemaskinerHoejRTP />} />
+                <Route path="/spillemaskiner/:providerSlug" element={<ProviderSlotsHub />} />
                 <Route path="/casinospil/spillemaskiner/sweet-bonanza" element={<SweetBonanzaGuide />} />
                 <Route path="/casinospil/spillemaskiner/book-of-dead" element={<BookOfDeadGuide />} />
                 <Route path="/casinospil/spillemaskiner/gates-of-olympus" element={<GatesOfOlympusGuide />} />
