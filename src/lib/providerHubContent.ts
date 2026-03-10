@@ -26,7 +26,7 @@ export interface ProviderHubContent {
 export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
   "pragmatic-play": {
     displayName: "Pragmatic Play",
-    seoTitle: "Pragmatic Play Slots – Alle Spillemaskiner & Statistik 2026",
+    seoTitle: "Pragmatic Play Slots – Spillemaskiner, RTP & Statistik",
     metaDescription: "Komplet oversigt over alle Pragmatic Play spillemaskiner med RTP, volatilitet og bonus hunt statistik fra ægte danske streams.",
     datePublished: "2026-03-10",
     introHtml: `
