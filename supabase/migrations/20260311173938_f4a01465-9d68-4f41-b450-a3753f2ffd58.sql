@@ -1,0 +1,1 @@
+INSERT INTO page_metadata (path, changefreq, priority, show_updated_date) VALUES ('/statistik', 'weekly', 0.85, true) ON CONFLICT (path) DO NOTHING;
