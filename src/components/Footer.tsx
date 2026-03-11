@@ -531,10 +531,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-6 border-t border-border pt-6">
+        <div className="mt-6 border-t border-border pt-6 space-y-2">
           <p className="text-center text-xs text-muted-foreground">
             © {new Date().getFullYear()} {siteName}. Alle rettigheder forbeholdes.
             Spil kan være vanedannende. Spil venligst ansvarligt. 18+
+          </p>
+          <p className="text-center text-xs text-muted-foreground">
+            GPWA Verification
           </p>
         </div>
       </div>
