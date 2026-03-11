@@ -124,6 +124,10 @@ export function HomepageBonusHuntSection() {
           <Trophy className="h-4 w-4 text-primary flex-shrink-0" />
           Turneringsarkiv
         </Link>
+        <Link to="/statistik" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
+          <TrendingUp className="h-4 w-4 text-primary flex-shrink-0" />
+          Bonus Hunt Statistik
+        </Link>
         <Link to="/community" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
           <Users className="h-4 w-4 text-primary flex-shrink-0" />
           Udforsk community
