@@ -15,6 +15,7 @@ Disallow: /auth
 Disallow: /profil
 Disallow: /admin
 Disallow: /butik
+Disallow: /casino/
 
 User-agent: Bingbot
 Allow: /community
@@ -33,6 +34,7 @@ Disallow: /auth
 Disallow: /profil
 Disallow: /admin
 Disallow: /butik
+Disallow: /casino/
 
 User-agent: Twitterbot
 Allow: /
@@ -57,5 +59,6 @@ Disallow: /auth
 Disallow: /profil
 Disallow: /admin
 Disallow: /butik
+Disallow: /casino/
 
 Sitemap: https://casinoaftaler.dk/sitemap-index.xml

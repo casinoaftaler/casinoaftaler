@@ -52,7 +52,7 @@ const BetanoAnmeldelse = () => {
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     videoId: "Uu3NBZzt-Sk",
-    aggregateRating: { ratingValue: "4.1", ratingCount: "152" },
+    
     ...casinoReviewEntities("Betano", "betano"),
   });
 

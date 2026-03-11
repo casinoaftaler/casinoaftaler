@@ -27,6 +27,23 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bNordicBet\b/], href: "/casino-anmeldelser/nordicbet", anchor: "NordicBet" },
   { patterns: [/\bSpilnu\b/], href: "/casino-anmeldelser/spilnu", anchor: "Spilnu" },
   { patterns: [/\bVideoslots\b/], href: "/casino-anmeldelser/videoslots", anchor: "Videoslots" },
+  { patterns: [/\bPokerStars\b/], href: "/casino-anmeldelser/pokerstars", anchor: "PokerStars" },
+  { patterns: [/\bbwin\b/], href: "/casino-anmeldelser/bwin", anchor: "bwin" },
+  { patterns: [/\bSpilleautomaten\b/], href: "/casino-anmeldelser/spilleautomaten", anchor: "Spilleautomaten" },
+  { patterns: [/\bSwift Casino\b/i], href: "/casino-anmeldelser/swift-casino", anchor: "Swift Casino" },
+  { patterns: [/\bLuna Casino\b/i], href: "/casino-anmeldelser/luna-casino", anchor: "Luna Casino" },
+  { patterns: [/\bGetLucky\b/], href: "/casino-anmeldelser/getlucky", anchor: "GetLucky" },
+  { patterns: [/\bMr Vegas\b/i], href: "/casino-anmeldelser/mr-vegas", anchor: "Mr Vegas" },
+  { patterns: [/\bExpekt\b/], href: "/casino-anmeldelser/expekt", anchor: "Expekt" },
+  { patterns: [/\bBetano\b/], href: "/casino-anmeldelser/betano", anchor: "Betano" },
+  { patterns: [/\b888 Casino\b/i, /\b888casino\b/i], href: "/casino-anmeldelser/888-casino", anchor: "888 Casino" },
+  { patterns: [/\bRoyal Casino\b/i], href: "/casino-anmeldelser/royal-casino", anchor: "Royal Casino" },
+  { patterns: [/\bMaria Casino\b/i], href: "/casino-anmeldelser/maria-casino", anchor: "Maria Casino" },
+  { patterns: [/\bKapow Casino\b/i], href: "/casino-anmeldelser/kapow-casino", anchor: "Kapow Casino" },
+  { patterns: [/\bOne Casino\b/i], href: "/casino-anmeldelser/one-casino", anchor: "One Casino" },
+  { patterns: [/\bCasinostuen\b/], href: "/casino-anmeldelser/casinostuen", anchor: "Casinostuen" },
+  { patterns: [/\bMarathonBet\b/i], href: "/casino-anmeldelser/marathonbet", anchor: "MarathonBet" },
+  { patterns: [/\bStake Casino\b/i, /\bStake\b/], href: "/casino-anmeldelser/stake", anchor: "Stake" },
 
   // Hub-termer (nævnes ofte men var ikke i auto-linker)
   { patterns: [/\bbetalingsmetoder\b/i], href: "/betalingsmetoder", anchor: "" },
@@ -114,7 +131,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bpoker\b/i], href: "/casinospil/poker", anchor: "" },
   { patterns: [/\bbaccarat\b/i], href: "/casinospil/baccarat", anchor: "" },
   { patterns: [/\bcraps\b/i], href: "/casinospil/craps", anchor: "" },
-  { patterns: [/\bgame shows?\b/i, /\btv[\s-]?spil\b/i], href: "/live-casino/monopoly-live", anchor: "" },
+  { patterns: [/\bgame shows?\b/i, /\btv[\s-]?spil\b/i], href: "/live-casino/game-shows", anchor: "" },
 
   // Slot kategori money-pages
   { patterns: [/\bmegaways slots?\b/i, /\bmegaways spillemaskiner\b/i], href: "/megaways-slots", anchor: "" },

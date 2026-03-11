@@ -94,8 +94,6 @@ export const AJSE_SAME_AS = [
   "https://www.instagram.com/serifoaaa/",
 ];
 
-/** Canonical Person entity for Jonas Theill – reused across all article pages. */
-const JONAS_PERSON_ID = `${SITE_URL}/forfatter/jonas#person`;
 
 function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: string[]) {
   const isKevin = authorName === "Kevin";
@@ -176,17 +174,6 @@ export function buildArticleSchema(opts: {
    * E.g. game providers, payment methods, regulatory bodies.
    */
   mentions?: { "@type": string; name: string; url?: string }[];
-  /**
-   * @deprecated This parameter is intentionally ignored. AggregateRating is NOT valid
-   * on Article type per Google. Use buildReviewSchema() instead, which attaches it
-   * to itemReviewed (SoftwareApplication). Kept only for backward compatibility.
-   */
-  aggregateRating?: {
-    ratingValue: string;
-    ratingCount: string;
-    bestRating?: string;
-    worstRating?: string;
-  };
 }) {
   const authorName = opts.authorName || "Jonas";
   const authorUrl = opts.authorUrl || `${SITE_URL}/forfatter/jonas`;
@@ -373,8 +360,6 @@ export function buildVideoSchema(
     }),
   };
 }
-
-export { JONAS_PERSON_ID };
 
 /**
  * Extract plain text from a React node for use in structured data.
