@@ -3,6 +3,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { GlossaryMoneyLinks } from "@/components/GlossaryMoneyLinks";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { getTermBySlug, glossaryTerms } from "@/data/glossaryTerms";
 import { getGlossaryHero } from "@/data/glossaryHeroImages";
@@ -125,6 +126,13 @@ const OrdbogTerm = () => {
         <div
           className="prose prose-lg max-w-none dark:prose-invert mb-10 prose-headings:text-foreground prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:underline"
           dangerouslySetInnerHTML={{ __html: processedContent }}
+        />
+
+        {/* Money-page CTA section */}
+        <GlossaryMoneyLinks
+          termSlug={term.slug}
+          termTitle={term.title}
+          category={term.category}
         />
 
         {term.relatedPages && term.relatedPages.length > 0 && (
