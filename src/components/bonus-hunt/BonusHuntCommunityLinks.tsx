@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Trophy, Video, RotateCw, Gift, ShoppingBag, Archive, Database, Crown } from "lucide-react";
+import { Gamepad2, Trophy, Video, RotateCw, Gift, ShoppingBag, Archive, Database, Crown, BarChart3 } from "lucide-react";
 
 const COMMUNITY_LINKS = [
   {
