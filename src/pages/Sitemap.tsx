@@ -60,6 +60,30 @@ function pathToLabel(path: string): string {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+/** Group routes alphabetically by their label's first character */
+function groupByLetter(routes: typeof seoRoutes): { letter: string; items: { path: string; label: string }[] }[] {
+  const labeled = routes
+    .map((r) => ({ path: r.path, label: pathToLabel(r.path) }))
+    .sort((a, b) => a.label.localeCompare(b.label, "da"));
+
+  const map = new Map<string, { path: string; label: string }[]>();
+  for (const item of labeled) {
+    const first = item.label.charAt(0).toUpperCase();
+    const letter = /[A-ZÆØÅ]/.test(first) ? first : "#";
+    if (!map.has(letter)) map.set(letter, []);
+    map.get(letter)!.push(item);
+  }
+
+  // Sort letters: # first, then A-Å in Danish order
+  const sorted = [...map.entries()].sort((a, b) => {
+    if (a[0] === "#") return -1;
+    if (b[0] === "#") return 1;
+    return a[0].localeCompare(b[0], "da");
+  });
+
+  return sorted.map(([letter, items]) => ({ letter, items }));
+}
+
 export default function Sitemap() {
   const groups = groupRoutes();
 
@@ -90,25 +114,50 @@ export default function Sitemap() {
           </Link>
         </nav>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {groups.map((group) => (
-            <section key={group.title}>
-              <h2 className="text-lg font-semibold mb-3 text-foreground">{group.title}</h2>
-              <ul className="space-y-1.5">
-                {group.routes.map((route) => (
-                  <li key={route.path}>
-                    <a
-                      href={route.path}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {pathToLabel(route.path)}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+        {groups.map((group) => {
+          const letterGroups = groupByLetter(group.routes);
+          const isSmallGroup = group.routes.length <= 5;
+
+          return (
+            <section key={group.title} className="mb-10">
+              <h2 className="text-xl font-bold mb-4 text-foreground border-b border-border pb-2">{group.title}</h2>
+
+              {isSmallGroup ? (
+                /* Small groups: simple list, no letter headers */
+                <ul className="space-y-1.5 ml-1">
+                  {group.routes
+                    .map((r) => ({ path: r.path, label: pathToLabel(r.path) }))
+                    .sort((a, b) => a.label.localeCompare(b.label, "da"))
+                    .map((item) => (
+                      <li key={item.path}>
+                        <a href={item.path} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                </ul>
+              ) : (
+                /* Larger groups: alphabetical letter headers in multi-column grid */
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {letterGroups.map(({ letter, items }) => (
+                    <div key={letter}>
+                      <h3 className="text-base font-semibold text-foreground mb-2">{letter}</h3>
+                      <ul className="space-y-1.5">
+                        {items.map((item) => (
+                          <li key={item.path}>
+                            <a href={item.path} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                              {item.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
             </section>
-          ))}
-        </div>
+          );
+        })}
 
         <noscript>
           <div>
