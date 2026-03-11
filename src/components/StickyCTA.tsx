@@ -124,6 +124,8 @@ export function StickyCTA({
             <img
               src={logoUrl}
               alt={`${casinoName} logo`}
+              width={80}
+              height={68}
               className="h-[68px] w-auto max-w-[80px] rounded-xl object-contain bg-background/50 p-1.5"
               loading="lazy"
             />
