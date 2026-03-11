@@ -6,6 +6,8 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
+import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
