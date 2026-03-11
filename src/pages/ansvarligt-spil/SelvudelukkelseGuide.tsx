@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -595,6 +596,7 @@ const SelvudelukkelseGuide = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/ansvarligt-spil/selvudelukkelse-guide" />
+        <AnsvarligtSpilResources currentPath="/ansvarligt-spil/selvudelukkelse-guide" />
         <RelatedGuides currentPath="/ansvarligt-spil/selvudelukkelse-guide" />
         <FAQSection title="Ofte Stillede Spørgsmål om Selvudelukkelse" faqs={selvudelukkelseFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />

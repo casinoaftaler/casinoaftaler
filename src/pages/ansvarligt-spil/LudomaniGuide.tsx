@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -1033,36 +1034,7 @@ const LudomaniGuide = () => {
 
         <Separator className="my-10" />
 
-        {/* ── Hub-links for equity distribution ── */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-2xl font-bold">Udforsk mere om ansvarligt spil</h2>
-          <p className="text-muted-foreground mb-6 leading-relaxed">
-            Ludomani er ét aspekt af den bredere problematik omkring spilleadfærd. Udforsk
-            vores andre guides for at lære mere om selvudelukkelse, rådgivning og
-            spillerbeskyttelse i Danmark.
-          </p>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { to: "/ansvarligt-spil", title: "Ansvarligt Spil", desc: "Komplet guide til ansvarligt casinospil" },
-              { to: "/ansvarligt-spil/rofus", title: "ROFUS Guide", desc: "Alt om selvudelukkelse via ROFUS" },
-              { to: "/ansvarligt-spil/stopspillet", title: "StopSpillet Guide", desc: "Gratis rådgivning for spillere og pårørende" },
-              { to: "/spillemyndigheden", title: "Spillemyndigheden", desc: "Danmarks tilsynsmyndighed for spil" },
-              { to: "/casino-licenser", title: "Casino Licenser", desc: "Forstå det danske licenssystem" },
-              { to: "/ordbog", title: "Casino Ordbog", desc: "Forstå alle casino-termer" },
-            ].map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 text-sm transition-colors hover:bg-muted"
-              >
-                <div>
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="text-xs text-muted-foreground">{item.desc}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+        <AnsvarligtSpilResources currentPath="/ansvarligt-spil/ludomani" />
 
         <RelatedGuides currentPath="/ansvarligt-spil/ludomani" />
         <FAQSection title="Ofte Stillede Spørgsmål om Ludomani" faqs={ludomaniFaqs} />

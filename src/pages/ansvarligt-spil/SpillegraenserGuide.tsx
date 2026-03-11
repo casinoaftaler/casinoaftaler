@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -748,6 +749,7 @@ const SpillegraenserGuide = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/ansvarligt-spil/spillegraenser" />
+        <AnsvarligtSpilResources currentPath="/ansvarligt-spil/spillegraenser" />
         <RelatedGuides currentPath="/ansvarligt-spil/spillegraenser" />
         <FAQSection title="Ofte Stillede Spørgsmål om Spillegrænser" faqs={spillegraenserFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />
