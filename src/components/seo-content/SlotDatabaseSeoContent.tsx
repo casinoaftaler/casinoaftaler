@@ -20,7 +20,8 @@ export function SlotDatabaseSeoContent() {
         <p className="text-muted-foreground leading-relaxed">
           Hver spillemaskine i databasen har en komplet historik: hvor mange gange den er blevet testet, den højeste
           multiplikator (X) vi har ramt, og den største enkeltgevinst. Denne data opdateres automatisk efter hver
-          bonus hunt, så du altid ser de nyeste tal. Vi har i skrivende stund catalogiseret over 1.400 unikke spillemaskiner
+          bonus hunt, så du altid ser de nyeste tal. For aggregerede trends og provider-rankings på tværs af alle hunts, se vores{" "}
+          <Link to="/statistik" className="text-primary hover:underline">bonus hunt statistik</Link>. Vi har i skrivende stund catalogiseret over 1.400 unikke spillemaskiner
           på tværs af mere end 15 forskellige spiludviklere – og tallet vokser konstant.
         </p>
         <p className="text-muted-foreground leading-relaxed">
