@@ -454,6 +454,7 @@ const DreamCatcherGuide = () => {
           </p>
         </section>
 
+        <LiveCasinoMoneyLinks gameName="Dream Catcher" currentPath="/live-casino/dream-catcher" />
         <FAQSection title="Ofte Stillede Spørgsmål om Dream Catcher" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/dream-catcher" />
         <AuthorBio author="jonas" />

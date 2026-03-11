@@ -661,6 +661,7 @@ const LiveBlackjackGuide = () => {
           </p>
         </section>
 
+        <LiveCasinoMoneyLinks gameName="Live Blackjack" currentPath="/live-casino/blackjack" />
         <RelatedGuides currentPath="/live-casino/blackjack" />
         <FAQSection
           title="Ofte stillede spørgsmål om live blackjack"

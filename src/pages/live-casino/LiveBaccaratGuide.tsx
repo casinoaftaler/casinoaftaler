@@ -584,6 +584,7 @@ const LiveBaccaratGuide = () => {
 
         
 
+        <LiveCasinoMoneyLinks gameName="Live Baccarat" currentPath="/live-casino/baccarat" />
         <RelatedGuides currentPath="/live-casino/baccarat" />
         <FAQSection title="Ofte stillede spørgsmål om live baccarat" faqs={faqs} />
         <AuthorBio author="jonas" />
