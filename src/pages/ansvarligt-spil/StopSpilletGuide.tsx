@@ -899,7 +899,7 @@ const StopSpilletGuide = () => {
         <Separator className="my-10" />
 
         <AnsvarligtSpilResources currentPath="/ansvarligt-spil/stopspillet" />
-
+        <LatestNewsByCategory pagePath="/ansvarligt-spil/stopspillet" />
         <RelatedGuides currentPath="/ansvarligt-spil/stopspillet" />
         <FAQSection title="Ofte Stillede Spørgsmål om StopSpillet" faqs={stopspilletFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />

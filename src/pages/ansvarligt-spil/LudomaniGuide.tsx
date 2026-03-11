@@ -1036,7 +1036,7 @@ const LudomaniGuide = () => {
         <Separator className="my-10" />
 
         <AnsvarligtSpilResources currentPath="/ansvarligt-spil/ludomani" />
-
+        <LatestNewsByCategory pagePath="/ansvarligt-spil/ludomani" />
         <RelatedGuides currentPath="/ansvarligt-spil/ludomani" />
         <FAQSection title="Ofte Stillede Spørgsmål om Ludomani" faqs={ludomaniFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />

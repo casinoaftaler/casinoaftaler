@@ -1095,7 +1095,7 @@ const RofusGuide = () => {
         <Separator className="my-10" />
 
         <AnsvarligtSpilResources currentPath="/ansvarligt-spil/rofus" />
-
+        <LatestNewsByCategory pagePath="/ansvarligt-spil/rofus" />
         <RelatedGuides currentPath="/ansvarligt-spil/rofus" />
         <FAQSection title="Ofte Stillede Spørgsmål om ROFUS" faqs={rofusFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />
