@@ -82,6 +82,9 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
 
   // Casino-liste money-pages
   { patterns: [/\bnye casinoer\b/i], href: "/nye-casinoer", anchor: "", anchorVariants: ["nye casinoer", "nye danske casinoer", "nyeste casinoer i Danmark"] },
+  { patterns: [/\bcasino med MobilePay\b/i, /\bMobilePay casino\b/i], href: "/casino-med-mobilepay", anchor: "", anchorVariants: ["casino med MobilePay", "MobilePay casinoer", "casinoer med MobilePay"] },
+  { patterns: [/\btop 10 casino\b/i, /\btop[\s-]?10 online casino\b/i, /\bbedste casino 2026\b/i], href: "/top-10-casino-online", anchor: "", anchorVariants: ["top 10 casino online", "bedste online casinoer", "top 10 casinoer"] },
+  { patterns: [/\bVIP[\s-]?program\b/i, /\bVIP[\s-]?bonus\b/i, /\blojalitetsprogram\b/i], href: "/vip-program", anchor: "", anchorVariants: ["VIP program", "VIP-program", "casino loyalitetsprogram", "VIP bonus"] },
   { patterns: [/\bdansk licens\b/i, /\bdanske licenser\b/i], href: "/casino-licenser", anchor: "" },
   { patterns: [/\bhvidvask(?:regler|lovgivning|ning)?\b/i, /\bAML\b/], href: "/casino-licenser", anchor: "" },
 
