@@ -513,7 +513,7 @@ export default function Statistik() {
         </section>
 
         {/* ── FAQ ── */}
-        <FAQSection items={faqItems} />
+        <FAQSection faqs={faqItems} />
 
         {/* ── Author ── */}
         <AuthorBio author="kevin" />
