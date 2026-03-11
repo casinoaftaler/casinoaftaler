@@ -15,18 +15,18 @@ interface Guide {
 const GUIDES: Guide[] = [
   { title: "Casino Bonus Guide", description: "Alt du skal vide om bonusser, omsætningskrav og vilkår", path: "/casino-bonus" },
   { title: "Spillemaskiner Guide", description: "Forstå RTP, volatilitet og vælg de bedste slots", path: "/casinospil/spillemaskiner" },
-  { title: "Live Casino Guide", description: "Oplev ægte dealere og real-time spil fra din sofa", path: "/casinospil/live-casino" },
+  { title: "Live Casino Guide", description: "Oplev ægte dealere og real-time spil fra din sofa", path: "/live-casino" },
   { title: "Betalingsmetoder", description: "MobilePay, Trustly og andre hurtige indbetalingsmuligheder", path: "/betalingsmetoder" },
-  { title: "No-Sticky Bonus", description: "Bonusser du kan hæve uden at opfylde omsætningskrav", path: "/casino-bonus/no-sticky-bonus" },
+  { title: "No-Sticky Bonus", description: "Bonusser du kan hæve uden at opfylde omsætningskrav", path: "/no-sticky-bonus" },
   { title: "Free Spins i Dag", description: "Dagligt opdaterede tilbud på gratis spins", path: "/free-spins-i-dag" },
   { title: "Nye Casinoer 2026", description: "De seneste danske casinoer med licens og bonusser", path: "/nye-casinoer" },
   { title: "Blackjack Strategi", description: "Optimal strategi til den laveste house edge", path: "/casinospil/blackjack" },
   { title: "Roulette Guide", description: "Forstå regler, odds og populære strategier", path: "/casinospil/roulette" },
   { title: "Ansvarligt Spil", description: "Værktøjer, grænser og hjælp til sunde spillevaner", path: "/ansvarligt-spil" },
   { title: "Casino Anmeldelser", description: "Dybdegående tests af alle danske casinoer", path: "/casino-anmeldelser" },
-  { title: "Hurtig Udbetaling", description: "Casinoer med de hurtigste udbetalingstider i Danmark", path: "/casino-bonus/hurtig-udbetaling" },
+  { title: "Hurtig Udbetaling", description: "Casinoer med de hurtigste udbetalingstider i Danmark", path: "/casinoer/hurtig-udbetaling" },
   { title: "Slot Database", description: "1.400+ spilleautomater med RTP, volatilitet og statistik", path: "/slot-database" },
-  { title: "Omsætningskrav Forklaret", description: "Hvad omsætningskrav betyder og hvordan du opfylder dem", path: "/casino-bonus/omsaetningskrav" },
+  { title: "Omsætningskrav Forklaret", description: "Hvad omsætningskrav betyder og hvordan du opfylder dem", path: "/omsaetningskrav" },
   { title: "Baccarat Guide", description: "En af casinoets mest elegante spil med lav house edge", path: "/casinospil/baccarat" },
 ];
 
