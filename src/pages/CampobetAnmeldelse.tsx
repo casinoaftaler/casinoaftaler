@@ -560,6 +560,7 @@ const CampobetAnmeldelse = () => {
         <Separator className="my-10" />
         <RelatedReviews currentSlug="campobet" />
         <InlineCasinoCards excludeSlugs={["campobet"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/campobet" />
         <RelatedGuides currentPath="/casino-anmeldelser/campobet" />
         <FAQSection title="Ofte stillede spørgsmål om Campobet" faqs={campobetFaqs} />
         <AuthorBio author="jonas" />

@@ -257,6 +257,7 @@ const RoyalCasinoAnmeldelse = () => {
         <RelatedReviews currentSlug="royal-casino" />
         <InlineCasinoCards count={3} />
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/royal-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/royal-casino" />
         <FAQSection faqs={royalFaqs} />
         <AuthorBio author="jonas" />

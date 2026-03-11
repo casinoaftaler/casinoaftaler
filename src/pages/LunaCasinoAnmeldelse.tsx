@@ -800,6 +800,7 @@ const LunaCasinoAnmeldelse = () => {
         <RelatedReviews currentSlug="luna-casino" />
         <InlineCasinoCards excludeSlugs={["luna-casino"]} />
         <Separator className="my-10" />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/luna-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/luna-casino" />
         <FAQSection title="Ofte stillede spørgsmål om Luna Casino" faqs={lunaFaqs} />
         <AuthorBio author="jonas" />

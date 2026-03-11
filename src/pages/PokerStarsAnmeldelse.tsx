@@ -295,6 +295,7 @@ const PokerStarsAnmeldelse = () => {
         <RelatedReviews currentSlug="pokerstars" />
         <InlineCasinoCards count={3} />
         <Separator className="my-10" />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/pokerstars" />
         <RelatedGuides currentPath="/casino-anmeldelser/pokerstars" />
         <FAQSection faqs={pokerstarsFaqs} />
         <AuthorBio author="jonas" />

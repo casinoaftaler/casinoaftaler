@@ -331,6 +331,7 @@ const ComeOnAnmeldelse = () => {
 
         <RelatedReviews currentSlug="comeon" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["comeon"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/comeon" />
         <RelatedGuides currentPath="/casino-anmeldelser/comeon" />
         <FAQSection title="Ofte stillede spørgsmål om ComeOn Casino" faqs={comeonFaqs} />
         <AuthorBio />

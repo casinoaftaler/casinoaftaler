@@ -498,6 +498,7 @@ const OneCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/one-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/one-casino" />
         <FAQSection faqs={oneFaqs} />
         <AuthorBio author="jonas" />

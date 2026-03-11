@@ -445,6 +445,7 @@ const LeoVegasAnmeldelse = () => {
           </Card>
         </section>
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/leovegas" />
         <RelatedGuides currentPath="/casino-anmeldelser/leovegas" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

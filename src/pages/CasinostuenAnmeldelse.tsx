@@ -316,6 +316,7 @@ const CasinostuenAnmeldelse = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/casinostuen" />
         <RelatedGuides currentPath="/casino-anmeldelser/casinostuen" />
         <FAQSection faqs={casinostuenFaqs} />
         <AuthorBio author="jonas" />

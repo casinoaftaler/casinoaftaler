@@ -512,6 +512,7 @@ const SpilnuAnmeldelse = () => {
           </Card>
         </section>
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/spilnu" />
         <RelatedGuides currentPath="/casino-anmeldelser/spilnu" />
         <FAQSection faqs={spilnuFaqs} />
         <AuthorBio author="jonas" />

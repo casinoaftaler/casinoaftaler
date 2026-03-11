@@ -402,6 +402,7 @@ const SpilDanskNuAnmeldelse = () => {
         <InlineCasinoCards excludeSlugs={["spildansknu"]} />
         <Separator className="my-10" />
         <LiveCommunityDataStrip context="casino" />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/spildansknu" />
         <RelatedGuides currentPath="/casino-anmeldelser/spildansknu" />
         <FAQSection title="Ofte stillede spørgsmål om SpilDanskNu" faqs={spilDanskNuFaqs} />
         <AuthorBio author="jonas" />

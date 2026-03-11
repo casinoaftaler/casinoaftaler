@@ -325,6 +325,7 @@ const DanskeSpilAnmeldelse = () => {
 
         <RelatedReviews currentSlug="danske-spil" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["danske-spil"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/danske-spil" />
         <RelatedGuides currentPath="/casino-anmeldelser/danske-spil" />
         <FAQSection title="Ofte stillede spørgsmål om Danske Spil Casino" faqs={danskeSpilFaqs} />
         <AuthorBio />

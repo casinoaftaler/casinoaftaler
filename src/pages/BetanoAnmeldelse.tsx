@@ -528,6 +528,7 @@ const BetanoAnmeldelse = () => {
 
         <RelatedReviews currentSlug="betano" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["betano"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/betano" />
         <RelatedGuides currentPath="/casino-anmeldelser/betano" />
         <FAQSection title="Ofte stillede spørgsmål om Betano" faqs={faqs} />
         <AuthorBio />

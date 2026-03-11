@@ -780,6 +780,7 @@ const SpilleautomatenAnmeldelse = () => {
           excludeSlugs={["spilleautomaten"]}
         />
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/spilleautomaten" />
         <RelatedGuides currentPath="/casino-anmeldelser/spilleautomaten" />
 
         <FAQSection title="Ofte stillede spørgsmål om Spilleautomaten" faqs={spilleautomatenFaqs} />

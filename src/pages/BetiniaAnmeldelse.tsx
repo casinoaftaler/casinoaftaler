@@ -941,6 +941,7 @@ const BetiniaAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/betinia" />
         <RelatedGuides currentPath="/casino-anmeldelser/betinia" />
 
         <FAQSection title="Ofte stillede spørgsmål om Betinia" faqs={betiniaFaqs} />

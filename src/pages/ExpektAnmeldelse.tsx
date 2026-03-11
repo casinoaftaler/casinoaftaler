@@ -258,6 +258,7 @@ const ExpektAnmeldelse = () => {
         </section>
         <RelatedReviews currentSlug="expekt" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["expekt"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/expekt" />
         <RelatedGuides currentPath="/casino-anmeldelser/expekt" />
         <FAQSection faqs={faqs} />
         <AuthorBio />

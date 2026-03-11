@@ -578,6 +578,7 @@ const BwinAnmeldelse = () => {
           </Card>
         </section>
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/bwin" />
         <RelatedGuides currentPath="/casino-anmeldelser/bwin" />
         <FAQSection faqs={bwinFaqs} />
         <AuthorBio author="jonas" />

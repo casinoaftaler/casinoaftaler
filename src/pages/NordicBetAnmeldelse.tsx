@@ -445,6 +445,7 @@ const NordicBetAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/nordicbet" />
         <RelatedGuides currentPath="/casino-anmeldelser/nordicbet" />
         <FAQSection faqs={nordicbetFaqs} />
         <AuthorBio author="jonas" />

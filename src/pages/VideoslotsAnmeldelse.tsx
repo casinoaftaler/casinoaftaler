@@ -298,6 +298,7 @@ const VideoslotsAnmeldelse = () => {
         <RelatedReviews currentSlug="videoslots" />
         <InlineCasinoCards count={3} />
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/videoslots" />
         <RelatedGuides currentPath="/casino-anmeldelser/videoslots" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

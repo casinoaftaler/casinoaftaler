@@ -822,6 +822,7 @@ const SwiftCasinoAnmeldelse = () => {
         <RelatedReviews currentSlug="swift-casino" />
         <InlineCasinoCards excludeSlugs={["swift-casino"]} />
         <Separator className="my-10" />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/swift-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/swift-casino" />
         <FAQSection title="Ofte stillede spørgsmål om Swift Casino" faqs={swiftFaqs} />
         <AuthorBio author="jonas" />

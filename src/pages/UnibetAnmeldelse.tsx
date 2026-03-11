@@ -343,6 +343,7 @@ const UnibetAnmeldelse = () => {
 
         <RelatedReviews currentSlug="unibet" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["unibet"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/unibet" />
         <RelatedGuides currentPath="/casino-anmeldelser/unibet" />
         <FAQSection faqs={faqs} />
         <AuthorBio />

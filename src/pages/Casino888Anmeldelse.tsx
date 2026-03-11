@@ -322,6 +322,7 @@ const Casino888Anmeldelse = () => {
         </section>
         <RelatedReviews currentSlug="888-casino" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["888-casino"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/888-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/888-casino" />
         <FAQSection faqs={faqs} />
         <AuthorBio />
