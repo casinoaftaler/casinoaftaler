@@ -78,16 +78,36 @@ function sitemapPlugin(): Plugin {
       const outDir = path.resolve(__dirname, "dist");
       fs.mkdirSync(outDir, { recursive: true });
 
-      // ── 1. sitemap.xml from seoRoutes ──
+      // ── 1. sitemap.xml from seoRoutes + page_metadata (automated lastmod) ──
       const { seoRoutes } = await import("./src/lib/seoRoutes");
       const now = new Date();
       const buildDateISO = toDanishISO(now);
 
+      // Fetch live lastmod dates from page_metadata (source of truth)
+      const metadataMap = new Map<string, string>();
+      try {
+        const metaRows = await fetchAllRows<{ path: string; updated_at: string }>(
+          "page_metadata",
+          "path,updated_at",
+          "path"
+        );
+        for (const row of metaRows) {
+          metadataMap.set(row.path, row.updated_at);
+        }
+        console.log(`📅 Fetched ${metadataMap.size} lastmod dates from page_metadata`);
+      } catch (err) {
+        console.warn("⚠️ Could not fetch page_metadata – falling back to seoRoutes lastmod:", err);
+      }
+
       const staticUrls = seoRoutes.map((route) => {
         const loc = route.path === "/" ? SITE_URL + "/" : SITE_URL + route.path;
-        const lastmod = route.lastmod
-          ? `${route.lastmod}T12:00:00+01:00`
-          : buildDateISO;
+        // Priority: 1) page_metadata.updated_at (live), 2) seoRoutes lastmod (hardcoded), 3) build date
+        const dbDate = metadataMap.get(route.path);
+        const lastmod = dbDate
+          ? new Date(dbDate).toISOString().replace(/\.\d{3}Z$/, "+00:00")
+          : route.lastmod
+            ? `${route.lastmod}T12:00:00+01:00`
+            : buildDateISO;
         return `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
