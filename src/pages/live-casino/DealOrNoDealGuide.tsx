@@ -7,6 +7,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCasinoMoneyLinks } from "@/components/LiveCasinoMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
