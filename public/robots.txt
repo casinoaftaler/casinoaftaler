@@ -62,3 +62,6 @@ Disallow: /butik
 Disallow: /casino/
 
 Sitemap: https://casinoaftaler.dk/sitemap-index.xml
+
+# RSS Feed for news crawlers
+# https://casinoaftaler.dk/rss.xml (served via edge function)
