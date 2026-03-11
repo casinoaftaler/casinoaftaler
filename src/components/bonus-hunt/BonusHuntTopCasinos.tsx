@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-
+import { optimizeStorageImage } from "@/lib/imageOptimization";
 const CASINO_SLUGS = ["spildansknu", "spilleautomaten", "campobet"];
 
 export function BonusHuntTopCasinos() {
