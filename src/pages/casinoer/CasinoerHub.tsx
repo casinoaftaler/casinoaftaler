@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { FAQSection } from "@/components/FAQSection";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";

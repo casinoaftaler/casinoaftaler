@@ -8,6 +8,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import spiludviklereHero from "@/assets/heroes/spiludviklere-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import netentLogo from "@/assets/providers/netent.png";
 import pragmaticPlayLogo from "@/assets/providers/pragmatic-play.png";
