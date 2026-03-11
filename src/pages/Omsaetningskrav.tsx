@@ -855,6 +855,7 @@ const Omsaetningskrav = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/omsaetningskrav" />
         <RelatedGuides currentPath="/omsaetningskrav" />
 
         <FAQSection title="Ofte stillede spørgsmål om omsætningskrav" faqs={omsaetningskravFaqs} />

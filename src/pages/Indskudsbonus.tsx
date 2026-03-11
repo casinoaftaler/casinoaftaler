@@ -791,6 +791,7 @@ const Indskudsbonus = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/indskudsbonus" />
         <RelatedGuides currentPath="/indskudsbonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om indskudsbonus" faqs={indskudsbonusFaqs} />

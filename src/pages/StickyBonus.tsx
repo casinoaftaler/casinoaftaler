@@ -913,6 +913,7 @@ const StickyBonus = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/sticky-bonus" />
         <RelatedGuides currentPath="/sticky-bonus" />
         <FAQSection title="Ofte stillede spørgsmål om sticky bonus" faqs={stickyFaqs} />
         <AuthorBio />

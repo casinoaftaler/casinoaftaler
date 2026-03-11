@@ -641,6 +641,7 @@ const CashbackBonus = () => {
           title="Casinoer med stærke cashback-programmer"
         />
 
+        <LatestNewsByCategory pagePath="/cashback-bonus" />
         <RelatedGuides currentPath="/cashback-bonus" />
         <FAQSection title="Ofte stillede spørgsmål om cashback bonus" faqs={cashbackFaqs} />
         <AuthorBio />
