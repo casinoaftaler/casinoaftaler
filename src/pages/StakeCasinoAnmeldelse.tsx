@@ -329,6 +329,7 @@ const StakeCasinoAnmeldelse = () => {
           </Card>
         </section>
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/stake-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/stake-casino" />
         <FAQSection faqs={stakeFaqs} />
         <AuthorBio author="jonas" />
