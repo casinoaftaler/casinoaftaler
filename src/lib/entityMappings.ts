@@ -7,6 +7,8 @@ export interface EntityMapping {
   patterns: RegExp[];
   href: string;
   anchor: string;
+  /** Optional anchor variants for diversity across pages. If set, autoLinker picks one based on content hash. */
+  anchorVariants?: string[];
 }
 
 export const ENTITY_MAPPINGS: EntityMapping[] = [
@@ -63,9 +65,9 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
 
   // Bonus cluster money-pages
   { patterns: [/\bomsætningskrav\b/i, /\bomsaetningskrav\b/i, /\bwagering[\s-]?krav\b/i], href: "/omsaetningskrav", anchor: "" },
-  { patterns: [/\bfree spins\b/i, /\bgratis spins\b/i], href: "/free-spins", anchor: "" },
-  { patterns: [/\bcasino bonus\b/i, /\bcasinobonus\b/i], href: "/casino-bonus", anchor: "" },
-  { patterns: [/\bvelkomstbonus\b/i, /\bvelkomst-bonus\b/i], href: "/velkomstbonus", anchor: "" },
+  { patterns: [/\bfree spins\b/i, /\bgratis spins\b/i], href: "/free-spins", anchor: "", anchorVariants: ["free spins", "gratis spins", "free spins tilbud", "free spins bonusser"] },
+  { patterns: [/\bcasino bonus\b/i, /\bcasinobonus\b/i], href: "/casino-bonus", anchor: "", anchorVariants: ["casino bonus", "casinobonusser", "bedste casino bonus", "casino bonustilbud"] },
+  { patterns: [/\bvelkomstbonus\b/i, /\bvelkomst-bonus\b/i], href: "/velkomstbonus", anchor: "", anchorVariants: ["velkomstbonus", "velkomstbonusser", "bedste velkomstbonus"] },
   { patterns: [/\bindskudsbonus\b/i, /\bindskuds-bonus\b/i], href: "/indskudsbonus", anchor: "" },
   { patterns: [/\bbonus uden omsætningskrav\b/i, /\bbonus uden omsaetningskrav\b/i], href: "/bonus-uden-omsaetningskrav", anchor: "" },
   { patterns: [/\bno[\s-]?sticky bonus\b/i], href: "/no-sticky-bonus", anchor: "" },
@@ -79,7 +81,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bhurtig registrering\b/i], href: "/casino-uden-konto/hurtig-registrering", anchor: "" },
 
   // Casino-liste money-pages
-  { patterns: [/\bnye casinoer\b/i], href: "/nye-casinoer", anchor: "" },
+  { patterns: [/\bnye casinoer\b/i], href: "/nye-casinoer", anchor: "", anchorVariants: ["nye casinoer", "nye danske casinoer", "nyeste casinoer i Danmark"] },
   { patterns: [/\bdansk licens\b/i, /\bdanske licenser\b/i], href: "/casino-licenser", anchor: "" },
   { patterns: [/\bhvidvask(?:regler|lovgivning|ning)?\b/i, /\bAML\b/], href: "/casino-licenser", anchor: "" },
 
