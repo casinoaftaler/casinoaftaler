@@ -156,6 +156,16 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bcasino på android\b/i, /\bandroid casino\b/i], href: "/mobil-casino/android", anchor: "" },
   { patterns: [/\bcasino på tablet\b/i, /\btablet casino\b/i], href: "/mobil-casino/tablet", anchor: "" },
 
+  // Slot-kategori udvidelser
+  { patterns: [/\bhøj RTP\b/i, /\bhoej RTP\b/i, /\bhøj tilbagebetaling\b/i], href: "/casinospil/spillemaskiner/hoej-rtp", anchor: "" },
+  { patterns: [/\bhøj volatilitet\b/i, /\bhoej volatilitet\b/i], href: "/ordbog/volatilitet", anchor: "" },
+  { patterns: [/\blav volatilitet\b/i], href: "/ordbog/volatilitet", anchor: "" },
+  { patterns: [/\bbonus spins\b/i, /\bbonusspins\b/i], href: "/free-spins", anchor: "" },
+  { patterns: [/\bdrop[\s-]?and[\s-]?wins?\b/i], href: "/spiludviklere/pragmatic-play", anchor: "" },
+  { patterns: [/\btumble[\s-]?feature\b/i], href: "/ordbog/cascading-wins", anchor: "" },
+  { patterns: [/\bslot[\s-]?database\b/i, /\bslot-database\b/i], href: "/slot-database", anchor: "slot database" },
+  { patterns: [/\bMonopoly Live\b/i], href: "/live-casino/monopoly-live", anchor: "Monopoly Live" },
+
   // ══════════════════════════════════════════════════════════════════
   // ── GLOSSARY ENTITIES (informational support – lower priority) ──
   // ══════════════════════════════════════════════════════════════════

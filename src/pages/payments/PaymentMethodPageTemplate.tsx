@@ -400,18 +400,16 @@ export function PaymentMethodPage({
 
         <Separator className="my-10" />
 
-        {/* Related payment methods */}
+        {/* Related payment methods — show all siblings for full cross-linking */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Relaterede Betalingsmetoder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Se vores komplette{" "}
-            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">oversigt over betalingsmetoder</Link>{" "}
-            på danske casinoer.
+            Sammenlign {name} med andre populære betalingsmetoder på danske casinoer. Se vores komplette{" "}
+            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">oversigt over betalingsmetoder</Link>.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {paymentLinks
               .filter((pm) => pm.to !== currentPath)
-              .slice(0, 3)
               .map((pm) => (
                 <Link
                   key={pm.to}
@@ -421,6 +419,44 @@ export function PaymentMethodPage({
                   {pm.label}
                 </Link>
               ))}
+          </div>
+        </section>
+
+        {/* Money-page CTAs */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
+            <Gift className="h-6 w-6 text-primary" />
+            Find det rette casino til {name}
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Link to="/casino-anmeldelser" className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
+              <Award className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold">Casino Anmeldelser</p>
+                <p className="text-sm text-muted-foreground">Se hvilke casinoer der accepterer {name} med de bedste vilkår.</p>
+              </div>
+            </Link>
+            <Link to="/casino-bonus" className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
+              <Wallet className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold">Casino Bonus</p>
+                <p className="text-sm text-muted-foreground">Bonusser du kan aktivere med {name}-indbetalinger.</p>
+              </div>
+            </Link>
+            <Link to="/nye-casinoer" className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
+              <Banknote className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold">Nye Casinoer 2026</p>
+                <p className="text-sm text-muted-foreground">De nyeste danske casinoer med {name}-understøttelse.</p>
+              </div>
+            </Link>
+            <Link to="/velkomstbonus" className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50">
+              <CreditCard className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold">Velkomstbonus</p>
+                <p className="text-sm text-muted-foreground">Bedste velkomsttilbud kompatible med {name}.</p>
+              </div>
+            </Link>
           </div>
         </section>
 
