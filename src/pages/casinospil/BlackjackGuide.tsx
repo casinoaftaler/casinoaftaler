@@ -940,6 +940,7 @@ const BlackjackGuide = () => {
         </section>
 
         <CasinospilMoneyLinks gameName="Blackjack" currentPath="/casinospil/blackjack" />
+        <LatestNewsByCategory pagePath="/casinospil/blackjack" />
         <RelatedGuides currentPath="/casinospil/blackjack" />
         <FAQSection faqs={blackjackFaqs} />
         <AuthorBio />

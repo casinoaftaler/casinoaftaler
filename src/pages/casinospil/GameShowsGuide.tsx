@@ -628,6 +628,7 @@ const GameShowsGuide = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/live-casino/game-shows" />
         <RelatedGuides currentPath="/live-casino/game-shows" />
         <FAQSection title="Ofte stillede spørgsmål om casino game shows" faqs={gameShowFaqs} />
         <AuthorBio />

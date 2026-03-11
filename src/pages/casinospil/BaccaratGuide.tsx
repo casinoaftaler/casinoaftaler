@@ -429,6 +429,7 @@ const BaccaratGuide = () => {
         </section>
 
         <CasinospilMoneyLinks gameName="Baccarat" currentPath="/casinospil/baccarat" />
+        <LatestNewsByCategory pagePath="/casinospil/baccarat" />
         <RelatedGuides currentPath="/casinospil/baccarat" />
         <FAQSection faqs={baccaratFaqs} />
         <AuthorBio author="jonas" showCommunity={false} />

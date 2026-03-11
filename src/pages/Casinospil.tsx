@@ -1380,6 +1380,7 @@ const Casinospil = () => {
 
         <Separator className="my-10" />
 
+        <LatestNewsByCategory pagePath="/casinospil" />
         <RelatedGuides currentPath="/casinospil" />
 
         <FAQSection title="Ofte stillede spørgsmål om casinospil" faqs={casinospilFaqs} />

@@ -634,6 +634,7 @@ const PokerGuide = () => {
         <Separator className="my-10" />
 
         <CasinospilMoneyLinks gameName="Poker" currentPath="/casinospil/poker" />
+        <LatestNewsByCategory pagePath="/casinospil/poker" />
         <RelatedGuides currentPath="/casinospil/poker" />
 
         <FAQSection faqs={pokerFaqs} />

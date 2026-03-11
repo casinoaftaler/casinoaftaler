@@ -587,6 +587,7 @@ const FibonacciBlackjackGuide = () => {
         </section>
 
         <CasinospilMoneyLinks gameName="Fibonacci Blackjack" currentPath="/casinospil/blackjack/fibonacci" />
+        <LatestNewsByCategory pagePath="/casinospil/blackjack/fibonacci" />
         <RelatedGuides currentPath="/casinospil/blackjack/fibonacci-system" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
