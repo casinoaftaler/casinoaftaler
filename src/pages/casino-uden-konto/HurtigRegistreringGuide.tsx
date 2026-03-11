@@ -683,6 +683,7 @@ const HurtigRegistreringGuide = () => {
           </div>
         </section>
 
+        <CasinoUdenKontoCrossLinks pageName="Hurtig Registrering" currentPath="/casino-uden-konto/hurtig-registrering" />
         <LatestNewsByCategory pagePath="/casino-uden-konto/hurtig-registrering" />
         <RelatedGuides currentPath="/casino-uden-konto/hurtig-registrering" />
         <FAQSection title="Ofte Stillede Spørgsmål om Hurtig Registrering" faqs={hurtigRegFaqs} />

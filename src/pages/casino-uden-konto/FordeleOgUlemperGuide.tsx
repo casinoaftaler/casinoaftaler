@@ -527,6 +527,7 @@ const FordeleOgUlemperGuide = () => {
           </div>
         </section>
 
+        <CasinoUdenKontoCrossLinks pageName="Fordele og Ulemper" currentPath="/casino-uden-konto/fordele-og-ulemper" />
         <LatestNewsByCategory pagePath="/casino-uden-konto/fordele-og-ulemper" />
         <RelatedGuides currentPath="/casino-uden-konto/fordele-og-ulemper" />
         <FAQSection title="Ofte Stillede Spørgsmål" faqs={fordeleUlemperFaqs} />

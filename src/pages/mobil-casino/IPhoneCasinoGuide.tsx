@@ -1601,6 +1601,7 @@ const IPhoneCasinoGuide = () => {
           </div>
         </section>
 
+        <MobilCasinoCrossLinks pageName="Casino på iPhone" currentPath="/mobil-casino/iphone" />
         <LatestNewsByCategory pagePath="/mobil-casino/iphone" />
         <RelatedGuides currentPath="/mobil-casino/iphone" />
         <FAQSection title="Ofte Stillede Spørgsmål om Casino på iPhone" faqs={faqs} />

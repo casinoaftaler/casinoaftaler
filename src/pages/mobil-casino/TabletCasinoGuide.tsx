@@ -835,6 +835,7 @@ const TabletCasinoGuide = () => {
           </div>
         </section>
 
+        <MobilCasinoCrossLinks pageName="Casino på Tablet" currentPath="/mobil-casino/tablet" />
         <LatestNewsByCategory pagePath="/mobil-casino/tablet" />
         <RelatedGuides currentPath="/mobil-casino/tablet" />
         <FAQSection title="Ofte Stillede Spørgsmål om Casino på Tablet" faqs={faqs} />

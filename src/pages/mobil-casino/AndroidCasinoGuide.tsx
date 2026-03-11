@@ -1025,6 +1025,7 @@ const AndroidCasinoGuide = () => {
           </div>
         </section>
 
+        <MobilCasinoCrossLinks pageName="Casino på Android" currentPath="/mobil-casino/android" />
         <LatestNewsByCategory pagePath="/mobil-casino/android" />
         <RelatedGuides currentPath="/mobil-casino/android" />
         <FAQSection title="Ofte Stillede Spørgsmål om Android Casino" faqs={faqs} />

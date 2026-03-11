@@ -799,6 +799,7 @@ const BedsteAppsGuide = () => {
           </div>
         </section>
 
+        <MobilCasinoCrossLinks pageName="Bedste Casino Apps" currentPath="/mobil-casino/bedste-apps" />
         <LatestNewsByCategory pagePath="/mobil-casino/bedste-apps" />
         <RelatedGuides currentPath="/mobil-casino/bedste-apps" />
         <FAQSection title="Ofte Stillede Spørgsmål om Casino Apps" faqs={faqs} />

@@ -584,6 +584,7 @@ const PayNPlayGuide = () => {
           </div>
         </section>
 
+        <CasinoUdenKontoCrossLinks pageName="Pay N Play" currentPath="/casino-uden-konto/pay-n-play" />
         <LatestNewsByCategory pagePath="/casino-uden-konto/pay-n-play" />
         <RelatedGuides currentPath="/casino-uden-konto/pay-n-play" />
         <FAQSection title="Ofte Stillede Spørgsmål om Pay N Play" faqs={payNPlayFaqs} />
