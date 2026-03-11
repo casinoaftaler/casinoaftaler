@@ -94,8 +94,6 @@ export const AJSE_SAME_AS = [
   "https://www.instagram.com/serifoaaa/",
 ];
 
-/** Canonical Person entity for Jonas Theill – reused across all article pages. */
-const JONAS_PERSON_ID = `${SITE_URL}/forfatter/jonas#person`;
 
 function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: string[]) {
   const isKevin = authorName === "Kevin";
