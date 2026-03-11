@@ -21,6 +21,8 @@ import {
   BarChart, Bar
 } from "recharts";
 
+import statistikHero from "@/assets/statistik-hero.jpg";
+
 /* ── Provider slug mapping ── */
 const PROVIDER_SLUG_MAP: Record<string, string> = {
   "NetEnt": "netent",
