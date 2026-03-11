@@ -64,7 +64,25 @@ const PAGE_CATEGORY_MAP: Record<string, { categories: string[]; tags: string[]; 
   "/megaways-slots": { categories: ["nye-casinoer"], tags: ["megaways", "spillemaskiner"], label: "Megaways slots" },
   "/jackpot-slots": { categories: ["nye-casinoer"], tags: ["jackpot", "spillemaskiner"], label: "jackpot slots" },
   "/bonus-buy-slots": { categories: ["nye-casinoer"], tags: ["bonus buy", "spillemaskiner"], label: "bonus buy slots" },
-  // Comparison pages use casino-anmeldelser fallback via startsWith logic below
+  // Casinospil cluster
+  "/casinospil": { categories: ["nye-casinoer"], tags: ["casinospil", "blackjack", "roulette"], label: "casinospil" },
+  "/casinospil/blackjack": { categories: ["nye-casinoer"], tags: ["blackjack", "casinospil"], label: "blackjack" },
+  "/casinospil/roulette": { categories: ["nye-casinoer"], tags: ["roulette", "casinospil"], label: "roulette" },
+  "/casinospil/poker": { categories: ["nye-casinoer"], tags: ["poker", "casinospil"], label: "poker" },
+  "/casinospil/baccarat": { categories: ["nye-casinoer"], tags: ["baccarat", "casinospil"], label: "baccarat" },
+  "/casinospil/craps": { categories: ["nye-casinoer"], tags: ["craps", "casinospil"], label: "craps" },
+  "/casinospil/game-shows": { categories: ["nye-casinoer"], tags: ["game shows", "live casino"], label: "game shows" },
+  "/casinospil/online-lotteri": { categories: ["nye-casinoer"], tags: ["lotteri", "casinospil"], label: "online lotteri" },
+  // Casinoer cluster
+  "/casinoer": { categories: ["nye-casinoer", "markedsbevægelser"], tags: ["casino", "online casino"], label: "online casinoer" },
+  // Standalone money-pages
+  "/free-spins": { categories: ["nye-casinoer"], tags: ["free spins", "bonus"], label: "free spins" },
+  "/free-spins-i-dag": { categories: ["nye-casinoer"], tags: ["free spins", "daglige tilbud"], label: "free spins i dag" },
+  "/spiludviklere": { categories: ["nye-casinoer"], tags: ["spiludviklere", "provider"], label: "spiludviklere" },
+  "/vip-program": { categories: ["nye-casinoer"], tags: ["vip", "loyalitet"], label: "VIP-programmer" },
+  "/casino-med-mobilepay": { categories: ["betalingsmetoder"], tags: ["mobilepay", "betaling"], label: "casino med MobilePay" },
+  "/casino-app": { categories: ["nye-casinoer"], tags: ["casino app", "mobil"], label: "casino apps" },
+  "/statistik": { categories: ["nye-casinoer", "markedsbevægelser"], tags: ["statistik", "data"], label: "casinostatistik" },
 };
 
 function useNewsByCategory(categories: string[], tags: string[], limit = 3) {
