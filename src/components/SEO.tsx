@@ -41,7 +41,7 @@ interface SEOProps {
  */
 function formatTitle(raw: string): string {
   const stripped = raw
-    .replace(/\s*[|–-]\s*Casinoaftaler(?:\.dk)?\s*$/i, "")
+    .replace(/\s*[|–:-]\s*Casinoaftaler(?:\.dk)?\s*$/i, "")
     .trim();
   return `${stripped} | ${SITE_BRAND}`;
 }
