@@ -260,7 +260,14 @@ export default function ProviderSlotsHub() {
 
         <Separator className="my-10" />
 
-        {/* FAQ Section */}
+        {/* Money page links */}
+        <ProviderMoneyLinks
+          providerName={content.displayName}
+          providerSlug={validSlug}
+          slotCount={stats?.totalSlots}
+        />
+
+        <Separator className="my-10" />
         {content.faqs.length > 0 && (
           <FAQSection
             title={`Ofte stillede spørgsmål om ${content.displayName} slots`}
