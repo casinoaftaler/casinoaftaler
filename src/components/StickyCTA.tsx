@@ -194,6 +194,8 @@ export function StickyCTA({
             <img
               src={logoUrl}
               alt={`${casinoName} logo`}
+              width={52}
+              height={48}
               className="h-[48px] w-auto max-w-[52px] rounded-lg object-contain flex-shrink-0"
               loading="lazy"
             />

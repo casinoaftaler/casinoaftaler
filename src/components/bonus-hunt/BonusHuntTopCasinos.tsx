@@ -53,7 +53,7 @@ export function BonusHuntTopCasinos() {
           >
             {casino.logo_url && (
               <img
-                src={casino.logo_url}
+                src={optimizeStorageImage(casino.logo_url, 80) ?? casino.logo_url}
                 alt={`${casino.name} logo`}
                 className="h-10 w-10 rounded-lg object-contain bg-background/50 shrink-0"
                 loading="lazy"
