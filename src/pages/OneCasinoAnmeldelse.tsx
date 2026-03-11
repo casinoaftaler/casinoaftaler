@@ -83,7 +83,7 @@ const OneCasinoAnmeldelse = () => {
     dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
-    aggregateRating: { ratingValue: "3.5", ratingCount: "93" },
+    
     ...casinoReviewEntities("One Casino", "one-casino"),
   });
 

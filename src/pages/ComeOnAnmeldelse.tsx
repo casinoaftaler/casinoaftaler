@@ -68,7 +68,7 @@ const ComeOnAnmeldelse = () => {
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     videoId: "tW_E0RmzSHg",
-    aggregateRating: { ratingValue: "4.0", ratingCount: "136" },
+    
     ...casinoReviewEntities("ComeOn Casino", "comeon"),
   });
 
