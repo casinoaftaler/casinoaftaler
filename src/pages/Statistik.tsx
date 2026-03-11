@@ -230,7 +230,6 @@ export default function Statistik() {
       <SEO
         title={seoTitle}
         description={seoDesc}
-        canonicalUrl={`${SITE_URL}/statistik`}
         jsonLd={[articleSchema, faqSchema, datasetSchema]}
       />
 
