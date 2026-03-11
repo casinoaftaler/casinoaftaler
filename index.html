@@ -30,9 +30,15 @@
     <!-- Default fallback – overridden per-page by react-helmet-async -->
     <title>De bedste Online Casinoer 2026 | Casinoaftaler</title>
     <meta name="description" content="Find de bedste nye casinoer med bonus hos Casinoaftaler. Sammenlign nye casinoer, live casino, free spins og spil ansvarligt med vores uafhængige anmeldelser." />
-    <link rel="canonical" href="https://casinoaftaler.dk/" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="alternate" type="application/rss+xml" title="Casinoaftaler Nyheder" href="https://casinoaftaler.dk/rss.xml" />
+
+    <!-- Speculation Rules – static for Chrome compatibility (React Helmet ignores type=speculationrules) -->
+    <script type="speculationrules">
+    {
+      "prerender": [{ "urls": ["/casino-anmeldelser","/casino-bonus","/free-spins","/live-casino","/bonus-hunt","/slot-database","/casino-nyheder"], "eagerness": "moderate" }],
+      "prefetch": [{ "urls": ["/casinospil","/statistik","/casino-uden-rofus","/ordliste","/ansvarligt-spil"], "eagerness": "moderate" }]
+    }
+    </script>
 </head>
 
   <body>

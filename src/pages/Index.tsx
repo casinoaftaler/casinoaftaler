@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { SpeculationRules } from "@/components/SpeculationRules";
+
 import { HeroSection } from "@/components/HeroSection";
 import { WhyTrustUs } from "@/components/WhyTrustUs";
 import { QuickNavSidebar } from "@/components/QuickNavBar";
@@ -129,7 +129,7 @@ const Index = () => {
 
   return (
     <>
-      <SpeculationRules />
+      
       <SEO
         title="Online Casinoer med Bonus – Nye Casinoer 2026"
         description="Find de bedste online casinoer med bonus og dansk licens. Sammenlign nye casinoer, live casino, free spins og spil ansvarligt med vores uafhængige anmeldelser."
