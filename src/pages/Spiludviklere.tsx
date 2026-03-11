@@ -846,6 +846,7 @@ const Spiludviklere = () => {
           </Card>
         </section>
 
+        <LatestNewsByCategory pagePath="/spiludviklere" />
         <RelatedGuides currentPath="/spiludviklere" />
         <FAQSection title="Ofte stillede spørgsmål om casino-spiludviklere" faqs={spiludviklereFaqs} />
         <AuthorBio author="kevin" />

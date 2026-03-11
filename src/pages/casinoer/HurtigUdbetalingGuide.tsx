@@ -619,6 +619,7 @@ const HurtigUdbetalingGuide = () => {
           </p>
         </section>
 
+        <LatestNewsByCategory pagePath="/casinoer/hurtig-udbetaling" />
         <RelatedGuides currentPath="/casinoer/hurtig-udbetaling" />
 
         <FAQSection title="Ofte stillede spørgsmål om hurtige udbetalinger" faqs={faqs} />

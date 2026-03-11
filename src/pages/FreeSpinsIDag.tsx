@@ -490,6 +490,7 @@ const FreeSpinsIDag = () => {
         </div>
 
         <Separator className="my-8" />
+        <LatestNewsByCategory pagePath="/free-spins-i-dag" />
         <RelatedGuides currentPath="/free-spins-i-dag" />
         <FAQSection title="Ofte Stillede Spørgsmål om Daglige Free Spins" faqs={freeSpinsIDagFaqs} />
         <AuthorBio author="jonas" />

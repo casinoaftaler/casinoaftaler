@@ -330,6 +330,7 @@ const MobilCasinoerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Husk altid at spille <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt</Link>, uanset om du sidder ved computeren eller er på farten med din telefon. Sæt grænser for din tid og dit budget, og tag pauser regelmæssigt. Besøg vores <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> for at finde det perfekte mobil casino til dine behov.</p>
         </section>
 
+        <LatestNewsByCategory pagePath="/casinoer/mobil-casinoer" />
         <RelatedGuides currentPath="/casinoer/mobil-casinoer" />
 
         <FAQSection title="Ofte stillede spørgsmål om mobil casino" faqs={faqs} />

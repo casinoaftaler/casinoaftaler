@@ -226,6 +226,7 @@ const VRCasinoerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For danske spillere anbefaler vi at holde øje med udviklingen, men fortsat vælge <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> for den bedste kombination af sikkerhed, spiludvalg og beskyttelse. Når VR-teknologien modnes, og regulering følger med, vil VR casinoer utvivlsomt blive en vigtig del af fremtidens gambling-landskab. Indtil da er <Link to="/live-casino" className={linkClass}>live casino</Link> det nærmeste du kommer den immersive oplevelse på en licenseret dansk platform.</p>
         </section>
 
+        <LatestNewsByCategory pagePath="/casinoer/vr-casinoer" />
         <RelatedGuides currentPath="/casinoer/vr-casinoer" />
 
         <FAQSection title="Ofte stillede spørgsmål om VR casinoer" faqs={faqs} />

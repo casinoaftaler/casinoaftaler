@@ -271,6 +271,7 @@ const CasinoOgSkatGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Besøg vores <Link to="/top-10-casino-online" className={linkClass}>top 10 online casino</Link> for de bedste skattefri casinomuligheder i Danmark, eller læs vores <Link to="/casino-licenser" className={linkClass}>guide til licenserede casinoer</Link> for at forstå, hvorfor dansk licens bør være dit vigtigste kriterium.</p>
         </section>
 
+        <LatestNewsByCategory pagePath="/casinoer/casino-og-skat" />
         <RelatedGuides currentPath="/casinoer/casino-og-skat" />
 
         <FAQSection title="Ofte stillede spørgsmål om casino og skat" faqs={faqs} />

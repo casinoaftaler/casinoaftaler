@@ -672,6 +672,7 @@ export default function Statistik() {
         <Separator className="my-10" />
 
         {/* ── Related Guides ── */}
+        <LatestNewsByCategory pagePath="/statistik" />
         <RelatedGuides currentPath="/statistik" />
 
         {/* ── FAQ ── */}

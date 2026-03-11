@@ -194,6 +194,7 @@ const CryptoCasinoGuide = () => {
         </section>
 
         
+        <LatestNewsByCategory pagePath="/casinoer/crypto-casino" />
         <RelatedGuides currentPath="/casinoer/crypto-casino" />
         <FAQSection title="Ofte stillede spørgsmål om crypto casinoer" faqs={faqs} />
         <AuthorBio />

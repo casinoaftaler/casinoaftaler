@@ -310,6 +310,7 @@ export function ComparisonPageTemplate({
 
         <InlineCasinoCards title="Andre anbefalede casinoer" count={4} excludeSlugs={[casinoA.slug, casinoB.slug]} />
         <Separator className="my-10" />
+        <LatestNewsByCategory pagePath={path} />
         <RelatedGuides currentPath={path} />
         <FAQSection title={`Ofte stillede spørgsmål: ${casinoA.name} vs ${casinoB.name}`} faqs={faqs} />
         <AuthorBio author={author} />

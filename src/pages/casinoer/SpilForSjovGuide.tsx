@@ -204,6 +204,7 @@ const SpilForSjovGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Når og hvis du er klar til at spille med rigtige penge, anbefaler vi altid at starte med en lille indbetaling på et <Link to="/casino-licenser" className={linkClass}>licenseret dansk casino</Link> og udnytte en <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> med lave <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. På den måde sikrer du dig den bedste start med maksimal beskyttelse og mest mulig værdi for dine penge.</p>
         </section>
 
+        <LatestNewsByCategory pagePath="/casinoer/spil-casino-for-sjov" />
         <RelatedGuides currentPath="/casinoer/spil-casino-for-sjov" />
 
         <FAQSection title="Ofte stillede spørgsmål om gratis casinospil" faqs={faqs} />

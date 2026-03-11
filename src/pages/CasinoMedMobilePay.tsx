@@ -1014,6 +1014,7 @@ const CasinoMedMobilePay = () => {
 
         <Separator className="my-12" />
 
+        <LatestNewsByCategory pagePath="/casino-med-mobilepay" />
         <RelatedGuides currentPath="/casino-med-mobilepay" />
       </div>
 

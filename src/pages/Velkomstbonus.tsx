@@ -923,6 +923,7 @@ const Velkomstbonus = () => {
         </section>
 
         <LiveCommunityDataStrip context="bonus" />
+        <LatestNewsByCategory pagePath="/velkomstbonus" />
         <RelatedGuides currentPath="/velkomstbonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om velkomstbonus" faqs={velkomstbonusFaqs} />

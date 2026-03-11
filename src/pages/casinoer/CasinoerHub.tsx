@@ -634,6 +634,7 @@ export default function CasinoerHub() {
           </p>
         </section>
 
+        <LatestNewsByCategory pagePath="/casinoer" />
         <RelatedGuides currentPath="/casinoer" />
         <FAQSection title="Ofte Stillede Spørgsmål om Online Casinoer i Danmark" faqs={faqs} />
         <AuthorBio author="jonas" />

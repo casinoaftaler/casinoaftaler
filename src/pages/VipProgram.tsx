@@ -1125,6 +1125,7 @@ const VipProgram = () => {
 
         <Separator className="my-12" />
 
+        <LatestNewsByCategory pagePath="/vip-program" />
         <RelatedGuides currentPath="/vip-program" />
       </div>
 
