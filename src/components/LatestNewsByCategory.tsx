@@ -167,11 +167,17 @@ interface LatestNewsByCategoryProps {
  * Cornerstone articles are prioritized first.
  */
 export function LatestNewsByCategory({ pagePath }: LatestNewsByCategoryProps) {
-  // Direct match first, then prefix match for review/comparison pages
+  // Direct match first, then prefix match for review/comparison/cluster pages
   const mapping = PAGE_CATEGORY_MAP[pagePath]
     ?? (pagePath.startsWith("/casino-anmeldelser/") ? PAGE_CATEGORY_MAP["/casino-anmeldelser"] : undefined)
     ?? (pagePath.startsWith("/casinospil/spillemaskiner/") ? { categories: ["nye-casinoer"], tags: ["spillemaskiner", "slots"], label: "spillemaskiner" } : undefined)
-    ?? (pagePath.startsWith("/nye-casinoer/") ? PAGE_CATEGORY_MAP["/nye-casinoer"] : undefined);
+    ?? (pagePath.startsWith("/casinospil/blackjack/") ? PAGE_CATEGORY_MAP["/casinospil/blackjack"] : undefined)
+    ?? (pagePath.startsWith("/casinospil/roulette/") ? PAGE_CATEGORY_MAP["/casinospil/roulette"] : undefined)
+    ?? (pagePath.startsWith("/casinospil/poker/") ? PAGE_CATEGORY_MAP["/casinospil/poker"] : undefined)
+    ?? (pagePath.startsWith("/casinospil/") ? PAGE_CATEGORY_MAP["/casinospil"] : undefined)
+    ?? (pagePath.startsWith("/casinoer/") ? PAGE_CATEGORY_MAP["/casinoer"] : undefined)
+    ?? (pagePath.startsWith("/nye-casinoer/") ? PAGE_CATEGORY_MAP["/nye-casinoer"] : undefined)
+    ?? (pagePath.startsWith("/casino-anmeldelser/") ? PAGE_CATEGORY_MAP["/casino-anmeldelser"] : undefined);
   
   const categories = mapping?.categories ?? ["regulering"];
   const label = mapping?.label ?? "det danske casinomarked";
