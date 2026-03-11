@@ -437,7 +437,7 @@ export default function Statistik() {
                     {topSlots.map((s, i) => (
                       <tr key={s.id} className="border-b border-border hover:bg-muted/30 transition-colors">
                         <td className="px-4 py-3 text-muted-foreground">
-                          {i === 0 ? <Trophy className="h-4 w-4 text-yellow-500" /> : i + 1}
+                          {i === 0 ? <Trophy className="h-4 w-4 text-primary" /> : i + 1}
                         </td>
                         <td className="px-4 py-3 font-medium text-foreground">{s.slot_name}</td>
                         <td className="px-4 py-3 text-muted-foreground">{s.provider}</td>
