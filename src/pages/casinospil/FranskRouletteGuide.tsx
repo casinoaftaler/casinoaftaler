@@ -633,6 +633,7 @@ export default function FranskRouletteGuide() {
         </section>
 
         <CasinospilMoneyLinks gameName="Fransk Roulette" currentPath="/casinospil/roulette/fransk-roulette" />
+        <LatestNewsByCategory pagePath="/casinospil/roulette/fransk-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/fransk-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

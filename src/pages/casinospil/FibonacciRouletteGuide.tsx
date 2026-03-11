@@ -792,6 +792,7 @@ export default function FibonacciRouletteGuide() {
         </section>
 
         <CasinospilMoneyLinks gameName="Fibonacci Roulette" currentPath="/casinospil/roulette/fibonacci-roulette" />
+        <LatestNewsByCategory pagePath="/casinospil/roulette/fibonacci-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/fibonacci-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

@@ -627,6 +627,7 @@ export default function CaribbeanStudGuide() {
         </section>
 
         <CasinospilMoneyLinks gameName="Caribbean Stud Poker" currentPath="/casinospil/poker/caribbean-stud" />
+        <LatestNewsByCategory pagePath="/casinospil/poker/caribbean-stud" />
         <RelatedGuides currentPath="/casinospil/poker/caribbean-stud" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

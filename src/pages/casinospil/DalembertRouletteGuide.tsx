@@ -636,6 +636,7 @@ export default function DalembertRouletteGuide() {
         </section>
 
         <CasinospilMoneyLinks gameName="D'Alembert Roulette" currentPath="/casinospil/roulette/dalembert-roulette" />
+        <LatestNewsByCategory pagePath="/casinospil/roulette/dalembert-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/dalembert-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

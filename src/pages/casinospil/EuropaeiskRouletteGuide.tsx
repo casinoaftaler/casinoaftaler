@@ -675,6 +675,7 @@ export default function EuropaeiskRouletteGuide() {
         </section>
 
         <CasinospilMoneyLinks gameName="Europæisk Roulette" currentPath="/casinospil/roulette/europaeisk-roulette" />
+        <LatestNewsByCategory pagePath="/casinospil/roulette/europaeisk-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/europaeisk-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

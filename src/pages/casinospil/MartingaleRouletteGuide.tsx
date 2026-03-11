@@ -817,6 +817,7 @@ export default function MartingaleRouletteGuide() {
         </section>
 
         <CasinospilMoneyLinks gameName="Martingale Roulette" currentPath="/casinospil/roulette/martingale-roulette" />
+        <LatestNewsByCategory pagePath="/casinospil/roulette/martingale-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/martingale-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

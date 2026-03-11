@@ -1017,6 +1017,7 @@ export default function AmerikanskRouletteGuide() {
         <Separator className="mb-12" />
 
         <CasinospilMoneyLinks gameName="Amerikansk Roulette" currentPath="/casinospil/roulette/amerikansk-roulette" />
+        <LatestNewsByCategory pagePath="/casinospil/roulette/amerikansk-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/amerikansk-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

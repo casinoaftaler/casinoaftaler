@@ -821,6 +821,7 @@ const ThreeCardPokerGuide = () => {
         </section>
 
         <CasinospilMoneyLinks gameName="Three Card Poker" currentPath="/casinospil/poker/three-card-poker" />
+        <LatestNewsByCategory pagePath="/casinospil/poker/three-card-poker" />
         <RelatedGuides currentPath="/casinospil/poker/three-card-poker" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
