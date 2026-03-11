@@ -15,6 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { slugifySlotName } from "@/lib/slugify";
+import { ProviderMoneyLinks } from "@/components/ProviderMoneyLinks";
 import {
   Gamepad2,
   BarChart3,
@@ -259,7 +260,14 @@ export default function ProviderSlotsHub() {
 
         <Separator className="my-10" />
 
-        {/* FAQ Section */}
+        {/* Money page links */}
+        <ProviderMoneyLinks
+          providerName={content.displayName}
+          providerSlug={validSlug}
+          slotCount={stats?.totalSlots}
+        />
+
+        <Separator className="my-10" />
         {content.faqs.length > 0 && (
           <FAQSection
             title={`Ofte stillede spørgsmål om ${content.displayName} slots`}
