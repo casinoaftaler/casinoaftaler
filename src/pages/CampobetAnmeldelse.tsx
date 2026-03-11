@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -559,6 +560,7 @@ const CampobetAnmeldelse = () => {
         <Separator className="my-10" />
         <RelatedReviews currentSlug="campobet" />
         <InlineCasinoCards excludeSlugs={["campobet"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/campobet" />
         <RelatedGuides currentPath="/casino-anmeldelser/campobet" />
         <FAQSection title="Ofte stillede spørgsmål om Campobet" faqs={campobetFaqs} />
         <AuthorBio author="jonas" />

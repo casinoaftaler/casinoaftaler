@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -780,6 +781,7 @@ const SpilleautomatenAnmeldelse = () => {
           excludeSlugs={["spilleautomaten"]}
         />
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/spilleautomaten" />
         <RelatedGuides currentPath="/casino-anmeldelser/spilleautomaten" />
 
         <FAQSection title="Ofte stillede spørgsmål om Spilleautomaten" faqs={spilleautomatenFaqs} />

@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -324,6 +325,7 @@ const DanskeSpilAnmeldelse = () => {
 
         <RelatedReviews currentSlug="danske-spil" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["danske-spil"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/danske-spil" />
         <RelatedGuides currentPath="/casino-anmeldelser/danske-spil" />
         <FAQSection title="Ofte stillede spørgsmål om Danske Spil Casino" faqs={danskeSpilFaqs} />
         <AuthorBio />

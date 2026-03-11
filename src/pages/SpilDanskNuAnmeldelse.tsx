@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -402,6 +403,7 @@ const SpilDanskNuAnmeldelse = () => {
         <InlineCasinoCards excludeSlugs={["spildansknu"]} />
         <Separator className="my-10" />
         <LiveCommunityDataStrip context="casino" />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/spildansknu" />
         <RelatedGuides currentPath="/casino-anmeldelser/spildansknu" />
         <FAQSection title="Ofte stillede spørgsmål om SpilDanskNu" faqs={spilDanskNuFaqs} />
         <AuthorBio author="jonas" />

@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -631,6 +632,7 @@ const Bet365Anmeldelse = () => {
 
         <RelatedReviews currentSlug="bet365" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["bet365"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/bet365" />
         <RelatedGuides currentPath="/casino-anmeldelser/bet365" />
         <FAQSection title="Ofte stillede spørgsmål om bet365" faqs={faqs} />
         <AuthorBio />

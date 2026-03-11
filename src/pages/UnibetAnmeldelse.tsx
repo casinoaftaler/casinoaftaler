@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -342,6 +343,7 @@ const UnibetAnmeldelse = () => {
 
         <RelatedReviews currentSlug="unibet" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["unibet"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/unibet" />
         <RelatedGuides currentPath="/casino-anmeldelser/unibet" />
         <FAQSection faqs={faqs} />
         <AuthorBio />

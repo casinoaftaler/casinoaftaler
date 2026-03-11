@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -527,6 +528,7 @@ const BetanoAnmeldelse = () => {
 
         <RelatedReviews currentSlug="betano" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["betano"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/betano" />
         <RelatedGuides currentPath="/casino-anmeldelser/betano" />
         <FAQSection title="Ofte stillede spørgsmål om Betano" faqs={faqs} />
         <AuthorBio />

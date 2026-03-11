@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, AlertTriangle, TrendingUp, Globe } from "lucide-react";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 const linkClass = "text-primary underline hover:text-primary/80";
 const kapowFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er Kapow Casino lovligt i Danmark?", answer: (<>Ja, Kapow Casino opererer med dansk licens fra Spillemyndigheden og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Platformen drives af SkillOnNet Ltd, et Malta-baseret selskab med licenser fra Malta Gaming Authority og UK Gambling Commission. Alle danske krav til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> overholdes, inklusiv MitID-verifikation ved oprettelse og ROFUS-tjek.</>) },
@@ -262,6 +263,7 @@ const KapowCasinoAnmeldelse = () => {
 
         <RelatedReviews currentSlug="kapow-casino" />
         <InlineCasinoCards count={3} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/kapow-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/kapow-casino" />
         <FAQSection faqs={kapowFaqs} />
         <AuthorBio author="jonas" />

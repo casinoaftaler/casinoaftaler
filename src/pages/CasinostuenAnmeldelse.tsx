@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -316,6 +317,7 @@ const CasinostuenAnmeldelse = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/casinostuen" />
         <RelatedGuides currentPath="/casino-anmeldelser/casinostuen" />
         <FAQSection faqs={casinostuenFaqs} />
         <AuthorBio author="jonas" />

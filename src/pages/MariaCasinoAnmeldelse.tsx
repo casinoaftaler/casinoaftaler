@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema, buildVideoSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import { YoutubeEmbed } from "@/components/YoutubeEmbed";import type { ReactNode } from "react";import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X, Smartphone, Headphones, Users, Globe, Heart, AlertTriangle } from "lucide-react";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 const linkClass = "text-primary underline hover:text-primary/80";
 const mariaFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er Maria Casino lovligt i Danmark?", answer: (<>Ja, Maria Casino opererer med dansk licens fra Spillemyndigheden via Unibet Denmark Limited under Kindred Group. Platformen er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> og overholder alle danske regler for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Kindred Group er børsnoteret på Nasdaq Stockholm.</>) },
@@ -210,6 +211,7 @@ const MariaCasinoAnmeldelse = () => {
 
         <RelatedReviews currentSlug="maria-casino" />
         <InlineCasinoCards count={3} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/maria-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/maria-casino" />
         <FAQSection faqs={mariaFaqs} />
         <AuthorBio author="jonas" />

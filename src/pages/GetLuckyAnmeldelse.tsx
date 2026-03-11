@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -298,6 +299,7 @@ const GetLuckyAnmeldelse = () => {
         </section>
         <RelatedReviews currentSlug="getlucky" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["getlucky"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/getlucky" />
         <RelatedGuides currentPath="/casino-anmeldelser/getlucky" />
         <FAQSection title="Ofte stillede spørgsmål om GetLucky Casino" faqs={getluckyFaqs} />
         <AuthorBio />

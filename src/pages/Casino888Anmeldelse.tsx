@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -321,6 +322,7 @@ const Casino888Anmeldelse = () => {
         </section>
         <RelatedReviews currentSlug="888-casino" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["888-casino"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/888-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/888-casino" />
         <FAQSection faqs={faqs} />
         <AuthorBio />

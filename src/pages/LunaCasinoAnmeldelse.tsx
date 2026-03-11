@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -799,6 +800,7 @@ const LunaCasinoAnmeldelse = () => {
         <RelatedReviews currentSlug="luna-casino" />
         <InlineCasinoCards excludeSlugs={["luna-casino"]} />
         <Separator className="my-10" />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/luna-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/luna-casino" />
         <FAQSection title="Ofte stillede spørgsmål om Luna Casino" faqs={lunaFaqs} />
         <AuthorBio author="jonas" />

@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { useCasinos } from "@/hooks/useCasinos";
@@ -940,6 +941,7 @@ const BetiniaAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/betinia" />
         <RelatedGuides currentPath="/casino-anmeldelser/betinia" />
 
         <FAQSection title="Ofte stillede spørgsmål om Betinia" faqs={betiniaFaqs} />
