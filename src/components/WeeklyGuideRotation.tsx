@@ -24,9 +24,9 @@ const GUIDES: Guide[] = [
   { title: "Roulette Guide", description: "Forstå regler, odds og populære strategier", path: "/casinospil/roulette" },
   { title: "Ansvarligt Spil", description: "Værktøjer, grænser og hjælp til sunde spillevaner", path: "/ansvarligt-spil" },
   { title: "Casino Anmeldelser", description: "Dybdegående tests af alle danske casinoer", path: "/casino-anmeldelser" },
-  { title: "Hurtig Udbetaling", description: "Casinoer med de hurtigste udbetalingstider i Danmark", path: "/casino-bonus/hurtig-udbetaling" },
+  { title: "Hurtig Udbetaling", description: "Casinoer med de hurtigste udbetalingstider i Danmark", path: "/casinoer/hurtig-udbetaling" },
   { title: "Slot Database", description: "1.400+ spilleautomater med RTP, volatilitet og statistik", path: "/slot-database" },
-  { title: "Omsætningskrav Forklaret", description: "Hvad omsætningskrav betyder og hvordan du opfylder dem", path: "/casino-bonus/omsaetningskrav" },
+  { title: "Omsætningskrav Forklaret", description: "Hvad omsætningskrav betyder og hvordan du opfylder dem", path: "/omsaetningskrav" },
   { title: "Baccarat Guide", description: "En af casinoets mest elegante spil med lav house edge", path: "/casinospil/baccarat" },
 ];
 
