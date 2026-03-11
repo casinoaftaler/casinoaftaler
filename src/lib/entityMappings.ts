@@ -7,6 +7,8 @@ export interface EntityMapping {
   patterns: RegExp[];
   href: string;
   anchor: string;
+  /** Optional anchor variants for diversity across pages. If set, autoLinker picks one based on content hash. */
+  anchorVariants?: string[];
 }
 
 export const ENTITY_MAPPINGS: EntityMapping[] = [
