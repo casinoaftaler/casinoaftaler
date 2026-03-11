@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -233,41 +232,48 @@ export default function Statistik() {
         title={seoTitle}
         description={seoDesc}
         jsonLd={[articleSchema, faqSchema, datasetSchema]}
+        breadcrumbLabel="Statistik"
       />
 
-      <div className="container mx-auto px-4 py-6 max-w-6xl">
-        <Breadcrumbs />
+      {/* Gradient Hero Header – matches /nye-casinoer */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <BarChart3 className="mr-1.5 h-3.5 w-3.5" />
+              Opdateret {new Date().toLocaleDateString("da-DK", { month: "long", year: "numeric" })}
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Bonus Hunt Statistik
+            </h1>
+            <p className="text-lg text-white/80">
+              Aggregeret data fra {archiveStats ? formatNumber(archiveStats.huntCount) : "200+"} dokumenterede bonus hunts og {formatNumber(totalSlotsCatalog)} testede spillemaskiner. Historiske grafer, provider-rankings og top 10 slots baseret på reelle test-data.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
+        <AuthorMetaBar author="kevin" date="11-03-2026" readTime="12 Min." />
 
         {/* Hero image */}
-        <div className="mb-8 rounded-lg overflow-hidden">
+        <div className="mb-10 overflow-hidden rounded-xl">
           <img
             src={statistikHero}
             alt="Bonus Hunt Statistik – aggregeret data fra hundredvis af dokumenterede bonus hunts"
-            className="w-full h-auto object-cover max-h-[360px]"
+            className="w-full h-auto object-cover max-h-[400px]"
             loading="eager"
             width={1920}
             height={1080}
           />
         </div>
-
-        {/* Hero */}
-        <header className="mb-10">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-3 rounded-xl bg-primary/10">
-              <BarChart3 className="h-8 w-8 text-primary" />
-            </div>
-            <div>
-              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-                Bonus Hunt Statistik
-              </h1>
-              <p className="text-muted-foreground mt-1">
-                Aggregeret data fra {archiveStats ? formatNumber(archiveStats.huntCount) : "…"} dokumenterede bonus hunts
-              </p>
-            </div>
-          </div>
-
-          <AuthorMetaBar author="kevin" />
-        </header>
 
         {/* Headline KPIs */}
         {!isLoading && archiveStats && (
