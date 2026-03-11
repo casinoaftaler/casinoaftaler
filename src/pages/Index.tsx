@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-
+import { organizationSchema } from "@/lib/seo";
 import { HeroSection } from "@/components/HeroSection";
 import { WhyTrustUs } from "@/components/WhyTrustUs";
 import { QuickNavSidebar } from "@/components/QuickNavBar";
@@ -138,20 +138,9 @@ const Index = () => {
             "@context": "https://schema.org",
             "@graph": [
               {
-                "@type": "Organization",
-                "@id": "https://casinoaftaler.dk/#organization",
-                name: "Casinoaftaler.dk",
-                url: "https://casinoaftaler.dk",
+                ...organizationSchema,
                 description: "Danmarks uafhængige sammenligningstjeneste for online casinoer med dansk licens.",
                 foundingDate: "2021",
-                sameAs: [
-                  "https://www.youtube.com/@casinoaftaler",
-                  "https://www.instagram.com/casinoaftaler",
-                  "https://www.facebook.com/casinoaftaler",
-                  "https://www.twitch.tv/fedesvinsejer",
-                  "https://discord.gg/casinoaftaler",
-                  "https://www.linkedin.com/company/casinoaftaler",
-                ],
               },
               {
                 "@type": "WebPage",
