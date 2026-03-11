@@ -337,6 +337,7 @@ export const routeLabels: Record<string, string> = {
   "/bonus-hunt/arkiv": "Bonus Hunt Arkiv",
   "/slot-database": "Slot Database",
   "/slot-katalog": "Slot Database",
+  "/statistik": "Statistik",
   "/community/hall-of-fame": "Hall of Fame",
 };
 
