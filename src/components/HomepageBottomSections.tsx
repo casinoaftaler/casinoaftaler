@@ -98,7 +98,9 @@ export function HomepageBonusHuntSection() {
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Vores{" "}
         <Link to="/bonus-hunt/arkiv" className="text-primary hover:underline font-medium">Bonus Hunt Arkiv</Link>
-        {" "}giver dig adgang til alle tidligere hunts med detaljerede statistikker, gennemsnit X og break-even analyser. Udforsk vores{" "}
+        {" "}giver dig adgang til alle tidligere hunts med detaljerede statistikker, gennemsnit X og break-even analyser. Se den aggregerede data fra alle hunts i vores{" "}
+        <Link to="/statistik" className="text-primary hover:underline font-medium">bonus hunt statistik</Link>
+        {" "}med provider-rankings og historiske grafer. Udforsk vores{" "}
         <Link to="/slot-database" className="text-primary hover:underline font-medium">Slot Database</Link>
         {" "}med community-data fra 1.400+ testede spillemaskiner, eller følg med i{" "}
         <Link to="/community/turneringer" className="text-primary hover:underline font-medium">månedlige turneringer</Link>
