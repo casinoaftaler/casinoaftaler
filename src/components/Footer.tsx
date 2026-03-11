@@ -528,16 +528,17 @@ export function Footer() {
                 loading="lazy"
               />
             </a>
+
+            <span className="flex items-center rounded-lg border border-border bg-muted/50 px-4 py-2 text-xs font-medium text-muted-foreground">
+              GPWA Verification
+            </span>
           </div>
         </div>
 
-        <div className="mt-6 border-t border-border pt-6 space-y-2">
+        <div className="mt-6 border-t border-border pt-6">
           <p className="text-center text-xs text-muted-foreground">
             © {new Date().getFullYear()} {siteName}. Alle rettigheder forbeholdes.
             Spil kan være vanedannende. Spil venligst ansvarligt. 18+
-          </p>
-          <p className="text-center text-xs text-muted-foreground">
-            GPWA Verification
           </p>
         </div>
       </div>
