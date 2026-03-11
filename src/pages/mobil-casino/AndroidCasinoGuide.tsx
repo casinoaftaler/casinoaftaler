@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { MobilCasinoCrossLinks } from "@/components/MobilCasinoCrossLinks";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -1024,6 +1025,7 @@ const AndroidCasinoGuide = () => {
           </div>
         </section>
 
+        <MobilCasinoCrossLinks pageName="Casino på Android" currentPath="/mobil-casino/android" />
         <LatestNewsByCategory pagePath="/mobil-casino/android" />
         <RelatedGuides currentPath="/mobil-casino/android" />
         <FAQSection title="Ofte Stillede Spørgsmål om Android Casino" faqs={faqs} />

@@ -7,6 +7,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -774,6 +775,7 @@ const OmahaPokerGuide = () => {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Omaha Poker" currentPath="/casinospil/poker/omaha" />
         <RelatedGuides currentPath="/casinospil/poker/omaha" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

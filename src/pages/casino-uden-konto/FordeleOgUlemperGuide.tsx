@@ -5,6 +5,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { CasinoUdenKontoCrossLinks } from "@/components/CasinoUdenKontoCrossLinks";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
@@ -526,6 +527,7 @@ const FordeleOgUlemperGuide = () => {
           </div>
         </section>
 
+        <CasinoUdenKontoCrossLinks pageName="Fordele og Ulemper" currentPath="/casino-uden-konto/fordele-og-ulemper" />
         <LatestNewsByCategory pagePath="/casino-uden-konto/fordele-og-ulemper" />
         <RelatedGuides currentPath="/casino-uden-konto/fordele-og-ulemper" />
         <FAQSection title="Ofte Stillede Spørgsmål" faqs={fordeleUlemperFaqs} />

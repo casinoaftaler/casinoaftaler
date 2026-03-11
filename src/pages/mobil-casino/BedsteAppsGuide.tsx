@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { MobilCasinoCrossLinks } from "@/components/MobilCasinoCrossLinks";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -798,6 +799,7 @@ const BedsteAppsGuide = () => {
           </div>
         </section>
 
+        <MobilCasinoCrossLinks pageName="Bedste Casino Apps" currentPath="/mobil-casino/bedste-apps" />
         <LatestNewsByCategory pagePath="/mobil-casino/bedste-apps" />
         <RelatedGuides currentPath="/mobil-casino/bedste-apps" />
         <FAQSection title="Ofte Stillede Spørgsmål om Casino Apps" faqs={faqs} />

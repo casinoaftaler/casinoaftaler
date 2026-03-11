@@ -5,6 +5,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { CasinoUdenKontoCrossLinks } from "@/components/CasinoUdenKontoCrossLinks";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
@@ -682,6 +683,7 @@ const HurtigRegistreringGuide = () => {
           </div>
         </section>
 
+        <CasinoUdenKontoCrossLinks pageName="Hurtig Registrering" currentPath="/casino-uden-konto/hurtig-registrering" />
         <LatestNewsByCategory pagePath="/casino-uden-konto/hurtig-registrering" />
         <RelatedGuides currentPath="/casino-uden-konto/hurtig-registrering" />
         <FAQSection title="Ofte Stillede Spørgsmål om Hurtig Registrering" faqs={hurtigRegFaqs} />
