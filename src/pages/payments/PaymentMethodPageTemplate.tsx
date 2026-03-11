@@ -22,6 +22,7 @@ import {
   ArrowRight,
   Wallet,
   Banknote,
+  Gift,
 } from "lucide-react";
 import { ReactNode } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
