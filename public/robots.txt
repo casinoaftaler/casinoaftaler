@@ -15,6 +15,7 @@ Disallow: /auth
 Disallow: /profil
 Disallow: /admin
 Disallow: /butik
+Disallow: /casino/
 
 User-agent: Bingbot
 Allow: /community
