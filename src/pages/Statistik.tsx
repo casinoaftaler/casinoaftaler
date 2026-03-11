@@ -6,6 +6,8 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
+import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -664,11 +666,23 @@ export default function Statistik() {
 
         <Separator className="my-10" />
 
+        {/* ── Community SEO Sections (tovejs-linking) ── */}
+        <CommunitySeoSections />
+
+        <Separator className="my-10" />
+
         {/* ── Related Guides ── */}
         <RelatedGuides currentPath="/statistik" />
 
         {/* ── FAQ ── */}
         <FAQSection faqs={faqItems} />
+
+        <Separator className="my-10" />
+
+        {/* ── Community Brand Block (E-E-A-T) ── */}
+        <CommunityBrandBlock />
+
+        <Separator className="my-10" />
 
         {/* ── Author Bio ── */}
         <AuthorBio author="kevin" />
@@ -685,6 +699,10 @@ export default function Statistik() {
               <li><a href="/spiludviklere">Spiludviklere</a></li>
               <li><a href="/casino-anmeldelser">Casino Anmeldelser</a></li>
               <li><a href="/casinospil/spillemaskiner">Spillemaskiner</a></li>
+              <li><a href="/community">Community</a></li>
+              <li><a href="/nye-casinoer">Nye Casinoer</a></li>
+              <li><a href="/casino-bonus">Casino Bonus</a></li>
+              <li><a href="/free-spins">Free Spins</a></li>
             </ul>
           </div>
         </noscript>

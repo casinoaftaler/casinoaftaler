@@ -37,7 +37,8 @@ export function BonusHuntSeoText() {
             topper. Resultatet måles typisk i <strong className="text-foreground">gennemsnit X</strong>{" "}
             (den gennemsnitlige multiplikator), <strong className="text-foreground">break-even X</strong>{" "}
             (den multiplikator, der kræves for at gå i nul) og{" "}
-            <strong className="text-foreground">total payout</strong>.
+            <strong className="text-foreground">total payout</strong>. Se den samlede, aggregerede data fra alle vores hunts på vores{" "}
+            <Link to="/statistik" className="text-primary hover:underline">bonus hunt statistik</Link>-side.
           </p>
           <p>
             Hos Casinoaftaler dokumenterer vi hver eneste bonus hunt med fuld transparens. Alle resultater

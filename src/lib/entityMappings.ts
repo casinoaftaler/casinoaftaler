@@ -45,6 +45,9 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bMarathonBet\b/i], href: "/casino-anmeldelser/marathonbet", anchor: "MarathonBet" },
   { patterns: [/\bStake Casino\b/i, /\bStake\b/], href: "/casino-anmeldelser/stake", anchor: "Stake" },
 
+  // Community data-hubs
+  { patterns: [/\bbonus hunt statistik\b/i, /\bhunt[\s-]?statistik\b/i], href: "/statistik", anchor: "bonus hunt statistik" },
+
   // Hub-termer (nævnes ofte men var ikke i auto-linker)
   { patterns: [/\bbetalingsmetoder\b/i], href: "/betalingsmetoder", anchor: "" },
   { patterns: [/\bspiludviklere\b/i], href: "/spiludviklere", anchor: "" },

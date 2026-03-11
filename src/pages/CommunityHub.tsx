@@ -23,6 +23,7 @@ import {
   ArrowRight,
   Users,
   Target,
+  BarChart3,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -99,6 +100,16 @@ const SECTIONS = [
     badge: "Legender",
     badgeColor: "bg-yellow-500/15 text-yellow-600 dark:text-yellow-400 border-yellow-500/30",
     image: hallOfFameImg,
+  },
+  {
+    title: "Statistik",
+    description:
+      "Aggregeret data fra alle bonus hunts. Provider-rankings, historiske grafer og top 10 slots baseret på reelle tests.",
+    href: "/statistik",
+    icon: BarChart3,
+    badge: "Data & Analyse",
+    badgeColor: "bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border-cyan-500/30",
+    image: bonusHuntImg,
   },
   {
     title: "Butik",
