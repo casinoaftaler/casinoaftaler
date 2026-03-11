@@ -337,6 +337,7 @@ export const routeLabels: Record<string, string> = {
   "/bonus-hunt/arkiv": "Bonus Hunt Arkiv",
   "/slot-database": "Slot Database",
   "/slot-katalog": "Slot Database",
+  "/statistik": "Statistik",
   "/community/hall-of-fame": "Hall of Fame",
 };
 
@@ -547,6 +548,9 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
 
   // Slot Database – standalone hub
   "/slot-database": [],
+
+  // Statistik – standalone linkable asset
+  "/statistik": [],
 
   // Ordbog cluster – alle termer bundet til /ordbog hub
   "/ordbog/rtp": [{ name: "Casino Ordbog", path: "/ordbog" }],

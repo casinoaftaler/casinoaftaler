@@ -21,6 +21,8 @@ import {
   BarChart, Bar
 } from "recharts";
 
+import statistikHero from "@/assets/statistik-hero.jpg";
+
 /* ── Provider slug mapping ── */
 const PROVIDER_SLUG_MAP: Record<string, string> = {
   "NetEnt": "netent",
@@ -235,6 +237,18 @@ export default function Statistik() {
 
       <div className="container mx-auto px-4 py-6 max-w-6xl">
         <Breadcrumbs />
+
+        {/* Hero image */}
+        <div className="mb-8 rounded-lg overflow-hidden">
+          <img
+            src={statistikHero}
+            alt="Bonus Hunt Statistik – aggregeret data fra hundredvis af dokumenterede bonus hunts"
+            className="w-full h-auto object-cover max-h-[360px]"
+            loading="eager"
+            width={1920}
+            height={1080}
+          />
+        </div>
 
         {/* Hero */}
         <header className="mb-10">
