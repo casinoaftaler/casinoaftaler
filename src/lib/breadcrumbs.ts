@@ -549,6 +549,9 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   // Slot Database – standalone hub
   "/slot-database": [],
 
+  // Statistik – standalone linkable asset
+  "/statistik": [],
+
   // Ordbog cluster – alle termer bundet til /ordbog hub
   "/ordbog/rtp": [{ name: "Casino Ordbog", path: "/ordbog" }],
   "/ordbog/wagering": [{ name: "Casino Ordbog", path: "/ordbog" }],
