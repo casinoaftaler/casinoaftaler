@@ -224,6 +224,12 @@ export function HomepageLiveCommunity() {
               Slot Database
             </Link>
           </Button>
+          <Button asChild variant="outline" className="gap-2">
+            <Link to="/statistik">
+              <TrendingUp className="h-4 w-4" />
+              Statistik
+            </Link>
+          </Button>
         </div>
 
         {/* Noscript fallback for crawlers */}
