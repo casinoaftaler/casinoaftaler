@@ -6,6 +6,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { type ReactNode, useState } from "react";
 import { Badge } from "@/components/ui/badge";
