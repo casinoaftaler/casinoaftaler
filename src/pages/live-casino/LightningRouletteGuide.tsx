@@ -594,6 +594,7 @@ const LightningRouletteGuide = () => {
         </section>
 
         <LiveCasinoMoneyLinks gameName="Lightning Roulette" currentPath="/live-casino/lightning-roulette" />
+        <LatestNewsByCategory pagePath="/live-casino/lightning-roulette" />
         <RelatedGuides currentPath="/live-casino/lightning-roulette" />
         <FAQSection title="Ofte stillede spørgsmål om Lightning Roulette" faqs={faqs} />
         <AuthorBio author="jonas" />

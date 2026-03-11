@@ -569,6 +569,7 @@ const MonopolyLiveGuide = () => {
         </section>
 
         <LiveCasinoMoneyLinks gameName="Monopoly Live" currentPath="/live-casino/monopoly-live" />
+        <LatestNewsByCategory pagePath="/live-casino/monopoly-live" />
         <RelatedGuides currentPath="/live-casino/monopoly-live" />
         <FAQSection title="Ofte stillede spørgsmål om Monopoly Live" faqs={faqs} />
         <AuthorBio author="jonas" />

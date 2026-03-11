@@ -449,6 +449,7 @@ const DealOrNoDealGuide = () => {
         </section>
 
         <LiveCasinoMoneyLinks gameName="Deal or No Deal" currentPath="/live-casino/deal-or-no-deal" />
+        <LatestNewsByCategory pagePath="/live-casino/deal-or-no-deal" />
         <FAQSection title="Ofte Stillede Spørgsmål om Deal or No Deal Live" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/deal-or-no-deal" />
         <AuthorBio author="jonas" />

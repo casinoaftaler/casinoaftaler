@@ -517,6 +517,7 @@ const LiveRouletteGuide = () => {
         </section>
 
         <LiveCasinoMoneyLinks gameName="Live Roulette" currentPath="/live-casino/roulette" />
+        <LatestNewsByCategory pagePath="/live-casino/roulette" />
         <RelatedGuides currentPath="/live-casino/roulette" />
         <FAQSection title="Ofte stillede spørgsmål om live roulette" faqs={faqs} />
         <AuthorBio author="jonas" />
