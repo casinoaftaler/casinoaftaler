@@ -880,6 +880,35 @@ const FreeSpins = () => {
           </Card>
         </section>
 
+        <section className="mb-8 rounded-xl border border-border/40 bg-card/50 p-5 md:p-6">
+          <h3 className="flex items-center gap-2 text-base font-semibold text-foreground mb-4">
+            <BookOpen className="h-5 w-5 text-primary" />
+            Læs vores anmeldelser af casinoer med free spins
+          </h3>
+          <p className="text-sm text-muted-foreground mb-3">
+            Få det fulde overblik over vilkår, spiludvalg og free spins-tilbud hos de bedste danske casinoer:
+          </p>
+          <ul className="space-y-2">
+            {[
+              { slug: "spildansknu", name: "SpilDanskNu" },
+              { slug: "leovegas", name: "LeoVegas" },
+              { slug: "unibet", name: "Unibet" },
+              { slug: "bet365", name: "bet365" },
+              { slug: "comeon", name: "ComeOn" },
+            ].map((casino) => (
+              <li key={casino.slug} className="flex items-center gap-2">
+                <Star className="h-3.5 w-3.5 text-primary flex-shrink-0" />
+                <Link
+                  to={`/casino-anmeldelser/${casino.slug}`}
+                  className="text-sm text-primary hover:underline font-medium"
+                >
+                  Læs vores {casino.name} anmeldelse
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <LiveCommunityDataStrip context="bonus" />
         <LatestNewsByCategory pagePath="/free-spins" />
         <RelatedGuides currentPath="/free-spins" />

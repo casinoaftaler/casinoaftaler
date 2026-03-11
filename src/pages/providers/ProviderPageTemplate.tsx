@@ -6,6 +6,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { ProviderSlotLinks } from "@/components/ProviderSlotLinks";
 import { DeveloperSiblingLinks } from "@/components/DeveloperSiblingLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { DeveloperMoneyLinks } from "@/components/DeveloperMoneyLinks";
@@ -395,6 +396,7 @@ export function ProviderPage({
         />
         <Separator className="my-10" />
         <ProviderCatalogSlots providerSlug={currentPath.replace("/spiludviklere/", "")} />
+        <ProviderSlotLinks providerSlug={currentPath.replace("/spiludviklere/", "")} />
         <DeveloperSiblingLinks currentPath={currentPath} />
         <RelatedGuides currentPath={currentPath} />
         <FAQSection title={`Ofte stillede spørgsmål om ${name}`} faqs={faqs} />
