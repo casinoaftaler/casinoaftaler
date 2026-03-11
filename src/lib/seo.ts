@@ -9,7 +9,7 @@ import { getRouteLastmod } from "@/lib/seoRoutes";
  */
 export const SITE_URL = "https://casinoaftaler.dk";
 export const SITE_NAME = "Casinoaftaler";
-export const SITE_BRAND = "Casinoaftaler.dk";
+export const SITE_BRAND = "Casinoaftaler";
 
 /**
  * Returns the canonical URL for the current page.

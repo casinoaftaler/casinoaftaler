@@ -1,21 +1,24 @@
+## Enterprise SEO Expansion – Implementeret ✅
 
+### 1. Dynamiske Provider-Hubs ✅
+- `src/hooks/useProviderSlots.ts` – `useProviderSlots()` + `useLatestCatalogUpdate()` hooks
+- `src/components/ProviderCatalogSlots.tsx` – erstatter ProviderSlotLinks med live database-data
+- `src/pages/providers/ProviderPageTemplate.tsx` – swappet til ProviderCatalogSlots
 
-## Ændring: Fjern domænenavnet fra sidetitler
+### 2. Live Freshness-signaler ✅
+- Dynamisk `dateModified` fra reel `slot_catalog.updated_at`
+- Synlig freshness-badge: "Data opdateret efter Bonus Hunt #X · dato"
+- Implementeret på både /slot-database og provider-sider
 
-**Problem:** Google viser "Casinoaftaler.dk:" i titlen. Du er blevet bedt om at domænenavnet (.dk) IKKE må fremgå af titlen.
+### 3. SoftwareApplication Schema ✅
+- `src/lib/slotCatalogSchema.ts` – `buildSlotCatalogSchema()` genererer ItemList + SoftwareApplication
+- Injiceret per pagineret side på /slot-database
+- aggregateRating baseret på highest_x og bonus_count
 
-**Nuværende setup:**
-- `SITE_BRAND = "Casinoaftaler.dk"` → alle sider får `| Casinoaftaler.dk` tilføjet
-- `index.html` fallback: `"Casinoaftaler.dk - De bedste Online Casinoer 2026"`
-- `formatTitle()` i SEO.tsx stripper og gentilføjer brandet
-
-**Ændringer:**
-
-1. **`src/lib/seo.ts`** — Ændr `SITE_BRAND` fra `"Casinoaftaler.dk"` til `"Casinoaftaler"`
-
-2. **`index.html`** — Ændr fallback title fra `"Casinoaftaler.dk - De bedste Online Casinoer 2026"` til `"De bedste Online Casinoer 2026 | Casinoaftaler"`
-
-3. **`src/components/SEO.tsx`** — Opdater regex i `formatTitle` så den også matcher den nye variant uden `.dk`
-
-Alle 200+ siders titler vil automatisk skifte til `| Casinoaftaler` i stedet for `| Casinoaftaler.dk`.
-
+### 4. Provider Slot Hub Pages ✅
+- `src/lib/providerHubContent.ts` – unik SEO-tekst, meta, intro per provider (13 stk)
+- `src/pages/ProviderSlotsHub.tsx` – template med dynamisk stats, top 5, full catalog, cross-links
+- Ruter: `/spillemaskiner/{provider}` for alle 13 providers
+- Breadcrumbs: Forside > Casinospil > Spillemaskiner > [Provider] Slots
+- seoRoutes + page_metadata registreret
+- Article + ItemList JSON-LD schema per side
