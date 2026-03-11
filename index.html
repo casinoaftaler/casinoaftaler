@@ -36,7 +36,7 @@
     <script type="speculationrules">
     {
       "prerender": [{ "urls": ["/casino-anmeldelser","/casino-bonus","/free-spins","/live-casino","/bonus-hunt","/slot-database","/casino-nyheder"], "eagerness": "moderate" }],
-      "prefetch": [{ "urls": ["/casinospil","/statistik","/casino-uden-rofus","/ordliste","/ansvarligt-spil"], "eagerness": "moderate" }]
+      "prefetch": [{ "urls": ["/casinospil","/statistik","/nye-casinoer/uden-rofus","/ordliste","/ansvarligt-spil"], "eagerness": "moderate" }]
     }
     </script>
 </head>
@@ -48,6 +48,23 @@
       // Signal to Prerender that the page is not yet ready
       window.prerenderReady = false;
     </script>
+    <noscript>
+      <h1>Casinoaftaler.dk – De bedste online casinoer i Danmark</h1>
+      <nav>
+        <ul>
+          <li><a href="/casino-anmeldelser">Casino Anmeldelser</a></li>
+          <li><a href="/casino-bonus">Casino Bonus</a></li>
+          <li><a href="/free-spins">Free Spins</a></li>
+          <li><a href="/live-casino">Live Casino</a></li>
+          <li><a href="/casino-nyheder">Casino Nyheder</a></li>
+          <li><a href="/nye-casinoer">Nye Casinoer</a></li>
+          <li><a href="/slot-database">Slot Database</a></li>
+          <li><a href="/casinospil">Casinospil</a></li>
+          <li><a href="/bonus-hunt">Bonus Hunt</a></li>
+          <li><a href="/ansvarligt-spil">Ansvarligt Spil</a></li>
+        </ul>
+      </nav>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <!-- Cookiebot loaded after main content to avoid render-blocking -->
