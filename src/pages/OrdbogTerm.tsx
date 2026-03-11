@@ -128,6 +128,13 @@ const OrdbogTerm = () => {
           dangerouslySetInnerHTML={{ __html: processedContent }}
         />
 
+        {/* Money-page CTA section */}
+        <GlossaryMoneyLinks
+          termSlug={term.slug}
+          termTitle={term.title}
+          category={term.category}
+        />
+
         {term.relatedPages && term.relatedPages.length > 0 && (
           <section className="mb-10">
             <h2 className="text-xl font-bold text-foreground mb-4">Relaterede Guides</h2>
