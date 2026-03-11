@@ -293,6 +293,7 @@ const MarathonBetAnmeldelse = () => {
 
         <RelatedReviews currentSlug="marathonbet" />
         <InlineCasinoCards count={3} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/marathonbet" />
         <RelatedGuides currentPath="/casino-anmeldelser/marathonbet" />
         <FAQSection faqs={marathonbetFaqs} />
         <AuthorBio author="jonas" />

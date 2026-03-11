@@ -263,6 +263,7 @@ const KapowCasinoAnmeldelse = () => {
 
         <RelatedReviews currentSlug="kapow-casino" />
         <InlineCasinoCards count={3} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/kapow-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/kapow-casino" />
         <FAQSection faqs={kapowFaqs} />
         <AuthorBio author="jonas" />

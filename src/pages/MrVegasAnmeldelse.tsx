@@ -258,6 +258,7 @@ const MrVegasAnmeldelse = () => {
 
         <RelatedReviews currentSlug="mr-vegas" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["mr-vegas"]} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/mr-vegas" />
         <RelatedGuides currentPath="/casino-anmeldelser/mr-vegas" />
         <FAQSection title="Ofte stillede spørgsmål om Mr Vegas Casino" faqs={faqs} />
         <AuthorBio />

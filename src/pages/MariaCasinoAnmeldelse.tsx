@@ -211,6 +211,7 @@ const MariaCasinoAnmeldelse = () => {
 
         <RelatedReviews currentSlug="maria-casino" />
         <InlineCasinoCards count={3} />
+        <LatestNewsByCategory pagePath="/casino-anmeldelser/maria-casino" />
         <RelatedGuides currentPath="/casino-anmeldelser/maria-casino" />
         <FAQSection faqs={mariaFaqs} />
         <AuthorBio author="jonas" />
