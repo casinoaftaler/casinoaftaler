@@ -242,6 +242,7 @@ export function HomepageLiveCommunity() {
               <li><a href="/community/slots">Prøv spillehallen</a></li>
               <li><a href="/community/turneringer">Community turneringer</a></li>
               <li><a href="/slot-database">Slot Database – 1.400+ spilleautomater</a></li>
+              <li><a href="/statistik">Bonus Hunt Statistik – aggregeret data</a></li>
             </ul>
           </div>
         </noscript>

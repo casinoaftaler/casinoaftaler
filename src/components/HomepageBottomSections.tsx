@@ -18,6 +18,7 @@ import {
   Scale,
   Newspaper,
   Star,
+  TrendingUp,
 } from "lucide-react";
 
 export function HomepageCasinospilSection() {

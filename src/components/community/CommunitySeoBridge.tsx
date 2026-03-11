@@ -28,6 +28,7 @@ const ALL_LINKS = [
   { href: "/top-10-casino-online", label: "Top 10 Casinoer", icon: Trophy },
   { href: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: BookOpen },
   { href: "/omsaetningskrav", label: "Omsætningskrav", icon: Scale },
+  { href: "/statistik", label: "Bonus Hunt Statistik", icon: Flame },
 ];
 
 const TRUST_POINTS = [

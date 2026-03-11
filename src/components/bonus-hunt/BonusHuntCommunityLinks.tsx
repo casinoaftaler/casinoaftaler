@@ -27,6 +27,12 @@ const COMMUNITY_LINKS = [
     to: "/slot-database",
   },
   {
+    icon: BarChart3,
+    title: "Statistik",
+    description: "Aggregeret data fra alle bonus hunts og slot-tests.",
+    to: "/statistik",
+  },
+  {
     icon: Crown,
     title: "Hall of Fame",
     description: "All-time leaderboards, top clips og community-legender.",
