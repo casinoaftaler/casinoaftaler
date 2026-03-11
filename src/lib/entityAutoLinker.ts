@@ -47,12 +47,28 @@ function isInsideForbiddenContext(html: string, pos: number): boolean {
 }
 
 /**
+ * Simple string hash for deterministic variant selection.
+ */
+function simpleHash(str: string): number {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h);
+}
+
+/**
  * Processes HTML content and auto-links the first occurrence of
  * key entities to their respective main pages.
  * Only links text inside <p> and <li> elements, never in headings or anchors.
+ * Uses anchorVariants (if available) with a content-hash to vary anchor text
+ * across different pages, reducing anchor homogeneity.
  */
 export function autoLinkEntities(html: string): string {
   if (!html) return html;
+  
+  // Compute a hash of the full content for deterministic variant selection
+  const contentHash = simpleHash(html);
   
   let result = html;
   const linkedEntities = new Set<string>();
@@ -76,7 +92,13 @@ export function autoLinkEntities(html: string): string {
           if (isInsideForbiddenContext(result, absolutePos)) continue;
 
           const matchedText = match[0];
-          const anchorText = entity.anchor || matchedText;
+          // Pick anchor: use variant if available, otherwise static anchor or matched text
+          let anchorText: string;
+          if (entity.anchorVariants && entity.anchorVariants.length > 0) {
+            anchorText = entity.anchorVariants[contentHash % entity.anchorVariants.length];
+          } else {
+            anchorText = entity.anchor || matchedText;
+          }
           const link = `<a href="${entity.href}" class="text-primary hover:underline">${anchorText}</a>`;
           
           parts[i] =
