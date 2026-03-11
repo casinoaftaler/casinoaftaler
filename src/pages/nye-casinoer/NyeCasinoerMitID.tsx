@@ -445,6 +445,7 @@ const NyeCasinoerMitID = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/nye-casinoer/mitid" />
         <RelatedGuides currentPath="/nye-casinoer/mitid" />
         <FAQSection title="Ofte stillede spørgsmål om MitID og nye casinoer" faqs={faqs} />
         <AuthorBio author="jonas" />

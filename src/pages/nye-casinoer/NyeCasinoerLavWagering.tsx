@@ -423,6 +423,7 @@ const NyeCasinoerLavWagering = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/nye-casinoer/lav-wagering" />
         <RelatedGuides currentPath="/nye-casinoer/lav-wagering" />
         <FAQSection title="Ofte stillede spørgsmål om lav wagering" faqs={faqs} />
         <AuthorBio author="jonas" />

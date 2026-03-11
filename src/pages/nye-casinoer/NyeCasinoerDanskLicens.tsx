@@ -396,6 +396,7 @@ const NyeCasinoerDanskLicens = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/nye-casinoer/dansk-licens" />
         <RelatedGuides currentPath="/nye-casinoer/dansk-licens" />
         <FAQSection title="Ofte stillede spørgsmål om nye casinoer med dansk licens" faqs={faqs} />
         <AuthorBio author="jonas" />

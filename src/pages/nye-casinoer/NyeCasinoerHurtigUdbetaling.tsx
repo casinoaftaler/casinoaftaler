@@ -496,6 +496,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/nye-casinoer/hurtig-udbetaling" />
         <RelatedGuides currentPath="/nye-casinoer/hurtig-udbetaling" />
         <FAQSection title="Ofte stillede spørgsmål om hurtige udbetalinger" faqs={faqs} />
         <AuthorBio author="jonas" />
