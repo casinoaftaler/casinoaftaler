@@ -3,6 +3,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { GlossaryMoneyLinks } from "@/components/GlossaryMoneyLinks";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { getTermBySlug, glossaryTerms } from "@/data/glossaryTerms";
 import { getGlossaryHero } from "@/data/glossaryHeroImages";
