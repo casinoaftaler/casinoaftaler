@@ -1,0 +1,71 @@
+# ══════════════════════════════════════════════════════════════
+# CDN-level 301 redirects
+# These are served BEFORE the SPA loads, giving crawlers real HTTP 301 status codes.
+# The corresponding React <Navigate> routes in App.tsx remain as fallbacks for
+# client-side navigation (e.g. deep links opened in-app).
+# ══════════════════════════════════════════════════════════════
+
+# ── Architectural consolidation (cannibalization fixes) ──
+/nye-casinoer/bedste                    /nye-casinoer                           301
+/forfatter                              /forfatter/jonas                        301
+/nyheder                                /casino-nyheder                         301
+/licenserede-casinoer                   /casino-licenser                        301
+/casinospil/roulette-strategi           /casinospil/roulette                    301
+/casinospil/game-shows                  /live-casino/game-shows                 301
+/slot-katalog                           /slot-database                          301
+/community/bonus-hunt                   /bonus-hunt                             301
+
+# ── Legacy URL redirects ──
+/blog                                   /                                       301
+/blog/*                                 /                                       301
+/top-casino-online                      /top-10-casino-online                   301
+/anmeldelser                            /casino-anmeldelser                     301
+/anmeldelser/*                          /casino-anmeldelser                     301
+/bonus                                  /casino-bonus                           301
+/bonusser                               /casino-bonus                           301
+/bonus-guide                            /casino-bonus                           301
+/casino-bonusser                        /casino-bonus                           301
+/spil                                   /casinospil                             301
+/spillemaskiner                         /casinospil/spillemaskiner              301
+/slots                                  /community/slots                        301
+/slots/book-of-fedesvin                 /community/slots/book-of-fedesvin       301
+/slots/rise-of-fedesvin                 /community/slots/rise-of-fedesvin       301
+/slots/*                                /community/slots                        301
+/free-spins-uden-indbetaling            /bonus-uden-indbetaling                 301
+/betalinger                             /betalingsmetoder                       301
+/payment-methods                        /betalingsmetoder                       301
+/providers                              /spiludviklere                          301
+/game-providers                         /spiludviklere                          301
+/responsible-gaming                     /ansvarligt-spil                        301
+/casino-compliance                      /casino-licenser                        301
+/danske-casinoer                        /top-10-casino-online                   301
+
+# ── Auth & profile ──
+/login                                  /auth                                   301
+/signup                                 /auth                                   301
+/register                               /auth                                   301
+
+# ── Community & misc ──
+/leaderboard                            /community/turneringer                  301
+/community/leaderboard                  /community/turneringer                  301
+/rewards                                /community/rewards                      301
+/shop                                   /butik                                  301
+
+# ── Info pages ──
+/contact                                /kontakt                                301
+/om-os                                  /om                                     301
+/om-teamet                              /om                                     301
+/about                                  /om                                     301
+/privacy                                /privatlivspolitik                      301
+/vilkaar                                /terms                                  301
+
+# ── Old casino review URLs ──
+/spilleautomaten-anmeldelse             /casino-anmeldelser/spilleautomaten     301
+/spildansknu-anmeldelse                 /casino-anmeldelser/spildansknu         301
+/campobet-anmeldelse                    /casino-anmeldelser/campobet            301
+/betinia-anmeldelse                     /casino-anmeldelser/betinia             301
+/swift-casino-anmeldelse                /casino-anmeldelser/swift-casino        301
+/luna-casino-anmeldelse                 /casino-anmeldelser/luna-casino         301
+
+# ── SPA fallback (must be last) ──
+/*                                      /index.html                             200
