@@ -595,6 +595,7 @@ const SelvudelukkelseGuide = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/ansvarligt-spil/selvudelukkelse-guide" />
+        <AnsvarligtSpilResources currentPath="/ansvarligt-spil/selvudelukkelse-guide" />
         <RelatedGuides currentPath="/ansvarligt-spil/selvudelukkelse-guide" />
         <FAQSection title="Ofte Stillede Spørgsmål om Selvudelukkelse" faqs={selvudelukkelseFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />

@@ -748,6 +748,7 @@ const SpillegraenserGuide = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/ansvarligt-spil/spillegraenser" />
+        <AnsvarligtSpilResources currentPath="/ansvarligt-spil/spillegraenser" />
         <RelatedGuides currentPath="/ansvarligt-spil/spillegraenser" />
         <FAQSection title="Ofte Stillede Spørgsmål om Spillegrænser" faqs={spillegraenserFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />

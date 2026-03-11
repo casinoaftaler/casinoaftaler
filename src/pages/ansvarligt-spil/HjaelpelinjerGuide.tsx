@@ -640,6 +640,7 @@ const HjaelpelinjerGuide = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/ansvarligt-spil/hjaelpelinjer" />
+        <AnsvarligtSpilResources currentPath="/ansvarligt-spil/hjaelpelinjer" />
         <RelatedGuides currentPath="/ansvarligt-spil/hjaelpelinjer" />
         <FAQSection title="Ofte Stillede Spørgsmål om Hjælpelinjer" faqs={hjaelpelinjerFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />
