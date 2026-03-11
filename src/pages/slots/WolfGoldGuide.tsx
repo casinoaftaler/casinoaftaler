@@ -431,6 +431,7 @@ const WolfGoldGuide = () => {
 
         <SlotDataLink slotSlug="wolf-gold" slotName="Wolf Gold" />
         <SlotProviderLink slotSlug="wolf-gold" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/wolf-gold" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wolf-gold" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wolf Gold" faqs={wolfGoldFaqs} />
         <AuthorBio author="kevin" />

@@ -524,6 +524,7 @@ const SweetBonanzaGuide = () => {
 
         <SlotDataLink slotSlug="sweet-bonanza" slotName="Sweet Bonanza" />
         <SlotProviderLink slotSlug="sweet-bonanza" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/sweet-bonanza" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/sweet-bonanza" />
         <FAQSection title="Ofte Stillede Spørgsmål om Sweet Bonanza" faqs={sweetBonanzaFaqs} />
         <AuthorBio />

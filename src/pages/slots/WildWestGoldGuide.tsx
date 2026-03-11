@@ -155,6 +155,7 @@ const WildWestGoldGuide = () => {
 
         <SlotDataLink slotSlug="wild-west-gold" slotName="Wild West Gold" />
         <SlotProviderLink slotSlug="wild-west-gold" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/wild-west-gold" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wild-west-gold" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wild West Gold" faqs={wildWestGoldFaqs} />
         <AuthorBio author="kevin" />

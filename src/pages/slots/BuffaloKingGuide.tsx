@@ -124,6 +124,7 @@ const BuffaloKingGuide = () => {
 
         <SlotDataLink slotSlug="buffalo-king" slotName="Buffalo King" />
         <SlotProviderLink slotSlug="buffalo-king" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/buffalo-king" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/buffalo-king" />
         <FAQSection title="Ofte Stillede Spørgsmål om Buffalo King" faqs={buffaloKingFaqs} />
         <AuthorBio author="kevin" />

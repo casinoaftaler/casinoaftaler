@@ -143,6 +143,7 @@ const SugarRushGuide = () => {
 
         <SlotDataLink slotSlug="sugar-rush" slotName="Sugar Rush" />
         <SlotProviderLink slotSlug="sugar-rush" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/sugar-rush" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/sugar-rush" />
         <FAQSection title="Ofte Stillede Spørgsmål om Sugar Rush" faqs={sugarRushFaqs} />
         <AuthorBio author="jonas" />

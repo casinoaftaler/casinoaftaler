@@ -362,6 +362,7 @@ const BonanzaGuide = () => {
 
         <SlotDataLink slotSlug="bonanza" slotName="Bonanza" />
         <SlotProviderLink slotSlug="bonanza" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/bonanza" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/bonanza" />
         <FAQSection title="Ofte Stillede Spørgsmål om Bonanza Megaways" faqs={bonanzaFaqs} />
         <AuthorBio author="jonas" />

@@ -138,6 +138,7 @@ const EyeOfHorusGuide = () => {
 
         <SlotDataLink slotSlug="eye-of-horus" slotName="Eye of Horus" />
         <SlotProviderLink slotSlug="eye-of-horus" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/eye-of-horus" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/eye-of-horus" />
         <FAQSection title="Ofte Stillede Spørgsmål om Eye of Horus" faqs={eyeOfHorusFaqs} />
         <AuthorBio author="jonas" />

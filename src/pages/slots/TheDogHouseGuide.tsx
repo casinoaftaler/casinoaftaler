@@ -366,6 +366,7 @@ const TheDogHouseGuide = () => {
 
         <SlotDataLink slotSlug="the-dog-house" slotName="The Dog House" />
         <SlotProviderLink slotSlug="the-dog-house" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/the-dog-house" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/the-dog-house" />
         <FAQSection title="Ofte Stillede Spørgsmål om The Dog House" faqs={theDogHouseFaqs} />
         <AuthorBio author="jonas" />

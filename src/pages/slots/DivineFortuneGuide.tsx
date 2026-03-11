@@ -142,6 +142,7 @@ const DivineFortuneGuide = () => {
 
         <SlotDataLink slotSlug="divine-fortune" slotName="Divine Fortune" />
         <SlotProviderLink slotSlug="divine-fortune" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/divine-fortune" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/divine-fortune" />
         <FAQSection title="Ofte Stillede Spørgsmål om Divine Fortune" faqs={divineFortuneFaqs} />
         <AuthorBio author="kevin" />
