@@ -498,6 +498,7 @@ const CrazyTimeGuide = () => {
         </section>
 
         <LiveCasinoMoneyLinks gameName="Crazy Time" currentPath="/live-casino/crazy-time" />
+        <LatestNewsByCategory pagePath="/live-casino/crazy-time" />
         <FAQSection title="Ofte Stillede Spørgsmål om Crazy Time" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/crazy-time" />
         <AuthorBio author="jonas" />
