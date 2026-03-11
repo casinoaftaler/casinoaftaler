@@ -7,6 +7,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { DeveloperMoneyLinks } from "@/components/DeveloperMoneyLinks";
 import { ProviderCatalogSlots } from "@/components/ProviderCatalogSlots";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
