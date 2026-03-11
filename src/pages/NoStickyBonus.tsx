@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -709,6 +710,7 @@ const NoStickyBonus = () => {
 
         <Separator className="my-10" />
 
+        <LatestNewsByCategory pagePath="/no-sticky-bonus" />
         <RelatedGuides currentPath="/no-sticky-bonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om No-Sticky Bonus" faqs={noStickyFaqs} />

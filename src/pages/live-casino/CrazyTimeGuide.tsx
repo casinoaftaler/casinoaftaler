@@ -7,6 +7,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCasinoMoneyLinks } from "@/components/LiveCasinoMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -497,6 +498,7 @@ const CrazyTimeGuide = () => {
         </section>
 
         <LiveCasinoMoneyLinks gameName="Crazy Time" currentPath="/live-casino/crazy-time" />
+        <LatestNewsByCategory pagePath="/live-casino/crazy-time" />
         <FAQSection title="Ofte Stillede Spørgsmål om Crazy Time" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/crazy-time" />
         <AuthorBio author="jonas" />

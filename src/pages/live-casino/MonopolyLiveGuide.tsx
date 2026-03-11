@@ -8,6 +8,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCasinoMoneyLinks } from "@/components/LiveCasinoMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -568,6 +569,7 @@ const MonopolyLiveGuide = () => {
         </section>
 
         <LiveCasinoMoneyLinks gameName="Monopoly Live" currentPath="/live-casino/monopoly-live" />
+        <LatestNewsByCategory pagePath="/live-casino/monopoly-live" />
         <RelatedGuides currentPath="/live-casino/monopoly-live" />
         <FAQSection title="Ofte stillede spørgsmål om Monopoly Live" faqs={faqs} />
         <AuthorBio author="jonas" />

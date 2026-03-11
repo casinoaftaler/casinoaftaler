@@ -7,6 +7,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCasinoMoneyLinks } from "@/components/LiveCasinoMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -455,6 +456,7 @@ const DreamCatcherGuide = () => {
         </section>
 
         <LiveCasinoMoneyLinks gameName="Dream Catcher" currentPath="/live-casino/dream-catcher" />
+        <LatestNewsByCategory pagePath="/live-casino/dream-catcher" />
         <FAQSection title="Ofte Stillede Spørgsmål om Dream Catcher" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/dream-catcher" />
         <AuthorBio author="jonas" />

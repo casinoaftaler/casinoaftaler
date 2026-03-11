@@ -9,6 +9,7 @@ import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import cashbackHero from "@/assets/heroes/cashback-bonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -640,6 +641,7 @@ const CashbackBonus = () => {
           title="Casinoer med stærke cashback-programmer"
         />
 
+        <LatestNewsByCategory pagePath="/cashback-bonus" />
         <RelatedGuides currentPath="/cashback-bonus" />
         <FAQSection title="Ofte stillede spørgsmål om cashback bonus" faqs={cashbackFaqs} />
         <AuthorBio />

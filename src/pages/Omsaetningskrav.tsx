@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import omsaetningskravHero from "@/assets/heroes/omsaetningskrav-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -854,6 +855,7 @@ const Omsaetningskrav = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/omsaetningskrav" />
         <RelatedGuides currentPath="/omsaetningskrav" />
 
         <FAQSection title="Ofte stillede spørgsmål om omsætningskrav" faqs={omsaetningskravFaqs} />

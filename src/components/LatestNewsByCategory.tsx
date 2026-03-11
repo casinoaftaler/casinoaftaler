@@ -7,19 +7,64 @@ import { CalendarDays, Newspaper } from "lucide-react";
  * Maps money-page paths to news categories/tags for contextual matching.
  */
 const PAGE_CATEGORY_MAP: Record<string, { categories: string[]; tags: string[]; label: string }> = {
+  // Betalingsmetoder
   "/betalingsmetoder": { categories: ["betalingsmetoder"], tags: ["betaling", "trustly", "mobilepay"], label: "betalingsmetoder" },
   "/betalingsmetoder/trustly": { categories: ["betalingsmetoder"], tags: ["trustly", "open banking"], label: "Trustly" },
   "/betalingsmetoder/mobilepay": { categories: ["betalingsmetoder"], tags: ["mobilepay"], label: "MobilePay" },
   "/betalingsmetoder/paypal": { categories: ["betalingsmetoder"], tags: ["paypal"], label: "PayPal" },
   "/betalingsmetoder/skrill": { categories: ["betalingsmetoder"], tags: ["skrill"], label: "Skrill" },
   "/betalingsmetoder/visa-mastercard": { categories: ["betalingsmetoder"], tags: ["visa", "mastercard", "kort"], label: "kortbetaling" },
+  // Regulering & licenser
   "/casino-licenser": { categories: ["licenser", "regulering"], tags: ["licens", "spillemyndigheden"], label: "danske casino-licenser" },
-  "/nye-casinoer": { categories: ["nye-casinoer"], tags: ["nyt casino", "lancering"], label: "nye casinoer" },
-  "/casino-bonus": { categories: ["nye-casinoer", "regulering"], tags: ["bonus", "velkomstbonus"], label: "casino-bonusser" },
-  "/ansvarligt-spil": { categories: ["regulering", "juridisk"], tags: ["ansvarligt spil", "rofus"], label: "ansvarligt spil" },
   "/spillemyndigheden": { categories: ["regulering", "licenser"], tags: ["spillemyndigheden", "tilsyn"], label: "Spillemyndigheden" },
+  // Ansvarligt spil
+  "/ansvarligt-spil": { categories: ["regulering", "juridisk"], tags: ["ansvarligt spil", "rofus"], label: "ansvarligt spil" },
+  "/ansvarligt-spil/ludomani": { categories: ["regulering", "juridisk"], tags: ["ludomani", "spilafhængighed"], label: "ludomani" },
+  "/ansvarligt-spil/rofus": { categories: ["regulering", "juridisk"], tags: ["rofus", "selvudelukkelse"], label: "ROFUS" },
+  "/ansvarligt-spil/stopspillet": { categories: ["regulering", "juridisk"], tags: ["stopspillet", "hjælpelinje"], label: "StopSpillet" },
+  "/ansvarligt-spil/spillegraenser": { categories: ["regulering"], tags: ["spillegrænser", "ansvarligt spil"], label: "spillegrænser" },
+  "/ansvarligt-spil/hjaelpelinjer": { categories: ["regulering", "juridisk"], tags: ["hjælpelinje", "ludomani"], label: "hjælpelinjer" },
+  "/ansvarligt-spil/selvudelukkelse-guide": { categories: ["regulering", "juridisk"], tags: ["selvudelukkelse", "rofus"], label: "selvudelukkelse" },
+  // Nye casinoer
+  "/nye-casinoer": { categories: ["nye-casinoer"], tags: ["nyt casino", "lancering"], label: "nye casinoer" },
+  "/nye-casinoer/mitid": { categories: ["nye-casinoer", "regulering"], tags: ["mitid", "verifikation"], label: "MitID casinoer" },
+  "/nye-casinoer/2026": { categories: ["nye-casinoer"], tags: ["nyt casino", "2026"], label: "nye casinoer 2026" },
+  "/nye-casinoer/bedste": { categories: ["nye-casinoer"], tags: ["bedste", "nyt casino"], label: "bedste nye casinoer" },
+  "/nye-casinoer/dansk-licens": { categories: ["nye-casinoer", "licenser"], tags: ["dansk licens", "nyt casino"], label: "nye casinoer med dansk licens" },
+  "/nye-casinoer/hurtig-udbetaling": { categories: ["nye-casinoer"], tags: ["hurtig udbetaling", "payout"], label: "hurtige udbetalinger" },
+  "/nye-casinoer/trustly": { categories: ["nye-casinoer", "betalingsmetoder"], tags: ["trustly", "nyt casino"], label: "Trustly casinoer" },
+  "/nye-casinoer/lav-wagering": { categories: ["nye-casinoer"], tags: ["wagering", "omsætningskrav"], label: "lav wagering" },
+  "/nye-casinoer/bonus-uden-indbetaling": { categories: ["nye-casinoer"], tags: ["bonus", "ingen indbetaling"], label: "bonus uden indbetaling" },
+  "/nye-casinoer/uden-rofus": { categories: ["regulering"], tags: ["rofus", "uden licens"], label: "casinoer uden ROFUS" },
+  "/nye-casinoer/vs-etablerede": { categories: ["nye-casinoer", "markedsbevægelser"], tags: ["nyt casino"], label: "nye vs. etablerede casinoer" },
+  // Bonus-guides
+  "/casino-bonus": { categories: ["nye-casinoer", "regulering"], tags: ["bonus", "velkomstbonus"], label: "casino-bonusser" },
+  "/bonus-uden-omsaetningskrav": { categories: ["nye-casinoer", "regulering"], tags: ["bonus", "omsætningsfri"], label: "bonus uden omsætningskrav" },
+  "/bonus-uden-indbetaling": { categories: ["nye-casinoer"], tags: ["bonus", "ingen indbetaling"], label: "bonus uden indbetaling" },
+  "/cashback-bonus": { categories: ["nye-casinoer"], tags: ["cashback", "bonus"], label: "cashback bonus" },
+  "/reload-bonus": { categories: ["nye-casinoer"], tags: ["reload", "bonus"], label: "reload bonus" },
+  "/sticky-bonus": { categories: ["nye-casinoer", "regulering"], tags: ["sticky bonus", "bonustyper"], label: "sticky bonus" },
+  "/no-sticky-bonus": { categories: ["nye-casinoer", "regulering"], tags: ["no-sticky", "bonustyper"], label: "no-sticky bonus" },
+  "/indskudsbonus": { categories: ["nye-casinoer"], tags: ["indskudsbonus", "velkomstbonus"], label: "indskudsbonus" },
+  "/omsaetningskrav": { categories: ["regulering"], tags: ["omsætningskrav", "wagering"], label: "omsætningskrav" },
+  "/velkomstbonus": { categories: ["nye-casinoer"], tags: ["velkomstbonus", "bonus"], label: "velkomstbonus" },
+  // Casino anmeldelser (fallback for all review pages)
   "/casino-anmeldelser": { categories: ["nye-casinoer", "markedsbevægelser"], tags: [], label: "det danske casinomarked" },
+  // Live casino
   "/live-casino": { categories: ["nye-casinoer"], tags: ["live casino", "evolution"], label: "live casino" },
+  "/live-casino/blackjack": { categories: ["nye-casinoer"], tags: ["live casino", "blackjack"], label: "live blackjack" },
+  "/live-casino/roulette": { categories: ["nye-casinoer"], tags: ["live casino", "roulette"], label: "live roulette" },
+  "/live-casino/baccarat": { categories: ["nye-casinoer"], tags: ["live casino", "baccarat"], label: "live baccarat" },
+  "/live-casino/crazy-time": { categories: ["nye-casinoer"], tags: ["live casino", "game shows", "crazy time"], label: "Crazy Time" },
+  "/live-casino/lightning-roulette": { categories: ["nye-casinoer"], tags: ["live casino", "lightning roulette"], label: "Lightning Roulette" },
+  "/live-casino/monopoly-live": { categories: ["nye-casinoer"], tags: ["live casino", "game shows", "monopoly"], label: "Monopoly Live" },
+  "/live-casino/dream-catcher": { categories: ["nye-casinoer"], tags: ["live casino", "game shows"], label: "Dream Catcher" },
+  "/live-casino/deal-or-no-deal": { categories: ["nye-casinoer"], tags: ["live casino", "game shows"], label: "Deal or No Deal" },
+  // Slot-guides
+  "/megaways-slots": { categories: ["nye-casinoer"], tags: ["megaways", "spillemaskiner"], label: "Megaways slots" },
+  "/jackpot-slots": { categories: ["nye-casinoer"], tags: ["jackpot", "spillemaskiner"], label: "jackpot slots" },
+  "/bonus-buy-slots": { categories: ["nye-casinoer"], tags: ["bonus buy", "spillemaskiner"], label: "bonus buy slots" },
+  // Comparison pages use casino-anmeldelser fallback via startsWith logic below
 };
 
 function useNewsByCategory(categories: string[], tags: string[], limit = 3) {
@@ -104,7 +149,11 @@ interface LatestNewsByCategoryProps {
  * Cornerstone articles are prioritized first.
  */
 export function LatestNewsByCategory({ pagePath }: LatestNewsByCategoryProps) {
-  const mapping = PAGE_CATEGORY_MAP[pagePath];
+  // Direct match first, then prefix match for review/comparison pages
+  const mapping = PAGE_CATEGORY_MAP[pagePath]
+    ?? (pagePath.startsWith("/casino-anmeldelser/") ? PAGE_CATEGORY_MAP["/casino-anmeldelser"] : undefined)
+    ?? (pagePath.startsWith("/casinospil/spillemaskiner/") ? { categories: ["nye-casinoer"], tags: ["spillemaskiner", "slots"], label: "spillemaskiner" } : undefined)
+    ?? (pagePath.startsWith("/nye-casinoer/") ? PAGE_CATEGORY_MAP["/nye-casinoer"] : undefined);
   
   const categories = mapping?.categories ?? ["regulering"];
   const label = mapping?.label ?? "det danske casinomarked";

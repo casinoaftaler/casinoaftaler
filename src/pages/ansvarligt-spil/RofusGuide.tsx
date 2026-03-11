@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -1094,7 +1095,7 @@ const RofusGuide = () => {
         <Separator className="my-10" />
 
         <AnsvarligtSpilResources currentPath="/ansvarligt-spil/rofus" />
-
+        <LatestNewsByCategory pagePath="/ansvarligt-spil/rofus" />
         <RelatedGuides currentPath="/ansvarligt-spil/rofus" />
         <FAQSection title="Ofte Stillede Spørgsmål om ROFUS" faqs={rofusFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />

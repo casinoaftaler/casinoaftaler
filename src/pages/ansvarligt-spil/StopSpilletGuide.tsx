@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -898,7 +899,7 @@ const StopSpilletGuide = () => {
         <Separator className="my-10" />
 
         <AnsvarligtSpilResources currentPath="/ansvarligt-spil/stopspillet" />
-
+        <LatestNewsByCategory pagePath="/ansvarligt-spil/stopspillet" />
         <RelatedGuides currentPath="/ansvarligt-spil/stopspillet" />
         <FAQSection title="Ofte Stillede Spørgsmål om StopSpillet" faqs={stopspilletFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />

@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -1035,7 +1036,7 @@ const LudomaniGuide = () => {
         <Separator className="my-10" />
 
         <AnsvarligtSpilResources currentPath="/ansvarligt-spil/ludomani" />
-
+        <LatestNewsByCategory pagePath="/ansvarligt-spil/ludomani" />
         <RelatedGuides currentPath="/ansvarligt-spil/ludomani" />
         <FAQSection title="Ofte Stillede Spørgsmål om Ludomani" faqs={ludomaniFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />

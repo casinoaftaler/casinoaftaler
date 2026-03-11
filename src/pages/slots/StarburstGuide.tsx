@@ -7,6 +7,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -410,6 +411,7 @@ const StarburstGuide = () => {
 
         <SlotDataLink slotSlug="starburst" slotName="Starburst" />
         <SlotProviderLink slotSlug="starburst" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/starburst" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/starburst" />
         <FAQSection title="Ofte Stillede Spørgsmål om Starburst" faqs={starburstFaqs} />
         <AuthorBio author="kevin" />

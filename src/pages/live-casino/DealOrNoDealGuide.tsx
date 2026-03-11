@@ -7,6 +7,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCasinoMoneyLinks } from "@/components/LiveCasinoMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -448,6 +449,7 @@ const DealOrNoDealGuide = () => {
         </section>
 
         <LiveCasinoMoneyLinks gameName="Deal or No Deal" currentPath="/live-casino/deal-or-no-deal" />
+        <LatestNewsByCategory pagePath="/live-casino/deal-or-no-deal" />
         <FAQSection title="Ofte Stillede Spørgsmål om Deal or No Deal Live" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/deal-or-no-deal" />
         <AuthorBio author="jonas" />

@@ -44,6 +44,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -790,6 +791,7 @@ const Indskudsbonus = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/indskudsbonus" />
         <RelatedGuides currentPath="/indskudsbonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om indskudsbonus" faqs={indskudsbonusFaqs} />
