@@ -41,6 +41,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import type { ReactNode } from "react";
 
