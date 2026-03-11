@@ -6,6 +6,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { DeveloperSiblingLinks } from "@/components/DeveloperSiblingLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { DeveloperMoneyLinks } from "@/components/DeveloperMoneyLinks";
 import { ProviderCatalogSlots } from "@/components/ProviderCatalogSlots";
