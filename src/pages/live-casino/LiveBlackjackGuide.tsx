@@ -10,6 +10,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LiveCasinoMoneyLinks } from "@/components/LiveCasinoMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -660,6 +661,7 @@ const LiveBlackjackGuide = () => {
           </p>
         </section>
 
+        <LiveCasinoMoneyLinks gameName="Live Blackjack" currentPath="/live-casino/blackjack" />
         <RelatedGuides currentPath="/live-casino/blackjack" />
         <FAQSection
           title="Ofte stillede spørgsmål om live blackjack"

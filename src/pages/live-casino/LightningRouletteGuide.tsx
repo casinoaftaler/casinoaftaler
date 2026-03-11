@@ -10,6 +10,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LiveCasinoMoneyLinks } from "@/components/LiveCasinoMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -591,6 +592,7 @@ const LightningRouletteGuide = () => {
           </p>
         </section>
 
+        <LiveCasinoMoneyLinks gameName="Lightning Roulette" currentPath="/live-casino/lightning-roulette" />
         <RelatedGuides currentPath="/live-casino/lightning-roulette" />
         <FAQSection title="Ofte stillede spørgsmål om Lightning Roulette" faqs={faqs} />
         <AuthorBio author="jonas" />
