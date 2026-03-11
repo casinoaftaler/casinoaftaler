@@ -7,6 +7,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -791,6 +792,7 @@ export default function FibonacciRouletteGuide() {
         </section>
 
         <CasinospilMoneyLinks gameName="Fibonacci Roulette" currentPath="/casinospil/roulette/fibonacci-roulette" />
+        <LatestNewsByCategory pagePath="/casinospil/roulette/fibonacci-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/fibonacci-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

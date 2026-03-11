@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import heroImage from "@/assets/heroes/hoej-rtp-casino-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
@@ -324,6 +325,7 @@ const HoejRTPGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Besøg vores <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> for detaljerede vurderinger af RTP-indstillinger hos de enkelte casinoer, og brug vores guides til individuelle <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link> for at finde de spil med de højeste tilbagebetalingsprocenter.</p>
         </section>
 
+        <LatestNewsByCategory pagePath="/casinoer/hoej-rtp" />
         <RelatedGuides currentPath="/casinoer/hoej-rtp" />
 
         <FAQSection title="Ofte stillede spørgsmål om RTP og casinoer" faqs={faqs} />

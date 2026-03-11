@@ -7,6 +7,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -428,6 +429,7 @@ const BaccaratGuide = () => {
         </section>
 
         <CasinospilMoneyLinks gameName="Baccarat" currentPath="/casinospil/baccarat" />
+        <LatestNewsByCategory pagePath="/casinospil/baccarat" />
         <RelatedGuides currentPath="/casinospil/baccarat" />
         <FAQSection faqs={baccaratFaqs} />
         <AuthorBio author="jonas" showCommunity={false} />

@@ -5,6 +5,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
@@ -672,6 +673,7 @@ export default function Statistik() {
         <Separator className="my-10" />
 
         {/* ── Related Guides ── */}
+        <LatestNewsByCategory pagePath="/statistik" />
         <RelatedGuides currentPath="/statistik" />
 
         {/* ── FAQ ── */}

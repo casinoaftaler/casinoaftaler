@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import heroImage from "@/assets/heroes/hurtig-udbetaling-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
@@ -619,6 +620,7 @@ const HurtigUdbetalingGuide = () => {
           </p>
         </section>
 
+        <LatestNewsByCategory pagePath="/casinoer/hurtig-udbetaling" />
         <RelatedGuides currentPath="/casinoer/hurtig-udbetaling" />
 
         <FAQSection title="Ofte stillede spørgsmål om hurtige udbetalinger" faqs={faqs} />

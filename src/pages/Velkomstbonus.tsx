@@ -7,6 +7,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import velkomstbonusHero from "@/assets/heroes/velkomstbonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -923,6 +924,7 @@ const Velkomstbonus = () => {
         </section>
 
         <LiveCommunityDataStrip context="bonus" />
+        <LatestNewsByCategory pagePath="/velkomstbonus" />
         <RelatedGuides currentPath="/velkomstbonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om velkomstbonus" faqs={velkomstbonusFaqs} />

@@ -7,6 +7,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -632,6 +633,7 @@ export default function FranskRouletteGuide() {
         </section>
 
         <CasinospilMoneyLinks gameName="Fransk Roulette" currentPath="/casinospil/roulette/fransk-roulette" />
+        <LatestNewsByCategory pagePath="/casinospil/roulette/fransk-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/fransk-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

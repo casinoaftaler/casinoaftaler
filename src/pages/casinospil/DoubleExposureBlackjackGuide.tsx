@@ -7,6 +7,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -636,6 +637,7 @@ const DoubleExposureBlackjackGuide = () => {
         <AuthorBio />
 
         <CasinospilMoneyLinks gameName="Double Exposure Blackjack" currentPath="/casinospil/blackjack/double-exposure" />
+        <LatestNewsByCategory pagePath="/casinospil/blackjack/double-exposure" />
         <RelatedGuides currentPath="/casinospil/blackjack/double-exposure" />
 
         <FAQSection faqs={faqs} />

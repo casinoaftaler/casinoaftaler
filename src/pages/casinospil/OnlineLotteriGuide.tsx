@@ -7,6 +7,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -555,6 +556,7 @@ const OnlineLotteriGuide = () => {
         </section>
 
         <CasinospilMoneyLinks gameName="Online Lotteri" currentPath="/casinospil/online-lotteri" />
+        <LatestNewsByCategory pagePath="/casinospil/online-lotteri" />
         <RelatedGuides currentPath="/casinospil/online-lotteri" />
         <FAQSection title="Ofte stillede spørgsmål om online lotteri" faqs={lotteriFaqs} />
         <AuthorBio />

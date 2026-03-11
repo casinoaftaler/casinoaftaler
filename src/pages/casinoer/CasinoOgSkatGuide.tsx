@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import heroImage from "@/assets/heroes/casino-og-skat-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
@@ -271,6 +272,7 @@ const CasinoOgSkatGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Besøg vores <Link to="/top-10-casino-online" className={linkClass}>top 10 online casino</Link> for de bedste skattefri casinomuligheder i Danmark, eller læs vores <Link to="/casino-licenser" className={linkClass}>guide til licenserede casinoer</Link> for at forstå, hvorfor dansk licens bør være dit vigtigste kriterium.</p>
         </section>
 
+        <LatestNewsByCategory pagePath="/casinoer/casino-og-skat" />
         <RelatedGuides currentPath="/casinoer/casino-og-skat" />
 
         <FAQSection title="Ofte stillede spørgsmål om casino og skat" faqs={faqs} />

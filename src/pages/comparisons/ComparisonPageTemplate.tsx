@@ -4,6 +4,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
@@ -309,6 +310,7 @@ export function ComparisonPageTemplate({
 
         <InlineCasinoCards title="Andre anbefalede casinoer" count={4} excludeSlugs={[casinoA.slug, casinoB.slug]} />
         <Separator className="my-10" />
+        <LatestNewsByCategory pagePath={path} />
         <RelatedGuides currentPath={path} />
         <FAQSection title={`Ofte stillede spørgsmål: ${casinoA.name} vs ${casinoB.name}`} faqs={faqs} />
         <AuthorBio author={author} />

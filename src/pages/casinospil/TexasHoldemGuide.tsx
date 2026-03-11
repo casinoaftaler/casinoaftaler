@@ -7,6 +7,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -675,6 +676,7 @@ const TexasHoldemGuide = () => {
         <Separator className="my-10" />
 
         <CasinospilMoneyLinks gameName="Texas Hold'em" currentPath="/casinospil/poker/texas-holdem" />
+        <LatestNewsByCategory pagePath="/casinospil/poker/texas-holdem" />
         <RelatedGuides currentPath="/casinospil/poker/texas-holdem" />
 
         <Separator className="my-10" />

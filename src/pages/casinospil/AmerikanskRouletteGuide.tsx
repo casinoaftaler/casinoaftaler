@@ -7,6 +7,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -1016,6 +1017,7 @@ export default function AmerikanskRouletteGuide() {
         <Separator className="mb-12" />
 
         <CasinospilMoneyLinks gameName="Amerikansk Roulette" currentPath="/casinospil/roulette/amerikansk-roulette" />
+        <LatestNewsByCategory pagePath="/casinospil/roulette/amerikansk-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/amerikansk-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

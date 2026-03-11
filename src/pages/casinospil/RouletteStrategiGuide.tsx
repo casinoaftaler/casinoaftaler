@@ -7,6 +7,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -519,6 +520,7 @@ const RouletteStrategiGuide = () => {
         <Separator className="my-10" />
 
         <CasinospilMoneyLinks gameName="Roulette Strategi" currentPath="/casinospil/roulette-strategi" />
+        <LatestNewsByCategory pagePath="/casinospil/roulette-strategi" />
         <RelatedGuides currentPath="/casinospil/roulette-strategi" />
 
         <FAQSection faqs={strategiFaqs} />

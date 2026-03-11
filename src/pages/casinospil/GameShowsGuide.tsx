@@ -7,6 +7,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -627,6 +628,7 @@ const GameShowsGuide = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/live-casino/game-shows" />
         <RelatedGuides currentPath="/live-casino/game-shows" />
         <FAQSection title="Ofte stillede spørgsmål om casino game shows" faqs={gameShowFaqs} />
         <AuthorBio />

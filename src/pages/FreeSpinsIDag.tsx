@@ -9,6 +9,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import heroImage from "@/assets/heroes/free-spins-i-dag-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { FreeSpinsMoneyPageLinks } from "@/components/FreeSpinsMoneyPageLinks";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent } from "@/components/ui/card";
@@ -490,6 +491,7 @@ const FreeSpinsIDag = () => {
         </div>
 
         <Separator className="my-8" />
+        <LatestNewsByCategory pagePath="/free-spins-i-dag" />
         <RelatedGuides currentPath="/free-spins-i-dag" />
         <FAQSection title="Ofte Stillede Spørgsmål om Daglige Free Spins" faqs={freeSpinsIDagFaqs} />
         <AuthorBio author="jonas" />

@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import casinospilHero from "@/assets/casinospil-hero.jpg";
@@ -1380,6 +1381,7 @@ const Casinospil = () => {
 
         <Separator className="my-10" />
 
+        <LatestNewsByCategory pagePath="/casinospil" />
         <RelatedGuides currentPath="/casinospil" />
 
         <FAQSection title="Ofte stillede spørgsmål om casinospil" faqs={casinospilFaqs} />

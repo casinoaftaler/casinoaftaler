@@ -7,6 +7,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -630,6 +631,7 @@ const Spanish21Guide = () => {
         </section>
 
         <CasinospilMoneyLinks gameName="Spanish 21" currentPath="/casinospil/blackjack/spanish-21" />
+        <LatestNewsByCategory pagePath="/casinospil/blackjack/spanish-21" />
         <RelatedGuides currentPath="/casinospil/blackjack/spanish-21" />
         <FAQSection faqs={faqs} />
         <AuthorBio />
