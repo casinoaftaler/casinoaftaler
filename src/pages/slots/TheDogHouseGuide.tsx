@@ -9,6 +9,7 @@ import { buildFaqSchema, buildArticleSchema, buildHowToSchema, buildVideoSchema,
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
