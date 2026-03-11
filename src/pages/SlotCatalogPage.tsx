@@ -1253,6 +1253,75 @@ export default function SlotCatalogPage() {
           </section>
         )}
 
+        {/* Bonus til slotspillere */}
+        {(() => {
+          const h = hashStr(slotName + '_bonus');
+          const volLabel = slot.volatility === "High" || slot.volatility === "Extreme"
+            ? "high-volatility"
+            : slot.volatility === "Low" ? "low-volatility" : "";
+          const bonusIntros = [
+            <>Hvis du nyder {slotName}, kan du ofte optimere din spilleoplevelse med den rette <Link to="/casino-bonus" className="text-primary hover:underline">casino bonus</Link>. En bonus giver ekstra kapital til at udforske maskinens funktioner uden at øge din egen risiko.</>,
+            <>En velvalgt <Link to="/casino-bonus" className="text-primary hover:underline">casino bonus</Link> kan forlænge din session på {slotName} markant. Særligt {volLabel ? `på ${volLabel} maskiner` : "for denne type spillemaskin"} er ekstra kapital værdifuld, da det giver flere chancer for at ramme bonusrunden.</>,
+            <>For at få mest ud af {slotName} anbefaler vi at udnytte en <Link to="/casino-bonus" className="text-primary hover:underline">casino bonus</Link>. Det giver dig et større udgangspunkt og flere spins til at teste maskinens gevinstpotentiale.</>,
+          ];
+          return (
+            <section className="mb-8 rounded-lg border border-border bg-card p-6">
+              <h2 className="text-2xl font-bold mb-4">Bonus til {slotName}-spillere</h2>
+              <div className="text-muted-foreground leading-relaxed space-y-4">
+                <p>{bonusIntros[h % bonusIntros.length]}</p>
+                <div className="grid gap-3 sm:grid-cols-3 mt-4">
+                  <Link
+                    to="/free-spins"
+                    className="flex items-center gap-2 rounded-lg border border-border p-3 hover:border-primary/50 hover:bg-muted/30 transition-colors"
+                  >
+                    <Gift className="h-5 w-5 text-primary flex-shrink-0" />
+                    <div>
+                      <span className="font-medium text-sm text-foreground block">Free Spins</span>
+                      <span className="text-xs text-muted-foreground">Gratis spins til spillemaskiner</span>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/velkomstbonus"
+                    className="flex items-center gap-2 rounded-lg border border-border p-3 hover:border-primary/50 hover:bg-muted/30 transition-colors"
+                  >
+                    <Trophy className="h-5 w-5 text-primary flex-shrink-0" />
+                    <div>
+                      <span className="font-medium text-sm text-foreground block">Velkomstbonus</span>
+                      <span className="text-xs text-muted-foreground">Bedste tilbud til nye spillere</span>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/casino-bonus"
+                    className="flex items-center gap-2 rounded-lg border border-border p-3 hover:border-primary/50 hover:bg-muted/30 transition-colors"
+                  >
+                    <Star className="h-5 w-5 text-primary flex-shrink-0" />
+                    <div>
+                      <span className="font-medium text-sm text-foreground block">Alle Bonusser</span>
+                      <span className="text-xs text-muted-foreground">Sammenlign casino bonusser</span>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* Nye casinoer – kontekstuel link */}
+        {(() => {
+          const h = hashStr(slotName + '_nye');
+          const variants = [
+            <>Leder du efter et nyt sted at spille {slotName}? Se vores opdaterede liste over <Link to="/nye-casinoer" className="text-primary hover:underline font-medium">nye danske casinoer</Link> med de seneste bonustilbud og {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" ? <>{providerLink(slot.provider)}-spil</> : "et bredt spiludvalg"} i kataloget.</>,
+            <>Nye casinoer tilbyder ofte bedre vilkår og ekstra free spins til spillemaskiner som {slotName}. Udforsk <Link to="/nye-casinoer" className="text-primary hover:underline font-medium">nye casinoer i Danmark</Link> og find det bedste match for din spillestil.</>,
+            <>Vil du prøve {slotName} på en ny platform? <Link to="/nye-casinoer" className="text-primary hover:underline font-medium">Nye danske casinoer</Link> lanceres løbende med friske velkomstbonusser og konkurrencedygtige omsætningskrav.</>,
+            <>Flere <Link to="/nye-casinoer" className="text-primary hover:underline font-medium">nye casinoer med dansk licens</Link> har tilføjet {slot.provider && slot.provider !== "Unknown" && slot.provider !== "Custom Slot" ? `${slot.provider}-titler` : "populære spillemaskiner"} som {slotName} til deres katalog – ofte med eksklusive introduktionstilbud.</>,
+          ];
+          return (
+            <p className="mb-8 text-muted-foreground leading-relaxed">
+              {variants[h % variants.length]}
+            </p>
+          );
+        })()}
+
         {/* Responsible Gambling */}
         <section className="mb-8 rounded-lg border border-primary/20 bg-primary/5 p-6">
           <h2 className="text-2xl font-bold mb-4">{H2_RG(slotName)}</h2>
