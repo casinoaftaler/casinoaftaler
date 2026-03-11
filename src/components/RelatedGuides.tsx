@@ -451,7 +451,21 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
-  // Turneringsarkiv → bridge to tournaments and money-pages
+  // Statistik → bridge to bonus hunt, slot database and money-pages
+  if (path === "/statistik") {
+    return {
+      guides: [
+        { to: "/bonus-hunt", label: "Bonus Hunt Live", icon: Trophy, desc: "Følg med i live bonus hunts på Twitch" },
+        { to: "/bonus-hunt/arkiv", label: "Bonus Hunt Arkiv", icon: BarChart3, desc: "Alle dokumenterede hunt-resultater" },
+        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "1.400+ spillemaskiner med community-data" },
+        { to: "/spiludviklere", label: "Spiludviklere", icon: BookOpen, desc: "Dybdegående guides til alle providers" },
+        casinospilHub,
+        reviewHub,
+      ],
+      subtitle: "Udforsk bonus hunts, slot-data og dybdegående casino guides.",
+    };
+  }
+
   if (path === "/community/turneringer/arkiv") {
     return {
       guides: [
