@@ -395,6 +395,7 @@ export function ProviderPage({
         />
         <Separator className="my-10" />
         <ProviderCatalogSlots providerSlug={currentPath.replace("/spiludviklere/", "")} />
+        <DeveloperSiblingLinks currentPath={currentPath} />
         <RelatedGuides currentPath={currentPath} />
         <FAQSection title={`Ofte stillede spørgsmål om ${name}`} faqs={faqs} />
 
