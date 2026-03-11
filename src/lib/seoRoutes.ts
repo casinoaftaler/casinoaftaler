@@ -386,6 +386,9 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/jackpot-slots", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
   { path: "/bonus-buy-slots", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
 
+  // ── Statistik (linkable asset) ──
+  { path: "/statistik", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-11" },
+
   // ── Batch 2: VIP & MobilePay ──
   { path: "/vip-program", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-08" },
   { path: "/casino-med-mobilepay", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-08" },
