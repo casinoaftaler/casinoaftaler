@@ -81,7 +81,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bhurtig registrering\b/i], href: "/casino-uden-konto/hurtig-registrering", anchor: "" },
 
   // Casino-liste money-pages
-  { patterns: [/\bnye casinoer\b/i], href: "/nye-casinoer", anchor: "" },
+  { patterns: [/\bnye casinoer\b/i], href: "/nye-casinoer", anchor: "", anchorVariants: ["nye casinoer", "nye danske casinoer", "nyeste casinoer i Danmark"] },
   { patterns: [/\bdansk licens\b/i, /\bdanske licenser\b/i], href: "/casino-licenser", anchor: "" },
   { patterns: [/\bhvidvask(?:regler|lovgivning|ning)?\b/i, /\bAML\b/], href: "/casino-licenser", anchor: "" },
 
