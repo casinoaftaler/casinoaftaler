@@ -149,7 +149,11 @@ interface LatestNewsByCategoryProps {
  * Cornerstone articles are prioritized first.
  */
 export function LatestNewsByCategory({ pagePath }: LatestNewsByCategoryProps) {
-  const mapping = PAGE_CATEGORY_MAP[pagePath];
+  // Direct match first, then prefix match for review/comparison pages
+  const mapping = PAGE_CATEGORY_MAP[pagePath]
+    ?? (pagePath.startsWith("/casino-anmeldelser/") ? PAGE_CATEGORY_MAP["/casino-anmeldelser"] : undefined)
+    ?? (pagePath.startsWith("/casinospil/spillemaskiner/") ? { categories: ["nye-casinoer"], tags: ["spillemaskiner", "slots"], label: "spillemaskiner" } : undefined)
+    ?? (pagePath.startsWith("/nye-casinoer/") ? PAGE_CATEGORY_MAP["/nye-casinoer"] : undefined);
   
   const categories = mapping?.categories ?? ["regulering"];
   const label = mapping?.label ?? "det danske casinomarked";
