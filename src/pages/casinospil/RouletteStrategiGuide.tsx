@@ -518,6 +518,7 @@ const RouletteStrategiGuide = () => {
 
         <Separator className="my-10" />
 
+        <CasinospilMoneyLinks gameName="Roulette Strategi" currentPath="/casinospil/roulette-strategi" />
         <RelatedGuides currentPath="/casinospil/roulette-strategi" />
 
         <FAQSection faqs={strategiFaqs} />

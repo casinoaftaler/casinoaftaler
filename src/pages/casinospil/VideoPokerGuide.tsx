@@ -629,6 +629,7 @@ export default function VideoPokerGuide() {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Video Poker" currentPath="/casinospil/poker/video-poker" />
         <RelatedGuides currentPath="/casinospil/poker/video-poker" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

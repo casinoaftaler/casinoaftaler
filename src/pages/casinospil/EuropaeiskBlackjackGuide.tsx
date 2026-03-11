@@ -691,6 +691,7 @@ const EuropaeiskBlackjackGuide = () => {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Europæisk Blackjack" currentPath="/casinospil/blackjack/europaeisk-blackjack" />
         <RelatedGuides currentPath="/casinospil/blackjack/europaeisk-blackjack" />
         <FAQSection faqs={faqs} />
         <AuthorBio />

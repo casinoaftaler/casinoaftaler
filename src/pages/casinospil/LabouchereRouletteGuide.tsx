@@ -692,6 +692,7 @@ export default function LabouchereRouletteGuide() {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Labouchère Roulette" currentPath="/casinospil/roulette/labouchere-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/labouchere-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

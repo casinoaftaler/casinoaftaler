@@ -933,6 +933,7 @@ const AmerikanskBlackjackGuide = () => {
 
         <AuthorBio />
 
+        <CasinospilMoneyLinks gameName="Amerikansk Blackjack" currentPath="/casinospil/blackjack/amerikansk-blackjack" />
         <RelatedGuides currentPath="/casinospil/blackjack/amerikansk-blackjack" />
 
         <FAQSection faqs={faqs} />

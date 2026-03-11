@@ -674,6 +674,7 @@ const TexasHoldemGuide = () => {
 
         <Separator className="my-10" />
 
+        <CasinospilMoneyLinks gameName="Texas Hold'em" currentPath="/casinospil/poker/texas-holdem" />
         <RelatedGuides currentPath="/casinospil/poker/texas-holdem" />
 
         <Separator className="my-10" />

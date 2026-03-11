@@ -775,6 +775,7 @@ const OmahaPokerGuide = () => {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Omaha Poker" currentPath="/casinospil/poker/omaha" />
         <RelatedGuides currentPath="/casinospil/poker/omaha" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

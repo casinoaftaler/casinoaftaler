@@ -472,6 +472,7 @@ const CrapsGuide = () => {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Craps" currentPath="/casinospil/craps" />
         <RelatedGuides currentPath="/casinospil/craps" />
         <FAQSection faqs={crapsFaqs} />
         <AuthorBio author="jonas" showCommunity={false} />

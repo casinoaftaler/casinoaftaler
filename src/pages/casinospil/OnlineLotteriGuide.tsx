@@ -554,6 +554,7 @@ const OnlineLotteriGuide = () => {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Online Lotteri" currentPath="/casinospil/online-lotteri" />
         <RelatedGuides currentPath="/casinospil/online-lotteri" />
         <FAQSection title="Ofte stillede spørgsmål om online lotteri" faqs={lotteriFaqs} />
         <AuthorBio />

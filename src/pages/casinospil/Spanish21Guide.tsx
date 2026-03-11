@@ -629,6 +629,7 @@ const Spanish21Guide = () => {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Spanish 21" currentPath="/casinospil/blackjack/spanish-21" />
         <RelatedGuides currentPath="/casinospil/blackjack/spanish-21" />
         <FAQSection faqs={faqs} />
         <AuthorBio />

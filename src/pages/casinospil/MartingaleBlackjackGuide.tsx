@@ -814,6 +814,7 @@ const MartingaleBlackjackGuide = () => {
 
         <Separator className="mb-12" />
 
+        <CasinospilMoneyLinks gameName="Martingale Blackjack" currentPath="/casinospil/blackjack/martingale" />
         <RelatedGuides currentPath="/casinospil/blackjack/martingale-system" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

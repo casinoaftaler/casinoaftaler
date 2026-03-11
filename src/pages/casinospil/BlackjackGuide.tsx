@@ -938,6 +938,7 @@ const BlackjackGuide = () => {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Blackjack" currentPath="/casinospil/blackjack" />
         <RelatedGuides currentPath="/casinospil/blackjack" />
         <FAQSection faqs={blackjackFaqs} />
         <AuthorBio />

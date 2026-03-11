@@ -585,6 +585,7 @@ export default function PokerStrategiGuide() {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Poker Strategi" currentPath="/casinospil/poker/poker-strategi" />
         <RelatedGuides currentPath="/casinospil/poker/poker-strategi" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />

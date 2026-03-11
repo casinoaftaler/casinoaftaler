@@ -669,6 +669,7 @@ const RouletteGuide = () => {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Roulette" currentPath="/casinospil/roulette" />
         <RelatedGuides currentPath="/casinospil/roulette" />
         <FAQSection faqs={rouletteFaqs} />
         <AuthorBio author="jonas" showCommunity={false} />

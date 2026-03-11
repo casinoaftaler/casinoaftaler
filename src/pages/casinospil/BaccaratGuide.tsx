@@ -427,6 +427,7 @@ const BaccaratGuide = () => {
           </p>
         </section>
 
+        <CasinospilMoneyLinks gameName="Baccarat" currentPath="/casinospil/baccarat" />
         <RelatedGuides currentPath="/casinospil/baccarat" />
         <FAQSection faqs={baccaratFaqs} />
         <AuthorBio author="jonas" showCommunity={false} />
