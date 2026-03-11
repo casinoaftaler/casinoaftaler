@@ -577,7 +577,7 @@ export default function Statistik() {
                   </thead>
                   <tbody>
                     {topSlots.map((s, i) => {
-                      const slotSlug = s.slug || toSlug(s.slot_name);
+                      const slotSlug = toSlug(s.slot_name);
                       const providerHubSlug = PROVIDER_HUB_SLUGS[s.provider];
                       return (
                         <tr key={s.id} className="border-b border-border hover:bg-muted/30 transition-colors">
