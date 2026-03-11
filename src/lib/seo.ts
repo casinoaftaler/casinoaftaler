@@ -361,8 +361,6 @@ export function buildVideoSchema(
   };
 }
 
-export { JONAS_PERSON_ID };
-
 /**
  * Extract plain text from a React node for use in structured data.
  * Handles strings, numbers, arrays, and React elements with children.

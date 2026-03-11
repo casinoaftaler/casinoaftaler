@@ -131,7 +131,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bpoker\b/i], href: "/casinospil/poker", anchor: "" },
   { patterns: [/\bbaccarat\b/i], href: "/casinospil/baccarat", anchor: "" },
   { patterns: [/\bcraps\b/i], href: "/casinospil/craps", anchor: "" },
-  { patterns: [/\bgame shows?\b/i, /\btv[\s-]?spil\b/i], href: "/live-casino/monopoly-live", anchor: "" },
+  { patterns: [/\bgame shows?\b/i, /\btv[\s-]?spil\b/i], href: "/live-casino/game-shows", anchor: "" },
 
   // Slot kategori money-pages
   { patterns: [/\bmegaways slots?\b/i, /\bmegaways spillemaskiner\b/i], href: "/megaways-slots", anchor: "" },
