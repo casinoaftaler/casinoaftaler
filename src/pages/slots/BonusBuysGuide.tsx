@@ -877,6 +877,7 @@ const BonusBuysGuide = () => {
         </Card>
 
         <SlotProviderLink slotSlug="bonus-buys" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/bonus-buys" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/bonus-buys" />
         <FAQSection title="Ofte Stillede Spørgsmål om Bonus Buys" faqs={bonusBuyFaqs} />
         <AuthorBio author="jonas" />
