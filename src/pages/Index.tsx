@@ -129,7 +129,7 @@ const Index = () => {
 
   return (
     <>
-      <SpeculationRules />
+      
       <SEO
         title="Online Casinoer med Bonus – Nye Casinoer 2026"
         description="Find de bedste online casinoer med bonus og dansk licens. Sammenlign nye casinoer, live casino, free spins og spil ansvarligt med vores uafhængige anmeldelser."
