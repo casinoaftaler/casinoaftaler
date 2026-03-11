@@ -15,6 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { slugifySlotName } from "@/lib/slugify";
+import { ProviderMoneyLinks } from "@/components/ProviderMoneyLinks";
 import {
   Gamepad2,
   BarChart3,
