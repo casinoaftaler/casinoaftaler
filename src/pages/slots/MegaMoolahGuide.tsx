@@ -136,6 +136,7 @@ const MegaMoolahGuide = () => {
 
         <SlotDataLink slotSlug="mega-moolah" slotName="Mega Moolah" />
         <SlotProviderLink slotSlug="mega-moolah" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/mega-moolah" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/mega-moolah" />
         <FAQSection title="Ofte Stillede Spørgsmål om Mega Moolah" faqs={megaMoolahFaqs} />
         <AuthorBio author="kevin" />

@@ -141,6 +141,7 @@ const JokerStrikeGuide = () => {
 
         <SlotDataLink slotSlug="joker-strike" slotName="Joker Strike" />
         <SlotProviderLink slotSlug="joker-strike" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/joker-strike" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/joker-strike" />
         <FAQSection title="Ofte Stillede Spørgsmål om Joker Strike" faqs={jokerStrikeFaqs} />
         <AuthorBio author="kevin" />

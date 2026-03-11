@@ -327,6 +327,7 @@ const RazorSharkGuide = () => {
 
         <SlotDataLink slotSlug="razor-shark" slotName="Razor Shark" />
         <SlotProviderLink slotSlug="razor-shark" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/razor-shark" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/razor-shark" />
         <FAQSection title="Ofte Stillede Spørgsmål om Razor Shark" faqs={razorSharkFaqs} />
         <AuthorBio />

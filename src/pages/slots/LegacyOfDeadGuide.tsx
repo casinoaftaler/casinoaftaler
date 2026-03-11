@@ -284,6 +284,7 @@ const LegacyOfDeadGuide = () => {
 
         <SlotDataLink slotSlug="legacy-of-dead" slotName="Legacy of Dead" />
         <SlotProviderLink slotSlug="legacy-of-dead" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/legacy-of-dead" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/legacy-of-dead" />
         <FAQSection title="Ofte Stillede Spørgsmål om Legacy of Dead" faqs={legacyOfDeadFaqs} />
         <AuthorBio author="jonas" />

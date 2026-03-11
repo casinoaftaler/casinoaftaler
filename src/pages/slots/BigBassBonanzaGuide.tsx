@@ -378,6 +378,7 @@ const BigBassBonanzaGuide = () => {
 
         <SlotDataLink slotSlug="big-bass-bonanza" slotName="Big Bass Bonanza" />
         <SlotProviderLink slotSlug="big-bass-bonanza" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/big-bass-bonanza" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/big-bass-bonanza" />
         <FAQSection title="Ofte Stillede Spørgsmål om Big Bass Bonanza" faqs={bigBassFaqs} />
         <AuthorBio author="kevin" />

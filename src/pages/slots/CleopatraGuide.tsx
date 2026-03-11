@@ -143,6 +143,7 @@ const CleopatraGuide = () => {
 
         <SlotDataLink slotSlug="cleopatra" slotName="Cleopatra" />
         <SlotProviderLink slotSlug="cleopatra" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/cleopatra" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/cleopatra" />
         <FAQSection title="Ofte Stillede Spørgsmål om Cleopatra" faqs={cleopatraFaqs} />
         <AuthorBio author="kevin" />

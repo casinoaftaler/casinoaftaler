@@ -6,6 +6,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -385,6 +386,7 @@ const NyeCasinoerUdenRofus = () => {
 
         <InlineCasinoCards title="Licenserede alternativer vi anbefaler" count={4} />
 
+        <LatestNewsByCategory pagePath="/nye-casinoer/uden-rofus" />
         <RelatedGuides currentPath="/nye-casinoer/uden-rofus" />
         <FAQSection title="Ofte stillede spørgsmål om casinoer uden ROFUS" faqs={faqs} />
         <AuthorBio author="jonas" />

@@ -150,6 +150,7 @@ const ThunderstruckIIGuide = () => {
 
         <SlotDataLink slotSlug="thunderstruck-ii" slotName="Thunderstruck II" />
         <SlotProviderLink slotSlug="thunderstruck-ii" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/thunderstruck-ii" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/thunderstruck-ii" />
         <FAQSection title="Ofte Stillede Spørgsmål om Thunderstruck II" faqs={thunderstruckIIFaqs} />
         <AuthorBio author="kevin" />

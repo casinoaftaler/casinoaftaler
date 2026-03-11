@@ -143,6 +143,7 @@ const MadameDestinyMegawaysGuide = () => {
 
         <SlotDataLink slotSlug="madame-destiny-megaways" slotName="Madame Destiny Megaways" />
         <SlotProviderLink slotSlug="madame-destiny-megaways" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/madame-destiny-megaways" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/madame-destiny-megaways" />
         <FAQSection title="Ofte Stillede Spørgsmål om Madame Destiny Megaways" faqs={madameDestinyMWFaqs} />
         <AuthorBio author="kevin" />

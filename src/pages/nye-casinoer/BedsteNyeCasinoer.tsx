@@ -6,6 +6,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -330,6 +331,7 @@ const BedsteNyeCasinoer = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/nye-casinoer/bedste" />
         <RelatedGuides currentPath="/nye-casinoer/bedste" />
         <FAQSection title="Ofte stillede spørgsmål om de bedste nye casinoer" faqs={faqs} />
         <AuthorBio author="jonas" />

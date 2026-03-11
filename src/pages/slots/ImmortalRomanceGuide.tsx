@@ -141,6 +141,7 @@ const ImmortalRomanceGuide = () => {
 
         <SlotDataLink slotSlug="immortal-romance" slotName="Immortal Romance" />
         <SlotProviderLink slotSlug="immortal-romance" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/immortal-romance" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/immortal-romance" />
         <FAQSection title="Ofte Stillede Spørgsmål om Immortal Romance" faqs={immortalRomanceFaqs} />
         <AuthorBio author="kevin" />

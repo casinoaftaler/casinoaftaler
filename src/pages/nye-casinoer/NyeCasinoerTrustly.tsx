@@ -6,6 +6,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -406,6 +407,7 @@ const NyeCasinoerTrustly = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/nye-casinoer/trustly" />
         <RelatedGuides currentPath="/nye-casinoer/trustly" />
         <FAQSection title="Ofte stillede spørgsmål om Trustly og nye casinoer" faqs={faqs} />
         <AuthorBio author="jonas" />

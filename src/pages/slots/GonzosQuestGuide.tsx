@@ -338,6 +338,7 @@ const GonzosQuestGuide = () => {
 
         <SlotDataLink slotSlug="gonzos-quest" slotName="Gonzo's Quest" />
         <SlotProviderLink slotSlug="gonzos-quest" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/gonzos-quest" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/gonzos-quest" />
         <FAQSection title="Ofte Stillede Spørgsmål om Gonzo's Quest" faqs={gonzosQuestFaqs} />
         <AuthorBio author="kevin" />

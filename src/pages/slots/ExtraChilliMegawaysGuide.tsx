@@ -145,6 +145,7 @@ const ExtraChilliMegawaysGuide = () => {
 
         <SlotDataLink slotSlug="extra-chilli-megaways" slotName="Extra Chilli Megaways" />
         <SlotProviderLink slotSlug="extra-chilli-megaways" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/extra-chilli-megaways" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/extra-chilli-megaways" />
         <FAQSection title="Ofte Stillede Spørgsmål om Extra Chilli Megaways" faqs={extraChilliFaqs} />
         <AuthorBio author="kevin" />

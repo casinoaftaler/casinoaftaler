@@ -267,6 +267,7 @@ const FireJokerGuide = () => {
 
         <SlotDataLink slotSlug="fire-joker" slotName="Fire Joker" />
         <SlotProviderLink slotSlug="fire-joker" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/fire-joker" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/fire-joker" />
         <FAQSection title="Ofte Stillede Spørgsmål om Fire Joker" faqs={fireJokerFaqs} />
         <AuthorBio author="kevin" />

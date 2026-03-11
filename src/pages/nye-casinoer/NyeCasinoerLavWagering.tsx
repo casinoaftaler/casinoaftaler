@@ -6,6 +6,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -422,6 +423,7 @@ const NyeCasinoerLavWagering = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/nye-casinoer/lav-wagering" />
         <RelatedGuides currentPath="/nye-casinoer/lav-wagering" />
         <FAQSection title="Ofte stillede spørgsmål om lav wagering" faqs={faqs} />
         <AuthorBio author="jonas" />

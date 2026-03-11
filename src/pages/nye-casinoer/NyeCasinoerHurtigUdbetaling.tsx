@@ -6,6 +6,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -495,6 +496,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/nye-casinoer/hurtig-udbetaling" />
         <RelatedGuides currentPath="/nye-casinoer/hurtig-udbetaling" />
         <FAQSection title="Ofte stillede spørgsmål om hurtige udbetalinger" faqs={faqs} />
         <AuthorBio author="jonas" />

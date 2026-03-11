@@ -177,6 +177,7 @@ const WantedDeadOrAWildGuide = () => {
 
         <SlotDataLink slotSlug="wanted-dead-or-a-wild" slotName="Wanted Dead or a Wild" />
         <SlotProviderLink slotSlug="wanted-dead-or-a-wild" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/wanted-dead-or-a-wild" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wanted-dead-or-a-wild" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wanted Dead or a Wild" faqs={wantedFaqs} />
         <AuthorBio author="kevin" />

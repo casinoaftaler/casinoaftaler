@@ -139,6 +139,7 @@ const ChaosCrewGuide = () => {
 
         <SlotDataLink slotSlug="chaos-crew" slotName="Chaos Crew" />
         <SlotProviderLink slotSlug="chaos-crew" />
+        <LatestNewsByCategory pagePath="/casinospil/spillemaskiner/chaos-crew" />
         <RelatedGuides currentPath="/casinospil/spillemaskiner/chaos-crew" />
         <FAQSection title="Ofte Stillede Spørgsmål om Chaos Crew" faqs={chaosCrewFaqs} />
         <AuthorBio author="kevin" />

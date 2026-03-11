@@ -6,6 +6,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -370,6 +371,7 @@ const NyeVsEtablerede = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/nye-casinoer/vs-etablerede" />
         <RelatedGuides currentPath="/nye-casinoer/vs-etablerede" />
         <FAQSection title="Ofte stillede spørgsmål om nye vs. etablerede casinoer" faqs={faqs} />
         <AuthorBio author="jonas" />
