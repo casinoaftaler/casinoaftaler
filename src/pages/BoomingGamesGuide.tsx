@@ -221,7 +221,7 @@ const BoomingGamesGuide = () => (
     sectionOrder={["intro", "strategic", "games", "casinos", "technical", "history", "licenses", "proscons", "providers", "responsible"]}
     updatedDate="12-03-2026"
     readTime="35 Min."
-    ctaCasinoSlug="comeon"
+    ctaCasinoSlug="spilleautomaten"
   />
 );
 
