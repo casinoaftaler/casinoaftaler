@@ -631,7 +631,7 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
 
           {/* Summary from structured data */}
           {(offer.summary || offer.description) && (
-            <p className="mt-2 text-xs text-white/40 line-clamp-2">{offer.summary || offer.description}</p>
+            <p className="mt-2 text-xs text-white/40 line-clamp-2">{capWagerInText(offer.summary || offer.description)}</p>
           )}
         </div>
 
