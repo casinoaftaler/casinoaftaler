@@ -42,8 +42,10 @@ const PROVIDER_GUIDE_SLUGS: Record<string, string> = {
   "Nolimit City": "nolimit-city",
   "ELK Studios": "elk-studios",
   "Yggdrasil": "yggdrasil",
+  "Yggdrasil Gaming": "yggdrasil",
   "Microgaming": "microgaming",
   "Red Tiger": "red-tiger",
+  "Red Tiger Gaming": "red-tiger",
   "Big Time Gaming": "big-time-gaming",
 };
 
@@ -54,6 +56,8 @@ const PROVIDER_HUB_SLUGS: Record<string, string> = {
   "Thunderkick": "thunderkick",
   "Blueprint Gaming": "blueprint-gaming",
   "Iron Dog Studio": "iron-dog-studio",
+  "Quickspin": "quickspin",
+  "Betsoft": "betsoft",
 };
 
 /* ── FAQ with internal links ── */

@@ -30,8 +30,10 @@ const providerHubSlugs: Record<string, string> = {
   "Nolimit City": "nolimit-city",
   "ELK Studios": "elk-studios",
   "Yggdrasil": "yggdrasil",
+  "Yggdrasil Gaming": "yggdrasil",
   "Microgaming": "microgaming",
   "Red Tiger": "red-tiger",
+  "Red Tiger Gaming": "red-tiger",
   "Big Time Gaming": "big-time-gaming",
   "IGT": "igt",
 };

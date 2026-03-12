@@ -124,9 +124,9 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bHacksaw Gaming\b/i], href: "/spiludviklere/hacksaw-gaming", anchor: "Hacksaw Gaming" },
   { patterns: [/\bNolimit City\b/i, /\bNoLimit City\b/i], href: "/spiludviklere/nolimit-city", anchor: "" },
   { patterns: [/\bBig Time Gaming\b/i], href: "/spiludviklere/big-time-gaming", anchor: "Big Time Gaming" },
-  { patterns: [/\bRed Tiger\b/i], href: "/spiludviklere/red-tiger", anchor: "Red Tiger" },
+  { patterns: [/\bRed Tiger Gaming\b/i, /\bRed Tiger\b/i], href: "/spiludviklere/red-tiger", anchor: "Red Tiger Gaming", anchorVariants: ["Red Tiger Gaming", "Red Tiger", "Red Tiger Gaming slots"] },
   { patterns: [/\bELK Studios\b/i], href: "/spiludviklere/elk-studios", anchor: "ELK Studios" },
-  { patterns: [/\bYggdrasil\b/], href: "/spiludviklere/yggdrasil", anchor: "Yggdrasil" },
+  { patterns: [/\bYggdrasil Gaming\b/i, /\bYggdrasil\b/], href: "/spiludviklere/yggdrasil", anchor: "Yggdrasil Gaming", anchorVariants: ["Yggdrasil Gaming", "Yggdrasil", "Yggdrasil Gaming slots"] },
   { patterns: [/\bMicrogaming\b/], href: "/spiludviklere/microgaming", anchor: "Microgaming" },
   { patterns: [/\bRelax Gaming\b/i], href: "/spiludviklere/relax-gaming", anchor: "Relax Gaming" },
 
