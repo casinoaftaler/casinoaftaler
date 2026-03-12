@@ -162,6 +162,48 @@
       <image:title>bwin Casino Logo</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/marathonbet</loc>
+    <image:image>
+      <image:loc>https://casinoaftaler.dk/logos/marathonbet.png</image:loc>
+      <image:title>Marathonbet Casino Logo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten</loc>
+    <image:image>
+      <image:loc>https://casinoaftaler.dk/logos/spilleautomaten.png</image:loc>
+      <image:title>Spilleautomaten Casino Logo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/betinia</loc>
+    <image:image>
+      <image:loc>https://casinoaftaler.dk/logos/betinia.png</image:loc>
+      <image:title>Betinia Casino Logo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/swift-casino</loc>
+    <image:image>
+      <image:loc>https://casinoaftaler.dk/logos/swift-casino.png</image:loc>
+      <image:title>Swift Casino Logo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/luna-casino</loc>
+    <image:image>
+      <image:loc>https://casinoaftaler.dk/logos/luna-casino.png</image:loc>
+      <image:title>Luna Casino Logo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/spildansknu</loc>
+    <image:image>
+      <image:loc>https://casinoaftaler.dk/logos/spildansknu.png</image:loc>
+      <image:title>SpilDanskNu Casino Logo</image:title>
+    </image:image>
+  </url>
 
   <!-- Site Brand Assets -->
   <url>
