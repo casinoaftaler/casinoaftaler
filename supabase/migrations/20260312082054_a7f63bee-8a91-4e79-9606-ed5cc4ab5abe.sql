@@ -1,0 +1,1 @@
+UPDATE casino_news SET category = 'betalingsmetoder' WHERE id = '41e29bad-d395-4836-842e-283ce244b309' AND category = 'generelt';
