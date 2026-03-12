@@ -528,10 +528,6 @@ export function Footer() {
                 loading="lazy"
               />
             </a>
-
-            <span className="flex items-center rounded-lg border border-border bg-muted/50 px-4 py-2 text-xs font-medium text-muted-foreground">
-              GPWA Verification
-            </span>
           </div>
         </div>
 
