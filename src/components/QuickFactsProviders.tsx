@@ -12,8 +12,10 @@ const providerRoutes: Record<string, string> = {
   "Nolimit City": "/spiludviklere/nolimit-city",
   "ELK Studios": "/spiludviklere/elk-studios",
   "Yggdrasil": "/spiludviklere/yggdrasil",
+  "Yggdrasil Gaming": "/spiludviklere/yggdrasil",
   "Microgaming": "/spiludviklere/microgaming",
   "Red Tiger": "/spiludviklere/red-tiger",
+  "Red Tiger Gaming": "/spiludviklere/red-tiger",
   "Big Time Gaming": "/spiludviklere/big-time-gaming",
 };
 
