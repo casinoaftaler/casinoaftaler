@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import thunderkickHero from "@/assets/images/providers/thunderkick-hero.jpg";
 
 const ThunderkickGuide = () => (
   <ProviderPage
@@ -9,6 +10,8 @@ const ThunderkickGuide = () => (
     seoTitle="Thunderkick Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
     seoDescription="Komplet guide til Thunderkick – svensk indie-studio med unikke mekanikker som Barrell Shift og Ticket Collect. RTP 96-96,5%, medium-høj volatilitet, 60+ slots."
     name="Thunderkick"
+    heroImage={thunderkickHero}
+    heroImageAlt="Thunderkick – svensk indie-spiludvikler"
     heroSubtitle="Thunderkick er det svenske indie-studie der beviser, at originalitet stadig kan trumfe volumen. Med kun 60+ titler har de skabt nogle af branchens mest distinkte spilleautomater – fra Esqueleto Explosivo til Beat the Beast-serien."
     currentPath="/spiludviklere/thunderkick"
     updatedDate="12-03-2026"

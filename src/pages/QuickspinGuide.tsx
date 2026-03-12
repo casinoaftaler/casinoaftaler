@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import quickspinHero from "@/assets/images/providers/quickspin-hero.jpg";
 
 const QuickspinGuide = () => (
   <ProviderPage
@@ -9,6 +10,8 @@ const QuickspinGuide = () => (
     seoTitle="Quickspin Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
     seoDescription="Komplet guide til Quickspin – svensk premium-studio med Achievement Engine, fast RTP på 96,0-96,7%, medium volatilitet og 80+ kvalitetsslots. Læs alt om Quickspins spil og teknologi."
     name="Quickspin"
+    heroImage={quickspinHero}
+    heroImageAlt="Quickspin – svensk premium spiludvikler"
     heroSubtitle="Quickspin er det svenske premium-studio der har bevist, at spillercentreret design og gamification kan sameksistere med matematisk integritet. Med Achievement Engine og en portefølje på 80+ slots har de skabt en ny standard for spillerengagement."
     currentPath="/spiludviklere/quickspin"
     updatedDate="12-03-2026"
