@@ -388,12 +388,12 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/ansvarligt-spil/hjaelpelinjer", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
 
   // ── Mobil Casino ──
-  { path: "/mobil-casino", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-08" },
-  { path: "/casino-app", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
-  { path: "/mobil-casino/iphone", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
-  { path: "/mobil-casino/android", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
-  { path: "/mobil-casino/tablet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
-  { path: "/mobil-casino/bedste-apps", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
+  { path: "/mobil-casino", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-05" },
+  { path: "/casino-app", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
+  { path: "/mobil-casino/iphone", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
+  { path: "/mobil-casino/android", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
+  { path: "/mobil-casino/tablet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
+  { path: "/mobil-casino/bedste-apps", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
 
   // ── Casino uden Konto ──
   { path: "/casino-uden-konto", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-08" },
