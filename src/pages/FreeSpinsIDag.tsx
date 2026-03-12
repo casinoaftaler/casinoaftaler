@@ -596,8 +596,8 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
             {offer.game_name && (
               <span className="flex items-center gap-1"><Gamepad2 className="h-3 w-3" /> {offer.game_name}</span>
             )}
-            {offer.wagering_requirement && (
-              <span className="flex items-center gap-1"><RotateCcw className="h-3 w-3" /> {offer.wagering_requirement}</span>
+            {capWagerDisplay(offer.wagering_requirement) && (
+              <span className="flex items-center gap-1"><RotateCcw className="h-3 w-3" /> {capWagerDisplay(offer.wagering_requirement)}</span>
             )}
             {!offer.requires_deposit ? (
               <span className="flex items-center gap-1 text-green-400 font-medium"><Zap className="h-3 w-3" /> Ingen indbetaling</span>
