@@ -151,6 +151,56 @@ const developerTeasers = [
     logo: elkStudiosLogo,
     teaser: "ELK Studios er det svenske boutique-studie, der har valgt kvalitet som strategi: færre end 50 titler i kataloget, men hver eneste er håndværksmæssigt poleret til perfektion. Wild Toro – deres flagskibstitel – vandt den prestigefyldte 'Game of the Year'-pris og introducerede Walking Wilds i en spiltjenende komponent. ELK's Betting Strategies (forudprogrammerede indsatsmønstre som Optimizer, Leveller og Jumper) er en unik innovation, der automatiserer bankroll-management. For erfarne spillere, der værdsætter matematisk gennemtænkt spildesign over volumen, er ELK Studios et studiemæssigt topvalg. Begrænsningen er det begrænsede udvalg – casual spillere kan hurtigt udtømme kataloget.",
   },
+  {
+    name: "Thunderkick",
+    slug: "thunderkick",
+    teaser: "Thunderkick er det stockholmske boutique-studie, der prioriterer kunstnerisk integritet over volumen. Med færre end 60 titler i kataloget har de opbygget en af branchens mest distinkte visuelle identiteter: håndtegnede animationer, surrealistiske temaer og en lyddesign-kvalitet, der overstiger branchestandarden. Esqueleto Explosivo 2 og Fruit Warp demonstrerer filosofien: mekanikker, der ikke ligner noget andet på markedet. Thunderkicks RTP-værdier ligger konsekvent i 96,0-96,2%-intervallet med medium-høj volatilitet.",
+  },
+  {
+    name: "Blueprint Gaming",
+    slug: "blueprint-gaming",
+    teaser: "Blueprint Gaming har specialiseret sig i licenserede slots baseret på populære brands: The Goonies, Ted, Rick and Morty og King Kong Cash er alle Blueprint-titler. Denne strategi giver instant genkendelse og en bredere appel end originale IP'er. Blueprint er desuden en af de mest aktive Megaways-licenstagere med titler som Fishin' Frenzy Megaways og Eye of Horus Megaways. Deres Jackpot King-netværk tilbyder progressive jackpots på tværs af porteføljen.",
+  },
+  {
+    name: "Push Gaming",
+    slug: "push-gaming",
+    teaser: "Push Gaming er det London-baserede studie, der har opnået kultstatus med ekstremt højvolatile slots som Jammin' Jars 2 (op til 50.000x), Razor Shark og Fat Rabbit. Deres mekanikker – Cluster Pays med stigende multiplikatorer, expanding wilds og retrigger-systemer – skaber en af branchens mest intense bonusoplevelser. Push Gaming udgiver kun 6-8 titler årligt, men hver eneste har potentiale til at blive en streamer-favorit.",
+  },
+  {
+    name: "Quickspin",
+    slug: "quickspin",
+    teaser: "Quickspin (nu ejet af Playtech) blev grundlagt af svenske industriveteraner fra NetEnt og er dedikeret til polerede, medium-volatilitet slots med exceptionel grafik. Big Bad Wolf, Sticky Bandits og Sakura Fortune er flagskibstitler, der kombinerer engagerende temaer med fair matematik. Quickspins Achievement Engine – et gamification-lag, der belønner spillere for milepæle – var banebrydende for langsigtede engagement-strategier.",
+  },
+  {
+    name: "iSoftBet",
+    slug: "isoftbet",
+    teaser: "iSoftBet opererer i en dobbeltrolle som spiludvikler og aggregeringsplatform via deres GAP-system (Game Aggregation Platform). GAP distribuerer spil fra over 70 partnerstudier, mens iSoftBets egne titler – Moriarty Megaways, Hot Spin Deluxe og Gold Digger Megaways – dækker medium-volatilitetssegmentet med en RTP i 95,0-96,5%-intervallet. Deres Hold & Win-mekanik er blevet en standard i branchen.",
+  },
+  {
+    name: "Betsoft",
+    slug: "betsoft",
+    teaser: "Betsoft var pionerer inden for 3D-cinematiske slots med deres SLOTS3-teknologi, der introducerede filmkvalitets-animationer til online casinospil. Good Girl Bad Girl, The Slotfather og Sugar Pop demonstrerer den visuelle ambition. Betsofts slots opererer typisk med lav-til-medium volatilitet og RTP-værdier i 95,0-97,1%-intervallet, hvilket gør dem ideelle til casual spillere og bonusomsætning.",
+  },
+  {
+    name: "Wazdan",
+    slug: "wazdan",
+    teaser: "Wazdan er en af branchens mest innovative udviklere med deres patenterede Volatility Levels™-system, der lader spillere vælge mellem lav, standard og høj volatilitet i ethvert spil. Denne unikke Feature – kombineret med Ultra Lite Mode (reduceret databelastning for svagere forbindelser) og Energy Saving Mode – gør Wazdan til den mest tilpasningsdygtige spiludvikler på markedet. Power of Gods-serien og 9 Lions er porteføljens flagskibe.",
+  },
+  {
+    name: "Endorphina",
+    slug: "endorphina",
+    teaser: "Endorphina fra Prag har opbygget en solid portefølje af slots med stærk matematisk transparens. Deres Book of Santa og Lucky Streak-serien er velkendte titler i det europæiske marked. Endorphinas spil er typisk medium-volatile med RTP-værdier omkring 96,0-96,5%. Studiet er særligt stærkt i Central- og Østeuropa og har i de seneste år ekspanderet aggressivt til vesteuropæiske markeder med nye licenser og compliance-certificeringer.",
+  },
+  {
+    name: "Stakelogic",
+    slug: "stakelogic",
+    teaser: "Stakelogic (tidligere Novomatic Digital Gaming) kombinerer Novomatic-koncernens 40+ års erfaring med moderne digital innovation. Deres Super Stake™-feature er en patenteret mekanik, der fordobler indsatsen til gengæld for øget bonusfrekvens. Stakelogic er også aktive i live casino-segmentet med deres Stakelogic Live-platform. Book of Adventure og Runner Runner-serien er porteføljens mest populære titler.",
+  },
+  {
+    name: "Booming Games",
+    slug: "booming-games",
+    teaser: "Booming Games opererer fra Isle of Man med en strategi fokuseret på emerging markets og niche-temaer. Deres proprietære Felt-teknologi sikrer hurtig cross-platform-kompatibilitet. Gold Gold Gold, TNT Bonanza og Cash Pig demonstrerer en tilgængelig stil med medium volatilitet og RTP-værdier i 95,5-96,5%-intervallet. Booming Games distribuerer via 100+ operatører globalt og er licenseret af MGA, UKGC og Spillemyndigheden.",
+  },
 ];
 
 const Spiludviklere = () => {
