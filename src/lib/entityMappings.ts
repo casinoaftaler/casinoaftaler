@@ -54,6 +54,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bbetalingsmetoder\b/i], href: "/betalingsmetoder", anchor: "" },
   { patterns: [/\bspiludviklere\b/i], href: "/spiludviklere", anchor: "" },
   { patterns: [/\bcasinospil\b/i], href: "/casinospil", anchor: "" },
+  { patterns: [/\bcasino[\s-]?kategorier\b/i, /\bcasino[\s-]?typer\b/i], href: "/casinoer", anchor: "" },
 
   // Live casino game shows
   { patterns: [/\bCrazy Time\b/], href: "/live-casino/crazy-time", anchor: "Crazy Time" },
