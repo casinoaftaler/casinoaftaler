@@ -185,6 +185,9 @@ const RedTigerGuide = lazy(() => import("./pages/RedTigerGuide"));
 const BigTimeGamingGuide = lazy(() => import("./pages/BigTimeGamingGuide"));
 const ELKStudiosGuide = lazy(() => import("./pages/ELKStudiosGuide"));
 const EvolutionGamingGuide = lazy(() => import("./pages/EvolutionGamingGuide"));
+const ThunderkickGuide = lazy(() => import("./pages/ThunderkickGuide"));
+const BlueprintGamingGuide = lazy(() => import("./pages/BlueprintGamingGuide"));
+const PushGamingGuide = lazy(() => import("./pages/PushGamingGuide"));
 const ApplePayGuide = lazy(() => import("./pages/payments/ApplePayGuide"));
 const MobilePayGuide = lazy(() => import("./pages/payments/MobilePayGuide"));
 const PayPalGuide = lazy(() => import("./pages/payments/PayPalGuide"));
@@ -511,6 +514,9 @@ const App = () => (
                 <Route path="/spiludviklere/big-time-gaming" element={<BigTimeGamingGuide />} />
                 <Route path="/spiludviklere/elk-studios" element={<ELKStudiosGuide />} />
                 <Route path="/spiludviklere/evolution-gaming" element={<EvolutionGamingGuide />} />
+                <Route path="/spiludviklere/thunderkick" element={<ThunderkickGuide />} />
+                <Route path="/spiludviklere/blueprint-gaming" element={<BlueprintGamingGuide />} />
+                <Route path="/spiludviklere/push-gaming" element={<PushGamingGuide />} />
                 <Route path="/betalingsmetoder/apple-pay" element={<ApplePayGuide />} />
                 <Route path="/betalingsmetoder/mobilepay" element={<MobilePayGuide />} />
                 <Route path="/betalingsmetoder/paypal" element={<PayPalGuide />} />

@@ -172,6 +172,9 @@ export const PROVIDER_LINKS: NavLink[] = [
   { to: "/spiludviklere/microgaming", label: "Microgaming" },
   { to: "/spiludviklere/red-tiger", label: "Red Tiger" },
   { to: "/spiludviklere/big-time-gaming", label: "Big Time Gaming" },
+  { to: "/spiludviklere/thunderkick", label: "Thunderkick" },
+  { to: "/spiludviklere/blueprint-gaming", label: "Blueprint Gaming" },
+  { to: "/spiludviklere/push-gaming", label: "Push Gaming" },
 ];
 
 export const REVIEW_TOP_LINKS: NavLink[] = [
