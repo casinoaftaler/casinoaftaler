@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 import { useAllNews, useCreateNews, useUpdateNews, useDeleteNews, type CasinoNewsArticle } from "@/hooks/useCasinoNews";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
