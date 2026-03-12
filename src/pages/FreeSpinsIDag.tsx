@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { capWagerDisplay } from "@/lib/wagerCap";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
