@@ -188,6 +188,7 @@ const developerTeasers = [
   {
     name: "iSoftBet",
     slug: "isoftbet",
+    logo: isoftbetLogo,
     teaser: "iSoftBet opererer i en dobbeltrolle som spiludvikler og aggregeringsplatform via deres GAP-system (Game Aggregation Platform). GAP distribuerer spil fra over 70 partnerstudier, mens iSoftBets egne titler – Moriarty Megaways, Hot Spin Deluxe og Gold Digger Megaways – dækker medium-volatilitetssegmentet med en RTP i 95,0-96,5%-intervallet. Deres Hold & Win-mekanik er blevet en standard i branchen.",
   },
   {
