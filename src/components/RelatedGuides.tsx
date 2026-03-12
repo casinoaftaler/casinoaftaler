@@ -1020,6 +1020,10 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", icon: Zap, desc: "De hurtigste nye casinoer" },
       { to: "/nye-casinoer/vs-etablerede", label: "Nye vs. Etablerede", icon: Trophy, desc: "Datadrevet sammenligning" },
       { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", icon: Target, desc: "Lave omsætningskrav" },
+      { to: "/nye-casinoer/uden-rofus", label: "Uden ROFUS", icon: Globe, desc: "Nye casinoer uden ROFUS-tilmelding" },
+      { to: "/nye-casinoer/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", icon: Star, desc: "Nye casinoer med gratis bonus" },
+      { to: "/nye-casinoer/trustly", label: "Med Trustly", icon: Landmark, desc: "Nye casinoer med Trustly-betaling" },
+      { to: "/nye-casinoer/mitid", label: "Med MitID", icon: ShieldCheck, desc: "Nye casinoer med MitID-login" },
     ];
     const currentIndex = nyeCasinoerSiblings.findIndex(g => g.to === path);
     const hub: GuideLink[] = path === "/nye-casinoer" ? [] : [{ to: "/nye-casinoer", label: "Nye Casinoer", icon: Sparkles, desc: "Komplet hub med alle nye casinoer" }];
