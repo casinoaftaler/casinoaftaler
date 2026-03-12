@@ -757,7 +757,7 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
             </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="rounded-lg border border-border/30 bg-muted/20 p-4 text-xs text-muted-foreground mb-2 max-w-[650px]" style={{ lineHeight: '1.7', fontSize: '14px' }}>
-                {capWagerInText(offer.full_terms_clean)?.split("\n").map((line, i) => (
+                {(capWagerInText(offer.full_terms_clean) || "").split("\n").map((line, i) => (
                   <p key={i} className="mb-1">{line}</p>
                 ))}
               </div>
