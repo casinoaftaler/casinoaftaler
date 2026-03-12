@@ -170,6 +170,7 @@ const developerTeasers = [
   {
     name: "Blueprint Gaming",
     slug: "blueprint-gaming",
+    logo: blueprintGamingLogo,
     teaser: "Blueprint Gaming har specialiseret sig i licenserede slots baseret på populære brands: The Goonies, Ted, Rick and Morty og King Kong Cash er alle Blueprint-titler. Denne strategi giver instant genkendelse og en bredere appel end originale IP'er. Blueprint er desuden en af de mest aktive Megaways-licenstagere med titler som Fishin' Frenzy Megaways og Eye of Horus Megaways. Deres Jackpot King-netværk tilbyder progressive jackpots på tværs af porteføljen.",
   },
   {
