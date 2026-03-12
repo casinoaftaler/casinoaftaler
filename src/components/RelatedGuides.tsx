@@ -150,6 +150,16 @@ const providerSiblings: GuideLink[] = [
   { to: "/spiludviklere/relax-gaming", label: "Relax Gaming", icon: Gamepad2, desc: "Dream Drop jackpot-serien" },
   { to: "/spiludviklere/elk-studios", label: "ELK Studios", icon: Star, desc: "Kreative mekanikker og flot grafik" },
   { to: "/spiludviklere/big-time-gaming", label: "Big Time Gaming", icon: Zap, desc: "Opfinderne af Megaways" },
+  { to: "/spiludviklere/thunderkick", label: "Thunderkick", icon: Zap, desc: "Unikke temaer og høj kvalitet" },
+  { to: "/spiludviklere/blueprint-gaming", label: "Blueprint Gaming", icon: Star, desc: "Megaways-licens og populære serier" },
+  { to: "/spiludviklere/push-gaming", label: "Push Gaming", icon: Sparkles, desc: "Innovativ gameplay og høj volatilitet" },
+  { to: "/spiludviklere/quickspin", label: "Quickspin", icon: Star, desc: "Svenske kvalitetsslots med achievements" },
+  { to: "/spiludviklere/isoftbet", label: "iSoftBet", icon: Gamepad2, desc: "GAP-platform og bred portefølje" },
+  { to: "/spiludviklere/betsoft", label: "Betsoft", icon: Trophy, desc: "3D-slots med filmisk kvalitet" },
+  { to: "/spiludviklere/wazdan", label: "Wazdan", icon: Zap, desc: "Volatilitetsniveauer og unikke features" },
+  { to: "/spiludviklere/endorphina", label: "Endorphina", icon: Star, desc: "Tjekkisk udvikler med global rækkevidde" },
+  { to: "/spiludviklere/stakelogic", label: "Stakelogic", icon: Sparkles, desc: "Super Stake og live slots" },
+  { to: "/spiludviklere/booming-games", label: "Booming Games", icon: Gamepad2, desc: "Farverige slots med bred appel" },
 ];
 
 const allReviews: GuideLink[] = [
