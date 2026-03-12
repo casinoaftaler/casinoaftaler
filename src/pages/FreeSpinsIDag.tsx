@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import { capWagerDisplay } from "@/lib/wagerCap";
+import { capWagerDisplay, capWagerInText, isWagerCompliant } from "@/lib/wagerCap";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
@@ -135,6 +135,17 @@ function timeAgo(dateStr: string): string {
   return `${mins} min. siden`;
 }
 
+function getUpdateBadgeLabel(dateStr: string | null | undefined): string {
+  if (!dateStr) return "Opdateret i dag";
+  const now = new Date();
+  const date = new Date(dateStr);
+  const mins = differenceInMinutes(now, date);
+  const hrs = differenceInHours(now, date);
+  if (mins < 2) return "Opdateret nu";
+  if (hrs < 24) return "Opdateret i dag";
+  return "Opdateret i går";
+}
+
 function Countdown({ validUntil }: { validUntil: string }) {
   const [timeLeft, setTimeLeft] = useState("");
   const [isUrgent, setIsUrgent] = useState(false);
@@ -222,10 +233,19 @@ const FreeSpinsIDag = () => {
         .order("score", { ascending: false });
       if (error) throw error;
       const now = new Date();
-      return ((data || []) as unknown as CampaignOffer[]).filter(c => {
-        if (c.expiry_date && new Date(c.expiry_date) < now) return false;
-        return true;
-      });
+      return ((data || []) as unknown as CampaignOffer[])
+        .filter((c) => {
+          if (c.expiry_date && new Date(c.expiry_date) < now) return false;
+          return true;
+        })
+        .map((c) => ({
+          ...c,
+          wagering_requirement: capWagerDisplay(c.wagering_requirement),
+          description: capWagerInText(c.description),
+          short_terms_summary: capWagerInText(c.short_terms_summary),
+          summary: capWagerInText(c.summary),
+          full_terms_clean: capWagerInText(c.full_terms_clean),
+        }));
     },
     staleTime: 5 * 60 * 1000,
   });
@@ -233,13 +253,7 @@ const FreeSpinsIDag = () => {
   const filteredCampaigns = campaigns ? applyFilter(campaigns, activeFilter) : [];
   const bestOffers = getBestPerCasino(filteredCampaigns);
   const allBest = campaigns ? getBestPerCasino(campaigns) : [];
-  const featured = allBest.find(o => {
-    if (o.wagering_requirement) {
-      const wm = o.wagering_requirement.match(/(\d+)/);
-      if (wm && parseInt(wm[1], 10) > 10) return false;
-    }
-    return true;
-  }) || allBest[0] || null;
+  const featured = allBest.find((o) => isWagerCompliant(o.wagering_requirement)) || allBest[0] || null;
 
   const totalCount = allBest.length;
   const noDepCount = campaigns ? getBestPerCasino(campaigns.filter(o => o.offer_type === "no_deposit" || !o.requires_deposit)).length : 0;
@@ -307,7 +321,7 @@ const FreeSpinsIDag = () => {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
               </span>
-              {latestChecked ? <span>Opdateret {timeAgo(latestChecked)}</span> : <span>Opdateret {todayFormatted}</span>}
+              {latestChecked ? <span>{getUpdateBadgeLabel(latestChecked)}</span> : <span>Opdateret i dag</span>}
             </div>
 
             <h1 className="mb-3 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl animate-fade-in [animation-delay:100ms]">
@@ -550,7 +564,7 @@ function StatCard({ icon, value, label, revealed, delay }: { icon: React.ReactNo
 // ─── Featured Offer (structured data only) ───
 function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; logoUrl: string | null; affiliateUrl: string | null }) {
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
-  const verifiedRecently = offer.last_verified_at && differenceInHours(new Date(), new Date(offer.last_verified_at)) < 48;
+  const freshnessLabel = getUpdateBadgeLabel(offer.last_verified_at || offer.last_checked);
   const eligibility = getEligibilityLabel(offer);
 
   return (
@@ -564,9 +578,9 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
         <Badge className="bg-orange-500/90 text-white border-0 text-sm font-bold px-3 py-1 shadow-lg shadow-orange-500/30">
           <Flame className="h-3.5 w-3.5 mr-1" /> Dagens Bedste
         </Badge>
-        {verifiedRecently && (
+        {freshnessLabel && (
           <Badge className="bg-green-500/20 text-green-400 border-green-500/30 text-xs px-2 py-1">
-            <ShieldCheck className="h-3 w-3 mr-1" /> Verificeret
+            <ShieldCheck className="h-3 w-3 mr-1" /> {freshnessLabel}
           </Badge>
         )}
       </div>
@@ -617,7 +631,7 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
 
           {/* Summary from structured data */}
           {(offer.summary || offer.description) && (
-            <p className="mt-2 text-xs text-white/40 line-clamp-2">{offer.summary || offer.description}</p>
+            <p className="mt-2 text-xs text-white/40 line-clamp-2">{capWagerInText(offer.summary || offer.description)}</p>
           )}
         </div>
 
@@ -646,7 +660,7 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
   const isExpiringSoon = offer.expiry_date && differenceInHours(new Date(offer.expiry_date), new Date()) < 48;
   const eligibility = getEligibilityLabel(offer);
-  const verifiedRecently = offer.last_verified_at && differenceInHours(new Date(), new Date(offer.last_verified_at)) < 48;
+  const freshnessLabel = getUpdateBadgeLabel(offer.last_verified_at || offer.last_checked);
 
   return (
     <Card className="group hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 border-border/50 hover:shadow-lg hover:shadow-primary/10">
@@ -670,10 +684,10 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
               <span className={`inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full border ${badge.className}`}>
                 {badge.icon} {badge.label}
               </span>
-              {verifiedRecently && (
+              {freshnessLabel && (
                 <TooltipProvider><Tooltip><TooltipTrigger>
                   <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full border bg-green-500/10 text-green-400 border-green-500/20">
-                    <ShieldCheck className="h-2.5 w-2.5" /> Verificeret
+                    <ShieldCheck className="h-2.5 w-2.5" /> {freshnessLabel}
                   </span>
                 </TooltipTrigger><TooltipContent><p className="text-xs">Sidst verificeret: {offer.last_verified_at ? timeAgo(offer.last_verified_at) : "Ukendt"}</p></TooltipContent></Tooltip></TooltipProvider>
               )}
@@ -743,7 +757,7 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
             </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="rounded-lg border border-border/30 bg-muted/20 p-4 text-xs text-muted-foreground mb-2 max-w-[650px]" style={{ lineHeight: '1.7', fontSize: '14px' }}>
-                {offer.full_terms_clean.split("\n").map((line, i) => (
+                {(capWagerInText(offer.full_terms_clean) || "").split("\n").map((line, i) => (
                   <p key={i} className="mb-1">{line}</p>
                 ))}
               </div>

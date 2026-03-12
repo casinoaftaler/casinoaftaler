@@ -69,20 +69,27 @@ function getVolatilityColor(vol: string | null) {
 }
 
 const PROVIDER_SLUG_MAP: Record<string, string> = {
-  "Pragmatic Play": "pragmatic-play",
-  "Play'n GO": "play-n-go",
-  "Play'n Go": "play-n-go",
-  "NetEnt": "netent",
-  "Hacksaw Gaming": "hacksaw-gaming",
-  "Nolimit City": "nolimit-city",
-  "Relax Gaming": "relax-gaming",
-  "Big Time Gaming": "big-time-gaming",
-  "Red Tiger": "red-tiger",
-  "Yggdrasil": "yggdrasil",
-  "Microgaming": "microgaming",
-  "ELK Studios": "elk-studios",
-  "Evolution Gaming": "evolution-gaming",
+  "pragmatic play": "pragmatic-play",
+  "play'n go": "play-n-go",
+  "play'n go gaming": "play-n-go",
+  "play n go": "play-n-go",
+  "netent": "netent",
+  "hacksaw gaming": "hacksaw-gaming",
+  "nolimit city": "nolimit-city",
+  "relax gaming": "relax-gaming",
+  "big time gaming": "big-time-gaming",
+  "red tiger": "red-tiger",
+  "red tiger gaming": "red-tiger",
+  "yggdrasil": "yggdrasil",
+  "yggdrasil gaming": "yggdrasil",
+  "microgaming": "microgaming",
+  "elk studios": "elk-studios",
+  "evolution gaming": "evolution-gaming",
 };
+
+function resolveProviderSlug(provider: string): string | null {
+  return PROVIDER_SLUG_MAP[provider.trim().toLowerCase()] || null;
+}
 
 const ROWS_PER_PAGE = 100;
 
@@ -363,7 +370,7 @@ export default function SlotDatabase() {
                   <tbody>
                     {paginatedSlots.map((slot) => {
                       const guideUrl = getSlotGuideUrl(slot.slot_name);
-                      const providerSlug = PROVIDER_SLUG_MAP[slot.provider];
+                      const providerSlug = resolveProviderSlug(slot.provider);
                       return (
                         <tr key={slot.id} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                           <td className="px-4 py-3 font-medium text-foreground">
