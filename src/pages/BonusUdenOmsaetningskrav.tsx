@@ -41,6 +41,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import type { ReactNode } from "react";
@@ -752,6 +753,7 @@ const BonusUdenOmsaetningskrav = () => {
         <Separator className="my-10" />
 
         <LatestNewsByCategory pagePath="/bonus-uden-omsaetningskrav" />
+        <BonusMoneyLinks currentPath="/bonus-uden-omsaetningskrav" />
         <RelatedGuides currentPath="/bonus-uden-omsaetningskrav" />
 
         <FAQSection title="Tekniske spørgsmål om omsætningsfrie bonusser" faqs={faqs} />

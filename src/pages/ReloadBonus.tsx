@@ -9,6 +9,7 @@ import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import reloadHero from "@/assets/heroes/reload-bonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -595,6 +596,7 @@ const ReloadBonus = () => {
         <Separator className="my-10" />
 
         <LatestNewsByCategory pagePath="/reload-bonus" />
+        <BonusMoneyLinks currentPath="/reload-bonus" />
         <RelatedGuides currentPath="/reload-bonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om reload bonus" faqs={reloadFaqs} />

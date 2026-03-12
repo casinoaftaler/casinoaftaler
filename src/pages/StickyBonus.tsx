@@ -47,6 +47,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
@@ -914,6 +915,7 @@ const StickyBonus = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/sticky-bonus" />
+        <BonusMoneyLinks currentPath="/sticky-bonus" />
         <RelatedGuides currentPath="/sticky-bonus" />
         <FAQSection title="Ofte stillede spørgsmål om sticky bonus" faqs={stickyFaqs} />
         <AuthorBio />

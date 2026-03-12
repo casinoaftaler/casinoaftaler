@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
@@ -711,6 +712,7 @@ const NoStickyBonus = () => {
         <Separator className="my-10" />
 
         <LatestNewsByCategory pagePath="/no-sticky-bonus" />
+        <BonusMoneyLinks currentPath="/no-sticky-bonus" />
         <RelatedGuides currentPath="/no-sticky-bonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om No-Sticky Bonus" faqs={noStickyFaqs} />

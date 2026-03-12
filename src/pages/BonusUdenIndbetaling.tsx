@@ -41,6 +41,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import type { ReactNode } from "react";
@@ -760,6 +761,7 @@ const BonusUdenIndbetaling = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/bonus-uden-indbetaling" />
+        <BonusMoneyLinks currentPath="/bonus-uden-indbetaling" />
         <RelatedGuides currentPath="/bonus-uden-indbetaling" />
         <FAQSection title="Tekniske spørgsmål om no deposit bonusser" faqs={bonusUdenIndbetalingFaqs} />
         <AuthorBio />

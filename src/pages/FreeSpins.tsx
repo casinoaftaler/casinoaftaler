@@ -7,6 +7,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import freeSpinsHero from "@/assets/heroes/free-spins-hero.jpg";
@@ -911,6 +912,7 @@ const FreeSpins = () => {
 
         <LiveCommunityDataStrip context="bonus" />
         <LatestNewsByCategory pagePath="/free-spins" />
+        <BonusMoneyLinks currentPath="/free-spins" />
         <RelatedGuides currentPath="/free-spins" />
 
         <FAQSection title="Ofte stillede spørgsmål om free spins" faqs={freeSpinsFaqs} />
