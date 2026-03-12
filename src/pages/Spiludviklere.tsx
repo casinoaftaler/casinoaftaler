@@ -176,6 +176,7 @@ const developerTeasers = [
   {
     name: "Push Gaming",
     slug: "push-gaming",
+    logo: pushGamingLogo,
     teaser: "Push Gaming er det London-baserede studie, der har opnået kultstatus med ekstremt højvolatile slots som Jammin' Jars 2 (op til 50.000x), Razor Shark og Fat Rabbit. Deres mekanikker – Cluster Pays med stigende multiplikatorer, expanding wilds og retrigger-systemer – skaber en af branchens mest intense bonusoplevelser. Push Gaming udgiver kun 6-8 titler årligt, men hver eneste har potentiale til at blive en streamer-favorit.",
   },
   {
