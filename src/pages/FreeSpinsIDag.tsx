@@ -253,13 +253,7 @@ const FreeSpinsIDag = () => {
   const filteredCampaigns = campaigns ? applyFilter(campaigns, activeFilter) : [];
   const bestOffers = getBestPerCasino(filteredCampaigns);
   const allBest = campaigns ? getBestPerCasino(campaigns) : [];
-  const featured = allBest.find(o => {
-    if (o.wagering_requirement) {
-      const wm = o.wagering_requirement.match(/(\d+)/);
-      if (wm && parseInt(wm[1], 10) > 10) return false;
-    }
-    return true;
-  }) || allBest[0] || null;
+  const featured = allBest.find((o) => isWagerCompliant(o.wagering_requirement)) || allBest[0] || null;
 
   const totalCount = allBest.length;
   const noDepCount = campaigns ? getBestPerCasino(campaigns.filter(o => o.offer_type === "no_deposit" || !o.requires_deposit)).length : 0;
