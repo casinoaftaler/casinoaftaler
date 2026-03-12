@@ -233,10 +233,19 @@ const FreeSpinsIDag = () => {
         .order("score", { ascending: false });
       if (error) throw error;
       const now = new Date();
-      return ((data || []) as unknown as CampaignOffer[]).filter(c => {
-        if (c.expiry_date && new Date(c.expiry_date) < now) return false;
-        return true;
-      });
+      return ((data || []) as unknown as CampaignOffer[])
+        .filter((c) => {
+          if (c.expiry_date && new Date(c.expiry_date) < now) return false;
+          return true;
+        })
+        .map((c) => ({
+          ...c,
+          wagering_requirement: capWagerDisplay(c.wagering_requirement),
+          description: capWagerInText(c.description),
+          short_terms_summary: capWagerInText(c.short_terms_summary),
+          summary: capWagerInText(c.summary),
+          full_terms_clean: capWagerInText(c.full_terms_clean),
+        }));
     },
     staleTime: 5 * 60 * 1000,
   });
