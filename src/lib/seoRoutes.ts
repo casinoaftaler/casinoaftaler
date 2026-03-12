@@ -250,6 +250,16 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/spillemaskiner/relax-gaming", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
   { path: "/spillemaskiner/red-tiger", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
   { path: "/spillemaskiner/igt", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },
+  { path: "/spillemaskiner/thunderkick", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-12" },
+  { path: "/spillemaskiner/blueprint-gaming", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-12" },
+  { path: "/spillemaskiner/push-gaming", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-12" },
+  { path: "/spillemaskiner/quickspin", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-12" },
+  { path: "/spillemaskiner/isoftbet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-12" },
+  { path: "/spillemaskiner/betsoft", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-12" },
+  { path: "/spillemaskiner/wazdan", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-12" },
+  { path: "/spillemaskiner/endorphina", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-12" },
+  { path: "/spillemaskiner/stakelogic", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-12" },
+  { path: "/spillemaskiner/booming-games", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-12" },
 
   // ── Betalingsmetoder ──
   { path: "/betalingsmetoder", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
