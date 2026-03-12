@@ -150,6 +150,16 @@ const providerSiblings: GuideLink[] = [
   { to: "/spiludviklere/relax-gaming", label: "Relax Gaming", icon: Gamepad2, desc: "Dream Drop jackpot-serien" },
   { to: "/spiludviklere/elk-studios", label: "ELK Studios", icon: Star, desc: "Kreative mekanikker og flot grafik" },
   { to: "/spiludviklere/big-time-gaming", label: "Big Time Gaming", icon: Zap, desc: "Opfinderne af Megaways" },
+  { to: "/spiludviklere/thunderkick", label: "Thunderkick", icon: Zap, desc: "Unikke temaer og høj kvalitet" },
+  { to: "/spiludviklere/blueprint-gaming", label: "Blueprint Gaming", icon: Star, desc: "Megaways-licens og populære serier" },
+  { to: "/spiludviklere/push-gaming", label: "Push Gaming", icon: Sparkles, desc: "Innovativ gameplay og høj volatilitet" },
+  { to: "/spiludviklere/quickspin", label: "Quickspin", icon: Star, desc: "Svenske kvalitetsslots med achievements" },
+  { to: "/spiludviklere/isoftbet", label: "iSoftBet", icon: Gamepad2, desc: "GAP-platform og bred portefølje" },
+  { to: "/spiludviklere/betsoft", label: "Betsoft", icon: Trophy, desc: "3D-slots med filmisk kvalitet" },
+  { to: "/spiludviklere/wazdan", label: "Wazdan", icon: Zap, desc: "Volatilitetsniveauer og unikke features" },
+  { to: "/spiludviklere/endorphina", label: "Endorphina", icon: Star, desc: "Tjekkisk udvikler med global rækkevidde" },
+  { to: "/spiludviklere/stakelogic", label: "Stakelogic", icon: Sparkles, desc: "Super Stake og live slots" },
+  { to: "/spiludviklere/booming-games", label: "Booming Games", icon: Gamepad2, desc: "Farverige slots med bred appel" },
 ];
 
 const allReviews: GuideLink[] = [
@@ -927,6 +937,10 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       { to: "/live-casino/baccarat", label: "Live Baccarat", icon: Trophy, desc: "Elegant kortspil med live dealer" },
       { to: "/live-casino/lightning-roulette", label: "Lightning Roulette", icon: Zap, desc: "Multiplied payouts op til 500x" },
       { to: "/live-casino/monopoly-live", label: "Monopoly Live", icon: Tv, desc: "Game show med bonusrunder" },
+      { to: "/live-casino/crazy-time", label: "Crazy Time", icon: Sparkles, desc: "Evolutions mest populære game show" },
+      { to: "/live-casino/dream-catcher", label: "Dream Catcher", icon: Star, desc: "Det originale money wheel game show" },
+      { to: "/live-casino/deal-or-no-deal", label: "Deal or No Deal", icon: Trophy, desc: "Det klassiske TV-show som live casino" },
+      { to: "/live-casino/game-shows", label: "Game Shows", icon: Tv, desc: "Komplet guide til live game shows" },
     ];
     const currentIndex = liveCasinoSiblings.findIndex(g => g.to === path);
     const len = liveCasinoSiblings.length;
@@ -1006,6 +1020,10 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", icon: Zap, desc: "De hurtigste nye casinoer" },
       { to: "/nye-casinoer/vs-etablerede", label: "Nye vs. Etablerede", icon: Trophy, desc: "Datadrevet sammenligning" },
       { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", icon: Target, desc: "Lave omsætningskrav" },
+      { to: "/nye-casinoer/uden-rofus", label: "Uden ROFUS", icon: Globe, desc: "Nye casinoer uden ROFUS-tilmelding" },
+      { to: "/nye-casinoer/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", icon: Star, desc: "Nye casinoer med gratis bonus" },
+      { to: "/nye-casinoer/trustly", label: "Med Trustly", icon: Landmark, desc: "Nye casinoer med Trustly-betaling" },
+      { to: "/nye-casinoer/mitid", label: "Med MitID", icon: ShieldCheck, desc: "Nye casinoer med MitID-login" },
     ];
     const currentIndex = nyeCasinoerSiblings.findIndex(g => g.to === path);
     const hub: GuideLink[] = path === "/nye-casinoer" ? [] : [{ to: "/nye-casinoer", label: "Nye Casinoer", icon: Sparkles, desc: "Komplet hub med alle nye casinoer" }];

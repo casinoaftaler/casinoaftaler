@@ -1,42 +1,24 @@
+## Enterprise SEO Expansion – Implementeret ✅
 
+### 1. Dynamiske Provider-Hubs ✅
+- `src/hooks/useProviderSlots.ts` – `useProviderSlots()` + `useLatestCatalogUpdate()` hooks
+- `src/components/ProviderCatalogSlots.tsx` – erstatter ProviderSlotLinks med live database-data
+- `src/pages/providers/ProviderPageTemplate.tsx` – swappet til ProviderCatalogSlots
 
-# Implementation Plan: Full Internal Link Graph Fixes
+### 2. Live Freshness-signaler ✅
+- Dynamisk `dateModified` fra reel `slot_catalog.updated_at`
+- Synlig freshness-badge: "Data opdateret efter Bonus Hunt #X · dato"
+- Implementeret på både /slot-database og provider-sider
 
-## Overview
-Fix all identified gaps across 2 files in 2 batches. The `DeveloperSiblingLinks` and `DeveloperMoneyLinks` are already synced from the previous fix. The remaining issues are in `RelatedGuides.tsx`.
+### 3. SoftwareApplication Schema ✅
+- `src/lib/slotCatalogSchema.ts` – `buildSlotCatalogSchema()` genererer ItemList + SoftwareApplication
+- Injiceret per pagineret side på /slot-database
+- aggregateRating baseret på highest_x og bonus_count
 
----
-
-## Batch 1: RelatedGuides.tsx — Sync All Sibling Arrays
-
-### Fix 1: `providerSiblings` (line 140-153)
-Add the 10 missing providers: Thunderkick, Blueprint Gaming, Push Gaming, Quickspin, iSoftBet, Betsoft, Wazdan, Endorphina, Stakelogic, Booming Games.
-
-### Fix 2: `liveCasinoSiblings` (line 924-929)
-Add 4 missing spokes:
-- `/live-casino/crazy-time` — Crazy Time
-- `/live-casino/dream-catcher` — Dream Catcher
-- `/live-casino/deal-or-no-deal` — Deal or No Deal
-- `/live-casino/game-shows` — Game Shows
-
-### Fix 3: `nyeCasinoerSiblings` (line 1003-1008)
-Add 5 missing spokes:
-- `/nye-casinoer/uden-rofus` — Uden ROFUS
-- `/nye-casinoer/bonus-uden-indbetaling` — Bonus uden Indbetaling
-- `/nye-casinoer/trustly` — Med Trustly
-- `/nye-casinoer/mitid` — Med MitID
-
-These 4 actual routes exist in App.tsx but are missing from the sibling rotation array.
-
----
-
-## Batch 2: entityMappings.ts — Add anchorVariants
-
-Add `anchorVariants` arrays to all provider entities that currently lack them (Thunderkick, Blueprint, Push Gaming, Quickspin, iSoftBet, Betsoft, Wazdan, Endorphina, Stakelogic, Booming Games already have variants from the previous fix — verify and add for the original 12 that still lack them: NetEnt, Pragmatic Play, Evolution, Play'n GO, Hacksaw, Nolimit City, Microgaming, Relax Gaming, ELK Studios, Big Time Gaming).
-
----
-
-## Impact
-- **Batch 1**: ~200 new internal links across the site via RelatedGuides rotation
-- **Batch 2**: Improved anchor text diversity for entity auto-linking
-
+### 4. Provider Slot Hub Pages ✅
+- `src/lib/providerHubContent.ts` – unik SEO-tekst, meta, intro per provider (13 stk)
+- `src/pages/ProviderSlotsHub.tsx` – template med dynamisk stats, top 5, full catalog, cross-links
+- Ruter: `/spillemaskiner/{provider}` for alle 13 providers
+- Breadcrumbs: Forside > Casinospil > Spillemaskiner > [Provider] Slots
+- seoRoutes + page_metadata registreret
+- Article + ItemList JSON-LD schema per side
