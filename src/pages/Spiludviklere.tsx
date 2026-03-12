@@ -813,7 +813,7 @@ const Spiludviklere = () => {
                       <img
                         src={dev.logo}
                         alt={`${dev.name} logo`}
-                        className="h-12 w-auto max-w-[100px] rounded object-contain flex-shrink-0 mt-1"
+                        className="h-12 w-auto max-w-[100px] rounded object-contain flex-shrink-0 mt-1 bg-white/90 dark:bg-white/10 p-1.5 dark:invert-0"
                       />
                     )}
                     <div className="flex-1">
