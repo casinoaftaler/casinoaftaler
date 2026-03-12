@@ -135,6 +135,9 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bQuickspin\b/], href: "/spiludviklere/quickspin", anchor: "Quickspin" },
   { patterns: [/\biSoftBet\b/i], href: "/spiludviklere/isoftbet", anchor: "iSoftBet" },
   { patterns: [/\bBetsoft\b/i], href: "/spiludviklere/betsoft", anchor: "Betsoft" },
+  { patterns: [/\bWazdan\b/], href: "/spiludviklere/wazdan", anchor: "Wazdan" },
+  { patterns: [/\bEndorphina\b/], href: "/spiludviklere/endorphina", anchor: "Endorphina" },
+  { patterns: [/\bStakelogic\b/], href: "/spiludviklere/stakelogic", anchor: "Stakelogic" },
 
   // Game type money-pages
   { patterns: [/\blive blackjack\b/i], href: "/live-casino/blackjack", anchor: "" },

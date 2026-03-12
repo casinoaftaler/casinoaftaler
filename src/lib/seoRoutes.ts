@@ -231,6 +231,9 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/spiludviklere/quickspin", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-12" },
   { path: "/spiludviklere/isoftbet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-12" },
   { path: "/spiludviklere/betsoft", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-12" },
+  { path: "/spiludviklere/wazdan", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-12" },
+  { path: "/spiludviklere/endorphina", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-12" },
+  { path: "/spiludviklere/stakelogic", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-12" },
 
   // ── Provider Slot Hubs ──
   { path: "/spillemaskiner/pragmatic-play", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-10" },

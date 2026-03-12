@@ -526,6 +526,9 @@ const App = () => (
                 <Route path="/spiludviklere/quickspin" element={<QuickspinGuide />} />
                 <Route path="/spiludviklere/isoftbet" element={<ISoftBetGuide />} />
                 <Route path="/spiludviklere/betsoft" element={<BetsoftGuide />} />
+                <Route path="/spiludviklere/wazdan" element={<WazdanGuide />} />
+                <Route path="/spiludviklere/endorphina" element={<EndorphinaGuide />} />
+                <Route path="/spiludviklere/stakelogic" element={<StakelogicGuide />} />
                 <Route path="/betalingsmetoder/apple-pay" element={<ApplePayGuide />} />
                 <Route path="/betalingsmetoder/mobilepay" element={<MobilePayGuide />} />
                 <Route path="/betalingsmetoder/paypal" element={<PayPalGuide />} />
