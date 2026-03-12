@@ -512,7 +512,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = filtered.slice(0, MAX_SIBLINGS);
     }
-    const crossClusterOptions = [nyeCasinoerHub, reviewHub, bonusHub];
+    const crossClusterOptions = [nyeCasinoerHub, reviewHub, bonusHub, liveCasinoHub];
     const h = pathHash(path);
     const crossClusterLinks = crossClusterOptions.filter((_, i) => i < MAX_CROSS_CLUSTER);
     return {
