@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { useCasinos } from "@/hooks/useCasinos";
 import { CasinoCard } from "@/components/CasinoCard";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { Separator } from "@/components/ui/separator";
 import { LazySection } from "@/components/LazySection";
+import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 
 /** Only show casino cards for partner casinos */
 const PARTNER_SLUGS = [
@@ -16,15 +16,6 @@ const PARTNER_SLUGS = [
   "swift-casino",
   "luna-casino",
 ];
-
-/** Deterministic hash for rotation */
-function hashPath(str: string): number {
-  let h = 0;
-  for (let i = 0; i < str.length; i++) {
-    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
-  }
-  return Math.abs(h);
-}
 
 interface InlineCasinoCardsProps {
   /** Heading displayed above the casino cards */
@@ -63,16 +54,13 @@ function InlineCasinoCardsInner({
 }: Required<Pick<InlineCasinoCardsProps, 'title' | 'count'>> & Pick<InlineCasinoCardsProps, 'excludeSlugs'>) {
   const { data: casinos, isLoading } = useCasinos();
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
-  const { pathname } = useLocation();
+  const { rotate } = useAntiFootprint();
 
   // Get eligible casinos, then rotate order based on current page path
   const eligible = (casinos ?? [])
     .filter((c) => PARTNER_SLUGS.includes(c.slug) && !(excludeSlugs ?? []).includes(c.slug));
 
-  const hash = hashPath(pathname);
-  const offset = hash % Math.max(eligible.length, 1);
-  const rotated = [...eligible.slice(offset), ...eligible.slice(0, offset)];
-  const displayCasinos = rotated.slice(0, count);
+  const displayCasinos = rotate(eligible, count);
 
   const mapCasino = (casino: (typeof displayCasinos)[0]) => ({
     id: casino.id,

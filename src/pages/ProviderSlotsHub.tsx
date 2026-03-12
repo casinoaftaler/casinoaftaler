@@ -11,6 +11,7 @@ import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
 import { buildArticleSchema, buildFaqSchema, SITE_URL, JONAS_SAME_AS } from "@/lib/seo";
 import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -25,27 +26,6 @@ import {
   BookOpen,
 } from "lucide-react";
 
-/** Deterministic hash for section order shuffling */
-function hashSlug(str: string): number {
-  let h = 0;
-  for (let i = 0; i < str.length; i++) {
-    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
-  }
-  return Math.abs(h);
-}
-
-/** Fisher-Yates shuffle seeded by hash */
-function seededShuffle<T>(arr: T[], seed: number): T[] {
-  const result = [...arr];
-  let s = seed;
-  for (let i = result.length - 1; i > 0; i--) {
-    s = ((s * 1103515245 + 12345) & 0x7fffffff);
-    const j = s % (i + 1);
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-  return result;
-}
-
 export default function ProviderSlotsHub() {
   const { providerSlug } = useParams<{ providerSlug: string }>();
   const validSlug = providerSlug && PROVIDER_HUB_SLUGS.includes(providerSlug) ? providerSlug : null;
@@ -54,6 +34,7 @@ export default function ProviderSlotsHub() {
   const { data: freshness } = useLatestCatalogUpdate();
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
+  const { shuffle } = useAntiFootprint(validSlug ?? undefined);
 
   // Compute dynamic stats
   const stats = useMemo(() => {
@@ -306,7 +287,7 @@ export default function ProviderSlotsHub() {
 
           // Shuffle section order deterministically per provider slug
           const sectionKeys = ["intro", "stats", "top5", "catalog", "moneylinks", "faq", "crosslinks"];
-          const shuffled = seededShuffle(sectionKeys, hashSlug(validSlug));
+          const shuffled = shuffle(sectionKeys);
 
           return shuffled.map((key) => {
             const node = sectionMap[key];
