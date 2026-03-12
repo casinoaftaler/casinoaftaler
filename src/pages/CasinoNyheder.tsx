@@ -12,6 +12,7 @@ import { CalendarDays, ChevronLeft, ChevronRight, Newspaper, Crown } from "lucid
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 
 const ARTICLES_PER_PAGE = 10;
 
