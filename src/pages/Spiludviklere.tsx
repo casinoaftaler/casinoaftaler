@@ -200,6 +200,7 @@ const developerTeasers = [
   {
     name: "Wazdan",
     slug: "wazdan",
+    logo: wazdanLogo,
     teaser: "Wazdan er en af branchens mest innovative udviklere med deres patenterede Volatility Levels™-system, der lader spillere vælge mellem lav, standard og høj volatilitet i ethvert spil. Denne unikke Feature – kombineret med Ultra Lite Mode (reduceret databelastning for svagere forbindelser) og Energy Saving Mode – gør Wazdan til den mest tilpasningsdygtige spiludvikler på markedet. Power of Gods-serien og 9 Lions er porteføljens flagskibe.",
   },
   {
