@@ -51,8 +51,8 @@ const BigBadWolfGuide = () => {
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Ansvarligt Spil</h2>
           <p className="text-muted-foreground leading-relaxed"><Link to="/ansvarligt-spil" className={lk}>Spil ansvarligt</Link> og benyt <Link to="/ansvarligt-spil/spillegraenser" className={lk}>spillegrænser</Link>.</p>
         </section>
-        <SlotProviderLink slot="big-bad-wolf" />
-        <SlotDataLink slotName="Big Bad Wolf" />
+        <SlotProviderLink slotSlug="big-bad-wolf" />
+        <SlotDataLink slotSlug="big-bad-wolf" slotName="Big Bad Wolf" />
         <FAQSection title="FAQ om Big Bad Wolf" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />

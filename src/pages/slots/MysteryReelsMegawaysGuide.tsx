@@ -51,8 +51,8 @@ const MysteryReelsMegawaysGuide = () => {
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Ansvarligt Spil</h2>
           <p className="text-muted-foreground leading-relaxed"><Link to="/ansvarligt-spil" className={lk}>Spil ansvarligt</Link>. Brug <Link to="/ansvarligt-spil/rofus" className={lk}>ROFUS</Link> eller <Link to="/ansvarligt-spil/stopspillet" className={lk}>StopSpillet</Link> ved behov.</p>
         </section>
-        <SlotProviderLink slot="mystery-reels-megaways" />
-        <SlotDataLink slotName="Mystery Reels Megaways" />
+        <SlotProviderLink slotSlug="mystery-reels-megaways" />
+        <SlotDataLink slotSlug="mystery-reels-megaways" slotName="Mystery Reels Megaways" />
         <FAQSection title="FAQ om Mystery Reels Megaways" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />

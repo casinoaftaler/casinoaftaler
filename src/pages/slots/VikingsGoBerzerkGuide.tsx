@@ -61,8 +61,8 @@ const VikingsGoBerzerkGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Husk altid at spille inden for dine grænser. Benyt <Link to="/ansvarligt-spil/spillegraenser" className={lk}>spillegrænser</Link> og kontakt <Link to="/ansvarligt-spil/stopspillet" className={lk}>StopSpillet</Link> hvis du har brug for hjælp.</p>
         </section>
 
-        <SlotProviderLink slot="vikings-go-berzerk" />
-        <SlotDataLink slotName="Vikings Go Berzerk" />
+        <SlotProviderLink slotSlug="vikings-go-berzerk" />
+        <SlotDataLink slotSlug="vikings-go-berzerk" slotName="Vikings Go Berzerk" />
         <FAQSection title="Ofte stillede spørgsmål om Vikings Go Berzerk" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />

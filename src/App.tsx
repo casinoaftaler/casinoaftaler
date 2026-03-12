@@ -173,6 +173,19 @@ const WantedDeadOrAWildGuide = lazy(() => import("./pages/slots/WantedDeadOrAWil
 const ChaosCrewGuide = lazy(() => import("./pages/slots/ChaosCrewGuide"));
 const JokerStrikeGuide = lazy(() => import("./pages/slots/JokerStrikeGuide"));
 const BonusBuysGuide = lazy(() => import("./pages/slots/BonusBuysGuide"));
+const TombstoneRIPGuide = lazy(() => import("./pages/slots/TombstoneRIPGuide"));
+const VikingsGoBerzerkGuide = lazy(() => import("./pages/slots/VikingsGoBerzerkGuide"));
+const EsqueletoExplosivo2Guide = lazy(() => import("./pages/slots/EsqueletoExplosivo2Guide"));
+const CygnusGuide = lazy(() => import("./pages/slots/CygnusGuide"));
+const MysteryReelsMegawaysGuide = lazy(() => import("./pages/slots/MysteryReelsMegawaysGuide"));
+const BuffaloRisingMegawaysGuide = lazy(() => import("./pages/slots/BuffaloRisingMegawaysGuide"));
+const BigBadWolfGuide = lazy(() => import("./pages/slots/BigBadWolfGuide"));
+const HotSpinDeluxeGuide = lazy(() => import("./pages/slots/HotSpinDeluxeGuide"));
+const ChilliPopGuide = lazy(() => import("./pages/slots/ChilliPopGuide"));
+const MagicHotGuide = lazy(() => import("./pages/slots/MagicHotGuide"));
+const SatoshisSecretGuide = lazy(() => import("./pages/slots/SatoshisSecretGuide"));
+const ClassicFruitsGuide = lazy(() => import("./pages/slots/ClassicFruitsGuide"));
+const GoldVeinGuide = lazy(() => import("./pages/slots/GoldVeinGuide"));
 const NetEntGuide = lazy(() => import("./pages/NetEntGuide"));
 const PragmaticPlayGuide = lazy(() => import("./pages/PragmaticPlayGuide"));
 const RelaxGamingGuide = lazy(() => import("./pages/RelaxGamingGuide"));
@@ -480,6 +493,19 @@ const App = () => (
                 <Route path="/casinospil/spillemaskiner/chaos-crew" element={<ChaosCrewGuide />} />
                 <Route path="/casinospil/spillemaskiner/joker-strike" element={<JokerStrikeGuide />} />
                 <Route path="/casinospil/spillemaskiner/bonus-buys" element={<BonusBuysGuide />} />
+                <Route path="/casinospil/spillemaskiner/tombstone-rip" element={<TombstoneRIPGuide />} />
+                <Route path="/casinospil/spillemaskiner/vikings-go-berzerk" element={<VikingsGoBerzerkGuide />} />
+                <Route path="/casinospil/spillemaskiner/esqueleto-explosivo-2" element={<EsqueletoExplosivo2Guide />} />
+                <Route path="/casinospil/spillemaskiner/cygnus" element={<CygnusGuide />} />
+                <Route path="/casinospil/spillemaskiner/mystery-reels-megaways" element={<MysteryReelsMegawaysGuide />} />
+                <Route path="/casinospil/spillemaskiner/buffalo-rising-megaways" element={<BuffaloRisingMegawaysGuide />} />
+                <Route path="/casinospil/spillemaskiner/big-bad-wolf" element={<BigBadWolfGuide />} />
+                <Route path="/casinospil/spillemaskiner/hot-spin-deluxe" element={<HotSpinDeluxeGuide />} />
+                <Route path="/casinospil/spillemaskiner/chilli-pop" element={<ChilliPopGuide />} />
+                <Route path="/casinospil/spillemaskiner/magic-hot" element={<MagicHotGuide />} />
+                <Route path="/casinospil/spillemaskiner/satoshis-secret" element={<SatoshisSecretGuide />} />
+                <Route path="/casinospil/spillemaskiner/classic-fruits" element={<ClassicFruitsGuide />} />
+                <Route path="/casinospil/spillemaskiner/gold-vein" element={<GoldVeinGuide />} />
                 <Route path="/casinospil/blackjack" element={<BlackjackGuide />} />
                 <Route path="/casinospil/blackjack/amerikansk-blackjack" element={<AmerikanskBlackjackGuide />} />
                 <Route path="/casinospil/blackjack/europaeisk-blackjack" element={<EuropaeiskBlackjackGuide />} />
