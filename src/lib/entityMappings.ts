@@ -54,6 +54,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bbetalingsmetoder\b/i], href: "/betalingsmetoder", anchor: "" },
   { patterns: [/\bspiludviklere\b/i], href: "/spiludviklere", anchor: "" },
   { patterns: [/\bcasinospil\b/i], href: "/casinospil", anchor: "" },
+  { patterns: [/\bcasino[\s-]?kategorier\b/i, /\bcasino[\s-]?typer\b/i], href: "/casinoer", anchor: "" },
 
   // Live casino game shows
   { patterns: [/\bCrazy Time\b/], href: "/live-casino/crazy-time", anchor: "Crazy Time" },
@@ -173,7 +174,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bbonus spins\b/i, /\bbonusspins\b/i], href: "/free-spins", anchor: "" },
   { patterns: [/\bdrop[\s-]?and[\s-]?wins?\b/i], href: "/spiludviklere/pragmatic-play", anchor: "" },
   { patterns: [/\btumble[\s-]?feature\b/i], href: "/ordbog/cascading-wins", anchor: "" },
-  { patterns: [/\bslot[\s-]?database\b/i, /\bslot-database\b/i], href: "/slot-database", anchor: "slot database" },
+  { patterns: [/\bslot[\s-]?database\b/i, /\bslot-database\b/i], href: "/slot-database", anchor: "slot database", anchorVariants: ["slot database", "slot oversigt", "spillemaskin-database", "vores slot database"] },
   { patterns: [/\bMonopoly Live\b/i], href: "/live-casino/monopoly-live", anchor: "Monopoly Live" },
 
   // ══════════════════════════════════════════════════════════════════

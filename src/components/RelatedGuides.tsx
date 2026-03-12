@@ -512,7 +512,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = filtered.slice(0, MAX_SIBLINGS);
     }
-    const crossClusterOptions = [nyeCasinoerHub, reviewHub, bonusHub];
+    const crossClusterOptions = [nyeCasinoerHub, reviewHub, bonusHub, liveCasinoHub];
     const h = pathHash(path);
     const crossClusterLinks = crossClusterOptions.filter((_, i) => i < MAX_CROSS_CLUSTER);
     return {
@@ -524,7 +524,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   // Payment hub → 3 popular siblings + 3 cross-cluster
   if (path === "/betalingsmetoder") {
     return {
-      guides: [...paymentSiblings.slice(0, MAX_SIBLINGS), nyeCasinoerHub, reviewHub, bonusHub],
+      guides: [...paymentSiblings.slice(0, MAX_SIBLINGS), nyeCasinoerHub, reviewHub, bonusHub, liveCasinoHub],
       subtitle: "Udforsk vores dybdegående guides til populære betalingsmetoder og casinoer.",
     };
   }
@@ -1005,7 +1005,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = bonusSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     }
-    const crossClusterLinks = [reviewHub, nyeCasinoerHub, casinospilHub];
+    const crossClusterLinks = [reviewHub, nyeCasinoerHub, casinospilHub, providerHub];
     return {
       guides: [...hub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
       subtitle: "Udforsk andre bonustyper, casino anmeldelser og nye casinoer.",
@@ -1038,7 +1038,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = nyeCasinoerSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     }
-    const crossClusterLinks = [bonusHub, reviewHub, paymentHub];
+    const crossClusterLinks = [bonusHub, reviewHub, paymentHub, providerHub];
     return {
       guides: [...hub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
       subtitle: "Udforsk flere nye casinoer, bonusser og casino anmeldelser.",
