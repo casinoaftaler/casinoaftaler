@@ -372,7 +372,7 @@ const Spiludviklere = () => {
               <tbody>
                 {developerComparison.map((dev, i) => (
                   <tr key={dev.name} className={i % 2 === 0 ? "bg-card" : "bg-muted/20"}>
-                    <td className="px-4 py-3 font-medium">{dev.name}</td>
+                    <td className="px-4 py-3 font-medium"><Link to={`/spiludviklere/${dev.slug}`} className="text-primary underline hover:text-primary/80">{dev.name}</Link></td>
                     <td className="px-4 py-3 text-muted-foreground">{dev.founded}</td>
                     <td className="px-4 py-3 text-muted-foreground">{dev.focus}</td>
                     <td className="px-4 py-3 text-muted-foreground">{dev.avgRtp}</td>
