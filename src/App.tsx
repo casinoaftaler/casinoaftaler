@@ -194,6 +194,7 @@ const BetsoftGuide = lazy(() => import("./pages/BetsoftGuide"));
 const WazdanGuide = lazy(() => import("./pages/WazdanGuide"));
 const EndorphinaGuide = lazy(() => import("./pages/EndorphinaGuide"));
 const StakelogicGuide = lazy(() => import("./pages/StakelogicGuide"));
+const BoomingGamesGuide = lazy(() => import("./pages/BoomingGamesGuide"));
 const ApplePayGuide = lazy(() => import("./pages/payments/ApplePayGuide"));
 const MobilePayGuide = lazy(() => import("./pages/payments/MobilePayGuide"));
 const PayPalGuide = lazy(() => import("./pages/payments/PayPalGuide"));
@@ -529,6 +530,7 @@ const App = () => (
                 <Route path="/spiludviklere/wazdan" element={<WazdanGuide />} />
                 <Route path="/spiludviklere/endorphina" element={<EndorphinaGuide />} />
                 <Route path="/spiludviklere/stakelogic" element={<StakelogicGuide />} />
+                <Route path="/spiludviklere/booming-games" element={<BoomingGamesGuide />} />
                 <Route path="/betalingsmetoder/apple-pay" element={<ApplePayGuide />} />
                 <Route path="/betalingsmetoder/mobilepay" element={<MobilePayGuide />} />
                 <Route path="/betalingsmetoder/paypal" element={<PayPalGuide />} />

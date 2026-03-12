@@ -105,6 +105,7 @@ const providerLinks = [
   { to: "/spiludviklere/wazdan", label: "Wazdan" },
   { to: "/spiludviklere/endorphina", label: "Endorphina" },
   { to: "/spiludviklere/stakelogic", label: "Stakelogic" },
+  { to: "/spiludviklere/booming-games", label: "Booming Games" },
 ];
 
 const defaultSectionOrder = [
