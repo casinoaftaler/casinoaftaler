@@ -285,7 +285,7 @@ const Spiludviklere = () => {
     <>
       <SEO
         title="Spiludviklere Casino 2026 – RTP, Volatilitet & Strategisk Guide"
-        description="Den ultimative guide til casino-spiludviklere i Danmark. Sammenlign RTP, volatilitet og matematik for NetEnt, Pragmatic Play, Evolution og 9 andre udviklere."
+        description="Den ultimative guide til casino-spiludviklere i Danmark. Sammenlign RTP, volatilitet og matematik for NetEnt, Pragmatic Play, Evolution og 19 andre udviklere."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
