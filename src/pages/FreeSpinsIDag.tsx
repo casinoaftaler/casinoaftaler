@@ -709,10 +709,10 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
               <span>Min. {offer.min_deposit}</span>
             </div>
           )}
-          {offer.wagering_requirement && (
+          {capWagerDisplay(offer.wagering_requirement) && (
             <div className="flex items-center gap-1.5">
               <RotateCcw className="h-3 w-3 text-primary/60 flex-shrink-0" />
-              <span>Omsætning: {offer.wagering_requirement}</span>
+              <span>Omsætning: {capWagerDisplay(offer.wagering_requirement)}</span>
             </div>
           )}
           {eligibility && (
