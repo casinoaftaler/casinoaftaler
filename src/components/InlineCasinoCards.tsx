@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { useCasinos } from "@/hooks/useCasinos";
 import { CasinoCard } from "@/components/CasinoCard";
@@ -15,6 +16,15 @@ const PARTNER_SLUGS = [
   "swift-casino",
   "luna-casino",
 ];
+
+/** Deterministic hash for rotation */
+function hashPath(str: string): number {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h);
+}
 
 interface InlineCasinoCardsProps {
   /** Heading displayed above the casino cards */
