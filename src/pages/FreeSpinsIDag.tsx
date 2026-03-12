@@ -660,7 +660,7 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
   const isExpiringSoon = offer.expiry_date && differenceInHours(new Date(offer.expiry_date), new Date()) < 48;
   const eligibility = getEligibilityLabel(offer);
-  const verifiedRecently = offer.last_verified_at && differenceInHours(new Date(), new Date(offer.last_verified_at)) < 48;
+  const freshnessLabel = getUpdateBadgeLabel(offer.last_verified_at || offer.last_checked);
 
   return (
     <Card className="group hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 border-border/50 hover:shadow-lg hover:shadow-primary/10">
