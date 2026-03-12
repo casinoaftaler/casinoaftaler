@@ -59,8 +59,8 @@ const EsqueletoExplosivo2Guide = () => {
           <p className="text-muted-foreground leading-relaxed">Sæt altid et budget inden du spiller. Benyt <Link to="/ansvarligt-spil/spillegraenser" className={lk}>spillegrænser</Link> og kontakt <Link to="/ansvarligt-spil/hjaelpelinjer" className={lk}>hjælpelinjer</Link> ved behov.</p>
         </section>
 
-        <SlotProviderLink slot="esqueleto-explosivo-2" />
-        <SlotDataLink slotName="Esqueleto Explosivo 2" />
+        <SlotProviderLink slotSlug="esqueleto-explosivo-2" />
+        <SlotDataLink slotSlug="esqueleto-explosivo-2" slotName="Esqueleto Explosivo 2" />
         <FAQSection title="FAQ om Esqueleto Explosivo 2" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />

@@ -78,8 +78,8 @@ const TombstoneRIPGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">Tombstone RIP's ekstreme volatilitet kræver disciplineret bankroll management. Sæt altid et sessionsbudget, og overvej at bruge <Link to="/ansvarligt-spil/rofus" className={lk}>ROFUS</Link> eller <Link to="/ansvarligt-spil/stopspillet" className={lk}>StopSpillet</Link> hvis du oplever problemer med dit spillemønster.</p>
         </section>
 
-        <SlotProviderLink slot="tombstone-rip" />
-        <SlotDataLink slotName="Tombstone RIP" />
+        <SlotProviderLink slotSlug="tombstone-rip" />
+        <SlotDataLink slotSlug="tombstone-rip" slotName="Tombstone RIP" />
         <FAQSection title="Ofte stillede spørgsmål om Tombstone RIP" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />

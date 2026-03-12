@@ -52,8 +52,8 @@ const CygnusGuide = () => {
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Ansvarligt Spil</h2>
           <p className="text-muted-foreground leading-relaxed">Spil altid ansvarligt og sæt <Link to="/ansvarligt-spil/spillegraenser" className={lk}>spillegrænser</Link>. Kontakt <Link to="/ansvarligt-spil/rofus" className={lk}>ROFUS</Link> ved behov.</p>
         </section>
-        <SlotProviderLink slot="cygnus" />
-        <SlotDataLink slotName="Cygnus" />
+        <SlotProviderLink slotSlug="cygnus" />
+        <SlotDataLink slotSlug="cygnus" slotName="Cygnus" />
         <FAQSection title="FAQ om Cygnus" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />
