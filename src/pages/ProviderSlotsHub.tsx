@@ -287,7 +287,7 @@ export default function ProviderSlotsHub() {
 
           // Shuffle section order deterministically per provider slug
           const sectionKeys = ["intro", "stats", "top5", "catalog", "moneylinks", "faq", "crosslinks"];
-          const shuffled = seededShuffle(sectionKeys, hashSlug(validSlug));
+          const shuffled = shuffle(sectionKeys);
 
           return shuffled.map((key) => {
             const node = sectionMap[key];
