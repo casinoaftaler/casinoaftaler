@@ -6,7 +6,7 @@ import quickspinHero from "@/assets/images/providers/quickspin-hero.jpg";
 
 const QuickspinGuide = () => (
   <ProviderPage
-    ctaCasinoSlug="leovegas"
+    ctaCasinoSlug="betinia"
     seoTitle="Quickspin Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
     seoDescription="Komplet guide til Quickspin – svensk premium-studio med Achievement Engine, fast RTP på 96,0-96,7%, medium volatilitet og 80+ kvalitetsslots. Læs alt om Quickspins spil og teknologi."
     name="Quickspin"
