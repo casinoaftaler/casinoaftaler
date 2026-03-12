@@ -276,7 +276,7 @@ export function NewsAdminSection() {
                     <Badge variant={article.status === "published" ? "default" : "secondary"}>
                       {article.status === "published" ? "Publiceret" : "Kladde"}
                     </Badge>
-                    <Badge variant="outline">{article.category}</Badge>
+                    <Badge variant="outline">{getCategoryLabel(article.category)}</Badge>
                   </div>
                   <h3 className="font-semibold truncate">{article.title}</h3>
                   <p className="text-xs text-muted-foreground">
