@@ -564,7 +564,7 @@ function StatCard({ icon, value, label, revealed, delay }: { icon: React.ReactNo
 // ─── Featured Offer (structured data only) ───
 function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; logoUrl: string | null; affiliateUrl: string | null }) {
   const badge = offerTypeBadgeConfig[offer.offer_type] || offerTypeBadgeConfig.welcome;
-  const verifiedRecently = offer.last_verified_at && differenceInHours(new Date(), new Date(offer.last_verified_at)) < 48;
+  const freshnessLabel = getUpdateBadgeLabel(offer.last_verified_at || offer.last_checked);
   const eligibility = getEligibilityLabel(offer);
 
   return (
