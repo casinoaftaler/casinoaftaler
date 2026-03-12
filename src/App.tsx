@@ -520,6 +520,9 @@ const App = () => (
                 <Route path="/spiludviklere/thunderkick" element={<ThunderkickGuide />} />
                 <Route path="/spiludviklere/blueprint-gaming" element={<BlueprintGamingGuide />} />
                 <Route path="/spiludviklere/push-gaming" element={<PushGamingGuide />} />
+                <Route path="/spiludviklere/quickspin" element={<QuickspinGuide />} />
+                <Route path="/spiludviklere/isoftbet" element={<ISoftBetGuide />} />
+                <Route path="/spiludviklere/betsoft" element={<BetsoftGuide />} />
                 <Route path="/betalingsmetoder/apple-pay" element={<ApplePayGuide />} />
                 <Route path="/betalingsmetoder/mobilepay" element={<MobilePayGuide />} />
                 <Route path="/betalingsmetoder/paypal" element={<PayPalGuide />} />
