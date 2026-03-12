@@ -51,18 +51,28 @@ import {
    Central comparison table data
    ───────────────────────────────────────────── */
 const developerComparison = [
-  { name: "NetEnt", founded: "1996", focus: "Video Slots", avgRtp: "95,5–96,5%", volatility: "Lav–Medium", bestKnown: "Starburst, Gonzo's Quest, Dead or Alive" },
-  { name: "Pragmatic Play", founded: "2015", focus: "Slots + Live Casino", avgRtp: "95,5–96,5%", volatility: "Medium–Høj", bestKnown: "Sweet Bonanza, Gates of Olympus, The Dog House" },
-  { name: "Evolution Gaming", founded: "2006", focus: "Live Casino", avgRtp: "94–99%", volatility: "Varierer", bestKnown: "Crazy Time, Lightning Roulette, MONOPOLY Live" },
-  { name: "Play'n GO", founded: "2005", focus: "Video Slots", avgRtp: "94,5–96,5%", volatility: "Medium", bestKnown: "Book of Dead, Reactoonz, Fire Joker" },
-  { name: "Hacksaw Gaming", founded: "2018", focus: "Slots + Instant Win", avgRtp: "96,0–96,5%", volatility: "Høj–Ekstrem", bestKnown: "Wanted Dead or a Wild, Chaos Crew, Stick 'Em" },
-  { name: "Nolimit City", founded: "2014", focus: "Video Slots", avgRtp: "96,0–96,5%", volatility: "Ekstrem", bestKnown: "Mental, San Quentin, Tombstone RIP" },
-  { name: "Relax Gaming", founded: "2010", focus: "Slots + Aggregering", avgRtp: "96,0–96,6%", volatility: "Medium–Høj", bestKnown: "Money Train 2/3, Temple Tumble, Dream Drop" },
-  { name: "Big Time Gaming", founded: "2011", focus: "Megaways Slots", avgRtp: "96,0–96,7%", volatility: "Høj", bestKnown: "Bonanza, Extra Chilli, White Rabbit" },
-  { name: "Microgaming", founded: "1994", focus: "Jackpot Slots", avgRtp: "92–96,5%", volatility: "Lav–Høj", bestKnown: "Mega Moolah, Immortal Romance, Thunderstruck II" },
-  { name: "Yggdrasil", founded: "2013", focus: "Video Slots", avgRtp: "95,5–97%", volatility: "Medium", bestKnown: "Vikings Go Berzerk, Valley of the Gods, Raptor DoubleMax" },
-  { name: "Red Tiger", founded: "2014", focus: "Jackpot Slots", avgRtp: "94,7–96,5%", volatility: "Lav–Medium", bestKnown: "Gonzo's Quest Megaways, Dragon's Luck, Piggy Riches MW" },
-  { name: "ELK Studios", founded: "2012", focus: "Premium Slots", avgRtp: "95–96,5%", volatility: "Medium–Høj", bestKnown: "Wild Toro, Kaiju Payment, Cygnus" },
+  { name: "NetEnt", slug: "netent", founded: "1996", focus: "Video Slots", avgRtp: "95,5–96,5%", volatility: "Lav–Medium", bestKnown: "Starburst, Gonzo's Quest, Dead or Alive" },
+  { name: "Pragmatic Play", slug: "pragmatic-play", founded: "2015", focus: "Slots + Live Casino", avgRtp: "95,5–96,5%", volatility: "Medium–Høj", bestKnown: "Sweet Bonanza, Gates of Olympus, The Dog House" },
+  { name: "Evolution Gaming", slug: "evolution-gaming", founded: "2006", focus: "Live Casino", avgRtp: "94–99%", volatility: "Varierer", bestKnown: "Crazy Time, Lightning Roulette, MONOPOLY Live" },
+  { name: "Play'n GO", slug: "play-n-go", founded: "2005", focus: "Video Slots", avgRtp: "94,5–96,5%", volatility: "Medium", bestKnown: "Book of Dead, Reactoonz, Fire Joker" },
+  { name: "Hacksaw Gaming", slug: "hacksaw-gaming", founded: "2018", focus: "Slots + Instant Win", avgRtp: "96,0–96,5%", volatility: "Høj–Ekstrem", bestKnown: "Wanted Dead or a Wild, Chaos Crew, Stick 'Em" },
+  { name: "Nolimit City", slug: "nolimit-city", founded: "2014", focus: "Video Slots", avgRtp: "96,0–96,5%", volatility: "Ekstrem", bestKnown: "Mental, San Quentin, Tombstone RIP" },
+  { name: "Relax Gaming", slug: "relax-gaming", founded: "2010", focus: "Slots + Aggregering", avgRtp: "96,0–96,6%", volatility: "Medium–Høj", bestKnown: "Money Train 2/3, Temple Tumble, Dream Drop" },
+  { name: "Big Time Gaming", slug: "big-time-gaming", founded: "2011", focus: "Megaways Slots", avgRtp: "96,0–96,7%", volatility: "Høj", bestKnown: "Bonanza, Extra Chilli, White Rabbit" },
+  { name: "Microgaming", slug: "microgaming", founded: "1994", focus: "Jackpot Slots", avgRtp: "92–96,5%", volatility: "Lav–Høj", bestKnown: "Mega Moolah, Immortal Romance, Thunderstruck II" },
+  { name: "Yggdrasil", slug: "yggdrasil", founded: "2013", focus: "Video Slots", avgRtp: "95,5–97%", volatility: "Medium", bestKnown: "Vikings Go Berzerk, Valley of the Gods, Raptor DoubleMax" },
+  { name: "Red Tiger", slug: "red-tiger", founded: "2014", focus: "Jackpot Slots", avgRtp: "94,7–96,5%", volatility: "Lav–Medium", bestKnown: "Gonzo's Quest Megaways, Dragon's Luck, Piggy Riches MW" },
+  { name: "ELK Studios", slug: "elk-studios", founded: "2012", focus: "Premium Slots", avgRtp: "95–96,5%", volatility: "Medium–Høj", bestKnown: "Wild Toro, Kaiju Payment, Cygnus" },
+  { name: "Thunderkick", slug: "thunderkick", founded: "2012", focus: "Boutique Slots", avgRtp: "96,0–96,2%", volatility: "Medium–Høj", bestKnown: "Fruit Warp, Esqueleto Explosivo 2, Beat the Beast" },
+  { name: "Blueprint Gaming", slug: "blueprint-gaming", founded: "2001", focus: "Licensed Slots", avgRtp: "95,0–96,5%", volatility: "Medium", bestKnown: "Eye of Horus, Fishin' Frenzy, The Goonies" },
+  { name: "Push Gaming", slug: "push-gaming", founded: "2010", focus: "Premium Slots", avgRtp: "96,2–96,7%", volatility: "Høj–Ekstrem", bestKnown: "Jammin' Jars 2, Fat Rabbit, Razor Shark" },
+  { name: "Quickspin", slug: "quickspin", founded: "2011", focus: "Premium Slots", avgRtp: "96,0–96,6%", volatility: "Medium", bestKnown: "Big Bad Wolf, Sticky Bandits, Sakura Fortune" },
+  { name: "iSoftBet", slug: "isoftbet", founded: "2010", focus: "Slots + Aggregering", avgRtp: "95,0–96,5%", volatility: "Medium", bestKnown: "Moriarty Megaways, Hot Spin, Gold Digger" },
+  { name: "Betsoft", slug: "betsoft", founded: "2006", focus: "3D Cinematic Slots", avgRtp: "95,0–97,1%", volatility: "Lav–Medium", bestKnown: "Good Girl Bad Girl, The Slotfather, Sugar Pop" },
+  { name: "Wazdan", slug: "wazdan", founded: "2010", focus: "Volatilitet-Kontrol", avgRtp: "96,0–96,7%", volatility: "Valgfri", bestKnown: "Power of Gods, 9 Lions, Sun of Fortune" },
+  { name: "Endorphina", slug: "endorphina", founded: "2012", focus: "Klassiske Slots", avgRtp: "96,0–96,5%", volatility: "Medium", bestKnown: "Book of Santa, Lucky Streak 3, Hell Hot 100" },
+  { name: "Stakelogic", slug: "stakelogic", founded: "2014", focus: "Slots + Live", avgRtp: "95,5–96,5%", volatility: "Medium–Høj", bestKnown: "Book of Adventure, Runner Runner, El Torero" },
+  { name: "Booming Games", slug: "booming-games", founded: "2014", focus: "Niche Slots", avgRtp: "95,5–96,5%", volatility: "Medium", bestKnown: "Gold Gold Gold, TNT Bonanza, Cash Pig" },
 ];
 
 /* ─────────────────────────────────────────────
@@ -141,6 +151,56 @@ const developerTeasers = [
     logo: elkStudiosLogo,
     teaser: "ELK Studios er det svenske boutique-studie, der har valgt kvalitet som strategi: færre end 50 titler i kataloget, men hver eneste er håndværksmæssigt poleret til perfektion. Wild Toro – deres flagskibstitel – vandt den prestigefyldte 'Game of the Year'-pris og introducerede Walking Wilds i en spiltjenende komponent. ELK's Betting Strategies (forudprogrammerede indsatsmønstre som Optimizer, Leveller og Jumper) er en unik innovation, der automatiserer bankroll-management. For erfarne spillere, der værdsætter matematisk gennemtænkt spildesign over volumen, er ELK Studios et studiemæssigt topvalg. Begrænsningen er det begrænsede udvalg – casual spillere kan hurtigt udtømme kataloget.",
   },
+  {
+    name: "Thunderkick",
+    slug: "thunderkick",
+    teaser: "Thunderkick er det stockholmske boutique-studie, der prioriterer kunstnerisk integritet over volumen. Med færre end 60 titler i kataloget har de opbygget en af branchens mest distinkte visuelle identiteter: håndtegnede animationer, surrealistiske temaer og en lyddesign-kvalitet, der overstiger branchestandarden. Esqueleto Explosivo 2 og Fruit Warp demonstrerer filosofien: mekanikker, der ikke ligner noget andet på markedet. Thunderkicks RTP-værdier ligger konsekvent i 96,0-96,2%-intervallet med medium-høj volatilitet.",
+  },
+  {
+    name: "Blueprint Gaming",
+    slug: "blueprint-gaming",
+    teaser: "Blueprint Gaming har specialiseret sig i licenserede slots baseret på populære brands: The Goonies, Ted, Rick and Morty og King Kong Cash er alle Blueprint-titler. Denne strategi giver instant genkendelse og en bredere appel end originale IP'er. Blueprint er desuden en af de mest aktive Megaways-licenstagere med titler som Fishin' Frenzy Megaways og Eye of Horus Megaways. Deres Jackpot King-netværk tilbyder progressive jackpots på tværs af porteføljen.",
+  },
+  {
+    name: "Push Gaming",
+    slug: "push-gaming",
+    teaser: "Push Gaming er det London-baserede studie, der har opnået kultstatus med ekstremt højvolatile slots som Jammin' Jars 2 (op til 50.000x), Razor Shark og Fat Rabbit. Deres mekanikker – Cluster Pays med stigende multiplikatorer, expanding wilds og retrigger-systemer – skaber en af branchens mest intense bonusoplevelser. Push Gaming udgiver kun 6-8 titler årligt, men hver eneste har potentiale til at blive en streamer-favorit.",
+  },
+  {
+    name: "Quickspin",
+    slug: "quickspin",
+    teaser: "Quickspin (nu ejet af Playtech) blev grundlagt af svenske industriveteraner fra NetEnt og er dedikeret til polerede, medium-volatilitet slots med exceptionel grafik. Big Bad Wolf, Sticky Bandits og Sakura Fortune er flagskibstitler, der kombinerer engagerende temaer med fair matematik. Quickspins Achievement Engine – et gamification-lag, der belønner spillere for milepæle – var banebrydende for langsigtede engagement-strategier.",
+  },
+  {
+    name: "iSoftBet",
+    slug: "isoftbet",
+    teaser: "iSoftBet opererer i en dobbeltrolle som spiludvikler og aggregeringsplatform via deres GAP-system (Game Aggregation Platform). GAP distribuerer spil fra over 70 partnerstudier, mens iSoftBets egne titler – Moriarty Megaways, Hot Spin Deluxe og Gold Digger Megaways – dækker medium-volatilitetssegmentet med en RTP i 95,0-96,5%-intervallet. Deres Hold & Win-mekanik er blevet en standard i branchen.",
+  },
+  {
+    name: "Betsoft",
+    slug: "betsoft",
+    teaser: "Betsoft var pionerer inden for 3D-cinematiske slots med deres SLOTS3-teknologi, der introducerede filmkvalitets-animationer til online casinospil. Good Girl Bad Girl, The Slotfather og Sugar Pop demonstrerer den visuelle ambition. Betsofts slots opererer typisk med lav-til-medium volatilitet og RTP-værdier i 95,0-97,1%-intervallet, hvilket gør dem ideelle til casual spillere og bonusomsætning.",
+  },
+  {
+    name: "Wazdan",
+    slug: "wazdan",
+    teaser: "Wazdan er en af branchens mest innovative udviklere med deres patenterede Volatility Levels™-system, der lader spillere vælge mellem lav, standard og høj volatilitet i ethvert spil. Denne unikke Feature – kombineret med Ultra Lite Mode (reduceret databelastning for svagere forbindelser) og Energy Saving Mode – gør Wazdan til den mest tilpasningsdygtige spiludvikler på markedet. Power of Gods-serien og 9 Lions er porteføljens flagskibe.",
+  },
+  {
+    name: "Endorphina",
+    slug: "endorphina",
+    teaser: "Endorphina fra Prag har opbygget en solid portefølje af slots med stærk matematisk transparens. Deres Book of Santa og Lucky Streak-serien er velkendte titler i det europæiske marked. Endorphinas spil er typisk medium-volatile med RTP-værdier omkring 96,0-96,5%. Studiet er særligt stærkt i Central- og Østeuropa og har i de seneste år ekspanderet aggressivt til vesteuropæiske markeder med nye licenser og compliance-certificeringer.",
+  },
+  {
+    name: "Stakelogic",
+    slug: "stakelogic",
+    teaser: "Stakelogic (tidligere Novomatic Digital Gaming) kombinerer Novomatic-koncernens 40+ års erfaring med moderne digital innovation. Deres Super Stake™-feature er en patenteret mekanik, der fordobler indsatsen til gengæld for øget bonusfrekvens. Stakelogic er også aktive i live casino-segmentet med deres Stakelogic Live-platform. Book of Adventure og Runner Runner-serien er porteføljens mest populære titler.",
+  },
+  {
+    name: "Booming Games",
+    slug: "booming-games",
+    teaser: "Booming Games opererer fra Isle of Man med en strategi fokuseret på emerging markets og niche-temaer. Deres proprietære Felt-teknologi sikrer hurtig cross-platform-kompatibilitet. Gold Gold Gold, TNT Bonanza og Cash Pig demonstrerer en tilgængelig stil med medium volatilitet og RTP-værdier i 95,5-96,5%-intervallet. Booming Games distribuerer via 100+ operatører globalt og er licenseret af MGA, UKGC og Spillemyndigheden.",
+  },
 ];
 
 const Spiludviklere = () => {
@@ -213,7 +273,7 @@ const Spiludviklere = () => {
 
   const articleSchema = buildArticleSchema({
     headline: "Spiludviklere til Casino – Den Ultimative Brancheguide 2026",
-    description: "Strategisk guide til alle spiludviklere på danske casinoer. RTP-analyse, volatilitetsforklaring, matematisk gennemgang og sammenligning af 12 udviklere.",
+    description: "Strategisk guide til alle spiludviklere på danske casinoer. RTP-analyse, volatilitetsforklaring, matematisk gennemgang og sammenligning af 22 udviklere.",
     url: `${SITE_URL}/spiludviklere`,
     datePublished: "2026-01-15",
     dateModified: "2026-02-18",
@@ -225,7 +285,7 @@ const Spiludviklere = () => {
     <>
       <SEO
         title="Spiludviklere Casino 2026 – RTP, Volatilitet & Strategisk Guide"
-        description="Den ultimative guide til casino-spiludviklere i Danmark. Sammenlign RTP, volatilitet og matematik for NetEnt, Pragmatic Play, Evolution og 9 andre udviklere."
+        description="Den ultimative guide til casino-spiludviklere i Danmark. Sammenlign RTP, volatilitet og matematik for NetEnt, Pragmatic Play, Evolution og 19 andre udviklere."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
@@ -250,7 +310,7 @@ const Spiludviklere = () => {
               Spiludviklere – Hvem Styrer Matematikken Bag Dine Casino-Spil?
             </h1>
             <p className="text-lg text-white/80">
-              RTP, volatilitet og spilmekanikker – forskellen mellem udviklere afgør dine vinderchancer. Vi analyserer alle 12 ledende studier med matematisk dybde og strategisk vejledning.
+              RTP, volatilitet og spilmekanikker – forskellen mellem udviklere afgør dine vinderchancer. Vi analyserer alle 22 ledende studier med matematisk dybde og strategisk vejledning.
             </p>
           </div>
         </div>
@@ -272,7 +332,7 @@ const Spiludviklere = () => {
             De fleste casinospillere vælger spil baseret på tema, grafik eller et navn, de genkender. Men den faktor, der har størst indflydelse på din langsigtede spilleroplevelse, er usynlig: den matematiske model bag spillet. Denne model – defineret af udvikleren, ikke casinoet – bestemmer, hvor ofte du vinder (hit frequency), hvor meget du vinder (multiplikator-struktur), og hvor stor en andel af alle indsatser der tilbagebetales over tid (RTP). To spil med identisk tema og grafik kan have radikalt forskellige matematiske profiler, fordi de er skabt af forskellige udviklere med forskellige design-filosofier.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Denne guide er ikke en overfladisk præsentation af studienavne og logoer. Den er en analytisk gennemgang af 12 ledende spiludviklere, der dækker det danske licenserede casinomarked, med fokus på den matematik, teknologi og regulering, der ligger bag spillene. Vi gennemgår, hvordan RTP beregnes, hvad volatilitet reelt betyder for din bankroll, og hvordan du strategisk matcher din spillestil med den rigtige udvikler. Læs også vores{" "}
+            Denne guide er ikke en overfladisk præsentation af studienavne og logoer. Den er en analytisk gennemgang af 22 ledende spiludviklere, der dækker det danske licenserede casinomarked, med fokus på den matematik, teknologi og regulering, der ligger bag spillene. Vi gennemgår, hvordan RTP beregnes, hvad volatilitet reelt betyder for din bankroll, og hvordan du strategisk matcher din spillestil med den rigtige udvikler. Læs også vores{" "}
             <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>{" "}
             for at se, hvilke udviklere hvert casino samarbejder med.
           </p>
@@ -292,7 +352,7 @@ const Spiludviklere = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <BarChart3 className="h-7 w-7 text-primary" />
-            Sammenligning af alle 12 ledende spiludviklere
+            Sammenligning af alle 22 ledende spiludviklere
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Nedenstående tabel giver et makro-overblik over de vigtigste parametre for hver udvikler. RTP-intervallet afspejler spændet i deres katalog – individuelle titler kan afvige. Volatilitetsangivelsen er en generalisering af studiets dominerende profil.
@@ -312,7 +372,7 @@ const Spiludviklere = () => {
               <tbody>
                 {developerComparison.map((dev, i) => (
                   <tr key={dev.name} className={i % 2 === 0 ? "bg-card" : "bg-muted/20"}>
-                    <td className="px-4 py-3 font-medium">{dev.name}</td>
+                    <td className="px-4 py-3 font-medium"><Link to={`/spiludviklere/${dev.slug}`} className="text-primary underline hover:text-primary/80">{dev.name}</Link></td>
                     <td className="px-4 py-3 text-muted-foreground">{dev.founded}</td>
                     <td className="px-4 py-3 text-muted-foreground">{dev.focus}</td>
                     <td className="px-4 py-3 text-muted-foreground">{dev.avgRtp}</td>
@@ -504,7 +564,7 @@ const Spiludviklere = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">De fem arketyper af casino-spiludviklere – en analytisk kategorisering</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Ikke alle spiludviklere konkurrerer i det samme segment. De 12 ledende studier på det danske marked kan kategoriseres i fem distinkte arketyper, hver med en unik filosofi, målgruppe og matematisk profil. At forstå disse arketyper er det første skridt mod en informeret spillestrategi.
+            Ikke alle spiludviklere konkurrerer i det samme segment. De 22 ledende studier på det danske marked kan kategoriseres i fem distinkte arketyper, hver med en unik filosofi, målgruppe og matematisk profil. At forstå disse arketyper er det første skridt mod en informeret spillestrategi.
           </p>
 
           <div className="space-y-4">
@@ -512,14 +572,15 @@ const Spiludviklere = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Flame className="h-5 w-5 text-primary" />
-                  🎰 High-Volatility-Specialister – Nolimit City, Hacksaw Gaming
+                  🎰 High-Volatility-Specialister – Nolimit City, Hacksaw Gaming, Push Gaming
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>
                   Disse studier designer spil til spillere, der accepterer lange tørrperioder til gengæld for potentielt livsendrende gevinster.{" "}
-                  <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>s proprietære xWays/xNudge-mekanikker og{" "}
-                  <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link>s stiliserede instant win-formater deler filosofien: komprimere hele gevinstpotentialet i sjældne, eksplosive bonusrunder. Gevinstlofter på 50.000-150.000x indsatsen er normen. Hit frequency: 12-18%.
+                  <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>s proprietære xWays/xNudge-mekanikker,{" "}
+                  <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link>s stiliserede instant win-formater og{" "}
+                  <Link to="/spiludviklere/push-gaming" className="text-primary underline hover:text-primary/80">Push Gaming</Link>s eksplosive cluster-pay-slots (Jammin' Jars 2, Razor Shark) deler filosofien: komprimere hele gevinstpotentialet i sjældne, eksplosive bonusrunder. Gevinstlofter på 50.000-150.000x indsatsen er normen. Hit frequency: 12-18%.
                 </p>
                 <p><strong>Målgruppe:</strong> Erfarne spillere med høj risikotolerance, solid bankroll-management og forståelse for statistisk varians. Absolut frarådet til bonusomsætning.</p>
               </CardContent>
@@ -529,15 +590,17 @@ const Spiludviklere = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Gamepad2 className="h-5 w-5 text-primary" />
-                  🎲 Klassiske Slot-Producenter – NetEnt, Play'n GO, Microgaming
+                  🎲 Klassiske Slot-Producenter – NetEnt, Play'n GO, Microgaming, Betsoft, Endorphina
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>
-                  De tre grundpiller i online casinobranchen tilbyder brede kataloger med overvejende lav-til-medium volatilitet.{" "}
+                  Grundpillerne i online casinobranchen tilbyder brede kataloger med overvejende lav-til-medium volatilitet.{" "}
                   <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> (Starburst, Gonzo's Quest),{" "}
-                  <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> (Book of Dead, Reactoonz) og{" "}
-                  <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> (Mega Moolah, Immortal Romance) prioriterer tilgængelighed, konsistens og bred appel. Deres spil har den højeste hit frequency og de mest forudsigelige sessions.
+                  <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> (Book of Dead, Reactoonz),{" "}
+                  <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> (Mega Moolah, Immortal Romance),{" "}
+                  <Link to="/spiludviklere/betsoft" className="text-primary underline hover:text-primary/80">Betsoft</Link> (3D-cinematiske slots) og{" "}
+                  <Link to="/spiludviklere/endorphina" className="text-primary underline hover:text-primary/80">Endorphina</Link> (Book of Santa, Lucky Streak) prioriterer tilgængelighed, konsistens og bred appel. Deres spil har den højeste hit frequency og de mest forudsigelige sessions.
                 </p>
                 <p><strong>Målgruppe:</strong> Alle spillertyper, men særligt casual spillere, bonusjægere og spillere med moderate bankrolls. Ideelle til bonusomsætning.</p>
               </CardContent>
@@ -563,7 +626,7 @@ const Spiludviklere = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Sparkles className="h-5 w-5 text-primary" />
-                  🎮 Feature-Drevne Innovatører – Big Time Gaming, Relax Gaming, Yggdrasil, ELK Studios
+                  🎮 Feature-Drevne Innovatører – Big Time Gaming, Relax Gaming, Yggdrasil, ELK Studios, Wazdan, Thunderkick
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
@@ -572,7 +635,9 @@ const Spiludviklere = () => {
                   <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link> opfandt Megaways;{" "}
                   <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gaming</Link> lancerede Dream Drop-jackpotsystemet;{" "}
                   <Link to="/spiludviklere/yggdrasil" className="text-primary underline hover:text-primary/80">Yggdrasil</Link> introducerede GigaBlox og Splitz;{" "}
-                  <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link> udviklede Betting Strategies. Deres fælles kendetegn er, at de konstant udfordrer branchens konventioner og skaber nye spilmekanikker, der licenseres af andre udviklere.
+                  <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link> udviklede Betting Strategies;{" "}
+                  <Link to="/spiludviklere/wazdan" className="text-primary underline hover:text-primary/80">Wazdan</Link> opfandt Volatility Levels™ (spillervalgt volatilitet);{" "}
+                  <Link to="/spiludviklere/thunderkick" className="text-primary underline hover:text-primary/80">Thunderkick</Link> satte standarden for kunstnerisk boutique-design. Deres fælles kendetegn er, at de konstant udfordrer branchens konventioner og skaber nye spilmekanikker.
                 </p>
                 <p><strong>Målgruppe:</strong> Teknik-interesserede spillere, der søger nye gameplay-oplevelser og er villige til at udforske ukendte mekanikker.</p>
               </CardContent>
@@ -582,15 +647,35 @@ const Spiludviklere = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Star className="h-5 w-5 text-primary" />
-                  🏛 Jackpot- og Legacy-Udviklere – Microgaming, Red Tiger
+                  🏛 Jackpot- og Legacy-Udviklere – Microgaming, Red Tiger, Blueprint Gaming
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>
-                  <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link>s progressive jackpot-netværk (Mega Moolah-serien) har udbetalt over €1,5 milliard i præmier siden lanceringen – inklusive verdensrekorden på €19,4 millioner fra et enkelt spin.{" "}
-                  <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link>s Daily Drop Jackpots garanterer daglige udbetalinger, hvilket tilbyder en unik kombination af jackpot-spænding med forudsigelig udbetalingsfrekvens. Begge opererer med lavere basis-RTP (88-95%) for at finansiere jackpot-puljerne.
+                  <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link>s progressive jackpot-netværk (Mega Moolah-serien) har udbetalt over €1,5 milliard i præmier.{" "}
+                  <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link>s Daily Drop Jackpots garanterer daglige udbetalinger.{" "}
+                  <Link to="/spiludviklere/blueprint-gaming" className="text-primary underline hover:text-primary/80">Blueprint Gaming</Link>s Jackpot King-netværk tilbyder progressive jackpots på tværs af licenserede titler som Fishin' Frenzy og Eye of Horus. Alle tre opererer med lavere basis-RTP (88-95%) for at finansiere jackpot-puljerne.
                 </p>
                 <p><strong>Målgruppe:</strong> Spillere, der drømmer om livsendrende enkeltgevinster og accepterer den lavere basis-RTP som "prisen" for jackpot-muligheden.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Layers className="h-5 w-5 text-primary" />
+                  🔗 Platforme & Aggregeringsspecialister – iSoftBet, Stakelogic, Quickspin, Booming Games
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  Disse studier kombinerer egne spil med distribution- eller platformstjenester.{" "}
+                  <Link to="/spiludviklere/isoftbet" className="text-primary underline hover:text-primary/80">iSoftBet</Link>s GAP-aggregeringsplatform distribuerer 70+ partnerstudier;{" "}
+                  <Link to="/spiludviklere/stakelogic" className="text-primary underline hover:text-primary/80">Stakelogic</Link> kombinerer Novomatic-arven med live casino-innovation;{" "}
+                  <Link to="/spiludviklere/quickspin" className="text-primary underline hover:text-primary/80">Quickspin</Link>s Achievement Engine revolutionerede gamification; og{" "}
+                  <Link to="/spiludviklere/booming-games" className="text-primary underline hover:text-primary/80">Booming Games</Link> fokuserer på emerging markets med 100+ operatørpartnere.
+                </p>
+                <p><strong>Målgruppe:</strong> Spillere, der ønsker bred dækning og ofte opdagelse af nye titler fra mindre kendte studios.</p>
               </CardContent>
             </Card>
           </div>
@@ -694,9 +779,9 @@ const Spiludviklere = () => {
             SECTION 7: Strategiske teasers
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Dybdegående analyser af alle 12 spiludviklere</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dybdegående analyser af alle 22 spiludviklere</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Hver udvikler har en unik filosofi, teknologisk styrke og målgruppe. Nedenstående er unikke strategiske analyser – klik videre til den fulde guide for 5.500+ ord med tekniske profiler, reelle testresultater og matematisk dybdeanalyse.
+            Hver udvikler har en unik filosofi, teknologisk styrke og målgruppe. Nedenstående er unikke strategiske analyser – klik videre til den fulde guide for 3.000-5.500+ ord med tekniske profiler, reelle testresultater og matematisk dybdeanalyse.
           </p>
 
           <div className="space-y-4">
@@ -704,11 +789,13 @@ const Spiludviklere = () => {
               <Card key={dev.slug} className="group">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-4">
-                    <img
-                      src={dev.logo}
-                      alt={`${dev.name} logo`}
-                      className="h-12 w-auto max-w-[100px] rounded object-contain flex-shrink-0 mt-1"
-                    />
+                    {dev.logo && (
+                      <img
+                        src={dev.logo}
+                        alt={`${dev.name} logo`}
+                        className="h-12 w-auto max-w-[100px] rounded object-contain flex-shrink-0 mt-1"
+                      />
+                    )}
                     <div className="flex-1">
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <h3 className="text-lg font-semibold">{dev.name}</h3>

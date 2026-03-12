@@ -24,6 +24,16 @@ const DEVELOPER_SIBLINGS = [
   { to: "/spiludviklere/yggdrasil", label: "Yggdrasil" },
   { to: "/spiludviklere/microgaming", label: "Microgaming" },
   { to: "/spiludviklere/relax-gaming", label: "Relax Gaming" },
+  { to: "/spiludviklere/thunderkick", label: "Thunderkick" },
+  { to: "/spiludviklere/blueprint-gaming", label: "Blueprint Gaming" },
+  { to: "/spiludviklere/push-gaming", label: "Push Gaming" },
+  { to: "/spiludviklere/quickspin", label: "Quickspin" },
+  { to: "/spiludviklere/isoftbet", label: "iSoftBet" },
+  { to: "/spiludviklere/betsoft", label: "Betsoft" },
+  { to: "/spiludviklere/wazdan", label: "Wazdan" },
+  { to: "/spiludviklere/endorphina", label: "Endorphina" },
+  { to: "/spiludviklere/stakelogic", label: "Stakelogic" },
+  { to: "/spiludviklere/booming-games", label: "Booming Games" },
 ];
 
 export function DeveloperSiblingLinks({ currentPath }: DeveloperSiblingLinksProps) {

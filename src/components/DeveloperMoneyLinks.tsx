@@ -43,6 +43,13 @@ const MONEY_LINKS = [
     getDesc: (name: string) =>
       `Få det bedste velkomsttilbud til at udforske ${name} spilleautomater.`,
   },
+  {
+    to: "/slot-database",
+    icon: BarChart3,
+    title: "Slot Database",
+    getDesc: (name: string) =>
+      `Udforsk alle ${name} slots i vores database med RTP, volatilitet og bonus hunt-data.`,
+  },
 ];
 
 function simpleHash(str: string): number {
