@@ -243,7 +243,7 @@ const CasinoNyheder = () => {
                     />
                   )}
                   <div className="flex items-center gap-2 mb-3">
-                    <Badge variant="secondary" className="text-xs">{article.category}</Badge>
+                    <Badge variant="secondary" className="text-xs">{getCategoryLabel(article.category)}</Badge>
                     {(article as any).is_cornerstone && (
                       <Badge variant="default" className="text-xs flex items-center gap-1">
                         <Crown className="h-3 w-3" />

@@ -146,7 +146,7 @@ const CasinoNyhedArticle = () => {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Badge variant="secondary">
                 <Newspaper className="mr-1.5 h-3.5 w-3.5" />
-                {article.category}
+                {getCategoryLabel(article.category)}
               </Badge>
               {isCornerstone && (
                 <Badge variant="default" className="flex items-center gap-1">
