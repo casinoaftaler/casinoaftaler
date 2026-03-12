@@ -206,6 +206,7 @@ const developerTeasers = [
   {
     name: "Endorphina",
     slug: "endorphina",
+    logo: endorphinaLogo,
     teaser: "Endorphina fra Prag har opbygget en solid portefølje af slots med stærk matematisk transparens. Deres Book of Santa og Lucky Streak-serien er velkendte titler i det europæiske marked. Endorphinas spil er typisk medium-volatile med RTP-værdier omkring 96,0-96,5%. Studiet er særligt stærkt i Central- og Østeuropa og har i de seneste år ekspanderet aggressivt til vesteuropæiske markeder med nye licenser og compliance-certificeringer.",
   },
   {
