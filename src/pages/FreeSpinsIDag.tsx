@@ -578,9 +578,9 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
         <Badge className="bg-orange-500/90 text-white border-0 text-sm font-bold px-3 py-1 shadow-lg shadow-orange-500/30">
           <Flame className="h-3.5 w-3.5 mr-1" /> Dagens Bedste
         </Badge>
-        {verifiedRecently && (
+        {freshnessLabel && (
           <Badge className="bg-green-500/20 text-green-400 border-green-500/30 text-xs px-2 py-1">
-            <ShieldCheck className="h-3 w-3 mr-1" /> Verificeret
+            <ShieldCheck className="h-3 w-3 mr-1" /> {freshnessLabel}
           </Badge>
         )}
       </div>
