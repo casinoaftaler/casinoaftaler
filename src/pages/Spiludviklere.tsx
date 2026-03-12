@@ -182,6 +182,7 @@ const developerTeasers = [
   {
     name: "Quickspin",
     slug: "quickspin",
+    logo: quickspinLogo,
     teaser: "Quickspin (nu ejet af Playtech) blev grundlagt af svenske industriveteraner fra NetEnt og er dedikeret til polerede, medium-volatilitet slots med exceptionel grafik. Big Bad Wolf, Sticky Bandits og Sakura Fortune er flagskibstitler, der kombinerer engagerende temaer med fair matematik. Quickspins Achievement Engine – et gamification-lag, der belønner spillere for milepæle – var banebrydende for langsigtede engagement-strategier.",
   },
   {
