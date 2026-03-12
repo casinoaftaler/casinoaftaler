@@ -310,7 +310,7 @@ const Spiludviklere = () => {
               Spiludviklere – Hvem Styrer Matematikken Bag Dine Casino-Spil?
             </h1>
             <p className="text-lg text-white/80">
-              RTP, volatilitet og spilmekanikker – forskellen mellem udviklere afgør dine vinderchancer. Vi analyserer alle 12 ledende studier med matematisk dybde og strategisk vejledning.
+              RTP, volatilitet og spilmekanikker – forskellen mellem udviklere afgør dine vinderchancer. Vi analyserer alle 22 ledende studier med matematisk dybde og strategisk vejledning.
             </p>
           </div>
         </div>
