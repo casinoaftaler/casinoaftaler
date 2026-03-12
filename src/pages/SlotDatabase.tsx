@@ -370,7 +370,7 @@ export default function SlotDatabase() {
                   <tbody>
                     {paginatedSlots.map((slot) => {
                       const guideUrl = getSlotGuideUrl(slot.slot_name);
-                      const providerSlug = PROVIDER_SLUG_MAP[slot.provider];
+                      const providerSlug = resolveProviderSlug(slot.provider);
                       return (
                         <tr key={slot.id} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                           <td className="px-4 py-3 font-medium text-foreground">
