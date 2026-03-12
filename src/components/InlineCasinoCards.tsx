@@ -63,10 +63,16 @@ function InlineCasinoCardsInner({
 }: Required<Pick<InlineCasinoCardsProps, 'title' | 'count'>> & Pick<InlineCasinoCardsProps, 'excludeSlugs'>) {
   const { data: casinos, isLoading } = useCasinos();
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
+  const { pathname } = useLocation();
 
-  const displayCasinos = (casinos ?? [])
-    .filter((c) => PARTNER_SLUGS.includes(c.slug) && !(excludeSlugs ?? []).includes(c.slug))
-    .slice(0, count);
+  // Get eligible casinos, then rotate order based on current page path
+  const eligible = (casinos ?? [])
+    .filter((c) => PARTNER_SLUGS.includes(c.slug) && !(excludeSlugs ?? []).includes(c.slug));
+
+  const hash = hashPath(pathname);
+  const offset = hash % Math.max(eligible.length, 1);
+  const rotated = [...eligible.slice(offset), ...eligible.slice(0, offset)];
+  const displayCasinos = rotated.slice(0, count);
 
   const mapCasino = (casino: (typeof displayCasinos)[0]) => ({
     id: casino.id,
