@@ -47,6 +47,36 @@ function NewsForm({ article, onClose }: { article?: CasinoNewsArticle; onClose: 
     }));
   };
 
+  const stripHtml = (html: string) => html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+
+  const inferCategory = (title: string, content: string): string => {
+    const text = (title + " " + stripHtml(content)).toLowerCase();
+    if (/licens|spillemyndighed|tilladelse/.test(text)) return "licenser";
+    if (/bonus|velkomst|freespin|free spin|indbetalingsbonus/.test(text)) return "bonusser";
+    if (/mobilepay|trustly|betalingsmetod|visa|mastercard|bankoverf|mitid/.test(text)) return "betalingsmetoder";
+    if (/lovgivning|regulering|lov |forslag|bekendtgørelse/.test(text)) return "lovgivning";
+    if (/teknologi|ai |kunstig intelligens|blockchain|software/.test(text)) return "teknologi";
+    if (/nye casino|nyt casino|lancere|åbner|ny platform/.test(text)) return "nye-casinoer";
+    return "generelt";
+  };
+
+  const inferTags = (title: string, content: string): string[] => {
+    const text = (title + " " + stripHtml(content)).toLowerCase();
+    const tagMap: Record<string, string> = {
+      "mitid": "MitID", "mobilepay": "MobilePay", "trustly": "Trustly",
+      "nemid": "NemID", "rofus": "ROFUS", "spillemyndighed": "Spillemyndigheden",
+      "freespin": "Free Spins", "free spin": "Free Spins",
+      "velkomstbonus": "Velkomstbonus", "indbetalingsbonus": "Indbetalingsbonus",
+      "live casino": "Live Casino", "dansk licens": "Dansk Licens",
+      "visa": "Visa", "mastercard": "Mastercard",
+    };
+    const found = new Set<string>();
+    for (const [keyword, tag] of Object.entries(tagMap)) {
+      if (text.includes(keyword)) found.add(tag);
+    }
+    return Array.from(found).slice(0, 6);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -55,16 +85,24 @@ function NewsForm({ article, onClose }: { article?: CasinoNewsArticle; onClose: 
       return;
     }
 
+    // Auto-generate missing fields
+    const autoMetaTitle = form.meta_title || form.title.slice(0, 60);
+    const autoMetaDesc = form.meta_description || 
+      (form.excerpt ? form.excerpt.slice(0, 160) : stripHtml(form.content).slice(0, 160));
+    const manualTags = form.tags.split(",").map((t) => t.trim()).filter(Boolean);
+    const autoTags = manualTags.length > 0 ? manualTags : inferTags(form.title, form.content);
+    const autoCategory = form.category !== "generelt" ? form.category : inferCategory(form.title, form.content);
+
     const payload = {
       title: form.title,
       slug: form.slug,
       excerpt: form.excerpt || null,
       content: form.content,
-      category: form.category,
-      tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),
+      category: autoCategory,
+      tags: autoTags,
       featured_image: form.featured_image || null,
-      meta_title: form.meta_title || null,
-      meta_description: form.meta_description || null,
+      meta_title: autoMetaTitle,
+      meta_description: autoMetaDesc,
       status: form.status,
       published_at: form.status === "published" ? (article?.published_at || new Date().toISOString()) : null,
     };
