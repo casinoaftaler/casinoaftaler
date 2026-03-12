@@ -194,9 +194,38 @@ ${articleUrls.join("\n")}
         console.warn("⚠️ Failed to generate sitemap-articles.xml:", err);
       }
 
-      // ── 4. sitemap-index.xml (all on same domain) ──
+      // ── 4. sitemap-priority.xml (top money pages, priority ≥ 0.8) ──
+      const priorityRoutes = seoRoutes.filter((r) => r.priority >= 0.8);
+      if (priorityRoutes.length > 0) {
+        const priorityUrls = priorityRoutes.map((route) => {
+          const loc = route.path === "/" ? SITE_URL + "/" : SITE_URL + route.path;
+          const dbDate = metadataMap.get(route.path);
+          const lastmod = dbDate
+            ? new Date(dbDate).toISOString().replace(/\.\d{3}Z$/, "+00:00")
+            : route.lastmod
+              ? `${route.lastmod}T12:00:00+01:00`
+              : buildDateISO;
+          return `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${route.changefreq}</changefreq>
+    <priority>${route.priority.toFixed(1)}</priority>
+  </url>`;
+        });
+
+        const prioritySitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${priorityUrls.join("\n")}
+</urlset>
+`;
+        fs.writeFileSync(path.join(outDir, "sitemap-priority.xml"), prioritySitemap, "utf-8");
+        console.log(`✅ sitemap-priority.xml generated with ${priorityRoutes.length} high-priority URLs`);
+      }
+
+      // ── 5. sitemap-index.xml (all on same domain) ──
       const indexEntries = [
         `${SITE_URL}/sitemap.xml`,
+        `${SITE_URL}/sitemap-priority.xml`,
         `${SITE_URL}/sitemap-slots.xml`,
         `${SITE_URL}/sitemap-articles.xml`,
         `${SITE_URL}/sitemap-images.xml`,
