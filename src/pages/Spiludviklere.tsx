@@ -212,6 +212,7 @@ const developerTeasers = [
   {
     name: "Stakelogic",
     slug: "stakelogic",
+    logo: stakelogicLogo,
     teaser: "Stakelogic (tidligere Novomatic Digital Gaming) kombinerer Novomatic-koncernens 40+ års erfaring med moderne digital innovation. Deres Super Stake™-feature er en patenteret mekanik, der fordobler indsatsen til gengæld for øget bonusfrekvens. Stakelogic er også aktive i live casino-segmentet med deres Stakelogic Live-platform. Book of Adventure og Runner Runner-serien er porteføljens mest populære titler.",
   },
   {
