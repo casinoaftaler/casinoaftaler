@@ -530,6 +530,7 @@ const App = () => (
                 <Route path="/spiludviklere/wazdan" element={<WazdanGuide />} />
                 <Route path="/spiludviklere/endorphina" element={<EndorphinaGuide />} />
                 <Route path="/spiludviklere/stakelogic" element={<StakelogicGuide />} />
+                <Route path="/spiludviklere/booming-games" element={<BoomingGamesGuide />} />
                 <Route path="/betalingsmetoder/apple-pay" element={<ApplePayGuide />} />
                 <Route path="/betalingsmetoder/mobilepay" element={<MobilePayGuide />} />
                 <Route path="/betalingsmetoder/paypal" element={<PayPalGuide />} />

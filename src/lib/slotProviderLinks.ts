@@ -109,4 +109,5 @@ export const PROVIDER_DISPLAY_NAMES: Record<string, string> = {
   "wazdan": "Wazdan",
   "endorphina": "Endorphina",
   "stakelogic": "Stakelogic",
+  "booming-games": "Booming Games",
 };

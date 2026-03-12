@@ -181,6 +181,7 @@ export const PROVIDER_LINKS: NavLink[] = [
   { to: "/spiludviklere/wazdan", label: "Wazdan" },
   { to: "/spiludviklere/endorphina", label: "Endorphina" },
   { to: "/spiludviklere/stakelogic", label: "Stakelogic" },
+  { to: "/spiludviklere/booming-games", label: "Booming Games" },
 ];
 
 export const REVIEW_TOP_LINKS: NavLink[] = [
