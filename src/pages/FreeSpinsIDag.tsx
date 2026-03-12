@@ -135,6 +135,17 @@ function timeAgo(dateStr: string): string {
   return `${mins} min. siden`;
 }
 
+function getUpdateBadgeLabel(dateStr: string | null | undefined): string {
+  if (!dateStr) return "Opdateret i dag";
+  const now = new Date();
+  const date = new Date(dateStr);
+  const mins = differenceInMinutes(now, date);
+  const hrs = differenceInHours(now, date);
+  if (mins < 2) return "Opdateret nu";
+  if (hrs < 24) return "Opdateret i dag";
+  return "Opdateret i går";
+}
+
 function Countdown({ validUntil }: { validUntil: string }) {
   const [timeLeft, setTimeLeft] = useState("");
   const [isUrgent, setIsUrgent] = useState(false);
