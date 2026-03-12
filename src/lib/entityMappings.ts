@@ -129,6 +129,9 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bYggdrasil Gaming\b/i, /\bYggdrasil\b/], href: "/spiludviklere/yggdrasil", anchor: "Yggdrasil Gaming", anchorVariants: ["Yggdrasil Gaming", "Yggdrasil", "Yggdrasil Gaming slots"] },
   { patterns: [/\bMicrogaming\b/], href: "/spiludviklere/microgaming", anchor: "Microgaming" },
   { patterns: [/\bRelax Gaming\b/i], href: "/spiludviklere/relax-gaming", anchor: "Relax Gaming" },
+  { patterns: [/\bThunderkick\b/], href: "/spiludviklere/thunderkick", anchor: "Thunderkick" },
+  { patterns: [/\bBlueprint Gaming\b/i], href: "/spiludviklere/blueprint-gaming", anchor: "Blueprint Gaming" },
+  { patterns: [/\bPush Gaming\b/i], href: "/spiludviklere/push-gaming", anchor: "Push Gaming" },
 
   // Game type money-pages
   { patterns: [/\blive blackjack\b/i], href: "/live-casino/blackjack", anchor: "" },

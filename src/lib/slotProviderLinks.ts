@@ -100,4 +100,7 @@ export const PROVIDER_DISPLAY_NAMES: Record<string, string> = {
   "nolimit-city": "Nolimit City",
   "red-tiger": "Red Tiger Gaming",
   "igt": "IGT",
+  "thunderkick": "Thunderkick",
+  "blueprint-gaming": "Blueprint Gaming",
+  "push-gaming": "Push Gaming",
 };
