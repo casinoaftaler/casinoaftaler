@@ -172,6 +172,7 @@ const CasinoNyhedArticle = () => {
           readTime="5 min"
           showFactCheck={true}
           showAffiliateDisclaimer={false}
+          authorLink="/forfatter/ajse"
         />
 
         {/* Cornerstone: show last-updated date */}
