@@ -17,6 +17,7 @@ const PROVIDER_SLUG_MAP: Record<string, string> = {
   'hacksaw gaming': 'hacksaw-gaming',
   'nolimit city': 'nolimit-city',
   'yggdrasil': 'yggdrasil',
+  'yggdrasil gaming': 'yggdrasil',
   'microgaming': 'microgaming',
   'red tiger': 'red-tiger',
   'red tiger gaming': 'red-tiger',

@@ -12,8 +12,10 @@ const providerRoutes: Record<string, string> = {
   "Nolimit City": "/spiludviklere/nolimit-city",
   "ELK Studios": "/spiludviklere/elk-studios",
   "Yggdrasil": "/spiludviklere/yggdrasil",
+  "Yggdrasil Gaming": "/spiludviklere/yggdrasil",
   "Microgaming": "/spiludviklere/microgaming",
   "Red Tiger": "/spiludviklere/red-tiger",
+  "Red Tiger Gaming": "/spiludviklere/red-tiger",
   "Big Time Gaming": "/spiludviklere/big-time-gaming",
 };
 
@@ -28,8 +30,10 @@ const providerHubSlugs: Record<string, string> = {
   "Nolimit City": "nolimit-city",
   "ELK Studios": "elk-studios",
   "Yggdrasil": "yggdrasil",
+  "Yggdrasil Gaming": "yggdrasil",
   "Microgaming": "microgaming",
   "Red Tiger": "red-tiger",
+  "Red Tiger Gaming": "red-tiger",
   "Big Time Gaming": "big-time-gaming",
   "IGT": "igt",
 };

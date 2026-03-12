@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { capWagerDisplay } from "@/lib/wagerCap";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
@@ -235,7 +236,7 @@ const FreeSpinsIDag = () => {
   const featured = allBest.find(o => {
     if (o.wagering_requirement) {
       const wm = o.wagering_requirement.match(/(\d+)/);
-      if (wm && parseInt(wm[1], 10) > 40) return false;
+      if (wm && parseInt(wm[1], 10) > 10) return false;
     }
     return true;
   }) || allBest[0] || null;
@@ -595,8 +596,8 @@ function FeaturedOfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOf
             {offer.game_name && (
               <span className="flex items-center gap-1"><Gamepad2 className="h-3 w-3" /> {offer.game_name}</span>
             )}
-            {offer.wagering_requirement && (
-              <span className="flex items-center gap-1"><RotateCcw className="h-3 w-3" /> {offer.wagering_requirement}</span>
+            {capWagerDisplay(offer.wagering_requirement) && (
+              <span className="flex items-center gap-1"><RotateCcw className="h-3 w-3" /> {capWagerDisplay(offer.wagering_requirement)}</span>
             )}
             {!offer.requires_deposit ? (
               <span className="flex items-center gap-1 text-green-400 font-medium"><Zap className="h-3 w-3" /> Ingen indbetaling</span>
@@ -708,10 +709,10 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
               <span>Min. {offer.min_deposit}</span>
             </div>
           )}
-          {offer.wagering_requirement && (
+          {capWagerDisplay(offer.wagering_requirement) && (
             <div className="flex items-center gap-1.5">
               <RotateCcw className="h-3 w-3 text-primary/60 flex-shrink-0" />
-              <span>Omsætning: {offer.wagering_requirement}</span>
+              <span>Omsætning: {capWagerDisplay(offer.wagering_requirement)}</span>
             </div>
           )}
           {eligibility && (
