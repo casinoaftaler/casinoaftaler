@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, type ReactNode } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -24,6 +24,27 @@ import {
   ArrowRight,
   BookOpen,
 } from "lucide-react";
+
+/** Deterministic hash for section order shuffling */
+function hashSlug(str: string): number {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h);
+}
+
+/** Fisher-Yates shuffle seeded by hash */
+function seededShuffle<T>(arr: T[], seed: number): T[] {
+  const result = [...arr];
+  let s = seed;
+  for (let i = result.length - 1; i > 0; i--) {
+    s = ((s * 1103515245 + 12345) & 0x7fffffff);
+    const j = s % (i + 1);
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
 
 export default function ProviderSlotsHub() {
   const { providerSlug } = useParams<{ providerSlug: string }>();
