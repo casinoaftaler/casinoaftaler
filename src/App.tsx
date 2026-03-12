@@ -188,6 +188,9 @@ const EvolutionGamingGuide = lazy(() => import("./pages/EvolutionGamingGuide"));
 const ThunderkickGuide = lazy(() => import("./pages/ThunderkickGuide"));
 const BlueprintGamingGuide = lazy(() => import("./pages/BlueprintGamingGuide"));
 const PushGamingGuide = lazy(() => import("./pages/PushGamingGuide"));
+const QuickspinGuide = lazy(() => import("./pages/QuickspinGuide"));
+const ISoftBetGuide = lazy(() => import("./pages/ISoftBetGuide"));
+const BetsoftGuide = lazy(() => import("./pages/BetsoftGuide"));
 const ApplePayGuide = lazy(() => import("./pages/payments/ApplePayGuide"));
 const MobilePayGuide = lazy(() => import("./pages/payments/MobilePayGuide"));
 const PayPalGuide = lazy(() => import("./pages/payments/PayPalGuide"));
@@ -517,6 +520,9 @@ const App = () => (
                 <Route path="/spiludviklere/thunderkick" element={<ThunderkickGuide />} />
                 <Route path="/spiludviklere/blueprint-gaming" element={<BlueprintGamingGuide />} />
                 <Route path="/spiludviklere/push-gaming" element={<PushGamingGuide />} />
+                <Route path="/spiludviklere/quickspin" element={<QuickspinGuide />} />
+                <Route path="/spiludviklere/isoftbet" element={<ISoftBetGuide />} />
+                <Route path="/spiludviklere/betsoft" element={<BetsoftGuide />} />
                 <Route path="/betalingsmetoder/apple-pay" element={<ApplePayGuide />} />
                 <Route path="/betalingsmetoder/mobilepay" element={<MobilePayGuide />} />
                 <Route path="/betalingsmetoder/paypal" element={<PayPalGuide />} />

@@ -103,4 +103,7 @@ export const PROVIDER_DISPLAY_NAMES: Record<string, string> = {
   "thunderkick": "Thunderkick",
   "blueprint-gaming": "Blueprint Gaming",
   "push-gaming": "Push Gaming",
+  "quickspin": "Quickspin",
+  "isoftbet": "iSoftBet",
+  "betsoft": "Betsoft",
 };

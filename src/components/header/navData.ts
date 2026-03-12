@@ -175,6 +175,9 @@ export const PROVIDER_LINKS: NavLink[] = [
   { to: "/spiludviklere/thunderkick", label: "Thunderkick" },
   { to: "/spiludviklere/blueprint-gaming", label: "Blueprint Gaming" },
   { to: "/spiludviklere/push-gaming", label: "Push Gaming" },
+  { to: "/spiludviklere/quickspin", label: "Quickspin" },
+  { to: "/spiludviklere/isoftbet", label: "iSoftBet" },
+  { to: "/spiludviklere/betsoft", label: "Betsoft" },
 ];
 
 export const REVIEW_TOP_LINKS: NavLink[] = [
