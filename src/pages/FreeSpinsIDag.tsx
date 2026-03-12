@@ -684,10 +684,10 @@ function OfferCard({ offer, logoUrl, affiliateUrl }: { offer: CampaignOffer; log
               <span className={`inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full border ${badge.className}`}>
                 {badge.icon} {badge.label}
               </span>
-              {verifiedRecently && (
+              {freshnessLabel && (
                 <TooltipProvider><Tooltip><TooltipTrigger>
                   <span className="inline-flex items-center gap-0.5 text-[10px] px-1.5 py-0.5 rounded-full border bg-green-500/10 text-green-400 border-green-500/20">
-                    <ShieldCheck className="h-2.5 w-2.5" /> Verificeret
+                    <ShieldCheck className="h-2.5 w-2.5" /> {freshnessLabel}
                   </span>
                 </TooltipTrigger><TooltipContent><p className="text-xs">Sidst verificeret: {offer.last_verified_at ? timeAgo(offer.last_verified_at) : "Ukendt"}</p></TooltipContent></Tooltip></TooltipProvider>
               )}
