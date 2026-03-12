@@ -292,6 +292,15 @@ const kevinArticles: AuthorArticle[] = [
   // Bonus Hunt
   { title: "Bonus Hunt Live", path: "/bonus-hunt", category: "Community", excerpt: "Følg vores live bonus hunts med betting-spil og community-events." },
   { title: "Bonus Hunt Arkiv", path: "/bonus-hunt/arkiv", category: "Community", excerpt: "Komplet arkiv over alle tidligere bonus hunts med statistikker." },
+  // Casino uden Konto cluster
+  { title: "Casino uden Konto – Komplet Guide", path: "/casino-uden-konto", category: "Guide", excerpt: "Alt om casino uden konto i Danmark – Pay N Play, Trustly og hurtig registrering." },
+  { title: "Pay N Play Guide", path: "/casino-uden-konto/pay-n-play", category: "Guide", excerpt: "Trustly Pay N Play – spil uden registrering med bankID-verifikation." },
+  { title: "Hurtig Registrering Guide", path: "/casino-uden-konto/hurtig-registrering", category: "Guide", excerpt: "Sammenligning af hurtig registrering vs. traditionel kontooprettelse." },
+  { title: "Fordele og Ulemper ved Casino uden Konto", path: "/casino-uden-konto/fordele-og-ulemper", category: "Guide", excerpt: "Dybdegående analyse af fordele og ulemper ved casino uden konto." },
+  // Statistik & Community
+  { title: "Statistik", path: "/statistik", category: "Værktøj", excerpt: "Live statistikker fra vores casino-streams og bonus hunts." },
+  { title: "Highlights", path: "/highlights", category: "Community", excerpt: "De bedste øjeblikke fra vores casino-streams samlet ét sted." },
+  { title: "Community Slots", path: "/community/slots", category: "Community", excerpt: "Spil community-spillemaskiner og konkurrér med andre spillere." },
 ];
 
 // ─── Ajse – Static Articles ─────────────────────────────────────────────
