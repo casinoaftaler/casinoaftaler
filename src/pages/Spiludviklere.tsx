@@ -754,9 +754,9 @@ const Spiludviklere = () => {
             SECTION 7: Strategiske teasers
             ═══════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Dybdegående analyser af alle 12 spiludviklere</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dybdegående analyser af alle 22 spiludviklere</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Hver udvikler har en unik filosofi, teknologisk styrke og målgruppe. Nedenstående er unikke strategiske analyser – klik videre til den fulde guide for 5.500+ ord med tekniske profiler, reelle testresultater og matematisk dybdeanalyse.
+            Hver udvikler har en unik filosofi, teknologisk styrke og målgruppe. Nedenstående er unikke strategiske analyser – klik videre til den fulde guide for 3.000-5.500+ ord med tekniske profiler, reelle testresultater og matematisk dybdeanalyse.
           </p>
 
           <div className="space-y-4">
