@@ -764,11 +764,13 @@ const Spiludviklere = () => {
               <Card key={dev.slug} className="group">
                 <CardContent className="p-5">
                   <div className="flex items-start gap-4">
-                    <img
-                      src={dev.logo}
-                      alt={`${dev.name} logo`}
-                      className="h-12 w-auto max-w-[100px] rounded object-contain flex-shrink-0 mt-1"
-                    />
+                    {dev.logo && (
+                      <img
+                        src={dev.logo}
+                        alt={`${dev.name} logo`}
+                        className="h-12 w-auto max-w-[100px] rounded object-contain flex-shrink-0 mt-1"
+                      />
+                    )}
                     <div className="flex-1">
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <h3 className="text-lg font-semibold">{dev.name}</h3>
