@@ -937,6 +937,10 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       { to: "/live-casino/baccarat", label: "Live Baccarat", icon: Trophy, desc: "Elegant kortspil med live dealer" },
       { to: "/live-casino/lightning-roulette", label: "Lightning Roulette", icon: Zap, desc: "Multiplied payouts op til 500x" },
       { to: "/live-casino/monopoly-live", label: "Monopoly Live", icon: Tv, desc: "Game show med bonusrunder" },
+      { to: "/live-casino/crazy-time", label: "Crazy Time", icon: Sparkles, desc: "Evolutions mest populære game show" },
+      { to: "/live-casino/dream-catcher", label: "Dream Catcher", icon: Star, desc: "Det originale money wheel game show" },
+      { to: "/live-casino/deal-or-no-deal", label: "Deal or No Deal", icon: Trophy, desc: "Det klassiske TV-show som live casino" },
+      { to: "/live-casino/game-shows", label: "Game Shows", icon: Tv, desc: "Komplet guide til live game shows" },
     ];
     const currentIndex = liveCasinoSiblings.findIndex(g => g.to === path);
     const len = liveCasinoSiblings.length;
