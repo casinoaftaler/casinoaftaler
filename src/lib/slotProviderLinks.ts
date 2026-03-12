@@ -106,4 +106,7 @@ export const PROVIDER_DISPLAY_NAMES: Record<string, string> = {
   "quickspin": "Quickspin",
   "isoftbet": "iSoftBet",
   "betsoft": "Betsoft",
+  "wazdan": "Wazdan",
+  "endorphina": "Endorphina",
+  "stakelogic": "Stakelogic",
 };

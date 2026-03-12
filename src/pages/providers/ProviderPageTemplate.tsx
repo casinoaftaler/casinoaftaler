@@ -102,6 +102,9 @@ const providerLinks = [
   { to: "/spiludviklere/quickspin", label: "Quickspin" },
   { to: "/spiludviklere/isoftbet", label: "iSoftBet" },
   { to: "/spiludviklere/betsoft", label: "Betsoft" },
+  { to: "/spiludviklere/wazdan", label: "Wazdan" },
+  { to: "/spiludviklere/endorphina", label: "Endorphina" },
+  { to: "/spiludviklere/stakelogic", label: "Stakelogic" },
 ];
 
 const defaultSectionOrder = [

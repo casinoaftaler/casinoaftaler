@@ -178,6 +178,9 @@ export const PROVIDER_LINKS: NavLink[] = [
   { to: "/spiludviklere/quickspin", label: "Quickspin" },
   { to: "/spiludviklere/isoftbet", label: "iSoftBet" },
   { to: "/spiludviklere/betsoft", label: "Betsoft" },
+  { to: "/spiludviklere/wazdan", label: "Wazdan" },
+  { to: "/spiludviklere/endorphina", label: "Endorphina" },
+  { to: "/spiludviklere/stakelogic", label: "Stakelogic" },
 ];
 
 export const REVIEW_TOP_LINKS: NavLink[] = [
