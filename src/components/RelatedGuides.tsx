@@ -524,7 +524,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   // Payment hub → 3 popular siblings + 3 cross-cluster
   if (path === "/betalingsmetoder") {
     return {
-      guides: [...paymentSiblings.slice(0, MAX_SIBLINGS), nyeCasinoerHub, reviewHub, bonusHub],
+      guides: [...paymentSiblings.slice(0, MAX_SIBLINGS), nyeCasinoerHub, reviewHub, bonusHub, liveCasinoHub],
       subtitle: "Udforsk vores dybdegående guides til populære betalingsmetoder og casinoer.",
     };
   }
