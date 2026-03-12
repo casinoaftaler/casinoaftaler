@@ -164,6 +164,7 @@ const developerTeasers = [
   {
     name: "Thunderkick",
     slug: "thunderkick",
+    logo: thunderkickLogo,
     teaser: "Thunderkick er det stockholmske boutique-studie, der prioriterer kunstnerisk integritet over volumen. Med færre end 60 titler i kataloget har de opbygget en af branchens mest distinkte visuelle identiteter: håndtegnede animationer, surrealistiske temaer og en lyddesign-kvalitet, der overstiger branchestandarden. Esqueleto Explosivo 2 og Fruit Warp demonstrerer filosofien: mekanikker, der ikke ligner noget andet på markedet. Thunderkicks RTP-værdier ligger konsekvent i 96,0-96,2%-intervallet med medium-høj volatilitet.",
   },
   {
