@@ -1038,7 +1038,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = nyeCasinoerSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     }
-    const crossClusterLinks = [bonusHub, reviewHub, paymentHub];
+    const crossClusterLinks = [bonusHub, reviewHub, paymentHub, providerHub];
     return {
       guides: [...hub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
       subtitle: "Udforsk flere nye casinoer, bonusser og casino anmeldelser.",

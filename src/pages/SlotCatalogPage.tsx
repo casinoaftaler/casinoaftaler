@@ -1341,7 +1341,7 @@ export default function SlotCatalogPage() {
           />
         )}
 
-        {/* Provider link */}
+        {/* Provider & Review links */}
         {providerSlug && (
           <section className="mb-8">
             <h2 className="text-2xl font-bold mb-4">Mere fra {slot.provider}</h2>
@@ -1360,6 +1360,12 @@ export default function SlotCatalogPage() {
                 className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
               >
                 {slot.provider} udvikler-guide →
+              </Link>
+              <Link
+                to="/casino-anmeldelser"
+                className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+              >
+                Casino anmeldelser →
               </Link>
             </div>
           </section>

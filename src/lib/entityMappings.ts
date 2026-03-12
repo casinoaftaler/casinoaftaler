@@ -173,7 +173,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bbonus spins\b/i, /\bbonusspins\b/i], href: "/free-spins", anchor: "" },
   { patterns: [/\bdrop[\s-]?and[\s-]?wins?\b/i], href: "/spiludviklere/pragmatic-play", anchor: "" },
   { patterns: [/\btumble[\s-]?feature\b/i], href: "/ordbog/cascading-wins", anchor: "" },
-  { patterns: [/\bslot[\s-]?database\b/i, /\bslot-database\b/i], href: "/slot-database", anchor: "slot database" },
+  { patterns: [/\bslot[\s-]?database\b/i, /\bslot-database\b/i], href: "/slot-database", anchor: "slot database", anchorVariants: ["slot database", "slot oversigt", "spillemaskin-database", "vores slot database"] },
   { patterns: [/\bMonopoly Live\b/i], href: "/live-casino/monopoly-live", anchor: "Monopoly Live" },
 
   // ══════════════════════════════════════════════════════════════════
