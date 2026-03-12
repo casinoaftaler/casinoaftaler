@@ -103,6 +103,20 @@ const jonasArticles: AuthorArticle[] = [
   { title: "Money Train 3 – Komplet Guide", path: "/casinospil/spillemaskiner/money-train-3", category: "Slot Guide", excerpt: "Money Train 3 – Respin-feature, persistente symboler og max win." },
   { title: "The Dog House – Komplet Guide", path: "/casinospil/spillemaskiner/the-dog-house", category: "Slot Guide", excerpt: "The Dog House – sticky wilds, multiplikatorer og free spins." },
   { title: "Sugar Rush – Komplet Guide", path: "/casinospil/spillemaskiner/sugar-rush", category: "Slot Guide", excerpt: "Sugar Rush – cluster pays, multiplikatorer og volatilitetsanalyse." },
+  // Mini slot guides (Jonas)
+  { title: "Hot Spin Deluxe – Guide", path: "/casinospil/spillemaskiner/hot-spin-deluxe", category: "Slot Guide", excerpt: "Hot Spin Deluxe – bonushjul, free spins og RTP-analyse." },
+  { title: "Esqueleto Explosivo 2 – Guide", path: "/casinospil/spillemaskiner/esqueleto-explosivo-2", category: "Slot Guide", excerpt: "Esqueleto Explosivo 2 – Mucho Multiplier og eksplosive gevinster." },
+  { title: "Classic Fruits – Guide", path: "/casinospil/spillemaskiner/classic-fruits", category: "Slot Guide", excerpt: "Classic Fruits – klassisk frugtmaskine med simpel mekanik." },
+  { title: "Gold Vein – Guide", path: "/casinospil/spillemaskiner/gold-vein", category: "Slot Guide", excerpt: "Gold Vein – mine-tema, free spins og multiplikatorer." },
+  { title: "Mystery Reels Megaways – Guide", path: "/casinospil/spillemaskiner/mystery-reels-megaways", category: "Slot Guide", excerpt: "Mystery Reels Megaways – mystery symbols og op til 117.649 gevinstlinjer." },
+  { title: "Cygnus – Guide", path: "/casinospil/spillemaskiner/cygnus", category: "Slot Guide", excerpt: "Cygnus – avalanche-mekanik og stigende multiplikatorer." },
+  { title: "Chilli Pop – Guide", path: "/casinospil/spillemaskiner/chilli-pop", category: "Slot Guide", excerpt: "Chilli Pop – cluster pays og expanding reels." },
+  { title: "Big Bad Wolf – Guide", path: "/casinospil/spillemaskiner/big-bad-wolf", category: "Slot Guide", excerpt: "Big Bad Wolf – swooping reels og piggy wilds." },
+  { title: "Magic Hot – Guide", path: "/casinospil/spillemaskiner/magic-hot", category: "Slot Guide", excerpt: "Magic Hot – klassisk 3-hjuls slot med simpelt gameplay." },
+  { title: "Vikings Go Berzerk – Guide", path: "/casinospil/spillemaskiner/vikings-go-berzerk", category: "Slot Guide", excerpt: "Vikings Go Berzerk – rage-mekanik, free spins og treasure chest." },
+  { title: "Tombstone RIP – Guide", path: "/casinospil/spillemaskiner/tombstone-rip", category: "Slot Guide", excerpt: "Tombstone RIP – xNudge og xWays fra Nolimit City." },
+  { title: "Buffalo Rising Megaways – Guide", path: "/casinospil/spillemaskiner/buffalo-rising-megaways", category: "Slot Guide", excerpt: "Buffalo Rising Megaways – sky-multiplikatorer og free spins." },
+  { title: "Satoshi's Secret – Guide", path: "/casinospil/spillemaskiner/satoshis-secret", category: "Slot Guide", excerpt: "Satoshi's Secret – krypto-tema og bonusspil." },
   // Live Casino guides
   { title: "Live Blackjack Guide", path: "/live-casino/live-blackjack", category: "Guide", excerpt: "Komplet guide til live blackjack – regler, strategi og de bedste borde." },
   { title: "Live Roulette Guide", path: "/live-casino/live-roulette", category: "Guide", excerpt: "Alt om live roulette – varianter, odds og de bedste udbydere." },
@@ -292,6 +306,15 @@ const kevinArticles: AuthorArticle[] = [
   // Bonus Hunt
   { title: "Bonus Hunt Live", path: "/bonus-hunt", category: "Community", excerpt: "Følg vores live bonus hunts med betting-spil og community-events." },
   { title: "Bonus Hunt Arkiv", path: "/bonus-hunt/arkiv", category: "Community", excerpt: "Komplet arkiv over alle tidligere bonus hunts med statistikker." },
+  // Casino uden Konto cluster
+  { title: "Casino uden Konto – Komplet Guide", path: "/casino-uden-konto", category: "Guide", excerpt: "Alt om casino uden konto i Danmark – Pay N Play, Trustly og hurtig registrering." },
+  { title: "Pay N Play Guide", path: "/casino-uden-konto/pay-n-play", category: "Guide", excerpt: "Trustly Pay N Play – spil uden registrering med bankID-verifikation." },
+  { title: "Hurtig Registrering Guide", path: "/casino-uden-konto/hurtig-registrering", category: "Guide", excerpt: "Sammenligning af hurtig registrering vs. traditionel kontooprettelse." },
+  { title: "Fordele og Ulemper ved Casino uden Konto", path: "/casino-uden-konto/fordele-og-ulemper", category: "Guide", excerpt: "Dybdegående analyse af fordele og ulemper ved casino uden konto." },
+  // Statistik & Community
+  { title: "Statistik", path: "/statistik", category: "Værktøj", excerpt: "Live statistikker fra vores casino-streams og bonus hunts." },
+  { title: "Highlights", path: "/highlights", category: "Community", excerpt: "De bedste øjeblikke fra vores casino-streams samlet ét sted." },
+  { title: "Community Slots", path: "/community/slots", category: "Community", excerpt: "Spil community-spillemaskiner og konkurrér med andre spillere." },
 ];
 
 // ─── Ajse – Static Articles ─────────────────────────────────────────────
