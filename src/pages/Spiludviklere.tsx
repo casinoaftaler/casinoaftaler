@@ -352,7 +352,7 @@ const Spiludviklere = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <BarChart3 className="h-7 w-7 text-primary" />
-            Sammenligning af alle 12 ledende spiludviklere
+            Sammenligning af alle 22 ledende spiludviklere
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Nedenstående tabel giver et makro-overblik over de vigtigste parametre for hver udvikler. RTP-intervallet afspejler spændet i deres katalog – individuelle titler kan afvige. Volatilitetsangivelsen er en generalisering af studiets dominerende profil.
