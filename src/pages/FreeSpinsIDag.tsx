@@ -321,7 +321,7 @@ const FreeSpinsIDag = () => {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
               </span>
-              {latestChecked ? <span>Opdateret {timeAgo(latestChecked)}</span> : <span>Opdateret {todayFormatted}</span>}
+              {latestChecked ? <span>{getUpdateBadgeLabel(latestChecked)}</span> : <span>Opdateret i dag</span>}
             </div>
 
             <h1 className="mb-3 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl animate-fade-in [animation-delay:100ms]">
