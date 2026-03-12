@@ -51,13 +51,33 @@ function NewsForm({ article, onClose }: { article?: CasinoNewsArticle; onClose: 
 
   const inferCategory = (title: string, content: string): string => {
     const text = (title + " " + stripHtml(content)).toLowerCase();
-    if (/licens|spillemyndighed|tilladelse/.test(text)) return "licenser";
-    if (/bonus|velkomst|freespin|free spin|indbetalingsbonus/.test(text)) return "bonusser";
-    if (/mobilepay|trustly|betalingsmetod|visa|mastercard|bankoverf|mitid/.test(text)) return "betalingsmetoder";
-    if (/lovgivning|regulering|lov |forslag|bekendtgørelse/.test(text)) return "lovgivning";
-    if (/teknologi|ai |kunstig intelligens|blockchain|software/.test(text)) return "teknologi";
-    if (/nye casino|nyt casino|lancere|åbner|ny platform/.test(text)) return "nye-casinoer";
-    return "generelt";
+    const titleLower = title.toLowerCase();
+    
+    // Score-based: title matches count 3x, content matches count 1x
+    const categories: { key: string; titlePattern: RegExp; contentPattern: RegExp }[] = [
+      { key: "betalingsmetoder", titlePattern: /betalingsmetod|mobilepay|trustly|indbetaling|udbetaling/, contentPattern: /betalingsmetod|mobilepay|trustly|visa|mastercard|bankoverf|mitid|indbetaling|udbetaling/ },
+      { key: "licenser", titlePattern: /licens|spillemyndighed/, contentPattern: /licens|spillemyndighed|tilladelse|regulering/ },
+      { key: "bonusser", titlePattern: /bonus|freespin|free spin/, contentPattern: /bonus|velkomst|freespin|free spin|indbetalingsbonus|omsætningskrav/ },
+      { key: "lovgivning", titlePattern: /lovgivning|regulering|bekendtgørelse/, contentPattern: /lovgivning|regulering|lov |forslag|bekendtgørelse/ },
+      { key: "teknologi", titlePattern: /teknologi|ai |blockchain/, contentPattern: /teknologi|ai |kunstig intelligens|blockchain|software/ },
+      { key: "nye-casinoer", titlePattern: /nye casino|nyt casino|lancere/, contentPattern: /nye casino|nyt casino|lancere|åbner|ny platform/ },
+    ];
+
+    let bestCategory = "generelt";
+    let bestScore = 0;
+
+    for (const cat of categories) {
+      let score = 0;
+      const titleMatches = titleLower.match(cat.titlePattern);
+      const contentMatches = text.match(cat.contentPattern);
+      if (titleMatches) score += 3;
+      if (contentMatches) score += 1;
+      if (score > bestScore) {
+        bestScore = score;
+        bestCategory = cat.key;
+      }
+    }
+    return bestCategory;
   };
 
   const inferTags = (title: string, content: string): string[] => {
