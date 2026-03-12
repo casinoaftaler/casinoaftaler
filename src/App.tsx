@@ -194,6 +194,7 @@ const BetsoftGuide = lazy(() => import("./pages/BetsoftGuide"));
 const WazdanGuide = lazy(() => import("./pages/WazdanGuide"));
 const EndorphinaGuide = lazy(() => import("./pages/EndorphinaGuide"));
 const StakelogicGuide = lazy(() => import("./pages/StakelogicGuide"));
+const BoomingGamesGuide = lazy(() => import("./pages/BoomingGamesGuide"));
 const ApplePayGuide = lazy(() => import("./pages/payments/ApplePayGuide"));
 const MobilePayGuide = lazy(() => import("./pages/payments/MobilePayGuide"));
 const PayPalGuide = lazy(() => import("./pages/payments/PayPalGuide"));
