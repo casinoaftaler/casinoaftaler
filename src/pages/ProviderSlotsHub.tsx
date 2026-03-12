@@ -34,6 +34,7 @@ export default function ProviderSlotsHub() {
   const { data: freshness } = useLatestCatalogUpdate();
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
+  const { shuffle } = useAntiFootprint(validSlug ?? undefined);
 
   // Compute dynamic stats
   const stats = useMemo(() => {
