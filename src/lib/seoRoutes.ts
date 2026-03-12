@@ -410,8 +410,8 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/statistik", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-11" },
 
   // ── Batch 2: VIP & MobilePay ──
-  { path: "/vip-program", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-08" },
-  { path: "/casino-med-mobilepay", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-08" },
+  { path: "/vip-program", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-06" },
+  { path: "/casino-med-mobilepay", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-04" },
 
   { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/om", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
