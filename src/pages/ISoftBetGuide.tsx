@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import isoftbetHero from "@/assets/images/providers/isoftbet-hero.jpg";
 
 const ISoftBetGuide = () => (
   <ProviderPage
@@ -9,6 +10,8 @@ const ISoftBetGuide = () => (
     seoTitle="iSoftBet Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
     seoDescription="Komplet guide til iSoftBet – innovativt B2B-studio med GAP-aggregeringsplatform, Hold & Win-mekanikker, 200+ slots og tilstedeværelse i 20+ regulerede markeder."
     name="iSoftBet"
+    heroImage={isoftbetHero}
+    heroImageAlt="iSoftBet – innovativt B2B spiludvikler"
     heroSubtitle="iSoftBet er dobbelt-trusselen i online gambling: både en respekteret spiludvikler med 200+ originale slots OG en af branchens førende aggregeringsplatforme via deres GAP-system. Denne dualitet gør dem til en af de mest strategisk interessante aktører i industrien."
     currentPath="/spiludviklere/isoftbet"
     updatedDate="12-03-2026"
