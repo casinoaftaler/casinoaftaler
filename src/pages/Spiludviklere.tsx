@@ -564,7 +564,7 @@ const Spiludviklere = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">De fem arketyper af casino-spiludviklere – en analytisk kategorisering</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Ikke alle spiludviklere konkurrerer i det samme segment. De 12 ledende studier på det danske marked kan kategoriseres i fem distinkte arketyper, hver med en unik filosofi, målgruppe og matematisk profil. At forstå disse arketyper er det første skridt mod en informeret spillestrategi.
+            Ikke alle spiludviklere konkurrerer i det samme segment. De 22 ledende studier på det danske marked kan kategoriseres i fem distinkte arketyper, hver med en unik filosofi, målgruppe og matematisk profil. At forstå disse arketyper er det første skridt mod en informeret spillestrategi.
           </p>
 
           <div className="space-y-4">
