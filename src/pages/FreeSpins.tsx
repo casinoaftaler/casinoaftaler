@@ -780,6 +780,68 @@ const FreeSpins = () => {
           </div>
         </section>
 
+        {/* In-content developer section for free spins */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Populære udviklere med free spins-venlige slots</h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Ikke alle spiludviklere er lige gode til free spins. Disse fire skiller sig ud med høj RTP, engagerende bonusfunktioner og hyppige free spins-kampagner hos danske casinoer.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              {
+                provider: "Pragmatic Play", slug: "pragmatic-play",
+                desc: "Markedsleder med enormt udvalg. Deres slots bruges oftest til free spins-kampagner hos danske casinoer.",
+                slots: [
+                  { name: "Sweet Bonanza", slug: "sweet-bonanza" },
+                  { name: "Gates of Olympus", slug: "gates-of-olympus" },
+                ],
+              },
+              {
+                provider: "NetEnt", slug: "netent",
+                desc: "Branchens pionér med ikoniske titler. Kendt for stabil RTP og lav volatilitet – idéelt til free spins.",
+                slots: [
+                  { name: "Starburst", slug: "starburst" },
+                  { name: "Gonzo's Quest", slug: "gonzos-quest" },
+                ],
+              },
+              {
+                provider: "Play'n GO", slug: "play-n-go",
+                desc: "Innovativ udvikler med bred portefølje. Deres Book of Dead er en af de hyppigst brugte slots til free spins-tilbud.",
+                slots: [
+                  { name: "Book of Dead", slug: "book-of-dead" },
+                  { name: "Fire Joker", slug: "fire-joker" },
+                ],
+              },
+              {
+                provider: "Big Time Gaming", slug: "big-time-gaming",
+                desc: "Opfinderne af Megaways-mekanikken. Tilbyder høj vindpotentiale med varierende volatilitet.",
+                slots: [
+                  { name: "Bonanza", slug: "bonanza" },
+                  { name: "Extra Chilli Megaways", slug: "extra-chilli-megaways" },
+                ],
+              },
+            ].map((dev) => (
+              <div key={dev.slug} className="rounded-xl border border-border bg-card p-5">
+                <Link to={`/spiludviklere/${dev.slug}`} className="text-lg font-semibold text-primary hover:underline">
+                  {dev.provider}
+                </Link>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{dev.desc}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {dev.slots.map((s) => (
+                    <Link
+                      key={s.slug}
+                      to={`/casinospil/spillemaskiner/${s.slug}`}
+                      className="inline-block rounded-md bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                    >
+                      {s.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <Separator className="my-10" />
 
         {/* Free spins som loyalitetsværktøj */}
