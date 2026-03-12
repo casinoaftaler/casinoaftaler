@@ -793,6 +793,7 @@ const Indskudsbonus = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/indskudsbonus" />
+        <BonusMoneyLinks currentPath="/indskudsbonus" />
         <RelatedGuides currentPath="/indskudsbonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om indskudsbonus" faqs={indskudsbonusFaqs} />

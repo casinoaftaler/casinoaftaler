@@ -761,6 +761,7 @@ const BonusUdenIndbetaling = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/bonus-uden-indbetaling" />
+        <BonusMoneyLinks currentPath="/bonus-uden-indbetaling" />
         <RelatedGuides currentPath="/bonus-uden-indbetaling" />
         <FAQSection title="Tekniske spørgsmål om no deposit bonusser" faqs={bonusUdenIndbetalingFaqs} />
         <AuthorBio />

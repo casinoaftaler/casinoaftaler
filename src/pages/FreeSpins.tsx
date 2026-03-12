@@ -912,6 +912,7 @@ const FreeSpins = () => {
 
         <LiveCommunityDataStrip context="bonus" />
         <LatestNewsByCategory pagePath="/free-spins" />
+        <BonusMoneyLinks currentPath="/free-spins" />
         <RelatedGuides currentPath="/free-spins" />
 
         <FAQSection title="Ofte stillede spørgsmål om free spins" faqs={freeSpinsFaqs} />

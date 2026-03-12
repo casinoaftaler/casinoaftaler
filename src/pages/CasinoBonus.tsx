@@ -850,6 +850,7 @@ const CasinoBonus = () => {
 
         <LatestNewsByCategory pagePath="/casino-bonus" />
         <LiveCommunityDataStrip context="bonus" />
+        <BonusMoneyLinks currentPath="/casino-bonus" />
         <RelatedGuides currentPath="/casino-bonus" />
         <FAQSection title="Ofte stillede spørgsmål om casino bonus i Danmark" faqs={casinoBonusFaqs} />
         <AuthorBio />

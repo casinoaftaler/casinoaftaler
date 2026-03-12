@@ -753,6 +753,7 @@ const BonusUdenOmsaetningskrav = () => {
         <Separator className="my-10" />
 
         <LatestNewsByCategory pagePath="/bonus-uden-omsaetningskrav" />
+        <BonusMoneyLinks currentPath="/bonus-uden-omsaetningskrav" />
         <RelatedGuides currentPath="/bonus-uden-omsaetningskrav" />
 
         <FAQSection title="Tekniske spørgsmål om omsætningsfrie bonusser" faqs={faqs} />

@@ -857,6 +857,7 @@ const Omsaetningskrav = () => {
         </section>
 
         <LatestNewsByCategory pagePath="/omsaetningskrav" />
+        <BonusMoneyLinks currentPath="/omsaetningskrav" />
         <RelatedGuides currentPath="/omsaetningskrav" />
 
         <FAQSection title="Ofte stillede spørgsmål om omsætningskrav" faqs={omsaetningskravFaqs} />

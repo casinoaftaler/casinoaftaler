@@ -596,6 +596,7 @@ const ReloadBonus = () => {
         <Separator className="my-10" />
 
         <LatestNewsByCategory pagePath="/reload-bonus" />
+        <BonusMoneyLinks currentPath="/reload-bonus" />
         <RelatedGuides currentPath="/reload-bonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om reload bonus" faqs={reloadFaqs} />

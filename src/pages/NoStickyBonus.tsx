@@ -712,6 +712,7 @@ const NoStickyBonus = () => {
         <Separator className="my-10" />
 
         <LatestNewsByCategory pagePath="/no-sticky-bonus" />
+        <BonusMoneyLinks currentPath="/no-sticky-bonus" />
         <RelatedGuides currentPath="/no-sticky-bonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om No-Sticky Bonus" faqs={noStickyFaqs} />
