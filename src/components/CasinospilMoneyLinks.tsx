@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Gift, Star, Sparkles, CreditCard, Gamepad2 } from "lucide-react";
+import { ArrowRight, Gift, Star, Sparkles, CreditCard, Gamepad2, ShieldCheck } from "lucide-react";
 
 /**
  * Contextual money-page CTA + sibling cross-links for casinospil spoke pages.
  * Bridges informational game-guide intent → commercial pages.
- * ~10 links per page × 29 pages = ~290 new money-page links.
+ * Now includes direct links to specific casino reviews for authority flow.
+ * ~14 links per page × 29 pages = ~400+ money-page links.
  */
 
 interface CasinospilMoneyLinksProps {
@@ -41,6 +42,16 @@ const MONEY_LINKS = [
     getDesc: (_name: string) =>
       `Få det bedste velkomsttilbud – tjek om bordspil bidrager til omsætningskrav.`,
   },
+];
+
+/** Top-rated casinos with strong table game selection for direct review links */
+const TOP_TABLE_CASINOS = [
+  { slug: "betinia", name: "Betinia", score: 4.9 },
+  { slug: "spilleautomaten", name: "Spilleautomaten", score: 4.8 },
+  { slug: "campobet", name: "Campobet", score: 4.7 },
+  { slug: "leovegas", name: "LeoVegas", score: 4.5 },
+  { slug: "bet365", name: "Bet365", score: 4.4 },
+  { slug: "unibet", name: "Unibet", score: 4.3 },
 ];
 
 /** All casinospil sibling pages for cross-linking */
@@ -82,13 +93,20 @@ const CASINOSPIL_SIBLINGS = [
   { to: "/live-casino/game-shows", label: "Game Shows" },
 ];
 
+function simpleHash(str: string): number {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h);
+}
+
 /**
  * Determine which cluster a path belongs to for smart sibling selection.
  */
 function getClusterSiblings(currentPath: string) {
   const all = CASINOSPIL_SIBLINGS.filter((s) => s.to !== currentPath);
 
-  // Show same-cluster siblings first, then cross-cluster picks
   const isBlackjack = currentPath.includes("/blackjack");
   const isRoulette = currentPath.includes("/roulette");
   const isPoker = currentPath.includes("/poker");
@@ -102,12 +120,21 @@ function getClusterSiblings(currentPath: string) {
 
   const crossCluster = all.filter((s) => !sameCluster.includes(s));
 
-  // Show up to 4 same-cluster + 3 cross-cluster
   return [...sameCluster.slice(0, 4), ...crossCluster.slice(0, 3)];
+}
+
+/**
+ * Get rotated casino review links based on current path hash.
+ */
+function getReviewLinks(currentPath: string) {
+  const hash = simpleHash(currentPath);
+  const offset = hash % TOP_TABLE_CASINOS.length;
+  return [...TOP_TABLE_CASINOS, ...TOP_TABLE_CASINOS].slice(offset, offset + 4);
 }
 
 export function CasinospilMoneyLinks({ gameName, currentPath }: CasinospilMoneyLinksProps) {
   const siblings = getClusterSiblings(currentPath);
+  const reviewCasinos = getReviewLinks(currentPath);
 
   return (
     <section className="mb-12">
@@ -138,8 +165,29 @@ export function CasinospilMoneyLinks({ gameName, currentPath }: CasinospilMoneyL
         ))}
       </div>
 
-      {/* Cross-links to sibling casinospil pages */}
+      {/* Direct links to specific casino reviews */}
       <div className="mt-4 rounded-lg border border-border bg-card p-4">
+        <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center gap-1.5">
+          <ShieldCheck className="h-3.5 w-3.5" />
+          Bedste casinoer til {gameName}
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {reviewCasinos.map(({ slug, name, score }) => (
+            <Link
+              key={slug}
+              to={`/casino-anmeldelser/${slug}`}
+              className="inline-flex items-center gap-1.5 rounded-md bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+            >
+              <Star className="h-3 w-3 text-primary" />
+              {name}
+              <span className="text-muted-foreground">({score})</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Cross-links to sibling casinospil pages */}
+      <div className="mt-3 rounded-lg border border-border bg-card p-4">
         <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center gap-1.5">
           <Gamepad2 className="h-3.5 w-3.5" />
           Udforsk flere casinospil
