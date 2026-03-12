@@ -12,6 +12,7 @@ import { CalendarDays, ChevronLeft, ChevronRight, Newspaper, Crown } from "lucid
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 
 const ARTICLES_PER_PAGE = 10;
 
@@ -21,6 +22,10 @@ const CATEGORY_META: Record<string, { label: string; intro: string }> = {
     label: "Alle Nyheder",
     intro: "",
   },
+  generelt: {
+    label: "Generelt",
+    intro: "Generelle nyheder fra det danske casinomarked. Alt fra nye tiltag til branchetrends der påvirker danske spillere.",
+  },
   regulering: {
     label: "Regulering",
     intro: "Følg de seneste ændringer i dansk spillelovgivning og EU-regulering. Vi analyserer nye krav til operatører, ændrede bonusregler og hvordan regulering påvirker din spiloplevelse på danske online casinoer.",
@@ -29,6 +34,10 @@ const CATEGORY_META: Record<string, { label: string; intro: string }> = {
     label: "Licenser",
     intro: "Hold dig opdateret med nye licensudstedelser og -inddragelser fra Spillemyndigheden. Vi dækker hvilke operatører der får dansk licens, og hvad det betyder for udvalget af lovlige casinoer i Danmark.",
   },
+  bonusser: {
+    label: "Bonusser",
+    intro: "De seneste bonusnyheder fra danske casinoer. Nye velkomstbonusser, ændrede omsætningskrav og eksklusive tilbud analyseret af vores redaktion.",
+  },
   "nye-casinoer": {
     label: "Nye Casinoer",
     intro: "De nyeste casino-lanceringer på det danske marked. Vi vurderer nye operatører, deres bonusser og spiludvalg – så du kan træffe informerede valg om de seneste tilføjelser til markedet.",
@@ -36,6 +45,14 @@ const CATEGORY_META: Record<string, { label: string; intro: string }> = {
   betalingsmetoder: {
     label: "Betalingsmetoder",
     intro: "Nyheder om betalingsløsninger på danske casinoer. Fra MobilePay-integrationer til nye fintech-partnerskaber – vi dækker alt der påvirker dine ind- og udbetalingsmuligheder.",
+  },
+  lovgivning: {
+    label: "Lovgivning",
+    intro: "Nyheder om lovgivning der påvirker danske casinoer og spillere. Vi oversætter nye love og bekendtgørelser til forståeligt dansk.",
+  },
+  teknologi: {
+    label: "Teknologi",
+    intro: "Teknologiske nyheder fra iGaming-branchen. AI, blockchain, nye platforme og softwareinnovationer der former fremtidens online casinoer.",
   },
   "markedsbevægelser": {
     label: "Markedsanalyse",
@@ -47,7 +64,7 @@ const CATEGORY_META: Record<string, { label: string; intro: string }> = {
   },
 };
 
-const CATEGORIES = ["alle", "regulering", "licenser", "nye-casinoer", "betalingsmetoder", "markedsbevægelser", "juridisk"];
+const CATEGORIES = ["alle", "generelt", "regulering", "licenser", "bonusser", "nye-casinoer", "betalingsmetoder", "lovgivning", "teknologi", "markedsbevægelser", "juridisk"];
 
 /** PageRank control: page 4+ gets noindex */
 const NOINDEX_THRESHOLD = 4;
@@ -242,7 +259,7 @@ const CasinoNyheder = () => {
                     />
                   )}
                   <div className="flex items-center gap-2 mb-3">
-                    <Badge variant="secondary" className="text-xs">{article.category}</Badge>
+                    <Badge variant="secondary" className="text-xs">{getCategoryLabel(article.category)}</Badge>
                     {(article as any).is_cornerstone && (
                       <Badge variant="default" className="text-xs flex items-center gap-1">
                         <Crown className="h-3 w-3" />

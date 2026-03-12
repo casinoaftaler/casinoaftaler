@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -501,7 +502,7 @@ export default function ForfatterKevin() {
               >
                 <div className="mb-2 flex items-center gap-2">
                   <Badge variant="secondary" className="text-xs">
-                    {article.category}
+                    {getCategoryLabel(article.category)}
                   </Badge>
                 </div>
                 <h3 className="text-base font-semibold group-hover:text-primary transition-colors mb-1">

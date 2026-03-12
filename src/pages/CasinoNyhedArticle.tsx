@@ -12,6 +12,7 @@ import { useRelatedNews } from "@/hooks/useRelatedNews";
 import { buildArticleSchema, buildFaqSchema, SITE_URL, AJSE_SAME_AS } from "@/lib/seo";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
+import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 import { CalendarDays, Loader2, Newspaper, Crown, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -145,7 +146,7 @@ const CasinoNyhedArticle = () => {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Badge variant="secondary">
                 <Newspaper className="mr-1.5 h-3.5 w-3.5" />
-                {article.category}
+                {getCategoryLabel(article.category)}
               </Badge>
               {isCornerstone && (
                 <Badge variant="default" className="flex items-center gap-1">
