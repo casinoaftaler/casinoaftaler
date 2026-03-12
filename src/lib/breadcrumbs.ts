@@ -453,6 +453,16 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/spillemaskiner/relax-gaming": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
   "/spillemaskiner/red-tiger": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
   "/spillemaskiner/igt": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/thunderkick": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/blueprint-gaming": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/push-gaming": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/quickspin": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/isoftbet": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/betsoft": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/wazdan": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/endorphina": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/stakelogic": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/spillemaskiner/booming-games": [{ name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
 
   // /casinospil/roulette-strategi – removed (301 redirect to /casinospil/roulette)
 

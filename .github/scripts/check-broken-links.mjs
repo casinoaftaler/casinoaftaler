@@ -1,8 +1,9 @@
 /**
- * Broken Internal Link Checker
+ * Broken Internal Link Checker + Orphan Page Detector
  *
  * Scans all .tsx files in src/ for internal links (<Link to="...">, href="/...")
  * and verifies they resolve to a known route in seoRoutes.ts or App.tsx routes.
+ * Also detects orphan/near-orphan pages (routes with 0 or <2 internal links).
  *
  * Usage: node .github/scripts/check-broken-links.mjs
  */
@@ -11,7 +12,6 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, extname } from "node:path";
 
 // ── Known valid routes ─────────────────────────────────────────
-// We extract paths from seoRoutes.ts + add known dynamic/excluded routes
 
 const SEOROUTES_PATH = "src/lib/seoRoutes.ts";
 
@@ -104,29 +104,45 @@ function getLine(content, index) {
 // ── Validation ─────────────────────────────────────────────────
 
 function isValidRoute(path, seoRoutes) {
-  // Skip external, anchor-only, or template literal paths
   if (!path.startsWith("/")) return true;
   if (EXTERNAL_PREFIXES.some((p) => path.startsWith(p) && p !== "/")) return true;
-  if (path.includes("${") || path.includes("{")) return true; // template literals
+  if (path.includes("${") || path.includes("{")) return true;
 
-  // Strip query params and hash
   const cleanPath = path.split("?")[0].split("#")[0];
 
-  // Check static routes
   if (seoRoutes.has(cleanPath)) return true;
   if (KNOWN_DYNAMIC_ROUTES.has(cleanPath)) return true;
-
-  // Check dynamic patterns
   if (DYNAMIC_PATTERNS.some((pattern) => pattern.test(cleanPath))) return true;
 
   return false;
 }
 
+// ── Orphan Page Detection ──────────────────────────────────────
+
+function buildInboundLinkCounts(files) {
+  /** @type {Map<string, number>} path → count of files linking to it */
+  const counts = new Map();
+
+  for (const file of files) {
+    const links = extractInternalLinks(file);
+    // Deduplicate per file so one file counts as 1 inbound regardless of link count
+    const uniquePaths = new Set(
+      links
+        .map((l) => l.path.split("?")[0].split("#")[0])
+        .filter((p) => p.startsWith("/"))
+    );
+    for (const p of uniquePaths) {
+      counts.set(p, (counts.get(p) || 0) + 1);
+    }
+  }
+  return counts;
+}
+
 // ── Main ───────────────────────────────────────────────────────
 
 function main() {
-  console.log("\n🔗 Broken Internal Link Checker");
-  console.log("─".repeat(50));
+  console.log("\n🔗 Broken Internal Link Checker + Orphan Detector");
+  console.log("─".repeat(55));
 
   const seoRoutes = extractSeoRoutePaths();
   console.log(`📋 Known SEO routes: ${seoRoutes.size}`);
@@ -135,6 +151,7 @@ function main() {
   const files = getAllTsxFiles("src");
   console.log(`📁 Scanning ${files.length} files...\n`);
 
+  // ── 1. Broken links ──────────────────────────────────────────
   const broken = [];
 
   for (const file of files) {
@@ -148,17 +165,52 @@ function main() {
 
   if (broken.length === 0) {
     console.log("✅ No broken internal links found!");
-    process.exit(0);
+  } else {
+    console.log(`❌ Found ${broken.length} potentially broken link(s):\n`);
+    for (const item of broken) {
+      console.log(`  ${item.file}:${item.line}`);
+      console.log(`    → ${item.path}\n`);
+    }
   }
 
-  console.log(`❌ Found ${broken.length} potentially broken link(s):\n`);
-  for (const item of broken) {
-    console.log(`  ${item.file}:${item.line}`);
-    console.log(`    → ${item.path}\n`);
+  // ── 2. Orphan / near-orphan detection ────────────────────────
+  console.log("\n" + "─".repeat(55));
+  console.log("👻 Orphan & Near-Orphan Page Analysis\n");
+
+  const inboundCounts = buildInboundLinkCounts(files);
+
+  const orphans = []; // 0 inbound links
+  const nearOrphans = []; // 1 inbound link (< 2)
+
+  for (const route of seoRoutes) {
+    const count = inboundCounts.get(route) || 0;
+    if (count === 0) {
+      orphans.push(route);
+    } else if (count < 2) {
+      nearOrphans.push({ path: route, count });
+    }
   }
 
-  // In CI, exit with error code
-  if (process.env.CI) {
+  if (orphans.length === 0) {
+    console.log("✅ No orphan pages found (all SEO routes have ≥1 inbound link)");
+  } else {
+    console.log(`⚠️  Found ${orphans.length} orphan page(s) (0 inbound links):\n`);
+    for (const path of orphans) {
+      console.log(`  🔴 ${path}`);
+    }
+  }
+
+  if (nearOrphans.length > 0) {
+    console.log(`\n⚠️  Found ${nearOrphans.length} near-orphan page(s) (<2 inbound links):\n`);
+    for (const item of nearOrphans) {
+      console.log(`  🟡 ${item.path} (${item.count} link)`);
+    }
+  }
+
+  console.log("\n" + "─".repeat(55));
+
+  // Exit with error in CI if broken links found
+  if (broken.length > 0 && process.env.CI) {
     process.exit(1);
   }
 }
