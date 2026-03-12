@@ -523,6 +523,42 @@ const CasinoBonus = () => {
             Dit valg af <Link to="/spillemaskiner" className={linkClass}>spillemaskine</Link> har enorm indflydelse på bonusværdien. En slot med 97% <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> (3% house edge) versus 94% RTP (6% house edge) ændrer EV dramatisk. For case 1 ovenfor: Med 97% RTP falder tabet til 600 kr. (EV = +400 kr.), mens 94% RTP øger tabet til 1.200 kr. (EV = −200 kr. – bonussen er nu en nettonegativ!). Populære valg til bonusomsætning inkluderer <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (96,48 % RTP) og <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (96,50 % RTP). Tjek vores <Link to="/spillemaskiner-hoej-rtp" className={linkClass}>spillemaskiner med høj RTP</Link> for de bedste wagering-kandidater. Vælg altid spil med mindst 96% RTP under bonusomsætning – og vær opmærksom på spillets <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link>, der påvirker din bust-risiko.
           </p>
 
+          {/* In-content slot recommendations for wagering */}
+          <div className="my-8 rounded-xl border border-border bg-card p-6">
+            <h3 className="mb-2 text-xl font-semibold">Bedste spillemaskiner til bonusomsætning</h3>
+            <p className="mb-4 text-sm text-muted-foreground leading-relaxed">
+              Disse slots kombinerer høj RTP med lav-medium volatilitet – idéelt til at opfylde omsætningskrav med minimal bust-risiko.
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { name: "Starburst", slug: "starburst", rtp: "96,09%", vol: "Lav", provider: "netent", providerName: "NetEnt" },
+                { name: "Book of Dead", slug: "book-of-dead", rtp: "96,21%", vol: "Høj", provider: "play-n-go", providerName: "Play'n GO" },
+                { name: "Fire Joker", slug: "fire-joker", rtp: "96,15%", vol: "Lav", provider: "play-n-go", providerName: "Play'n GO" },
+                { name: "Sweet Bonanza", slug: "sweet-bonanza", rtp: "96,48%", vol: "Medium-Høj", provider: "pragmatic-play", providerName: "Pragmatic Play" },
+                { name: "Wolf Gold", slug: "wolf-gold", rtp: "96,01%", vol: "Medium", provider: "pragmatic-play", providerName: "Pragmatic Play" },
+                { name: "Gonzo's Quest", slug: "gonzos-quest", rtp: "95,97%", vol: "Medium", provider: "netent", providerName: "NetEnt" },
+              ].map((slot) => (
+                <div key={slot.slug} className="rounded-lg border border-border bg-background p-3">
+                  <Link to={`/casinospil/spillemaskiner/${slot.slug}`} className="font-semibold text-primary hover:underline">
+                    {slot.name}
+                  </Link>
+                  <p className="text-xs text-muted-foreground mt-1">RTP: {slot.rtp} · Volatilitet: {slot.vol}</p>
+                  <div className="mt-2 flex gap-2">
+                    <Link to={`/slot-katalog/${slot.slug}`} className="text-xs text-muted-foreground hover:text-primary transition-colors">
+                      Statistik →
+                    </Link>
+                    <Link to={`/spiludviklere/${slot.provider}`} className="text-xs text-muted-foreground hover:text-primary transition-colors">
+                      {slot.providerName} →
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-xs text-muted-foreground">
+              Se flere muligheder i vores <Link to="/slot-database" className={linkClass}>slot database</Link> eller udforsk <Link to="/spillemaskiner-hoej-rtp" className={linkClass}>slots med høj RTP</Link>.
+            </p>
+          </div>
+
           <h3 className="mb-3 mt-6 text-xl font-semibold">Max. indsats og dens konsekvenser</h3>
           <p className="text-muted-foreground leading-relaxed">
             De fleste danske casinoer har en <Link to="/ordbog/max-bet" className={linkClass}>max. indsats</Link> på 25-50 kr. pr. spin under bonusomsætning. Overskridelse kan annullere hele bonussen og alle gevinster. Med 20.000 kr. i omsætningskrav og 25 kr. max. indsats skal du spille mindst 800 spins for at fuldføre omsætningen. Det tager typisk 2-4 timer – en realistisk tidsramme. Men med 10 kr. max. indsats kræves 2.000 spins, hvilket kan tage 6-10 timer. Factor dette ind, når du vurderer bonusværdien.
