@@ -218,6 +218,7 @@ const developerTeasers = [
   {
     name: "Booming Games",
     slug: "booming-games",
+    logo: boomingGamesLogo,
     teaser: "Booming Games opererer fra Isle of Man med en strategi fokuseret på emerging markets og niche-temaer. Deres proprietære Felt-teknologi sikrer hurtig cross-platform-kompatibilitet. Gold Gold Gold, TNT Bonanza og Cash Pig demonstrerer en tilgængelig stil med medium volatilitet og RTP-værdier i 95,5-96,5%-intervallet. Booming Games distribuerer via 100+ operatører globalt og er licenseret af MGA, UKGC og Spillemyndigheden.",
   },
 ];
