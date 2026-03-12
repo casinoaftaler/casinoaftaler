@@ -572,14 +572,15 @@ const Spiludviklere = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Flame className="h-5 w-5 text-primary" />
-                  🎰 High-Volatility-Specialister – Nolimit City, Hacksaw Gaming
+                  🎰 High-Volatility-Specialister – Nolimit City, Hacksaw Gaming, Push Gaming
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>
                   Disse studier designer spil til spillere, der accepterer lange tørrperioder til gengæld for potentielt livsendrende gevinster.{" "}
-                  <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>s proprietære xWays/xNudge-mekanikker og{" "}
-                  <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link>s stiliserede instant win-formater deler filosofien: komprimere hele gevinstpotentialet i sjældne, eksplosive bonusrunder. Gevinstlofter på 50.000-150.000x indsatsen er normen. Hit frequency: 12-18%.
+                  <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>s proprietære xWays/xNudge-mekanikker,{" "}
+                  <Link to="/spiludviklere/hacksaw-gaming" className="text-primary underline hover:text-primary/80">Hacksaw Gaming</Link>s stiliserede instant win-formater og{" "}
+                  <Link to="/spiludviklere/push-gaming" className="text-primary underline hover:text-primary/80">Push Gaming</Link>s eksplosive cluster-pay-slots (Jammin' Jars 2, Razor Shark) deler filosofien: komprimere hele gevinstpotentialet i sjældne, eksplosive bonusrunder. Gevinstlofter på 50.000-150.000x indsatsen er normen. Hit frequency: 12-18%.
                 </p>
                 <p><strong>Målgruppe:</strong> Erfarne spillere med høj risikotolerance, solid bankroll-management og forståelse for statistisk varians. Absolut frarådet til bonusomsætning.</p>
               </CardContent>
