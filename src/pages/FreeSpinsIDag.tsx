@@ -236,7 +236,7 @@ const FreeSpinsIDag = () => {
   const featured = allBest.find(o => {
     if (o.wagering_requirement) {
       const wm = o.wagering_requirement.match(/(\d+)/);
-      if (wm && parseInt(wm[1], 10) > 40) return false;
+      if (wm && parseInt(wm[1], 10) > 10) return false;
     }
     return true;
   }) || allBest[0] || null;
