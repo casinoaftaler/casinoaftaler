@@ -132,6 +132,9 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bThunderkick\b/], href: "/spiludviklere/thunderkick", anchor: "Thunderkick" },
   { patterns: [/\bBlueprint Gaming\b/i], href: "/spiludviklere/blueprint-gaming", anchor: "Blueprint Gaming" },
   { patterns: [/\bPush Gaming\b/i], href: "/spiludviklere/push-gaming", anchor: "Push Gaming" },
+  { patterns: [/\bQuickspin\b/], href: "/spiludviklere/quickspin", anchor: "Quickspin" },
+  { patterns: [/\biSoftBet\b/i], href: "/spiludviklere/isoftbet", anchor: "iSoftBet" },
+  { patterns: [/\bBetsoft\b/i], href: "/spiludviklere/betsoft", anchor: "Betsoft" },
 
   // Game type money-pages
   { patterns: [/\blive blackjack\b/i], href: "/live-casino/blackjack", anchor: "" },
