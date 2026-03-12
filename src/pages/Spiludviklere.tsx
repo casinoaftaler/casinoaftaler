@@ -626,7 +626,7 @@ const Spiludviklere = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Sparkles className="h-5 w-5 text-primary" />
-                  🎮 Feature-Drevne Innovatører – Big Time Gaming, Relax Gaming, Yggdrasil, ELK Studios
+                  🎮 Feature-Drevne Innovatører – Big Time Gaming, Relax Gaming, Yggdrasil, ELK Studios, Wazdan, Thunderkick
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
@@ -635,7 +635,9 @@ const Spiludviklere = () => {
                   <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link> opfandt Megaways;{" "}
                   <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gaming</Link> lancerede Dream Drop-jackpotsystemet;{" "}
                   <Link to="/spiludviklere/yggdrasil" className="text-primary underline hover:text-primary/80">Yggdrasil</Link> introducerede GigaBlox og Splitz;{" "}
-                  <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link> udviklede Betting Strategies. Deres fælles kendetegn er, at de konstant udfordrer branchens konventioner og skaber nye spilmekanikker, der licenseres af andre udviklere.
+                  <Link to="/spiludviklere/elk-studios" className="text-primary underline hover:text-primary/80">ELK Studios</Link> udviklede Betting Strategies;{" "}
+                  <Link to="/spiludviklere/wazdan" className="text-primary underline hover:text-primary/80">Wazdan</Link> opfandt Volatility Levels™ (spillervalgt volatilitet);{" "}
+                  <Link to="/spiludviklere/thunderkick" className="text-primary underline hover:text-primary/80">Thunderkick</Link> satte standarden for kunstnerisk boutique-design. Deres fælles kendetegn er, at de konstant udfordrer branchens konventioner og skaber nye spilmekanikker.
                 </p>
                 <p><strong>Målgruppe:</strong> Teknik-interesserede spillere, der søger nye gameplay-oplevelser og er villige til at udforske ukendte mekanikker.</p>
               </CardContent>
