@@ -276,16 +276,16 @@ export const seoRoutes: SeoRoute[] = ([
 
   // ── Casino Guides ──
   // Hub is 0.9 – all spokes capped at 0.8 to maintain strict crawl hierarchy
-  { path: "/casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-08" },
-  { path: "/casinoer/hurtig-udbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
-  { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
-  { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
+  { path: "/casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-04" },
+  { path: "/casinoer/hurtig-udbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
+  { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
+  { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   // /licenserede-casinoer excluded – 301 redirects to /casino-licenser
-  { path: "/casino-licenser", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-08" },
-  { path: "/casinoer/vr-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
-  { path: "/casinoer/mobil-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
-  { path: "/casinoer/spil-casino-for-sjov", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
-  { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
+  { path: "/casino-licenser", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-04" },
+  { path: "/casinoer/vr-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
+  { path: "/casinoer/mobil-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
+  { path: "/casinoer/spil-casino-for-sjov", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
+  { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
 
   // ── Casino Nyheder ──
   // Hub only – article entries are dynamically generated in sitemap-news.xml
