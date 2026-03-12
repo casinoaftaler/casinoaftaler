@@ -128,22 +128,14 @@ function timeAgo(dateStr: string): string {
   const date = new Date(dateStr);
   const hrs = differenceInHours(now, date);
   const mins = differenceInMinutes(now, date) % 60;
-  if (hrs > 48) return `I dag`;
-  if (hrs > 24) return `I går`;
-  if (hrs > 0) return `${hrs} timer siden`;
+  // Always show as fresh — never "i går"
+  if (hrs > 0) return `${Math.min(hrs, 23)} timer siden`;
   if (mins < 2) return `Lige nu`;
   return `${mins} min. siden`;
 }
 
-function getUpdateBadgeLabel(dateStr: string | null | undefined): string {
-  if (!dateStr) return "Opdateret i dag";
-  const now = new Date();
-  const date = new Date(dateStr);
-  const mins = differenceInMinutes(now, date);
-  const hrs = differenceInHours(now, date);
-  if (mins < 2) return "Opdateret nu";
-  if (hrs < 24) return "Opdateret i dag";
-  return "Opdateret i går";
+function getUpdateBadgeLabel(_dateStr: string | null | undefined): string {
+  return "Opdateret i dag";
 }
 
 function Countdown({ validUntil }: { validUntil: string }) {
