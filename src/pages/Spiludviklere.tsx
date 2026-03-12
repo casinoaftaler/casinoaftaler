@@ -194,6 +194,7 @@ const developerTeasers = [
   {
     name: "Betsoft",
     slug: "betsoft",
+    logo: betsoftLogo,
     teaser: "Betsoft var pionerer inden for 3D-cinematiske slots med deres SLOTS3-teknologi, der introducerede filmkvalitets-animationer til online casinospil. Good Girl Bad Girl, The Slotfather og Sugar Pop demonstrerer den visuelle ambition. Betsofts slots opererer typisk med lav-til-medium volatilitet og RTP-værdier i 95,0-97,1%-intervallet, hvilket gør dem ideelle til casual spillere og bonusomsætning.",
   },
   {
