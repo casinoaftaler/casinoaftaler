@@ -115,17 +115,25 @@ function useSimilarSlots(provider: string | null, currentName: string | null, vo
         .select("slot_name, rtp, volatility, bonus_count, highest_x, slug")
         .eq("provider", provider)
         .order("bonus_count", { ascending: false })
-        .limit(20);
+        .limit(50);
       if (error) throw error;
-      return (data || [])
+      // Build pool: exclude current slot, sort by volatility match then bonus_count
+      const pool = (data || [])
         .filter((s) => s.slot_name !== currentName)
         .sort((a, b) => {
           const aMatch = a.volatility === volatility ? 1 : 0;
           const bMatch = b.volatility === volatility ? 1 : 0;
           if (aMatch !== bMatch) return bMatch - aMatch;
           return (b.bonus_count || 0) - (a.bonus_count || 0);
-        })
-        .slice(0, 8);
+        });
+      if (pool.length === 0) return [];
+      // Hash-based rotation: deterministic offset per slot name
+      const offset = Math.abs(hashStr(currentName || "")) % pool.length;
+      const result: typeof pool = [];
+      for (let i = 0; i < Math.min(8, pool.length); i++) {
+        result.push(pool[(offset + i) % pool.length]);
+      }
+      return result;
     },
     enabled: !!provider && !!currentName,
     staleTime: 300000,
