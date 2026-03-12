@@ -590,15 +590,17 @@ const Spiludviklere = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Gamepad2 className="h-5 w-5 text-primary" />
-                  🎲 Klassiske Slot-Producenter – NetEnt, Play'n GO, Microgaming
+                  🎲 Klassiske Slot-Producenter – NetEnt, Play'n GO, Microgaming, Betsoft, Endorphina
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>
-                  De tre grundpiller i online casinobranchen tilbyder brede kataloger med overvejende lav-til-medium volatilitet.{" "}
+                  Grundpillerne i online casinobranchen tilbyder brede kataloger med overvejende lav-til-medium volatilitet.{" "}
                   <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> (Starburst, Gonzo's Quest),{" "}
-                  <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> (Book of Dead, Reactoonz) og{" "}
-                  <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> (Mega Moolah, Immortal Romance) prioriterer tilgængelighed, konsistens og bred appel. Deres spil har den højeste hit frequency og de mest forudsigelige sessions.
+                  <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> (Book of Dead, Reactoonz),{" "}
+                  <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link> (Mega Moolah, Immortal Romance),{" "}
+                  <Link to="/spiludviklere/betsoft" className="text-primary underline hover:text-primary/80">Betsoft</Link> (3D-cinematiske slots) og{" "}
+                  <Link to="/spiludviklere/endorphina" className="text-primary underline hover:text-primary/80">Endorphina</Link> (Book of Santa, Lucky Streak) prioriterer tilgængelighed, konsistens og bred appel. Deres spil har den højeste hit frequency og de mest forudsigelige sessions.
                 </p>
                 <p><strong>Målgruppe:</strong> Alle spillertyper, men særligt casual spillere, bonusjægere og spillere med moderate bankrolls. Ideelle til bonusomsætning.</p>
               </CardContent>
