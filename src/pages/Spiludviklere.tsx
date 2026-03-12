@@ -647,15 +647,35 @@ const Spiludviklere = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Star className="h-5 w-5 text-primary" />
-                  🏛 Jackpot- og Legacy-Udviklere – Microgaming, Red Tiger
+                  🏛 Jackpot- og Legacy-Udviklere – Microgaming, Red Tiger, Blueprint Gaming
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>
-                  <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link>s progressive jackpot-netværk (Mega Moolah-serien) har udbetalt over €1,5 milliard i præmier siden lanceringen – inklusive verdensrekorden på €19,4 millioner fra et enkelt spin.{" "}
-                  <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link>s Daily Drop Jackpots garanterer daglige udbetalinger, hvilket tilbyder en unik kombination af jackpot-spænding med forudsigelig udbetalingsfrekvens. Begge opererer med lavere basis-RTP (88-95%) for at finansiere jackpot-puljerne.
+                  <Link to="/spiludviklere/microgaming" className="text-primary underline hover:text-primary/80">Microgaming</Link>s progressive jackpot-netværk (Mega Moolah-serien) har udbetalt over €1,5 milliard i præmier.{" "}
+                  <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link>s Daily Drop Jackpots garanterer daglige udbetalinger.{" "}
+                  <Link to="/spiludviklere/blueprint-gaming" className="text-primary underline hover:text-primary/80">Blueprint Gaming</Link>s Jackpot King-netværk tilbyder progressive jackpots på tværs af licenserede titler som Fishin' Frenzy og Eye of Horus. Alle tre opererer med lavere basis-RTP (88-95%) for at finansiere jackpot-puljerne.
                 </p>
                 <p><strong>Målgruppe:</strong> Spillere, der drømmer om livsendrende enkeltgevinster og accepterer den lavere basis-RTP som "prisen" for jackpot-muligheden.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-primary/20">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Layers className="h-5 w-5 text-primary" />
+                  🔗 Platforme & Aggregeringsspecialister – iSoftBet, Stakelogic, Quickspin, Booming Games
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-2">
+                <p>
+                  Disse studier kombinerer egne spil med distribution- eller platformstjenester.{" "}
+                  <Link to="/spiludviklere/isoftbet" className="text-primary underline hover:text-primary/80">iSoftBet</Link>s GAP-aggregeringsplatform distribuerer 70+ partnerstudier;{" "}
+                  <Link to="/spiludviklere/stakelogic" className="text-primary underline hover:text-primary/80">Stakelogic</Link> kombinerer Novomatic-arven med live casino-innovation;{" "}
+                  <Link to="/spiludviklere/quickspin" className="text-primary underline hover:text-primary/80">Quickspin</Link>s Achievement Engine revolutionerede gamification; og{" "}
+                  <Link to="/spiludviklere/booming-games" className="text-primary underline hover:text-primary/80">Booming Games</Link> fokuserer på emerging markets med 100+ operatørpartnere.
+                </p>
+                <p><strong>Målgruppe:</strong> Spillere, der ønsker bred dækning og ofte opdagelse af nye titler fra mindre kendte studios.</p>
               </CardContent>
             </Card>
           </div>
