@@ -167,7 +167,7 @@ export function PaymentMethodPage({
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
     about: [
-      { "@type": "Product", name, url: `${SITE_URL}${currentPath}` },
+      { "@type": "Thing", name, url: `${SITE_URL}${currentPath}` },
     ],
     mentions: [
       { "@type": "Thing", name: "Online Casino", url: `${SITE_URL}/casino-anmeldelser` },

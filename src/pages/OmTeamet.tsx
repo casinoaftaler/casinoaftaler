@@ -53,7 +53,7 @@ const OmTeamet = () => {
     "@id": "https://casinoaftaler.dk/#organization",
     name: "Casinoaftaler.dk",
     url: "https://casinoaftaler.dk",
-    dateModified: "2026-02-26",
+    
     logo: {
       "@type": "ImageObject",
       url: "https://casinoaftaler.dk/icon-512x512.png",

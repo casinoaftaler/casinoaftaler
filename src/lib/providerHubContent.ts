@@ -245,6 +245,176 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
       { question: "Hvad er de mest kendte IGT spillemaskiner?", answer: "De mest ikoniske IGT slots inkluderer Cleopatra, Da Vinci Diamonds, Wheel of Fortune og Siberian Storm. Disse titler er globale klassikere der har været populære i årtier både online og i fysiske casinoer." },
     ],
   },
+  "stakelogic": {
+    displayName: "Stakelogic",
+    seoTitle: "Stakelogic Slots – Spillemaskiner, RTP & Statistik",
+    metaDescription: "Alle Stakelogic spillemaskiner med RTP, volatilitet og Super Stake data. Ægte bonus hunt statistik fra danske streams.",
+    datePublished: "2026-03-13",
+    introHtml: `
+      <p>Stakelogic er en hollandsk spiludvikler der har gjort sig bemærket med deres innovative Super Stake-feature og høj volatilitet. Studiet, der oprindeligt er et datterselskab af Novomatic, har skabt sin egen identitet med et voksende katalog af slots der kombinerer klassisk gameplay med moderne mekanikker.</p>
+      <p>Super Stake er Stakelogics signaturfeature – en valgfri tilkøbsfunktion der fordobler indsatsen for at aktivere ekstra wild-symboler og bonuschancer. Denne mekanik giver spillere mere kontrol over risk/reward-balancen og har gjort Stakelogic-slots til favoritter blandt strategiske spillere.</p>
+      <p>RTP-niveauerne hos Stakelogic varierer typisk mellem 95% og 96.5%, og med Super Stake aktiveret stiger den effektive RTP ofte markant. Deres slots spænder fra klassiske frugtmaskiner i Novomatic-traditionen til moderne videoslots med advanced bonusrunder.</p>
+      <p>Se alle Stakelogic spillemaskiner i vores database herunder med ægte bonus hunt data og performance-statistik fra vores community.</p>
+    `,
+    faqs: [
+      { question: "Hvad er Stakelogic Super Stake?", answer: "Super Stake er Stakelogics unikke tilkøbsfeature der fordobler indsatsen for at aktivere ekstra wild-symboler og forbedrede bonuschancer. Det giver spillere mulighed for at øge volatiliteten og gevinstpotentialet." },
+      { question: "Hvad er RTP på Stakelogic slots?", answer: "Stakelogic slots har typisk en RTP mellem 95% og 96.5%. Med Super Stake aktiveret kan den effektive RTP stige yderligere." },
+      { question: "Er Stakelogic relateret til Novomatic?", answer: "Ja, Stakelogic er oprindeligt et datterselskab af den østrigske gigant Novomatic. De har dog skabt deres egen identitet med unikke features som Super Stake." },
+    ],
+  },
+  "endorphina": {
+    displayName: "Endorphina",
+    seoTitle: "Endorphina Slots – Spillemaskiner, RTP & Statistik",
+    metaDescription: "Komplet Endorphina slot-katalog med RTP, volatilitet og bonus hunt resultater. Ægte community-data fra danske streams.",
+    datePublished: "2026-03-13",
+    introHtml: `
+      <p>Endorphina er et tjekkisk spiludviklerstudie der har specialiseret sig i visuelt stilrene spillemaskiner med fokus på kryptovaluta-integration og asiatiske markeder. Siden grundlæggelsen i 2012 har Endorphina opbygget et solidt katalog af slots med rene linjer og gennemtænkt matematik.</p>
+      <p>Endorphinas slots er kendetegnet ved et minimalistisk design og en klassisk tilgang til gameplay. De fokuserer på velafprøvede mekanikker som expanding wilds, free spins og gamble-features, kombineret med temaer der spænder fra oldtidens Egypten til moderne popkultur.</p>
+      <p>RTP-niveauerne ligger typisk mellem 95% og 96%, med volatilitet der primært falder i medium til high kategorien. Deres slots appellerer til spillere der foretrækker ren, ukompliceret gameplay uden overdrevne special-features.</p>
+      <p>Udforsk alle Endorphina spillemaskiner nedenfor med ægte statistik fra vores bonus hunts og community-data.</p>
+    `,
+    faqs: [
+      { question: "Hvad er Endorphina kendt for?", answer: "Endorphina er kendt for visuelt stilrene slots med klassisk gameplay-tilgang. De fokuserer på velafprøvede mekanikker og har et voksende katalog af tematisk varierede spillemaskiner." },
+      { question: "Hvad er RTP på Endorphina slots?", answer: "Endorphina slots har typisk en RTP mellem 95% og 96%, med medium til high volatilitet. Deres matematiske modeller er gennemtestede og konkurrencedygtige." },
+      { question: "Er Endorphina slots tilgængelige i Danmark?", answer: "Ja, Endorphina slots er tilgængelige på flere danske licenserede casinoer. Udvalget kan dog variere fra casino til casino." },
+    ],
+  },
+  "betsoft": {
+    displayName: "Betsoft",
+    seoTitle: "Betsoft Slots – Spillemaskiner, RTP & Statistik",
+    metaDescription: "Alle Betsoft spillemaskiner med 3D-grafik, RTP og volatilitet. Bonus hunt data og ægte statistik fra danske streams.",
+    datePublished: "2026-03-13",
+    introHtml: `
+      <p>Betsoft er en pioner inden for 3D-spillemaskiner og har siden 2006 leveret visuelt imponerende slots der skiller sig markant ud fra konkurrenterne. Deres Slots3-serie var en af de første der introducerede cinematisk 3D-grafik i online casino-verdenen.</p>
+      <p>Betsofts slots er kendetegnet ved deres dybe narrative elementer og filmiske kvalitet. Titler som Good Girl Bad Girl, The Slotfather og At the Copa har demonstreret studiets evne til at skabe engagerende fortællinger kombineret med solide slot-mekanikker.</p>
+      <p>RTP-niveauerne hos Betsoft varierer typisk mellem 95% og 97%, med volatilitet der primært falder i low til medium kategorien. Deres slots appellerer til spillere der prioriterer visuel kvalitet og underholdningsværdi højt.</p>
+      <p>Se alle Betsoft spillemaskiner i vores database herunder med ægte performance-data og bonus hunt statistik fra vores community.</p>
+    `,
+    faqs: [
+      { question: "Hvad er Betsoft kendt for?", answer: "Betsoft er primært kendt for deres banebrydende 3D-grafik og cinematiske slots. Deres Slots3-serie var en af de første der bragte filmisk kvalitet til online spillemaskiner." },
+      { question: "Hvad er RTP på Betsoft slots?", answer: "Betsoft slots har generelt konkurrencedygtige RTP-værdier mellem 95% og 97%. Volatiliteten er typisk low til medium, hvilket giver hyppigere men mindre gevinster." },
+      { question: "Er Betsoft slots mobile-venlige?", answer: "Ja, Betsoft har ombygget hele deres katalog til HTML5 under deres ToGo-platform, hvilket sikrer fuld mobilkompatibilitet på tværs af alle enheder." },
+    ],
+  },
+  "isoftbet": {
+    displayName: "iSoftBet",
+    seoTitle: "iSoftBet Slots – Spillemaskiner, RTP & Statistik",
+    metaDescription: "Komplet iSoftBet slot-katalog med RTP, volatilitet og bonus hunt data. Ægte community-statistik fra danske streams.",
+    datePublished: "2026-03-13",
+    introHtml: `
+      <p>iSoftBet er en London-baseret spiludvikler der har opbygget et bredt og varieret slot-katalog siden 2010. Studiet er kendt for sin GAP (Game Aggregation Platform) der distribuerer spil fra flere udviklere, men producerer også en solid portefølje af egne spillemaskiner.</p>
+      <p>iSoftBets egne slots dækker et bredt tematisk spektrum – fra historiske civilisationer og mytologi til moderne popkultur. Deres Hold & Win-mekanik og Megaways-licenserede titler demonstrerer studiets evne til at adoptere populære gameplay-trends.</p>
+      <p>RTP-niveauerne hos iSoftBet ligger typisk mellem 94% og 96%, med volatilitet der varierer bredt fra low til high. Denne diversitet gør dem til et studie med noget for enhver spillerstil.</p>
+      <p>Udforsk alle iSoftBet spillemaskiner nedenfor med ægte data fra vores bonus hunts og community.</p>
+    `,
+    faqs: [
+      { question: "Hvad er iSoftBets GAP-platform?", answer: "GAP (Game Aggregation Platform) er iSoftBets aggregeringsplatform der distribuerer spil fra flere udviklere til casinoer. Det gør iSoftBet til både en spiludvikler og en distributør." },
+      { question: "Hvad er RTP på iSoftBet slots?", answer: "iSoftBet slots har typisk en RTP mellem 94% og 96%, med varierende volatilitet. Deres katalog inkluderer både lavvolatile underholdningsslots og højvolatile bonus hunt-favoritter." },
+      { question: "Er iSoftBet slots tilgængelige i Danmark?", answer: "Ja, iSoftBet slots er tilgængelige på danske licenserede casinoer. Udvalget afhænger af det individuelle casinos aftale med iSoftBet." },
+    ],
+  },
+  "booming-games": {
+    displayName: "Booming Games",
+    seoTitle: "Booming Games Slots – Spillemaskiner, RTP & Statistik",
+    metaDescription: "Alle Booming Games spillemaskiner med RTP, volatilitet og bonus hunt resultater. Ægte data fra danske community streams.",
+    datePublished: "2026-03-13",
+    introHtml: `
+      <p>Booming Games er et Isle of Man-baseret studie der siden 2014 har specialiseret sig i at levere et stort volumen af kvalitetsslots til det globale marked. Med over 100 titler i kataloget dækker de et imponerende bredt tematisk spektrum.</p>
+      <p>Booming Games' slots er kendetegnet ved solid grafik, intuitive brugerflader og gennemtænkte bonusrunder. Deres Burning-serie og cash collect-mekanikker har vist sig populære blandt spillere der søger klassisk underholdning med moderne twist.</p>
+      <p>RTP-niveauerne ligger typisk mellem 95% og 96.5%, med volatilitet der primært falder i medium til high kategorien. Deres produktionstempo sikrer et konstant flow af nye titler at udforske.</p>
+      <p>Se alle Booming Games spillemaskiner i vores database herunder med ægte bonus hunt statistik fra vores community.</p>
+    `,
+    faqs: [
+      { question: "Hvad er Booming Games kendt for?", answer: "Booming Games er kendt for et stort og varieret slot-katalog med solid kvalitet. De har over 100 titler og udgiver løbende nye spil med fokus på klassisk gameplay og innovative bonusfunktioner." },
+      { question: "Hvad er RTP på Booming Games slots?", answer: "Booming Games slots har typisk en RTP mellem 95% og 96.5%, med medium til high volatilitet. Deres matematiske modeller er konkurrencedygtige med branchestandarden." },
+      { question: "Er Booming Games slots tilgængelige i Danmark?", answer: "Ja, Booming Games slots er tilgængelige på flere danske licenserede casinoer. Udvalget varierer dog mellem platforme." },
+    ],
+  },
+  "blueprint-gaming": {
+    displayName: "Blueprint Gaming",
+    seoTitle: "Blueprint Gaming Slots – Spillemaskiner, RTP & Statistik",
+    metaDescription: "Alle Blueprint Gaming spillemaskiner med Megaways og jackpots. RTP, volatilitet og bonus hunt data fra danske streams.",
+    datePublished: "2026-03-13",
+    introHtml: `
+      <p>Blueprint Gaming er et UK-baseret studie og en del af Gauselmann Group (Merkur). De har markeret sig som en af de førende licenstagere af Big Time Gamings Megaways-mekanik og har produceret flere af de mest spillede Megaways-titler på markedet.</p>
+      <p>Med slots som Fishin' Frenzy Megaways, Buffalo Rising Megaways og The Goonies har Blueprint vist en evne til at kombinere populære temaer med den dynamiske Megaways-mekanik. Deres Jackpot King-netværk tilføjer progressive jackpots til udvalgte titler.</p>
+      <p>RTP-niveauerne hos Blueprint varierer typisk mellem 94% og 96.5%, med volatilitet der primært falder i medium til very high kategorien. Megaways-titlerne er naturligt mere volatile end deres klassiske slots.</p>
+      <p>Udforsk alle Blueprint Gaming spillemaskiner nedenfor med ægte data fra vores bonus hunts og community-statistik.</p>
+    `,
+    faqs: [
+      { question: "Hvad er Blueprint Gamings Jackpot King?", answer: "Jackpot King er Blueprints progressive jackpot-netværk der er tilknyttet udvalgte slots. Det tilbyder flere jackpot-niveauer inklusiv en community-jackpot og en royal jackpot." },
+      { question: "Hvad er RTP på Blueprint Gaming slots?", answer: "Blueprint Gaming slots har typisk en RTP mellem 94% og 96.5%. Megaways-titlerne har ofte lidt lavere RTP end deres standard-slots pga. den højere volatilitet." },
+      { question: "Hvilke Blueprint Gaming slots er mest populære?", answer: "De mest populære Blueprint slots inkluderer Fishin' Frenzy Megaways, Buffalo Rising Megaways og The Goonies. Megaways-versionerne af deres klassikere er særligt populære i bonus hunts." },
+    ],
+  },
+  "quickspin": {
+    displayName: "Quickspin",
+    seoTitle: "Quickspin Slots – Spillemaskiner, RTP & Statistik",
+    metaDescription: "Komplet Quickspin slot-katalog med RTP, volatilitet og bonus hunt data. Ægte statistik fra danske community streams.",
+    datePublished: "2026-03-13",
+    introHtml: `
+      <p>Quickspin er et svensk studie grundlagt i 2011 af veteraner fra NetEnt og Unibet. Studiet, der nu er ejet af Playtech, har opbygget et ry for visuelt polerede slots med gennemtænkt matematik og innovative bonusfunktioner.</p>
+      <p>Quickspins slots er kendetegnet ved deres høje produktionsværdi og fokus på spillerengagement. Titler som Big Bad Wolf, Sakura Fortune og Sticky Bandits har defineret studiets stil – farverig grafik, charmerende temaer og solide bonusrunder.</p>
+      <p>RTP-niveauerne hos Quickspin ligger typisk mellem 96% og 96.5%, hvilket er blandt de højeste i branchen. Volatiliteten varierer fra medium til high, og deres slots er designet til at balancere underholdning med fair gevinstchancer.</p>
+      <p>Se alle Quickspin spillemaskiner i vores database herunder med ægte bonus hunt data fra vores community.</p>
+    `,
+    faqs: [
+      { question: "Hvem ejer Quickspin?", answer: "Quickspin blev opkøbt af Playtech i 2016 men opererer stadig som et selvstændigt studie. De blev grundlagt af veteraner fra NetEnt og Unibet." },
+      { question: "Hvad er RTP på Quickspin slots?", answer: "Quickspin tilbyder generelt høje RTP-værdier, typisk mellem 96% og 96.5%. Dette placerer dem over branchegennemsnittet og gør deres slots attraktive for værdiorienterede spillere." },
+      { question: "Hvilke Quickspin slots er mest populære?", answer: "De mest populære Quickspin slots inkluderer Big Bad Wolf, Sakura Fortune, Sticky Bandits og Dwarfs Gone Wild. Deres slots er kendte for charmerende temaer og solide bonusfunktioner." },
+    ],
+  },
+  "thunderkick": {
+    displayName: "Thunderkick",
+    seoTitle: "Thunderkick Slots – Spillemaskiner, RTP & Statistik",
+    metaDescription: "Alle Thunderkick spillemaskiner med RTP, volatilitet og bonus hunt data. Unikt design og ægte statistik fra danske streams.",
+    datePublished: "2026-03-13",
+    introHtml: `
+      <p>Thunderkick er et svensk boutique-studie grundlagt i 2012 af tidligere NetEnt-medarbejdere. Studiet har skabt en unik niche i slot-branchen med deres quirky, kunstneriske tilgang til spildesign og deres ubetingede fokus på kvalitet over kvantitet.</p>
+      <p>Thunderkicks slots er øjeblikkeligt genkendelige på deres distinctive visuelle stil – håndtegnede animationer, usædvanlige temaer og en legende tilgang til gameplay. Titler som Esqueleto Explosivo, Pink Elephants og Beat the Beast-serien viser studiets vilje til at skille sig ud fra mængden.</p>
+      <p>RTP-niveauerne hos Thunderkick ligger typisk mellem 96% og 96.5%, hvilket er blandt de højeste i branchen. Volatiliteten varierer fra medium til high, og deres fokus på matematisk fairness gør dem populære blandt erfarne spillere.</p>
+      <p>Udforsk alle Thunderkick spillemaskiner nedenfor med ægte bonus hunt data fra vores community.</p>
+    `,
+    faqs: [
+      { question: "Hvad er Thunderkick kendt for?", answer: "Thunderkick er kendt for deres quirky, kunstneriske slots med unikt design og høj kvalitet. De prioriterer kvalitet over kvantitet og udgiver færre men mere gennemarbejdede titler end de fleste konkurrenter." },
+      { question: "Hvad er RTP på Thunderkick slots?", answer: "Thunderkick tilbyder generelt høje RTP-værdier, typisk mellem 96% og 96.5%. Deres fokus på fair matematik gør dem til favoritter blandt værdiorienterede spillere." },
+      { question: "Hvilke Thunderkick slots er mest populære?", answer: "De mest populære Thunderkick slots inkluderer Esqueleto Explosivo, Pink Elephants, Barber Shop Uncut og Beat the Beast-serien. Deres slots er kendt for innovativ gameplay og distinkt visuelt design." },
+    ],
+  },
+  "wazdan": {
+    displayName: "Wazdan",
+    seoTitle: "Wazdan Slots – Spillemaskiner, RTP & Statistik",
+    metaDescription: "Komplet Wazdan slot-katalog med RTP, volatilitet og Power of Gods-serien. Ægte bonus hunt data fra danske streams.",
+    datePublished: "2026-03-13",
+    introHtml: `
+      <p>Wazdan er et polsk studie grundlagt i 2010 der har markeret sig med innovative gameplay-features og et voksende katalog af spillemaskiner. Studiet er især kendt for sin unikke volatilitetsvælger, der lader spillere justere volatiliteten direkte i spillet.</p>
+      <p>Wazdans signaturfeatures inkluderer Volatility Levels (spilleren vælger mellem lav, standard og høj volatilitet), Gamble Feature og Ultra Fast Mode. Titler som Power of Gods-serien, Larry the Leprechaun og 9 Coins har vist studiets evne til at kombinere innovation med underholdende gameplay.</p>
+      <p>RTP-niveauerne varierer typisk mellem 95% og 96.5% afhængigt af den valgte volatilitetsindstilling. Denne fleksibilitet gør Wazdan-slots unikke i markedet og appellerer til spillere der ønsker kontrol over deres spilleoplevelse.</p>
+      <p>Se alle Wazdan spillemaskiner i vores database herunder med ægte statistik fra vores bonus hunts og community.</p>
+    `,
+    faqs: [
+      { question: "Hvad er Wazdans volatilitetsvælger?", answer: "Wazdans Volatility Levels er en unik feature der lader spillere vælge mellem lav, standard og høj volatilitet direkte i spillet. Det påvirker gevinstfrekvens og gevinstsstørrelse uden at ændre den overordnede RTP." },
+      { question: "Hvad er RTP på Wazdan slots?", answer: "Wazdan slots har typisk en RTP mellem 95% og 96.5%. Den præcise RTP kan variere afhængigt af den valgte volatilitetsindstilling." },
+      { question: "Hvilke Wazdan slots er mest populære?", answer: "De mest populære Wazdan slots inkluderer Power of Gods-serien, 9 Coins, Larry the Leprechaun og Sun of Fortune. Volatilitetsvælgeren gør deres slots fleksible for alle spillertyper." },
+    ],
+  },
+  "push-gaming": {
+    displayName: "Push Gaming",
+    seoTitle: "Push Gaming Slots – Spillemaskiner, RTP & Statistik",
+    metaDescription: "Alle Push Gaming spillemaskiner med RTP, volatilitet og bonus hunt statistik. Ægte community-data fra danske streams.",
+    datePublished: "2026-03-13",
+    introHtml: `
+      <p>Push Gaming er et London-baseret studie grundlagt i 2010 der har opnået kultstatus med deres innovative og ekstremt volatile spillemaskiner. Studiet prioriterer kvalitet over kvantitet og udgiver relativt få men ekstremt gennemarbejdede titler hvert år.</p>
+      <p>Push Gamings slots er kendetegnet ved unikke mekanikker og astronomisk gevinstpotentiale. Titler som Jammin' Jars, Razor Shark og Fat Rabbit har defineret studiets stil – farverig grafik, innovativ gameplay og høj volatilitet. Fat Santa og Ice Lobster viser deres evne til at skabe sæsonbaserede favoritter.</p>
+      <p>RTP-niveauerne hos Push Gaming ligger typisk mellem 96% og 96.7%, hvilket er blandt de højeste i branchen. Den høje volatilitet kombineret med fair RTP gør dem til en absolut favorit i bonus hunt-communityet.</p>
+      <p>Udforsk alle Push Gaming spillemaskiner nedenfor med ægte data fra vores bonus hunts og community.</p>
+    `,
+    faqs: [
+      { question: "Hvad er Push Gaming kendt for?", answer: "Push Gaming er kendt for ekstremt volatile slots med innovativ gameplay og høj kvalitet. Titler som Jammin' Jars og Razor Shark har opnået kultstatus blandt slot-entusiaster." },
+      { question: "Hvad er RTP på Push Gaming slots?", answer: "Push Gaming tilbyder generelt høje RTP-værdier, typisk mellem 96% og 96.7%. Kombineret med høj volatilitet gør dette dem til favoritter i bonus hunts." },
+      { question: "Hvilke Push Gaming slots er mest populære?", answer: "De mest populære Push Gaming slots inkluderer Jammin' Jars, Razor Shark, Fat Rabbit, Fat Santa og Ice Lobster. Deres slots er konsekvent blandt de mest streamede i det danske community." },
+    ],
+  },
 };
 
 /** All provider slugs that should have hub pages */

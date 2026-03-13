@@ -148,7 +148,7 @@ const Index = () => {
                 url: "https://casinoaftaler.dk",
                 name: "Online Casinoer med Bonus – Nye Casinoer 2026",
                 dateModified: `${homepageDateModified}T00:00:00+01:00`,
-                isPartOf: { "@id": "https://casinoaftaler.dk/#organization" },
+                isPartOf: { "@id": "https://casinoaftaler.dk/#website" },
               },
             ],
           },

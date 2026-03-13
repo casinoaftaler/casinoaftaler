@@ -29,10 +29,9 @@ export function buildSlotCatalogSchema(
       "@type": "ListItem",
       position: index + 1,
       item: {
-        "@type": "SoftwareApplication",
+        "@type": "VideoGame",
         name: slot.slot_name,
-        applicationCategory: "GameApplication",
-        operatingSystem: "Web",
+        gamePlatform: "Web",
         ...(slot.provider && slot.provider !== "Custom Slot" && slot.provider !== "Unknown" && {
           author: {
             "@type": "Organization",
