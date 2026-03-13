@@ -39,7 +39,7 @@ import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import omHeroImage from "@/assets/heroes/om-hero.jpg";
+import omHeroImage from "@/assets/heroes/om-hero.png";
 
 const OmTeamet = () => {
   const { data: siteSettings } = useSiteSettings();
