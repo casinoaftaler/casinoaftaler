@@ -222,7 +222,89 @@ ${priorityUrls.join("\n")}
         console.log(`✅ sitemap-priority.xml generated with ${priorityRoutes.length} high-priority URLs`);
       }
 
-      // ── 5. sitemap-index.xml (all on same domain) ──
+      // ── 5. Generate slot-directory.html (crawl-bridge for orphan elimination) ──
+      try {
+        const dirSlots = await fetchAllRows<{ slot_name: string; slug: string | null }>(
+          "slot_catalog",
+          "slot_name,slug",
+          "slot_name"
+        );
+
+        if (dirSlots.length > 0) {
+          const grouped = new Map<string, { name: string; slug: string }[]>();
+          const LETTERS = "#ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ".split("");
+          for (const l of LETTERS) grouped.set(l, []);
+
+          for (const slot of dirSlots) {
+            const s = slot.slug || slugifySlotName(slot.slot_name);
+            const first = slot.slot_name.charAt(0).toUpperCase();
+            const letter = /[A-ZÆØÅ]/.test(first) ? first : "#";
+            const bucket = grouped.get(letter);
+            if (bucket) bucket.push({ name: slot.slot_name, slug: s });
+            else grouped.get("#")!.push({ name: slot.slot_name, slug: s });
+          }
+
+          const activeLettters = LETTERS.filter((l) => (grouped.get(l)?.length ?? 0) > 0);
+
+          const letterNav = activeLettters
+            .map((l) => `<a href="#letter-${l === "#" ? "num" : l}" style="display:inline-block;padding:4px 8px;margin:2px;background:#f0f0f0;border-radius:4px;text-decoration:none;color:#333;font-weight:600">${l}</a>`)
+            .join("\n          ");
+
+          const sections = activeLettters
+            .map((l) => {
+              const items = grouped.get(l)!;
+              const links = items
+                .map((item) => `        <li><a href="/slot-katalog/${item.slug}">${escapeXml(item.name)}</a></li>`)
+                .join("\n");
+              const id = l === "#" ? "num" : l;
+              return `      <section id="letter-${id}">
+        <h2>${l}</h2>
+        <ul style="columns:2;column-gap:24px;list-style:none;padding:0">
+${links}
+        </ul>
+      </section>`;
+            })
+            .join("\n\n");
+
+          const directoryHtml = `<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="${SITE_URL}/slot-directory.html">
+  <title>Alle Spillemaskiner – Casinoaftaler.dk</title>
+  <meta name="description" content="Komplet katalog over alle ${dirSlots.length.toLocaleString("da-DK")} spillemaskiner på Casinoaftaler.dk med links til detaljerede sider.">
+  <style>body{font-family:system-ui,sans-serif;max-width:960px;margin:0 auto;padding:20px}a{color:#1a56db}h1{margin-bottom:8px}h2{margin-top:24px;border-bottom:1px solid #ddd;padding-bottom:4px}ul li{padding:2px 0}nav{margin:16px 0 24px}</style>
+</head>
+<body>
+  <h1>Alle ${dirSlots.length.toLocaleString("da-DK")} Spillemaskiner</h1>
+  <p>Komplet katalog over alle spillemaskiner i vores database med statistik fra bonus hunts.</p>
+
+  <nav>
+    <p><a href="/">Forside</a> · <a href="/slot-database">Slot Database</a> · <a href="/casinospil/spillemaskiner">Spillemaskiner</a> · <a href="/sitemap">Sitemap</a></p>
+    <p style="margin-top:8px">Hop til bogstav:</p>
+    <div>
+          ${letterNav}
+    </div>
+  </nav>
+
+${sections}
+
+  <footer style="margin-top:40px;padding-top:16px;border-top:1px solid #ddd">
+    <p><a href="/">Forside</a> · <a href="/slot-database">Slot Database</a> · <a href="/casinospil/spillemaskiner">Spillemaskiner Guide</a> · <a href="/casino-bonus">Casino Bonus</a> · <a href="/casino-anmeldelser">Casino Anmeldelser</a></p>
+  </footer>
+</body>
+</html>`;
+
+          fs.writeFileSync(path.join(outDir, "slot-directory.html"), directoryHtml, "utf-8");
+          console.log(`✅ slot-directory.html generated with ${dirSlots.length} slot links`);
+        }
+      } catch (err) {
+        console.warn("⚠️ Failed to generate slot-directory.html:", err);
+      }
+
+      // ── 6. sitemap-index.xml (all on same domain) ──
       const indexEntries = [
         `${SITE_URL}/sitemap.xml`,
         `${SITE_URL}/sitemap-priority.xml`,
