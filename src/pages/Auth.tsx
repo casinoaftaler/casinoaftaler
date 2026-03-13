@@ -96,7 +96,7 @@ export default function Auth() {
 
     return (
       <div className="container flex min-h-[60vh] items-center justify-center py-12">
-        <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
+        <SEO title="Log ind" description="Log ind med Twitch for at få adgang til Casinoaftaler community." noindex />
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">
