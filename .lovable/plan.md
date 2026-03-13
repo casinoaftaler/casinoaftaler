@@ -1,25 +1,24 @@
+## Enterprise SEO Expansion – Implementeret ✅
 
+### 1. Dynamiske Provider-Hubs ✅
+- `src/hooks/useProviderSlots.ts` – `useProviderSlots()` + `useLatestCatalogUpdate()` hooks
+- `src/components/ProviderCatalogSlots.tsx` – erstatter ProviderSlotLinks med live database-data
+- `src/pages/providers/ProviderPageTemplate.tsx` – swappet til ProviderCatalogSlots
 
-## Problem: Dobbelt H1 på ALLE sider (323 sider)
+### 2. Live Freshness-signaler ✅
+- Dynamisk `dateModified` fra reel `slot_catalog.updated_at`
+- Synlig freshness-badge: "Data opdateret efter Bonus Hunt #X · dato"
+- Implementeret på både /slot-database og provider-sider
 
-Ahrefs rapporterer **2 H1 tags** på hver eneste side. De to H1'er er:
+### 3. SoftwareApplication Schema ✅
+- `src/lib/slotCatalogSchema.ts` – `buildSlotCatalogSchema()` genererer ItemList + SoftwareApplication
+- Injiceret per pagineret side på /slot-database
+- aggregateRating baseret på highest_x og bonus_count
 
-1. `<h1>Casinoaftaler.dk – De bedste online casinoer i Danmark</h1>` — fra `<noscript>` blokken i `index.html` (linje 52)
-2. Den side-specifikke H1 renderet af React
-
-Selvom `<noscript>` kun vises for brugere uden JS, parser Ahrefs (og potentielt Google) stadig den rå HTML **og** den JS-renderede DOM — og finder derfor to H1'er.
-
-### Fix
-
-Ændr `<h1>` til `<p>` i `index.html` linje 52:
-
-```html
-<!-- Før -->
-<h1>Casinoaftaler.dk – De bedste online casinoer i Danmark</h1>
-
-<!-- Efter -->
-<p><strong>Casinoaftaler.dk – De bedste online casinoer i Danmark</strong></p>
-```
-
-Én linje. Bevarer noscript-fallback teksten for crawlere men eliminerer det duplikerede H1-problem på samtlige 323 sider.
-
+### 4. Provider Slot Hub Pages ✅
+- `src/lib/providerHubContent.ts` – unik SEO-tekst, meta, intro per provider (13 stk)
+- `src/pages/ProviderSlotsHub.tsx` – template med dynamisk stats, top 5, full catalog, cross-links
+- Ruter: `/spillemaskiner/{provider}` for alle 13 providers
+- Breadcrumbs: Forside > Casinospil > Spillemaskiner > [Provider] Slots
+- seoRoutes + page_metadata registreret
+- Article + ItemList JSON-LD schema per side
