@@ -52,7 +52,11 @@ function formatTitle(raw: string): string {
     const truncated = stripped.slice(0, maxPageTitle);
     const lastSpace = truncated.lastIndexOf(" ");
     stripped = (lastSpace > maxPageTitle * 0.6 ? truncated.slice(0, lastSpace) : truncated).trimEnd();
-    stripped = stripped.replace(/[\s&–\-,:|]+$/g, "");
+    // Strip trailing punctuation and dangling Danish prepositions/conjunctions
+    stripped = stripped
+      .replace(/[\s&–\-,:|]+$/g, "")
+      .replace(/\s+(?:med|og|i|på|til|fra|en|et|de|den|det|som|af|for|ved|over|under|eller|hos|om|mod|uden|samt|der|kan|vil|skal|har|er|så|din|dit|dem|des|alle|hele|nye|til|via)$/gi, "")
+      .replace(/[\s&–\-,:|]+$/g, "");
   }
 
   return `${stripped}${suffix}`;
