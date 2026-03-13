@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { TwitchAuthButton } from "@/components/TwitchAuthButton";
@@ -84,7 +84,7 @@ export default function Auth() {
   if (loading || profileLoading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
+        <SEO title="Log ind" description="Log ind med Twitch for at få adgang til Casinoaftaler community." noindex />
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
@@ -96,7 +96,7 @@ export default function Auth() {
 
     return (
       <div className="container flex min-h-[60vh] items-center justify-center py-12">
-        <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
+        <SEO title="Log ind" description="Log ind med Twitch for at få adgang til Casinoaftaler community." noindex />
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">
@@ -170,7 +170,7 @@ export default function Auth() {
   // User is not logged in - show regular Twitch login
   return (
       <div className="container flex min-h-[60vh] items-center justify-center py-12">
-        <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
+        <SEO title="Log ind" description="Log ind med Twitch for at få adgang til Casinoaftaler community." noindex />
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Log ind</CardTitle>

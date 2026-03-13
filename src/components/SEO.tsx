@@ -122,11 +122,12 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
     <Helmet>
       <title>{formattedTitle}</title>
       <meta name="description" content={safeDescription} />
-      {noindex ? (
+      {noindex && (
         <meta name="robots" content="noindex, follow" />
-      ) : (
+      )}
+      <link rel="canonical" href={canonicalUrl} />
+      {!noindex && (
         <>
-          <link rel="canonical" href={canonicalUrl} />
           <link rel="alternate" hrefLang="da" href={canonicalUrl} />
           <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
         </>

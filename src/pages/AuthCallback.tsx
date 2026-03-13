@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { SEO } from "@/components/SEO";
 import { Loader2 } from "lucide-react";
 
 export default function AuthCallback() {
@@ -131,6 +132,7 @@ export default function AuthCallback() {
 
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
+      <SEO title="Logger ind..." description="Bekræfter din Twitch-identitet." noindex />
       {error ? (
         <>
           <div className="text-destructive">
