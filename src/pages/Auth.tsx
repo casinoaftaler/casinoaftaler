@@ -84,7 +84,7 @@ export default function Auth() {
   if (loading || profileLoading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
+        <SEO title="Log ind" description="Log ind med Twitch for at få adgang til Casinoaftaler community." noindex />
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
       </div>
     );
