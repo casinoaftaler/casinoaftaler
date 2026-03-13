@@ -162,7 +162,7 @@ export default function Profile() {
 
   return (
     <div className="container max-w-4xl py-6 sm:py-8">
-      <Helmet><meta name="robots" content="noindex, nofollow" /></Helmet>
+      <SEO title="Min Profil" description="Administrer din profil, præferencer og spillestatistik på Casinoaftaler." noindex />
       <div className="mb-6 sm:mb-8">
         <h1 className="text-2xl sm:text-3xl font-bold">Min Profil</h1>
         <p className="text-muted-foreground mt-1">
