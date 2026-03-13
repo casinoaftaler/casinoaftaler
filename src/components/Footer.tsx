@@ -296,6 +296,12 @@ export function Footer() {
                   Slot Database
                 </Link>
               </li>
+              <li>
+                <a href="/slot-directory.html" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <ClipboardList className="h-4 w-4" />
+                  Komplet Slot Katalog
+                </a>
+              </li>
             </ul>
           </div>
 

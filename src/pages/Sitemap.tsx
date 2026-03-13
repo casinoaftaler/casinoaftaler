@@ -159,6 +159,13 @@ export default function Sitemap() {
           );
         })}
 
+        <section className="mb-10">
+          <h2 className="text-xl font-bold mb-4 text-foreground border-b border-border pb-2">Komplet Slot Katalog</h2>
+          <p className="text-sm text-muted-foreground">
+            Se alle 1.400+ spillemaskiner med direkte links: <a href="/slot-directory.html" className="text-primary hover:underline">Slot Directory (statisk oversigt)</a>
+          </p>
+        </section>
+
         <noscript>
           <div>
             <h2>Casino Anmeldelser</h2>

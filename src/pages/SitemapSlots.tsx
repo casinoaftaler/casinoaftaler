@@ -102,6 +102,12 @@ export default function SitemapSlots() {
           </>
         )}
 
+        <div className="mt-8 pt-6 border-t border-border">
+          <p className="text-sm text-muted-foreground">
+            Se alle spillemaskiner som statisk HTML-oversigt: <a href="/slot-directory.html" className="text-primary hover:underline">Komplet Slot Katalog</a>
+          </p>
+        </div>
+
         <noscript>
           <div>
             <p>Se alle spillemaskiner i vores <a href="/slot-database">Slot Database</a>.</p>
