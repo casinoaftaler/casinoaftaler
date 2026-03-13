@@ -102,11 +102,6 @@ const personSchema = {
     "Casino Regulation",
     "Responsible Gambling",
   ],
-  areaOfExpertise: [
-    "Gambling Law",
-    "Casino Regulation",
-    "Responsible Gambling",
-  ],
   nationality: { "@type": "Country", name: "Denmark" },
   worksFor: {
     "@type": "Organization",
