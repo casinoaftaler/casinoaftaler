@@ -54,6 +54,7 @@ const MysteryReelsMegawaysGuide = () => {
         </section>
         <SlotProviderLink slotSlug="mystery-reels-megaways" />
         <SlotDataLink slotSlug="mystery-reels-megaways" slotName="Mystery Reels Megaways" />
+        <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Mystery Reels Megaways" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />

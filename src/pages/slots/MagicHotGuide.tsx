@@ -54,6 +54,7 @@ const MagicHotGuide = () => {
         </section>
         <SlotProviderLink slotSlug="magic-hot" />
         <SlotDataLink slotSlug="magic-hot" slotName="Magic Hot" />
+        <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Magic Hot" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />

@@ -54,6 +54,7 @@ const HotSpinDeluxeGuide = () => {
         </section>
         <SlotProviderLink slotSlug="hot-spin-deluxe" />
         <SlotDataLink slotSlug="hot-spin-deluxe" slotName="Hot Spin Deluxe" />
+        <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Hot Spin Deluxe" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />

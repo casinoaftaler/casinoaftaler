@@ -55,6 +55,7 @@ const CygnusGuide = () => {
         </section>
         <SlotProviderLink slotSlug="cygnus" />
         <SlotDataLink slotSlug="cygnus" slotName="Cygnus" />
+        <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Cygnus" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />

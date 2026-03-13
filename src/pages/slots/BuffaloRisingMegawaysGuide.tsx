@@ -54,6 +54,7 @@ const BuffaloRisingMegawaysGuide = () => {
         </section>
         <SlotProviderLink slotSlug="buffalo-rising-megaways" />
         <SlotDataLink slotSlug="buffalo-rising-megaways" slotName="Buffalo Rising Megaways" />
+        <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Buffalo Rising Megaways" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />

@@ -54,6 +54,7 @@ const GoldVeinGuide = () => {
         </section>
         <SlotProviderLink slotSlug="gold-vein" />
         <SlotDataLink slotSlug="gold-vein" slotName="Gold Vein" />
+        <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Gold Vein" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />
