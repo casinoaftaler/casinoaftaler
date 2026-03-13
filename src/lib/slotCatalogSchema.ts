@@ -25,6 +25,30 @@ export function buildSlotCatalogSchema(
       ? Math.min(5, 1 + ((slot.highest_x || 0) / 500) * 4).toFixed(1)
       : null;
 
+    const fallbackReview = !hasRating
+      ? {
+          review: {
+            "@type": "Review",
+            author: {
+              "@type": "Organization",
+              name: "Casinoaftaler Redaktionen",
+            },
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: String(
+                slot.rtp && slot.rtp >= 96.5 ? 4.5
+                : slot.rtp && slot.rtp >= 96 ? 4
+                : slot.rtp && slot.rtp >= 95 ? 3.5
+                : 3
+              ),
+              bestRating: "5",
+              worstRating: "1",
+            },
+            reviewBody: `Redaktionel vurdering af ${slot.slot_name} baseret på RTP${slot.rtp ? ` (${slot.rtp}%)` : ""} og spiloplevelse.`,
+          },
+        }
+      : {};
+
     return {
       "@type": "ListItem",
       position: index + 1,
@@ -47,6 +71,7 @@ export function buildSlotCatalogSchema(
             worstRating: "1",
           },
         }),
+        ...fallbackReview,
       },
     };
   });
