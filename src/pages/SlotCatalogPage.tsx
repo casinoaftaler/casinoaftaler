@@ -808,6 +808,11 @@ export default function SlotCatalogPage() {
             ...(slot.provider && slot.provider !== "Custom Slot" && slot.provider !== "Unknown" && {
               author: { "@type": "Organization", name: slot.provider },
             }),
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "DKK",
+            },
             ...(hasRating && {
               aggregateRating: {
                 "@type": "AggregateRating",
