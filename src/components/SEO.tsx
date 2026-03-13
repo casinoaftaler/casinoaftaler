@@ -52,6 +52,7 @@ function formatTitle(raw: string): string {
     const truncated = stripped.slice(0, maxPageTitle);
     const lastSpace = truncated.lastIndexOf(" ");
     stripped = (lastSpace > maxPageTitle * 0.6 ? truncated.slice(0, lastSpace) : truncated).trimEnd();
+    stripped = stripped.replace(/[\s&–\-,:|]+$/g, "");
   }
 
   return `${stripped}${suffix}`;
