@@ -67,5 +67,59 @@
 /swift-casino-anmeldelse                /casino-anmeldelser/swift-casino        301
 /luna-casino-anmeldelse                 /casino-anmeldelser/luna-casino         301
 
+# ── Soft 404 fixes (Ahrefs audit March 2026) ──
+
+# Forkerte bonus-URL'er
+/casino-bonus/free-spins-uden-indbetaling  /bonus-uden-indbetaling                 301
+/casino-bonus/velkomstbonus                /velkomstbonus                          301
+/casino-bonus/free-spins                   /free-spins                             301
+/casino-bonus/omsaetningsfri-bonus         /bonus-uden-omsaetningskrav             301
+/casinobonus                               /casino-bonus                           301
+
+# Forkerte spil-URL'er (mangler /casinospil/ prefix)
+/blackjack                                 /casinospil/blackjack                   301
+/baccarat                                  /casinospil/baccarat                    301
+/craps                                     /casinospil/craps                       301
+/roulette                                  /casinospil/roulette                    301
+
+# Forkerte poker-varianter
+/casinospil/texas-holdem                   /casinospil/poker/texas-holdem          301
+/casinospil/three-card-poker               /casinospil/poker/three-card-poker      301
+/casinospil/caribbean-stud-poker           /casinospil/poker/caribbean-stud        301
+/casinospil/video-poker                    /casinospil/poker/video-poker           301
+/casinospil/poker-strategi                 /casinospil/poker/poker-strategi        301
+/casinospil/omaha-poker                    /casinospil/poker/omaha                 301
+
+# Forkerte blackjack-strategi-URL'er
+/casinospil/blackjack/martingale-system    /casinospil/blackjack/martingale        301
+/casinospil/blackjack/fibonacci-system     /casinospil/blackjack/fibonacci         301
+/casinospil/blackjack/dalembert-system     /casinospil/blackjack/dalembert         301
+/casinospil/blackjack/double-exposure      /casinospil/blackjack/double-exposure-blackjack  301
+
+# Forkerte spillemaskine-URL'er
+/hoj-rtp-spillemaskiner                    /casinospil/spillemaskiner/hoej-rtp     301
+/spillemaskiner-hoej-rtp                   /casinospil/spillemaskiner/hoej-rtp     301
+/casinospil/spillemaskiner/hoj-rtp         /casinospil/spillemaskiner/hoej-rtp     301
+/casinospil/spilleautomater                /casinospil/spillemaskiner              301
+/rtp-return-to-player                      /ordbog/rtp                             301
+
+# Forkerte ordbog/anmeldelse-URL'er
+/casino-ordbog/rng                         /ordbog/rng                             301
+/royal-casino-anmeldelse                   /casino-anmeldelser/royal-casino        301
+
+# Slot-katalog redirects (slots med dedikerede guider)
+/slot-katalog/tombstone-rip                /casinospil/spillemaskiner/tombstone-rip     301
+/slot-katalog/joker-strike                 /casinospil/spillemaskiner/joker-strike      301
+/slot-katalog/cleopatra                    /casinospil/spillemaskiner/cleopatra         301
+/slot-katalog/ecuador-gold                 /slot-katalog/gold-series-ecuador-gold       301
+
+# Slot-katalog redirects (slots uden match → slot-database)
+/slot-katalog/wheel-of-fortune             /slot-database                          301
+/slot-katalog/da-vinci-diamonds            /slot-database                          301
+/slot-katalog/siberian-storm               /slot-database                          301
+
+# Sider uden match → 404
+/casino-anmeldelser/888casino              /404.html                               404
+
 # ── SPA fallback (must be last) ──
 /*                                      /index.html                             200
