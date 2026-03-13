@@ -491,6 +491,12 @@ export default function SlotDatabase() {
                 </nav>
               </div>
             )}
+
+            <div className="mt-4 text-center">
+              <a href="/slot-directory.html" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Se alle spillemaskiner i komplet statisk oversigt →
+              </a>
+            </div>
           </>
         )}
 
