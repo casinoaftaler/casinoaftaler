@@ -36,7 +36,7 @@ export function CommunityPageLayout({
           {/* Hero background image */}
           <img
             src={communityHero}
-            alt=""
+            alt="Community hero baggrund"
             width={1920}
             height={1080}
             className="absolute inset-0 w-full h-full object-cover"
