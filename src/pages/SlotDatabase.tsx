@@ -340,10 +340,13 @@ export default function SlotDatabase() {
               Wanted Dead or a Wild, Big Bass Bonanza, Starburst, Money Train 3, Sugar Rush, Wolf Gold
               og Chaos Crew. Se den fulde interaktive tabel ved at aktivere JavaScript.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed mb-4">
               Læs mere om <a href="/casinospil/spillemaskiner" className="text-primary underline">spillemaskiner</a>,
               <a href="/bonus-hunt" className="text-primary underline"> bonus hunts</a> og
               <a href="/casino-bonus" className="text-primary underline"> casino bonusser</a>.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              <strong>Se komplet katalog:</strong> <a href="/slot-directory.html" className="text-primary underline">Alle spillemaskiner (statisk oversigt)</a> – indeholder links til samtlige 1.400+ spillemaskiner.
             </p>
           </div>
         </noscript>

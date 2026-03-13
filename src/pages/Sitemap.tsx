@@ -167,6 +167,8 @@ export default function Sitemap() {
             <p>Se alle bonustilbud på <a href="/sitemap/casino-bonus">Casino Bonus Sitemap</a>.</p>
             <h2>Casinospil</h2>
             <p>Se alle spillemaskiner på <a href="/sitemap/casinospil">Casinospil Sitemap</a>.</p>
+            <h2>Komplet Slot Katalog</h2>
+            <p>Se alle 1.400+ spillemaskiner med direkte links: <a href="/slot-directory.html">Slot Directory</a>.</p>
           </div>
         </noscript>
       </div>
