@@ -280,6 +280,11 @@ export function buildReviewSchema(opts: {
       name: opts.itemName,
       url: opts.itemUrl,
       applicationCategory: "GameApplication",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "DKK",
+      },
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: opts.ratingValue,
