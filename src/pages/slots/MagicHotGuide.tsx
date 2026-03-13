@@ -5,6 +5,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SlotProviderLink } from "@/components/SlotProviderLink";
 import { SlotDataLink } from "@/components/SlotDataLink";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -53,6 +54,7 @@ const MagicHotGuide = () => {
         </section>
         <SlotProviderLink slotSlug="magic-hot" />
         <SlotDataLink slotSlug="magic-hot" slotName="Magic Hot" />
+        <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Magic Hot" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
         <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />
