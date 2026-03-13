@@ -133,6 +133,7 @@ export default function AuthCallback() {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
       <SEO title="Logger ind..." description="Bekræfter din Twitch-identitet." noindex />
+      {error ? (
         <>
           <div className="text-destructive">
             <svg className="h-12 w-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
