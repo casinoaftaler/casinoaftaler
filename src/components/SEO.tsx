@@ -40,10 +40,21 @@ interface SEOProps {
  * Strips existing brand suffixes first to avoid duplication.
  */
 function formatTitle(raw: string): string {
-  const stripped = raw
+  const suffix = ` | ${SITE_BRAND}`;
+  const maxPageTitle = 60 - suffix.length; // 44 chars for the page-specific part
+
+  let stripped = raw
     .replace(/\s*[|–:-]\s*Casinoaftaler(?:\.dk)?\s*$/i, "")
     .trim();
-  return `${stripped} | ${SITE_BRAND}`;
+
+  // Truncate at word boundary if too long
+  if (stripped.length > maxPageTitle) {
+    const truncated = stripped.slice(0, maxPageTitle);
+    const lastSpace = truncated.lastIndexOf(" ");
+    stripped = (lastSpace > maxPageTitle * 0.6 ? truncated.slice(0, lastSpace) : truncated).trimEnd();
+  }
+
+  return `${stripped}${suffix}`;
 }
 
 export function SEO({ title, description, type = "website", image = `${SITE_URL}/og-image.png`, noindex, jsonLd, breadcrumbLabel, datePublished, dateModified }: SEOProps) {
