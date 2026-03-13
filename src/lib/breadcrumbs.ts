@@ -579,6 +579,20 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/casinospil/spillemaskiner/chaos-crew": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
   "/casinospil/spillemaskiner/joker-strike": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
   "/casinospil/spillemaskiner/bonus-buys": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  // Batch 2 – 13 nye slot guides
+  "/casinospil/spillemaskiner/big-bad-wolf": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/buffalo-rising-megaways": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/chilli-pop": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/classic-fruits": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/cygnus": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/esqueleto-explosivo-2": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/gold-vein": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/hot-spin-deluxe": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/magic-hot": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/mystery-reels-megaways": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/satoshis-secret": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/tombstone-rip": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
+  "/casinospil/spillemaskiner/vikings-go-berzerk": [{ name: "Casinospil", path: "/casinospil" }, { name: "Spillemaskiner", path: "/casinospil/spillemaskiner" }],
 
   // Community cluster – bundet til /community hub
   "/community/turneringer": [{ name: "Community", path: "/community" }],
