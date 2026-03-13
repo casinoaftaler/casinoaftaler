@@ -9,5 +9,5 @@ interface CreditCoinProps {
 }
 
 export function CreditCoin({ size = "md", className }: CreditCoinProps) {
-  return <img src={coinImage} alt="" className={cn(SIZES[size], "inline-block align-middle", className)} />;
+  return <img src={coinImage} alt="Credit coin" className={cn(SIZES[size], "inline-block align-middle", className)} />;
 }

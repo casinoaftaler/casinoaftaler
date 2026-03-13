@@ -280,7 +280,7 @@ function GameLibraryHero() {
       <img
         ref={heroRef}
         src={spillehalHero}
-        alt=""
+        alt="Spillehal hero baggrund"
         className="absolute inset-0 w-full h-full object-cover hero-parallax scale-105"
         aria-hidden="true"
       />
