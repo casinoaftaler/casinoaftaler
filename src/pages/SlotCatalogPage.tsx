@@ -813,15 +813,37 @@ export default function SlotCatalogPage() {
               price: "0",
               priceCurrency: "DKK",
             },
-            ...(hasRating && {
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue,
-                ratingCount: String(slot.bonus_count),
-                bestRating: "5",
-                worstRating: "1",
-              },
-            }),
+            ...(hasRating
+              ? {
+                  aggregateRating: {
+                    "@type": "AggregateRating",
+                    ratingValue,
+                    ratingCount: String(slot.bonus_count),
+                    bestRating: "5",
+                    worstRating: "1",
+                  },
+                }
+              : {
+                  review: {
+                    "@type": "Review",
+                    author: {
+                      "@type": "Organization",
+                      name: "Casinoaftaler Redaktionen",
+                    },
+                    reviewRating: {
+                      "@type": "Rating",
+                      ratingValue: String(
+                        slot.rtp && slot.rtp >= 96.5 ? 4.5
+                        : slot.rtp && slot.rtp >= 96 ? 4
+                        : slot.rtp && slot.rtp >= 95 ? 3.5
+                        : 3
+                      ),
+                      bestRating: "5",
+                      worstRating: "1",
+                    },
+                    reviewBody: `Redaktionel vurdering af ${slot.slot_name} baseret på RTP${slot.rtp ? ` (${slot.rtp}%)` : ""} og spiloplevelse.`,
+                  },
+                }),
           },
           // FAQPage
           ...(faqs.length > 0
