@@ -51,6 +51,7 @@ export const organizationSchema = {
     "https://www.tiktok.com/@casinoaftaler",
     "https://github.com/casinoaftaler",
     "https://dk.trustpilot.com/review/casinoaftaler.dk",
+    "https://www.pinterest.com/casinoaftaler/",
   ],
   contactPoint: {
     "@type": "ContactPoint",
