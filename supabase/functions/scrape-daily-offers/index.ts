@@ -14,8 +14,28 @@ const AGGREGATOR_URLS = [
   "https://www.casinoonline.dk/freespin/",
 ];
 
+// ─── Discovery search fallbacks (when direct/aggregator scraping is empty) ───
+const DISCOVERY_QUERIES = [
+  "free spins uden indbetaling danske casinoer",
+  "daglige free spins danske casinoer",
+  "gratis spins eksisterende spillere casino",
+  "casino bonuskode free spins Danmark",
+];
+
+const OFFER_SIGNAL_REGEX = /free\s*spin|gratis\s*spin|cash\s*spin|bonus\s*spin|kampagne|promotion|promo|bonuskode/i;
+
 // ─── Direct casino paths to crawl ───
-const CASINO_PATHS = ["/kampagner", "/promotions", "/bonus", "/tilbud", "/bonusser", "/fri-spins", "/free-spins"];
+const CASINO_PATHS = [
+  "/kampagner",
+  "/promotions",
+  "/bonus",
+  "/tilbud",
+  "/bonusser",
+  "/fri-spins",
+  "/free-spins",
+  "/velkomstbonus",
+  "/",
+];
 
 // ─── Casino name → slug mapping ───
 const CASINO_NAME_MAP: Record<string, string> = {
