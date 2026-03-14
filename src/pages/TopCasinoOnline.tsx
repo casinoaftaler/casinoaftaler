@@ -189,8 +189,11 @@ const TopCasinoOnline = () => {
     itemListElement: topCasinos.map((casino, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      name: casino.name,
-      url: `${SITE_URL}/casino-anmeldelser/${casino.slug}`,
+      item: {
+        "@type": "Thing",
+        name: casino.name,
+        url: `${SITE_URL}/casino-anmeldelser/${casino.slug}`,
+      },
     })),
   };
 

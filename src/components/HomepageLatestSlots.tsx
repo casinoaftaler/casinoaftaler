@@ -37,8 +37,11 @@ export function buildLatestSlotsSchema(slots: LatestSlot[]) {
     itemListElement: slots.map((s, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      name: s.slot_name,
-      url: `${SITE_URL}/slot-katalog/${s.slug}`,
+      item: {
+        "@type": "Thing",
+        name: s.slot_name,
+        url: `${SITE_URL}/slot-katalog/${s.slug}`,
+      },
     })),
   };
 }
