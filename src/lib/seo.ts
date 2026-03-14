@@ -80,6 +80,7 @@ export const JONAS_SAME_AS = [
   "https://www.linkedin.com/in/casinoaftaler-dk-5782203b1/",
   "https://x.com/casinoaftaler",
   "https://www.snapchat.com/@fedesvinsejer",
+  "https://gravatar.com/casinoaftaler",
   // facebook.com/casinoaftaler belongs to the Organization entity – not added here
 ];
 
