@@ -27,7 +27,7 @@ const authorData = {
       { href: "https://www.youtube.com/@fedesvinsejer", label: "YouTube" },
       { href: "https://discord.gg/ZD4YdSeY", label: "Discord" },
       { href: "https://www.instagram.com/jonastheill", label: "Instagram" },
-      { href: "https://www.linkedin.com/in/info-casinoaftaler-5782203b1/", label: "LinkedIn" },
+      { href: "https://www.linkedin.com/in/casinoaftaler-dk-5782203b1/", label: "LinkedIn" },
       { href: "https://x.com/casinoaftaler", label: "X" },
       { href: "https://www.snapchat.com/@fedesvinsejer", label: "Snapchat" },
     ],

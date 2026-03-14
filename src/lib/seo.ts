@@ -46,7 +46,7 @@ export const organizationSchema = {
     "https://www.facebook.com/casinoaftaler",
     "https://x.com/casinoaftaler",
     "https://www.twitch.tv/fedesvinsejer",
-    "https://www.linkedin.com/in/info-casinoaftaler-5782203b1/",
+    "https://www.linkedin.com/in/casinoaftaler-dk-5782203b1/",
     "https://discord.gg/ZD4YdSeY",
     "https://www.tiktok.com/@casinoaftaler",
   ],
@@ -74,7 +74,7 @@ export const JONAS_SAME_AS = [
   "https://www.twitch.tv/fedesvinsejer",
   "https://www.youtube.com/@fedesvinsejer",
   "https://www.instagram.com/jonastheill",
-  "https://www.linkedin.com/in/info-casinoaftaler-5782203b1/",
+  "https://www.linkedin.com/in/casinoaftaler-dk-5782203b1/",
   "https://x.com/casinoaftaler",
   "https://www.snapchat.com/@fedesvinsejer",
   // facebook.com/casinoaftaler belongs to the Organization entity – not added here
