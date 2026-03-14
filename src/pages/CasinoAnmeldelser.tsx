@@ -154,8 +154,11 @@ const itemListSchema = {
   itemListElement: reviewListSlugs.map((c, i) => ({
     "@type": "ListItem",
     position: i + 1,
-    name: c.name,
-    url: `${SITE_URL}/casino-anmeldelser/${c.slug}`,
+    item: {
+      "@type": "Thing",
+      name: c.name,
+      url: `${SITE_URL}/casino-anmeldelser/${c.slug}`,
+    },
   })),
 };
 

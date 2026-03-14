@@ -275,8 +275,11 @@ const FreeSpinsIDag = () => {
       numberOfItems: totalCount,
       itemListElement: allBest.slice(0, 10).map((o, i) => ({
         "@type": "ListItem", position: i + 1,
-        name: `${o.casino_name} – ${o.spin_count} Free Spins`,
-        url: `${SITE_URL}/casino-anmeldelser/${o.casino_slug}`,
+        item: {
+          "@type": "Thing",
+          name: `${o.casino_name} – ${o.spin_count} Free Spins`,
+          url: `${SITE_URL}/casino-anmeldelser/${o.casino_slug}`,
+        },
       })),
     },
   ];
