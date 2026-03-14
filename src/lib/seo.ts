@@ -49,6 +49,7 @@ export const organizationSchema = {
     "https://www.linkedin.com/in/casinoaftaler-dk-5782203b1/",
     "https://discord.gg/ZD4YdSeY",
     "https://www.tiktok.com/@casinoaftaler",
+    "https://github.com/casinoaftaler",
   ],
   contactPoint: {
     "@type": "ContactPoint",
