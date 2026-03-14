@@ -49,6 +49,13 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
 
   // Community data-hubs
   { patterns: [/\bbonus hunt statistik\b/i, /\bhunt[\s-]?statistik\b/i], href: "/statistik", anchor: "bonus hunt statistik" },
+  { patterns: [/\bbonus hunt arkiv\b/i, /\bhunt[\s-]?arkiv\b/i], href: "/bonus-hunt/arkiv", anchor: "", anchorVariants: ["bonus hunt arkivet", "arkivet", "vores hunt-arkiv"] },
+  { patterns: [/\bbonus[\s-]?hunt\b/i, /\bbonushunt\b/i], href: "/bonus-hunt", anchor: "", anchorVariants: ["bonus hunt", "live bonus hunt", "vores bonus hunts"] },
+  { patterns: [/\bspillehal\b/i, /\bgratis spillehal\b/i, /\bgratis slots\b/i], href: "/community/slots", anchor: "", anchorVariants: ["gratis spillehal", "vores spillehal", "prøv gratis slots"] },
+  { patterns: [/\bstream highlights\b/i, /\bbedste clips\b/i], href: "/highlights", anchor: "", anchorVariants: ["highlights", "stream highlights", "bedste clips"] },
+  { patterns: [/\bslot[\s-]?turneringer\b/i, /\bturneringer\b/i], href: "/community/turneringer", anchor: "", anchorVariants: ["turneringer", "community turneringer", "slot turneringer"] },
+  { patterns: [/\bhall of fame\b/i, /\bleaderboard\b/i], href: "/community/hall-of-fame", anchor: "", anchorVariants: ["Hall of Fame", "community leaderboard", "vores Hall of Fame"] },
+  { patterns: [/\brewards[\s-]?program\b/i], href: "/community/rewards", anchor: "", anchorVariants: ["rewards program", "vores belønningsprogram"] },
 
   // Hub-termer (nævnes ofte men var ikke i auto-linker)
   { patterns: [/\bbetalingsmetoder\b/i], href: "/betalingsmetoder", anchor: "" },
