@@ -66,6 +66,7 @@ import { MonthlyTournamentAdmin } from "@/components/admin/MonthlyTournamentAdmi
 import { PageMetadataAdminSection } from "@/components/PageMetadataAdminSection";
 import { PageMetadataSyncSection } from "@/components/admin/PageMetadataSyncSection";
 import { ErrorLogsSection } from "@/components/admin/ErrorLogsSection";
+import { CacheClearSection } from "@/components/admin/CacheClearSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
