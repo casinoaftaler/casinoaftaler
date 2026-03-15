@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import { AuthorArticleCard } from "@/components/AuthorArticleCard";
 import { getAuthorArticles } from "@/data/authorContent";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
