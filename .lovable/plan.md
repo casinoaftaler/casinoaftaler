@@ -1,59 +1,24 @@
+## Enterprise SEO Expansion – Implementeret ✅
 
+### 1. Dynamiske Provider-Hubs ✅
+- `src/hooks/useProviderSlots.ts` – `useProviderSlots()` + `useLatestCatalogUpdate()` hooks
+- `src/components/ProviderCatalogSlots.tsx` – erstatter ProviderSlotLinks med live database-data
+- `src/pages/providers/ProviderPageTemplate.tsx` – swappet til ProviderCatalogSlots
 
-## Plan: Tilføj kategori-baserede visuelle thumbnails til "Artikler skrevet af" sektionen
+### 2. Live Freshness-signaler ✅
+- Dynamisk `dateModified` fra reel `slot_catalog.updated_at`
+- Synlig freshness-badge: "Data opdateret efter Bonus Hunt #X · dato"
+- Implementeret på både /slot-database og provider-sider
 
-### Problem
-"Artikler skrevet af" sektionen viser kun tekst-kort (billede 2), mens "Seneste artikler fra redaktionen" på /om-siden viser kort med billeder (billede 1). Artiklerne er statiske guides uden individuelle hero-billeder.
+### 3. SoftwareApplication Schema ✅
+- `src/lib/slotCatalogSchema.ts` – `buildSlotCatalogSchema()` genererer ItemList + SoftwareApplication
+- Injiceret per pagineret side på /slot-database
+- aggregateRating baseret på highest_x og bonus_count
 
-### Løsning
-Skab visuelt tiltalende kort med **CSS-gradient thumbnails + kategori-ikon** som placeholder. Ingen ekstra billeder downloades = nul performance-impact. Kortene får samme layout som nyhedskortene: billede øverst, tekst nedenunder.
-
-### Tekniske ændringer
-
-**1. Ny utility: `src/lib/categoryThumbnails.ts`**
-- Eksporterer en funktion `getCategoryGradient(category: string)` der returnerer en CSS gradient + ikon baseret på kategori:
-  - "Guide" → blå/lilla gradient + BookOpen ikon
-  - "Slot Guide" → grøn/teal gradient + Gamepad2 ikon
-  - "Anmeldelse" → orange/amber gradient + Star ikon
-  - "Ordbog" → indigo gradient + FileText ikon
-  - "Community" → pink/rose gradient + Users ikon
-  - osv.
-
-**2. Opdater alle 4 forfatter-sider** (article-grid sektionen):
-- `src/pages/Forfatter.tsx` (Jonas)
-- `src/pages/ForfatterKevin.tsx`
-- `src/pages/ForfatterNiklas.tsx`
-- `src/pages/ForfatterAjse.tsx` (hvis den findes)
-
-Ændring i hver fil: Erstat det nuværende tekst-kun kort med et kort der har et `aspect-video` gradient-felt øverst (med kategori-ikon centreret), efterfulgt af badge + titel + excerpt nedenunder. Samme layout som nyhedskortene på /om.
-
-**Før (nuværende):**
-```text
-┌─────────────────────────┐
-│ [Badge: Guide]          │
-│ Titel                   │
-│ Excerpt...              │
-└─────────────────────────┘
-```
-
-**Efter (nyt):**
-```text
-┌─────────────────────────┐
-│  ┌───────────────────┐  │
-│  │   gradient bg      │  │
-│  │    📖 ikon         │  │
-│  └───────────────────┘  │
-│ 12. marts 2026 · Guide  │
-│ Titel                   │
-│ Excerpt...              │
-└─────────────────────────┘
-```
-
-**3. Grid layout ændring:**
-- Fra `md:grid-cols-2` til `md:grid-cols-2 lg:grid-cols-3` for at matche nyhedskortenes 3-kolonne layout.
-
-### Performance
-- Ingen nye billeder, ingen ekstra netværksanmodninger
-- Pure CSS gradients er GPU-accelererede
-- Ingen ændring i bundle-størrelse ud over ~30 linjer utility-kode
-
+### 4. Provider Slot Hub Pages ✅
+- `src/lib/providerHubContent.ts` – unik SEO-tekst, meta, intro per provider (13 stk)
+- `src/pages/ProviderSlotsHub.tsx` – template med dynamisk stats, top 5, full catalog, cross-links
+- Ruter: `/spillemaskiner/{provider}` for alle 13 providers
+- Breadcrumbs: Forside > Casinospil > Spillemaskiner > [Provider] Slots
+- seoRoutes + page_metadata registreret
+- Article + ItemList JSON-LD schema per side

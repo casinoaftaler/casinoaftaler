@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { AuthorArticleCard } from "@/components/AuthorArticleCard";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -535,25 +536,15 @@ export default function ForfatterKevin() {
               </button>
             </div>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {visibleArticles.map((article) => (
-              <Link
+              <AuthorArticleCard
                 key={article.path}
-                to={article.path}
-                className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
-              >
-                <div className="mb-2 flex items-center gap-2">
-                  <Badge variant="secondary" className="text-xs">
-                    {getCategoryLabel(article.category)}
-                  </Badge>
-                </div>
-                <h3 className="text-base font-semibold group-hover:text-primary transition-colors mb-1">
-                  {article.title}
-                </h3>
-                <p className="text-sm text-muted-foreground line-clamp-1">
-                  {article.excerpt}
-                </p>
-              </Link>
+                path={article.path}
+                title={article.title}
+                category={article.category}
+                excerpt={article.excerpt}
+              />
             ))}
           </div>
         </section>

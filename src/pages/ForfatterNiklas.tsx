@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { AuthorArticleCard } from "@/components/AuthorArticleCard";
 import { getAuthorArticles } from "@/data/authorContent";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -509,19 +510,15 @@ export default function ForfatterNiklas() {
           {niklasArticles.length === 0 ? (
             <p className="text-muted-foreground">Niklas' artikler er under opbygning – de første publiceres snart.</p>
           ) : (
-            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {visibleArticles.map((page) => (
-                <Link
+                <AuthorArticleCard
                   key={page.path}
-                  to={page.path}
-                  className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
-                >
-                  <Pen className="h-5 w-5 shrink-0 text-primary" />
-                  <div className="min-w-0">
-                    <h4 className="text-sm font-semibold group-hover:text-primary transition-colors">{page.title}</h4>
-                    <p className="text-xs text-muted-foreground">{page.excerpt}</p>
-                  </div>
-                </Link>
+                  path={page.path}
+                  title={page.title}
+                  category={page.category}
+                  excerpt={page.excerpt}
+                />
               ))}
             </div>
           )}
