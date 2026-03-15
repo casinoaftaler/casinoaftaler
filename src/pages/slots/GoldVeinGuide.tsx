@@ -38,7 +38,7 @@ const GoldVeinGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="11 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="11 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Sticky Wilds i Free Spins</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Gold Vein fra <Link to="/spiludviklere/booming-games" className={lk}>Booming Games</Link> kombinerer et klassisk guldsøgning-tema med sticky wilds under free spins. Hver wild der lander under bonusrunden forbliver fastlåst, og over multiple spins kan dette bygge massive gevinstpotentialer op på tværs af alle hjul.</p>
