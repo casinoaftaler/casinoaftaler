@@ -134,7 +134,7 @@ const jonasArticles: AuthorArticle[] = [
   { title: "VR Casinoer Guide", path: "/casinoer/vr-casinoer", category: "Guide", excerpt: "Alt om virtual reality casinoer og fremtidens spiloplevelse." },
   { title: "Mobil Casinoer Guide", path: "/casinoer/mobil-casinoer", category: "Guide", excerpt: "De bedste mobilvenlige casinoer i Danmark." },
   { title: "Spil Casino for Sjov", path: "/casinoer/spil-casino-for-sjov", category: "Guide", excerpt: "Prøv casinospil gratis uden risiko – komplet guide." },
-  { title: "Casino og Skat Guide", path: "/casinoer/casino-og-skat", category: "Guide", excerpt: "Alt om skat på casinogevinster i Danmark." },
+  // Casino og Skat moved to Niklas
   // Mobil Casino cluster
   { title: "Mobil Casino Guide", path: "/mobil-casino", category: "Guide", excerpt: "Komplet guide til casino på mobilen – app vs. browser, betalinger og performance." },
   { title: "Casino App Guide", path: "/casino-app", category: "Guide", excerpt: "Alt om casino apps i Danmark – native app vs. PWA vs. browser." },
