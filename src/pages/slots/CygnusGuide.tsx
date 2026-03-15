@@ -38,7 +38,7 @@ const CygnusGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="14 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="14 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Gravity-Mekanik: Omvendt Cascading</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Cygnus fra <Link to="/spiludviklere/elk-studios" className={lk}>ELK Studios</Link> introducerer Gravity – en omvendt <Link to="/ordbog/cascading-wins" className={lk}>cascading wins</Link>-mekanik, hvor symboler stiger opad i stedet for at falde ned. Griddet starter som 6×2 og kan udvides til 6×8 med op til 262.144 gevinstmuligheder under cascades.</p>
