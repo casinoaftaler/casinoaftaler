@@ -289,12 +289,31 @@ class ChunkErrorBoundary extends Component<{ children: ReactNode }, ErrorBoundar
   componentDidCatch(error: Error, info: ErrorInfo) {
     console.error("ChunkErrorBoundary caught:", error, info);
     trackError(error, { componentName: info.componentStack?.slice(0, 200) ?? "ChunkErrorBoundary" });
+
+    // Auto-reload on chunk load failures (stale deploys)
+    const isChunkError =
+      error.message?.includes("Failed to fetch dynamically imported module") ||
+      error.message?.includes("Loading chunk") ||
+      error.message?.includes("Loading CSS chunk") ||
+      error.message?.includes("Importing a module script failed");
+
+    if (isChunkError) {
+      const reloadKey = "chunk-reload-" + window.location.pathname;
+      const lastReload = sessionStorage.getItem(reloadKey);
+      // Only auto-reload once per path per session to avoid infinite loops
+      if (!lastReload) {
+        sessionStorage.setItem(reloadKey, Date.now().toString());
+        window.location.reload();
+        return;
+      }
+    }
   }
   render() {
     if (this.state.hasError) {
       return (
         <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-8 text-center">
           <p className="text-lg font-semibold">Siden kunne ikke indlæses.</p>
+          <p className="text-sm text-muted-foreground">Prøv at genindlæse siden. Hvis problemet fortsætter, ryd din browsers cache.</p>
           <button
             className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:opacity-90"
             onClick={() => { this.setState({ hasError: false }); window.location.reload(); }}
