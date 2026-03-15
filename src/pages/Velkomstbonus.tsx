@@ -185,7 +185,7 @@ const Velkomstbonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="20-02-2026" readTime="22 Min." />
+        <AuthorMetaBar author="niklas" date="20-02-2026" readTime="22 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={velkomstbonusHero} alt="Velkomstbonus – gaveboks med casino chips" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
