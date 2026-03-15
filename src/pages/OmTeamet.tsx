@@ -437,7 +437,7 @@ const OmTeamet = () => {
             Vores skribenter & redaktion
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Casinoaftaler.dk drives af tre faste skribenter med klare roller og ansvarsområder.
+            Casinoaftaler.dk drives af fire faste skribenter med klare roller og ansvarsområder.
             Alle artikler, anmeldelser og guides produceres internt af redaktionen og faktatjekkes
             af en anden redaktør end forfatteren inden publicering.
           </p>
