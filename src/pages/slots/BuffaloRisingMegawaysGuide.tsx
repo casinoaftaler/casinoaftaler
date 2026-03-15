@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const BuffaloRisingMegawaysGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Buffalo Rising Megaways – Blueprint Gamings Megaways-hit", description: "Guide til Buffalo Rising Megaways: mystery symbols, 117.649 ways, RTP 96,50 % og høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Buffalo Rising Megaways – Blueprint Gamings Megaways-hit", description: "Guide til Buffalo Rising Megaways: mystery symbols, 117.649 ways, RTP 96,50 % og høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Buffalo Rising Megaways – Blueprint Gamings Megaways-hit", description: "Guide til Buffalo Rising Megaways: mystery symbols, 117.649 ways, RTP 96,50 % og høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
