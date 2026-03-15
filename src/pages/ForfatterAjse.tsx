@@ -161,10 +161,24 @@ export default function ForfatterAjse() {
   });
 
   const newsArticles = newsData?.articles ?? [];
+  const ajseStaticArticles = getAuthorArticles("ajse");
+
+  // Combine static pages and news into one unified list for pagination
+  const allItems = useMemo(() => {
+    const staticItems = ajseStaticArticles.map((page) => ({
+      type: "page" as const,
+      ...page,
+    }));
+    const newsItems = newsArticles.map((article) => ({
+      type: "news" as const,
+      ...article,
+    }));
+    return [...staticItems, ...newsItems];
+  }, [ajseStaticArticles, newsArticles]);
 
   const ARTICLES_PER_PAGE = 8;
-  const totalArticlePages = Math.max(1, Math.ceil(newsArticles.length / ARTICLES_PER_PAGE));
-  const visibleArticles = newsArticles.slice(
+  const totalArticlePages = Math.max(1, Math.ceil(allItems.length / ARTICLES_PER_PAGE));
+  const visibleItems = allItems.slice(
     articlePage * ARTICLES_PER_PAGE,
     (articlePage + 1) * ARTICLES_PER_PAGE
   );
