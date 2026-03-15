@@ -414,7 +414,7 @@ export default function Forfatter() {
           </h2>
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
             <p className="text-muted-foreground leading-relaxed">
-              Jonas er 27 år og grundlægger af Casinoaftaler.dk. Han har streamet online casino i over fire år og kombinerer sin passion for streaming med en systematisk tilgang til casinotest og bonusanalyse. Han startede sin karriere som medstifter af JPLiveSlots og har siden bygget sit eget brand og sin egen platform fra bunden.
+              Jonas er 31 år og grundlægger af Casinoaftaler.dk. Han har streamet online casino i over fire år og kombinerer sin passion for streaming med en systematisk tilgang til casinotest og bonusanalyse. Han startede sin karriere som medstifter af JPLiveSlots og har siden bygget sit eget brand og sin egen platform fra bunden.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               Hans vision er at skabe Danmarks mest gennemsigtige casino-guide, hvor anmeldelser bygger på reel erfaring og praktisk test – ikke blot skrivebordsvurderinger. Gennem daglig streaming og direkte dialog med sit community sikrer han, at indholdet altid afspejler den aktuelle virkelighed i den danske casinobranche.
