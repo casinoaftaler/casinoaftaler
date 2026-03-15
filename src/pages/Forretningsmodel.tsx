@@ -88,7 +88,7 @@ const Forretningsmodel = () => {
       </section>
 
       <div className="container py-10 md:py-14">
-        <AuthorMetaBar author="ajse" date="2026-03-05" readTime="8 min" showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="niklas" date="2026-03-05" readTime="8 min" showAffiliateDisclaimer={false} />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
