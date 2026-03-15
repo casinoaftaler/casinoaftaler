@@ -38,7 +38,7 @@ const MagicHotGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="11 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="11 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Volatility Levels: Spilstyret Risiko</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Magic Hot fra <Link to="/spiludviklere/wazdan" className={lk}>Wazdan</Link> introducerer Volatility Levels – en unik feature der lader spilleren vælge mellem lav, standard og høj <Link to="/ordbog/volatilitet" className={lk}>volatilitet</Link>. Lav volatilitet giver hyppige små gevinster, mens høj volatilitet koncentrerer udbetalingerne i større, sjældnere hits. Denne kontrol er sjælden i <Link to="/casinospil/spillemaskiner" className={lk}>spillemaskiner</Link>.</p>
