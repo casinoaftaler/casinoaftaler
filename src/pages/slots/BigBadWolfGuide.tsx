@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -25,7 +24,15 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const BigBadWolfGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Big Bad Wolf – Quickspins Høj-RTP Klassiker", description: "Guide til Big Bad Wolf fra Quickspin: Swooping Reels, 97,34 % RTP og progressiv wild-mekanik.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({
+    headline: "Big Bad Wolf – Quickspins Høj-RTP Klassiker",
+    description: "Guide til Big Bad Wolf fra Quickspin: Swooping Reels, 97,34 % RTP og progressiv wild-mekanik.",
+    url: `${SITE_URL}${PAGE_PATH}`,
+    datePublished: "2026-03-12",
+    dateModified: "2026-03-12",
+    authorName: "Casinoaftaler Redaktionen",
+    authorUrl: `${SITE_URL}`,
+  });
 
   return (
     <>
@@ -38,7 +45,7 @@ const BigBadWolfGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="14 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="14 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Swooping Reels & Progressive Wilds</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Big Bad Wolf fra <Link to="/spiludviklere/quickspin" className={lk}>Quickspin</Link> innoverer med Swooping Reels: <Link to="/ordbog/cascading-wins" className={lk}>cascading wins</Link> hvor symboler "swooper" ned. Efter 2+ consecutive wins transformeres grisesymboler progressivt til wilds – en unik mekanik, der belønner længere gevinstkæder.</p>
@@ -56,7 +63,6 @@ const BigBadWolfGuide = () => {
         <SlotDataLink slotSlug="big-bad-wolf" slotName="Big Bad Wolf" />
         <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Big Bad Wolf" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
-        <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />
       </div>
     </>

@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const BuffaloRisingMegawaysGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Buffalo Rising Megaways – Blueprint Gamings Megaways-hit", description: "Guide til Buffalo Rising Megaways: mystery symbols, 117.649 ways, RTP 96,50 % og høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Buffalo Rising Megaways – Blueprint Gamings Megaways-hit", description: "Guide til Buffalo Rising Megaways: mystery symbols, 117.649 ways, RTP 96,50 % og høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Buffalo Rising Megaways – Blueprint Gamings Megaways-hit", description: "Guide til Buffalo Rising Megaways: mystery symbols, 117.649 ways, RTP 96,50 % og høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
@@ -38,7 +38,7 @@ const BuffaloRisingMegawaysGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="14 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="14 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Megaways & Mystery Symbols</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Buffalo Rising Megaways fra <Link to="/spiludviklere/blueprint-gaming" className={lk}>Blueprint Gaming</Link> bruger <Link to="/megaways-slots" className={lk}>Megaways</Link>-mekanikken med op til 117.649 gevinstmuligheder. Mystery-symboler transformerer til identiske symboler, og <Link to="/ordbog/cascading-wins" className={lk}>cascading wins</Link> giver mulighed for kædegevinster med stigende multipliers under free spins.</p>
@@ -56,7 +56,7 @@ const BuffaloRisingMegawaysGuide = () => {
         <SlotDataLink slotSlug="buffalo-rising-megaways" slotName="Buffalo Rising Megaways" />
         <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Buffalo Rising Megaways" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
-        <AuthorBio author="jonas" showCommunity={false} />
+        
         <RelatedGuides currentPath={PAGE_PATH} />
       </div>
     </>

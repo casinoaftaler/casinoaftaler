@@ -27,7 +27,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const VikingsGoBerzerkGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Vikings Go Berzerk – Rage-Meter & Free Spins Analyse", description: "Komplet analyse af Vikings Go Berzerk fra Yggdrasil: rage-meter progression, free spins med berzerk-wilds, RTP 96,10 % og medium-høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Vikings Go Berzerk – Rage-Meter & Free Spins Analyse", description: "Komplet analyse af Vikings Go Berzerk fra Yggdrasil: rage-meter progression, free spins med berzerk-wilds, RTP 96,10 % og medium-høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Vikings Go Berzerk – Rage-Meter & Free Spins Analyse", description: "Komplet analyse af Vikings Go Berzerk fra Yggdrasil: rage-meter progression, free spins med berzerk-wilds, RTP 96,10 % og medium-høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
@@ -41,7 +41,7 @@ const VikingsGoBerzerkGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="16 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="16 min" />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Rage-Meter: Progressiv Spillemekanik</h2>
@@ -66,7 +66,7 @@ const VikingsGoBerzerkGuide = () => {
         <SlotDataLink slotSlug="vikings-go-berzerk" slotName="Vikings Go Berzerk" />
         <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="Ofte stillede spørgsmål om Vikings Go Berzerk" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
-        <AuthorBio author="jonas" showCommunity={false} />
+        
         <RelatedGuides currentPath={PAGE_PATH} />
       </div>
     </>

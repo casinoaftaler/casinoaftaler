@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -25,7 +24,15 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const HotSpinDeluxeGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Hot Spin Deluxe – iSoftBets Bonus-Hjul Slot", description: "Guide til Hot Spin Deluxe fra iSoftBet: 7 bonusfeatures, bonus-hjul mekanik, RTP 96,06 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({
+    headline: "Hot Spin Deluxe – iSoftBets Bonus-Hjul Slot",
+    description: "Guide til Hot Spin Deluxe fra iSoftBet: 7 bonusfeatures, bonus-hjul mekanik, RTP 96,06 % og medium volatilitet.",
+    url: `${SITE_URL}${PAGE_PATH}`,
+    datePublished: "2026-03-12",
+    dateModified: "2026-03-12",
+    authorName: "Casinoaftaler Redaktionen",
+    authorUrl: `${SITE_URL}`,
+  });
 
   return (
     <>
@@ -38,7 +45,7 @@ const HotSpinDeluxeGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="13 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="13 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Bonus-Hjul med 7 Features</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Hot Spin Deluxe fra <Link to="/spiludviklere/isoftbet" className={lk}>iSoftBet</Link> skiller sig ud med sit bonus-hjul, der indeholder 7 forskellige bonusfeatures. Når 3 eller flere scatters lander, spinner hjulet og tildeler alt fra Expanding Wild Reels og Colossal Symbols til ekstra free spins med multipliers. Denne varierede tilgang giver hvert bonusrunde et unikt præg.</p>
@@ -56,7 +63,6 @@ const HotSpinDeluxeGuide = () => {
         <SlotDataLink slotSlug="hot-spin-deluxe" slotName="Hot Spin Deluxe" />
         <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Hot Spin Deluxe" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
-        <AuthorBio author="jonas" showCommunity={false} />
         <RelatedGuides currentPath={PAGE_PATH} />
       </div>
     </>

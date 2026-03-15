@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const ClassicFruitsGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Classic Fruits – Stakelogics Super Stake Slot", description: "Guide til Classic Fruits fra Stakelogic: Super Stake-feature, RTP 96,52 % og klassisk frugtmaskin-gameplay.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Classic Fruits – Stakelogics Super Stake Slot", description: "Guide til Classic Fruits fra Stakelogic: Super Stake-feature, RTP 96,52 % og klassisk frugtmaskin-gameplay.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Classic Fruits – Stakelogics Super Stake Slot", description: "Guide til Classic Fruits fra Stakelogic: Super Stake-feature, RTP 96,52 % og klassisk frugtmaskin-gameplay.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
@@ -38,7 +38,7 @@ const ClassicFruitsGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="11 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="11 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Super Stake: Fordoblet Potentiale</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Classic Fruits fra <Link to="/spiludviklere/stakelogic" className={lk}>Stakelogic</Link> kombinerer klassisk frugtmaskin-nostalgi med den moderne Super Stake-feature. Ved at aktivere Super Stake fordobles indsatsen, men til gengæld låses ekstra bonusmuligheder op – en innovativ tilgang til klassisk gameplay.</p>
@@ -56,7 +56,7 @@ const ClassicFruitsGuide = () => {
         <SlotDataLink slotSlug="classic-fruits" slotName="Classic Fruits" />
         <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Classic Fruits" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
-        <AuthorBio author="jonas" showCommunity={false} />
+        
         <RelatedGuides currentPath={PAGE_PATH} />
       </div>
     </>

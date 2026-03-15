@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const SatoshisSecretGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Satoshi's Secret – Endorphinas Krypto-Slot", description: "Guide til Satoshi's Secret fra Endorphina: krypto-tema, RTP 96,00 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Satoshi's Secret – Endorphinas Krypto-Slot", description: "Guide til Satoshi's Secret fra Endorphina: krypto-tema, RTP 96,00 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Satoshi's Secret – Endorphinas Krypto-Slot", description: "Guide til Satoshi's Secret fra Endorphina: krypto-tema, RTP 96,00 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
@@ -38,7 +38,7 @@ const SatoshisSecretGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="11 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="11 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Krypto-Tema & Gameplay</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Satoshi's Secret fra <Link to="/spiludviklere/endorphina" className={lk}>Endorphina</Link> er en tematisk unik slot inspireret af Bitcoin og blockchain-teknologi. Spillets 5×3 grid med 10 gevinstlinjer tilbyder et enkelt men effektivt gameplay, suppleret af en bonus-runde der simulerer kryptovaluta-handel.</p>
@@ -56,7 +56,7 @@ const SatoshisSecretGuide = () => {
         <SlotDataLink slotSlug="satoshis-secret" slotName="Satoshi's Secret" />
         <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Satoshi's Secret" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
-        <AuthorBio author="jonas" showCommunity={false} />
+        
         <RelatedGuides currentPath={PAGE_PATH} />
       </div>
     </>

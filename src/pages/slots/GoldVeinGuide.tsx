@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const GoldVeinGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Gold Vein – Booming Games Sticky Wilds Slot", description: "Guide til Gold Vein fra Booming Games: sticky wilds, free spins, RTP 95,96 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Gold Vein – Booming Games Sticky Wilds Slot", description: "Guide til Gold Vein fra Booming Games: sticky wilds, free spins, RTP 95,96 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Gold Vein – Booming Games Sticky Wilds Slot", description: "Guide til Gold Vein fra Booming Games: sticky wilds, free spins, RTP 95,96 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
@@ -38,7 +38,7 @@ const GoldVeinGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="11 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="11 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Sticky Wilds i Free Spins</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Gold Vein fra <Link to="/spiludviklere/booming-games" className={lk}>Booming Games</Link> kombinerer et klassisk guldsøgning-tema med sticky wilds under free spins. Hver wild der lander under bonusrunden forbliver fastlåst, og over multiple spins kan dette bygge massive gevinstpotentialer op på tværs af alle hjul.</p>
@@ -56,7 +56,7 @@ const GoldVeinGuide = () => {
         <SlotDataLink slotSlug="gold-vein" slotName="Gold Vein" />
         <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Gold Vein" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
-        <AuthorBio author="jonas" showCommunity={false} />
+        
         <RelatedGuides currentPath={PAGE_PATH} />
       </div>
     </>
