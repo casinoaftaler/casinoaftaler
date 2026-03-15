@@ -441,7 +441,7 @@ const OmTeamet = () => {
             Alle artikler, anmeldelser og guides produceres internt af redaktionen og faktatjekkes
             af en anden redaktør end forfatteren inden publicering.
           </p>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {/* Jonas */}
             <div className="rounded-xl border border-border bg-card p-5">
               <Link to="/forfatter/jonas" className="group">
