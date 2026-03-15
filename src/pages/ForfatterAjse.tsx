@@ -524,70 +524,51 @@ export default function ForfatterAjse() {
             )}
           </div>
 
-          {/* Statiske sider af Ajse */}
-          <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-3 text-muted-foreground">Sider</h3>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {getAuthorArticles("ajse").map((page) => (
-                <AuthorArticleCard
-                  key={page.path}
-                  path={page.path}
-                  title={page.title}
-                  category={page.category}
-                  excerpt={page.excerpt}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Nyheder */}
-          <h3 className="text-lg font-semibold mb-3 text-muted-foreground">Nyheder</h3>
-          {newsArticles.length === 0 ? (
-            <p className="text-muted-foreground">Ingen publicerede nyheder endnu.</p>
-          ) : (
-            <div className="grid gap-4 md:grid-cols-2">
-              {visibleArticles.map((article) => (
-                <Link
-                  key={article.slug}
-                  to={`/casino-nyheder/${article.slug}`}
-                  className="group flex gap-4 rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
-                >
-                  {article.featured_image && (
-                    <img
-                      src={
-                        optimizeStorageImage(article.featured_image, 120, 70) ||
-                        article.featured_image
-                      }
-                      alt={article.title}
-                      className="h-20 w-28 shrink-0 rounded-lg object-cover"
-                      loading="lazy"
-                    />
-                  )}
-                  <div className="flex flex-col min-w-0">
-                    <div className="mb-1 flex items-center gap-2">
-                      <Badge variant="secondary" className="text-xs">
-                        Nyhed
-                      </Badge>
-                      {article.published_at && (
-                        <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                          <Clock className="h-3 w-3" />
-                          {new Date(article.published_at).toLocaleDateString("da-DK")}
-                        </span>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {visibleItems.map((item) =>
+                item.type === "page" ? (
+                  <AuthorArticleCard
+                    key={item.path}
+                    path={item.path}
+                    title={item.title}
+                    category={item.category}
+                    excerpt={item.excerpt}
+                  />
+                ) : (
+                  <Link
+                    key={item.slug}
+                    to={`/casino-nyheder/${item.slug}`}
+                    className="group flex gap-4 rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
+                  >
+                    {item.featured_image && (
+                      <img
+                        src={optimizeStorageImage(item.featured_image, 120, 70) || item.featured_image}
+                        alt={item.title}
+                        className="h-20 w-28 shrink-0 rounded-lg object-cover"
+                        loading="lazy"
+                      />
+                    )}
+                    <div className="flex flex-col min-w-0">
+                      <div className="mb-1 flex items-center gap-2">
+                        <Badge variant="secondary" className="text-xs">Nyhed</Badge>
+                        {item.published_at && (
+                          <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <Clock className="h-3 w-3" />
+                            {new Date(item.published_at).toLocaleDateString("da-DK")}
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="text-base font-semibold group-hover:text-primary transition-colors mb-1 line-clamp-2">
+                        {item.title}
+                      </h3>
+                      {item.excerpt && (
+                        <p className="text-sm text-muted-foreground line-clamp-1">{item.excerpt}</p>
                       )}
                     </div>
-                    <h3 className="text-base font-semibold group-hover:text-primary transition-colors mb-1 line-clamp-2">
-                      {article.title}
-                    </h3>
-                    {article.excerpt && (
-                      <p className="text-sm text-muted-foreground line-clamp-1">
-                        {article.excerpt}
-                      </p>
-                    )}
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                )
+              )}
             </div>
-          )}
         </section>
 
         <Separator className="my-10" />
