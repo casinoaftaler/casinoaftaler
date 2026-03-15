@@ -114,6 +114,7 @@ const bonusBuySlotsHub: GuideLink = { to: "/bonus-buy-slots", label: "Bonus Buy 
 const bonusSiblings: GuideLink[] = [
   { to: "/velkomstbonus", label: "Velkomstbonus", icon: Trophy, desc: "Få mest ud af din første indbetaling" },
   { to: "/free-spins", label: "Free Spins", icon: Sparkles, desc: "Gratis spins på populære spilleautomater" },
+  { to: "/free-spins-i-dag", label: "Free Spins i Dag", icon: Sparkles, desc: "Dagligt opdaterede free spins tilbud" },
   { to: "/indskudsbonus", label: "Indskudsbonus", icon: CreditCard, desc: "Matchbonusser der fordobler dit indskud" },
   { to: "/omsaetningskrav", label: "Omsætningskrav", icon: Target, desc: "Forstå gennemspilningskrav på bonusser" },
   { to: "/no-sticky-bonus", label: "No-Sticky Bonus", icon: Zap, desc: "Bonusser med adskillelse af midler" },
@@ -122,6 +123,7 @@ const bonusSiblings: GuideLink[] = [
   { to: "/bonus-uden-omsaetningskrav", label: "Uden Omsætningskrav", icon: Zap, desc: "Hæv gevinster med det samme" },
   { to: "/cashback-bonus", label: "Cashback Bonus", icon: TrendingUp, desc: "Få penge tilbage fra dine tab" },
   { to: "/reload-bonus", label: "Reload Bonus", icon: RefreshCw, desc: "Tilbagevendende bonusser for eksisterende spillere" },
+  { to: "/vip-program", label: "VIP Program", icon: Trophy, desc: "Loyalitetsprogrammer og VIP-fordele" },
 ];
 
 const paymentSiblings: GuideLink[] = [
