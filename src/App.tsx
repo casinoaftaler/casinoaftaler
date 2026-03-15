@@ -10,27 +10,8 @@ import { Layout } from "./components/Layout";
 import { SlotPageLoading } from "./components/slots/SlotPageLoading";
 
 import Index from "./pages/Index";
-/**
- * Retry wrapper for lazy imports – handles stale chunk errors after deploys.
- * On failure, retries once with a cache-busting reload of the module.
- */
-function lazyRetry<T extends ComponentType<any>>(
-  factory: () => Promise<{ default: T }>
-): React.LazyExoticComponent<T> {
-  return lazy(() =>
-    factory().catch(() => {
-      // Chunk failed to load (likely stale after deploy) – retry once
-      return new Promise<{ default: T }>((resolve, reject) => {
-        // Small delay before retry
-        setTimeout(() => {
-          factory().then(resolve).catch(reject);
-        }, 1500);
-      });
-    })
-  );
-}
 
-// Lazy-load all pages except Index for smaller initial bundle
+import Index from "./pages/Index";
 const CasinoBonus = lazy(() => import("./pages/CasinoBonus"));
 const NyeCasinoer = lazy(() => import("./pages/NyeCasinoer"));
 const NyeCasinoer2026 = lazy(() => import("./pages/nye-casinoer/NyeCasinoer2026"));
