@@ -100,19 +100,6 @@ export function PageMetadataAdminSection() {
               Klik "Touch" for at opdatere "Opdateret"-datoen på en side. Ændringen slår igennem på siden og i sitemap.
             </p>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => touchAllMutation.mutate()}
-            disabled={touchAllMutation.isPending}
-          >
-            {touchAllMutation.isPending ? (
-              <Loader2 className="h-4 w-4 mr-1 animate-spin" />
-            ) : (
-              <RefreshCw className="h-4 w-4 mr-1" />
-            )}
-            Touch alle
-          </Button>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
