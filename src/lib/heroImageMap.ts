@@ -81,7 +81,7 @@ const SECTION_DEFAULTS: Array<{ prefix: string; slug: string }> = [
   { prefix: "/casinospil/blackjack/", slug: "blackjack" },
   { prefix: "/casinospil/roulette/", slug: "roulette" },
   { prefix: "/casinospil/poker/", slug: "poker" },
-  { prefix: "/casinospil/", slug: "casinospil" },
+  { prefix: "/casinospil/", slug: "spillemaskiner" },
   { prefix: "/live-casino/", slug: "live-casino" },
   { prefix: "/casino-anmeldelser/", slug: "casino-anmeldelser" },
   { prefix: "/spiludviklere/", slug: "spiludviklere" },
