@@ -353,6 +353,7 @@ const App = () => (
                 <Route path="/forfatter/jonas" element={<Forfatter />} />
                 <Route path="/forfatter/kevin" element={<ForfatterKevin />} />
                 <Route path="/forfatter/ajse" element={<ForfatterAjse />} />
+                <Route path="/forfatter/niklas" element={<ForfatterNiklas />} />
                 <Route path="/saadan-tester-vi-casinoer" element={<SaadanTesterVi />} />
                 
                 <Route path="/kontakt" element={<Kontakt />} />
