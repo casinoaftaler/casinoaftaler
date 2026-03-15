@@ -13,6 +13,7 @@
  */
 
 import { glossaryTerms } from "@/data/glossaryTerms";
+import { getSeoRoutesByAuthor } from "@/lib/seoRoutes";
 
 // ─── Types ──────────────────────────────────────────────────────────────
 
