@@ -28,6 +28,30 @@ export interface SeoRoute {
    * Default: true for money pages, guides, hubs. Set false for minor utility pages.
    */
   showUpdatedDate?: boolean;
+
+  // ── Author Profile Integration ──────────────────────────────────────
+  // When these fields are set, the article automatically appears on the
+  // author's profile page under "Artikler skrevet af …".
+  // This removes the need to manually register articles in authorContent.ts.
+
+  /** Author ID – must match AuthorId type ("jonas" | "kevin" | "ajse" | "niklas") */
+  author?: string;
+  /** Article title for the author profile card */
+  articleTitle?: string;
+  /** Category label (e.g. "Guide", "Anmeldelse") */
+  articleCategory?: string;
+  /** Short excerpt for the author profile card */
+  articleExcerpt?: string;
+}
+
+/**
+ * Get all seoRoutes entries that have author metadata set.
+ * Used by getAuthorArticles() to auto-derive articles for author profiles.
+ */
+export function getSeoRoutesByAuthor(authorId: string) {
+  return seoRoutes.filter(
+    (r) => r.author === authorId && r.articleTitle
+  );
 }
 
 /** Map of path → SeoRoute for O(1) lookups */
@@ -191,7 +215,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/poker/caribbean-stud", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/poker/video-poker", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/poker/poker-strategi", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
-  { path: "/casinospil/poker/bedste-sider", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-15" },
+  { path: "/casinospil/poker/bedste-sider", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-15", author: "kevin", articleTitle: "Bedste Pokersider i Danmark 2026", articleCategory: "Guide", articleExcerpt: "Komplet guide til de bedste pokersider med dansk licens – sammenlign PokerStars, Unibet, bet365 og Campobet." },
   { path: "/casinospil/craps", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
   { path: "/casinospil/baccarat", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
   // /casinospil/roulette-strategi – 301 redirected to /casinospil/roulette (cannibalization fix)

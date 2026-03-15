@@ -1,9 +1,9 @@
 /**
  * Centralized Author Content Registry
  * ═══════════════════════════════════
- * Single source of truth for all content mapped to each author.
- * When you create a new page with `AuthorMetaBar author="x"`,
- * add the entry here so it automatically appears on the author's profile.
+ * Articles are auto-derived from seoRoutes.ts when the route has
+ * `author`, `articleTitle`, `articleCategory`, and `articleExcerpt` set.
+ * Legacy manual entries below are merged and deduplicated by path.
  *
  * This file is organized into:
  *  - articles: Written guides, reviews, and pages
@@ -13,6 +13,7 @@
  */
 
 import { glossaryTerms } from "@/data/glossaryTerms";
+import { getSeoRoutesByAuthor } from "@/lib/seoRoutes";
 
 // ─── Types ──────────────────────────────────────────────────────────────
 
@@ -333,22 +334,44 @@ const niklasArticles: AuthorArticle[] = [
   { title: "Forretningsmodel", path: "/forretningsmodel", category: "Guide", excerpt: "Sådan finansieres Casinoaftaler.dk." },
 ];
 
+// ─── Auto-merge helper ──────────────────────────────────────────────────
+
+/**
+ * Merge manual articles with auto-derived articles from seoRoutes.
+ * seoRoutes entries with `author` + `articleTitle` are automatically included.
+ * Deduplicates by path (manual entries take precedence).
+ */
+function mergeWithSeoRoutes(manualArticles: AuthorArticle[], authorId: AuthorId): AuthorArticle[] {
+  const seoArticles = getSeoRoutesByAuthor(authorId).map((r) => ({
+    title: r.articleTitle!,
+    path: r.path,
+    category: r.articleCategory || "Guide",
+    excerpt: r.articleExcerpt || "",
+  }));
+
+  const manualPaths = new Set(manualArticles.map((a) => a.path));
+  const uniqueSeoArticles = seoArticles.filter((a) => !manualPaths.has(a.path));
+
+  return [...manualArticles, ...uniqueSeoArticles];
+}
+
 // ─── Public API ─────────────────────────────────────────────────────────
 
 /**
  * Get all articles for a given author.
+ * Automatically includes entries from seoRoutes.ts that have author metadata.
  * Jonas's list automatically includes glossary terms.
  */
 export function getAuthorArticles(author: AuthorId): AuthorArticle[] {
   switch (author) {
     case "jonas":
-      return [...jonasArticles, ...jonasGlossaryArticles];
+      return mergeWithSeoRoutes([...jonasArticles, ...jonasGlossaryArticles], "jonas");
     case "kevin":
-      return kevinArticles;
+      return mergeWithSeoRoutes(kevinArticles, "kevin");
     case "ajse":
-      return ajseArticles;
+      return mergeWithSeoRoutes(ajseArticles, "ajse");
     case "niklas":
-      return niklasArticles;
+      return mergeWithSeoRoutes(niklasArticles, "niklas");
   }
 }
 
