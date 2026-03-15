@@ -278,6 +278,7 @@ const kevinArticles: AuthorArticle[] = [
   { title: "Madame Destiny Megaways – Komplet Guide", path: "/casinospil/spillemaskiner/madame-destiny-megaways", category: "Slot Guide", excerpt: "Madame Destiny Megaways – ante bet, free spins og multiplikatorer." },
   { title: "Fire Joker – Komplet Guide", path: "/casinospil/spillemaskiner/fire-joker", category: "Slot Guide", excerpt: "Fire Joker – Wheel of Multipliers, respin og klassisk design." },
   // Anmeldelse
+  { title: "Bedste Pokersider 2026", path: "/casinospil/poker/bedste-sider", category: "Guide", excerpt: "Sammenlign de bedste pokersider med dansk licens – bonus, rakeback og turneringer." },
   { title: "Videoslots Anmeldelse", path: "/casino-anmeldelser/videoslots", category: "Anmeldelse", excerpt: "Videoslots – kæmpe spiludvalg med unikke features." },
   // Bonus Hunt
   { title: "Bonus Hunt Live", path: "/bonus-hunt", category: "Community", excerpt: "Følg vores live bonus hunts med betting-spil og community-events." },
