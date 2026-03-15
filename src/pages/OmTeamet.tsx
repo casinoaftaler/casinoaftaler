@@ -496,6 +496,24 @@ const OmTeamet = () => {
                 Se Ajse – Juridisk redaktør <ArrowRight className="ml-1 h-3.5 w-3.5" />
               </Link>
             </div>
+            {/* Niklas */}
+            <div className="rounded-xl border border-border bg-card p-5">
+              <Link to="/forfatter/niklas" className="group">
+                <div className="flex items-center gap-3 mb-3">
+                  <img src={niklasImage} alt="Niklas – Finansøkonom" className="h-12 w-12 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors" width={48} height={48} loading="lazy" />
+                  <div>
+                    <p className="font-semibold group-hover:text-primary transition-colors">Niklas</p>
+                    <p className="text-xs text-muted-foreground">Finansøkonom & Forsikringsekspert</p>
+                  </div>
+                </div>
+              </Link>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Dækker <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusøkonomi</Link>, <Link to="/casinoer/casino-og-skat" className="text-primary underline hover:text-primary/80">casino og skat</Link> og finansiel risikostyring. Uddannet finansøkonom.
+              </p>
+              <Link to="/forfatter/niklas" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                Se Niklas – Finansøkonom <ArrowRight className="ml-1 h-3.5 w-3.5" />
+              </Link>
+            </div>
           </div>
         </section>
 
