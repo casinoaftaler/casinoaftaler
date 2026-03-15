@@ -38,7 +38,7 @@ const ClassicFruitsGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="11 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="11 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Super Stake: Fordoblet Potentiale</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Classic Fruits fra <Link to="/spiludviklere/stakelogic" className={lk}>Stakelogic</Link> kombinerer klassisk frugtmaskin-nostalgi med den moderne Super Stake-feature. Ved at aktivere Super Stake fordobles indsatsen, men til gengæld låses ekstra bonusmuligheder op – en innovativ tilgang til klassisk gameplay.</p>
