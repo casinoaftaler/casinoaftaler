@@ -163,29 +163,31 @@ export default function ForfatterAjse() {
   const newsArticles = newsData?.articles ?? [];
   const ajseStaticArticles = getAuthorArticles("ajse");
 
-  // Combine static pages and news into one unified list for pagination
-  const allItems = useMemo(() => {
-    const staticItems = ajseStaticArticles.map((page) => ({
-      type: "page" as const,
-      ...page,
-    }));
-    const newsItems = newsArticles.map((article) => ({
-      type: "news" as const,
-      ...article,
-    }));
-    return [...staticItems, ...newsItems];
-  }, [ajseStaticArticles, newsArticles]);
+  const ITEMS_PER_PAGE = 6;
 
-  const ARTICLES_PER_PAGE = 8;
-  const totalArticlePages = Math.max(1, Math.ceil(allItems.length / ARTICLES_PER_PAGE));
-  const visibleItems = allItems.slice(
-    articlePage * ARTICLES_PER_PAGE,
-    (articlePage + 1) * ARTICLES_PER_PAGE
+  // Pagination for static articles
+  const totalStaticPages = Math.max(1, Math.ceil(ajseStaticArticles.length / ITEMS_PER_PAGE));
+  const visibleStaticArticles = ajseStaticArticles.slice(
+    articlePage * ITEMS_PER_PAGE,
+    (articlePage + 1) * ITEMS_PER_PAGE
   );
   const prevArticlePage = useCallback(() => setArticlePage((p) => Math.max(0, p - 1)), []);
   const nextArticlePage = useCallback(
-    () => setArticlePage((p) => Math.min(totalArticlePages - 1, p + 1)),
-    [totalArticlePages]
+    () => setArticlePage((p) => Math.min(totalStaticPages - 1, p + 1)),
+    [totalStaticPages]
+  );
+
+  // Pagination for news
+  const [newsPage, setNewsPage] = useState(0);
+  const totalNewsPages = Math.max(1, Math.ceil(newsArticles.length / ITEMS_PER_PAGE));
+  const visibleNews = newsArticles.slice(
+    newsPage * ITEMS_PER_PAGE,
+    (newsPage + 1) * ITEMS_PER_PAGE
+  );
+  const prevNewsPage = useCallback(() => setNewsPage((p) => Math.max(0, p - 1)), []);
+  const nextNewsPage = useCallback(
+    () => setNewsPage((p) => Math.min(totalNewsPages - 1, p + 1)),
+    [totalNewsPages]
   );
 
   const faqJsonLd = buildFaqSchema(faqs);
