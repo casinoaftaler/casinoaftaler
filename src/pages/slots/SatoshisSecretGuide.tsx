@@ -38,7 +38,7 @@ const SatoshisSecretGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="11 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="11 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Krypto-Tema & Gameplay</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Satoshi's Secret fra <Link to="/spiludviklere/endorphina" className={lk}>Endorphina</Link> er en tematisk unik slot inspireret af Bitcoin og blockchain-teknologi. Spillets 5×3 grid med 10 gevinstlinjer tilbyder et enkelt men effektivt gameplay, suppleret af en bonus-runde der simulerer kryptovaluta-handel.</p>
