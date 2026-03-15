@@ -414,7 +414,7 @@ const Forretningsmodel = () => {
 
         <RelatedGuides currentPath="/forretningsmodel" maxLinks={5} />
 
-        <AuthorBio author="ajse" showCommunity={false} />
+        <AuthorBio author="niklas" showCommunity={false} />
       </div>
     </>
   );

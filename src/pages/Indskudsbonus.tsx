@@ -798,7 +798,7 @@ const Indskudsbonus = () => {
 
         <FAQSection title="Ofte stillede spørgsmål om indskudsbonus" faqs={indskudsbonusFaqs} />
 
-        <AuthorBio />
+        <AuthorBio author="niklas" />
       </div>
       <StickyCtaBySlug slug="spildansknu" />
     </>

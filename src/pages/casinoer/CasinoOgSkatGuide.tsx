@@ -277,7 +277,7 @@ const CasinoOgSkatGuide = () => {
 
         <FAQSection title="Ofte stillede spørgsmål om casino og skat" faqs={faqs} />
 
-        <AuthorBio />
+        <AuthorBio author="niklas" />
       </div>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

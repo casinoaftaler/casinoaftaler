@@ -646,7 +646,7 @@ const CashbackBonus = () => {
         <BonusMoneyLinks currentPath="/cashback-bonus" />
         <RelatedGuides currentPath="/cashback-bonus" />
         <FAQSection title="Ofte stillede spørgsmål om cashback bonus" faqs={cashbackFaqs} />
-        <AuthorBio />
+        <AuthorBio author="niklas" />
       </div>
       <StickyCtaBySlug slug="betinia" />
     </>
