@@ -235,6 +235,15 @@ const OmTeamet = () => {
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Ajse</p>
               </Link>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-3xl font-bold text-white/30">&</span>
+              </div>
+              <Link to="/forfatter/niklas" className="group">
+                <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
+                  <img src={niklasImage} alt="Niklas – Finansøkonom" className="h-full w-full object-cover object-top" loading="eager" />
+                </div>
+                <p className="mt-2 text-sm font-medium text-white/80">Niklas</p>
+              </Link>
             </div>
           </div>
         </div>
