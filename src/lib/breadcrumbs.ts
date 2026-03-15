@@ -446,6 +446,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/casinospil/poker/caribbean-stud": [{ name: "Casinospil", path: "/casinospil" }, { name: "Poker", path: "/casinospil/poker" }],
   "/casinospil/poker/video-poker": [{ name: "Casinospil", path: "/casinospil" }, { name: "Poker", path: "/casinospil/poker" }],
   "/casinospil/poker/poker-strategi": [{ name: "Casinospil", path: "/casinospil" }, { name: "Poker", path: "/casinospil/poker" }],
+  "/casinospil/poker/bedste-sider": [{ name: "Casinospil", path: "/casinospil" }, { name: "Poker", path: "/casinospil/poker" }],
   "/casinospil/craps": [{ name: "Casinospil", path: "/casinospil" }],
   "/casinospil/game-shows": [{ name: "Live Casino", path: "/live-casino" }],
   "/live-casino/game-shows": [{ name: "Live Casino", path: "/live-casino" }],

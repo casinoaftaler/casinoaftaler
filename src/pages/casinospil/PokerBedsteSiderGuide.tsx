@@ -459,8 +459,8 @@ export default function PokerBedsteSiderGuide() {
 
         <Separator className="my-10" />
 
-        <CasinospilMoneyLinks />
-        <LatestNewsByCategory category="poker" />
+        <CasinospilMoneyLinks gameName="Poker" currentPath="/casinospil/poker/bedste-sider" />
+        <LatestNewsByCategory pagePath="/casinospil/poker/bedste-sider" />
         <RelatedGuides currentPath="/casinospil/poker/bedste-sider" />
 
         <FAQSection faqs={faqs} />

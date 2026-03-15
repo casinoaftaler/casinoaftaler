@@ -507,6 +507,7 @@ const App = () => (
                 <Route path="/casinospil/poker/caribbean-stud" element={<CaribbeanStudGuide />} />
                 <Route path="/casinospil/poker/video-poker" element={<VideoPokerGuide />} />
                 <Route path="/casinospil/poker/poker-strategi" element={<PokerStrategiGuide />} />
+                <Route path="/casinospil/poker/bedste-sider" element={<PokerBedsteSiderGuide />} />
                 <Route path="/casinospil/craps" element={<CrapsGuide />} />
                 <Route path="/casinospil/baccarat" element={<BaccaratGuide />} />
                 <Route path="/casinospil/roulette-strategi" element={<Navigate to="/casinospil/roulette" replace />} />

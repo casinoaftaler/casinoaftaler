@@ -112,6 +112,7 @@ export const POKER_LINKS: NavLink[] = [
   { to: "/casinospil/poker/caribbean-stud", label: "Caribbean Stud" },
   { to: "/casinospil/poker/video-poker", label: "Video Poker" },
   { to: "/casinospil/poker/poker-strategi", label: "Poker Strategi" },
+  { to: "/casinospil/poker/bedste-sider", label: "Bedste Pokersider" },
 ];
 
 export const OTHER_CASINOSPIL_LINKS: NavLink[] = [
