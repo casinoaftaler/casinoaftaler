@@ -27,7 +27,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const VikingsGoBerzerkGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Vikings Go Berzerk – Rage-Meter & Free Spins Analyse", description: "Komplet analyse af Vikings Go Berzerk fra Yggdrasil: rage-meter progression, free spins med berzerk-wilds, RTP 96,10 % og medium-høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Vikings Go Berzerk – Rage-Meter & Free Spins Analyse", description: "Komplet analyse af Vikings Go Berzerk fra Yggdrasil: rage-meter progression, free spins med berzerk-wilds, RTP 96,10 % og medium-høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Vikings Go Berzerk – Rage-Meter & Free Spins Analyse", description: "Komplet analyse af Vikings Go Berzerk fra Yggdrasil: rage-meter progression, free spins med berzerk-wilds, RTP 96,10 % og medium-høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
