@@ -1,4 +1,5 @@
 import contactHero from "@/assets/heroes/contact-hero.jpg";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { useState } from "react";
