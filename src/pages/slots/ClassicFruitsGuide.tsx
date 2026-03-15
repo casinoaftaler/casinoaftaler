@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const ClassicFruitsGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Classic Fruits – Stakelogics Super Stake Slot", description: "Guide til Classic Fruits fra Stakelogic: Super Stake-feature, RTP 96,52 % og klassisk frugtmaskin-gameplay.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Classic Fruits – Stakelogics Super Stake Slot", description: "Guide til Classic Fruits fra Stakelogic: Super Stake-feature, RTP 96,52 % og klassisk frugtmaskin-gameplay.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Classic Fruits – Stakelogics Super Stake Slot", description: "Guide til Classic Fruits fra Stakelogic: Super Stake-feature, RTP 96,52 % og klassisk frugtmaskin-gameplay.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
