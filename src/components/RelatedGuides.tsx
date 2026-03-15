@@ -827,9 +827,9 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [
         { to: "/casinospil/poker", label: "Poker Guide", icon: Gamepad2, desc: "Komplet overblik over alle pokervarianter" },
+        { to: "/casinospil/poker/bedste-sider", label: "Bedste Pokersider", icon: Trophy, desc: "Top pokersider i Danmark 2026" },
         { to: "/casinospil/poker/omaha", label: "Omaha Poker", icon: Shuffle, desc: "4 hole cards – højere action og varians" },
         { to: "/casinospil/poker/poker-strategi", label: "Poker Strategi", icon: Brain, desc: "GTO, pot odds og avanceret teori" },
-        { to: "/casinospil/poker/three-card-poker", label: "Three Card Poker", icon: Zap, desc: "Hurtigt casino-bordspil med Pair Plus" },
         { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil poker med live dealere" },
       ],
       subtitle: "Udforsk andre pokervarianter, strategier og live casino-muligheder.",
