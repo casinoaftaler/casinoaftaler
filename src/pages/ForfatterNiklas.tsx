@@ -219,7 +219,7 @@ export default function ForfatterNiklas() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" showVerified />
+        <AuthorMetaBar author="jonas" factCheckBy="ajse" showVerified />
 
         {/* Profile card */}
         <section className="mb-12">

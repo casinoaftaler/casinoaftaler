@@ -82,9 +82,11 @@ interface AuthorMetaBarProps {
   showFactCheck?: boolean;
   showVerified?: boolean;
   showAffiliateDisclaimer?: boolean;
+  /** Override which author is shown as fact-checker. Defaults to cross-check logic. */
+  factCheckBy?: "jonas" | "kevin" | "ajse" | "niklas";
 }
 
-export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true }: AuthorMetaBarProps) {
+export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true, factCheckBy }: AuthorMetaBarProps) {
   const { pathname } = useLocation();
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
   const autoReadTime = useAutoReadTime();
