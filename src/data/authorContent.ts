@@ -323,7 +323,6 @@ const ajseArticles: AuthorArticle[] = [
   { title: "Hjælpelinjer for Spilleproblemer", path: "/ansvarligt-spil/hjaelpelinjer", category: "Guide", excerpt: "Samlet oversigt over alle danske hjælpemuligheder for spilleproblemer." },
   { title: "Casino Licenser", path: "/casino-licenser", category: "Guide", excerpt: "Guide til danske casinolicenser." },
   { title: "Spillemyndigheden", path: "/spillemyndigheden", category: "Guide", excerpt: "Danmarks regulering af online spil." },
-  { title: "Omsætningskrav", path: "/omsaetningskrav", category: "Guide", excerpt: "Komplet guide til gennemspilningskrav." },
   { title: "Kontakt", path: "/kontakt", category: "Guide", excerpt: "Kontakt Casinoaftaler.dk." },
   { title: "Casino Nyheder", path: "/casino-nyheder", category: "Nyheder", excerpt: "Seneste nyheder fra branchen." },
 ];
