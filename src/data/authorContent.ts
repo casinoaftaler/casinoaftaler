@@ -68,7 +68,6 @@ const jonasArticles: AuthorArticle[] = [
   { title: "Poker Strategi Guide", path: "/casinospil/poker/strategi", category: "Guide", excerpt: "Pokerstrategi – odds, position, bluffing og bankroll management." },
   { title: "Three Card Poker Guide", path: "/casinospil/poker/three-card-poker", category: "Guide", excerpt: "Three Card Poker – regler, Pair Plus og optimal strategi." },
   { title: "Caribbean Stud Poker Guide", path: "/casinospil/poker/caribbean-stud", category: "Guide", excerpt: "Caribbean Stud Poker – regler, progressiv jackpot og strategi." },
-  { title: "Bedste Pokersider 2026", path: "/casinospil/poker/bedste-sider", category: "Guide", excerpt: "Sammenlign de bedste pokersider med dansk licens – bonus, rakeback og turneringer." },
   { title: "Craps Guide", path: "/casinospil/craps", category: "Guide", excerpt: "Lær craps regler, væddemål og strategi for begyndere." },
   { title: "Online Lotteri Guide", path: "/casinospil/online-lotteri", category: "Guide", excerpt: "Alt om online lotteri hos danske casinoer og operatører." },
   { title: "Game Shows Guide", path: "/casinospil/game-shows", category: "Guide", excerpt: "Oplev live game shows som Crazy Time og Dream Catcher." },
@@ -278,6 +277,7 @@ const kevinArticles: AuthorArticle[] = [
   { title: "Madame Destiny Megaways – Komplet Guide", path: "/casinospil/spillemaskiner/madame-destiny-megaways", category: "Slot Guide", excerpt: "Madame Destiny Megaways – ante bet, free spins og multiplikatorer." },
   { title: "Fire Joker – Komplet Guide", path: "/casinospil/spillemaskiner/fire-joker", category: "Slot Guide", excerpt: "Fire Joker – Wheel of Multipliers, respin og klassisk design." },
   // Anmeldelse
+  { title: "Bedste Pokersider 2026", path: "/casinospil/poker/bedste-sider", category: "Guide", excerpt: "Sammenlign de bedste pokersider med dansk licens – bonus, rakeback og turneringer." },
   { title: "Videoslots Anmeldelse", path: "/casino-anmeldelser/videoslots", category: "Anmeldelse", excerpt: "Videoslots – kæmpe spiludvalg med unikke features." },
   // Bonus Hunt
   { title: "Bonus Hunt Live", path: "/bonus-hunt", category: "Community", excerpt: "Følg vores live bonus hunts med betting-spil og community-events." },
