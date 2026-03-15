@@ -85,11 +85,31 @@ const jonasArticles = getAuthorArticles("jonas");
 const jonasGuideVideos = getAuthorGuideVideos("jonas");
 
 const expertiseItems = [
-  { icon: CalendarDays, label: "4+ års erfaring med online casino" },
-  { icon: CheckCircle2, label: "Testet 50+ danske casinoer" },
-  { icon: FileText, label: "Speciale i bonusvilkår & omsætningskrav" },
-  { icon: Tv, label: "Aktiv Twitch-streamer siden 2021" },
-  { icon: ShieldCheck, label: "Fokus på ansvarligt spil" },
+  {
+    icon: CalendarDays,
+    label: "4+ års erfaring med online casino",
+    desc: "Daglig erfaring med test og streaming af danske online casinoer siden 2021.",
+  },
+  {
+    icon: CheckCircle2,
+    label: "Testet 50+ danske casinoer",
+    desc: "Systematisk gennemgang med registrering, indbetaling, gameplay og udbetaling på hvert casino.",
+  },
+  {
+    icon: FileText,
+    label: "Speciale i bonusvilkår & omsætningskrav",
+    desc: "Dybdegående analyse af bonusstrukturer, omsætningskrav og reel værdi for danske spillere.",
+  },
+  {
+    icon: Tv,
+    label: "Aktiv Twitch-streamer siden 2021",
+    desc: "Daglig live-streaming med bonus hunts, slots og community-interaktion for tusindvis af seere.",
+  },
+  {
+    icon: ShieldCheck,
+    label: "Fokus på ansvarligt spil",
+    desc: "Gennemsigtig kommunikation om risici, ROFUS-tilslutning og spillerbeskyttelse i alt indhold.",
+  },
 ];
 
 /** Person JSON-LD schema for Jonas – canonical definition matching buildPersonEntity */
