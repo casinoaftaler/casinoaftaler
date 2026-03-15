@@ -269,6 +269,7 @@ export const routeLabels: Record<string, string> = {
   "/casinospil/poker/caribbean-stud": "Caribbean Stud",
   "/casinospil/poker/video-poker": "Video Poker",
   "/casinospil/poker/poker-strategi": "Poker Strategi",
+  "/casinospil/poker/bedste-sider": "Bedste Pokersider",
   "/casinospil/craps": "Craps",
   "/casinospil/baccarat": "Baccarat",
   // "/casinospil/roulette-strategi" – removed (301 redirect to /casinospil/roulette)
@@ -445,6 +446,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/casinospil/poker/caribbean-stud": [{ name: "Casinospil", path: "/casinospil" }, { name: "Poker", path: "/casinospil/poker" }],
   "/casinospil/poker/video-poker": [{ name: "Casinospil", path: "/casinospil" }, { name: "Poker", path: "/casinospil/poker" }],
   "/casinospil/poker/poker-strategi": [{ name: "Casinospil", path: "/casinospil" }, { name: "Poker", path: "/casinospil/poker" }],
+  "/casinospil/poker/bedste-sider": [{ name: "Casinospil", path: "/casinospil" }, { name: "Poker", path: "/casinospil/poker" }],
   "/casinospil/craps": [{ name: "Casinospil", path: "/casinospil" }],
   "/casinospil/game-shows": [{ name: "Live Casino", path: "/live-casino" }],
   "/live-casino/game-shows": [{ name: "Live Casino", path: "/live-casino" }],

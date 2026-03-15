@@ -229,6 +229,7 @@ const ThreeCardPokerGuide = lazy(() => import("./pages/casinospil/ThreeCardPoker
 const CaribbeanStudGuide = lazy(() => import("./pages/casinospil/CaribbeanStudGuide"));
 const VideoPokerGuide = lazy(() => import("./pages/casinospil/VideoPokerGuide"));
 const PokerStrategiGuide = lazy(() => import("./pages/casinospil/PokerStrategiGuide"));
+const PokerBedsteSiderGuide = lazy(() => import("./pages/casinospil/PokerBedsteSiderGuide"));
 const CrapsGuide = lazy(() => import("./pages/casinospil/CrapsGuide"));
 const BaccaratGuide = lazy(() => import("./pages/casinospil/BaccaratGuide"));
 const RouletteStrategiGuide = lazy(() => import("./pages/casinospil/RouletteStrategiGuide"));
@@ -506,6 +507,7 @@ const App = () => (
                 <Route path="/casinospil/poker/caribbean-stud" element={<CaribbeanStudGuide />} />
                 <Route path="/casinospil/poker/video-poker" element={<VideoPokerGuide />} />
                 <Route path="/casinospil/poker/poker-strategi" element={<PokerStrategiGuide />} />
+                <Route path="/casinospil/poker/bedste-sider" element={<PokerBedsteSiderGuide />} />
                 <Route path="/casinospil/craps" element={<CrapsGuide />} />
                 <Route path="/casinospil/baccarat" element={<BaccaratGuide />} />
                 <Route path="/casinospil/roulette-strategi" element={<Navigate to="/casinospil/roulette" replace />} />
