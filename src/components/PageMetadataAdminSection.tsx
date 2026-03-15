@@ -71,21 +71,6 @@ export function PageMetadataAdminSection() {
     },
   });
 
-  const touchAllMutation = useMutation({
-    mutationFn: async () => {
-      const { error } = await supabase
-        .from("page_metadata")
-        .update({ updated_at: new Date().toISOString() })
-        .neq("path", "___never_match___");
-      if (error) throw error;
-    },
-    onSuccess: () => {
-      toast.success("Alle siders dato opdateret!");
-      queryClient.invalidateQueries({ queryKey: ["admin-page-metadata"] });
-      queryClient.invalidateQueries({ queryKey: ["page-lastmod"] });
-    },
-    onError: (err) => toast.error("Fejl: " + (err as Error).message),
-  });
 
   const filtered = (pages || []).filter((p) =>
     p.path.toLowerCase().includes(search.toLowerCase())
