@@ -1,4 +1,5 @@
 import contactHero from "@/assets/heroes/contact-hero.jpg";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { useState } from "react";
@@ -401,6 +402,7 @@ export default function Contact() {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/kontakt" />
         <RelatedGuides currentPath="/kontakt" />
         <FAQSection title="Ofte stillede spørgsmål" faqs={contactFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />

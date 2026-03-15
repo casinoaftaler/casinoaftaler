@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SEO } from "@/components/SEO";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -944,6 +945,7 @@ const OmTeamet = () => {
 
       {/* ═══ RELATEREDE GUIDES ═══ */}
       <div className="container py-12 md:py-16">
+        <LatestNewsByCategory pagePath="/om" />
         <RelatedGuides currentPath="/om" maxLinks={6} />
         <AuthorBio author="ajse" showCommunity={false} />
       </div>

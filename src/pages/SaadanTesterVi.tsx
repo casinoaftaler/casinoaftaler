@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { TestMetodeSeoContent } from "@/components/test-metode/TestMetodeSeoContent";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -435,6 +437,9 @@ const SaadanTesterVi = () => {
 
         {/* FAQ */}
         <FAQSection faqs={faqs} />
+
+        <LatestNewsByCategory pagePath="/saadan-tester-vi-casinoer" />
+        <RelatedGuides currentPath="/saadan-tester-vi-casinoer" maxLinks={5} />
 
         <AuthorBio author="ajse" showCommunity={false} />
       </div>

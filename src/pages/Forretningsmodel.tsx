@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import forretningsmodelHero from "@/assets/heroes/forretningsmodel-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
@@ -412,6 +413,7 @@ const Forretningsmodel = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/forretningsmodel" />
         <RelatedGuides currentPath="/forretningsmodel" maxLinks={5} />
 
         <AuthorBio author="niklas" showCommunity={false} />
