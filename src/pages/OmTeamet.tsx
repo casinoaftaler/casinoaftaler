@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import {
   Users,
   Target,
+  Briefcase,
   Shield,
   CheckCircle2,
   Search,
