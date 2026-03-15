@@ -1,9 +1,9 @@
 /**
  * Centralized Author Content Registry
  * ═══════════════════════════════════
- * Single source of truth for all content mapped to each author.
- * When you create a new page with `AuthorMetaBar author="x"`,
- * add the entry here so it automatically appears on the author's profile.
+ * Articles are auto-derived from seoRoutes.ts when the route has
+ * `author`, `articleTitle`, `articleCategory`, and `articleExcerpt` set.
+ * Legacy manual entries below are merged and deduplicated by path.
  *
  * This file is organized into:
  *  - articles: Written guides, reviews, and pages
