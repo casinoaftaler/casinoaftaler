@@ -21,11 +21,9 @@ import {
   Gamepad2,
   Star,
   Tv,
-  Heart,
   Zap,
   Trophy,
   Users,
-  MapPin,
   ShieldCheck,
   Landmark,
   Phone,
@@ -329,57 +327,55 @@ export default function Forfatter() {
               <h2 className="text-3xl font-bold mb-4">Om Jonas</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <CalendarDays className="h-4 w-4 text-primary" />
+                  <User className="h-4 w-4 text-primary" />
                   <div>
-                    <p className="text-xs text-muted-foreground">Alder</p>
-                    <p className="text-sm font-medium">30 år</p>
+                    <p className="text-xs text-muted-foreground">Rolle</p>
+                    <p className="text-sm font-medium">Grundlægger & Indholdsansvarlig</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <MapPin className="h-4 w-4 text-primary" />
+                  <Gamepad2 className="h-4 w-4 text-primary" />
                   <div>
-                    <p className="text-xs text-muted-foreground">Bopæl</p>
-                    <p className="text-sm font-medium">Danmark</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <Star className="h-4 w-4 text-primary" />
-                  <div>
-                    <p className="text-xs text-muted-foreground">Yndlingsslot</p>
-                    <p className="text-sm font-medium">Wanted Dead & Alive</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <Trophy className="h-4 w-4 text-primary" />
-                  <div>
-                    <p className="text-xs text-muted-foreground">Største gevinst</p>
-                    <p className="text-sm font-medium">12.278x</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
-                  <Heart className="h-4 w-4 text-primary" />
-                  <div>
-                    <p className="text-xs text-muted-foreground">Yndlingsmad</p>
-                    <p className="text-sm font-medium">Skyr & Pizza</p>
+                    <p className="text-xs text-muted-foreground">Speciale</p>
+                    <p className="text-sm font-medium">Casino-anmeldelser & streaming</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
                   <Tv className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Platform</p>
-                    <p className="text-sm font-medium">Twitch</p>
+                    <p className="text-sm font-medium">Twitch / YouTube</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
+                  <ShieldCheck className="h-4 w-4 text-primary" />
+                  <div>
+                    <p className="text-xs text-muted-foreground">Fokusområde</p>
+                    <p className="text-sm font-medium">Bonusguides & casinotest</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
+                  <CalendarDays className="h-4 w-4 text-primary" />
+                  <div>
+                    <p className="text-xs text-muted-foreground">Aktiv siden</p>
+                    <p className="text-sm font-medium">2021</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
+                  <FileText className="h-4 w-4 text-primary" />
+                  <div>
+                    <p className="text-xs text-muted-foreground">Artikler</p>
+                    <p className="text-sm font-medium">100+ anmeldelser & guides</p>
                   </div>
                 </div>
               </div>
-              {/* 5️⃣ Bio with internal authority links */}
               <p className="text-muted-foreground leading-relaxed">
-                Jonas, bedre kendt som <strong>Fedesvinsejer</strong>, er grundlæggeren af Casinoaftaler.dk og en af Danmarks mest engagerende casino-streamere. 
-                Med sin åbne stil, smittende energi og humor har han opbygget et aktivt og loyalt community, 
-                der deler hans passion for{" "}
-                <Link to="/casinospil" className="text-primary hover:underline">casinospil</Link> og underholdning.
-                Hans ekspertise spænder fra dybdegående{" "}
-                <Link to="/casino-bonus" className="text-primary hover:underline">bonusanalyser</Link> til{" "}
-                <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>, og han arbejder løbende på at styrke gennemsigtigheden i den danske casinoindustri.
+                Jonas er grundlægger af Casinoaftaler.dk og har streamt online casino i over 4 år. Som indholdsansvarlig 
+                styrer han strategi, {" "}
+                <Link to="/casino-anmeldelser" className="text-primary hover:underline">casino-anmeldelser</Link> og{" "}
+                <Link to="/casino-bonus" className="text-primary hover:underline">bonusguides</Link>. 
+                Hans ekspertise spænder fra systematisk casinotest til dybdegående bonusanalyser og{" "}
+                <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>. 
                 Læs mere om{" "}
                 <Link to="/om" className="text-primary hover:underline">teamet bag Casinoaftaler.dk</Link> og{" "}
                 <Link to="/saadan-tester-vi-casinoer" className="text-primary hover:underline">hvordan vi tester casinoer</Link>.

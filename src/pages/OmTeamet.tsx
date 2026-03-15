@@ -386,8 +386,8 @@ const OmTeamet = () => {
               </CardContent>
             </Card>
 
-            {/* Ajse quote – centered below */}
-            <Card className="border-white/10 bg-white/5 backdrop-blur-sm md:col-span-2 md:max-w-xl md:mx-auto">
+            {/* Ajse quote */}
+            <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
               <CardContent className="p-8">
                 <Quote className="mb-4 h-8 w-8 text-primary/60" />
                 <p className="mb-6 text-xl font-medium leading-relaxed text-white/90 italic">
@@ -400,6 +400,25 @@ const OmTeamet = () => {
                   <div>
                     <p className="font-semibold text-white">Ajse</p>
                     <p className="text-sm text-white/60">Juridisk redaktør & Compliance</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Niklas quote */}
+            <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <Quote className="mb-4 h-8 w-8 text-primary/60" />
+                <p className="mb-6 text-xl font-medium leading-relaxed text-white/90 italic">
+                  "Bag enhver bonus ligger et regnestykke – min opgave er at sikre, at spilleren forstår det."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-12 w-12 overflow-hidden rounded-xl border-2 border-primary/30">
+                    <img src={niklasImage} alt="Niklas" className="h-full w-full object-cover object-top" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Niklas</p>
+                    <p className="text-sm text-white/60">Finansøkonom & Forsikringsekspert</p>
                   </div>
                 </div>
               </CardContent>
@@ -792,7 +811,7 @@ const OmTeamet = () => {
                   <h3 className="font-semibold text-sm">Rollefordeling</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Jonas står for anmeldelser og guides. Kevin dækker teknik og platformudvikling. Ajse er juridisk redaktør og dækker compliance, licenser og ansvarligt spil. Alle artikler faktatjekkes af en anden redaktør end forfatteren.
+                  Jonas står for anmeldelser og guides. Kevin dækker teknik og platformudvikling. Ajse er juridisk redaktør og dækker compliance, licenser og ansvarligt spil. Niklas er finansøkonom og dækker bonusøkonomi, skat og finansiel risikostyring. Alle artikler faktatjekkes af en anden redaktør end forfatteren.
                 </p>
               </CardContent>
             </Card>
@@ -909,6 +928,12 @@ const OmTeamet = () => {
             <Link to="/forfatter/ajse">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white/20 font-semibold">
                 Se Ajse – Juridisk redaktør
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/forfatter/niklas">
+              <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white/20 font-semibold">
+                Se Niklas – Finansøkonom
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
