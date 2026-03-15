@@ -11,7 +11,6 @@ import { SlotPageLoading } from "./components/slots/SlotPageLoading";
 
 import Index from "./pages/Index";
 
-import Index from "./pages/Index";
 const CasinoBonus = lazy(() => import("./pages/CasinoBonus"));
 const NyeCasinoer = lazy(() => import("./pages/NyeCasinoer"));
 const NyeCasinoer2026 = lazy(() => import("./pages/nye-casinoer/NyeCasinoer2026"));
