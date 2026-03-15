@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const GoldVeinGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Gold Vein – Booming Games Sticky Wilds Slot", description: "Guide til Gold Vein fra Booming Games: sticky wilds, free spins, RTP 95,96 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Gold Vein – Booming Games Sticky Wilds Slot", description: "Guide til Gold Vein fra Booming Games: sticky wilds, free spins, RTP 95,96 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Gold Vein – Booming Games Sticky Wilds Slot", description: "Guide til Gold Vein fra Booming Games: sticky wilds, free spins, RTP 95,96 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
