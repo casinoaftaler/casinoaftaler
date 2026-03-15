@@ -512,19 +512,15 @@ export default function ForfatterAjse() {
           {/* Statiske sider af Ajse */}
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-3 text-muted-foreground">Sider</h3>
-            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {getAuthorArticles("ajse").map((page) => (
-                <Link
+                <AuthorArticleCard
                   key={page.path}
-                  to={page.path}
-                  className="group flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
-                >
-                  <Pen className="h-5 w-5 shrink-0 text-primary" />
-                  <div className="min-w-0">
-                    <h4 className="text-sm font-semibold group-hover:text-primary transition-colors">{page.title}</h4>
-                    <p className="text-xs text-muted-foreground">{page.excerpt}</p>
-                  </div>
-                </Link>
+                  path={page.path}
+                  title={page.title}
+                  category={page.category}
+                  excerpt={page.excerpt}
+                />
               ))}
             </div>
           </div>
