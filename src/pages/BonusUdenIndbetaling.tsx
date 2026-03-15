@@ -764,7 +764,7 @@ const BonusUdenIndbetaling = () => {
         <BonusMoneyLinks currentPath="/bonus-uden-indbetaling" />
         <RelatedGuides currentPath="/bonus-uden-indbetaling" />
         <FAQSection title="Tekniske spørgsmål om no deposit bonusser" faqs={bonusUdenIndbetalingFaqs} />
-        <AuthorBio />
+        <AuthorBio author="niklas" />
       </div>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

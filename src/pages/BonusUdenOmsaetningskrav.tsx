@@ -748,7 +748,7 @@ const BonusUdenOmsaetningskrav = () => {
           </div>
         </section>
 
-        <AuthorBio />
+        <AuthorBio author="niklas" />
 
         <Separator className="my-10" />
 

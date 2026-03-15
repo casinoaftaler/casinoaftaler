@@ -862,7 +862,7 @@ const Omsaetningskrav = () => {
 
         <FAQSection title="Ofte stillede spørgsmål om omsætningskrav" faqs={omsaetningskravFaqs} />
 
-        <AuthorBio author="ajse" />
+        <AuthorBio author="niklas" />
       </div>
       <StickyCtaBySlug slug="campobet" />
     </>

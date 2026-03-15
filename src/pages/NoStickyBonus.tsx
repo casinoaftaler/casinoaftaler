@@ -717,7 +717,7 @@ const NoStickyBonus = () => {
 
         <FAQSection title="Ofte stillede spørgsmål om No-Sticky Bonus" faqs={noStickyFaqs} />
 
-        <AuthorBio />
+        <AuthorBio author="niklas" />
       </div>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
