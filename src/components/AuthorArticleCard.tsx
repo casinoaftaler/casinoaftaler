@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { getCategoryVisual } from "@/lib/categoryThumbnails";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
+import { getHeroImageForPath } from "@/lib/heroImageMap";
 import {
   BookOpen,
   Gamepad2,
@@ -38,6 +39,7 @@ interface AuthorArticleCardProps {
 }
 
 export function AuthorArticleCard({ path, title, category, excerpt }: AuthorArticleCardProps) {
+  const heroImage = getHeroImageForPath(path);
   const visual = getCategoryVisual(category);
   const IconComp = ICON_MAP[visual.iconName] ?? Pen;
 
@@ -46,13 +48,24 @@ export function AuthorArticleCard({ path, title, category, excerpt }: AuthorArti
       to={path}
       className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
     >
-      {/* Gradient thumbnail */}
-      <div
-        className="flex aspect-video items-center justify-center"
-        style={{ background: visual.gradient }}
-      >
-        <IconComp className="h-10 w-10 text-white/80" />
-      </div>
+      {/* Thumbnail: real hero image or gradient fallback */}
+      {heroImage ? (
+        <div className="relative aspect-video w-full overflow-hidden bg-muted">
+          <img
+            src={heroImage}
+            alt={title}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        <div
+          className="flex aspect-video items-center justify-center"
+          style={{ background: visual.gradient }}
+        >
+          <IconComp className="h-10 w-10 text-white/80" />
+        </div>
+      )}
 
       {/* Content */}
       <div className="flex flex-1 flex-col gap-1.5 p-4">
