@@ -67,11 +67,31 @@ import { getAuthorArticles } from "@/data/authorContent";
 const kevinArticles = getAuthorArticles("kevin");
 
 const expertiseItems = [
-  { icon: Gamepad2, label: "Slots & RTP-forståelse" },
-  { icon: Tv, label: "Live gameplay analyse" },
-  { icon: FileText, label: "Bonusvilkår" },
-  { icon: Users, label: "Community engagement" },
-  { icon: Code, label: "Platformfeedback & udvikling" },
+  {
+    icon: Gamepad2,
+    label: "Slots & RTP-forståelse",
+    desc: "Dyb indsigt i spillemekanikker, volatilitet og RTP-analyse fra over 3 års daglig streaming.",
+  },
+  {
+    icon: Tv,
+    label: "Live gameplay analyse",
+    desc: "Systematisk vurdering af casinoer gennem live-streams med fokus på bonusvilkår og spiloplevelse.",
+  },
+  {
+    icon: FileText,
+    label: "Bonusvilkår & gennemsigtighed",
+    desc: "Detaljeret gennemgang af omsætningskrav, tidsfrister og reel bonusværdi for danske spillere.",
+  },
+  {
+    icon: Users,
+    label: "Community engagement",
+    desc: "Aktiv community-builder med fokus på dialog, turneringer og et inkluderende spil-fællesskab.",
+  },
+  {
+    icon: Code,
+    label: "Platformfeedback & udvikling",
+    desc: "IT-medansvarlig med erfaring fra FaZe Clan, ansvarlig for teknisk kvalitetssikring og platformoptimering.",
+  },
 ];
 
 const personSchema = {
