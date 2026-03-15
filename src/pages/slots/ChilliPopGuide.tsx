@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const ChilliPopGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Chilli Pop – Betsofts 3D Cascading Slot", description: "Guide til Chilli Pop fra Betsoft: expanding grid, cascading wins, RTP 96,00 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Chilli Pop – Betsofts 3D Cascading Slot", description: "Guide til Chilli Pop fra Betsoft: expanding grid, cascading wins, RTP 96,00 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Chilli Pop – Betsofts 3D Cascading Slot", description: "Guide til Chilli Pop fra Betsoft: expanding grid, cascading wins, RTP 96,00 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
