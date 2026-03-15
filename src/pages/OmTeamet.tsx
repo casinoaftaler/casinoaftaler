@@ -22,7 +22,7 @@ import {
   ShieldCheck,
   Gamepad2,
   Quote,
-  Clock,
+  
   Tv,
   MessageSquare,
   Trophy,
