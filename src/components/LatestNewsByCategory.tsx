@@ -83,6 +83,12 @@ const PAGE_CATEGORY_MAP: Record<string, { categories: string[]; tags: string[]; 
   "/casino-med-mobilepay": { categories: ["betalingsmetoder"], tags: ["mobilepay", "betaling"], label: "casino med MobilePay" },
   "/casino-app": { categories: ["nye-casinoer"], tags: ["casino app", "mobil"], label: "casino apps" },
   "/statistik": { categories: ["nye-casinoer", "markedsbevægelser"], tags: ["statistik", "data"], label: "casinostatistik" },
+  // Trust & info-sider (Mere-clusteret)
+  "/om": { categories: ["markedsbevægelser", "nye-casinoer"], tags: ["casinoaftaler", "redaktion"], label: "Casinoaftaler.dk" },
+  "/forretningsmodel": { categories: ["regulering", "markedsbevægelser"], tags: ["affiliate", "forretningsmodel"], label: "vores forretningsmodel" },
+  "/redaktionel-politik": { categories: ["regulering", "markedsbevægelser"], tags: ["redaktion", "kvalitet"], label: "redaktionel kvalitet" },
+  "/saadan-tester-vi-casinoer": { categories: ["regulering", "nye-casinoer"], tags: ["testmetode", "anmeldelse"], label: "vores testmetode" },
+  "/kontakt": { categories: ["markedsbevægelser", "nye-casinoer"], tags: ["casinoaftaler", "samarbejde"], label: "samarbejde og kontakt" },
 };
 
 function useNewsByCategory(categories: string[], tags: string[], limit = 3) {

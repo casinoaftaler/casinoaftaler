@@ -436,6 +436,9 @@ const SaadanTesterVi = () => {
         {/* FAQ */}
         <FAQSection faqs={faqs} />
 
+        <LatestNewsByCategory pagePath="/saadan-tester-vi-casinoer" />
+        <RelatedGuides currentPath="/saadan-tester-vi-casinoer" maxLinks={5} />
+
         <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>

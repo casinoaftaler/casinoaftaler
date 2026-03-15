@@ -401,6 +401,7 @@ export default function Contact() {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/kontakt" />
         <RelatedGuides currentPath="/kontakt" />
         <FAQSection title="Ofte stillede spørgsmål" faqs={contactFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />

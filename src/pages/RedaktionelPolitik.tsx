@@ -391,6 +391,7 @@ const RedaktionelPolitik = () => {
           </div>
         </section>
 
+        <LatestNewsByCategory pagePath="/redaktionel-politik" />
         <RelatedGuides currentPath="/redaktionel-politik" maxLinks={5} />
 
         <AuthorBio author="ajse" showCommunity={false} />

@@ -944,6 +944,7 @@ const OmTeamet = () => {
 
       {/* ═══ RELATEREDE GUIDES ═══ */}
       <div className="container py-12 md:py-16">
+        <LatestNewsByCategory pagePath="/om" />
         <RelatedGuides currentPath="/om" maxLinks={6} />
         <AuthorBio author="ajse" showCommunity={false} />
       </div>
