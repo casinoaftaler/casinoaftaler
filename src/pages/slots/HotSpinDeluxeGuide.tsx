@@ -38,7 +38,7 @@ const HotSpinDeluxeGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="13 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="13 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Bonus-Hjul med 7 Features</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Hot Spin Deluxe fra <Link to="/spiludviklere/isoftbet" className={lk}>iSoftBet</Link> skiller sig ud med sit bonus-hjul, der indeholder 7 forskellige bonusfeatures. Når 3 eller flere scatters lander, spinner hjulet og tildeler alt fra Expanding Wild Reels og Colossal Symbols til ekstra free spins med multipliers. Denne varierede tilgang giver hvert bonusrunde et unikt præg.</p>
