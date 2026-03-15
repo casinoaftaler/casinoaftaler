@@ -212,40 +212,35 @@ const OmTeamet = () => {
             </p>
 
             {/* Profile images side-by-side */}
-            <div className="mt-10 flex items-center justify-center gap-6 md:gap-10">
+            <div className="mt-10 grid grid-cols-2 gap-6 justify-items-center md:flex md:items-center md:justify-center md:gap-10">
               <Link to="/forfatter/jonas" className="group">
                 <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
                   <img src={jonasImage} alt="Jonas – Grundlægger" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Jonas</p>
               </Link>
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-3xl font-bold text-white/30">&</span>
-              </div>
               <Link to="/forfatter/kevin" className="group">
                 <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
                   <img src={kevinImage} alt="Kevin – IT Medansvarlig" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Kevin</p>
               </Link>
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-3xl font-bold text-white/30">&</span>
-              </div>
               <Link to="/forfatter/ajse" className="group">
                 <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
                   <img src={ajseImage} alt="Ajse – Juridisk redaktør" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Ajse</p>
               </Link>
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-3xl font-bold text-white/30">&</span>
-              </div>
               <Link to="/forfatter/niklas" className="group">
                 <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
                   <img src={niklasImage} alt="Niklas – Finansøkonom" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Niklas</p>
               </Link>
+              {/* "&" separators only on desktop */}
+              <span className="hidden md:flex text-3xl font-bold text-white/30 order-none md:order-[2]" aria-hidden="true">&</span>
+              <span className="hidden md:flex text-3xl font-bold text-white/30 order-none md:order-[4]" aria-hidden="true">&</span>
+              <span className="hidden md:flex text-3xl font-bold text-white/30 order-none md:order-[6]" aria-hidden="true">&</span>
             </div>
           </div>
         </div>
