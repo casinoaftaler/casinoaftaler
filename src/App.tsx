@@ -229,6 +229,7 @@ const ThreeCardPokerGuide = lazy(() => import("./pages/casinospil/ThreeCardPoker
 const CaribbeanStudGuide = lazy(() => import("./pages/casinospil/CaribbeanStudGuide"));
 const VideoPokerGuide = lazy(() => import("./pages/casinospil/VideoPokerGuide"));
 const PokerStrategiGuide = lazy(() => import("./pages/casinospil/PokerStrategiGuide"));
+const PokerBedsteSiderGuide = lazy(() => import("./pages/casinospil/PokerBedsteSiderGuide"));
 const CrapsGuide = lazy(() => import("./pages/casinospil/CrapsGuide"));
 const BaccaratGuide = lazy(() => import("./pages/casinospil/BaccaratGuide"));
 const RouletteStrategiGuide = lazy(() => import("./pages/casinospil/RouletteStrategiGuide"));
