@@ -173,7 +173,7 @@ export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified
           // Determine fact-checker: explicit override > default cross-check
           const resolvedChecker = factCheckBy
             ?? (author === "niklas" ? "ajse" : (author === "kevin" || author === "redaktionen") ? "jonas" : "kevin");
-          const checkerInfo = resolvedChecker !== "redaktionen" ? authorConfig[resolvedChecker] : null;
+          const checkerInfo = authorConfig[resolvedChecker as keyof typeof authorConfig];
           return checkerInfo ? (
             <div className="flex items-center gap-2">
               <Badge className="bg-green-600 hover:bg-green-700 text-white gap-1">
