@@ -14,6 +14,7 @@ export const CommunityBrandBlock = forwardRef<HTMLElement>(function CommunityBra
               alt="Jonas – medstifter af Casinoaftaler.dk"
               className="h-32 w-32 rounded-full object-cover object-top ring-2 ring-primary/30 transition-all group-hover:ring-primary/60"
               loading="lazy"
+              fetchPriority="low"
               width={128}
               height={128}
             />
@@ -25,6 +26,7 @@ export const CommunityBrandBlock = forwardRef<HTMLElement>(function CommunityBra
               alt="Kevin – medstifter af Casinoaftaler.dk"
               className="h-32 w-32 rounded-full object-cover ring-2 ring-primary/30 transition-all group-hover:ring-primary/60"
               loading="lazy"
+              fetchPriority="low"
               width={128}
               height={128}
             />

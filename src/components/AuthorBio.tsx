@@ -92,6 +92,7 @@ export function AuthorBio({ author = "jonas", showCommunity = true }: AuthorBioP
                 alt={data.alt}
                 className="h-44 w-44 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors"
                 loading="lazy"
+                fetchPriority="low"
                 width={176}
                 height={176}
               />
