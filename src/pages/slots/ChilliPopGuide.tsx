@@ -38,7 +38,7 @@ const ChilliPopGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="12 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="12 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Expanding Grid & Cascading Wins</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Chilli Pop fra <Link to="/spiludviklere/betsoft" className={lk}>Betsoft</Link> kombinerer <Link to="/ordbog/cascading-wins" className={lk}>cascading wins</Link> med et grid der kan ekspandere fra 5×3 til 5×8. Hver cascade tilføjer en ekstra række, og nye symboler falder ned for at skabe yderligere gevinstmuligheder. Betsofts karakteristiske 3D-grafik giver spillemaskinen et visuelt imponerende udtryk.</p>
