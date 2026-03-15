@@ -28,6 +28,30 @@ export interface SeoRoute {
    * Default: true for money pages, guides, hubs. Set false for minor utility pages.
    */
   showUpdatedDate?: boolean;
+
+  // ── Author Profile Integration ──────────────────────────────────────
+  // When these fields are set, the article automatically appears on the
+  // author's profile page under "Artikler skrevet af …".
+  // This removes the need to manually register articles in authorContent.ts.
+
+  /** Author ID – must match AuthorId type ("jonas" | "kevin" | "ajse" | "niklas") */
+  author?: string;
+  /** Article title for the author profile card */
+  articleTitle?: string;
+  /** Category label (e.g. "Guide", "Anmeldelse") */
+  articleCategory?: string;
+  /** Short excerpt for the author profile card */
+  articleExcerpt?: string;
+}
+
+/**
+ * Get all seoRoutes entries that have author metadata set.
+ * Used by getAuthorArticles() to auto-derive articles for author profiles.
+ */
+export function getSeoRoutesByAuthor(authorId: string) {
+  return seoRoutes.filter(
+    (r) => r.author === authorId && r.articleTitle
+  );
 }
 
 /** Map of path → SeoRoute for O(1) lookups */
