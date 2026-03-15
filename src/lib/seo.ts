@@ -98,6 +98,10 @@ export const AJSE_SAME_AS = [
   "https://www.instagram.com/serifoaaa/",
 ];
 
+export const NIKLAS_SAME_AS = [
+  "https://www.linkedin.com/in/niclas-finscet-hansen/",
+];
+
 
 function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: string[]) {
   const isKevin = authorName === "Kevin";
