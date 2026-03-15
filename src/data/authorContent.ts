@@ -329,7 +329,22 @@ const ajseArticles: AuthorArticle[] = [
 
 // ─── Niklas – Articles ───────────────────────────────────────────────────
 
-const niklasArticles: AuthorArticle[] = [];
+const niklasArticles: AuthorArticle[] = [
+  // Bonusøkonomi & EV (moved from Jonas)
+  { title: "Omsætningskrav Forklaret", path: "/omsaetningskrav", category: "Guide", excerpt: "Forstå omsætningskrav og lær at vælge bonusser med lave krav." },
+  { title: "No Sticky Bonus Guide", path: "/no-sticky-bonus", category: "Guide", excerpt: "Alt om no-sticky bonusser og hvorfor de er populære blandt spillere." },
+  { title: "Velkomstbonus Guide 2026", path: "/velkomstbonus", category: "Guide", excerpt: "Find de bedste velkomstbonusser og forstå vilkår og betingelser." },
+  { title: "Free Spins Guide", path: "/free-spins", category: "Guide", excerpt: "Alt om free spins – typer, vilkår og de bedste tilbud." },
+  { title: "Bonus Uden Indbetaling", path: "/bonus-uden-indbetaling", category: "Guide", excerpt: "Få casino bonus helt uden at indsætte penge – se aktuelle tilbud." },
+  { title: "Bonus Uden Omsætningskrav", path: "/bonus-uden-omsaetningskrav", category: "Guide", excerpt: "Find bonusser uden omsætningskrav hos danske casinoer." },
+  { title: "Indskudsbonus Guide", path: "/indskudsbonus", category: "Guide", excerpt: "Alt om indskudsbonusser – typer, vilkår og de bedste tilbud." },
+  { title: "Sticky Bonus Guide", path: "/sticky-bonus", category: "Guide", excerpt: "Forstå sticky bonusser og forskellen til no-sticky." },
+  { title: "Reload Bonus Guide", path: "/reload-bonus", category: "Guide", excerpt: "Alt om reload bonusser – hvad de er og de bedste tilbud." },
+  { title: "Cashback Bonus Guide", path: "/cashback-bonus", category: "Guide", excerpt: "Cashback bonusser forklaret – få penge retur på dine tab." },
+  // Finans
+  { title: "Casino og Skat Guide", path: "/casinoer/casino-og-skat", category: "Guide", excerpt: "Alt om skat på casinogevinster i Danmark." },
+  { title: "Forretningsmodel", path: "/forretningsmodel", category: "Guide", excerpt: "Sådan finansieres Casinoaftaler.dk." },
+];
 
 // ─── Public API ─────────────────────────────────────────────────────────
 
