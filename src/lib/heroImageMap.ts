@@ -31,6 +31,7 @@ const PATH_OVERRIDES: Record<string, string> = {
   "/redaktionel-politik": "redaktionel-politik",
   "/ansvarligt-spil": "responsible-gaming",
   "/casino-nyheder": "nye-casinoer",
+  "/spillemyndigheden": "casino-licenser",
 
   // Jonas – hub & guides
   "/top-10-casino-online": "top-casino",
