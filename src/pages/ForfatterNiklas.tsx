@@ -157,7 +157,7 @@ export default function ForfatterNiklas() {
 
   const niklasArticles = getAuthorArticles("niklas");
 
-  const ARTICLES_PER_PAGE = 8;
+  const ARTICLES_PER_PAGE = 6;
   const totalArticlePages = Math.max(1, Math.ceil(niklasArticles.length / ARTICLES_PER_PAGE));
   const [articlePage, setArticlePage] = useState(0);
   const visibleArticles = niklasArticles.slice(

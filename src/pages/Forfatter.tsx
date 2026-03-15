@@ -222,7 +222,7 @@ export default function Forfatter() {
   const [openCasinoId, setOpenCasinoId] = useState<string | null>(null);
   const [articlePage, setArticlePage] = useState(0);
   const heroBackgroundImage = siteSettings?.hero_background;
-  const ARTICLES_PER_PAGE = 8;
+  const ARTICLES_PER_PAGE = 6;
   const totalArticlePages = Math.ceil(jonasArticles.length / ARTICLES_PER_PAGE);
   const visibleArticles = jonasArticles.slice(
     articlePage * ARTICLES_PER_PAGE,
