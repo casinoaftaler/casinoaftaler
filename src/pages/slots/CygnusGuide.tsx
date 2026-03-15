@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const CygnusGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Cygnus – ELK Studios Gravity-Mekanik Guide", description: "Komplet analyse af Cygnus fra ELK Studios: Gravity-mekanik, expanding grid, RTP 96,10 % og medium-høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Cygnus – ELK Studios Gravity-Mekanik Guide", description: "Komplet analyse af Cygnus fra ELK Studios: Gravity-mekanik, expanding grid, RTP 96,10 % og medium-høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Cygnus – ELK Studios Gravity-Mekanik Guide", description: "Komplet analyse af Cygnus fra ELK Studios: Gravity-mekanik, expanding grid, RTP 96,10 % og medium-høj volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
