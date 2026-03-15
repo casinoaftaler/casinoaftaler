@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const MagicHotGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Magic Hot – Wazdans Volatility Levels Slot", description: "Guide til Magic Hot fra Wazdan: valgfri volatilitet, klassisk frugtmaskin-gameplay, RTP 96,24 %.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Magic Hot – Wazdans Volatility Levels Slot", description: "Guide til Magic Hot fra Wazdan: valgfri volatilitet, klassisk frugtmaskin-gameplay, RTP 96,24 %.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Magic Hot – Wazdans Volatility Levels Slot", description: "Guide til Magic Hot fra Wazdan: valgfri volatilitet, klassisk frugtmaskin-gameplay, RTP 96,24 %.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
