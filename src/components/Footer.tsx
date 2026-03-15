@@ -389,6 +389,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/forfatter/niklas" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <PenTool className="h-4 w-4" />
+                  Niklas – Forfatter
+                </Link>
+              </li>
+              <li>
                 <Link to="/sitemap" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
                   <Map className="h-4 w-4" />
                   Sitemap
