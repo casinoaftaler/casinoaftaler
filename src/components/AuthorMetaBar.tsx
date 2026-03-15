@@ -136,6 +136,7 @@ export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified
                   width={24}
                   height={24}
                   loading="lazy"
+                  fetchPriority="low"
                   className="h-6 w-6 rounded-full object-cover object-top ring-1 ring-border group-hover:ring-primary transition-colors"
                 />
                 <span className="font-medium text-foreground group-hover:text-primary transition-colors">
