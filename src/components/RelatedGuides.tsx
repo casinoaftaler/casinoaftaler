@@ -901,12 +901,28 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Poker bedste-sider → poker hub + siblings + cross-cluster
+  if (path === "/casinospil/poker/bedste-sider") {
+    return {
+      guides: [
+        { to: "/casinospil/poker", label: "Poker Guide", icon: Gamepad2, desc: "Komplet overblik over alle pokervarianter" },
+        { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em", icon: Target, desc: "Verdens mest populære pokervariant" },
+        { to: "/casinospil/poker/poker-strategi", label: "Poker Strategi", icon: Brain, desc: "GTO, pot odds og avanceret teori" },
+        { to: "/casinospil/poker/video-poker", label: "Video Poker", icon: Gamepad2, desc: "Solo poker med RTP op til 99,5 %" },
+        reviewHub,
+        bonusHub,
+      ],
+      subtitle: "Udforsk pokervarianter, strategier og de bedste casino bonusser.",
+    };
+  }
+
   // Poker hub
   if (path === "/casinospil/poker") {
     return {
       guides: [
         casinospilHub,
         { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em", icon: Target, desc: "Verdens mest populære pokervariant" },
+        { to: "/casinospil/poker/bedste-sider", label: "Bedste Pokersider", icon: Trophy, desc: "Top pokersider i Danmark 2026" },
         { to: "/casinospil/poker/video-poker", label: "Video Poker", icon: Gamepad2, desc: "Solo poker med op til 99,5 % RTP" },
         { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil poker med live dealere" },
         { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser til poker-spil" },
