@@ -166,6 +166,10 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
 
   // Additional bonus
   { patterns: [/\bbonus uden indbetaling\b/i], href: "/bonus-uden-indbetaling", anchor: "" },
+  { patterns: [/\bfree spins i dag\b/i, /\bgratis spins i dag\b/i, /\bdagens free spins\b/i], href: "/free-spins-i-dag", anchor: "", anchorVariants: ["free spins i dag", "dagens free spins", "daglige free spins tilbud"] },
+  { patterns: [/\bbedste pokersider\b/i, /\bbedste poker sider\b/i], href: "/casinospil/poker/bedste-sider", anchor: "", anchorVariants: ["bedste pokersider", "top pokersider", "bedste poker sider i Danmark"] },
+  { patterns: [/\bcasino nyheder\b/i, /\bcasinonyheder\b/i], href: "/casino-nyheder", anchor: "", anchorVariants: ["casino nyheder", "seneste casino nyheder", "casino nyheder Danmark"] },
+  { patterns: [/\btop 10 casino\b/i], href: "/top-10-casino-online", anchor: "", anchorVariants: ["top 10 casino", "bedste casinoer", "top 10 online casinoer"] },
 
   // Mobil Casino cluster
   { patterns: [/\bmobil casino\b/i, /\bcasino på mobilen\b/i, /\bmobilcasino\b/i], href: "/mobil-casino", anchor: "" },

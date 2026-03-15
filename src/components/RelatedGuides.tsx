@@ -1154,6 +1154,36 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Casinoer hub → dedicated entry with cluster-specific links
+  if (path === "/casinoer") {
+    return {
+      guides: [
+        { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", icon: Zap, desc: "Casinoer med de hurtigste udbetalinger" },
+        { to: "/casinoer/hoej-rtp", label: "Høj RTP", icon: BarChart3, desc: "Casinoer med bedst tilbagebetaling" },
+        { to: "/casino-licenser", label: "Licenserede Casinoer", icon: ShieldCheck, desc: "Sikre casinoer med dansk licens" },
+        reviewHub,
+        bonusHub,
+        nyeCasinoerHub,
+      ],
+      subtitle: "Udforsk casino-kategorier, anmeldelser og de bedste bonusser.",
+    };
+  }
+
+  // Casinospil hub → dedicated entry with game-specific links
+  if (path === "/casinospil") {
+    return {
+      guides: [
+        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2, desc: "Guide til alle typer online slots" },
+        { to: "/casinospil/blackjack", label: "Blackjack", icon: Gamepad2, desc: "Komplet guide til online blackjack" },
+        { to: "/casinospil/roulette", label: "Roulette", icon: Target, desc: "Lær roulettens væddemål og varianter" },
+        { to: "/casinospil/poker", label: "Poker", icon: Gamepad2, desc: "Guide til alle pokervarianter" },
+        liveCasinoHub,
+        providerHub,
+      ],
+      subtitle: "Dyk ned i casinospil, strategier og spiludviklere.",
+    };
+  }
+
   // Casino guides subpages → rotated siblings + varied cross-cluster
   if (path.startsWith("/casinoer/") || path === "/casino-licenser") {
     const currentIndex = casinoGuidesSiblings.findIndex(g => g.to === path);
