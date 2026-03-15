@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
-import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -25,7 +24,15 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const HotSpinDeluxeGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Hot Spin Deluxe – iSoftBets Bonus-Hjul Slot", description: "Guide til Hot Spin Deluxe fra iSoftBet: 7 bonusfeatures, bonus-hjul mekanik, RTP 96,06 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Hot Spin Deluxe – iSoftBets Bonus-Hjul Slot", description: "Guide til Hot Spin Deluxe fra iSoftBet: 7 bonusfeatures, bonus-hjul mekanik, RTP 96,06 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
+  const articleSchema = buildArticleSchema({
+    headline: "Hot Spin Deluxe – iSoftBets Bonus-Hjul Slot",
+    description: "Guide til Hot Spin Deluxe fra iSoftBet: 7 bonusfeatures, bonus-hjul mekanik, RTP 96,06 % og medium volatilitet.",
+    url: `${SITE_URL}${PAGE_PATH}`,
+    datePublished: "2026-03-12",
+    dateModified: "2026-03-12",
+    authorName: "Casinoaftaler Redaktionen",
+    authorUrl: `${SITE_URL}`,
+  });
 
   return (
     <>
@@ -56,7 +63,6 @@ const HotSpinDeluxeGuide = () => {
         <SlotDataLink slotSlug="hot-spin-deluxe" slotName="Hot Spin Deluxe" />
         <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Hot Spin Deluxe" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
-        
         <RelatedGuides currentPath={PAGE_PATH} />
       </div>
     </>
