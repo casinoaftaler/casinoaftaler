@@ -16,85 +16,113 @@ for (const [path, mod] of Object.entries(heroModules)) {
   if (slug) heroBySlug[slug] = mod.default;
 }
 
+const DEFAULT_HERO_SLUG = "top-casino";
+
 /**
  * Explicit overrides for paths where the URL slug doesn't match the hero filename.
  * Key = article path, Value = hero filename slug (without "-hero.jpg").
  */
 const PATH_OVERRIDES: Record<string, string> = {
-  // Jonas – hub & guide pages
-  "/top-10-casino-online": "top-casino",
+  // Shared/static
+  "/om": "about",
+  "/kontakt": "contact",
   "/saadan-tester-vi-casinoer": "test-metode",
+  "/forretningsmodel": "forretningsmodel",
+  "/redaktionel-politik": "redaktionel-politik",
+  "/ansvarligt-spil": "responsible-gaming",
+  "/casino-nyheder": "nye-casinoer",
+  "/spillemyndigheden": "casino-licenser",
+
+  // Jonas – hub & guides
+  "/top-10-casino-online": "top-casino",
   "/casinoer": "casinoer-hub",
+  "/slot-database": "spillemaskiner",
   "/hall-of-fame": "top-casino",
 
-  // Jonas – blackjack strategy systems
+  // Jonas – systems / clusters
   "/casinospil/blackjack/martingale-system": "martingale-blackjack",
   "/casinospil/blackjack/dalembert-system": "dalembert-blackjack",
-
-  // Jonas – poker
   "/casinospil/poker/omaha": "omaha-poker",
   "/casinospil/poker/strategi": "poker-strategi",
-
-  // Jonas – nye casinoer cluster
   "/nye-casinoer/vs-etablerede": "nye-vs-etablerede",
-
-  // Jonas – casinoer cluster
   "/casinoer/spil-casino-for-sjov": "spil-for-sjov",
-
-  // Jonas – mobil casino cluster
   "/mobil-casino/iphone": "iphone-casino",
   "/mobil-casino/android": "android-casino",
   "/mobil-casino/tablet": "tablet-casino",
   "/mobil-casino/bedste-apps": "bedste-casino-apps",
 
-  // Kevin – betalingsmetoder
+  // Kevin – payments / no-account
   "/betalingsmetoder/bankoverforsler": "bank-transfer",
-
-  // Kevin – casino uden konto (use parent hero)
   "/casino-uden-konto/pay-n-play": "casino-uden-konto",
   "/casino-uden-konto/hurtig-registrering": "casino-uden-konto",
   "/casino-uden-konto/fordele-og-ulemper": "casino-uden-konto",
 
-  // Niklas – bonus guides
+  // Niklas
   "/no-sticky-bonus": "no-sticky",
   "/bonus-uden-omsaetningskrav": "bonus-uden-omsaetning",
 
   // Ajse – ansvarligt spil cluster
-  "/ansvarligt-spil": "responsible-gaming",
   "/ansvarligt-spil/rofus": "rofus-guide",
   "/ansvarligt-spil/ludomani": "ludomani-guide",
   "/ansvarligt-spil/stopspillet": "stopspillet-guide",
   "/ansvarligt-spil/spillegraenser": "spillegraenser-guide",
   "/ansvarligt-spil/hjaelpelinjer": "hjaelpelinjer-guide",
-  "/kontakt": "contact",
+  "/ansvarligt-spil/selvudelukkelse-guide": "selvudelukkelse-guide",
+
+  // Community
+  "/bonus-hunt": "top-casino",
+  "/bonus-hunt/arkiv": "top-casino",
+  "/highlights": "turneringer",
+  "/community/slots": "spillemaskiner",
+  "/statistik": "turneringer",
 };
+
+const SECTION_DEFAULTS: Array<{ prefix: string; slug: string }> = [
+  { prefix: "/casinospil/spillemaskiner/", slug: "spillemaskiner" },
+  { prefix: "/casinospil/blackjack/", slug: "blackjack" },
+  { prefix: "/casinospil/roulette/", slug: "roulette" },
+  { prefix: "/casinospil/poker/", slug: "poker" },
+  { prefix: "/casinospil/", slug: "spillemaskiner" },
+  { prefix: "/live-casino/", slug: "live-casino" },
+  { prefix: "/casino-anmeldelser/", slug: "casino-anmeldelser" },
+  { prefix: "/spiludviklere/", slug: "spiludviklere" },
+  { prefix: "/betalingsmetoder/", slug: "betalingsmetoder" },
+  { prefix: "/nye-casinoer/", slug: "nye-casinoer" },
+  { prefix: "/casinoer/", slug: "casinoer-hub" },
+  { prefix: "/mobil-casino/", slug: "mobil-casino" },
+  { prefix: "/casino-uden-konto/", slug: "casino-uden-konto" },
+  { prefix: "/ansvarligt-spil/", slug: "responsible-gaming" },
+  { prefix: "/ordbog/", slug: "ordbog" },
+];
 
 /**
  * Given an article path like "/casino-bonus" or "/casinospil/spillemaskiner/book-of-dead",
- * return the matching hero image URL (or undefined if none found).
+ * return the matching hero image URL.
  */
-export function getHeroImageForPath(articlePath: string): string | undefined {
-  // 1. Check explicit overrides first
-  const overrideSlug = PATH_OVERRIDES[articlePath];
+export function getHeroImageForPath(articlePath: string): string {
+  const normalizedPath = articlePath.replace(/\/$/, "") || "/";
+
+  // 1) Exact override
+  const overrideSlug = PATH_OVERRIDES[normalizedPath];
   if (overrideSlug && heroBySlug[overrideSlug]) {
     return heroBySlug[overrideSlug];
   }
 
-  const segments = articlePath.replace(/^\/|\/$/g, "").split("/");
+  const segments = normalizedPath.replace(/^\//, "").split("/");
   const lastSegment = segments[segments.length - 1];
 
-  // 2. Try last segment (most common: /casino-bonus → casino-bonus-hero.jpg)
+  // 2) Last segment
   if (lastSegment && heroBySlug[lastSegment]) {
     return heroBySlug[lastSegment];
   }
 
-  // 3. Try all segments joined (e.g. /nye-casinoer/dansk-licens → nye-casinoer-dansk-licens)
+  // 3) Full joined path
   const joined = segments.join("-");
   if (heroBySlug[joined]) {
     return heroBySlug[joined];
   }
 
-  // 4. Try parent-child combo (e.g. /casinospil/roulette → roulette)
+  // 4) Parent-child combo
   if (segments.length >= 2) {
     const parentChild = segments.slice(-2).join("-");
     if (heroBySlug[parentChild]) {
@@ -102,5 +130,13 @@ export function getHeroImageForPath(articlePath: string): string | undefined {
     }
   }
 
-  return undefined;
+  // 5) Section-level default image
+  for (const section of SECTION_DEFAULTS) {
+    if (normalizedPath.startsWith(section.prefix) && heroBySlug[section.slug]) {
+      return heroBySlug[section.slug];
+    }
+  }
+
+  // 6) Global guaranteed fallback (always image, never gradient)
+  return heroBySlug[DEFAULT_HERO_SLUG] ?? Object.values(heroBySlug)[0] ?? "";
 }
