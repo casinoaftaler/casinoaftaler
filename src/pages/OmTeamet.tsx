@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import {
   Users,
   Target,
+  Briefcase,
   Shield,
   CheckCircle2,
   Search,
@@ -21,7 +22,7 @@ import {
   ShieldCheck,
   Gamepad2,
   Quote,
-  Clock,
+  
   Tv,
   MessageSquare,
   Trophy,
@@ -147,10 +148,10 @@ const OmTeamet = () => {
   ];
 
   const stats = [
-    { icon: Clock, value: "7+", label: "Års samlet streaming-erfaring" },
+    { icon: Briefcase, value: "10+", label: "Års samlet erfaring" },
     { icon: Trophy, value: "30+", label: "Testede danske casinoer" },
     { icon: Tv, value: "7000+", label: "Timers live streaming" },
-    { icon: BookOpen, value: "160+", label: "Publicerede artikler & guides" },
+    { icon: BookOpen, value: "270+", label: "Publicerede artikler & guides" },
     { icon: Users, value: "Aktivt", label: "Engageret community" },
   ];
 
