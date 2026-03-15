@@ -1018,6 +1018,81 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Free Spins i Dag → dedicated entry (daily money page)
+  if (path === "/free-spins-i-dag") {
+    return {
+      guides: [
+        bonusHub,
+        { to: "/free-spins", label: "Free Spins Guide", icon: Sparkles, desc: "Komplet guide til free spins bonusser" },
+        { to: "/velkomstbonus", label: "Velkomstbonus", icon: Trophy, desc: "Bedste velkomstbonusser i Danmark" },
+        { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", icon: Gift, desc: "Spil gratis uden at indbetale" },
+        reviewHub,
+        nyeCasinoerHub,
+      ],
+      subtitle: "Udforsk flere bonusser, velkomstbonusser og casino anmeldelser.",
+    };
+  }
+
+  // Top 10 Casino Online → dedicated entry
+  if (path === "/top-10-casino-online") {
+    return {
+      guides: [
+        reviewHub,
+        nyeCasinoerHub,
+        bonusHub,
+        { to: "/casino-licenser", label: "Casino Licenser", icon: ShieldCheck, desc: "Licenserede casinoer i Danmark" },
+        { to: "/casino-med-mobilepay", label: "Casino med MobilePay", icon: Smartphone, desc: "MobilePay-kompatible casinoer" },
+        liveCasinoHub,
+      ],
+      subtitle: "Udforsk casino anmeldelser, nye casinoer og de bedste bonusser.",
+    };
+  }
+
+  // VIP Program → dedicated entry
+  if (path === "/vip-program") {
+    return {
+      guides: [
+        bonusHub,
+        { to: "/casino-bonus", label: "Casino Bonus Guide", icon: Gift, desc: "Komplet overblik over alle bonustyper" },
+        { to: "/cashback-bonus", label: "Cashback Bonus", icon: TrendingUp, desc: "Få penge tilbage fra dine tab" },
+        { to: "/reload-bonus", label: "Reload Bonus", icon: RefreshCw, desc: "Bonusser for eksisterende spillere" },
+        reviewHub,
+        nyeCasinoerHub,
+      ],
+      subtitle: "Udforsk bonusprogrammer, cashback og de bedste danske casinoer.",
+    };
+  }
+
+  // Casino med MobilePay → dedicated entry
+  if (path === "/casino-med-mobilepay") {
+    return {
+      guides: [
+        paymentHub,
+        { to: "/betalingsmetoder/mobilepay", label: "MobilePay Guide", icon: Smartphone, desc: "Komplet MobilePay casino-guide" },
+        reviewHub,
+        bonusHub,
+        nyeCasinoerHub,
+        { to: "/casino-licenser", label: "Casino Licenser", icon: ShieldCheck, desc: "Sikre casinoer med dansk licens" },
+      ],
+      subtitle: "Udforsk betalingsmetoder, casino anmeldelser og de bedste bonusser.",
+    };
+  }
+
+  // Sådan tester vi casinoer → E-E-A-T page
+  if (path === "/saadan-tester-vi-casinoer") {
+    return {
+      guides: [
+        reviewHub,
+        { to: "/om", label: "Om Teamet", icon: BookOpen, desc: "Mød teamet bag Casinoaftaler.dk" },
+        { to: "/redaktionel-politik", label: "Redaktionel Politik", icon: ShieldCheck, desc: "Vores redaktionelle retningslinjer" },
+        { to: "/forretningsmodel", label: "Forretningsmodel", icon: BookOpen, desc: "Sådan finansieres Casinoaftaler.dk" },
+        { to: "/casino-licenser", label: "Casino Licenser", icon: ShieldCheck, desc: "Licenserede casinoer i Danmark" },
+        { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
+      ],
+      subtitle: "Udforsk vores metoder, teamet og vores forpligtelse til ansvarligt spil.",
+    };
+  }
+
   // Bonus subpages → hub + 3 rotated siblings + 1 varied cross-cluster
   if (
     path.startsWith("/velkomstbonus") || path.startsWith("/free-spins") ||
