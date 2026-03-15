@@ -27,7 +27,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const TombstoneRIPGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Tombstone RIP – xNudge Wild & 300.000× Max Win", description: "Komplet analyse af Tombstone RIP fra Nolimit City: xNudge wilds, 300.000× max win, RTP 96,08 % og ekstrem volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Tombstone RIP – xNudge Wild & 300.000× Max Win", description: "Komplet analyse af Tombstone RIP fra Nolimit City: xNudge wilds, 300.000× max win, RTP 96,08 % og ekstrem volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Tombstone RIP – xNudge Wild & 300.000× Max Win", description: "Komplet analyse af Tombstone RIP fra Nolimit City: xNudge wilds, 300.000× max win, RTP 96,08 % og ekstrem volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
