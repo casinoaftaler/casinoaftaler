@@ -89,8 +89,8 @@ const OmTeamet = () => {
       },
     ],
     sameAs: [
-      "https://www.youtube.com/@casinoaftaler",
-      "https://www.instagram.com/casinoaftaler",
+      "https://www.youtube.com/@infocasinoaftaler",
+      "https://www.instagram.com/casinoaftaler/",
       "https://www.facebook.com/casinoaftaler",
     ],
     contactPoint: {

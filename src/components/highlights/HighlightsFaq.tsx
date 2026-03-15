@@ -59,7 +59,7 @@ const FAQ_ITEMS = [
         </a>{" "}
         hver uge. Efter hver stream arkiveres de bedste øjeblikke her som highlights.
         Du kan også følge os på{" "}
-        <a href="https://www.youtube.com/@casinoaftaler" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+        <a href="https://www.youtube.com/@infocasinoaftaler" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
           YouTube
         </a>{" "}
         for redigerede videoer og guides.
