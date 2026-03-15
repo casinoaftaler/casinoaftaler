@@ -26,7 +26,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const EsqueletoExplosivo2Guide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Esqueleto Explosivo 2 – Mucho Multiplier & Cascading Wins", description: "Komplet analyse af Esqueleto Explosivo 2 fra Thunderkick: cascading wins, Mucho Multiplier op til 64×, RTP 96,13 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Esqueleto Explosivo 2 – Mucho Multiplier & Cascading Wins", description: "Komplet analyse af Esqueleto Explosivo 2 fra Thunderkick: cascading wins, Mucho Multiplier op til 64×, RTP 96,13 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Esqueleto Explosivo 2 – Mucho Multiplier & Cascading Wins", description: "Komplet analyse af Esqueleto Explosivo 2 fra Thunderkick: cascading wins, Mucho Multiplier op til 64×, RTP 96,13 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
