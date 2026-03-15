@@ -6,9 +6,10 @@ import { SourceCitations } from "@/components/SourceCitations";
 import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
+import niklasImage from "@/assets/niklas-forfatter.webp";
 
 interface AuthorBioProps {
-  author?: "jonas" | "kevin" | "ajse";
+  author?: "jonas" | "kevin" | "ajse" | "niklas";
   /** Set to false if CommunityPromoSection is already rendered elsewhere on the page */
   showCommunity?: boolean;
 }
