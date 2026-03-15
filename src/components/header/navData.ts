@@ -252,4 +252,5 @@ export const FORFATTER_LINKS: NavLink[] = [
   { to: "/forfatter/jonas", label: "Jonas" },
   { to: "/forfatter/kevin", label: "Kevin" },
   { to: "/forfatter/ajse", label: "Ajse" },
+  { to: "/forfatter/niklas", label: "Niklas" },
 ];

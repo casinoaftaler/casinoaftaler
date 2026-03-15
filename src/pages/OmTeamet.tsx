@@ -37,6 +37,7 @@ import { optimizeStorageImage } from "@/lib/imageOptimization";
 import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
+import niklasImage from "@/assets/niklas-forfatter.webp";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import omHeroImage from "@/assets/heroes/om-hero.png";
@@ -79,6 +80,10 @@ const OmTeamet = () => {
       {
         "@type": "Person",
         "@id": "https://casinoaftaler.dk/forfatter/ajse#person",
+      },
+      {
+        "@type": "Person",
+        "@id": "https://casinoaftaler.dk/forfatter/niklas#person",
       },
     ],
     sameAs: [
@@ -170,7 +175,7 @@ const OmTeamet = () => {
     <>
       <SEO
         title="Om teamet bag Casinoaftaler.dk | Streamere & Casinoeksperter"
-        description="Mød teamet bag Casinoaftaler.dk. Læs om Jonas, Kevin og Ajse – casino-streamere og redaktører bag test, anmeldelser og udvikling."
+        description="Mød teamet bag Casinoaftaler.dk. Læs om Jonas, Kevin, Ajse og Niklas – casino-streamere, redaktører og eksperter bag test, anmeldelser og udvikling."
         jsonLd={[organizationJsonLd]}
       />
 
@@ -195,7 +200,7 @@ const OmTeamet = () => {
               Teamet bag Casinoaftaler.dk
             </h1>
             <p className="mb-4 text-xl font-semibold text-white/90 md:text-2xl">
-              To streamere og én juridisk redaktør. Ét fælles mål.
+              To streamere, én juridisk redaktør og én finansøkonom. Ét fælles mål.
               <br />
               At skabe gennemsigtighed i online casino i Danmark.
             </p>
@@ -229,6 +234,15 @@ const OmTeamet = () => {
                   <img src={ajseImage} alt="Ajse – Juridisk redaktør" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Ajse</p>
+              </Link>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-3xl font-bold text-white/30">&</span>
+              </div>
+              <Link to="/forfatter/niklas" className="group">
+                <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105 md:h-36 md:w-36">
+                  <img src={niklasImage} alt="Niklas – Finansøkonom" className="h-full w-full object-cover object-top" loading="eager" />
+                </div>
+                <p className="mt-2 text-sm font-medium text-white/80">Niklas</p>
               </Link>
             </div>
           </div>
@@ -423,11 +437,11 @@ const OmTeamet = () => {
             Vores skribenter & redaktion
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Casinoaftaler.dk drives af tre faste skribenter med klare roller og ansvarsområder.
+            Casinoaftaler.dk drives af fire faste skribenter med klare roller og ansvarsområder.
             Alle artikler, anmeldelser og guides produceres internt af redaktionen og faktatjekkes
             af en anden redaktør end forfatteren inden publicering.
           </p>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {/* Jonas */}
             <div className="rounded-xl border border-border bg-card p-5">
               <Link to="/forfatter/jonas" className="group">
@@ -482,6 +496,24 @@ const OmTeamet = () => {
                 Se Ajse – Juridisk redaktør <ArrowRight className="ml-1 h-3.5 w-3.5" />
               </Link>
             </div>
+            {/* Niklas */}
+            <div className="rounded-xl border border-border bg-card p-5">
+              <Link to="/forfatter/niklas" className="group">
+                <div className="flex items-center gap-3 mb-3">
+                  <img src={niklasImage} alt="Niklas – Finansøkonom" className="h-12 w-12 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors" width={48} height={48} loading="lazy" />
+                  <div>
+                    <p className="font-semibold group-hover:text-primary transition-colors">Niklas</p>
+                    <p className="text-xs text-muted-foreground">Finansøkonom & Forsikringsekspert</p>
+                  </div>
+                </div>
+              </Link>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Dækker <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusøkonomi</Link>, <Link to="/casinoer/casino-og-skat" className="text-primary underline hover:text-primary/80">casino og skat</Link> og finansiel risikostyring. Uddannet finansøkonom.
+              </p>
+              <Link to="/forfatter/niklas" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                Se Niklas – Finansøkonom <ArrowRight className="ml-1 h-3.5 w-3.5" />
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -522,7 +554,7 @@ const OmTeamet = () => {
                         ? new Date(article.published_at).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })
                         : ""}
                       {" · "}
-                      <span className="capitalize">{article.author_id === "ajse" ? "Ajse" : article.author_id === "kevin" ? "Kevin" : "Jonas"}</span>
+                      <span className="capitalize">{article.author_id === "ajse" ? "Ajse" : article.author_id === "kevin" ? "Kevin" : article.author_id === "niklas" ? "Niklas" : "Jonas"}</span>
                     </p>
                     <h3 className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
                       {article.title}

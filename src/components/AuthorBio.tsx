@@ -6,9 +6,10 @@ import { SourceCitations } from "@/components/SourceCitations";
 import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
+import niklasImage from "@/assets/niklas-forfatter.webp";
 
 interface AuthorBioProps {
-  author?: "jonas" | "kevin" | "ajse";
+  author?: "jonas" | "kevin" | "ajse" | "niklas";
   /** Set to false if CommunityPromoSection is already rendered elsewhere on the page */
   showCommunity?: boolean;
 }
@@ -59,6 +60,18 @@ const authorData = {
     socials: [
       { href: "https://www.linkedin.com/in/ajse-serifovski-587b25278/", label: "LinkedIn" },
       { href: "https://www.instagram.com/serifoaaa/", label: "Instagram" },
+    ],
+  },
+  niklas: {
+    name: "Niklas",
+    image: niklasImage,
+    alt: "Niklas – Finansøkonom & forsikringsekspert hos Casinoaftaler.dk",
+    link: "/forfatter/niklas",
+    badge: "Finansøkonom & forsikringsekspert",
+    role: "Finansøkonom & forsikringsekspert hos Casinoaftaler.dk",
+    bio: "Niklas er finansøkonom og forsikringsekspert hos Casinoaftaler.dk med fokus på bonusøkonomi, EV-analyse, casino og skat samt finansiel risikostyring.",
+    socials: [
+      { href: "https://www.linkedin.com/in/niclas-finscet-hansen/", label: "LinkedIn" },
     ],
   },
 } as const;
