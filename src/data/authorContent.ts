@@ -339,6 +339,10 @@ const ajseArticles: AuthorArticle[] = [
   { title: "Casino Nyheder", path: "/casino-nyheder", category: "Nyheder", excerpt: "Seneste nyheder fra branchen." },
 ];
 
+// ─── Niklas – Articles ───────────────────────────────────────────────────
+
+const niklasArticles: AuthorArticle[] = [];
+
 // ─── Public API ─────────────────────────────────────────────────────────
 
 /**
