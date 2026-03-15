@@ -269,6 +269,7 @@ export const routeLabels: Record<string, string> = {
   "/casinospil/poker/caribbean-stud": "Caribbean Stud",
   "/casinospil/poker/video-poker": "Video Poker",
   "/casinospil/poker/poker-strategi": "Poker Strategi",
+  "/casinospil/poker/bedste-sider": "Bedste Pokersider",
   "/casinospil/craps": "Craps",
   "/casinospil/baccarat": "Baccarat",
   // "/casinospil/roulette-strategi" – removed (301 redirect to /casinospil/roulette)
