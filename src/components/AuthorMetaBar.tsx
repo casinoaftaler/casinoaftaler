@@ -82,9 +82,11 @@ interface AuthorMetaBarProps {
   showFactCheck?: boolean;
   showVerified?: boolean;
   showAffiliateDisclaimer?: boolean;
+  /** Override which author is shown as fact-checker. Defaults to cross-check logic. */
+  factCheckBy?: "jonas" | "kevin" | "ajse" | "niklas";
 }
 
-export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true }: AuthorMetaBarProps) {
+export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true, factCheckBy }: AuthorMetaBarProps) {
   const { pathname } = useLocation();
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
   const autoReadTime = useAutoReadTime();
@@ -167,43 +169,33 @@ export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified
         </div>
 
         {/* Right side: fact-check badge */}
-        {showFactCheck && (
-          <div className="flex items-center gap-2">
-            <Badge className="bg-green-600 hover:bg-green-700 text-white gap-1">
-              <CheckCircle className="h-3.5 w-3.5" />
-              Faktatjekket
-            </Badge>
-            {(author === "jonas" || author === "ajse" || author === "niklas") ? (
-              <Link to="/forfatter/kevin" className="flex items-center gap-1.5 group">
+        {showFactCheck && (() => {
+          // Determine fact-checker: explicit override > default cross-check
+          const resolvedChecker = factCheckBy
+            ?? (author === "niklas" ? "ajse" : (author === "kevin" || author === "redaktionen") ? "jonas" : "kevin");
+          const checkerInfo = authorConfig[resolvedChecker as keyof typeof authorConfig];
+          return checkerInfo ? (
+            <div className="flex items-center gap-2">
+              <Badge className="bg-green-600 hover:bg-green-700 text-white gap-1">
+                <CheckCircle className="h-3.5 w-3.5" />
+                Faktatjekket
+              </Badge>
+              <Link to={checkerInfo.link} className="flex items-center gap-1.5 group">
                 <span>Af:</span>
                 <img
-                  src="/kevin-avatar.webp"
-                  alt="Kevin – Casino-streamer & IT Medansvarlig"
+                  src={checkerInfo.image}
+                  alt={checkerInfo.alt}
                   width={24}
                   height={24}
                   className="h-6 w-6 rounded-full object-cover object-top ring-1 ring-border group-hover:ring-primary transition-colors"
                 />
                 <span className="font-medium text-foreground group-hover:text-primary transition-colors">
-                  Kevin
+                  {checkerInfo.name}
                 </span>
               </Link>
-            ) : (author === "kevin" || author === "redaktionen") ? (
-              <Link to="/forfatter/jonas" className="flex items-center gap-1.5 group">
-                <span>Af:</span>
-                <img
-                  src="/jonas-avatar.webp"
-                  alt="Jonas – Fedesvinsejer"
-                  width={24}
-                  height={24}
-                  className="h-6 w-6 rounded-full object-cover object-top ring-1 ring-border group-hover:ring-primary transition-colors"
-                />
-                <span className="font-medium text-foreground group-hover:text-primary transition-colors">
-                  Jonas
-                </span>
-              </Link>
-            ) : null}
-          </div>
-        )}
+            </div>
+          ) : null;
+        })()}
       </div>
       {showAffiliateDisclaimer && <AffiliateDisclaimer />}
       {!showAffiliateDisclaimer && <div className="mb-6" />}

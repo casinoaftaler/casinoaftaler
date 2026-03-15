@@ -162,8 +162,8 @@ const Omsaetningskrav = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="ajse" date="26-02-2026" readTime="20 Min." />
-        <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
+        <AuthorMetaBar author="niklas" date="26-02-2026" readTime="20 Min." />
+        <p className="text-sm text-muted-foreground mt-2 mb-6">Finansielt gennemgået og opdateret af Niklas, finansøkonom hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={omsaetningskravHero} alt="Omsætningskrav – lommeregner og casino chips" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -862,7 +862,7 @@ const Omsaetningskrav = () => {
 
         <FAQSection title="Ofte stillede spørgsmål om omsætningskrav" faqs={omsaetningskravFaqs} />
 
-        <AuthorBio author="ajse" />
+        <AuthorBio author="niklas" />
       </div>
       <StickyCtaBySlug slug="campobet" />
     </>

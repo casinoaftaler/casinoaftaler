@@ -47,17 +47,6 @@ const jonasArticles: AuthorArticle[] = [
   { title: "Free Spins i Dag", path: "/free-spins-i-dag", category: "Guide", excerpt: "Dagligt opdaterede free spins tilbud hos danske casinoer." },
   { title: "Slot Database", path: "/slot-database", category: "Værktøj", excerpt: "Søg i 1.000+ slots – RTP, volatilitet og stats fra vores streams." },
   { title: "Casino Ordbog", path: "/ordbog", category: "Guide", excerpt: "Komplet ordbog over casinobegreber – fra RTP til wagering." },
-  // Casino Bonus cluster
-  { title: "Omsætningskrav Forklaret", path: "/omsaetningskrav", category: "Guide", excerpt: "Forstå omsætningskrav og lær at vælge bonusser med lave krav." },
-  { title: "No Sticky Bonus Guide", path: "/no-sticky-bonus", category: "Guide", excerpt: "Alt om no-sticky bonusser og hvorfor de er populære blandt spillere." },
-  { title: "Velkomstbonus Guide 2026", path: "/velkomstbonus", category: "Guide", excerpt: "Find de bedste velkomstbonusser og forstå vilkår og betingelser." },
-  { title: "Free Spins Guide", path: "/free-spins", category: "Guide", excerpt: "Alt om free spins – typer, vilkår og de bedste tilbud." },
-  { title: "Bonus Uden Indbetaling", path: "/bonus-uden-indbetaling", category: "Guide", excerpt: "Få casino bonus helt uden at indsætte penge – se aktuelle tilbud." },
-  { title: "Bonus Uden Omsætningskrav", path: "/bonus-uden-omsaetningskrav", category: "Guide", excerpt: "Find bonusser uden omsætningskrav hos danske casinoer." },
-  { title: "Indskudsbonus Guide", path: "/indskudsbonus", category: "Guide", excerpt: "Alt om indskudsbonusser – typer, vilkår og de bedste tilbud." },
-  { title: "Sticky Bonus Guide", path: "/sticky-bonus", category: "Guide", excerpt: "Forstå sticky bonusser og forskellen til no-sticky." },
-  { title: "Reload Bonus Guide", path: "/reload-bonus", category: "Guide", excerpt: "Alt om reload bonusser – hvad de er og de bedste tilbud." },
-  { title: "Cashback Bonus Guide", path: "/cashback-bonus", category: "Guide", excerpt: "Cashback bonusser forklaret – få penge retur på dine tab." },
   // Casinospil guides
   { title: "Blackjack Regler & Guide", path: "/casinospil/blackjack", category: "Guide", excerpt: "Komplet guide til blackjack regler, strategi og varianter." },
   { title: "Amerikansk Blackjack Guide", path: "/casinospil/blackjack/amerikansk-blackjack", category: "Guide", excerpt: "Regler, strategi og forskelle for amerikansk blackjack." },
@@ -145,7 +134,7 @@ const jonasArticles: AuthorArticle[] = [
   { title: "VR Casinoer Guide", path: "/casinoer/vr-casinoer", category: "Guide", excerpt: "Alt om virtual reality casinoer og fremtidens spiloplevelse." },
   { title: "Mobil Casinoer Guide", path: "/casinoer/mobil-casinoer", category: "Guide", excerpt: "De bedste mobilvenlige casinoer i Danmark." },
   { title: "Spil Casino for Sjov", path: "/casinoer/spil-casino-for-sjov", category: "Guide", excerpt: "Prøv casinospil gratis uden risiko – komplet guide." },
-  { title: "Casino og Skat Guide", path: "/casinoer/casino-og-skat", category: "Guide", excerpt: "Alt om skat på casinogevinster i Danmark." },
+  // Casino og Skat moved to Niklas
   // Mobil Casino cluster
   { title: "Mobil Casino Guide", path: "/mobil-casino", category: "Guide", excerpt: "Komplet guide til casino på mobilen – app vs. browser, betalinger og performance." },
   { title: "Casino App Guide", path: "/casino-app", category: "Guide", excerpt: "Alt om casino apps i Danmark – native app vs. PWA vs. browser." },
@@ -334,14 +323,28 @@ const ajseArticles: AuthorArticle[] = [
   { title: "Hjælpelinjer for Spilleproblemer", path: "/ansvarligt-spil/hjaelpelinjer", category: "Guide", excerpt: "Samlet oversigt over alle danske hjælpemuligheder for spilleproblemer." },
   { title: "Casino Licenser", path: "/casino-licenser", category: "Guide", excerpt: "Guide til danske casinolicenser." },
   { title: "Spillemyndigheden", path: "/spillemyndigheden", category: "Guide", excerpt: "Danmarks regulering af online spil." },
-  { title: "Omsætningskrav", path: "/omsaetningskrav", category: "Guide", excerpt: "Komplet guide til gennemspilningskrav." },
   { title: "Kontakt", path: "/kontakt", category: "Guide", excerpt: "Kontakt Casinoaftaler.dk." },
   { title: "Casino Nyheder", path: "/casino-nyheder", category: "Nyheder", excerpt: "Seneste nyheder fra branchen." },
 ];
 
 // ─── Niklas – Articles ───────────────────────────────────────────────────
 
-const niklasArticles: AuthorArticle[] = [];
+const niklasArticles: AuthorArticle[] = [
+  // Bonusøkonomi & EV (moved from Jonas)
+  { title: "Omsætningskrav Forklaret", path: "/omsaetningskrav", category: "Guide", excerpt: "Forstå omsætningskrav og lær at vælge bonusser med lave krav." },
+  { title: "No Sticky Bonus Guide", path: "/no-sticky-bonus", category: "Guide", excerpt: "Alt om no-sticky bonusser og hvorfor de er populære blandt spillere." },
+  { title: "Velkomstbonus Guide 2026", path: "/velkomstbonus", category: "Guide", excerpt: "Find de bedste velkomstbonusser og forstå vilkår og betingelser." },
+  { title: "Free Spins Guide", path: "/free-spins", category: "Guide", excerpt: "Alt om free spins – typer, vilkår og de bedste tilbud." },
+  { title: "Bonus Uden Indbetaling", path: "/bonus-uden-indbetaling", category: "Guide", excerpt: "Få casino bonus helt uden at indsætte penge – se aktuelle tilbud." },
+  { title: "Bonus Uden Omsætningskrav", path: "/bonus-uden-omsaetningskrav", category: "Guide", excerpt: "Find bonusser uden omsætningskrav hos danske casinoer." },
+  { title: "Indskudsbonus Guide", path: "/indskudsbonus", category: "Guide", excerpt: "Alt om indskudsbonusser – typer, vilkår og de bedste tilbud." },
+  { title: "Sticky Bonus Guide", path: "/sticky-bonus", category: "Guide", excerpt: "Forstå sticky bonusser og forskellen til no-sticky." },
+  { title: "Reload Bonus Guide", path: "/reload-bonus", category: "Guide", excerpt: "Alt om reload bonusser – hvad de er og de bedste tilbud." },
+  { title: "Cashback Bonus Guide", path: "/cashback-bonus", category: "Guide", excerpt: "Cashback bonusser forklaret – få penge retur på dine tab." },
+  // Finans
+  { title: "Casino og Skat Guide", path: "/casinoer/casino-og-skat", category: "Guide", excerpt: "Alt om skat på casinogevinster i Danmark." },
+  { title: "Forretningsmodel", path: "/forretningsmodel", category: "Guide", excerpt: "Sådan finansieres Casinoaftaler.dk." },
+];
 
 // ─── Public API ─────────────────────────────────────────────────────────
 
