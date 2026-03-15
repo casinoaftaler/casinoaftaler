@@ -56,7 +56,7 @@ const ChilliPopGuide = () => {
         <SlotDataLink slotSlug="chilli-pop" slotName="Chilli Pop" />
         <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Chilli Pop" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
-        <AuthorBio author="jonas" showCommunity={false} />
+        
         <RelatedGuides currentPath={PAGE_PATH} />
       </div>
     </>

@@ -56,7 +56,7 @@ const ClassicFruitsGuide = () => {
         <SlotDataLink slotSlug="classic-fruits" slotName="Classic Fruits" />
         <LatestNewsByCategory pagePath={PAGE_PATH} />
         <FAQSection title="FAQ om Classic Fruits" faqs={faqs.map(f => ({ question: f.question, answer: f.answer }))} />
-        <AuthorBio author="jonas" showCommunity={false} />
+        
         <RelatedGuides currentPath={PAGE_PATH} />
       </div>
     </>
