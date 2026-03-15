@@ -106,26 +106,29 @@ export const NIKLAS_SAME_AS = [
 function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: string[]) {
   const isKevin = authorName === "Kevin";
   const isAjse = authorName === "Ajse";
+  const isNiklas = authorName === "Niklas";
+
+  const nameMap: Record<string, string> = { Ajse: "Ajse", Kevin: "Kevin", Niklas: "Niklas" };
+  const imageMap: Record<string, string> = { Ajse: "ajse-avatar.webp", Kevin: "kevin-avatar.webp", Niklas: "niklas-avatar.webp" };
+  const jobTitleMap: Record<string, string> = {
+    Ajse: "Juridisk redaktør & casinoanalytiker",
+    Kevin: "Casino Streamer & IT-medansvarlig",
+    Niklas: "Finansøkonom & forsikringsekspert",
+  };
+  const knowsAboutMap: Record<string, string[]> = {
+    Ajse: ["dansk spillelovgivning", "online casino regulering", "ansvarligt spil", "casino compliance", "slot-markedet", "Gambling Law", "Casino Regulation", "Responsible Gambling"],
+    Kevin: ["online casino", "casino streaming", "betalingsmetoder", "spiludviklere", "IT-sikkerhed"],
+    Niklas: ["finansiel analyse", "forsikring", "risikostyring", "bankroll management", "casino og skat", "bonusøkonomi", "EV-analyse", "Financial Analysis", "Insurance"],
+  };
+
   return {
     "@type": "Person",
     "@id": `${authorUrl}#person`,
-    name: isAjse ? "Ajse" : isKevin ? "Kevin" : "Jonas Theill",
+    name: nameMap[authorName] || "Jonas Theill",
     url: authorUrl,
-    image: isAjse
-      ? `${SITE_URL}/ajse-avatar.webp`
-      : isKevin
-        ? `${SITE_URL}/kevin-avatar.webp`
-        : `${SITE_URL}/jonas-avatar.webp`,
-    jobTitle: isAjse
-      ? "Juridisk redaktør & casinoanalytiker"
-      : isKevin
-        ? "Casino Streamer & IT-medansvarlig"
-        : "Casino Bonus Ekspert",
-    knowsAbout: isAjse
-      ? ["dansk spillelovgivning", "online casino regulering", "ansvarligt spil", "casino compliance", "slot-markedet", "Gambling Law", "Casino Regulation", "Responsible Gambling"]
-      : isKevin
-        ? ["online casino", "casino streaming", "betalingsmetoder", "spiludviklere", "IT-sikkerhed"]
-        : ["online casino", "iGaming", "casino bonus", "spillemaskiner", "RTP", "ansvarligt spil"],
+    image: `${SITE_URL}/${imageMap[authorName] || "jonas-avatar.webp"}`,
+    jobTitle: jobTitleMap[authorName] || "Casino Bonus Ekspert",
+    knowsAbout: knowsAboutMap[authorName] || ["online casino", "iGaming", "casino bonus", "spillemaskiner", "RTP", "ansvarligt spil"],
     nationality: {
       "@type": "Country",
       name: "Denmark",
