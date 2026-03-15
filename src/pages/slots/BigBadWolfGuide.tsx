@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const BigBadWolfGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Big Bad Wolf – Quickspins Høj-RTP Klassiker", description: "Guide til Big Bad Wolf fra Quickspin: Swooping Reels, 97,34 % RTP og progressiv wild-mekanik.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Big Bad Wolf – Quickspins Høj-RTP Klassiker", description: "Guide til Big Bad Wolf fra Quickspin: Swooping Reels, 97,34 % RTP og progressiv wild-mekanik.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Big Bad Wolf – Quickspins Høj-RTP Klassiker", description: "Guide til Big Bad Wolf fra Quickspin: Swooping Reels, 97,34 % RTP og progressiv wild-mekanik.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
