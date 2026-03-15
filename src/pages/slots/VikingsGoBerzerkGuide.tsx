@@ -41,7 +41,7 @@ const VikingsGoBerzerkGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="16 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="16 min" />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Rage-Meter: Progressiv Spillemekanik</h2>
