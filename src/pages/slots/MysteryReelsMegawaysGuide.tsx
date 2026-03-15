@@ -38,7 +38,7 @@ const MysteryReelsMegawaysGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="14 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="14 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Mystery Symbols & Megaways</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Mystery Reels Megaways fra <Link to="/spiludviklere/red-tiger" className={lk}>Red Tiger Gaming</Link> kombinerer to kraftfulde mekanikker: <Link to="/megaways-slots" className={lk}>Megaways</Link> dynamiske gevinstlinjer med mystery-symboler, der alle afslører det samme symbol. Med op til 117.649 ways per spin og mystery-symboler på alle hjul kan en enkelt spin producere massiv dækning.</p>
