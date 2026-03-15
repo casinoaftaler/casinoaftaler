@@ -406,26 +406,66 @@ export default function Forfatter() {
 
         <Separator className="my-10" />
 
-        {/* 2️⃣ Ekspertise & Erfaring */}
+        {/* Om Jonas – hovedafsnit */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <BookOpen className="h-7 w-7 text-primary" />
+            Om Jonas
+          </h2>
+          <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas er 27 år og grundlægger af Casinoaftaler.dk. Han har streamet online casino i over fire år og kombinerer sin passion for streaming med en systematisk tilgang til casinotest og bonusanalyse. Han startede sin karriere som medstifter af JPLiveSlots og har siden bygget sit eget brand og sin egen platform fra bunden.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Hans vision er at skabe Danmarks mest gennemsigtige casino-guide, hvor anmeldelser bygger på reel erfaring og praktisk test – ikke blot skrivebordsvurderinger. Gennem daglig streaming og direkte dialog med sit community sikrer han, at indholdet altid afspejler den aktuelle virkelighed i den danske casinobranche.
+            </p>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Ekspertise & Erfaring */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
             <BadgeCheck className="h-7 w-7 text-primary" />
             Ekspertise & Erfaring
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2">
             {expertiseItems.map((item) => (
               <Card
                 key={item.label}
                 className="group transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
               >
-                <CardContent className="flex items-center gap-3 p-5">
+                <CardContent className="flex items-start gap-4 p-5">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
                     <item.icon className="h-5 w-5" />
                   </div>
-                  <p className="text-sm font-medium">{item.label}</p>
+                  <div>
+                    <p className="text-sm font-semibold mb-1">{item.label}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </div>
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Dokumenteret Erfaring */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <ShieldCheck className="h-7 w-7 text-primary" />
+            Dokumenteret Erfaring
+          </h2>
+          <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              Jonas har personligt testet og anmeldt over 50 danske online casinoer med registrering, indbetaling og gameplay. Hans anmeldelser bygger på en dokumenteret testmetode med faste vurderingskriterier for bonusvilkår, spiludvalg, kundeservice og udbetalingshastighed.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Med over 7.000 timers live streaming har han opbygget en unik førstehåndserfaring med det danske casinomarked. Han arbejder med primære kilder som{" "}
+              <Link to="/spillemyndigheden" className="text-primary hover:underline">Spillemyndigheden</Link>, officielle bonusvilkår og licensoplysninger for at sikre korrekthed i alt publiceret indhold.
+            </p>
           </div>
         </section>
 

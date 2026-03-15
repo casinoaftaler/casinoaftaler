@@ -287,23 +287,45 @@ export default function ForfatterKevin() {
 
         <Separator className="my-10" />
 
+        {/* Om Kevin – hovedafsnit */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <BookOpen className="h-7 w-7 text-primary" />
+            Om Kevin
+          </h2>
+          <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
+            <p className="text-muted-foreground leading-relaxed">
+              Kevin er 26 år og har streamet slots i mere end tre år. Han mødte{" "}
+              <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> gennem Twitch, hvor de hurtigt fandt fælles interesse for streaming, online casino og opbygning af engagerede communities. Siden har de samarbejdet på tværs af streams og udviklet et stærkt professionelt partnerskab.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Tidligere har Kevin arbejdet som editor for <strong>FaZe Clan</strong>, en af verdens mest anerkendte gaming-organisationer. Erfaringen herfra har givet ham solid indsigt i content creation, digital branding og community management – kompetencer han i dag aktivt anvender i arbejdet med Casinoaftaler.dk.
+            </p>
+          </div>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Ekspertise & Erfaring */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
             <BadgeCheck className="h-7 w-7 text-primary" />
             Ekspertise & Erfaring
           </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2">
             {expertiseItems.map((item) => (
               <Card
                 key={item.label}
                 className="group transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30"
               >
-                <CardContent className="flex items-center gap-3 p-5">
+                <CardContent className="flex items-start gap-4 p-5">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
                     <item.icon className="h-5 w-5" />
                   </div>
-                  <p className="text-sm font-medium">{item.label}</p>
+                  <div>
+                    <p className="text-sm font-semibold mb-1">{item.label}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </div>
                 </CardContent>
               </Card>
             ))}
