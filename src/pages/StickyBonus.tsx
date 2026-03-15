@@ -918,7 +918,7 @@ const StickyBonus = () => {
         <BonusMoneyLinks currentPath="/sticky-bonus" />
         <RelatedGuides currentPath="/sticky-bonus" />
         <FAQSection title="Ofte stillede spørgsmål om sticky bonus" faqs={stickyFaqs} />
-        <AuthorBio />
+        <AuthorBio author="niklas" />
       </div>
       <StickyCtaBySlug slug="spildansknu" />
     </>

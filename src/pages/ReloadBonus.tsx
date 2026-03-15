@@ -591,7 +591,7 @@ const ReloadBonus = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio />
+        <AuthorBio author="niklas" />
 
         <Separator className="my-10" />
 
