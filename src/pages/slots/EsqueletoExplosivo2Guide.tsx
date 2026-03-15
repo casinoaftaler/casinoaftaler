@@ -40,7 +40,7 @@ const EsqueletoExplosivo2Guide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="15 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="15 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Cascading Wins & Mucho Multiplier</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Esqueleto Explosivo 2 fra <Link to="/spiludviklere/thunderkick" className={lk}>Thunderkick</Link> bygger på en <Link to="/ordbog/cascading-wins" className={lk}>cascading wins</Link>-mekanik, hvor vindende symboler eksploderer og erstattes af nye symboler ovenfra. For hvert consecutive cascade stiger Mucho Multiplier: 1×, 2×, 4×, 8×, 16×, 32× i basespillet og helt op til 64× i free spins.</p>
