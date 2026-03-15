@@ -114,6 +114,7 @@ const bonusBuySlotsHub: GuideLink = { to: "/bonus-buy-slots", label: "Bonus Buy 
 const bonusSiblings: GuideLink[] = [
   { to: "/velkomstbonus", label: "Velkomstbonus", icon: Trophy, desc: "Få mest ud af din første indbetaling" },
   { to: "/free-spins", label: "Free Spins", icon: Sparkles, desc: "Gratis spins på populære spilleautomater" },
+  { to: "/free-spins-i-dag", label: "Free Spins i Dag", icon: Sparkles, desc: "Dagligt opdaterede free spins tilbud" },
   { to: "/indskudsbonus", label: "Indskudsbonus", icon: CreditCard, desc: "Matchbonusser der fordobler dit indskud" },
   { to: "/omsaetningskrav", label: "Omsætningskrav", icon: Target, desc: "Forstå gennemspilningskrav på bonusser" },
   { to: "/no-sticky-bonus", label: "No-Sticky Bonus", icon: Zap, desc: "Bonusser med adskillelse af midler" },
@@ -122,6 +123,7 @@ const bonusSiblings: GuideLink[] = [
   { to: "/bonus-uden-omsaetningskrav", label: "Uden Omsætningskrav", icon: Zap, desc: "Hæv gevinster med det samme" },
   { to: "/cashback-bonus", label: "Cashback Bonus", icon: TrendingUp, desc: "Få penge tilbage fra dine tab" },
   { to: "/reload-bonus", label: "Reload Bonus", icon: RefreshCw, desc: "Tilbagevendende bonusser for eksisterende spillere" },
+  { to: "/vip-program", label: "VIP Program", icon: Trophy, desc: "Loyalitetsprogrammer og VIP-fordele" },
 ];
 
 const paymentSiblings: GuideLink[] = [
@@ -825,9 +827,9 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [
         { to: "/casinospil/poker", label: "Poker Guide", icon: Gamepad2, desc: "Komplet overblik over alle pokervarianter" },
+        { to: "/casinospil/poker/bedste-sider", label: "Bedste Pokersider", icon: Trophy, desc: "Top pokersider i Danmark 2026" },
         { to: "/casinospil/poker/omaha", label: "Omaha Poker", icon: Shuffle, desc: "4 hole cards – højere action og varians" },
         { to: "/casinospil/poker/poker-strategi", label: "Poker Strategi", icon: Brain, desc: "GTO, pot odds og avanceret teori" },
-        { to: "/casinospil/poker/three-card-poker", label: "Three Card Poker", icon: Zap, desc: "Hurtigt casino-bordspil med Pair Plus" },
         { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil poker med live dealere" },
       ],
       subtitle: "Udforsk andre pokervarianter, strategier og live casino-muligheder.",
@@ -899,12 +901,28 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Poker bedste-sider → poker hub + siblings + cross-cluster
+  if (path === "/casinospil/poker/bedste-sider") {
+    return {
+      guides: [
+        { to: "/casinospil/poker", label: "Poker Guide", icon: Gamepad2, desc: "Komplet overblik over alle pokervarianter" },
+        { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em", icon: Target, desc: "Verdens mest populære pokervariant" },
+        { to: "/casinospil/poker/poker-strategi", label: "Poker Strategi", icon: Brain, desc: "GTO, pot odds og avanceret teori" },
+        { to: "/casinospil/poker/video-poker", label: "Video Poker", icon: Gamepad2, desc: "Solo poker med RTP op til 99,5 %" },
+        reviewHub,
+        bonusHub,
+      ],
+      subtitle: "Udforsk pokervarianter, strategier og de bedste casino bonusser.",
+    };
+  }
+
   // Poker hub
   if (path === "/casinospil/poker") {
     return {
       guides: [
         casinospilHub,
         { to: "/casinospil/poker/texas-holdem", label: "Texas Hold'em", icon: Target, desc: "Verdens mest populære pokervariant" },
+        { to: "/casinospil/poker/bedste-sider", label: "Bedste Pokersider", icon: Trophy, desc: "Top pokersider i Danmark 2026" },
         { to: "/casinospil/poker/video-poker", label: "Video Poker", icon: Gamepad2, desc: "Solo poker med op til 99,5 % RTP" },
         { to: "/live-casino", label: "Live Casino", icon: Tv, desc: "Spil poker med live dealere" },
         { to: "/casino-bonus", label: "Casino Bonusser", icon: Gift, desc: "Bonusser til poker-spil" },
@@ -1000,6 +1018,81 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
+  // Free Spins i Dag → dedicated entry (daily money page)
+  if (path === "/free-spins-i-dag") {
+    return {
+      guides: [
+        bonusHub,
+        { to: "/free-spins", label: "Free Spins Guide", icon: Sparkles, desc: "Komplet guide til free spins bonusser" },
+        { to: "/velkomstbonus", label: "Velkomstbonus", icon: Trophy, desc: "Bedste velkomstbonusser i Danmark" },
+        { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", icon: Gift, desc: "Spil gratis uden at indbetale" },
+        reviewHub,
+        nyeCasinoerHub,
+      ],
+      subtitle: "Udforsk flere bonusser, velkomstbonusser og casino anmeldelser.",
+    };
+  }
+
+  // Top 10 Casino Online → dedicated entry
+  if (path === "/top-10-casino-online") {
+    return {
+      guides: [
+        reviewHub,
+        nyeCasinoerHub,
+        bonusHub,
+        { to: "/casino-licenser", label: "Casino Licenser", icon: ShieldCheck, desc: "Licenserede casinoer i Danmark" },
+        { to: "/casino-med-mobilepay", label: "Casino med MobilePay", icon: Smartphone, desc: "MobilePay-kompatible casinoer" },
+        liveCasinoHub,
+      ],
+      subtitle: "Udforsk casino anmeldelser, nye casinoer og de bedste bonusser.",
+    };
+  }
+
+  // VIP Program → dedicated entry
+  if (path === "/vip-program") {
+    return {
+      guides: [
+        bonusHub,
+        { to: "/casino-bonus", label: "Casino Bonus Guide", icon: Gift, desc: "Komplet overblik over alle bonustyper" },
+        { to: "/cashback-bonus", label: "Cashback Bonus", icon: TrendingUp, desc: "Få penge tilbage fra dine tab" },
+        { to: "/reload-bonus", label: "Reload Bonus", icon: RefreshCw, desc: "Bonusser for eksisterende spillere" },
+        reviewHub,
+        nyeCasinoerHub,
+      ],
+      subtitle: "Udforsk bonusprogrammer, cashback og de bedste danske casinoer.",
+    };
+  }
+
+  // Casino med MobilePay → dedicated entry
+  if (path === "/casino-med-mobilepay") {
+    return {
+      guides: [
+        paymentHub,
+        { to: "/betalingsmetoder/mobilepay", label: "MobilePay Guide", icon: Smartphone, desc: "Komplet MobilePay casino-guide" },
+        reviewHub,
+        bonusHub,
+        nyeCasinoerHub,
+        { to: "/casino-licenser", label: "Casino Licenser", icon: ShieldCheck, desc: "Sikre casinoer med dansk licens" },
+      ],
+      subtitle: "Udforsk betalingsmetoder, casino anmeldelser og de bedste bonusser.",
+    };
+  }
+
+  // Sådan tester vi casinoer → E-E-A-T page
+  if (path === "/saadan-tester-vi-casinoer") {
+    return {
+      guides: [
+        reviewHub,
+        { to: "/om", label: "Om Teamet", icon: BookOpen, desc: "Mød teamet bag Casinoaftaler.dk" },
+        { to: "/redaktionel-politik", label: "Redaktionel Politik", icon: ShieldCheck, desc: "Vores redaktionelle retningslinjer" },
+        { to: "/forretningsmodel", label: "Forretningsmodel", icon: BookOpen, desc: "Sådan finansieres Casinoaftaler.dk" },
+        { to: "/casino-licenser", label: "Casino Licenser", icon: ShieldCheck, desc: "Licenserede casinoer i Danmark" },
+        { to: "/ansvarligt-spil", label: "Ansvarligt Spil", icon: ShieldCheck, desc: "Spil sikkert og ansvarligt" },
+      ],
+      subtitle: "Udforsk vores metoder, teamet og vores forpligtelse til ansvarligt spil.",
+    };
+  }
+
   // Bonus subpages → hub + 3 rotated siblings + 1 varied cross-cluster
   if (
     path.startsWith("/velkomstbonus") || path.startsWith("/free-spins") ||
@@ -1058,6 +1151,36 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [...hub, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
       subtitle: "Udforsk flere nye casinoer, bonusser og casino anmeldelser.",
+    };
+  }
+
+  // Casinoer hub → dedicated entry with cluster-specific links
+  if (path === "/casinoer") {
+    return {
+      guides: [
+        { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", icon: Zap, desc: "Casinoer med de hurtigste udbetalinger" },
+        { to: "/casinoer/hoej-rtp", label: "Høj RTP", icon: BarChart3, desc: "Casinoer med bedst tilbagebetaling" },
+        { to: "/casino-licenser", label: "Licenserede Casinoer", icon: ShieldCheck, desc: "Sikre casinoer med dansk licens" },
+        reviewHub,
+        bonusHub,
+        nyeCasinoerHub,
+      ],
+      subtitle: "Udforsk casino-kategorier, anmeldelser og de bedste bonusser.",
+    };
+  }
+
+  // Casinospil hub → dedicated entry with game-specific links
+  if (path === "/casinospil") {
+    return {
+      guides: [
+        { to: "/casinospil/spillemaskiner", label: "Spillemaskiner", icon: Gamepad2, desc: "Guide til alle typer online slots" },
+        { to: "/casinospil/blackjack", label: "Blackjack", icon: Gamepad2, desc: "Komplet guide til online blackjack" },
+        { to: "/casinospil/roulette", label: "Roulette", icon: Target, desc: "Lær roulettens væddemål og varianter" },
+        { to: "/casinospil/poker", label: "Poker", icon: Gamepad2, desc: "Guide til alle pokervarianter" },
+        liveCasinoHub,
+        providerHub,
+      ],
+      subtitle: "Dyk ned i casinospil, strategier og spiludviklere.",
     };
   }
 
