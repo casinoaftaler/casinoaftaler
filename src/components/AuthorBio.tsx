@@ -62,6 +62,18 @@ const authorData = {
       { href: "https://www.instagram.com/serifoaaa/", label: "Instagram" },
     ],
   },
+  niklas: {
+    name: "Niklas",
+    image: niklasImage,
+    alt: "Niklas – Finansøkonom & forsikringsekspert hos Casinoaftaler.dk",
+    link: "/forfatter/niklas",
+    badge: "Finansøkonom & forsikringsekspert",
+    role: "Finansøkonom & forsikringsekspert hos Casinoaftaler.dk",
+    bio: "Niklas er finansøkonom og forsikringsekspert hos Casinoaftaler.dk med fokus på bonusøkonomi, EV-analyse, casino og skat samt finansiel risikostyring.",
+    socials: [
+      { href: "https://www.linkedin.com/in/niclas-finscet-hansen/", label: "LinkedIn" },
+    ],
+  },
 } as const;
 
 export function AuthorBio({ author = "jonas", showCommunity = true }: AuthorBioProps) {

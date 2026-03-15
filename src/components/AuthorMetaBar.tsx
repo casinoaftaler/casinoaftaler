@@ -173,7 +173,7 @@ export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified
               <CheckCircle className="h-3.5 w-3.5" />
               Faktatjekket
             </Badge>
-            {(author === "jonas" || author === "ajse") ? (
+            {(author === "jonas" || author === "ajse" || author === "niklas") ? (
               <Link to="/forfatter/kevin" className="flex items-center gap-1.5 group">
                 <span>Af:</span>
                 <img

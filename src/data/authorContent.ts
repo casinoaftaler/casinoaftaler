@@ -357,6 +357,8 @@ export function getAuthorArticles(author: AuthorId): AuthorArticle[] {
       return kevinArticles;
     case "ajse":
       return ajseArticles;
+    case "niklas":
+      return niklasArticles;
   }
 }
 
@@ -366,9 +368,9 @@ export function getAuthorReviewVideos(author: AuthorId): AuthorVideo[] {
     case "jonas":
       return jonasReviewVideos;
     case "kevin":
-      return []; // Kevin has no review videos yet
     case "ajse":
-      return []; // Ajse has no review videos
+    case "niklas":
+      return [];
   }
 }
 
@@ -378,9 +380,9 @@ export function getAuthorGuideVideos(author: AuthorId): AuthorVideo[] {
     case "jonas":
       return jonasGuideVideos;
     case "kevin":
-      return []; // Kevin has no guide videos yet
     case "ajse":
-      return []; // Ajse has no guide videos
+    case "niklas":
+      return [];
   }
 }
 

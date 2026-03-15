@@ -188,8 +188,8 @@ export function buildArticleSchema(opts: {
 }) {
   const authorName = opts.authorName || "Jonas";
   const authorUrl = opts.authorUrl || `${SITE_URL}/forfatter/jonas`;
-  const authorSameAs = opts.authorSameAs
-    ?? (authorName === "Kevin" ? KEVIN_SAME_AS : authorName === "Ajse" ? AJSE_SAME_AS : JONAS_SAME_AS);
+  const sameAsMap: Record<string, string[]> = { Kevin: KEVIN_SAME_AS, Ajse: AJSE_SAME_AS, Niklas: NIKLAS_SAME_AS };
+  const authorSameAs = opts.authorSameAs ?? (sameAsMap[authorName] || JONAS_SAME_AS);
 
   // Auto-resolve dateModified from seoRoutes if not explicitly provided
   const urlPath = opts.url.replace(SITE_URL, "");
