@@ -212,7 +212,7 @@ export default function ForfatterKevin() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="17-02-2026" readTime="5 Min." showVerified />
+        <AuthorMetaBar author="jonas" factCheckBy="ajse" date="17-02-2026" readTime="5 Min." showVerified />
 
         {/* Profile card */}
         <section className="mb-12">
