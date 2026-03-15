@@ -249,6 +249,24 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link to="/megaways-slots" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Zap className="h-4 w-4" />
+                  Megaways Slots
+                </Link>
+              </li>
+              <li>
+                <Link to="/jackpot-slots" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Trophy className="h-4 w-4" />
+                  Jackpot Slots
+                </Link>
+              </li>
+              <li>
+                <Link to="/bonus-buy-slots" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground">
+                  <Star className="h-4 w-4" />
+                  Bonus Buy Slots
+                </Link>
+              </li>
+              <li>
                 <Link to="/spiludviklere" className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground font-medium">
                   <Gamepad2 className="h-4 w-4" />
                   Spiludviklere
