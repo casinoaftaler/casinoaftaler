@@ -25,7 +25,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 
 const HotSpinDeluxeGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
-  const articleSchema = buildArticleSchema({ headline: "Hot Spin Deluxe – iSoftBets Bonus-Hjul Slot", description: "Guide til Hot Spin Deluxe fra iSoftBet: 7 bonusfeatures, bonus-hjul mekanik, RTP 96,06 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Hot Spin Deluxe – iSoftBets Bonus-Hjul Slot", description: "Guide til Hot Spin Deluxe fra iSoftBet: 7 bonusfeatures, bonus-hjul mekanik, RTP 96,06 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", const articleSchema = buildArticleSchema({ headline: "Hot Spin Deluxe – iSoftBets Bonus-Hjul Slot", description: "Guide til Hot Spin Deluxe fra iSoftBet: 7 bonusfeatures, bonus-hjul mekanik, RTP 96,06 % og medium volatilitet.", url: `${SITE_URL}${PAGE_PATH}`, datePublished: "2026-03-12", dateModified: "2026-03-12", authorName: "Casinoaftaler Redaktionen", authorUrl: `${SITE_URL}` }); });
 
   return (
     <>
