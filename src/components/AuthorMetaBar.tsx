@@ -63,10 +63,11 @@ const authorConfig = {
   jonas: { name: "Jonas", image: "/jonas-avatar.webp", alt: "Jonas – Fedesvinsejer", link: "/forfatter/jonas" },
   kevin: { name: "Kevin", image: "/kevin-avatar.webp", alt: "Kevin – Casino-streamer", link: "/forfatter/kevin" },
   ajse: { name: "Ajse", image: "/ajse-avatar.webp", alt: "Ajse – Juridisk redaktør", link: "/forfatter/ajse" },
+  niklas: { name: "Niklas", image: "/niklas-avatar.webp", alt: "Niklas – Finansøkonom", link: "/forfatter/niklas" },
 } as const;
 
 interface AuthorMetaBarProps {
-  author: "jonas" | "kevin" | "ajse" | "redaktionen";
+  author: "jonas" | "kevin" | "ajse" | "niklas" | "redaktionen";
   /**
    * Display date. If omitted, automatically reads from seoRoutes.ts lastmod.
    * Accepts ISO (YYYY-MM-DD), DD-MM-YYYY, or Danish text format.
