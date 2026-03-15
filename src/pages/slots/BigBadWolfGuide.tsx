@@ -38,7 +38,7 @@ const BigBadWolfGuide = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-12" readTime="14 min" />
+        <AuthorMetaBar author="redaktionen" date="2026-03-12" readTime="14 min" />
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Flame className="h-5 w-5 text-primary" />Swooping Reels & Progressive Wilds</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">Big Bad Wolf fra <Link to="/spiludviklere/quickspin" className={lk}>Quickspin</Link> innoverer med Swooping Reels: <Link to="/ordbog/cascading-wins" className={lk}>cascading wins</Link> hvor symboler "swooper" ned. Efter 2+ consecutive wins transformeres grisesymboler progressivt til wilds – en unik mekanik, der belønner længere gevinstkæder.</p>
