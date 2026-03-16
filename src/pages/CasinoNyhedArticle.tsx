@@ -12,6 +12,7 @@ import { useRelatedNews } from "@/hooks/useRelatedNews";
 import { buildArticleSchema, buildFaqSchema, SITE_URL, AJSE_SAME_AS } from "@/lib/seo";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
+import { countInternalLinksInHtml, getEnterpriseNewsInternalLinks } from "@/lib/newsInternalLinks";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 import { CalendarDays, Loader2, Newspaper, Crown, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -70,6 +71,13 @@ const CasinoNyhedArticle = () => {
 
     return { contentWithoutFaq: autoLinkEntities(beforeFaq + afterFaqContent), faqs: parsedFaqs };
   }, [article?.content]);
+
+  const strategicInternalLinks = useMemo(
+    () => getEnterpriseNewsInternalLinks(article?.category || "generelt", article?.slug || slug || "", 12),
+    [article?.category, article?.slug, slug],
+  );
+
+  const internalLinkCountInBody = useMemo(() => countInternalLinksInHtml(contentWithoutFaq), [contentWithoutFaq]);
 
   if (isLoading) {
     return (
@@ -201,6 +209,24 @@ const CasinoNyhedArticle = () => {
           className="prose prose-lg dark:prose-invert max-w-none mb-12 [&>h2]:text-3xl [&>h2]:font-bold [&>h2]:mt-12 [&>h2]:mb-4 [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:mt-10 [&>h3]:mb-3 [&>p]:mb-5 [&>p]:leading-relaxed [&>p]:text-muted-foreground [&>ul]:mb-5 [&>ol]:mb-5 [&>h2:first-of-type]:mt-0"
           dangerouslySetInnerHTML={{ __html: contentWithoutFaq }}
         />
+
+        <section className="mb-12 rounded-xl border border-border bg-card p-6">
+          <h2 className="text-2xl font-bold mb-2">Flere relevante sider</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Denne artikel har {internalLinkCountInBody} links i brødteksten. Her er ekstra genveje til centrale guides og anmeldelser.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {strategicInternalLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="rounded-md border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </section>
 
         {/* Contextual CTA Bridge – category-based money-page links */}
         <NewsContextualCTA category={article.category} />
