@@ -26,6 +26,7 @@ function slugify(text: string) {
 function NewsForm({ article, onClose }: { article?: CasinoNewsArticle; onClose: () => void }) {
   const createNews = useCreateNews();
   const updateNews = useUpdateNews();
+  const qc = useQueryClient();
   const isEdit = !!article;
 
   const [form, setForm] = useState({
