@@ -152,7 +152,7 @@ export default function SpilleautomatenVsSpilDanskNu() {
       verdictWinner="A"
       faqs={faqs}
       ctaSlug="spilleautomaten"
-      readTime="24 min"
+      readTime="36 min"
     >
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">To sider af samme danske casinofilosofi</h2>

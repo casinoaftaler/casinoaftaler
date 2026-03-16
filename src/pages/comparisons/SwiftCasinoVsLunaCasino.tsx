@@ -152,51 +152,112 @@ export default function SwiftCasinoVsLunaCasino() {
       verdictWinner="draw"
       faqs={faqs}
       ctaSlug="swift-casino"
-      readTime="23 min"
+      readTime="36 min"
     >
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Den mest interessante interne duel i SkillOnNet-clusteret</h2>
+        <h2 className="mb-4 text-3xl font-bold">Hvorfor Swift vs Luna er en money-page med høj købsintention</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link> og <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link> er et skoleeksempel på, hvordan samme operatør kan bygge to forskellige produkter til to forskellige typer spillere. Derfor er denne sammenligning langt mere værdifuld end en standard bonus-vs-bonus-side.
+          <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link> og <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link> er en af de mest værdifulde sammenligninger i jeres cluster, fordi brugeren typisk er tæt på beslutning. De fleste, der lander her, har allerede valgt et dansk licenseret miljø og søger ikke længere efter "er det sikkert?" men efter "hvilken løsning passer bedst til min faktiske spillestil?".
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Det gør forskellen mellem de to sider mere adfærdsmæssig end regulatorisk. Begge ligger i en solid tillidsramme med samme operatørfundament, men de løser to forskellige behov: Swift er bygget til maksimal bredde og dataorienteret udforskning, mens Luna er bygget til kurateret ro, tydelig prioritering og loyalitetsdrevet kontinuitet.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          Swift handler om bredde, data og at give spilleren masser af valgmuligheder. Luna handler om at skære støj væk og løfte de mest relevante titler, kampagner og flows frem. Ingen af modellerne er objektivt bedst – men de er bedst for hver sin brugeradfærd.
+          Derfor bør valget ikke træffes på bonusoverskriften alene. Når bonusniveauet er næsten identisk, er det produktets daglige kvalitet – friktion, sessionsflow, navigationsbyrde og retentionværdi – der afgør den reelle totaloplevelse over tid.
         </p>
       </section>
 
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Samme bonusramme – så UX bliver afgørende</h2>
+        <h2 className="mb-4 text-3xl font-bold">Bonusøkonomi: identisk indgang, forskellig hverdag</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Når både Swift og Luna tilbyder 100 % bonus op til 500 kr. med 10x omsætning, fjerner det meget af den klassiske bonusstøj fra beslutningen. Det betyder, at du som spiller i højere grad bør fokusere på, hvad der sker efter oprettelsen: hvor let det er at finde relevante spil, hvor meget værdi du får over tid, og om platformen matcher din måde at spille på.
+          Begge sider tilbyder 100 % op til 500 kr. med 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, hvilket placerer dem i den spillervenlige ende under danske rammer. Matematikken er dermed tæt på ens ved onboarding. Men i praksis oplever spilleren ikke bonusmodellen som en ligning – spilleren oplever den som et forløb, der enten flyder naturligt eller føles tungt.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Hvis platformen hurtigt guider dig mod relevante spil, tydeligt viser bonusstatus og minimerer antallet af unødige beslutninger, føles omsætningskravet mindre belastende. Hvis platformen derimod inviterer til konstant skift mellem mange sektioner uden tydelig prioritering, stiger den mentale friktion, og samme bonuskrav føles større.
         </p>
         <div className="rounded-lg border border-border bg-muted/30 p-5">
-          <p className="mb-2 font-semibold">Tommelfingerregel</p>
+          <p className="mb-2 font-semibold">Nøgleindsigt</p>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Hvis du elsker at browse og udforske, peger pilen mod Swift. Hvis du hellere vil have færre, bedre valg og en mere guidet oplevelse, peger pilen mod Luna.
+            I denne duel er bonusen ikke den primære differentiator. Det er produktets evne til at omdanne en god bonus til en stabil daglig brugeroplevelse. Derfor skal valget ske på UX-fit og ikke på kampagne-tekst.
           </p>
         </div>
       </section>
 
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Volumen mod kuratering i praksis</h2>
+        <h2 className="mb-4 text-3xl font-bold">Swift Casino: volumen, data og explorativ styrke</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Swift Casino imponerer på katalogdybde. 3.300+ spil og Hot Or Cold-funktionen gør platformen særligt stærk for den nysgerrige bruger, der aktivt vil sammenligne, skifte retning og finde nye titler. Her er oplevelsen mere eksplorativ og mere datafarvet.
+          Swift Casinos største styrke er katalogdybden. Med 3.300+ spil har platformen volumen til at understøtte næsten enhver sessionsstrategi, fra klassiske slots til nicheprægede titler og hyppige skift mellem kategorier. For erfarne spillere, der bevidst bruger tid på at opdage nye titler, er dette en markant fordel.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Luna Casino går i den modsatte retning. I stedet for at vinde på mængde vinder siden på friktion. Det føles hurtigere at vælge, lettere at orientere sig og nemmere at holde fokus. Det gør Luna mere tilgængelig – især for spillere, der ikke har behov for tusindvis af titler for at føle sig godt dækket ind.
+          Den dataorienterede profil understøttes af funktioner som Hot Or Cold, der giver brugeren en oplevelse af højere informationskontrol i browsingfasen. Selvom sådanne indikatorer ikke ændrer den grundlæggende RNG-logik, ændrer de adfærden: spilleren får en tydeligere prioritering i store kataloger og kan træffe hurtigere valg.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          Derfor er denne duel ikke et spørgsmål om mest værdi for alle. Det er et spørgsmål om hvilken type værdi du selv foretrækker: mange muligheder eller bedre prioriterede muligheder.
+          Ulempen er, at den store bredde også kan øge kognitiv belastning for casual spillere. Hvis du ikke aktivt vil udforske, kan for mange valgmuligheder føles som støj frem for værdi. Swift er derfor stærkest, når brugeren faktisk udnytter bredde- og datafordelen i praksis.
         </p>
       </section>
 
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Hvilket casino skal du vælge?</h2>
+        <h2 className="mb-4 text-3xl font-bold">Luna Casino: kuratering, loyalitet og lavere friktion</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Vælg Swift Casino, hvis du er mere erfaren, vil have maksimal katalogbredde og faktisk bruger værktøjer som Hot Or Cold aktivt i din browsing. Vælg Luna Casino, hvis du vil have en mere rolig premium-følelse, stærkere loyalitetsværdi og et mindre fragmenteret univers.
+          Luna Casinos kerneværdi er ikke maksimal volumen, men prioriteret kvalitet. Platformen føles designet til hurtig orientering, lav støj og bedre beslutningsro. For spillere, der vil minimere tid brugt på valg og maksimere tid i relevante spil, er dette ofte en højere praktisk værdi end et ekstremt stort bibliotek.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Loyalitetsmodellen er også mere profilbærende hos Luna. Et tydeligt level-forløb og daglige kampagner skaber en fornemmelse af progression, der især appellerer til mellemaktive og regelmæssige spillere. Hvor Swift vinder på "find mere", vinder Luna på "få mere ud af det, du faktisk bruger".
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          Begge sider fungerer godt, begge er troværdige, og begge giver mening i jeres cluster. Det er netop derfor denne VS-side er stærk: den hjælper brugeren med at vælge mellem to gode produkter, ikke mellem et godt og et dårligt.
+          Denne struktur reducerer beslutningstræthed over tid. For mange spillere er det netop i uge 3-8, at Luna begynder at føles stærkere, fordi retention-flowet er mere tydeligt end på rene volumenplatforme.
+        </p>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Sessionsøkonomi: hvad giver mest værdi over 90 dage?</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          En enterprise-sammenligning bør ikke stoppe ved første indbetaling. Over 90 dage bliver spørgsmålet, hvilken side der giver lavest friktion pr. session, højest oplevet kontrol og mest stabil retentionværdi. Her skiller spillerprofilerne sig tydeligt.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Højfrekvente udforskere (mange korte sessions, høj nysgerrighed, ofte skift mellem titler) får normalt mest værdi af Swift. Strukturerede rutinespillere (færre kategoriskift, høj præference for overskuelighed, fokus på loyalitetsflow) får normalt mest værdi af Luna.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Hvis målet er langsigtet tilfredshed, bør valget kobles til faktisk adfærd, ikke aspirerende adfærd. Vælg den side, du realistisk kommer til at bruge korrekt – ikke den side, der ser bedst ud i teorien.
+        </p>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse: funktionstæthed vs beslutningsro</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          På mobil er forskellen mellem de to brands ekstra tydelig. Swift giver en funktionsrig mobiloplevelse, hvor brugeren kan bevæge sig bredt i produktet uden større begrænsninger. Det er stærkt for power-brugere, men kan føles tæt for spillere med mere lineær adfærd.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Luna leverer en mere fokuseret mobilrejse med tydeligere prioritering af de vigtigste flows. Det giver høj oplevet hastighed, selv når den tekniske performance er tæt på identisk. I praksis handler mobilkvalitet altså ikke kun om fart, men om hvor lidt mental energi platformen kræver før spilstart.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Derfor bør mobilbrugere vurdere sig selv på ét nøglespørgsmål: Vil du have flest muligheder i hånden – eller færrest beslutninger på vej til samme mål?
+        </p>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Hvem skal vælge Swift, og hvem skal vælge Luna?</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Vælg Swift Casino, hvis du aktivt bruger katalogbredde, vil have datadrevet browsing og foretrækker et miljø, hvor du kan skifte retning ofte uden at løbe tør for muligheder. Swift er bedst for spilleren, der finder værdi i explorativ adfærd og har høj tolerance for kompleksitet.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Vælg Luna Casino, hvis du ønsker kurateret kvalitet, tydelig loyalitetsretning og et mere roligt interface, der reducerer støj i daglig brug. Luna er bedst for spilleren, der vil bruge mindre tid på at vælge og mere tid på at spille i et stabilt forløb.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Hvis du stadig er i tvivl, brug en enkel adfærdstest: Gennemgå dine sidste 20 sessions. Hvis du ofte har skiftet spiltype og udforsket bredt, peger data mod Swift. Hvis du har spillet få kendte titler og værdsat kontinuitet, peger data mod Luna.
+        </p>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Enterprise-konklusion</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Swift Casino og Luna Casino er begge stærke, men de vinder på hver sin metrik. Swift vinder på volumen, eksploration og værktøjsdrevet fleksibilitet. Luna vinder på kuratering, retention og beslutningsro. Derfor er den korrekte konklusion fortsat uafgjort i total score – men ikke uafgjort i brugerfit.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Den bedste side for dig afhænger af hvordan du faktisk spiller, ikke af hvilken side der har flest features. I praksis er den rigtige beslutning den, der giver dig mindst friktion over tid. Her er Swift bedst for den udforskende bruger, mens Luna er bedst for den fokuserede bruger.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Netop derfor er denne VS-side vigtig i jeres money-page-struktur: den oversætter to næsten ens bonusrammer til et konkret adfærdsvalg, der reducerer fejlmatch og øger langsigtet tilfredshed.
         </p>
       </section>
     </ComparisonPageTemplate>
