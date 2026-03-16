@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
+import { supabase } from "@/integrations/supabase/client";
 import { useAllNews, useCreateNews, useUpdateNews, useDeleteNews, type CasinoNewsArticle } from "@/hooks/useCasinoNews";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
