@@ -73,10 +73,6 @@ export const Header = memo(function Header() {
     const saved = localStorage.getItem("theme");
     return saved === "dark";
   });
-  const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem("theme");
-    return saved === "dark";
-  });
   const { data: siteSettings } = useSiteSettings();
   const { data: twitchStatus } = useTwitchStatus(siteSettings?.twitch_url);
   const { user, loading: authLoading, signOut } = useAuth();
