@@ -250,6 +250,9 @@ const OrdbogTerm = lazy(() => import("./pages/OrdbogTerm"));
 const Bet365VsUnibet = lazy(() => import("./pages/comparisons/Bet365VsUnibet"));
 const LeoVegasVsMrGreen = lazy(() => import("./pages/comparisons/LeoVegasVsMrGreen"));
 const DanskeSpilVsSpilnu = lazy(() => import("./pages/comparisons/DanskeSpilVsSpilnu"));
+const SpilleautomatenVsSpilDanskNu = lazy(() => import("./pages/comparisons/SpilleautomatenVsSpilDanskNu"));
+const BetiniaVsCampobet = lazy(() => import("./pages/comparisons/BetiniaVsCampobet"));
+const SwiftCasinoVsLunaCasino = lazy(() => import("./pages/comparisons/SwiftCasinoVsLunaCasino"));
 
 const VipProgram = lazy(() => import("./pages/VipProgram"));
 const CasinoMedMobilePay = lazy(() => import("./pages/CasinoMedMobilePay"));

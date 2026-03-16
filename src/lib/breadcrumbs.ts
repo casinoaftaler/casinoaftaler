@@ -198,6 +198,9 @@ export const routeLabels: Record<string, string> = {
   "/casino-anmeldelser/bet365-vs-unibet": "bet365 vs Unibet",
   "/casino-anmeldelser/leovegas-vs-mr-green": "LeoVegas vs Mr Green",
   "/casino-anmeldelser/danske-spil-vs-spilnu": "Danske Spil vs Spilnu",
+  "/casino-anmeldelser/spilleautomaten-vs-spildansknu": "Spilleautomaten vs SpilDanskNu",
+  "/casino-anmeldelser/betinia-vs-campobet": "Betinia vs Campobet",
+  "/casino-anmeldelser/swift-casino-vs-luna-casino": "Swift Casino vs Luna Casino",
   // Casinospil
   "/casinospil": "Casinospil",
   "/casinospil/spillemaskiner": "Spillemaskiner",
