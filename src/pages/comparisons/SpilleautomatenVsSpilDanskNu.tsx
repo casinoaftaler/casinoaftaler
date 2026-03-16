@@ -157,46 +157,120 @@ export default function SpilleautomatenVsSpilDanskNu() {
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">To sider af samme danske casinofilosofi</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Sammenligningen mellem <Link to="/casino-anmeldelser/spilleautomaten" className={linkClass}>Spilleautomaten</Link> og <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> er usædvanligt interessant, fordi forskellen ikke handler om licens, tillid eller aggressiv bonuskrig. Begge brands kommer fra samme danske miljø og bygger på den samme kernelogik: overskuelige bonusvilkår, dansk brugeroplevelse, MitID og et produkt der skal fungere uden unødig friktion.
+          Sammenligningen mellem <Link to="/casino-anmeldelser/spilleautomaten" className={linkClass}>Spilleautomaten</Link> og <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> er strategisk vigtig, fordi begge platforme kommer fra samme danske operatørmiljø, men er designet til to forskellige adfærdsmønstre. Spilleautomaten er bygget som en ren slotsmaskine med høj beslutningshastighed, lav navigationsturbulens og en loyalitetsmotor, der er tydelig i produktets daglige brug. SpilDanskNu er bygget som den bredere søsterside, hvor spilleren får mere katalogvariation, mere live-tyngde og en mere klassisk casinoarkitektur.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          For SEO-intentionen bag denne VS-side er pointen ikke bare at forklare, hvem der "vinder" samlet set. Pointen er at reducere fejlvalg for spilleren. Mange brugere søger sammenligninger, når de allerede har besluttet sig for at spille hos en dansk licenseret aktør, men er i tvivl om hvilken brugeroplevelse der passer til deres hverdag. Når to brands ligner hinanden på bonuspapir, bliver produktets efter-bonus-adfærd afgørende: navigation, payout-flow, kampagner, rytme og oplevet friktion.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          Derfor bliver det i praksis en duel om positionering. Spilleautomaten forsøger at være det mest målrettede valg til spilleren, der primært vil spille slots og have høj driftssikkerhed i hverdagen. SpilDanskNu søger i højere grad at være det brede danske casino, hvor du får lidt mere katalog, lidt mere variation og en mere klassisk allround-oplevelse.
+          Derfor evaluerer vi ikke kun overfladetallene, men også hvordan de to sider performer for forskellige spillerprofiler over tid. En side kan være bedst for den dedikerede slotsspiller med høj frekvens og hurtige sessions, mens den anden er bedst for brugeren med mere varierende spilsmag, større appetit på liveindhold og en mere klassisk "browse og vælg"-adfærd.
         </p>
       </section>
 
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Bonus og omsætningskrav – næsten identisk på papiret</h2>
+        <h2 className="mb-4 text-3xl font-bold">Bonus, omsætningskrav og reel bonus-økonomi</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          På bonusfronten er forskellen mindre end mange forventer. Begge sider bygger på en 5-dages model med 100 % bonus op til 1.000 kr. og kun 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Det placerer dem i den mest spillervenlige ende af det danske marked, hvor lav friktion og høj gennemsigtighed betyder mere end oppustede bonusmaksimer.
+          Begge platforme bruger en 5-dages bonusstruktur med 100 % op til 1.000 kr. og 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. På papiret er det næsten identisk, og netop derfor bliver det vigtigt at forstå den operationelle konsekvens i praksis. Med en samlet bonuspakke på dette niveau er det ikke bonusstørrelsen, der skaber den største forskel i hverdagen. Det er hvor hurtigt og kontrolleret spilleren kan gennemføre bonusforløbet uden at platformen føles tung.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          I begge cases er 10x en relativt spillervenlig model under danske rammer. Men spilleren oplever ikke omsætningskrav som en formel; spilleren oplever det som tid, flow og friktion. Hvis siden gør det hurtigt at komme fra indbetaling til spilstart, hvis filtre og favoritter virker intuitivt, og hvis bonusprogressionen er tydelig i brugerfladen, føles samme omsætningskrav lettere. Derfor kan to matematisk ens bonusmodeller give to vidt forskellige brugeroplevelser.
         </p>
         <div className="rounded-lg border border-border bg-muted/30 p-5">
-          <p className="mb-2 font-semibold">Praktisk konsekvens for spilleren</p>
+          <p className="mb-2 font-semibold">Praktisk konklusion</p>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Når bonusøkonomien er næsten identisk, bliver oplevelsen efter bonusen langt vigtigere end selve kampagneteksten. Derfor bør du i højere grad vælge ud fra spilprofil, navigation, loyalitetsværdi og hvor hurtigt du kan komme fra indbetaling til spil og tilbage til udbetaling.
+            Når bonusøkonomien er tæt på ens, skal du vælge ud fra produkt-økonomi frem for kampagne-økonomi: Hvor let finder du relevante spil? Hvor stabilt er dit payout-flow? Hvor stærk er den løbende loyalitetsværdi efter velkomstperioden? Det er de parametre, der bestemmer din reelle totalværdi på 30, 60 og 90 dages sigt.
           </p>
         </div>
       </section>
 
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Slots-specialist mod allround-casino</h2>
+        <h2 className="mb-4 text-3xl font-bold">Produktstrategi: specialisering mod bredde</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Spilleautomaten er den mest rendyrkede løsning. Brandet er bygget til spilleren, der vil hurtigt ind, finde en spilleautomat og komme videre uden at blive distraheret af for mange sekundære sektioner. Det gør oplevelsen mere fokuseret og mere konsekvent – især for brugere der vender tilbage ofte.
+          Spilleautomaten har en tydelig produktfortælling: hurtig adgang, tydelige slots-prioriteter og en loyalitetsmekanik, der føles tæt på den daglige adfærd. Det giver høj beslutningshastighed for spillere, der ikke ønsker at bruge tid på unødige menuer. Denne type fokus reducerer mental støj, især for brugere der spiller ofte, kort og målrettet.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          SpilDanskNu tilbyder derimod mere bredde. Flere spil samlet set og et tydeligere <Link to="/live-casino" className={linkClass}>live casino</Link>-lag gør siden mere alsidig, hvis du ikke kun spiller slots. Til gengæld bliver brandets profil en smule mindre skarp, fordi det skal være mere for flere typer spillere på én gang.
+          SpilDanskNu er stærkere på katalogvariation og allround-præsentation. Et bredere spiludvalg og et mere synligt <Link to="/live-casino" className={linkClass}>live casino</Link>-lag gør siden relevant for spilleren, der ikke kun vil have slots i hver session. Det kan dog også øge kompleksiteten i navigationen, fordi platformen bevidst favner flere typer intentioner i samme interface.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          Hvis du normalt sammenligner casinoer ud fra antal spil alene, vil SpilDanskNu se stærkest ud. Hvis du vægter fokus, tempo og hverdagsbrug højere end ren bredde, har Spilleautomaten en reel fordel.
+          Ingen af strategierne er objektivt "rigtigst". De løser blot forskellige problemer: Spilleautomaten løser fokus og tempo; SpilDanskNu løser variation og bredde. Når valget skal træffes korrekt, bør du derfor starte med adfærdsspørgsmålet: Vil du optimere på hurtighed eller på valgmuligheder?
         </p>
       </section>
 
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Hvem skal vælge hvad?</h2>
+        <h2 className="mb-4 text-3xl font-bold">Slots-katalog, kuratering og sessionskvalitet</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Vælg Spilleautomaten, hvis du er en tilbagevendende slotsspiller, der vil have et mere skarpt miljø, hurtige rutiner og et produkt som tydeligt er bygget omkring den type adfærd. Vælg SpilDanskNu, hvis du gerne vil have samme lave vilkår men i en lidt bredere casino-ramme med mere variation i selve kataloget.
+          En af de mest undervurderede forskelle mellem søstersider som disse er ikke antallet af spil i sig selv, men kvaliteten af kuratering i førstegangsoplevelsen. Hvis brugeren hurtigt kan finde de rette titler, opleves et mindre katalog ofte stærkere end et større katalog med svag prioritering. Spilleautomaten har generelt fordel i netop denne type fokuseret kuratering, hvor slots-intentionen er synlig fra første klik.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          SpilDanskNu svarer igen med en bredere totalpakke, hvor spilleren kan skifte retning i samme session. For brugere der veksler mellem klassiske slots, nyere releases og liveformater, er den ekstra bredde værdifuld. Den stærkeste brugeroplevelse opstår her, når spilleren faktisk bruger variationen aktivt – ikke hvis brugeren alligevel ender i de samme få spil hver gang.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          For begge gælder, at de hører til blandt de mest interessante danske valg, netop fordi de ikke prøver at vinde med kunstigt høje bonusbeløb. De prøver at vinde på drift, klarhed og friktion – og det er et langt sundere signal for seriøse spillere.
+          Derfor anbefaler vi at vurdere på sessionstype: Hvis du oftest går ind for at spille "det samme plus lidt", vinder Spilleautomaten. Hvis du ofte går ind uden at vide præcist hvad du vil spille, og sætter pris på at browse, vinder SpilDanskNu.
+        </p>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Udbetalinger, tillid og operationel stabilitet</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Begge brands opererer inden for den samme danske tillidsramme med MitID, ROFUS-integration og licenskrav. Det betyder, at den grundlæggende sikkerhed ikke er et differentiator-argument i denne duel. Det der differencerer, er den oplevede hastighed og forudsigelighed i payout-flowet. Selv små forskelle i behandlingstid har stor betydning for brugerens tillid over tid.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Spilleautomaten har i vores vurdering en marginal fordel i den oplevede konsekvens for hurtige rutiner, især for spillere der bruger samme betalingsmetode repetitivt. SpilDanskNu er stadig solidt, men føles en anelse mere allround i processeringen – stærkt nok for de fleste, men ikke altid lige så skarpt for den ultrafokuserede bruger, der prioriterer tempo højt.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Når to platforme er tæt på hinanden på bonus og sikkerhed, bliver netop operationel stabilitet et stærkt udslagskriterium, fordi det påvirker alle fremtidige sessions og ikke kun onboarding.
+        </p>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Loyalitet, belønninger og værdi efter velkomstperioden</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Mange sammenligninger stopper ved velkomstbonussen. Det er en fejl for spillere, der planlægger at bruge samme casino over måneder. Den reelle økonomi ligger i retention-fasen: loyalitetsmekanikker, reload-kampagner, pointsystemer og hvor tydeligt belønningerne føles i daglig brug. Spilleautomaten har en stærk identitet omkring Præmieshop-værdien, hvilket typisk opleves som en direkte forlængelse af slots-adfærden.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          SpilDanskNu er mere klassisk i sin brede kampagneprofil og kan være stærkere for spillere, der ønsker variation i kampagner på tværs af kategorier. Her bliver værdien mere fordelt ud i en større produktramme. For nogle spillere er det en fordel, for andre bliver det mere diffus værdi sammenlignet med en skarpere loyalitetskerne.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Valget bør derfor ikke kun baseres på "hvor meget" du får, men "hvordan" du får det. Hvis du vil have et tydeligt points-til-værdi-flow, peger pilen mod Spilleautomaten. Hvis du vil have mere kampagnebredde i et allround-univers, peger pilen mod SpilDanskNu.
+        </p>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse og friktion i den daglige brug</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          I praksis foregår en stor del af sessions på mobil, og her kan små UI-forskelle afgøre om en platform føles hurtig eller tung. Spilleautomaten har fordel for spilleren, der vil minimere antal beslutninger og gå direkte til spil. SpilDanskNu er stærkere for spilleren, der værdsætter at kunne skifte mellem flere sektioner i samme mobilsession.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          For SEO-intent omkring "bedst for mig" er dette centralt: Mobilkvalitet handler ikke kun om responsivt design, men om kognitiv belastning. Jo færre unødige valg før spilstart, jo højere oplevet kvalitet for den målrettede spiller. Omvendt kan en mere kategori-rig mobiloplevelse være en fordel for den udforskende spiller.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Test dit valg ud fra tre konkrete vaner: Hvor hurtigt vil du starte? Hvor ofte skifter du spiltype? Hvor ofte bruger du live-sektionen? Svaret på de tre spørgsmål matcher næsten altid det rigtige valg i denne duel.
+        </p>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Hvilken type spiller passer hver side til?</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Vælg Spilleautomaten hvis du er slots-fokuseret, prioriterer hurtige rutiner, værdsætter tydelig loyalitetsværdi og foretrækker et produkt der føles bygget omkring én kerneopgave. Dette gælder især for tilbagevendende spillere med høj sessionfrekvens, som ønsker stabilitet, lav navigationstid og en tydelig produktidentitet.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Vælg SpilDanskNu hvis du vil have mere bredde i samme konto, et mere markant live-lag og en allround-casinooplevelse, hvor variation er en del af værdien. Dette er ofte det bedste valg for spillere, der ikke kun spiller slots, og som ønsker at kunne skifte retning uden at skifte brand.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Hvis du stadig er i tvivl, er den mest præcise beslutningsmodel at tage udgangspunkt i dine sidste 20 sessions: Hvis 80 % var slots-only, er Spilleautomaten normalt bedst. Hvis dine sessions var blandede og kategori-skiftende, er SpilDanskNu normalt bedst.
+        </p>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Enterprise-konklusion: tæt duel med forskellig kerneværdi</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Denne VS-duel er tæt, fordi fundamentet er næsten identisk: dansk licensramme, MitID-flow, 5-dages bonusmodel og lavt 10x-krav. Men enterprise-forskellen opstår i produktets retning. Spilleautomaten er mere ren i slots-positioneringen og mere konsekvent i hurtige hverdagsflow. SpilDanskNu er mere alsidig i totalpakken og stærkere for spilleren, der ønsker variation i samme univers.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Vores samlede anbefaling står derfor fast: Spilleautomaten vinder for den dedikerede slotsspiller, mens SpilDanskNu er det bedste alternativ for spilleren, der ønsker et bredere allround-casino uden at miste de favorable danske bonusvilkår. Forskellen er ikke dramatisk på sikkerhed eller grundøkonomi, men tydelig på oplevet produktfit.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Den vigtigste beslutning er ikke "hvilket brand er bedst generelt" men "hvilket brand passer bedst til min adfærd". Træffer du valget på adfærdsfit frem for overskrifter, får du markant højere tilfredshed, mindre friktion og bedre langsigtet værdi.
         </p>
       </section>
     </ComparisonPageTemplate>
