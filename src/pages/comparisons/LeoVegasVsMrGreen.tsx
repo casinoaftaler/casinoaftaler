@@ -153,7 +153,7 @@ export default function LeoVegasVsMrGreen() {
       verdictWinner="A"
       faqs={faqs}
       ctaSlug="leovegas"
-      readTime="35 min"
+      readTime="44 min"
     >
       {/* ═══════════════════════════════════════════
           ENTERPRISE BODY CONTENT – 8000+ WORDS
@@ -262,48 +262,99 @@ export default function LeoVegasVsMrGreen() {
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil – Mr Greens Green Gaming sætter standarden</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link> er det område, hvor Mr Green mest konsekvent overgår LeoVegas – og de fleste andre operatører. Mr Greens patenterede Green Gaming-værktøj er et AI-drevet system, der analyserer dine spillemønstre og giver en personlig risikovurdering baseret på din adfærd. Det kan identificere potentielt risikable mønstre og foreslå grænser eller pauser. Kampagner begrænses automatisk for spillere identificeret som risikospillere – et proaktivt tiltag, som er sjældent i branchen.
+          <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link> er det område, hvor Mr Green mest konsekvent overgår LeoVegas – og de fleste andre operatører. Mr Greens patenterede Green Gaming-værktøj er et adfærdsdrevet system, der analyserer dine spillemønstre og giver en personlig risikovurdering baseret på din aktivitet. Det kan identificere potentielt risikable mønstre, foreslå grænser, anbefale pauser og i visse tilfælde reducere eksponering mod kampagner. Det er en markant mere proaktiv model end branchens standardværktøjer.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          LeoVegas tilbyder standard ansvarligt spil-værktøjer: indbetalingsgrænser, tabsgrænser, selvudelukkelse og fuld ROFUS-integration. Det er fuldt compliant med dansk lovgivning, men mangler den proaktive AI-analyse, der definerer Mr Greens tilgang. For spillere der prioriterer proaktiv spillerbeskyttelse som en kernefunktion, er Mr Green det klare valg. Begge platforme kræver MitID-verifikation og opsætning af grænser ved kontooprettelse.
+          LeoVegas tilbyder klassiske værktøjer på højt niveau: indbetalingsgrænser, tabsgrænser, session controls, selvudelukkelse og fuld ROFUS-integration. De er solide, modne og fuldt compliant med dansk lovgivning, men de arbejder primært som brugerinitierede kontroller. Mr Green arbejder mere interventionistisk og adfærdsorienteret. For spilleren der aktivt prioriterer en platform med stærk etisk profil og tydelig spillerbeskyttelse som en del af brandløftet, er Mr Green stadig bedst i klassen.
         </p>
+      </section>
+
+      {/* SECTION: UX filosofi */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">UX-filosofi – mobile performance mod kurateret elegance</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          LeoVegas og Mr Green er begge stærke UX-brands, men de optimerer mod to forskellige idealer. LeoVegas er bygget til fart, flow og lav friktion. Alt i produktet peger mod hurtige handlinger, kort vej fra intention til spil og maksimal performance på mobil. Mr Green er bygget til ro, æstetik og oplevet kvalitet. Her er følelsen vigtigere end rå hastighed alene. Det gør oplevelsen mere bevidst og mere kurateret, men også lidt mindre eksplosiv i sit tempo.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          For brugeren betyder det, at LeoVegas ofte føles bedst i de situationer, hvor du vil hurtigt i gang, skifte spil ofte og navigere med mindst mulig modstand. Mr Green føles bedst, når du vil have et mere raffineret rum, hvor udvalg, design og informationsarkitektur er skåret til med større omtanke. Ingen af delene er objektivt bedre. De taler blot til to forskellige former for digital komfort.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Netop derfor er denne duel mere interessant end de fleste standard-sammenligninger. Begge er premium, men LeoVegas er performance-premium, mens Mr Green er oplevelses-premium. Det er en vigtig skelnen, når man skal vælge et brand, der passer til ens vaner over længere tid.
+        </p>
+      </section>
+
+      {/* SECTION: Bonus over tid */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Bonusøkonomi over 30, 60 og 90 dage</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          LeoVegas har den stærkeste velkomstøkonomi i denne duel, fordi deres 10x-model kun gælder indbetalingen og ikke bonusbeløbet. Det gør en enorm forskel i reel Expected Value og i den psykologiske belastning under gennemspilning. Mr Green har stadig en god dansk bonusmodel med 10x (d+b), men den kræver mere volumen og mere tid, før værdien bliver realiseret.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Efter 30 dage vil mange spillere derfor opleve LeoVegas som den mest effektive onboarding-platform: du kommer hurtigere fra indbetaling til oplevet værdi. Efter 60 dage begynder billedet at ændre sig. Her bliver spørgsmålet, om du faktisk ønsker den hastige, brede og meget aktive LeoVegas-rytme, eller om du har større glæde af Mr Greens mere rolige, kuraterede og designfokuserede retention-univers.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Efter 90 dage er det tydeligt, at LeoVegas typisk fastholder spillere, der prioriterer bredde, høj release-hastighed, mobil flow og live casino som central underholdning. Mr Green fastholder spillere, der værdsætter struktur, design, gennemsigtighed og stærk ansvarlig spil-identitet. Bonus er vigtig i starten, men det er produktfilosofien, der bestemmer, hvem der bliver længst.
+        </p>
+        <div className="rounded-lg border border-border bg-muted/30 p-5">
+          <p className="mb-2 font-semibold">Enterprise-læsning af bonusværdi</p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            LeoVegas giver mest matematisk værdi upfront. Mr Green giver mest mening for spilleren, der vægter kvalitetsmiljø og ansvarlig rammesætning højere end maksimal bonus-EV.
+          </p>
+        </div>
       </section>
 
       {/* SECTION: Betalingsmetoder */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalingshastighed</h2>
+        <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder, udbetalingshastighed og cashflow-oplevelse</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          LeoVegas tilbyder et bredere udvalg af <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> end Mr Green: <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>, Neteller og Apple Pay. Mr Green mangler MobilePay og Paysafecard, men understøtter Skrill, Neteller, Trustly og kort.
+          LeoVegas tilbyder et bredere og mere dansk-fleksibelt udvalg af <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> med <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, kort, Skrill, Neteller og Apple Pay. Mr Green er mere selektiv og mangler især MobilePay, hvilket er et reelt minus for danske brugere, der ønsker det mest friktionsløse hverdagsflow. Til gengæld er deres wallet-baserede processer stadig stærke for den spiller, der allerede lever i et e-wallet-setup.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Udbetalingshastigheden er LeoVegas' stærkeste kort. Via Trustly behandles udbetalinger typisk inden for 2 timer – ofte endnu hurtigere. LeoVegas har gentagne gange vundet branchepriser for deres udbetalingshastighed. Mr Green behandler e-wallet-udbetalinger inden for 24 timer og kortbetalinger inden for 1-3 hverdage. For spillere der prioriterer hurtigst mulig adgang til gevinster, er LeoVegas uovertruffen.
+          Den store forskel ligger dog i udbetalingsoplevelsen. LeoVegas er nærmest benchmark i dansk kontekst. Når du først har prøvet en Trustly-udbetaling på omtrent to timer eller mindre, ændrer det dine forventninger til hele markedet. Mr Green er ikke langsom, men de føles mindre eksplosive i cashout-oplevelsen. De er mere klassisk pålidelige end opsigtsvækkende hurtige.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          For seriøse spillere betyder dette mere, end det umiddelbart lyder som. Hurtige og forudsigelige cashouts reducerer usikkerhed, øger platformstillid og gør saldoen mere "likvid" i brugerens bevidsthed. LeoVegas vinder klart på dette punkt, mens Mr Green fortsat leverer et sundt og troværdigt niveau uden at være markedsledende.
+        </p>
+      </section>
+
+      {/* SECTION: Kuratering og release-tempo */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Kuratering, release-tempo og langtidsholdbar variation</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          LeoVegas har volumenfordelen og release-hastigheden. Nye spil lander ofte tidligt, provider-porteføljen er ekstremt bred, og platformen er bygget til spilleren, der gerne vil opdage næste nye titel før mange konkurrenter. Det gør LeoVegas særligt stærk for entusiaster, high-frequency spillere og alle med en tydelig "browse + prøv nyt"-adfærd.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Mr Green spiller et andet spil. De vil ikke nødvendigvis have mest; de vil have et udvalg, der føles gennemarbejdet. Det betyder, at du får mindre støj, færre lavinteresse-titler og en generelt høj gennemsnitskvalitet i kataloget. For spilleren der alligevel ender i de samme 20-30 gode spil og ikke jagter hvert eneste nye release, kan dette faktisk være mere værdifuldt end rå volumen.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Over tid skaber det to forskellige oplevelser. LeoVegas føles som et stort premium-katalog i konstant bevægelse. Mr Green føles som et mindre, mere redaktionelt bibliotek. Hvis du vælger ud fra din egen spillestil i stedet for ud fra imponerende toplinjetal, bliver beslutningen langt lettere.
         </p>
       </section>
 
       {/* SECTION: Ejerskab */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Ejerskab og finansiel baggrund</h2>
+        <h2 className="mb-4 text-3xl font-bold">Ejerskab og corporate tyngde</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          LeoVegas ejes af MGM Resorts International, en af verdens største casino- og hospitality-koncerner med børsnotering på New York Stock Exchange. MGM driver ikoniske ejendomme som Bellagio og MGM Grand og omsætter for over $16 mia. årligt. Opkøbet af LeoVegas har tilført yderligere kapital og global ekspertise, mens den svenske teknologiplatform er bevaret intakt.
+          LeoVegas ejes af MGM Resorts International, en global hospitality- og casinogigant med enorme ressourcer, fysisk casinoarv og tung kapitalstyrke. Det giver brandet en særlig premium-aura og et tydeligt signal om international topklasse. Mr Green er på sin side forankret i 888/William Hill-strukturen, som er en af de mest regulerede og driftsmæssigt erfarne digitale spilkoncerner i Europa.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Mr Green ejes af 888 Holdings (via William Hill-fusionen), en børsnoteret spilkoncern på London Stock Exchange. 888 har opereret online gambling siden 1997 og er en af branchens mest etablerede aktører med licenser i 15+ jurisdiktioner. Begge ejerskabsstrukturer giver massiv finansiel opbakning og regulatorisk troværdighed.
+          På enterprise-niveau er begge ejerskaber stærke, men de signalerer forskellige ting. MGM signalerer luksus, skala og premium hospitality-arv. 888/William Hill signalerer digital gambling-erfaring, regulatorisk rutine og operationel modenhed. Ingen af dem er en svaghed; det handler om, hvilken type corporate troværdighed du intuitivt lægger mest vægt på.
         </p>
       </section>
 
       {/* SECTION: Spillerprofiler */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Hvem passer bedst til hvem? – Spillerprofiler</h2>
+        <h2 className="mb-4 text-3xl font-bold">Hvem passer bedst til hvem? – udvidede spillerprofiler</h2>
 
         <h3 className="mb-3 text-xl font-semibold">Vælg LeoVegas hvis du:</h3>
         <ul className="mb-6 space-y-2">
           {[
             "Vil have det bredeste spiludvalg med 2.500+ titler fra 50+ udbydere",
-            "Prioriterer mobilcasino – LeoVegas er uovertruffen mobile-first",
-            "Ønsker branchens hurtigste udbetalinger (~2 timer via Trustly)",
-            "Elsker live casino med eksklusive VIP-borde",
-            "Vil have den bedste bonus-EV (10x kun på indbetaling)",
-            "Foretrækker MobilePay som betalingsmetode",
+            "Prioriterer mobilcasino og ønsker den hurtigste, mest polerede performance-oplevelse",
+            "Ønsker branchens hurtigste udbetalinger og højest oplevet likviditet",
+            "Elsker live casino med eksklusive VIP-borde og høj release-energi",
+            "Vil have den bedste bonus-EV i denne duel",
+            "Foretrækker et brand, der føles som premium performance frem for ren kuratering",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-2 text-muted-foreground">
               <span className="text-primary font-bold">→</span> {item}
@@ -314,11 +365,11 @@ export default function LeoVegasVsMrGreen() {
         <h3 className="mb-3 text-xl font-semibold">Vælg Mr Green hvis du:</h3>
         <ul className="mb-6 space-y-2">
           {[
-            "Prioriterer ansvarligt spil med proaktiv AI-analyse af spillemønstre",
-            "Foretrækker et kurateret spiludvalg, hvor hvert spil er håndplukket",
-            "Værdsætter prisbelønnet design og æstetik som en del af oplevelsen",
-            "Vil have gennemsigtige bonusvilkår uden skjulte begrænsninger",
-            "Foretrækker en platform med fokus på kvalitet over kvantitet",
+            "Prioriterer ansvarligt spil med proaktiv analyse af adfærd",
+            "Foretrækker et kurateret udvalg, hvor hvert spil virker mere bevidst udvalgt",
+            "Værdsætter prisbelønnet design og en mere elegant, mindre hektisk brugeroplevelse",
+            "Vil have gennemsigtige bonusvilkår og et brand med tydelig etisk positionering",
+            "Foretrækker kvalitet over kvantitet og ro over maksimal produktstøj",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-2 text-muted-foreground">
               <span className="text-primary font-bold">→</span> {item}
@@ -326,8 +377,22 @@ export default function LeoVegasVsMrGreen() {
           ))}
         </ul>
 
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Mange danske spillere vælger i praksis at bruge LeoVegas som deres aktive hovedkonto og Mr Green som deres mere rolige, designstærke alternativ. Det siger noget vigtigt om forskellen: LeoVegas er ofte det daglige drivværk; Mr Green er ofte det mere bevidste kvalitetsvalg. Begge roller er legitime.
+        </p>
+      </section>
+
+      {/* SECTION: Enterprise-konklusion */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Enterprise-konklusion – premium mod premium, men med forskellig sjæl</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          LeoVegas vs Mr Green er en af de mest interessante premium-dueller på det danske marked, fordi begge brands er stærke nok til at være primærvalg – men af vidt forskellige årsager. LeoVegas vinder på mobil performance, release-tempo, udbetalingshastighed, bonus-EV og live casino-dybde. Mr Green vinder på ansvarligt spil, kuratering, designintegritet og følelsen af et mere bevidst formgivet produkt.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Hvis du vil have den mest effektive premium-maskine, vælger du LeoVegas. Hvis du vil have det mest raffinerede premium-miljø, vælger du Mr Green. Det er den reneste måde at forstå forskellen på. LeoVegas er fart, volumen og execution. Mr Green er etik, elegance og kurateret kvalitet.
+        </p>
         <p className="text-muted-foreground leading-relaxed">
-          Begge casinoer er topklasse og har hver deres unikke styrker. Mange danske spillere vælger at have konti hos begge for at nyde LeoVegas' bredde og hastighed til daglig spil, mens Mr Greens Green Gaming-værktøj fungerer som en ekstra sikkerhedsfunktion. For flere anbefalinger, se vores <Link to="/casino-anmeldelser" className={linkClass}>komplette casinooversigt</Link>.
+          Den bedste vinder i denne duel findes derfor ikke i en generel topliste, men i din egen adfærd. Jo mere præcist du matcher din spillestil med brandets kernefilosofi, jo større bliver din langsigtede værdi. For flere alternativer, se vores <Link to="/casino-anmeldelser" className={linkClass}>komplette casinooversigt</Link>.
         </p>
       </section>
     </ComparisonPageTemplate>

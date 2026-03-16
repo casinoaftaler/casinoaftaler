@@ -158,7 +158,7 @@ export default function DanskeSpilVsSpilnu() {
       verdictWinner="A"
       faqs={faqs}
       ctaSlug="danske-spil"
-      readTime="30 min"
+      readTime="43 min"
     >
       {/* ═══════════════════════════════════════════
           ENTERPRISE BODY CONTENT – 8000+ WORDS
@@ -288,39 +288,101 @@ export default function DanskeSpilVsSpilnu() {
 
       {/* SECTION: Kundeservice */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Kundeservice – Danske Spils bredere tilbud</h2>
+        <h2 className="mb-4 text-3xl font-bold">Kundeservice – institutionel tryghed mod specialiseret community-support</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Danske Spil har det bredere kundeservice-tilbud med support via telefon, live chat og e-mail. Dansk support er tilgængeligt i udvidede åbningstider, og FAQ-sektionen er vel-struktureret med kategorier for kontostyring, bonusser og produkter. Muligheden for telefonisk support på dansk er en klar fordel for spillere der foretrækker at tale med en person.
+          Kundeservice er et sted, hvor forskellen mellem generalist og specialist bliver konkret. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil Casino</Link> tilbyder en bredere serviceinfrastruktur med telefon, chat og e-mail, og netop telefonsporet er vigtigt i denne duel. Det passer perfekt til en målgruppe, der gerne vil have et velkendt dansk brand, mulighed for menneskelig kontakt og en oplevelse, der minder mere om bank- eller forsikringssupport end om et aggressivt online casino-univers.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Spilnus kundeservice er tilgængelig via live chat og e-mail. Supportteamet er kompetent og venligt, men mangler den telefoniske kanal. For de fleste spillere er chat-support tilstrækkeligt, men for ældre spillere eller dem der foretrækker mundtlig kommunikation, er Danske Spils bredere tilbud mere attraktivt.
+          <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link> er mere fokuseret. Deres supportstruktur er mindre bred, men mere tilpasset casino- og bingo-adfærd. Det betyder ikke, at den altid er bedre, men at den ofte føles mere relevant for den bruger, der lever i bingo-rummene og casino-sektionen til daglig. Hvis dit behov er produktnær hjælp i et socialt spilmiljø, fungerer Spilnus community-prægede støtte godt. Hvis dit behov er maksimal tryghed og en mere klassisk dansk serviceoplevelse, vinder Danske Spil klart.
+        </p>
+      </section>
+
+      {/* SECTION: Onboarding og MitID */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Onboarding, MitID og første-session-friktion</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Begge platforme nyder godt af Danske Spil-koncernens stærke identitets- og compliance-infrastruktur. Det betyder hurtig registrering via MitID, lav tvivl om legitimitet og meget lidt usikkerhed omkring KYC, verificering og ejerskab. For danske brugere er dette et enormt konkurrenceparameter, fordi mange internationale brands stadig føles lidt mere fremmede i de første minutter, selv når de er licenserede.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Forskellen opstår efter registreringen. Danske Spil sender dig ind i et større univers med Lotto, Odds og Casino som parallelle søjler. Det giver tryghed, men også lidt mere kognitiv kompleksitet, hvis du egentlig bare ville spille slots. Spilnu er derimod mere fokuseret fra første klik. Du forstår hurtigt, at du er på en casino- og bingo-platform, og det sænker friktionen for spillere, der vil direkte til underholdningen uden at sortere gennem andre produktvertikaler.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Det er derfor en klassisk duel mellem brand-tryghed og oplevet fokus. Danske Spil er bedst til den brede, måske lidt mere forsigtige danske spiller, der vil have det velkendte navn i ryggen. Spilnu er bedst til den spiller, der stadig ønsker den samme institutionelle tryghed, men i et mere dedikeret miljø med færre irrelevante valg.
+        </p>
+      </section>
+
+      {/* SECTION: Bonusøkonomi over tid */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Bonusøkonomi på 30, 60 og 90 dages sigt</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          På papiret er forskellen enkel: 500 kr. hos Danske Spil mod 1.000 kr. hos Spilnu, begge med 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Men på enterprise-niveau skal bonus vurderes som adfærd, ikke kun som tal. Danske Spils lavere bonus er lettere at håndtere for den forsigtige eller nye spiller, fordi den kræver mindre kapitalbinding og mindre samlet omsætningsvolumen. Spilnus højere bonus er mere attraktiv i absolut værdi, men passer bedst til spillere, der faktisk ønsker et længere onboarding-forløb og accepterer mere gennemspilning.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Derudover er Spilnus bonuslogik tættere koblet til deres retention-strategi i casino og bingo. Det er ikke tilfældigt. En spiller, der først aktiveres i bingo-rummene, har ofte en højere sandsynlighed for at vende tilbage til kampagner, turneringer og jackpots. Danske Spils bonustænkning er mere konservativ og mindre identitetsskabende. Det er en bevidst strategi, der understøtter brandets position som tryggere, mere moderat og mindre promotions-drevet.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Efter 30 dage er det derfor ikke sikkert, at den højeste bonus også har givet den bedste oplevelse. For nybegynderen kan Danske Spils enklere og mere rolige bonusøkonomi være mere værdifuld end Spilnus større pakke. For den erfarne casino- eller bingospiller er Spilnus højere bonus oftest mere attraktiv, netop fordi spilleren i forvejen er komfortabel med at omsætte og blive på platformen længere.
+        </p>
+        <div className="rounded-lg border border-border bg-muted/30 p-5">
+          <p className="mb-2 font-semibold">Kort sagt</p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Danske Spil vinder på lavere onboarding-risiko. Spilnu vinder på højere samlet bonusværdi for den spiller, der faktisk vil bruge platformen aktivt efter velkomstperioden.
+          </p>
+        </div>
+      </section>
+
+      {/* SECTION: Adfærdsfit */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Adfærdsfit – casino-generalist mod bingo-specialist</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Den mest undervurderede forskel mellem de to platforme er, hvordan de matcher forskellige typer fritidsadfærd. Danske Spil Casino passer bedst til brugeren, der ser spil som én del af et bredere underholdningsmix: lidt Lotto, lidt sport, lidt casino. Spilnu passer bedst til brugeren, der ønsker et mere rent, mere socialt og mere kategori-fokuseret underholdningsrum, hvor casino og bingo er selve grunden til at logge ind.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Det betyder også, at Spilnu ofte føles stærkere for spillere med vaneprægede, tilbagevendende sessioner. Bingo-rum, fællesskab, jackpots og moderator-aktiveret aktivitet skaber en rytme, som Danske Spils mere brede produktmodel ikke forsøger at kopiere. Omvendt har Danske Spil en fordel for spilleren, der ikke vil "være i et casino" hele tiden, men som vil have adgang til casino i et mere sobert og velkendt dansk setup.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Derfor bør valget ikke kun baseres på hvilken side der har flest spil eller størst bonus. Det bør baseres på, om du ønsker bred dansk spilkultur under ét brand eller et tydeligere casino- og bingo-univers med mere identitet i selve sessionen.
+        </p>
+      </section>
+
+      {/* SECTION: Betalinger og udbetalinger */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder, udbetalinger og oplevet forudsigelighed</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Betalingsmæssigt er begge platforme meget danske i deres logik. <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, kort og banknære løsninger er vigtigere her end e-wallet-eksperimenter. Det understøtter følelsen af lokal tryghed og gør flowsene lette at forstå for spillere, der ikke ønsker komplekse wallet-opsætninger eller internationale mellemled. Danske Spil har en lille fordel på bredde og oplevet modenhed, mens Spilnu er tilstrækkelig for langt de fleste i målgruppen.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Udbetalingsoplevelsen er mindst lige så vigtig som selve metodemenuen. Begge brands nyder godt af koncernens kapitalstyrke og regulatoriske tyngde, så tvivlen handler sjældent om "om" pengene kommer, men om hvor hurtigt og hvor gnidningsfrit det sker. Det gør især en forskel for spillere med høj tillidsfølsomhed, hvor en forudsigelig proces betyder mere end absolut rekordhastighed.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Her er Danske Spil en anelse stærkere som helhedsoplevelse, fordi brandet i sig selv fungerer som en likviditetsgaranti i spillerens bevidsthed. Spilnu er stadig meget tryg, men lever mere på koncernens bagland end på sit eget brandnavn. Det er en subtil forskel, men den betyder noget i praksis – især for nye eller mere forsigtige spillere.
         </p>
       </section>
 
       {/* SECTION: Ansvarligt spil */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil – statens forpligtelse</h2>
+        <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil – når staten ikke kun er regulator, men også afsender</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Som statsejede platforme har begge et særligt ansvar for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Begge kræver MitID-verifikation (18+ bekræftelse), opsætning af ind- og tabsgrænser inden spil kan begynde, og fuld ROFUS-integration. Det er et lovkrav der gælder alle danske casinoer, men Danske Spil-koncernen tager det et skridt videre med egne initiativer.
+          Som del af samme koncern er begge platforme præget af en mere institutionel tilgang til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Der er mindre aggressiv bonusretorik, mere tydelig grænsesætning og en generel fornemmelse af, at spil er et produkt, som skal kontrolleres – ikke bare maksimeres. For nogle spillere kan det føles mindre spændende. For mange danske brugere er det præcis det, der gør oplevelsen tryg.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Danske Spil har investeret i avancerede overvågningssystemer der identificerer spillere med potentielt problematiske mønstre. Spilnu implementerer de samme systemer på koncernniveau. For spillere med behov for hjælp er StopSpillet (tlf. 70 22 28 25) tilgængeligt døgnet rundt. Begge platformes fokus på ansvarligt spil er en direkte konsekvens af det statslige ejerskab – det er ikke bare compliance, men en kerneopgave.
+          Enterprise-forskellen ligger ikke i værktøjerne, som langt hen ad vejen er parallelle, men i konteksten. Når både Danske Spil og Spilnu kommunikerer om grænser, MitID, ROFUS og forsvarlig spiladfærd, føles det mindre som juridisk minimum og mere som en del af brandets kerneidentitet. Det er et reelt differentieringspunkt i forhold til mange internationale konkurrenter.
         </p>
       </section>
 
       {/* SECTION: Spillerprofiler */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Hvem passer bedst til hvem? – Spillerprofiler</h2>
+        <h2 className="mb-4 text-3xl font-bold">Hvem passer bedst til hvem? – udvidede spillerprofiler</h2>
 
         <h3 className="mb-3 text-xl font-semibold">Vælg Danske Spil Casino hvis du:</h3>
         <ul className="mb-6 space-y-2">
           {[
             "Vil have alt samlet ét sted – Lotto, Oddset og Casino under én konto",
-            "Prioriterer Danmarks mest betroede brand og den tryggest mulige oplevelse",
-            "Foretrækker en dedikeret mobilapp med push-notifikationer",
-            "Ønsker telefonisk kundesupport på dansk",
-            "Er ny til online casino og vil starte hos det mest velkendte brand",
-            "Vil have den laveste bonus (500 kr.) der er lettest at gennemspille",
+            "Prioriterer Danmarks mest betroede brand og en maksimal følelse af legitimitet",
+            "Foretrækker dedikeret mobilapp og bred dansk kundeservice med telefon som mulighed",
+            "Er ny til online casino og ønsker den mest velkendte indgang til markedet",
+            "Vil have en moderat bonus, der er lettere at overskue og gennemspille",
+            "Ser casino som supplement til andre spilprodukter snarere end som hele dit univers",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-2 text-muted-foreground">
               <span className="text-primary font-bold">→</span> {item}
@@ -331,12 +393,12 @@ export default function DanskeSpilVsSpilnu() {
         <h3 className="mb-3 text-xl font-semibold">Vælg Spilnu hvis du:</h3>
         <ul className="mb-6 space-y-2">
           {[
-            "Elsker online bingo – Spilnu er Danmarks ubestridte bingo-destination",
-            "Vil have den højere velkomstbonus (1.000 kr. vs. 500 kr.)",
-            "Foretrækker en platform dedikeret til casino og bingo uden sport/lotto",
-            "Nyder social spil med live chat og community-elementer",
-            "Ønsker det bredere casino-katalog med 700+ spil",
-            "Foretrækker progressive bingo-jackpots over 100.000 kr.",
+            "Elsker online bingo og vil være på Danmarks stærkeste dedikerede platform til formålet",
+            "Vil have den højere velkomstbonus og mere tydelig casino/bingo-identitet",
+            "Foretrækker et mere fokuseret produkt uden støj fra Lotto og Oddset",
+            "Nyder social underholdning med chat, moderatorer og fællesskabsfølelse",
+            "Ønsker 700+ spil og et mere specialiseret retention-univers med jackpots og turneringer",
+            "Vil spille i et miljø, hvor bingo faktisk er en kerneværdi – ikke bare en ekstrafunktion",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-2 text-muted-foreground">
               <span className="text-primary font-bold">→</span> {item}
@@ -344,8 +406,22 @@ export default function DanskeSpilVsSpilnu() {
           ))}
         </ul>
 
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Mange danske spillere har i praksis glæde af begge: Danske Spil til den brede, velkendte totaloplevelse og Spilnu til de mere fokuserede casino- og bingosessioner. Det er ikke dobbeltarbejde – det er to forskellige produktroller inden for samme tillidsramme.
+        </p>
+      </section>
+
+      {/* SECTION: Enterprise-konklusion */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Enterprise-konklusion – samme koncern, men to vidt forskellige jobs</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Danske Spil Casino vs Spilnu er ikke en klassisk head-to-head mellem to ens brands. Det er en strategisk sammenligning mellem en national generalist og en specialiseret søsterside. Danske Spil Casino vinder, når kriteriet er maksimal brandtryghed, bred service, app-styrke og samlet dansk spilkultur under ét tag. Spilnu vinder, når kriteriet er fokus, bingo-lederskab, højere bonus og et mere identitetsstærkt casino- og community-miljø.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Derfor er det forsimplet at spørge, hvilket brand der er "bedst". Det rigtige spørgsmål er, hvilket job du vil have platformen til at udføre for dig. Skal den være din trygge, brede hovedportal til dansk spil? Så er Danske Spil bedst. Skal den være dit mere målrettede hjem for bingo, jackpots og fokuseret casino-underholdning? Så er Spilnu bedst.
+        </p>
         <p className="text-muted-foreground leading-relaxed">
-          Mange danske spillere har konti hos begge – Danske Spil til sport og lotto, Spilnu til casino og bingo. Det er en udbredt og fornuftig strategi, der giver dig det bedste fra begge verdener inden for Danske Spil-koncernens trygge rammer. For flere anbefalinger, se vores <Link to="/casino-anmeldelser" className={linkClass}>komplette casinooversigt</Link>.
+          Træffer du valget ud fra adfærdsfit frem for ren bonusstørrelse, får du langt højere tilfredshed og mindre friktion over tid. Det er den egentlige enterprise-konklusion i denne duel. For flere alternativer, se vores <Link to="/casino-anmeldelser" className={linkClass}>komplette casinooversigt</Link>.
         </p>
       </section>
     </ComparisonPageTemplate>
