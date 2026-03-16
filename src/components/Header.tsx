@@ -155,377 +155,94 @@ export const Header = memo(function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-4 xl:gap-6 lg:flex whitespace-nowrap" style={{ contain: 'layout style' }}>
-          {/* Casinoer */}
+        <nav className="hidden items-center gap-4 xl:gap-5 lg:flex whitespace-nowrap" style={{ contain: 'layout style' }}>
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Landmark className="h-4 w-4" />
               Casinoer <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover z-50">
-              <DropdownMenuItem asChild>
-                <Link to="/casinoer" className="flex items-center gap-2 font-medium">
-                  <Landmark className="h-4 w-4" />
-                  Alle Casinoer
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              {CASINO_LINKS.map((item) => (
-                <DropdownMenuItem key={item.to} asChild>
-                  <Link to={item.to} className="flex items-center gap-2">
-                    <Star className="h-4 w-4" />
-                    {item.label}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
+              <NavItems links={HEADER_CASINO_LINKS} iconSize="h-4 w-4" />
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Nye Casinoer */}
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Sparkles className="h-4 w-4" />
               Nye Casinoer <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover z-50">
-              <DropdownMenuItem asChild>
-                <Link to="/nye-casinoer" className="flex items-center gap-2 font-medium">
-                  <Sparkles className="h-4 w-4" />
-                  Alle Nye Casinoer
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <NavItems links={NYE_CASINOER_LINKS} iconSize="h-4 w-4" />
+              <NavItems links={HEADER_NEW_CASINO_LINKS} iconSize="h-4 w-4" />
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Casinospil */}
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              <BookOpen className="h-4 w-4" />
+              Casino Bonus <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="bg-popover z-50">
+              <NavItems links={HEADER_BONUS_LINKS} iconSize="h-4 w-4" />
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Dices className="h-4 w-4" />
               Casinospil <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover z-50">
-              <DropdownMenuItem asChild>
-                <Link to="/casinospil" className="flex items-center gap-2">
-                  <Dices className="h-4 w-4" />
-                  Casinospil Oversigt
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex items-center gap-2">
-                  <Star className="h-3 w-3" />
-                  Spillemaskiner
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="bg-popover">
-                  <DropdownMenuItem asChild>
-                    <Link to="/casinospil/spillemaskiner" className="flex items-center gap-2 font-medium">
-                      <Star className="h-3 w-3" />
-                      Alle Spillemaskiner
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuLabel className="text-xs text-muted-foreground uppercase tracking-wider">Kategorier</DropdownMenuLabel>
-                  <NavItems links={SLOT_CATEGORY_LINKS} />
-                  <DropdownMenuItem asChild>
-                    <Link to="/casinospil/spillemaskiner/hoej-rtp" className="flex items-center gap-2">
-                      <Star className="h-3 w-3" />
-                      Høj RTP Spillemaskiner
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link to="/casinospil/spillemaskiner/bonus-buys" className="flex items-center gap-2">
-                      <Star className="h-3 w-3" />
-                      Bonus Buys
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  {(() => {
-                    const visible = expandedSlots ? SLOT_LINKS : SLOT_LINKS.slice(0, 8);
-                    return (
-                      <>
-                        <NavItems links={visible} />
-                        {!expandedSlots && (
-                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setExpandedSlots(true); }} className="flex items-center gap-2 text-primary cursor-pointer">
-                            <ChevronDown className="h-3 w-3" />
-                            Vis alle ({SLOT_LINKS.length - 8} mere)
-                          </DropdownMenuItem>
-                        )}
-                      </>
-                    );
-                  })()}
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex items-center gap-2">
-                  <Star className="h-3 w-3" />
-                  Blackjack
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent>
-                  <DropdownMenuItem asChild>
-                    <Link to="/casinospil/blackjack" className="flex items-center gap-2">
-                      <Star className="h-3 w-3" />
-                      Blackjack Guide
-                    </Link>
-                  </DropdownMenuItem>
-                  <NavItems links={BLACKJACK_LINKS} />
-                  <DropdownMenuSeparator />
-                  <NavItems links={BLACKJACK_STRATEGY_LINKS} />
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex items-center gap-2">
-                  <Star className="h-3 w-3" />
-                  Roulette
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent>
-                  <DropdownMenuItem asChild>
-                    <Link to="/casinospil/roulette" className="flex items-center gap-2">
-                      <Star className="h-3 w-3" />
-                      Roulette Guide
-                    </Link>
-                  </DropdownMenuItem>
-                  <NavItems links={ROULETTE_LINKS} />
-                  <DropdownMenuSeparator />
-                  <NavItems links={ROULETTE_STRATEGY_LINKS} />
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-              <DropdownMenuItem asChild>
-                <Link to="/casinospil/roulette" className="flex items-center gap-2">
-                  <Star className="h-3 w-3" />
-                  Roulette Guide
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex items-center gap-2">
-                  <Star className="h-3 w-3" />
-                  Poker
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent>
-                  <DropdownMenuItem asChild>
-                    <Link to="/casinospil/poker" className="flex items-center gap-2">
-                      <Star className="h-3 w-3" />
-                      Poker Guide
-                    </Link>
-                  </DropdownMenuItem>
-                  <NavItems links={POKER_LINKS.slice(0, 4)} />
-                  <DropdownMenuSeparator />
-                  <NavItems links={POKER_LINKS.slice(4)} />
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-              <NavItems links={OTHER_CASINOSPIL_LINKS} />
+              <NavItems links={HEADER_GAME_LINKS} iconSize="h-4 w-4" />
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Live Casino */}
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Tv className="h-4 w-4" />
               Live Casino <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-popover">
-              <DropdownMenuItem asChild>
-                <Link to="/live-casino" className="flex items-center gap-2">
-                  <Tv className="h-4 w-4" />
-                  Live Casino Oversigt
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <NavItems links={LIVE_CASINO_LINKS} />
+            <DropdownMenuContent align="center" className="bg-popover z-50">
+              <NavItems links={HEADER_LIVE_CASINO_LINKS} iconSize="h-4 w-4" />
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Casino Bonus */}
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-              <BookOpen className="h-4 w-4" />
-              Casino Bonus <ChevronDown className="h-4 w-4" />
+              <CreditCard className="h-4 w-4" />
+              Betalingsmetoder <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-popover">
-              <DropdownMenuItem asChild>
-                <Link to="/casino-bonus" className="flex items-center gap-2">
-                  <BookOpen className="h-4 w-4" />
-                  Casino Bonus Oversigt
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              {BONUS_LINKS.map((item) => (
-                <DropdownMenuItem key={item.to} asChild>
-                  <Link to={item.to} className="flex items-center gap-2">
-                    <Star className="h-4 w-4" />
-                    {item.label}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
+            <DropdownMenuContent align="center" className="bg-popover z-50">
+              <NavItems links={HEADER_PAYMENT_LINKS} iconSize="h-4 w-4" />
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Mere */}
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              <Star className="h-4 w-4" />
+              Casino Anmeldelser <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="bg-popover z-50">
+              <NavItems links={HEADER_REVIEW_LINKS} iconSize="h-4 w-4" />
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+              <Users className="h-4 w-4" />
+              Community <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="bg-popover z-50">
+              <NavItems links={HEADER_COMMUNITY_LINKS} iconSize="h-4 w-4" />
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <MoreHorizontal className="h-4 w-4" />
               Mere <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-popover">
-              {MORE_LINKS.map((item) => (
-                <DropdownMenuItem key={item.to} asChild>
-                  <Link to={item.to} className="flex items-center gap-2">
-                    <Star className="h-4 w-4" />
-                    {item.label}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex items-center gap-2">
-                  <User className="h-4 w-4" />
-                  Forfattere
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="bg-popover">
-                  {FORFATTER_LINKS.map((item) => (
-                    <DropdownMenuItem key={item.to} asChild>
-                      <Link to={item.to} className="flex items-center gap-2">
-                        <User className="h-4 w-4" />
-                        {item.label}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-              <DropdownMenuSeparator />
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex items-center gap-2">
-                  <CreditCard className="h-4 w-4" />
-                  Betalingsmetoder
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="bg-popover">
-                  <DropdownMenuItem asChild>
-                    <Link to="/betalingsmetoder" className="flex items-center gap-2 font-medium">
-                      <CreditCard className="h-4 w-4" />
-                      Alle betalingsmetoder
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <NavItems links={PAYMENT_LINKS} />
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex items-center gap-2">
-                  <Gamepad2 className="h-4 w-4" />
-                  Spiludviklere
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="bg-popover">
-                  <DropdownMenuItem asChild>
-                    <Link to="/spiludviklere" className="flex items-center gap-2 font-medium">
-                      <Gamepad2 className="h-4 w-4" />
-                      Alle spiludviklere
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <NavItems links={PROVIDER_LINKS} />
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="flex items-center gap-2">
-                  <Star className="h-4 w-4" />
-                  Casino Anmeldelser
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent className="bg-popover max-h-[70vh] overflow-y-auto">
-                  <DropdownMenuItem asChild>
-                    <Link to="/casino-anmeldelser" className="flex items-center gap-2 font-medium">
-                      <Star className="h-4 w-4" />
-                      Alle anmeldelser
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <NavItems links={REVIEW_TOP_LINKS} />
-                  {!allReviewsDesktop ? (
-                    <>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem onClick={(e) => { e.preventDefault(); setAllReviewsDesktop(true); }} className="cursor-pointer text-primary font-medium">
-                        <ChevronDown className="h-3 w-3 mr-1" />
-                        Vis alle anmeldelser
-                      </DropdownMenuItem>
-                    </>
-                  ) : (
-                    <>
-                      <DropdownMenuSeparator />
-                      <NavItems links={REVIEW_ALL_LINKS} />
-                    </>
-                  )}
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {/* Community */}
-          <DropdownMenu modal={false}>
-            <div className="flex items-center gap-0.5">
-              <Link to="/community" className="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap transition-colors hover:text-primary">
-                <Users className="h-4 w-4" />
-                Community
-              </Link>
-              <DropdownMenuTrigger className="transition-colors hover:text-primary p-1" aria-label="Community undermenu">
-                <ChevronDown className="h-4 w-4" />
-              </DropdownMenuTrigger>
-            </div>
-            <DropdownMenuContent align="center" className="bg-popover">
-              <DropdownMenuItem asChild>
-                <Link to="/community/slots" className="flex items-center gap-2">
-                  <Coins className="h-4 w-4" />
-                  Spillehal
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/bonus-hunt" className="flex items-center gap-2">
-                  <Trophy className="h-4 w-4" />
-                  Bonus Hunt
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/bonus-hunt/arkiv" className="flex items-center gap-2">
-                  <BarChart3 className="h-4 w-4" />
-                  Bonus Hunt Arkiv
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/slot-database" className="flex items-center gap-2">
-                  <Gamepad2 className="h-4 w-4" />
-                  Slot Database
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/community/turneringer" className="flex items-center gap-2">
-                  <Trophy className="h-4 w-4" />
-                  Turneringer
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/community/turneringer/arkiv" className="flex items-center gap-2">
-                  <BarChart3 className="h-4 w-4" />
-                  Turneringsarkiv
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to="/community/hall-of-fame" className="flex items-center gap-2">
-                  <Trophy className="h-4 w-4" />
-                  Hall of Fame
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/highlights" className="flex items-center gap-2">
-                  <Video className="h-4 w-4" />
-                  Highlights
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/butik" className="flex items-center gap-2">
-                  <ShoppingBag className="h-4 w-4" />
-                  Butik
-                </Link>
-              </DropdownMenuItem>
+            <DropdownMenuContent align="center" className="bg-popover z-50">
+              <NavItems links={HEADER_MORE_LINKS} iconSize="h-4 w-4" />
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>
