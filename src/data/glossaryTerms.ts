@@ -154,6 +154,8 @@ export const glossaryTerms: GlossaryTerm[] = [
     category: "Spillemaskiner",
     relatedTerms: ["wild", "scatter", "rtp"],
     relatedPages: [
+      { label: "Megaways Slots", href: "/megaways-slots" },
+      { label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" },
       { label: "Bonanza Guide", href: "/casinospil/spillemaskiner/bonanza" },
     ],
     fullContent: `<h2>Hvad er paylines?</h2><p><strong>Paylines</strong> er mønstrene på tværs af hjulene, hvor identiske symboler skaber gevinst. <a href="/ordbog/wild" class="text-primary hover:underline">Wild-symboler</a> kan erstatte andre symboler for at danne gevinstkombinationer.</p><h2>Typer</h2><h3>Faste paylines</h3><p>Fast antal linjer (f.eks. 10, 20). Book of Dead har 10 faste paylines.</p><h3>Ways to Win</h3><p>Matchende symboler på tilstødende hjul. 5×3 grid = 243 ways. Eksempel: Starburst.</p><h3>Megaways</h3><p>Varierende symbolantal per hjul, op til <strong>117.649 gevinstmuligheder</strong>. Eksempler: <a href="/casinospil/spillemaskiner/bonanza" class="text-primary hover:underline">Bonanza</a>, Extra Chilli.</p><h3>Cluster Pays</h3><p>Gevinster dannes ved 5+ identiske symboler i klynge. Eksempler: Reactoonz, Jammin' Jars.</p>`,
