@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, LogOut, Menu, User, X, Dices, BookOpen, Users, Sparkles, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, Tv, Star, Gamepad2, Landmark } from "lucide-react";
+import { ChevronDown, LogOut, Menu, User, X, Dices, BookOpen, Users, Sparkles, Moon, Sun, UserCircle, Ticket, CreditCard, MoreHorizontal, Tv, Star, Landmark } from "lucide-react";
 import { CreditCoin } from "@/components/CreditCoin";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
