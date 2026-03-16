@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
+import { supabase } from "@/integrations/supabase/client";
 import { useAllNews, useCreateNews, useUpdateNews, useDeleteNews, type CasinoNewsArticle } from "@/hooks/useCasinoNews";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,6 +26,7 @@ function slugify(text: string) {
 function NewsForm({ article, onClose }: { article?: CasinoNewsArticle; onClose: () => void }) {
   const createNews = useCreateNews();
   const updateNews = useUpdateNews();
+  const qc = useQueryClient();
   const isEdit = !!article;
 
   const [form, setForm] = useState({
@@ -133,8 +136,22 @@ function NewsForm({ article, onClose }: { article?: CasinoNewsArticle; onClose: 
         await updateNews.mutateAsync({ id: article.id, ...payload });
         toast.success("Artikel opdateret");
       } else {
-        await createNews.mutateAsync(payload);
-        toast.success("Artikel oprettet");
+        const created = await createNews.mutateAsync(payload);
+        toast.success("Artikel oprettet – genererer hero-billede…");
+        // Auto-generate hero image in background
+        if (created?.id) {
+          supabase.functions.invoke("generate-news-image", {
+            body: { articleId: created.id },
+          }).then((res) => {
+            if (res.error) {
+              console.error("Hero image generation failed:", res.error);
+              toast.error("Hero-billede kunne ikke genereres");
+            } else {
+              toast.success("Hero-billede genereret!");
+              qc.invalidateQueries({ queryKey: ["casino-news"] });
+            }
+          });
+        }
       }
       onClose();
     } catch (err: any) {
