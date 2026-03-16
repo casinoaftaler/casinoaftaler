@@ -109,7 +109,11 @@ export const glossaryTerms: GlossaryTerm[] = [
     metaDescription: "Forstå wild-symboler i spillemaskiner: expanding wilds, sticky wilds, multiplier wilds og mere.",
     category: "Spillemaskiner",
     relatedTerms: ["scatter", "paylines", "multiplikator"],
-    relatedPages: [{ label: "Spillemaskiner", href: "/casinospil/spillemaskiner" }],
+    relatedPages: [
+      { label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" },
+      { label: "Bonus Buy Slots", href: "/bonus-buy-slots" },
+      { label: "Slot Database", href: "/slot-database" },
+    ],
     fullContent: `<h2>Hvad er et wild-symbol?</h2><p><strong>Wild-symbolet</strong> erstatter alle standardsymboler for at danne gevinster. Wild erstatter normalt <strong>ikke</strong> <a href="/ordbog/scatter" class="text-primary hover:underline">scatter</a> eller bonussymboler.</p><h2>Typer</h2><h3>Expanding Wild</h3><p>Udvider sig til at dække hele hjulet. Populært i Book of Dead og Starburst.</p><h3>Sticky Wild</h3><p>Forbliver på sin position i flere spins, typisk under <a href="/ordbog/free-spins" class="text-primary hover:underline">free spins</a>.</p><h3>Walking Wild</h3><p>Bevæger sig ét hjul til venstre for hvert spin.</p><h3>Multiplier Wild</h3><p>Multiplicerer gevinsten med en <a href="/ordbog/multiplikator" class="text-primary hover:underline">multiplikator</a> på 2x, 3x eller mere.</p><h3>Stacked Wild</h3><p>Flere wilds stablet oven på hinanden på tværs af <a href="/ordbog/paylines" class="text-primary hover:underline">gevinstlinjer</a>.</p>`,
   },
   {
