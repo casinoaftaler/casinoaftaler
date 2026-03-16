@@ -307,13 +307,13 @@ export default function Bet365VsUnibet() {
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – Unibets bredde vs. bet365's effektivitet</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Unibet har et bredere udvalg af <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>: <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>, Dankort, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, Visa Electron, Maestro, <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link>, <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>, Neteller, ApplePay og EarthPort.
+          Unibet har et bredere udvalg af <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>: Dankort, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, Visa Electron, Maestro, <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link>, <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>, Neteller, Apple Pay og EarthPort.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          bet365 understøtter <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, bankoverførsel og Apple Pay. Udvalget er mere begrænset end Unibets, men de mest populære danske metoder er dækket. Udbetalinger via Trustly behandles typisk inden for 24 timer hos begge, mens kortudbetalinger tager 1-3 hverdage.
+          bet365 understøtter <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, bankoverførsel og Apple Pay. Udvalget er mere begrænset end Unibets, men de mest populære banknære løsninger er dækket. Udbetalinger via Trustly behandles typisk inden for 24 timer hos begge, mens kortudbetalinger tager 1-3 hverdage.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          For spillere der foretrækker PayPal, Skrill eller Neteller, er Unibet det eneste valg. Begge tilbyder MobilePay til indbetalinger, hvilket er den mest populære betalingsmetode blandt danske casinospillere. Se vores komplette <Link to="/betalingsmetoder" className={linkClass}>betalingsguide</Link> for detaljer.
+          For spillere der foretrækker PayPal, Skrill eller Neteller, er Unibet det eneste valg. For spillere der vil have et mere enkelt og strømlinet setup uden mange ekstra lag, er bet365 stadig meget velfungerende. Se vores komplette <Link to="/betalingsmetoder" className={linkClass}>betalingsguide</Link> for detaljer.
         </p>
       </section>
 
