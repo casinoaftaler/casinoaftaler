@@ -86,8 +86,8 @@ const categories: ComparisonCategory[] = [
   },
   {
     label: "Betalingsmetoder",
-    casinoA: { score: 4, detail: "Trustly, Visa/Mastercard" },
-    casinoB: { score: 5, detail: "MobilePay, Trustly, PayPal, Skrill" },
+    casinoA: { score: 4, detail: "Trustly, Visa/Mastercard, Apple Pay" },
+    casinoB: { score: 5, detail: "Trustly, PayPal, Skrill, Apple Pay" },
   },
   {
     label: "Kundeservice",
