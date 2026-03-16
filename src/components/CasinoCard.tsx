@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Star, Flame, Check, ChevronDown, Gift, RotateCcw, Clock, Wallet, Calendar, Percent, Coins, Zap, BookOpen } from "lucide-react";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
@@ -561,19 +561,24 @@ function RegularCard({
 }
 
 // Main CasinoCard component - all cards use FeaturedCard style
-export function CasinoCard({
-  casino,
-  rank,
-  size = "small",
-  open,
-  onOpenChange,
-}: CasinoCardProps) {
+export const CasinoCard = forwardRef<HTMLDivElement, CasinoCardProps>(function CasinoCard(
+  {
+    casino,
+    rank,
+    size = "small",
+    open,
+    onOpenChange,
+  },
+  ref
+) {
   return (
-    <FeaturedCard
-      casino={casino}
-      rank={rank || 99}
-      open={open}
-      onOpenChange={onOpenChange}
-    />
+    <div ref={ref}>
+      <FeaturedCard
+        casino={casino}
+        rank={rank || 99}
+        open={open}
+        onOpenChange={onOpenChange}
+      />
+    </div>
   );
-}
+});
