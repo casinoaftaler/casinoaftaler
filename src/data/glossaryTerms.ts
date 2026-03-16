@@ -228,6 +228,8 @@ export const glossaryTerms: GlossaryTerm[] = [
     relatedTerms: ["volatilitet", "rtp", "paylines"],
     relatedPages: [
       { label: "Høj RTP Slots", href: "/casinospil/spillemaskiner/hoej-rtp" },
+      { label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" },
+      { label: "Slot Database", href: "/slot-database" },
     ],
     fullContent: `<h2>Hvad er hit frequency?</h2><p><strong>Hit frequency</strong> er den procentdel af spins der resulterer i en gevinst af enhver størrelse i <a href="/casinospil/spillemaskiner" class="text-primary hover:underline">spillemaskiner</a>.</p><h2>Hit frequency vs. volatilitet</h2><ul><li><strong>Hit frequency</strong>: Hvor <em>ofte</em> du vinder</li><li><strong><a href="/ordbog/volatilitet" class="text-primary hover:underline">Volatilitet</a></strong>: Hvor <em>meget</em> gevinsterne varierer</li></ul><h2>Typiske intervaller</h2><ul><li><strong>Høj (30%+)</strong>: Hyppige, typisk mindre gevinster</li><li><strong>Medium (20–30%)</strong>: Balanceret oplevelse</li><li><strong>Lav (under 20%)</strong>: Sjældne, typisk større gevinster</li></ul><h2>Vigtigt</h2><ul><li>Hit frequency siger <strong>intet om gevinstens størrelse</strong></li><li>Kombinér med <a href="/ordbog/rtp" class="text-primary hover:underline">RTP</a> og volatilitet for det fulde billede</li><li>Oplyses sjældent af spiludviklere</li></ul>`,
   },
