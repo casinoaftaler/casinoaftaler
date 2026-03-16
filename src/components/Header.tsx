@@ -6,11 +6,15 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, LogOut, Menu, User, X, Dices, BookOpen, Users, Sparkles, Moon, Sun, UserCircle, Ticket, CreditCard, MoreHorizontal, Tv, Star, Landmark } from "lucide-react";
+import { ChevronDown, Gamepad2, LogOut, Mail, Menu, User, X, Dices, Gift, BookOpen, Users, ShoppingBag, Video, ShieldCheck, Sparkles, Moon, Sun, Coins, UserCircle, Trophy, Ticket, CreditCard, MoreHorizontal, RefreshCw, DollarSign, Zap, Tv, Star, Scale, BarChart3, Smartphone, Globe, Heart, Landmark, RotateCw, Newspaper, TrendingUp } from "lucide-react";
 import { CreditCoin } from "@/components/CreditCoin";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
@@ -23,18 +27,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { NotificationDropdown } from "./NotificationDropdown";
 import { RedeemCodeDialog } from "./RedeemCodeDialog";
 import { getTodayDanish } from "@/lib/danishDate";
-import { type NavLink } from "./header/navData";
 import {
-  HEADER_BONUS_LINKS,
-  HEADER_CASINO_LINKS,
-  HEADER_COMMUNITY_LINKS,
-  HEADER_GAME_LINKS,
-  HEADER_LIVE_CASINO_LINKS,
-  HEADER_MORE_LINKS,
-  HEADER_NEW_CASINO_LINKS,
-  HEADER_PAYMENT_LINKS,
-  HEADER_REVIEW_LINKS,
-} from "./header/curatedNavData";
+  CASINO_LINKS, NYE_CASINOER_LINKS, SLOT_LINKS, SLOT_CATEGORY_LINKS, BLACKJACK_LINKS,
+  BLACKJACK_STRATEGY_LINKS, ROULETTE_LINKS, ROULETTE_STRATEGY_LINKS,
+  POKER_LINKS, OTHER_CASINOSPIL_LINKS, LIVE_CASINO_LINKS, BONUS_LINKS,
+  PAYMENT_LINKS, PROVIDER_LINKS, REVIEW_TOP_LINKS, REVIEW_ALL_LINKS,
+  COMMUNITY_LINKS, MORE_LINKS, FORFATTER_LINKS, type NavLink,
+} from "./header/navData";
 
 /** Render a list of NavLinks as DropdownMenuItems */
 function NavItems({ links, iconSize = "h-3 w-3" }: { links: NavLink[]; iconSize?: string }) {
@@ -70,6 +69,14 @@ export const Header = memo(function Header() {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+  const [expandedSlots, setExpandedSlots] = useState(false);
+  const [expandedMobileSlots, setExpandedMobileSlots] = useState(false);
+  const [paymentsExpanded, setPaymentsExpanded] = useState(false);
+  const [providersExpanded, setProvidersExpanded] = useState(false);
+  const [reviewsExpanded, setReviewsExpanded] = useState(false);
+  const [forfattereExpanded, setForfattereExpanded] = useState(false);
+  const [allReviewsExpanded, setAllReviewsExpanded] = useState(false);
+  const [allReviewsDesktop, setAllReviewsDesktop] = useState(false);
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem("theme");
     return saved === "dark";
@@ -147,94 +154,377 @@ export const Header = memo(function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-4 xl:gap-5 lg:flex whitespace-nowrap" style={{ contain: 'layout style' }}>
+        <nav className="hidden items-center gap-4 xl:gap-6 lg:flex whitespace-nowrap" style={{ contain: 'layout style' }}>
+          {/* Casinoer */}
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Landmark className="h-4 w-4" />
               Casinoer <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover z-50">
-              <NavItems links={HEADER_CASINO_LINKS} iconSize="h-4 w-4" />
+              <DropdownMenuItem asChild>
+                <Link to="/casinoer" className="flex items-center gap-2 font-medium">
+                  <Landmark className="h-4 w-4" />
+                  Alle Casinoer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              {CASINO_LINKS.map((item) => (
+                <DropdownMenuItem key={item.to} asChild>
+                  <Link to={item.to} className="flex items-center gap-2">
+                    <Star className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* Nye Casinoer */}
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Sparkles className="h-4 w-4" />
               Nye Casinoer <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover z-50">
-              <NavItems links={HEADER_NEW_CASINO_LINKS} iconSize="h-4 w-4" />
+              <DropdownMenuItem asChild>
+                <Link to="/nye-casinoer" className="flex items-center gap-2 font-medium">
+                  <Sparkles className="h-4 w-4" />
+                  Alle Nye Casinoer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <NavItems links={NYE_CASINOER_LINKS} iconSize="h-4 w-4" />
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <DropdownMenu modal={false}>
-            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-              <BookOpen className="h-4 w-4" />
-              Casino Bonus <ChevronDown className="h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-popover z-50">
-              <NavItems links={HEADER_BONUS_LINKS} iconSize="h-4 w-4" />
-            </DropdownMenuContent>
-          </DropdownMenu>
-
+          {/* Casinospil */}
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Dices className="h-4 w-4" />
               Casinospil <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="center" className="bg-popover z-50">
-              <NavItems links={HEADER_GAME_LINKS} iconSize="h-4 w-4" />
+              <DropdownMenuItem asChild>
+                <Link to="/casinospil" className="flex items-center gap-2">
+                  <Dices className="h-4 w-4" />
+                  Casinospil Oversigt
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <Star className="h-3 w-3" />
+                  Spillemaskiner
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="bg-popover">
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/spillemaskiner" className="flex items-center gap-2 font-medium">
+                      <Star className="h-3 w-3" />
+                      Alle Spillemaskiner
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuLabel className="text-xs text-muted-foreground uppercase tracking-wider">Kategorier</DropdownMenuLabel>
+                  <NavItems links={SLOT_CATEGORY_LINKS} />
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/spillemaskiner/hoej-rtp" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Høj RTP Spillemaskiner
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/spillemaskiner/bonus-buys" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Bonus Buys
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  {(() => {
+                    const visible = expandedSlots ? SLOT_LINKS : SLOT_LINKS.slice(0, 8);
+                    return (
+                      <>
+                        <NavItems links={visible} />
+                        {!expandedSlots && (
+                          <DropdownMenuItem onSelect={(e) => { e.preventDefault(); setExpandedSlots(true); }} className="flex items-center gap-2 text-primary cursor-pointer">
+                            <ChevronDown className="h-3 w-3" />
+                            Vis alle ({SLOT_LINKS.length - 8} mere)
+                          </DropdownMenuItem>
+                        )}
+                      </>
+                    );
+                  })()}
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <Star className="h-3 w-3" />
+                  Blackjack
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/blackjack" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Blackjack Guide
+                    </Link>
+                  </DropdownMenuItem>
+                  <NavItems links={BLACKJACK_LINKS} />
+                  <DropdownMenuSeparator />
+                  <NavItems links={BLACKJACK_STRATEGY_LINKS} />
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <Star className="h-3 w-3" />
+                  Roulette
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/roulette" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Roulette Guide
+                    </Link>
+                  </DropdownMenuItem>
+                  <NavItems links={ROULETTE_LINKS} />
+                  <DropdownMenuSeparator />
+                  <NavItems links={ROULETTE_STRATEGY_LINKS} />
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              <DropdownMenuItem asChild>
+                <Link to="/casinospil/roulette" className="flex items-center gap-2">
+                  <Star className="h-3 w-3" />
+                  Roulette Guide
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <Star className="h-3 w-3" />
+                  Poker
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem asChild>
+                    <Link to="/casinospil/poker" className="flex items-center gap-2">
+                      <Star className="h-3 w-3" />
+                      Poker Guide
+                    </Link>
+                  </DropdownMenuItem>
+                  <NavItems links={POKER_LINKS.slice(0, 4)} />
+                  <DropdownMenuSeparator />
+                  <NavItems links={POKER_LINKS.slice(4)} />
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              <NavItems links={OTHER_CASINOSPIL_LINKS} />
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* Live Casino */}
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <Tv className="h-4 w-4" />
               Live Casino <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-popover z-50">
-              <NavItems links={HEADER_LIVE_CASINO_LINKS} iconSize="h-4 w-4" />
+            <DropdownMenuContent align="center" className="bg-popover">
+              <DropdownMenuItem asChild>
+                <Link to="/live-casino" className="flex items-center gap-2">
+                  <Tv className="h-4 w-4" />
+                  Live Casino Oversigt
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <NavItems links={LIVE_CASINO_LINKS} />
             </DropdownMenuContent>
           </DropdownMenu>
 
+          {/* Casino Bonus */}
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-              <CreditCard className="h-4 w-4" />
-              Betalingsmetoder <ChevronDown className="h-4 w-4" />
+              <BookOpen className="h-4 w-4" />
+              Casino Bonus <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-popover z-50">
-              <NavItems links={HEADER_PAYMENT_LINKS} iconSize="h-4 w-4" />
+            <DropdownMenuContent align="center" className="bg-popover">
+              <DropdownMenuItem asChild>
+                <Link to="/casino-bonus" className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" />
+                  Casino Bonus Oversigt
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              {BONUS_LINKS.map((item) => (
+                <DropdownMenuItem key={item.to} asChild>
+                  <Link to={item.to} className="flex items-center gap-2">
+                    <Star className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <DropdownMenu modal={false}>
-            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-              <Star className="h-4 w-4" />
-              Casino Anmeldelser <ChevronDown className="h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-popover z-50">
-              <NavItems links={HEADER_REVIEW_LINKS} iconSize="h-4 w-4" />
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <DropdownMenu modal={false}>
-            <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-              <Users className="h-4 w-4" />
-              Community <ChevronDown className="h-4 w-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-popover z-50">
-              <NavItems links={HEADER_COMMUNITY_LINKS} iconSize="h-4 w-4" />
-            </DropdownMenuContent>
-          </DropdownMenu>
-
+          {/* Mere */}
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
               <MoreHorizontal className="h-4 w-4" />
               Mere <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="center" className="bg-popover z-50">
-              <NavItems links={HEADER_MORE_LINKS} iconSize="h-4 w-4" />
+            <DropdownMenuContent align="center" className="bg-popover">
+              {MORE_LINKS.map((item) => (
+                <DropdownMenuItem key={item.to} asChild>
+                  <Link to={item.to} className="flex items-center gap-2">
+                    <Star className="h-4 w-4" />
+                    {item.label}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  Forfattere
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="bg-popover">
+                  {FORFATTER_LINKS.map((item) => (
+                    <DropdownMenuItem key={item.to} asChild>
+                      <Link to={item.to} className="flex items-center gap-2">
+                        <User className="h-4 w-4" />
+                        {item.label}
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              <DropdownMenuSeparator />
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <CreditCard className="h-4 w-4" />
+                  Betalingsmetoder
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="bg-popover">
+                  <DropdownMenuItem asChild>
+                    <Link to="/betalingsmetoder" className="flex items-center gap-2 font-medium">
+                      <CreditCard className="h-4 w-4" />
+                      Alle betalingsmetoder
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <NavItems links={PAYMENT_LINKS} />
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <Gamepad2 className="h-4 w-4" />
+                  Spiludviklere
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="bg-popover">
+                  <DropdownMenuItem asChild>
+                    <Link to="/spiludviklere" className="flex items-center gap-2 font-medium">
+                      <Gamepad2 className="h-4 w-4" />
+                      Alle spiludviklere
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <NavItems links={PROVIDER_LINKS} />
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="flex items-center gap-2">
+                  <Star className="h-4 w-4" />
+                  Casino Anmeldelser
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="bg-popover max-h-[70vh] overflow-y-auto">
+                  <DropdownMenuItem asChild>
+                    <Link to="/casino-anmeldelser" className="flex items-center gap-2 font-medium">
+                      <Star className="h-4 w-4" />
+                      Alle anmeldelser
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <NavItems links={REVIEW_TOP_LINKS} />
+                  {!allReviewsDesktop ? (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={(e) => { e.preventDefault(); setAllReviewsDesktop(true); }} className="cursor-pointer text-primary font-medium">
+                        <ChevronDown className="h-3 w-3 mr-1" />
+                        Vis alle anmeldelser
+                      </DropdownMenuItem>
+                    </>
+                  ) : (
+                    <>
+                      <DropdownMenuSeparator />
+                      <NavItems links={REVIEW_ALL_LINKS} />
+                    </>
+                  )}
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Community */}
+          <DropdownMenu modal={false}>
+            <div className="flex items-center gap-0.5">
+              <Link to="/community" className="flex items-center gap-1.5 text-sm font-medium whitespace-nowrap transition-colors hover:text-primary">
+                <Users className="h-4 w-4" />
+                Community
+              </Link>
+              <DropdownMenuTrigger className="transition-colors hover:text-primary p-1" aria-label="Community undermenu">
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+            </div>
+            <DropdownMenuContent align="center" className="bg-popover">
+              <DropdownMenuItem asChild>
+                <Link to="/community/slots" className="flex items-center gap-2">
+                  <Coins className="h-4 w-4" />
+                  Spillehal
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/bonus-hunt" className="flex items-center gap-2">
+                  <Trophy className="h-4 w-4" />
+                  Bonus Hunt
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/bonus-hunt/arkiv" className="flex items-center gap-2">
+                  <BarChart3 className="h-4 w-4" />
+                  Bonus Hunt Arkiv
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/slot-database" className="flex items-center gap-2">
+                  <Gamepad2 className="h-4 w-4" />
+                  Slot Database
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/community/turneringer" className="flex items-center gap-2">
+                  <Trophy className="h-4 w-4" />
+                  Turneringer
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/community/turneringer/arkiv" className="flex items-center gap-2">
+                  <BarChart3 className="h-4 w-4" />
+                  Turneringsarkiv
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link to="/community/hall-of-fame" className="flex items-center gap-2">
+                  <Trophy className="h-4 w-4" />
+                  Hall of Fame
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/highlights" className="flex items-center gap-2">
+                  <Video className="h-4 w-4" />
+                  Highlights
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/butik" className="flex items-center gap-2">
+                  <ShoppingBag className="h-4 w-4" />
+                  Butik
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>
@@ -353,95 +643,248 @@ export const Header = memo(function Header() {
       {mobileMenuOpen && (
         <div id="mobile-navigation" className="border-t border-border bg-background lg:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto">
           <nav className="container flex flex-col py-3">
+            {/* Casinoer */}
             <button onClick={() => toggleSection("casino")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
-              <span className="flex items-center gap-2"><Landmark className="h-4 w-4" />Casinoer</span>
+              <span className="flex items-center gap-2"><Dices className="h-4 w-4" />Casinoer</span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "casino" ? "rotate-180" : ""}`} />
             </button>
             {expandedSection === "casino" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <MobileLinks links={HEADER_CASINO_LINKS} onClose={closeMobile} />
+                <Link to="/casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                  <Landmark className="h-4 w-4" />Alle Casinoer
+                </Link>
+                <MobileLinks links={CASINO_LINKS} onClose={closeMobile} />
               </div>
             )}
 
+            {/* Nye Casinoer */}
             <button onClick={() => toggleSection("nye")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
               <span className="flex items-center gap-2"><Sparkles className="h-4 w-4" />Nye Casinoer</span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "nye" ? "rotate-180" : ""}`} />
             </button>
             {expandedSection === "nye" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <MobileLinks links={HEADER_NEW_CASINO_LINKS} onClose={closeMobile} />
+                <Link to="/nye-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                  <Sparkles className="h-4 w-4" />Alle Nye Casinoer
+                </Link>
+                <MobileLinks links={NYE_CASINOER_LINKS} onClose={closeMobile} />
               </div>
             )}
 
-            <button onClick={() => toggleSection("bonus")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
-              <span className="flex items-center gap-2"><BookOpen className="h-4 w-4" />Casino Bonus</span>
-              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "bonus" ? "rotate-180" : ""}`} />
-            </button>
-            {expandedSection === "bonus" && (
-              <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <MobileLinks links={HEADER_BONUS_LINKS} onClose={closeMobile} />
-              </div>
-            )}
-
+            {/* Casinospil */}
             <button onClick={() => toggleSection("casinospil")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
               <span className="flex items-center gap-2"><Dices className="h-4 w-4" />Casinospil</span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "casinospil" ? "rotate-180" : ""}`} />
             </button>
             {expandedSection === "casinospil" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <MobileLinks links={HEADER_GAME_LINKS} onClose={closeMobile} />
+                <Link to="/casinospil" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                  <Dices className="h-4 w-4" />Casinospil Oversigt
+                </Link>
+                <Link to="/casinospil/spillemaskiner" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                  <Star className="h-4 w-4" />Spillemaskiner
+                </Link>
+                {(() => {
+                  const allSlots = [
+                    { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Spillemaskiner" },
+                    ...SLOT_CATEGORY_LINKS,
+                    ...SLOT_LINKS,
+                  ];
+                  const visible = expandedMobileSlots ? allSlots : allSlots.slice(0, 8);
+                  return (
+                    <>
+                      {visible.map((item) => (
+                        <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                          <Star className="h-3 w-3" />{item.label}
+                        </Link>
+                      ))}
+                      {!expandedMobileSlots && (
+                        <button onClick={() => setExpandedMobileSlots(true)} className="ml-10 flex items-center gap-2 py-2 text-sm text-primary transition-colors hover:text-primary/80">
+                          <ChevronDown className="h-3 w-3" />Vis alle ({allSlots.length - 8} mere)
+                        </button>
+                      )}
+                    </>
+                  );
+                })()}
+                <div className="ml-6 flex flex-col">
+                  <Link to="/casinospil/blackjack" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                    <Star className="h-4 w-4" />Blackjack Guide
+                  </Link>
+                  {[...BLACKJACK_LINKS, ...BLACKJACK_STRATEGY_LINKS].map((item) => (
+                    <Link key={item.to} to={item.to} className="ml-4 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                      <Star className="h-3 w-3" />{item.label}
+                    </Link>
+                  ))}
+                </div>
+                <div className="ml-6 flex flex-col">
+                  <Link to="/casinospil/roulette" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                    <Star className="h-4 w-4" />Roulette Guide
+                  </Link>
+                  {[...ROULETTE_LINKS, ...ROULETTE_STRATEGY_LINKS].map((item) => (
+                    <Link key={item.to} to={item.to} className="ml-4 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                      <Star className="h-3 w-3" />{item.label}
+                    </Link>
+                  ))}
+                </div>
+                <div className="ml-6 flex flex-col">
+                  <Link to="/casinospil/poker" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                    <Star className="h-4 w-4" />Poker Guide
+                  </Link>
+                  {POKER_LINKS.map((item) => (
+                    <Link key={item.to} to={item.to} className="ml-4 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                      <Star className="h-3 w-3" />{item.label}
+                    </Link>
+                  ))}
+                </div>
+                <MobileLinks links={[{ to: "/casinospil/roulette", label: "Roulette Guide" }, ...OTHER_CASINOSPIL_LINKS]} onClose={closeMobile} />
               </div>
             )}
 
+            {/* Live Casino */}
             <button onClick={() => toggleSection("live")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
               <span className="flex items-center gap-2"><Tv className="h-4 w-4" />Live Casino</span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "live" ? "rotate-180" : ""}`} />
             </button>
             {expandedSection === "live" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <MobileLinks links={HEADER_LIVE_CASINO_LINKS} onClose={closeMobile} />
+                <Link to="/live-casino" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                  <Tv className="h-4 w-4" />Live Casino Oversigt
+                </Link>
+                <MobileLinks links={LIVE_CASINO_LINKS} onClose={closeMobile} />
               </div>
             )}
 
-            <button onClick={() => toggleSection("payments")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
-              <span className="flex items-center gap-2"><CreditCard className="h-4 w-4" />Betalingsmetoder</span>
-              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "payments" ? "rotate-180" : ""}`} />
+            {/* Casino Bonus */}
+            <button onClick={() => toggleSection("bonus")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
+              <span className="flex items-center gap-2"><BookOpen className="h-4 w-4" />Casino Bonus</span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "bonus" ? "rotate-180" : ""}`} />
             </button>
-            {expandedSection === "payments" && (
+            {expandedSection === "bonus" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <MobileLinks links={HEADER_PAYMENT_LINKS} onClose={closeMobile} />
+                <Link to="/casino-bonus" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                  <BookOpen className="h-4 w-4" />Casino Bonus Oversigt
+                </Link>
+                <MobileLinks links={BONUS_LINKS} onClose={closeMobile} />
               </div>
             )}
 
-            <button onClick={() => toggleSection("reviews")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
-              <span className="flex items-center gap-2"><Star className="h-4 w-4" />Casino Anmeldelser</span>
-              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "reviews" ? "rotate-180" : ""}`} />
-            </button>
-            {expandedSection === "reviews" && (
-              <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <MobileLinks links={HEADER_REVIEW_LINKS} onClose={closeMobile} />
-              </div>
-            )}
-
-            <button onClick={() => toggleSection("community")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
-              <span className="flex items-center gap-2"><Users className="h-4 w-4" />Community</span>
-              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "community" ? "rotate-180" : ""}`} />
-            </button>
-            {expandedSection === "community" && (
-              <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <MobileLinks links={HEADER_COMMUNITY_LINKS} onClose={closeMobile} />
-              </div>
-            )}
-
+            {/* Mere */}
             <button onClick={() => toggleSection("more")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
               <span className="flex items-center gap-2"><MoreHorizontal className="h-4 w-4" />Mere</span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "more" ? "rotate-180" : ""}`} />
             </button>
             {expandedSection === "more" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <MobileLinks links={HEADER_MORE_LINKS} onClose={closeMobile} />
+                <MobileLinks links={MORE_LINKS} onClose={closeMobile} />
+                {/* Forfattere sub-section */}
+                <button onClick={() => setForfattereExpanded(!forfattereExpanded)} className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary">
+                  <span className="flex items-center gap-2"><User className="h-4 w-4" />Forfattere</span>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${forfattereExpanded ? "rotate-180" : ""}`} />
+                </button>
+                {forfattereExpanded && (
+                  <div className="flex flex-col">
+                    {FORFATTER_LINKS.map((item) => (
+                      <Link key={item.to} to={item.to} className="ml-12 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                        <User className="h-4 w-4" />{item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+                {/* Betalingsmetoder sub-section */}
+                <button onClick={() => setPaymentsExpanded(!paymentsExpanded)} className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary">
+                  <span className="flex items-center gap-2"><CreditCard className="h-4 w-4" />Betalingsmetoder</span>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${paymentsExpanded ? "rotate-180" : ""}`} />
+                </button>
+                {paymentsExpanded && (
+                  <div className="flex flex-col">
+                    <Link to="/betalingsmetoder" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                      <CreditCard className="h-3 w-3" />Alle betalingsmetoder
+                    </Link>
+                    {PAYMENT_LINKS.map((item) => (
+                      <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                        <Star className="h-3 w-3" />{item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+                {/* Spiludviklere sub-section */}
+                <button onClick={() => setProvidersExpanded(!providersExpanded)} className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary">
+                  <span className="flex items-center gap-2"><Gamepad2 className="h-4 w-4" />Spiludviklere</span>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${providersExpanded ? "rotate-180" : ""}`} />
+                </button>
+                {providersExpanded && (
+                  <div className="flex flex-col">
+                    <Link to="/spiludviklere" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                      <Gamepad2 className="h-3 w-3" />Alle spiludviklere
+                    </Link>
+                    {PROVIDER_LINKS.map((item) => (
+                      <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                        <Star className="h-3 w-3" />{item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+                {/* Casino Anmeldelser sub-section */}
+                <button onClick={() => setReviewsExpanded(!reviewsExpanded)} className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary">
+                  <span className="flex items-center gap-2"><Star className="h-4 w-4" />Casino Anmeldelser</span>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${reviewsExpanded ? "rotate-180" : ""}`} />
+                </button>
+                {reviewsExpanded && (
+                  <div className="flex flex-col">
+                    <Link to="/casino-anmeldelser" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                      <Star className="h-3 w-3" />Alle anmeldelser
+                    </Link>
+                    {REVIEW_TOP_LINKS.map((item) => (
+                      <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                        <Star className="h-3 w-3" />{item.label}
+                      </Link>
+                    ))}
+                    {!allReviewsExpanded ? (
+                      <button onClick={() => setAllReviewsExpanded(true)} className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-primary transition-colors hover:text-primary/80">
+                        <ChevronDown className="h-3 w-3" />Vis alle anmeldelser
+                      </button>
+                    ) : (
+                      REVIEW_ALL_LINKS.map((item) => (
+                        <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
+                          <Star className="h-3 w-3" />{item.label}
+                        </Link>
+                      ))
+                    )}
+                  </div>
+                )}
               </div>
             )}
+
+            {/* Community */}
+            <div className="border-b border-border/50">
+              <div className="flex items-center justify-between">
+                <Link to="/community" onClick={closeMobile} className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary flex-1">
+                  <Users className="h-4 w-4" />Community
+                </Link>
+                <button onClick={() => toggleSection("community")} className="p-2 transition-colors hover:text-primary">
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "community" ? "rotate-180" : ""}`} />
+                </button>
+              </div>
+              {expandedSection === "community" && (
+                <div className="flex flex-col bg-muted/30 pb-2">
+                  {[
+                    { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
+                    { to: "/bonus-hunt", icon: <Trophy className="h-4 w-4" />, label: "Bonus Hunt" },
+                    { to: "/bonus-hunt/arkiv", icon: <BarChart3 className="h-4 w-4" />, label: "Bonus Hunt Arkiv" },
+                    { to: "/slot-database", icon: <Gamepad2 className="h-4 w-4" />, label: "Slot Database" },
+                    { to: "/community/turneringer", icon: <Trophy className="h-4 w-4" />, label: "Turneringer" },
+                    { to: "/community/turneringer/arkiv", icon: <BarChart3 className="h-4 w-4" />, label: "Turneringsarkiv" },
+                    { to: "/community/hall-of-fame", icon: <Trophy className="h-4 w-4" />, label: "Hall of Fame" },
+                    { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
+                    { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
+                  ].map((item) => (
+                    <Link key={item.to} to={item.to} onClick={closeMobile} className="flex items-center gap-2 py-2 pl-8 pr-4 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                      {item.icon}{item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Theme toggle */}
             <button onClick={toggleTheme} className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary">
