@@ -94,7 +94,11 @@ export const glossaryTerms: GlossaryTerm[] = [
     metaDescription: "Lær hvad scatter-symboler gør i spillemaskiner. Forstå hvordan de udløser free spins og bonusrunder.",
     category: "Spillemaskiner",
     relatedTerms: ["wild", "free-spins", "bonus-runde"],
-    relatedPages: [{ label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" }],
+    relatedPages: [
+      { label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" },
+      { label: "Free Spins", href: "/free-spins" },
+      { label: "Slot Database", href: "/slot-database" },
+    ],
     fullContent: `<h2>Hvad er et scatter-symbol?</h2><p><strong>Scatter-symbolet</strong> kan udbetale og aktivere <a href="/ordbog/bonus-runde" class="text-primary hover:underline">bonusfunktioner</a> <strong>uanset hvor det lander på hjulene</strong>.</p><h2>Funktioner</h2><ul><li><strong>Direkte udbetaling</strong>: Baseret på samlet indsats</li><li><strong>Bonusudløser</strong>: 3+ scatters aktiverer <a href="/ordbog/free-spins" class="text-primary hover:underline">free spins</a></li></ul><h2>Scatter vs. andre symboler</h2><ul><li><strong>Scatter</strong>: Tæller overalt, udløser bonusser</li><li><strong><a href="/ordbog/wild" class="text-primary hover:underline">Wild</a></strong>: Erstatter symboler, skal stå på <a href="/ordbog/paylines" class="text-primary hover:underline">gevinstlinje</a></li></ul><h2>Populære eksempler</h2><ul><li><strong>Book of Dead</strong>: Bogen er både scatter og wild</li><li><strong>Sweet Bonanza</strong>: Lollipop-scatter</li><li><strong>Gates of Olympus</strong>: Zeus-scatter</li></ul>`,
   },
   {
@@ -105,7 +109,11 @@ export const glossaryTerms: GlossaryTerm[] = [
     metaDescription: "Forstå wild-symboler i spillemaskiner: expanding wilds, sticky wilds, multiplier wilds og mere.",
     category: "Spillemaskiner",
     relatedTerms: ["scatter", "paylines", "multiplikator"],
-    relatedPages: [{ label: "Spillemaskiner", href: "/casinospil/spillemaskiner" }],
+    relatedPages: [
+      { label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" },
+      { label: "Bonus Buy Slots", href: "/bonus-buy-slots" },
+      { label: "Slot Database", href: "/slot-database" },
+    ],
     fullContent: `<h2>Hvad er et wild-symbol?</h2><p><strong>Wild-symbolet</strong> erstatter alle standardsymboler for at danne gevinster. Wild erstatter normalt <strong>ikke</strong> <a href="/ordbog/scatter" class="text-primary hover:underline">scatter</a> eller bonussymboler.</p><h2>Typer</h2><h3>Expanding Wild</h3><p>Udvider sig til at dække hele hjulet. Populært i Book of Dead og Starburst.</p><h3>Sticky Wild</h3><p>Forbliver på sin position i flere spins, typisk under <a href="/ordbog/free-spins" class="text-primary hover:underline">free spins</a>.</p><h3>Walking Wild</h3><p>Bevæger sig ét hjul til venstre for hvert spin.</p><h3>Multiplier Wild</h3><p>Multiplicerer gevinsten med en <a href="/ordbog/multiplikator" class="text-primary hover:underline">multiplikator</a> på 2x, 3x eller mere.</p><h3>Stacked Wild</h3><p>Flere wilds stablet oven på hinanden på tværs af <a href="/ordbog/paylines" class="text-primary hover:underline">gevinstlinjer</a>.</p>`,
   },
   {
@@ -117,6 +125,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     category: "Grundbegreber",
     relatedTerms: ["rtp", "volatilitet", "max-bet"],
     relatedPages: [
+      { label: "Jackpot Slots", href: "/jackpot-slots" },
       { label: "Mega Moolah Guide", href: "/casinospil/spillemaskiner/mega-moolah" },
       { label: "Divine Fortune", href: "/casinospil/spillemaskiner/divine-fortune" },
     ],
@@ -145,6 +154,8 @@ export const glossaryTerms: GlossaryTerm[] = [
     category: "Spillemaskiner",
     relatedTerms: ["wild", "scatter", "rtp"],
     relatedPages: [
+      { label: "Megaways Slots", href: "/megaways-slots" },
+      { label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" },
       { label: "Bonanza Guide", href: "/casinospil/spillemaskiner/bonanza" },
     ],
     fullContent: `<h2>Hvad er paylines?</h2><p><strong>Paylines</strong> er mønstrene på tværs af hjulene, hvor identiske symboler skaber gevinst. <a href="/ordbog/wild" class="text-primary hover:underline">Wild-symboler</a> kan erstatte andre symboler for at danne gevinstkombinationer.</p><h2>Typer</h2><h3>Faste paylines</h3><p>Fast antal linjer (f.eks. 10, 20). Book of Dead har 10 faste paylines.</p><h3>Ways to Win</h3><p>Matchende symboler på tilstødende hjul. 5×3 grid = 243 ways. Eksempel: Starburst.</p><h3>Megaways</h3><p>Varierende symbolantal per hjul, op til <strong>117.649 gevinstmuligheder</strong>. Eksempler: <a href="/casinospil/spillemaskiner/bonanza" class="text-primary hover:underline">Bonanza</a>, Extra Chilli.</p><h3>Cluster Pays</h3><p>Gevinster dannes ved 5+ identiske symboler i klynge. Eksempler: Reactoonz, Jammin' Jars.</p>`,
@@ -158,7 +169,9 @@ export const glossaryTerms: GlossaryTerm[] = [
     category: "Spillemaskiner",
     relatedTerms: ["scatter", "free-spins", "multiplikator"],
     relatedPages: [
+      { label: "Bonus Buy Slots", href: "/bonus-buy-slots" },
       { label: "Bonus Buys Guide", href: "/casinospil/spillemaskiner/bonus-buys" },
+      { label: "Free Spins", href: "/free-spins" },
     ],
     fullContent: `<h2>Hvad er en bonusrunde?</h2><p>En <strong>bonusrunde</strong> er en ekstra spillefase med højere gevinstpotentiale end basisspillet i <a href="/casinospil/spillemaskiner" class="text-primary hover:underline">spillemaskiner</a>.</p><h2>Typer</h2><h3>Free Spins</h3><p>Den mest udbredte bonustype med gratis spins og ekstra funktioner som <a href="/ordbog/multiplikator" class="text-primary hover:underline">multiplikatorer</a>.</p><h3>Pick and Click</h3><p>Vælg mellem skjulte objekter for at afsløre præmier.</p><h3>Cascading/Tumble Wins</h3><p>Vindende symboler forsvinder og erstattes af nye. Bruges i <a href="/casinospil/spillemaskiner/gates-of-olympus" class="text-primary hover:underline">Gates of Olympus</a>.</p><h3>Bonus Buy</h3><p>Køb direkte adgang til bonusrunden mod 50-100x normal indsats. Se vores <a href="/casinospil/spillemaskiner/bonus-buys" class="text-primary hover:underline">bonus buys guide</a>.</p><h2>Udløsere</h2><ul><li>3+ <a href="/ordbog/scatter" class="text-primary hover:underline">scatter-symboler</a></li><li>Specifikke bonussymboler</li><li>Tilfældig trigger</li><li>Bonus Buy</li></ul>`,
   },
@@ -200,6 +213,8 @@ export const glossaryTerms: GlossaryTerm[] = [
     relatedTerms: ["max-bet", "rng"],
     relatedPages: [
       { label: "Ansvarligt Spil", href: "/ansvarligt-spil" },
+      { label: "Spillegrænser Guide", href: "/ansvarligt-spil/spillegraenser" },
+      { label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" },
     ],
     fullContent: `<h2>Hvad er autoplay?</h2><p><strong>Autoplay</strong> lader dig indstille automatiske spins med din valgte indsats på <a href="/casinospil/spillemaskiner" class="text-primary hover:underline">spillemaskiner</a>.</p><h2>Indstillinger</h2><ul><li>Antal spins: 10, 25, 50, 100</li><li>Tab-grænse</li><li>Gevinst-grænse</li><li>Stop ved <a href="/ordbog/bonus-runde" class="text-primary hover:underline">bonus</a></li></ul><h2>Regulering</h2><ul><li><strong>UK (UKGC)</strong>: Har forbudt autoplay</li><li><strong>Danmark</strong>: Tilladt med stop-betingelser – reguleret af <a href="/spillemyndigheden" class="text-primary hover:underline">Spillemyndigheden</a></li><li><strong>Sverige</strong>: 3-sekunders minimum mellem spins</li></ul><h2>Ansvarligt spil</h2><p>Autoplay kan øge risikoen for problematisk spil. Sæt altid klare grænser og tag pauser. Læs mere om <a href="/ansvarligt-spil" class="text-primary hover:underline">ansvarligt spil</a>.</p>`,
   },
@@ -213,6 +228,8 @@ export const glossaryTerms: GlossaryTerm[] = [
     relatedTerms: ["volatilitet", "rtp", "paylines"],
     relatedPages: [
       { label: "Høj RTP Slots", href: "/casinospil/spillemaskiner/hoej-rtp" },
+      { label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" },
+      { label: "Slot Database", href: "/slot-database" },
     ],
     fullContent: `<h2>Hvad er hit frequency?</h2><p><strong>Hit frequency</strong> er den procentdel af spins der resulterer i en gevinst af enhver størrelse i <a href="/casinospil/spillemaskiner" class="text-primary hover:underline">spillemaskiner</a>.</p><h2>Hit frequency vs. volatilitet</h2><ul><li><strong>Hit frequency</strong>: Hvor <em>ofte</em> du vinder</li><li><strong><a href="/ordbog/volatilitet" class="text-primary hover:underline">Volatilitet</a></strong>: Hvor <em>meget</em> gevinsterne varierer</li></ul><h2>Typiske intervaller</h2><ul><li><strong>Høj (30%+)</strong>: Hyppige, typisk mindre gevinster</li><li><strong>Medium (20–30%)</strong>: Balanceret oplevelse</li><li><strong>Lav (under 20%)</strong>: Sjældne, typisk større gevinster</li></ul><h2>Vigtigt</h2><ul><li>Hit frequency siger <strong>intet om gevinstens størrelse</strong></li><li>Kombinér med <a href="/ordbog/rtp" class="text-primary hover:underline">RTP</a> og volatilitet for det fulde billede</li><li>Oplyses sjældent af spiludviklere</li></ul>`,
   },

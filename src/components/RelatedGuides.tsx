@@ -1156,22 +1156,23 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
-  // Casinoer hub → dedicated entry with cluster-specific links
+  // Casinoer hub → dedicated entry with cluster-specific links + cross-cluster
   if (path === "/casinoer") {
     return {
       guides: [
         { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", icon: Zap, desc: "Casinoer med de hurtigste udbetalinger" },
         { to: "/casinoer/hoej-rtp", label: "Høj RTP", icon: BarChart3, desc: "Casinoer med bedst tilbagebetaling" },
+        { to: "/casinoer/crypto-casino", label: "Crypto Casino", icon: Globe, desc: "Bitcoin og krypto-gambling i Danmark" },
         { to: "/casino-licenser", label: "Licenserede Casinoer", icon: ShieldCheck, desc: "Sikre casinoer med dansk licens" },
         reviewHub,
         bonusHub,
         nyeCasinoerHub,
       ],
-      subtitle: "Udforsk casino-kategorier, anmeldelser og de bedste bonusser.",
+      subtitle: "Udforsk alle casino-kategorier, anmeldelser og de bedste bonusser.",
     };
   }
 
-  // Casinospil hub → dedicated entry with game-specific links
+  // Casinospil hub → dedicated entry with all top-spokes + slot-kategorier + cross-cluster
   if (path === "/casinospil") {
     return {
       guides: [
@@ -1179,10 +1180,13 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/casinospil/blackjack", label: "Blackjack", icon: Gamepad2, desc: "Komplet guide til online blackjack" },
         { to: "/casinospil/roulette", label: "Roulette", icon: Target, desc: "Lær roulettens væddemål og varianter" },
         { to: "/casinospil/poker", label: "Poker", icon: Gamepad2, desc: "Guide til alle pokervarianter" },
+        megawaysSlotsHub,
+        jackpotSlotsHub,
+        bonusBuySlotsHub,
         liveCasinoHub,
         providerHub,
       ],
-      subtitle: "Dyk ned i casinospil, strategier og spiludviklere.",
+      subtitle: "Dyk ned i casinospil, slot-kategorier, strategier og spiludviklere.",
     };
   }
 
