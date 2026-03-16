@@ -463,6 +463,9 @@ const App = () => (
                 <Route path="/casino-anmeldelser/bet365-vs-unibet" element={<Bet365VsUnibet />} />
                 <Route path="/casino-anmeldelser/leovegas-vs-mr-green" element={<LeoVegasVsMrGreen />} />
                 <Route path="/casino-anmeldelser/danske-spil-vs-spilnu" element={<DanskeSpilVsSpilnu />} />
+                <Route path="/casino-anmeldelser/spilleautomaten-vs-spildansknu" element={<SpilleautomatenVsSpilDanskNu />} />
+                <Route path="/casino-anmeldelser/betinia-vs-campobet" element={<BetiniaVsCampobet />} />
+                <Route path="/casino-anmeldelser/swift-casino-vs-luna-casino" element={<SwiftCasinoVsLunaCasino />} />
                 <Route path="/casinospil" element={<Casinospil />} />
                 <Route path="/casinoer" element={<CasinoerHub />} />
                 <Route path="/casinoer/hurtig-udbetaling" element={<HurtigUdbetalingGuide />} />

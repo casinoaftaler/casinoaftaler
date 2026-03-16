@@ -198,6 +198,9 @@ const allReviews: GuideLink[] = [
   { to: "/casino-anmeldelser/bet365-vs-unibet", label: "bet365 vs Unibet", icon: BarChart3, desc: "Komplet sammenligning af to giganter" },
   { to: "/casino-anmeldelser/leovegas-vs-mr-green", label: "LeoVegas vs Mr Green", icon: BarChart3, desc: "Mobilcasino vs ansvarligt spil-pioner" },
   { to: "/casino-anmeldelser/danske-spil-vs-spilnu", label: "Danske Spil vs Spilnu", icon: BarChart3, desc: "Dansk duel mellem populære casinoer" },
+  { to: "/casino-anmeldelser/spilleautomaten-vs-spildansknu", label: "Spilleautomaten vs SpilDanskNu", icon: BarChart3, desc: "Slots-specialist mod dansk allround-casino" },
+  { to: "/casino-anmeldelser/betinia-vs-campobet", label: "Betinia vs Campobet", icon: BarChart3, desc: "To stærke No-Sticky hybrid-casinoer" },
+  { to: "/casino-anmeldelser/swift-casino-vs-luna-casino", label: "Swift Casino vs Luna Casino", icon: BarChart3, desc: "Volumen vs kurateret kvalitet" },
 ];
 
 const casinoGuidesSiblings: GuideLink[] = [

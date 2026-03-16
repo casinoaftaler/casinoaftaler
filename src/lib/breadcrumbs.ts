@@ -424,6 +424,9 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/casino-anmeldelser/bet365-vs-unibet": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
   "/casino-anmeldelser/leovegas-vs-mr-green": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
   "/casino-anmeldelser/danske-spil-vs-spilnu": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
+  "/casino-anmeldelser/spilleautomaten-vs-spildansknu": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
+  "/casino-anmeldelser/betinia-vs-campobet": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
+  "/casino-anmeldelser/swift-casino-vs-luna-casino": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
 
   // Bonus cluster – all bound to /casino-bonus hub
   "/free-spins": [{ name: "Casino Bonus", path: "/casino-bonus" }],

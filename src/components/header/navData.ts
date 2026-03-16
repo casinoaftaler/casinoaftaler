@@ -223,6 +223,9 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/bet365-vs-unibet", label: "bet365 vs Unibet" },
   { to: "/casino-anmeldelser/leovegas-vs-mr-green", label: "LeoVegas vs Mr Green" },
   { to: "/casino-anmeldelser/danske-spil-vs-spilnu", label: "Danske Spil vs Spilnu" },
+  { to: "/casino-anmeldelser/spilleautomaten-vs-spildansknu", label: "Spilleautomaten vs SpilDanskNu" },
+  { to: "/casino-anmeldelser/betinia-vs-campobet", label: "Betinia vs Campobet" },
+  { to: "/casino-anmeldelser/swift-casino-vs-luna-casino", label: "Swift Casino vs Luna Casino" },
 ];
 
 export const COMMUNITY_LINKS: NavLinkWithIcon[] = [
