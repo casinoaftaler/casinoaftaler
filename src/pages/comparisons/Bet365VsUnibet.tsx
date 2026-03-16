@@ -155,7 +155,7 @@ export default function Bet365VsUnibet() {
       verdictWinner="draw"
       faqs={faqs}
       ctaSlug="bet365"
-      readTime="35 min"
+      readTime="44 min"
     >
       {/* ═══════════════════════════════════════════
           ENTERPRISE BODY CONTENT – 8000+ WORDS
