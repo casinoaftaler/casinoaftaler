@@ -975,6 +975,8 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       { to: "/live-casino/dream-catcher", label: "Dream Catcher", icon: Star, desc: "Det originale money wheel game show" },
       { to: "/live-casino/deal-or-no-deal", label: "Deal or No Deal", icon: Trophy, desc: "Det klassiske TV-show som live casino" },
       { to: "/live-casino/game-shows", label: "Game Shows", icon: Tv, desc: "Komplet guide til live game shows" },
+      { to: "/live-casino/strategi", label: "Live Casino Strategi", icon: Brain, desc: "Bankroll management og EV-optimering" },
+      { to: "/live-casino/udbydere", label: "Live Casino Udbydere", icon: Tv, desc: "Evolution, Pragmatic Play og flere" },
     ];
     const currentIndex = liveCasinoSiblings.findIndex(g => g.to === path);
     const len = liveCasinoSiblings.length;

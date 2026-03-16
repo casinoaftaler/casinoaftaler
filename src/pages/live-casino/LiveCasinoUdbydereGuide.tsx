@@ -702,7 +702,7 @@ const LiveCasinoUdbydereGuide = () => {
 
         <InlineCasinoCards title="Casinoer med det bedste udbyder-mix" count={4} />
 
-        <LatestNewsByCategory category="live-casino" />
+        <LatestNewsByCategory pagePath="/live-casino/udbydere" />
 
         <FAQSection faqs={faqs} />
 
@@ -710,7 +710,7 @@ const LiveCasinoUdbydereGuide = () => {
 
         <RelatedGuides currentPath="/live-casino/udbydere" />
 
-        <StickyCtaBySlug />
+        <StickyCtaBySlug slug="spildansknu" />
       </div>
     </>
   );

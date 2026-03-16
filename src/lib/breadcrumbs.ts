@@ -541,6 +541,8 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/live-casino/baccarat": [{ name: "Live Casino", path: "/live-casino" }],
   "/live-casino/lightning-roulette": [{ name: "Live Casino", path: "/live-casino" }],
   "/live-casino/monopoly-live": [{ name: "Live Casino", path: "/live-casino" }],
+  "/live-casino/strategi": [{ name: "Live Casino", path: "/live-casino" }],
+  "/live-casino/udbydere": [{ name: "Live Casino", path: "/live-casino" }],
 
   // Casinoer guides – bundet til /casinoer hub
   "/casinoer/hurtig-udbetaling": [{ name: "Casinoer", path: "/casinoer" }],

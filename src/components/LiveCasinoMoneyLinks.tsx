@@ -54,6 +54,8 @@ const LIVE_CASINO_SIBLINGS = [
   { to: "/live-casino/deal-or-no-deal", label: "Deal or No Deal" },
   { to: "/live-casino/monopoly-live", label: "Monopoly Live" },
   { to: "/live-casino/game-shows", label: "Alle Game Shows" },
+  { to: "/live-casino/strategi", label: "Live Casino Strategi" },
+  { to: "/live-casino/udbydere", label: "Live Casino Udbydere" },
 ];
 
 export function LiveCasinoMoneyLinks({ gameName, currentPath }: LiveCasinoMoneyLinksProps) {

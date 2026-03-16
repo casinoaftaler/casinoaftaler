@@ -425,6 +425,8 @@ const App = () => (
                 <Route path="/live-casino/crazy-time" element={<CrazyTimeGuide />} />
                 <Route path="/live-casino/dream-catcher" element={<DreamCatcherGuide />} />
                 <Route path="/live-casino/deal-or-no-deal" element={<DealOrNoDealGuide />} />
+                <Route path="/live-casino/strategi" element={<LiveCasinoStrategiGuide />} />
+                <Route path="/live-casino/udbydere" element={<LiveCasinoUdbydereGuide />} />
                 <Route path="/casino-anmeldelser/spilleautomaten" element={<SpilleautomatenAnmeldelse />} />
                 <Route path="/casino-anmeldelser/spildansknu" element={<SpilDanskNuAnmeldelse />} />
                 <Route path="/casino-anmeldelser/campobet" element={<CampobetAnmeldelse />} />

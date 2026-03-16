@@ -849,7 +849,7 @@ const LiveCasinoStrategiGuide = () => {
 
         <InlineCasinoCards title="Anbefalede casinoer med stærkt live casino-udvalg" count={4} />
 
-        <LatestNewsByCategory category="live-casino" />
+        <LatestNewsByCategory pagePath="/live-casino/strategi" />
 
         <FAQSection faqs={faqs} />
 
@@ -857,7 +857,7 @@ const LiveCasinoStrategiGuide = () => {
 
         <RelatedGuides currentPath="/live-casino/strategi" />
 
-        <StickyCtaBySlug />
+        <StickyCtaBySlug slug="spildansknu" />
       </div>
     </>
   );
