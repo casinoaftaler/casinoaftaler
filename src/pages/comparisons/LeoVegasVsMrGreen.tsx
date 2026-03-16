@@ -153,7 +153,7 @@ export default function LeoVegasVsMrGreen() {
       verdictWinner="A"
       faqs={faqs}
       ctaSlug="leovegas"
-      readTime="44 min"
+      readTime="60 min"
     >
       {/* ═══════════════════════════════════════════
           ENTERPRISE BODY CONTENT – 8000+ WORDS
@@ -339,6 +339,108 @@ export default function LeoVegasVsMrGreen() {
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           På enterprise-niveau er begge ejerskaber stærke, men de signalerer forskellige ting. MGM signalerer luksus, skala og premium hospitality-arv. 888/William Hill signalerer digital gambling-erfaring, regulatorisk rutine og operationel modenhed. Ingen af dem er en svaghed; det handler om, hvilken type corporate troværdighed du intuitivt lægger mest vægt på.
+        </p>
+      </section>
+
+      {/* SECTION: Søgelogik og katalogopdagelse */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Søgelogik, filtrering og hvorfor 2.500+ spil ikke altid er det vigtigste tal</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          LeoVegas har den åbenlyse volumenfordel med 2.500+ spil, men enterprise-spørgsmålet er, hvordan spilleren faktisk bruger et så stort katalog. For den aktive og nysgerrige bruger, der elsker at browse nye releases, skifte mellem providers og afprøve nicheudgivelser, er LeoVegas tæt på ideel. Platformen er bygget til høj throughput: mange valg, hurtig navigation og en oplevelse, hvor det altid føles som om der er noget nyt at prøve. Mr Green arbejder ud fra en anden logik. Her er ambitionen ikke at imponere med maksimal rå størrelse, men at skabe et katalog hvor gennemsnitskvaliteten føles høj og støjen lavere.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Det betyder, at katalogopdagelse føles forskellig. LeoVegas belønner spilleren, der søger spænding gennem bredde og release-tempo. Mr Green belønner spilleren, der søger ro, kuratering og en oplevelse hvor færre valg faktisk er en fordel. Mange sammenligninger stopper ved at konstatere, at 2.500+ er mere end 1.000+, men det er kun halvdelen af sandheden. Hvis brugeren alligevel ender i de samme 25 spil og sætter pris på et mere redigeret miljø, kan Mr Greens mindre bibliotek skabe mere oplevet kvalitet per session.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Derfor skal du læse LeoVegas som premium-bredde og Mr Green som premium-kuratering. Den første er stærkest for entusiaster og højfrekvente brugere. Den anden er stærkest for spillere, der ønsker mindre visuel og beslutningsmæssig støj. Det er ikke et spørgsmål om hvem der objektivt har det bedste katalog, men om hvilken type katalog der passer til din måde at vælge spil på.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Hvis du ofte tænker "vis mig alt det nye", vinder LeoVegas. Hvis du oftere tænker "vis mig det bedste uden støj", vinder Mr Green langt oftere, end toplinjetallene antyder.
+        </p>
+      </section>
+
+      {/* SECTION: Mobil ergonomi */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Mobil ergonomi – one-thumb flow mod designbevidst komfort</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Begge brands er stærke på mobil, men de er stærke på hver deres måde. LeoVegas er bygget som et højtydende mobilprodukt, hvor hele filosofien er reduceret friktion. Knapper, filtrering, skift mellem spil og indbetaling opleves som et sammenhængende one-thumb flow. Det giver en følelse af fart, kontrol og lav modstand, især for brugere der spiller i korte, gentagne sessioner i løbet af dagen. Mr Green er også stærk på mobil, men deres oplevelse er mere atmosfærisk. Den er designet til at føles elegant, ryddelig og visuelt sammenhængende frem for maksimalt aggressivt optimeret mod tempo.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          For mange brugere er dette ikke en lille nuance. Mobilcasino bruges ofte i kontekster med lav opmærksomhed og korte tidslommer: i sofaen, i pauser, i transport, mellem andre aktiviteter. Her har LeoVegas en reel fordel, fordi produktet føles som bygget til netop den type fragmenteret adfærd. Mr Green er stærkere i de mere bevidste sessioner, hvor du faktisk har tid og lyst til at dvæle ved oplevelsen og værdsætter et mere afbalanceret tempo.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Det er også derfor, begge brands kan være "premium" uden at være ens. LeoVegas er premium gennem performance og mobil logik. Mr Green er premium gennem æstetisk ro og en mere afmålt interaktion. Hvis du vil minimere tiden fra intention til indsats, vil LeoVegas næsten altid føles bedst. Hvis du vil maksimere oplevelsen af kvalitet og visuel integritet, vil Mr Green ofte vinde i længden.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          På mobil er den rigtige vinder derfor ikke kun den hurtigste platform, men den platform hvis rytme matcher din hverdag. LeoVegas passer til hurtige mikro-sessioner. Mr Green passer til den mere bevidste premium-session.
+        </p>
+      </section>
+
+      {/* SECTION: Udbetalingspsykologi */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Udbetalingspsykologi – hvorfor hurtige cashouts ændrer hele premium-følelsen</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Udbetalingshastighed er ikke kun et praktisk datapunkt; det er en grundsten i oplevet premium-kvalitet. Når LeoVegas leverer Trustly-baserede udbetalinger omkring to timer, skaber det en mental følelse af likviditet, som løfter hele brandet. Spilleren føler, at pengene er tættere på, processerne er mere moderne, og platformen er mere professionel. Det er en af de mest undervurderede grunde til, at LeoVegas ofte føles “et niveau over” i brugerens bevidsthed.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Mr Green er ikke langsom. Deres udbetalinger er stadig stærke og troværdige i dansk sammenhæng. Men de leverer ikke den samme wow-effekt i cashout-øjeblikket. De føles mere stabile end spektakulært hurtige. For nogle spillere er det fuldt tilstrækkeligt, fordi tillid er vigtigere end rekordtempo. For andre – især dem der spiller oftere og tænker meget i saldo-tilgængelighed – bliver forskellen meget konkret over tid.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Dette påvirker også relationen mellem bonus og risiko. En platform med hurtige udbetalinger føles ofte mere “fair”, selv når bonusstrukturen i øvrigt er den samme. LeoVegas kombinerer i denne duel både den stærkeste bonus-EV og den stærkeste cashout-oplevelse, og det er en kraftfuld kombination. Mr Green kompenserer delvist med større ro, mere kuratering og en stærkere ansvarlig spil-identitet, men på cashflow-aksen står LeoVegas meget stærkt.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Hvis du lægger stor vægt på oplevet kontrol over dine gevinster, er LeoVegas svært at komme udenom. Hvis du lægger mere vægt på den samlede kvalitet af miljøet, er Mr Green stadig relevant. Men netop her er LeoVegas’ fordel mere end bare teknisk – den er psykologisk.
+        </p>
+      </section>
+
+      {/* SECTION: Ansvarligt spil i praksis */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil i praksis – værktøjer er én ting, brandadfærd er noget andet</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Mr Green vinder fortjent på ansvarligt spil, men det er vigtigt at forstå hvorfor. Mange brands tilbyder grænser, pauser og selvudelukkelse, fordi lovgivningen kræver det. Mr Green gør mere end minimum. Deres Green Gaming-tilgang er integreret i brandfortællingen og i produktets måde at forstå brugeradfærd på. Det betyder, at ansvarligt spil ikke kun er et menupunkt, men en aktiv del af den måde platformen positionerer sig på. For spillere, der ønsker et miljø hvor risiko ikke bare håndteres, men faktisk italesættes og moduleres, er det en reel konkurrencefordel.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          LeoVegas er stadig stærk og fuldt compliant. Men deres identitet er ikke bygget op omkring intervention og refleksion i samme grad. Den er bygget op omkring performance, mobil flow og premium execution. Det gør dem attraktive for den erfarne spiller, der selv ønsker at styre sine rammer og primært efterspørger stærke standardværktøjer. Mr Green er stærkere for spilleren, der ønsker, at platformen tager mere medansvar for den daglige rytme.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          På enterprise-niveau er dette vigtigt, fordi ansvarligt spil ikke kun er et etisk spørgsmål; det er også et spørgsmål om produktfit. En spiller, der intuitivt ønsker mere støtte og mere ro, vil ofte føle sig bedre matchet hos Mr Green. En spiller, der allerede har høj kontrol og primært søger fart og friktionløshed, vil oftere foretrække LeoVegas. Derfor kan samme bruger bedømme de to brands helt forskelligt, uden at nogen af vurderingerne er “forkerte”.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Hvis du ser ansvarligt spil som en central del af værdien, er Mr Green meget svær at slå. Hvis du ser det som et nødvendigt fundament, men ikke som din primære beslutningsfaktor, vil LeoVegas’ øvrige styrker ofte fylde mere.
+        </p>
+      </section>
+
+      {/* SECTION: Premium-identitet over tid */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Premium-identitet over 90 dage – performance-luksus mod kurateret luksus</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          En interessant ting sker, når man bruger disse brands længe nok: man opdager, at de begge føles premium, men på helt forskellige præmisser. LeoVegas føles som premium gennem fart, skalering og teknisk overskud. Det er premium i samme forstand som en hurtig high-end app eller en effektiv luksusservice: alt virker, intet står i vejen, og du mærker konstant kapaciteten bag produktet. Mr Green føles som premium gennem kuratering, tone og disciplineret design. Det er premium i samme forstand som et godt boutique-hotel eller et redigeret magasin: ikke størst, ikke mest larmende, men meget bevidst i sin form.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Over 90 dage bliver denne forskel mere vigtig end bonus og førsteindtryk. LeoVegas fastholder spillere, der vil have energi, tempo og meget at vælge imellem. Mr Green fastholder spillere, der bliver i et miljø, fordi det føles rart, gennemtænkt og mindre hektisk. Det er derfor forkert at tro, at LeoVegas automatisk er bedst for alle premium-spillere. Nogle premium-brugere vil faktisk have mindre støj og mere bevidst kvalitet.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Det er samtidig her corporate fortællingen spiller ind. MGM-baggrunden giver LeoVegas en global, storladen og næsten resort-agtig aura. Mr Green bærer mere af den nordiske designarv og den regulerede, ansvarlige digital-branding. De signalerer begge troværdighed, men deres æstetiske sjæl er ikke den samme.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Hvis du leder efter maksimal premium-energi, vælger du LeoVegas. Hvis du leder efter premium-ro, vælger du Mr Green. Den forskel er langt mere praktisk, end den måske lyder.
+        </p>
+      </section>
+
+      {/* SECTION: Anti-fit */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå hvilket brand? – anti-fit gør valget skarpere</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          LeoVegas er ikke det bedste valg for spilleren, der bliver træt af meget volumen, mange releases og et højt produkttempo. Hvis du ikke får reel værdi af 2.500+ spil, hvis du foretrækker et mere roligt miljø, eller hvis ansvarligt spil som brandidentitet betyder meget for dig, kan LeoVegas føles lidt for energisk og lidt for performance-drevet. Brandet er fremragende – men det er fremragende på sine egne, ret tydelige præmisser.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Mr Green er omvendt ikke ideelt for spilleren, der vil have maksimal bredde, absolut hurtigst cashout og den mest eksplosive mobiloplevelse. Hvis du måler kvalitet i release-tempo, likviditet og live-casino-tyngde, vil Mr Green ofte fremstå mere begrænset end LeoVegas. Det er ikke en fejl i produktet; det er en konsekvens af, at de optimerer mod en anden type premium-værdi.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Anti-fit er vigtigt, fordi det beskytter mod fejlmatch. En bruger, der vælger Mr Green for bredde, bliver skuffet. En bruger, der vælger LeoVegas for ro og ansvarlig brandadfærd, kan også blive skuffet. Jo tydeligere man ser de negative matches, jo lettere bliver det at forstå den positive anbefaling.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Vælg ikke LeoVegas, hvis du vil have kurateret ro før alt andet. Vælg ikke Mr Green, hvis du vil have markedsledende fart og katalogkraft. Når de to anti-fits står klart, bliver resten af beslutningen næsten selvforklarende.
         </p>
       </section>
 

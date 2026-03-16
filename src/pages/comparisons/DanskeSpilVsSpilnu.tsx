@@ -158,7 +158,7 @@ export default function DanskeSpilVsSpilnu() {
       verdictWinner="A"
       faqs={faqs}
       ctaSlug="danske-spil"
-      readTime="43 min"
+      readTime="58 min"
     >
       {/* ═══════════════════════════════════════════
           ENTERPRISE BODY CONTENT – 8000+ WORDS
@@ -367,6 +367,108 @@ export default function DanskeSpilVsSpilnu() {
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Enterprise-forskellen ligger ikke i værktøjerne, som langt hen ad vejen er parallelle, men i konteksten. Når både Danske Spil og Spilnu kommunikerer om grænser, MitID, ROFUS og forsvarlig spiladfærd, føles det mindre som juridisk minimum og mere som en del af brandets kerneidentitet. Det er et reelt differentieringspunkt i forhold til mange internationale konkurrenter.
+        </p>
+      </section>
+
+      {/* SECTION: Samfundsværdi og brandhukommelse */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Samfundsværdi, brandhukommelse og hvorfor dansk forankring betyder mere her end normalt</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          I de fleste casino-dueller er ejerskab og brandhistorie sekundære faktorer. I denne duel er de centrale. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil Casino</Link> og <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link> eksisterer ikke bare i en kommerciel kategori; de eksisterer i danskernes kollektive hukommelse om spil. Når et brand er forbundet med Lotto, Oddset, tipskuponer, foreninger og statslig kontrol, får det en helt anden mental vægt end et internationalt online casino, selv hvis begge er lovlige og regulerede. Mange spillere vælger ikke kun Danske Spil-familien ud fra produkt, men ud fra kulturel genkendelighed og et ønske om at minimere følelsen af at bevæge sig ind i et fremmed digitalt gambling-univers.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Den effekt er stærkest hos Danske Spil-brandet selv. Navnet er bredt, offentligt kendt og næsten institutionsagtigt. Spilnu lever af samme tillidskapital, men på afledt vis. Brandet har ikke samme dybe historiske forankring i offentligheden, men det nyder godt af at være placeret i samme familie. Det gør, at spillere som normalt ville være skeptiske over for et mere nichepræget casino, alligevel tør prøve Spilnu. Det er et enormt konkurrenceparameter, fordi tillid i denne kategori ofte er dyrt og langsomt at opbygge.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Samtidig er der en reel forskel i, hvad brugeren føler, de støtter. Når overskud forbindes med dansk sport, kultur og frivillighed, ændrer det spilloplevelsens moralske ramme. Det gør ikke spil risikofrit eller automatisk bedre, men det gør brandets samfundsfortælling stærkere. I enterprise-termer betyder det, at Danske Spil-familien reducerer friktion ved at fremstå som en legitim del af dansk hverdagskultur snarere end som en ren performance-maskine.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Derfor bør denne duel ikke læses som et simpelt spørgsmål om størst bonus eller flest spil. Den bør læses som en duel mellem to forskellige måder at aktivere samme danske tillidskapital på: den brede nationale portal og den mere fokuserede specialdestination.
+        </p>
+      </section>
+
+      {/* SECTION: Sessiondesign */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Sessiondesign – bred hovedportal mod fokuseret casino- og bingorum</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Danske Spil Casino og Spilnu skaber to meget forskellige sessionstyper. Hos Danske Spil træder du ind i et større hus, hvor casino er én fløj blandt flere. Du mærker Lotto, Odds og den brede underholdningsramme omkring dig, også selv om du kun vil spille slots. For nogle er det ideelt, fordi det skaber tryghed og en følelse af, at casino blot er en del af et kendt dansk univers. For andre er det støj, fordi sessionen bliver mindre fokuseret og mere kognitivt opdelt.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Spilnu gør det modsatte. Her bliver du hurtigt placeret i en tydelig casino- og bingo-kontekst. Produktet forsøger ikke at være din nationale spilportal; det forsøger at være dit digitale underholdningsrum for netop disse kategorier. Det gør en kæmpe forskel i de første 10 minutter, men også efter 30 og 60 dage. Spillere, der ønsker et mere rendyrket miljø med mindre navigationel støj, vil næsten altid opleve Spilnu som lettere at afkode og mere direkte.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Der er ingen universel vinder her. Den brede portal er stærkest, når brugeren vil holde mange muligheder åbne og nyder en mere klassisk dansk hovedkonto. Det fokuserede miljø er stærkest, når brugeren aktivt søger flow, gentagelse og et rum, der hurtigt føles som "mit sted". Det er en afgørende forskel, fordi sessiondesign påvirker retention mindst lige så meget som kampagner gør.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Hvis du tænker på casino som en aktivitet blandt flere, giver Danske Spil mening. Hvis du tænker på casino og bingo som destinationer i sig selv, giver Spilnu oftere mere mening. Det er hele produktfilosofien kogt ned til én sætning.
+        </p>
+      </section>
+
+      {/* SECTION: Bingo som retentionmotor */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Bingo som retentionmotor – hvorfor Spilnu ikke bare er “Danske Spil med flere spil”</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Den største fejl man kan lave i denne duel er at læse Spilnu som en lille variant af Danske Spil Casino. Det er ikke tilfældet. Spilnu har et andet job i porteføljen, og det job er i høj grad bygget omkring bingo som social og rytmisk retention-mekanisme. Bingo er ikke bare en kategori med ekstra klik; det er et fællesskabsformat med moderatorer, chat, jackpots og tilbagevendende sessioner, som skaber en helt anden lojalitetsprofil end klassiske slots gør. Når en spiller først bliver fanget i bingo-rummenes rytme, opstår der vaner og gentagelser, som bredere casinoer sjældent kan matche.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Denne sociale struktur betyder også, at Spilnu appellerer til en del af markedet, som ikke nødvendigvis er tungt repræsenteret hos internationale performance-brands. For mange brugere er spil ikke først og fremmest jagten på høje multiplikatorer, men på et velkendt og hyggeligt digitalt mødested med lidt spænding. Her er Spilnu ekstremt stærk. Danske Spil Casino kan være trygt og velkendt, men det skaber ikke den samme community-energi inde i selve produktet.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Det er derfor, Spilnus bonus og jackpots skal læses anderledes. De fungerer ikke kun som acquisition-værktøjer, men som motorer i et tilbagevendende ritual. Danske Spils bonus er mere sober og mere lineær. Spilnus incitamentsstruktur er mere koblet til fortsat deltagelse, især for brugere med bingo-vaner. Når man forstår den forskel, bliver det også tydeligt, hvorfor de to brands kan eksistere side om side uden at kannibalisere hinanden fuldstændigt.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          For spillere uden bingo-interesse reduceres noget af Spilnus særværdi. Men for spillere, der søger socialt tempo og gentagelige events, er bingo-sektionen ikke et tillæg – det er selve grunden til, at platformen føles mere levende over tid.
+        </p>
+      </section>
+
+      {/* SECTION: Krydsprodukt og fokus */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Krydsprodukt, fokus og hvilken konto der holder længst i hverdagen</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Der findes brugere, som kun ser på bonusstørrelse og spiludvalg. Men den vigtigste langsigtede faktor er ofte, om kontoen passer ind i din uge. Danske Spil er stærkest, når du vil have ét velkendt sted til flere former for spil: lidt <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>casino</Link>, måske <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Oddset</Link>, måske Lotto. Kontoværdien bliver højere, fordi samme brand understøtter flere små vaner. Det gør Danske Spil til en stærk hovedkonto for spilleren, der foretrækker samlede løsninger og ikke ønsker at logge rundt mellem specialister.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Spilnu er stærkere, når fokus er vigtigere end bredde. Kontoen bliver ikke nødvendigvis brugt til flere produktvertikaler, men den bliver mere relevant hver gang du aktivt søger casino eller bingo. Det er forskellen på en hovedportal og et specialrum. For nogle brugere skaber portalen mest værdi, fordi den reducerer kompleksitet i hverdagen. For andre skaber specialrummet mest værdi, fordi det føles mere meningsfuldt, hver gang det åbnes.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Denne forskel bliver tydelig efter 60-90 dage. Danske Spil bliver ved med at være nyttig, fordi den dækker flere behov. Spilnu bliver ved med at være stærk, fordi den dækker færre behov bedre. Når du vælger mellem dem, vælger du ikke kun et casino; du vælger hvilken rolle kontoen skal spille i dit digitale fritidsliv.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Derfor er det helt legitimt, at nogle spillere beholder begge. Den ene fungerer som bred dansk hovedkonto, den anden som fokuseret underholdningsrum. Det er ikke overlap – det er arbejdsdeling.
+        </p>
+      </section>
+
+      {/* SECTION: Budget og ansvarlig rytme */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Budgetkontrol, ansvarlig rytme og hvem der giver mest ro i maven</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Begge brands er stærke på <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>, men de påvirker ikke spillerens rytme ens. Danske Spil føles mere institutionel og mere nøgtern i sit samlede udtryk. Det gør platformen stærk for spillere, der ønsker en mere afdæmpet og mindre promotions-drevet oplevelse. Der er mindre følelsesmæssig acceleration i hele universet, og det kan være en fordel for den bruger, der aktivt forsøger at holde spil som en kontrolleret fritidsaktivitet.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Spilnu er stadig ansvarlig og dansk reguleret, men sessionens energi er anderledes. Bingo, jackpots, chat og hyppigere aktivitet skaber mere tempo og mere rytme. For den rette bruger er det præcis det sjove. For en mere forsigtig bruger kan det føles en smule mere aktiverende. Det gør ikke Spilnu mindre sikker, men det gør den anderledes i sin emotionelle dynamik.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Derfor kan den samme bonus faktisk opleves forskelligt afhængigt af platformens energi. Danske Spils lavere bonus og bredere kontekst kan føles lettere at styre. Spilnus større bonus og mere sociale miljø kan føles mere engagerende, men også mere dragende. Hvilket der er bedst, afhænger ikke kun af spilpræferencer, men af selvindsigt.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Spillere der ønsker maksimal ro, forudsigelighed og institutionel tone, vil ofte lande på Danske Spil. Spillere der ønsker mere liv, tilbagevendende events og community-følelse, vil ofte finde større glæde i Spilnu. Ansvarlig rytme handler ikke kun om værktøjer, men om produktets grundstemning.
+        </p>
+      </section>
+
+      {/* SECTION: Anti-fit */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå hvilket brand? – anti-fit forklarer mere end toplinjetal</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Danske Spil er ikke det rigtige valg for spilleren, der vil have et rendyrket casino-univers uden distraktioner fra andre produkter. Hvis du bliver træt af portal-logik, ønsker maksimal casino-intensitet eller vil have et mere internationalt release-tempo, vil Danske Spil ofte føles for bred og lidt for moderat. Brandet er stærkt, men det er stærkt som totalramme – ikke som hyperfokuseret casinomaskine.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Spilnu er omvendt ikke det rigtige valg for spilleren, der primært ønsker sport, Lotto eller en mere klassisk dansk hovedkonto med maksimal mainstream-genkendelighed. Det er heller ikke nødvendigvis det bedste match for den bruger, der er helt ligeglad med bingo og som kun måler værdi i størst muligt slot-katalog. I så fald findes der internationale brands med større volumen, selv om de ikke har samme danske identitet.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Anti-fit er vigtigt, fordi det reducerer fejlvalg. Den forkerte spiller på den forkerte platform får sjældent glæde af bonus, jackpots eller corporate tillidssignaler, hvis selve sessionstypen er forkert. Derfor er spørgsmålet ikke bare hvem der tilbyder mest, men hvem der fjerner mest friktion for netop din adfærd.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Vælg ikke Danske Spil, hvis du søger specialisering. Vælg ikke Spilnu, hvis du søger bred national hovedkonto med flere vertikaler. Når du accepterer den forskel, bliver denne duel meget mere logisk.
         </p>
       </section>
 
