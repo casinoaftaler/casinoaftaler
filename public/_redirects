@@ -118,6 +118,9 @@
 /slot-katalog/da-vinci-diamonds            /slot-database                          301
 /slot-katalog/siberian-storm               /slot-database                          301
 
+# ── News slug consolidation ──
+/casino-nyheder/casino-bonusser-2026-nye-trends-bedste-tilbud-danske-spillere  /casino-nyheder/casino-bonusser-2026-trends-tilbud  301
+
 # Sider uden match → 404
 /casino-anmeldelser/888casino              /404.html                               404
 
