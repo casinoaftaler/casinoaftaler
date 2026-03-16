@@ -234,13 +234,13 @@ export default function ForfatterNiklas() {
               />
             </div>
             <div className="flex-1">
-              <h2 className="text-3xl font-bold mb-4">Om Niklas</h2>
+              <h2 className="text-3xl font-bold mb-4">Profiloversigt</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
                   <User className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Rolle</p>
-                    <p className="text-sm font-medium">Finansekspert</p>
+                    <p className="text-sm font-medium">Finansøkonom</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
