@@ -319,52 +319,113 @@ export default function Bet365VsUnibet() {
 
       {/* SECTION 7: Kundeservice */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Kundeservice – Kindred Groups infrastruktur vs. bet365's skala</h2>
+        <h2 className="mb-4 text-3xl font-bold">Kundeservice – skala mod specialisering i praksis</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Begge casinoer tilbyder 24/7 kundeservice via live chat. bet365's support er primært fokuseret på sport, og casino-relaterede forespørgsler kan kræve lidt mere tålmodighed. Unibet har dansk support fra 08:00 til midnat og engelsk support i nattetimerne (00:00-08:00). Du kan også ringe til Unibets kundeservice på et gratis dansk nummer.
+          Support er et område, hvor forskellen mellem de to brands bliver mere synlig, jo længere du bruger dem. bet365 driver kundeservice i enorm skala og er bygget til at håndtere et globalt flow af sports-, konto- og betalingsspørgsmål døgnet rundt. Det giver robusthed, men også en oplevelse hvor casino-spørgsmål indimellem føles som en underkategori i en større maskine. Unibet er også stor, men deres allround-positionering gør, at casino, sport, poker og bingo opleves mere ligeværdige i hele supportstrukturen.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          I vores test var Unibets gennemsnitlige svartid 2 minutter via live chat, mens bet365 typisk svarede inden for 4 minutter. Begge supportteams var kompetente og løsningsorienterede. For danske spillere der foretrækker telefonisk support på dansk, er Unibet det bedre valg.
-        </p>
-      </section>
-
-      {/* SECTION 8: Ansvarligt spil */}
-      <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil – to forskellige tilgange</h2>
-        <p className="mb-4 text-muted-foreground leading-relaxed">
-          Begge casinoer tager <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> seriøst, men med forskellige tilgange. bet365 tilbyder avancerede indbetalingsgrænser, selvudelukkelse, og kontoorienterede værktøjer, der er solide og velafprøvede. Unibet, via Kindred Group, har et ambitiøst mål om at eliminere skadeligt spil inden 2030 med deres "Journey towards Zero" strategi – det mest progressive mål i branchen.
+          I praksis betyder det, at bet365 ofte er stærkest på hastighed og standardiserede svar, mens Unibet føles mere tilgængelig for den gennemsnitlige danske spiller, der har brug for vejledning på tværs af produkter. Unibet tilbyder dansk support i brede åbningstider og har en mere synlig selvhjælpsstruktur omkring bonusvalg, kontostyring og produktnavigation. bet365 er yderst effektiv, men også mere funktionel i sin tone. Hvis du er vant til platformen og ved præcis hvad du leder efter, er det sjældent et problem. Hvis du er ny og ønsker lidt mere håndholdt guidance, har Unibet en lille fordel.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Begge er fuldt integreret med ROFUS (Det Danske Register over Frivilligt Udelukkede Spillere) og overholder alle danske krav til ansvarligt spil. For spillere med behov for hjælp er StopSpillet (tlf. 70 22 28 25) tilgængeligt døgnet rundt. Begge platforme kræver MitID-verifikation og opsætning af ind- og tabsgrænser ved kontooprettelse.
+          På enterprise-niveau er kundeservice vigtig, fordi det ikke kun handler om svartid, men om hvor stor friktion der er i de få kritiske situationer, hvor du faktisk har brug for hjælp: bonusspørgsmål, limits, KYC, tekniske fejl eller udbetalinger. Her vurderer vi Unibet som mest komplet for den brede spillerprofil, mens bet365 stadig scorer højt på driftssikkerhed og procesdisciplin.
         </p>
       </section>
 
-      {/* SECTION 9: Ejerskab og finansiel gennemsigtighed */}
+      {/* SECTION 8: Onboarding */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Ejerskab og finansiel baggrund</h2>
+        <h2 className="mb-4 text-3xl font-bold">Onboarding, første indbetaling og første session</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          bet365 er privatejet af Denise Coates CBE og hendes familie. Virksomheden blev grundlagt i Stoke-on-Trent i 2000 og er ikke børsnoteret. Det private ejerskab betyder mindre offentlig indsigt i regnskaber, men til gengæld en operatør med langsigtet perspektiv uden aktionærpres. bet365 er verdens største online spiludbyder med over 90 millioner kunder globalt.
+          For mange brugere afgøres hele kvalitetsindtrykket i de første 10 minutter. Kan jeg oprette mig hurtigt? Forstår jeg bonusen? Finder jeg et relevant spil uden at fare vild? Og føles første indbetaling tryg? Her har begge brands stærke fundamenter, men de løser onboarding forskelligt. bet365 er bygget til at få dig hurtigt ind i et meget stort univers, hvor sport typisk er omdrejningspunktet. Unibet er bygget til at præsentere hele økosystemet mere balanceret, så du hurtigere forstår, hvad du faktisk kan bruge kontoen til.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Unibet ejes af Kindred Group PLC, en børsnoteret spiludbyder på Nasdaq Stockholm med hovedkontor i Malta. Kindred Group blev grundlagt i 1997 og driver ud over Unibet flere andre brands inkl. 32Red og Maria Casino. Koncernen har over 1.500 medarbejdere og er en af de mest etablerede aktører i branchen. Børsnoteringen giver fuld finansiel gennemsigtighed – du kan tilgå deres kvartalsrapporter.
+          Hvis du kommer ind med ren casino-intention, er Unibet generelt nemmere at afkode. Du vælger din bonusmodel, foretager en relativt lav første indbetaling på 40 kr., og kan hurtigt bevæge dig ind i casino eller live casino uden at føle, at du står i vejen for sportsbookens kerneprodukt. Hvis du derimod allerede ved, at du vil kombinere <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>s sportsmotor med casino, giver bet365 mening fra første klik, fordi alt er bygget til netop den hybridadfærd.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          For spillere der prioriterer finansiel gennemsigtighed, er Unibets børsnoterede moderselskab en fordel. For spillere der prioriterer skala og global rækkevidde, er bet365 i en klasse for sig. Begge selskaber er finansielt sunde og har aldrig haft problemer med at udbetale gevinster.
+          Det er også her, minimumsindskuddet spiller en større rolle end mange tror. Unibets 40 kr. reducerer barrieren markant for casual spillere, testbrugere og bonusorienterede spillere, der vil vurdere platformen uden at binde for meget kapital. bet365s 100 kr. er stadig moderat, men sender et lidt tydeligere signal om, at man forventer en mere engageret bruger. Ingen af niveauerne er høje i absolut forstand, men i en sammenligning påvirker de førsteoplevelsen konkret.
+        </p>
+        <div className="rounded-lg border border-border bg-muted/30 p-5">
+          <p className="mb-2 font-semibold">Praktisk observation</p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Spillere med klar sport + casino-intention får typisk hurtigst produktfit hos bet365. Spillere med ren casino-, mobil- eller allround-intention får typisk lavest opstartsfriktion hos Unibet.
+          </p>
+        </div>
+      </section>
+
+      {/* SECTION 9: Betalinger og cashflow */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder, cashflow og oplevet likviditet</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Betalingsmetoder er ikke bare et convenience-spørgsmål; de former hele din oplevede kontrol over saldo, risiko og gevinster. bet365 holder sig til en mere fokuseret betalingsstack med <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>kort</Link>, bankoverførsel og Apple Pay. Det er ikke det bredeste markedstilbud, men det dækker de vigtigste flows for langt de fleste danske brugere. Unibet er bredere med Trustly, PayPal, Skrill, Neteller og Apple Pay, hvilket gør dem mere fleksible for spillere, der allerede lever i et e-wallet-setup.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Et vigtigt korrektiv i denne duel er, at Unibet ikke skal vælges for <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link>. Deres styrke ligger i international betalingsbredde og wallet-fleksibilitet, ikke i den mest lokaliserede danske mobilbetaling. bet365 er heller ikke et dansk betalings-specialistbrand, men deres flows er simple og stabile. Derfor handler forskellen mindre om "har de nok metoder?" og mere om hvilken type spiller du er: bankdirekte, kortbaseret eller wallet-baseret.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Udbetalingsoplevelsen skal også forstås som cashflow-psykologi. Når et casino behandler hurtigt og forudsigeligt, føles hele relationen mere professionel. bet365 scorer højt, fordi deres operationelle maskine er ekstremt disciplineret. Unibet scorer højt, fordi deres processer kombinerer hurtighed med et mere fleksibelt betalingsøkosystem. I praksis vil mange almindelige spillere opleve dem som næsten lige gode, men high-frequency brugere og bonusoptimerende spillere mærker forskellen over tid.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Hvis din prioritet er at minimere friktion mellem saldo, indsats og udbetaling, er begge stærke valg i den danske licensramme. Hvis du vil have flest værktøjer omkring wallets og alternative flows, er Unibet bedst. Hvis du vil have et mere strømlinet og stabilt banknært setup med høj tillid til processeringen, står bet365 ekstremt stærkt.
         </p>
       </section>
 
-      {/* SECTION 10: Hvem passer bedst til hvem */}
+      {/* SECTION 10: Produktarkitektur */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Hvem passer bedst til hvem? – Spillerprofiler</h2>
+        <h2 className="mb-4 text-3xl font-bold">Produktarkitektur – sportsbook-first mod ægte allround</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Den største enterprise-forskel mellem bet365 og Unibet er ikke bonus, spilantal eller support. Den ligger i arkitekturen. bet365 er bygget som en sportsbook-gigant, der har tilføjet et stærkt casino-univers oven på en allerede dominerende sportsmotor. Unibet er bygget som en allround-spilleplatform, hvor casino, sport, poker og bingo skal kunne føles som ligeværdige destinationer. Det lyder som en nuance, men det påvirker næsten alle mikrobeslutninger i UI, navigation og produktprioritering.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Hos bet365 mærker du sportsdominansen i forsidestrukturen, i informationshierarkiet og i den måde sektionerne prioriteres. For den rigtige bruger er det en fordel, fordi du får verdensklasse på sport og et casino, der er stærkt nok til at være et seriøst primærprodukt. For den rene casinobruger kan det derimod betyde, at platformen aldrig føles helt lige så "casino-native" som mere balancerede alternativer.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Unibet er mere ligevægtig. Casino-sektionen føles ikke som et vedhæng, men som en central del af samme maskine. Det giver især værdi for spillere, der skifter intention i løbet af samme uge eller samme session: lidt slots, et livebet, måske et pokerbord, måske tilbage til et game show. Den adfærdsprofil er præcis den, Unibet er designet til at fastholde.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Derfor bør valget ikke reduceres til "hvem har flest spil?" men snarere "hvilken produktlogik matcher min adfærd?" Hvis dit kernespørgsmål er sport først, casino bagefter, peger pilen mod bet365. Hvis dit kernespørgsmål er bred spilfleksibilitet under én konto, peger pilen mod Unibet.
+        </p>
+      </section>
+
+      {/* SECTION 11: 30-60-90 dage */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Hvem giver mest værdi efter 30, 60 og 90 dage?</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          En stærk comparison-side skal ikke stoppe ved velkomstbonussen. Det afgørende spørgsmål for seriøse spillere er, hvordan platformen performer, når onboarding-fasen er slut. Efter 30 dage bliver navigation, betalingsflow og relevansen af løbende kampagner vigtigere end den første bonus. Efter 60 dage bliver produktfit endnu tydeligere: vender du faktisk tilbage, fordi oplevelsen passer til dine vaner? Efter 90 dage kan man begynde at måle reel loyalitetsværdi.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          bet365 står stærkest for spilleren, der kontinuerligt kombinerer odds, live streaming og casino. Her bliver den samlede platformsværdi markant højere end hvis man kun ser på casino isoleret. Den bruger får i praksis en stærkere totaløkonomi, fordi ét login og én saldo understøtter flere former for spiladfærd uden skift mellem operatører.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Unibet står stærkest for spilleren, der vil have en mere jævn og fleksibel underholdningsøkonomi. Deres bonusvalg, lave entry point, mobilstyrke, pokerintegration og betalingsbredde gør dem mere alsidige over tid. Hvis du er typen der ofte ændrer præference – nogle uger poker, andre uger slots, andre uger live casino – holder Unibet typisk længere som primærkonto.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Enterprise-konklusionen på retention er derfor enkel: bet365 vinder på koncentreret styrke omkring sport + live casino + volumen. Unibet vinder på platformelasticitet og bred hverdagsanvendelse. Ingen af delene er objektivt bedst; de løser bare to forskellige former for langtidstilfredshed.
+        </p>
+      </section>
+
+      {/* SECTION 12: Ansvarligt spil og governance */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil, governance og tillid på enterprise-niveau</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Begge brands opererer under dansk licens og med fuld <Link to="/ansvarligt-spil" className={linkClass}>ROFUS</Link>-integration, men governance-signalet er forskelligt. bet365 signalerer styrke gennem størrelse, teknologi og operationel modenhed. Unibet signalerer styrke gennem børsnoteret governance, mere åben rapportering og Kindred Groups offentlige målsætning om at reducere skadeligt spil mod nul. For nogle spillere er den type corporate transparens et vigtigt tillidssignal i sig selv.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          I praksis er begge blandt de mest troværdige internationale brands på det danske marked. Det vigtige er ikke, om de er sikre – det er de – men hvilken form for tillid du foretrækker. bet365 føles som en global performance-maskine. Unibet føles som en mere kommunikerende og afbalanceret nordisk platform. Begge positioner er stærke, men de taler til forskellige psykologier hos spilleren.
+        </p>
+      </section>
+
+      {/* SECTION 13: Hvem passer bedst til hvem */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Hvem passer bedst til hvem? – udvidede spillerprofiler</h2>
 
         <h3 className="mb-3 text-xl font-semibold">Vælg bet365 hvis du:</h3>
         <ul className="mb-6 space-y-2">
           {[
-            "Primært er sportsbettor og vil have verdens bedste sportsbook kombineret med et stærkt casino",
-            "Ønsker det bredeste spiludvalg med 2.500+ casinospil",
-            "Elsker live casino med eksklusive VIP-borde og brandede borde",
-            "Vil have adgang til live streaming af tusindvis af sportsbegivenheder",
-            "Foretrækker hurtige udbetalinger via Trustly",
+            "Primært er sportsbettor og vil have verdens stærkeste sportsbook kombineret med et reelt casino-produkt",
+            "Ønsker det bredeste casino-katalog i denne duel med 2.500+ spil",
+            "Elsker live casino med eksklusive brandede borde og højere VIP-fornemmelse",
+            "Vil have live streaming og odds som en integreret del af din samlede spiladfærd",
+            "Foretrækker operationel stabilitet og hurtige Trustly-baserede flows",
+            "Har en mere målrettet, mindre eksperimenterende spillestil",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-2 text-muted-foreground">
               <span className="text-primary font-bold">→</span> {item}
@@ -375,13 +436,12 @@ export default function Bet365VsUnibet() {
         <h3 className="mb-3 text-xl font-semibold">Vælg Unibet hvis du:</h3>
         <ul className="mb-6 space-y-2">
           {[
-            "Vil have en komplet allround-platform med casino, sport, poker og bingo",
-            "Foretrækker den bedste mobilapp med dedikeret casino-oplevelse",
-            "Ønsker det laveste minimumsindskud (kun 40 kr.)",
-            "Vil have Cash Spins uden omsætningskrav",
-            "Prioriterer finansiel gennemsigtighed (børsnoteret ejer)",
-            "Vil have poker i tillæg til casino",
-            "Foretrækker flest betalingsmetoder (PayPal, Skrill, MobilePay m.m.)",
+            "Vil have en komplet allround-platform med casino, sport, poker og bingo under samme konto",
+            "Prioriterer den stærkeste mobiloplevelse i denne duel",
+            "Ønsker lavest mulig startbarriere med kun 40 kr. i minimumsindskud",
+            "Vil have Cash Spins uden omsætningskrav som alternativ til klassisk bonus",
+            "Foretrækker e-wallet-bredde og mere fleksible betalingsvalg",
+            "Skifter ofte mellem produkter og ønsker en platform, der understøtter den adfærd naturligt",
           ].map((item, i) => (
             <li key={i} className="flex items-start gap-2 text-muted-foreground">
               <span className="text-primary font-bold">→</span> {item}
@@ -389,8 +449,22 @@ export default function Bet365VsUnibet() {
           ))}
         </ul>
 
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Mange af de mest erfarne danske spillere ender med at bruge begge. Ikke fordi de ikke kan vælge, men fordi brandsene komplementerer hinanden. bet365 fylder rollen som den stærke sport + live casino-konto. Unibet fylder rollen som den fleksible allround-konto med bedre mobil casino-fit og bredere produktpalette. Det er en legitim strategi, hvis du vil optimere på flere forskellige brugsscenarier.
+        </p>
+      </section>
+
+      {/* SECTION 14: Enterprise-konklusion */}
+      <section className="mb-12">
+        <h2 className="mb-4 text-3xl font-bold">Enterprise-konklusion – tæt duel, men med forskellig kerneværdi</h2>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          bet365 vs Unibet er ikke en duel mellem godt og dårligt. Det er en duel mellem to meget modne produkter, der begge kan fungere som primærkonto for danske spillere. bet365 vinder, når fokus er sportsbook-integration, live casino-dybde, volumen og global operationel styrke. Unibet vinder, når fokus er fleksibilitet, mobil casino, lav adgangsbarriere og en mere balanceret produktarkitektur.
+        </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Hvis du vil optimere på performance, live-elementer og en mere koncentreret hybrid mellem sport og casino, bør du vælge bet365. Hvis du vil optimere på alsidighed, mobiloplevelse og bred hverdagsrelevans på tværs af flere spilprodukter, bør du vælge Unibet. Det er præcis derfor denne duel ender så tæt: de er begge stærke, men på forskellige akser.
+        </p>
         <p className="text-muted-foreground leading-relaxed">
-          Begge casinoer er fremragende valg for danske spillere. Med dansk licens, 10x omsætningskrav og ROFUS-integration er du sikret en lovlig og tryg spilleoplevelse hos begge. Mange erfarne spillere vælger at have konti hos begge for at udnytte de respektive styrker – det er lovligt og anbefalet for at maksimere din samlede oplevelse. For flere anbefalinger, se vores <Link to="/casino-anmeldelser" className={linkClass}>komplette casinooversigt</Link>.
+          Den bedste beslutning er derfor ikke at spørge, hvilket brand der er "størst", men hvilket brand der passer bedst til din faktiske adfærd de næste 90 dage. Træffer du valget på adfærdsfit frem for overskrifter, får du lavere friktion, højere tilfredshed og mere reel værdi over tid. For flere alternativer, se vores <Link to="/casino-anmeldelser" className={linkClass}>komplette casinooversigt</Link>.
         </p>
       </section>
     </ComparisonPageTemplate>
