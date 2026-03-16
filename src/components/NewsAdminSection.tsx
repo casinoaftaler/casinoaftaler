@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
+import { appendEnterpriseInternalLinks } from "@/lib/newsInternalLinks";
 import { supabase } from "@/integrations/supabase/client";
 import { useAllNews, useCreateNews, useUpdateNews, useDeleteNews, type CasinoNewsArticle } from "@/hooks/useCasinoNews";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, Trash2, Pencil, Loader2, Eye, Send } from "lucide-react";
+import { Plus, Trash2, Pencil, Loader2, Send } from "lucide-react";
 import { toast } from "sonner";
 
 const SLUG_STOP_WORDS = new Set([
