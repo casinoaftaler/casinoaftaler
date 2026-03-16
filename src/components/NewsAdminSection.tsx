@@ -129,12 +129,13 @@ function NewsForm({ article, onClose }: { article?: CasinoNewsArticle; onClose: 
     const manualTags = form.tags.split(",").map((t) => t.trim()).filter(Boolean);
     const autoTags = manualTags.length > 0 ? manualTags : inferTags(form.title, form.content);
     const autoCategory = form.category !== "generelt" ? form.category : inferCategory(form.title, form.content);
+    const optimizedContent = appendEnterpriseInternalLinks(form.content, autoCategory, form.slug || form.title);
 
     const payload = {
       title: form.title,
       slug: form.slug,
       excerpt: form.excerpt || null,
-      content: form.content,
+      content: optimizedContent,
       category: autoCategory,
       tags: autoTags,
       featured_image: form.featured_image || null,

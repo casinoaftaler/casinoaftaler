@@ -210,6 +210,24 @@ const CasinoNyhedArticle = () => {
           dangerouslySetInnerHTML={{ __html: contentWithoutFaq }}
         />
 
+        <section className="mb-12 rounded-xl border border-border bg-card p-6">
+          <h2 className="text-2xl font-bold mb-2">Flere relevante sider</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Denne artikel har {internalLinkCountInBody} links i brødteksten. Her er ekstra genveje til centrale guides og anmeldelser.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {strategicInternalLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="rounded-md border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* Contextual CTA Bridge – category-based money-page links */}
         <NewsContextualCTA category={article.category} />
 
