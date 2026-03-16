@@ -38,6 +38,8 @@ export const routeLabels: Record<string, string> = {
   "/live-casino/crazy-time": "Crazy Time",
   "/live-casino/dream-catcher": "Dream Catcher",
   "/live-casino/deal-or-no-deal": "Deal or No Deal",
+  "/live-casino/strategi": "Live Casino Strategi",
+  "/live-casino/udbydere": "Live Casino Udbydere",
   // Casino Bonus
   "/casino-bonus": "Casino Bonus",
   "/free-spins": "Free Spins",
