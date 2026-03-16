@@ -27,13 +27,18 @@ import { supabase } from "@/integrations/supabase/client";
 import { NotificationDropdown } from "./NotificationDropdown";
 import { RedeemCodeDialog } from "./RedeemCodeDialog";
 import { getTodayDanish } from "@/lib/danishDate";
+import { type NavLink } from "./header/navData";
 import {
-  CASINO_LINKS, NYE_CASINOER_LINKS, SLOT_LINKS, SLOT_CATEGORY_LINKS, BLACKJACK_LINKS,
-  BLACKJACK_STRATEGY_LINKS, ROULETTE_LINKS, ROULETTE_STRATEGY_LINKS,
-  POKER_LINKS, OTHER_CASINOSPIL_LINKS, LIVE_CASINO_LINKS, BONUS_LINKS,
-  PAYMENT_LINKS, PROVIDER_LINKS, REVIEW_TOP_LINKS, REVIEW_ALL_LINKS,
-  COMMUNITY_LINKS, MORE_LINKS, FORFATTER_LINKS, type NavLink,
-} from "./header/navData";
+  HEADER_BONUS_LINKS,
+  HEADER_CASINO_LINKS,
+  HEADER_COMMUNITY_LINKS,
+  HEADER_GAME_LINKS,
+  HEADER_LIVE_CASINO_LINKS,
+  HEADER_MORE_LINKS,
+  HEADER_NEW_CASINO_LINKS,
+  HEADER_PAYMENT_LINKS,
+  HEADER_REVIEW_LINKS,
+} from "./header/curatedNavData";
 
 /** Render a list of NavLinks as DropdownMenuItems */
 function NavItems({ links, iconSize = "h-3 w-3" }: { links: NavLink[]; iconSize?: string }) {
