@@ -103,6 +103,8 @@ const MonopolyLiveGuide = lazy(() => import("./pages/live-casino/MonopolyLiveGui
 const CrazyTimeGuide = lazy(() => import("./pages/live-casino/CrazyTimeGuide"));
 const DreamCatcherGuide = lazy(() => import("./pages/live-casino/DreamCatcherGuide"));
 const DealOrNoDealGuide = lazy(() => import("./pages/live-casino/DealOrNoDealGuide"));
+const LiveCasinoStrategiGuide = lazy(() => import("./pages/live-casino/LiveCasinoStrategiGuide"));
+const LiveCasinoUdbydereGuide = lazy(() => import("./pages/live-casino/LiveCasinoUdbydereGuide"));
 const NoStickyBonus = lazy(() => import("./pages/NoStickyBonus"));
 const StickyBonus = lazy(() => import("./pages/StickyBonus"));
 const CashbackBonus = lazy(() => import("./pages/CashbackBonus"));
