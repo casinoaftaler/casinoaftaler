@@ -213,6 +213,8 @@ export const glossaryTerms: GlossaryTerm[] = [
     relatedTerms: ["max-bet", "rng"],
     relatedPages: [
       { label: "Ansvarligt Spil", href: "/ansvarligt-spil" },
+      { label: "Spillegrænser Guide", href: "/ansvarligt-spil/spillegraenser" },
+      { label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" },
     ],
     fullContent: `<h2>Hvad er autoplay?</h2><p><strong>Autoplay</strong> lader dig indstille automatiske spins med din valgte indsats på <a href="/casinospil/spillemaskiner" class="text-primary hover:underline">spillemaskiner</a>.</p><h2>Indstillinger</h2><ul><li>Antal spins: 10, 25, 50, 100</li><li>Tab-grænse</li><li>Gevinst-grænse</li><li>Stop ved <a href="/ordbog/bonus-runde" class="text-primary hover:underline">bonus</a></li></ul><h2>Regulering</h2><ul><li><strong>UK (UKGC)</strong>: Har forbudt autoplay</li><li><strong>Danmark</strong>: Tilladt med stop-betingelser – reguleret af <a href="/spillemyndigheden" class="text-primary hover:underline">Spillemyndigheden</a></li><li><strong>Sverige</strong>: 3-sekunders minimum mellem spins</li></ul><h2>Ansvarligt spil</h2><p>Autoplay kan øge risikoen for problematisk spil. Sæt altid klare grænser og tag pauser. Læs mere om <a href="/ansvarligt-spil" class="text-primary hover:underline">ansvarligt spil</a>.</p>`,
   },
