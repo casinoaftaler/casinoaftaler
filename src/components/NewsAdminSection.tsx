@@ -15,12 +15,24 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Plus, Trash2, Pencil, Loader2, Eye, Send } from "lucide-react";
 import { toast } from "sonner";
 
+const SLUG_STOP_WORDS = new Set([
+  "i", "og", "for", "med", "til", "fra", "af", "på", "en", "et", "den", "det",
+  "de", "der", "som", "er", "var", "nye", "ny", "bedste", "danske", "dansk",
+  "hos", "ved", "om", "alle", "mange", "mere", "mest", "efter", "mellem",
+  "under", "over", "hvordan", "hvad", "hvilke", "her",
+]);
+
 function slugify(text: string) {
-  return text
+  const raw = text
     .toLowerCase()
     .replace(/æ/g, "ae").replace(/ø/g, "oe").replace(/å/g, "aa")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
+
+  // Remove stop words and limit to ~4-5 meaningful words (max 50 chars)
+  const words = raw.split("-").filter((w) => w && !SLUG_STOP_WORDS.has(w));
+  const short = words.slice(0, 5).join("-");
+  return short.slice(0, 50).replace(/-$/, "");
 }
 
 function NewsForm({ article, onClose }: { article?: CasinoNewsArticle; onClose: () => void }) {
