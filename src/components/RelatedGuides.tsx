@@ -1156,18 +1156,19 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     };
   }
 
-  // Casinoer hub → dedicated entry with cluster-specific links
+  // Casinoer hub → dedicated entry with cluster-specific links + cross-cluster
   if (path === "/casinoer") {
     return {
       guides: [
         { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", icon: Zap, desc: "Casinoer med de hurtigste udbetalinger" },
         { to: "/casinoer/hoej-rtp", label: "Høj RTP", icon: BarChart3, desc: "Casinoer med bedst tilbagebetaling" },
+        { to: "/casinoer/crypto-casino", label: "Crypto Casino", icon: Globe, desc: "Bitcoin og krypto-gambling i Danmark" },
         { to: "/casino-licenser", label: "Licenserede Casinoer", icon: ShieldCheck, desc: "Sikre casinoer med dansk licens" },
         reviewHub,
         bonusHub,
         nyeCasinoerHub,
       ],
-      subtitle: "Udforsk casino-kategorier, anmeldelser og de bedste bonusser.",
+      subtitle: "Udforsk alle casino-kategorier, anmeldelser og de bedste bonusser.",
     };
   }
 
