@@ -561,19 +561,24 @@ function RegularCard({
 }
 
 // Main CasinoCard component - all cards use FeaturedCard style
-export function CasinoCard({
-  casino,
-  rank,
-  size = "small",
-  open,
-  onOpenChange,
-}: CasinoCardProps) {
+export const CasinoCard = forwardRef<HTMLDivElement, CasinoCardProps>(function CasinoCard(
+  {
+    casino,
+    rank,
+    size = "small",
+    open,
+    onOpenChange,
+  },
+  ref
+) {
   return (
-    <FeaturedCard
-      casino={casino}
-      rank={rank || 99}
-      open={open}
-      onOpenChange={onOpenChange}
-    />
+    <div ref={ref}>
+      <FeaturedCard
+        casino={casino}
+        rank={rank || 99}
+        open={open}
+        onOpenChange={onOpenChange}
+      />
+    </div>
   );
-}
+});
