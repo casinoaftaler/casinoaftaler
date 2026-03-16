@@ -700,8 +700,6 @@ const LiveCasinoUdbydereGuide = () => {
 
         <LiveCasinoMoneyLinks gameName="live casino" currentPath="/live-casino/udbydere" />
 
-        <InlineCasinoCards title="Casinoer med det bedste udbyder-mix" count={4} />
-
         <LatestNewsByCategory pagePath="/live-casino/udbydere" />
 
         <FAQSection faqs={faqs} />
