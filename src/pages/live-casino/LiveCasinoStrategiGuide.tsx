@@ -847,8 +847,6 @@ const LiveCasinoStrategiGuide = () => {
 
         <LiveCasinoMoneyLinks gameName="live casino" currentPath="/live-casino/strategi" />
 
-        <InlineCasinoCards title="Anbefalede casinoer med stærkt live casino-udvalg" count={4} />
-
         <LatestNewsByCategory pagePath="/live-casino/strategi" />
 
         <FAQSection faqs={faqs} />
