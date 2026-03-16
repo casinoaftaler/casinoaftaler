@@ -125,6 +125,7 @@ export const glossaryTerms: GlossaryTerm[] = [
     category: "Grundbegreber",
     relatedTerms: ["rtp", "volatilitet", "max-bet"],
     relatedPages: [
+      { label: "Jackpot Slots", href: "/jackpot-slots" },
       { label: "Mega Moolah Guide", href: "/casinospil/spillemaskiner/mega-moolah" },
       { label: "Divine Fortune", href: "/casinospil/spillemaskiner/divine-fortune" },
     ],
