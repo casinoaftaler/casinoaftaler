@@ -131,6 +131,8 @@ export const LIVE_CASINO_LINKS: NavLink[] = [
   { to: "/live-casino/crazy-time", label: "Crazy Time" },
   { to: "/live-casino/dream-catcher", label: "Dream Catcher" },
   { to: "/live-casino/deal-or-no-deal", label: "Deal or No Deal" },
+  { to: "/live-casino/strategi", label: "Live Casino Strategi" },
+  { to: "/live-casino/udbydere", label: "Live Casino Udbydere" },
 ];
 
 export const BONUS_LINKS: NavLinkWithIcon[] = [

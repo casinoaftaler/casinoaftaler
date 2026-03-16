@@ -153,6 +153,8 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\blive roulette\b/i], href: "/live-casino/roulette", anchor: "" },
   { patterns: [/\blightning roulette\b/i], href: "/live-casino/lightning-roulette", anchor: "" },
   { patterns: [/\blive baccarat\b/i], href: "/live-casino/baccarat", anchor: "" },
+  { patterns: [/\blive casino strategi\b/i], href: "/live-casino/strategi", anchor: "", anchorVariants: ["live casino strategi", "live casino-strategi", "strategi for live casino"] },
+  { patterns: [/\blive casino udbydere?\b/i, /\blive casino[\s-]?leverandør(?:er)?\b/i], href: "/live-casino/udbydere", anchor: "", anchorVariants: ["live casino udbydere", "live casino-udbydere", "live casino leverandører"] },
   { patterns: [/\blive casino\b/i, /\blive-casino\b/i], href: "/live-casino", anchor: "" },
   { patterns: [/\bpoker\b/i], href: "/casinospil/poker", anchor: "" },
   { patterns: [/\bbaccarat\b/i], href: "/casinospil/baccarat", anchor: "" },

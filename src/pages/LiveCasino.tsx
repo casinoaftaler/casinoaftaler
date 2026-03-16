@@ -543,6 +543,8 @@ const LiveCasino = () => {
               <li>→ <Link to="/live-casino/baccarat" className={linkClass}>Live baccarat banker edge-analyse</Link> – hvorfor banker altid er det optimale valg</li>
               <li>→ <Link to="/live-casino/lightning-roulette" className={linkClass}>Lightning Roulette multiplikator-EV</Link> – matematikken bag 500x</li>
               <li>→ <Link to="/live-casino/monopoly-live" className={linkClass}>Monopoly Live game show-analyse</Link> – bonusrunde og segmentfordeling</li>
+              <li>→ <Link to="/live-casino/strategi" className={linkClass}>Live casino strategi og bankroll management</Link> – house edge-optimering og EV-beregning</li>
+              <li>→ <Link to="/live-casino/udbydere" className={linkClass}>Live casino udbydere – Evolution, Pragmatic Play & mere</Link> – sammenligning af alle leverandører</li>
             </ul>
           </div>
         </section>
