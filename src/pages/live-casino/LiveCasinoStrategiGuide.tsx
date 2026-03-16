@@ -102,6 +102,7 @@ const LiveCasinoStrategiGuide = () => {
   const howToJsonLd = buildHowToSchema({
     name: "Sådan opbygger du en optimal live casino-strategi",
     description: "En trin-for-trin guide til at bygge en evidensbaseret live casino-strategi med fokus på spilvalg, bankroll management og session kontrol.",
+    pageUrl: `${SITE_URL}/live-casino/strategi`,
     steps: howToSteps,
   });
 
