@@ -94,7 +94,11 @@ export const glossaryTerms: GlossaryTerm[] = [
     metaDescription: "Lær hvad scatter-symboler gør i spillemaskiner. Forstå hvordan de udløser free spins og bonusrunder.",
     category: "Spillemaskiner",
     relatedTerms: ["wild", "free-spins", "bonus-runde"],
-    relatedPages: [{ label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" }],
+    relatedPages: [
+      { label: "Spillemaskiner Guide", href: "/casinospil/spillemaskiner" },
+      { label: "Free Spins", href: "/free-spins" },
+      { label: "Slot Database", href: "/slot-database" },
+    ],
     fullContent: `<h2>Hvad er et scatter-symbol?</h2><p><strong>Scatter-symbolet</strong> kan udbetale og aktivere <a href="/ordbog/bonus-runde" class="text-primary hover:underline">bonusfunktioner</a> <strong>uanset hvor det lander på hjulene</strong>.</p><h2>Funktioner</h2><ul><li><strong>Direkte udbetaling</strong>: Baseret på samlet indsats</li><li><strong>Bonusudløser</strong>: 3+ scatters aktiverer <a href="/ordbog/free-spins" class="text-primary hover:underline">free spins</a></li></ul><h2>Scatter vs. andre symboler</h2><ul><li><strong>Scatter</strong>: Tæller overalt, udløser bonusser</li><li><strong><a href="/ordbog/wild" class="text-primary hover:underline">Wild</a></strong>: Erstatter symboler, skal stå på <a href="/ordbog/paylines" class="text-primary hover:underline">gevinstlinje</a></li></ul><h2>Populære eksempler</h2><ul><li><strong>Book of Dead</strong>: Bogen er både scatter og wild</li><li><strong>Sweet Bonanza</strong>: Lollipop-scatter</li><li><strong>Gates of Olympus</strong>: Zeus-scatter</li></ul>`,
   },
   {
