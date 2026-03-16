@@ -361,248 +361,95 @@ export const Header = memo(function Header() {
       {mobileMenuOpen && (
         <div id="mobile-navigation" className="border-t border-border bg-background lg:hidden max-h-[calc(100dvh-4rem)] overflow-y-auto">
           <nav className="container flex flex-col py-3">
-            {/* Casinoer */}
             <button onClick={() => toggleSection("casino")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
-              <span className="flex items-center gap-2"><Dices className="h-4 w-4" />Casinoer</span>
+              <span className="flex items-center gap-2"><Landmark className="h-4 w-4" />Casinoer</span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "casino" ? "rotate-180" : ""}`} />
             </button>
             {expandedSection === "casino" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <Link to="/casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                  <Landmark className="h-4 w-4" />Alle Casinoer
-                </Link>
-                <MobileLinks links={CASINO_LINKS} onClose={closeMobile} />
+                <MobileLinks links={HEADER_CASINO_LINKS} onClose={closeMobile} />
               </div>
             )}
 
-            {/* Nye Casinoer */}
             <button onClick={() => toggleSection("nye")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
               <span className="flex items-center gap-2"><Sparkles className="h-4 w-4" />Nye Casinoer</span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "nye" ? "rotate-180" : ""}`} />
             </button>
             {expandedSection === "nye" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <Link to="/nye-casinoer" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                  <Sparkles className="h-4 w-4" />Alle Nye Casinoer
-                </Link>
-                <MobileLinks links={NYE_CASINOER_LINKS} onClose={closeMobile} />
+                <MobileLinks links={HEADER_NEW_CASINO_LINKS} onClose={closeMobile} />
               </div>
             )}
 
-            {/* Casinospil */}
-            <button onClick={() => toggleSection("casinospil")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
-              <span className="flex items-center gap-2"><Dices className="h-4 w-4" />Casinospil</span>
-              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "casinospil" ? "rotate-180" : ""}`} />
-            </button>
-            {expandedSection === "casinospil" && (
-              <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <Link to="/casinospil" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                  <Dices className="h-4 w-4" />Casinospil Oversigt
-                </Link>
-                <Link to="/casinospil/spillemaskiner" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                  <Star className="h-4 w-4" />Spillemaskiner
-                </Link>
-                {(() => {
-                  const allSlots = [
-                    { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Spillemaskiner" },
-                    ...SLOT_CATEGORY_LINKS,
-                    ...SLOT_LINKS,
-                  ];
-                  const visible = expandedMobileSlots ? allSlots : allSlots.slice(0, 8);
-                  return (
-                    <>
-                      {visible.map((item) => (
-                        <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                          <Star className="h-3 w-3" />{item.label}
-                        </Link>
-                      ))}
-                      {!expandedMobileSlots && (
-                        <button onClick={() => setExpandedMobileSlots(true)} className="ml-10 flex items-center gap-2 py-2 text-sm text-primary transition-colors hover:text-primary/80">
-                          <ChevronDown className="h-3 w-3" />Vis alle ({allSlots.length - 8} mere)
-                        </button>
-                      )}
-                    </>
-                  );
-                })()}
-                <div className="ml-6 flex flex-col">
-                  <Link to="/casinospil/blackjack" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                    <Star className="h-4 w-4" />Blackjack Guide
-                  </Link>
-                  {[...BLACKJACK_LINKS, ...BLACKJACK_STRATEGY_LINKS].map((item) => (
-                    <Link key={item.to} to={item.to} className="ml-4 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                      <Star className="h-3 w-3" />{item.label}
-                    </Link>
-                  ))}
-                </div>
-                <div className="ml-6 flex flex-col">
-                  <Link to="/casinospil/roulette" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                    <Star className="h-4 w-4" />Roulette Guide
-                  </Link>
-                  {[...ROULETTE_LINKS, ...ROULETTE_STRATEGY_LINKS].map((item) => (
-                    <Link key={item.to} to={item.to} className="ml-4 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                      <Star className="h-3 w-3" />{item.label}
-                    </Link>
-                  ))}
-                </div>
-                <div className="ml-6 flex flex-col">
-                  <Link to="/casinospil/poker" className="flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                    <Star className="h-4 w-4" />Poker Guide
-                  </Link>
-                  {POKER_LINKS.map((item) => (
-                    <Link key={item.to} to={item.to} className="ml-4 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                      <Star className="h-3 w-3" />{item.label}
-                    </Link>
-                  ))}
-                </div>
-                <MobileLinks links={[{ to: "/casinospil/roulette", label: "Roulette Guide" }, ...OTHER_CASINOSPIL_LINKS]} onClose={closeMobile} />
-              </div>
-            )}
-
-            {/* Live Casino */}
-            <button onClick={() => toggleSection("live")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
-              <span className="flex items-center gap-2"><Tv className="h-4 w-4" />Live Casino</span>
-              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "live" ? "rotate-180" : ""}`} />
-            </button>
-            {expandedSection === "live" && (
-              <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <Link to="/live-casino" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                  <Tv className="h-4 w-4" />Live Casino Oversigt
-                </Link>
-                <MobileLinks links={LIVE_CASINO_LINKS} onClose={closeMobile} />
-              </div>
-            )}
-
-            {/* Casino Bonus */}
             <button onClick={() => toggleSection("bonus")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
               <span className="flex items-center gap-2"><BookOpen className="h-4 w-4" />Casino Bonus</span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "bonus" ? "rotate-180" : ""}`} />
             </button>
             {expandedSection === "bonus" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <Link to="/casino-bonus" className="ml-6 flex items-center gap-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                  <BookOpen className="h-4 w-4" />Casino Bonus Oversigt
-                </Link>
-                <MobileLinks links={BONUS_LINKS} onClose={closeMobile} />
+                <MobileLinks links={HEADER_BONUS_LINKS} onClose={closeMobile} />
               </div>
             )}
 
-            {/* Mere */}
+            <button onClick={() => toggleSection("casinospil")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
+              <span className="flex items-center gap-2"><Dices className="h-4 w-4" />Casinospil</span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "casinospil" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "casinospil" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <MobileLinks links={HEADER_GAME_LINKS} onClose={closeMobile} />
+              </div>
+            )}
+
+            <button onClick={() => toggleSection("live")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
+              <span className="flex items-center gap-2"><Tv className="h-4 w-4" />Live Casino</span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "live" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "live" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <MobileLinks links={HEADER_LIVE_CASINO_LINKS} onClose={closeMobile} />
+              </div>
+            )}
+
+            <button onClick={() => toggleSection("payments")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
+              <span className="flex items-center gap-2"><CreditCard className="h-4 w-4" />Betalingsmetoder</span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "payments" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "payments" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <MobileLinks links={HEADER_PAYMENT_LINKS} onClose={closeMobile} />
+              </div>
+            )}
+
+            <button onClick={() => toggleSection("reviews")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
+              <span className="flex items-center gap-2"><Star className="h-4 w-4" />Casino Anmeldelser</span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "reviews" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "reviews" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <MobileLinks links={HEADER_REVIEW_LINKS} onClose={closeMobile} />
+              </div>
+            )}
+
+            <button onClick={() => toggleSection("community")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
+              <span className="flex items-center gap-2"><Users className="h-4 w-4" />Community</span>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "community" ? "rotate-180" : ""}`} />
+            </button>
+            {expandedSection === "community" && (
+              <div className="flex flex-col border-b border-border/50 bg-muted/30">
+                <MobileLinks links={HEADER_COMMUNITY_LINKS} onClose={closeMobile} />
+              </div>
+            )}
+
             <button onClick={() => toggleSection("more")} className="flex items-center justify-between py-3 text-sm font-medium transition-colors hover:text-primary border-b border-border/50">
               <span className="flex items-center gap-2"><MoreHorizontal className="h-4 w-4" />Mere</span>
               <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "more" ? "rotate-180" : ""}`} />
             </button>
             {expandedSection === "more" && (
               <div className="flex flex-col border-b border-border/50 bg-muted/30">
-                <MobileLinks links={MORE_LINKS} onClose={closeMobile} />
-                {/* Forfattere sub-section */}
-                <button onClick={() => setForfattereExpanded(!forfattereExpanded)} className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary">
-                  <span className="flex items-center gap-2"><User className="h-4 w-4" />Forfattere</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${forfattereExpanded ? "rotate-180" : ""}`} />
-                </button>
-                {forfattereExpanded && (
-                  <div className="flex flex-col">
-                    {FORFATTER_LINKS.map((item) => (
-                      <Link key={item.to} to={item.to} className="ml-12 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                        <User className="h-4 w-4" />{item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-                {/* Betalingsmetoder sub-section */}
-                <button onClick={() => setPaymentsExpanded(!paymentsExpanded)} className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary">
-                  <span className="flex items-center gap-2"><CreditCard className="h-4 w-4" />Betalingsmetoder</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${paymentsExpanded ? "rotate-180" : ""}`} />
-                </button>
-                {paymentsExpanded && (
-                  <div className="flex flex-col">
-                    <Link to="/betalingsmetoder" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                      <CreditCard className="h-3 w-3" />Alle betalingsmetoder
-                    </Link>
-                    {PAYMENT_LINKS.map((item) => (
-                      <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                        <Star className="h-3 w-3" />{item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-                {/* Spiludviklere sub-section */}
-                <button onClick={() => setProvidersExpanded(!providersExpanded)} className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary">
-                  <span className="flex items-center gap-2"><Gamepad2 className="h-4 w-4" />Spiludviklere</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${providersExpanded ? "rotate-180" : ""}`} />
-                </button>
-                {providersExpanded && (
-                  <div className="flex flex-col">
-                    <Link to="/spiludviklere" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                      <Gamepad2 className="h-3 w-3" />Alle spiludviklere
-                    </Link>
-                    {PROVIDER_LINKS.map((item) => (
-                      <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                        <Star className="h-3 w-3" />{item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-                {/* Casino Anmeldelser sub-section */}
-                <button onClick={() => setReviewsExpanded(!reviewsExpanded)} className="ml-6 flex w-full items-center justify-between py-2.5 pr-4 text-sm text-muted-foreground transition-colors hover:text-primary">
-                  <span className="flex items-center gap-2"><Star className="h-4 w-4" />Casino Anmeldelser</span>
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${reviewsExpanded ? "rotate-180" : ""}`} />
-                </button>
-                {reviewsExpanded && (
-                  <div className="flex flex-col">
-                    <Link to="/casino-anmeldelser" className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                      <Star className="h-3 w-3" />Alle anmeldelser
-                    </Link>
-                    {REVIEW_TOP_LINKS.map((item) => (
-                      <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                        <Star className="h-3 w-3" />{item.label}
-                      </Link>
-                    ))}
-                    {!allReviewsExpanded ? (
-                      <button onClick={() => setAllReviewsExpanded(true)} className="ml-10 flex items-center gap-2 py-2 text-sm font-medium text-primary transition-colors hover:text-primary/80">
-                        <ChevronDown className="h-3 w-3" />Vis alle anmeldelser
-                      </button>
-                    ) : (
-                      REVIEW_ALL_LINKS.map((item) => (
-                        <Link key={item.to} to={item.to} className="ml-10 flex items-center gap-2 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" onClick={closeMobile}>
-                          <Star className="h-3 w-3" />{item.label}
-                        </Link>
-                      ))
-                    )}
-                  </div>
-                )}
+                <MobileLinks links={HEADER_MORE_LINKS} onClose={closeMobile} />
               </div>
             )}
-
-            {/* Community */}
-            <div className="border-b border-border/50">
-              <div className="flex items-center justify-between">
-                <Link to="/community" onClick={closeMobile} className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary flex-1">
-                  <Users className="h-4 w-4" />Community
-                </Link>
-                <button onClick={() => toggleSection("community")} className="p-2 transition-colors hover:text-primary">
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${expandedSection === "community" ? "rotate-180" : ""}`} />
-                </button>
-              </div>
-              {expandedSection === "community" && (
-                <div className="flex flex-col bg-muted/30 pb-2">
-                  {[
-                    { to: "/community/slots", icon: <Coins className="h-4 w-4" />, label: "Spillehal" },
-                    { to: "/bonus-hunt", icon: <Trophy className="h-4 w-4" />, label: "Bonus Hunt" },
-                    { to: "/bonus-hunt/arkiv", icon: <BarChart3 className="h-4 w-4" />, label: "Bonus Hunt Arkiv" },
-                    { to: "/slot-database", icon: <Gamepad2 className="h-4 w-4" />, label: "Slot Database" },
-                    { to: "/community/turneringer", icon: <Trophy className="h-4 w-4" />, label: "Turneringer" },
-                    { to: "/community/turneringer/arkiv", icon: <BarChart3 className="h-4 w-4" />, label: "Turneringsarkiv" },
-                    { to: "/community/hall-of-fame", icon: <Trophy className="h-4 w-4" />, label: "Hall of Fame" },
-                    { to: "/highlights", icon: <Video className="h-4 w-4" />, label: "Highlights" },
-                    { to: "/butik", icon: <ShoppingBag className="h-4 w-4" />, label: "Butik" },
-                  ].map((item) => (
-                    <Link key={item.to} to={item.to} onClick={closeMobile} className="flex items-center gap-2 py-2 pl-8 pr-4 text-sm text-muted-foreground transition-colors hover:text-foreground">
-                      {item.icon}{item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
 
             {/* Theme toggle */}
             <button onClick={toggleTheme} className="flex items-center gap-2 py-3 text-sm font-medium transition-colors hover:text-primary">
