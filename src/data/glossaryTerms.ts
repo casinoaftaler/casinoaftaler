@@ -169,7 +169,9 @@ export const glossaryTerms: GlossaryTerm[] = [
     category: "Spillemaskiner",
     relatedTerms: ["scatter", "free-spins", "multiplikator"],
     relatedPages: [
+      { label: "Bonus Buy Slots", href: "/bonus-buy-slots" },
       { label: "Bonus Buys Guide", href: "/casinospil/spillemaskiner/bonus-buys" },
+      { label: "Free Spins", href: "/free-spins" },
     ],
     fullContent: `<h2>Hvad er en bonusrunde?</h2><p>En <strong>bonusrunde</strong> er en ekstra spillefase med højere gevinstpotentiale end basisspillet i <a href="/casinospil/spillemaskiner" class="text-primary hover:underline">spillemaskiner</a>.</p><h2>Typer</h2><h3>Free Spins</h3><p>Den mest udbredte bonustype med gratis spins og ekstra funktioner som <a href="/ordbog/multiplikator" class="text-primary hover:underline">multiplikatorer</a>.</p><h3>Pick and Click</h3><p>Vælg mellem skjulte objekter for at afsløre præmier.</p><h3>Cascading/Tumble Wins</h3><p>Vindende symboler forsvinder og erstattes af nye. Bruges i <a href="/casinospil/spillemaskiner/gates-of-olympus" class="text-primary hover:underline">Gates of Olympus</a>.</p><h3>Bonus Buy</h3><p>Køb direkte adgang til bonusrunden mod 50-100x normal indsats. Se vores <a href="/casinospil/spillemaskiner/bonus-buys" class="text-primary hover:underline">bonus buys guide</a>.</p><h2>Udløsere</h2><ul><li>3+ <a href="/ordbog/scatter" class="text-primary hover:underline">scatter-symboler</a></li><li>Specifikke bonussymboler</li><li>Tilfældig trigger</li><li>Bonus Buy</li></ul>`,
   },
