@@ -145,6 +145,9 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-anmeldelser/bet365-vs-unibet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/leovegas-vs-mr-green", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/danske-spil-vs-spilnu", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
+  { path: "/casino-anmeldelser/spilleautomaten-vs-spildansknu", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-16" },
+  { path: "/casino-anmeldelser/betinia-vs-campobet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-16" },
+  { path: "/casino-anmeldelser/swift-casino-vs-luna-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-16" },
 
   // ── Casino Spil & Live ──
   { path: "/live-casino", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-06" },

@@ -250,6 +250,9 @@ const OrdbogTerm = lazy(() => import("./pages/OrdbogTerm"));
 const Bet365VsUnibet = lazy(() => import("./pages/comparisons/Bet365VsUnibet"));
 const LeoVegasVsMrGreen = lazy(() => import("./pages/comparisons/LeoVegasVsMrGreen"));
 const DanskeSpilVsSpilnu = lazy(() => import("./pages/comparisons/DanskeSpilVsSpilnu"));
+const SpilleautomatenVsSpilDanskNu = lazy(() => import("./pages/comparisons/SpilleautomatenVsSpilDanskNu"));
+const BetiniaVsCampobet = lazy(() => import("./pages/comparisons/BetiniaVsCampobet"));
+const SwiftCasinoVsLunaCasino = lazy(() => import("./pages/comparisons/SwiftCasinoVsLunaCasino"));
 
 const VipProgram = lazy(() => import("./pages/VipProgram"));
 const CasinoMedMobilePay = lazy(() => import("./pages/CasinoMedMobilePay"));
@@ -460,6 +463,9 @@ const App = () => (
                 <Route path="/casino-anmeldelser/bet365-vs-unibet" element={<Bet365VsUnibet />} />
                 <Route path="/casino-anmeldelser/leovegas-vs-mr-green" element={<LeoVegasVsMrGreen />} />
                 <Route path="/casino-anmeldelser/danske-spil-vs-spilnu" element={<DanskeSpilVsSpilnu />} />
+                <Route path="/casino-anmeldelser/spilleautomaten-vs-spildansknu" element={<SpilleautomatenVsSpilDanskNu />} />
+                <Route path="/casino-anmeldelser/betinia-vs-campobet" element={<BetiniaVsCampobet />} />
+                <Route path="/casino-anmeldelser/swift-casino-vs-luna-casino" element={<SwiftCasinoVsLunaCasino />} />
                 <Route path="/casinospil" element={<Casinospil />} />
                 <Route path="/casinoer" element={<CasinoerHub />} />
                 <Route path="/casinoer/hurtig-udbetaling" element={<HurtigUdbetalingGuide />} />

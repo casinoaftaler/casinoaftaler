@@ -198,6 +198,9 @@ export const routeLabels: Record<string, string> = {
   "/casino-anmeldelser/bet365-vs-unibet": "bet365 vs Unibet",
   "/casino-anmeldelser/leovegas-vs-mr-green": "LeoVegas vs Mr Green",
   "/casino-anmeldelser/danske-spil-vs-spilnu": "Danske Spil vs Spilnu",
+  "/casino-anmeldelser/spilleautomaten-vs-spildansknu": "Spilleautomaten vs SpilDanskNu",
+  "/casino-anmeldelser/betinia-vs-campobet": "Betinia vs Campobet",
+  "/casino-anmeldelser/swift-casino-vs-luna-casino": "Swift Casino vs Luna Casino",
   // Casinospil
   "/casinospil": "Casinospil",
   "/casinospil/spillemaskiner": "Spillemaskiner",
@@ -421,6 +424,9 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/casino-anmeldelser/bet365-vs-unibet": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
   "/casino-anmeldelser/leovegas-vs-mr-green": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
   "/casino-anmeldelser/danske-spil-vs-spilnu": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
+  "/casino-anmeldelser/spilleautomaten-vs-spildansknu": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
+  "/casino-anmeldelser/betinia-vs-campobet": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
+  "/casino-anmeldelser/swift-casino-vs-luna-casino": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
 
   // Bonus cluster – all bound to /casino-bonus hub
   "/free-spins": [{ name: "Casino Bonus", path: "/casino-bonus" }],
