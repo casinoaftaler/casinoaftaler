@@ -702,7 +702,7 @@ export default function ForfatterAjse() {
 
         <FAQSection title="Ofte stillede spørgsmål om Ajse" faqs={faqs} />
 
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>
   );

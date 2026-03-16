@@ -661,7 +661,7 @@ export default function ForfatterKevin() {
 
         <FAQSection title="Ofte stillede spørgsmål om Kevin" faqs={faqs} />
 
-        <AuthorBio author="jonas" showCommunity={false} />
+        <AuthorBio author="kevin" showCommunity={false} />
       </div>
     </>
   );
