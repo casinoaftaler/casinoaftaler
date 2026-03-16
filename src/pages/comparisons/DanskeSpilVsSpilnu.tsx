@@ -158,7 +158,7 @@ export default function DanskeSpilVsSpilnu() {
       verdictWinner="A"
       faqs={faqs}
       ctaSlug="danske-spil"
-      readTime="30 min"
+      readTime="43 min"
     >
       {/* ═══════════════════════════════════════════
           ENTERPRISE BODY CONTENT – 8000+ WORDS
