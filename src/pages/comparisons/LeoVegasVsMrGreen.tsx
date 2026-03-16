@@ -153,7 +153,7 @@ export default function LeoVegasVsMrGreen() {
       verdictWinner="A"
       faqs={faqs}
       ctaSlug="leovegas"
-      readTime="44 min"
+      readTime="60 min"
     >
       {/* ═══════════════════════════════════════════
           ENTERPRISE BODY CONTENT – 8000+ WORDS
