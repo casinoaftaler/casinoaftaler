@@ -18,6 +18,7 @@ export interface CasinoComplianceRecord {
   last_checked: string;
   notes: string | null;
   updated_at: string;
+  created_at?: string;
 }
 
 export interface CasinoComplianceHistoryItem {
@@ -32,8 +33,27 @@ export interface CasinoComplianceHistoryItem {
   created_at: string;
 }
 
+export interface CasinoTrustHubSummary {
+  totalTracked: number;
+  validLicenses: number;
+  bonusCompliantCount: number;
+  averageScore: number | null;
+  lastChecked: string | null;
+  lastVerified: string | null;
+}
+
+const TRUST_HUB_PATHS = ["/casinoer", "/nye-casinoer", "/casino-bonus"] as const;
+
 export function isCasinoReviewTrustPath(path: string) {
   return path === "/casino-anmeldelser" || path.startsWith("/casino-anmeldelser/");
+}
+
+export function isCasinoTrustHubPath(path: string) {
+  return TRUST_HUB_PATHS.includes(path as (typeof TRUST_HUB_PATHS)[number]);
+}
+
+export function isCasinoTrustPath(path: string) {
+  return isCasinoReviewTrustPath(path) || isCasinoTrustHubPath(path);
 }
 
 export function getCasinoSlugFromPath(path: string) {
@@ -42,7 +62,44 @@ export function getCasinoSlugFromPath(path: string) {
 }
 
 export function getTrustRelevantPagePaths(slug: string) {
-  return [`/casino-anmeldelser/${slug}`, "/casino-anmeldelser", "/casinoer"];
+  return [
+    `/casino-anmeldelser/${slug}`,
+    "/casino-anmeldelser",
+    "/casinoer",
+    "/nye-casinoer",
+    "/casino-bonus",
+  ];
+}
+
+export function buildTrustHubSummary(records: CasinoComplianceRecord[]): CasinoTrustHubSummary | null {
+  if (records.length === 0) {
+    return null;
+  }
+
+  const validLicenses = records.filter((record) => record.license_status === "valid").length;
+  const bonusCompliantCount = records.filter((record) => record.bonus_compliant).length;
+  const averageScore = Math.round(
+    records.reduce((sum, record) => sum + (record.compliance_score ?? 0), 0) / records.length
+  );
+
+  const allVerificationDates = records.flatMap((record) => [record.license_verified_at, record.bonus_verified_at]);
+  const lastVerified = allVerificationDates
+    .filter((value): value is string => Boolean(value))
+    .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())[0] ?? null;
+
+  const lastChecked = records
+    .map((record) => record.last_checked)
+    .filter(Boolean)
+    .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())[0] ?? null;
+
+  return {
+    totalTracked: records.length,
+    validLicenses,
+    bonusCompliantCount,
+    averageScore: Number.isFinite(averageScore) ? averageScore : null,
+    lastChecked,
+    lastVerified,
+  };
 }
 
 export function getComplianceFieldLabel(field: string) {
@@ -82,5 +139,6 @@ export function formatComplianceHistoryEntry(entry: CasinoComplianceHistoryItem)
     before: formatComplianceValue(entry.old_value),
     after: formatComplianceValue(entry.new_value),
     sourceUrl: entry.source_url,
+    casinoLabel: entry.casino_slug.replace(/-/g, " "),
   };
 }
