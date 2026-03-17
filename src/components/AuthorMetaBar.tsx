@@ -201,6 +201,7 @@ export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified
       </div>
       {showAffiliateDisclaimer && <AffiliateDisclaimer />}
       {!showAffiliateDisclaimer && <div className="mb-6" />}
+      <CasinoTrustPanel pagePath={pathname} />
       <TableOfContents />
     </>
   );

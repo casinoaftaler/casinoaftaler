@@ -1109,6 +1109,9 @@ function AdminDashboard() {
               <PageMetadataAdminSection />
             </div>
             <div className="mt-6">
+              <CasinoTrustAdminSection />
+            </div>
+            <div className="mt-6">
               <PageMetadataSyncSection />
             </div>
             <div className="mt-6">
