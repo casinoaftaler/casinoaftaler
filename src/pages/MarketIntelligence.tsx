@@ -105,6 +105,8 @@ export default function MarketIntelligence() {
   );
 
   const featuredEvents = data?.featuredEvents?.length ? data.featuredEvents : data?.events?.slice(0, 3) ?? [];
+  const hasFeaturedEvents = featuredEvents.length > 0;
+  const hasEvents = (data?.events?.length ?? 0) > 0;
 
   return (
     <>
@@ -117,31 +119,37 @@ export default function MarketIntelligence() {
         jsonLd={[articleSchema, faqJsonLd, collectionSchema]}
       />
 
-      <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-primary/10 via-background to-accent/10">
-        <div className="container py-12 md:py-20">
-          <div className="max-w-4xl">
-            <Badge variant="secondary" className="mb-4 gap-2">
+      <section
+        className="relative overflow-hidden py-12 text-primary-foreground md:py-20"
+        style={{
+          backgroundImage: `linear-gradient(135deg, hsl(var(--primary) / 0.94), hsl(var(--accent) / 0.76)), url(${marketIntelligenceHero})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4 gap-2 border border-primary-foreground/15 bg-background/15 text-primary-foreground backdrop-blur-sm">
               <Sparkles className="h-3.5 w-3.5" />
-              Fase 3 · Public Market Intelligence
+              Verificeret markedsindsigt · 2026
             </Badge>
-            <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
               Markedsindsigt for danske casinoer
             </h1>
-            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-              Et offentligt lag oven på vores trust-data, hvor du kan følge verificerede licenssignaler,
-              bonusrammer og de seneste dokumenterede markedsbevægelser på tværs af operatører.
+            <p className="mt-4 text-lg leading-relaxed text-primary-foreground/85">
+              Følg dokumenterede licenssignaler, bonusrammer og konkrete markedsskift på tværs af danske operatører — samlet i et offentligt overblik, der er skabt til både spillere og research.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3 text-sm text-muted-foreground">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2">
-                <ShieldCheck className="h-4 w-4 text-primary" />
-                Offentligt verificerede events
+            <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-primary-foreground/85">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
+                <ShieldCheck className="h-4 w-4 text-primary-foreground" />
+                Verificerede markedssignaler
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2">
-                <TrendingUp className="h-4 w-4 text-primary" />
-                Snapshot af markedet lige nu
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
+                <TrendingUp className="h-4 w-4 text-primary-foreground" />
+                Live snapshot af markedet
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2">
-                <Landmark className="h-4 w-4 text-primary" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
+                <Landmark className="h-4 w-4 text-primary-foreground" />
                 Kilder fra licens- og bonussider
               </div>
             </div>
