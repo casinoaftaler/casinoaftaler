@@ -463,6 +463,7 @@ export default function MarketIntelligence() {
         )}
 
         <LatestNewsByCategory pagePath="/markedsindsigt" />
+        <RelatedGuides currentPath="/markedsindsigt" />
         <FAQSection title="Ofte stillede spørgsmål om Market Intelligence" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>
