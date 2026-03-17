@@ -15,10 +15,12 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
+import GuideHeroImage from "@/components/GuideHeroImage";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import marketIntelligenceHero from "@/assets/market-intelligence-hero.png";
 import { useMarketIntelligence } from "@/hooks/useMarketIntelligence";
 import { formatTimestampDanish, usePageLastmod } from "@/hooks/usePageLastmod";
 import {
@@ -30,6 +32,7 @@ import {
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80";
+const heroAlt = "Markedsindsigt for danske casinoer med live datafeeds, compliance-signaler og overvågede operatører";
 
 const faqs = [
   {
@@ -102,6 +105,8 @@ export default function MarketIntelligence() {
   );
 
   const featuredEvents = data?.featuredEvents?.length ? data.featuredEvents : data?.events?.slice(0, 3) ?? [];
+  const hasFeaturedEvents = featuredEvents.length > 0;
+  const hasEvents = (data?.events?.length ?? 0) > 0;
 
   return (
     <>
@@ -114,31 +119,37 @@ export default function MarketIntelligence() {
         jsonLd={[articleSchema, faqJsonLd, collectionSchema]}
       />
 
-      <section className="relative overflow-hidden border-b border-border bg-gradient-to-br from-primary/10 via-background to-accent/10">
-        <div className="container py-12 md:py-20">
-          <div className="max-w-4xl">
-            <Badge variant="secondary" className="mb-4 gap-2">
+      <section
+        className="relative overflow-hidden py-12 text-primary-foreground md:py-20"
+        style={{
+          backgroundImage: `linear-gradient(135deg, hsl(var(--primary) / 0.94), hsl(var(--accent) / 0.76)), url(${marketIntelligenceHero})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4 gap-2 border border-primary-foreground/15 bg-background/15 text-primary-foreground backdrop-blur-sm">
               <Sparkles className="h-3.5 w-3.5" />
-              Fase 3 · Public Market Intelligence
+              Verificeret markedsindsigt · 2026
             </Badge>
-            <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
               Markedsindsigt for danske casinoer
             </h1>
-            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-              Et offentligt lag oven på vores trust-data, hvor du kan følge verificerede licenssignaler,
-              bonusrammer og de seneste dokumenterede markedsbevægelser på tværs af operatører.
+            <p className="mt-4 text-lg leading-relaxed text-primary-foreground/85">
+              Følg dokumenterede licenssignaler, bonusrammer og konkrete markedsskift på tværs af danske operatører — samlet i et offentligt overblik, der er skabt til både spillere og research.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3 text-sm text-muted-foreground">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2">
-                <ShieldCheck className="h-4 w-4 text-primary" />
-                Offentligt verificerede events
+            <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm text-primary-foreground/85">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
+                <ShieldCheck className="h-4 w-4 text-primary-foreground" />
+                Verificerede markedssignaler
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2">
-                <TrendingUp className="h-4 w-4 text-primary" />
-                Snapshot af markedet lige nu
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
+                <TrendingUp className="h-4 w-4 text-primary-foreground" />
+                Live snapshot af markedet
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2">
-                <Landmark className="h-4 w-4 text-primary" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/15 bg-background/10 px-4 py-2 backdrop-blur-sm">
+                <Landmark className="h-4 w-4 text-primary-foreground" />
                 Kilder fra licens- og bonussider
               </div>
             </div>
@@ -148,6 +159,7 @@ export default function MarketIntelligence() {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="14 min" />
+        <GuideHeroImage src={marketIntelligenceHero} alt={heroAlt} />
 
         {isLoading ? (
           <Card className="border-border bg-card/80">
@@ -158,6 +170,42 @@ export default function MarketIntelligence() {
           </Card>
         ) : (
           <>
+            <section className="mb-12 grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+              <Card className="border-border bg-card/80">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    Hvorfor denne side findes
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+                  <p>
+                    Markedsindsigt samler de vigtigste verificerede signaler fra danske casinoer i ét offentligt overblik, så spillere ikke selv skal læse rå vilkårssider, licensreferencer og spredte opdateringer.
+                  </p>
+                  <p>
+                    Formålet er at vise, hvad der faktisk har betydning lige nu: licensstatus, bonusrammer og dokumenterede ændringer, der kan påvirke din vurdering af et casino.
+                  </p>
+                  <p>
+                    Det gør siden til et naturligt bindeled mellem <Link to="/casino-anmeldelser" className={linkClass}>anmeldelser</Link>, <Link to="/casino-bonus" className={linkClass}>bonusguides</Link> og <Link to="/casino-licenser" className={linkClass}>licensguiden</Link>.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-border bg-card/80">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <FileCheck className="h-5 w-5 text-primary" />
+                    Sådan bruger du siden
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+                  <p>Start med snapshot-sektionen for at få markedets aktuelle temperatur på få sekunder.</p>
+                  <p>Brug derefter de fremhævede signaler til at forstå, hvilke ændringer der er mest relevante netop nu.</p>
+                  <p>Afslut i operatøroversigten, hvor du kan klikke videre til de enkelte anmeldelser og få den fulde kontekst bag hvert brand.</p>
+                </CardContent>
+              </Card>
+            </section>
+
             <section className="mb-12">
               <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                 <Card className="border-border bg-card/80">
@@ -166,7 +214,7 @@ export default function MarketIntelligence() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-3xl font-bold text-foreground">{data?.snapshot?.totalTracked ?? 0}</p>
-                    <p className="mt-2 text-sm text-muted-foreground">Antal brands vi aktuelt overvåger i trust-motoren.</p>
+                    <p className="mt-2 text-sm text-muted-foreground">Antal brands vi aktuelt overvåger i det offentlige markedsoverblik.</p>
                   </CardContent>
                 </Card>
 
@@ -176,17 +224,17 @@ export default function MarketIntelligence() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-3xl font-bold text-foreground">{data?.snapshot?.validLicenses ?? 0}</p>
-                    <p className="mt-2 text-sm text-muted-foreground">Operatører, der aktuelt står som gyldige i vores seneste verificering.</p>
+                    <p className="mt-2 text-sm text-muted-foreground">Operatører, der står som gyldige i den seneste verificering.</p>
                   </CardContent>
                 </Card>
 
                 <Card className="border-border bg-card/80">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-muted-foreground">Bonus kontrolleret</CardTitle>
+                    <CardTitle className="text-sm font-medium text-muted-foreground">Bonusvilkår verificeret</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-3xl font-bold text-foreground">{data?.snapshot?.bonusCompliantCount ?? 0}</p>
-                    <p className="mt-2 text-sm text-muted-foreground">Brands med bonusvilkår, der matcher de nuværende danske rammer.</p>
+                    <p className="mt-2 text-sm text-muted-foreground">Brands hvor bonusrammerne matcher de nuværende danske krav.</p>
                   </CardContent>
                 </Card>
 
@@ -198,7 +246,7 @@ export default function MarketIntelligence() {
                     <p className="text-lg font-bold text-foreground">
                       {data?.snapshot?.lastChecked ? formatTimestampDanish(data.snapshot.lastChecked) : "Ikke registreret"}
                     </p>
-                    <p className="mt-2 text-sm text-muted-foreground">Seneste kendte kontroltidspunkt i det samlede markedsoverblik.</p>
+                    <p className="mt-2 text-sm text-muted-foreground">Seneste kendte kontroltidspunkt for hele markedsoverblikket.</p>
                   </CardContent>
                 </Card>
               </div>
@@ -208,50 +256,58 @@ export default function MarketIntelligence() {
               <div>
                 <div className="mb-4 flex items-center gap-2">
                   <Activity className="h-5 w-5 text-primary" />
-                  <h2 className="text-2xl font-bold">Fremhævede markedssignaler</h2>
+                  <h2 className="text-2xl font-bold">Vigtigste markedssignaler lige nu</h2>
                 </div>
                 <div className="space-y-4">
-                  {featuredEvents.map((event) => (
-                    <Card key={event.id} id={`event-${event.id}`} className="border-border bg-card/80">
-                      <CardHeader className="pb-3">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <Badge variant={getMarketIntelligenceImpactVariant(event.impact_level)}>
-                            {getMarketIntelligenceImpactLabel(event.impact_level)}
-                          </Badge>
-                          <Badge variant="outline">{getMarketIntelligenceCategoryLabel(event.category)}</Badge>
-                          <span className="text-xs text-muted-foreground">
-                            {formatTimestampDanish(event.published_at)}
-                          </span>
-                        </div>
-                        <CardTitle className="text-xl">{event.headline}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <p className="leading-relaxed text-muted-foreground">{event.summary}</p>
-                        <div className="flex flex-wrap items-center gap-3 text-sm">
-                          {event.casino_slug ? (
-                            <Link
-                              to={`/casino-anmeldelser/${event.casino_slug}`}
-                              className="inline-flex items-center gap-2 text-primary underline underline-offset-4 hover:text-primary/80"
-                            >
-                              Gå til anmeldelse
-                              <ArrowRight className="h-4 w-4" />
-                            </Link>
-                          ) : null}
-                          {event.source_url ? (
-                            <a
-                              href={event.source_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 text-primary underline underline-offset-4 hover:text-primary/80"
-                            >
-                              {event.source_label ?? "Kilde"}
-                              <ExternalLink className="h-4 w-4" />
-                            </a>
-                          ) : null}
-                        </div>
+                  {hasFeaturedEvents ? (
+                    featuredEvents.map((event) => (
+                      <Card key={event.id} id={`event-${event.id}`} className="border-border bg-card/80">
+                        <CardHeader className="pb-3">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <Badge variant={getMarketIntelligenceImpactVariant(event.impact_level)}>
+                              {getMarketIntelligenceImpactLabel(event.impact_level)}
+                            </Badge>
+                            <Badge variant="outline">{getMarketIntelligenceCategoryLabel(event.category)}</Badge>
+                            <span className="text-xs text-muted-foreground">
+                              {formatTimestampDanish(event.published_at)}
+                            </span>
+                          </div>
+                          <CardTitle className="text-xl">{event.headline}</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-3">
+                          <p className="leading-relaxed text-muted-foreground">{event.summary}</p>
+                          <div className="flex flex-wrap items-center gap-3 text-sm">
+                            {event.casino_slug ? (
+                              <Link
+                                to={`/casino-anmeldelser/${event.casino_slug}`}
+                                className="inline-flex items-center gap-2 text-primary underline underline-offset-4 hover:text-primary/80"
+                              >
+                                Gå til anmeldelse
+                                <ArrowRight className="h-4 w-4" />
+                              </Link>
+                            ) : null}
+                            {event.source_url ? (
+                              <a
+                                href={event.source_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-primary underline underline-offset-4 hover:text-primary/80"
+                              >
+                                {event.source_label ?? "Kilde"}
+                                <ExternalLink className="h-4 w-4" />
+                              </a>
+                            ) : null}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))
+                  ) : (
+                    <Card className="border-dashed border-border bg-card/80">
+                      <CardContent className="py-6 text-sm leading-relaxed text-muted-foreground">
+                        Der er endnu ingen fremhævede offentlige signaler at vise. Snapshot og operatøroversigten er stadig aktive, så du kan følge markedet, mens nye verificerede events publiceres.
                       </CardContent>
                     </Card>
-                  ))}
+                  )}
                 </div>
               </div>
 
@@ -260,33 +316,27 @@ export default function MarketIntelligence() {
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-lg">
                       <CheckCircle2 className="h-5 w-5 text-primary" />
-                      Hvad denne side gør
+                      Hvad der bliver verificeret
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3 text-sm text-muted-foreground">
-                    <p>
-                      Market Intelligence gør tekniske trust-signaler menneskeligt læsbare og offentligt linkbare.
-                    </p>
-                    <p>
-                      I stedet for rå ændringslogs får du et kurateret overblik over, hvad der faktisk betyder noget for spillere og marked.
-                    </p>
-                    <p>
-                      Det giver et stærkere E-E-A-T-lag omkring både <Link to="/casino-anmeldelser" className={linkClass}>anmeldelser</Link>, <Link to="/casino-bonus" className={linkClass}>bonusguides</Link> og <Link to="/casinoer" className={linkClass}>hub-sider</Link>.
-                    </p>
+                    <p>Licenssignaler kontrolleres op mod officielle myndighedskilder og registrerede licensreferencer.</p>
+                    <p>Bonussignaler kobles til operatørernes egne vilkårssider, så tal og krav kan dokumenteres.</p>
+                    <p>Kun ændringer med reel offentlig værdi publiceres som events på siden.</p>
                   </CardContent>
                 </Card>
 
                 <Card className="border-border bg-card/80">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-lg">
-                      <FileCheck className="h-5 w-5 text-primary" />
-                      Metode & kilder
+                      <ArrowRight className="h-5 w-5 text-primary" />
+                      Hvor går du videre herfra?
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3 text-sm text-muted-foreground">
-                    <p>Vi verificerer licenssignal mod officielle myndighedskilder og kobler bonussignaler til operatørernes egne vilkårssider.</p>
-                    <p>Events publiceres først, når de kan repræsenteres som et offentligt signal med dokumenterbar baggrund.</p>
-                    <p>Tekniske audit-logs bruges fortsat internt, men denne side er bygget som et offentligt datalag ovenpå dem.</p>
+                    <p><Link to="/casino-anmeldelser" className={linkClass}>Gå til casinoanmeldelser</Link> for at se den fulde vurdering af de brands, der optræder i signalerne.</p>
+                    <p><Link to="/casino-licenser" className={linkClass}>Læs licensguiden</Link> hvis du vil forstå de regulatoriske signaler bag markedsoverblikket.</p>
+                    <p><Link to="/casino-bonus" className={linkClass}>Se bonusguiden</Link> for at forstå bonusstrukturer, omsætning og de vilkår, der ligger bag vores kontrolpunkter.</p>
                   </CardContent>
                 </Card>
               </div>
@@ -295,34 +345,41 @@ export default function MarketIntelligence() {
             <Separator className="my-10" />
 
             <section className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold">Seneste verificerede events</h2>
+              <h2 className="mb-4 text-2xl font-bold">Seneste verificerede markedshændelser</h2>
               <div className="space-y-3">
-                {data?.events.map((event) => (
-                  <div
-                    key={event.id}
-                    className="rounded-xl border border-border bg-card/70 p-4 transition-colors hover:border-primary/30"
-                  >
-                    <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-                      <Badge variant={getMarketIntelligenceImpactVariant(event.impact_level)}>
-                        {getMarketIntelligenceImpactLabel(event.impact_level)}
-                      </Badge>
-                      <Badge variant="outline">{getMarketIntelligenceCategoryLabel(event.category)}</Badge>
-                      <span>{formatTimestampDanish(event.published_at)}</span>
+                {hasEvents ? (
+                  data?.events.map((event) => (
+                    <div
+                      key={event.id}
+                      className="rounded-xl border border-border bg-card/70 p-4 transition-colors hover:border-primary/30"
+                    >
+                      <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                        <Badge variant={getMarketIntelligenceImpactVariant(event.impact_level)}>
+                          {getMarketIntelligenceImpactLabel(event.impact_level)}
+                        </Badge>
+                        <Badge variant="outline">{getMarketIntelligenceCategoryLabel(event.category)}</Badge>
+                        <span>{formatTimestampDanish(event.published_at)}</span>
+                      </div>
+                      <h3 className="text-base font-semibold text-foreground">{event.headline}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{event.summary}</p>
                     </div>
-                    <h3 className="text-base font-semibold text-foreground">{event.headline}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{event.summary}</p>
-                  </div>
-                ))}
+                  ))
+                ) : (
+                  <Card className="border-dashed border-border bg-card/70">
+                    <CardContent className="py-6 text-sm leading-relaxed text-muted-foreground">
+                      Der er endnu ikke publiceret nok offentlige events til en fuld liste. Brug snapshot-sektionen og operatøroversigten nedenfor som det aktuelle referencepunkt, indtil næste verificerede opdatering går live.
+                    </CardContent>
+                  </Card>
+                )}
               </div>
             </section>
 
             <Separator className="my-10" />
 
             <section className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold">Operatøroversigt</h2>
-              <p className="mb-6 max-w-3xl text-muted-foreground leading-relaxed">
-                Tabellen viser de stærkeste aktuelle compliance-signaler i markedet. Brug den som et hurtigt
-                overblik, og dyk derefter ned i de enkelte anmeldelser for den fulde kontekst.
+              <h2 className="mb-4 text-2xl font-bold">Operatøroversigt med compliance-signaler</h2>
+              <p className="mb-6 max-w-3xl leading-relaxed text-muted-foreground">
+                Tabellen viser de stærkeste aktuelle signaler i markedet. Brug den som et hurtigt overblik, og klik derefter videre til anmeldelserne for den fulde kontekst omkring hvert casino.
               </p>
 
               <div className="overflow-x-auto rounded-xl border border-border bg-card/70">
@@ -371,7 +428,7 @@ export default function MarketIntelligence() {
             <Separator className="my-10" />
 
             <section className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold">Relaterede trust-hubs og money-pages</h2>
+              <h2 className="mb-4 text-2xl font-bold">Relaterede guides og næste skridt</h2>
               <div className="grid gap-4 md:grid-cols-2">
                 {internalLinks.map((item) => (
                   <Link key={item.to} to={item.to}>
