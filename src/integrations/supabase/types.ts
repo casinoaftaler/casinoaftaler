@@ -1256,6 +1256,60 @@ export type Database = {
           },
         ]
       }
+      market_intelligence_events: {
+        Row: {
+          casino_slug: string | null
+          category: string
+          created_at: string
+          effective_date: string | null
+          event_type: string
+          headline: string
+          id: string
+          impact_level: string
+          is_featured: boolean
+          is_public: boolean
+          published_at: string
+          source_label: string | null
+          source_url: string | null
+          summary: string
+          updated_at: string
+        }
+        Insert: {
+          casino_slug?: string | null
+          category: string
+          created_at?: string
+          effective_date?: string | null
+          event_type: string
+          headline: string
+          id?: string
+          impact_level?: string
+          is_featured?: boolean
+          is_public?: boolean
+          published_at?: string
+          source_label?: string | null
+          source_url?: string | null
+          summary: string
+          updated_at?: string
+        }
+        Update: {
+          casino_slug?: string | null
+          category?: string
+          created_at?: string
+          effective_date?: string | null
+          event_type?: string
+          headline?: string
+          id?: string
+          impact_level?: string
+          is_featured?: boolean
+          is_public?: boolean
+          published_at?: string
+          source_label?: string | null
+          source_url?: string | null
+          summary?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       monthly_tournament_archives: {
         Row: {
           category: string

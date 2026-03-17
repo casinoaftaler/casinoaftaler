@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { CasinoTrustPanel } from "@/components/CasinoTrustPanel";
+import { MarketIntelligenceTeaser } from "@/components/MarketIntelligenceTeaser";
 import { isCasinoTrustPath } from "@/lib/casinoTrust";
 
 interface FAQ {

@@ -229,6 +229,16 @@ export const seoRoutes: SeoRoute[] = ([
 
   // ── Bonus Guides ──
   { path: "/casino-bonus", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-06" },
+  {
+    path: "/markedsindsigt",
+    changefreq: "daily",
+    priority: 0.85,
+    lastmod: "2026-03-17",
+    author: "jonas",
+    articleTitle: "Markedsindsigt 2026 – Offentligt casinooverblik",
+    articleCategory: "Analyse",
+    articleExcerpt: "Offentligt overblik over verificerede licens-, bonus- og compliance-opdateringer på det danske casinomarked.",
+  },
   { path: "/velkomstbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/free-spins", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/free-spins-i-dag", changefreq: "daily", priority: 0.9, lastmod: "2026-03-10" },

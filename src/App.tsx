@@ -24,6 +24,7 @@ const NyeCasinoerLavWagering = lazy(() => import("./pages/nye-casinoer/NyeCasino
 const BedsteNyeCasinoer = lazy(() => import("./pages/nye-casinoer/BedsteNyeCasinoer"));
 const NyeVsEtablerede = lazy(() => import("./pages/nye-casinoer/NyeVsEtablerede"));
 const CasinoLicenser = lazy(() => import("./pages/CasinoLicenser"));
+const MarketIntelligence = lazy(() => import("./pages/MarketIntelligence"));
 const TopCasinoOnline = lazy(() => import("./pages/TopCasinoOnline"));
 
 // Lazy load remaining pages
@@ -375,9 +376,10 @@ const App = () => (
                 <Route path="/nyheder" element={<Navigate to="/casino-nyheder" replace />} />
                 <Route path="/casino-nyheder" element={<CasinoNyheder />} />
                 <Route path="/casino-nyheder/:slug" element={<CasinoNyhedArticle />} />
+                <Route path="/markedsindsigt" element={<MarketIntelligence />} />
                 <Route path="/ordbog" element={<Ordbog />} />
                 <Route path="/ordbog/:slug" element={<OrdbogTerm />} />
-                
+
                 <Route path="/casino-bonus" element={<CasinoBonus />} />
                 <Route path="/ansvarligt-spil" element={<AnsvarligtSpil />} />
                 <Route path="/ansvarligt-spil/rofus" element={<RofusGuide />} />
