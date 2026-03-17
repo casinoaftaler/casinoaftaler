@@ -65,6 +65,7 @@ import { SlotCatalogAdminSection } from "@/components/admin/SlotCatalogAdminSect
 import { MonthlyTournamentAdmin } from "@/components/admin/MonthlyTournamentAdmin";
 import { PageMetadataAdminSection } from "@/components/PageMetadataAdminSection";
 import { PageMetadataSyncSection } from "@/components/admin/PageMetadataSyncSection";
+import { CasinoTrustAdminSection } from "@/components/admin/CasinoTrustAdminSection";
 import { ErrorLogsSection } from "@/components/admin/ErrorLogsSection";
 import { CacheClearSection } from "@/components/admin/CacheClearSection";
 import { useQueryClient } from "@tanstack/react-query";
@@ -1106,6 +1107,9 @@ function AdminDashboard() {
             </Card>
             <div className="mt-6">
               <PageMetadataAdminSection />
+            </div>
+            <div className="mt-6">
+              <CasinoTrustAdminSection />
             </div>
             <div className="mt-6">
               <PageMetadataSyncSection />

@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TableOfContents } from "@/components/TableOfContents";
+import { CasinoTrustPanel } from "@/components/CasinoTrustPanel";
 import { getRouteMetadata, formatLastmodDanish } from "@/lib/seoRoutes";
 import { usePageLastmod, formatTimestampDanish } from "@/hooks/usePageLastmod";
 
@@ -177,7 +178,7 @@ export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified
           const checkerInfo = authorConfig[resolvedChecker as keyof typeof authorConfig];
           return checkerInfo ? (
             <div className="flex items-center gap-2">
-              <Badge className="bg-green-600 hover:bg-green-700 text-white gap-1">
+              <Badge variant="secondary" className="gap-1">
                 <CheckCircle className="h-3.5 w-3.5" />
                 Faktatjekket
               </Badge>
@@ -200,6 +201,7 @@ export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified
       </div>
       {showAffiliateDisclaimer && <AffiliateDisclaimer />}
       {!showAffiliateDisclaimer && <div className="mb-6" />}
+      <CasinoTrustPanel pagePath={pathname} />
       <TableOfContents />
     </>
   );
