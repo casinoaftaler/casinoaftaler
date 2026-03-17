@@ -1,8 +1,12 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useAuth } from "@/hooks/useAuth";
+import { useCasinoPartner } from "@/hooks/useCasinoPartner";
 import { usePageLastmod, formatTimestampDanish } from "@/hooks/usePageLastmod";
 import { useCasinoTrust } from "@/hooks/useCasinoTrust";
+import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import {
   formatComplianceHistoryEntry,
   getComplianceStatusLabel,
