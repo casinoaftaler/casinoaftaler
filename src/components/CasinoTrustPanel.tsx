@@ -150,6 +150,8 @@ export function CasinoTrustPanel({ pagePath }: CasinoTrustPanelProps) {
   const historyEntries = history.map(formatComplianceHistoryEntry);
   const pageUpdatedAt = pageMeta?.updated_at ? formatTimestampDanish(pageMeta.updated_at) : "Ikke registreret";
 
+  const showPartnerCta = Boolean(casinoSlug && partnerCasino?.has_affiliate);
+
   if (isHubPath) {
     const hubCopy = getHubCopy(pagePath);
     const lastChecked = summary?.lastChecked ? formatTimestampDanish(summary.lastChecked) : pageUpdatedAt;
@@ -158,9 +160,7 @@ export function CasinoTrustPanel({ pagePath }: CasinoTrustPanelProps) {
     const validLicenses = summary?.validLicenses ?? 0;
     const bonusChecked = summary?.bonusCompliantCount ?? 0;
 
-  const showPartnerCta = Boolean(casinoSlug && partnerCasino?.has_affiliate);
-
-  return (
+    return (
       <Card className="mb-6 border-border bg-card/80">
         <CardHeader className="pb-4">
           <div className="flex flex-wrap items-start justify-between gap-3">
