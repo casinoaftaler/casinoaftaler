@@ -17,6 +17,7 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import GuideHeroImage from "@/components/GuideHeroImage";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { RelatedGuides } from "@/components/RelatedGuides";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";

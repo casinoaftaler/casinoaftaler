@@ -1212,10 +1212,15 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     } else {
       siblings = casinoGuidesSiblings.filter(g => g.to !== path).slice(0, MAX_SIBLINGS);
     }
-    const crossClusterLinks = [bonusHub, reviewHub, paymentHub];
+    const crossClusterLinks = [
+      bonusHub,
+      reviewHub,
+      { to: "/markedsindsigt", label: "Markedsindsigt", icon: TrendingUp, desc: "Se hvilke licens- og bonussignaler der faktisk ændrer markedet" },
+      paymentHub,
+    ];
     return {
       guides: [{ to: "/casinoer", label: "Alle Casinoer", icon: Layers, desc: "Komplet hub for alle casino-kategorier" }, ...siblings, ...crossClusterLinks].slice(0, MAX_SIBLINGS + 1 + MAX_CROSS_CLUSTER),
-      subtitle: "Udforsk andre casino-guides, bonusser og anmeldelser.",
+      subtitle: "Udforsk andre casino-guides, anmeldelser, markedsdata og bonusser.",
     };
   }
 

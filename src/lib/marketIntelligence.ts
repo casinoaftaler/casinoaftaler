@@ -91,16 +91,38 @@ export function buildMarketIntelligenceSchema(events: MarketIntelligenceEvent[],
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Markedsindsigt for danske casinoer",
+    headline: "Markedsindsigt 2026 – verificeret overblik over danske casinoer",
     url: `${SITE_URL}/markedsindsigt`,
     description:
       "Offentligt overblik over verificerede licens-, bonus- og compliance-opdateringer på det danske casinomarked.",
+    inLanguage: "da-DK",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Casinoaftaler.dk",
+      url: SITE_URL,
+    },
+    audience: {
+      "@type": "Audience",
+      audienceType: "Danske casinospillere",
+    },
     about: [
       { "@type": "Thing", name: "Danske online casinoer" },
       { "@type": "Thing", name: "Casino compliance" },
       { "@type": "Thing", name: "Spillemyndigheden" },
+      { "@type": "Thing", name: "Velkomstbonusser og omsætningskrav" },
+    ],
+    significantLink: [
+      `${SITE_URL}/casino-anmeldelser`,
+      `${SITE_URL}/casino-bonus`,
+      `${SITE_URL}/casino-licenser`,
+      `${SITE_URL}/velkomstbonus`,
+      `${SITE_URL}/omsaetningskrav`,
+      `${SITE_URL}/free-spins-i-dag`,
+      `${SITE_URL}/nye-casinoer`,
     ],
     mainEntity: {
       "@type": "ItemList",
+      name: "Seneste verificerede markedshændelser",
       numberOfItems: events.length,
       itemListElement: events.slice(0, 10).map((event, index) => ({
         "@type": "ListItem",
