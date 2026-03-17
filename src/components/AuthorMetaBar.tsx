@@ -178,7 +178,7 @@ export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified
           const checkerInfo = authorConfig[resolvedChecker as keyof typeof authorConfig];
           return checkerInfo ? (
             <div className="flex items-center gap-2">
-              <Badge className="bg-green-600 hover:bg-green-700 text-white gap-1">
+              <Badge variant="secondary" className="gap-1">
                 <CheckCircle className="h-3.5 w-3.5" />
                 Faktatjekket
               </Badge>
