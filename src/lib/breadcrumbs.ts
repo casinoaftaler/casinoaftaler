@@ -42,6 +42,7 @@ export const routeLabels: Record<string, string> = {
   "/live-casino/udbydere": "Live Casino Udbydere",
   // Casino Bonus
   "/casino-bonus": "Casino Bonus",
+  "/markedsindsigt": "Markedsindsigt",
   "/free-spins": "Free Spins",
   "/free-spins-i-dag": "Free Spins i Dag",
   "/velkomstbonus": "Velkomstbonus",

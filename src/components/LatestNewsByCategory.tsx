@@ -39,6 +39,7 @@ const PAGE_CATEGORY_MAP: Record<string, { categories: string[]; tags: string[]; 
   "/nye-casinoer/vs-etablerede": { categories: ["nye-casinoer", "markedsbevægelser"], tags: ["nyt casino"], label: "nye vs. etablerede casinoer" },
   // Bonus-guides
   "/casino-bonus": { categories: ["nye-casinoer", "regulering"], tags: ["bonus", "velkomstbonus"], label: "casino-bonusser" },
+  "/markedsindsigt": { categories: ["regulering", "markedsbevægelser"], tags: ["licens", "bonus", "compliance"], label: "markedsindsigt" },
   "/bonus-uden-omsaetningskrav": { categories: ["nye-casinoer", "regulering"], tags: ["bonus", "omsætningsfri"], label: "bonus uden omsætningskrav" },
   "/bonus-uden-indbetaling": { categories: ["nye-casinoer"], tags: ["bonus", "ingen indbetaling"], label: "bonus uden indbetaling" },
   "/cashback-bonus": { categories: ["nye-casinoer"], tags: ["cashback", "bonus"], label: "cashback bonus" },
