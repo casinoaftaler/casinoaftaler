@@ -1,8 +1,12 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useAuth } from "@/hooks/useAuth";
+import { useCasinoPartner } from "@/hooks/useCasinoPartner";
 import { usePageLastmod, formatTimestampDanish } from "@/hooks/usePageLastmod";
 import { useCasinoTrust } from "@/hooks/useCasinoTrust";
+import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import {
   formatComplianceHistoryEntry,
   getComplianceStatusLabel,
@@ -118,8 +122,10 @@ function getHubCopy(pagePath: string) {
 }
 
 export function CasinoTrustPanel({ pagePath }: CasinoTrustPanelProps) {
+  const { user } = useAuth();
   const { data: pageMeta } = usePageLastmod(pagePath);
   const { compliance, summary, history, isLoading, casinoSlug } = useCasinoTrust(pagePath);
+  const { data: partnerCasino } = useCasinoPartner(casinoSlug);
   const isHubPath = isCasinoTrustHubPath(pagePath);
 
   if (!isCasinoTrustPath(pagePath)) {
@@ -143,6 +149,8 @@ export function CasinoTrustPanel({ pagePath }: CasinoTrustPanelProps) {
 
   const historyEntries = history.map(formatComplianceHistoryEntry);
   const pageUpdatedAt = pageMeta?.updated_at ? formatTimestampDanish(pageMeta.updated_at) : "Ikke registreret";
+
+  const showPartnerCta = Boolean(casinoSlug && partnerCasino?.has_affiliate);
 
   if (isHubPath) {
     const hubCopy = getHubCopy(pagePath);
@@ -274,11 +282,29 @@ export function CasinoTrustPanel({ pagePath }: CasinoTrustPanelProps) {
               description="Verificeret mod Spillemyndighedens tilladelsesopslag"
               url={compliance.license_source_url}
             />
-            <TrustSourceLink
-              label="Bonusvilkår"
-              description="Senest anvendte operatørkilde for bonus og vilkår"
-              url={compliance.bonus_source_url}
-            />
+            <div className="space-y-3">
+              <TrustSourceLink
+                label="Bonusvilkår"
+                description="Senest anvendte operatørkilde for bonus og vilkår"
+                url={compliance.bonus_source_url}
+              />
+              {showPartnerCta ? (
+                <div className="rounded-lg border border-border bg-muted/20 p-3">
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground">Partnerlink</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Gå til {partnerCasino?.name ?? compliance.casino_name} via vores partnerlink, hvis du vil oprette dig.
+                  </p>
+                  <Button
+                    type="button"
+                    className="mt-3 w-full md:w-auto"
+                    onClick={() => getAffiliateRedirect(casinoSlug!, user?.id)}
+                    data-sponsored="true"
+                  >
+                    Gå til casino via partnerlink
+                  </Button>
+                </div>
+              ) : null}
+            </div>
           </div>
         ) : null}
 
