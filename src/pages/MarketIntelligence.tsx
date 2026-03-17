@@ -513,25 +513,60 @@ export default function MarketIntelligence() {
             <Separator className="my-10" />
 
             <section className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold">Seneste verificerede markedshændelser</h2>
-              <div className="space-y-3">
+              <div className="mb-4 flex items-center gap-2">
+                <TrendingUp className="h-5 w-5 text-primary" />
+                <h2 className="text-2xl font-bold">Seneste verificerede markedshændelser</h2>
+              </div>
+              <div className="space-y-4">
                 {hasEvents ? (
-                  data?.events.map((event) => (
-                    <div
-                      key={event.id}
-                      className="rounded-xl border border-border bg-card/70 p-4 transition-colors hover:border-primary/30"
-                    >
-                      <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-                        <Badge variant={getMarketIntelligenceImpactVariant(event.impact_level)}>
-                          {getMarketIntelligenceImpactLabel(event.impact_level)}
-                        </Badge>
-                        <Badge variant="outline">{getMarketIntelligenceCategoryLabel(event.category)}</Badge>
-                        <span>{formatTimestampDanish(event.published_at)}</span>
-                      </div>
-                      <h3 className="text-base font-semibold text-foreground">{event.headline}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{event.summary}</p>
-                    </div>
-                  ))
+                  data?.events.map((event) => {
+                    const eventCasino = getCasinoBySlug(event.casino_slug);
+
+                    return (
+                      <Card
+                        key={event.id}
+                        className="overflow-hidden border-border bg-card/80 transition-colors hover:border-primary/30"
+                      >
+                        <CardContent className="p-5">
+                          <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                            <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl border border-border bg-background/60 p-3 shadow-sm">
+                              {eventCasino?.logo_url ? (
+                                <img
+                                  src={eventCasino.logo_url}
+                                  alt={`${eventCasino.name} logo`}
+                                  width={56}
+                                  height={56}
+                                  className="h-full w-full object-contain"
+                                  loading="lazy"
+                                />
+                              ) : (
+                                <Landmark className="h-6 w-6 text-primary" />
+                              )}
+                            </div>
+
+                            <div className="min-w-0 flex-1">
+                              <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                                <Badge variant={getMarketIntelligenceImpactVariant(event.impact_level)}>
+                                  {getMarketIntelligenceImpactLabel(event.impact_level)}
+                                </Badge>
+                                <Badge variant="outline">{getMarketIntelligenceCategoryLabel(event.category)}</Badge>
+                                <span>{formatTimestampDanish(event.published_at)}</span>
+                              </div>
+
+                              {eventCasino ? (
+                                <p className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                                  {eventCasino.name}
+                                </p>
+                              ) : null}
+
+                              <h3 className="text-base font-semibold text-foreground">{event.headline}</h3>
+                              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{event.summary}</p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })
                 ) : (
                   <Card className="border-dashed border-border bg-card/70">
                     <CardContent className="py-6 text-sm leading-relaxed text-muted-foreground">
