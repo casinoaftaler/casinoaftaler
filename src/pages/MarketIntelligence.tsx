@@ -20,7 +20,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import marketIntelligenceHero from "@/assets/market-intelligence-hero.png";
+import marketIntelligenceHero from "@/assets/heroes/markedsindsigt-hero.jpg";
 import { useMarketIntelligence } from "@/hooks/useMarketIntelligence";
 import { formatTimestampDanish, usePageLastmod } from "@/hooks/usePageLastmod";
 import {
@@ -32,7 +32,7 @@ import {
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80";
-const heroAlt = "Markedsindsigt for danske casinoer med live datafeeds, compliance-signaler og overvågede operatører";
+const heroAlt = "Markedsindsigt for danske casinoer med verificerede licenssignaler, compliance-data og bonusanalyse";
 
 const faqs = [
   {
@@ -120,9 +120,9 @@ export default function MarketIntelligence() {
       />
 
       <section
-        className="relative overflow-hidden py-12 text-primary-foreground md:py-20"
+        className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
-          backgroundImage: `linear-gradient(135deg, hsl(var(--primary) / 0.94), hsl(var(--accent) / 0.76)), url(${marketIntelligenceHero})`,
+          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
