@@ -614,8 +614,13 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   // Casino review hub
   if (path === "/casino-anmeldelser") {
     return {
-      guides: [...allReviews.slice(0, MAX_SIBLINGS), paymentHub, casinospilHub, bonusHub],
-      subtitle: "Udforsk vores dybdegående casino anmeldelser, betalingsmetoder og bonusser.",
+      guides: [
+        ...allReviews.slice(0, MAX_SIBLINGS),
+        { to: "/markedsindsigt", label: "Markedsindsigt", icon: TrendingUp, desc: "Se verificerede licens- og bonussignaler på tværs af markedet" },
+        paymentHub,
+        bonusHub,
+      ],
+      subtitle: "Udforsk casino anmeldelser, markedsdata, betalingsmetoder og bonusser.",
     };
   }
 
