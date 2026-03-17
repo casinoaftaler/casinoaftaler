@@ -176,7 +176,7 @@ const OmTeamet = () => {
   return (
     <>
       <SEO
-        title="Om teamet bag Casinoaftaler.dk | Streamere & Casinoeksperter"
+        title="Om teamet bag Casinoaftaler | Streamere & Casinoeksperter"
         description="Mød teamet bag Casinoaftaler.dk. Læs om Jonas, Kevin, Ajse og Niklas – casino-streamere, redaktører og eksperter bag test, anmeldelser og udvikling."
         jsonLd={[organizationJsonLd]}
       />

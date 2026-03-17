@@ -288,7 +288,7 @@ export default function Forfatter() {
   return (
     <>
       <SEO
-        title="Jonas – Forfatter & Grundlægger | Casinoaftaler.dk"
+        title="Jonas – Forfatter & Grundlægger | Casinoaftaler"
         description="Mød Jonas, grundlæggeren af Casinoaftaler.dk og casino-streamer på Twitch. Læs om hans baggrund, streamingstil og passion for casinospil."
         jsonLd={[faqJsonLd, personSchema, ...videoSchemas]}
       />

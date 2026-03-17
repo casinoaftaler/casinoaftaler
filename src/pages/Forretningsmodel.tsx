@@ -56,7 +56,7 @@ const Forretningsmodel = () => {
   return (
     <>
       <SEO
-        title="Forretningsmodel – Sådan finansieres Casinoaftaler.dk"
+        title="Forretningsmodel – Sådan finansieres | Casinoaftaler"
         description="Forstå hvordan Casinoaftaler.dk finansieres gennem affiliate-partnerskaber, og hvorfor vores anmeldelser forbliver uafhængige og troværdige."
         jsonLd={[articleJsonLd]}
       />

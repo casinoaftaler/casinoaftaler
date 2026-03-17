@@ -170,7 +170,7 @@ const SaadanTesterVi = () => {
   return (
     <>
       <SEO
-        title="Sådan tester vi casinoer | Vores testmetode hos Casinoaftaler.dk"
+        title="Sådan tester vi casinoer | Vores testmetode | Casinoaftaler"
         description="Se hvordan vi tester og vurderer online casinoer i Danmark. Læs om vores testkriterier, vurderingsmodel og gennemsigtige metode."
         jsonLd={[articleJsonLd, faqJsonLd]}
       />
