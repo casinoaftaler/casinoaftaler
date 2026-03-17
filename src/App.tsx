@@ -376,9 +376,10 @@ const App = () => (
                 <Route path="/nyheder" element={<Navigate to="/casino-nyheder" replace />} />
                 <Route path="/casino-nyheder" element={<CasinoNyheder />} />
                 <Route path="/casino-nyheder/:slug" element={<CasinoNyhedArticle />} />
+                <Route path="/markedsindsigt" element={<MarketIntelligence />} />
                 <Route path="/ordbog" element={<Ordbog />} />
                 <Route path="/ordbog/:slug" element={<OrdbogTerm />} />
-                
+
                 <Route path="/casino-bonus" element={<CasinoBonus />} />
                 <Route path="/ansvarligt-spil" element={<AnsvarligtSpil />} />
                 <Route path="/ansvarligt-spil/rofus" element={<RofusGuide />} />
