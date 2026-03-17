@@ -282,11 +282,29 @@ export function CasinoTrustPanel({ pagePath }: CasinoTrustPanelProps) {
               description="Verificeret mod Spillemyndighedens tilladelsesopslag"
               url={compliance.license_source_url}
             />
-            <TrustSourceLink
-              label="Bonusvilkår"
-              description="Senest anvendte operatørkilde for bonus og vilkår"
-              url={compliance.bonus_source_url}
-            />
+            <div className="space-y-3">
+              <TrustSourceLink
+                label="Bonusvilkår"
+                description="Senest anvendte operatørkilde for bonus og vilkår"
+                url={compliance.bonus_source_url}
+              />
+              {showPartnerCta ? (
+                <div className="rounded-lg border border-border bg-muted/20 p-3">
+                  <p className="text-xs uppercase tracking-wide text-muted-foreground">Partnerlink</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Gå til {partnerCasino?.name ?? compliance.casino_name} via vores partnerlink, hvis du vil oprette dig.
+                  </p>
+                  <Button
+                    type="button"
+                    className="mt-3 w-full md:w-auto"
+                    onClick={() => getAffiliateRedirect(casinoSlug!, user?.id)}
+                    data-sponsored="true"
+                  >
+                    Gå til casino via partnerlink
+                  </Button>
+                </div>
+              ) : null}
+            </div>
           </div>
         ) : null}
 
