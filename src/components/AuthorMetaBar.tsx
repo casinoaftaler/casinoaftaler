@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TableOfContents } from "@/components/TableOfContents";
-import { CasinoTrustPanel } from "@/components/CasinoTrustPanel";
 import { getRouteMetadata, formatLastmodDanish } from "@/lib/seoRoutes";
 import { usePageLastmod, formatTimestampDanish } from "@/hooks/usePageLastmod";
 

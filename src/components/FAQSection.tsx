@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { useLocation } from "react-router-dom";
 import { HelpCircle } from "lucide-react";
 import {
   Accordion,
@@ -6,6 +7,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { CasinoTrustPanel } from "@/components/CasinoTrustPanel";
+import { isCasinoTrustPath } from "@/lib/casinoTrust";
 
 interface FAQ {
   question: string;
