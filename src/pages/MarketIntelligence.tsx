@@ -72,14 +72,24 @@ const internalLinks = [
     text: "Forstå bonusstrukturerne og de matematiske rammer bag de verificerede bonussignaler.",
   },
   {
-    to: "/casinoer",
-    title: "Casinoer",
-    text: "Brug vores hovedhub til at sammenligne danske casinoer på tværs af betaling, RTP og sikkerhed.",
-  },
-  {
     to: "/casino-licenser",
     title: "Casino Licenser",
     text: "Læs den komplette guide til dansk licens, tilsyn og hvorfor licensstatus er afgørende.",
+  },
+  {
+    to: "/velkomstbonus",
+    title: "Velkomstbonus",
+    text: "Gå videre til den vigtigste money-page for spillere, der vil sammenligne reelle bonusrammer.",
+  },
+  {
+    to: "/omsaetningskrav",
+    title: "Omsætningskrav",
+    text: "Brug vores forklaring på wagering til at tolke, om et markedssignal faktisk er værdifuldt.",
+  },
+  {
+    to: "/free-spins-i-dag",
+    title: "Free Spins i Dag",
+    text: "Se de aktuelle free spins-tilbud og koblingen mellem daglige kampagner og compliance.",
   },
 ];
 
