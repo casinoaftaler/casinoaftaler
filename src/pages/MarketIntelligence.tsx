@@ -106,9 +106,9 @@ export default function MarketIntelligence() {
     url: `${SITE_URL}/markedsindsigt`,
     datePublished: "2026-03-17",
     dateModified,
+    articleType: "AnalysisNewsArticle",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
-    type: "WebPage",
   });
 
   const collectionSchema = buildMarketIntelligenceSchema(
