@@ -122,8 +122,10 @@ function getHubCopy(pagePath: string) {
 }
 
 export function CasinoTrustPanel({ pagePath }: CasinoTrustPanelProps) {
+  const { user } = useAuth();
   const { data: pageMeta } = usePageLastmod(pagePath);
   const { compliance, summary, history, isLoading, casinoSlug } = useCasinoTrust(pagePath);
+  const { data: partnerCasino } = useCasinoPartner(casinoSlug);
   const isHubPath = isCasinoTrustHubPath(pagePath);
 
   if (!isCasinoTrustPath(pagePath)) {
