@@ -158,7 +158,9 @@ export function CasinoTrustPanel({ pagePath }: CasinoTrustPanelProps) {
     const validLicenses = summary?.validLicenses ?? 0;
     const bonusChecked = summary?.bonusCompliantCount ?? 0;
 
-    return (
+  const showPartnerCta = Boolean(casinoSlug && partnerCasino?.has_affiliate);
+
+  return (
       <Card className="mb-6 border-border bg-card/80">
         <CardHeader className="pb-4">
           <div className="flex flex-wrap items-start justify-between gap-3">
