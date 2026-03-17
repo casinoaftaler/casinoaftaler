@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { useLocation } from "react-router-dom";
 import { HelpCircle } from "lucide-react";
 import {
   Accordion,
@@ -6,6 +7,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { CasinoTrustPanel } from "@/components/CasinoTrustPanel";
+import { isCasinoTrustPath } from "@/lib/casinoTrust";
 
 interface FAQ {
   question: string;
@@ -48,30 +51,36 @@ const defaultFaqs: FAQ[] = [
 ];
 
 export const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(function FAQSection({ title = "Ofte Stillede Spørgsmål", faqs = defaultFaqs }, ref) {
+  const { pathname } = useLocation();
+  const showTrustPanel = isCasinoTrustPath(pathname);
+
   return (
-    <section ref={ref} className="mb-12">
-      <div className="rounded-xl border border-border bg-card p-6 md:p-8">
-        <h2 className="mb-6 text-3xl font-bold flex items-center gap-2">
-          <HelpCircle className="h-8 w-8 text-primary" />
-          {title}
-        </h2>
-        <Accordion type="single" collapsible className="space-y-3">
-          {faqs.map((faq, index) => (
-            <AccordionItem
-              key={index}
-              value={`item-${index}`}
-              className="rounded-lg border border-border bg-background px-6"
-            >
-              <AccordionTrigger className="text-left font-semibold hover:no-underline py-5">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed text-base pb-5">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
-    </section>
+    <>
+      {showTrustPanel && <CasinoTrustPanel pagePath={pathname} />}
+      <section ref={ref} className="mb-12">
+        <div className="rounded-xl border border-border bg-card p-6 md:p-8">
+          <h2 className="mb-6 flex items-center gap-2 text-3xl font-bold">
+            <HelpCircle className="h-8 w-8 text-primary" />
+            {title}
+          </h2>
+          <Accordion type="single" collapsible className="space-y-3">
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="rounded-lg border border-border bg-background px-6"
+              >
+                <AccordionTrigger className="py-5 text-left font-semibold hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="pb-5 text-base leading-relaxed text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+    </>
   );
 });

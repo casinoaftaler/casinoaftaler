@@ -131,13 +131,28 @@ export function getComplianceStatusLabel(status: CasinoComplianceRecord["license
   return formatComplianceValue(status);
 }
 
+function getComplianceSourceLabel(field: string) {
+  if (field === "license_source_url") return "Licenskilde";
+  if (field === "bonus_source_url") return "Bonuskilde";
+  if (field.startsWith("license")) return "Licenskilde";
+  if (field.startsWith("bonus")) return "Bonuskilde";
+  return "Kilde";
+}
+
 export function formatComplianceHistoryEntry(entry: CasinoComplianceHistoryItem) {
+  const isSourceChange = entry.field_changed === "license_source_url" || entry.field_changed === "bonus_source_url";
+  const before = formatComplianceValue(entry.old_value);
+  const after = formatComplianceValue(entry.new_value);
+
   return {
     id: entry.id,
     title: getComplianceFieldLabel(entry.field_changed),
     timestamp: formatTimestampDanish(entry.changed_at),
-    before: formatComplianceValue(entry.old_value),
-    after: formatComplianceValue(entry.new_value),
+    before,
+    after,
+    summary: isSourceChange ? `${getComplianceSourceLabel(entry.field_changed)} opdateret` : `${before} → ${after}`,
+    showDiff: !isSourceChange,
+    sourceLabel: getComplianceSourceLabel(entry.field_changed),
     sourceUrl: entry.source_url,
     casinoLabel: entry.casino_slug.replace(/-/g, " "),
   };
