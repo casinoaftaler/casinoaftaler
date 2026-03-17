@@ -24,6 +24,7 @@ const NyeCasinoerLavWagering = lazy(() => import("./pages/nye-casinoer/NyeCasino
 const BedsteNyeCasinoer = lazy(() => import("./pages/nye-casinoer/BedsteNyeCasinoer"));
 const NyeVsEtablerede = lazy(() => import("./pages/nye-casinoer/NyeVsEtablerede"));
 const CasinoLicenser = lazy(() => import("./pages/CasinoLicenser"));
+const MarketIntelligence = lazy(() => import("./pages/MarketIntelligence"));
 const TopCasinoOnline = lazy(() => import("./pages/TopCasinoOnline"));
 
 // Lazy load remaining pages
