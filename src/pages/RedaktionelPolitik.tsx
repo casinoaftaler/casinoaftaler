@@ -61,7 +61,7 @@ const RedaktionelPolitik = () => {
   return (
     <>
       <SEO
-        title="Redaktionel Politik – Sådan produceres indhold på Casinoaftaler.dk"
+        title="Redaktionel politik – Sådan produceres indhold | Casinoaftaler"
         description="Læs om vores redaktionelle retningslinjer, hvordan vi producerer indhold, og hvordan vi sikrer uafhængighed og kvalitet i alle anmeldelser."
         jsonLd={[articleJsonLd]}
       />

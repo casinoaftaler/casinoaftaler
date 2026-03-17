@@ -195,7 +195,7 @@ export default function ForfatterAjse() {
   return (
     <>
       <SEO
-        title="Ajse – Juridisk redaktør & casinoanalytiker | Casinoaftaler.dk"
+        title="Ajse – Juridisk redaktør & casinoanalytiker | Casinoaftaler"
         description="Mød Ajse – juridisk redaktør hos Casinoaftaler.dk med fokus på dansk spillelovgivning, regulering og ansvarligt spil i casinobranchen."
         jsonLd={[faqJsonLd, personSchema]}
       />

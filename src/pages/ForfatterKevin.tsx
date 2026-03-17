@@ -170,7 +170,7 @@ export default function ForfatterKevin() {
   return (
     <>
       <SEO
-        title="Kevin – Streamer & Casinoanalytiker | Casinoaftaler.dk"
+        title="Kevin – Streamer & Casinoanalytiker | Casinoaftaler"
         description="Mød Kevin – casino-streamer, forfatter og IT-medansvarlig hos Casinoaftaler.dk. Læs om hans streamingstil, ekspertise og anbefalede casinoer."
         jsonLd={[faqJsonLd, personSchema]}
       />

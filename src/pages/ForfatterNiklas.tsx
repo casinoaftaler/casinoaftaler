@@ -175,7 +175,7 @@ export default function ForfatterNiklas() {
   return (
     <>
       <SEO
-        title="Niklas – Finansøkonom & forsikringsekspert | Casinoaftaler.dk"
+        title="Niklas – Finansøkonom & forsikringsekspert | Casinoaftaler"
         description="Mød Niklas – finansøkonom og forsikringsekspert hos Casinoaftaler.dk med fokus på bonusøkonomi, EV-analyse, casino og skat samt finansiel risikostyring."
         jsonLd={[faqJsonLd, personSchema]}
       />

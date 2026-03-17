@@ -161,7 +161,7 @@ export default function Contact() {
   return (
     <>
       <SEO
-        title="Kontakt – Casinoaftaler.dk | Erhverv & Presse"
+        title="Kontakt – Erhverv & Presse | Casinoaftaler"
         description="Kontakt Casinoaftaler.dk for casino partnerskaber, affiliate henvendelser, kommercielle forslag og presseforespørgsler."
         jsonLd={faqJsonLd}
       />
