@@ -15,10 +15,12 @@ import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
+import GuideHeroImage from "@/components/GuideHeroImage";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import marketIntelligenceHero from "@/assets/market-intelligence-hero.png";
 import { useMarketIntelligence } from "@/hooks/useMarketIntelligence";
 import { formatTimestampDanish, usePageLastmod } from "@/hooks/usePageLastmod";
 import {
@@ -30,6 +32,7 @@ import {
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80";
+const heroAlt = "Markedsindsigt for danske casinoer med live datafeeds, compliance-signaler og overvågede operatører";
 
 const faqs = [
   {
