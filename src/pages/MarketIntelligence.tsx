@@ -108,6 +108,7 @@ export default function MarketIntelligence() {
     dateModified,
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
+    type: "WebPage",
   });
 
   const collectionSchema = buildMarketIntelligenceSchema(
