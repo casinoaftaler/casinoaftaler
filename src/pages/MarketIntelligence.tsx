@@ -195,10 +195,10 @@ export default function MarketIntelligence() {
                     Markedsindsigt samler de vigtigste verificerede signaler fra danske casinoer i ét offentligt overblik, så spillere ikke selv skal læse rå vilkårssider, licensreferencer og spredte opdateringer.
                   </p>
                   <p>
-                    Formålet er at vise, hvad der faktisk har betydning lige nu: licensstatus, bonusrammer og dokumenterede ændringer, der kan påvirke din vurdering af et casino.
+                    Formålet er at vise, hvad der faktisk har betydning lige nu: licensstatus, bonusrammer og dokumenterede ændringer, der kan påvirke din vurdering af et casino, en <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> eller et konkret <Link to="/free-spins-i-dag" className={linkClass}>free spins-tilbud</Link>.
                   </p>
                   <p>
-                    Det gør siden til et naturligt bindeled mellem <Link to="/casino-anmeldelser" className={linkClass}>anmeldelser</Link>, <Link to="/casino-bonus" className={linkClass}>bonusguides</Link> og <Link to="/casino-licenser" className={linkClass}>licensguiden</Link>.
+                    Det gør siden til et naturligt bindeled mellem <Link to="/casino-anmeldelser" className={linkClass}>anmeldelser</Link>, <Link to="/casino-bonus" className={linkClass}>bonusguides</Link>, <Link to="/omsaetningskrav" className={linkClass}>forklaringer på omsætningskrav</Link> og <Link to="/casino-licenser" className={linkClass}>licensguiden</Link>.
                   </p>
                 </CardContent>
               </Card>
@@ -212,8 +212,8 @@ export default function MarketIntelligence() {
                 </CardHeader>
                 <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
                   <p>Start med snapshot-sektionen for at få markedets aktuelle temperatur på få sekunder.</p>
-                  <p>Brug derefter de fremhævede signaler til at forstå, hvilke ændringer der er mest relevante netop nu.</p>
-                  <p>Afslut i operatøroversigten, hvor du kan klikke videre til de enkelte anmeldelser og få den fulde kontekst bag hvert brand.</p>
+                  <p>Brug derefter de fremhævede signaler til at forstå, hvilke ændringer der er mest relevante netop nu, og klik videre til de tilknyttede anmeldelser når du vil validere et brand dybere.</p>
+                  <p>Afslut i operatøroversigten og brug derefter vores money-pages om <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>, <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> til at omsætte markedsdata til handling.</p>
                 </CardContent>
               </Card>
             </section>
