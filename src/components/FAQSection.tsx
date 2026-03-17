@@ -54,10 +54,18 @@ const defaultFaqs: FAQ[] = [
 export const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(function FAQSection({ title = "Ofte Stillede Spørgsmål", faqs = defaultFaqs }, ref) {
   const { pathname } = useLocation();
   const showTrustPanel = isCasinoTrustPath(pathname);
+  const showMarketIntelligenceTeaser =
+    pathname === "/casino-bonus" ||
+    pathname === "/casinoer" ||
+    pathname === "/casino-anmeldelser" ||
+    pathname === "/casino-licenser" ||
+    pathname.startsWith("/casino-anmeldelser/") ||
+    pathname.startsWith("/nye-casinoer");
 
   return (
     <>
       {showTrustPanel && <CasinoTrustPanel pagePath={pathname} />}
+      {showMarketIntelligenceTeaser && <MarketIntelligenceTeaser pagePath={pathname} />}
       <section ref={ref} className="mb-12">
         <div className="rounded-xl border border-border bg-card p-6 md:p-8">
           <h2 className="mb-6 flex items-center gap-2 text-3xl font-bold">
