@@ -103,7 +103,7 @@ const pokerFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad betyder pot odds i poker?",
     answer: (
       <>
-        Pot odds er forholdet mellem puljens størrelse og det beløb, du skal betale for at fortsætte. Eksempel: puljen er 300 kr., din modstander satser 100 kr., puljen er nu 400 kr. Du skal betale 100 kr. – dine pot odds er 4:1. Det betyder, at du skal vinde mere end 1 ud af 5 gange (20 %) for at et call er profitabelt. Sammenlign pot odds med din equity (sandsynlighed for at vinde hånden) for at træffe matematisk korrekte beslutninger. Læs mere i vores <Link to="/casinospil/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
+        Pot odds er forholdet mellem puljens størrelse og det beløb, du skal betale for at fortsætte. Eksempel: puljen er 300 kr., din modstander satser 100 kr., puljen er nu 400 kr. Du skal betale 100 kr. – dine pot odds er 4:1. Det betyder, at du skal vinde mere end 1 ud af 5 gange (20 %) for at et call er profitabelt. Sammenlign pot odds med din equity (sandsynlighed for at vinde hånden) for at træffe matematisk korrekte beslutninger. Læs mere i vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
       </>
     ),
   },
