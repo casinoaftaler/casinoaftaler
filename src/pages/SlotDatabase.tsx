@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useMemo } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -20,7 +20,20 @@ import { SlotDatabaseSeoContent } from "@/components/seo-content/SlotDatabaseSeo
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Separator } from "@/components/ui/separator";
+import { ProgrammaticPriorityLinks } from "@/components/ProgrammaticPriorityLinks";
 import slotDatabaseHero from "@/assets/slot-database-hero.jpg";
+import {
+  buildSlotDatabasePath,
+  buildSlotDatabaseSearchParams,
+  getSlotDatabaseSeo,
+  normalizePositivePage,
+  SLOT_DEFAULT_PROVIDER,
+  SLOT_DEFAULT_SORT,
+  SLOT_DEFAULT_VOLATILITY,
+  SLOT_SORT_OPTIONS,
+  SLOT_VOLATILITY_OPTIONS,
+  type SlotSort,
+} from "@/lib/hubSeo";
 
 const SLUG_MAP: Record<string, string> = {
   "Sweet Bonanza": "sweet-bonanza",
@@ -115,17 +128,30 @@ const faqItems = [
 export default function SlotDatabase() {
   const { data: slots, isLoading } = useSlotCatalog();
   const { data: freshness } = useLatestCatalogUpdate();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [providerFilter, setProviderFilter] = useState("all");
-  const [volatilityFilter, setVolatilityFilter] = useState("all");
-  const [sortBy, setSortBy] = useState<"bonus_count" | "highest_x" | "rtp">("bonus_count");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const providers = useMemo(() => {
     if (!slots) return [];
     const set = new Set(slots.map(s => s.provider).filter(p => p && p !== "Custom Slot" && p !== "Unknown"));
     return Array.from(set).sort();
   }, [slots]);
+
+  const rawQuery = searchParams.get("q") ?? "";
+  const rawProvider = searchParams.get("provider") ?? SLOT_DEFAULT_PROVIDER;
+  const rawVolatility = searchParams.get("volatility") ?? SLOT_DEFAULT_VOLATILITY;
+  const rawSort = searchParams.get("sort") ?? SLOT_DEFAULT_SORT;
+  const rawPage = normalizePositivePage(searchParams.get("side"));
+
+  const searchQuery = rawQuery;
+  const providerFilter = rawProvider === SLOT_DEFAULT_PROVIDER || providers.length === 0 || providers.includes(rawProvider)
+    ? rawProvider
+    : SLOT_DEFAULT_PROVIDER;
+  const volatilityFilter = SLOT_VOLATILITY_OPTIONS.includes(rawVolatility as typeof SLOT_VOLATILITY_OPTIONS[number])
+    ? rawVolatility
+    : SLOT_DEFAULT_VOLATILITY;
+  const sortBy = SLOT_SORT_OPTIONS.includes(rawSort as SlotSort)
+    ? (rawSort as SlotSort)
+    : SLOT_DEFAULT_SORT;
 
   const filtered = useMemo(() => {
     if (!slots) return [];
@@ -134,10 +160,10 @@ export default function SlotDatabase() {
       const q = searchQuery.toLowerCase();
       result = result.filter(s => s.slot_name.toLowerCase().includes(q) || s.provider.toLowerCase().includes(q));
     }
-    if (providerFilter !== "all") {
+    if (providerFilter !== SLOT_DEFAULT_PROVIDER) {
       result = result.filter(s => s.provider === providerFilter);
     }
-    if (volatilityFilter !== "all") {
+    if (volatilityFilter !== SLOT_DEFAULT_VOLATILITY) {
       result = result.filter(s => s.volatility?.toLowerCase() === volatilityFilter);
     }
     result.sort((a, b) => {
@@ -149,10 +175,23 @@ export default function SlotDatabase() {
     return result;
   }, [slots, searchQuery, providerFilter, volatilityFilter, sortBy]);
 
-  // Reset page when filters change
-  useMemo(() => { setCurrentPage(1); }, [searchQuery, providerFilter, volatilityFilter, sortBy]);
+  const totalPages = Math.max(1, Math.ceil(filtered.length / ROWS_PER_PAGE));
+  const currentPage = Math.min(rawPage, totalPages);
 
-  const totalPages = Math.ceil(filtered.length / ROWS_PER_PAGE);
+  useEffect(() => {
+    const normalized = buildSlotDatabaseSearchParams({
+      q: searchQuery,
+      provider: providerFilter,
+      volatility: volatilityFilter,
+      sort: sortBy,
+      page: currentPage,
+    });
+
+    if (normalized.toString() !== searchParams.toString()) {
+      setSearchParams(normalized, { replace: true });
+    }
+  }, [currentPage, providerFilter, searchParams, searchQuery, setSearchParams, sortBy, volatilityFilter]);
+
   const paginatedSlots = useMemo(() => {
     const start = (currentPage - 1) * ROWS_PER_PAGE;
     return filtered.slice(start, start + ROWS_PER_PAGE);
@@ -173,27 +212,32 @@ export default function SlotDatabase() {
 
   const slotCount = stats.total || 1400;
   const slotCountLabel = `${slotCount}+`;
+  const seoState = getSlotDatabaseSeo({
+    q: searchQuery,
+    provider: providerFilter,
+    volatility: volatilityFilter,
+    sort: sortBy,
+    page: currentPage,
+  }, slotCountLabel);
+  const isDefaultHubState = !searchQuery && providerFilter === SLOT_DEFAULT_PROVIDER && volatilityFilter === SLOT_DEFAULT_VOLATILITY && sortBy === SLOT_DEFAULT_SORT && currentPage === 1;
 
-  const seoTitle = `Slot Database – ${slotCountLabel} Spillemaskiner med Community Data`;
-  const seoDesc = `Komplet database over ${slotCountLabel} spillemaskiner testet i live bonus hunts. Se RTP, volatilitet, højeste gevinster og community-statistikker for alle slots.`;
+  const articleSchema = isDefaultHubState
+    ? buildArticleSchema({
+        headline: `Slot Database – ${slotCountLabel} slots med RTP og community-data`,
+        description: `Søg i ${slotCountLabel} spillemaskiner med RTP, volatilitet, højeste X og community-data fra live bonus hunts.`,
+        url: `${SITE_URL}/slot-database`,
+        datePublished: "2026-03-05",
+        authorName: "Jonas Theill",
+      })
+    : null;
 
-  // Freshness is centralized for the hub route; slot detail pages remain dynamic.
-  const articleSchema = buildArticleSchema({
-    headline: seoTitle,
-    description: seoDesc,
-    url: `${SITE_URL}/slot-database`,
-    datePublished: "2026-03-05",
-    authorName: "Jonas Theill",
-  });
+  const faqSchema = isDefaultHubState ? buildFaqSchema(faqItems) : null;
 
-  const faqSchema = buildFaqSchema(faqItems);
-
-  // SoftwareApplication schema for the current page of slots
-  const slotSchema = paginatedSlots.length > 0
+  const slotSchema = isDefaultHubState && paginatedSlots.length > 0
     ? buildSlotCatalogSchema(paginatedSlots, `${SITE_URL}/slot-katalog`)
     : null;
 
-  const jsonLdSchemas = [articleSchema, faqSchema, ...(slotSchema ? [slotSchema] : [])];
+  const jsonLdSchemas = [articleSchema, faqSchema, slotSchema].filter(Boolean);
 
   // Freshness label
   const freshnessLabel = freshness?.latestHuntNumber
@@ -202,12 +246,31 @@ export default function SlotDatabase() {
       }`
     : null;
 
+  const updateSearchState = (updates: Partial<{ q: string; provider: string; volatility: string; sort: SlotSort; page: number }>) => {
+    setSearchParams(buildSlotDatabaseSearchParams({
+      q: updates.q ?? searchQuery,
+      provider: updates.provider ?? providerFilter,
+      volatility: updates.volatility ?? volatilityFilter,
+      sort: updates.sort ?? sortBy,
+      page: updates.page ?? currentPage,
+    }));
+  };
+
+  const paginationPages = Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+    if (totalPages <= 5) return i + 1;
+    if (currentPage <= 3) return i + 1;
+    if (currentPage >= totalPages - 2) return totalPages - 4 + i;
+    return currentPage - 2 + i;
+  });
+
   return (
     <>
       <SEO
-        title={seoTitle}
-        description={seoDesc}
-        jsonLd={jsonLdSchemas}
+        title={seoState.title}
+        description={seoState.description}
+        canonicalUrl={seoState.canonicalUrl}
+        jsonLd={jsonLdSchemas.length > 0 ? jsonLdSchemas : undefined}
+        noindex={seoState.noindex}
       />
 
       {/* TYPE A: Centered hero with badge */}
@@ -285,18 +348,18 @@ export default function SlotDatabase() {
             <Input
               placeholder="Søg efter spillemaskine eller udbyder..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => updateSearchState({ q: e.target.value, page: 1 })}
               className="pl-10"
             />
           </div>
-          <Select value={providerFilter} onValueChange={setProviderFilter}>
+          <Select value={providerFilter} onValueChange={(value) => updateSearchState({ provider: value, page: 1 })}>
             <SelectTrigger className="w-[180px]"><SelectValue placeholder="Udbyder" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Alle Udbydere</SelectItem>
               {providers.map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
             </SelectContent>
           </Select>
-          <Select value={volatilityFilter} onValueChange={setVolatilityFilter}>
+          <Select value={volatilityFilter} onValueChange={(value) => updateSearchState({ volatility: value, page: 1 })}>
             <SelectTrigger className="w-[160px]"><SelectValue placeholder="Volatilitet" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Alle</SelectItem>
@@ -306,7 +369,7 @@ export default function SlotDatabase() {
               <SelectItem value="extreme">Extreme</SelectItem>
             </SelectContent>
           </Select>
-          <Select value={sortBy} onValueChange={(v) => setSortBy(v as any)}>
+          <Select value={sortBy} onValueChange={(value) => updateSearchState({ sort: value as SlotSort, page: 1 })}>
             <SelectTrigger className="w-[180px]"><SelectValue placeholder="Sortér" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="bonus_count">Flest Hunts</SelectItem>
@@ -408,7 +471,6 @@ export default function SlotDatabase() {
               </div>
             </div>
 
-            {/* Pagination – uses <a href> for crawlability alongside onClick for SPA nav */}
             {totalPages > 1 && (
               <div className="flex items-center justify-between mt-4">
                 <p className="text-sm text-muted-foreground">
@@ -419,14 +481,13 @@ export default function SlotDatabase() {
                     variant="outline"
                     size="sm"
                     disabled={currentPage === 1}
-                    onClick={() => { setCurrentPage(p => p - 1); window.scrollTo({ top: 0, behavior: "smooth" }); }}
                     asChild={currentPage > 1}
                   >
                     {currentPage > 1 ? (
-                      <a href={`/slot-database?side=${currentPage - 1}`} onClick={(e) => e.preventDefault()}>
+                      <Link to={buildSlotDatabasePath({ q: searchQuery, provider: providerFilter, volatility: volatilityFilter, sort: sortBy, page: currentPage - 1 })}>
                         <ChevronLeft className="h-4 w-4 mr-1" />
                         Forrige
-                      </a>
+                      </Link>
                     ) : (
                       <span>
                         <ChevronLeft className="h-4 w-4 mr-1" />
@@ -434,48 +495,34 @@ export default function SlotDatabase() {
                       </span>
                     )}
                   </Button>
-                  {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-                    let page: number;
-                    if (totalPages <= 5) {
-                      page = i + 1;
-                    } else if (currentPage <= 3) {
-                      page = i + 1;
-                    } else if (currentPage >= totalPages - 2) {
-                      page = totalPages - 4 + i;
-                    } else {
-                      page = currentPage - 2 + i;
-                    }
-                    return (
-                      <Button
-                        key={page}
-                        variant={page === currentPage ? "default" : "outline"}
-                        size="sm"
-                        className="w-9"
-                        onClick={() => { setCurrentPage(page); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                        asChild={page !== currentPage}
-                      >
-                        {page !== currentPage ? (
-                          <a href={`/slot-database?side=${page}`} onClick={(e) => e.preventDefault()}>
-                            {page}
-                          </a>
-                        ) : (
-                          <span>{page}</span>
-                        )}
-                      </Button>
-                    );
-                  })}
+                  {paginationPages.map((page) => (
+                    <Button
+                      key={page}
+                      variant={page === currentPage ? "default" : "outline"}
+                      size="sm"
+                      className="w-9"
+                      asChild={page !== currentPage}
+                    >
+                      {page !== currentPage ? (
+                        <Link to={buildSlotDatabasePath({ q: searchQuery, provider: providerFilter, volatility: volatilityFilter, sort: sortBy, page })}>
+                          {page}
+                        </Link>
+                      ) : (
+                        <span>{page}</span>
+                      )}
+                    </Button>
+                  ))}
                   <Button
                     variant="outline"
                     size="sm"
                     disabled={currentPage === totalPages}
-                    onClick={() => { setCurrentPage(p => p + 1); window.scrollTo({ top: 0, behavior: "smooth" }); }}
                     asChild={currentPage < totalPages}
                   >
                     {currentPage < totalPages ? (
-                      <a href={`/slot-database?side=${currentPage + 1}`} onClick={(e) => e.preventDefault()}>
+                      <Link to={buildSlotDatabasePath({ q: searchQuery, provider: providerFilter, volatility: volatilityFilter, sort: sortBy, page: currentPage + 1 })}>
                         Næste
                         <ChevronRight className="h-4 w-4 ml-1" />
-                      </a>
+                      </Link>
                     ) : (
                       <span>
                         Næste
@@ -501,6 +548,8 @@ export default function SlotDatabase() {
           <FAQSection faqs={faqItems} />
         </div>
 
+        <Separator className="my-12" />
+        <ProgrammaticPriorityLinks />
         <Separator className="my-12" />
         <CommunityBrandBlock />
         <Separator className="my-12" />
