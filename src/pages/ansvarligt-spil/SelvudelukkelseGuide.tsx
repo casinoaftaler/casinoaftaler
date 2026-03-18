@@ -140,7 +140,6 @@ const SelvudelukkelseGuide = () => {
     description: "Dybdegående guide til selvudelukkelse fra danske casinoer. ROFUS vs. casinoernes egne værktøjer, trin-for-trin vejledning, internationale ordninger og juridiske rettigheder.",
     url: `${SITE_URL}/ansvarligt-spil/selvudelukkelse-guide`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-18",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });

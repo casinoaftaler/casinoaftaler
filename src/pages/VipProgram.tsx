@@ -143,7 +143,6 @@ const VipProgram = () => {
       "Alt om VIP-programmer hos danske casinoer: Tier-systemer, comp points, cashback, reload bonusser og matematisk EV-analyse. Find de bedste loyalitetsprogrammer.",
     url: `${SITE_URL}/vip-program`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

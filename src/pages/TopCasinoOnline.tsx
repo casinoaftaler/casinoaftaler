@@ -177,7 +177,6 @@ const TopCasinoOnline = () => {
     description: "Komplet guide til de 10 bedste online casinoer i Danmark 2026. Sammenlign bonusser, spiludvalg, betalingsmetoder og udbetalingstider.",
     url: `${SITE_URL}/top-10-casino-online`,
     datePublished: "2026-01-15",
-    dateModified: "2026-02-13",
   });
 
   // ItemList schema for SERP carousel eligibility

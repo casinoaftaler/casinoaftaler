@@ -176,7 +176,6 @@ const RofusGuide = () => {
       "Alt om ROFUS: Tilmelding, varighed, ophævelse, lovgivning og statistik. Lær hvordan du beskytter dig selv via Danmarks officielle selvudelukkelsesregister.",
     url: `${SITE_URL}/ansvarligt-spil/rofus`,
     datePublished: "2026-03-07",
-    dateModified: "2026-03-18",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });

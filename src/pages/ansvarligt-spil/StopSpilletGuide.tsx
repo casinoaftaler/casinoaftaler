@@ -141,7 +141,6 @@ const StopSpilletGuide = () => {
       "Komplet guide til StopSpillet: Gratis, fortrolig rådgivning for spilleafhængighed. Telefon, chat, åbningstider, hvad du kan forvente, og hvordan tjenesten hjælper.",
     url: `${SITE_URL}/ansvarligt-spil/stopspillet`,
     datePublished: "2026-03-07",
-    dateModified: "2026-03-18",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
