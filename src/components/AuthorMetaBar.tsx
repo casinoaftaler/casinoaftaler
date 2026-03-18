@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -90,6 +90,7 @@ export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified
   const { pathname } = useLocation();
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
   const autoReadTime = useAutoReadTime();
+  const hasWarnedLegacyDateRef = useRef(false);
 
   // Fetch dynamic date from DB (single source of truth)
   const { data: dbMeta } = usePageLastmod(pathname);
@@ -97,6 +98,20 @@ export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified
   // Resolve display date: prefer DB (dynamic), then seoRoutes (static fallback), then prop (legacy)
   const routeMeta = getRouteMetadata(pathname);
   const shouldShowDate = dbMeta?.show_updated_date ?? routeMeta?.showUpdatedDate !== false;
+
+  useEffect(() => {
+    if (
+      import.meta.env.DEV &&
+      date &&
+      !hasWarnedLegacyDateRef.current &&
+      (Boolean(dbMeta?.updated_at) || Boolean(routeMeta?.lastmod))
+    ) {
+      console.warn(
+        `[AuthorMetaBar] Ignoring legacy date prop ("${date}") on ${pathname}; using centralized lastmod source instead.`
+      );
+      hasWarnedLegacyDateRef.current = true;
+    }
+  }, [date, dbMeta?.updated_at, routeMeta?.lastmod, pathname]);
 
   const displayDate = useMemo(() => {
     // 1. DB date is the authoritative source (dynamic)

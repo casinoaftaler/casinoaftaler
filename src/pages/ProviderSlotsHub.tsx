@@ -5,13 +5,14 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { ProviderCatalogSlots } from "@/components/ProviderCatalogSlots";
-import { useProviderSlots, useLatestCatalogUpdate } from "@/hooks/useProviderSlots";
+import { useProviderSlots } from "@/hooks/useProviderSlots";
 import { PROVIDER_HUB_CONTENT, PROVIDER_HUB_SLUGS } from "@/lib/providerHubContent";
 import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
 import { buildArticleSchema, buildFaqSchema, SITE_URL, JONAS_SAME_AS } from "@/lib/seo";
 import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useAntiFootprint } from "@/hooks/useAntiFootprint";
+import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -31,7 +32,6 @@ export default function ProviderSlotsHub() {
   const validSlug = providerSlug && PROVIDER_HUB_SLUGS.includes(providerSlug) ? providerSlug : null;
   const content = validSlug ? PROVIDER_HUB_CONTENT[validSlug] : null;
   const { data: slots } = useProviderSlots(validSlug || "");
-  const { data: freshness } = useLatestCatalogUpdate();
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
   const { shuffle } = useAntiFootprint(validSlug ?? undefined);
@@ -106,10 +106,7 @@ export default function ProviderSlotsHub() {
     ...(catalogSchema ? [catalogSchema as Record<string, unknown>] : []),
   ];
 
-  // Freshness date
-  const dateModified = freshness?.lastUpdated
-    ? new Date(freshness.lastUpdated).toISOString().split("T")[0]
-    : content.datePublished;
+  const introHtmlWithAutoLinks = useMemo(() => autoLinkEntities(content.introHtml), [content.introHtml]);
 
   return (
     <>
@@ -118,7 +115,6 @@ export default function ProviderSlotsHub() {
         description={content.metaDescription}
         type="article"
         datePublished={content.datePublished}
-        dateModified={dateModified}
         jsonLd={jsonLd}
         breadcrumbLabel={`${content.displayName} Slots`}
       />
@@ -161,7 +157,7 @@ export default function ProviderSlotsHub() {
                 <h2 className="mb-4 text-3xl font-bold">Om {content.displayName} Spillemaskiner</h2>
                 <div
                   className="text-muted-foreground leading-relaxed space-y-4 [&>p]:leading-relaxed [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-primary/80"
-                  dangerouslySetInnerHTML={{ __html: content.introHtml }}
+                  dangerouslySetInnerHTML={{ __html: introHtmlWithAutoLinks }}
                 />
               </section>
             ),

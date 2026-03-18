@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { SITE_URL, SITE_NAME, SITE_BRAND, getCanonicalUrl } from "@/lib/seo";
 import { buildBreadcrumbListSchema } from "@/lib/breadcrumbs";
+import { getRouteLastmod } from "@/lib/seoRoutes";
 
 /** WebSite + SearchAction schema for Sitelinks Searchbox eligibility. */
 const websiteSchema = {
@@ -62,10 +63,33 @@ function formatTitle(raw: string): string {
   return `${stripped}${suffix}`;
 }
 
+function normalizePath(pathname: string): string {
+  return pathname === "/" ? "/" : pathname.replace(/\/+$/, "").toLowerCase();
+}
+
+function toIso8601WithTz(date: string): string {
+  if (date.includes("T")) return date;
+  return `${date}T00:00:00+01:00`;
+}
+
 export function SEO({ title, description, type = "website", image = `${SITE_URL}/og-image.png`, noindex, jsonLd, breadcrumbLabel, datePublished, dateModified }: SEOProps) {
   const { pathname } = useLocation();
+  const normalizedPath = normalizePath(pathname);
   const canonicalUrl = getCanonicalUrl(pathname);
   const formattedTitle = formatTitle(title);
+
+  // Canonical freshness source: seoRoutes (if route exists)
+  const routeLastmod = getRouteLastmod(normalizedPath);
+  const resolvedDateModified = routeLastmod ?? dateModified;
+
+  if (import.meta.env.DEV && dateModified && routeLastmod && dateModified !== routeLastmod) {
+    console.warn(
+      `[SEO] Ignoring hardcoded dateModified (${dateModified}) for ${normalizedPath}; using seoRoutes lastmod (${routeLastmod}) instead.`
+    );
+  }
+
+  const normalizedDatePublished = datePublished ? toIso8601WithTz(datePublished) : undefined;
+  const normalizedDateModified = resolvedDateModified ? toIso8601WithTz(resolvedDateModified) : undefined;
 
   // Truncate description to 160 chars at a word boundary for SEO best practice
   const safeDescription = (() => {
@@ -141,11 +165,11 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={image} />
 
-      {type === "article" && datePublished && (
-        <meta property="article:published_time" content={datePublished} />
+      {type === "article" && normalizedDatePublished && (
+        <meta property="article:published_time" content={normalizedDatePublished} />
       )}
-      {type === "article" && dateModified && (
-        <meta property="article:modified_time" content={dateModified} />
+      {type === "article" && normalizedDateModified && (
+        <meta property="article:modified_time" content={normalizedDateModified} />
       )}
 
       <meta name="twitter:card" content="summary_large_image" />

@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useBonusHuntArchives, useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
+import { formatLastmodDanish, getRouteLastmod } from "@/lib/seoRoutes";
 import {
   BarChart3, TrendingUp, Trophy, Gamepad2, Database,
   Target, ArrowRight, ExternalLink, BookOpen, ShieldCheck,
@@ -243,12 +244,14 @@ export default function Statistik() {
   const seoTitle = `Bonus Hunt Statistik — ${archiveStats?.huntCount || "200+"} Hunts Analyseret`;
   const seoDesc = `Aggregeret data fra ${archiveStats?.huntCount || "200+"} dokumenterede bonus hunts og ${formatNumber(totalSlotsCatalog)} testede spillemaskiner. Historiske grafer, provider-rankings og top 10 slots baseret på reelle test-data.`;
 
+  const statistikLastmod = getRouteLastmod("/statistik");
+  const freshnessLabel = statistikLastmod ? formatLastmodDanish(statistikLastmod) : "løbende";
+
   const articleSchema = buildArticleSchema({
     headline: seoTitle,
     description: seoDesc,
     url: `${SITE_URL}/statistik`,
     datePublished: "2026-03-11",
-    dateModified: "2026-03-11",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
     about: [
@@ -297,7 +300,6 @@ export default function Statistik() {
         jsonLd={[articleSchema, faqSchema, datasetSchema]}
         breadcrumbLabel="Statistik"
         datePublished="2026-03-11"
-        dateModified="2026-03-11"
       />
 
       {/* ══════════════════════════════════════════════════════════
@@ -315,7 +317,7 @@ export default function Statistik() {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <BarChart3 className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret {new Date().toLocaleDateString("da-DK", { month: "long", year: "numeric" })}
+              Opdateret {freshnessLabel}
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Bonus Hunt Statistik
@@ -333,7 +335,7 @@ export default function Statistik() {
           MAIN CONTENT
       ══════════════════════════════════════════════════════════ */}
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="11-03-2026" readTime="15 Min." />
+        <AuthorMetaBar author="kevin" />
 
         {/* Hero image */}
         <div className="mb-10 overflow-hidden rounded-xl">
