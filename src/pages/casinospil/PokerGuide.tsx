@@ -457,7 +457,7 @@ const PokerGuide = () => {
             <strong>Semi-bluffs:</strong> De bedste bluffs er "semi-bluffs" – indsatser med en hånd, der har outs til at forbedre sig. Et flush draw-semi-bluff kombinerer to profitkilder: (1) modstanderen kan folde (bluff-equity), og (2) du kan ramme flushen og vinde (draw-equity). Semi-bluffs er mere profitable og lavere risiko end rene bluffs.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Begynderfejl med bluffing:</strong> At bluffe for ofte, mod for mange modstandere, på for ugunstige boards. Bluff sjældent mod mere end 1–2 modstandere. Og bluff aldrig af desperation eller "tilt" – en bluff skal være en kalkuleret handling. For avanceret bluff-frekvens og GTO-balancering, se vores <Link to="/casinospil/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
+            <strong>Begynderfejl med bluffing:</strong> At bluffe for ofte, mod for mange modstandere, på for ugunstige boards. Bluff sjældent mod mere end 1–2 modstandere. Og bluff aldrig af desperation eller "tilt" – en bluff skal være en kalkuleret handling. For avanceret bluff-frekvens og GTO-balancering, se vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
           </p>
         </section>
 
