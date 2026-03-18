@@ -5,8 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { getTodayDanish } from "@/lib/danishDate";
-import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { usePageLastmod } from "@/hooks/usePageLastmod";
+import { getRouteLastmod } from "@/lib/seoRoutes";
 import { AuthorBio } from "@/components/AuthorBio";
 import heroImage from "@/assets/heroes/free-spins-i-dag-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -209,6 +209,7 @@ function getEligibilityLabel(offer: CampaignOffer): string | null {
 const FreeSpinsIDag = () => {
   const todayFormatted = format(new Date(), "d. MMMM yyyy", { locale: da });
   const { data: casinos } = useCasinos();
+  const { data: pageMeta } = usePageLastmod("/free-spins-i-dag");
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const { ref: statsRef, revealed: statsRevealed } = useScrollReveal();
   // cardsRef removed – cards now always animate-fade-in immediately
@@ -258,6 +259,7 @@ const FreeSpinsIDag = () => {
   const getCasinoLogo = (slug: string) => casinos?.find(c => c.slug === slug)?.logo_url || null;
   const getCasinoAffiliate = (slug: string) => casinos?.find(c => c.slug === slug)?.affiliate_url || null;
   const latestChecked = campaigns?.[0]?.last_checked;
+  const seoDateModified = pageMeta?.updated_at ?? latestChecked ?? getRouteLastmod("/free-spins-i-dag");
 
   const schemaMarkup = [
     buildArticleSchema({
@@ -265,7 +267,7 @@ const FreeSpinsIDag = () => {
       description: `Alle aktuelle free spins hos danske licenserede casinoer – opdateret ${todayFormatted}. Nye og eksisterende spillere.`,
       url: `${SITE_URL}/free-spins-i-dag`,
       datePublished: "2026-02-22",
-      dateModified: getTodayDanish(),
+      dateModified: seoDateModified,
       authorName: "Jonas",
     }),
     buildFaqSchema(freeSpinsIDagFaqs.map(f => ({ question: f.question, answer: f.answer }))),
@@ -344,7 +346,7 @@ const FreeSpinsIDag = () => {
       <div className="border-b border-border/30">
         <div className="container py-3">
           <div className="text-xs text-muted-foreground">
-            <AuthorMetaBar author="jonas" date={todayFormatted} readTime="3 min." />
+            <AuthorMetaBar author="jonas" readTime="3 min." />
           </div>
         </div>
       </div>

@@ -191,16 +191,18 @@ export function buildArticleSchema(opts: {
   const sameAsMap: Record<string, string[]> = { Kevin: KEVIN_SAME_AS, Ajse: AJSE_SAME_AS, Niklas: NIKLAS_SAME_AS };
   const authorSameAs = opts.authorSameAs ?? (sameAsMap[authorName] || JONAS_SAME_AS);
 
-  // Canonical source of truth: seoRoutes lastmod (prevents manual drift)
+  // Source of truth order:
+  // 1) explicit runtime dateModified for approved dynamic pages
+  // 2) centralized seoRoutes lastmod for static pages
   const urlPath = opts.url.replace(SITE_URL, "");
   const routeLastmod = getRouteLastmod(urlPath);
-  const resolvedDateModified = routeLastmod
-    ?? opts.dateModified
+  const resolvedDateModified = opts.dateModified
+    ?? routeLastmod
     ?? opts.datePublished;
 
   if (import.meta.env.DEV && opts.dateModified && routeLastmod && opts.dateModified !== routeLastmod) {
     console.warn(
-      `[buildArticleSchema] Ignoring hardcoded dateModified (${opts.dateModified}) for ${urlPath}; using seoRoutes lastmod (${routeLastmod}) instead.`
+      `[buildArticleSchema] Explicit dateModified (${opts.dateModified}) overrides seoRoutes lastmod (${routeLastmod}) for ${urlPath}.`
     );
   }
 

@@ -9,7 +9,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { NewsContextualCTA } from "@/components/NewsContextualCTA";
 import { useNewsArticle } from "@/hooks/useCasinoNews";
 import { useRelatedNews } from "@/hooks/useRelatedNews";
-import { buildArticleSchema, buildFaqSchema, SITE_URL, AJSE_SAME_AS } from "@/lib/seo";
+import { formatTimestampDanish } from "@/hooks/usePageLastmod";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { countInternalLinksInHtml, getEnterpriseNewsInternalLinks } from "@/lib/newsInternalLinks";
@@ -92,19 +92,11 @@ const CasinoNyhedArticle = () => {
   }
 
   const publishedDate = article.published_at
-    ? new Date(article.published_at).toLocaleDateString("da-DK", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
+    ? formatTimestampDanish(article.published_at)
     : "Ikke publiceret";
 
   const updatedDate = article.updated_at
-    ? new Date(article.updated_at).toLocaleDateString("da-DK", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
+    ? formatTimestampDanish(article.updated_at)
     : null;
 
   const articleUrl = `${SITE_URL}/casino-nyheder/${article.slug}`;
@@ -176,7 +168,6 @@ const CasinoNyhedArticle = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar
           author="ajse"
-          date={publishedDate}
           readTime="5 min"
           showFactCheck={true}
           showAffiliateDisclaimer={false}

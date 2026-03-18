@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
+import { formatTimestampDanish } from "@/hooks/usePageLastmod";
 
 const ARTICLES_PER_PAGE = 10;
 
@@ -84,9 +85,7 @@ const CasinoNyheder = () => {
   const total = activeCategory === "alle" ? (data?.total ?? 0) : articles.length;
   const totalPages = activeCategory === "alle" ? Math.ceil(total / ARTICLES_PER_PAGE) : 1;
 
-  const latestModified = allArticles.length > 0
-    ? (allArticles[0].updated_at || allArticles[0].published_at || new Date().toISOString())
-    : new Date().toISOString();
+  const latestModified = allArticles[0]?.updated_at || allArticles[0]?.published_at || undefined;
 
   const articleSchema = buildArticleSchema({
     headline: "Casino Nyheder 2026 – Seneste Opdateringer fra Danske Online Casinoer",
@@ -98,13 +97,7 @@ const CasinoNyheder = () => {
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
 
-  const latestDate = allArticles.length > 0 && allArticles[0].published_at
-    ? new Date(allArticles[0].published_at).toLocaleDateString("da-DK", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
-    : null;
+  const latestDate = latestModified ? formatTimestampDanish(latestModified) : null;
 
   const categoryMeta = CATEGORY_META[activeCategory] || CATEGORY_META.alle;
 
@@ -162,7 +155,6 @@ const CasinoNyheder = () => {
 
         <AuthorMetaBar
           author="ajse"
-          date={latestDate || "21. februar 2026"}
           readTime="Løbende opdateret"
           showFactCheck={true}
           showAffiliateDisclaimer={false}
