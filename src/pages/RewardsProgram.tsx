@@ -33,47 +33,11 @@ export default function RewardsProgram() {
           description: "Deltag i Casinoaftalers belønningsprogram. Optjen gratis spins, indsend clips og anmod om nye spilleautomater.",
           url: `${SITE_URL}/community/rewards`,
           datePublished: "2026-01-20",
-          dateModified: "2026-03-01",
         })]}
       />
-
-      {/* Hero Section */}
-      <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
-        style={{
-          backgroundImage: heroBackgroundImage
-            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
-            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Optjen Bonus Spins
-            </Badge>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Rewards Program
-            </h1>
-            <p className="text-lg text-white/80">
-              Optjen ekstra spins ved at bidrage til fællesskabet og udfylde din profil. Upload clips, udfyld din profil og request slots til livestream. Læs også vores guide til <Link to="/free-spins" className="text-white underline hover:text-white/80">free spins</Link> for flere måder at spille gratis på.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <CommunityNav />
-
-      <div className="relative">
-        <div className="hidden lg:block absolute left-4 xl:left-8 top-8 w-[260px] z-10">
-          <div className="sticky top-24">
-            <CommunitySeoBridge />
-          </div>
-        </div>
+...
         <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="12 Min." showFactCheck={false} showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="jonas" showFactCheck={false} showAffiliateDisclaimer={false} />
 
         {/* Section: Community Highlights Rewards */}
         <section className="mb-12">

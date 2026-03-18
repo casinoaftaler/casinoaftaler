@@ -147,22 +147,10 @@ const Omsaetningskrav = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Bonusvilkår guide
             </Badge>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Omsætningskrav på Danske Casinoer
-            </h1>
-            <p className="text-lg text-white/80">
-              Omsætningskrav er den vigtigste betingelse at forstå, når du
-              bruger en casinobonus. Lær hvordan de fungerer, hvordan de
-              beregnes, og hvordan du navigerer dem klogt.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" date="26-02-2026" readTime="20 Min." />
+...
+        <AuthorMetaBar author="niklas" readTime="20 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Finansielt gennemgået og opdateret af Niklas, finansøkonom hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">

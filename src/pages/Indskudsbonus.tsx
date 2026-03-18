@@ -104,41 +104,12 @@ const Indskudsbonus = () => {
     description: "Alt du skal vide om indskudsbonusser hos danske casinoer. Matchbonusser, betingelser og strategier.",
     url: `${SITE_URL}/indskudsbonus`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-20",
     videoId: "hMHHVA6vH0Y",
   });
-
-  const videoJsonLd = buildVideoSchema(`${SITE_URL}/indskudsbonus`, "hMHHVA6vH0Y", {
-    title: "Indskudsbonus – Matchbonus forklaret på dansk",
-    description: "Jonas gennemgår hvad en indskudsbonus er, og hvordan matchbonusser fungerer hos danske casinoer.",
-    uploadDate: "2026-02-20",
-    duration: "PT1M30S",
-  });
-
-  return (
-    <>
-      <SEO
-        title="Indskudsbonus – Komplet Guide til Matchbonusser 2026 | Casinoaftaler"
-        description="Alt du skal vide om indskudsbonusser hos danske casinoer. Lær hvordan matchbonusser fungerer, betingelser, aktivering og strategier for at maksimere din bonus."
-        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
-      />
-
-      {/* Hero Section */}
-      <section
-        className="relative overflow-hidden py-12 text-white md:py-20"
-        style={{
-          backgroundImage: heroBackgroundImage
-            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
-            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
+...
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Matchbonus guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Indskudsbonus på Danske Casinoer
