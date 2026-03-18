@@ -92,7 +92,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er forskellen på D'Alembert og Fibonacci?",
     answer: (
       <>
-        D'Alembert øger indsatsen med 1 enhed pr. tab (lineært: 50, 100, 150, 200...). <Link to="/casinospil/blackjack/fibonacci-system" className={linkClass}>Fibonacci</Link> bruger Fibonacci-sekvensen (eksponentiel: 50, 50, 100, 150, 250...). D'Alembert er jævnere og mere forudsigelig; Fibonacci eskalerer hurtigere men starter langsommere. Begge kræver flere gevinster end tab for recovery.
+        D'Alembert øger indsatsen med 1 enhed pr. tab (lineært: 50, 100, 150, 200...). <Link to="/casinospil/blackjack/fibonacci" className={linkClass}>Fibonacci</Link> bruger Fibonacci-sekvensen (eksponentiel: 50, 50, 100, 150, 250...). D'Alembert er jævnere og mere forudsigelig; Fibonacci eskalerer hurtigere men starter langsommere. Begge kræver flere gevinster end tab for recovery.
       </>
     ),
   },
