@@ -65,7 +65,7 @@ function scanPattern(file, originalContent, content, regex, type) {
 function scanDateModifiedGovernance(file, originalContent, content, relativeFile) {
   if (relativeFile === path.join("src", "lib", "seo.ts")) return;
 
-  const allowedPatterns = APPROVED_DYNAMIC_DATE_MODIFIED[relativeFile] || [];
+  const allowedPatterns = getApprovedDynamicDateModifiedPatternsForFile(relativeFile);
   const regex = /\bdateModified\s*:\s*[^,\n}]+|\bdateModified\s*=\s*\{[^}]+\}/g;
   let m;
 
