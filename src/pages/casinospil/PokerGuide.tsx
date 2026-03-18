@@ -393,7 +393,7 @@ const PokerGuide = () => {
             <strong>Implied odds</strong> tager højde for de ekstra penge, du forventer at vinde på fremtidige betting-runder, hvis du rammer din hånd. <strong>Reverse implied odds:</strong> Risikoen for at ramme din hånd men tabe mod en stærkere hånd – særligt relevant, når boardet er parret.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Pot odds er fundamentet for rationel pokerstrategi. Alle andre koncepter – fold equity, bet sizing, bluff frequency – bygger på denne ramme. For dybdegående EV-beregninger og solver-metodik, se vores <Link to="/casinospil/poker-strategi" className={linkClass}>avancerede strategi-guide</Link>.
+            Pot odds er fundamentet for rationel pokerstrategi. Alle andre koncepter – fold equity, bet sizing, bluff frequency – bygger på denne ramme. For dybdegående EV-beregninger og solver-metodik, se vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>avancerede strategi-guide</Link>.
           </p>
         </section>
 
