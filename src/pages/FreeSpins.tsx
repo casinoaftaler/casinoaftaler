@@ -144,7 +144,7 @@ const FreeSpins = () => {
     description: "Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav, betingelser og strategier.",
     url: `${SITE_URL}/free-spins`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-20",
+    dateModified: "2026-03-18",
     videoId: "q4jeGo9TPEk",
   });
 
