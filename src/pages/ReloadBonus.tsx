@@ -147,7 +147,7 @@ const ReloadBonus = () => {
     description: "Alt om reload bonusser på danske casinoer. Lær hvordan reload fungerer, hvornår de tilbydes, og hvordan du maksimerer din bonusværdi som eksisterende spiller.",
     url: `${SITE_URL}/reload-bonus`,
     datePublished: "2026-02-27",
-    dateModified: "2026-02-27",
+    dateModified: "2026-03-18",
   });
 
   const videoJsonLd = buildVideoSchema(`${SITE_URL}/reload-bonus`, "ReM4PBQ30rw", {
