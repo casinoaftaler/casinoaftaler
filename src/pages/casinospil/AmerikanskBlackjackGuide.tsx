@@ -328,7 +328,7 @@ const AmerikanskBlackjackGuide = () => {
                       <td className="text-center py-2">Høj</td>
                     </tr>
                     <tr className="border-b border-border/50">
-                      <td className="py-2"><Link to="/casinospil/blackjack/double-exposure" className={linkClass}>Double Exposure</Link></td>
+                      <td className="py-2"><Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link></td>
                       <td className="text-center py-2">0,69 %</td>
                       <td className="text-center py-2">Begge synlige</td>
                       <td className="text-center py-2">Lav</td>
