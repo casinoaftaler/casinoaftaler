@@ -191,10 +191,7 @@ ${articleUrls.join("\n")}
       if (priorityRoutes.length > 0) {
         const priorityUrls = priorityRoutes.map((route) => {
           const loc = route.path === "/" ? SITE_URL + "/" : SITE_URL + route.path;
-          const dbDate = metadataMap.get(route.path);
-          const lastmod = dbDate
-            ? new Date(dbDate).toISOString().replace(/\.\d{3}Z$/, "+00:00")
-            : `${route.lastmod}T12:00:00+01:00`;
+          const lastmod = formatStaticLastmod(route.lastmod!);
           return `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
