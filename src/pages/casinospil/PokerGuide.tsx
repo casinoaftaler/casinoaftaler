@@ -38,37 +38,37 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const pokerCluster = [
   {
-    to: "/casinospil/texas-holdem",
+    to: "/casinospil/poker/texas-holdem",
     title: "Texas Hold'em",
     desc: "Verdens mest spillede variant – preflop ranges, position, 3-bet strategi og GTO-fundamenter.",
     icon: Target,
   },
   {
-    to: "/casinospil/omaha-poker",
+    to: "/casinospil/poker/omaha",
     title: "Omaha (PLO)",
     desc: "Fire hole cards, must-use-2-reglen, wraps, SPR-modeller og blocker-baseret bluffing.",
     icon: Layers,
   },
   {
-    to: "/casinospil/poker-strategi",
+    to: "/casinospil/poker/poker-strategi",
     title: "Poker Strategi",
     desc: "Avanceret EV-analyse, ICM-beregninger, solver-metodik og mental game mastery.",
     icon: Brain,
   },
   {
-    to: "/casinospil/video-poker",
+    to: "/casinospil/poker/video-poker",
     title: "Video Poker",
     desc: "Jacks or Better, Deuces Wild – op til 100,76 % RTP med perfekt strategi og pay table-analyse.",
     icon: Gamepad2,
   },
   {
-    to: "/casinospil/three-card-poker",
+    to: "/casinospil/poker/three-card-poker",
     title: "Three Card Poker",
     desc: "Q-6-4-strategien, Pair Plus-odds, 6 Card Bonus og dealer-qualifying-matematik.",
     icon: Zap,
   },
   {
-    to: "/casinospil/caribbean-stud-poker",
+    to: "/casinospil/poker/caribbean-stud",
     title: "Caribbean Stud Poker",
     desc: "AK-Q-8-3-strategien, progressive jackpot break-even og optimal sideindsats-analyse.",
     icon: Trophy,

@@ -45,7 +45,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const BedsteNyeCasinoer = () => {
-  const articleSchema = buildArticleSchema({ headline: "Bedste Nye Casinoer i Danmark 2026", description: "Vores topvalg blandt nye casinoer i Danmark 2026. Grundigt testede og rangeret efter kvalitet, bonus og sikkerhed.", url: `${SITE_URL}/nye-casinoer/bedste`, datePublished: "2026-02-10", dateModified: "2026-03-02", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Bedste Nye Casinoer i Danmark 2026", description: "Vores topvalg blandt nye casinoer i Danmark 2026. Grundigt testede og rangeret efter kvalitet, bonus og sikkerhed.", url: `${SITE_URL}/nye-casinoer`, datePublished: "2026-02-10", dateModified: "2026-03-18", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
   const faqSchema = buildFaqSchema(faqs);
 
   return (
