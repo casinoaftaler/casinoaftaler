@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { useCasinos } from "@/hooks/useCasinos";
+import { useCasinos, type Casino } from "@/hooks/useCasinos";
 import { CasinoCard } from "@/components/CasinoCard";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { Separator } from "@/components/ui/separator";

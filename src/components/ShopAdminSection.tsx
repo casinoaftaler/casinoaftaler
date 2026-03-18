@@ -53,6 +53,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { createSortableArgs } from "@/lib/reactCompat";
 
 function generateSlug(name: string): string {
   return name

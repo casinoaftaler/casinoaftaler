@@ -60,6 +60,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { calculateTheoreticalRTP, calculateRTPWithModifiedSymbol } from "@/lib/slotRTPCalculation";
+import { createSortableArgs } from "@/lib/reactCompat";
 
 interface SortableSymbolRowProps {
   symbol: SlotSymbol;

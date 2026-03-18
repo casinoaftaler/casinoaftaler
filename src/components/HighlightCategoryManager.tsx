@@ -43,6 +43,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
+import { createSortableArgs } from "@/lib/reactCompat";
 
 interface SortableCategoryItemProps {
   category: HighlightCategory;

@@ -49,6 +49,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { createSortableArgs } from "@/lib/reactCompat";
 
 function detectPlatform(url: string): "youtube" | "twitch" {
   if (url.includes("youtube.com") || url.includes("youtu.be")) {
