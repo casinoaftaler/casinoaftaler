@@ -70,7 +70,6 @@ const LightningRouletteGuide = () => {
     description: "Komplet Lightning Roulette guide 2026. Multiplikator-EV, house edge 2,78 %, 500x sandsynlighed og strategisk analyse for danske spillere.",
     url: `${SITE_URL}/live-casino/lightning-roulette`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
