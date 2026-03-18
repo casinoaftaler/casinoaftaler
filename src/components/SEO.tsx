@@ -78,13 +78,15 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
   const canonicalUrl = getCanonicalUrl(pathname);
   const formattedTitle = formatTitle(title);
 
-  // Canonical freshness source: seoRoutes (if route exists)
+  // Source of truth order:
+  // 1) explicit runtime dateModified for approved dynamic pages
+  // 2) centralized seoRoutes lastmod for static pages
   const routeLastmod = getRouteLastmod(normalizedPath);
-  const resolvedDateModified = routeLastmod ?? dateModified;
+  const resolvedDateModified = dateModified ?? routeLastmod;
 
   if (import.meta.env.DEV && dateModified && routeLastmod && dateModified !== routeLastmod) {
     console.warn(
-      `[SEO] Ignoring hardcoded dateModified (${dateModified}) for ${normalizedPath}; using seoRoutes lastmod (${routeLastmod}) instead.`
+      `[SEO] Explicit dateModified (${dateModified}) overrides seoRoutes lastmod (${routeLastmod}) for ${normalizedPath}.`
     );
   }
 

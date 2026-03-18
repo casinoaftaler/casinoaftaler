@@ -177,10 +177,10 @@ export default function SlotDatabase() {
   const seoTitle = `Slot Database – ${slotCountLabel} Spillemaskiner med Community Data`;
   const seoDesc = `Komplet database over ${slotCountLabel} spillemaskiner testet i live bonus hunts. Se RTP, volatilitet, højeste gevinster og community-statistikker for alle slots.`;
 
-  // Dynamic dateModified from real catalog data
+  // Dynamic dateModified from real catalog data only
   const dynamicDateModified = freshness?.lastUpdated
     ? freshness.lastUpdated.split("T")[0]
-    : new Date().toISOString().split("T")[0];
+    : undefined;
 
   const articleSchema = buildArticleSchema({
     headline: seoTitle,

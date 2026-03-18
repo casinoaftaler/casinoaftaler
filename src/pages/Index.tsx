@@ -76,14 +76,7 @@ const Index = () => {
     staleTime: 5 * 60 * 1000,
   });
 
-  const homepageDateModified = (() => {
-    const today = getTodayDanish();
-    if (latestNewsDate) {
-      const newsDate = latestNewsDate.split("T")[0];
-      return newsDate > today ? newsDate : today;
-    }
-    return today;
-  })();
+  const homepageDateModified = getRouteLastmod("/") || latestNewsDate?.split("T")[0] || undefined;
 
   useEffect(() => {
     setOpenCasinoId(null);

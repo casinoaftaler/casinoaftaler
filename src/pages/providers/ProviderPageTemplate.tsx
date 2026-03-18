@@ -118,7 +118,7 @@ export function ProviderPage({
   introTitle, introContent, historyTitle, historyIntro, timeline,
   games, gamesIntro, licensesContent, pros, cons, faqs, currentPath,
   responsibleGamingText, strategicAnalysis, technicalProfile,
-  sectionOrder, updatedDate = "15-02-2026", readTime = "14 Min.",
+  sectionOrder, updatedDate, readTime = "14 Min.",
   strategicTitle, technicalTitle, gamesTitle, licensesTitle, prosConsTitle, responsibleTitle,
   ctaCasinoSlug,
 }: ProviderPageProps) {

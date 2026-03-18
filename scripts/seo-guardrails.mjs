@@ -30,9 +30,9 @@ function lineAt(content, index) {
   return content.slice(0, index).split("\n").length;
 }
 
-function pushViolation(file, content, index, type) {
-  const line = lineAt(content, index);
-  const lineText = content.split("\n")[line - 1]?.trim() || "";
+function pushViolation(file, originalContent, index, type) {
+  const line = lineAt(originalContent, index);
+  const lineText = originalContent.split("\n")[line - 1]?.trim() || "";
   violations.push({
     file: path.relative(ROOT, file),
     line,
@@ -41,36 +41,71 @@ function pushViolation(file, content, index, type) {
   });
 }
 
-function scanPattern(file, content, regex, type) {
+function maskPreserveNewlines(match) {
+  return match.replace(/[^\n]/g, " ");
+}
+
+function stripComments(content) {
+  return content
+    .replace(/\/\*[\s\S]*?\*\//g, maskPreserveNewlines)
+    .replace(/(^|[^:])\/\/.*$/gm, (match, prefix) => `${prefix}${" ".repeat(Math.max(0, match.length - prefix.length))}`);
+}
+
+function scanPattern(file, originalContent, content, regex, type) {
   let m;
   while ((m = regex.exec(content)) !== null) {
-    pushViolation(file, content, m.index, type);
+    pushViolation(file, originalContent, m.index, type);
     if (m.index === regex.lastIndex) regex.lastIndex++;
   }
 }
 
 function scanFile(file) {
-  const content = fs.readFileSync(file, "utf-8");
+  const originalContent = fs.readFileSync(file, "utf-8");
+  const content = stripComments(originalContent);
 
-  // 1) Hardcoded SEO dateModified prop literals
   scanPattern(
     file,
+    originalContent,
     content,
     /<SEO\b[^>]*\bdateModified\s*=\s*(?:"[^"]+"|'[^']+')/g,
-    "SEO dateModified literal is forbidden (use centralized route lastmod)"
+    "SEO dateModified literal is forbidden (use centralized route lastmod or approved runtime data)"
   );
 
-  // 2) Fake freshness via current date generation in schema/object usage
   scanPattern(
     file,
+    originalContent,
+    content,
+    /<AuthorMetaBar\b[^>]*\bdate\s*=\s*(?:"[^"]+"|'[^']+')/g,
+    "AuthorMetaBar date literal is forbidden (remove legacy hardcoded date prop)"
+  );
+
+  scanPattern(
+    file,
+    originalContent,
+    content,
+    /\bdateModified\s*:\s*(?:"\d{4}-\d{2}-\d{2}(?:T[^"]*)?"|'\d{4}-\d{2}-\d{2}(?:T[^']*)?')/g,
+    "Hardcoded dateModified literal is forbidden"
+  );
+
+  scanPattern(
+    file,
+    originalContent,
     content,
     /\bdateModified\s*:\s*new\s+Date\s*\(/g,
     "Dynamic current-date freshness is forbidden"
   );
 
-  // 3) Fake freshness in UI labels
   scanPattern(
     file,
+    originalContent,
+    content,
+    /\bdateModified\s*:\s*getTodayDanish\s*\(/g,
+    "Danish-today freshness is forbidden for SEO dateModified"
+  );
+
+  scanPattern(
+    file,
+    originalContent,
     content,
     /Opdateret\s*\{\s*new Date\s*\(/g,
     "Dynamic current-date freshness label is forbidden"
