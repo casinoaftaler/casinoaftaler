@@ -143,7 +143,7 @@ const LudomaniGuide = () => {
       "Alt om ludomani: Symptomer, årsager, behandling, statistik og hjælpemuligheder. Lær at genkende spilleafhængighed og find gratis støtte i Danmark.",
     url: `${SITE_URL}/ansvarligt-spil/ludomani`,
     datePublished: "2026-03-07",
-    dateModified: "2026-03-07",
+    dateModified: "2026-03-18",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
@@ -154,6 +154,8 @@ const LudomaniGuide = () => {
         title="Ludomani – Komplet Guide til Spilleafhængighed"
         description="Alt om ludomani: Symptomer, årsager, behandlingsmuligheder, statistik og gratis hjælp i Danmark. Lær at genkende spilleafhængighed og find støtte."
         jsonLd={[faqJsonLd, articleJsonLd]}
+        datePublished="2026-03-07"
+        dateModified="2026-03-18"
       />
 
       {/* ── Hero Section ── */}
@@ -185,7 +187,7 @@ const LudomaniGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="ajse" date="2026-03-07" readTime="28 Min." />
+        <AuthorMetaBar author="ajse" date="2026-03-18" readTime="28 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Juridisk og fagligt gennemgået af Ajse, juridisk redaktør hos Casinoaftaler.dk.
         </p>

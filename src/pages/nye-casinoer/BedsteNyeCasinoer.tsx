@@ -331,8 +331,8 @@ const BedsteNyeCasinoer = () => {
           </div>
         </section>
 
-        <LatestNewsByCategory pagePath="/nye-casinoer/bedste" />
-        <RelatedGuides currentPath="/nye-casinoer/bedste" />
+        <LatestNewsByCategory pagePath="/nye-casinoer" />
+        <RelatedGuides currentPath="/nye-casinoer" />
         <FAQSection title="Ofte stillede spørgsmål om de bedste nye casinoer" faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>

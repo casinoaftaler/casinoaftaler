@@ -519,9 +519,9 @@ const RouletteStrategiGuide = () => {
 
         <Separator className="my-10" />
 
-        <CasinospilMoneyLinks gameName="Roulette Strategi" currentPath="/casinospil/roulette-strategi" />
-        <LatestNewsByCategory pagePath="/casinospil/roulette-strategi" />
-        <RelatedGuides currentPath="/casinospil/roulette-strategi" />
+        <CasinospilMoneyLinks gameName="Roulette Strategi" currentPath="/casinospil/roulette" />
+        <LatestNewsByCategory pagePath="/casinospil/roulette" />
+        <RelatedGuides currentPath="/casinospil/roulette" />
 
         <FAQSection faqs={strategiFaqs} />
 
