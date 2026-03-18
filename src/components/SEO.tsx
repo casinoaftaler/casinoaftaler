@@ -72,6 +72,13 @@ function toIso8601WithTz(date: string): string {
   return `${date}T00:00:00+01:00`;
 }
 
+function isApprovedDynamicDateModifiedPath(pathname: string): boolean {
+  return pathname === "/free-spins-i-dag"
+    || pathname === "/markedsindsigt"
+    || pathname.startsWith("/casino-nyheder/")
+    || pathname.startsWith("/slot-katalog/");
+}
+
 export function SEO({ title, description, type = "website", image = `${SITE_URL}/og-image.png`, noindex, jsonLd, breadcrumbLabel, datePublished, dateModified }: SEOProps) {
   const { pathname } = useLocation();
   const normalizedPath = normalizePath(pathname);
@@ -79,15 +86,24 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
   const formattedTitle = formatTitle(title);
 
   // Source of truth order:
-  // 1) explicit runtime dateModified for approved dynamic pages
-  // 2) centralized seoRoutes lastmod for static pages
+  // 1) explicit runtime dateModified for approved dynamic backend-driven pages only
+  // 2) centralized seoRoutes lastmod for all other indexable pages
   const routeLastmod = getRouteLastmod(normalizedPath);
-  const resolvedDateModified = dateModified ?? routeLastmod;
+  const hasApprovedDynamicDateModified = isApprovedDynamicDateModifiedPath(normalizedPath);
+  const resolvedDateModified = hasApprovedDynamicDateModified
+    ? (dateModified ?? routeLastmod)
+    : routeLastmod;
 
-  if (import.meta.env.DEV && dateModified && routeLastmod && dateModified !== routeLastmod) {
-    console.warn(
-      `[SEO] Explicit dateModified (${dateModified}) overrides seoRoutes lastmod (${routeLastmod}) for ${normalizedPath}.`
-    );
+  if (import.meta.env.DEV) {
+    if (dateModified && !hasApprovedDynamicDateModified) {
+      console.warn(
+        `[SEO] Ignoring non-approved runtime dateModified for ${normalizedPath}. Use seoRoutes.ts or an approved dynamic source.`
+      );
+    } else if (dateModified && routeLastmod && dateModified !== routeLastmod) {
+      console.warn(
+        `[SEO] Approved dynamic dateModified (${dateModified}) overrides seoRoutes lastmod (${routeLastmod}) for ${normalizedPath}.`
+      );
+    }
   }
 
   const normalizedDatePublished = datePublished ? toIso8601WithTz(datePublished) : undefined;

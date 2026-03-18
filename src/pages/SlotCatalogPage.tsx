@@ -766,6 +766,8 @@ export default function SlotCatalogPage() {
     : null;
 
   const faqs = slot ? generateFAQ(slot) : [];
+  const slotDatePublished = slot?.created_at || "2025-01-01";
+  const slotDateModified = slot?.updated_at;
 
   // Build Article + Person JSON-LD (E-E-A-T signals)
   const articleSchema = slot
@@ -773,8 +775,8 @@ export default function SlotCatalogPage() {
         headline: `${slot.slot_name} – Komplet Data & Statistik`,
         description: description,
         url: pageUrl,
-        datePublished: slot.created_at?.slice(0, 10) || "2025-01-01",
-        dateModified: slot.updated_at?.slice(0, 10),
+        datePublished: slotDatePublished,
+        dateModified: slotDateModified,
         authorName: "Jonas",
         authorUrl: `${SITE_URL}/forfatter/jonas`,
         authorSameAs: JONAS_SAME_AS,
@@ -905,8 +907,8 @@ export default function SlotCatalogPage() {
         type="article"
         jsonLd={jsonLd || undefined}
         breadcrumbLabel={slotName}
-        datePublished={slot.created_at?.slice(0, 10)}
-        dateModified={slot.updated_at?.slice(0, 10)}
+        datePublished={slotDatePublished}
+        dateModified={slotDateModified}
       />
 
       {/* Static fallback for crawlers that don't execute JS */}

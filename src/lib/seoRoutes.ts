@@ -1,18 +1,19 @@
 
 
 /**
- * Central registry of all SEO-indexable routes.
+ * Central registry of all SEO-indexable static routes.
  *
- * Used by:
-  *
-  * Rules:
-  *  - Only pages that use <SEO /> without noindex belong here.
-  *  - Community, auth, profile, admin, shop and highlight pages are excluded.
-  *  - Canonical URLs are derived from SITE_URL + path.
-  *  - lastmod should match the dateModified in the page's Article schema.
-  *  - IMPORTANT: When editing any page component, always update the corresponding
-  *    lastmod date here to today's date (YYYY-MM-DD) to signal freshness to Google.
-  */
+ * Used by canonical tags, sitemap generation, and shared freshness UI.
+ *
+ * Rules:
+ *  - Only pages that use <SEO /> without noindex belong here.
+ *  - Community, auth, profile, admin, shop and highlight pages are excluded.
+ *  - Canonical URLs are derived from SITE_URL + path.
+ *  - Every static indexable route must have an explicit lastmod here.
+ *  - Approved dynamic pages (news articles, slot catalog pages, and selected live-data hubs)
+ *    may override runtime dateModified with backend timestamps.
+ *  - Build dates, "today" labels, and ad hoc freshness fallbacks are forbidden.
+ */
 
 export interface SeoRoute {
   /** Absolute path, e.g. "/casino-bonus" */
@@ -21,7 +22,7 @@ export interface SeoRoute {
   changefreq: "daily" | "weekly" | "monthly" | "yearly";
   /** Sitemap priority 0.0–1.0 */
   priority: number;
-  /** ISO date (YYYY-MM-DD) for sitemap lastmod. Falls back to build date if omitted. */
+  /** Required ISO date (YYYY-MM-DD) for static-route sitemap lastmod and runtime fallback anchor. */
   lastmod?: string;
   /**
    * Whether to display "Opdateret" date in the AuthorMetaBar UI.

@@ -267,8 +267,7 @@ const FreeSpinsIDag = () => {
 
   const getCasinoLogo = (slug: string) => casinos?.find(c => c.slug === slug)?.logo_url || null;
   const getCasinoAffiliate = (slug: string) => casinos?.find(c => c.slug === slug)?.affiliate_url || null;
-  const latestChecked = campaigns?.[0]?.last_checked;
-  const seoDateModified = pageMeta?.updated_at ?? latestChecked ?? getRouteLastmod("/free-spins-i-dag");
+  const seoDateModified = pageMeta?.updated_at ?? getRouteLastmod("/free-spins-i-dag");
   const displayedUpdateDate = seoDateModified
     ? format(new Date(seoDateModified), "d. MMMM yyyy", { locale: da })
     : null;
@@ -305,6 +304,9 @@ const FreeSpinsIDag = () => {
       <SEO
         title={`Free Spins i Dag (2026) – Gratis Spins Uden Indbetaling`}
         description={`Opdateret dagligt: ${totalCount} danske free spins tilbud – til nye og eksisterende spillere. Sammenlign omsætningskrav og find de bedste free spins uden indbetaling.`}
+        type="article"
+        datePublished="2026-02-22"
+        dateModified={seoDateModified}
         jsonLd={schemaMarkup}
         breadcrumbLabel="Free Spins i Dag"
       />
@@ -330,7 +332,7 @@ const FreeSpinsIDag = () => {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
               </span>
-              <span>{getUpdateBadgeLabel(latestChecked)}</span>
+              <span>{getUpdateBadgeLabel(seoDateModified)}</span>
             </div>
 
             <h1 className="mb-3 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl animate-fade-in [animation-delay:100ms]">
