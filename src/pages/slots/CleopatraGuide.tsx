@@ -46,7 +46,7 @@ const CleopatraGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Klassiker-analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Cleopatra – Den Tidløse Klassiker fra IGT</h1>
             <p className="text-lg text-white/80">Fra landbaserede kasinoer i Las Vegas til danske online casinoer: en matematisk analyse af den slot, der definerede en hel genre og stadig tiltrækker millioner af spillere worldwide.</p>
           </div>
