@@ -428,7 +428,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/ansvarligt-spil/hjaelpelinjer", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
 
   // ── Mobil Casino ──
-  { path: "/mobil-casino", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-05" },
+  { path: "/mobil-casino", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-18" },
   { path: "/casino-app", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/mobil-casino/iphone", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/mobil-casino/android", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },

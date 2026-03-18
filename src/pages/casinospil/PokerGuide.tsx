@@ -619,12 +619,12 @@ const PokerGuide = () => {
             Denne cornerstone-guide har dækket pokerens samlede landskab. For dybere specialisering, naviger til de individuelle spoke-guides via cluster-gitteret ovenfor. Her er en hurtig opsummering af, hvad hver guide tilbyder ud over denne hubs indhold:
           </p>
           <ul className="mb-4 space-y-2 text-muted-foreground leading-relaxed list-disc list-inside">
-            <li><Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em</Link> – Preflop ranges med open/3-bet/4-bet charts, flop texture-analyse, barrel-strategier og GTO vs. exploitative play.</li>
-            <li><Link to="/casinospil/omaha-poker" className={linkClass}>Omaha (PLO)</Link> – Must-use-2 edge cases, wrap equity-tabeller, SPR-modeller, blocker-baseret bluffing og 5-Card PLO dynamik.</li>
-            <li><Link to="/casinospil/poker-strategi" className={linkClass}>Poker Strategi</Link> – ICM-beregninger, solver-metodik (PioSolver/GTO+), mental game, HUD-stats og studieteknikker.</li>
-            <li><Link to="/casinospil/video-poker" className={linkClass}>Video Poker</Link> – Pay table-analyse for 20+ varianter, wild card-matematik, progressive jackpot break-even og mobilspil-guide.</li>
-            <li><Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link> – Q-6-4-strategi, dealer-qualifying-matematik (66,4 %), 6 Card Bonus house edge og tempo-analyse.</li>
-            <li><Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud Poker</Link> – AK-strategiens nuancer, progressive jackpot EV, dealer-qualifying og sammenligning med Three Card.</li>
+            <li><Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link> – Preflop ranges med open/3-bet/4-bet charts, flop texture-analyse, barrel-strategier og GTO vs. exploitative play.</li>
+            <li><Link to="/casinospil/poker/omaha" className={linkClass}>Omaha (PLO)</Link> – Must-use-2 edge cases, wrap equity-tabeller, SPR-modeller, blocker-baseret bluffing og 5-Card PLO dynamik.</li>
+            <li><Link to="/casinospil/poker/poker-strategi" className={linkClass}>Poker Strategi</Link> – ICM-beregninger, solver-metodik (PioSolver/GTO+), mental game, HUD-stats og studieteknikker.</li>
+            <li><Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link> – Pay table-analyse for 20+ varianter, wild card-matematik, progressive jackpot break-even og mobilspil-guide.</li>
+            <li><Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link> – Q-6-4-strategi, dealer-qualifying-matematik (66,4 %), 6 Card Bonus house edge og tempo-analyse.</li>
+            <li><Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud Poker</Link> – AK-strategiens nuancer, progressive jackpot EV, dealer-qualifying og sammenligning med Three Card.</li>
           </ul>
           <p className="text-muted-foreground leading-relaxed">
             For sammenligning med andre strategiske <Link to="/casinospil" className={linkClass}>casinospil</Link> anbefaler vi vores guides til <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> (basic strategy og card counting), <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> (laveste house edge) og <Link to="/casinospil/craps" className={linkClass}>craps</Link> (favorable pass line-odds). Poker er det eneste casinospil, der belønner langsigtet investering i læring – og med denne guide som fundament er du klar til at dykke dybere.

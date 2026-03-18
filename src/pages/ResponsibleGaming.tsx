@@ -160,7 +160,7 @@ const ResponsibleGaming = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="ajse" date="2026-03-05" readTime="14 Min." />
+        <AuthorMetaBar author="ajse" date="18-03-2026" readTime="14 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">
