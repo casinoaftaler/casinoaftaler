@@ -161,7 +161,7 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
   const standaloneScripts = mergedJsonLd ? [] : rawJsonLd;
 
   return (
-    <Helmet>
+    <SafeHelmet>
       <title>{formattedTitle}</title>
       <meta name="description" content={safeDescription} />
       {noindex && (
@@ -208,6 +208,6 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
           {JSON.stringify(schema)}
         </script>
       ))}
-    </Helmet>
+    </SafeHelmet>
   );
 }

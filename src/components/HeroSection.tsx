@@ -21,9 +21,9 @@ export function HeroSection() {
   return (
     <>
       {heroBackgroundImage && (
-        <Helmet>
+        <SafeHelmet>
           <link rel="preload" as="image" href={heroBackgroundImage} />
-        </Helmet>
+        </SafeHelmet>
       )}
       <section
         className="relative overflow-hidden py-6 text-white md:py-8 min-h-[320px] md:min-h-[320px] max-h-[85vh] md:max-h-[70vh]"
