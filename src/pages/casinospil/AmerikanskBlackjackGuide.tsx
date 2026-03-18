@@ -108,6 +108,7 @@ const AmerikanskBlackjackGuide = () => {
     description: "Komplet guide til amerikansk blackjack med hole card-regler, optimal strategi, house edge-analyse og sammenligning med europæisk blackjack.",
     url: `${SITE_URL}/casinospil/blackjack/amerikansk-blackjack`,
     datePublished: "2026-03-02",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -115,8 +116,11 @@ const AmerikanskBlackjackGuide = () => {
   return (
     <>
       <SEO
-        title="Amerikansk Blackjack 2026 – Regler & Strategi"
+        title="Amerikansk Blackjack 2026 – Regler, Hole Card & Strategi"
         description="Komplet guide til amerikansk blackjack: hole card-regler, optimal basic strategy, house edge-analyse og sammenligning med europæisk variant."
+        type="article"
+        datePublished="2026-03-02"
+        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
@@ -127,7 +131,7 @@ const AmerikanskBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Marts 2026
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Amerikansk Blackjack – Hole Card, Strategi og Spiller-Edge
@@ -140,7 +144,7 @@ const AmerikanskBlackjackGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="35 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Amerikansk blackjack-bord med kort og chips i atmosfærisk belysning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

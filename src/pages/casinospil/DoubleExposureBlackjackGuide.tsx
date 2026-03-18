@@ -109,8 +109,9 @@ const DoubleExposureBlackjackGuide = () => {
   const articleSchema = buildArticleSchema({
     headline: "Double Exposure Blackjack 2026 – Regler, Strategi & EV-Analyse",
     description: "Komplet guide til Double Exposure Blackjack: begge dealerkort synlige, tilpasset strategi, house edge-matematik og sammenligning med klassisk blackjack.",
-    url: `${SITE_URL}/casinospil/blackjack/double-exposure`,
+    url: `${SITE_URL}/casinospil/blackjack/double-exposure-blackjack`,
     datePublished: "2026-03-02",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -118,8 +119,11 @@ const DoubleExposureBlackjackGuide = () => {
   return (
     <>
       <SEO
-        title="Double Exposure Blackjack 2026 – Komplet Guide"
-        description="Double Exposure Blackjack guide: begge dealerkort synlige, tilpasset strategi, house edge-matematik og EV-analyse for danske spillere."
+        title="Double Exposure Blackjack 2026 – Regler & House Edge"
+        description="Double Exposure Blackjack guide: begge dealerkort synlige, house edge, tilpasset strategi og hvornår varianten giver mening for danske spillere."
+        type="article"
+        datePublished="2026-03-02"
+        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
@@ -130,7 +134,7 @@ const DoubleExposureBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Marts 2026
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Double Exposure Blackjack – Fuld Information, Nye Regler
@@ -143,7 +147,7 @@ const DoubleExposureBlackjackGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="36 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Double Exposure blackjack-bord med begge dealerkort synlige" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -636,9 +640,9 @@ const DoubleExposureBlackjackGuide = () => {
 
         <AuthorBio />
 
-        <CasinospilMoneyLinks gameName="Double Exposure Blackjack" currentPath="/casinospil/blackjack/double-exposure" />
-        <LatestNewsByCategory pagePath="/casinospil/blackjack/double-exposure" />
-        <RelatedGuides currentPath="/casinospil/blackjack/double-exposure" />
+        <CasinospilMoneyLinks gameName="Double Exposure Blackjack" currentPath="/casinospil/blackjack/double-exposure-blackjack" />
+        <LatestNewsByCategory pagePath="/casinospil/blackjack/double-exposure-blackjack" />
+        <RelatedGuides currentPath="/casinospil/blackjack/double-exposure-blackjack" />
 
         <FAQSection faqs={faqs} />
       </div>
