@@ -603,10 +603,10 @@ const PokerGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sådan Kommer Du i Gang – 5 Trin</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Trin 1 – Lær håndrangeringerne udenad.</strong> Brug tabellen ovenfor. Del fem kort, identificér hånden, gentag 50–100 gange. <strong>Trin 2 – Start med mikrostakes online.</strong> 0,01/0,02 kr. blinds, 50–100 kr. startbankroll. Spil om rigtige penge – gratis poker giver ikke den nødvendige feedback. <strong>Trin 3 – Spil tight-aggressivt.</strong> Top 15–20 % af starthænder. Raise preflop, continuation bet på floppen, fold ved modstand. Læs vores <Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em-guide</Link> for præcise ranges.
+            <strong>Trin 1 – Lær håndrangeringerne udenad.</strong> Brug tabellen ovenfor. Del fem kort, identificér hånden, gentag 50–100 gange. <strong>Trin 2 – Start med mikrostakes online.</strong> 0,01/0,02 kr. blinds, 50–100 kr. startbankroll. Spil om rigtige penge – gratis poker giver ikke den nødvendige feedback. <strong>Trin 3 – Spil tight-aggressivt.</strong> Top 15–20 % af starthænder. Raise preflop, continuation bet på floppen, fold ved modstand. Læs vores <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em-guide</Link> for præcise ranges.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Trin 4 – Analysér dine hænder.</strong> Gennemgå håndhistorik. Spørg: "Var dette call profitabelt baseret på pot odds?" Selvanalyse er vigtigere end volume. Vores <Link to="/casinospil/poker-strategi" className={linkClass}>strategi-guide</Link> dækker solver-baseret analyse og studieteknikker. <strong>Trin 5 – Sæt grænser.</strong> Bankroll-grænse, sessionsgrænse, tabsgrænse. Brug <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer.
+            <strong>Trin 4 – Analysér dine hænder.</strong> Gennemgå håndhistorik. Spørg: "Var dette call profitabelt baseret på pot odds?" Selvanalyse er vigtigere end volume. Vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>strategi-guide</Link> dækker solver-baseret analyse og studieteknikker. <strong>Trin 5 – Sæt grænser.</strong> Bankroll-grænse, sessionsgrænse, tabsgrænse. Brug <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer.
           </p>
         </section>
 
