@@ -228,7 +228,7 @@ export const seoRoutes: SeoRoute[] = ([
   // /casinospil/game-shows – 301 redirected to /live-casino/game-shows
 
   // ── Bonus Guides ──
-  { path: "/casino-bonus", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-06" },
+  { path: "/casino-bonus", changefreq: "weekly", priority: 0.95, lastmod: "2026-03-18" },
   {
     path: "/markedsindsigt",
     changefreq: "daily",
@@ -239,17 +239,17 @@ export const seoRoutes: SeoRoute[] = ([
     articleCategory: "Analyse",
     articleExcerpt: "Offentligt overblik over verificerede licens-, bonus- og compliance-opdateringer på det danske casinomarked.",
   },
-  { path: "/velkomstbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
-  { path: "/free-spins", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
+  { path: "/velkomstbonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
+  { path: "/free-spins", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
   { path: "/free-spins-i-dag", changefreq: "daily", priority: 0.9, lastmod: "2026-03-10" },
   { path: "/indskudsbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/omsaetningskrav", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-06" },
-  { path: "/bonus-uden-indbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
+  { path: "/bonus-uden-indbetaling", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
   { path: "/bonus-uden-omsaetningskrav", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
-  { path: "/no-sticky-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
-  { path: "/sticky-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
-  { path: "/cashback-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
-  { path: "/reload-bonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
+  { path: "/no-sticky-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
+  { path: "/sticky-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
+  { path: "/cashback-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
+  { path: "/reload-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
 
   // ── Spiludviklere ──
   { path: "/spiludviklere", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },

@@ -136,17 +136,17 @@ export const LIVE_CASINO_LINKS: NavLink[] = [
 ];
 
 export const BONUS_LINKS: NavLinkWithIcon[] = [
+  { to: "/velkomstbonus", label: "Velkomstbonus" },
+  { to: "/free-spins", label: "Free Spins" },
+  { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling" },
   { to: "/no-sticky-bonus", label: "No-Sticky Bonusser" },
   { to: "/sticky-bonus", label: "Sticky Bonusser" },
-  { to: "/free-spins", label: "Free Spins" },
-  { to: "/free-spins-i-dag", label: "Free Spins i Dag" },
-  { to: "/velkomstbonus", label: "Velkomstbonus" },
-  { to: "/omsaetningskrav", label: "Omsætningskrav" },
-  { to: "/indskudsbonus", label: "Indskudsbonus" },
-  { to: "/bonus-uden-indbetaling", label: "Bonus uden Indbetaling" },
-  { to: "/bonus-uden-omsaetningskrav", label: "Bonus uden Omsætningskrav" },
   { to: "/cashback-bonus", label: "Cashback Bonus" },
   { to: "/reload-bonus", label: "Reload Bonus" },
+  { to: "/free-spins-i-dag", label: "Free Spins i Dag" },
+  { to: "/omsaetningskrav", label: "Omsætningskrav" },
+  { to: "/indskudsbonus", label: "Indskudsbonus" },
+  { to: "/bonus-uden-omsaetningskrav", label: "Bonus uden Omsætningskrav" },
 ];
 
 export const PAYMENT_LINKS: NavLink[] = [
