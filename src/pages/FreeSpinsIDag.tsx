@@ -217,7 +217,6 @@ function getEligibilityLabel(offer: CampaignOffer): string | null {
 
 // ─── Main Page ───
 const FreeSpinsIDag = () => {
-  const todayFormatted = format(new Date(), "d. MMMM yyyy", { locale: da });
   const { data: casinos } = useCasinos();
   const { data: pageMeta } = usePageLastmod("/free-spins-i-dag");
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
@@ -270,6 +269,9 @@ const FreeSpinsIDag = () => {
   const getCasinoAffiliate = (slug: string) => casinos?.find(c => c.slug === slug)?.affiliate_url || null;
   const latestChecked = campaigns?.[0]?.last_checked;
   const seoDateModified = pageMeta?.updated_at ?? latestChecked ?? getRouteLastmod("/free-spins-i-dag");
+  const displayedUpdateDate = seoDateModified
+    ? format(new Date(seoDateModified), "d. MMMM yyyy", { locale: da })
+    : null;
 
   const schemaMarkup = [
     buildArticleSchema({
@@ -328,7 +330,7 @@ const FreeSpinsIDag = () => {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
               </span>
-              {latestChecked ? <span>{getUpdateBadgeLabel(latestChecked)}</span> : <span>Opdateret i dag</span>}
+              <span>{getUpdateBadgeLabel(latestChecked)}</span>
             </div>
 
             <h1 className="mb-3 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl animate-fade-in [animation-delay:100ms]">
