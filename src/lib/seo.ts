@@ -1,4 +1,5 @@
 import { getRouteLastmod } from "@/lib/seoRoutes";
+import { isApprovedDynamicDateModifiedPath } from "@/lib/seoDatePolicy";
 
 /**
  * SEO configuration constants.
@@ -156,12 +157,6 @@ function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: 
  *   // with video binding:
  *   buildArticleSchema({ ..., videoId: "abc123" })
  */
-function isApprovedDynamicDateModifiedUrlPath(pathname: string): boolean {
-  return pathname === "/free-spins-i-dag"
-    || pathname === "/markedsindsigt"
-    || pathname.startsWith("/casino-nyheder/")
-    || pathname.startsWith("/slot-katalog/");
-}
 
 export function buildArticleSchema(opts: {
   headline: string;

@@ -1,29 +1,12 @@
 import fs from "fs";
 import path from "path";
+import { getApprovedDynamicDateModifiedPatternsForFile } from "../src/lib/seoDatePolicy.js";
 
 const ROOT = process.cwd();
 const SCAN_DIRS = [path.join(ROOT, "src"), path.join(ROOT, "scripts")];
 
 const IGNORE_DIRS = new Set(["node_modules", "dist", ".git"]);
 const FILE_EXT = /\.(ts|tsx|mjs)$/;
-const APPROVED_DYNAMIC_DATE_MODIFIED = {
-  [path.join("src", "pages", "MarketIntelligence.tsx")]: [
-    /\bdateModified\s*:\s*dateModified\b/,
-    /\bdateModified\s*=\s*\{dateModified\}/,
-  ],
-  [path.join("src", "pages", "FreeSpinsIDag.tsx")]: [
-    /\bdateModified\s*:\s*seoDateModified\b/,
-    /\bdateModified\s*=\s*\{seoDateModified\}/,
-  ],
-  [path.join("src", "pages", "CasinoNyhedArticle.tsx")]: [
-    /\bdateModified\s*:\s*article\.updated_at\b/,
-    /\bdateModified\s*=\s*\{article\.updated_at\}/,
-  ],
-  [path.join("src", "pages", "SlotCatalogPage.tsx")]: [
-    /\bdateModified\s*:\s*slotDateModified\b/,
-    /\bdateModified\s*=\s*\{slotDateModified\}/,
-  ],
-};
 
 /** @typedef {{file: string; line: number; type: string; snippet: string}} Violation */
 
