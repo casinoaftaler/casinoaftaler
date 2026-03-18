@@ -137,7 +137,7 @@ const pokerFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er forskellen på casino poker og spiller-vs-spiller poker?",
     answer: (
       <>
-        Casino poker (<Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud</Link>, <Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link>, Casino Hold'em) spilles mod huset med en fast house edge – du kan ikke eliminere husets fordel. Spiller-vs-spiller poker (<Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em</Link>, <Link to="/casinospil/omaha-poker" className={linkClass}>Omaha</Link>) spilles mod andre mennesker, og casinoet tager kun rake. En dygtig spiller kan have positiv EV i spiller-vs-spiller poker – det er umuligt i casino poker.
+        Casino poker (<Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud</Link>, <Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link>, Casino Hold'em) spilles mod huset med en fast house edge – du kan ikke eliminere husets fordel. Spiller-vs-spiller poker (<Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link>, <Link to="/casinospil/poker/omaha" className={linkClass}>Omaha</Link>) spilles mod andre mennesker, og casinoet tager kun rake. En dygtig spiller kan have positiv EV i spiller-vs-spiller poker – det er umuligt i casino poker.
       </>
     ),
   },
