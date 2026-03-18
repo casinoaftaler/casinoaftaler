@@ -39,6 +39,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
 const linkClass = "text-primary underline hover:text-primary/80";
