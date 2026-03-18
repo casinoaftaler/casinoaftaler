@@ -87,7 +87,7 @@ export default function CaribbeanStudGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Coins className="mr-1.5 h-3.5 w-3.5" /> Casino Bordspil – Marts 2026
+              <Coins className="mr-1.5 h-3.5 w-3.5" /> Casino bordspil
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Caribbean Stud Poker – Komplet Guide til Odds, Regler & Optimal Strategi
