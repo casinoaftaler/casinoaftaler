@@ -98,7 +98,6 @@ const WolfGoldGuide = () => {
     description: "Komplet analyse af Wolf Gold: Money Respin-jackpot, free spins med Mega Symbols, RTP 96,01 %, volatilitetsprofil og EV-vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/wolf-gold`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
@@ -133,7 +132,7 @@ const WolfGoldGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Jackpot-mekanik</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Wolf Gold – Jackpot-Mekanik & RTP-Analyse</h1>
             <p className="text-lg text-white/80">Pragmatic Play's mest ikoniske jackpot-slot: en teknisk gennemgang af Money Respin-systemet, Mega Symbol free spins og hvorfor Wolf Gold stadig definerer genren efter 9 år.</p>
           </div>
@@ -141,7 +140,7 @@ const WolfGoldGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="18 min" />
+        <AuthorMetaBar author="kevin" readTime="18 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Wolf Gold spillemaskine" loading="eager" />
         </div>

@@ -70,7 +70,6 @@ const SweetBonanzaGuide = () => {
     description: "Dybdegående analyse af Sweet Bonanza: RTP-varianter, EV-beregninger, multiplikator-matematik og bonusrunde-statistik.",
     url: `${SITE_URL}/casinospil/spillemaskiner/sweet-bonanza`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -114,7 +113,7 @@ const SweetBonanzaGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" readTime="25 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Sweet Bonanza spillemaskine" loading="eager" />
         </div>

@@ -66,7 +66,6 @@ const GatesOfOlympusGuide = () => {
     description: "Komplet matematisk analyse af Gates of Olympus: multiplikatormekanik, volatilitetsprofil, EV-beregninger og strategisk vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/gates-of-olympus`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -110,7 +109,7 @@ const GatesOfOlympusGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" readTime="26 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Gates of Olympus spillemaskine" loading="eager" />
         </div>
