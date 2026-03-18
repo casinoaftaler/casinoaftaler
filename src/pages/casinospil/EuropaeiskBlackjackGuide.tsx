@@ -130,7 +130,7 @@ const EuropaeiskBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret marts 2026
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Blackjack guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Europæisk Blackjack – No Hole Card, ENHC og Strategisk Tilpasning
