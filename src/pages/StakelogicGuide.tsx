@@ -14,7 +14,6 @@ const StakelogicGuide = () => (
     heroImageAlt="Stakelogic – hollandsk innovativ spiludvikler"
     heroSubtitle="Stakelogic er den hollandske innovator der med Super Stake™-teknologien har skabt en helt ny dimension i online spilleautomater. Med 150+ titler og en unik position som Novomatic Groups digitale spydspids kombinerer de landbaseret casino-DNA med cutting-edge online innovation."
     currentPath="/spiludviklere/stakelogic"
-    updatedDate="12-03-2026"
     readTime="33 Min."
     strategicTitle="Fra Landbaseret Arv til Digital Innovation: Stakelogics Unikke Markedsposition"
     technicalTitle="Super Stake™ og Teknisk Arkitektur: Stakelogics Proprietære Motor"

@@ -13,7 +13,6 @@ const RelaxGamingGuide = () => (
     heroImage={relaxHero}
     heroImageAlt="Relax Gaming – innovative spilleautomater og Dream Drop Jackpots"
     currentPath="/spiludviklere/relax-gaming"
-    updatedDate="15-02-2026"
     readTime="18 Min."
     sectionOrder={["intro", "technical", "strategic", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
     strategicTitle="Hybrid-Modellen: Studio og Platform i Symbiose"

@@ -13,7 +13,6 @@ const PlayNGoGuide = () => (
     heroImage={playNGoHero}
     heroImageAlt="Play'n GO – kreative spilleautomater med Book of Dead, Reactoonz og Rich Wilde"
     currentPath="/spiludviklere/play-n-go"
-    updatedDate="17-02-2026"
     readTime="38 Min."
     strategicTitle="Storytellerens Konkurrencefordel: Play'n GOs Unikke Position"
     technicalTitle="Franchise-Motorens Anatomi: Play'n GOs Tekniske Platform"

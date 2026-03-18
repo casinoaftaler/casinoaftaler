@@ -13,7 +13,6 @@ const BigTimeGamingGuide = () => (
     heroImage={btgHero}
     heroImageAlt="Big Time Gaming – opfinderne af Megaways med 117.649+ vinderkombinationer"
     currentPath="/spiludviklere/big-time-gaming"
-    updatedDate="15-02-2026"
     readTime="18 Min."
     sectionOrder={["intro", "strategic", "technical", "games", "history", "casinos", "licenses", "proscons", "providers", "responsible"]}
     strategicTitle="IP-Drevet Forretningsmodel: Patentet Der Ændrede Alt"

@@ -14,7 +14,6 @@ const WazdanGuide = () => (
     heroImageAlt="Wazdan – polsk innovativ spiludvikler"
     heroSubtitle="Wazdan er den polske innovator der har revolutioneret spilleroplevelsen med patenteret Volatility Levels™-teknologi – spillere vælger selv volatilitet i realtid. Med 200+ titler og avancerede gamification-features har Wazdan etableret sig som en af Europas mest progressive spiludviklere."
     currentPath="/spiludviklere/wazdan"
-    updatedDate="12-03-2026"
     readTime="35 Min."
     strategicTitle="Spillerautonomi som Forretningsmodel: Wazdans Disruptive Markedsposition"
     technicalTitle="Volatility Levels™ og Proprietær Teknologi: Wazdans Tekniske DNA"

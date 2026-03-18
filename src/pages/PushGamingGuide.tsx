@@ -14,7 +14,6 @@ const PushGamingGuide = () => (
     heroImageAlt="Push Gaming – innovativt britisk indie-studio"
     heroSubtitle="Push Gaming er det britiske indie-studie der beviser, at man kan konkurrere med de store uden at kompromittere kreativiteten. Med ikoniske titler som Fat Santa-serien og Jammin' Jars har de skabt en unik position som branchens mest konsistente innovatør."
     currentPath="/spiludviklere/push-gaming"
-    updatedDate="12-03-2026"
     readTime="35 Min."
     strategicTitle="Den Kreative Motor: Push Gamings Filosofi og Konkurrenceposition"
     technicalTitle="Innovation per Titel: Push Gamings Tekniske Fingeraftryk"

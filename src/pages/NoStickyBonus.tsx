@@ -117,7 +117,6 @@ const NoStickyBonus = () => {
     description: "Dyb matematisk analyse af No-Sticky Bonusser på danske casinoer. Regneeksempler, strategi og sammenligning med alle andre bonustyper.",
     url: `${SITE_URL}/no-sticky-bonus`,
     datePublished: "2025-06-01",
-    dateModified: "2026-03-18",
     videoId: "WOowRz6hnH8",
   });
 
@@ -152,7 +151,7 @@ const NoStickyBonus = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Marts 2026
+              Bonusanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               No-Sticky Bonus på Danske Casinoer
@@ -165,7 +164,7 @@ const NoStickyBonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" date="18-03-2026" readTime="38 Min." />
+        <AuthorMetaBar author="niklas" readTime="38 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={noStickyHero} alt="No-sticky bonus – matematisk analyse og frihed" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

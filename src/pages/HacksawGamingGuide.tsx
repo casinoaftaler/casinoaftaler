@@ -15,7 +15,6 @@ const HacksawGamingGuide = () => (
     heroImage={hacksawHero}
     heroImageAlt="Hacksaw Gaming – dristige og innovative spilleautomater med ekstremt høj volatilitet"
     currentPath="/spiludviklere/hacksaw-gaming"
-    updatedDate="17-02-2026"
     readTime="32 Min."
     strategicTitle="Rebellens Strategi: Hvorfor Hacksaw Bevidst Frastøder Flertallet"
     technicalTitle="Motorrum og Matematik: Hacksaws Tekniske Fundament"

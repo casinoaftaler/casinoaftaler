@@ -14,7 +14,6 @@ const ThunderkickGuide = () => (
     heroImageAlt="Thunderkick – svensk indie-spiludvikler"
     heroSubtitle="Thunderkick er det svenske indie-studie der beviser, at originalitet stadig kan trumfe volumen. Med kun 60+ titler har de skabt nogle af branchens mest distinkte spilleautomater – fra Esqueleto Explosivo til Beat the Beast-serien."
     currentPath="/spiludviklere/thunderkick"
-    updatedDate="12-03-2026"
     readTime="34 Min."
     strategicTitle="Kunstnerens Dilemma: Thunderkicks Filosofi og Markedsposition"
     technicalTitle="Mekanisk Originalitet: Thunderkicks Tekniske Arkitektur"

@@ -14,7 +14,6 @@ const QuickspinGuide = () => (
     heroImageAlt="Quickspin – svensk premium spiludvikler"
     heroSubtitle="Quickspin er det svenske premium-studio der har bevist, at spillercentreret design og gamification kan sameksistere med matematisk integritet. Med Achievement Engine og en portefølje på 80+ slots har de skabt en ny standard for spillerengagement."
     currentPath="/spiludviklere/quickspin"
-    updatedDate="12-03-2026"
     readTime="36 Min."
     strategicTitle="Gamification som Konkurrencefordel: Quickspins Unikke Markedsposition"
     technicalTitle="Achievement Engine og Matematisk Arkitektur: Quickspins Tekniske DNA"

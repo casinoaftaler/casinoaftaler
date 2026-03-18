@@ -108,7 +108,6 @@ const FordeleOgUlemperGuide = () => {
     description: "Dybdegående evaluering af casino uden konto: sikkerhed, KYC, ROFUS, databeskyttelse, risk/reward-analyse og compliance-perspektiv fra Spillemyndigheden.",
     url: `${SITE_URL}/casino-uden-konto/fordele-og-ulemper`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
@@ -140,7 +139,7 @@ const FordeleOgUlemperGuide = () => {
       </div>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="2026-03-08" readTime="32 Min." />
+        <AuthorMetaBar author="kevin" readTime="32 Min." />
 
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
