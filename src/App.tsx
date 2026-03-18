@@ -280,6 +280,8 @@ const queryClient = new QueryClient({
   },
 });
 
+const SafeHelmetProvider = HelmetProvider as unknown as ComponentType<{ children?: ReactNode }>;
+
 const PageFallback = () => (
   <div className="min-h-screen" />
 );
@@ -335,7 +337,7 @@ class ChunkErrorBoundary extends Component<{ children: ReactNode }, ErrorBoundar
 }
 
 const App = () => (
-  <HelmetProvider>
+  <SafeHelmetProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
