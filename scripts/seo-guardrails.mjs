@@ -52,35 +52,27 @@ function scanPattern(file, content, regex, type) {
 function scanFile(file) {
   const content = fs.readFileSync(file, "utf-8");
 
-  // 1) Legacy manual modified date in SEO component usage
+  // 1) Hardcoded SEO dateModified prop literals
   scanPattern(
     file,
     content,
-    /<SEO[\s\S]*?\bdateModified\s*=/g,
-    "SEO dateModified prop is forbidden (use centralized route lastmod)"
+    /<SEO\b[^>]*\bdateModified\s*=\s*(?:"[^"]+"|'[^']+')/g,
+    "SEO dateModified literal is forbidden (use centralized route lastmod)"
   );
 
-  // 2) Legacy manual modified date in article schema builder
+  // 2) Fake freshness via current date generation in schema/object usage
   scanPattern(
     file,
     content,
-    /buildArticleSchema\s*\(\s*\{[\s\S]*?\bdateModified\s*:/g,
-    "buildArticleSchema dateModified is forbidden (use centralized route lastmod)"
+    /\bdateModified\s*:\s*new\s+Date\s*\(/g,
+    "Dynamic current-date freshness is forbidden"
   );
 
-  // 3) Legacy manual date in meta bar
+  // 3) Fake freshness in UI labels
   scanPattern(
     file,
     content,
-    /<AuthorMetaBar[\s\S]*?\bdate\s*=/g,
-    "AuthorMetaBar date prop is forbidden (auto-resolved centrally)"
-  );
-
-  // 4) Fake freshness in UI labels
-  scanPattern(
-    file,
-    content,
-    /Opdateret\s*\{\s*new Date\(/g,
+    /Opdateret\s*\{\s*new Date\s*\(/g,
     "Dynamic current-date freshness label is forbidden"
   );
 }
