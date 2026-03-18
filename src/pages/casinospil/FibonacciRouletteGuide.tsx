@@ -76,7 +76,6 @@ const articleSchema = buildArticleSchema({
   headline: "Fibonacci Roulette System 2026 – Naturens Talrække på Casinobordet",
   description: "Dybdegående guide til Fibonacci-systemet i roulette: den gyldne spiral, to-trin-tilbage mekanik, 10.000-spins Monte Carlo simulering, sammenligning med Martingale og D'Alembert.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/roulette/fibonacci-roulette`,
   image: `${SITE_URL}/og/fibonacci-roulette.jpg`,
 });

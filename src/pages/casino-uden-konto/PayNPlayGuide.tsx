@@ -92,7 +92,6 @@ const PayNPlayGuide = () => {
     description: "Dybdegående teknisk guide til Trustly Pay N Play: Open banking-protokollen, PSD2-compliance, bankkompatibilitetsmatrice for alle danske banker, sikkerhedsarkitektur og tidstest-data.",
     url: `${SITE_URL}/casino-uden-konto/pay-n-play`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });

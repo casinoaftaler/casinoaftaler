@@ -116,7 +116,6 @@ const FibonacciBlackjackGuide = () => {
     description: "Komplet analyse af Fibonacci-indsatssystemet i blackjack: sekvensmeknik, 5.000-hånds simulering, sammenligning med Martingale og D'Alembert, og ærlige konklusioner.",
     url: `${SITE_URL}/casinospil/blackjack/fibonacci`,
     datePublished: "2026-03-02",
-    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

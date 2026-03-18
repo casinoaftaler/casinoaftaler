@@ -62,7 +62,6 @@ const articleSchema = buildArticleSchema({
   headline: "Fransk Roulette 2026 – La Partage, 1,35% House Edge & Guide",
   description: "Komplet guide til fransk roulette: La Partage & En Prison regler, 1,35% house edge matematik, bordlayout, call bets og casino-anbefalinger for danske spillere.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/roulette/fransk-roulette`,
   image: `${SITE_URL}/og/fransk-roulette.jpg`,
 });

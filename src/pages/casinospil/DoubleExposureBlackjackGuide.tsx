@@ -111,7 +111,6 @@ const DoubleExposureBlackjackGuide = () => {
     description: "Komplet guide til Double Exposure Blackjack: begge dealerkort synlige, tilpasset strategi, house edge-matematik og sammenligning med klassisk blackjack.",
     url: `${SITE_URL}/casinospil/blackjack/double-exposure-blackjack`,
     datePublished: "2026-03-02",
-    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

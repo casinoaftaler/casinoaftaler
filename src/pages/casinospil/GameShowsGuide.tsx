@@ -96,7 +96,6 @@ const GameShowsGuide = () => {
     description: "Dybdegående analyse af casino game shows: house edge, RTP, volatilitet, EV og multiplier-matematik. Sammenligningstabeller og risikovurdering.",
     url: `${SITE_URL}/live-casino/game-shows`,
     datePublished: "2026-02-15",
-    dateModified: "2026-03-08",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

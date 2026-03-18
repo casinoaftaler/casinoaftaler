@@ -67,7 +67,6 @@ const articleSchema = buildArticleSchema({
   headline: "Caribbean Stud Poker – Komplet Guide med Odds, Regler og Strategi (2026)",
   description: "Dybdegående guide til Caribbean Stud Poker for danske spillere. Lær optimal raise/fold-strategi, forstå progressiv jackpot-matematik og sammenlign udbetalingstabeller.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/poker/caribbean-stud`,
   image: `${SITE_URL}/og/caribbean-stud.jpg`,
 });

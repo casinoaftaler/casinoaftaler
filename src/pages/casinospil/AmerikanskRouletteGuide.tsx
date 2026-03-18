@@ -101,7 +101,6 @@ const articleSchema = buildArticleSchema({
   headline: "Amerikansk Roulette 2026 – Komplet Guide med Matematik & Strategi",
   description: "Dybdegående guide til amerikansk roulette: dobbelt-nul mekanik, house edge matematik, Five Number Bet fælden, 10.000-spins simulering og strategiske anbefalinger.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/roulette/amerikansk-roulette`,
   image: `${SITE_URL}/og/amerikansk-roulette.jpg`,
 });

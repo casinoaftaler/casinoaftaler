@@ -62,7 +62,6 @@ const articleSchema = buildArticleSchema({
   headline: "D'Alembert Roulette System 2026 – Matematik, Simulering & Ærlig Analyse",
   description: "Komplet guide til D'Alembert-systemet i roulette: lineær progression, equilibrium-teori, 10.000-spins simulering, sammenligning med Martingale og Fibonacci.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/roulette/dalembert-roulette`,
   image: `${SITE_URL}/og/dalembert-roulette.jpg`,
 });

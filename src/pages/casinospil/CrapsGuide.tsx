@@ -81,7 +81,6 @@ const CrapsGuide = () => {
       "Matematisk analyse af craps: terningekombinationer, house edge for alle væddemål, EV-beregning, varians og bankroll management.",
     url: `${SITE_URL}/casinospil/craps`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

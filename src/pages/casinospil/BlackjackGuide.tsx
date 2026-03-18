@@ -144,7 +144,6 @@ const BlackjackGuide = () => {
     description: "Komplet blackjack-guide for danske spillere: regler, basic strategy, online blackjack, varianter, house edge og de vigtigste fejl at undgå.",
     url: `${SITE_URL}/casinospil/blackjack`,
     datePublished: "2026-02-15",
-    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
