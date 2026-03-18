@@ -37,7 +37,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const Casino888Anmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "888 Casino Anmeldelse 2026 – Pioneren i Online Casino", description: "Komplet anmeldelse af 888 Casino. Børsnoteret pioner med dansk licens, eksklusive spil og 888 Club loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/888-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "crhpDPocTrQ", ...casinoReviewEntities("888 Casino", "888-casino") });
+  const articleSchema = buildArticleSchema({ headline: "888 Casino Anmeldelse 2026 – Pioneren i Online Casino", description: "Komplet anmeldelse af 888 Casino. Børsnoteret pioner med dansk licens, eksklusive spil og 888 Club loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/888-casino", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "crhpDPocTrQ", ...casinoReviewEntities("888 Casino", "888-casino") });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "888 Casino", itemUrl: "https://www.888casino.dk/", ratingValue: "4.2", ratingCount: "188", reviewBody: "888 Casino er en pioner inden for online gambling med eksklusivt spiludvalg, loyalitetsprogram og dansk licens." });
 
@@ -52,7 +52,7 @@ const Casino888Anmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="34 Min." />
         <CasinoReviewHero slug="888-casino" casinoName="888 Casino" />
 
         {/* [E] Kritisk First – starter med kritisk analyse */}

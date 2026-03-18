@@ -36,7 +36,7 @@ const royalFaqs: { question: string; answer: ReactNode }[] = [
 const RoyalCasinoAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Royal Casino Anmeldelse 2026 – Opdateret med korrekte ejerforhold", description: "Dybdegående anmeldelse af Royal Casino med fokus på bonus, licens, spiludvalg, live casino og betalingsmetoder for danske spillere.", url: "https://casinoaftaler.dk/casino-anmeldelser/royal-casino", datePublished: "2026-02-15", dateModified: "2026-03-01", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "6R3Zt_ABaAo", ...casinoReviewEntities("Royal Casino", "royal-casino") });
+  const articleSchema = buildArticleSchema({ headline: "Royal Casino Anmeldelse 2026 – Opdateret med korrekte ejerforhold", description: "Dybdegående anmeldelse af Royal Casino med fokus på bonus, licens, spiludvalg, live casino og betalingsmetoder for danske spillere.", url: "https://casinoaftaler.dk/casino-anmeldelser/royal-casino", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "6R3Zt_ABaAo", ...casinoReviewEntities("Royal Casino", "royal-casino") });
   const faqJsonLd = buildFaqSchema(royalFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Royal Casino", itemUrl: "https://www.royalcasino.dk/", ratingValue: "4.2", ratingCount: "158", reviewBody: "Royal Casino er en dansk-licenseret casinoplatform med fokus på live casino, klassiske bordspil og velkomstbonus op til 750 kr. Platformen er ikke statsejet og er ikke en del af Danske Spil." });
 
@@ -55,7 +55,7 @@ const RoyalCasinoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" readTime="26 Min." />
         <CasinoReviewHero slug="royal-casino" casinoName="Royal Casino" />
 
         {/* Hurtige Fakta */}

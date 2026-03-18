@@ -65,7 +65,6 @@ const ComeOnAnmeldelse = () => {
     description: "Komplet anmeldelse af ComeOn Casino. Dansk licens, bredt spiludvalg, hurtige udbetalinger og gennemsigtige bonusvilkår.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/comeon",
     datePublished: "2026-02-15",
-    dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     videoId: "tW_E0RmzSHg",
@@ -104,7 +103,7 @@ const ComeOnAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="23 Min." />
+        <AuthorMetaBar author="jonas" readTime="23 Min." />
         <CasinoReviewHero slug="comeon" casinoName="ComeOn Casino" />
 
         {/* [B] Bonus First – starter med bonusanalyse */}

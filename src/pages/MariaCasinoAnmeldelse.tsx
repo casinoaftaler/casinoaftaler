@@ -15,7 +15,7 @@ const mariaFaqs: { question: string; answer: ReactNode }[] = [
 const MariaCasinoAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Maria Casino Anmeldelse 2026 – Slots, Live Casino & Bonus", description: "Komplet anmeldelse af Maria Casino med korrekte oplysninger. Dansk licens under Kindred Group, 1.500+ slots, 270+ live spil og venlig platform.", url: "https://casinoaftaler.dk/casino-anmeldelser/maria-casino", datePublished: "2026-02-15", dateModified: "2026-03-01", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "o9m02b_cAnE", ...casinoReviewEntities("Maria Casino", "maria-casino") });
+  const articleSchema = buildArticleSchema({ headline: "Maria Casino Anmeldelse 2026 – Slots, Live Casino & Bonus", description: "Komplet anmeldelse af Maria Casino med korrekte oplysninger. Dansk licens under Kindred Group, 1.500+ slots, 270+ live spil og venlig platform.", url: "https://casinoaftaler.dk/casino-anmeldelser/maria-casino", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "o9m02b_cAnE", ...casinoReviewEntities("Maria Casino", "maria-casino") });
   const faqJsonLd = buildFaqSchema(mariaFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Maria Casino", itemUrl: "https://www.mariacasino.dk/", ratingValue: "3.9", ratingCount: "138", reviewBody: "Maria Casino er en dansk-licenseret casinoplatform under Kindred Group med 1.500+ slots, 270+ live spil og et venligt design. Bingo er ikke tilgængeligt i Danmark." });
   const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/maria-casino", "o9m02b_cAnE", { title: "Maria Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Maria Casino ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features – så du ved præcis hvad du kan forvente, før du opretter en konto.", uploadDate: "2026-02-18", duration: "PT2M" });
@@ -30,7 +30,7 @@ const MariaCasinoAnmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="01-03-2026" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" readTime="28 Min." />
         <CasinoReviewHero slug="maria-casino" casinoName="Maria Casino" />
 
         {/* Hurtige Fakta */}

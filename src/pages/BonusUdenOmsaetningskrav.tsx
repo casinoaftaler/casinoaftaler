@@ -118,7 +118,6 @@ const BonusUdenOmsaetningskrav = () => {
     description: "Alt om bonusser uden omsætningskrav på danske casinoer. EV-analyse, regneeksempler, sammenligning og strategier.",
     url: `${SITE_URL}/bonus-uden-omsaetningskrav`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-20",
     videoId: "7JQ3nFTasoQ",
   });
 
@@ -165,7 +164,7 @@ const BonusUdenOmsaetningskrav = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" date="20-02-2026" readTime="18 Min." />
+        <AuthorMetaBar author="niklas" readTime="18 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={bonusUdenOmsaetningHero} alt="Bonus uden omsætningskrav – teknisk EV-analyse af omsætningsfrie bonusser 2026" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

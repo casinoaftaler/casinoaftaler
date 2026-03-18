@@ -137,7 +137,6 @@ const MegawaysSlots = () => {
     description: "Alt om Megaways-spilleautomater: Mekanik, bedste titler, RTP, volatilitet, cascading wins og strategi. Komplet dansk guide med community-data.",
     url: `${SITE_URL}/megaways-slots`,
     datePublished: "2026-03-07",
-    dateModified: "2026-03-07",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -178,7 +177,7 @@ const MegawaysSlots = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-07" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" readTime="25 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Testet og skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
         </p>

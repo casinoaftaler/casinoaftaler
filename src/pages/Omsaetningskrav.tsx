@@ -111,7 +111,6 @@ const Omsaetningskrav = () => {
     description: "Alt du skal vide om omsætningskrav på danske casinoer. Beregning, strategier og tips.",
     url: `${SITE_URL}/omsaetningskrav`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-26",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
     videoId: "3tXFTjmgdcE",

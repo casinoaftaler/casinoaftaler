@@ -40,7 +40,6 @@ const articleSchema = buildArticleSchema({
   description: `Komplet ordbog over casinobegreber med ${glossaryTerms.length} definitioner.`,
   url: `${SITE_URL}/ordbog`,
   datePublished: "2026-03-06",
-  dateModified: "2026-03-06",
 });
 
 const Ordbog = () => {

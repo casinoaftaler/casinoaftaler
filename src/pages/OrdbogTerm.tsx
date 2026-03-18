@@ -67,7 +67,6 @@ const OrdbogTerm = () => {
     description: term.metaDescription,
     url: `${SITE_URL}/ordbog/${term.slug}`,
     datePublished: "2026-03-06",
-    dateModified: "2026-03-06",
   });
 
   return (

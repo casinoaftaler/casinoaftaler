@@ -38,7 +38,7 @@ const getluckyFaqs: { question: string; answer: ReactNode }[] = [
 const GetLuckyAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "GetLucky Anmeldelse 2026 – 1.500+ Spil & Loyalitetsprogram", description: "Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens og loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/getlucky", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "N1MyxsYcmMk", ...casinoReviewEntities("GetLucky Casino", "getlucky") });
+  const articleSchema = buildArticleSchema({ headline: "GetLucky Anmeldelse 2026 – 1.500+ Spil & Loyalitetsprogram", description: "Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens og loyalitetsprogram.", url: "https://casinoaftaler.dk/casino-anmeldelser/getlucky", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "N1MyxsYcmMk", ...casinoReviewEntities("GetLucky Casino", "getlucky") });
   const faqJsonLd = buildFaqSchema(getluckyFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "GetLucky Casino", itemUrl: "https://www.getlucky.com/da/", ratingValue: "3.8", ratingCount: "119", reviewBody: "GetLucky Casino byder på et massivt spiludvalg med over 1.500 titler, dansk licens og et loyalitetsprogram der belønner aktive spillere." });
 
@@ -53,7 +53,7 @@ const GetLuckyAnmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="34 Min." />
         <CasinoReviewHero slug="getlucky" casinoName="GetLucky Casino" />
 
         {/* [C] Segment First – starter med målgruppe */}

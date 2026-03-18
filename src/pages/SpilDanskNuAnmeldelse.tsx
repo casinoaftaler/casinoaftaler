@@ -54,7 +54,7 @@ const SpilDanskNuAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(spilDanskNuFaqs);
-  const articleSchema = buildArticleSchema({ headline: "SpilDanskNu Anmeldelse 2026 – Bonus, Spil & Vilkår", description: "Komplet anmeldelse af SpilDanskNu.dk. 100% bonus op til 1.000 kr., kun 10x omsætning, over 2.500 slots og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spildansknu", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "_hHQkRwUzoU", ...casinoReviewEntities("SpilDanskNu", "spildansknu") });
+  const articleSchema = buildArticleSchema({ headline: "SpilDanskNu Anmeldelse 2026 – Bonus, Spil & Vilkår", description: "Komplet anmeldelse af SpilDanskNu.dk. 100% bonus op til 1.000 kr., kun 10x omsætning, over 2.500 slots og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spildansknu", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "_hHQkRwUzoU", ...casinoReviewEntities("SpilDanskNu", "spildansknu") });
   const reviewJsonLd = buildReviewSchema({ itemName: "SpilDanskNu", itemUrl: "https://www.spildansknu.dk", ratingValue: "4.5", ratingCount: "178", reviewBody: "SpilDanskNu er et dansk online casino med lavt omsætningskrav, over 2.500 spilleautomater, loyalitetsprogram og hurtige udbetalinger." });
   const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/spildansknu", "_hHQkRwUzoU", { title: "SpilDanskNu Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan SpilDanskNu ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features.", uploadDate: "2026-02-18", duration: "PT2M" });
 
@@ -72,7 +72,7 @@ const SpilDanskNuAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="32 Min." />
+        <AuthorMetaBar author="jonas" readTime="32 Min." />
         <CasinoReviewHero slug="spildansknu" casinoName="SpilDanskNu" />
 
         {/* Quick Facts */}
