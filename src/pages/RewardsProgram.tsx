@@ -33,7 +33,6 @@ export default function RewardsProgram() {
           description: "Deltag i Casinoaftalers belønningsprogram. Optjen gratis spins, indsend clips og anmod om nye spilleautomater.",
           url: `${SITE_URL}/community/rewards`,
           datePublished: "2026-01-20",
-          dateModified: "2026-03-01",
         })]}
       />
 
@@ -73,7 +72,7 @@ export default function RewardsProgram() {
           </div>
         </div>
         <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="12 Min." showFactCheck={false} showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="jonas" showFactCheck={false} showAffiliateDisclaimer={false} />
 
         {/* Section: Community Highlights Rewards */}
         <section className="mb-12">

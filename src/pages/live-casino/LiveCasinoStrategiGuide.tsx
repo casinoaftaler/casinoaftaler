@@ -129,7 +129,7 @@ const LiveCasinoStrategiGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Marts 2026
+              Strategiguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Live Casino Strategi – Bankroll, House Edge & EV
@@ -142,7 +142,7 @@ const LiveCasinoStrategiGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="16-03-2026" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" readTime="28 Min." />
 
         <GuideHeroImage src={liveCasinoStrategiHero} alt="Live casino strategi guide med roulette-hjul, blackjack-kort og chips på et professionelt casinobord" />
 

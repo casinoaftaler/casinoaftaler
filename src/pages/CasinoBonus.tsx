@@ -170,7 +170,7 @@ const CasinoBonus = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Gift className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Marts 2026
+              Bonusguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Casino Bonus 2026 – Danmarks Mest Komplette Bonusguide
@@ -183,7 +183,7 @@ const CasinoBonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="35 Min." />
         
 
         <div className="mb-10 overflow-hidden rounded-xl">

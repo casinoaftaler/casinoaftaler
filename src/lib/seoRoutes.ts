@@ -1,4 +1,4 @@
-import { getTodayDanish } from "./danishDate";
+
 
 /**
  * Central registry of all SEO-indexable routes.
@@ -468,10 +468,4 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/cookies", changefreq: "yearly", priority: 0.3, lastmod: "2026-03-05" },
   // /sitemap – excluded: has noindex in Sitemap.tsx (noindex + sitemap = conflicting signals)
 
-] as const).map((route): SeoRoute => {
-  // Auto-set lastmod to today (Danish timezone) for daily-changing pages
-  if (route.changefreq === "daily") {
-    return { ...route, lastmod: getTodayDanish() };
-  }
-  return { ...route };
-});
+] as const).map((route): SeoRoute => ({ ...route }));

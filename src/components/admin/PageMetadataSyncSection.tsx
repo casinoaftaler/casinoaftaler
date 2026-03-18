@@ -9,10 +9,20 @@ import { Loader2, AlertTriangle, CheckCircle, RefreshCw, Zap } from "lucide-reac
 import { toast } from "sonner";
 
 interface SyncIssue {
-  type: "missing_in_db" | "orphaned_in_db" | "priority_mismatch";
+  type: "missing_in_db" | "orphaned_in_db" | "config_mismatch";
   path: string;
   detail: string;
 }
+
+interface DbPageMeta {
+  path: string;
+  priority: number;
+  changefreq: string;
+  show_updated_date: boolean;
+}
+
+const toSeedTimestamp = (isoDate?: string) =>
+  isoDate ? `${isoDate}T00:00:00+01:00` : undefined;
 
 export function PageMetadataSyncSection() {
   const [issues, setIssues] = useState<SyncIssue[] | null>(null);
@@ -24,9 +34,9 @@ export function PageMetadataSyncSection() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("page_metadata")
-        .select("path, priority, changefreq");
+        .select("path, priority, changefreq, show_updated_date");
       if (error) throw error;
-      return data;
+      return data as DbPageMeta[];
     },
   });
 
@@ -34,23 +44,44 @@ export function PageMetadataSyncSection() {
     if (!dbPages) return;
     setChecking(true);
 
-    const dbMap = new Map(dbPages.map((p) => [p.path, p]));
-    const codeSet = new Set(seoRoutes.map((r) => r.path));
+    const dbMap = new Map(dbPages.map((page) => [page.path, page]));
+    const codeSet = new Set(seoRoutes.map((route) => route.path));
     const found: SyncIssue[] = [];
 
     for (const route of seoRoutes) {
       const dbEntry = dbMap.get(route.path);
+      const expectedShowUpdatedDate = route.showUpdatedDate !== false;
+
       if (!dbEntry) {
         found.push({
           type: "missing_in_db",
           path: route.path,
           detail: `Findes i seoRoutes.ts (priority ${route.priority}) men mangler i page_metadata`,
         });
-      } else if (Math.abs(dbEntry.priority - route.priority) > 0.01) {
+        continue;
+      }
+
+      const mismatches: string[] = [];
+
+      if (Math.abs(dbEntry.priority - route.priority) > 0.01) {
+        mismatches.push(`priority kode ${route.priority} ≠ DB ${dbEntry.priority}`);
+      }
+
+      if (dbEntry.changefreq !== route.changefreq) {
+        mismatches.push(`changefreq kode ${route.changefreq} ≠ DB ${dbEntry.changefreq}`);
+      }
+
+      if (dbEntry.show_updated_date !== expectedShowUpdatedDate) {
+        mismatches.push(
+          `show_updated_date kode ${expectedShowUpdatedDate} ≠ DB ${dbEntry.show_updated_date}`
+        );
+      }
+
+      if (mismatches.length > 0) {
         found.push({
-          type: "priority_mismatch",
+          type: "config_mismatch",
           path: route.path,
-          detail: `Kode: ${route.priority} ≠ DB: ${dbEntry.priority}`,
+          detail: mismatches.join(" · "),
         });
       }
     }
@@ -74,28 +105,28 @@ export function PageMetadataSyncSection() {
     setSyncing(true);
 
     try {
-      const missing = issues.filter((i) => i.type === "missing_in_db");
-      const orphaned = issues.filter((i) => i.type === "orphaned_in_db");
-      const mismatched = issues.filter((i) => i.type === "priority_mismatch");
+      const missing = issues.filter((issue) => issue.type === "missing_in_db");
+      const orphaned = issues.filter((issue) => issue.type === "orphaned_in_db");
+      const mismatched = issues.filter((issue) => issue.type === "config_mismatch");
 
-      // Insert missing routes
       if (missing.length > 0) {
-        const rows = missing.map((i) => {
-          const route = seoRoutes.find((r) => r.path === i.path)!;
+        const rows = missing.map((issue) => {
+          const route = seoRoutes.find((entry) => entry.path === issue.path)!;
           return {
             path: route.path,
             priority: route.priority,
             changefreq: route.changefreq,
-            show_updated_date: true,
+            show_updated_date: route.showUpdatedDate !== false,
+            updated_at: toSeedTimestamp(route.lastmod),
           };
         });
+
         const { error } = await supabase.from("page_metadata").insert(rows);
         if (error) throw error;
       }
 
-      // Delete orphaned routes
       if (orphaned.length > 0) {
-        const paths = orphaned.map((i) => i.path);
+        const paths = orphaned.map((issue) => issue.path);
         const { error } = await supabase
           .from("page_metadata")
           .delete()
@@ -103,19 +134,28 @@ export function PageMetadataSyncSection() {
         if (error) throw error;
       }
 
-      // Fix priority mismatches (update DB to match code)
-      for (const issue of mismatched) {
-        const route = seoRoutes.find((r) => r.path === issue.path);
-        if (!route) continue;
-        const { error } = await supabase
-          .from("page_metadata")
-          .update({ priority: route.priority, changefreq: route.changefreq })
-          .eq("path", route.path);
-        if (error) throw error;
+      if (mismatched.length > 0) {
+        const updates = mismatched.map(async (issue) => {
+          const route = seoRoutes.find((entry) => entry.path === issue.path);
+          if (!route) return;
+
+          const { error } = await supabase
+            .from("page_metadata")
+            .update({
+              priority: route.priority,
+              changefreq: route.changefreq,
+              show_updated_date: route.showUpdatedDate !== false,
+            })
+            .eq("path", route.path);
+
+          if (error) throw error;
+        });
+
+        await Promise.all(updates);
       }
 
       toast.success(
-        `Synkroniseret: ${missing.length} indsat, ${orphaned.length} slettet, ${mismatched.length} prioriteter rettet`
+        `Synkroniseret: ${missing.length} indsat, ${orphaned.length} slettet, ${mismatched.length} konfigurationer rettet`
       );
       await refetch();
       setIssues([]);
@@ -128,13 +168,13 @@ export function PageMetadataSyncSection() {
 
   const badgeVariant = (type: SyncIssue["type"]) => {
     if (type === "missing_in_db") return "destructive" as const;
-    if (type === "priority_mismatch") return "secondary" as const;
+    if (type === "config_mismatch") return "secondary" as const;
     return "outline" as const;
   };
 
   const badgeLabel = (type: SyncIssue["type"]) => {
     if (type === "missing_in_db") return "Mangler i DB";
-    if (type === "priority_mismatch") return "Priority mismatch";
+    if (type === "config_mismatch") return "Config mismatch";
     return "Orphaned i DB";
   };
 
@@ -147,37 +187,26 @@ export function PageMetadataSyncSection() {
               <RefreshCw className="h-5 w-5" />
               Sitemap Sync Check
             </CardTitle>
-            <p className="text-sm text-muted-foreground mt-1">
-              Sammenligner seoRoutes.ts ({seoRoutes.length} routes) med
-              page_metadata ({dbPages?.length ?? "…"} rækker)
+            <p className="mt-1 text-sm text-muted-foreground">
+              seoRoutes.ts er source of truth for path, priority, changefreq og dato-visning.
             </p>
           </div>
           <div className="flex gap-2">
             {issues && issues.length > 0 && (
-              <Button
-                onClick={runAutoSync}
-                disabled={syncing}
-                size="sm"
-                variant="default"
-              >
+              <Button onClick={runAutoSync} disabled={syncing} size="sm" variant="default">
                 {syncing ? (
-                  <Loader2 className="h-4 w-4 animate-spin mr-1" />
+                  <Loader2 className="mr-1 h-4 w-4 animate-spin" />
                 ) : (
-                  <Zap className="h-4 w-4 mr-1" />
+                  <Zap className="mr-1 h-4 w-4" />
                 )}
                 Synkronisér nu
               </Button>
             )}
-            <Button
-              onClick={runCheck}
-              disabled={!dbPages || checking}
-              size="sm"
-              variant="outline"
-            >
+            <Button onClick={runCheck} disabled={!dbPages || checking} size="sm" variant="outline">
               {checking ? (
-                <Loader2 className="h-4 w-4 animate-spin mr-1" />
+                <Loader2 className="mr-1 h-4 w-4 animate-spin" />
               ) : (
-                <RefreshCw className="h-4 w-4 mr-1" />
+                <RefreshCw className="mr-1 h-4 w-4" />
               )}
               Kør check
             </Button>
@@ -186,34 +215,28 @@ export function PageMetadataSyncSection() {
       </CardHeader>
       <CardContent>
         {issues === null ? (
-          <p className="text-sm text-muted-foreground">
-            Klik "Kør check" for at sammenligne.
-          </p>
+          <p className="text-sm text-muted-foreground">Klik "Kør check" for at sammenligne.</p>
         ) : issues.length === 0 ? (
           <div className="flex items-center gap-2 text-sm text-primary">
             <CheckCircle className="h-4 w-4" />
             Alt er synkroniseret — ingen uoverensstemmelser fundet.
           </div>
         ) : (
-          <div className="space-y-1 max-h-[400px] overflow-y-auto">
-            <p className="text-sm font-medium text-destructive flex items-center gap-1 mb-2">
+          <div className="max-h-[400px] space-y-1 overflow-y-auto">
+            <p className="mb-2 flex items-center gap-1 text-sm font-medium text-destructive">
               <AlertTriangle className="h-4 w-4" />
               {issues.length} uoverensstemmelse{issues.length > 1 ? "r" : ""} fundet
             </p>
             {issues.map((issue) => (
               <div
                 key={`${issue.type}-${issue.path}`}
-                className="flex items-center justify-between gap-2 py-1.5 px-3 rounded-md hover:bg-muted/50 text-sm"
+                className="flex items-center justify-between gap-2 rounded-md px-3 py-1.5 text-sm hover:bg-muted/50"
               >
-                <div className="flex-1 min-w-0">
-                  <span className="font-mono text-xs block truncate">
-                    {issue.path}
-                  </span>
-                  <span className="text-muted-foreground text-xs">
-                    {issue.detail}
-                  </span>
+                <div className="min-w-0 flex-1">
+                  <span className="block truncate font-mono text-xs">{issue.path}</span>
+                  <span className="text-xs text-muted-foreground">{issue.detail}</span>
                 </div>
-                <Badge variant={badgeVariant(issue.type)} className="text-xs shrink-0">
+                <Badge variant={badgeVariant(issue.type)} className="shrink-0 text-xs">
                   {badgeLabel(issue.type)}
                 </Badge>
               </div>
