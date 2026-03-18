@@ -146,7 +146,6 @@ const jsonLd = [
     description: "Enterprise-hub for alle casino-kategorier: hurtig udbetaling, høj RTP, crypto, licens, mobil, VR, skatteforhold, bonusser og ansvarligt spil i Danmark.",
     url: `${SITE_URL}/casinoer`,
     datePublished: "2026-02-20",
-    dateModified: "2026-03-18",
   }),
   buildFaqSchema(faqs),
 ];
@@ -168,7 +167,7 @@ export default function CasinoerHub() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Layers className="mr-1.5 h-3.5 w-3.5" /> Opdateret 18. marts 2026
+              <Layers className="mr-1.5 h-3.5 w-3.5" /> Casino-kategorier
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Alle Casinoer – Den Komplette Guide til Online Casino i Danmark
@@ -181,7 +180,7 @@ export default function CasinoerHub() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="35 min" />
+        <AuthorMetaBar author="jonas" readTime="35 min" />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={casinoerHubHero} width="1920" height="1080" alt="Casino guide hub – kompas med casino chips og spillekort" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

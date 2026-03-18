@@ -30,7 +30,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const SpilForSjovGuide = () => {
-  const articleSchema = buildArticleSchema({ headline: "Spil Casino for Sjov 2026 – Gratis Casinospil i Danmark", description: "Guide til gratis casinospil i Danmark 2026.", url: `${SITE_URL}/casinoer/spil-casino-for-sjov`, datePublished: "2026-02-01", dateModified: "2026-02-15" });
+  const articleSchema = buildArticleSchema({ headline: "Spil Casino for Sjov 2026 – Gratis Casinospil i Danmark", description: "Guide til gratis casinospil i Danmark 2026.", url: `${SITE_URL}/casinoer/spil-casino-for-sjov`, datePublished: "2026-02-01" });
   const faqSchema = buildFaqSchema(faqs);
 
   return (
@@ -47,7 +47,7 @@ const SpilForSjovGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Smile className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Gratis spilguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Spil Casino for Sjov – Gratis Casinospil 2026
@@ -60,7 +60,7 @@ const SpilForSjovGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="21 min" />
+        <AuthorMetaBar author="jonas" readTime="21 min" />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Spil casino for sjov – gratis casinospil" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

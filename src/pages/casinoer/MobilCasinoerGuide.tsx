@@ -32,7 +32,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const MobilCasinoerGuide = () => {
-  const articleSchema = buildArticleSchema({ headline: "Mobil Casinoer 2026 – Spil Casino på Din Smartphone", description: "Komplet guide til mobil casino i Danmark 2026.", url: `${SITE_URL}/casinoer/mobil-casinoer`, datePublished: "2026-02-01", dateModified: "2026-02-15" });
+  const articleSchema = buildArticleSchema({ headline: "Mobil Casinoer 2026 – Spil Casino på Din Smartphone", description: "Komplet guide til mobil casino i Danmark 2026.", url: `${SITE_URL}/casinoer/mobil-casinoer`, datePublished: "2026-02-01" });
   const faqSchema = buildFaqSchema(faqs);
 
   return (
@@ -49,7 +49,7 @@ const MobilCasinoerGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Smartphone className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Mobilanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Mobil Casinoer i Danmark 2026
@@ -62,7 +62,7 @@ const MobilCasinoerGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="22 min" />
+        <AuthorMetaBar author="jonas" readTime="22 min" />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Mobil casinoer – casino på smartphone" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

@@ -107,6 +107,22 @@ function scanFile(file) {
     file,
     originalContent,
     content,
+    /\bOpdateret i dag\b/gi,
+    "Artificial 'updated today' label is forbidden"
+  );
+
+  scanPattern(
+    file,
+    originalContent,
+    content,
+    /Opdateret\s+(?:\d{1,2}\.\s*)?(?:januar|februar|marts|april|maj|juni|juli|august|september|oktober|november|december)\s+\d{4}/gi,
+    "Hardcoded freshness label is forbidden"
+  );
+
+  scanPattern(
+    file,
+    originalContent,
+    content,
     /Opdateret\s*\{\s*new Date\s*\(/g,
     "Dynamic current-date freshness label is forbidden"
   );

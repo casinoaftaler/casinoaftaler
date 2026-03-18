@@ -264,8 +264,8 @@ const FreeSpinsIDag = () => {
 
   const schemaMarkup = [
     buildArticleSchema({
-      headline: `Free Spins i Dag – ${todayFormatted}`,
-      description: `Alle aktuelle free spins hos danske licenserede casinoer – opdateret ${todayFormatted}. Nye og eksisterende spillere.`,
+      headline: "Free Spins i Dag – Aktuelle tilbud fra danske casinoer",
+      description: "Alle aktuelle free spins hos danske licenserede casinoer for nye og eksisterende spillere. Sammenlign spins, omsætningskrav og indbetalingskrav.",
       url: `${SITE_URL}/free-spins-i-dag`,
       datePublished: "2026-02-22",
       dateModified: seoDateModified,
@@ -274,7 +274,7 @@ const FreeSpinsIDag = () => {
     buildFaqSchema(freeSpinsIDagFaqs.map(f => ({ question: f.question, answer: f.answer }))),
     {
       "@type": "ItemList",
-      name: `Free Spins Tilbud – ${todayFormatted}`,
+      name: "Free Spins Tilbud fra danske casinoer",
       numberOfItems: totalCount,
       itemListElement: allBest.slice(0, 10).map((o, i) => ({
         "@type": "ListItem", position: i + 1,
