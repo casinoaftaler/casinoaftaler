@@ -107,8 +107,24 @@ function scanFile(file) {
     file,
     originalContent,
     content,
-    /<AuthorMetaBar\b[^>]*\bdate\s*=/g,
-    "AuthorMetaBar date prop is forbidden (remove legacy date ownership from UI)"
+    /<AuthorMetaBar\b[^>]*\bdate\s*=\s*(?:"[^"]+"|'[^']+')/g,
+    "AuthorMetaBar literal date prop is forbidden"
+  );
+
+  scanPattern(
+    file,
+    originalContent,
+    content,
+    /<AuthorMetaBar\b[^>]*\bdate\s*=\s*\{\s*(?:"[^"]+"|'[^']+')\s*\}/g,
+    "AuthorMetaBar literal date prop is forbidden"
+  );
+
+  scanPattern(
+    file,
+    originalContent,
+    content,
+    /buildArticleSchema\s*\([\s\S]{0,400}?\bdateModified\s*:\s*(?:"\d{4}-\d{2}-\d{2}(?:T[^"]*)?"|'\d{4}-\d{2}-\d{2}(?:T[^']*)?')/g,
+    "buildArticleSchema literal dateModified is forbidden"
   );
 
   scanPattern(

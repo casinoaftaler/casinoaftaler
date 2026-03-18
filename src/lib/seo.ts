@@ -198,7 +198,7 @@ export function buildArticleSchema(opts: {
   // 2) centralized seoRoutes lastmod for all other indexable pages
   const urlPath = opts.url.replace(SITE_URL, "");
   const routeLastmod = getRouteLastmod(urlPath);
-  const hasApprovedDynamicDateModified = isApprovedDynamicDateModifiedUrlPath(urlPath);
+  const hasApprovedDynamicDateModified = isApprovedDynamicDateModifiedPath(urlPath);
   const resolvedDateModified = hasApprovedDynamicDateModified
     ? opts.dateModified ?? routeLastmod ?? opts.datePublished
     : routeLastmod ?? opts.datePublished;

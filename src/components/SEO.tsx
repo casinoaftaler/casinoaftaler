@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { SITE_URL, SITE_NAME, SITE_BRAND, getCanonicalUrl } from "@/lib/seo";
 import { buildBreadcrumbListSchema } from "@/lib/breadcrumbs";
 import { getRouteLastmod } from "@/lib/seoRoutes";
+import { isApprovedDynamicDateModifiedPath } from "@/lib/seoDatePolicy";
 
 /** WebSite + SearchAction schema for Sitelinks Searchbox eligibility. */
 const websiteSchema = {
@@ -70,13 +71,6 @@ function normalizePath(pathname: string): string {
 function toIso8601WithTz(date: string): string {
   if (date.includes("T")) return date;
   return `${date}T00:00:00+01:00`;
-}
-
-function isApprovedDynamicDateModifiedPath(pathname: string): boolean {
-  return pathname === "/free-spins-i-dag"
-    || pathname === "/markedsindsigt"
-    || pathname.startsWith("/casino-nyheder/")
-    || pathname.startsWith("/slot-katalog/");
 }
 
 export function SEO({ title, description, type = "website", image = `${SITE_URL}/og-image.png`, noindex, jsonLd, breadcrumbLabel, datePublished, dateModified }: SEOProps) {

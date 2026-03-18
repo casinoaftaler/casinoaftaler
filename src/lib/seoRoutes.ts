@@ -329,7 +329,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
 
   // ── Casino Nyheder ──
-  // Hub only – article entries are dynamically generated in sitemap-news.xml
+  // Hub only – article entries are dynamically generated in sitemap-articles.xml
   { path: "/casino-nyheder", changefreq: "daily", priority: 0.9, lastmod: "2026-03-05" },
 
   // ── Casino Ordbog ──
