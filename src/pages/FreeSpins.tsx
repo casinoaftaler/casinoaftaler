@@ -276,6 +276,8 @@ const FreeSpins = () => {
 
         <InlineCasinoCards title="Bedste casinoer med free spins" count={6} />
 
+        <BonusClusterPriorityLinks currentPath="/free-spins" />
+
         <Separator className="my-10" />
 
         {/* Typer af Free Spins */}
