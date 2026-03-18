@@ -427,9 +427,9 @@ const FibonacciBlackjackGuide = () => {
               <thead>
                 <tr className="border-b border-border bg-muted/50">
                   <th className="py-3 px-3 text-left font-semibold">Parameter</th>
-                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale</Link></th>
+                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale</Link></th>
                   <th className="py-3 px-3 text-left font-semibold">Fibonacci</th>
-                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/dalembert-system" className={linkClass}>D'Alembert</Link></th>
+                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/dalembert" className={linkClass}>D'Alembert</Link></th>
                 </tr>
               </thead>
               <tbody>
