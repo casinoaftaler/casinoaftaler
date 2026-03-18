@@ -100,7 +100,7 @@ function SortableItem({ item, onEdit, onDelete }: SortableItemProps) {
     setNodeRef,
     transform,
     transition,
-  } = useSortable({ id: item.id });
+  } = useSortable(createSortableArgs(item.id));
 
   const style = {
     transform: CSS.Transform.toString(transform),
