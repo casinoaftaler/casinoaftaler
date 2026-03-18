@@ -68,7 +68,6 @@ const articleSchema = buildArticleSchema({
   headline: "James Bond Roulette System 2026 – 007's Strategi Testet med Matematik",
   description: "Dybdegående guide til James Bond roulette-systemet: dækningsstrategi, sandsynlighedsfordeling, 10.000-spins Monte Carlo simulering og sammenligning med klassiske systemer.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/roulette/james-bond-roulette`,
   image: `${SITE_URL}/og/james-bond-roulette.jpg`,
 });
@@ -89,7 +88,7 @@ export default function JamesBondRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse – Marts 2026
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               James Bond Roulette System 2026 – 007's Strategi Under Mikroskop
@@ -102,7 +101,7 @@ export default function JamesBondRouletteGuide() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="35 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="James Bond roulette system med elegante casino-chips på et roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

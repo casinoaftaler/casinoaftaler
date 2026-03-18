@@ -79,7 +79,6 @@ const articleSchema = buildArticleSchema({
   headline: "Martingale Roulette System 2026 – Matematik, Simulering & Ærlig Test",
   description: "Dybdegående guide til Martingale-systemet i roulette: fordoblingsprincippet, eksponentiel risiko, 10.000-spins Monte Carlo simulering, bordgrænse-fælden og realistiske alternativer.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/roulette/martingale-roulette`,
   image: `${SITE_URL}/og/martingale-roulette.jpg`,
 });
@@ -100,7 +99,7 @@ export default function MartingaleRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <TrendingUp className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse – Marts 2026
+              <TrendingUp className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Martingale Roulette System 2026 – Fordoblingsprincippet Under Mikroskop
@@ -113,7 +112,7 @@ export default function MartingaleRouletteGuide() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="40 Min." />
+        <AuthorMetaBar author="jonas" readTime="40 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Martingale roulette system med fordoblings-chips på et europæisk roulettebord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

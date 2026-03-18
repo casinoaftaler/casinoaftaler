@@ -153,7 +153,6 @@ const PokerGuide = () => {
       "Komplet cornerstone poker-guide: Texas Hold'em, Omaha, Video Poker, håndrangeringer, pot odds, varians, rake-analyse og dansk regulering. Hub for alle poker-guides.",
     url: `${SITE_URL}/casinospil/poker`,
     datePublished: "2026-02-15",
-    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -174,7 +173,7 @@ const PokerGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Brain className="mr-1.5 h-3.5 w-3.5" /> Cornerstone Guide · Marts 2026
+              <Brain className="mr-1.5 h-3.5 w-3.5" /> Cornerstone guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Poker – Den Komplette Guide til Held, Matematik og Psykologi
@@ -188,7 +187,7 @@ const PokerGuide = () => {
 
       {/* ── BODY ── */}
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="38 Min." />
+        <AuthorMetaBar author="jonas" readTime="38 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

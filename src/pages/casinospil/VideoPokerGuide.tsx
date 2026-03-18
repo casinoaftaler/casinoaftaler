@@ -72,7 +72,6 @@ const articleSchema = buildArticleSchema({
   headline: "Video Poker Guide 2026 – RTP-analyse, Strategi & Bedste Varianter",
   description: "Komplet dansk guide til video poker. Sammenlign RTP på Jacks or Better, Deuces Wild og Joker Poker. Lær optimal hold/discard-strategi.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/poker/video-poker`,
   image: `${SITE_URL}/og/video-poker.jpg`,
 });
@@ -93,7 +92,7 @@ export default function VideoPokerGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <TrendingUp className="mr-1.5 h-3.5 w-3.5" /> RTP-analyse – Marts 2026
+              <TrendingUp className="mr-1.5 h-3.5 w-3.5" /> RTP-analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Video Poker – Komplet RTP-analyse, Strategi & De Bedste Varianter
@@ -106,7 +105,7 @@ export default function VideoPokerGuide() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="55 Min." />
+        <AuthorMetaBar author="jonas" readTime="55 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Video poker maskine der viser Jacks or Better med Royal Flush" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

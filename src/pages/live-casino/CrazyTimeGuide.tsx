@@ -84,7 +84,6 @@ const CrazyTimeGuide = () => {
     description: "Dybdegående analyse af Crazy Time: RTP, house edge, bonusrunder, Top Slot-multiplikatorer og matematisk breakdown af alle væddemål.",
     url: `${SITE_URL}/live-casino/crazy-time`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

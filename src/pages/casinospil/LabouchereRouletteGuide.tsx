@@ -68,7 +68,6 @@ const articleSchema = buildArticleSchema({
   headline: "Labouchère Roulette System 2026 – Cancellation-Metoden Forklaret & Testet",
   description: "Dybdegående guide til Labouchère-systemet i roulette: cancellation-mekanismen, sekvensdesign, 10.000-spins Monte Carlo simulering og sammenligning med Martingale og Fibonacci.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/roulette/labouchere-roulette`,
   image: `${SITE_URL}/og/labouchere-roulette.jpg`,
 });
@@ -89,7 +88,7 @@ export default function LabouchereRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <ListOrdered className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse – Marts 2026
+              <ListOrdered className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Labouchère Roulette System 2026 – Cancellation-Metoden Analyseret
@@ -102,7 +101,7 @@ export default function LabouchereRouletteGuide() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="36 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Labouchère roulette system med cancellation-sekvens på et casino-bord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
