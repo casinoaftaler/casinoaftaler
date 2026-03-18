@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
+    "build": "node scripts/seo-guardrails.mjs && vite build",
+    "build:dev": "node scripts/seo-guardrails.mjs && vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "seo:guardrails": "node scripts/seo-guardrails.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
