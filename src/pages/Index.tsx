@@ -76,7 +76,7 @@ const Index = () => {
     staleTime: 5 * 60 * 1000,
   });
 
-  const homepageDateModified = getRouteLastmod("/") || latestNewsDate?.split("T")[0] || undefined;
+  const homepageDateModified = getRouteLastmod("/");
 
   useEffect(() => {
     setOpenCasinoId(null);

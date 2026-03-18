@@ -19,6 +19,7 @@ const APPROVED_DYNAMIC_DATE_MODIFIED = {
     /\bdateModified\s*:\s*article\.updated_at\b/,
     /\bdateModified\s*=\s*\{article\.updated_at\}/,
   ],
+  [path.join("src", "pages", "src", "lib", "seo.ts")]: [],
   [path.join("src", "pages", "SlotCatalogPage.tsx")]: [
     /\bdateModified\s*:\s*slotDateModified\b/,
     /\bdateModified\s*=\s*\{slotDateModified\}/,
