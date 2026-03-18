@@ -185,7 +185,7 @@ const LudomaniGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="ajse" date="2026-03-18" readTime="28 Min." />
+        <AuthorMetaBar author="ajse" readTime="28 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Juridisk og fagligt gennemgået af Ajse, juridisk redaktør hos Casinoaftaler.dk.
         </p>

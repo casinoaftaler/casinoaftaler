@@ -139,7 +139,7 @@ const FordeleOgUlemperGuide = () => {
       </div>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="2026-03-08" readTime="32 Min." />
+        <AuthorMetaBar author="kevin" readTime="32 Min." />
 
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">

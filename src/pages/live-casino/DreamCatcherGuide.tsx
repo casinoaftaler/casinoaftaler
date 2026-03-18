@@ -107,7 +107,7 @@ const DreamCatcherGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Calculator className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse – Marts 2026</Badge>
+            <Badge variant="secondary" className="mb-4"><Calculator className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Dream Catcher – Det Originale Money Wheel</h1>
             <p className="text-lg text-white/80">
               Evolutions første live game show med 54 segmenter, multiplikator-mekanik og RTP op til 96,6 %. Den komplette matematiske analyse.
@@ -117,7 +117,7 @@ const DreamCatcherGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-08" readTime="28 min" />
+        <AuthorMetaBar author="jonas" readTime="28 min" />
         <GuideHeroImage src={dreamCatcherHero} alt="Dream Catcher money wheel i live casino studie" />
 
         {/* ── H2 1 ── */}
