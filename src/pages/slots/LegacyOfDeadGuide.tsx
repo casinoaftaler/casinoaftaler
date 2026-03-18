@@ -81,7 +81,22 @@ const LegacyOfDeadGuide = () => {
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
-...
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/casinospil/spillemaskiner/legacy-of-dead`, "Ss2ZRXT0jCI", {
+    title: "Legacy of Dead gennemgang – Progressiv expanding symbol forklaret",
+    description: "Se en komplet gennemgang af Legacy of Dead: det progressive expanding symbol-system, retriggers og RTP 96,58 % forklaret i praksis.",
+    uploadDate: "2026-03-07",
+    duration: "PT1M41S",
+  });
+
+  return (
+    <>
+      <SEO
+        title="Legacy of Dead – Expanding Symbols & RTP"
+        description="Komplet analyse af Legacy of Dead: progressivt expanding symbol-system, RTP 96,58 %, sammenligning med Book of Dead og EV-beregninger."
+        jsonLd={[faqJsonLd, articleSchema, videoJsonLd]}
+      />
+
+      {/* ── HERO ── */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
