@@ -109,7 +109,6 @@ const StickyBonus = () => {
     description: "Alt om Sticky Bonusser hos danske casinoer. Forstå hvordan de fungerer, betingelser, fordele og ulemper.",
     url: `${SITE_URL}/sticky-bonus`,
     datePublished: "2025-06-01",
-    dateModified: "2026-03-18",
     videoId: "yUAcefgYfkc",
   });
 
@@ -144,7 +143,7 @@ const StickyBonus = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Marts 2026
+              Bonusmekanik & omsætningsanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Sticky Bonus på Danske Casinoer
@@ -159,7 +158,7 @@ const StickyBonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" date="18-03-2026" readTime="22 Min." />
+        <AuthorMetaBar author="niklas" readTime="22 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={stickyBonusHero} alt="Sticky bonus vs non-sticky bonus sammenligning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
