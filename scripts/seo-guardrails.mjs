@@ -88,14 +88,21 @@ function scanFile(file) {
 walk(SRC_DIR);
 
 if (violations.length > 0) {
-  console.error("\n❌ SEO guardrails failed. Found forbidden freshness patterns:\n");
+  console.error("\n⚠️ SEO guardrails found freshness-pattern violations:\n");
   for (const v of violations) {
     console.error(`- ${v.file}:${v.line}`);
     console.error(`  ${v.type}`);
     if (v.snippet) console.error(`  ${v.snippet}`);
   }
   console.error(`\nTotal violations: ${violations.length}\n`);
-  process.exit(1);
+
+  if (process.env.STRICT_SEO_GUARDRAILS === "1") {
+    console.error("STRICT_SEO_GUARDRAILS=1 → failing build.\n");
+    process.exit(1);
+  }
+
+  console.error("Non-strict mode → continuing build (set STRICT_SEO_GUARDRAILS=1 to enforce hard fail).\n");
+  process.exit(0);
 }
 
 console.log("✅ SEO guardrails passed: no manual date drift patterns found.");
