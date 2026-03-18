@@ -8,11 +8,21 @@ import fs from "fs";
 import path from "path";
 
 const SITE_URL = "https://casinoaftaler.dk";
-const buildDate = new Date().toISOString().split("T")[0];
+
+const missingLastmod = seoRoutes.filter((route) => !route.lastmod);
+
+if (missingLastmod.length > 0) {
+  throw new Error(
+    `Missing explicit lastmod in seoRoutes for: ${missingLastmod
+      .map((route) => route.path)
+      .join(", ")}`
+  );
+}
 
 const urls = seoRoutes.map((route) => {
   const loc = route.path === "/" ? SITE_URL + "/" : SITE_URL + route.path;
-  const lastmod = route.lastmod ? `${route.lastmod}T12:00:00+01:00` : `${buildDate}T12:00:00+01:00`;
+  const lastmod = `${route.lastmod}T12:00:00+01:00`;
+
   return `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>

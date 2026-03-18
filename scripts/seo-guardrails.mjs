@@ -2,10 +2,10 @@ import fs from "fs";
 import path from "path";
 
 const ROOT = process.cwd();
-const SRC_DIR = path.join(ROOT, "src");
+const SCAN_DIRS = [path.join(ROOT, "src"), path.join(ROOT, "scripts")];
 
 const IGNORE_DIRS = new Set(["node_modules", "dist", ".git"]);
-const FILE_EXT = /\.(ts|tsx)$/;
+const FILE_EXT = /\.(ts|tsx|mjs)$/;
 
 /** @typedef {{file: string; line: number; type: string; snippet: string}} Violation */
 
@@ -13,6 +13,8 @@ const FILE_EXT = /\.(ts|tsx)$/;
 const violations = [];
 
 function walk(dir) {
+  if (!fs.existsSync(dir)) return;
+
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
     if (IGNORE_DIRS.has(entry.name)) continue;
@@ -62,6 +64,7 @@ function scanPattern(file, originalContent, content, regex, type) {
 function scanFile(file) {
   const originalContent = fs.readFileSync(file, "utf-8");
   const content = stripComments(originalContent);
+  const relativeFile = path.relative(ROOT, file);
 
   scanPattern(
     file,
@@ -123,12 +126,42 @@ function scanFile(file) {
     file,
     originalContent,
     content,
+    /Matematisk Analyse\s+–\s+(?:januar|februar|marts|april|maj|juni|juli|august|september|oktober|november|december)\s+\d{4}/gi,
+    "Hardcoded dated analysis badge is forbidden"
+  );
+
+  scanPattern(
+    file,
+    originalContent,
+    content,
     /Opdateret\s*\{\s*new Date\s*\(/g,
     "Dynamic current-date freshness label is forbidden"
   );
+
+  if (relativeFile === path.join("src", "lib", "seoRoutes.ts")) {
+    scanPattern(
+      file,
+      originalContent,
+      content,
+      /\bgetTodayDanish\s*\(/g,
+      "seoRoutes.ts must not generate artificial lastmod values dynamically"
+    );
+  }
+
+  if (relativeFile === path.join("scripts", "generate-sitemap.ts")) {
+    scanPattern(
+      file,
+      originalContent,
+      content,
+      /\bbuildDate\b/g,
+      "Build-time sitemap must not fall back to generated dates; every route needs explicit lastmod"
+    );
+  }
 }
 
-walk(SRC_DIR);
+for (const dir of SCAN_DIRS) {
+  walk(dir);
+}
 
 if (violations.length > 0) {
   console.error("\n⚠️ SEO guardrails found freshness-pattern violations:\n");
@@ -138,14 +171,7 @@ if (violations.length > 0) {
     if (v.snippet) console.error(`  ${v.snippet}`);
   }
   console.error(`\nTotal violations: ${violations.length}\n`);
-
-  if (process.env.STRICT_SEO_GUARDRAILS === "1") {
-    console.error("STRICT_SEO_GUARDRAILS=1 → failing build.\n");
-    process.exit(1);
-  }
-
-  console.error("Non-strict mode → continuing build (set STRICT_SEO_GUARDRAILS=1 to enforce hard fail).\n");
-  process.exit(0);
+  process.exit(1);
 }
 
 console.log("✅ SEO guardrails passed: no manual date drift patterns found.");
