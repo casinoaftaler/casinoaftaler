@@ -7,6 +7,7 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { usePageLastmod } from "@/hooks/usePageLastmod";
 import { getRouteLastmod } from "@/lib/seoRoutes";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import heroImage from "@/assets/heroes/free-spins-i-dag-hero.jpg";
 import { RelatedGuides } from "@/components/RelatedGuides";
