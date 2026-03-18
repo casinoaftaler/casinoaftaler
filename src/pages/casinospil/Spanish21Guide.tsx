@@ -44,75 +44,90 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er forskellen mellem Spanish 21 og klassisk blackjack?",
     answer: (
       <>
-        Spanish 21 fjerner alle 10-værdikort (men beholder J, Q, K) fra kortbunken og kompenserer med spillervenlige bonusregler: spiller-21 vinder altid, late surrender efter fordobling, re-split af esser og bonusudbetalinger for specifikke 21-kombinationer. Det resulterer i en fundamentalt anderledes strategisk oplevelse end <Link to="/casinospil/blackjack" className={linkClass}>standard blackjack</Link>.
+        Spanish 21 fjerner alle 10-værdikort fra kortbunken, men kompenserer med bonusregler og mere fleksible spillerfordele. Det gør varianten mere kompleks end <Link to="/casinospil/blackjack" className={linkClass}>standard blackjack</Link>.
       </>
     ),
   },
   {
     question: "Er house edge lavere i Spanish 21?",
     answer:
-      "Med optimal strategi er house edge ca. 0,40 % – lavere end europæisk blackjack ENHC (0,39 %) men højere end optimal amerikansk blackjack (0,28 %). Den faktiske edge afhænger af om dealer stander eller hitter soft 17: S17-varianten er ca. 0,38 %, H17-varianten ca. 0,76 %.",
-  },
-  {
-    question: "Hvorfor fjernes 10'erne fra kortbunken?",
-    answer:
-      "10-værdikort er de mest værdifulde for spilleren i blackjack – de muliggør naturlig blackjack og gør fordoblinger stærkere. Ved at fjerne dem (48 kort ud af 416 i et 8-deck spil) reducerer casinoet spillerens grundlæggende fordel markant. Bonusreglerne kompenserer delvist, men kun ved optimal spil.",
+      "Nej, ikke normalt. Med optimal strategi ligger Spanish 21 typisk omkring 0,38-0,76 % afhængigt af reglerne, hvilket gør den konkurrencedygtig men sjældent bedre end de bedste amerikanske blackjack-borde.",
   },
   {
     question: "Kan jeg bruge standard basic strategy i Spanish 21?",
     answer:
-      "Nej! Strategien er fundamentalt anderledes. Fordi 10'erne mangler, ændres sandsynlighederne for alle hænder. Du skal hitte mere aggressivt, fordoble på andre hånde og udnytte de unikke regler (double down rescue, re-split esser). At bruge standard strategi i Spanish 21 øger house edge med 1-2 %.",
-  },
-  {
-    question: "Hvad er de bedste bonusudbetalinger i Spanish 21?",
-    answer:
-      "7-7-7 i samme farve mod dealerens 7 giver typisk en super bonus på 5.000 kr. eller 50:1. 5-kort 21 betaler 3:2, 6-kort 21 betaler 2:1, og 7+ kort 21 betaler 3:1. Disse bonusser er sjældne men tilføjer spænding og marginalt forbedrer den samlede EV.",
-  },
-  {
-    question: "Hvor kan jeg spille Spanish 21 online?",
-    answer: (
-      <>
-        Spanish 21 tilbydes af <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link> under navnet "Spanish Blackjack" og af flere andre udbydere. Det er sjældent i <Link to="/live-casino" className={linkClass}>live casino</Link>-format. Tjek vores <Link to="/casino-anmeldelser" className={linkClass}>casino-anmeldelser</Link> for at finde specifikke tilgængeligheder.
-      </>
-    ),
-  },
-  {
-    question: "Hvad er forskellen mellem Spanish 21 og Pontoon?",
-    answer:
-      "Pontoon er den australske version af Spanish 21 med næsten identiske regler. Hovedforskellene: i Pontoon hedder 'hit' → 'twist' og 'stand' → 'stick'. Bonusudbetalingerne er lidt forskellige, og Pontoon kræver typisk et minimum af 5 kort for 'Five Card Charlie'-bonus. Matematisk er de næsten ækvivalente.",
+      "Nej. De manglende 10'ere og de ekstra bonusregler ændrer beslutningerne markant. Hvis du bruger standard blackjack-strategi, stiger house edge mærkbart.",
   },
   {
     question: "Er Double Down Rescue virkelig værd at bruge?",
     answer:
-      "Ja – det er en af de mest værdifulde regler i Spanish 21. Double Down Rescue (surrender efter fordobling) lader dig redde halvdelen af din forhøjede indsats, hvis fordoblingen gik galt. Det tilføjer ca. 0,08 % til din samlede EV og tillader mere aggressive fordoblinger, fordi du har en exit-strategi.",
-  },
-  {
-    question: "Påvirker de manglende 10'ere korttælning?",
-    answer:
-      "Ja, markant. Standard Hi-Lo-systemet fungerer dårligere, fordi der er færre 10-værdikort at tælle ned. Specialiserede tællesystemer for Spanish 21 eksisterer (f.eks. 'Red 7 Modified'), men de er komplekse og giver kun marginal fordel med de typiske 8-deck opsætninger i online-formatet.",
+      "Ja. Det er en af de mest værdifulde specialregler i Spanish 21, fordi den reducerer skaden på dårlige fordoblinger og giver mere taktisk fleksibilitet.",
   },
   {
     question: "Er Spanish 21 bedre end Double Exposure?",
     answer: (
       <>
-        Ja, matematisk. Spanish 21 har 0,40 % house edge vs. <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure's</Link> 0,69 %. Spanish 21 tilbyder også flere bonusser og variation. Men Double Exposure giver fuld information, hvilket appellerer til en anden spillertype. Begge kræver unik strategi.
+        Ja, matematisk. Spanish 21 har typisk lavere house edge end <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link>, men de to varianter appellerer til forskellige spillertyper og kræver hver sin strategi.
       </>
     ),
-...
-                      <td className="py-2"><Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link></td>
-                      <td className="text-center py-2">0,69 %</td>
-                      <td className="text-center py-2">690 kr.</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </CardContent>
-          </Card>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Forskellen mellem Spanish 21 S17 (0,38 %) og H17 (0,76 %) er 0,38 procentpoint – næsten dobbelt så stor som i standard blackjack (0,22 %). Over 10.000 hænder med 100 kr. indsats er forskellen 3.800 kr. – signifikant nok til at det bør være din primære udvælgelseskriterium. <strong>Vælg altid S17-borde i Spanish 21</strong> – det er den mest impactfulde beslutning du kan træffe.
+  },
+];
+
+const Spanish21Guide = () => {
+  const faqJsonLd = buildFaqSchema(faqs);
+  const articleSchema = buildArticleSchema({
+    headline: "Spanish 21 2026 – Regler, Strategi & House Edge",
+    description: "Komplet guide til Spanish 21: bonusregler, manglende 10'ere, strategiændringer og sammenligning med andre blackjack-varianter.",
+    url: `${SITE_URL}/casinospil/blackjack/spanish-21`,
+    datePublished: "2026-03-02",
+    dateModified: "2026-03-18",
+    authorName: "Jonas",
+    authorUrl: `${SITE_URL}/forfatter/jonas`,
+  });
+
+  return (
+    <>
+      <SEO
+        title="Spanish 21 2026 – Regler, Strategi & House Edge"
+        description="Lær Spanish 21: bonusregler, husets fordel, Double Down Rescue og hvordan varianten adskiller sig fra klassisk blackjack."
+        type="article"
+        datePublished="2026-03-02"
+        dateModified="2026-03-18"
+        jsonLd={[faqJsonLd, articleSchema]}
+      />
+
+      <section className="relative overflow-hidden py-12 md:py-20 bg-gradient-to-br from-primary/10 via-background to-muted">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Variantguide · marts 2026
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Spanish 21 – Bonusregler, Strategi og Hvornår Varianten Giver Mening
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Spanish 21 er ikke bare blackjack uden 10'ere. Det er en særskilt variant med egne bonusregler, egne prioriteringer og en strategi der skal læres separat.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="17 Min." />
+
+        <div className="mb-10 overflow-hidden rounded-xl">
+          <img src={heroImage} alt="Spanish 21 bord med markerede bonusregler og blackjack-kort" width={1920} height={600} className="h-auto max-h-[400px] w-full object-cover" loading="eager" />
+        </div>
+
+        <section className="mb-12">
+          <h2 className="mb-4 flex items-center gap-2 text-3xl font-bold">
+            <Brain className="h-7 w-7 text-primary" /> Hvad gør Spanish 21 unik?
+          </h2>
+          <p className="mb-4 leading-relaxed text-muted-foreground">
+            Spanish 21 fjerner 10-kortene fra bunken, men giver spilleren flere værktøjer tilbage i form af bonusudbetalinger, fleksible fordoblinger og særlige redningsregler. Derfor kan du ikke evaluere spillet med standard-blackjack-logik alene.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Årlig perspektiv:</strong> En spiller der spiller 200 hænder/uge med 100 kr. indsats ved Spanish 21 S17 har et forventet årligt tab på 3.952 kr. – ca. 76 kr./uge. Ved H17 stiger det til 7.904 kr. – 152 kr./uge. Forskellen er over 4.000 kr./år. Det understreger endnu en gang den gyldne regel: <strong>reglerne bestemmer alt</strong>.
+            Hvis du vil sammenligne varianten med andre blackjack-spor, så brug hovedguiden til <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, eller se forskellen til <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikansk blackjack</Link> og <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link>.
           </p>
         </section>
 
