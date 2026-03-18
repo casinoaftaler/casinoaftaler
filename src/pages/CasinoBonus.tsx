@@ -283,6 +283,8 @@ const CasinoBonus = () => {
 
         <InlineCasinoCards title="Bedste casino bonus tilbud" count={6} />
 
+        <BonusClusterPriorityLinks currentPath="/casino-bonus" />
+
         <Separator className="my-10" />
 
         {/* ========== 3. GENNEMGANG AF ALLE BONUSTYPER ========== */}
