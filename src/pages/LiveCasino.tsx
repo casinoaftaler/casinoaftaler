@@ -101,7 +101,7 @@ const LiveCasino = () => {
     description: "Komplet live casino guide 2026. House edge-analyse for blackjack, roulette og baccarat. Streaming-teknologi, bankroll management og danske licenskrav.",
     url: `${SITE_URL}/live-casino`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-18",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -111,9 +111,12 @@ const LiveCasino = () => {
   return (
     <>
       <SEO
-        title="Live Casino – House Edge, Strategi & Guide 2026"
-        description="Live casino 2026: House edge fra 0,5 % i blackjack til 2,7 % i roulette. Dansk licens, streaming-teknologi og strategier. Komplet guide."
+        title="Live Casino 2026 – Bedste Casinoer, Strategi & House Edge"
+        description="Live casino guide 2026: bedste danske live casinoer, blackjack, roulette, baccarat, game shows, house edge og strategi samlet ét sted."
         jsonLd={[faqJsonLd, articleJsonLd]}
+        type="article"
+        datePublished="2025-06-01"
+        dateModified="2026-03-18"
       />
 
       {/* Hero */}
