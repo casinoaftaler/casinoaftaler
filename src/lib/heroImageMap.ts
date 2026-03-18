@@ -40,8 +40,8 @@ const PATH_OVERRIDES: Record<string, string> = {
   "/hall-of-fame": "top-casino",
 
   // Jonas – systems / clusters
-  "/casinospil/blackjack/martingale-system": "martingale-blackjack",
-  "/casinospil/blackjack/dalembert-system": "dalembert-blackjack",
+  "/casinospil/blackjack/martingale": "martingale-blackjack",
+  "/casinospil/blackjack/dalembert": "dalembert-blackjack",
   "/casinospil/poker/omaha": "omaha-poker",
   "/casinospil/poker/strategi": "poker-strategi",
   "/nye-casinoer/vs-etablerede": "nye-vs-etablerede",

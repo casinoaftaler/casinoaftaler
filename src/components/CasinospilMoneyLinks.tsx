@@ -66,7 +66,7 @@ const CASINOSPIL_SIBLINGS = [
   { to: "/casinospil/blackjack/spanish-21", label: "Spanish 21" },
   { to: "/casinospil/blackjack/martingale", label: "Martingale (BJ)" },
   { to: "/casinospil/blackjack/fibonacci", label: "Fibonacci (BJ)" },
-  { to: "/casinospil/blackjack/dalembert-system", label: "D'Alembert (BJ)" },
+  { to: "/casinospil/blackjack/dalembert", label: "D'Alembert (BJ)" },
   // Roulette cluster
   { to: "/casinospil/roulette", label: "Roulette" },
   { to: "/casinospil/roulette/fransk-roulette", label: "Fransk Roulette" },

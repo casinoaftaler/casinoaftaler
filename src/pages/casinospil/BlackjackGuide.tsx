@@ -140,11 +140,11 @@ const blackjackFaqs: { question: string; answer: ReactNode }[] = [
 const BlackjackGuide = () => {
   const faqJsonLd = buildFaqSchema(blackjackFaqs);
   const articleSchema = buildArticleSchema({
-    headline: "Blackjack Guide 2026 – Strategi, Varianter, Matematik og Spiller-Edge",
-    description: "Cornerstone blackjack-guide: basic strategy, house edge, korttælling, varianter, betting-systemer og bankroll management for danske spillere.",
+    headline: "Blackjack Guide 2026 – Regler, Strategi, Varianter & Online Blackjack",
+    description: "Komplet blackjack-guide for danske spillere: regler, basic strategy, online blackjack, varianter, house edge og de vigtigste fejl at undgå.",
     url: `${SITE_URL}/casinospil/blackjack`,
     datePublished: "2026-02-15",
-    dateModified: "2026-03-02",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -154,8 +154,11 @@ const BlackjackGuide = () => {
   return (
     <>
       <SEO
-        title="Blackjack Strategi & Matematik 2026 – Edge Guide"
-        description="Analytisk blackjack-guide med basic strategy, house edge, korttælling og bankroll management for danske spillere."
+        title="Blackjack Regler 2026 – Guide, Strategi & Varianter"
+        description="Blackjack guide til danske spillere: regler, basic strategy, online blackjack, house edge, varianter og de bedste steder at starte."
+        type="article"
+        datePublished="2026-02-15"
+        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
@@ -166,20 +169,20 @@ const BlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Brain className="mr-1.5 h-3.5 w-3.5" /> Cornerstone Guide · Marts 2026
+              <Brain className="mr-1.5 h-3.5 w-3.5" /> Cornerstone Hub · Opdateret marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Blackjack – Matematik, Strategi og Spiller-Edge
+              Blackjack Regler, Strategi og Online Varianter
             </h1>
             <p className="text-lg text-white/80">
-              Det eneste casinospil, hvor dine beslutninger ændrer husets fordel. Tal, ikke mavefornemmelser.
+              Start her hvis du vil forstå blackjack: lær reglerne, basic strategy, de vigtigste varianter og hvornår betting-systemer bare er støj.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="40 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="40 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={blackjackHero} alt="Blackjack-bord med kort og chips i professionelt studie" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

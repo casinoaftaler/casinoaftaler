@@ -626,9 +626,9 @@ const DalembertBlackjackGuide = () => {
           </Card>
         </section>
 
-        <CasinospilMoneyLinks gameName="D'Alembert Blackjack" currentPath="/casinospil/blackjack/dalembert-system" />
-        <LatestNewsByCategory pagePath="/casinospil/blackjack/dalembert-system" />
-        <RelatedGuides currentPath="/casinospil/blackjack/dalembert-system" />
+        <CasinospilMoneyLinks gameName="D'Alembert Blackjack" currentPath="/casinospil/blackjack/dalembert" />
+        <LatestNewsByCategory pagePath="/casinospil/blackjack/dalembert" />
+        <RelatedGuides currentPath="/casinospil/blackjack/dalembert" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
       </div>

@@ -109,6 +109,7 @@ const EuropaeiskBlackjackGuide = () => {
     description: "Komplet guide til europæisk blackjack med ENHC/OBO-regler, tilpasset basic strategy og house edge-sammenligning med amerikansk variant.",
     url: `${SITE_URL}/casinospil/blackjack/europaeisk-blackjack`,
     datePublished: "2026-03-02",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -116,8 +117,11 @@ const EuropaeiskBlackjackGuide = () => {
   return (
     <>
       <SEO
-        title="Europæisk Blackjack 2026 – ENHC & OBO Regler"
+        title="Europæisk Blackjack 2026 – ENHC, OBO & Regler"
         description="Komplet guide til europæisk blackjack: ENHC vs. OBO-regler, tilpasset basic strategy og matematisk sammenligning med amerikansk variant."
+        type="article"
+        datePublished="2026-03-02"
+        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
@@ -128,7 +132,7 @@ const EuropaeiskBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Marts 2026
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Europæisk Blackjack – No Hole Card, ENHC og Strategisk Tilpasning
@@ -141,7 +145,7 @@ const EuropaeiskBlackjackGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="38 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="38 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Elegant europæisk blackjack-bord med grønt filt og kort" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

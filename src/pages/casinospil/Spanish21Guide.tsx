@@ -108,6 +108,7 @@ const Spanish21Guide = () => {
     description: "Komplet guide til Spanish 21: fjernede 10'ere, bonusudbetalinger, tilpasset strategi og house edge-analyse for danske spillere.",
     url: `${SITE_URL}/casinospil/blackjack/spanish-21`,
     datePublished: "2026-03-02",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -117,6 +118,9 @@ const Spanish21Guide = () => {
       <SEO
         title="Spanish 21 Blackjack 2026 – Bonusser & Strategi"
         description="Komplet Spanish 21-guide: unikke bonusregler, tilpasset strategi uden 10'ere, house edge-analyse og sammenligning med klassisk blackjack."
+        type="article"
+        datePublished="2026-03-02"
+        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
@@ -127,7 +131,7 @@ const Spanish21Guide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Marts 2026
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Spanish 21 – Ingen 10'ere, Mere Bonus, Ny Strategi
@@ -140,7 +144,7 @@ const Spanish21Guide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="38 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="38 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Spanish 21 blackjack-bord med ornamenterede gulddekorationer" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
