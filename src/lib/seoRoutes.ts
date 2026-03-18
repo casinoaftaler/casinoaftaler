@@ -150,7 +150,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-anmeldelser/swift-casino-vs-luna-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-16" },
 
   // ── Casino Spil & Live ──
-  { path: "/live-casino", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-06" },
+  { path: "/live-casino", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-18" },
   { path: "/live-casino/blackjack", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/live-casino/roulette", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/live-casino/baccarat", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
