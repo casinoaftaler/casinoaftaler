@@ -73,7 +73,6 @@ export default function TurneringsArkiv() {
     description: seoDesc,
     url: `${SITE_URL}/community/turneringer/arkiv`,
     datePublished: "2026-03-05",
-    dateModified: new Date().toISOString().split("T")[0],
     authorName: "Jonas Theill",
   });
 

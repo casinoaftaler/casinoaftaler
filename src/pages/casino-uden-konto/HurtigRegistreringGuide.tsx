@@ -112,7 +112,6 @@ const HurtigRegistreringGuide = () => {
         description="Sammenlign registreringsmetoder: Pay N Play, MitID og standard. Tidstest-data fra 12 casinoer, scenarieanalyser og EV-model. Find den hurtigste vej til spil."
         jsonLd={[faqJsonLd, articleJsonLd]}
         datePublished="2026-03-08"
-        dateModified="2026-03-08"
       />
 
       <section

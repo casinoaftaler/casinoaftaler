@@ -158,7 +158,6 @@ const BlackjackGuide = () => {
         description="Blackjack guide til danske spillere: regler, basic strategy, online blackjack, house edge, varianter og de bedste steder at starte."
         type="article"
         datePublished="2026-02-15"
-        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

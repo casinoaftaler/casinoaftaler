@@ -128,7 +128,6 @@ const FibonacciBlackjackGuide = () => {
         description="Komplet guide til Fibonacci-systemet i blackjack: talrækken, to-trin-reglen, 5.000-hånds simulering og sammenligning med Martingale og D'Alembert."
         type="article"
         datePublished="2026-03-02"
-        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

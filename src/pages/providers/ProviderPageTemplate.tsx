@@ -132,7 +132,6 @@ export function ProviderPage({
     description: seoDescription,
     url: `${SITE_URL}${currentPath}`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-15",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
     about: [
@@ -379,7 +378,7 @@ export function ProviderPage({
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date={updatedDate} readTime={readTime} />
+        <AuthorMetaBar author="kevin" readTime={readTime} />
 
         {heroImage && (
           <div className="mb-10 overflow-hidden rounded-xl">

@@ -120,7 +120,6 @@ const FordeleOgUlemperGuide = () => {
         description="Dybdegående analyse af fordele og ulemper ved casino uden konto: sikkerhed, KYC, ROFUS, databeskyttelse, risk/reward-model og Spillemyndighedens krav."
         jsonLd={[faqJsonLd, articleJsonLd]}
         datePublished="2026-03-08"
-        dateModified="2026-03-08"
       />
 
       <section

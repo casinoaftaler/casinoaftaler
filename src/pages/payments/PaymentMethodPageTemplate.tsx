@@ -163,7 +163,6 @@ export function PaymentMethodPage({
     description: seoDescription,
     url: `${SITE_URL}${currentPath}`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-21",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
     about: [
@@ -220,7 +219,7 @@ export function PaymentMethodPage({
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="17-02-2026" readTime="22 Min." />
+        <AuthorMetaBar author="kevin" readTime="22 Min." />
 
         {heroImage && (
           <div className="mb-10 overflow-hidden rounded-xl">

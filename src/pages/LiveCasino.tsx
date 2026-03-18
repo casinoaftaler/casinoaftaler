@@ -116,7 +116,6 @@ const LiveCasino = () => {
         jsonLd={[faqJsonLd, articleJsonLd]}
         type="article"
         datePublished="2025-06-01"
-        dateModified="2026-03-18"
       />
 
       {/* Hero */}

@@ -135,7 +135,6 @@ const DalembertBlackjackGuide = () => {
         description="Komplet guide til D'Alembert-systemet i blackjack: lineær progression, equilibrium-teori, 5.000-hånds test og sammenligning med Martingale og Fibonacci."
         type="article"
         datePublished="2026-03-02"
-        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

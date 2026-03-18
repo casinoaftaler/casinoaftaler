@@ -172,7 +172,7 @@ export function ComparisonPageTemplate({
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author={author} date={datePublished} readTime={readTime} />
+        <AuthorMetaBar author={author} readTime={readTime} />
 
         {/* Hero image */}
         <div className="mb-10 overflow-hidden rounded-xl">
