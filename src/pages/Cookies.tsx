@@ -46,7 +46,7 @@ const Terms = () => {
     author: { "@type": "Organization", name: "Casinoaftaler" },
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-12-01",
-    dateModified: routeLastmod,
+    ...(routeLastmod ? { dateModified: routeLastmod } : {}),
     mainEntityOfPage: "https://casinoaftaler.dk/cookies",
   };
 

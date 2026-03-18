@@ -76,7 +76,7 @@ const Index = () => {
     staleTime: 5 * 60 * 1000,
   });
 
-  const homepageDateModified = getRouteLastmod("/") || latestNewsDate?.split("T")[0] || undefined;
+  const homepageDateModified = getRouteLastmod("/");
 
   useEffect(() => {
     setOpenCasinoId(null);
@@ -140,7 +140,7 @@ const Index = () => {
                 "@id": "https://casinoaftaler.dk/#webpage",
                 url: "https://casinoaftaler.dk",
                 name: "Online Casinoer med Bonus – Nye Casinoer 2026",
-                dateModified: `${homepageDateModified}T00:00:00+01:00`,
+                ...(homepageDateModified ? { dateModified: `${homepageDateModified}T00:00:00+01:00` } : {}),
                 isPartOf: { "@id": "https://casinoaftaler.dk/#website" },
               },
             ],
