@@ -224,7 +224,7 @@ const FibonacciBlackjackGuide = () => {
             Systemmekanik: To-Trin-Reglen og Sekvensnavigation
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Fibonacci-systemets styrke (og svaghed) ligger i dets to-trin-tilbagegangsregel. Hvor <Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale</Link> nulstiller til basisindsatsen ved enhver gevinst, bevæger Fibonacci sig to pladser tilbage i sekvensen. Det betyder, at en enkelt gevinst ikke eliminerer hele din tabsserie – du har brug for flere gevinster til at "klatre ned" ad stigen.
+            Fibonacci-systemets styrke (og svaghed) ligger i dets to-trin-tilbagegangsregel. Hvor <Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale</Link> nulstiller til basisindsatsen ved enhver gevinst, bevæger Fibonacci sig to pladser tilbage i sekvensen. Det betyder, at en enkelt gevinst ikke eliminerer hele din tabsserie – du har brug for flere gevinster til at "klatre ned" ad stigen.
           </p>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
