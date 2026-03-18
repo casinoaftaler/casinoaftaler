@@ -250,7 +250,7 @@ export function HighlightsAdminSection() {
       const newIndex = items.findIndex((item) => item.id === over.id);
       const newItems = arrayMove(items, oldIndex, newIndex);
 
-      const positions = newItems.map((item, index) => ({
+      const positions = newItems.map((item: Highlight, index) => ({
         id: item.id,
         position: index,
       }));

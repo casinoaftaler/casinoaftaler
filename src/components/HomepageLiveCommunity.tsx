@@ -49,7 +49,7 @@ function useHomepageCommunityData() {
           .select("user_id, display_name, avatar_url")
           .in("user_id", userIds);
 
-        const profileMap = new Map((profiles || []).map((p) => [p.user_id, p]));
+        const profileMap = new Map<string, { user_id: string; display_name: string | null; avatar_url: string | null }>((profiles || []).map((p) => [p.user_id, p]));
         leaders = leaderboardData.map((d) => {
           const profile = profileMap.get(d.user_id!);
           return {

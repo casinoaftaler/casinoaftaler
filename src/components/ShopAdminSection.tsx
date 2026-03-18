@@ -237,7 +237,7 @@ export function ShopAdminSection({ embedded = false }: ShopAdminSectionProps) {
       const newIndex = items.findIndex((item) => item.id === over.id);
       const newItems = arrayMove(items, oldIndex, newIndex);
 
-      const positions = newItems.map((item, index) => ({
+      const positions = newItems.map((item: ShopItem, index) => ({
         id: item.id,
         position: index,
       }));

@@ -76,7 +76,7 @@ function SortableSymbolRow({ symbol, onEdit, spawnPercentage }: SortableSymbolRo
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: symbol.id });
+  } = useSortable(createSortableArgs(symbol.id));
 
   const style = {
     transform: CSS.Transform.toString(transform),

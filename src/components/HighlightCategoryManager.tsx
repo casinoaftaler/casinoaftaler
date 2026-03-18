@@ -199,7 +199,7 @@ export function HighlightCategoryManager() {
       const newIndex = categories.findIndex((cat) => cat.id === over.id);
       const newItems = arrayMove(categories, oldIndex, newIndex);
 
-      const positions = newItems.map((item, index) => ({
+      const positions = newItems.map((item: HighlightCategory, index) => ({
         id: item.id,
         position: index,
       }));

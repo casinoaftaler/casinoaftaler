@@ -62,7 +62,7 @@ function InlineCasinoCardsInner({
 
   const displayCasinos = rotate(eligible, count);
 
-  const mapCasino = (casino: (typeof displayCasinos)[0]) => ({
+  const mapCasino = (casino: Casino) => ({
     id: casino.id,
     name: casino.name,
     slug: casino.slug,

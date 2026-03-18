@@ -67,7 +67,7 @@ export function CreditAllocationHistory() {
     },
   });
 
-  const profileMap = new Map(profiles?.map((p) => [p.user_id, p]) || []);
+  const profileMap = new Map<string, UserProfile>((profiles?.map((p) => [p.user_id, p]) ?? []));
 
   const filteredLogs = logs?.filter((log) => {
     if (!searchTerm) return true;
