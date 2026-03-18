@@ -196,7 +196,7 @@ ${articleUrls.join("\n")}
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
-    <priority>${route.priority.toFixed(1)}</priority>
+    <priority>${route.priority}</priority>
   </url>`;
         });
 
