@@ -87,7 +87,6 @@ const BwinAnmeldelse = () => {
     description: "Dybdegående anmeldelse af bwin Danmark. Sportsvæddemål, casino og poker fra en af Europas største gambling-operatører.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/bwin",
     datePublished: "2026-02-15",
-    dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     ...casinoReviewEntities("bwin", "bwin"),

@@ -136,7 +136,6 @@ const CasinoApp = () => {
       "Alt om casino apps: Download, sikkerhed, spiludvalg, iOS vs. Android, PWA vs. native app, og de bedste casino apps med dansk licens. Komplet guide.",
     url: `${SITE_URL}/casino-app`,
     datePublished: "2026-03-07",
-    dateModified: "2026-03-07",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
