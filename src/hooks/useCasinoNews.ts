@@ -21,17 +21,23 @@ export interface CasinoNewsArticle {
 
 export type CasinoNewsInsert = Omit<CasinoNewsArticle, "id" | "created_at" | "updated_at">;
 
-export function usePublishedNews(page = 1, perPage = 10) {
+export function usePublishedNews(page = 1, perPage = 10, category?: string) {
   return useQuery({
-    queryKey: ["casino-news", "published", page, perPage],
+    queryKey: ["casino-news", "published", page, perPage, category ?? "all"],
     queryFn: async () => {
       const from = (page - 1) * perPage;
       const to = from + perPage - 1;
 
-      const { data, error, count } = await supabase
+      let query = supabase
         .from("casino_news")
         .select("*", { count: "exact" })
-        .eq("status", "published")
+        .eq("status", "published");
+
+      if (category) {
+        query = query.eq("category", category);
+      }
+
+      const { data, error, count } = await query
         .order("published_at", { ascending: false })
         .range(from, to);
 

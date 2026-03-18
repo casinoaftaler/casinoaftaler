@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -14,6 +14,13 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 import { formatTimestampDanish } from "@/hooks/usePageLastmod";
+import {
+  buildNewsHubPath,
+  buildNewsHubSearchParams,
+  getNewsHubSeo,
+  NEWS_DEFAULT_CATEGORY,
+  normalizePositivePage,
+} from "@/lib/hubSeo";
 
 const ARTICLES_PER_PAGE = 10;
 
@@ -67,56 +74,76 @@ const CATEGORY_META: Record<string, { label: string; intro: string }> = {
 
 const CATEGORIES = ["alle", "generelt", "regulering", "licenser", "bonusser", "nye-casinoer", "betalingsmetoder", "lovgivning", "teknologi", "markedsbevægelser", "juridisk"];
 
-/** PageRank control: page 4+ gets noindex */
-const NOINDEX_THRESHOLD = 4;
-
 const CasinoNyheder = () => {
-  const [page, setPage] = useState(1);
-  const [activeCategory, setActiveCategory] = useState("alle");
-  const { data, isLoading } = usePublishedNews(page, ARTICLES_PER_PAGE);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const allArticles = data?.articles ?? [];
-  
-  // Filter by category client-side (small dataset)
-  const articles = activeCategory === "alle"
-    ? allArticles
-    : allArticles.filter((a) => a.category === activeCategory);
-  
-  const total = activeCategory === "alle" ? (data?.total ?? 0) : articles.length;
-  const totalPages = activeCategory === "alle" ? Math.ceil(total / ARTICLES_PER_PAGE) : 1;
+  const rawCategory = searchParams.get("kategori") ?? NEWS_DEFAULT_CATEGORY;
+  const activeCategory = CATEGORIES.includes(rawCategory) ? rawCategory : NEWS_DEFAULT_CATEGORY;
+  const page = normalizePositivePage(searchParams.get("side"));
 
-  const latestModified = allArticles[0]?.updated_at || allArticles[0]?.published_at || undefined;
+  useEffect(() => {
+    const normalized = buildNewsHubSearchParams({ category: activeCategory, page });
+    if (normalized.toString() !== searchParams.toString()) {
+      setSearchParams(normalized, { replace: true });
+    }
+  }, [activeCategory, page, searchParams, setSearchParams]);
 
-  const articleSchema = buildArticleSchema({
-    headline: "Casino Nyheder 2026 – Seneste Opdateringer fra Danske Online Casinoer",
-    description: "Hold dig opdateret med de seneste casino nyheder, analyser og opdateringer fra det danske casinomarked. Licenser, bonusændringer og lovgivning.",
-    url: `${SITE_URL}/casino-nyheder`,
-    datePublished: "2026-02-21",
-    authorName: "Ajse",
-    authorUrl: `${SITE_URL}/forfatter/ajse`,
-  });
+  const { data, isLoading } = usePublishedNews(
+    page,
+    ARTICLES_PER_PAGE,
+    activeCategory === NEWS_DEFAULT_CATEGORY ? undefined : activeCategory,
+  );
 
+  const articles = data?.articles ?? [];
+  const total = data?.total ?? 0;
+  const totalPages = Math.max(1, Math.ceil(total / ARTICLES_PER_PAGE));
+
+  useEffect(() => {
+    if (page > totalPages) {
+      setSearchParams(
+        buildNewsHubSearchParams({ category: activeCategory, page: totalPages }),
+        { replace: true },
+      );
+    }
+  }, [activeCategory, page, setSearchParams, totalPages]);
+
+  const currentPage = Math.min(page, totalPages);
+  const latestModified = articles[0]?.updated_at || articles[0]?.published_at || undefined;
   const latestDate = latestModified ? formatTimestampDanish(latestModified) : null;
-
   const categoryMeta = CATEGORY_META[activeCategory] || CATEGORY_META.alle;
+  const seoState = getNewsHubSeo({ category: activeCategory, page: currentPage });
+  const isDefaultHubState = activeCategory === NEWS_DEFAULT_CATEGORY && currentPage === 1;
 
-  // PageRank: noindex for deep archive pages
-  const shouldNoindex = page >= NOINDEX_THRESHOLD;
+  const articleSchema = isDefaultHubState
+    ? buildArticleSchema({
+        headline: "Casino Nyheder – Licens, bonus og marked i Danmark",
+        description: "Seneste casino nyheder om bonusser, licenser, betalingsmetoder og markedet i Danmark. Redaktionelle analyser uden clickbait.",
+        url: `${SITE_URL}/casino-nyheder`,
+        datePublished: "2026-02-21",
+        authorName: "Ajse",
+        authorUrl: `${SITE_URL}/forfatter/ajse`,
+      })
+    : undefined;
+
+  const handleCategoryChange = (category: string) => {
+    setSearchParams(buildNewsHubSearchParams({ category, page: 1 }));
+  };
 
   return (
     <>
       <SEO
-        title="Casino Nyheder 2026 – Seneste Opdateringer fra Danske Online Casinoer"
-        description="Hold dig opdateret med de seneste casino nyheder, analyser og opdateringer fra det danske casinomarked. Nye licenser, bonusændringer, betalingsmetoder og lovgivning."
+        title={seoState.title}
+        description={seoState.description}
+        canonicalUrl={seoState.canonicalUrl}
         jsonLd={articleSchema}
-        noindex={shouldNoindex}
+        noindex={seoState.noindex}
       />
 
       {/* Gradient Hero Section */}
       <section
         className="relative overflow-hidden py-8 text-white md:py-12 min-h-[280px] md:min-h-[320px]"
         style={{
-          background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+          background: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
         }}
       >
         <div className="container relative z-10">
@@ -151,7 +178,6 @@ const CasinoNyheder = () => {
       </section>
 
       <main className="container py-8">
-
         <AuthorMetaBar
           author="ajse"
           readTime="Løbende opdateret"
@@ -162,20 +188,20 @@ const CasinoNyheder = () => {
         {/* SEO Intro */}
         <section className="prose prose-lg dark:prose-invert max-w-none mb-12">
           <p>
-            Velkommen til Casino Nyheder – din kilde til aktuelle opdateringer fra det danske online casino-landskab. 
-            Her dækker vi alt fra nye licensudstedelser fra <Link to="/spillemyndigheden" className="text-primary hover:underline">Spillemyndigheden</Link> og 
-            ændringer i bonusvilkår, til teknologiske fremskridt inden for <Link to="/betalingsmetoder" className="text-primary hover:underline">betalingsmetoder</Link> og 
+            Velkommen til Casino Nyheder – din kilde til aktuelle opdateringer fra det danske online casino-landskab.
+            Her dækker vi alt fra nye licensudstedelser fra <Link to="/spillemyndigheden" className="text-primary hover:underline">Spillemyndigheden</Link> og
+            ændringer i bonusvilkår, til teknologiske fremskridt inden for <Link to="/betalingsmetoder" className="text-primary hover:underline">betalingsmetoder</Link> og
             nye <Link to="/nye-casinoer" className="text-primary hover:underline">casino-lanceringer</Link>.
           </p>
           <p>
-            Vores redaktionelle team analyserer hver nyhed i dansk kontekst og vurderer, hvad ændringerne konkret 
-            betyder for dig som dansk spiller. Vi fokuserer på substans frem for sensationer – ingen clickbait, 
-            kun kvalificerede analyser baseret på vores <Link to="/saadan-tester-vi-casinoer" className="text-primary hover:underline">testmetodik</Link> og 
+            Vores redaktionelle team analyserer hver nyhed i dansk kontekst og vurderer, hvad ændringerne konkret
+            betyder for dig som dansk spiller. Vi fokuserer på substans frem for sensationer – ingen clickbait,
+            kun kvalificerede analyser baseret på vores <Link to="/saadan-tester-vi-casinoer" className="text-primary hover:underline">testmetodik</Link> og
             mangeårige erfaring med det regulerede danske marked.
           </p>
           <p>
-            Alle artikler gennemgår samme redaktionelle kvalitetskontrol som vores <Link to="/casino-anmeldelser" className="text-primary hover:underline">casino-anmeldelser</Link> og 
-            <Link to="/casino-bonus" className="text-primary hover:underline"> bonusguides</Link>. Vi publicerer aldrig tyndt indhold – hver artikel 
+            Alle artikler gennemgår samme redaktionelle kvalitetskontrol som vores <Link to="/casino-anmeldelser" className="text-primary hover:underline">casino-anmeldelser</Link> og
+            <Link to="/casino-bonus" className="text-primary hover:underline"> bonusguides</Link>. Vi publicerer aldrig tyndt indhold – hver artikel
             indeholder minimum 900 ord med dansk kontekstualisering og konkrete implikationer.
           </p>
         </section>
@@ -186,33 +212,40 @@ const CasinoNyheder = () => {
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Seneste casino-nyheder</h2>
           <div className="flex flex-wrap gap-2 mb-4">
-            {CATEGORIES.map((cat) => (
-              <Button
-                key={cat}
-                variant={activeCategory === cat ? "default" : "outline"}
-                size="sm"
-                onClick={() => {
-                  setActiveCategory(cat);
-                  setPage(1);
-                }}
-              >
-                {CATEGORY_META[cat]?.label || cat}
-              </Button>
-            ))}
+            {CATEGORIES.map((cat) => {
+              const isActive = activeCategory === cat;
+              const categoryHref = buildNewsHubPath({ category: cat, page: 1 });
+
+              return (
+                <Button
+                  key={cat}
+                  variant={isActive ? "default" : "outline"}
+                  size="sm"
+                  asChild={!isActive}
+                  onClick={isActive ? undefined : () => handleCategoryChange(cat)}
+                >
+                  {isActive ? (
+                    <span>{CATEGORY_META[cat]?.label || cat}</span>
+                  ) : (
+                    <Link to={categoryHref}>{CATEGORY_META[cat]?.label || cat}</Link>
+                  )}
+                </Button>
+              );
+            })}
           </div>
           {/* Category intro text for SEO */}
-          {activeCategory !== "alle" && categoryMeta.intro && (
+          {activeCategory !== NEWS_DEFAULT_CATEGORY && categoryMeta.intro && (
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
               {categoryMeta.intro}
             </p>
           )}
-          {activeCategory === "alle" && (
+          {activeCategory === NEWS_DEFAULT_CATEGORY && (
             <p className="text-muted-foreground">Korte analyser og opdateringer fra det danske online casino-marked.</p>
           )}
         </div>
 
         {/* Evergreen hub sections – only on page 1, category "alle" */}
-        {page === 1 && activeCategory === "alle" && <NewsHubSections />}
+        {currentPage === 1 && activeCategory === NEWS_DEFAULT_CATEGORY && <NewsHubSections />}
 
         {/* Article List */}
         {isLoading ? (
@@ -225,7 +258,7 @@ const CasinoNyheder = () => {
           <div className="py-16 text-center">
             <Newspaper className="mx-auto h-12 w-12 text-muted-foreground/50" />
             <p className="mt-4 text-lg text-muted-foreground">
-              {activeCategory !== "alle"
+              {activeCategory !== NEWS_DEFAULT_CATEGORY
                 ? `Ingen nyheder i kategorien "${categoryMeta.label}" endnu.`
                 : "Første opdateringer udgives snart. Vi publicerer nye analyser hver tirsdag og fredag."}
             </p>
@@ -279,26 +312,42 @@ const CasinoNyheder = () => {
             </div>
 
             {/* Pagination - only for "alle" category */}
-            {activeCategory === "alle" && totalPages > 1 && (
+            {totalPages > 1 && (
               <div className="mt-10 flex items-center justify-center gap-4">
                 <Button
                   variant="outline"
                   size="sm"
-                  disabled={page <= 1}
-                  onClick={() => setPage((p) => p - 1)}
+                  disabled={currentPage <= 1}
+                  asChild={currentPage > 1}
                 >
-                  <ChevronLeft className="h-4 w-4 mr-1" /> Forrige
+                  {currentPage > 1 ? (
+                    <Link to={buildNewsHubPath({ category: activeCategory, page: currentPage - 1 })}>
+                      <ChevronLeft className="h-4 w-4 mr-1" /> Forrige
+                    </Link>
+                  ) : (
+                    <span>
+                      <ChevronLeft className="h-4 w-4 mr-1" /> Forrige
+                    </span>
+                  )}
                 </Button>
                 <span className="text-sm text-muted-foreground">
-                  Side {page} af {totalPages}
+                  Side {currentPage} af {totalPages}
                 </span>
                 <Button
                   variant="outline"
                   size="sm"
-                  disabled={page >= totalPages}
-                  onClick={() => setPage((p) => p + 1)}
+                  disabled={currentPage >= totalPages}
+                  asChild={currentPage < totalPages}
                 >
-                  Næste <ChevronRight className="h-4 w-4 ml-1" />
+                  {currentPage < totalPages ? (
+                    <Link to={buildNewsHubPath({ category: activeCategory, page: currentPage + 1 })}>
+                      Næste <ChevronRight className="h-4 w-4 ml-1" />
+                    </Link>
+                  ) : (
+                    <span>
+                      Næste <ChevronRight className="h-4 w-4 ml-1" />
+                    </span>
+                  )}
                 </Button>
               </div>
             )}

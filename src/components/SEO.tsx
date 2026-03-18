@@ -28,6 +28,7 @@ interface SEOProps {
   type?: string;
   image?: string;
   noindex?: boolean;
+  canonicalUrl?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   /** Override the last breadcrumb label (for dynamic pages like news articles). */
   breadcrumbLabel?: string;
@@ -73,10 +74,10 @@ function toIso8601WithTz(date: string): string {
   return `${date}T00:00:00+01:00`;
 }
 
-export function SEO({ title, description, type = "website", image = `${SITE_URL}/og-image.png`, noindex, jsonLd, breadcrumbLabel, datePublished, dateModified }: SEOProps) {
+export function SEO({ title, description, type = "website", image = `${SITE_URL}/og-image.png`, noindex, canonicalUrl, jsonLd, breadcrumbLabel, datePublished, dateModified }: SEOProps) {
   const { pathname } = useLocation();
   const normalizedPath = normalizePath(pathname);
-  const canonicalUrl = getCanonicalUrl(pathname);
+  const resolvedCanonicalUrl = canonicalUrl ?? getCanonicalUrl(pathname);
   const formattedTitle = formatTitle(title);
 
   // Source of truth order:
@@ -161,11 +162,11 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
       {noindex && (
         <meta name="robots" content="noindex, follow" />
       )}
-      <link rel="canonical" href={canonicalUrl} />
+      <link rel="canonical" href={resolvedCanonicalUrl} />
       {!noindex && (
         <>
-          <link rel="alternate" hrefLang="da" href={canonicalUrl} />
-          <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
+          <link rel="alternate" hrefLang="da" href={resolvedCanonicalUrl} />
+          <link rel="alternate" hrefLang="x-default" href={resolvedCanonicalUrl} />
         </>
       )}
 
@@ -174,7 +175,7 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={formattedTitle} />
       <meta property="og:description" content={safeDescription} />
-      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:url" content={resolvedCanonicalUrl} />
       <meta property="og:image" content={image} />
 
       {type === "article" && normalizedDatePublished && (
