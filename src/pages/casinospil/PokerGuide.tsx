@@ -580,19 +580,19 @@ const PokerGuide = () => {
           <div className="grid gap-4 sm:grid-cols-2 mb-6">
             <Card>
               <CardHeader className="pb-2"><CardTitle className="text-base">🎯 Den Strategiske Begynder</CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground">Start med <Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em</Link> mikrostakes. Simple regler, enormt læringsøkosystem, størst spillerpool.</p></CardContent>
+              <CardContent><p className="text-sm text-muted-foreground">Start med <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link> mikrostakes. Simple regler, enormt læringsøkosystem, størst spillerpool.</p></CardContent>
             </Card>
             <Card>
               <CardHeader className="pb-2"><CardTitle className="text-base">🧮 Den Analytiske Spiller</CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/video-poker" className={linkClass}>Video Poker</Link> – ren matematik, ingen psykologi. Op til 100,76 % RTP. Perfekt for dem, der elsker at optimere.</p></CardContent>
+              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link> – ren matematik, ingen psykologi. Op til 100,76 % RTP. Perfekt for dem, der elsker at optimere.</p></CardContent>
             </Card>
             <Card>
               <CardHeader className="pb-2"><CardTitle className="text-base">⚡ Action-Jægeren</CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/omaha-poker" className={linkClass}>Omaha (PLO)</Link> – mere action, højere varians, stærkere vinderhænder. For spillere, der finder Hold'em for langsomt.</p></CardContent>
+              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/poker/omaha" className={linkClass}>Omaha (PLO)</Link> – mere action, højere varians, stærkere vinderhænder. For spillere, der finder Hold'em for langsomt.</p></CardContent>
             </Card>
             <Card>
               <CardHeader className="pb-2"><CardTitle className="text-base">🎰 Den Afslappede Casino-Gæst</CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link> eller <Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud</Link> – poker-stemning uden den dybe strategiske kompleksitet.</p></CardContent>
+              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link> eller <Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud</Link> – poker-stemning uden den dybe strategiske kompleksitet.</p></CardContent>
             </Card>
           </div>
         </section>
