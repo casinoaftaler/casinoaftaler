@@ -37,7 +37,7 @@ const EyeOfHorusGuide = () => {
     headline: "Eye of Horus – Symbol Upgrade & Volatilitetsanalyse",
     description: "Dybdegående analyse af Eye of Horus: symbol upgrade-mekanik, expanding symbols, RTP 96,31 %, volatilitetsprofil og EV-beregninger.",
     url: `${SITE_URL}/casinospil/spillemaskiner/eye-of-horus`,
-    datePublished: "2026-02-18", dateModified: "2026-02-18",
+    datePublished: "2026-02-18",
     authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
   const videoJsonLd = buildVideoSchema(`${SITE_URL}/casinospil/spillemaskiner/eye-of-horus`, "G8beL2DD1sI", {
@@ -54,7 +54,7 @@ const EyeOfHorusGuide = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Symbol upgrade & bonusprofil</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Eye of Horus – Symbol Upgrade & Volatilitetsanalyse</h1>
             <p className="text-lg text-white/80">Merkur Gamings ikoniske landbaserede klassiker, nu online: en matematisk dekonstruktion af symbol upgrade-systemet og hvorfor denne 'Book of'-variant tilbyder det højeste max win i genren.</p>
           </div>
@@ -62,7 +62,7 @@ const EyeOfHorusGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-02-18" readTime="18 min" />
+        <AuthorMetaBar author="jonas" readTime="18 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Eye of Horus spillemaskine" loading="eager" />
         </div>

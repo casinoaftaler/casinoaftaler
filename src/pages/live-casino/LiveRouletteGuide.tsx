@@ -70,7 +70,6 @@ const LiveRouletteGuide = () => {
     description: "Komplet live roulette guide 2026. House edge 2,70 % (EU) vs. 5,26 % (US), bordtyper, tempoanalyse og bankroll management for danske spillere.",
     url: `${SITE_URL}/live-casino/roulette`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -107,7 +106,7 @@ const LiveRouletteGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Bordtyper, odds & tempoanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Live Roulette – Bordtyper, House Edge & Strategi
@@ -120,7 +119,7 @@ const LiveRouletteGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" readTime="20 Min." />
 
         <img src={liveRouletteHero} alt="Live roulette hjul i et elegant casino studio med dealer" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
 
