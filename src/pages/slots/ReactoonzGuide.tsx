@@ -99,7 +99,6 @@ const ReactoonzGuide = () => {
       <SEO
         title="Reactoonz – RTP, cluster pays og bonus"
         description="Dybdegående analyse af Reactoonz: cluster pays-mekanik, Quantum-funktioner, RTP 96,51 %, volatilitetsprofil og EV-beregninger for danske spillere."
-        canonical={`${SITE_URL}/casinospil/spillemaskiner/reactoonz`}
         jsonLd={[articleSchema, faqJsonLd]}
       />
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">

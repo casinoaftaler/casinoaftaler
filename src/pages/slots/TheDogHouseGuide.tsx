@@ -91,7 +91,6 @@ const TheDogHouseGuide = () => {
       <SEO
         title="The Dog House – RTP, sticky wilds og bonus"
         description="Komplet analyse af The Dog House: sticky wild-mekanik, multiplikator-system, RTP 96,51 %, volatilitetsprofil og EV-vurdering for danske spillere."
-        canonical={`${SITE_URL}/casinospil/spillemaskiner/the-dog-house`}
         jsonLd={[articleSchema, faqJsonLd]}
       />
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">

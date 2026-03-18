@@ -91,7 +91,6 @@ const MoneyTrain3Guide = () => {
       <SEO
         title="Money Train 3 – RTP, bonus og max win"
         description="Komplet analyse af Money Train 3: Money Cart-bonusrunde, max win 100.000×, RTP 96,10 %, volatilitetsprofil og strategisk EV-vurdering."
-        canonical={`${SITE_URL}/casinospil/spillemaskiner/money-train-3`}
         jsonLd={[articleSchema, faqJsonLd]}
       />
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">

@@ -43,7 +43,6 @@ const ImmortalRomanceGuide = () => {
       <SEO
         title="Immortal Romance – RTP, bonus og max win"
         description="Komplet analyse af Immortal Romance: Chamber of Spins, 96,86 % RTP, Wild Vine-mekanik og 12.150× max win."
-        canonical={`${SITE_URL}/casinospil/spillemaskiner/immortal-romance`}
         jsonLd={[articleSchema, faqJsonLd]}
       />
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">

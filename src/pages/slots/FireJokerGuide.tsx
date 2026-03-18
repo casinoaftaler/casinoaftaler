@@ -73,7 +73,6 @@ const FireJokerGuide = () => {
       <SEO
         title="Fire Joker – RTP, respin og max win"
         description="Komplet analyse af Fire Joker: Respin of Fire, Wheel of Multipliers, RTP 96,15 %, volatilitetsprofil og strategisk EV-vurdering for danske spillere."
-        canonical={`${SITE_URL}/casinospil/spillemaskiner/fire-joker`}
         jsonLd={[articleSchema, faqJsonLd]}
       />
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
