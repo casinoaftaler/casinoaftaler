@@ -126,7 +126,7 @@ const CasinoBonus = () => {
     description: "Den ultimative guide til casino bonus i Danmark 2026. Sammenlign alle bonustyper, forstå omsætningskrav og find den bonus der giver mest reel værdi.",
     url: `${SITE_URL}/casino-bonus`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-18",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
