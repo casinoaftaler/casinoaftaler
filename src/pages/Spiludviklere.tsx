@@ -336,7 +336,7 @@ const Spiludviklere = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="18-02-2026" readTime="30 Min." />
+        <AuthorMetaBar author="kevin" readTime="30 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={spiludviklereHero} alt="Spiludviklere – teknisk analyse af casino-spil og RNG-systemer" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

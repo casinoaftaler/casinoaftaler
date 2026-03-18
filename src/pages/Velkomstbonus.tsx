@@ -137,7 +137,6 @@ const Velkomstbonus = () => {
     description: "Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav og tips.",
     url: `${SITE_URL}/velkomstbonus`,
     datePublished: "2025-06-01",
-    dateModified: "2026-03-18",
     videoId: "oK5PvebkvGY",
   });
 
