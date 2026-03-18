@@ -335,7 +335,7 @@ export default function Statistik() {
           MAIN CONTENT
       ══════════════════════════════════════════════════════════ */}
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="11-03-2026" readTime="15 Min." />
+        <AuthorMetaBar author="kevin" />
 
         {/* Hero image */}
         <div className="mb-10 overflow-hidden rounded-xl">
