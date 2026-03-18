@@ -131,7 +131,7 @@ const LiveCasinoUdbydereGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="16-03-2026" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" readTime="26 Min." />
 
         <GuideHeroImage src={liveCasinoUdbydereHero} alt="Live casino studie med multiple skærme der viser live dealer streams fra Evolution Gaming og andre udbydere" />
 

@@ -131,7 +131,7 @@ const HurtigRegistreringGuide = () => {
       </div>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="2026-03-08" readTime="30 Min." />
+        <AuthorMetaBar author="kevin" readTime="30 Min." />
 
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">

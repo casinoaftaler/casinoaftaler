@@ -58,7 +58,7 @@ const DanskeSpilAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="30 Min." />
+        <AuthorMetaBar author="jonas" readTime="30 Min." />
         <CasinoReviewHero slug="danske-spil" casinoName="Danske Spil Casino" />
 
         {/* Hurtige Fakta */}
