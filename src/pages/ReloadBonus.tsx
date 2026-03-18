@@ -224,6 +224,8 @@ const ReloadBonus = () => {
           </p>
         </section>
 
+        <BonusClusterPriorityLinks currentPath="/reload-bonus" />
+
         <YoutubeEmbed videoId="ReM4PBQ30rw" title="Hvad er en Reload Bonus? – Forklaret på dansk" description="Jonas gennemgår hvad en reload bonus er og hvordan den fungerer." uploadDate="2026-03-07" duration="PT1M" />
         <VideoContextBox heading="Her gennemgår vores forfatter reload-bonussen">
           <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer hvad en reload bonus er, hvordan den adskiller sig fra{" "}

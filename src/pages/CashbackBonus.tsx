@@ -220,6 +220,7 @@ const CashbackBonus = () => {
         </section>
 
         <BonusClusterPriorityLinks currentPath="/cashback-bonus" />
+        <YoutubeEmbed videoId="epl204siMF0" title="Hvad er en Cashback-Bonus? – Forklaret på dansk" description="Jonas gennemgår hvad en cashback bonus er og hvordan den fungerer." uploadDate="2026-03-07" duration="PT1M12S" />
         <VideoContextBox heading="Her gennemgår vores forfatter cashback-bonussen">
           <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> forklarer hvad en cashback bonus er, hvordan den beregnes, og hvornår den er mere fordelagtig end en{" "}
           <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link>. Videoen er en del af vores{" "}
