@@ -52,7 +52,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Fibonacci-systemet i blackjack?",
     answer: (
       <>
-        Fibonacci-systemet er en negativ progressionsstrategi, hvor du øger din indsats efter tab baseret på Fibonacci-talrækken (1, 1, 2, 3, 5, 8, 13, 21...). Ved gevinst går du to trin tilbage i sekvensen. Det eskalerer langsommere end <Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale</Link> men har stadig negativ forventet værdi.
+        Fibonacci-systemet er en negativ progressionsstrategi, hvor du øger din indsats efter tab baseret på Fibonacci-talrækken (1, 1, 2, 3, 5, 8, 13, 21...). Ved gevinst går du to trin tilbage i sekvensen. Det eskalerer langsommere end <Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale</Link> men har stadig negativ forventet værdi.
       </>
     ),
   },
@@ -173,7 +173,7 @@ const FibonacciBlackjackGuide = () => {
             Fibonacci-sekvensen dukker op overalt i naturen: i solsikkers frøarrangementer, nautilussneglens spiral, galaksers rotationsmønstre og menneskets DNA-helix. Denne naturlige universalitet har skabt en <em>mystisk aura</em> omkring sekvensen – en tro på, at der er noget fundamentalt "rigtigt" ved disse tal. Den tro er forkert i casino-kontekst, men den er forståelig.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            I denne guide dissekerer jeg Fibonacci-systemet med samme analytiske precision, som jeg brugte på <Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale-analysen</Link>. Men hvor Martingale er en hammer – brutal, direkte, ødelæggende – er Fibonacci en skalpel: mere elegant, mere nuanceret, og i sidste ende stadig ude af stand til at overvinde <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>. Lad os begynde med mekanikken.
+            I denne guide dissekerer jeg Fibonacci-systemet med samme analytiske precision, som jeg brugte på <Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale-analysen</Link>. Men hvor Martingale er en hammer – brutal, direkte, ødelæggende – er Fibonacci en skalpel: mere elegant, mere nuanceret, og i sidste ende stadig ude af stand til at overvinde <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>. Lad os begynde med mekanikken.
           </p>
 
           <Card className="mb-6 border-primary/30 bg-primary/5">
@@ -224,7 +224,7 @@ const FibonacciBlackjackGuide = () => {
             Systemmekanik: To-Trin-Reglen og Sekvensnavigation
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Fibonacci-systemets styrke (og svaghed) ligger i dets to-trin-tilbagegangsregel. Hvor <Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale</Link> nulstiller til basisindsatsen ved enhver gevinst, bevæger Fibonacci sig to pladser tilbage i sekvensen. Det betyder, at en enkelt gevinst ikke eliminerer hele din tabsserie – du har brug for flere gevinster til at "klatre ned" ad stigen.
+            Fibonacci-systemets styrke (og svaghed) ligger i dets to-trin-tilbagegangsregel. Hvor <Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale</Link> nulstiller til basisindsatsen ved enhver gevinst, bevæger Fibonacci sig to pladser tilbage i sekvensen. Det betyder, at en enkelt gevinst ikke eliminerer hele din tabsserie – du har brug for flere gevinster til at "klatre ned" ad stigen.
           </p>
 
           <h3 className="mb-3 text-xl font-bold flex items-center gap-2">
@@ -427,9 +427,9 @@ const FibonacciBlackjackGuide = () => {
               <thead>
                 <tr className="border-b border-border bg-muted/50">
                   <th className="py-3 px-3 text-left font-semibold">Parameter</th>
-                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale</Link></th>
+                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale</Link></th>
                   <th className="py-3 px-3 text-left font-semibold">Fibonacci</th>
-                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/dalembert-system" className={linkClass}>D'Alembert</Link></th>
+                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/dalembert" className={linkClass}>D'Alembert</Link></th>
                 </tr>
               </thead>
               <tbody>
@@ -573,7 +573,7 @@ const FibonacciBlackjackGuide = () => {
             Konklusion: Fibonacci er Bedre end Martingale – Men Det Er Ikke Godt
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Fibonacci-systemet er en klar forbedring over Martingale. Det eskalerer langsommere, kræver mindre kapital, har lavere max drawdown og er psykologisk mere holdbart. Hvis du absolutt insisterer på at bruge et progressionssystem i <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, er Fibonacci – sammen med <Link to="/casinospil/blackjack/dalembert-system" className={linkClass}>D'Alembert</Link> – det mindst skadelige valg.
+            Fibonacci-systemet er en klar forbedring over Martingale. Det eskalerer langsommere, kræver mindre kapital, har lavere max drawdown og er psykologisk mere holdbart. Hvis du absolutt insisterer på at bruge et progressionssystem i <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, er Fibonacci – sammen med <Link to="/casinospil/blackjack/dalembert" className={linkClass}>D'Alembert</Link> – det mindst skadelige valg.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Men "bedre end Martingale" er en lav bar. Fibonacci ændrer stadig ikke house edge. Det omstrukturerer risiko – giver dig flere vindende sessions, men med dyrere tab. Over tid konvergerer dit resultat mod det samme negative gennemsnit som flat betting, bare med mere volatilitet og større emotionelle udsving.

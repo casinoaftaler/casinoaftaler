@@ -53,7 +53,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er D'Alembert-systemet i blackjack?",
     answer: (
       <>
-        D'Alembert er et lineært progressionssystem opkaldt efter den franske matematiker Jean le Rond d'Alembert (1717-1783). Du øger din indsats med én enhed efter tab og sænker med én enhed efter gevinst. Det er det mest konservative af de populære progressionssystemer – langt blødere end <Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale</Link>.
+        D'Alembert er et lineært progressionssystem opkaldt efter den franske matematiker Jean le Rond d'Alembert (1717-1783). Du øger din indsats med én enhed efter tab og sænker med én enhed efter gevinst. Det er det mest konservative af de populære progressionssystemer – langt blødere end <Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale</Link>.
       </>
     ),
   },
@@ -66,7 +66,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvor hurtigt eskalerer D'Alembert sammenlignet med Martingale?",
     answer: (
       <>
-        Dramatisk langsommere. Efter 7 tab i træk med 50 kr. basisenhed er D'Alembert-indsatsen 400 kr. vs. <Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingales</Link> 6.400 kr. Den kumulerede eksponering er 2.450 kr. vs. 12.750 kr. D'Alembert bruger ca. 80 % mindre kapital.
+        Dramatisk langsommere. Efter 7 tab i træk med 50 kr. basisenhed er D'Alembert-indsatsen 400 kr. vs. <Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingales</Link> 6.400 kr. Den kumulerede eksponering er 2.450 kr. vs. 12.750 kr. D'Alembert bruger ca. 80 % mindre kapital.
       </>
     ),
   },
@@ -92,7 +92,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er forskellen på D'Alembert og Fibonacci?",
     answer: (
       <>
-        D'Alembert øger indsatsen med 1 enhed pr. tab (lineært: 50, 100, 150, 200...). <Link to="/casinospil/blackjack/fibonacci-system" className={linkClass}>Fibonacci</Link> bruger Fibonacci-sekvensen (eksponentiel: 50, 50, 100, 150, 250...). D'Alembert er jævnere og mere forudsigelig; Fibonacci eskalerer hurtigere men starter langsommere. Begge kræver flere gevinster end tab for recovery.
+        D'Alembert øger indsatsen med 1 enhed pr. tab (lineært: 50, 100, 150, 200...). <Link to="/casinospil/blackjack/fibonacci" className={linkClass}>Fibonacci</Link> bruger Fibonacci-sekvensen (eksponentiel: 50, 50, 100, 150, 250...). D'Alembert er jævnere og mere forudsigelig; Fibonacci eskalerer hurtigere men starter langsommere. Begge kræver flere gevinster end tab for recovery.
       </>
     ),
   },
@@ -266,8 +266,8 @@ const DalembertBlackjackGuide = () => {
                 <tr className="border-b border-border bg-muted/50">
                   <th className="py-3 px-3 text-left font-semibold">Tab i træk</th>
                   <th className="py-3 px-3 text-left font-semibold">D'Alembert</th>
-                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/fibonacci-system" className={linkClass}>Fibonacci</Link></th>
-                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale</Link></th>
+                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/fibonacci" className={linkClass}>Fibonacci</Link></th>
+                  <th className="py-3 px-3 text-left font-semibold"><Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale</Link></th>
                 </tr>
               </thead>
               <tbody>
@@ -295,7 +295,7 @@ const DalembertBlackjackGuide = () => {
             Min 5.000-Hånds Simulering: D'Alembert Under Lup
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For at teste D'Alembert under kontrollerede forhold simulerede jeg 5.000 hænder med perfekt basic strategy på <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikanske blackjack-regler</Link> (S17, DAS, 3:2, 8 decks). Basisenhed: 50 kr. Bordmaksimum: 5.000 kr. Bankroll: 15.000 kr. Identiske vilkår som min <Link to="/casinospil/blackjack/fibonacci-system" className={linkClass}>Fibonacci-simulering</Link>.
+            For at teste D'Alembert under kontrollerede forhold simulerede jeg 5.000 hænder med perfekt basic strategy på <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikanske blackjack-regler</Link> (S17, DAS, 3:2, 8 decks). Basisenhed: 50 kr. Bordmaksimum: 5.000 kr. Bankroll: 15.000 kr. Identiske vilkår som min <Link to="/casinospil/blackjack/fibonacci" className={linkClass}>Fibonacci-simulering</Link>.
           </p>
 
           <div className="grid md:grid-cols-4 gap-4 mb-6">

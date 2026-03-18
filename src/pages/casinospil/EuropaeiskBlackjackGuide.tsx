@@ -685,7 +685,7 @@ const EuropaeiskBlackjackGuide = () => {
               <strong>Europæisk ENHC vs. Amerikansk:</strong> Amerikansk er 0,11 % bedre. Vælg amerikansk, medmindre du specifikt vil udfordre dig med ENHC-strategi.
             </li>
             <li className="text-muted-foreground leading-relaxed">
-              <strong>Europæisk vs. <Link to="/casinospil/blackjack/double-exposure" className={linkClass}>Double Exposure</Link>:</strong> Europæisk er klart bedre (0,29-0,39 % vs. 0,69 %). Double Exposure er for spillere der prioriterer transparens over EV.
+              <strong>Europæisk vs. <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link>:</strong> Europæisk er klart bedre (0,29-0,39 % vs. 0,69 %). Double Exposure er for spillere der prioriterer transparens over EV.
             </li>
             <li className="text-muted-foreground leading-relaxed">
               <strong>Europæisk vs. <Link to="/casinospil/blackjack/spanish-21" className={linkClass}>Spanish 21</Link>:</strong> Tæt løb (0,29-0,39 % vs. 0,40 %). Spanish 21 tilbyder mere variation og bonusser, men kræver markant mere strategiinvestering.
