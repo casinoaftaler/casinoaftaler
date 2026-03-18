@@ -191,11 +191,18 @@ export function buildArticleSchema(opts: {
   const sameAsMap: Record<string, string[]> = { Kevin: KEVIN_SAME_AS, Ajse: AJSE_SAME_AS, Niklas: NIKLAS_SAME_AS };
   const authorSameAs = opts.authorSameAs ?? (sameAsMap[authorName] || JONAS_SAME_AS);
 
-  // Auto-resolve dateModified from seoRoutes if not explicitly provided
+  // Canonical source of truth: seoRoutes lastmod (prevents manual drift)
   const urlPath = opts.url.replace(SITE_URL, "");
-  const resolvedDateModified = opts.dateModified
-    ?? getRouteLastmod(urlPath)
+  const routeLastmod = getRouteLastmod(urlPath);
+  const resolvedDateModified = routeLastmod
+    ?? opts.dateModified
     ?? opts.datePublished;
+
+  if (import.meta.env.DEV && opts.dateModified && routeLastmod && opts.dateModified !== routeLastmod) {
+    console.warn(
+      `[buildArticleSchema] Ignoring hardcoded dateModified (${opts.dateModified}) for ${urlPath}; using seoRoutes lastmod (${routeLastmod}) instead.`
+    );
+  }
 
   const articleId = `${opts.url}#article`;
   const personId = `${authorUrl}#person`;
