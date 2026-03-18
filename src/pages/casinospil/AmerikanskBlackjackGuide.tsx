@@ -918,7 +918,7 @@ const AmerikanskBlackjackGuide = () => {
             </li>
             <li className="text-muted-foreground leading-relaxed flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-              <span><strong>Du hader usikkerhed:</strong> <Link to="/casinospil/blackjack/double-exposure" className={linkClass}>Double Exposure</Link> eliminerer al gætteri – begge dealerkort er synlige.</span>
+              <span><strong>Du hader usikkerhed:</strong> <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link> eliminerer al gætteri – begge dealerkort er synlige.</span>
             </li>
             <li className="text-muted-foreground leading-relaxed flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />

@@ -295,7 +295,7 @@ const DalembertBlackjackGuide = () => {
             Min 5.000-Hånds Simulering: D'Alembert Under Lup
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For at teste D'Alembert under kontrollerede forhold simulerede jeg 5.000 hænder med perfekt basic strategy på <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikanske blackjack-regler</Link> (S17, DAS, 3:2, 8 decks). Basisenhed: 50 kr. Bordmaksimum: 5.000 kr. Bankroll: 15.000 kr. Identiske vilkår som min <Link to="/casinospil/blackjack/fibonacci-system" className={linkClass}>Fibonacci-simulering</Link>.
+            For at teste D'Alembert under kontrollerede forhold simulerede jeg 5.000 hænder med perfekt basic strategy på <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikanske blackjack-regler</Link> (S17, DAS, 3:2, 8 decks). Basisenhed: 50 kr. Bordmaksimum: 5.000 kr. Bankroll: 15.000 kr. Identiske vilkår som min <Link to="/casinospil/blackjack/fibonacci" className={linkClass}>Fibonacci-simulering</Link>.
           </p>
 
           <div className="grid md:grid-cols-4 gap-4 mb-6">

@@ -573,7 +573,7 @@ const FibonacciBlackjackGuide = () => {
             Konklusion: Fibonacci er Bedre end Martingale – Men Det Er Ikke Godt
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Fibonacci-systemet er en klar forbedring over Martingale. Det eskalerer langsommere, kræver mindre kapital, har lavere max drawdown og er psykologisk mere holdbart. Hvis du absolutt insisterer på at bruge et progressionssystem i <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, er Fibonacci – sammen med <Link to="/casinospil/blackjack/dalembert-system" className={linkClass}>D'Alembert</Link> – det mindst skadelige valg.
+            Fibonacci-systemet er en klar forbedring over Martingale. Det eskalerer langsommere, kræver mindre kapital, har lavere max drawdown og er psykologisk mere holdbart. Hvis du absolutt insisterer på at bruge et progressionssystem i <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, er Fibonacci – sammen med <Link to="/casinospil/blackjack/dalembert" className={linkClass}>D'Alembert</Link> – det mindst skadelige valg.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Men "bedre end Martingale" er en lav bar. Fibonacci ændrer stadig ikke house edge. Det omstrukturerer risiko – giver dig flere vindende sessions, men med dyrere tab. Over tid konvergerer dit resultat mod det samme negative gennemsnit som flat betting, bare med mere volatilitet og større emotionelle udsving.
