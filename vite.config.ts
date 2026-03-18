@@ -40,7 +40,7 @@ async function fetchAllRows<T>(
     let url = `${SUPABASE_URL}/rest/v1/${table}?select=${encodeURIComponent(select)}&order=${orderBy}&offset=${from}&limit=${batchSize}`;
     if (filters) url += `&${filters}`;
 
-    const res = await fetch(url, {
+    const res: any = await fetch(url, {
       headers: {
         apikey: SUPABASE_ANON_KEY,
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,

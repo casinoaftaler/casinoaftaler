@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export function BannedScreen() {
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    await (supabase.auth as any).signOut();
     window.location.reload();
   };
 
