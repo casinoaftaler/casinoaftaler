@@ -71,7 +71,6 @@ interface ProviderPageProps {
   strategicAnalysis?: ReactNode;
   technicalProfile?: ReactNode;
   sectionOrder?: string[];
-  updatedDate?: string;
   readTime?: string;
   strategicTitle?: string;
   technicalTitle?: string;
@@ -118,7 +117,7 @@ export function ProviderPage({
   introTitle, introContent, historyTitle, historyIntro, timeline,
   games, gamesIntro, licensesContent, pros, cons, faqs, currentPath,
   responsibleGamingText, strategicAnalysis, technicalProfile,
-  sectionOrder, updatedDate, readTime = "14 Min.",
+  sectionOrder, readTime = "14 Min.",
   strategicTitle, technicalTitle, gamesTitle, licensesTitle, prosConsTitle, responsibleTitle,
   ctaCasinoSlug,
 }: ProviderPageProps) {
