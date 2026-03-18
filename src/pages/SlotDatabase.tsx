@@ -136,11 +136,6 @@ export default function SlotDatabase() {
     return Array.from(set).sort();
   }, [slots]);
 
-  const providerLookup = useMemo(
-    () => new Map(providers.map((provider) => [provider.trim().toLowerCase(), provider])),
-    [providers],
-  );
-
   const rawQuery = searchParams.get("q") ?? "";
   const rawProvider = searchParams.get("provider") ?? SLOT_DEFAULT_PROVIDER;
   const rawVolatility = searchParams.get("volatility") ?? SLOT_DEFAULT_VOLATILITY;
@@ -148,9 +143,23 @@ export default function SlotDatabase() {
   const rawPage = normalizePositivePage(searchParams.get("page") ?? searchParams.get("side"));
 
   const searchQuery = rawQuery;
-  const providerFilter = rawProvider === SLOT_DEFAULT_PROVIDER
-    ? SLOT_DEFAULT_PROVIDER
-    : providerLookup.get(rawProvider.trim().toLowerCase()) ?? SLOT_DEFAULT_PROVIDER;
+  const providerFilter = useMemo(() => {
+    if (rawProvider === SLOT_DEFAULT_PROVIDER) return SLOT_DEFAULT_PROVIDER;
+
+    const normalizedRawProvider = rawProvider.trim().toLowerCase();
+
+    if (!slots) {
+      return rawProvider;
+    }
+
+    const matchedProvider = providers.find((provider) => {
+      const normalizedProvider = provider.trim().toLowerCase();
+      return normalizedProvider === normalizedRawProvider || resolveProviderSlug(provider) === normalizedRawProvider;
+    });
+
+    return matchedProvider ?? SLOT_DEFAULT_PROVIDER;
+  }, [providers, rawProvider, slots]);
+
   const volatilityFilter = SLOT_VOLATILITY_OPTIONS.includes(rawVolatility as typeof SLOT_VOLATILITY_OPTIONS[number])
     ? rawVolatility
     : SLOT_DEFAULT_VOLATILITY;
@@ -166,7 +175,11 @@ export default function SlotDatabase() {
       result = result.filter(s => s.slot_name.toLowerCase().includes(q) || s.provider.toLowerCase().includes(q));
     }
     if (providerFilter !== SLOT_DEFAULT_PROVIDER) {
-      result = result.filter(s => s.provider === providerFilter);
+      const normalizedProviderFilter = providerFilter.trim().toLowerCase();
+      result = result.filter((slot) => {
+        const normalizedProvider = slot.provider.trim().toLowerCase();
+        return normalizedProvider === normalizedProviderFilter || resolveProviderSlug(slot.provider) === normalizedProviderFilter;
+      });
     }
     if (volatilityFilter !== SLOT_DEFAULT_VOLATILITY) {
       result = result.filter(s => s.volatility?.toLowerCase() === volatilityFilter);
@@ -184,6 +197,8 @@ export default function SlotDatabase() {
   const currentPage = Math.min(rawPage, totalPages);
 
   useEffect(() => {
+    if (!slots) return;
+
     const normalized = buildSlotDatabaseSearchParams({
       q: searchQuery,
       provider: providerFilter,
@@ -195,7 +210,7 @@ export default function SlotDatabase() {
     if (normalized.toString() !== searchParams.toString()) {
       setSearchParams(normalized, { replace: true });
     }
-  }, [currentPage, providerFilter, searchParams, searchQuery, setSearchParams, sortBy, volatilityFilter]);
+  }, [currentPage, providerFilter, searchParams, searchQuery, setSearchParams, slots, sortBy, volatilityFilter]);
 
   const paginatedSlots = useMemo(() => {
     const start = (currentPage - 1) * ROWS_PER_PAGE;
