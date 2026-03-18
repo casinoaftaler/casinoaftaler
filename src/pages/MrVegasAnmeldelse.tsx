@@ -29,7 +29,7 @@ const MrVegasAnmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="39 Min." />
+        <AuthorMetaBar author="jonas" readTime="39 Min." />
         <CasinoReviewHero slug="mr-vegas" casinoName="Mr Vegas Casino" />
 
         {/* Hurtige Fakta */}

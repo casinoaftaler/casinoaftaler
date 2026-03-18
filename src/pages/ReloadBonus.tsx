@@ -192,7 +192,7 @@ const ReloadBonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" date="18-03-2026" readTime="14 Min." />
+        <AuthorMetaBar author="niklas" readTime="14 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={reloadHero} alt="Reload bonus – tilbagevendende casinobonus med genopladningssymbol" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
