@@ -130,7 +130,7 @@ const HjaelpelinjerGuide = () => {
     description: "Samlet oversigt over alle danske hjælpelinjer for spilleproblemer: StopSpillet, Center for Ludomani, Anonyme Gamblere, kommunale tilbud og pårørendestøtte.",
     url: `${SITE_URL}/ansvarligt-spil/hjaelpelinjer`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
+    dateModified: "2026-03-18",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
@@ -152,7 +152,7 @@ const HjaelpelinjerGuide = () => {
         jsonLd={[articleSchema, faqSchema]}
         breadcrumbLabel="Hjælpelinjer"
         datePublished="2026-03-08"
-        dateModified="2026-03-08"
+        dateModified="2026-03-18"
       />
 
       {/* Hero Section */}
