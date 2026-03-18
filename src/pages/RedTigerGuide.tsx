@@ -13,7 +13,6 @@ const RedTigerGuide = () => (
     heroImage={redTigerHero}
     heroImageAlt="Red Tiger Gaming – Daily Jackpots, Tournaments og Megaways slots"
     currentPath="/spiludviklere/red-tiger"
-    updatedDate="15-02-2026"
     readTime="18 Min."
     sectionOrder={["technical", "intro", "strategic", "games", "casinos", "history", "licenses", "proscons", "providers", "responsible"]}
     strategicTitle="Gamification-Innovatoren: Engagement Over Volatilitet"

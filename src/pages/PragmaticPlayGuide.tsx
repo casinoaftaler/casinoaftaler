@@ -13,7 +13,6 @@ const PragmaticPlayGuide = () => (
     heroImage={pragmaticPlayHero}
     heroImageAlt="Pragmatic Play spiludvikler – farverige spilleautomater med høj volatilitet"
     currentPath="/spiludviklere/pragmatic-play"
-    updatedDate="17-02-2026"
     readTime="38 Min."
     strategicTitle="Produktionsmaskinens Logik: Pragmatics Forretningsstrategi"
     technicalTitle="Under Motorhjelmen: Pragmatics Tekniske Infrastruktur"

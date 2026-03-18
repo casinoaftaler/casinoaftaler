@@ -14,7 +14,6 @@ const BlueprintGamingGuide = () => (
     heroImageAlt="Blueprint Gaming – britisk spiludvikler med Jackpot King"
     heroSubtitle="Blueprint Gaming er det britiske powerhouse der kombinerer progressiv jackpot-infrastruktur med licenseret Megaways-teknologi. Med Jackpot King-netværket og over 200 titler er de en af Europas mest indflydelsesrige spiludviklere."
     currentPath="/spiludviklere/blueprint-gaming"
-    updatedDate="12-03-2026"
     readTime="32 Min."
     strategicTitle="Den Britiske Strategi: Blueprint Gamings Markedsposition og Filosofi"
     technicalTitle="Jackpot King og Megaways: Blueprints Tekniske Dobbeltmotor"

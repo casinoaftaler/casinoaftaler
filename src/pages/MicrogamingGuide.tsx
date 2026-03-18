@@ -13,7 +13,6 @@ const MicrogamingGuide = () => (
     heroImage={microgamingHero}
     heroImageAlt="Microgaming – pioner i online casino siden 1994 med Mega Moolah jackpots"
     currentPath="/spiludviklere/microgaming"
-    updatedDate="15-02-2026"
     readTime="18 Min."
     sectionOrder={["strategic", "intro", "history", "technical", "games", "casinos", "proscons", "licenses", "providers", "responsible"]}
     strategicTitle="Branchens Grundlægger: Fra Pioner til Platform"

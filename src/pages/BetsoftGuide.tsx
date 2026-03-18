@@ -14,7 +14,6 @@ const BetsoftGuide = () => (
     heroImageAlt="Betsoft – pioneren inden for cinematiske 3D-slots"
     heroSubtitle="Betsoft er studiet der bragte Hollywood til spilleautomaten. Med deres patenterede SLOTS3-teknologi har de produceret nogle af de mest visuelt imponerende og narrativt ambitiøse slots i branchens historie – fra Slotfather til Alkemor's Tower."
     currentPath="/spiludviklere/betsoft"
-    updatedDate="12-03-2026"
     readTime="35 Min."
     strategicTitle="Cinematisk Gambling: Betsofts Vision og Markedsstrategi"
     technicalTitle="SLOTS3-Teknologien: Betsofts Tekniske Revolution"

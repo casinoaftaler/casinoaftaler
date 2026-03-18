@@ -14,7 +14,6 @@ const ISoftBetGuide = () => (
     heroImageAlt="iSoftBet – innovativt B2B spiludvikler"
     heroSubtitle="iSoftBet er dobbelt-trusselen i online gambling: både en respekteret spiludvikler med 200+ originale slots OG en af branchens førende aggregeringsplatforme via deres GAP-system. Denne dualitet gør dem til en af de mest strategisk interessante aktører i industrien."
     currentPath="/spiludviklere/isoftbet"
-    updatedDate="12-03-2026"
     readTime="32 Min."
     strategicTitle="Platform og Produkt: iSoftBets Unikke Dobbeltrolle i Branchen"
     technicalTitle="GAP-Platformen og Slot-Arkitektur: iSoftBets Tekniske Fundament"

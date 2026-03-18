@@ -14,7 +14,6 @@ const EndorphinaGuide = () => (
     heroImageAlt="Endorphina – tjekkisk premium spiludvikler"
     heroSubtitle="Endorphina er det tjekkiske studie der beviser, at matematisk integritet og visuelt design ikke er modsætninger. Med en portefølje på 100+ slots kendetegnet ved høj RTP, stilren grafik og innovative features har de opbygget en loyal følgerskare blandt data-orienterede spillere."
     currentPath="/spiludviklere/endorphina"
-    updatedDate="12-03-2026"
     readTime="34 Min."
     strategicTitle="Kvalitet over Kvantitet: Endorphinas Strategiske Position i et Overmættet Marked"
     technicalTitle="Matematisk Præcision: Endorphinas Tekniske Filosofi og RTP-Arkitektur"

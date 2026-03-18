@@ -13,7 +13,6 @@ const ELKStudiosGuide = () => (
     heroImage={elkHero}
     heroImageAlt="ELK Studios – kvalitetsspilleautomater med Avalanche og Precision Spins"
     currentPath="/spiludviklere/elk-studios"
-    updatedDate="17-02-2026"
     readTime="38 Min."
     strategicTitle="Håndværkerens Dilemma: ELK Studios' Markedsstrategi"
     technicalTitle="Præcisionsinstrumenterne: ELK Studios' Teknologiske Arsenal"

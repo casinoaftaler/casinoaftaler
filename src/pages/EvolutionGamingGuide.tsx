@@ -13,7 +13,6 @@ const EvolutionGamingGuide = () => (
     heroImage={evolutionHero}
     heroImageAlt="Evolution Gaming live casino studio med professionelle dealere og avanceret streaming-teknologi"
     currentPath="/spiludviklere/evolution-gaming"
-    updatedDate="17-02-2026"
     readTime="38 Min."
     strategicTitle="Koncern-Arkitekturen: Evolutions Opkøbs- og Dominansstrategi"
     technicalTitle="Live Casino-Teknologien: Fra OCR til 4K-Streaming"

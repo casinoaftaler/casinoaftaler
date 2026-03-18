@@ -14,7 +14,6 @@ const NetEntGuide = () => (
     heroImage={netentHero}
     heroImageAlt="NetEnt – førende svensk spiludvikler bag Starburst og Gonzo's Quest"
     currentPath="/spiludviklere/netent"
-    updatedDate="17-02-2026"
     readTime="32 Min."
     strategicTitle="Den Svenske Doktrin: NetEnts Filosofi og Konkurrenceposition"
     technicalTitle="Ingeniørkunsten Bag Hjulene: NetEnts Tekniske DNA"

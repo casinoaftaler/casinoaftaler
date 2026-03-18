@@ -15,7 +15,6 @@ const NolimitCityGuide = () => (
     heroImage={nolimitHero}
     heroImageAlt="Nolimit City – high-volatility slots med xWays, xNudge og xBomb mekanikker"
     currentPath="/spiludviklere/nolimit-city"
-    updatedDate="15-02-2026"
     readTime="18 Min."
     sectionOrder={["strategic", "technical", "intro", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
     strategicTitle="Provokation som Brandstrategi: Tabuer og Markedsposition"

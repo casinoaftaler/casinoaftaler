@@ -13,7 +13,6 @@ const YggdrasilGuide = () => (
     heroImage={yggdrasilHero}
     heroImageAlt="Yggdrasil Gaming – nordisk platform-innovation med BOOST tools og Gigablox"
     currentPath="/spiludviklere/yggdrasil"
-    updatedDate="15-02-2026"
     readTime="18 Min."
     sectionOrder={["intro", "history", "strategic", "technical", "games", "licenses", "casinos", "proscons", "providers", "responsible"]}
     strategicTitle="Platform-Først Filosofien: Infrastruktur Over Indhold"
