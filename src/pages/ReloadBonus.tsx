@@ -179,7 +179,7 @@ const ReloadBonus = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <RefreshCw className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Marts 2026
+              Reload guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Reload Bonus på Danske Casinoer
