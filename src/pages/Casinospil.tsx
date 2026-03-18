@@ -138,7 +138,17 @@ const Casinospil = () => {
               <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
               Komplet guide
             </Badge>
-...
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Casinospil – Din Komplette Guide til Online Casinospil i Danmark
+            </h1>
+            <p className="text-lg text-white/80">
+              Fra spillemaskinernes tilfældige hjul til blackjackens strategiske dybde – forstå mekanikken, matematikken og kulturen bag alle casinospil hos danske licenserede casinoer.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="45 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">

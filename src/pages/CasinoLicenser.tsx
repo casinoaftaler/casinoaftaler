@@ -78,7 +78,27 @@ const CasinoLicenser = () => {
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
-...
+
+  const faqSchema = buildFaqSchema(faqs);
+
+  return (
+    <>
+      <SEO
+        title="Casino Licenser i Danmark – Dansk, MGA & Curaçao Guide"
+        description="Komplet guide til casino-licenser. Forstå forskellen på dansk licens, MGA, Curaçao og UK – og hvad det betyder for din sikkerhed og skat."
+        jsonLd={[articleSchema, faqSchema]}
+      />
+
+      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4"><ShieldCheck className="mr-1.5 h-3.5 w-3.5" />Autoritetsguide</Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Casino Licenser – Dansk og Udenlandske Licenser Forklaret</h1>
+            <p className="text-lg text-white/80">Alt du behøver at vide om casino-licenser. Hvad de betyder for din sikkerhed, dine rettigheder og dine gevinster som dansk spiller.</p>
+          </div>
+        </div>
+      </section>
+
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="ajse" readTime="14 Min." />
         

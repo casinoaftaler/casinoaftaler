@@ -114,7 +114,15 @@ const CrazyTimeGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse</Badge>
-...
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Crazy Time – Det Ultimative Casino Game Show</h1>
+            <p className="text-lg text-white/80">
+              Evolutions mest populære live game show med 4 bonusspil, Top Slot-multiplikatorer og max gevinst på 25.000x. Her er den fulde matematiske analyse.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="30 min" />
         <GuideHeroImage src={crazyTimeHero} alt="Crazy Time live casino game show hjul i professionelt studie" />
 

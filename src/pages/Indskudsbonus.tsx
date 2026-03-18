@@ -106,7 +106,35 @@ const Indskudsbonus = () => {
     datePublished: "2025-06-01",
     videoId: "hMHHVA6vH0Y",
   });
-...
+
+  const videoJsonLd = buildVideoSchema(`${SITE_URL}/indskudsbonus`, "hMHHVA6vH0Y", {
+    title: "Indskudsbonus – Matchbonus forklaret på dansk",
+    description: "Jonas gennemgår hvad en indskudsbonus er, og hvordan matchbonusser fungerer hos danske casinoer.",
+    uploadDate: "2026-02-20",
+    duration: "PT1M30S",
+  });
+
+  return (
+    <>
+      <SEO
+        title="Indskudsbonus – Komplet Guide til Matchbonusser 2026 | Casinoaftaler"
+        description="Alt du skal vide om indskudsbonusser hos danske casinoer. Lær hvordan matchbonusser fungerer, betingelser, aktivering og strategier for at maksimere din bonus."
+        jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
+      />
+
+      {/* Hero Section */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: heroBackgroundImage
+            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
+            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
               Matchbonus guide
@@ -124,7 +152,7 @@ const Indskudsbonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" date="20-02-2026" readTime="18 Min." />
+        <AuthorMetaBar author="niklas" readTime="18 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={indskudsbonusHero} alt="Indskudsbonus – gyldne mønter og deposit bonus" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

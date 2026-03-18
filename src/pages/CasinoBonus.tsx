@@ -172,7 +172,17 @@ const CasinoBonus = () => {
               <Gift className="mr-1.5 h-3.5 w-3.5" />
               Bonusguide
             </Badge>
-...
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Casino Bonus 2026 – Danmarks Mest Komplette Bonusguide
+            </h1>
+            <p className="text-lg text-white/80">
+              Alt du behøver at vide om casino bonusser i Danmark. Fra matematiske analyser og bonusfælder til strategiske anbefalinger for enhver spillertype. Vi dækker 10 bonustyper, omsætningsmodeller og markedstendenser – så du aldrig betaler overpris for din bonus igen.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="35 Min." />
         
 
