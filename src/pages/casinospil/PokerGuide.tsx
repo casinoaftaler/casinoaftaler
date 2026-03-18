@@ -278,12 +278,25 @@ const PokerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong><Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link></strong> kombinerer pokerhænder med maskinspil og tilbyder nogle af de højeste RTP-værdier i hele casinobranchen. Jacks or Better 9/6 (full pay) har 99,54 % RTP med perfekt strategi. Deuces Wild (med optimal pay table) når 100,76 % – en af de eneste casinospil med positiv forventet værdi. Video Poker er poker for den analytiske spiller, der foretrækker matematik over psykologi.
           </p>
-...
+
+          <h3 className="mb-3 text-xl font-semibold">Variant-sammenligning: Struktur, Risiko og EV</h3>
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm border border-border rounded-lg">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="px-4 py-3 text-left font-semibold">Variant</th>
+                  <th className="px-4 py-3 text-center font-semibold">Format</th>
+                  <th className="px-4 py-3 text-center font-semibold">House Edge / Rake</th>
+                  <th className="px-4 py-3 text-center font-semibold">Varians</th>
+                  <th className="px-4 py-3 text-center font-semibold">Kompleksitet</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted-foreground">
                 <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link></td><td className="px-4 py-2 text-center">PvP</td><td className="px-4 py-2 text-center">2,5–5 % rake</td><td className="px-4 py-2 text-center">Høj</td><td className="px-4 py-2 text-center">⭐⭐⭐⭐</td></tr>
                 <tr className="border-t border-border bg-muted/20"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/omaha" className={linkClass}>Omaha (PLO)</Link></td><td className="px-4 py-2 text-center">PvP</td><td className="px-4 py-2 text-center">2,5–5 % rake</td><td className="px-4 py-2 text-center">Meget høj</td><td className="px-4 py-2 text-center">⭐⭐⭐⭐⭐</td></tr>
-                <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/video-poker" className={linkClass}>Video Poker</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">0,46–5 %</td><td className="px-4 py-2 text-center">Lav–Middel</td><td className="px-4 py-2 text-center">⭐⭐⭐</td></tr>
-                <tr className="border-t border-border bg-muted/20"><td className="px-4 py-2 font-medium"><Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">2,32–3,37 %</td><td className="px-4 py-2 text-center">Lav</td><td className="px-4 py-2 text-center">⭐⭐</td></tr>
-                <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">~5,2 %</td><td className="px-4 py-2 text-center">Middel</td><td className="px-4 py-2 text-center">⭐⭐⭐</td></tr>
+                <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">0,46–5 %</td><td className="px-4 py-2 text-center">Lav–Middel</td><td className="px-4 py-2 text-center">⭐⭐⭐</td></tr>
+                <tr className="border-t border-border bg-muted/20"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">2,32–3,37 %</td><td className="px-4 py-2 text-center">Lav</td><td className="px-4 py-2 text-center">⭐⭐</td></tr>
+                <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">~5,2 %</td><td className="px-4 py-2 text-center">Middel</td><td className="px-4 py-2 text-center">⭐⭐⭐</td></tr>
               </tbody>
             </table>
           </div>
