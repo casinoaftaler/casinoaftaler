@@ -212,6 +212,8 @@ const StickyBonus = () => {
           </VideoContextBox>
         </section>
 
+        <BonusClusterPriorityLinks currentPath="/sticky-bonus" />
+
         <Separator className="my-10" />
 
         {/* Definition og mekanik */}
