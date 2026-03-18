@@ -92,7 +92,6 @@ const Spanish21Guide = () => {
         description="Lær Spanish 21: bonusregler, husets fordel, Double Down Rescue og hvordan varianten adskiller sig fra klassisk blackjack."
         type="article"
         datePublished="2026-03-02"
-        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

@@ -153,7 +153,6 @@ const StopSpilletGuide = () => {
         description="Alt om StopSpillet: Gratis, anonym rådgivning for spilleafhængighed. Telefon 70 22 28 25, chat, åbningstider og hvordan tjenesten hjælper spillere og pårørende."
         jsonLd={[faqJsonLd, articleJsonLd]}
         datePublished="2026-03-07"
-        dateModified="2026-03-18"
       />
 
       {/* ── Hero Section ── */}

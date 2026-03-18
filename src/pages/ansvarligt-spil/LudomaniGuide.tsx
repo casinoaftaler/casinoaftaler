@@ -155,7 +155,6 @@ const LudomaniGuide = () => {
         description="Alt om ludomani: Symptomer, årsager, behandlingsmuligheder, statistik og gratis hjælp i Danmark. Lær at genkende spilleafhængighed og find støtte."
         jsonLd={[faqJsonLd, articleJsonLd]}
         datePublished="2026-03-07"
-        dateModified="2026-03-18"
       />
 
       {/* ── Hero Section ── */}

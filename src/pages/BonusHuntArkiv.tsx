@@ -54,7 +54,6 @@ export default function BonusHuntArkiv() {
     description: seoDesc,
     url: `${SITE_URL}/bonus-hunt/arkiv`,
     datePublished: "2026-03-05",
-    dateModified: new Date().toISOString().split("T")[0],
     authorName: "Kevin",
   });
 

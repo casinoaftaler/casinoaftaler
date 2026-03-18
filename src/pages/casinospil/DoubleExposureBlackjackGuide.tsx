@@ -123,7 +123,6 @@ const DoubleExposureBlackjackGuide = () => {
         description="Double Exposure Blackjack guide: begge dealerkort synlige, house edge, tilpasset strategi og hvornår varianten giver mening for danske spillere."
         type="article"
         datePublished="2026-03-02"
-        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

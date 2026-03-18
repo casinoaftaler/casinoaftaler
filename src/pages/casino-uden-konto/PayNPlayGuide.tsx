@@ -104,7 +104,6 @@ const PayNPlayGuide = () => {
         description="Teknisk deep-dive i Trustly Pay N Play: Open banking-protokollen, bankkompatibilitetsmatrice for 15+ danske banker, PSD2-compliance, sikkerhedsarkitektur og tidstest."
         jsonLd={[faqJsonLd, articleJsonLd]}
         datePublished="2026-03-08"
-        dateModified="2026-03-08"
       />
 
       <section

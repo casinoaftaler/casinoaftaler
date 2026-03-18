@@ -188,7 +188,6 @@ const RofusGuide = () => {
         description="Alt om ROFUS: Tilmelding via MitID, midlertidig vs. permanent udelukkelse, ophævelse, lovgivning og statistik. Beskyt dig selv via Danmarks officielle register."
         jsonLd={[faqJsonLd, articleJsonLd, howToSchema]}
         datePublished="2026-03-07"
-        dateModified="2026-03-18"
       />
 
       {/* ── Hero Section ── */}

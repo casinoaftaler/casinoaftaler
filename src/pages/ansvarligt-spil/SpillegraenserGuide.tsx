@@ -183,7 +183,6 @@ const SpillegraenserGuide = () => {
         jsonLd={[articleSchema, faqSchema]}
         breadcrumbLabel="Spillegrænser"
         datePublished="2026-03-08"
-        dateModified="2026-03-18"
       />
 
       {/* Hero Section */}

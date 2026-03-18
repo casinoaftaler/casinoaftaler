@@ -120,7 +120,6 @@ const AmerikanskBlackjackGuide = () => {
         description="Komplet guide til amerikansk blackjack: hole card-regler, optimal basic strategy, house edge-analyse og sammenligning med europæisk variant."
         type="article"
         datePublished="2026-03-02"
-        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

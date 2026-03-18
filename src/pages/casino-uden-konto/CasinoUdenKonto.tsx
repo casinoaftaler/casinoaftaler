@@ -218,7 +218,6 @@ const CasinoUdenKonto = () => {
         description="Alt om casino uden konto: Pay N Play via Trustly, hurtig registrering, bankkompatibilitet, sikkerhed og de bedste casinoer uden kontooprettelse i Danmark."
         jsonLd={[faqJsonLd, articleJsonLd]}
         datePublished="2026-03-08"
-        dateModified="2026-03-08"
       />
 
       {/* ── Hero Section ── */}

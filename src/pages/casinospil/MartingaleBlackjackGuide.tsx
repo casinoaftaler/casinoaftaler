@@ -93,7 +93,6 @@ const MartingaleBlackjackGuide = () => {
         description="Virker Martingale i blackjack? Vi analyserer matematikken, risk of ruin og hvorfor fordoblingsstrategien bryder sammen i praksis."
         type="article"
         datePublished="2026-03-02"
-        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

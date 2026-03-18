@@ -121,7 +121,6 @@ const EuropaeiskBlackjackGuide = () => {
         description="Komplet guide til europæisk blackjack: ENHC vs. OBO-regler, tilpasset basic strategy og matematisk sammenligning med amerikansk variant."
         type="article"
         datePublished="2026-03-02"
-        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
