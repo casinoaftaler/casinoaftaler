@@ -9,7 +9,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { NewsContextualCTA } from "@/components/NewsContextualCTA";
 import { useNewsArticle } from "@/hooks/useCasinoNews";
 import { useRelatedNews } from "@/hooks/useRelatedNews";
-import { buildArticleSchema, buildFaqSchema, SITE_URL, AJSE_SAME_AS } from "@/lib/seo";
+import { formatTimestampDanish } from "@/hooks/usePageLastmod";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { countInternalLinksInHtml, getEnterpriseNewsInternalLinks } from "@/lib/newsInternalLinks";
