@@ -13,7 +13,24 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import termsHero from "@/assets/heroes/terms-hero.jpg";
 
 const termsFaqs = [
-...
+  {
+    question: "Er Casinoaftaler.dk et online casino?",
+    answer: "Nej, Casinoaftaler.dk er ikke et online casino. Vi er en informations- og formidlingsplatform, der sammenligner og anmelder online casinoer og deres bonustilbud.",
+  },
+  {
+    question: "Hvad sker der, hvis jeg bryder vilkårene?",
+    answer: "Brud på vilkårene kan medføre konsekvenser som permanent ban fra websitet, sletning af credits og point, samt fjernelse af al leaderboard-fremgang.",
+  },
+  {
+    question: "Har points på sitet en reel pengeværdi?",
+    answer: "Nej, points er en intern, fiktiv valuta uden reel pengeværdi. De kan ikke veksles til kontanter, overføres eller sælges.",
+  },
+  {
+    question: "Skal man være 18 år for at bruge sitet?",
+    answer: "Ja, du skal være mindst 18 år for at bruge Casinoaftaler.dk. For at modtage gevinster, præmier eller andre belønninger kræves der også aldersverifikation.",
+  },
+];
+
 const Terms = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;

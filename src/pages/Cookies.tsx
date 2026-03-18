@@ -13,7 +13,24 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import cookiesHero from "@/assets/heroes/cookies-hero.jpg";
 
 const cookieFaqs = [
-...
+  {
+    question: "Hvad er cookies?",
+    answer: "Cookies er små tekstfiler, der gemmes på din computer eller mobilenhed, når du besøger et website. De hjælper websitet med at huske dine præferencer og forbedre din brugeroplevelse.",
+  },
+  {
+    question: "Kan jeg deaktivere cookies?",
+    answer: "Ja, du kan kontrollere og slette cookies gennem din browsers indstillinger. Bemærk dog, at deaktivering af cookies kan påvirke visse funktioner på websitet.",
+  },
+  {
+    question: "Hvilke typer cookies bruger Casinoaftaler.dk?",
+    answer: "Vi bruger nødvendige cookies, præference cookies, statistik cookies og marketing cookies. Nødvendige cookies kan ikke deaktiveres, da de er essentielle for websitets funktion.",
+  },
+  {
+    question: "Hvor længe opbevares cookies?",
+    answer: "Det varierer: Session cookies slettes når du lukker browseren, præference cookies varer op til 1 år, analytics cookies op til 26 måneder og affiliate cookies 30-90 dage.",
+  },
+];
+
 const Terms = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
