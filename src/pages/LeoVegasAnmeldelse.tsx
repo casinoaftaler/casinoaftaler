@@ -54,7 +54,7 @@ const LeoVegasAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="36 Min." />
         <CasinoReviewHero slug="leovegas" casinoName="LeoVegas" />
 
         {/* Quick Facts */}

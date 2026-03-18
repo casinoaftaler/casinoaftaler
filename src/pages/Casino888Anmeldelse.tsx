@@ -52,7 +52,7 @@ const Casino888Anmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="34 Min." />
         <CasinoReviewHero slug="888-casino" casinoName="888 Casino" />
 
         {/* [E] Kritisk First – starter med kritisk analyse */}

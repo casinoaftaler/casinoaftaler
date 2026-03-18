@@ -103,7 +103,7 @@ const ComeOnAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="17-02-2026" readTime="23 Min." />
+        <AuthorMetaBar author="jonas" readTime="23 Min." />
         <CasinoReviewHero slug="comeon" casinoName="ComeOn Casino" />
 
         {/* [B] Bonus First – starter med bonusanalyse */}

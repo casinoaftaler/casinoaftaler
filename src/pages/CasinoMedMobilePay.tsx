@@ -202,7 +202,7 @@ const CasinoMedMobilePay = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-08" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" readTime="28 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Skrevet af Jonas Theill, casino betalingsekspert hos Casinoaftaler.dk.
         </p>

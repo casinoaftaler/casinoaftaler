@@ -51,7 +51,7 @@ const ExpektAnmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="32 Min." />
+        <AuthorMetaBar author="jonas" readTime="32 Min." />
         <CasinoReviewHero slug="expekt" casinoName="Expekt" />
 
         {/* [D] Data First – starter med nøgletal og markedsposition */}

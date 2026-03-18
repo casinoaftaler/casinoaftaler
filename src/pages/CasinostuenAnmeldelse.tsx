@@ -51,7 +51,7 @@ const CasinostuenAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="32 Min." />
+        <AuthorMetaBar author="jonas" readTime="32 Min." />
         <CasinoReviewHero slug="casinostuen" casinoName="Casinostuen" />
 
         {/* [A] Experience First – starter med vores hands-on test */}

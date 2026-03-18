@@ -29,7 +29,7 @@ const KapowCasinoAnmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="15-02-2026" readTime="37 Min." />
+        <AuthorMetaBar author="jonas" readTime="37 Min." />
         <CasinoReviewHero slug="kapow-casino" casinoName="Kapow Casino" />
 
         {/* Hurtige Fakta */}
