@@ -207,7 +207,7 @@ const NyeCasinoer = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret {getDanishMonthYear()}
+              Nye casinoer guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Nye Casinoer i Danmark
