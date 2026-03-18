@@ -92,19 +92,11 @@ const CasinoNyhedArticle = () => {
   }
 
   const publishedDate = article.published_at
-    ? new Date(article.published_at).toLocaleDateString("da-DK", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
+    ? formatTimestampDanish(article.published_at)
     : "Ikke publiceret";
 
   const updatedDate = article.updated_at
-    ? new Date(article.updated_at).toLocaleDateString("da-DK", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      })
+    ? formatTimestampDanish(article.updated_at)
     : null;
 
   const articleUrl = `${SITE_URL}/casino-nyheder/${article.slug}`;
