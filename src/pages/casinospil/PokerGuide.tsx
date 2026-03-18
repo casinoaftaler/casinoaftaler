@@ -95,7 +95,7 @@ const pokerFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er den bedste pokervariant for begyndere?",
     answer: (
       <>
-        <Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em</Link> er det klare valg for begyndere. Det har simple regler (to håndsort, fem fælles kort), enorm mængde læringsmateriale tilgængeligt, og det er den mest spillede variant online, så du finder altid borde med spillere på dit niveau. No-Limit Hold'em med mikro-stakes (0,01/0,02 kr. blinds) giver dig mulighed for at lære spillet med minimal finansiel risiko. Alternativt er <Link to="/casinospil/video-poker" className={linkClass}>Jacks or Better Video Poker</Link> fremragende for at lære håndstyrkerne, fordi du får øjeblikkelig feedback på dine beslutninger.
+        <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link> er det klare valg for begyndere. Det har simple regler (to håndsort, fem fælles kort), enorm mængde læringsmateriale tilgængeligt, og det er den mest spillede variant online, så du finder altid borde med spillere på dit niveau. No-Limit Hold'em med mikro-stakes (0,01/0,02 kr. blinds) giver dig mulighed for at lære spillet med minimal finansiel risiko. Alternativt er <Link to="/casinospil/poker/video-poker" className={linkClass}>Jacks or Better Video Poker</Link> fremragende for at lære håndstyrkerne, fordi du får øjeblikkelig feedback på dine beslutninger.
       </>
     ),
   },
