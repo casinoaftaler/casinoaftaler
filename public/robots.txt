@@ -9,7 +9,6 @@ Allow: /bonus-hunt/arkiv
 Allow: /slot-database
 Allow: /slot-katalog
 Disallow: /u/
-Disallow: /community/slots/
 Disallow: /community/spin-the-reel
 Disallow: /auth
 Disallow: /profil
