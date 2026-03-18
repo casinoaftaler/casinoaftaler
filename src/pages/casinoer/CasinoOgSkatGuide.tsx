@@ -30,7 +30,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const CasinoOgSkatGuide = () => {
-  const articleSchema = buildArticleSchema({ headline: "Casino og Skat i Danmark 2026 – Komplet Skatteguide", description: "Alt om skat og casinogevinster i Danmark 2026.", url: `${SITE_URL}/casinoer/casino-og-skat`, datePublished: "2026-02-01", dateModified: "2026-02-15" });
+  const articleSchema = buildArticleSchema({ headline: "Casino og Skat i Danmark 2026 – Komplet Skatteguide", description: "Alt om skat og casinogevinster i Danmark 2026.", url: `${SITE_URL}/casinoer/casino-og-skat`, datePublished: "2026-02-01" });
   const faqSchema = buildFaqSchema(faqs);
 
   return (
@@ -47,7 +47,7 @@ const CasinoOgSkatGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Scale className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Skatteguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Casino og Skat i Danmark 2026
@@ -60,7 +60,7 @@ const CasinoOgSkatGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" date="1. februar 2026" readTime="22 min" />
+        <AuthorMetaBar author="niklas" readTime="22 min" />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Casino og skat i Danmark" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

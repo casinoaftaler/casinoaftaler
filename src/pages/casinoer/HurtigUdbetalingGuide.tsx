@@ -91,7 +91,6 @@ const HurtigUdbetalingGuide = () => {
     description: "Komplet guide til de hurtigste online casinoer i Danmark. Sammenlign udbetalingstider, betalingsmetoder og tips til lynhurtige udbetalinger.",
     url: `${SITE_URL}/casinoer/hurtig-udbetaling`,
     datePublished: "2026-02-01",
-    dateModified: "2026-02-15",
   });
 
   const faqSchema = buildFaqSchema(faqs);
@@ -114,7 +113,7 @@ const HurtigUdbetalingGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Zap className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Udbetalingsanalyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Casinoer med Hurtig Udbetaling i Danmark 2026
@@ -127,7 +126,7 @@ const HurtigUdbetalingGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="1. februar 2026" readTime="22 min" />
+        <AuthorMetaBar author="jonas" readTime="22 min" />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Casinoer med hurtig udbetaling" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
