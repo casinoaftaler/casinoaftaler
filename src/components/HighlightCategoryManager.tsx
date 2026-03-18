@@ -69,7 +69,7 @@ function SortableCategoryItem({
   isUpdating,
 }: SortableCategoryItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: category.id });
+    useSortable(createSortableArgs(category.id));
 
   const style = {
     transform: CSS.Transform.toString(transform),
