@@ -317,7 +317,7 @@ export default function Statistik() {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <BarChart3 className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret {new Date().toLocaleDateString("da-DK", { month: "long", year: "numeric" })}
+              Opdateret {freshnessLabel}
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Bonus Hunt Statistik
