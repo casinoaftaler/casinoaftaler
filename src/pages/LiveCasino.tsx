@@ -101,7 +101,7 @@ const LiveCasino = () => {
     description: "Komplet live casino guide 2026. House edge-analyse for blackjack, roulette og baccarat. Streaming-teknologi, bankroll management og danske licenskrav.",
     url: `${SITE_URL}/live-casino`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-18",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -111,9 +111,12 @@ const LiveCasino = () => {
   return (
     <>
       <SEO
-        title="Live Casino – House Edge, Strategi & Guide 2026"
-        description="Live casino 2026: House edge fra 0,5 % i blackjack til 2,7 % i roulette. Dansk licens, streaming-teknologi og strategier. Komplet guide."
+        title="Live Casino 2026 – Bedste Casinoer, Strategi & House Edge"
+        description="Live casino guide 2026: bedste danske live casinoer, blackjack, roulette, baccarat, game shows, house edge og strategi samlet ét sted."
         jsonLd={[faqJsonLd, articleJsonLd]}
+        type="article"
+        datePublished="2025-06-01"
+        dateModified="2026-03-18"
       />
 
       {/* Hero */}
@@ -131,20 +134,20 @@ const LiveCasino = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Opdateret 18. marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Live Casino i Danmark
             </h1>
             <p className="text-lg text-white/80">
-              Den mest komplette guide til live casino for danske spillere. Fra house edge-matematik og streaming-teknologi til bankroll management og strategier – alt hvad du behøver for at træffe informerede beslutninger.
+              Sammenlign de bedste danske live casinoer, forstå house edge i blackjack, roulette og baccarat, og vælg den rigtige strategi før du spiller med rigtige dealere.
             </p>
           </div>
         </div>
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="22 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="22 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={liveCasinoHero} alt="Live casino dealer ved professionelt blackjack-bord i HD-studie" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

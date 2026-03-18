@@ -37,7 +37,9 @@ export function HomepageCasinospilSection() {
         <Link to="/spiludviklere/evolution-gaming" className="text-primary hover:underline font-medium">Evolution Gaming</Link>.
       </p>
       <p className="text-muted-foreground leading-relaxed">
-        Bordspil som blackjack tilbyder lavere husfordel (ned til 0,5 % med optimal strategi), hvilket gør dem attraktive for strategiske spillere. Vi anbefaler at prøve vores{" "}
+        Bordspil som blackjack tilbyder lavere husfordel (ned til 0,5 % med optimal strategi), hvilket gør dem attraktive for strategiske spillere. Vil du have den fulde dealer-oplevelse med blackjack, roulette og baccarat i realtid, så læs vores{" "}
+        <Link to="/live-casino" className="text-primary hover:underline font-medium">live casino guide</Link>
+        {" "}med house edge, strategi, udbydere og de bedste danske live casinoer. Vi anbefaler også vores{" "}
         <Link to="/community/slots" className="text-primary hover:underline font-medium">gratis spillehal</Link>
         {" "}for at teste forskellige spiltyper uden risiko. Forstå alle begreber som RTP, volatilitet og house edge i vores{" "}
         <Link to="/ordbog" className="text-primary hover:underline font-medium">casino ordbog</Link>.
