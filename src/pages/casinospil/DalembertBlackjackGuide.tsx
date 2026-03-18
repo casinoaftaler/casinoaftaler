@@ -66,7 +66,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvor hurtigt eskalerer D'Alembert sammenlignet med Martingale?",
     answer: (
       <>
-        Dramatisk langsommere. Efter 7 tab i træk med 50 kr. basisenhed er D'Alembert-indsatsen 400 kr. vs. <Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingales</Link> 6.400 kr. Den kumulerede eksponering er 2.450 kr. vs. 12.750 kr. D'Alembert bruger ca. 80 % mindre kapital.
+        Dramatisk langsommere. Efter 7 tab i træk med 50 kr. basisenhed er D'Alembert-indsatsen 400 kr. vs. <Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingales</Link> 6.400 kr. Den kumulerede eksponering er 2.450 kr. vs. 12.750 kr. D'Alembert bruger ca. 80 % mindre kapital.
       </>
     ),
   },
