@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import { SafeHelmet } from "@/lib/reactCompat";
 import { SEO } from "@/components/SEO";
 
 const NotFound = () => {
@@ -17,9 +17,9 @@ const NotFound = () => {
         description="Siden du leder efter blev ikke fundet. Gå tilbage til forsiden for at finde det du søger."
         noindex
       />
-      <Helmet>
+      <SafeHelmet>
         <meta name="prerender-status-code" content="404" />
-      </Helmet>
+      </SafeHelmet>
       <div className="text-center">
         <h1 className="mb-4 text-4xl font-bold">404</h1>
         <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>

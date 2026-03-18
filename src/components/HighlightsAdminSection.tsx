@@ -49,6 +49,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { createSortableArgs } from "@/lib/reactCompat";
 
 function detectPlatform(url: string): "youtube" | "twitch" {
   if (url.includes("youtube.com") || url.includes("youtu.be")) {
@@ -92,7 +93,7 @@ function SortableItem({ item, onEdit, onDelete }: SortableItemProps) {
     setNodeRef,
     transform,
     transition,
-  } = useSortable({ id: item.id });
+  } = useSortable(createSortableArgs(item.id));
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -249,7 +250,7 @@ export function HighlightsAdminSection() {
       const newIndex = items.findIndex((item) => item.id === over.id);
       const newItems = arrayMove(items, oldIndex, newIndex);
 
-      const positions = newItems.map((item, index) => ({
+      const positions = newItems.map((item: Highlight, index) => ({
         id: item.id,
         position: index,
       }));

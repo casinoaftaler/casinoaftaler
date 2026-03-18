@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { useCasinos } from "@/hooks/useCasinos";
+import { useCasinos, type Casino } from "@/hooks/useCasinos";
 import { CasinoCard } from "@/components/CasinoCard";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { Separator } from "@/components/ui/separator";
@@ -62,7 +62,7 @@ function InlineCasinoCardsInner({
 
   const displayCasinos = rotate(eligible, count);
 
-  const mapCasino = (casino: (typeof displayCasinos)[0]) => ({
+  const mapCasino = (casino: Casino) => ({
     id: casino.id,
     name: casino.name,
     slug: casino.slug,

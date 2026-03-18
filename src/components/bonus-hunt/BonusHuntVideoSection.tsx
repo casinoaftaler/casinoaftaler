@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Helmet } from "react-helmet-async";
+import { SafeHelmet } from "@/lib/reactCompat";
 import { Play, Monitor, Video, MessageCircle, Calendar } from "lucide-react";
 import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
 import hunt4Thumbnail from "@/assets/bonus-hunt-4-thumbnail.png";
@@ -102,7 +102,7 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
 
   return (
     <>
-      <Helmet>
+      <SafeHelmet>
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "VideoObject",
@@ -116,7 +116,7 @@ export function BonusHuntVideoSection({ video }: BonusHuntVideoSectionProps) {
           "contentUrl": `https://www.twitch.tv/videos/${video.twitchVideoId}`,
           "publisher": { "@type": "Organization", "@id": "https://casinoaftaler.dk/#organization", "name": "Casinoaftaler.dk" },
         })}</script>
-      </Helmet>
+      </SafeHelmet>
 
       <section
         className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 via-card to-card overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10"

@@ -53,6 +53,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { createSortableArgs } from "@/lib/reactCompat";
 
 function generateSlug(name: string): string {
   return name
@@ -99,7 +100,7 @@ function SortableItem({ item, onEdit, onDelete }: SortableItemProps) {
     setNodeRef,
     transform,
     transition,
-  } = useSortable({ id: item.id });
+  } = useSortable(createSortableArgs(item.id));
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -236,7 +237,7 @@ export function ShopAdminSection({ embedded = false }: ShopAdminSectionProps) {
       const newIndex = items.findIndex((item) => item.id === over.id);
       const newItems = arrayMove(items, oldIndex, newIndex);
 
-      const positions = newItems.map((item, index) => ({
+      const positions = newItems.map((item: ShopItem, index) => ({
         id: item.id,
         position: index,
       }));

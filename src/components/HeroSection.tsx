@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { SafeHelmet } from "@/lib/reactCompat";
 import { Button } from "@/components/ui/button";
 import { Award, BookOpen, ShieldCheck } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -21,9 +21,9 @@ export function HeroSection() {
   return (
     <>
       {heroBackgroundImage && (
-        <Helmet>
+        <SafeHelmet>
           <link rel="preload" as="image" href={heroBackgroundImage} />
-        </Helmet>
+        </SafeHelmet>
       )}
       <section
         className="relative overflow-hidden py-6 text-white md:py-8 min-h-[320px] md:min-h-[320px] max-h-[85vh] md:max-h-[70vh]"

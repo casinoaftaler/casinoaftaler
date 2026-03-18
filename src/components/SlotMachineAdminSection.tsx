@@ -60,6 +60,7 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { calculateTheoreticalRTP, calculateRTPWithModifiedSymbol } from "@/lib/slotRTPCalculation";
+import { createSortableArgs } from "@/lib/reactCompat";
 
 interface SortableSymbolRowProps {
   symbol: SlotSymbol;
@@ -75,7 +76,7 @@ function SortableSymbolRow({ symbol, onEdit, spawnPercentage }: SortableSymbolRo
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: symbol.id });
+  } = useSortable(createSortableArgs(symbol.id));
 
   const style = {
     transform: CSS.Transform.toString(transform),

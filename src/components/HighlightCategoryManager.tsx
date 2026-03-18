@@ -43,6 +43,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ChevronDown } from "lucide-react";
+import { createSortableArgs } from "@/lib/reactCompat";
 
 interface SortableCategoryItemProps {
   category: HighlightCategory;
@@ -68,7 +69,7 @@ function SortableCategoryItem({
   isUpdating,
 }: SortableCategoryItemProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: category.id });
+    useSortable(createSortableArgs(category.id));
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -198,7 +199,7 @@ export function HighlightCategoryManager() {
       const newIndex = categories.findIndex((cat) => cat.id === over.id);
       const newItems = arrayMove(categories, oldIndex, newIndex);
 
-      const positions = newItems.map((item, index) => ({
+      const positions = newItems.map((item: HighlightCategory, index) => ({
         id: item.id,
         position: index,
       }));

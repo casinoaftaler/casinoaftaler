@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { SafeHelmet } from "@/lib/reactCompat";
 import { useLocation } from "react-router-dom";
 import { SITE_URL, SITE_NAME, SITE_BRAND, getCanonicalUrl } from "@/lib/seo";
 import { buildBreadcrumbListSchema } from "@/lib/breadcrumbs";
@@ -161,7 +161,7 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
   const standaloneScripts = mergedJsonLd ? [] : rawJsonLd;
 
   return (
-    <Helmet>
+    <SafeHelmet>
       <title>{formattedTitle}</title>
       <meta name="description" content={safeDescription} />
       {noindex && (
@@ -208,6 +208,6 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
           {JSON.stringify(schema)}
         </script>
       ))}
-    </Helmet>
+    </SafeHelmet>
   );
 }
