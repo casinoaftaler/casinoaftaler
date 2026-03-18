@@ -565,7 +565,7 @@ const PokerGuide = () => {
             <strong>Kortsigtigt (1 hånd):</strong> Poker er primært held. En nybegynder med pocket aces slår en professionel med 7-2 offsuit 85 % af gangene. <strong>Mellemlangsigtigt (100–1.000 hænder):</strong> Færdighed begynder at vise sig, men variansen kan stadig producere tabsperioder. <strong>Langsigtet (10.000+ hænder):</strong> Poker er entydigt et færdighedsspil. Cigital-studiet (103 millioner hænder) bekræfter, at de øverste 10 % konsistent vinder.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Juridisk status:</strong> Danmark klassificerer spiller-vs-spiller poker som et "blandingsspil" (held + færdighed). Casino poker (<Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud</Link>, <Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link>) klassificeres som hasardspil, fordi spillerens beslutninger ikke kan eliminere house edge. Sammenlign med <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>: over 10.000 spins konvergerer ALLE spillere mod -2,70 %.
+            <strong>Juridisk status:</strong> Danmark klassificerer spiller-vs-spiller poker som et "blandingsspil" (held + færdighed). Casino poker (<Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud</Link>, <Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link>) klassificeres som hasardspil, fordi spillerens beslutninger ikke kan eliminere house edge. Sammenlign med <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>: over 10.000 spins konvergerer ALLE spillere mod -2,70 %.
           </p>
         </section>
 
