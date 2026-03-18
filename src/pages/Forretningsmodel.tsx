@@ -41,7 +41,6 @@ const Forretningsmodel = () => {
     description: "Forstå hvordan Casinoaftaler.dk finansieres gennem affiliate-partnerskaber, og hvorfor vores anmeldelser forbliver uafhængige.",
     url: "https://casinoaftaler.dk/forretningsmodel",
     datePublished: "2025-06-01",
-    dateModified: "2026-03-05",
     authorName: "Ajse",
     authorUrl: "https://casinoaftaler.dk/forfatter/ajse",
   });

@@ -37,7 +37,6 @@ const RedaktionelPolitik = () => {
     description: "Læs om vores redaktionelle retningslinjer, hvordan vi producerer indhold, og hvordan vi sikrer uafhængighed og kvalitet.",
     url: "https://casinoaftaler.dk/redaktionel-politik",
     datePublished: "2025-06-01",
-    dateModified: "2026-03-05",
     authorName: "Ajse",
     authorUrl: "https://casinoaftaler.dk/forfatter/ajse",
   });

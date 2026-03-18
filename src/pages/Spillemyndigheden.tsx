@@ -136,7 +136,6 @@ const Spillemyndigheden = () => {
     description: "Komplet guide til Spillemyndigheden i Danmark. Lær om licenstyper, spillerbeskyttelse, ROFUS, lovgivning og hvad den danske spillemyndighed gør for at sikre fair og ansvarligt spil.",
     url: `${SITE_URL}/spillemyndigheden`,
     datePublished: "2026-02-14",
-    dateModified: "2026-02-26",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
