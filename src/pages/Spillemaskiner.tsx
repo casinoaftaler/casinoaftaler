@@ -92,7 +92,6 @@ const Spillemaskiner = () => {
     description: "Alt om spillemaskiner hos danske online casinoer. Lær om RTP, volatilitet, Megaways, jackpots og bonusfunktioner.",
     url: `${SITE_URL}/casinospil/spillemaskiner`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -110,7 +109,7 @@ const Spillemaskiner = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Slots guide & analyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Spillemaskiner 2026</h1>
             <p className="text-lg text-white/80">Din komplette guide til online slots – fra historiske rødder til fremtidens mekanikker.</p>
           </div>
@@ -118,7 +117,7 @@ const Spillemaskiner = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="35 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={spillemaskinerHero} alt="Spillemaskiner og online slots i Danmark" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

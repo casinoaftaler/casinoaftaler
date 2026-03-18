@@ -125,18 +125,27 @@ function useCountUp(target: number, duration = 1200): number {
 }
 
 function timeAgo(dateStr: string): string {
-  const now = new Date();
   const date = new Date(dateStr);
+  if (Number.isNaN(date.getTime())) return "for nylig";
+
+  const now = new Date();
   const hrs = differenceInHours(now, date);
-  const mins = differenceInMinutes(now, date) % 60;
-  // Always show as fresh — never "i går"
-  if (hrs > 0) return `${Math.min(hrs, 23)} timer siden`;
-  if (mins < 2) return `Lige nu`;
-  return `${mins} min. siden`;
+  const mins = Math.max(0, differenceInMinutes(now, date) % 60);
+
+  if (hrs < 1) {
+    if (mins < 2) return "lige nu";
+    return `${mins} min. siden`;
+  }
+
+  if (hrs < 48) return `${hrs} timer siden`;
+
+  const days = Math.floor(hrs / 24);
+  return `${days} ${days === 1 ? "dag" : "dage"} siden`;
 }
 
-function getUpdateBadgeLabel(_dateStr: string | null | undefined): string {
-  return "Opdateret i dag";
+function getUpdateBadgeLabel(dateStr: string | null | undefined): string {
+  if (!dateStr) return "Løbende verificeret";
+  return `Verificeret ${timeAgo(dateStr)}`;
 }
 
 function Countdown({ validUntil }: { validUntil: string }) {
@@ -208,7 +217,6 @@ function getEligibilityLabel(offer: CampaignOffer): string | null {
 
 // ─── Main Page ───
 const FreeSpinsIDag = () => {
-  const todayFormatted = format(new Date(), "d. MMMM yyyy", { locale: da });
   const { data: casinos } = useCasinos();
   const { data: pageMeta } = usePageLastmod("/free-spins-i-dag");
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
@@ -261,6 +269,9 @@ const FreeSpinsIDag = () => {
   const getCasinoAffiliate = (slug: string) => casinos?.find(c => c.slug === slug)?.affiliate_url || null;
   const latestChecked = campaigns?.[0]?.last_checked;
   const seoDateModified = pageMeta?.updated_at ?? latestChecked ?? getRouteLastmod("/free-spins-i-dag");
+  const displayedUpdateDate = seoDateModified
+    ? format(new Date(seoDateModified), "d. MMMM yyyy", { locale: da })
+    : null;
 
   const schemaMarkup = [
     buildArticleSchema({
@@ -319,7 +330,7 @@ const FreeSpinsIDag = () => {
                 <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
               </span>
-              {latestChecked ? <span>{getUpdateBadgeLabel(latestChecked)}</span> : <span>Opdateret i dag</span>}
+              <span>{getUpdateBadgeLabel(latestChecked)}</span>
             </div>
 
             <h1 className="mb-3 text-3xl font-extrabold tracking-tight md:text-4xl lg:text-5xl animate-fade-in [animation-delay:100ms]">
@@ -447,10 +458,10 @@ const FreeSpinsIDag = () => {
         <div className="mt-4">
           <section className="mb-8">
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground mb-3">
-              <Sparkles className="h-5 w-5 text-primary" />Dagens Free Spins – {todayFormatted}
+              <Sparkles className="h-5 w-5 text-primary" />Aktuelle Free Spins fra danske casinoer
             </h2>
             <p className="text-sm leading-[1.75] text-muted-foreground">
-              Opdateret oversigt over free spins hos danske casinoer pr. marts 2026. Vi scraper direkte fra casinoernes kampagnesider og bruger aggregator-data som supplement – kun kampagner med tilstrækkelig datakvalitet (confidence score ≥ 60) vises. Flere danske casinoer kører i øjeblikket forårs- og forårskampagner med ekstra free spins. Rangeret efter spins, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og indbetalingskrav.
+              Verificeret oversigt over free spins hos danske casinoer. Vi scraper direkte fra casinoernes kampagnesider og bruger aggregator-data som supplement – kun kampagner med tilstrækkelig datakvalitet (confidence score ≥ 60) vises. Tilbuddene rangeres efter spins, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og indbetalingskrav.
             </p>
           </section>
 
@@ -471,7 +482,7 @@ const FreeSpinsIDag = () => {
               <AlertTriangle className="h-5 w-5 text-primary" />Vigtigt at vide
             </h3>
             <p className="text-sm leading-[1.75] text-muted-foreground">
-              Alle casinoer er licenserede af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Bonusser er maks. 1.000 kr. med maks. 10x omsætningskrav jf. dansk lovgivning. Pr. marts 2026 har Spillemyndigheden skærpet kravene til gennemsigtighed i bonusvilkår, hvilket gør det endnu vigtigere at sammenligne tilbud. Vi anbefaler altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
+              Alle casinoer er licenserede af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Under dansk lovgivning er bonusser maks. 1.000 kr. med maks. 10x omsætningskrav, hvilket gør det ekstra vigtigt at sammenligne vilkårene grundigt. Vi anbefaler altid <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
             </p>
           </section>
 
@@ -499,7 +510,11 @@ const FreeSpinsIDag = () => {
 
           <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-6">
             <span className="inline-flex items-center gap-1"><Award className="h-3.5 w-3.5 text-primary" /> Redaktørens faktatjek</span>
-            <span className="inline-flex items-center gap-1"><RefreshCw className="h-3.5 w-3.5 text-muted-foreground" /> Sidst opdateret: {todayFormatted}</span>
+            {displayedUpdateDate ? (
+              <span className="inline-flex items-center gap-1"><RefreshCw className="h-3.5 w-3.5 text-muted-foreground" /> Sidst verificeret: {displayedUpdateDate}</span>
+            ) : (
+              <span className="inline-flex items-center gap-1"><RefreshCw className="h-3.5 w-3.5 text-muted-foreground" /> Løbende verificeret</span>
+            )}
           </div>
         </div>
 
