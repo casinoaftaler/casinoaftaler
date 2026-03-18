@@ -116,7 +116,6 @@ const FibonacciBlackjackGuide = () => {
     description: "Komplet analyse af Fibonacci-indsatssystemet i blackjack: sekvensmeknik, 5.000-hånds simulering, sammenligning med Martingale og D'Alembert, og ærlige konklusioner.",
     url: `${SITE_URL}/casinospil/blackjack/fibonacci`,
     datePublished: "2026-03-02",
-    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -138,7 +137,7 @@ const FibonacciBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse · marts 2026
+              <Sigma className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Fibonacci-Systemet i Blackjack – Naturens Talrække Møder Casino-Matematikken
@@ -151,7 +150,7 @@ const FibonacciBlackjackGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="36 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Casino blackjack-bord med Fibonacci-spiralen og chipstakke arrangeret i talrækken" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

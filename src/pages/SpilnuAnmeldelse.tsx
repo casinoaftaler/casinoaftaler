@@ -92,7 +92,6 @@ const SpilnuAnmeldelse = () => {
     description: "Dybdegående anmeldelse af Spilnu.dk. Dansk licens, populær bingo-sektion og casinospil under Danske Spil-koncernen. 5.500+ ord redaktionel analyse.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/spilnu",
     datePublished: "2026-02-15",
-    dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     
@@ -136,7 +135,7 @@ const SpilnuAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="34 Min." />
         <CasinoReviewHero slug="spilnu" casinoName="Spilnu" />
 
         {/* Quick Facts */}

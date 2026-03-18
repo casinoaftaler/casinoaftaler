@@ -143,7 +143,6 @@ const VipProgram = () => {
       "Alt om VIP-programmer hos danske casinoer: Tier-systemer, comp points, cashback, reload bonusser og matematisk EV-analyse. Find de bedste loyalitetsprogrammer.",
     url: `${SITE_URL}/vip-program`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -185,7 +184,7 @@ const VipProgram = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-08" readTime="30 Min." />
+        <AuthorMetaBar author="jonas" readTime="30 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
         </p>

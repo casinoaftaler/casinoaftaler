@@ -38,7 +38,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const UnibetAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Unibet Anmeldelse 2026 – Casino, Sports & Poker i Danmark", description: "Komplet anmeldelse af Unibet. Kindred Group-ejet allround-platform med dansk licens, casino, sports, poker og live casino.", url: "https://casinoaftaler.dk/casino-anmeldelser/unibet", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "53m8Fk6tmw8", ...casinoReviewEntities("Unibet", "unibet") });
+  const articleSchema = buildArticleSchema({ headline: "Unibet Anmeldelse 2026 – Casino, Sports & Poker i Danmark", description: "Komplet anmeldelse af Unibet. Kindred Group-ejet allround-platform med dansk licens, casino, sports, poker og live casino.", url: "https://casinoaftaler.dk/casino-anmeldelser/unibet", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "53m8Fk6tmw8", ...casinoReviewEntities("Unibet", "unibet") });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Unibet", itemUrl: "https://www.unibet.dk/", ratingValue: "4.3", ratingCount: "234", reviewBody: "Unibet er en af de mest komplette spilleplatforme i Danmark med casino, sports, poker og live casino under Kindred Groups paraply." });
 
@@ -57,7 +57,7 @@ const UnibetAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="35 Min." />
         <CasinoReviewHero slug="unibet" casinoName="Unibet" />
 
         {/* Hurtige Fakta */}

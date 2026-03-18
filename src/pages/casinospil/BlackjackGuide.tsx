@@ -144,7 +144,6 @@ const BlackjackGuide = () => {
     description: "Komplet blackjack-guide for danske spillere: regler, basic strategy, online blackjack, varianter, house edge og de vigtigste fejl at undgå.",
     url: `${SITE_URL}/casinospil/blackjack`,
     datePublished: "2026-02-15",
-    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -168,7 +167,7 @@ const BlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Brain className="mr-1.5 h-3.5 w-3.5" /> Cornerstone Hub · Opdateret marts 2026
+              <Brain className="mr-1.5 h-3.5 w-3.5" /> Cornerstone Hub
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Blackjack Regler, Strategi og Online Varianter
@@ -181,7 +180,7 @@ const BlackjackGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="40 Min." />
+        <AuthorMetaBar author="jonas" readTime="40 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={blackjackHero} alt="Blackjack-bord med kort og chips i professionelt studie" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

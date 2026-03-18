@@ -101,7 +101,6 @@ const articleSchema = buildArticleSchema({
   headline: "Amerikansk Roulette 2026 – Komplet Guide med Matematik & Strategi",
   description: "Dybdegående guide til amerikansk roulette: dobbelt-nul mekanik, house edge matematik, Five Number Bet fælden, 10.000-spins simulering og strategiske anbefalinger.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/roulette/amerikansk-roulette`,
   image: `${SITE_URL}/og/amerikansk-roulette.jpg`,
 });
@@ -122,7 +121,7 @@ export default function AmerikanskRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Calculator className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse – Marts 2026
+              <Calculator className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Amerikansk Roulette – Dobbelt-Nul Hjulet der Koster Dig Dobbelt Så Meget
@@ -135,7 +134,7 @@ export default function AmerikanskRouletteGuide() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="38 Min." />
+        <AuthorMetaBar author="jonas" readTime="38 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Amerikansk roulette-hjul med dobbelt-nul i atmosfærisk casino-belysning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

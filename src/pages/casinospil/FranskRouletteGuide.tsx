@@ -62,7 +62,6 @@ const articleSchema = buildArticleSchema({
   headline: "Fransk Roulette 2026 – La Partage, 1,35% House Edge & Guide",
   description: "Komplet guide til fransk roulette: La Partage & En Prison regler, 1,35% house edge matematik, bordlayout, call bets og casino-anbefalinger for danske spillere.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/roulette/fransk-roulette`,
   image: `${SITE_URL}/og/fransk-roulette.jpg`,
 });
@@ -83,7 +82,7 @@ export default function FranskRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Crown className="mr-1.5 h-3.5 w-3.5" /> Dybdegående Analyse – Marts 2026
+              <Crown className="mr-1.5 h-3.5 w-3.5" /> Dybdegående analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Fransk Roulette – La Partage og Den Laveste House Edge i Roulette
@@ -96,7 +95,7 @@ export default function FranskRouletteGuide() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="35 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Fransk roulette-bord med La Partage i elegant Monte Carlo-setting" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

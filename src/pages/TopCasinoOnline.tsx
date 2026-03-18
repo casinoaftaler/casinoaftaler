@@ -177,7 +177,6 @@ const TopCasinoOnline = () => {
     description: "Komplet guide til de 10 bedste online casinoer i Danmark 2026. Sammenlign bonusser, spiludvalg, betalingsmetoder og udbetalingstider.",
     url: `${SITE_URL}/top-10-casino-online`,
     datePublished: "2026-01-15",
-    dateModified: "2026-02-13",
   });
 
   // ItemList schema for SERP carousel eligibility
@@ -234,7 +233,7 @@ const TopCasinoOnline = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="13-02-2026" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" readTime="25 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={topCasinoHero} alt="Top 10 casino – guldtrofæ med casino chips" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

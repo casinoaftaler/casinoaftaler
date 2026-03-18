@@ -37,7 +37,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const VideoslotsAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Videoslots Casino Anmeldelse 2026 – 5.000+ Spil, Battle of Slots & Ærlig Test", description: "Komplet anmeldelse af Videoslots Casino. Verdens største spiludvalg med 5.000+ titler fra 170+ udbydere, Battle of Slots-turneringer og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/videoslots", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "xo9vTabQgE8", ...casinoReviewEntities("Videoslots Casino", "videoslots") });
+  const articleSchema = buildArticleSchema({ headline: "Videoslots Casino Anmeldelse 2026 – 5.000+ Spil, Battle of Slots & Ærlig Test", description: "Komplet anmeldelse af Videoslots Casino. Verdens største spiludvalg med 5.000+ titler fra 170+ udbydere, Battle of Slots-turneringer og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/videoslots", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "xo9vTabQgE8", ...casinoReviewEntities("Videoslots Casino", "videoslots") });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Videoslots Casino", itemUrl: "https://www.videoslots.com/da/", ratingValue: "4.1", ratingCount: "167", reviewBody: "Videoslots Casino har det suverænt største spiludvalg på det danske marked med over 5.000 titler fra 170+ udbydere. Battle of Slots-turneringerne og Weekend Boosters gør platformen unik, men det funktionelle design og den beskedne bonus vil ikke appellere til alle." });
 
@@ -54,7 +54,7 @@ const VideoslotsAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="36 Min." />
         <CasinoReviewHero slug="videoslots" casinoName="Videoslots Casino" />
 
         {/* Hurtige Fakta */}

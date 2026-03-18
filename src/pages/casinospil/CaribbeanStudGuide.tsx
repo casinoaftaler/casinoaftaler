@@ -67,7 +67,6 @@ const articleSchema = buildArticleSchema({
   headline: "Caribbean Stud Poker – Komplet Guide med Odds, Regler og Strategi (2026)",
   description: "Dybdegående guide til Caribbean Stud Poker for danske spillere. Lær optimal raise/fold-strategi, forstå progressiv jackpot-matematik og sammenlign udbetalingstabeller.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/poker/caribbean-stud`,
   image: `${SITE_URL}/og/caribbean-stud.jpg`,
 });
@@ -88,7 +87,7 @@ export default function CaribbeanStudGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Coins className="mr-1.5 h-3.5 w-3.5" /> Casino Bordspil – Marts 2026
+              <Coins className="mr-1.5 h-3.5 w-3.5" /> Casino bordspil
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Caribbean Stud Poker – Komplet Guide til Odds, Regler & Optimal Strategi
@@ -101,7 +100,7 @@ export default function CaribbeanStudGuide() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="55 Min." />
+        <AuthorMetaBar author="jonas" readTime="55 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Caribbean Stud Poker bord med dealer og progressive jackpot display" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

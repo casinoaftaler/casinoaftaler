@@ -66,7 +66,6 @@ const articleSchema = buildArticleSchema({
   headline: "Europæisk Roulette 2026 – Single Zero, Matematik & Strategi",
   description: "Komplet guide til europæisk roulette: single zero mekanik, 2,70% house edge, call bets, sector betting, 10.000-spins simulering og casino-anbefalinger for danske spillere.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/roulette/europaeisk-roulette`,
   image: `${SITE_URL}/og/europaeisk-roulette.jpg`,
 });
@@ -87,7 +86,7 @@ export default function EuropaeiskRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Target className="mr-1.5 h-3.5 w-3.5" /> Dybdegående Analyse – Marts 2026
+              <Target className="mr-1.5 h-3.5 w-3.5" /> Dybdegående analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Europæisk Roulette – Single Zero Hjulet der Halverer Casinoets Fordel
@@ -100,7 +99,7 @@ export default function EuropaeiskRouletteGuide() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="36 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Europæisk roulette-hjul med single zero i elegant casino-setting" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

@@ -35,7 +35,7 @@ const stakeFaqs: { question: string; answer: ReactNode }[] = [
 const StakeCasinoAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Stake Casino Anmeldelse 2026 – Crypto-Giganten er Landet i Danmark", description: "Komplet anmeldelse af Stake Casino Danmark. Crypto-giganten har fået dansk licens via VinderCasino-opkøbet. Læs om Stake Originals, VIP-program og den danske version.", url: "https://casinoaftaler.dk/casino-anmeldelser/stake-casino", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", ...casinoReviewEntities("Stake Casino", "stake-casino") });
+  const articleSchema = buildArticleSchema({ headline: "Stake Casino Anmeldelse 2026 – Crypto-Giganten er Landet i Danmark", description: "Komplet anmeldelse af Stake Casino Danmark. Crypto-giganten har fået dansk licens via VinderCasino-opkøbet. Læs om Stake Originals, VIP-program og den danske version.", url: "https://casinoaftaler.dk/casino-anmeldelser/stake-casino", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", ...casinoReviewEntities("Stake Casino", "stake-casino") });
   const faqJsonLd = buildFaqSchema(stakeFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Stake Casino", itemUrl: "https://stake.dk/", ratingValue: "4.1", ratingCount: "144", reviewBody: "Komplet anmeldelse af Stake Casino Danmark. Innovativt crypto-casino med proprietære spil, stærkt community og nu dansk licens via VinderCasino-opkøbet." });
 
@@ -52,7 +52,7 @@ const StakeCasinoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="35 Min." />
         <CasinoReviewHero slug="stake-casino" casinoName="Stake Casino" />
 
         {/* License Confirmation Card */}

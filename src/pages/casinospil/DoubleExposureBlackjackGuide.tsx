@@ -111,7 +111,6 @@ const DoubleExposureBlackjackGuide = () => {
     description: "Komplet guide til Double Exposure Blackjack: begge dealerkort synlige, tilpasset strategi, house edge-matematik og sammenligning med klassisk blackjack.",
     url: `${SITE_URL}/casinospil/blackjack/double-exposure-blackjack`,
     datePublished: "2026-03-02",
-    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -133,7 +132,7 @@ const DoubleExposureBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret marts 2026
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Variantguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Double Exposure Blackjack – Fuld Information, Nye Regler
@@ -146,7 +145,7 @@ const DoubleExposureBlackjackGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="36 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Double Exposure blackjack-bord med begge dealerkort synlige" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

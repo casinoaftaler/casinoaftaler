@@ -296,7 +296,6 @@ const Spiludviklere = () => {
     description: "Strategisk guide til alle spiludviklere på danske casinoer. RTP-analyse, volatilitetsforklaring, matematisk gennemgang og sammenligning af 22 udviklere.",
     url: `${SITE_URL}/spiludviklere`,
     datePublished: "2026-01-15",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -324,7 +323,7 @@ const Spiludviklere = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Brancheguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Spiludviklere – Hvem Styrer Matematikken Bag Dine Casino-Spil?
@@ -337,7 +336,7 @@ const Spiludviklere = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="18-02-2026" readTime="30 Min." />
+        <AuthorMetaBar author="kevin" readTime="30 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={spiludviklereHero} alt="Spiludviklere – teknisk analyse af casino-spil og RNG-systemer" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

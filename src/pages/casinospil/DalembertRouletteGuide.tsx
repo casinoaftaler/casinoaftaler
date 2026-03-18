@@ -62,7 +62,6 @@ const articleSchema = buildArticleSchema({
   headline: "D'Alembert Roulette System 2026 – Matematik, Simulering & Ærlig Analyse",
   description: "Komplet guide til D'Alembert-systemet i roulette: lineær progression, equilibrium-teori, 10.000-spins simulering, sammenligning med Martingale og Fibonacci.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/roulette/dalembert-roulette`,
   image: `${SITE_URL}/og/dalembert-roulette.jpg`,
 });
@@ -83,7 +82,7 @@ export default function DalembertRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Scale className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse – Marts 2026
+              <Scale className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               D'Alembert Roulette-Systemet – Den Konservative Progressions Ærlige Matematik
@@ -96,7 +95,7 @@ export default function DalembertRouletteGuide() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="37 Min." />
+        <AuthorMetaBar author="jonas" readTime="37 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="D'Alembert progression illustreret med jævnt stigende chipstakke på roulette-bord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

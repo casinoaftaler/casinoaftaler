@@ -130,7 +130,6 @@ const HjaelpelinjerGuide = () => {
     description: "Samlet oversigt over alle danske hjælpelinjer for spilleproblemer: StopSpillet, Center for Ludomani, Anonyme Gamblere, kommunale tilbud og pårørendestøtte.",
     url: `${SITE_URL}/ansvarligt-spil/hjaelpelinjer`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-18",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
@@ -180,7 +179,7 @@ const HjaelpelinjerGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="ajse" date="2026-03-18" readTime="25 Min." showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="ajse" readTime="25 Min." showAffiliateDisclaimer={false} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
         <div className="mb-10 overflow-hidden rounded-xl">
