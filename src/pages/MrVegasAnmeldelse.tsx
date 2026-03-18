@@ -15,7 +15,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const MrVegasAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Mr Vegas Anmeldelse 2026 – 3.000+ Spil fra Betsson", description: "Komplet anmeldelse af Mr Vegas Casino. Betsson Group-casino med dansk licens, 3.000+ spil og generøs velkomstbonus.", url: "https://casinoaftaler.dk/casino-anmeldelser/mr-vegas", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "vSkzKvgZT_0", ...casinoReviewEntities("Mr Vegas Casino", "mr-vegas") });
+  const articleSchema = buildArticleSchema({ headline: "Mr Vegas Anmeldelse 2026 – 3.000+ Spil fra Betsson", description: "Komplet anmeldelse af Mr Vegas Casino. Betsson Group-casino med dansk licens, 3.000+ spil og generøs velkomstbonus.", url: "https://casinoaftaler.dk/casino-anmeldelser/mr-vegas", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "vSkzKvgZT_0", ...casinoReviewEntities("Mr Vegas Casino", "mr-vegas") });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Mr Vegas Casino", itemUrl: "https://www.mrvegas.com/da/", ratingValue: "3.9", ratingCount: "128", reviewBody: "Mr Vegas Casino drives af Betsson Group og tilbyder 3.000+ spil, generøs velkomstbonus og pålidelige udbetalinger med dansk licens." });
   return (

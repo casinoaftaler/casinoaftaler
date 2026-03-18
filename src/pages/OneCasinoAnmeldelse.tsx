@@ -81,7 +81,6 @@ const OneCasinoAnmeldelse = () => {
     description: "Dybdegående anmeldelse af One Casino. Vi tester eksklusive in-house spil, bonus uden indbetaling, udbetalingstider og kundeservice. Dansk licens fra Spillemyndigheden.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/one-casino",
     datePublished: "2026-02-15",
-    dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     

@@ -137,7 +137,6 @@ const MegawaysSlots = () => {
     description: "Alt om Megaways-spilleautomater: Mekanik, bedste titler, RTP, volatilitet, cascading wins og strategi. Komplet dansk guide med community-data.",
     url: `${SITE_URL}/megaways-slots`,
     datePublished: "2026-03-07",
-    dateModified: "2026-03-07",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
