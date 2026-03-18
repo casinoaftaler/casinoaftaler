@@ -143,7 +143,6 @@ const LudomaniGuide = () => {
       "Alt om ludomani: Symptomer, årsager, behandling, statistik og hjælpemuligheder. Lær at genkende spilleafhængighed og find gratis støtte i Danmark.",
     url: `${SITE_URL}/ansvarligt-spil/ludomani`,
     datePublished: "2026-03-07",
-    dateModified: "2026-03-18",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });

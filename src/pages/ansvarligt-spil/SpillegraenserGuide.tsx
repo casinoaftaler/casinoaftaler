@@ -161,7 +161,6 @@ const SpillegraenserGuide = () => {
     description: "Dybdegående guide til alle typer spillegrænser på danske casinoer. Lær om indbetalingsgrænser, tidsgrænser, tabsgrænser, selvtest (PGSI) og dansk lovgivning (BEK 1494).",
     url: `${SITE_URL}/ansvarligt-spil/spillegraenser`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-18",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });

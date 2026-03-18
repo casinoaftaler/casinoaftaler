@@ -80,7 +80,6 @@ const DreamCatcherGuide = () => {
     description: "Alt om Dream Catcher: RTP op til 96,6 %, segmentfordeling, multiplikator-matematik, EV-analyse og volatilitetsprofil. Det originale live game show forklaret.",
     url: `${SITE_URL}/live-casino/dream-catcher`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
