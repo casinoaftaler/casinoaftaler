@@ -167,7 +167,7 @@ const BlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Brain className="mr-1.5 h-3.5 w-3.5" /> Cornerstone Hub · Opdateret marts 2026
+              <Brain className="mr-1.5 h-3.5 w-3.5" /> Cornerstone Hub
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Blackjack Regler, Strategi og Online Varianter
