@@ -49,11 +49,9 @@ const BetanoAnmeldelse = () => {
       "Kritisk anmeldelse af Betano i Danmark. Kaizen Gaming-ejet platform med casino, sportsbook og avanceret teknologi testet i detaljer.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/betano",
     datePublished: "2026-02-15",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     videoId: "Uu3NBZzt-Sk",
-    
     ...casinoReviewEntities("Betano", "betano"),
   });
 

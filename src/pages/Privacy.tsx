@@ -6,35 +6,20 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema } from "@/lib/seo";
+import { getRouteLastmod } from "@/lib/seoRoutes";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import privacyHero from "@/assets/heroes/privacy-hero.jpg";
 
 const privacyFaqs = [
-  {
-    question: "Hvilke oplysninger indsamler Casinoaftaler.dk?",
-    answer: "Vi indsamler automatisk data som IP-adresse, browsertype, besøgte sider og tidspunkt for besøg. Derudover indsamler vi oplysninger, du frivilligt giver os, som kontaktoplysninger ved henvendelser og nyhedsbrevstilmelding.",
-  },
-  {
-    question: "Deler I mine data med tredjeparter?",
-    answer: "Vi deler ikke personoplysninger med tredjeparter, medmindre det sker med dit samtykke, til anonymiserede affiliate-data, til tjenesteudbydere (hosting, analytics) eller når det kræves af loven.",
-  },
-  {
-    question: "Hvilke rettigheder har jeg under GDPR?",
-    answer: "Du har ret til adgang, rettelse, sletning, begrænsning, portabilitet og indsigelse mod behandling af dine personoplysninger. Kontakt os for at udøve dine rettigheder.",
-  },
-  {
-    question: "Hvor længe opbevarer I mine data?",
-    answer: "Vi opbevarer personoplysninger kun så længe det er nødvendigt for formålet. Analytics-data anonymiseres efter 26 måneder.",
-  },
-];
-
+...
 const Privacy = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
 
   const faqJsonLd = buildFaqSchema(privacyFaqs);
+  const routeLastmod = getRouteLastmod("/privatlivspolitik");
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -44,7 +29,7 @@ const Privacy = () => {
     author: { "@type": "Organization", name: "Casinoaftaler" },
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-12-01",
-    dateModified: "2026-02-14",
+    dateModified: routeLastmod,
     mainEntityOfPage: "https://casinoaftaler.dk/privatlivspolitik",
   };
 

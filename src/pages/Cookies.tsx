@@ -6,35 +6,20 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema } from "@/lib/seo";
+import { getRouteLastmod } from "@/lib/seoRoutes";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import cookiesHero from "@/assets/heroes/cookies-hero.jpg";
 
 const cookieFaqs = [
-  {
-    question: "Hvad er cookies?",
-    answer: "Cookies er små tekstfiler, der gemmes på din computer eller mobilenhed, når du besøger et website. De hjælper websitet med at huske dine præferencer og forbedre din brugeroplevelse.",
-  },
-  {
-    question: "Kan jeg deaktivere cookies?",
-    answer: "Ja, du kan kontrollere og slette cookies gennem din browsers indstillinger. Bemærk dog, at deaktivering af cookies kan påvirke visse funktioner på websitet.",
-  },
-  {
-    question: "Hvilke typer cookies bruger Casinoaftaler.dk?",
-    answer: "Vi bruger nødvendige cookies, præference cookies, statistik cookies og marketing cookies. Nødvendige cookies kan ikke deaktiveres, da de er essentielle for websitets funktion.",
-  },
-  {
-    question: "Hvor længe opbevares cookies?",
-    answer: "Det varierer: Session cookies slettes når du lukker browseren, præference cookies varer op til 1 år, analytics cookies op til 26 måneder og affiliate cookies 30-90 dage.",
-  },
-];
-
+...
 const Terms = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
 
   const faqJsonLd = buildFaqSchema(cookieFaqs);
+  const routeLastmod = getRouteLastmod("/cookies");
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -44,7 +29,7 @@ const Terms = () => {
     author: { "@type": "Organization", name: "Casinoaftaler" },
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-12-01",
-    dateModified: "2026-02-14",
+    dateModified: routeLastmod,
     mainEntityOfPage: "https://casinoaftaler.dk/cookies",
   };
 

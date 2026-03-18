@@ -107,7 +107,6 @@ const Bet365Anmeldelse = () => {
       "Kritisk anmeldelse af bet365 i Danmark. Sportsbook, casino med 2.500+ spil, live streaming og dansk licens gennemgået i detaljer.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/bet365",
     datePublished: "2026-02-15",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     videoId: "vb5nT5UGk8c",

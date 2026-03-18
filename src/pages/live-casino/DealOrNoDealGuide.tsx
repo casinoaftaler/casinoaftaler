@@ -76,7 +76,6 @@ const DealOrNoDealGuide = () => {
     description: "Alt om Deal or No Deal Live: RTP, kvalifikationsrunde, bankierens tilbuds-matematik, prospect theory og EV-analyse. Det interaktive live game show analyseret.",
     url: `${SITE_URL}/live-casino/deal-or-no-deal`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

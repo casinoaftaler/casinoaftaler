@@ -113,7 +113,6 @@ const BonusBuySlots = () => {
     description: "Alt om bonus buy-slots: Køb bonus direkte, matematik bag prissætning, bedste titler, ante bet vs. buy bonus og strategi. Komplet dansk guide.",
     url: `${SITE_URL}/bonus-buy-slots`,
     datePublished: "2026-03-07",
-    dateModified: "2026-03-07",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

@@ -206,7 +206,6 @@ const CasinoUdenKonto = () => {
       "Alt om casino uden konto i Danmark: Pay N Play, hurtig registrering via Trustly, sikkerhed, bankkompatibilitet, fordele/ulemper og de bedste casinoer uden kontooprettelse.",
     url: `${SITE_URL}/casino-uden-konto`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
