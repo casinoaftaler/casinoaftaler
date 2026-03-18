@@ -264,6 +264,8 @@ const Velkomstbonus = () => {
 
         <InlineCasinoCards title="Bedste casinoer med velkomstbonus" count={6} />
 
+        <BonusClusterPriorityLinks currentPath="/velkomstbonus" />
+
         <Separator className="my-10" />
 
         {/* Typer af velkomstbonusser */}
