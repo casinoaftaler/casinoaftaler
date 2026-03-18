@@ -51,6 +51,7 @@ import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
+import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
