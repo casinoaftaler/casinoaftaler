@@ -45,7 +45,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const NyeVsEtablerede = () => {
-  const articleSchema = buildArticleSchema({ headline: "Nye Casinoer vs. Etablerede – Sammenligning 2026", description: "Detaljeret sammenligning af nye og etablerede casinoer i Danmark. Fordele, ulemper og hvad der passer bedst til dig.", url: `${SITE_URL}/nye-casinoer/vs-etablerede`, datePublished: "2026-02-12", dateModified: "2026-03-02", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Nye Casinoer vs. Etablerede – Sammenligning 2026", description: "Detaljeret sammenligning af nye og etablerede casinoer i Danmark. Fordele, ulemper og hvad der passer bedst til dig.", url: `${SITE_URL}/nye-casinoer/vs-etablerede`, datePublished: "2026-02-12", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
   const faqSchema = buildFaqSchema(faqs);
 
   return (
@@ -61,7 +61,7 @@ const NyeVsEtablerede = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" readTime="20 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={nyeVsEtableredeHero} alt="Nye vs. etablerede casinoer – sammenligning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

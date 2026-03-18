@@ -78,7 +78,6 @@ const NyeCasinoerUdenRofus = () => {
     description: "Alt om nye casinoer uden ROFUS-tilslutning. Forstå risici, lovgivning og hvorfor vi anbefaler danske licenserede casinoer.",
     url: `${SITE_URL}/nye-casinoer/uden-rofus`,
     datePublished: "2026-01-25",
-    dateModified: "2026-03-02",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -104,7 +103,7 @@ const NyeCasinoerUdenRofus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" readTime="20 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={udenRofusHero} alt="Casino uden ROFUS – advarsler og risici" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
