@@ -142,7 +142,6 @@ const CashbackBonus = () => {
     description: "Alt om cashback bonusser på danske casinoer. Lær hvordan cashback fungerer, hvilke typer der findes, og hvordan du maksimerer din tilbagebetaling.",
     url: `${SITE_URL}/cashback-bonus`,
     datePublished: "2026-02-27",
-    dateModified: "2026-03-18",
   });
 
   const videoJsonLd = buildVideoSchema(`${SITE_URL}/cashback-bonus`, "epl204siMF0", {
@@ -175,7 +174,7 @@ const CashbackBonus = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <BarChart3 className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Marts 2026
+              Bonusanalyse & tilbagebetaling
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Cashback Bonus på Danske Casinoer
@@ -188,7 +187,7 @@ const CashbackBonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" date="18-03-2026" readTime="16 Min." />
+        <AuthorMetaBar author="niklas" readTime="16 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={cashbackHero} alt="Cashback bonus – casino chips der returneres til spilleren" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

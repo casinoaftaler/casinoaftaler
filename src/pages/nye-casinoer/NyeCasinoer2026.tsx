@@ -86,7 +86,6 @@ const NyeCasinoer2026 = () => {
     description: "Opdateret liste over alle nye casinoer lanceret i Danmark i 2026. Sammenlign bonusser, spiludvalg og vilkår.",
     url: `${SITE_URL}/nye-casinoer/2026`,
     datePublished: "2026-01-15",
-    dateModified: "2026-03-02",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -104,7 +103,7 @@ const NyeCasinoer2026 = () => {
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" />Opdateret Marts 2026</Badge>
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Lanceringer & markedsanalyse</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Nye Casinoer 2026</h1>
             <p className="text-lg text-white/80">Komplet oversigt over alle nye online casinoer lanceret i Danmark i 2026. Vi tester og anmelder hvert nyt spillested, så du trygt kan vælge.</p>
           </div>
@@ -112,7 +111,7 @@ const NyeCasinoer2026 = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="22 Min." />
+        <AuthorMetaBar author="jonas" readTime="22 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={nyeCasinoer2026Hero} alt="Nye casinoer i 2026 – futuristisk casino med neonlys" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

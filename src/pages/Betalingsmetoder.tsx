@@ -194,7 +194,6 @@ const Betalingsmetoder = () => {
     description: "Strategisk beslutningsguide til alle betalingsmetoder på danske online casinoer. Sammenlign hastighed, bonus-kvalificering, sikkerhed og regulatoriske forhold.",
     url: `${SITE_URL}/betalingsmetoder`,
     datePublished: "2026-01-15",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -222,7 +221,7 @@ const Betalingsmetoder = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <CreditCard className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Hastighed, bonus & sikkerhed
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Casino Betalingsmetoder i Danmark – Den Strategiske Guide
@@ -235,7 +234,7 @@ const Betalingsmetoder = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="18-02-2026" readTime="28 Min." />
+        <AuthorMetaBar author="kevin" readTime="28 Min." />
         
 
         <div className="mb-10 overflow-hidden rounded-xl">
