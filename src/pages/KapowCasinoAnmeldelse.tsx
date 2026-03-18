@@ -15,7 +15,7 @@ const kapowFaqs: { question: string; answer: ReactNode }[] = [
 const KapowCasinoAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Kapow Casino Anmeldelse 2026 – Bonus, Spil & Udbetaling", description: "Dybdegående anmeldelse af Kapow Casino. Dansk licens, 1.200+ spil, generøse bonusser og energisk design.", url: "https://casinoaftaler.dk/casino-anmeldelser/kapow-casino", datePublished: "2026-02-15", dateModified: "2026-02-17", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", ...casinoReviewEntities("Kapow Casino", "kapow-casino") });
+  const articleSchema = buildArticleSchema({ headline: "Kapow Casino Anmeldelse 2026 – Bonus, Spil & Udbetaling", description: "Dybdegående anmeldelse af Kapow Casino. Dansk licens, 1.200+ spil, generøse bonusser og energisk design.", url: "https://casinoaftaler.dk/casino-anmeldelser/kapow-casino", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", ...casinoReviewEntities("Kapow Casino", "kapow-casino") });
   const faqJsonLd = buildFaqSchema(kapowFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Kapow Casino", itemUrl: "https://www.kapowcasino.dk/", ratingValue: "3.7", ratingCount: "112", reviewBody: "Kapow Casino er en energisk platform med et solidt spiludvalg og generøse bonusser, men det polariserende design og manglen på premium-polish trækker ned." });
   return (

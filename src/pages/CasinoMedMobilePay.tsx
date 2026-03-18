@@ -134,7 +134,6 @@ const CasinoMedMobilePay = () => {
       "Alt om MobilePay på danske casinoer: Hvilke casinoer accepterer MobilePay, indbetalingsguide, gebyrer, sikkerhed og sammenligning med andre betalingsmetoder.",
     url: `${SITE_URL}/casino-med-mobilepay`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

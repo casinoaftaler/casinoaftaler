@@ -65,7 +65,6 @@ const ComeOnAnmeldelse = () => {
     description: "Komplet anmeldelse af ComeOn Casino. Dansk licens, bredt spiludvalg, hurtige udbetalinger og gennemsigtige bonusvilkår.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/comeon",
     datePublished: "2026-02-15",
-    dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     videoId: "tW_E0RmzSHg",

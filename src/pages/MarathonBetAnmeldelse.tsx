@@ -15,7 +15,7 @@ const marathonbetFaqs: { question: string; answer: ReactNode }[] = [
 const MarathonBetAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "MarathonBet Anmeldelse 2026 – Bedste Odds i Danmark?", description: "Dybdegående anmeldelse af MarathonBet. Dansk licens, ekstremt konkurrencedygtige odds og casino-supplement.", url: "https://casinoaftaler.dk/casino-anmeldelser/marathonbet", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", ...casinoReviewEntities("MarathonBet", "marathonbet") });
+  const articleSchema = buildArticleSchema({ headline: "MarathonBet Anmeldelse 2026 – Bedste Odds i Danmark?", description: "Dybdegående anmeldelse af MarathonBet. Dansk licens, ekstremt konkurrencedygtige odds og casino-supplement.", url: "https://casinoaftaler.dk/casino-anmeldelser/marathonbet", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", ...casinoReviewEntities("MarathonBet", "marathonbet") });
   const faqJsonLd = buildFaqSchema(marathonbetFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "MarathonBet", itemUrl: "https://www.marathonbet.dk/", ratingValue: "3.6", ratingCount: "98", reviewBody: "MarathonBet er en specialiseret sportsbogsoperatør med branchens laveste marginer og en acceptabel casino-sektion. Ideel for value-bettors, men ikke for dedikerede casino-spillere." });
   return (

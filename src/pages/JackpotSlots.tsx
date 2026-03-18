@@ -100,7 +100,6 @@ const JackpotSlots = () => {
     description: "Alt om jackpot-slots: Progressive og faste jackpots, bedste titler, RTP-matematik, netværks-analyse og strategi. Komplet dansk guide.",
     url: `${SITE_URL}/jackpot-slots`,
     datePublished: "2026-03-07",
-    dateModified: "2026-03-07",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
