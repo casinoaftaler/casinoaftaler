@@ -82,7 +82,7 @@ export default function DalembertRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Scale className="mr-1.5 h-3.5 w-3.5" /> Matematisk Analyse – Marts 2026
+              <Scale className="mr-1.5 h-3.5 w-3.5" /> Matematisk analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               D'Alembert Roulette-Systemet – Den Konservative Progressions Ærlige Matematik
