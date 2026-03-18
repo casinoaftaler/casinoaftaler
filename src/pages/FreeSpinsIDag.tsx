@@ -209,6 +209,7 @@ function getEligibilityLabel(offer: CampaignOffer): string | null {
 const FreeSpinsIDag = () => {
   const todayFormatted = format(new Date(), "d. MMMM yyyy", { locale: da });
   const { data: casinos } = useCasinos();
+  const { data: pageMeta } = usePageLastmod("/free-spins-i-dag");
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const { ref: statsRef, revealed: statsRevealed } = useScrollReveal();
   // cardsRef removed – cards now always animate-fade-in immediately
