@@ -93,7 +93,16 @@ const ReactoonzGuide = () => {
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
-...
+
+  return (
+    <>
+      <SEO
+        title="Reactoonz – RTP, cluster pays og bonus"
+        description="Dybdegående analyse af Reactoonz: cluster pays-mekanik, Quantum-funktioner, RTP 96,51 %, volatilitetsprofil og EV-beregninger for danske spillere."
+        jsonLd={[articleSchema, faqJsonLd]}
+      />
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
+        <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & Quantum-system</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Reactoonz – Cluster Pays Analyse & Volatilitetsprofil</h1>

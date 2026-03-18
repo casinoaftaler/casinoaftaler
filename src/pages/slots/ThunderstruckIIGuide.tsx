@@ -37,7 +37,14 @@ const ThunderstruckIIGuide = () => {
     datePublished: "2026-02-18",
     authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
-...
+
+  return (
+    <>
+      <SEO
+        title="Thunderstruck II – RTP, bonus og max win"
+        description="Komplet analyse af Thunderstruck II: progressiv Great Hall of Spins, 96,65 % RTP, 8.000× max win og fire unikke bonusniveauer."
+        jsonLd={[articleSchema, faqJsonLd]}
+      />
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="16 min" />
         <div className="mb-10 overflow-hidden rounded-xl">

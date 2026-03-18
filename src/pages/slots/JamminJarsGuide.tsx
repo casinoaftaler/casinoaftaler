@@ -91,7 +91,16 @@ const JamminJarsGuide = () => {
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
-...
+
+  return (
+    <>
+      <SEO
+        title="Jammin' Jars – RTP, cluster pays og max win"
+        description="Komplet analyse af Jammin' Jars: jar-wild mekanik, cluster pays på 8×8 grid, RTP 96,83 %, volatilitetsprofil og EV-vurdering."
+        jsonLd={[articleSchema, faqJsonLd]}
+      />
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
+        <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & jar-multiplikatorer</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Jammin' Jars – Cluster Pays & Multiplikator-Analyse</h1>
