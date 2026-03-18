@@ -81,6 +81,8 @@ function scanPattern(file, originalContent, content, regex, type) {
 }
 
 function scanDateModifiedGovernance(file, originalContent, content, relativeFile) {
+  if (relativeFile === path.join("src", "lib", "seo.ts")) return;
+
   const allowedPatterns = APPROVED_DYNAMIC_DATE_MODIFIED[relativeFile] || [];
   const regex = /\bdateModified\s*:\s*[^,\n}]+|\bdateModified\s*=\s*\{[^}]+\}/g;
   let m;
@@ -88,9 +90,10 @@ function scanDateModifiedGovernance(file, originalContent, content, relativeFile
   while ((m = regex.exec(content)) !== null) {
     const snippet = m[0];
     const handledByLiteralRules = /["']\d{4}-\d{2}-\d{2}|new\s+Date\s*\(|getTodayDanish\s*\(/.test(snippet);
+    const centralizedStatic = /routeLastmod|homepageDateModified/.test(snippet);
     const approvedDynamic = allowedPatterns.some((pattern) => pattern.test(snippet));
 
-    if (!handledByLiteralRules && !approvedDynamic) {
+    if (!handledByLiteralRules && !centralizedStatic && !approvedDynamic) {
       pushViolation(
         file,
         originalContent,

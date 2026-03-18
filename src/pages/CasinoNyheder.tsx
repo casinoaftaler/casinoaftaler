@@ -92,7 +92,6 @@ const CasinoNyheder = () => {
     description: "Hold dig opdateret med de seneste casino nyheder, analyser og opdateringer fra det danske casinomarked. Licenser, bonusændringer og lovgivning.",
     url: `${SITE_URL}/casino-nyheder`,
     datePublished: "2026-02-21",
-    dateModified: latestModified,
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
