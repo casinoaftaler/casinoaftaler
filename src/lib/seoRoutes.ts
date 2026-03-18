@@ -1,4 +1,4 @@
-import { getTodayDanish } from "./danishDate";
+
 
 /**
  * Central registry of all SEO-indexable routes.
