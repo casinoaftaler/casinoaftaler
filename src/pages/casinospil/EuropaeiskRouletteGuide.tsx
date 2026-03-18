@@ -86,7 +86,7 @@ export default function EuropaeiskRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Target className="mr-1.5 h-3.5 w-3.5" /> Dybdegående Analyse – Marts 2026
+              <Target className="mr-1.5 h-3.5 w-3.5" /> Dybdegående analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Europæisk Roulette – Single Zero Hjulet der Halverer Casinoets Fordel
