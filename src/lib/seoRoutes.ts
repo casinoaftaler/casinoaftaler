@@ -316,7 +316,7 @@ export const seoRoutes: SeoRoute[] = ([
 
   // ── Casino Guides ──
   // Hub is 0.9 – all spokes capped at 0.8 to maintain strict crawl hierarchy
-  { path: "/casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-04" },
+  { path: "/casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-18" },
   { path: "/casinoer/hurtig-udbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
