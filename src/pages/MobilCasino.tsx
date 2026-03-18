@@ -168,7 +168,7 @@ const MobilCasino = () => {
       "Alt om mobil casino: Bedste mobilcasinoer med dansk licens, app vs. browser, betalingsmetoder, sikkerhed og performance. Spil spilleautomater og live casino på mobilen.",
     url: `${SITE_URL}/mobil-casino`,
     datePublished: "2026-03-07",
-    dateModified: "2026-03-07",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -210,7 +210,7 @@ const MobilCasino = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-07" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="28 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Testet og skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
         </p>

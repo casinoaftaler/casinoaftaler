@@ -95,7 +95,7 @@ const RouletteGuide = () => {
       "Komplet guide til roulette: regler, bet-typer, hjulets opbygning, odds, European vs American og live roulette. Alt du skal vide.",
     url: `${SITE_URL}/casinospil/roulette`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-18",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -118,7 +118,7 @@ const RouletteGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Dice1 className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026
+              <Dice1 className="mr-1.5 h-3.5 w-3.5" /> Opdateret 18. marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Roulette – Regler, Væddemål og Varianter
@@ -132,7 +132,7 @@ const RouletteGuide = () => {
 
       {/* ── BODY ── */}
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="32 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="32 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

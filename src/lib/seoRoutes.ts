@@ -99,7 +99,7 @@ export const seoRoutes: SeoRoute[] = ([
 
   // ── Casino Anmeldelser ──
   { path: "/casino-anmeldelser", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-08" },
-  { path: "/nye-casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-08" },
+  { path: "/nye-casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-18" },
   { path: "/nye-casinoer/2026", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-07" },
   { path: "/nye-casinoer/dansk-licens", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-07" },
   { path: "/nye-casinoer/uden-rofus", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-07" },
@@ -162,7 +162,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/live-casino/deal-or-no-deal", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/live-casino/strategi", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-16", author: "jonas", articleTitle: "Live Casino Strategi Guide 2026", articleCategory: "Guide", articleExcerpt: "Bankroll management, house edge-analyse og betting-systemanalyse for live casino." },
   { path: "/live-casino/udbydere", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-16", author: "jonas", articleTitle: "Live Casino Udbydere – Evolution, Pragmatic Play & Mere", articleCategory: "Guide", articleExcerpt: "Komplet sammenligning af live casino-udbydere: spilkatalog, teknologi og danske casinoer." },
-  { path: "/casinospil", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-05" },
+  { path: "/casinospil", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-18" },
   { path: "/casinospil/spillemaskiner", changefreq: "daily", priority: 0.8, lastmod: "2026-03-05" },
   { path: "/casinospil/spillemaskiner/hoej-rtp", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
   { path: "/casinospil/spillemaskiner/bonus-buys", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
@@ -204,7 +204,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/blackjack/martingale", changefreq: "weekly", priority: 0.74, lastmod: "2026-03-18" },
   { path: "/casinospil/blackjack/fibonacci", changefreq: "weekly", priority: 0.74, lastmod: "2026-03-18" },
   { path: "/casinospil/blackjack/dalembert", changefreq: "weekly", priority: 0.74, lastmod: "2026-03-18" },
-  { path: "/casinospil/roulette", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
+  { path: "/casinospil/roulette", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-18" },
   { path: "/casinospil/roulette/amerikansk-roulette", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/roulette/europaeisk-roulette", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/roulette/fransk-roulette", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
@@ -213,7 +213,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/roulette/fibonacci-roulette", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/roulette/labouchere-roulette", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/roulette/james-bond-roulette", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
-  { path: "/casinospil/poker", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
+  { path: "/casinospil/poker", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-18" },
   { path: "/casinospil/poker/texas-holdem", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/poker/omaha", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/poker/three-card-poker", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
@@ -316,7 +316,7 @@ export const seoRoutes: SeoRoute[] = ([
 
   // ── Casino Guides ──
   // Hub is 0.9 – all spokes capped at 0.8 to maintain strict crawl hierarchy
-  { path: "/casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-04" },
+  { path: "/casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-18" },
   { path: "/casinoer/hurtig-udbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
@@ -419,7 +419,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-03-05" },
 
   // ── Info & Ansvarligt Spil ──
-  { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-07" },
+  { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-18" },
   { path: "/ansvarligt-spil/rofus", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ansvarligt-spil/ludomani", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ansvarligt-spil/stopspillet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
@@ -428,7 +428,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/ansvarligt-spil/hjaelpelinjer", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-08" },
 
   // ── Mobil Casino ──
-  { path: "/mobil-casino", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-05" },
+  { path: "/mobil-casino", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-18" },
   { path: "/casino-app", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/mobil-casino/iphone", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/mobil-casino/android", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },

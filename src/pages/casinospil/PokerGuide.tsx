@@ -278,12 +278,25 @@ const PokerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong><Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link></strong> kombinerer pokerhænder med maskinspil og tilbyder nogle af de højeste RTP-værdier i hele casinobranchen. Jacks or Better 9/6 (full pay) har 99,54 % RTP med perfekt strategi. Deuces Wild (med optimal pay table) når 100,76 % – en af de eneste casinospil med positiv forventet værdi. Video Poker er poker for den analytiske spiller, der foretrækker matematik over psykologi.
           </p>
-...
+
+          <h3 className="mb-3 text-xl font-semibold">Variant-sammenligning: Struktur, Risiko og EV</h3>
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm border border-border rounded-lg">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="px-4 py-3 text-left font-semibold">Variant</th>
+                  <th className="px-4 py-3 text-center font-semibold">Format</th>
+                  <th className="px-4 py-3 text-center font-semibold">House Edge / Rake</th>
+                  <th className="px-4 py-3 text-center font-semibold">Varians</th>
+                  <th className="px-4 py-3 text-center font-semibold">Kompleksitet</th>
+                </tr>
+              </thead>
+              <tbody className="text-muted-foreground">
                 <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link></td><td className="px-4 py-2 text-center">PvP</td><td className="px-4 py-2 text-center">2,5–5 % rake</td><td className="px-4 py-2 text-center">Høj</td><td className="px-4 py-2 text-center">⭐⭐⭐⭐</td></tr>
                 <tr className="border-t border-border bg-muted/20"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/omaha" className={linkClass}>Omaha (PLO)</Link></td><td className="px-4 py-2 text-center">PvP</td><td className="px-4 py-2 text-center">2,5–5 % rake</td><td className="px-4 py-2 text-center">Meget høj</td><td className="px-4 py-2 text-center">⭐⭐⭐⭐⭐</td></tr>
-                <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/video-poker" className={linkClass}>Video Poker</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">0,46–5 %</td><td className="px-4 py-2 text-center">Lav–Middel</td><td className="px-4 py-2 text-center">⭐⭐⭐</td></tr>
-                <tr className="border-t border-border bg-muted/20"><td className="px-4 py-2 font-medium"><Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">2,32–3,37 %</td><td className="px-4 py-2 text-center">Lav</td><td className="px-4 py-2 text-center">⭐⭐</td></tr>
-                <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">~5,2 %</td><td className="px-4 py-2 text-center">Middel</td><td className="px-4 py-2 text-center">⭐⭐⭐</td></tr>
+                <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">0,46–5 %</td><td className="px-4 py-2 text-center">Lav–Middel</td><td className="px-4 py-2 text-center">⭐⭐⭐</td></tr>
+                <tr className="border-t border-border bg-muted/20"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">2,32–3,37 %</td><td className="px-4 py-2 text-center">Lav</td><td className="px-4 py-2 text-center">⭐⭐</td></tr>
+                <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">~5,2 %</td><td className="px-4 py-2 text-center">Middel</td><td className="px-4 py-2 text-center">⭐⭐⭐</td></tr>
               </tbody>
             </table>
           </div>
@@ -333,7 +346,7 @@ const PokerGuide = () => {
             <strong>Texas Hold'em-specifikt:</strong> Med syv tilgængelige kort (to hole + fem community) stiger sandsynlighederne markant. Sandsynligheden for at lave mindst ét par er ca. 83 %. To par: 23,5 %. Three of a Kind: 4,83 %. Full House: 2,6 %. Flush: 3,03 %. Straight: 4,62 %. Det betyder, at vinderhånden i Hold'em gennemsnitligt er stærkere end i Five Card Draw.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Vigtig nuance:</strong> I Hold'em afgør "kicker"-kortet ofte vinderen. Hvis to spillere begge har et par esser, vinder den med det højeste sidekort. At forstå kicker-konceptet er kritisk – mange begyndere taber store potter, fordi de overser, at deres kicker er svag. Læs mere om preflop håndselection i vores <Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em-guide</Link>.
+            <strong>Vigtig nuance:</strong> I Hold'em afgør "kicker"-kortet ofte vinderen. Hvis to spillere begge har et par esser, vinder den med det højeste sidekort. At forstå kicker-konceptet er kritisk – mange begyndere taber store potter, fordi de overser, at deres kicker er svag. Læs mere om preflop håndselection i vores <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em-guide</Link>.
           </p>
         </section>
 
@@ -349,13 +362,13 @@ const PokerGuide = () => {
             <strong>Blinds:</strong> De to spillere til venstre for dealerknappen poster obligatoriske indsatser: small blind (typisk halvdelen af big blind) og big blind. Blinds er i den dårligste position postflop – de handler først i alle resterende betting-runder. Professionelle spillere taber konsekvent penge fra blind-positionerne; målet er at minimere tabet, ikke at profitere.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Early position (UTG, UTG+1, UTG+2):</strong> De første spillere efter big blind. De handler først preflop og har den mindste mængde information. Early position kræver en stram håndselection: top 10–15 % af starthænder. I <Link to="/casinospil/omaha-poker" className={linkClass}>Omaha</Link> er dette endnu mere kritisk pga. de fire hole cards.
+            <strong>Early position (UTG, UTG+1, UTG+2):</strong> De første spillere efter big blind. De handler først preflop og har den mindste mængde information. Early position kræver en stram håndselection: top 10–15 % af starthænder. I <Link to="/casinospil/poker/omaha" className={linkClass}>Omaha</Link> er dette endnu mere kritisk pga. de fire hole cards.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Late position (CO/Cutoff og BTN/Button):</strong> Button er den mest profitable position i poker – du handler altid sidst postflop og har maksimal information. Fra Button kan du spille 35–45 % af alle starthænder profitabelt. De fleste vindende pokerspillere tjener størstedelen af deres profit fra late position.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Praktisk implikation:</strong> Hvis du er begynder og kun vil ændre én ting i dit spil, er det dette: spil strammere fra early position og løsere fra late position. Denne simple justering alene kan transformere en tabende spiller til en break-even spiller. For avanceret positional play, se vores <Link to="/casinospil/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
+            <strong>Praktisk implikation:</strong> Hvis du er begynder og kun vil ændre én ting i dit spil, er det dette: spil strammere fra early position og løsere fra late position. Denne simple justering alene kan transformere en tabende spiller til en break-even spiller. For avanceret positional play, se vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
           </p>
         </section>
 
@@ -380,7 +393,7 @@ const PokerGuide = () => {
             <strong>Implied odds</strong> tager højde for de ekstra penge, du forventer at vinde på fremtidige betting-runder, hvis du rammer din hånd. <strong>Reverse implied odds:</strong> Risikoen for at ramme din hånd men tabe mod en stærkere hånd – særligt relevant, når boardet er parret.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Pot odds er fundamentet for rationel pokerstrategi. Alle andre koncepter – fold equity, bet sizing, bluff frequency – bygger på denne ramme. For dybdegående EV-beregninger og solver-metodik, se vores <Link to="/casinospil/poker-strategi" className={linkClass}>avancerede strategi-guide</Link>.
+            Pot odds er fundamentet for rationel pokerstrategi. Alle andre koncepter – fold equity, bet sizing, bluff frequency – bygger på denne ramme. For dybdegående EV-beregninger og solver-metodik, se vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>avancerede strategi-guide</Link>.
           </p>
         </section>
 
@@ -444,7 +457,7 @@ const PokerGuide = () => {
             <strong>Semi-bluffs:</strong> De bedste bluffs er "semi-bluffs" – indsatser med en hånd, der har outs til at forbedre sig. Et flush draw-semi-bluff kombinerer to profitkilder: (1) modstanderen kan folde (bluff-equity), og (2) du kan ramme flushen og vinde (draw-equity). Semi-bluffs er mere profitable og lavere risiko end rene bluffs.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Begynderfejl med bluffing:</strong> At bluffe for ofte, mod for mange modstandere, på for ugunstige boards. Bluff sjældent mod mere end 1–2 modstandere. Og bluff aldrig af desperation eller "tilt" – en bluff skal være en kalkuleret handling. For avanceret bluff-frekvens og GTO-balancering, se vores <Link to="/casinospil/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
+            <strong>Begynderfejl med bluffing:</strong> At bluffe for ofte, mod for mange modstandere, på for ugunstige boards. Bluff sjældent mod mere end 1–2 modstandere. Og bluff aldrig af desperation eller "tilt" – en bluff skal være en kalkuleret handling. For avanceret bluff-frekvens og GTO-balancering, se vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
           </p>
         </section>
 
@@ -552,7 +565,7 @@ const PokerGuide = () => {
             <strong>Kortsigtigt (1 hånd):</strong> Poker er primært held. En nybegynder med pocket aces slår en professionel med 7-2 offsuit 85 % af gangene. <strong>Mellemlangsigtigt (100–1.000 hænder):</strong> Færdighed begynder at vise sig, men variansen kan stadig producere tabsperioder. <strong>Langsigtet (10.000+ hænder):</strong> Poker er entydigt et færdighedsspil. Cigital-studiet (103 millioner hænder) bekræfter, at de øverste 10 % konsistent vinder.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Juridisk status:</strong> Danmark klassificerer spiller-vs-spiller poker som et "blandingsspil" (held + færdighed). Casino poker (<Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud</Link>, <Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link>) klassificeres som hasardspil, fordi spillerens beslutninger ikke kan eliminere house edge. Sammenlign med <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>: over 10.000 spins konvergerer ALLE spillere mod -2,70 %.
+            <strong>Juridisk status:</strong> Danmark klassificerer spiller-vs-spiller poker som et "blandingsspil" (held + færdighed). Casino poker (<Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud</Link>, <Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link>) klassificeres som hasardspil, fordi spillerens beslutninger ikke kan eliminere house edge. Sammenlign med <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>: over 10.000 spins konvergerer ALLE spillere mod -2,70 %.
           </p>
         </section>
 
@@ -567,19 +580,19 @@ const PokerGuide = () => {
           <div className="grid gap-4 sm:grid-cols-2 mb-6">
             <Card>
               <CardHeader className="pb-2"><CardTitle className="text-base">🎯 Den Strategiske Begynder</CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground">Start med <Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em</Link> mikrostakes. Simple regler, enormt læringsøkosystem, størst spillerpool.</p></CardContent>
+              <CardContent><p className="text-sm text-muted-foreground">Start med <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link> mikrostakes. Simple regler, enormt læringsøkosystem, størst spillerpool.</p></CardContent>
             </Card>
             <Card>
               <CardHeader className="pb-2"><CardTitle className="text-base">🧮 Den Analytiske Spiller</CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/video-poker" className={linkClass}>Video Poker</Link> – ren matematik, ingen psykologi. Op til 100,76 % RTP. Perfekt for dem, der elsker at optimere.</p></CardContent>
+              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link> – ren matematik, ingen psykologi. Op til 100,76 % RTP. Perfekt for dem, der elsker at optimere.</p></CardContent>
             </Card>
             <Card>
               <CardHeader className="pb-2"><CardTitle className="text-base">⚡ Action-Jægeren</CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/omaha-poker" className={linkClass}>Omaha (PLO)</Link> – mere action, højere varians, stærkere vinderhænder. For spillere, der finder Hold'em for langsomt.</p></CardContent>
+              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/poker/omaha" className={linkClass}>Omaha (PLO)</Link> – mere action, højere varians, stærkere vinderhænder. For spillere, der finder Hold'em for langsomt.</p></CardContent>
             </Card>
             <Card>
               <CardHeader className="pb-2"><CardTitle className="text-base">🎰 Den Afslappede Casino-Gæst</CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link> eller <Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud</Link> – poker-stemning uden den dybe strategiske kompleksitet.</p></CardContent>
+              <CardContent><p className="text-sm text-muted-foreground"><Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link> eller <Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud</Link> – poker-stemning uden den dybe strategiske kompleksitet.</p></CardContent>
             </Card>
           </div>
         </section>
@@ -590,10 +603,10 @@ const PokerGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Sådan Kommer Du i Gang – 5 Trin</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Trin 1 – Lær håndrangeringerne udenad.</strong> Brug tabellen ovenfor. Del fem kort, identificér hånden, gentag 50–100 gange. <strong>Trin 2 – Start med mikrostakes online.</strong> 0,01/0,02 kr. blinds, 50–100 kr. startbankroll. Spil om rigtige penge – gratis poker giver ikke den nødvendige feedback. <strong>Trin 3 – Spil tight-aggressivt.</strong> Top 15–20 % af starthænder. Raise preflop, continuation bet på floppen, fold ved modstand. Læs vores <Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em-guide</Link> for præcise ranges.
+            <strong>Trin 1 – Lær håndrangeringerne udenad.</strong> Brug tabellen ovenfor. Del fem kort, identificér hånden, gentag 50–100 gange. <strong>Trin 2 – Start med mikrostakes online.</strong> 0,01/0,02 kr. blinds, 50–100 kr. startbankroll. Spil om rigtige penge – gratis poker giver ikke den nødvendige feedback. <strong>Trin 3 – Spil tight-aggressivt.</strong> Top 15–20 % af starthænder. Raise preflop, continuation bet på floppen, fold ved modstand. Læs vores <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em-guide</Link> for præcise ranges.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Trin 4 – Analysér dine hænder.</strong> Gennemgå håndhistorik. Spørg: "Var dette call profitabelt baseret på pot odds?" Selvanalyse er vigtigere end volume. Vores <Link to="/casinospil/poker-strategi" className={linkClass}>strategi-guide</Link> dækker solver-baseret analyse og studieteknikker. <strong>Trin 5 – Sæt grænser.</strong> Bankroll-grænse, sessionsgrænse, tabsgrænse. Brug <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer.
+            <strong>Trin 4 – Analysér dine hænder.</strong> Gennemgå håndhistorik. Spørg: "Var dette call profitabelt baseret på pot odds?" Selvanalyse er vigtigere end volume. Vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>strategi-guide</Link> dækker solver-baseret analyse og studieteknikker. <strong>Trin 5 – Sæt grænser.</strong> Bankroll-grænse, sessionsgrænse, tabsgrænse. Brug <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer.
           </p>
         </section>
 
@@ -606,12 +619,12 @@ const PokerGuide = () => {
             Denne cornerstone-guide har dækket pokerens samlede landskab. For dybere specialisering, naviger til de individuelle spoke-guides via cluster-gitteret ovenfor. Her er en hurtig opsummering af, hvad hver guide tilbyder ud over denne hubs indhold:
           </p>
           <ul className="mb-4 space-y-2 text-muted-foreground leading-relaxed list-disc list-inside">
-            <li><Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em</Link> – Preflop ranges med open/3-bet/4-bet charts, flop texture-analyse, barrel-strategier og GTO vs. exploitative play.</li>
-            <li><Link to="/casinospil/omaha-poker" className={linkClass}>Omaha (PLO)</Link> – Must-use-2 edge cases, wrap equity-tabeller, SPR-modeller, blocker-baseret bluffing og 5-Card PLO dynamik.</li>
-            <li><Link to="/casinospil/poker-strategi" className={linkClass}>Poker Strategi</Link> – ICM-beregninger, solver-metodik (PioSolver/GTO+), mental game, HUD-stats og studieteknikker.</li>
-            <li><Link to="/casinospil/video-poker" className={linkClass}>Video Poker</Link> – Pay table-analyse for 20+ varianter, wild card-matematik, progressive jackpot break-even og mobilspil-guide.</li>
-            <li><Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link> – Q-6-4-strategi, dealer-qualifying-matematik (66,4 %), 6 Card Bonus house edge og tempo-analyse.</li>
-            <li><Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud Poker</Link> – AK-strategiens nuancer, progressive jackpot EV, dealer-qualifying og sammenligning med Three Card.</li>
+            <li><Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link> – Preflop ranges med open/3-bet/4-bet charts, flop texture-analyse, barrel-strategier og GTO vs. exploitative play.</li>
+            <li><Link to="/casinospil/poker/omaha" className={linkClass}>Omaha (PLO)</Link> – Must-use-2 edge cases, wrap equity-tabeller, SPR-modeller, blocker-baseret bluffing og 5-Card PLO dynamik.</li>
+            <li><Link to="/casinospil/poker/poker-strategi" className={linkClass}>Poker Strategi</Link> – ICM-beregninger, solver-metodik (PioSolver/GTO+), mental game, HUD-stats og studieteknikker.</li>
+            <li><Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link> – Pay table-analyse for 20+ varianter, wild card-matematik, progressive jackpot break-even og mobilspil-guide.</li>
+            <li><Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link> – Q-6-4-strategi, dealer-qualifying-matematik (66,4 %), 6 Card Bonus house edge og tempo-analyse.</li>
+            <li><Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud Poker</Link> – AK-strategiens nuancer, progressive jackpot EV, dealer-qualifying og sammenligning med Three Card.</li>
           </ul>
           <p className="text-muted-foreground leading-relaxed">
             For sammenligning med andre strategiske <Link to="/casinospil" className={linkClass}>casinospil</Link> anbefaler vi vores guides til <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> (basic strategy og card counting), <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> (laveste house edge) og <Link to="/casinospil/craps" className={linkClass}>craps</Link> (favorable pass line-odds). Poker er det eneste casinospil, der belønner langsigtet investering i læring – og med denne guide som fundament er du klar til at dykke dybere.
