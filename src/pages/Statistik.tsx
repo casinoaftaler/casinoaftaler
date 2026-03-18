@@ -300,7 +300,6 @@ export default function Statistik() {
         jsonLd={[articleSchema, faqSchema, datasetSchema]}
         breadcrumbLabel="Statistik"
         datePublished="2026-03-11"
-        dateModified="2026-03-11"
       />
 
       {/* ══════════════════════════════════════════════════════════
