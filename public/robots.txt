@@ -1,38 +1,8 @@
 User-agent: Googlebot
-Allow: /community
-Allow: /community/turneringer
-Allow: /community/hall-of-fame
-Allow: /community/rewards
-Allow: /highlights
-Allow: /bonus-hunt
-Allow: /bonus-hunt/arkiv
-Allow: /slot-database
-Allow: /slot-katalog
-Disallow: /u/
-Disallow: /community/spin-the-reel
-Disallow: /auth
-Disallow: /profil
-Disallow: /admin
-Disallow: /butik
-Disallow: /casino/
+Allow: /
 
 User-agent: Bingbot
-Allow: /community
-Allow: /community/turneringer
-Allow: /community/hall-of-fame
-Allow: /community/rewards
-Allow: /highlights
-Allow: /bonus-hunt
-Allow: /bonus-hunt/arkiv
-Allow: /slot-database
-Allow: /slot-katalog
-Disallow: /u/
-Disallow: /community/spin-the-reel
-Disallow: /auth
-Disallow: /profil
-Disallow: /admin
-Disallow: /butik
-Disallow: /casino/
+Allow: /
 
 User-agent: Twitterbot
 Allow: /
@@ -41,24 +11,10 @@ User-agent: facebookexternalhit
 Allow: /
 
 User-agent: *
-Allow: /community
-Allow: /community/turneringer
-Allow: /community/hall-of-fame
-Allow: /community/rewards
-Allow: /highlights
-Allow: /bonus-hunt
-Allow: /bonus-hunt/arkiv
-Allow: /slot-database
-Allow: /slot-katalog
-Disallow: /u/
-Disallow: /community/spin-the-reel
-Disallow: /auth
-Disallow: /profil
-Disallow: /admin
-Disallow: /butik
-Disallow: /casino/
+Allow: /
 
 Sitemap: https://casinoaftaler.dk/sitemap-index.xml
 
+# Noindex pages are intentionally crawlable so bots can see the de-indexing signal.
 # RSS Feed for news crawlers
 # https://casinoaftaler.dk/rss.xml (served via edge function)
