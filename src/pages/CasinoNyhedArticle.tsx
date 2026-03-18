@@ -168,7 +168,6 @@ const CasinoNyhedArticle = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar
           author="ajse"
-          date={publishedDate}
           readTime="5 min"
           showFactCheck={true}
           showAffiliateDisclaimer={false}

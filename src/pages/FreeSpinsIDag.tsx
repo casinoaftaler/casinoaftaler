@@ -346,7 +346,7 @@ const FreeSpinsIDag = () => {
       <div className="border-b border-border/30">
         <div className="container py-3">
           <div className="text-xs text-muted-foreground">
-            <AuthorMetaBar author="jonas" date={todayFormatted} readTime="3 min." />
+            <AuthorMetaBar author="jonas" readTime="3 min." />
           </div>
         </div>
       </div>

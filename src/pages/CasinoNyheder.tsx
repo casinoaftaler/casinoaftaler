@@ -155,7 +155,6 @@ const CasinoNyheder = () => {
 
         <AuthorMetaBar
           author="ajse"
-          date={latestDate || "21. februar 2026"}
           readTime="Løbende opdateret"
           showFactCheck={true}
           showAffiliateDisclaimer={false}
