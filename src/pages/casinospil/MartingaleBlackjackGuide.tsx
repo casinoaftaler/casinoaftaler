@@ -118,8 +118,9 @@ const MartingaleBlackjackGuide = () => {
   const articleSchema = buildArticleSchema({
     headline: "Martingale-Systemet i Blackjack 2026 – Matematik, Risiko & Realitet",
     description: "Dybdegående analyse af Martingale-systemet i blackjack: matematisk bevis, Monte Carlo-simulering, risk of ruin og hvornår fordoblingsstrategien kollapser.",
-    url: `${SITE_URL}/casinospil/blackjack/martingale-system`,
+    url: `${SITE_URL}/casinospil/blackjack/martingale`,
     datePublished: "2026-03-02",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -127,8 +128,11 @@ const MartingaleBlackjackGuide = () => {
   return (
     <>
       <SEO
-        title="Martingale Blackjack 2026 – Virker Det? Matematik & Test"
-        description="Virker Martingale i blackjack? Vi analyserer matematikken, simulerer 10.000 hænder og afslører hvorfor fordoblingsstrategien har en fatal fejl."
+        title="Martingale Blackjack 2026 – Matematik, Risiko & Fejl"
+        description="Virker Martingale i blackjack? Vi analyserer matematikken, simulerer 10.000 hænder og viser hvorfor fordoblingsstrategien bryder sammen."
+        type="article"
+        datePublished="2026-03-02"
+        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
@@ -139,7 +143,7 @@ const MartingaleBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <AlertTriangle className="mr-1.5 h-3.5 w-3.5" /> Kritisk Analyse – Marts 2026
+              <AlertTriangle className="mr-1.5 h-3.5 w-3.5" /> Kritisk analyse · marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Martingale-Systemet i Blackjack – Matematik, Simulation & Den Brutale Sandhed
@@ -152,7 +156,7 @@ const MartingaleBlackjackGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="38 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="38 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Casino blackjack-bord med Martingale-progression illustreret med stigende chipstakke" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

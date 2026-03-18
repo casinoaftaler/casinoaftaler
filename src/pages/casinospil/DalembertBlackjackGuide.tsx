@@ -121,8 +121,9 @@ const DalembertBlackjackGuide = () => {
   const articleSchema = buildArticleSchema({
     headline: "D'Alembert-Systemet i Blackjack 2026 – Balancens Filosofi & Casino-Virkeligheden",
     description: "Komplet analyse af D'Alembert-systemet i blackjack: lineær progression, equilibrium-teorien, 5.000-hånds simulering og ærlig vurdering af det mest konservative indsatssystem.",
-    url: `${SITE_URL}/casinospil/blackjack/dalembert-system`,
+    url: `${SITE_URL}/casinospil/blackjack/dalembert`,
     datePublished: "2026-03-02",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -130,8 +131,11 @@ const DalembertBlackjackGuide = () => {
   return (
     <>
       <SEO
-        title="D'Alembert Blackjack 2026 – Det Sikre System? Ærlig Analyse"
+        title="D'Alembert Blackjack 2026 – Det Sikre System?"
         description="Komplet guide til D'Alembert-systemet i blackjack: lineær progression, equilibrium-teori, 5.000-hånds test og sammenligning med Martingale og Fibonacci."
+        type="article"
+        datePublished="2026-03-02"
+        dateModified="2026-03-18"
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
@@ -142,7 +146,7 @@ const DalembertBlackjackGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Scale className="mr-1.5 h-3.5 w-3.5" /> Balanceret Analyse – Marts 2026
+              <Scale className="mr-1.5 h-3.5 w-3.5" /> Balanceret analyse · marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               D'Alembert-Systemet i Blackjack – Oplysningstidens Balance Møder Casino-Matematikken
@@ -155,7 +159,7 @@ const DalembertBlackjackGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="35 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Balancerede chipstakke på blackjack-bord symboliserende D'Alembert-systemets lineære progression" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
