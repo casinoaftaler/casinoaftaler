@@ -362,13 +362,13 @@ const PokerGuide = () => {
             <strong>Blinds:</strong> De to spillere til venstre for dealerknappen poster obligatoriske indsatser: small blind (typisk halvdelen af big blind) og big blind. Blinds er i den dårligste position postflop – de handler først i alle resterende betting-runder. Professionelle spillere taber konsekvent penge fra blind-positionerne; målet er at minimere tabet, ikke at profitere.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Early position (UTG, UTG+1, UTG+2):</strong> De første spillere efter big blind. De handler først preflop og har den mindste mængde information. Early position kræver en stram håndselection: top 10–15 % af starthænder. I <Link to="/casinospil/omaha-poker" className={linkClass}>Omaha</Link> er dette endnu mere kritisk pga. de fire hole cards.
+            <strong>Early position (UTG, UTG+1, UTG+2):</strong> De første spillere efter big blind. De handler først preflop og har den mindste mængde information. Early position kræver en stram håndselection: top 10–15 % af starthænder. I <Link to="/casinospil/poker/omaha" className={linkClass}>Omaha</Link> er dette endnu mere kritisk pga. de fire hole cards.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Late position (CO/Cutoff og BTN/Button):</strong> Button er den mest profitable position i poker – du handler altid sidst postflop og har maksimal information. Fra Button kan du spille 35–45 % af alle starthænder profitabelt. De fleste vindende pokerspillere tjener størstedelen af deres profit fra late position.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Praktisk implikation:</strong> Hvis du er begynder og kun vil ændre én ting i dit spil, er det dette: spil strammere fra early position og løsere fra late position. Denne simple justering alene kan transformere en tabende spiller til en break-even spiller. For avanceret positional play, se vores <Link to="/casinospil/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
+            <strong>Praktisk implikation:</strong> Hvis du er begynder og kun vil ændre én ting i dit spil, er det dette: spil strammere fra early position og løsere fra late position. Denne simple justering alene kan transformere en tabende spiller til en break-even spiller. For avanceret positional play, se vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
           </p>
         </section>
 
