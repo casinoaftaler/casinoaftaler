@@ -10,6 +10,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
+import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
 import velkomstbonusHero from "@/assets/heroes/velkomstbonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -136,7 +137,7 @@ const Velkomstbonus = () => {
     description: "Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav og tips.",
     url: `${SITE_URL}/velkomstbonus`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-20",
+    dateModified: "2026-03-18",
     videoId: "oK5PvebkvGY",
   });
 
@@ -170,7 +171,7 @@ const Velkomstbonus = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Opdateret Marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Velkomstbonus på Danske Casinoer
@@ -185,7 +186,7 @@ const Velkomstbonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" date="20-02-2026" readTime="22 Min." />
+        <AuthorMetaBar author="niklas" date="18-03-2026" readTime="22 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={velkomstbonusHero} alt="Velkomstbonus – gaveboks med casino chips" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -262,6 +263,8 @@ const Velkomstbonus = () => {
         </section>
 
         <InlineCasinoCards title="Bedste casinoer med velkomstbonus" count={6} />
+
+        <BonusClusterPriorityLinks currentPath="/velkomstbonus" />
 
         <Separator className="my-10" />
 

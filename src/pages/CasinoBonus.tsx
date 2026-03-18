@@ -14,6 +14,7 @@ import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { type ReactNode } from "react";
 import casinoBonusHero from "@/assets/heroes/casino-bonus-hero.jpg";
@@ -125,7 +126,7 @@ const CasinoBonus = () => {
     description: "Den ultimative guide til casino bonus i Danmark 2026. Sammenlign alle bonustyper, forstå omsætningskrav og find den bonus der giver mest reel værdi.",
     url: `${SITE_URL}/casino-bonus`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-18",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -169,7 +170,7 @@ const CasinoBonus = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Gift className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Opdateret Marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Casino Bonus 2026 – Danmarks Mest Komplette Bonusguide
@@ -182,7 +183,7 @@ const CasinoBonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="35 Min." />
         
 
         <div className="mb-10 overflow-hidden rounded-xl">
@@ -281,6 +282,8 @@ const CasinoBonus = () => {
         </section>
 
         <InlineCasinoCards title="Bedste casino bonus tilbud" count={6} />
+
+        <BonusClusterPriorityLinks currentPath="/casino-bonus" />
 
         <Separator className="my-10" />
 

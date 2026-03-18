@@ -11,6 +11,7 @@ import { VideoContextBox } from "@/components/VideoContextBox";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
 import reloadHero from "@/assets/heroes/reload-bonus-hero.jpg";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -146,7 +147,7 @@ const ReloadBonus = () => {
     description: "Alt om reload bonusser på danske casinoer. Lær hvordan reload fungerer, hvornår de tilbydes, og hvordan du maksimerer din bonusværdi som eksisterende spiller.",
     url: `${SITE_URL}/reload-bonus`,
     datePublished: "2026-02-27",
-    dateModified: "2026-02-27",
+    dateModified: "2026-03-18",
   });
 
   const videoJsonLd = buildVideoSchema(`${SITE_URL}/reload-bonus`, "ReM4PBQ30rw", {
@@ -179,7 +180,7 @@ const ReloadBonus = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <RefreshCw className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Opdateret Marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Reload Bonus på Danske Casinoer
@@ -192,7 +193,7 @@ const ReloadBonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" date="27-02-2026" readTime="14 Min." />
+        <AuthorMetaBar author="niklas" date="18-03-2026" readTime="14 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={reloadHero} alt="Reload bonus – tilbagevendende casinobonus med genopladningssymbol" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -222,6 +223,8 @@ const ReloadBonus = () => {
             <Link to="/cashback-bonus" className={linkClass}>cashback bonus</Link> adskiller sig fra reload, har vi en dedikeret guide.
           </p>
         </section>
+
+        <BonusClusterPriorityLinks currentPath="/reload-bonus" />
 
         <YoutubeEmbed videoId="ReM4PBQ30rw" title="Hvad er en Reload Bonus? – Forklaret på dansk" description="Jonas gennemgår hvad en reload bonus er og hvordan den fungerer." uploadDate="2026-03-07" duration="PT1M" />
         <VideoContextBox heading="Her gennemgår vores forfatter reload-bonussen">

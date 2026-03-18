@@ -39,6 +39,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -116,7 +117,7 @@ const NoStickyBonus = () => {
     description: "Dyb matematisk analyse af No-Sticky Bonusser på danske casinoer. Regneeksempler, strategi og sammenligning med alle andre bonustyper.",
     url: `${SITE_URL}/no-sticky-bonus`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-20",
+    dateModified: "2026-03-18",
     videoId: "WOowRz6hnH8",
   });
 
@@ -151,7 +152,7 @@ const NoStickyBonus = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Opdateret Marts 2026
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               No-Sticky Bonus på Danske Casinoer
@@ -164,7 +165,7 @@ const NoStickyBonus = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="niklas" date="20-02-2026" readTime="38 Min." />
+        <AuthorMetaBar author="niklas" date="18-03-2026" readTime="38 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={noStickyHero} alt="No-sticky bonus – matematisk analyse og frihed" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
@@ -218,6 +219,8 @@ const NoStickyBonus = () => {
         </section>
 
         <InlineCasinoCards title="Bedste casinoer med No-Sticky Bonus" count={6} />
+
+        <BonusClusterPriorityLinks currentPath="/no-sticky-bonus" />
 
         <Separator className="my-10" />
 
