@@ -95,7 +95,7 @@ export function formatLastmodDanish(isoDate: string): string {
 
 export const seoRoutes: SeoRoute[] = ([
   // ── Forside ──
-  { path: "/", changefreq: "daily", priority: 1.0 },
+  { path: "/", changefreq: "daily", priority: 1.0, lastmod: "2026-03-18" },
 
   // ── Casino Anmeldelser ──
   { path: "/casino-anmeldelser", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-08" },
@@ -453,16 +453,16 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/vip-program", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-06" },
   { path: "/casino-med-mobilepay", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-04" },
 
-  { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
-  { path: "/om", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
-  { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
-  { path: "/redaktionel-politik", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
-  { path: "/kontakt", changefreq: "monthly", priority: 0.5, lastmod: "2026-03-05" },
+  { path: "/spillemyndigheden", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-18" },
+  { path: "/om", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-18" },
+  { path: "/forretningsmodel", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-18" },
+  { path: "/redaktionel-politik", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-18" },
+  { path: "/kontakt", changefreq: "monthly", priority: 0.5, lastmod: "2026-03-18" },
   { path: "/forfatter/jonas", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
   { path: "/forfatter/kevin", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
   { path: "/forfatter/ajse", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
   { path: "/forfatter/niklas", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-15" },
-  { path: "/saadan-tester-vi-casinoer", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-05" },
+  { path: "/saadan-tester-vi-casinoer", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-18" },
   { path: "/privatlivspolitik", changefreq: "yearly", priority: 0.3, lastmod: "2026-03-05" },
   { path: "/terms", changefreq: "yearly", priority: 0.3, lastmod: "2026-03-05" },
   { path: "/cookies", changefreq: "yearly", priority: 0.3, lastmod: "2026-03-05" },

@@ -12,7 +12,7 @@ const buildDate = new Date().toISOString().split("T")[0];
 
 const urls = seoRoutes.map((route) => {
   const loc = route.path === "/" ? SITE_URL + "/" : SITE_URL + route.path;
-  const lastmod = route.lastmod || buildDate;
+  const lastmod = route.lastmod ? `${route.lastmod}T12:00:00+01:00` : `${buildDate}T12:00:00+01:00`;
   return `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>

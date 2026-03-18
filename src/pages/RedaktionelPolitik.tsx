@@ -37,7 +37,6 @@ const RedaktionelPolitik = () => {
     description: "Læs om vores redaktionelle retningslinjer, hvordan vi producerer indhold, og hvordan vi sikrer uafhængighed og kvalitet.",
     url: "https://casinoaftaler.dk/redaktionel-politik",
     datePublished: "2025-06-01",
-    dateModified: "2026-03-05",
     authorName: "Ajse",
     authorUrl: "https://casinoaftaler.dk/forfatter/ajse",
   });
@@ -94,7 +93,7 @@ const RedaktionelPolitik = () => {
       </section>
 
       <div className="container py-10 md:py-14">
-        <AuthorMetaBar author="ajse" date="2026-03-05" readTime="10 min" showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="ajse" readTime="10 min" showAffiliateDisclaimer={false} />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={redaktionelPolitikHero} alt="Redaktionel politik – faktatjek og kvalitetssikring" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

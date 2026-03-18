@@ -41,7 +41,6 @@ const Forretningsmodel = () => {
     description: "Forstå hvordan Casinoaftaler.dk finansieres gennem affiliate-partnerskaber, og hvorfor vores anmeldelser forbliver uafhængige.",
     url: "https://casinoaftaler.dk/forretningsmodel",
     datePublished: "2025-06-01",
-    dateModified: "2026-03-05",
     authorName: "Ajse",
     authorUrl: "https://casinoaftaler.dk/forfatter/ajse",
   });
@@ -89,7 +88,7 @@ const Forretningsmodel = () => {
       </section>
 
       <div className="container py-10 md:py-14">
-        <AuthorMetaBar author="niklas" date="2026-03-05" readTime="8 min" showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="ajse" readTime="8 min" showAffiliateDisclaimer={false} />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

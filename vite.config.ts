@@ -311,7 +311,7 @@ ${sections}
         `${SITE_URL}/sitemap-slots.xml`,
         `${SITE_URL}/sitemap-articles.xml`,
         `${SITE_URL}/sitemap-images.xml`,
-      ];
+      ].filter((loc) => fs.existsSync(path.join(outDir, loc.split("/").pop()!)));
 
       const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

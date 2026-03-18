@@ -136,7 +136,6 @@ const Spillemyndigheden = () => {
     description: "Komplet guide til Spillemyndigheden i Danmark. Lær om licenstyper, spillerbeskyttelse, ROFUS, lovgivning og hvad den danske spillemyndighed gør for at sikre fair og ansvarligt spil.",
     url: `${SITE_URL}/spillemyndigheden`,
     datePublished: "2026-02-14",
-    dateModified: "2026-02-26",
     authorName: "Ajse",
     authorUrl: `${SITE_URL}/forfatter/ajse`,
   });
@@ -177,7 +176,7 @@ const Spillemyndigheden = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="ajse" date="26-02-2026" readTime="12 Min." showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="ajse" readTime="12 Min." showAffiliateDisclaimer={false} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
         {/* Hero image */}
