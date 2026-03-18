@@ -165,7 +165,7 @@ const NyeCasinoer = () => {
     description: "Danmarks mest dybdegående guide til nye casinoer. Testet med rigtige penge, dansk licens, bonusanalyse og matematisk EV-beregning.",
     url: `${SITE_URL}/nye-casinoer`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-18",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

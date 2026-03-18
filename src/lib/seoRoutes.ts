@@ -99,7 +99,7 @@ export const seoRoutes: SeoRoute[] = ([
 
   // ── Casino Anmeldelser ──
   { path: "/casino-anmeldelser", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-08" },
-  { path: "/nye-casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-08" },
+  { path: "/nye-casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-18" },
   { path: "/nye-casinoer/2026", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-07" },
   { path: "/nye-casinoer/dansk-licens", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-07" },
   { path: "/nye-casinoer/uden-rofus", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-07" },

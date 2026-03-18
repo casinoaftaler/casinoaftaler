@@ -146,7 +146,7 @@ const jsonLd = [
     description: "Enterprise-hub for alle casino-kategorier: hurtig udbetaling, høj RTP, crypto, licens, mobil, VR, skatteforhold, bonusser og ansvarligt spil i Danmark.",
     url: `${SITE_URL}/casinoer`,
     datePublished: "2026-02-20",
-    dateModified: "2026-03-02",
+    dateModified: "2026-03-18",
   }),
   buildFaqSchema(faqs),
 ];

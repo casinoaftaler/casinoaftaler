@@ -346,7 +346,7 @@ const PokerGuide = () => {
             <strong>Texas Hold'em-specifikt:</strong> Med syv tilgængelige kort (to hole + fem community) stiger sandsynlighederne markant. Sandsynligheden for at lave mindst ét par er ca. 83 %. To par: 23,5 %. Three of a Kind: 4,83 %. Full House: 2,6 %. Flush: 3,03 %. Straight: 4,62 %. Det betyder, at vinderhånden i Hold'em gennemsnitligt er stærkere end i Five Card Draw.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Vigtig nuance:</strong> I Hold'em afgør "kicker"-kortet ofte vinderen. Hvis to spillere begge har et par esser, vinder den med det højeste sidekort. At forstå kicker-konceptet er kritisk – mange begyndere taber store potter, fordi de overser, at deres kicker er svag. Læs mere om preflop håndselection i vores <Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em-guide</Link>.
+            <strong>Vigtig nuance:</strong> I Hold'em afgør "kicker"-kortet ofte vinderen. Hvis to spillere begge har et par esser, vinder den med det højeste sidekort. At forstå kicker-konceptet er kritisk – mange begyndere taber store potter, fordi de overser, at deres kicker er svag. Læs mere om preflop håndselection i vores <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em-guide</Link>.
           </p>
         </section>
 
