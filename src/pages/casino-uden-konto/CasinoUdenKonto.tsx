@@ -248,7 +248,7 @@ const CasinoUdenKonto = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="2026-03-08" readTime="32 Min." />
+        <AuthorMetaBar author="kevin" readTime="32 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Testet og skrevet af Kevin, casino streamer & IT-medansvarlig hos Casinoaftaler.dk.
         </p>

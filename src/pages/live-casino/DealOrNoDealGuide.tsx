@@ -114,7 +114,7 @@ const DealOrNoDealGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-08" readTime="28 min" />
+        <AuthorMetaBar author="jonas" readTime="28 min" />
         <GuideHeroImage src={dealOrNoDealHero} alt="Deal or No Deal Live casino game show med kufferter og bankier" />
 
         {/* ── H2 1 ── */}

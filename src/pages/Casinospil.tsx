@@ -106,7 +106,6 @@ const Casinospil = () => {
     description: "Den mest dybdegående danske guide til casinospil. Forstå RTP, volatilitet, house edge og find det rette spil til din spillestil.",
     url: `${SITE_URL}/casinospil`,
     datePublished: "2026-02-01",
-    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

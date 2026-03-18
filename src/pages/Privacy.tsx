@@ -69,7 +69,7 @@ const Privacy = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="redaktionen" date="14-02-2026" readTime="5 Min." showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="redaktionen" readTime="5 Min." showAffiliateDisclaimer={false} />
 
         {/* Hero image */}
         <div className="mb-10 overflow-hidden rounded-xl">
