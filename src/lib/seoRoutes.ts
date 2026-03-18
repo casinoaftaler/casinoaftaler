@@ -419,7 +419,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/highlights", changefreq: "daily", priority: 0.6, lastmod: "2026-03-05" },
 
   // ── Info & Ansvarligt Spil ──
-  { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-07" },
+  { path: "/ansvarligt-spil", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-18" },
   { path: "/ansvarligt-spil/rofus", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ansvarligt-spil/ludomani", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
   { path: "/ansvarligt-spil/stopspillet", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-07" },
