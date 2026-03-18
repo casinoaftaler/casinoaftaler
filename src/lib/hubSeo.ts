@@ -121,7 +121,7 @@ export function buildSlotDatabaseSearchParams(state: SlotHubState): URLSearchPar
   }
 
   if (state.page > 1) {
-    params.set("side", String(state.page));
+    params.set("page", String(state.page));
   }
 
   return params;

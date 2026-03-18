@@ -132,20 +132,25 @@ export default function SlotDatabase() {
 
   const providers = useMemo(() => {
     if (!slots) return [];
-    const set = new Set(slots.map(s => s.provider).filter(p => p && p !== "Custom Slot" && p !== "Unknown"));
+    const set = new Set(slots.map((s) => s.provider).filter((p) => p && p !== "Custom Slot" && p !== "Unknown"));
     return Array.from(set).sort();
   }, [slots]);
+
+  const providerLookup = useMemo(
+    () => new Map(providers.map((provider) => [provider.trim().toLowerCase(), provider])),
+    [providers],
+  );
 
   const rawQuery = searchParams.get("q") ?? "";
   const rawProvider = searchParams.get("provider") ?? SLOT_DEFAULT_PROVIDER;
   const rawVolatility = searchParams.get("volatility") ?? SLOT_DEFAULT_VOLATILITY;
   const rawSort = searchParams.get("sort") ?? SLOT_DEFAULT_SORT;
-  const rawPage = normalizePositivePage(searchParams.get("side"));
+  const rawPage = normalizePositivePage(searchParams.get("page") ?? searchParams.get("side"));
 
   const searchQuery = rawQuery;
-  const providerFilter = rawProvider === SLOT_DEFAULT_PROVIDER || providers.length === 0 || providers.includes(rawProvider)
-    ? rawProvider
-    : SLOT_DEFAULT_PROVIDER;
+  const providerFilter = rawProvider === SLOT_DEFAULT_PROVIDER
+    ? SLOT_DEFAULT_PROVIDER
+    : providerLookup.get(rawProvider.trim().toLowerCase()) ?? SLOT_DEFAULT_PROVIDER;
   const volatilityFilter = SLOT_VOLATILITY_OPTIONS.includes(rawVolatility as typeof SLOT_VOLATILITY_OPTIONS[number])
     ? rawVolatility
     : SLOT_DEFAULT_VOLATILITY;
