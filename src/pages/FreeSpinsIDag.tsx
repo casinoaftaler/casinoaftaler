@@ -267,8 +267,7 @@ const FreeSpinsIDag = () => {
 
   const getCasinoLogo = (slug: string) => casinos?.find(c => c.slug === slug)?.logo_url || null;
   const getCasinoAffiliate = (slug: string) => casinos?.find(c => c.slug === slug)?.affiliate_url || null;
-  const latestChecked = campaigns?.[0]?.last_checked;
-  const seoDateModified = pageMeta?.updated_at ?? latestChecked ?? getRouteLastmod("/free-spins-i-dag");
+  const seoDateModified = pageMeta?.updated_at ?? getRouteLastmod("/free-spins-i-dag");
   const displayedUpdateDate = seoDateModified
     ? format(new Date(seoDateModified), "d. MMMM yyyy", { locale: da })
     : null;

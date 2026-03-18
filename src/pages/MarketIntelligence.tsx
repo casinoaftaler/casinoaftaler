@@ -33,6 +33,7 @@ import {
   getMarketIntelligenceImpactVariant,
 } from "@/lib/marketIntelligence";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
+import { getRouteLastmod } from "@/lib/seoRoutes";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80";
 const heroAlt = "Markedsindsigt for danske casinoer med verificerede licenssignaler, compliance-data og bonusanalyse";
