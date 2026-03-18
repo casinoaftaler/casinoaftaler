@@ -52,7 +52,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Fibonacci-systemet i blackjack?",
     answer: (
       <>
-        Fibonacci-systemet er en negativ progressionsstrategi, hvor du øger din indsats efter tab baseret på Fibonacci-talrækken (1, 1, 2, 3, 5, 8, 13, 21...). Ved gevinst går du to trin tilbage i sekvensen. Det eskalerer langsommere end <Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale</Link> men har stadig negativ forventet værdi.
+        Fibonacci-systemet er en negativ progressionsstrategi, hvor du øger din indsats efter tab baseret på Fibonacci-talrækken (1, 1, 2, 3, 5, 8, 13, 21...). Ved gevinst går du to trin tilbage i sekvensen. Det eskalerer langsommere end <Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale</Link> men har stadig negativ forventet værdi.
       </>
     ),
   },

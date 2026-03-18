@@ -53,7 +53,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er D'Alembert-systemet i blackjack?",
     answer: (
       <>
-        D'Alembert er et lineært progressionssystem opkaldt efter den franske matematiker Jean le Rond d'Alembert (1717-1783). Du øger din indsats med én enhed efter tab og sænker med én enhed efter gevinst. Det er det mest konservative af de populære progressionssystemer – langt blødere end <Link to="/casinospil/blackjack/martingale-system" className={linkClass}>Martingale</Link>.
+        D'Alembert er et lineært progressionssystem opkaldt efter den franske matematiker Jean le Rond d'Alembert (1717-1783). Du øger din indsats med én enhed efter tab og sænker med én enhed efter gevinst. Det er det mest konservative af de populære progressionssystemer – langt blødere end <Link to="/casinospil/blackjack/martingale" className={linkClass}>Martingale</Link>.
       </>
     ),
   },
