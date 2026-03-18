@@ -244,12 +244,14 @@ export default function Statistik() {
   const seoTitle = `Bonus Hunt Statistik — ${archiveStats?.huntCount || "200+"} Hunts Analyseret`;
   const seoDesc = `Aggregeret data fra ${archiveStats?.huntCount || "200+"} dokumenterede bonus hunts og ${formatNumber(totalSlotsCatalog)} testede spillemaskiner. Historiske grafer, provider-rankings og top 10 slots baseret på reelle test-data.`;
 
+  const statistikLastmod = getRouteLastmod("/statistik");
+  const freshnessLabel = statistikLastmod ? formatLastmodDanish(statistikLastmod) : "løbende";
+
   const articleSchema = buildArticleSchema({
     headline: seoTitle,
     description: seoDesc,
     url: `${SITE_URL}/statistik`,
     datePublished: "2026-03-11",
-    dateModified: "2026-03-11",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
     about: [
