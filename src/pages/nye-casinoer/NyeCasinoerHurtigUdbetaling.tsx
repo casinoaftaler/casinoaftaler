@@ -78,7 +78,6 @@ const NyeCasinoerHurtigUdbetaling = () => {
     description: "Find nye casinoer med de hurtigste udbetalinger i Danmark. Instant withdrawals via Trustly, MobilePay og mere.",
     url: `${SITE_URL}/nye-casinoer/hurtig-udbetaling`,
     datePublished: "2026-01-28",
-    dateModified: "2026-03-02",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -104,7 +103,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" readTime="18 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={hurtigUdbetalingHero} alt="Nye casinoer med hurtig udbetaling" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
