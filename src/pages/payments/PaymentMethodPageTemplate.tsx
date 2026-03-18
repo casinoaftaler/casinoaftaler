@@ -163,7 +163,6 @@ export function PaymentMethodPage({
     description: seoDescription,
     url: `${SITE_URL}${currentPath}`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-21",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
     about: [

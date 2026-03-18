@@ -132,7 +132,6 @@ export function ProviderPage({
     description: seoDescription,
     url: `${SITE_URL}${currentPath}`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-15",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
     about: [
