@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Helmet } from "react-helmet-async";
+import { SafeHelmet } from "@/lib/reactCompat";
 import { Play, Monitor, Video, MessageCircle, Calendar } from "lucide-react";
 import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
 import hunt4Thumbnail from "@/assets/bonus-hunt-4-thumbnail.png";

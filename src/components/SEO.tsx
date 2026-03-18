@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { SafeHelmet } from "@/lib/reactCompat";
 import { useLocation } from "react-router-dom";
 import { SITE_URL, SITE_NAME, SITE_BRAND, getCanonicalUrl } from "@/lib/seo";
 import { buildBreadcrumbListSchema } from "@/lib/breadcrumbs";
