@@ -76,7 +76,6 @@ const articleSchema = buildArticleSchema({
   headline: "Poker Strategi 2026 – EV-modeller, Positionsspil & Bankroll Management",
   description: "Avanceret dansk poker strategi-guide. Lær positionsspil, pot odds, implied odds, GTO-koncepter og bankroll management.",
   datePublished: "2026-03-02",
-  dateModified: "2026-03-02",
   url: `${SITE_URL}/casinospil/poker/poker-strategi`,
   image: `${SITE_URL}/og/poker-strategi.jpg`,
 });
@@ -97,7 +96,7 @@ export default function PokerStrategiGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Brain className="mr-1.5 h-3.5 w-3.5" /> Avanceret Strategi – Marts 2026
+              <Brain className="mr-1.5 h-3.5 w-3.5" /> Avanceret strategi
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Poker Strategi – EV-modeller, Positionsspil & Bankroll Management
@@ -110,7 +109,7 @@ export default function PokerStrategiGuide() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="60 Min." />
+        <AuthorMetaBar author="jonas" readTime="60 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Professionel poker-spiller analyserer hånd med matematiske overlays" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

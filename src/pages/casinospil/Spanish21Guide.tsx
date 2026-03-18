@@ -80,7 +80,6 @@ const Spanish21Guide = () => {
     description: "Komplet guide til Spanish 21: bonusregler, manglende 10'ere, strategiændringer og sammenligning med andre blackjack-varianter.",
     url: `${SITE_URL}/casinospil/blackjack/spanish-21`,
     datePublished: "2026-03-02",
-    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -99,7 +98,7 @@ const Spanish21Guide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Variantguide · marts 2026
+              <Sparkles className="mr-1.5 h-3.5 w-3.5" /> Variantguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Spanish 21 – Bonusregler, Strategi og Hvornår Varianten Giver Mening
@@ -112,7 +111,7 @@ const Spanish21Guide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="17 Min." />
+        <AuthorMetaBar author="jonas" readTime="17 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Spanish 21 bord med markerede bonusregler og blackjack-kort" width={1920} height={600} className="h-auto max-h-[400px] w-full object-cover" loading="eager" />
