@@ -38,7 +38,7 @@ import { FilterTabs } from "@/components/FilterTabs";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { getTodayDanish } from "@/lib/danishDate";
+import { getRouteLastmod } from "@/lib/seoRoutes";
 import { Separator } from "@/components/ui/separator";
 
 const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"];
