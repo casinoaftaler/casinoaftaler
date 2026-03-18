@@ -1,7 +1,6 @@
 import { defineConfig, type Plugin } from "vite";
 import path from "path";
 import fs from "fs";
-import { componentTagger } from "lovable-tagger";
 
 const SITE_URL = "https://casinoaftaler.dk";
 const SUPABASE_URL = "https://zhpbqqhtgnblaugrqhqi.supabase.co";
