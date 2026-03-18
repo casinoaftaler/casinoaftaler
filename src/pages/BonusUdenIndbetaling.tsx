@@ -122,7 +122,6 @@ const BonusUdenIndbetaling = () => {
     description: "Komplet teknisk guide til bonus uden indbetaling hos danske casinoer. EV-analyse, regneeksempler, strategier og juridisk perspektiv.",
     url: `${SITE_URL}/bonus-uden-indbetaling`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-20",
     videoId: "XhbLda1HyOs",
   });
 

@@ -118,7 +118,6 @@ const BonusUdenOmsaetningskrav = () => {
     description: "Alt om bonusser uden omsætningskrav på danske casinoer. EV-analyse, regneeksempler, sammenligning og strategier.",
     url: `${SITE_URL}/bonus-uden-omsaetningskrav`,
     datePublished: "2025-06-01",
-    dateModified: "2026-02-20",
     videoId: "7JQ3nFTasoQ",
   });
 
