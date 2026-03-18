@@ -209,15 +209,12 @@ const bonusBuyFaqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const BonusBuysGuide = () => {
-  const currentDate = new Date().toISOString().split("T")[0];
-
   const faqJsonLd = buildFaqSchema(bonusBuyFaqs);
   const articleSchema = buildArticleSchema({
     headline: "Bonus Buys – Guide, Matematik & Bedste Slots",
     description: "Komplet guide til bonus buy i spillemaskiner. Lær matematikken bag buy feature, sammenlign RTP, og find de bedste slots med bonus buy i Danmark.",
     url: `${SITE_URL}/casinospil/spillemaskiner/bonus-buys`,
     datePublished: "2026-02-19",
-    dateModified: currentDate,
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

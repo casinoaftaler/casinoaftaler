@@ -70,7 +70,6 @@ const SweetBonanzaGuide = () => {
     description: "Dybdegående analyse af Sweet Bonanza: RTP-varianter, EV-beregninger, multiplikator-matematik og bonusrunde-statistik.",
     url: `${SITE_URL}/casinospil/spillemaskiner/sweet-bonanza`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

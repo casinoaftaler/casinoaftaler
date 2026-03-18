@@ -64,7 +64,6 @@ const StarburstGuide = () => {
     description: "Dybdegående analyse af NetEnts Starburst: RTP, volatilitet, wagering-egnethed og sammenligning med moderne slots.",
     url: `${SITE_URL}/casinospil/spillemaskiner/starburst`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });

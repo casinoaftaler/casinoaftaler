@@ -98,7 +98,6 @@ const WolfGoldGuide = () => {
     description: "Komplet analyse af Wolf Gold: Money Respin-jackpot, free spins med Mega Symbols, RTP 96,01 %, volatilitetsprofil og EV-vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/wolf-gold`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
