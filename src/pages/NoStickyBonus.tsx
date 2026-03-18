@@ -220,6 +220,8 @@ const NoStickyBonus = () => {
 
         <InlineCasinoCards title="Bedste casinoer med No-Sticky Bonus" count={6} />
 
+        <BonusClusterPriorityLinks currentPath="/no-sticky-bonus" />
+
         <Separator className="my-10" />
 
         {/* ===== S2: Mekanisk breakdown ===== */}
