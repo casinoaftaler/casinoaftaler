@@ -39,7 +39,15 @@ const WantedDeadOrAWildGuide = () => {
     datePublished: "2026-02-18",
     authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
-...
+
+  return (
+    <>
+      <SEO
+        title="Wanted Dead or a Wild – RTP, duel og max win"
+        description="Komplet analyse af Wanted Dead or a Wild: Duel at Dawn-mekanik, 96,38 % RTP, ekstremt høj volatilitet og 12.500× max win."
+        canonical={`${SITE_URL}/casinospil/spillemaskiner/wanted-dead-or-a-wild`}
+        jsonLd={[articleSchema, faqJsonLd]}
+      />
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="17 min" />
         <div className="mb-10 overflow-hidden rounded-xl">

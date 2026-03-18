@@ -85,7 +85,17 @@ const MoneyTrain3Guide = () => {
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
-...
+
+  return (
+    <>
+      <SEO
+        title="Money Train 3 – RTP, bonus og max win"
+        description="Komplet analyse af Money Train 3: Money Cart-bonusrunde, max win 100.000×, RTP 96,10 %, volatilitetsprofil og strategisk EV-vurdering."
+        canonical={`${SITE_URL}/casinospil/spillemaskiner/money-train-3`}
+        jsonLd={[articleSchema, faqJsonLd]}
+      />
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
+        <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Bonusmekanik & high volatility</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Money Train 3 – Max Win Analyse & Bonusmekanik</h1>

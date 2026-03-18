@@ -37,7 +37,15 @@ const JokerStrikeGuide = () => {
     datePublished: "2026-02-18",
     authorName: "Kevin", authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
-...
+
+  return (
+    <>
+      <SEO
+        title="Joker Strike – 98,11 % RTP og Hi Roller"
+        description="Komplet analyse af Joker Strike: 98,11 % RTP med Hi Roller, lav volatilitet, 456× max win og den mest effektive gennemspilningsslot."
+        canonical={`${SITE_URL}/casinospil/spillemaskiner/joker-strike`}
+        jsonLd={[articleSchema, faqJsonLd]}
+      />
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="14 min" />
         <div className="mb-10 overflow-hidden rounded-xl">

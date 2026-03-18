@@ -85,7 +85,17 @@ const TheDogHouseGuide = () => {
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
-...
+
+  return (
+    <>
+      <SEO
+        title="The Dog House – RTP, sticky wilds og bonus"
+        description="Komplet analyse af The Dog House: sticky wild-mekanik, multiplikator-system, RTP 96,51 %, volatilitetsprofil og EV-vurdering for danske spillere."
+        canonical={`${SITE_URL}/casinospil/spillemaskiner/the-dog-house`}
+        jsonLd={[articleSchema, faqJsonLd]}
+      />
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">
+        <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Sticky wilds & multiplikatorer</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">The Dog House – Sticky Wilds & Multiplikator-Analyse</h1>
