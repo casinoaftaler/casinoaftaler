@@ -125,18 +125,27 @@ function useCountUp(target: number, duration = 1200): number {
 }
 
 function timeAgo(dateStr: string): string {
-  const now = new Date();
   const date = new Date(dateStr);
+  if (Number.isNaN(date.getTime())) return "for nylig";
+
+  const now = new Date();
   const hrs = differenceInHours(now, date);
-  const mins = differenceInMinutes(now, date) % 60;
-  // Always show as fresh — never "i går"
-  if (hrs > 0) return `${Math.min(hrs, 23)} timer siden`;
-  if (mins < 2) return `Lige nu`;
-  return `${mins} min. siden`;
+  const mins = Math.max(0, differenceInMinutes(now, date) % 60);
+
+  if (hrs < 1) {
+    if (mins < 2) return "lige nu";
+    return `${mins} min. siden`;
+  }
+
+  if (hrs < 48) return `${hrs} timer siden`;
+
+  const days = Math.floor(hrs / 24);
+  return `${days} ${days === 1 ? "dag" : "dage"} siden`;
 }
 
-function getUpdateBadgeLabel(_dateStr: string | null | undefined): string {
-  return "Opdateret i dag";
+function getUpdateBadgeLabel(dateStr: string | null | undefined): string {
+  if (!dateStr) return "Løbende verificeret";
+  return `Verificeret ${timeAgo(dateStr)}`;
 }
 
 function Countdown({ validUntil }: { validUntil: string }) {
