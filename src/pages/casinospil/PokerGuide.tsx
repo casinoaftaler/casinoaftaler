@@ -153,7 +153,7 @@ const PokerGuide = () => {
       "Komplet cornerstone poker-guide: Texas Hold'em, Omaha, Video Poker, håndrangeringer, pot odds, varians, rake-analyse og dansk regulering. Hub for alle poker-guides.",
     url: `${SITE_URL}/casinospil/poker`,
     datePublished: "2026-02-15",
-    dateModified: "2026-03-02",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
