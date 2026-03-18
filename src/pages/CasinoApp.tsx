@@ -136,7 +136,6 @@ const CasinoApp = () => {
       "Alt om casino apps: Download, sikkerhed, spiludvalg, iOS vs. Android, PWA vs. native app, og de bedste casino apps med dansk licens. Komplet guide.",
     url: `${SITE_URL}/casino-app`,
     datePublished: "2026-03-07",
-    dateModified: "2026-03-07",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -198,7 +197,7 @@ const CasinoApp = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-07" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" readTime="25 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Testet og skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
         </p>

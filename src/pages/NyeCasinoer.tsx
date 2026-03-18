@@ -165,7 +165,6 @@ const NyeCasinoer = () => {
     description: "Danmarks mest dybdegående guide til nye casinoer. Testet med rigtige penge, dansk licens, bonusanalyse og matematisk EV-beregning.",
     url: `${SITE_URL}/nye-casinoer`,
     datePublished: "2025-06-01",
-    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -208,7 +207,7 @@ const NyeCasinoer = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret {getDanishMonthYear()}
+              Nye casinoer guide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Nye Casinoer i Danmark
@@ -221,7 +220,7 @@ const NyeCasinoer = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="38 Min." />
+        <AuthorMetaBar author="jonas" readTime="38 Min." />
         
 
         <div className="mb-10 overflow-hidden rounded-xl">

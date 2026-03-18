@@ -180,7 +180,6 @@ export default function CommunityHub() {
     description: "Spil gratis slots, deltag i turneringer og optjen points i Casinoaftaler.dk's community.",
     url: `${SITE_URL}/community`,
     datePublished: "2026-01-15",
-    dateModified: "2026-03-05",
   });
 
   return (

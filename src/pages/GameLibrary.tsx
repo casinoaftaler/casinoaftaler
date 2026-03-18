@@ -106,7 +106,6 @@ export default function GameLibrary() {
           description: "Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin. Optjen points og konkurrér mod andre spillere.",
           url: `${SITE_URL}/community/slots`,
           datePublished: "2026-01-15",
-          dateModified: "2026-02-22",
         })]}
       />
       <PageBackground />

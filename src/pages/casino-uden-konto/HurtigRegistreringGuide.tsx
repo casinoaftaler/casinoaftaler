@@ -100,7 +100,6 @@ const HurtigRegistreringGuide = () => {
     description: "Detaljeret sammenligning af registreringsmetoder på danske casinoer: Pay N Play, MitID og standard email. Tidstest-data, scenarieanalyser og EV-model for tidsbesparelse.",
     url: `${SITE_URL}/casino-uden-konto/hurtig-registrering`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
@@ -132,7 +131,7 @@ const HurtigRegistreringGuide = () => {
       </div>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="2026-03-08" readTime="30 Min." />
+        <AuthorMetaBar author="kevin" readTime="30 Min." />
 
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">

@@ -91,7 +91,6 @@ const LiveCasinoUdbydereGuide = () => {
     description: "Komplet guide til live casino-udbydere 2026. Evolution Gaming, Pragmatic Play Live, Playtech og Ezugi sammenlignet. Teknologi, studier, spil og licensering.",
     url: `${SITE_URL}/live-casino/udbydere`,
     datePublished: "2026-03-16",
-    dateModified: "2026-03-16",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -119,7 +118,7 @@ const LiveCasinoUdbydereGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Marts 2026
+              Udbyderguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Live Casino Udbydere – Evolution, Pragmatic Play & Mere
@@ -132,7 +131,7 @@ const LiveCasinoUdbydereGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="16-03-2026" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" readTime="26 Min." />
 
         <GuideHeroImage src={liveCasinoUdbydereHero} alt="Live casino studie med multiple skærme der viser live dealer streams fra Evolution Gaming og andre udbydere" />
 

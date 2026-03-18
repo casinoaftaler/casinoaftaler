@@ -67,7 +67,7 @@ const SpilleautomatenAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(spilleautomatenFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus & Præmieshop", description: "Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. over 5 dage, 10x omsætning, Præmieshop og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "L5JtdRVTNwk", ...casinoReviewEntities("Spilleautomaten", "spilleautomaten") });
+  const articleSchema = buildArticleSchema({ headline: "Spilleautomaten Anmeldelse 2026 – 5-Dages Bonus & Præmieshop", description: "Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. over 5 dage, 10x omsætning, Præmieshop og hurtige udbetalinger.", url: "https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "L5JtdRVTNwk", ...casinoReviewEntities("Spilleautomaten", "spilleautomaten") });
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Spilleautomaten", itemUrl: "https://www.spilleautomaten.dk", ratingValue: "4.8", ratingCount: "203", reviewBody: "Spilleautomaten er et dansk slots-specialiseret casino med 5-dages velkomstbonus op til 1.000 kr., 10x omsætning, Præmieshop med kontante præmier, 2.000+ spilleautomater og hurtige MobilePay-udbetalinger." });
   const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten", "L5JtdRVTNwk", { title: "Spilleautomaten Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Spilleautomaten ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features.", uploadDate: "2026-02-18", duration: "PT2M" });
@@ -124,7 +124,7 @@ const SpilleautomatenAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="34 Min." />
 
         <CasinoReviewHero slug="spilleautomaten" casinoName="Spilleautomaten" />
 

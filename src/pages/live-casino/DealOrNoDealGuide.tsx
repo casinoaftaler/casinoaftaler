@@ -76,7 +76,6 @@ const DealOrNoDealGuide = () => {
     description: "Alt om Deal or No Deal Live: RTP, kvalifikationsrunde, bankierens tilbuds-matematik, prospect theory og EV-analyse. Det interaktive live game show analyseret.",
     url: `${SITE_URL}/live-casino/deal-or-no-deal`,
     datePublished: "2026-03-08",
-    dateModified: "2026-03-08",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -115,7 +114,7 @@ const DealOrNoDealGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-03-08" readTime="28 min" />
+        <AuthorMetaBar author="jonas" readTime="28 min" />
         <GuideHeroImage src={dealOrNoDealHero} alt="Deal or No Deal Live casino game show med kufferter og bankier" />
 
         {/* ── H2 1 ── */}

@@ -49,11 +49,9 @@ const BetanoAnmeldelse = () => {
       "Kritisk anmeldelse af Betano i Danmark. Kaizen Gaming-ejet platform med casino, sportsbook og avanceret teknologi testet i detaljer.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/betano",
     datePublished: "2026-02-15",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     videoId: "Uu3NBZzt-Sk",
-    
     ...casinoReviewEntities("Betano", "betano"),
   });
 
@@ -99,7 +97,7 @@ const BetanoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="34 Min." />
         <CasinoReviewHero slug="betano" casinoName="Betano" />
 
         {/* Hurtige fakta */}

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema } from "@/lib/seo";
+import { getRouteLastmod } from "@/lib/seoRoutes";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -35,6 +36,7 @@ const Privacy = () => {
   const heroBackgroundImage = siteSettings?.hero_background;
 
   const faqJsonLd = buildFaqSchema(privacyFaqs);
+  const routeLastmod = getRouteLastmod("/privatlivspolitik");
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -44,7 +46,7 @@ const Privacy = () => {
     author: { "@type": "Organization", name: "Casinoaftaler" },
     publisher: { "@type": "Organization", name: "Casinoaftaler" },
     datePublished: "2025-12-01",
-    dateModified: "2026-02-14",
+    dateModified: routeLastmod,
     mainEntityOfPage: "https://casinoaftaler.dk/privatlivspolitik",
   };
 
@@ -84,7 +86,7 @@ const Privacy = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="redaktionen" date="14-02-2026" readTime="5 Min." showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="redaktionen" readTime="5 Min." showAffiliateDisclaimer={false} />
 
         {/* Hero image */}
         <div className="mb-10 overflow-hidden rounded-xl">

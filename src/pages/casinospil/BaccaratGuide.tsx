@@ -78,7 +78,6 @@ const BaccaratGuide = () => {
       "Matematisk analyse af baccarat: Banker vs Player edge, kommissionsberegning, varians, korttælling og high roller-perspektiv.",
     url: `${SITE_URL}/casinospil/baccarat`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -101,7 +100,7 @@ const BaccaratGuide = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Brain className="mr-1.5 h-3.5 w-3.5" /> Matematik · Februar 2026
+              <Brain className="mr-1.5 h-3.5 w-3.5" /> Matematik · Analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Baccarat – House Edge, Banker-Fordel og Matematisk Analyse
@@ -115,7 +114,7 @@ const BaccaratGuide = () => {
 
       {/* ── BODY ── */}
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" readTime="25 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

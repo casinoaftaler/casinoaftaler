@@ -87,7 +87,6 @@ const BwinAnmeldelse = () => {
     description: "Dybdegående anmeldelse af bwin Danmark. Sportsvæddemål, casino og poker fra en af Europas største gambling-operatører.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/bwin",
     datePublished: "2026-02-15",
-    dateModified: "2026-02-17",
     authorName: "Jonas",
     authorUrl: "https://casinoaftaler.dk/forfatter/jonas",
     ...casinoReviewEntities("bwin", "bwin"),
@@ -130,7 +129,7 @@ const BwinAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="33 Min." />
+        <AuthorMetaBar author="jonas" readTime="33 Min." />
         <CasinoReviewHero slug="bwin" casinoName="bwin" />
 
         {/* Quick Facts */}

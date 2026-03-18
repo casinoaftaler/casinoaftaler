@@ -13,7 +13,7 @@ const pokerstarsFaqs: { question: string; answer: ReactNode }[] = [
 const PokerStarsAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "PokerStars Anmeldelse 2026 – Verdens Største Poker-Platform", description: "Dybdegående anmeldelse af PokerStars Casino. Dansk licens, poker, casino og sportsvæddemål fra verdens førende poker-brand.", url: "https://casinoaftaler.dk/casino-anmeldelser/pokerstars", datePublished: "2026-02-15", dateModified: "2026-02-18", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", ...casinoReviewEntities("PokerStars", "pokerstars") });
+  const articleSchema = buildArticleSchema({ headline: "PokerStars Anmeldelse 2026 – Verdens Største Poker-Platform", description: "Dybdegående anmeldelse af PokerStars Casino. Dansk licens, poker, casino og sportsvæddemål fra verdens førende poker-brand.", url: "https://casinoaftaler.dk/casino-anmeldelser/pokerstars", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", ...casinoReviewEntities("PokerStars", "pokerstars") });
   const faqJsonLd = buildFaqSchema(pokerstarsFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "PokerStars", itemUrl: "https://www.pokerstars.dk/", ratingValue: "4.2", ratingCount: "172", reviewBody: "PokerStars er verdens førende poker-platform med uovertruffen software, massivt turneringsudvalg og et voksende casino-produkt under Flutter Entertainment." });
   return (
@@ -27,7 +27,7 @@ const PokerStarsAnmeldelse = () => {
         </div></div>
       </section>
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="36 Min." />
         <CasinoReviewHero slug="pokerstars" casinoName="PokerStars" />
 
         {/* Hurtige Fakta */}
