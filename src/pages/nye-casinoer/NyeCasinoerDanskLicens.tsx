@@ -70,7 +70,6 @@ const NyeCasinoerDanskLicens = () => {
     description: "Find nye casinoer med gyldig dansk licens fra Spillemyndigheden. Sikre spillesteder med skattefri gevinster og ROFUS-tilslutning.",
     url: `${SITE_URL}/nye-casinoer/dansk-licens`,
     datePublished: "2026-01-20",
-    dateModified: "2026-03-02",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -96,7 +95,7 @@ const NyeCasinoerDanskLicens = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" readTime="20 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={danskLicensHero} alt="Nye casinoer med dansk licens fra Spillemyndigheden" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

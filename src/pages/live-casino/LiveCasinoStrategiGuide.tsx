@@ -95,7 +95,6 @@ const LiveCasinoStrategiGuide = () => {
     description: "Komplet live casino strategi guide 2026. House edge-analyse, bankroll management, betting-systemer og session management for danske spillere.",
     url: `${SITE_URL}/live-casino/strategi`,
     datePublished: "2026-03-16",
-    dateModified: "2026-03-16",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });

@@ -69,7 +69,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const NyeCasinoerLavWagering = () => {
-  const articleSchema = buildArticleSchema({ headline: "Nye Casinoer med Lav Wagering 2026", description: "Find nye casinoer med lave omsætningskrav. Casino-specifik sammenligning med EV-modeller og spilbidragsanalyse.", url: `${SITE_URL}/nye-casinoer/lav-wagering`, datePublished: "2026-02-08", dateModified: "2026-02-16", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Nye Casinoer med Lav Wagering 2026", description: "Find nye casinoer med lave omsætningskrav. Casino-specifik sammenligning med EV-modeller og spilbidragsanalyse.", url: `${SITE_URL}/nye-casinoer/lav-wagering`, datePublished: "2026-02-08", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
   const faqSchema = buildFaqSchema(faqs);
 
   return (
@@ -85,7 +85,7 @@ const NyeCasinoerLavWagering = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="16-02-2026" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" readTime="20 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={lavWageringHero} alt="Nye casinoer med lave omsætningskrav" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

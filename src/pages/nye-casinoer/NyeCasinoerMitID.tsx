@@ -37,7 +37,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const NyeCasinoerMitID = () => {
-  const articleSchema = buildArticleSchema({ headline: "Nye Casinoer med MitID – Sikker Verifikation 2026", description: "Nye casinoer med hurtig MitID-verifikation. Opret konto på under 2 minutter hos nye danske spillesteder.", url: `${SITE_URL}/nye-casinoer/mitid`, datePublished: "2026-02-05", dateModified: "2026-02-21", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
+  const articleSchema = buildArticleSchema({ headline: "Nye Casinoer med MitID – Sikker Verifikation 2026", description: "Nye casinoer med hurtig MitID-verifikation. Opret konto på under 2 minutter hos nye danske spillesteder.", url: `${SITE_URL}/nye-casinoer/mitid`, datePublished: "2026-02-05", authorName: "Jonas", authorUrl: `${SITE_URL}/forfatter/jonas` });
   const faqSchema = buildFaqSchema(faqs);
 
   const howToSchema = {
@@ -68,7 +68,7 @@ const NyeCasinoerMitID = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="16-02-2026" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" readTime="18 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={mitidHero} alt="MitID verifikation hos nye casinoer" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
