@@ -82,7 +82,7 @@ export default function FranskRouletteGuide() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Crown className="mr-1.5 h-3.5 w-3.5" /> Dybdegående Analyse – Marts 2026
+              <Crown className="mr-1.5 h-3.5 w-3.5" /> Dybdegående analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Fransk Roulette – La Partage og Den Laveste House Edge i Roulette
