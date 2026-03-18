@@ -78,30 +78,14 @@ const LegacyOfDeadGuide = () => {
     description: "Dybdegående analyse af Legacy of Dead: progressivt expanding symbol-system, sammenligning med Book of Dead, RTP 96,58 % og EV-beregninger.",
     url: `${SITE_URL}/casinospil/spillemaskiner/legacy-of-dead`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
-  const videoJsonLd = buildVideoSchema(`${SITE_URL}/casinospil/spillemaskiner/legacy-of-dead`, "Ss2ZRXT0jCI", {
-    title: "Legacy of Dead gennemgang – Progressiv expanding symbol forklaret",
-    description: "Se en komplet gennemgang af Legacy of Dead: det progressive expanding symbol-system, retriggers og RTP 96,58 % forklaret i praksis.",
-    uploadDate: "2026-03-07",
-    duration: "PT1M41S",
-  });
-
-  return (
-    <>
-      <SEO
-        title="Legacy of Dead – Expanding Symbols & RTP"
-        description="Komplet analyse af Legacy of Dead: progressivt expanding symbol-system, RTP 96,58 %, sammenligning med Book of Dead og EV-beregninger."
-        jsonLd={[faqJsonLd, articleSchema, videoJsonLd]}
-      />
-
-      {/* ── HERO ── */}
+...
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Progressiv bonusmekanik</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Legacy of Dead – Progressiv Expanding Symbol-Analyse</h1>
             <p className="text-lg text-white/80">Play'n GO's evolution af Book of Dead-formlen: hvordan det progressive expanding symbol-system transformerer en velkendt mekanik til en matematisk overlegen oplevelse.</p>
           </div>
@@ -109,7 +93,7 @@ const LegacyOfDeadGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-02-18" readTime="19 min" />
+        <AuthorMetaBar author="jonas" readTime="19 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Legacy of Dead spillemaskine" loading="eager" />
         </div>

@@ -82,42 +82,12 @@ const MoneyTrain3Guide = () => {
     description: "Komplet analyse af Money Train 3: Money Cart-bonusrunde, max win 100.000×, RTP 96,10 %, volatilitetsprofil og strategisk EV-vurdering.",
     url: `${SITE_URL}/casinospil/spillemaskiner/money-train-3`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
-  const videoJsonLd = buildVideoSchema(`${SITE_URL}/casinospil/spillemaskiner/money-train-3`, "f9GAKjf63uo", {
-    title: "Money Train 3 gennemgang – Money Cart-bonus og max win forklaret",
-    description: "Se en komplet gennemgang af Money Train 3: Money Cart-bonusrunden, modifiers og 100.000x max win forklaret i praksis.",
-    uploadDate: "2026-03-07",
-    duration: "PT3M16S",
-  });
-
-  const howToJsonLd = buildHowToSchema({
-    name: "Sådan spiller du Money Train 3",
-    pageUrl: `${SITE_URL}/casinospil/spillemaskiner/money-train-3`,
-    steps: [
-      { name: "Vælg indsats", text: "Indstil din indsats fra 0,10 til 200 kr. pr. spin." },
-      { name: "Spin hjulene", text: "Tryk spin og observer bonus-symboler på det 4×5 grid." },
-      { name: "Aktivér Money Cart", text: "Land 3+ bonus-symboler for at starte Money Cart-bonusrunden med respins." },
-      { name: "Saml modifiers", text: "Under Money Cart udvides griddet til 4×7 og hvert nyt symbol nulstiller respins." },
-      { name: "Udbetal gevinst", text: "Hæv din gevinst sikkert via Trustly, bankoverførsel eller din foretrukne metode." },
-    ],
-  });
-
-  return (
-    <>
-      <SEO
-        title="Money Train 3 – Max Win & Bonusanalyse"
-        description="Dybdegående analyse af Money Train 3: Money Cart-bonusrunde, 100.000× max win, RTP 96,10 %, volatilitet og EV-beregninger for danske spillere."
-        jsonLd={[faqJsonLd, articleSchema, howToJsonLd, videoJsonLd]}
-      />
-
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
-        <div className="container">
+...
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Bonusmekanik & high volatility</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Money Train 3 – Max Win Analyse & Bonusmekanik</h1>
             <p className="text-lg text-white/80">Relax Gamings flagskib med 100.000× max win: en matematisk dekonstruktion af Money Cart-bonusrunden, persistent modifiers og den reelle sandsynlighed for store gevinster.</p>
           </div>
@@ -125,7 +95,7 @@ const MoneyTrain3Guide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="2026-02-18" readTime="20 min" />
+        <AuthorMetaBar author="jonas" readTime="20 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Money Train 3 spillemaskine" loading="eager" />
         </div>
