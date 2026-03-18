@@ -90,42 +90,12 @@ const ReactoonzGuide = () => {
     description: "Dybdegående analyse af Reactoonz: cluster pays-mekanik, Quantum-funktioner, RTP 96,51 %, volatilitetsprofil og EV-beregninger for danske spillere.",
     url: `${SITE_URL}/casinospil/spillemaskiner/reactoonz`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Kevin",
     authorUrl: `${SITE_URL}/forfatter/kevin`,
   });
-  const videoJsonLd = buildVideoSchema(`${SITE_URL}/casinospil/spillemaskiner/reactoonz`, "ybFWBECwKbo", {
-    title: "Reactoonz gennemgang – Cluster pays og Quantum-features forklaret",
-    description: "Se en komplet gennemgang af Reactoonz: cluster pays-mekanikken, Quantum-features og Gargantoon forklaret i praksis.",
-    uploadDate: "2026-03-07",
-    duration: "PT0M57S",
-  });
-
-  const howToJsonLd = buildHowToSchema({
-    name: "Sådan spiller du Reactoonz",
-    pageUrl: `${SITE_URL}/casinospil/spillemaskiner/reactoonz`,
-    steps: [
-      { name: "Vælg indsats", text: "Juster din indsats fra 0,20 til 960 kr. pr. spin." },
-      { name: "Spin griddet", text: "Tryk spin og observer cluster-kombinationer på det 7×7 grid." },
-      { name: "Opbyg Quantum-meter", text: "Cascade-gevinster fylder de fire Quantum-meters, der udløser specielle funktioner." },
-      { name: "Aktivér Gargantoon", text: "Fyld alle fire meters for at udløse det massive 3×3 wild-symbol." },
-      { name: "Udbetal gevinst", text: "Hæv din saldo hurtigt via Trustly, bankoverførsel eller andre godkendte metoder." },
-    ],
-  });
-
-  return (
-    <>
-      <SEO
-        title="Reactoonz Spilleautomat – RTP 96,51% & Cluster Pays"
-        description="Komplet analyse af Reactoonz: cluster pays-mekanik, Quantum-system, RTP 96,51 %, volatilitetsprofil og strategisk EV-vurdering for danske spillere."
-        jsonLd={[faqJsonLd, articleSchema, howToJsonLd, videoJsonLd]}
-      />
-
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
-        <div className="container">
+...
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Opdateret Februar 2026</Badge>
+            <Badge variant="secondary" className="mb-4"><Sparkles className="mr-1.5 h-3.5 w-3.5" /> Cluster pays & Quantum-system</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Reactoonz – Cluster Pays Analyse & Volatilitetsprofil</h1>
             <p className="text-lg text-white/80">En matematisk gennemgang af Play'n GO's ikoniske 7×7 cluster pays-slot: Quantum-funktioner, kædegevinster og hvornår Gargantoon reelt leverer værdi.</p>
           </div>
@@ -133,7 +103,7 @@ const ReactoonzGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="2026-02-18" readTime="20 min" />
+        <AuthorMetaBar author="kevin" readTime="20 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Reactoonz spillemaskine" loading="eager" />
         </div>
