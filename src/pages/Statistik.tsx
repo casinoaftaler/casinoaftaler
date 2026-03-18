@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useBonusHuntArchives, useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
+import { formatLastmodDanish, getRouteLastmod } from "@/lib/seoRoutes";
 import {
   BarChart3, TrendingUp, Trophy, Gamepad2, Database,
   Target, ArrowRight, ExternalLink, BookOpen, ShieldCheck,
