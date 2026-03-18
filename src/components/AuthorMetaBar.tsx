@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -69,12 +69,6 @@ const authorConfig = {
 interface AuthorMetaBarProps {
   author: "jonas" | "kevin" | "ajse" | "niklas" | "redaktionen";
   /**
-   * Display date. If omitted, automatically reads from seoRoutes.ts lastmod.
-   * Accepts ISO (YYYY-MM-DD), DD-MM-YYYY, or Danish text format.
-   * @deprecated Prefer omitting this prop to use the centralized seoRoutes lastmod.
-   */
-  date?: string;
-  /**
    * @deprecated Read time is now auto-calculated from page content.
    * This prop is ignored – kept only for backwards compatibility.
    */
@@ -86,55 +80,27 @@ interface AuthorMetaBarProps {
   factCheckBy?: "jonas" | "kevin" | "ajse" | "niklas";
 }
 
-export function AuthorMetaBar({ author, date, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true, factCheckBy }: AuthorMetaBarProps) {
+export function AuthorMetaBar({ author, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true, factCheckBy }: AuthorMetaBarProps) {
   const { pathname } = useLocation();
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
   const autoReadTime = useAutoReadTime();
-  const hasWarnedLegacyDateRef = useRef(false);
 
   // Fetch dynamic date from DB (single source of truth)
   const { data: dbMeta } = usePageLastmod(pathname);
 
-  // Resolve display date: prefer DB (dynamic), then seoRoutes (static fallback), then prop (legacy)
+  // Resolve display date: prefer DB (dynamic), then seoRoutes (static fallback)
   const routeMeta = getRouteMetadata(pathname);
   const shouldShowDate = dbMeta?.show_updated_date ?? routeMeta?.showUpdatedDate !== false;
 
-  useEffect(() => {
-    if (
-      import.meta.env.DEV &&
-      date &&
-      !hasWarnedLegacyDateRef.current &&
-      (Boolean(dbMeta?.updated_at) || Boolean(routeMeta?.lastmod))
-    ) {
-      console.warn(
-        `[AuthorMetaBar] Ignoring legacy date prop ("${date}") on ${pathname}; using centralized lastmod source instead.`
-      );
-      hasWarnedLegacyDateRef.current = true;
-    }
-  }, [date, dbMeta?.updated_at, routeMeta?.lastmod, pathname]);
-
   const displayDate = useMemo(() => {
-    // 1. DB date is the authoritative source (dynamic)
     if (dbMeta?.updated_at) {
       return formatTimestampDanish(dbMeta.updated_at);
     }
-    // 2. seoRoutes lastmod (static fallback)
     if (routeMeta?.lastmod) {
       return formatLastmodDanish(routeMeta.lastmod);
     }
-    // 3. Legacy date prop
-    if (date) {
-      if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-        return formatLastmodDanish(date);
-      }
-      if (/^\d{2}-\d{2}-\d{4}$/.test(date)) {
-        const [d, m, y] = date.split("-");
-        return formatLastmodDanish(`${y}-${m}-${d}`);
-      }
-      return date;
-    }
     return null;
-  }, [dbMeta?.updated_at, routeMeta?.lastmod, date]);
+  }, [dbMeta?.updated_at, routeMeta?.lastmod]);
 
   return (
     <>

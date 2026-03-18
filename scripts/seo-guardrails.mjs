@@ -1,29 +1,12 @@
 import fs from "fs";
 import path from "path";
+import { getApprovedDynamicDateModifiedPatternsForFile } from "../src/lib/seoDatePolicy.js";
 
 const ROOT = process.cwd();
 const SCAN_DIRS = [path.join(ROOT, "src"), path.join(ROOT, "scripts")];
 
 const IGNORE_DIRS = new Set(["node_modules", "dist", ".git"]);
 const FILE_EXT = /\.(ts|tsx|mjs)$/;
-const APPROVED_DYNAMIC_DATE_MODIFIED = {
-  [path.join("src", "pages", "MarketIntelligence.tsx")]: [
-    /\bdateModified\s*:\s*dateModified\b/,
-    /\bdateModified\s*=\s*\{dateModified\}/,
-  ],
-  [path.join("src", "pages", "FreeSpinsIDag.tsx")]: [
-    /\bdateModified\s*:\s*seoDateModified\b/,
-    /\bdateModified\s*=\s*\{seoDateModified\}/,
-  ],
-  [path.join("src", "pages", "CasinoNyhedArticle.tsx")]: [
-    /\bdateModified\s*:\s*article\.updated_at\b/,
-    /\bdateModified\s*=\s*\{article\.updated_at\}/,
-  ],
-  [path.join("src", "pages", "SlotCatalogPage.tsx")]: [
-    /\bdateModified\s*:\s*slotDateModified\b/,
-    /\bdateModified\s*=\s*\{slotDateModified\}/,
-  ],
-};
 
 /** @typedef {{file: string; line: number; type: string; snippet: string}} Violation */
 
@@ -82,7 +65,7 @@ function scanPattern(file, originalContent, content, regex, type) {
 function scanDateModifiedGovernance(file, originalContent, content, relativeFile) {
   if (relativeFile === path.join("src", "lib", "seo.ts")) return;
 
-  const allowedPatterns = APPROVED_DYNAMIC_DATE_MODIFIED[relativeFile] || [];
+  const allowedPatterns = getApprovedDynamicDateModifiedPatternsForFile(relativeFile);
   const regex = /\bdateModified\s*:\s*[^,\n}]+|\bdateModified\s*=\s*\{[^}]+\}/g;
   let m;
 
@@ -124,8 +107,24 @@ function scanFile(file) {
     file,
     originalContent,
     content,
-    /<AuthorMetaBar\b[^>]*\bdate\s*=/g,
-    "AuthorMetaBar date prop is forbidden (remove legacy date ownership from UI)"
+    /<AuthorMetaBar\b[^>]*\bdate\s*=\s*(?:"[^"]+"|'[^']+')/g,
+    "AuthorMetaBar literal date prop is forbidden"
+  );
+
+  scanPattern(
+    file,
+    originalContent,
+    content,
+    /<AuthorMetaBar\b[^>]*\bdate\s*=\s*\{\s*(?:"[^"]+"|'[^']+')\s*\}/g,
+    "AuthorMetaBar literal date prop is forbidden"
+  );
+
+  scanPattern(
+    file,
+    originalContent,
+    content,
+    /buildArticleSchema\s*\([\s\S]{0,400}?\bdateModified\s*:\s*(?:"\d{4}-\d{2}-\d{2}(?:T[^"]*)?"|'\d{4}-\d{2}-\d{2}(?:T[^']*)?')/g,
+    "buildArticleSchema literal dateModified is forbidden"
   );
 
   scanPattern(
