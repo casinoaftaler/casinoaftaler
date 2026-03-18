@@ -14,6 +14,7 @@ import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
+import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { type ReactNode } from "react";
 import casinoBonusHero from "@/assets/heroes/casino-bonus-hero.jpg";
