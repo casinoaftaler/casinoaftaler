@@ -695,7 +695,7 @@ const App = () => (
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
-  </HelmetProvider>
+  </SafeHelmetProvider>
 );
 
 export default App;
