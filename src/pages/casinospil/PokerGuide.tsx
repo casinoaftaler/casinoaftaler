@@ -38,37 +38,37 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const pokerCluster = [
   {
-    to: "/casinospil/texas-holdem",
+    to: "/casinospil/poker/texas-holdem",
     title: "Texas Hold'em",
     desc: "Verdens mest spillede variant – preflop ranges, position, 3-bet strategi og GTO-fundamenter.",
     icon: Target,
   },
   {
-    to: "/casinospil/omaha-poker",
+    to: "/casinospil/poker/omaha",
     title: "Omaha (PLO)",
     desc: "Fire hole cards, must-use-2-reglen, wraps, SPR-modeller og blocker-baseret bluffing.",
     icon: Layers,
   },
   {
-    to: "/casinospil/poker-strategi",
+    to: "/casinospil/poker/poker-strategi",
     title: "Poker Strategi",
     desc: "Avanceret EV-analyse, ICM-beregninger, solver-metodik og mental game mastery.",
     icon: Brain,
   },
   {
-    to: "/casinospil/video-poker",
+    to: "/casinospil/poker/video-poker",
     title: "Video Poker",
     desc: "Jacks or Better, Deuces Wild – op til 100,76 % RTP med perfekt strategi og pay table-analyse.",
     icon: Gamepad2,
   },
   {
-    to: "/casinospil/three-card-poker",
+    to: "/casinospil/poker/three-card-poker",
     title: "Three Card Poker",
     desc: "Q-6-4-strategien, Pair Plus-odds, 6 Card Bonus og dealer-qualifying-matematik.",
     icon: Zap,
   },
   {
-    to: "/casinospil/caribbean-stud-poker",
+    to: "/casinospil/poker/caribbean-stud",
     title: "Caribbean Stud Poker",
     desc: "AK-Q-8-3-strategien, progressive jackpot break-even og optimal sideindsats-analyse.",
     icon: Trophy,
@@ -95,7 +95,7 @@ const pokerFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er den bedste pokervariant for begyndere?",
     answer: (
       <>
-        <Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em</Link> er det klare valg for begyndere. Det har simple regler (to håndsort, fem fælles kort), enorm mængde læringsmateriale tilgængeligt, og det er den mest spillede variant online, så du finder altid borde med spillere på dit niveau. No-Limit Hold'em med mikro-stakes (0,01/0,02 kr. blinds) giver dig mulighed for at lære spillet med minimal finansiel risiko. Alternativt er <Link to="/casinospil/video-poker" className={linkClass}>Jacks or Better Video Poker</Link> fremragende for at lære håndstyrkerne, fordi du får øjeblikkelig feedback på dine beslutninger.
+        <Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link> er det klare valg for begyndere. Det har simple regler (to håndsort, fem fælles kort), enorm mængde læringsmateriale tilgængeligt, og det er den mest spillede variant online, så du finder altid borde med spillere på dit niveau. No-Limit Hold'em med mikro-stakes (0,01/0,02 kr. blinds) giver dig mulighed for at lære spillet med minimal finansiel risiko. Alternativt er <Link to="/casinospil/poker/video-poker" className={linkClass}>Jacks or Better Video Poker</Link> fremragende for at lære håndstyrkerne, fordi du får øjeblikkelig feedback på dine beslutninger.
       </>
     ),
   },
@@ -103,7 +103,7 @@ const pokerFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad betyder pot odds i poker?",
     answer: (
       <>
-        Pot odds er forholdet mellem puljens størrelse og det beløb, du skal betale for at fortsætte. Eksempel: puljen er 300 kr., din modstander satser 100 kr., puljen er nu 400 kr. Du skal betale 100 kr. – dine pot odds er 4:1. Det betyder, at du skal vinde mere end 1 ud af 5 gange (20 %) for at et call er profitabelt. Sammenlign pot odds med din equity (sandsynlighed for at vinde hånden) for at træffe matematisk korrekte beslutninger. Læs mere i vores <Link to="/casinospil/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
+        Pot odds er forholdet mellem puljens størrelse og det beløb, du skal betale for at fortsætte. Eksempel: puljen er 300 kr., din modstander satser 100 kr., puljen er nu 400 kr. Du skal betale 100 kr. – dine pot odds er 4:1. Det betyder, at du skal vinde mere end 1 ud af 5 gange (20 %) for at et call er profitabelt. Sammenlign pot odds med din equity (sandsynlighed for at vinde hånden) for at træffe matematisk korrekte beslutninger. Læs mere i vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>poker strategi-guide</Link>.
       </>
     ),
   },
@@ -137,7 +137,7 @@ const pokerFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er forskellen på casino poker og spiller-vs-spiller poker?",
     answer: (
       <>
-        Casino poker (<Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud</Link>, <Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link>, Casino Hold'em) spilles mod huset med en fast house edge – du kan ikke eliminere husets fordel. Spiller-vs-spiller poker (<Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em</Link>, <Link to="/casinospil/omaha-poker" className={linkClass}>Omaha</Link>) spilles mod andre mennesker, og casinoet tager kun rake. En dygtig spiller kan have positiv EV i spiller-vs-spiller poker – det er umuligt i casino poker.
+        Casino poker (<Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud</Link>, <Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link>, Casino Hold'em) spilles mod huset med en fast house edge – du kan ikke eliminere husets fordel. Spiller-vs-spiller poker (<Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link>, <Link to="/casinospil/poker/omaha" className={linkClass}>Omaha</Link>) spilles mod andre mennesker, og casinoet tager kun rake. En dygtig spiller kan have positiv EV i spiller-vs-spiller poker – det er umuligt i casino poker.
       </>
     ),
   },
@@ -153,7 +153,7 @@ const PokerGuide = () => {
       "Komplet cornerstone poker-guide: Texas Hold'em, Omaha, Video Poker, håndrangeringer, pot odds, varians, rake-analyse og dansk regulering. Hub for alle poker-guides.",
     url: `${SITE_URL}/casinospil/poker`,
     datePublished: "2026-02-15",
-    dateModified: "2026-03-02",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -188,7 +188,7 @@ const PokerGuide = () => {
 
       {/* ── BODY ── */}
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="02-03-2026" readTime="38 Min." />
+        <AuthorMetaBar author="jonas" date="18-03-2026" readTime="38 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
@@ -262,38 +262,25 @@ const PokerGuide = () => {
 
           <h3 className="mb-3 text-xl font-semibold">Spiller-vs-Spiller Varianter (Positiv EV mulig)</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong><Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em</Link></strong> er verdens mest spillede pokervariant og den variant, der spilles i World Series of Poker. Hver spiller modtager to private kort (hole cards), og fem fælles kort (community cards) afsløres i tre faser: flop (tre kort), turn (ét kort) og river (ét kort). No-Limit Hold'em (ingen loft over indsatser) er den mest populære form. Strategisk dybde: preflop ranges, 3-bet/4-bet-dynamik, continuation betting, barrel-strategier og GTO vs. exploitative play. Hold'em er det bedste udgangspunkt for alle pokerspillere og har det dybeste læringsøkosystem.
+            <strong><Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link></strong> er verdens mest spillede pokervariant og den variant, der spilles i World Series of Poker. Hver spiller modtager to private kort (hole cards), og fem fælles kort (community cards) afsløres i tre faser: flop (tre kort), turn (ét kort) og river (ét kort). No-Limit Hold'em (ingen loft over indsatser) er den mest populære form. Strategisk dybde: preflop ranges, 3-bet/4-bet-dynamik, continuation betting, barrel-strategier og GTO vs. exploitative play. Hold'em er det bedste udgangspunkt for alle pokerspillere og har det dybeste læringsøkosystem.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong><Link to="/casinospil/omaha-poker" className={linkClass}>Omaha (PLO)</Link></strong> er Hold'ems mere komplekse fætter. Hver spiller modtager fire hole cards, men du <em>skal</em> bruge præcis to af dine hole cards og præcis tre community cards. Denne "must-use-2"-regel skaber en dramatisk anderledes dynamik: stærkere gennemsnitlige vinderhænder, mere action og højere varians. PLO kræver bedre forståelse af equity distribution, wraps (20-outs straight draws) og SPR-modeller (Stack-to-Pot Ratio). Det er varianten for spillere, der ønsker mere kompleksitet og action end Hold'em.
+            <strong><Link to="/casinospil/poker/omaha" className={linkClass}>Omaha (PLO)</Link></strong> er Hold'ems mere komplekse fætter. Hver spiller modtager fire hole cards, men du <em>skal</em> bruge præcis to af dine hole cards og præcis tre community cards. Denne "must-use-2"-regel skaber en dramatisk anderledes dynamik: stærkere gennemsnitlige vinderhænder, mere action og højere varians. PLO kræver bedre forståelse af equity distribution, wraps (20-outs straight draws) og SPR-modeller (Stack-to-Pot Ratio). Det er varianten for spillere, der ønsker mere kompleksitet og action end Hold'em.
           </p>
 
           <h3 className="mb-3 text-xl font-semibold">Casino Poker (Fast House Edge)</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong><Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud Poker</Link></strong> spilles mod huset: du modtager fem kort, dealeren modtager fem kort (ét synligt). Du beslutter om du vil raise eller folde baseret på din håndstyrke og dealerens synlige kort. <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> er ~5,2 % – markant højere end <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> – men progressiv jackpot-sideindsatsen kan være break-even ved høje jackpots (typisk over 263.000 kr.). AK-Q-8-3-strategien reducerer house edge til minimum.
+            <strong><Link to="/casinospil/poker/caribbean-stud" className={linkClass}>Caribbean Stud Poker</Link></strong> spilles mod huset: du modtager fem kort, dealeren modtager fem kort (ét synligt). Du beslutter om du vil raise eller folde baseret på din håndstyrke og dealerens synlige kort. <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> er ~5,2 % – markant højere end <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> – men progressiv jackpot-sideindsatsen kan være break-even ved høje jackpots (typisk over 263.000 kr.). AK-Q-8-3-strategien reducerer house edge til minimum.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong><Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link></strong> er den hurtigste poker-variant i casinoet: tre kort, én beslutning (play eller fold). Q-6-4-strategien er optimal og enkel at huske. Ante-Play har 3,37 % house edge; Pair Plus har 2,32 %. Det er ideelt for spillere, der ønsker poker-stemning uden den strategiske kompleksitet af Hold'em. Dealeren kvalificerer sig med Queen-high eller bedre – i 33,6 % af hænderne kvalificerer dealeren sig ikke, og du vinder automatisk ante-indsatsen.
+            <strong><Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link></strong> er den hurtigste poker-variant i casinoet: tre kort, én beslutning (play eller fold). Q-6-4-strategien er optimal og enkel at huske. Ante-Play har 3,37 % house edge; Pair Plus har 2,32 %. Det er ideelt for spillere, der ønsker poker-stemning uden den strategiske kompleksitet af Hold'em. Dealeren kvalificerer sig med Queen-high eller bedre – i 33,6 % af hænderne kvalificerer dealeren sig ikke, og du vinder automatisk ante-indsatsen.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong><Link to="/casinospil/video-poker" className={linkClass}>Video Poker</Link></strong> kombinerer pokerhænder med maskinspil og tilbyder nogle af de højeste RTP-værdier i hele casinobranchen. Jacks or Better 9/6 (full pay) har 99,54 % RTP med perfekt strategi. Deuces Wild (med optimal pay table) når 100,76 % – en af de eneste casinospil med positiv forventet værdi. Video Poker er poker for den analytiske spiller, der foretrækker matematik over psykologi.
+            <strong><Link to="/casinospil/poker/video-poker" className={linkClass}>Video Poker</Link></strong> kombinerer pokerhænder med maskinspil og tilbyder nogle af de højeste RTP-værdier i hele casinobranchen. Jacks or Better 9/6 (full pay) har 99,54 % RTP med perfekt strategi. Deuces Wild (med optimal pay table) når 100,76 % – en af de eneste casinospil med positiv forventet værdi. Video Poker er poker for den analytiske spiller, der foretrækker matematik over psykologi.
           </p>
-
-          <h3 className="mb-3 text-xl font-semibold">Variant-Sammenligningsmatrice</h3>
-          <div className="overflow-x-auto mb-6">
-            <table className="w-full text-sm border border-border rounded-lg">
-              <thead>
-                <tr className="bg-muted/50">
-                  <th className="px-4 py-3 text-left font-semibold">Variant</th>
-                  <th className="px-4 py-3 text-center font-semibold">Type</th>
-                  <th className="px-4 py-3 text-center font-semibold">House Edge / Rake</th>
-                  <th className="px-4 py-3 text-center font-semibold">Varians</th>
-                  <th className="px-4 py-3 text-center font-semibold">Kompleksitet</th>
-                </tr>
-              </thead>
-              <tbody className="text-muted-foreground">
-                <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/texas-holdem" className={linkClass}>Texas Hold'em</Link></td><td className="px-4 py-2 text-center">PvP</td><td className="px-4 py-2 text-center">2,5–5 % rake</td><td className="px-4 py-2 text-center">Høj</td><td className="px-4 py-2 text-center">⭐⭐⭐⭐</td></tr>
-                <tr className="border-t border-border bg-muted/20"><td className="px-4 py-2 font-medium"><Link to="/casinospil/omaha-poker" className={linkClass}>Omaha (PLO)</Link></td><td className="px-4 py-2 text-center">PvP</td><td className="px-4 py-2 text-center">2,5–5 % rake</td><td className="px-4 py-2 text-center">Meget høj</td><td className="px-4 py-2 text-center">⭐⭐⭐⭐⭐</td></tr>
+...
+                <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/texas-holdem" className={linkClass}>Texas Hold'em</Link></td><td className="px-4 py-2 text-center">PvP</td><td className="px-4 py-2 text-center">2,5–5 % rake</td><td className="px-4 py-2 text-center">Høj</td><td className="px-4 py-2 text-center">⭐⭐⭐⭐</td></tr>
+                <tr className="border-t border-border bg-muted/20"><td className="px-4 py-2 font-medium"><Link to="/casinospil/poker/omaha" className={linkClass}>Omaha (PLO)</Link></td><td className="px-4 py-2 text-center">PvP</td><td className="px-4 py-2 text-center">2,5–5 % rake</td><td className="px-4 py-2 text-center">Meget høj</td><td className="px-4 py-2 text-center">⭐⭐⭐⭐⭐</td></tr>
                 <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/video-poker" className={linkClass}>Video Poker</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">0,46–5 %</td><td className="px-4 py-2 text-center">Lav–Middel</td><td className="px-4 py-2 text-center">⭐⭐⭐</td></tr>
                 <tr className="border-t border-border bg-muted/20"><td className="px-4 py-2 font-medium"><Link to="/casinospil/three-card-poker" className={linkClass}>Three Card Poker</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">2,32–3,37 %</td><td className="px-4 py-2 text-center">Lav</td><td className="px-4 py-2 text-center">⭐⭐</td></tr>
                 <tr className="border-t border-border"><td className="px-4 py-2 font-medium"><Link to="/casinospil/caribbean-stud-poker" className={linkClass}>Caribbean Stud</Link></td><td className="px-4 py-2 text-center">vs. Hus</td><td className="px-4 py-2 text-center">~5,2 %</td><td className="px-4 py-2 text-center">Middel</td><td className="px-4 py-2 text-center">⭐⭐⭐</td></tr>

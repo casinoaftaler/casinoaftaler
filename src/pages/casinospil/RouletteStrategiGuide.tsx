@@ -91,9 +91,9 @@ const RouletteStrategiGuide = () => {
     headline: "Roulette Strategi 2026 – Matematisk Analyse af Systemer",
     description:
       "Matematisk deep-dive i roulette-strategier: Martingale, Fibonacci, D'Alembert, risk of ruin og bankroll management. Formler, simuleringer og data.",
-    url: `${SITE_URL}/casinospil/roulette-strategi`,
+    url: `${SITE_URL}/casinospil/roulette`,
     datePublished: "2026-02-15",
-    dateModified: "2026-02-18",
+    dateModified: "2026-03-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
