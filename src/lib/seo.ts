@@ -156,14 +156,21 @@ function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: 
  *   // with video binding:
  *   buildArticleSchema({ ..., videoId: "abc123" })
  */
+function isApprovedDynamicDateModifiedUrlPath(pathname: string): boolean {
+  return pathname === "/free-spins-i-dag"
+    || pathname === "/markedsindsigt"
+    || pathname.startsWith("/casino-nyheder/")
+    || pathname.startsWith("/slot-katalog/");
+}
+
 export function buildArticleSchema(opts: {
   headline: string;
   description: string;
   url: string;
   datePublished: string;
   /**
-   * If omitted, automatically resolved from seoRoutes.ts lastmod
-   * based on the URL path. Pass explicitly only to override.
+   * If omitted, automatically resolved from seoRoutes.ts lastmod.
+   * Pass explicitly only for approved dynamic backend-driven pages.
    */
   dateModified?: string;
   /** Override @type – defaults to "Article". Use "NewsArticle" for news. */
@@ -192,18 +199,25 @@ export function buildArticleSchema(opts: {
   const authorSameAs = opts.authorSameAs ?? (sameAsMap[authorName] || JONAS_SAME_AS);
 
   // Source of truth order:
-  // 1) explicit runtime dateModified for approved dynamic pages
-  // 2) centralized seoRoutes lastmod for static pages
+  // 1) explicit runtime dateModified for approved dynamic backend-driven pages only
+  // 2) centralized seoRoutes lastmod for all other indexable pages
   const urlPath = opts.url.replace(SITE_URL, "");
   const routeLastmod = getRouteLastmod(urlPath);
-  const resolvedDateModified = opts.dateModified
-    ?? routeLastmod
-    ?? opts.datePublished;
+  const hasApprovedDynamicDateModified = isApprovedDynamicDateModifiedUrlPath(urlPath);
+  const resolvedDateModified = hasApprovedDynamicDateModified
+    ? opts.dateModified ?? routeLastmod ?? opts.datePublished
+    : routeLastmod ?? opts.datePublished;
 
-  if (import.meta.env.DEV && opts.dateModified && routeLastmod && opts.dateModified !== routeLastmod) {
-    console.warn(
-      `[buildArticleSchema] Explicit dateModified (${opts.dateModified}) overrides seoRoutes lastmod (${routeLastmod}) for ${urlPath}.`
-    );
+  if (import.meta.env.DEV) {
+    if (opts.dateModified && !hasApprovedDynamicDateModified) {
+      console.warn(
+        `[buildArticleSchema] Ignoring non-approved runtime dateModified for ${urlPath}. Use seoRoutes.ts or an approved dynamic source.`
+      );
+    } else if (opts.dateModified && routeLastmod && opts.dateModified !== routeLastmod) {
+      console.warn(
+        `[buildArticleSchema] Approved dynamic dateModified (${opts.dateModified}) overrides seoRoutes lastmod (${routeLastmod}) for ${urlPath}.`
+      );
+    }
   }
 
   const articleId = `${opts.url}#article`;

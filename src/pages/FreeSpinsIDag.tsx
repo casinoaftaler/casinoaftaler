@@ -304,6 +304,9 @@ const FreeSpinsIDag = () => {
       <SEO
         title={`Free Spins i Dag (2026) – Gratis Spins Uden Indbetaling`}
         description={`Opdateret dagligt: ${totalCount} danske free spins tilbud – til nye og eksisterende spillere. Sammenlign omsætningskrav og find de bedste free spins uden indbetaling.`}
+        type="article"
+        datePublished="2026-02-22"
+        dateModified={seoDateModified}
         jsonLd={schemaMarkup}
         breadcrumbLabel="Free Spins i Dag"
       />

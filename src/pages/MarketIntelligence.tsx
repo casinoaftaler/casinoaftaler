@@ -96,7 +96,7 @@ export default function MarketIntelligence() {
   const { data: casinos } = useCasinos();
   const { data: pageMeta } = usePageLastmod("/markedsindsigt");
 
-  const dateModified = pageMeta?.updated_at ?? data?.lastUpdated ?? undefined;
+  const dateModified = pageMeta?.updated_at ?? getRouteLastmod("/markedsindsigt");
 
   const articleSchema = buildArticleSchema({
     headline: "Markedsindsigt 2026 – Offentligt overblik over danske casinoer",

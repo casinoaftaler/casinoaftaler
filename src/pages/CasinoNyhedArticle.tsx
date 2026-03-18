@@ -128,6 +128,8 @@ const CasinoNyhedArticle = () => {
         type="article"
         image={article.featured_image || undefined}
         noindex={article.status === "draft"}
+        datePublished={article.published_at || article.created_at}
+        dateModified={article.updated_at}
         jsonLd={jsonLdSchemas}
         breadcrumbLabel={article.title}
       />

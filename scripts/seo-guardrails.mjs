@@ -6,6 +6,24 @@ const SCAN_DIRS = [path.join(ROOT, "src"), path.join(ROOT, "scripts")];
 
 const IGNORE_DIRS = new Set(["node_modules", "dist", ".git"]);
 const FILE_EXT = /\.(ts|tsx|mjs)$/;
+const APPROVED_DYNAMIC_DATE_MODIFIED = {
+  [path.join("src", "pages", "MarketIntelligence.tsx")]: [
+    /\bdateModified\s*:\s*dateModified\b/,
+    /\bdateModified\s*=\s*\{dateModified\}/,
+  ],
+  [path.join("src", "pages", "FreeSpinsIDag.tsx")]: [
+    /\bdateModified\s*:\s*seoDateModified\b/,
+    /\bdateModified\s*=\s*\{seoDateModified\}/,
+  ],
+  [path.join("src", "pages", "CasinoNyhedArticle.tsx")]: [
+    /\bdateModified\s*:\s*article\.updated_at\b/,
+    /\bdateModified\s*=\s*\{article\.updated_at\}/,
+  ],
+  [path.join("src", "pages", "SlotCatalogPage.tsx")]: [
+    /\bdateModified\s*:\s*slotDateModified\b/,
+    /\bdateModified\s*=\s*\{slotDateModified\}/,
+  ],
+};
 
 /** @typedef {{file: string; line: number; type: string; snippet: string}} Violation */
 
@@ -61,6 +79,31 @@ function scanPattern(file, originalContent, content, regex, type) {
   }
 }
 
+function scanDateModifiedGovernance(file, originalContent, content, relativeFile) {
+  const allowedPatterns = APPROVED_DYNAMIC_DATE_MODIFIED[relativeFile] || [];
+  const regex = /\bdateModified\s*:\s*[^,\n}]+|\bdateModified\s*=\s*\{[^}]+\}/g;
+  let m;
+
+  while ((m = regex.exec(content)) !== null) {
+    const snippet = m[0];
+    const handledByLiteralRules = /["']\d{4}-\d{2}-\d{2}|new\s+Date\s*\(|getTodayDanish\s*\(/.test(snippet);
+    const approvedDynamic = allowedPatterns.some((pattern) => pattern.test(snippet));
+
+    if (!handledByLiteralRules && !approvedDynamic) {
+      pushViolation(
+        file,
+        originalContent,
+        m.index,
+        allowedPatterns.length > 0
+          ? "Unapproved dateModified expression in approved dynamic SEO file"
+          : "dateModified must come from centralized route lastmod or an approved dynamic backend source"
+      );
+    }
+
+    if (m.index === regex.lastIndex) regex.lastIndex++;
+  }
+}
+
 function scanFile(file) {
   const originalContent = fs.readFileSync(file, "utf-8");
   const content = stripComments(originalContent);
@@ -78,8 +121,8 @@ function scanFile(file) {
     file,
     originalContent,
     content,
-    /<AuthorMetaBar\b[^>]*\bdate\s*=\s*(?:"[^"]+"|'[^']+')/g,
-    "AuthorMetaBar date literal is forbidden (remove legacy hardcoded date prop)"
+    /<AuthorMetaBar\b[^>]*\bdate\s*=/g,
+    "AuthorMetaBar date prop is forbidden (remove legacy date ownership from UI)"
   );
 
   scanPattern(
@@ -105,6 +148,8 @@ function scanFile(file) {
     /\bdateModified\s*:\s*getTodayDanish\s*\(/g,
     "Danish-today freshness is forbidden for SEO dateModified"
   );
+
+  scanDateModifiedGovernance(file, originalContent, content, relativeFile);
 
   scanPattern(
     file,

@@ -907,8 +907,8 @@ export default function SlotCatalogPage() {
         type="article"
         jsonLd={jsonLd || undefined}
         breadcrumbLabel={slotName}
-        datePublished={slot.created_at?.slice(0, 10)}
-        dateModified={slot.updated_at?.slice(0, 10)}
+        datePublished={slotDatePublished}
+        dateModified={slotDateModified}
       />
 
       {/* Static fallback for crawlers that don't execute JS */}

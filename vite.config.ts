@@ -76,12 +76,26 @@ function sitemapPlugin(): Plugin {
     apply: "build",
     async closeBundle() {
       const outDir = path.resolve(__dirname, "dist");
+      const publicDir = path.resolve(__dirname, "public");
       fs.mkdirSync(outDir, { recursive: true });
+      fs.mkdirSync(publicDir, { recursive: true });
+
+      const writeSitemapSnapshot = (filename: string, xml: string) => {
+        fs.writeFileSync(path.join(outDir, filename), xml, "utf-8");
+        fs.writeFileSync(path.join(publicDir, filename), xml, "utf-8");
+      };
 
       // ── 1. sitemap.xml from seoRoutes + page_metadata (automated lastmod) ──
       const { seoRoutes } = await import("./src/lib/seoRoutes");
       const now = new Date();
       const buildDateISO = toDanishISO(now);
+      const missingLastmod = seoRoutes.filter((route) => !route.lastmod);
+
+      if (missingLastmod.length > 0) {
+        throw new Error(
+          `Missing explicit lastmod in seoRoutes for: ${missingLastmod.map((route) => route.path).join(", ")}`
+        );
+      }
 
       // Fetch live lastmod dates from page_metadata (source of truth)
       const metadataMap = new Map<string, string>();
@@ -101,13 +115,11 @@ function sitemapPlugin(): Plugin {
 
       const staticUrls = seoRoutes.map((route) => {
         const loc = route.path === "/" ? SITE_URL + "/" : SITE_URL + route.path;
-        // Priority: 1) page_metadata.updated_at (live), 2) seoRoutes lastmod (hardcoded), 3) build date
+        // Priority: 1) page_metadata.updated_at (live), 2) seoRoutes lastmod (static fallback anchor)
         const dbDate = metadataMap.get(route.path);
         const lastmod = dbDate
           ? new Date(dbDate).toISOString().replace(/\.\d{3}Z$/, "+00:00")
-          : route.lastmod
-            ? `${route.lastmod}T12:00:00+01:00`
-            : buildDateISO;
+          : `${route.lastmod}T12:00:00+01:00`;
         return `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
@@ -121,7 +133,7 @@ function sitemapPlugin(): Plugin {
 ${staticUrls.join("\n")}
 </urlset>
 `;
-      fs.writeFileSync(path.join(outDir, "sitemap.xml"), sitemapXml, "utf-8");
+      writeSitemapSnapshot("sitemap.xml", sitemapXml);
       console.log(`✅ sitemap.xml generated with ${seoRoutes.length} URLs`);
 
       // ── 2. sitemap-slots.xml from slot_catalog ──
@@ -149,7 +161,7 @@ ${staticUrls.join("\n")}
 ${slotUrls.join("\n")}
 </urlset>
 `;
-          fs.writeFileSync(path.join(outDir, "sitemap-slots.xml"), slotSitemap, "utf-8");
+          writeSitemapSnapshot("sitemap-slots.xml", slotSitemap);
           console.log(`✅ sitemap-slots.xml generated with ${slots.length} slot URLs`);
         } else {
           console.warn("⚠️ No slots fetched – skipping sitemap-slots.xml");
@@ -185,7 +197,7 @@ ${slotUrls.join("\n")}
 ${articleUrls.join("\n")}
 </urlset>
 `;
-          fs.writeFileSync(path.join(outDir, "sitemap-articles.xml"), articleSitemap, "utf-8");
+          writeSitemapSnapshot("sitemap-articles.xml", articleSitemap);
           console.log(`✅ sitemap-articles.xml generated with ${articles.length} article URLs`);
         } else {
           console.warn("⚠️ No articles fetched – skipping sitemap-articles.xml");
@@ -202,9 +214,7 @@ ${articleUrls.join("\n")}
           const dbDate = metadataMap.get(route.path);
           const lastmod = dbDate
             ? new Date(dbDate).toISOString().replace(/\.\d{3}Z$/, "+00:00")
-            : route.lastmod
-              ? `${route.lastmod}T12:00:00+01:00`
-              : buildDateISO;
+            : `${route.lastmod}T12:00:00+01:00`;
           return `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
@@ -218,7 +228,7 @@ ${articleUrls.join("\n")}
 ${priorityUrls.join("\n")}
 </urlset>
 `;
-        fs.writeFileSync(path.join(outDir, "sitemap-priority.xml"), prioritySitemap, "utf-8");
+        writeSitemapSnapshot("sitemap-priority.xml", prioritySitemap);
         console.log(`✅ sitemap-priority.xml generated with ${priorityRoutes.length} high-priority URLs`);
       }
 
@@ -321,7 +331,7 @@ ${indexEntries.map((loc) => `  <sitemap>
   </sitemap>`).join("\n")}
 </sitemapindex>
 `;
-      fs.writeFileSync(path.join(outDir, "sitemap-index.xml"), sitemapIndex, "utf-8");
+      writeSitemapSnapshot("sitemap-index.xml", sitemapIndex);
       console.log(`✅ sitemap-index.xml generated with ${indexEntries.length} sub-sitemaps`);
     },
   };
