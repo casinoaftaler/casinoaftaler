@@ -82,7 +82,6 @@ const articleSchema = buildArticleSchema({
   headline: "Bedste Pokersider 2026 – Top Pokersites med Dansk Licens",
   description: "Sammenlign de bedste pokersider med dansk licens i 2026. Anmeldelser af PokerStars, Unibet, bet365 og flere med bonus, rakeback og turneringer.",
   datePublished: "2026-03-15",
-  dateModified: "2026-03-15",
   url: `${SITE_URL}/casinospil/poker/bedste-sider`,
   image: `${SITE_URL}/og/poker-bedste-sider.jpg`,
   authorName: "Kevin",
@@ -107,7 +106,7 @@ export default function PokerBedsteSiderGuide() {
       >
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-4"><Trophy className="mr-1.5 h-3.5 w-3.5" /> Opdateret Marts 2026</Badge>
+            <Badge variant="secondary" className="mb-4"><Trophy className="mr-1.5 h-3.5 w-3.5" /> Rakeback, trafik & turneringer</Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Bedste Pokersider 2026</h1>
             <p className="text-lg text-white/80">Komplet guide til de bedste pokersider med dansk licens – sammenlign bonus, rakeback, spillerpulje og turneringer.</p>
           </div>
@@ -115,7 +114,7 @@ export default function PokerBedsteSiderGuide() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="kevin" date="15-03-2026" readTime="45 Min." />
+        <AuthorMetaBar author="kevin" readTime="45 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Pokerbord med kort og chips i professionelt casino-miljø" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

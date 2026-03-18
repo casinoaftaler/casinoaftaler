@@ -7,13 +7,10 @@ import { da } from "date-fns/locale";
 import { DailyCasinoSpotlight } from "./DailyCasinoSpotlight";
 
 /**
- * "Opdateret i dag" section for the homepage.
- * Shows dofollow links to /free-spins-i-dag and the latest news article.
+ * Homepage overview section with crawlable links to key discovery pages.
  * Rendered as static visible HTML – no JS interaction required, no lazy loading.
  */
 export function TodayUpdatedSection() {
-  const todayFormatted = format(new Date(), "d. MMMM yyyy", { locale: da });
-
   const { data: latestArticle } = useQuery({
     queryKey: ["latest-news-for-homepage"],
     queryFn: async () => {
@@ -31,54 +28,54 @@ export function TodayUpdatedSection() {
   });
 
   return (
-    <section className="py-6 border-b border-border/30 bg-muted/30" style={{ minHeight: '120px' }}>
+    <section className="py-6 border-b border-border/30 bg-muted/30" style={{ minHeight: "120px" }}>
       <div className="container">
-        <div className="flex items-center gap-2 mb-3">
+        <div className="mb-3 flex items-center gap-2">
           <RefreshCw className="h-4 w-4 text-primary" />
-          <span className="text-sm font-semibold text-primary">Opdateret i dag – {todayFormatted}</span>
+          <span className="text-sm font-semibold text-primary">Dagens overblik</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {/* Free Spins i dag link */}
           <Link
             to="/free-spins-i-dag"
-            className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md group"
+            className="group flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md"
           >
-            <div className="rounded-lg bg-primary/10 p-2.5 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+            <div className="flex-shrink-0 rounded-lg bg-primary/10 p-2.5 transition-colors group-hover:bg-primary/20">
               <Sparkles className="h-5 w-5 text-primary" />
             </div>
             <div className="min-w-0 flex-1">
-              <span className="font-semibold text-sm block">Free Spins i Dag</span>
-              <span className="text-xs text-muted-foreground">Dagligt opdaterede free spins tilbud fra danske casinoer</span>
+              <span className="block text-sm font-semibold">Free Spins i Dag</span>
+              <span className="text-xs text-muted-foreground">Dagligt verificerede free spins tilbud fra danske casinoer</span>
             </div>
-            <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+            <ArrowRight className="h-4 w-4 flex-shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
           </Link>
 
           {/* Latest news article link - always reserve space */}
           {latestArticle ? (
             <Link
               to={`/casino-nyheder/${latestArticle.slug}`}
-              className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md group"
+              className="group flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/50 hover:shadow-md"
             >
-              <div className="rounded-lg bg-primary/10 p-2.5 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+              <div className="flex-shrink-0 rounded-lg bg-primary/10 p-2.5 transition-colors group-hover:bg-primary/20">
                 <Newspaper className="h-5 w-5 text-primary" />
               </div>
               <div className="min-w-0 flex-1">
-                <span className="font-semibold text-sm block truncate">{latestArticle.title}</span>
+                <span className="block truncate text-sm font-semibold">{latestArticle.title}</span>
                 <span className="text-xs text-muted-foreground">
                   {latestArticle.published_at
                     ? format(new Date(latestArticle.published_at), "d. MMMM yyyy", { locale: da })
                     : "Seneste nyhed"}
                 </span>
               </div>
-              <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+              <ArrowRight className="h-4 w-4 flex-shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
             </Link>
           ) : (
             <div className="flex items-center gap-3 rounded-lg border border-border bg-card p-4">
-              <div className="rounded-lg bg-primary/10 p-2.5 flex-shrink-0">
+              <div className="flex-shrink-0 rounded-lg bg-primary/10 p-2.5">
                 <Newspaper className="h-5 w-5 text-primary" />
               </div>
               <div className="min-w-0 flex-1">
-                <span className="font-semibold text-sm block text-muted-foreground">Seneste Nyhed</span>
+                <span className="block text-sm font-semibold text-muted-foreground">Seneste Nyhed</span>
                 <span className="text-xs text-muted-foreground">Indlæser...</span>
               </div>
             </div>
