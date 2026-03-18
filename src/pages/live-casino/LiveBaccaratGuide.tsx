@@ -68,7 +68,6 @@ const LiveBaccaratGuide = () => {
     description: "Komplet live baccarat guide 2026. Banker edge 1,06 %, EV-beregninger, Lightning Baccarat analyse og bankroll management for danske spillere.",
     url: `${SITE_URL}/live-casino/baccarat`,
     datePublished: "2026-02-18",
-    dateModified: "2026-02-18",
     authorName: "Jonas",
     authorUrl: `${SITE_URL}/forfatter/jonas`,
   });
@@ -95,7 +94,7 @@ const LiveBaccaratGuide = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret Februar 2026
+              Banker edge & live analyse
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Live Baccarat – Banker Edge Analyse & Strategi
@@ -108,7 +107,7 @@ const LiveBaccaratGuide = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" date="18-02-2026" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" readTime="18 Min." />
 
         <img src={liveBaccaratHero} alt="Live baccarat bord med krystalkortsko i et eksklusivt casino studio" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
 
