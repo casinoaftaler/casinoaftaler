@@ -150,6 +150,19 @@ const LunaCasinoAnmeldelse = () => {
 
         <CasinoReviewHero slug="luna-casino" casinoName="Luna Casino" />
 
+        <section className="mb-10">
+          <Card className="border-border bg-card border-l-4 border-l-primary">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-xl">Bedste online casinoer i Danmark</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-3">
+              <Link to="/top-10-casino-online" className="inline-flex items-center justify-between rounded-lg border border-border bg-background px-4 py-3 font-medium text-primary transition-colors hover:bg-muted/40 hover:underline">Se de bedste online casinoer</Link>
+              <Link to="/casino-bonus" className="inline-flex items-center justify-between rounded-lg border border-border bg-background px-4 py-3 font-medium text-primary transition-colors hover:bg-muted/40 hover:underline">Se aktuelle casino bonusser</Link>
+              <Link to="/casino-med-mobilepay" className="inline-flex items-center justify-between rounded-lg border border-border bg-background px-4 py-3 font-medium text-primary transition-colors hover:bg-muted/40 hover:underline">Se casinoer med MobilePay</Link>
+            </CardContent>
+          </Card>
+        </section>
+
         {/* Quick Facts */}
         <section className="mb-12">
           <Card className="border-border bg-card border-l-4 border-l-primary">
