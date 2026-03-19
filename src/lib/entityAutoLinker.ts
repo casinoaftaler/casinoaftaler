@@ -51,7 +51,7 @@ const PRIORITY_MONEY_RULES = [
   },
 ] as const;
 
-const MONEY_PAGE_HREFS = new Set(PRIORITY_MONEY_RULES.map((rule) => rule.href));
+const MONEY_PAGE_HREFS = new Set<string>(PRIORITY_MONEY_RULES.map((rule) => rule.href));
 const MAX_MONEY_LINKS = 3;
 
 /**
