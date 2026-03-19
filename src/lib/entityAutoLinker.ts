@@ -1,11 +1,13 @@
+import { ENTITY_MAPPINGS } from "./entityMappings";
+
 /**
  * Entity auto-linker: replaces first occurrence of key entities in HTML
  * with internal links to relevant main pages.
- * 
+ *
  * CRITICAL PRIORITY ORDER:
  * 1. Money-pages FIRST (commercial/transactional targets)
  * 2. Glossary-sider KUN for termer uden kommerciel modpart
- * 
+ *
  * Rules:
  * - Only first occurrence per entity
  * - Natural anchor text
@@ -14,13 +16,43 @@
  * - Skip entities inside headings (h1-h6) and strong tags
  */
 
-import { ENTITY_MAPPINGS } from "./entityMappings";
-
 /**
  * Forbidden wrapper tags — auto-linking is only allowed inside <p> and <li>.
  * We check if the match position is inside any of these tags.
  */
 const FORBIDDEN_TAGS = ["a", "h1", "h2", "h3", "h4", "h5", "h6", "strong", "button"];
+
+const PRIORITY_MONEY_RULES = [
+  {
+    href: "/top-10-casino-online",
+    patterns: [
+      /\bonline casino(er)?\b/i,
+      /\bbedste casino(er)?\b/i,
+      /\bbedste online casino(er)?\b/i,
+      /\btop casino(er)?\b/i,
+      /\bonline casino(er)? i (danmark|dk)\b/i,
+    ],
+  },
+  {
+    href: "/casino-bonus",
+    patterns: [/\bcasino bonus\b/i, /\bcasinobonus\b/i],
+  },
+  {
+    href: "/velkomstbonus",
+    patterns: [/\bvelkomstbonus\b/i, /\bvelkomst-bonus\b/i],
+  },
+  {
+    href: "/free-spins-i-dag",
+    patterns: [/\bfree spins i dag\b/i, /\bgratis spins i dag\b/i, /\bdagens free spins\b/i],
+  },
+  {
+    href: "/casino-med-mobilepay",
+    patterns: [/\bcasino med mobilepay\b/i, /\bmobilepay casino\b/i, /\bcasinoer med mobilepay\b/i],
+  },
+] as const;
+
+const MONEY_PAGE_HREFS = new Set(PRIORITY_MONEY_RULES.map((rule) => rule.href));
+const MAX_MONEY_LINKS = 3;
 
 /**
  * Check if a position in HTML is inside a forbidden context.
@@ -57,6 +89,45 @@ function simpleHash(str: string): number {
   return Math.abs(h);
 }
 
+function tryInsertFirstValidLink({
+  html,
+  patterns,
+  href,
+  anchorText,
+}: {
+  html: string;
+  patterns: RegExp[];
+  href: string;
+  anchorText?: string;
+}): string | null {
+  for (const pattern of patterns) {
+    const parts = html.split(/(<(?:a|h[1-6]|strong|button)[^>]*>[\s\S]*?<\/(?:a|h[1-6]|strong|button)>)/gi);
+
+    for (let i = 0; i < parts.length; i++) {
+      if (/^<(?:a|h[1-6]|strong|button)[^>]*>/i.test(parts[i])) continue;
+
+      const match = parts[i].match(pattern);
+      if (!match || match.index === undefined) continue;
+
+      const absolutePos = parts.slice(0, i).join("").length + match.index;
+      if (isInsideForbiddenContext(html, absolutePos)) continue;
+
+      const matchedText = match[0];
+      const linkText = anchorText || matchedText;
+      const link = `<a href="${href}" class="text-primary hover:underline">${linkText}</a>`;
+
+      parts[i] =
+        parts[i].slice(0, match.index) +
+        link +
+        parts[i].slice(match.index + matchedText.length);
+
+      return parts.join("");
+    }
+  }
+
+  return null;
+}
+
 /**
  * Processes HTML content and auto-links the first occurrence of
  * key entities to their respective main pages.
@@ -66,56 +137,51 @@ function simpleHash(str: string): number {
  */
 export function autoLinkEntities(html: string): string {
   if (!html) return html;
-  
-  // Compute a hash of the full content for deterministic variant selection
+
   const contentHash = simpleHash(html);
-  
   let result = html;
   const linkedEntities = new Set<string>();
+  let moneyLinksInserted = 0;
+
+  for (const rule of PRIORITY_MONEY_RULES) {
+    if (moneyLinksInserted >= MAX_MONEY_LINKS) break;
+    if (linkedEntities.has(rule.href)) continue;
+
+    const updatedHtml = tryInsertFirstValidLink({
+      html: result,
+      patterns: [...rule.patterns],
+      href: rule.href,
+    });
+
+    if (!updatedHtml) continue;
+
+    result = updatedHtml;
+    linkedEntities.add(rule.href);
+    moneyLinksInserted += 1;
+  }
 
   for (const entity of ENTITY_MAPPINGS) {
     if (linkedEntities.has(entity.href)) continue;
+    if (MONEY_PAGE_HREFS.has(entity.href) && moneyLinksInserted >= MAX_MONEY_LINKS) continue;
 
-    for (const pattern of entity.patterns) {
-      // Split by anchor and heading tags to skip them entirely
-      const parts = result.split(/(<(?:a|h[1-6]|strong|button)[^>]*>[\s\S]*?<\/(?:a|h[1-6]|strong|button)>)/gi);
-      let found = false;
+    const anchorText = entity.anchorVariants?.length
+      ? entity.anchorVariants[contentHash % entity.anchorVariants.length]
+      : entity.anchor;
 
-      for (let i = 0; i < parts.length; i++) {
-        // Skip parts that are forbidden tags
-        if (parts[i].match(/^<(?:a|h[1-6]|strong|button)[^>]*>/i)) continue;
+    const updatedHtml = tryInsertFirstValidLink({
+      html: result,
+      patterns: entity.patterns,
+      href: entity.href,
+      anchorText,
+    });
 
-        const match = parts[i].match(pattern);
-        if (match && match.index !== undefined) {
-          // Calculate absolute position for extra safety check
-          const absolutePos = parts.slice(0, i).join("").length + match.index;
-          if (isInsideForbiddenContext(result, absolutePos)) continue;
+    if (!updatedHtml) continue;
 
-          const matchedText = match[0];
-          // Pick anchor: use variant if available, otherwise static anchor or matched text
-          let anchorText: string;
-          if (entity.anchorVariants && entity.anchorVariants.length > 0) {
-            anchorText = entity.anchorVariants[contentHash % entity.anchorVariants.length];
-          } else {
-            anchorText = entity.anchor || matchedText;
-          }
-          const link = `<a href="${entity.href}" class="text-primary hover:underline">${anchorText}</a>`;
-          
-          parts[i] =
-            parts[i].slice(0, match.index) +
-            link +
-            parts[i].slice(match.index + matchedText.length);
-          
-          found = true;
-          linkedEntities.add(entity.href);
-          break;
-        }
-      }
+    result = updatedHtml;
+    linkedEntities.add(entity.href);
 
-      if (found) {
-        result = parts.join("");
-        break;
-      }
+    if (MONEY_PAGE_HREFS.has(entity.href)) {
+      moneyLinksInserted += 1;
     }
   }
 
