@@ -415,7 +415,7 @@ const LiveCasino = () => {
                 <tr className="border-b border-border/50">
                   <td className="py-2 px-4 font-medium">Crazy Time</td>
                   <td className="py-2 px-4">Gennemsnit alle bets</td>
-                  <td className="py-2 px-4">4,08 %</td>
+                  <td className="py-2 px-4">3,92 %</td>
                   <td className="py-2 px-4">96,08 %</td>
                   <td className="py-2 px-4">Meget Høj</td>
                 </tr>
