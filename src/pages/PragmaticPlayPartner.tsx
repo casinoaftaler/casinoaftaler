@@ -405,9 +405,11 @@ const PragmaticPlayPartner = () => {
               Disse mekanikker er ikke bare tekniske gimmicks – de repræsenterer en fundamental forståelse af, hvad der gør en spillemaskine engagerende. Pragmatic Plays designfilosofi centrerer sig om <strong>matematisk balance</strong> kombineret med <strong>emotionelle højdepunkter</strong>. Tumble-mekanikken skaber suspense ved at lade gevinster bygge op; multiplier-systemet skaber dramatik ved at multiplicere resultaterne; og Hold & Spin giver en taktisk dimension, der holder spilleren involveret.
             </p>
             <p>
-              Gennem vores partnerskab har vi fået indsigt i, hvordan Pragmatic Play balancerer disse mekanikker med RTP og volatilitet. Det er denne viden, der gør vores slot-analyser på{" "}
+              Gennem vores partnerskab har vi fået indsigt i, hvordan Pragmatic Play balancerer disse mekanikker med <Link to="/ordbog/rtp" className="text-primary hover:underline">RTP</Link> og <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link>. Det er denne viden, der gør vores slot-analyser på{" "}
               <Link to="/spillemaskiner/pragmatic-play" className="text-primary hover:underline">Pragmatic Play slot-hubben</Link>{" "}
-              mere dybdegående end standardanmeldelser. Vi kan forklare <em>hvorfor</em> et spil føles, som det gør – ikke bare <em>hvad</em> det gør.
+              mere dybdegående end standardanmeldelser. Vi kan forklare <em>hvorfor</em> et spil føles, som det gør – ikke bare <em>hvad</em> det gør. Læs også vores guide til{" "}
+              <Link to="/bonus-buy-slots" className="text-primary hover:underline">Bonus Buy slots</Link>{" "}
+              for en dybere forståelse af denne populære mekanik.
             </p>
           </div>
         </section>
