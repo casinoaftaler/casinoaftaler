@@ -435,9 +435,50 @@ const PragmaticPlayPartner = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════
+            MID-CONTENT CTA-BLOK (konverteringsfokus)
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 p-6 md:p-8">
+            <h2 className="mb-2 text-xl font-bold md:text-2xl">Spil Pragmatic Play hos de bedste casinoer</h2>
+            <p className="mb-5 text-muted-foreground">
+              Find de bedste danske casinoer med det største udvalg af Pragmatic Play spillemaskiner – inkl. bonusser og free spins.
+            </p>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <Link
+                to="/top-10-casino-online"
+                className="group flex items-center justify-between rounded-lg border border-primary/30 bg-primary px-5 py-3.5 font-medium text-primary-foreground transition-all hover:bg-primary/90"
+              >
+                <span>Se bedste Pragmatic Play casinoer</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/casino-bonus"
+                className="group flex items-center justify-between rounded-lg border border-border bg-background px-5 py-3.5 font-medium text-primary transition-all hover:border-primary/40 hover:shadow-sm"
+              >
+                <span>Få bonus på Pragmatic Play slots</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/free-spins-i-dag"
+                className="group flex items-center justify-between rounded-lg border border-border bg-background px-5 py-3.5 font-medium text-primary transition-all hover:border-primary/40 hover:shadow-sm"
+              >
+                <span>Spil Pragmatic Play slots med bonus</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
             SEKTION 6: PRAGMATIC PLAYS TEKNISKE STANDARDER
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12">
+          <div className="mb-6 flex items-center gap-2">
+            <Badge variant="outline" className="border-green-600/30 text-green-700 dark:text-green-400">
+              <CheckCircle2 className="mr-1 h-3 w-3" />
+              Direkte relation til spiludvikler
+            </Badge>
+          </div>
           <h2 className="mb-6 text-2xl font-bold md:text-3xl">Pragmatic Plays tekniske standarder og licensering</h2>
           <div className="prose prose-lg max-w-none text-muted-foreground">
             <p>
