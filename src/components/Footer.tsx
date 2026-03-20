@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle, Gift, Newspaper, Map, PenTool, TrendingUp, RefreshCw } from "lucide-react";
+import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle, Gift, Newspaper, Map, PenTool, TrendingUp, RefreshCw, Award } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useLatestNews } from "@/hooks/useLatestNews";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
@@ -495,8 +495,27 @@ export function Footer() {
           )}
         </div>
 
-        {/* Compliance / Ansvarligt Spil sektion */}
+        {/* Official Partners */}
         <div className="mt-8 border-t border-border pt-8">
+          <p className="mb-4 text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            Officiel Partner
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <a
+              href="https://www.pragmaticplay.com/en/about-us/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2.5 rounded-lg border border-border bg-muted/50 px-5 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+            >
+              <Award className="h-4 w-4 text-primary" />
+              Pragmatic Play Affiliate Partner
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          </div>
+        </div>
+
+        {/* Compliance / Ansvarligt Spil sektion */}
+        <div className="mt-6 border-t border-border pt-6">
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
             {/* 18+ badge */}
             <div className="flex items-center gap-2 text-muted-foreground">

@@ -347,6 +347,44 @@ const Forretningsmodel = () => {
 
         <Separator className="my-10" />
 
+        {/* Brancheanerkendelse */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
+            <Trophy className="h-7 w-7 text-primary" />
+            Brancheanerkendelse
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Casinoaftaler.dk er officielt anerkendt som affiliate-partner af førende spiludviklere i den internationale casino-branche.
+            Denne anerkendelse bekræfter, at vores platform lever op til branchens højeste standarder for kvalitet, gennemsigtighed og ansvarlig formidling.
+          </p>
+          <Card className="border-primary/30 bg-primary/5">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <Trophy className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">Pragmatic Play – Officiel Affiliate Partner</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Casinoaftaler er listet som officiel affiliate-partner på{" "}
+                    <a
+                      href="https://www.pragmaticplay.com/en/about-us/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary underline hover:text-primary/80"
+                    >
+                      Pragmatic Play's About Us-side
+                    </a>
+                    {" "}– verdens førende leverandør af casinospil med over 250+ titler i det danske marked.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        <Separator className="my-10" />
+
         {/* Vores løfte */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
