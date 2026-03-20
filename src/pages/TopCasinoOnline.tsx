@@ -109,7 +109,7 @@ const topCasinoFaqs: { question: string; answer: ReactNode }[] = [
   {
     question: "Hvad er RTP og volatilitet, og hvordan påvirker de mine vinderchancer?",
     answer:
-      "RTP (Return to Player) angiver den procentvise tilbagebetaling over millioner af spins. Et spil med 96 % RTP beholder statistisk 4 % af alle indsatser. Jo højere RTP, desto bedre langsigtede odds. Volatilitet beskriver gevinstfordelingen: lav volatilitet giver hyppige, men mindre gevinster (ideelt til længere sessioner med begrænset budget), mens høj volatilitet giver sjældne, men potentielt massive gevinster (bedst for spillere med højere risikotolerance). Eksempler: Starburst (96,09 % RTP, lav volatilitet) vs. Book of Dead (96,21 % RTP, høj volatilitet). Progressive jackpots har typisk lavere basis-RTP (88–92 %) men tilbyder livsendrende gevinster.",
+      "RTP (Return to Player) angiver den procentvise tilbagebetaling over millioner af spins. Et spil med 96 % RTP beholder statistisk 4 % af alle indsatser. Jo højere RTP, desto bedre langsigtede odds. Volatilitet beskriver gevinstfordelingen: lav volatilitet giver hyppige, men mindre gevinster (ideelt til længere sessioner med begrænset budget), mens høj volatilitet giver sjældne, men potentielt massive gevinster (bedst for spillere med højere risikotolerance). Eksempler: Starburst (96,08 % RTP, lav volatilitet) vs. Book of Dead (96,21 % RTP, høj volatilitet). Progressive jackpots har typisk lavere basis-RTP (88–92 %) men tilbyder livsendrende gevinster.",
   },
   {
     question: "Kan jeg sætte grænser for mit forbrug, og hvilke værktøjer er tilgængelige?",
@@ -125,7 +125,7 @@ const topCasinoFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er de mest populære casinospil blandt danske spillere i 2026?",
     answer: (
       <>
-        Spilleautomater dominerer med ca. 70 % af al omsætning på danske casinoer. De mest spillede titler inkluderer Sweet Bonanza (Pragmatic Play, 96,48 % RTP), Book of Dead (Play'n GO, 96,21 % RTP) og Starburst (NetEnt, 96,09 % RTP).{" "}
+        Spilleautomater dominerer med ca. 70 % af al omsætning på danske casinoer. De mest spillede titler inkluderer Sweet Bonanza (Pragmatic Play, 96,48 % RTP), Book of Dead (Play'n GO, 96,21 % RTP) og Starburst (NetEnt, 96,08 % RTP).{" "}
         <Link to="/live-casino" className={linkClass}>Live casino</Link> er det hurtigst voksende segment med Lightning Roulette og Crazy Time fra{" "}
         <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> som de mest populære. Højvolatile slots fra{" "}
         <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> og{" "}

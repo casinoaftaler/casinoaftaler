@@ -135,7 +135,7 @@ const HoejRTPGuide = () => {
                   ["Jokerizer", "Yggdrasil", "97,46 %", "Høj"],
                   ["Book of 99", "Relax Gaming", "97,40 %", "Høj"],
                   ["Jackpot 6000", "NetEnt", "97,10 %", "Middel"],
-                  ["Starburst", "NetEnt", "96,09 %", "Lav"],
+                  ["Starburst", "NetEnt", "96,08 %", "Lav"],
                 ].map(([spil, dev, rtp, vol], i) => (
                   <tr key={i} className="border-b border-border/50"><td className="py-3 px-4 font-medium">{spil}</td><td className="py-3 px-4">{dev}</td><td className="py-3 px-4"><Badge className="bg-green-500/20 text-green-500">{rtp}</Badge></td><td className="py-3 px-4">{vol}</td></tr>
                 ))}
@@ -195,7 +195,7 @@ const HoejRTPGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="font-bold mb-2">Lav volatilitet</h3>
-                <p className="text-sm text-muted-foreground mb-2">Ideelt for spillere med begrænset budget, der vil have mest mulig spilletid. Spil som Starburst (96,09 % RTP) og Blood Suckers (98 % RTP) giver stabile resultater med hyppige, små gevinster. Din saldo svinger minimalt, og du kan nyde længere sessioner.</p>
+                <p className="text-sm text-muted-foreground mb-2">Ideelt for spillere med begrænset budget, der vil have mest mulig spilletid. Spil som Starburst (96,08 % RTP) og Blood Suckers (98 % RTP) giver stabile resultater med hyppige, små gevinster. Din saldo svinger minimalt, og du kan nyde længere sessioner.</p>
                 <p className="text-sm text-muted-foreground"><strong>Typisk hit frequency:</strong> 25-35 %</p>
                 <p className="text-sm text-muted-foreground"><strong>Maksimal gevinst:</strong> 50-500x indsats</p>
                 <p className="text-sm text-muted-foreground"><strong>Bedst for:</strong> Casual spillere, underholdning</p>
@@ -233,7 +233,7 @@ const HoejRTPGuide = () => {
             <Card className="border-border bg-card">
               <CardContent className="pt-6">
                 <h3 className="font-bold mb-2"><Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link></h3>
-                <p className="text-sm text-muted-foreground">NetEnt er branchelederen inden for høj-RTP spilleautomater. Med titler som Blood Suckers (98 %), Mega Joker (99 %) og Starburst (96,09 %) har NetEnt et af de højeste gennemsnitlige RTP-niveauer i branchen. Deres spil er kendte for flot grafik kombineret med fair tilbagebetalingsprocenter. Gennemsnitlig RTP for NetEnt-slots ligger på ca. 96,5 %.</p>
+                <p className="text-sm text-muted-foreground">NetEnt er branchelederen inden for høj-RTP spilleautomater. Med titler som Blood Suckers (98 %), Mega Joker (99 %) og Starburst (96,08 %) har NetEnt et af de højeste gennemsnitlige RTP-niveauer i branchen. Deres spil er kendte for flot grafik kombineret med fair tilbagebetalingsprocenter. Gennemsnitlig RTP for NetEnt-slots ligger på ca. 96,5 %.</p>
               </CardContent>
             </Card>
             <Card className="border-border bg-card">

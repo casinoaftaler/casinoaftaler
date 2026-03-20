@@ -220,7 +220,7 @@ const Spillemaskiner = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><BarChart3 className="h-5 w-5 text-primary" />Lav volatilitet</CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground">Gevinster på ~30–40 % af spins. Typisk 1–50x indsatsen. Ideel til lange sessioner med begrænset budget. Eksempel: Starburst (96,09 % RTP).</p></CardContent>
+              <CardContent><p className="text-sm text-muted-foreground">Gevinster på ~30–40 % af spins. Typisk 1–50x indsatsen. Ideel til lange sessioner med begrænset budget. Eksempel: Starburst (96,08 % RTP).</p></CardContent>
             </Card>
             <Card className="border-border bg-card">
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><BarChart3 className="h-5 w-5 text-primary" />Medium volatilitet</CardTitle></CardHeader>

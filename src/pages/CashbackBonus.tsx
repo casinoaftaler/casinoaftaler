@@ -395,7 +395,7 @@ const CashbackBonus = () => {
               {
                 icon: Target,
                 title: "Vælg høj-RTP slots under cashback-perioder",
-                desc: "Kombinationen af høj RTP (96%+) og cashback reducerer din effektive house edge til under 3%. Slots som Starburst (96,09%), Blood Suckers (98,00%) og Mega Joker (99,00%) er ideelle valg. Jo lavere house edge, jo sjældnere trigges din cashback – men den reelle besparelse pr. omsætningskrone er større.",
+                desc: "Kombinationen af høj RTP (96%+) og cashback reducerer din effektive house edge til under 3%. Slots som Starburst (96,08%), Blood Suckers (98,00%) og Mega Joker (99,00%) er ideelle valg. Jo lavere house edge, jo sjældnere trigges din cashback – men den reelle besparelse pr. omsætningskrone er større.",
               },
               {
                 icon: Clock,

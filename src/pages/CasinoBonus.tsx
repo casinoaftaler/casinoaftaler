@@ -533,7 +533,7 @@ const CasinoBonus = () => {
             </p>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                { name: "Starburst", slug: "starburst", rtp: "96,09%", vol: "Lav", provider: "netent", providerName: "NetEnt" },
+                { name: "Starburst", slug: "starburst", rtp: "96,08%", vol: "Lav", provider: "netent", providerName: "NetEnt" },
                 { name: "Book of Dead", slug: "book-of-dead", rtp: "96,21%", vol: "Høj", provider: "play-n-go", providerName: "Play'n GO" },
                 { name: "Fire Joker", slug: "fire-joker", rtp: "96,15%", vol: "Lav", provider: "play-n-go", providerName: "Play'n GO" },
                 { name: "Sweet Bonanza", slug: "sweet-bonanza", rtp: "96,48%", vol: "Medium-Høj", provider: "pragmatic-play", providerName: "Pragmatic Play" },

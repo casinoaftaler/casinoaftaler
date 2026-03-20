@@ -109,14 +109,14 @@ const JokerStrikeGuide = () => {
                 <thead><tr className="border-b"><th className="text-left py-2">Slot</th><th className="text-left py-2">RTP</th><th className="text-left py-2">Max Win</th><th className="text-left py-2">Volatilitet</th></tr></thead>
                 <tbody>
                   <tr className="border-b"><td className="py-2 font-medium">Joker Strike (Hi Roller)</td><td>98,11 %</td><td>456×</td><td>Lav</td></tr>
-                  <tr className="border-b"><td className="py-2"><Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link></td><td>96,09 %</td><td>500×</td><td>Lav</td></tr>
+                  <tr className="border-b"><td className="py-2"><Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link></td><td>96,08 %</td><td>500×</td><td>Lav</td></tr>
                   <tr className="border-b"><td className="py-2"><Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link></td><td>96,15 %</td><td>800×</td><td>Høj</td></tr>
                   <tr><td className="py-2">Blood Suckers</td><td>98,00 %</td><td>900×</td><td>Lav</td></tr>
                 </tbody>
               </table>
             </div>
           </CardContent></Card>
-          <p className="text-muted-foreground mb-4 leading-relaxed">Joker Strike (Hi Roller) slår alle konkurrenter på RTP – selv Blood Suckers' berømte 98,00 % overgås med 0,11 procentpoint. Starburst tilbyder lignende max win (500× vs. 456×) men med markant lavere RTP (96,09 %). <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> har højere max win men også højere volatilitet og lavere RTP.</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">Joker Strike (Hi Roller) slår alle konkurrenter på RTP – selv Blood Suckers' berømte 98,00 % overgås med 0,11 procentpoint. Starburst tilbyder lignende max win (500× vs. 456×) men med markant lavere RTP (96,08 %). <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> har højere max win men også højere volatilitet og lavere RTP.</p>
           <p className="text-muted-foreground leading-relaxed">For ren matematisk optimering er Joker Strike med Hi Roller det bedste valg i hele slot-markedet. Den eneste limitation er det lave max win (456×), der gør den uattraktiv for spillere, der søger potentiale for store gevinster. For disse spillere anbefaler vi i stedet <Link to="/casinospil/spillemaskiner/immortal-romance" className={linkClass}>Immortal Romance</Link> (96,86 % RTP, 12.150× max win).</p>
         </section>
 

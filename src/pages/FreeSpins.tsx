@@ -59,7 +59,7 @@ const freeSpinsFaqs: { question: string; answer: string | React.ReactNode }[] = 
   },
   {
     question: "Hvorfor er free spins næsten altid begrænset til bestemte spil?",
-    answer: "Casinoer vælger specifikke spil til free spins af to grunde: 1) Spil med lav-medium volatilitet som Starburst giver spillere en positiv oplevelse med hyppige små gevinster, og 2) Casinoet har forhandlet særlige aftaler med spiludviklerne. Populære free spins-spil inkluderer Starburst (96,09% RTP, lav volatilitet), Book of Dead (96,21% RTP, høj volatilitet) og Gonzo's Quest (95,97% RTP, medium volatilitet). Spilvalget påvirker direkte din gevinstchance – højvolatilitetsspil giver større men sjældnere gevinster.",
+    answer: "Casinoer vælger specifikke spil til free spins af to grunde: 1) Spil med lav-medium volatilitet som Starburst giver spillere en positiv oplevelse med hyppige små gevinster, og 2) Casinoet har forhandlet særlige aftaler med spiludviklerne. Populære free spins-spil inkluderer Starburst (96,08% RTP, lav volatilitet), Book of Dead (96,21% RTP, høj volatilitet) og Gonzo's Quest (95,97% RTP, medium volatilitet). Spilvalget påvirker direkte din gevinstchance – højvolatilitetsspil giver større men sjældnere gevinster.",
   },
   {
     question: "Hvad er forskellen på wager-free og standard free spins?",

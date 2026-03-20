@@ -27,7 +27,7 @@ const starburstFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvad er Starburst RTP, og er den fast?",
     answer: (
       <>
-        Starburst har en fast RTP på 96,09 %, som ikke varierer mellem casinoer. Det betyder, at house edge konstant er 3,91 %. I modsætning til nyere slots fra f.eks. <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, der tilbyder variable RTP-konfigurationer, kører alle <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>-installationer af Starburst med identisk matematik. Over 1.000 spins á 10 kr. er dit statistiske forventede tab 391 kr.
+        Starburst har en fast RTP på 96,08 %, som ikke varierer mellem casinoer. Det betyder, at house edge konstant er 3,91 %. I modsætning til nyere slots fra f.eks. <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, der tilbyder variable RTP-konfigurationer, kører alle <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>-installationer af Starburst med identisk matematik. Over 1.000 spins á 10 kr. er dit statistiske forventede tab 391 kr.
       </>
     ),
   },
@@ -47,7 +47,7 @@ const starburstFaqs: { question: string; answer: ReactNode }[] = [
     question: "Kan man bruge Starburst til at opfylde omsætningskrav?",
     answer: (
       <>
-        Ja, Starburst er en af de mest populære slots til wagering på grund af dens lave volatilitet og stabile gevinstfrekvens. Med en RTP på 96,09 % og en hit-rate på ca. 23 % kan du forvente en langsom, kontrolleret nedgang af din saldo. Med det danske 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og en 1.000 kr. bonus (10.000 kr. total wagering) er dit forventede tab ca. 391 kr. – bonusværdien er +609 kr., klart positiv. Starbursts lave volatilitet gør den til en af de sikreste wagering-kandidater.
+        Ja, Starburst er en af de mest populære slots til wagering på grund af dens lave volatilitet og stabile gevinstfrekvens. Med en RTP på 96,08 % og en hit-rate på ca. 23 % kan du forvente en langsom, kontrolleret nedgang af din saldo. Med det danske 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og en 1.000 kr. bonus (10.000 kr. total wagering) er dit forventede tab ca. 391 kr. – bonusværdien er +609 kr., klart positiv. Starbursts lave volatilitet gør den til en af de sikreste wagering-kandidater.
       </>
     ),
   },
@@ -84,8 +84,8 @@ const StarburstGuide = () => {
   return (
     <>
       <SEO
-        title="Starburst Spilleautomat – RTP 96,09% & Volatilitet (2026)"
-        description="Komplet analyse af Starburst: RTP 96,09 %, volatilitet, wagering-egnethed, max win 500x og sammenligning med moderne slots."
+        title="Starburst Spilleautomat – RTP 96,08% & Volatilitet (2026)"
+        description="Komplet analyse af Starburst: RTP 96,08 %, volatilitet, wagering-egnethed, max win 500x og sammenligning med moderne slots."
         jsonLd={[faqJsonLd, articleSchema, howToJsonLd]}
       />
 
@@ -113,7 +113,7 @@ const StarburstGuide = () => {
             Lad os starte med det kontroversielle spørgsmål: er Starburst egentlig et godt spil, eller lever det udelukkende på nostalgi og markedsføring? <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> lancerede Starburst i januar 2012, og siden da er den blevet synonymt med begrebet "online slot". Casinoer bruger Starburst <Link to="/ordbog/free-spins" className={linkClass}>free spins</Link> som standardvaluta i deres velkomstkampagner. Men tallene fortæller en mere nuanceret historie end marketingafdelingerne.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Med en <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96,09 % er Starburst hverken dårlig eller fremragende – den befinder sig præcist i midterfeltet. Max win på 500x din indsats er i 2026-perspektiv decideret beskedent; sammenlign med <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (21.175x) eller <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (5.000x). Det, der holder Starburst relevant, er ikke dens gevinstpotentiale – det er dens stabilitet. Og det er præcis det, vi undersøger i denne analyse.
+            Med en <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96,08 % er Starburst hverken dårlig eller fremragende – den befinder sig præcist i midterfeltet. Max win på 500x din indsats er i 2026-perspektiv decideret beskedent; sammenlign med <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (21.175x) eller <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (5.000x). Det, der holder Starburst relevant, er ikke dens gevinstpotentiale – det er dens stabilitet. Og det er præcis det, vi undersøger i denne analyse.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vi har gennemgået Starbursts matematiske model i detaljer, testet dens <Link to="/ordbog/wagering" className={linkClass}>wagering</Link>-egnethed med konkrete EV-beregninger, og sammenlignet den med de moderne alternativer, der har overtaget markedet. Resultatet er en ærlig vurdering af, hvornår Starburst stadig giver mening – og hvornår du bør vælge noget andet.
@@ -132,7 +132,7 @@ const StarburstGuide = () => {
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">RTP</p>
-              <p className="text-xl font-bold">96,09 %</p>
+              <p className="text-xl font-bold">96,08 %</p>
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Volatilitet</p>
@@ -192,7 +192,7 @@ const StarburstGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><BarChart3 className="h-7 w-7 text-primary" /> House Edge og Statistisk Forventning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Starbursts faste RTP på 96,09 % giver en <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> på 3,91 %. Det placerer den lidt under gennemsnittet for moderne slots, der typisk ligger på 96,20–96,50 %. Men i kontekst er forskellen minimal. Lad os sammenligne det forventede tab over en standardsession:
+            Starbursts faste RTP på 96,08 % giver en <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> på 3,91 %. Det placerer den lidt under gennemsnittet for moderne slots, der typisk ligger på 96,20–96,50 %. Men i kontekst er forskellen minimal. Lad os sammenligne det forventede tab over en standardsession:
           </p>
 
           <div className="overflow-x-auto mb-6">
@@ -229,7 +229,7 @@ const StarburstGuide = () => {
           </div>
 
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Over 1.000 spins er forskellen mellem Starburst (96,09 %) og en standard 96,48 %-slot kun 39 kr. – ikke katastrofalt. Men over mange tusinde spins (typisk for wagering-scenarier) akkumulerer forskellen. Med det danske 10x omsætningskrav og en 1.000 kr. bonus (10.000 kr. wagering) er det forventede tab 391 kr. på Starburst vs. 352 kr. på en 96,48 %-slot – en forskel på 39 kr.
+            Over 1.000 spins er forskellen mellem Starburst (96,08 %) og en standard 96,48 %-slot kun 39 kr. – ikke katastrofalt. Men over mange tusinde spins (typisk for wagering-scenarier) akkumulerer forskellen. Med det danske 10x omsætningskrav og en 1.000 kr. bonus (10.000 kr. wagering) er det forventede tab 391 kr. på Starburst vs. 352 kr. på en 96,48 %-slot – en forskel på 39 kr.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Starbursts lave volatilitet kompenserer dog delvist for den lidt lavere RTP i wagering-scenarier. Fordi gevinstfrekvensen er høj og variansen lav, er risikoen for at gå bust (tabe hele saldoen) under wagering lavere end på en høj-volatilitets slot med samme RTP. I praksis betyder det, at din faktiske chance for at fuldføre omsætningskravene kan være højere med Starburst end med en teknisk set bedre RTP-slot med høj volatilitet.
@@ -283,8 +283,8 @@ const StarburstGuide = () => {
               </thead>
               <tbody>
                 <tr className="border-b">
-                  <td className="py-2">Starburst (96,09 %)</td>
-                  <td className="py-2 text-right">96,09 %</td>
+                  <td className="py-2">Starburst (96,08 %)</td>
+                  <td className="py-2 text-right">96,08 %</td>
                   <td className="py-2 text-right">391 kr.</td>
                   <td className="py-2 text-right text-primary">+609 kr.</td>
                   <td className="py-2 text-right">~5 %</td>
@@ -398,7 +398,7 @@ const StarburstGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Den Ærlige Dom: Starburst i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Starburst er ikke den bedste slot i 2026 – og det prætenderer den heller ikke at være. Med 96,09 % RTP, 500x max win og ingen bonusfunktioner ud over expanding wilds er den teknisk set inferior sammenlignet med de fleste moderne slots. Men den er heller ikke dårlig. Den er stabil, forudsigelig, og universelt tilgængelig. Det er præcis de egenskaber, der gør den ideel til specifikke formål: wagering, casual play, og som introduktion til online slots.
+            Starburst er ikke den bedste slot i 2026 – og det prætenderer den heller ikke at være. Med 96,08 % RTP, 500x max win og ingen bonusfunktioner ud over expanding wilds er den teknisk set inferior sammenlignet med de fleste moderne slots. Men den er heller ikke dårlig. Den er stabil, forudsigelig, og universelt tilgængelig. Det er præcis de egenskaber, der gør den ideel til specifikke formål: wagering, casual play, og som introduktion til online slots.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores vurdering er nuanceret. Hvis du modtager <Link to="/free-spins" className={linkClass}>free spins</Link> på Starburst – brug dem. Gratis spins har altid positiv EV uanset spillets RTP. Hvis du skal wagere en <Link to="/casino-bonus" className={linkClass}>bonus</Link> med lave omsætningskrav (under 25x), er Starburst et solidt valg for at minimere bust-risikoen. Men hvis du spiller for underholdning med dit eget budget, er der bedre alternativer, der tilbyder mere engagerende gameplay og højere gevinstpotentiale.
