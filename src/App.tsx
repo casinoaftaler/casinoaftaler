@@ -32,6 +32,7 @@ const TopCasinoOnline = lazy(() => import("./pages/TopCasinoOnline"));
 const CasinoSlugRedirect = lazy(() => import("./components/CasinoSlugRedirect"));
 const OmTeamet = lazy(() => import("./pages/OmTeamet"));
 const Forretningsmodel = lazy(() => import("./pages/Forretningsmodel"));
+const PragmaticPlayPartner = lazy(() => import("./pages/PragmaticPlayPartner"));
 const RedaktionelPolitik = lazy(() => import("./pages/RedaktionelPolitik"));
 const Kontakt = lazy(() => import("./pages/Contact"));
 const SitemapPage = lazy(() => import("./pages/Sitemap"));
