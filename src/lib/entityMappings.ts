@@ -126,6 +126,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
 
   // Spiludviklere money-pages
   { patterns: [/\bEvolution Gaming\b/i, /\bEvolution\b/], href: "/spiludviklere/evolution-gaming", anchor: "Evolution Gaming", anchorVariants: ["Evolution Gaming", "Evolution", "Evolution Gaming live casino"] },
+  { patterns: [/\bPragmatic Play partner\b/i, /\bofficiel partner af Pragmatic Play\b/i, /\bPragmatic Play samarbejde\b/i], href: "/pragmatic-play-partner", anchor: "Pragmatic Play partner", anchorVariants: ["Pragmatic Play partner", "officiel Pragmatic Play partner", "Pragmatic Play samarbejde"] },
   { patterns: [/\bPragmatic Play\b/i], href: "/spiludviklere/pragmatic-play", anchor: "Pragmatic Play", anchorVariants: ["Pragmatic Play", "Pragmatic Play slots", "Pragmatic Play spillemaskiner"] },
   { patterns: [/\bNetEnt\b/], href: "/spiludviklere/netent", anchor: "NetEnt", anchorVariants: ["NetEnt", "NetEnt slots", "NetEnt spillemaskiner"] },
   { patterns: [/\bPlay'?n.?GO\b/i, /\bPlay n Go\b/i], href: "/spiludviklere/play-n-go", anchor: "Play'n GO", anchorVariants: ["Play'n GO", "Play n GO slots", "Play'n GO spillemaskiner"] },

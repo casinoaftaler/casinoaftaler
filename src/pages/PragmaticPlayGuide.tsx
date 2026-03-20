@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { Award } from "lucide-react";
 import pragmaticPlayHero from "@/assets/heroes/pragmatic-play-hero.jpg";
 
 const PragmaticPlayGuide = () => (
@@ -24,6 +25,20 @@ const PragmaticPlayGuide = () => (
     introTitle="Industriens Maskinrum: Hvordan Pragmatic Play Blev Branchens Mest Spillede Udvikler"
     introContent={
       <>
+        <div className="mb-6 rounded-xl border border-primary/20 bg-primary/5 p-5">
+          <div className="flex items-start gap-3">
+            <Award className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
+            <div>
+              <p className="mb-1 font-semibold">Officiel partner af Pragmatic Play</p>
+              <p className="text-sm text-muted-foreground">
+                Casinoaftaler.dk er officielt listet som affiliate-partner hos Pragmatic Play, med direkte adgang til teknisk dokumentation og tidlig information om nye spil.{" "}
+                <Link to="/pragmatic-play-partner" className="text-primary underline hover:text-primary/80">
+                  Læs om vores officielle Pragmatic Play partnerskab →
+                </Link>
+              </p>
+            </div>
+          </div>
+        </div>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I casinobranchen er der to slags udviklere: dem der bygger spil, og dem der bygger maskiner der producerer spil. Pragmatic Play er det mest perfekte eksempel på den sidste kategori. Grundlagt i 2015 på Malta har de på under et årti opbygget en portefølje med over 250 spilleautomater, en komplet <Link to="/live-casino" className="text-primary underline hover:text-primary/80">live casino</Link>-division med 100+ borde, og en bingo-vertikal – og de udgiver 6-8 nye slots per måned, tre gange branchens gennemsnit. Det er ikke kreativitet i traditionel forstand. Det er industriel produktion i casinoformat.
         </p>

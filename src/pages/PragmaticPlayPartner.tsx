@@ -126,6 +126,54 @@ const PragmaticPlayPartner = () => {
         <AuthorMetaBar author="jonas" readTime="20 min" />
 
         {/* ═══════════════════════════════════════════════════════════
+            PARTNERSKABS-BEVIS (trust signal – højt placeret)
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="mb-12 rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
+          <div className="flex flex-col items-center gap-6 md:flex-row md:items-start">
+            <div className="flex shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-background p-4">
+              <img
+                src={pragmaticPlayLogo}
+                alt="Pragmatic Play officielt partner-logo"
+                className="h-12 w-auto dark:brightness-0 dark:invert md:h-14"
+                width={180}
+                height={56}
+              />
+            </div>
+            <div className="text-center md:text-left">
+              <div className="mb-3 flex flex-wrap items-center justify-center gap-2 md:justify-start">
+                <Badge variant="default" className="bg-green-600 text-white hover:bg-green-700">
+                  <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
+                  Verificeret samarbejde
+                </Badge>
+                <Badge variant="outline" className="border-primary/30 text-primary">
+                  <Award className="mr-1.5 h-3.5 w-3.5" />
+                  Officiel Partner
+                </Badge>
+              </div>
+              <h2 className="mb-2 text-xl font-bold md:text-2xl">Officielt samarbejde med Pragmatic Play</h2>
+              <p className="text-muted-foreground">
+                <strong>Casinoaftaler.dk er officielt listet som affiliate-partner hos Pragmatic Play.</strong>{" "}
+                Det betyder, at vi har en direkte relation til en af verdens største spiludviklere, med adgang til officiel teknisk dokumentation, tidlig information om nye udgivelser og direkte kontakt til deres team. Partnerskabet er et tillidstegn, der understreger Casinoaftalers position som en seriøs aktør i det danske iGaming-landskab.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-4 text-sm text-muted-foreground">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  Officiel partner
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  Direkte relation til spiludvikler
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  Verificeret samarbejde
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
             SEKTION 1: INTRODUKTION – HVAD PARTNERSKABET BETYDER
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12">
@@ -246,6 +294,12 @@ const PragmaticPlayPartner = () => {
             SEKTION 4: SÅDAN TESTER VI PRAGMATIC PLAY SPIL
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12">
+          <div className="mb-6 flex items-center gap-2">
+            <Badge variant="outline" className="border-green-600/30 text-green-700 dark:text-green-400">
+              <ShieldCheck className="mr-1 h-3 w-3" />
+              Verificeret af officiel partner
+            </Badge>
+          </div>
           <h2 className="mb-6 text-2xl font-bold md:text-3xl">Sådan tester vi Pragmatic Play spil</h2>
           <div className="prose prose-lg max-w-none text-muted-foreground">
             <p>
@@ -381,9 +435,50 @@ const PragmaticPlayPartner = () => {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════
+            MID-CONTENT CTA-BLOK (konverteringsfokus)
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <div className="rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 p-6 md:p-8">
+            <h2 className="mb-2 text-xl font-bold md:text-2xl">Spil Pragmatic Play hos de bedste casinoer</h2>
+            <p className="mb-5 text-muted-foreground">
+              Find de bedste danske casinoer med det største udvalg af Pragmatic Play spillemaskiner – inkl. bonusser og free spins.
+            </p>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <Link
+                to="/top-10-casino-online"
+                className="group flex items-center justify-between rounded-lg border border-primary/30 bg-primary px-5 py-3.5 font-medium text-primary-foreground transition-all hover:bg-primary/90"
+              >
+                <span>Se bedste Pragmatic Play casinoer</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/casino-bonus"
+                className="group flex items-center justify-between rounded-lg border border-border bg-background px-5 py-3.5 font-medium text-primary transition-all hover:border-primary/40 hover:shadow-sm"
+              >
+                <span>Få bonus på Pragmatic Play slots</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/free-spins-i-dag"
+                className="group flex items-center justify-between rounded-lg border border-border bg-background px-5 py-3.5 font-medium text-primary transition-all hover:border-primary/40 hover:shadow-sm"
+              >
+                <span>Spil Pragmatic Play slots med bonus</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
             SEKTION 6: PRAGMATIC PLAYS TEKNISKE STANDARDER
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12">
+          <div className="mb-6 flex items-center gap-2">
+            <Badge variant="outline" className="border-green-600/30 text-green-700 dark:text-green-400">
+              <CheckCircle2 className="mr-1 h-3 w-3" />
+              Direkte relation til spiludvikler
+            </Badge>
+          </div>
           <h2 className="mb-6 text-2xl font-bold md:text-3xl">Pragmatic Plays tekniske standarder og licensering</h2>
           <div className="prose prose-lg max-w-none text-muted-foreground">
             <p>
@@ -471,39 +566,44 @@ const PragmaticPlayPartner = () => {
             SEKTION 8: PRAGMATIC PLAY I DANSK KONTEKST
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-6 text-2xl font-bold md:text-3xl">Pragmatic Play hos danske casinoer</h2>
+          <h2 className="mb-6 text-2xl font-bold md:text-3xl">Bedste Pragmatic Play casinoer i Danmark</h2>
           <div className="prose prose-lg max-w-none text-muted-foreground">
             <p>
-              Pragmatic Play er en af de mest udbredte spiludviklere på det danske marked. Deres spil er tilgængelige hos stort set alle licenserede danske online casinoer, og de er konsekvent blandt de mest populære titler hos danske spillere.
-            </p>
-            <p>
-              I vores{" "}
-              <Link to="/casino-anmeldelser" className="text-primary hover:underline">casino anmeldelser</Link>{" "}
-              dokumenterer vi, hvilke spiludviklere der er tilgængelige hos hvert enkelt casino. Pragmatic Play er typisk repræsenteret med 150-200+ titler hos de større operatører, hvilket afspejler deres position som en af markedets førende leverandører.
-            </p>
-            <p>
-              Nogle af de danske casinoer, der tilbyder det bredeste udvalg af Pragmatic Play spil, inkluderer:
+              Her er de bedste danske casinoer med det største Pragmatic Play udvalg. Alle har dansk licens fra Spillemyndigheden og tilbyder 150-200+ Pragmatic Play titler, inklusiv Sweet Bonanza, Gates of Olympus og hele Big Bass-serien.
             </p>
           </div>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { name: "LeoVegas", path: "/casino-anmeldelser/leovegas" },
-              { name: "Unibet", path: "/casino-anmeldelser/unibet" },
-              { name: "bet365", path: "/casino-anmeldelser/bet365" },
-              { name: "ComeOn", path: "/casino-anmeldelser/comeon" },
-              { name: "Betinia", path: "/casino-anmeldelser/betinia" },
-              { name: "Mr Green", path: "/casino-anmeldelser/mr-green" },
+              { name: "SpilDanskNu", path: "/casino-anmeldelser/spildansknu", desc: "Stort Pragmatic Play udvalg med hurtige udbetalinger og dansk kundeservice." },
+              { name: "Betinia", path: "/casino-anmeldelser/betinia", desc: "Stærk bonusstruktur og komplet Pragmatic Play-katalog inkl. live casino." },
+              { name: "Spilleautomaten", path: "/casino-anmeldelser/spilleautomaten", desc: "Fokuseret på spillemaskiner med et af markedets bredeste Pragmatic-udvalg." },
+              { name: "Campobet", path: "/casino-anmeldelser/campobet", desc: "200+ Pragmatic Play titler og konkurrencedygtige bonusvilkår." },
+              { name: "Swift Casino", path: "/casino-anmeldelser/swift-casino", desc: "Hurtig registrering og fuld Pragmatic Play-integration." },
+              { name: "Luna Casino", path: "/casino-anmeldelser/luna-casino", desc: "Nyt dansk casino med stærkt Pragmatic Play fokus og daglige tilbud." },
             ].map((casino) => (
               <Link
                 key={casino.name}
                 to={casino.path}
-                className="group flex items-center justify-between rounded-lg border border-border bg-card px-5 py-4 transition-all hover:border-primary/40 hover:shadow-sm"
+                className="group rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md"
               >
-                <span className="font-medium group-hover:text-primary">{casino.name}</span>
-                <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                <div className="mb-2 flex items-center justify-between">
+                  <h3 className="font-semibold group-hover:text-primary">{casino.name}</h3>
+                  <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                </div>
+                <p className="text-sm text-muted-foreground">{casino.desc}</p>
               </Link>
             ))}
+          </div>
+
+          <div className="mt-6 flex justify-center">
+            <Link
+              to="/top-10-casino-online"
+              className="group inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-all hover:bg-primary/90"
+            >
+              Se alle de bedste online casinoer
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
 
           <div className="prose prose-lg mt-8 max-w-none text-muted-foreground">
