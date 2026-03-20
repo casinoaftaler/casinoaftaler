@@ -606,7 +606,7 @@ const PragmaticPlayPartner = () => {
                 to="/top-10-casino-online"
                 className="group flex items-center justify-between rounded-lg border border-primary/30 bg-primary px-5 py-3.5 font-medium text-primary-foreground transition-all hover:bg-primary/90"
               >
-                <span>Se bedste Pragmatic Play casinoer</span>
+                <span>Spil Pragmatic Play slots hos de bedste casinoer (med bonus)</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
