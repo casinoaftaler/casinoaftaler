@@ -358,15 +358,27 @@ const Forretningsmodel = () => {
             Casinoaftaler.dk er officielt anerkendt som affiliate-partner af førende spiludviklere i den internationale casino-branche.
             Denne anerkendelse bekræfter, at vores platform lever op til branchens højeste standarder for kvalitet, gennemsigtighed og ansvarlig formidling.
           </p>
-          <Card className="border-primary/30 bg-primary/5">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                  <Trophy className="h-6 w-6 text-primary" />
+          <Card className="overflow-hidden border-primary/20">
+            <CardContent className="p-0">
+              <div className="flex flex-col sm:flex-row">
+                {/* Logo section */}
+                <div className="flex items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5 p-8 sm:w-48 sm:flex-shrink-0">
+                  <img
+                    src={pragmaticPlayLogo}
+                    alt="Pragmatic Play logo"
+                    className="h-12 w-auto dark:brightness-0 dark:invert"
+                  />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg">Pragmatic Play – Officiel Affiliate Partner</h3>
-                  <p className="text-sm text-muted-foreground">
+                {/* Content section */}
+                <div className="flex flex-col justify-center p-6">
+                  <div className="mb-1 flex items-center gap-2">
+                    <Badge variant="secondary" className="text-xs">
+                      <Award className="mr-1 h-3 w-3" />
+                      Officiel Partner
+                    </Badge>
+                  </div>
+                  <h3 className="mb-2 text-lg font-semibold">Pragmatic Play – Affiliate Partner</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Casinoaftaler er listet som officiel affiliate-partner på{" "}
                     <a
                       href="https://www.pragmaticplay.com/en/about-us/"

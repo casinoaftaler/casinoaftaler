@@ -506,11 +506,18 @@ export function Footer() {
               href="https://www.pragmaticplay.com/en/about-us/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2.5 rounded-lg border border-border bg-muted/50 px-5 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+              className="group flex items-center gap-3 rounded-xl border border-border bg-muted/50 px-6 py-3 transition-all hover:border-primary/50 hover:bg-primary/5 hover:shadow-md"
             >
-              <Award className="h-4 w-4 text-primary" />
-              Pragmatic Play Affiliate Partner
-              <ExternalLink className="h-3 w-3" />
+              <img
+                src={pragmaticPlayLogo}
+                alt="Pragmatic Play logo"
+                className="h-7 w-auto dark:brightness-0 dark:invert"
+                loading="lazy"
+              />
+              <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground">
+                Affiliate Partner
+              </span>
+              <ExternalLink className="h-3 w-3 text-muted-foreground/50" />
             </a>
           </div>
         </div>
