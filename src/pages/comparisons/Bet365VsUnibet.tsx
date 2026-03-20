@@ -179,7 +179,7 @@ export default function Bet365VsUnibet() {
           Både bet365 og Unibet opererer under dansk licens, hvilket er en fundamental forudsætning for at anbefale et casino til danske spillere. Licensen sikrer, at begge operatører er underlagt Spillemyndighedens strenge regler vedrørende spilsikkerhed, midlernes beskyttelse, <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> og ROFUS-integration. Gevinster fra begge casinoer er skattefrie for danske spillere, og begge operatører bidrager med spilleafgift til den danske stat.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Kindred Group har desuden et ambitiøst mål om at eliminere skadeligt spil inden 2030 – et mål, som ingen anden stor operatør har sat offentligt. bet365 investerer ligeledes massivt i ansvarligt spil med avancerede indbetalingsgrænser og selvudelukkelsesværktøjer. For en dybere gennemgang af casino-sikkerhed og licensering, se vores <Link to="/casino-licenser" className={linkClass}>licensguide</Link>.
+          FDJ United (tidl. Kindred Group) har desuden et ambitiøst mål om at eliminere skadeligt spil inden 2030 – et mål, som ingen anden stor operatør har sat offentligt. bet365 investerer ligeledes massivt i ansvarligt spil med avancerede indbetalingsgrænser og selvudelukkelsesværktøjer. For en dybere gennemgang af casino-sikkerhed og licensering, se vores <Link to="/casino-licenser" className={linkClass}>licensguide</Link>.
         </p>
       </section>
 
