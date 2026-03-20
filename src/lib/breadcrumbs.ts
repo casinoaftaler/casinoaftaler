@@ -143,6 +143,7 @@ export const routeLabels: Record<string, string> = {
   "/casino-med-mobilepay": "Casino med MobilePay",
   "/om": "Om Casinoaftaler.dk",
   "/forretningsmodel": "Forretningsmodel",
+  "/pragmatic-play-partner": "Pragmatic Play Partner",
   "/redaktionel-politik": "Redaktionel Politik",
   "/kontakt": "Kontakt",
   "/privatlivspolitik": "Privatlivspolitik",
@@ -514,6 +515,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   // Info-klynge – bundet til /om hubben
   "/saadan-tester-vi-casinoer": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/forretningsmodel": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
+  "/pragmatic-play-partner": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/redaktionel-politik": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/kontakt": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
 
