@@ -85,7 +85,7 @@ const StarburstGuide = () => {
     <>
       <SEO
         title="Starburst Spilleautomat – RTP 96,08% & Volatilitet (2026)"
-        description="Komplet analyse af Starburst: RTP 96,08 %, volatilitet, wagering-egnethed, max win 500x og sammenligning med moderne slots."
+        description="Komplet analyse af Starburst: RTP 96,08 %, volatilitet, wagering-egnethed, max win 800x og sammenligning med moderne slots."
         jsonLd={[faqJsonLd, articleSchema, howToJsonLd]}
       />
 
@@ -140,7 +140,7 @@ const StarburstGuide = () => {
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Max Win</p>
-              <p className="text-xl font-bold">500x</p>
+              <p className="text-xl font-bold">800x</p>
             </CardContent></Card>
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Grid Layout</p>

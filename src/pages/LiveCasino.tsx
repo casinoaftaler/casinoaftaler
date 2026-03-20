@@ -416,7 +416,7 @@ const LiveCasino = () => {
                   <td className="py-2 px-4 font-medium">Crazy Time</td>
                   <td className="py-2 px-4">Gennemsnit alle bets</td>
                   <td className="py-2 px-4">4,08 %</td>
-                  <td className="py-2 px-4">95,92 %</td>
+                  <td className="py-2 px-4">96,08 %</td>
                   <td className="py-2 px-4">Meget Høj</td>
                 </tr>
                 <tr>
@@ -526,7 +526,7 @@ const LiveCasino = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Den hurtigst voksende kategori. Crazy Time (95,92 % RTP, 4 bonusspil med op til 25.000x), Dream Catcher (simpelt pengehjul), Monopoly Live (3D bonusrunde) og Lightning Dice definerer genren. Ingen strategi nødvendig – ren underholdning med høj volatilitet. House edge er 3-5 %, men underholdningsværdien er uovertruffen.
+                  Den hurtigst voksende kategori. Crazy Time (96,08 % RTP, 4 bonusspil med op til 25.000x), Dream Catcher (simpelt pengehjul), Monopoly Live (3D bonusrunde) og Lightning Dice definerer genren. Ingen strategi nødvendig – ren underholdning med høj volatilitet. House edge er 3-5 %, men underholdningsværdien er uovertruffen.
                 </p>
               </CardContent>
             </Card>
