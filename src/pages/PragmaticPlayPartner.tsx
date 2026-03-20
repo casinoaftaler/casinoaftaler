@@ -294,6 +294,12 @@ const PragmaticPlayPartner = () => {
             SEKTION 4: SÅDAN TESTER VI PRAGMATIC PLAY SPIL
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12">
+          <div className="mb-6 flex items-center gap-2">
+            <Badge variant="outline" className="border-green-600/30 text-green-700 dark:text-green-400">
+              <ShieldCheck className="mr-1 h-3 w-3" />
+              Verificeret af officiel partner
+            </Badge>
+          </div>
           <h2 className="mb-6 text-2xl font-bold md:text-3xl">Sådan tester vi Pragmatic Play spil</h2>
           <div className="prose prose-lg max-w-none text-muted-foreground">
             <p>
