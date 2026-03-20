@@ -37,8 +37,7 @@ const bwinFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvem ejer bwin, og hvad er deres track record?",
     answer: (
       <>
-        bwin ejes af Entain plc (tidligere GVC Holdings), som også ejer Ladbrokes, Coral og PartyPoker. Entain er noteret på London Stock Exchange med en markedsværdi på over 50 milliarder kroner og er et af verdens største online gambling-selskaber. Selskabet har en lang historie for regulatorisk compliance og investerer massivt i ansvarligt spil-teknologi. I visse markeder opererer Entain også{" "}
-        <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link>-brandet, men i Danmark er bwin det primære casinobrand.
+        bwin ejes af Entain plc (tidligere GVC Holdings), som også ejer Ladbrokes, Coral og PartyPoker. Entain er noteret på London Stock Exchange med en markedsværdi på over 30 milliarder kroner og er et af verdens største online gambling-selskaber. Selskabet har en lang historie for regulatorisk compliance og investerer massivt i ansvarligt spil-teknologi. I Danmark er bwin Entains primære casinobrand.
       </>
     ),
   },
@@ -564,7 +563,7 @@ const BwinAnmeldelse = () => {
             <strong>bwin vs. <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>:</strong> Begge er premium all-round-platforme med sport, casino og live casino. bet365 har den bredere sportsbog med flere streaming-kampe og et lidt større casino-udvalg. bwin matcher på odds-kvalitet og tilbyder den ekstra poker-dimension via PartyPoker. For danske spillere er valget mellem de to primært et spørgsmål om præference – begge leverer på højt niveau.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>bwin vs. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>:</strong> Unibet har et stærkere dansk fodaftryk med lokale odds-tilbud og dansk markedsføring. bwin har stærkere live-streaming og de eksklusive casino-borde. Begge er Entain-konkurrenter (Unibet ejes af Kindred Group), og kvalitetsniveauet er sammenligneligt. Unibet vinder marginalt på casino-dybden, bwin vinder på poker.
+            <strong>bwin vs. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>:</strong> Unibet har et stærkere dansk fodaftryk med lokale odds-tilbud og dansk markedsføring. bwin har stærkere live-streaming og de eksklusive casino-borde. Begge er Entain-konkurrenter (Unibet ejes af FDJ United, tidl. Kindred Group), og kvalitetsniveauet er sammenligneligt. Unibet vinder marginalt på casino-dybden, bwin vinder på poker.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong>bwin vs. <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link>:</strong> NordicBet er den nordisk-fokuserede all-rounder (samme ejer som Unibet/Kindred). NordicBets sportssektion er stærk men smallere end bwins. Casino-udvalget er sammenlignelgt. bwins fordel er den internationale dybde, live-streaming og poker-integration, mens NordicBet appellerer til spillere, der foretrækker et nordisk brand.
