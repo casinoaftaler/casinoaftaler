@@ -27,6 +27,7 @@ import {
   Gamepad2,
   CreditCard,
   Sparkles,
+  Award,
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
