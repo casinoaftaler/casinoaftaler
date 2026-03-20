@@ -759,7 +759,7 @@ const CasinoAnmeldelser = () => {
               {
                 name: "Unibet",
                 slug: "casino-anmeldelser/unibet",
-                text: "Kindred Groups flagskib har en massiv dansk brugerbase og en platform, der dækker casino, sport og poker under ét tag. Spiludvalget er bredt, og brandet er velkendt og troværdigt. Svagheden er sticky bonusser og en udbetalingsproces, der kan være langsom i spidsbelastningsperioder. Bedst for spillere, der vil have en alt-i-én platform fra et etableret nordisk brand.",
+                text: "FDJ Uniteds (tidl. Kindred) flagskib har en massiv dansk brugerbase og en platform, der dækker casino, sport og poker under ét tag. Spiludvalget er bredt, og brandet er velkendt og troværdigt. Svagheden er sticky bonusser og en udbetalingsproces, der kan være langsom i spidsbelastningsperioder. Bedst for spillere, der vil have en alt-i-én platform fra et etableret nordisk brand.",
               },
               {
                 name: "Mr Green",
@@ -789,7 +789,7 @@ const CasinoAnmeldelser = () => {
               {
                 name: "Maria Casino",
                 slug: "casino-anmeldelser/maria-casino",
-                text: "Kindred Groups casino-fokuserede brand med en stærk bingo-sektion, der differentierer det fra de fleste konkurrenter. Spiludvalget er bredt, og kundeservicen er dansktalende. Bonusvilkårene er acceptable, men ikke markedsførende. Et niche-valg for spillere, der nyder bingo som supplement til slots og live casino.",
+                text: "FDJ Uniteds (tidl. Kindred) casino-fokuserede brand med en stærk bingo-sektion, der differentierer det fra de fleste konkurrenter. Spiludvalget er bredt, og kundeservicen er dansktalende. Bonusvilkårene er acceptable, men ikke markedsførende. Et niche-valg for spillere, der nyder bingo som supplement til slots og live casino.",
               },
               {
                 name: "PokerStars",

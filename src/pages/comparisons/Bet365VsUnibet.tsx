@@ -48,7 +48,7 @@ const casinoB: ComparisonCasino = {
     "Komplet platform: casino, sport, poker og bingo",
     "Dedikeret mobilapp til iOS og Android",
     "Laveste minimumsindskud: kun 40 kr.",
-    "Kindred Group-ejet – børsnoteret og gennemsigtig",
+    "FDJ United-ejet (tidl. Kindred) – børsnoteret og gennemsigtig",
     "Cash Spins uden omsætningskrav på gevinster",
   ],
   cons: [
@@ -116,7 +116,7 @@ const faqs = [
   },
   {
     question: "Er bet365 og Unibet lovlige i Danmark?",
-    answer: "Ja, begge casinoer har dansk licens udstedt af Spillemyndigheden og opererer fuldt lovligt i Danmark med ROFUS-integration. Gevinster er skattefrie for danske spillere. bet365 har haft dansk licens siden 2012, og Unibet (via Kindred Group) ligeledes.",
+    answer: "Ja, begge casinoer har dansk licens udstedt af Spillemyndigheden og opererer fuldt lovligt i Danmark med ROFUS-integration. Gevinster er skattefrie for danske spillere. bet365 har haft dansk licens siden 2012, og Unibet (via FDJ United, tidl. Kindred Group) ligeledes.",
   },
   {
     question: "Hvem udbetaler hurtigst – bet365 eller Unibet?",
@@ -406,7 +406,7 @@ export default function Bet365VsUnibet() {
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil, governance og tillid på enterprise-niveau</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Begge brands opererer under dansk licens og med fuld <Link to="/ansvarligt-spil" className={linkClass}>ROFUS</Link>-integration, men governance-signalet er forskelligt. bet365 signalerer styrke gennem størrelse, teknologi og operationel modenhed. Unibet signalerer styrke gennem børsnoteret governance, mere åben rapportering og Kindred Groups offentlige målsætning om at reducere skadeligt spil mod nul. For nogle spillere er den type corporate transparens et vigtigt tillidssignal i sig selv.
+          Begge brands opererer under dansk licens og med fuld <Link to="/ansvarligt-spil" className={linkClass}>ROFUS</Link>-integration, men governance-signalet er forskelligt. bet365 signalerer styrke gennem størrelse, teknologi og operationel modenhed. Unibet signalerer styrke gennem børsnoteret governance, mere åben rapportering og FDJ Uniteds offentlige målsætning om at reducere skadeligt spil mod nul. For nogle spillere er den type corporate transparens et vigtigt tillidssignal i sig selv.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I praksis er begge blandt de mest troværdige internationale brands på det danske marked. Det vigtige er ikke, om de er sikre – det er de – men hvilken form for tillid du foretrækker. bet365 føles som en global performance-maskine. Unibet føles som en mere kommunikerende og afbalanceret nordisk platform. Begge positioner er stærke, men de taler til forskellige psykologier hos spilleren.
