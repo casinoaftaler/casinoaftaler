@@ -150,7 +150,7 @@ const PragmaticPlayPartner = () => {
               <img
                 src={pragmaticPlayLogo}
                 alt="Pragmatic Play officielt partner-logo"
-                className="h-12 w-auto brightness-0 dark:brightness-100 dark:filter-none md:h-14"
+                className="h-12 w-auto md:h-14"
                 width={180}
                 height={56}
               />
