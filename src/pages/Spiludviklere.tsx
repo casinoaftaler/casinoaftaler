@@ -689,7 +689,7 @@ const Spiludviklere = () => {
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p>
                   Disse studier kombinerer egne spil med distribution- eller platformstjenester.{" "}
-                  <Link to="/spiludviklere/isoftbet" className="text-primary underline hover:text-primary/80">iSoftBet</Link>s GAP-aggregeringsplatform distribuerer 70+ partnerstudier;{" "}
+                  <Link to="/spiludviklere/isoftbet" className="text-primary underline hover:text-primary/80">iSoftBet</Link>s GAP-aggregeringsplatform distribuerer adskillige partnerstudier;{" "}
                   <Link to="/spiludviklere/stakelogic" className="text-primary underline hover:text-primary/80">Stakelogic</Link> kombinerer Novomatic-arven med live casino-innovation;{" "}
                   <Link to="/spiludviklere/quickspin" className="text-primary underline hover:text-primary/80">Quickspin</Link>s Achievement Engine revolutionerede gamification; og{" "}
                   <Link to="/spiludviklere/booming-games" className="text-primary underline hover:text-primary/80">Booming Games</Link> fokuserer på emerging markets med 100+ operatørpartnere.
