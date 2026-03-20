@@ -267,7 +267,7 @@ const Spiludviklere = () => {
         <>
           For effektiv{" "}
           <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">bonusomsætning</Link> anbefales udviklere med høj RTP og medium-lav volatilitet:{" "}
-          <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> (Starburst: 96,09%, lav vol),{" "}
+          <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> (Starburst: 96,08%, lav vol),{" "}
           <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link> (Fire Joker: 96,15%, lav vol) og{" "}
           <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link> (Dragon's Luck: 95,19%, lav vol). Undgå højvolatile udviklere som Nolimit City og Hacksaw Gaming til omsætning – risikoen for at tabe hele bankrollen, før kravet er opfyldt, er markant højere. Tjek også om casinoet begrænser indsatsstørrelse under bonusomsætning.
         </>
@@ -736,7 +736,7 @@ const Spiludviklere = () => {
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p><strong>Anbefaling:</strong> <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link>, <Link to="/spiludviklere/red-tiger" className="text-primary underline hover:text-primary/80">Red Tiger</Link></p>
-                <p>Lav-medium volatilitet og høj hit frequency strækker bonussaldoen. Starburst (96,09%, ~23% hit), Fire Joker (96,15%, ~25% hit) og Dragon's Luck (95,19%, lav vol) er ideelle. Undgå helt Nolimit City og Hacksaw Gaming under{" "}
+                <p>Lav-medium volatilitet og høj hit frequency strækker bonussaldoen. Starburst (96,08%, ~23% hit), Fire Joker (96,15%, ~25% hit) og Dragon's Luck (95,19%, lav vol) er ideelle. Undgå helt Nolimit City og Hacksaw Gaming under{" "}
                   <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætning</Link> – risikoen for tab er for høj.</p>
               </CardContent>
             </Card>

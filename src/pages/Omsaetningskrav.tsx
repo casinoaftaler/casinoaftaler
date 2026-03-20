@@ -70,7 +70,7 @@ const omsaetningskravFaqs: { question: string; answer: string | React.ReactNode 
     question: "Hvilke spil tæller 100% mod omsætningskravet?",
     answer: (
       <>
-        <Link to="/casinospil" className={linkClass}>Spilleautomater</Link> bidrager næsten altid 100% til omsætningskravet. Bordspil som blackjack og roulette bidrager typisk kun 10-20%, og <Link to="/live-casino" className={linkClass}>live casino</Link>-spil kan være helt ekskluderet. Nogle casinoer ekskluderer også højvolatilitetsslots og progressiv jackpot-spil. Strategisk bør du vælge slots med høj RTP (96%+) og lav-medium volatilitet til omsætning – Blood Suckers (98% RTP) og Starburst (96,09% RTP) er populære valg der slider bankrollet langsomt.
+        <Link to="/casinospil" className={linkClass}>Spilleautomater</Link> bidrager næsten altid 100% til omsætningskravet. Bordspil som blackjack og roulette bidrager typisk kun 10-20%, og <Link to="/live-casino" className={linkClass}>live casino</Link>-spil kan være helt ekskluderet. Nogle casinoer ekskluderer også højvolatilitetsslots og progressiv jackpot-spil. Strategisk bør du vælge slots med høj RTP (96%+) og lav-medium volatilitet til omsætning – Blood Suckers (98% RTP) og Starburst (96,08% RTP) er populære valg der slider bankrollet langsomt.
       </>
     ),
   },

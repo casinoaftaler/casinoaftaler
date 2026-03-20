@@ -513,7 +513,7 @@ const SpilleautomatenAnmeldelse = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Udvalget spænder fra low-volatility klassikere som{" "}
-            <Link to="/spiludviklere/netent" className={linkClass}>NetEnts</Link> Starburst (RTP 96,09 %) til ultra-volatile titler som{" "}
+            <Link to="/spiludviklere/netent" className={linkClass}>NetEnts</Link> Starburst (RTP 96,08 %) til ultra-volatile titler som{" "}
             <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit Citys</Link> Mental (RTP 96,08 %, maks. gevinst 66.666x). Vi analyserede RTP-distributionen og fandt, at 78 % af spillene har RTP over 95 % og 42 % over 96 % – et sundt gennemsnit der matcher eller overgår de fleste danske konkurrenter.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">

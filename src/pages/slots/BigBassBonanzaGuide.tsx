@@ -53,7 +53,7 @@ const bigBassFaqs: { question: string; answer: ReactNode }[] = [
     question: "Er Big Bass Bonanza god til wagering?",
     answer: (
       <>
-        Med en RTP på 96,71 % og moderat-høj volatilitet er Big Bass Bonanza en acceptabel wageringskandidat – bedre end Starburst (96,09 %) men med højere varians. For det danske <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x er det forventede tab ca. 329 kr. for en 1.000 kr. bonus (1.000 × 10 × 0,0329). Bust-risikoen er moderat (~25 %), lavere end ultravolatile slots men højere end lavvolatile.
+        Med en RTP på 96,71 % og moderat-høj volatilitet er Big Bass Bonanza en acceptabel wageringskandidat – bedre end Starburst (96,08 %) men med højere varians. For det danske <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> på 10x er det forventede tab ca. 329 kr. for en 1.000 kr. bonus (1.000 × 10 × 0,0329). Bust-risikoen er moderat (~25 %), lavere end ultravolatile slots men højere end lavvolatile.
       </>
     ),
   },
