@@ -41,7 +41,7 @@ const starburstFaqs: { question: string; answer: ReactNode }[] = [
   },
   {
     question: "Hvad er den højeste mulige gevinst i Starburst?",
-    answer: "Starbursts max win er 500x din indsats – markant lavere end moderne slots. Denne gevinst kræver en perfekt kombination af expanding wilds på hjul 2, 3 og 4 med premium BAR-symboler. Statistisk set er sandsynligheden for max win ca. 1:250.000 spins. Realistiske topgevinster ligger typisk mellem 50x og 150x. Sammenligner man med Gates of Olympus (5.000x) eller Sweet Bonanza (21.175x), er Starbursts gevinstpotentiale begränset – men volatiliteten er tilsvarende lavere.",
+    answer: "Starbursts max win er 800x din indsats – markant lavere end moderne slots. Denne gevinst kræver en perfekt kombination af expanding wilds på hjul 2, 3 og 4 med premium BAR-symboler. Statistisk set er sandsynligheden for max win ca. 1:250.000 spins. Realistiske topgevinster ligger typisk mellem 50x og 150x. Sammenligner man med Gates of Olympus (5.000x) eller Sweet Bonanza (21.175x), er Starbursts gevinstpotentiale begränset – men volatiliteten er tilsvarende lavere.",
   },
   {
     question: "Kan man bruge Starburst til at opfylde omsætningskrav?",
@@ -53,7 +53,7 @@ const starburstFaqs: { question: string; answer: ReactNode }[] = [
   },
   {
     question: "Hvad er forskellen mellem Starburst og Starburst XXXtreme?",
-    answer: "Starburst XXXtreme (2021) er en radikalt anderledes slot. Den har 200x højere max win (200.000x vs. 500x), en bonus buy-funktion, og markant højere volatilitet. RTP er 96,26 % – lidt højere end originalen. XXXtreme tilføjer random wilds med multiplikatorer op til 150x, hvilket skaber det eksplosive gevinstpotentiale. Kort sagt: original Starburst er til wagering og casual play, mens XXXtreme er til high-risk spillere, der jager store gevinster.",
+    answer: "Starburst XXXtreme (2021) er en radikalt anderledes slot. Den har 200x højere max win (200.000x vs. 800x), en bonus buy-funktion, og markant højere volatilitet. RTP er 96,26 % – lidt højere end originalen. XXXtreme tilføjer random wilds med multiplikatorer op til 150x, hvilket skaber det eksplosive gevinstpotentiale. Kort sagt: original Starburst er til wagering og casual play, mens XXXtreme er til high-risk spillere, der jager store gevinster.",
   },
 ];
 
@@ -113,7 +113,7 @@ const StarburstGuide = () => {
             Lad os starte med det kontroversielle spørgsmål: er Starburst egentlig et godt spil, eller lever det udelukkende på nostalgi og markedsføring? <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> lancerede Starburst i januar 2012, og siden da er den blevet synonymt med begrebet "online slot". Casinoer bruger Starburst <Link to="/ordbog/free-spins" className={linkClass}>free spins</Link> som standardvaluta i deres velkomstkampagner. Men tallene fortæller en mere nuanceret historie end marketingafdelingerne.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Med en <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96,08 % er Starburst hverken dårlig eller fremragende – den befinder sig præcist i midterfeltet. Max win på 500x din indsats er i 2026-perspektiv decideret beskedent; sammenlign med <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (21.175x) eller <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (5.000x). Det, der holder Starburst relevant, er ikke dens gevinstpotentiale – det er dens stabilitet. Og det er præcis det, vi undersøger i denne analyse.
+            Med en <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 96,08 % er Starburst hverken dårlig eller fremragende – den befinder sig præcist i midterfeltet. Max win på 800x din indsats er i 2026-perspektiv decideret beskedent; sammenlign med <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (21.175x) eller <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (5.000x). Det, der holder Starburst relevant, er ikke dens gevinstpotentiale – det er dens stabilitet. Og det er præcis det, vi undersøger i denne analyse.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vi har gennemgået Starbursts matematiske model i detaljer, testet dens <Link to="/ordbog/wagering" className={linkClass}>wagering</Link>-egnethed med konkrete EV-beregninger, og sammenlignet den med de moderne alternativer, der har overtaget markedet. Resultatet er en ærlig vurdering af, hvornår Starburst stadig giver mening – og hvornår du bør vælge noget andet.
@@ -316,15 +316,15 @@ const StarburstGuide = () => {
 
         {/* ── SEKTION: MAX WIN REALITET ── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Trophy className="h-7 w-7 text-primary" /> Max Win: 500x i Perspektiv</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Trophy className="h-7 w-7 text-primary" /> Max Win: 800x i Perspektiv</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Starbursts max win på 500x din indsats er ekstremt lavt efter moderne standarder. For at sætte det i perspektiv: med en indsats på 10 kr. er den højest mulige gevinst 5.000 kr. Sammenlign det med Sweet Bonanzas max win på 211.750 kr. ved samme indsats, eller Dead or Alives 111.111 kr. Det er forskellen mellem "en god dag" og "en livsændrende gevinst".
+            Starbursts max win på 800x din indsats er ekstremt lavt efter moderne standarder. For at sætte det i perspektiv: med en indsats på 10 kr. er den højest mulige gevinst 8.000 kr. Sammenlign det med Sweet Bonanzas max win på 211.750 kr. ved samme indsats, eller Dead or Alives 111.111 kr. Det er forskellen mellem "en god dag" og "en livsændrende gevinst".
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Men max win er en misvisende metrik. Det relevante mål er den gennemsnitlige topgevinst – den gevinst, der realistisk repræsenterer de bedste 1 % af dine spins. For Starburst er dette ca. 50–150x din indsats, hvilket svarer til 500–1.500 kr. ved 10 kr./spin. Disse gevinster sker typisk, når et eller to expanding wilds lander med gunstige symbolkombinationer.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Den reelle vurdering er, at Starburst ikke er designet til at levere store gevinster. Den er designet til at levere en stabil, forudsigelig spilleoplevelse med jævn underholdning. Hvis du spiller Starburst med forventning om en 500x-gevinst, vil du blive skuffet. Hvis du spiller den for at nyde 30–60 minutter med kontrollerede svingninger, er den et af de bedste valg på markedet.
+            Den reelle vurdering er, at Starburst ikke er designet til at levere store gevinster. Den er designet til at levere en stabil, forudsigelig spilleoplevelse med jævn underholdning. Hvis du spiller Starburst med forventning om en 800x-gevinst, vil du blive skuffet. Hvis du spiller den for at nyde 30–60 minutter med kontrollerede svingninger, er den et af de bedste valg på markedet.
           </p>
         </section>
 
@@ -353,7 +353,7 @@ const StarburstGuide = () => {
             Starburst er ideel for tre specifikke spillertyper. For det første: absolute nybegyndere, der ønsker at forstå online slots uden store risici. Starbursts simpelhed (ingen bonus-buy, ingen free spins-trigger, ingen komplekse mekanikker) gør den perfekt som introduktion. For det andet: wagering-spillere, der prioriterer lav bust-risiko over maksimal EV. For det tredje: casual spillere med begrænset budget (under 200 kr.), der ønsker den længst mulige session for deres penge.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Starburst er IKKE velegnet til: erfarne spillere, der søger store gevinster (max win 500x er utilstrækkeligt); spillere med højt bankroll, der ønsker proportional belønning for deres risiko; eller spillere, der nyder komplekse bonusfunktioner og feature-tung gameplay. For disse spillere er <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link>, <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> eller <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> markant bedre valg.
+            Starburst er IKKE velegnet til: erfarne spillere, der søger store gevinster (max win 800x er utilstrækkeligt); spillere med højt bankroll, der ønsker proportional belønning for deres risiko; eller spillere, der nyder komplekse bonusfunktioner og feature-tung gameplay. For disse spillere er <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link>, <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> eller <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> markant bedre valg.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             En vigtig pointe: Starbursts lave volatilitet er et tveægget sværd. Den beskytter mod hurtige tab, men begrænser også opadrettet potentiale. For spillere, der nyder den psykologiske belønning ved store gevinster – selv sjældent – vil Starburst føles kedelig. Det er ikke en kritik af spillet, men en realistisk forventningsafstemning.
@@ -398,7 +398,7 @@ const StarburstGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Den Ærlige Dom: Starburst i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Starburst er ikke den bedste slot i 2026 – og det prætenderer den heller ikke at være. Med 96,08 % RTP, 500x max win og ingen bonusfunktioner ud over expanding wilds er den teknisk set inferior sammenlignet med de fleste moderne slots. Men den er heller ikke dårlig. Den er stabil, forudsigelig, og universelt tilgængelig. Det er præcis de egenskaber, der gør den ideel til specifikke formål: wagering, casual play, og som introduktion til online slots.
+            Starburst er ikke den bedste slot i 2026 – og det prætenderer den heller ikke at være. Med 96,08 % RTP, 800x max win og ingen bonusfunktioner ud over expanding wilds er den teknisk set inferior sammenlignet med de fleste moderne slots. Men den er heller ikke dårlig. Den er stabil, forudsigelig, og universelt tilgængelig. Det er præcis de egenskaber, der gør den ideel til specifikke formål: wagering, casual play, og som introduktion til online slots.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores vurdering er nuanceret. Hvis du modtager <Link to="/free-spins" className={linkClass}>free spins</Link> på Starburst – brug dem. Gratis spins har altid positiv EV uanset spillets RTP. Hvis du skal wagere en <Link to="/casino-bonus" className={linkClass}>bonus</Link> med lave omsætningskrav (under 25x), er Starburst et solidt valg for at minimere bust-risikoen. Men hvis du spiller for underholdning med dit eget budget, er der bedre alternativer, der tilbyder mere engagerende gameplay og højere gevinstpotentiale.
