@@ -1,90 +1,61 @@
 
 
-# Plan: `/pragmatic-play-partner` Authority Page
+# Plan: Forstærk Pragmatic Play Partner-siden
 
-## Oversigt
+## Hvad der allerede er på plads
+- Siden eksisterer med ~4000 ord, Article+FAQ JSON-LD, intern linking til money pages og slot-katalog
+- Footer linker til `/pragmatic-play-partner`
+- entityAutoLinker har `Pragmatic Play` → `/spiludviklere/pragmatic-play`
 
-Opretter en ny ~4000 ord authority page på `/pragmatic-play-partner` der dokumenterer det officielle Pragmatic Play partnerskab. Siden fungerer som SEO hub med stærk intern linking.
+## Hvad der mangler (punkt for punkt)
 
-## Filer der oprettes/ændres
+### 1. Partnerskabs-bevis sektion (efter hero, før sektion 1)
+Ny prominent sektion med:
+- Badge "Verificeret samarbejde"
+- Pragmatic Play logo
+- Klar tekst: "Casinoaftaler.dk er officielt listet som affiliate-partner hos Pragmatic Play"
+- Kort forklaring af hvad det betyder
+- Micro-copy: "Officiel partner · Direkte relation til spiludvikler · Verificeret samarbejde"
 
-### 1. `src/pages/PragmaticPlayPartner.tsx` (NY — hoveddelen)
+### 2. Stærkere CTA-links til money pages
+Tilføj en dedikeret CTA-blok **midt i content** (efter sektion 5 – populære spil) med konverteringsfokuserede anchors:
+- "Se bedste Pragmatic Play casinoer" → `/top-10-casino-online`
+- "Få bonus på Pragmatic Play slots" → `/casino-bonus`
+- "Spil Pragmatic Play slots med bonus" → `/casino-bonus`
 
-Struktur inspireret af `Forretningsmodel.tsx` og `SaadanTesterVi.tsx`:
+Den eksisterende sektion 10 (bunden) beholdes men suppleres med stærkere CTA-tekst.
 
-- **SEO**: `<SEO>` med Article JSON-LD, FAQ JSON-LD, `sameAs: "https://www.pragmaticplay.com/"` i schema
-- **Hero**: Gradient hero med Badge ("Officiel Partner"), h1, subtitle
-- **AuthorMetaBar**: author="jonas", readTime="20 min"
-- **Pragmatic Play logo**: Bruger eksisterende `pragmatic-play-logo-transparent.png`
+### 3. Sektion: "Bedste Pragmatic Play casinoer" (ny sektion efter danske casinoer-sektionen)
+Udvid den eksisterende sektion 8 med:
+- Stærkere intro: "Her er de bedste danske casinoer med det største Pragmatic Play udvalg"
+- Kort beskrivelse pr. casino (ikke bare navn + link)
+- Primær CTA under listen: "Se alle de bedste online casinoer" → `/top-10-casino-online`
 
-**Indholdssektioner (~3500-4500 ord):**
-
-1. **Introduktion** — Hvad partnerskabet betyder, hvornår det blev etableret, hvad det giver adgang til
-2. **Hvorfor Pragmatic Play?** — Markedsposition (250+ slots, 6-8 nye/måned), global tilstedeværelse, dansk relevans
-3. **Hvad partnerskabet giver vores brugere** — Tidlig adgang til nye spil, dybere testdata, direkte kontakt til udviklerteam
-4. **Sådan tester vi Pragmatic Play spil** — RTP-verifikation, volatilitetsanalyse, bonus buy-evaluering, session-test (link til `/saadan-tester-vi-casinoer`)
-5. **Populære Pragmatic Play spil vi har testet** — Sweet Bonanza, Gates of Olympus, Big Bass serien, med links til slot-katalog
-6. **Pragmatic Plays tekniske standarder** — Licensering, fairness, certificeringer
-7. **Redaktionel uafhængighed** — Partnerskab ≠ bias, link til `/forretningsmodel` og `/redaktionel-politik`
-8. **Pragmatic Play i dansk kontekst** — Danske casinoer med Pragmatic (links til reviews)
-9. **FAQ** — 5-6 spørgsmål om partnerskabet
-
-**Interne links (strategisk placeret i content):**
-- `/spiludviklere/pragmatic-play` (hovedguide)
-- `/spillemaskiner/pragmatic-play` (slot hub)
-- `/top-10-casino-online` (money page)
-- `/casino-bonus` (money page)
-- `/saadan-tester-vi-casinoer`
-- `/forretningsmodel`
-- `/redaktionel-politik`
-- Relevante slot-katalog sider (`/slot-katalog/sweet-bonanza`, `/slot-katalog/gates-of-olympus` osv.)
-- `/live-casino`
-- `/casino-anmeldelser` (relevante reviews)
-
-**Footer-komponenter:**
-- `<FAQSection>` med custom FAQs
-- `<RelatedGuides>`
-- `<LatestNewsByCategory>`
-- `<AuthorBio author="jonas">`
-
-### 2. `src/App.tsx`
-
-Tilføj route:
-```tsx
-<Route path="/pragmatic-play-partner" element={<PragmaticPlayPartner />} />
-```
-
-### 3. `src/lib/seoRoutes.ts`
-
-Tilføj entry:
+### 4. EntityAutoLinker – ny mapping
+I `entityMappings.ts`, tilføj:
 ```ts
-{ path: "/pragmatic-play-partner", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-20" }
+{ patterns: [/\bPragmatic Play partner\b/i, /\bofficiel partner af Pragmatic Play\b/i, /\bPragmatic Play samarbejde\b/i], href: "/pragmatic-play-partner", anchor: "Pragmatic Play partner", anchorVariants: ["Pragmatic Play partner", "officiel Pragmatic Play partner", "Pragmatic Play samarbejde"] }
 ```
 
-### 4. `src/lib/breadcrumbs.ts`
+### 5. Intern linking FRA PragmaticPlayGuide.tsx
+Tilføj en tydelig "Officiel partner"-sektion højt i `PragmaticPlayGuide.tsx` introContent (efter første paragraph):
+- Badge + tekst + link til `/pragmatic-play-partner`
+- Anchor: "Læs om vores officielle Pragmatic Play partnerskab"
 
-Tilføj route label:
-```ts
-"/pragmatic-play-partner": "Pragmatic Play Partner"
-```
+### 6. Intern linking TILBAGE (allerede delvist på plads)
+Siden linker allerede til `/spiludviklere/pragmatic-play`, `/spillemaskiner/pragmatic-play`, slot-katalog sider, og casino-anmeldelser. Bekræftet – ingen ændringer nødvendige her.
 
-Tilføj PARENT_OVERRIDE under `/om` hubben (trust-page cluster):
-```ts
-"/pragmatic-play-partner": [{ name: "Om", path: "/om" }]
-```
+### 7. Trust micro-copy
+Tilføj badges/micro-copy på flere steder i siden:
+- Sektion 4 (testmetode): "Verificeret af officiel partner"
+- Sektion 6 (tekniske standarder): "Direkte relation til spiludvikler"
+- Sektion 7 (uafhængighed): Allerede stærkt – ingen ændring
 
-### 5. `src/lib/seo.ts` (Organization schema)
+## Filer der ændres
 
-Tilføj `sameAs: "https://www.pragmaticplay.com/"` til `organizationSchema` for entity-kobling.
-
-### 6. `src/components/Footer.tsx`
-
-Tilføj link til `/pragmatic-play-partner` ved siden af det eksisterende Pragmatic Play logo i footer (så den nye side modtager sitewide intern linking).
-
-## Teknisk approach
-
-- Siden er 100% statisk JSX — ingen database, ingen nye tabeller
-- Følger eksisterende patterns fra trust-pages (Forretningsmodel, SaadanTesterVi)
-- FAQ schema via `buildFaqSchema()`, Article schema via `buildArticleSchema()`
-- `entityAutoLinker` vil automatisk linke til denne side fra andre siders content hvis vi tilføjer en mapping (valgfrit i fremtiden)
+| Fil | Ændring |
+|---|---|
+| `src/pages/PragmaticPlayPartner.tsx` | Ny partnerskabs-bevis sektion, ny CTA-blok midt i content, udvidet casino-sektion, micro-copy badges |
+| `src/lib/entityMappings.ts` | Ny mapping for "Pragmatic Play partner" → `/pragmatic-play-partner` |
+| `src/pages/PragmaticPlayGuide.tsx` | Ny "Officiel partner" sektion i introContent |
 
