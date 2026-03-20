@@ -511,7 +511,7 @@ export function Footer() {
               <img
                 src={pragmaticPlayLogo}
                 alt="Pragmatic Play logo"
-                className="h-7 w-auto dark:brightness-0 dark:invert"
+                className="h-7 w-auto brightness-0 dark:brightness-100 dark:filter-none"
                 loading="lazy"
               />
               <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground">
