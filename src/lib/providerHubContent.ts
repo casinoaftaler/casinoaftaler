@@ -53,7 +53,7 @@ export const PROVIDER_HUB_CONTENT: Record<string, ProviderHubContent> = {
       <p>Nedenfor finder du det komplette NetEnt-katalog med live data fra vores database – perfekt til at sammenligne RTP, volatilitet og faktiske resultater fra hundredvis af bonus hunts.</p>
     `,
     faqs: [
-      { question: "Hvad er RTP på NetEnt slots?", answer: "NetEnt er kendt for generelt høje RTP-værdier. Mange af deres klassikere som Starburst (96.09%) og Blood Suckers (98%) ligger over branchegennemsnittet. De fleste NetEnt slots har en RTP mellem 95% og 97%." },
+      { question: "Hvad er RTP på NetEnt slots?", answer: "NetEnt er kendt for generelt høje RTP-værdier. Mange af deres klassikere som Starburst (96.08%) og Blood Suckers (98%) ligger over branchegennemsnittet. De fleste NetEnt slots har en RTP mellem 95% og 97%." },
       { question: "Hvad er de mest populære NetEnt spillemaskiner?", answer: "De mest kendte NetEnt slots inkluderer Starburst, Dead or Alive 2, Gonzos Quest og Divine Fortune. I vores bonus hunts er det typisk de high volatility-titler som Dead or Alive 2 der leverer de mest imponerende resultater." },
       { question: "Er NetEnt og Evolution det samme?", answer: "NetEnt blev opkøbt af Evolution Gaming i 2020 og er nu en del af Evolution-koncernen. NetEnt-brandet eksisterer dog stadig som et selvstændigt studie der udgiver nye spillemaskiner under sit eget navn." },
     ],
