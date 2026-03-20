@@ -364,6 +364,7 @@ const App = () => (
                 <Route path="/nye-casinoer/vs-etablerede" element={<NyeVsEtablerede />} />
                 <Route path="/om" element={<OmTeamet />} />
                 <Route path="/forretningsmodel" element={<Forretningsmodel />} />
+                <Route path="/pragmatic-play-partner" element={<PragmaticPlayPartner />} />
                 <Route path="/redaktionel-politik" element={<RedaktionelPolitik />} />
                 <Route path="/forfatter" element={<Navigate to="/forfatter/jonas" replace />} />
                 <Route path="/forfatter/jonas" element={<Forfatter />} />

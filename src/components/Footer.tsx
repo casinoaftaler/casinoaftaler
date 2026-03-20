@@ -502,23 +502,20 @@ export function Footer() {
             Officiel Partner
           </p>
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <a
-              href="https://www.pragmaticplay.com/en/about-us/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/pragmatic-play-partner"
               className="group flex items-center gap-3 rounded-xl border border-border bg-muted/50 px-6 py-3 transition-all hover:border-primary/50 hover:bg-primary/5 hover:shadow-md"
             >
               <img
                 src={pragmaticPlayLogo}
-                alt="Pragmatic Play logo"
+                alt="Pragmatic Play – Officiel Partner"
                 className="h-7 w-auto brightness-0 dark:brightness-100 dark:filter-none"
                 loading="lazy"
               />
               <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground">
                 Affiliate Partner
               </span>
-              <ExternalLink className="h-3 w-3 text-muted-foreground/50" />
-            </a>
+            </Link>
           </div>
         </div>
 
