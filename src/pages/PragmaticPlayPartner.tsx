@@ -566,39 +566,44 @@ const PragmaticPlayPartner = () => {
             SEKTION 8: PRAGMATIC PLAY I DANSK KONTEKST
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12">
-          <h2 className="mb-6 text-2xl font-bold md:text-3xl">Pragmatic Play hos danske casinoer</h2>
+          <h2 className="mb-6 text-2xl font-bold md:text-3xl">Bedste Pragmatic Play casinoer i Danmark</h2>
           <div className="prose prose-lg max-w-none text-muted-foreground">
             <p>
-              Pragmatic Play er en af de mest udbredte spiludviklere på det danske marked. Deres spil er tilgængelige hos stort set alle licenserede danske online casinoer, og de er konsekvent blandt de mest populære titler hos danske spillere.
-            </p>
-            <p>
-              I vores{" "}
-              <Link to="/casino-anmeldelser" className="text-primary hover:underline">casino anmeldelser</Link>{" "}
-              dokumenterer vi, hvilke spiludviklere der er tilgængelige hos hvert enkelt casino. Pragmatic Play er typisk repræsenteret med 150-200+ titler hos de større operatører, hvilket afspejler deres position som en af markedets førende leverandører.
-            </p>
-            <p>
-              Nogle af de danske casinoer, der tilbyder det bredeste udvalg af Pragmatic Play spil, inkluderer:
+              Her er de bedste danske casinoer med det største Pragmatic Play udvalg. Alle har dansk licens fra Spillemyndigheden og tilbyder 150-200+ Pragmatic Play titler, inklusiv Sweet Bonanza, Gates of Olympus og hele Big Bass-serien.
             </p>
           </div>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { name: "LeoVegas", path: "/casino-anmeldelser/leovegas" },
-              { name: "Unibet", path: "/casino-anmeldelser/unibet" },
-              { name: "bet365", path: "/casino-anmeldelser/bet365" },
-              { name: "ComeOn", path: "/casino-anmeldelser/comeon" },
-              { name: "Betinia", path: "/casino-anmeldelser/betinia" },
-              { name: "Mr Green", path: "/casino-anmeldelser/mr-green" },
+              { name: "SpilDanskNu", path: "/casino-anmeldelser/spildansknu", desc: "Stort Pragmatic Play udvalg med hurtige udbetalinger og dansk kundeservice." },
+              { name: "Betinia", path: "/casino-anmeldelser/betinia", desc: "Stærk bonusstruktur og komplet Pragmatic Play-katalog inkl. live casino." },
+              { name: "Spilleautomaten", path: "/casino-anmeldelser/spilleautomaten", desc: "Fokuseret på spillemaskiner med et af markedets bredeste Pragmatic-udvalg." },
+              { name: "Campobet", path: "/casino-anmeldelser/campobet", desc: "200+ Pragmatic Play titler og konkurrencedygtige bonusvilkår." },
+              { name: "Swift Casino", path: "/casino-anmeldelser/swift-casino", desc: "Hurtig registrering og fuld Pragmatic Play-integration." },
+              { name: "Luna Casino", path: "/casino-anmeldelser/luna-casino", desc: "Nyt dansk casino med stærkt Pragmatic Play fokus og daglige tilbud." },
             ].map((casino) => (
               <Link
                 key={casino.name}
                 to={casino.path}
-                className="group flex items-center justify-between rounded-lg border border-border bg-card px-5 py-4 transition-all hover:border-primary/40 hover:shadow-sm"
+                className="group rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/40 hover:shadow-md"
               >
-                <span className="font-medium group-hover:text-primary">{casino.name}</span>
-                <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                <div className="mb-2 flex items-center justify-between">
+                  <h3 className="font-semibold group-hover:text-primary">{casino.name}</h3>
+                  <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                </div>
+                <p className="text-sm text-muted-foreground">{casino.desc}</p>
               </Link>
             ))}
+          </div>
+
+          <div className="mt-6 flex justify-center">
+            <Link
+              to="/top-10-casino-online"
+              className="group inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-all hover:bg-primary/90"
+            >
+              Se alle de bedste online casinoer
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
 
           <div className="prose prose-lg mt-8 max-w-none text-muted-foreground">
