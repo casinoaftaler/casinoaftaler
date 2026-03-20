@@ -77,7 +77,7 @@ const NetEntGuide = () => (
           Sammenligningen med <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> er den mest illustrative i branchen, fordi de to udviklere repræsenterer diametralt modsatte strategier. NetEnt udgiver 1-2 titler per måned med 6-9 måneders udvikling per spil. Pragmatic udgiver 6-8 titler med 3-4 måneders cyklus. NetEnts RTP er fast og ikke operatør-konfigurerbar; Pragmatic tilbyder konfigurerbare RTP-niveauer der typisk spænder fra 94,0% til 96,5%, hvor casinoer kan vælge det lavere niveau for at øge deres margin.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          For spilleren er denne forskel afgørende. Når du spiller Starburst, har den altid 96,08% RTP – uanset hvilket casino du er på. Når du spiller Gates of Olympus, kan den have 96,50% på ét casino og 94,50% på et andet. Over 10.000 spins kan denne 2-procentpoints forskel betyde 200 DKK ekstra tab per 1.000 DKK indsat. Det er ikke trivielt, og det er en af NetEnts stærkeste konkurrencefordele: matematisk gennemsigtighed.
+          For spilleren er denne forskel afgørende. NetEnts standardversioner har typisk en fast RTP – Starburst er 96,08% i standardkonfigurationen. Det skal dog nævnes, at nogle operatører kan tilbyde alternative versioner med lavere RTP, så det er altid værd at tjekke det specifikke casinos RTP-oplysninger. Til sammenligning kan Gates of Olympus have 96,50% på ét casino og 94,50% på et andet. Over 10.000 spins kan denne forskel betyde 200 DKK ekstra tab per 1.000 DKK indsat. Det er ikke trivielt.
         </p>
 
         <h3 className="text-xl font-bold mb-3 mt-6">NetEnt vs. Nolimit City: Komfort mod Kaos</h3>
