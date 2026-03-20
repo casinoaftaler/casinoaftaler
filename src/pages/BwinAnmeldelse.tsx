@@ -37,8 +37,7 @@ const bwinFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvem ejer bwin, og hvad er deres track record?",
     answer: (
       <>
-        bwin ejes af Entain plc (tidligere GVC Holdings), som også ejer Ladbrokes, Coral og PartyPoker. Entain er noteret på London Stock Exchange med en markedsværdi på over 50 milliarder kroner og er et af verdens største online gambling-selskaber. Selskabet har en lang historie for regulatorisk compliance og investerer massivt i ansvarligt spil-teknologi. I visse markeder opererer Entain også{" "}
-        <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link>-brandet, men i Danmark er bwin det primære casinobrand.
+        bwin ejes af Entain plc (tidligere GVC Holdings), som også ejer Ladbrokes, Coral og PartyPoker. Entain er noteret på London Stock Exchange med en markedsværdi på over 30 milliarder kroner og er et af verdens største online gambling-selskaber. Selskabet har en lang historie for regulatorisk compliance og investerer massivt i ansvarligt spil-teknologi. I Danmark er bwin Entains primære casinobrand.
       </>
     ),
   },

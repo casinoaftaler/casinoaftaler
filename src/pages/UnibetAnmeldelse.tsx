@@ -93,7 +93,7 @@ const UnibetAnmeldelse = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center mt-4">
             <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Min. indbetaling</p><p className="text-lg font-bold text-foreground">40 kr.</p></div>
             <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Udbetaling</p><p className="text-lg font-bold text-foreground">1–24 timer</p></div>
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Ejer</p><p className="text-lg font-bold text-foreground">Kindred Group PLC</p></div>
+            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Ejer</p><p className="text-lg font-bold text-foreground">FDJ United (tidl. Kindred)</p></div>
           </div>
           <QuickFactsProviders providers={["NetEnt", "Pragmatic Play", "Play'n GO", "Evolution Gaming", "Red Tiger", "Yggdrasil", "Microgaming", "Nolimit City"]} />
           <QuickFactsLicense licenseId="18-0098" />
