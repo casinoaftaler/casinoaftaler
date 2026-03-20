@@ -150,7 +150,7 @@ const PragmaticPlayPartner = () => {
               <img
                 src={pragmaticPlayLogo}
                 alt="Pragmatic Play officielt partner-logo"
-                className="h-12 w-auto dark:brightness-0 dark:invert md:h-14"
+                className="h-12 w-auto brightness-0 dark:brightness-100 dark:filter-none md:h-14"
                 width={180}
                 height={56}
               />
@@ -195,6 +195,9 @@ const PragmaticPlayPartner = () => {
         <section className="mb-12">
           <h2 className="mb-6 text-2xl font-bold md:text-3xl">Hvad betyder partnerskabet med Pragmatic Play?</h2>
           <div className="prose prose-lg max-w-none text-muted-foreground">
+            <p className="rounded-lg border border-primary/15 bg-primary/5 p-4 text-base font-medium text-foreground">
+              Vi har testet 100+ Pragmatic Play spil og analyseret deres <Link to="/ordbog/rtp" className="text-primary hover:underline">RTP</Link>, <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link> og bonusmekanikker baseret på data fra vores egne tests og hundredvis af bonus hunts.
+            </p>
             <p>
               I marts 2026 blev Casinoaftaler.dk officiel affiliate partner med <strong>Pragmatic Play</strong> – en af verdens absolut største og mest anerkendte spiludviklere inden for iGaming-industrien. Partnerskabet er et direkte resultat af vores redaktionelle arbejde med at teste, analysere og dokumentere online casinospil for det danske marked.
             </p>
@@ -402,9 +405,11 @@ const PragmaticPlayPartner = () => {
               Disse mekanikker er ikke bare tekniske gimmicks – de repræsenterer en fundamental forståelse af, hvad der gør en spillemaskine engagerende. Pragmatic Plays designfilosofi centrerer sig om <strong>matematisk balance</strong> kombineret med <strong>emotionelle højdepunkter</strong>. Tumble-mekanikken skaber suspense ved at lade gevinster bygge op; multiplier-systemet skaber dramatik ved at multiplicere resultaterne; og Hold & Spin giver en taktisk dimension, der holder spilleren involveret.
             </p>
             <p>
-              Gennem vores partnerskab har vi fået indsigt i, hvordan Pragmatic Play balancerer disse mekanikker med RTP og volatilitet. Det er denne viden, der gør vores slot-analyser på{" "}
+              Gennem vores partnerskab har vi fået indsigt i, hvordan Pragmatic Play balancerer disse mekanikker med <Link to="/ordbog/rtp" className="text-primary hover:underline">RTP</Link> og <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link>. Det er denne viden, der gør vores slot-analyser på{" "}
               <Link to="/spillemaskiner/pragmatic-play" className="text-primary hover:underline">Pragmatic Play slot-hubben</Link>{" "}
-              mere dybdegående end standardanmeldelser. Vi kan forklare <em>hvorfor</em> et spil føles, som det gør – ikke bare <em>hvad</em> det gør.
+              mere dybdegående end standardanmeldelser. Vi kan forklare <em>hvorfor</em> et spil føles, som det gør – ikke bare <em>hvad</em> det gør. Læs også vores guide til{" "}
+              <Link to="/bonus-buy-slots" className="text-primary hover:underline">Bonus Buy slots</Link>{" "}
+              for en dybere forståelse af denne populære mekanik.
             </p>
           </div>
         </section>
@@ -435,7 +440,7 @@ const PragmaticPlayPartner = () => {
               {
                 icon: Target,
                 title: "RTP-verifikation",
-                desc: "Vi sammenholder den officielle RTP (Return to Player) med vores egne sessionsdata. For Pragmatic Play spil kan vi nu validere dette mod deres officielle tekniske dokumentation, hvilket giver et ekstra lag af præcision. De fleste Pragmatic Play slots har en standard RTP mellem 96,48% og 96,53%, men mange tilbyder også en Ante Bet-funktion, der ændrer RTP-profilen.",
+                desc: "Vi sammenholder den officielle RTP (Return to Player) med vores egne sessionsdata. Baseret på data fra vores egne tests kan vi nu validere dette mod Pragmatic Plays officielle tekniske dokumentation, hvilket giver et ekstra lag af præcision. De fleste Pragmatic Play slots har en standard RTP mellem 96,48% og 96,53%, men mange tilbyder også en Ante Bet-funktion, der ændrer RTP-profilen.",
               },
               {
                 icon: BarChart3,
@@ -601,21 +606,21 @@ const PragmaticPlayPartner = () => {
                 to="/top-10-casino-online"
                 className="group flex items-center justify-between rounded-lg border border-primary/30 bg-primary px-5 py-3.5 font-medium text-primary-foreground transition-all hover:bg-primary/90"
               >
-                <span>Se bedste Pragmatic Play casinoer</span>
+                <span>Spil Pragmatic Play slots hos de bedste casinoer (med bonus)</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/casino-bonus"
                 className="group flex items-center justify-between rounded-lg border border-border bg-background px-5 py-3.5 font-medium text-primary transition-all hover:border-primary/40 hover:shadow-sm"
               >
-                <span>Få bonus på Pragmatic Play slots</span>
+                <span>Find casinoer med Pragmatic Play + bonusser</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/free-spins-i-dag"
                 className="group flex items-center justify-between rounded-lg border border-border bg-background px-5 py-3.5 font-medium text-primary transition-all hover:border-primary/40 hover:shadow-sm"
               >
-                <span>Spil Pragmatic Play slots med bonus</span>
+                <span>Hent free spins til Pragmatic Play slots i dag</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
@@ -849,11 +854,24 @@ const PragmaticPlayPartner = () => {
             </p>
             <ul className="space-y-2">
               <li><strong>Hurtigere dækning af nye udgivelser:</strong> Med tidlig adgang til information kan vi have anmeldelser og guides klar ved lanceringsdagen for nye Pragmatic Play spil.</li>
-              <li><strong>Dybere tekniske analyser:</strong> Adgang til officiel dokumentation giver os mulighed for at lave mere detaljerede analyser af spilmekanikker, matematiske modeller og gevinstpotentiale.</li>
+              <li><strong>Dybere tekniske analyser:</strong> Adgang til officiel dokumentation giver os mulighed for at lave mere detaljerede analyser af spilmekanikker, matematiske modeller og gevinstpotentiale. Analyseret direkte fra Pragmatic Plays dokumentation.</li>
               <li><strong>Eksklusive indsigter:</strong> Vi forventer at kunne dele eksklusive indsigter om kommende funktioner, nye spilserier og Pragmatic Plays strategi for det danske marked.</li>
               <li><strong>Community-integration:</strong> Vi undersøger muligheder for at integrere Pragmatic Play-indhold i vores community-aktiviteter, herunder bonus hunts og turneringer, hvor Pragmatic Play-titler allerede er blandt de mest populære.</li>
               <li><strong>Udvidet slot-dækning:</strong> Med direkte adgang til Pragmatic Plays udgivelseskalender kan vi planlægge vores indholdsproduktion mere effektivt og sikre, at ingen vigtig udgivelse går ubemærket hen på det danske marked.</li>
             </ul>
+
+            <h3>Forventede trends og udvikling i 2026</h3>
+            <p>
+              Baseret på vores direkte dialog med Pragmatic Play og vores analyse af branchens retning, ser vi flere konkrete trends, der vil forme Pragmatic Plays portefølje i den kommende periode:
+            </p>
+            <ul className="space-y-2">
+              <li><strong>Megaways-adaptioner af legacy-titler:</strong> Efter succesen med Big Bass Bonanza Megaways forventer vi, at flere af Pragmatic Plays mest elskede spil vil få Megaways-varianter i Q2-Q3 2026. Det betyder nye versioner af klassikere med op til 117.649 gevinstlinjer.</li>
+              <li><strong>AI-drevet personalisering:</strong> Pragmatic Play investerer i intelligent spiloplevelsesdesign, hvor turneringsindhold og spilforslag tilpasses den enkelte spillers præferencer – en trend, der allerede ses i deres Drops &amp; Wins-kampagner.</li>
+              <li><strong>Udvidelse af live casino-studier:</strong> Med nye studier planlagt i Østeuropa og Latinamerika forventer vi, at Pragmatic Play Live også vil udvide med dansk-sprogede bordspil, hvilket vil gavne danske spillere direkte.</li>
+              <li><strong>Gamification og turneringsfunktioner:</strong> Vi ser en bevægelse mod indbyggede turneringsmekanikker direkte i spillemaskinerne – ikke kun som operatør-lag, men som en del af selve spildesignet.</li>
+              <li><strong>Stærkere compliance-integration:</strong> Med skærpede regulatoriske krav i Europa arbejder Pragmatic Play på endnu tættere integration med nationale selvudelukkelsessystemer som ROFUS og mere granulær RTP-rapportering.</li>
+            </ul>
+
             <p>
               Casinoaftaler er mere end et traditionelt anmeldelsessite – vi er et{" "}
               <Link to="/community" className="text-primary hover:underline">aktivt community</Link>{" "}
