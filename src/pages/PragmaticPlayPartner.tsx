@@ -126,6 +126,54 @@ const PragmaticPlayPartner = () => {
         <AuthorMetaBar author="jonas" readTime="20 min" />
 
         {/* ═══════════════════════════════════════════════════════════
+            PARTNERSKABS-BEVIS (trust signal – højt placeret)
+        ═══════════════════════════════════════════════════════════ */}
+        <section className="mb-12 rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
+          <div className="flex flex-col items-center gap-6 md:flex-row md:items-start">
+            <div className="flex shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-background p-4">
+              <img
+                src={pragmaticPlayLogo}
+                alt="Pragmatic Play officielt partner-logo"
+                className="h-12 w-auto dark:brightness-0 dark:invert md:h-14"
+                width={180}
+                height={56}
+              />
+            </div>
+            <div className="text-center md:text-left">
+              <div className="mb-3 flex flex-wrap items-center justify-center gap-2 md:justify-start">
+                <Badge variant="default" className="bg-green-600 text-white hover:bg-green-700">
+                  <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
+                  Verificeret samarbejde
+                </Badge>
+                <Badge variant="outline" className="border-primary/30 text-primary">
+                  <Award className="mr-1.5 h-3.5 w-3.5" />
+                  Officiel Partner
+                </Badge>
+              </div>
+              <h2 className="mb-2 text-xl font-bold md:text-2xl">Officielt samarbejde med Pragmatic Play</h2>
+              <p className="text-muted-foreground">
+                <strong>Casinoaftaler.dk er officielt listet som affiliate-partner hos Pragmatic Play.</strong>{" "}
+                Det betyder, at vi har en direkte relation til en af verdens største spiludviklere, med adgang til officiel teknisk dokumentation, tidlig information om nye udgivelser og direkte kontakt til deres team. Partnerskabet er et tillidstegn, der understreger Casinoaftalers position som en seriøs aktør i det danske iGaming-landskab.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-4 text-sm text-muted-foreground">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  Officiel partner
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  Direkte relation til spiludvikler
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  Verificeret samarbejde
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════
             SEKTION 1: INTRODUKTION – HVAD PARTNERSKABET BETYDER
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12">
