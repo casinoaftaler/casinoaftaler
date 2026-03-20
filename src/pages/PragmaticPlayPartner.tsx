@@ -195,6 +195,9 @@ const PragmaticPlayPartner = () => {
         <section className="mb-12">
           <h2 className="mb-6 text-2xl font-bold md:text-3xl">Hvad betyder partnerskabet med Pragmatic Play?</h2>
           <div className="prose prose-lg max-w-none text-muted-foreground">
+            <p className="rounded-lg border border-primary/15 bg-primary/5 p-4 text-base font-medium text-foreground">
+              Vi har testet 100+ Pragmatic Play spil og analyseret deres <Link to="/ordbog/rtp" className="text-primary hover:underline">RTP</Link>, <Link to="/ordbog/volatilitet" className="text-primary hover:underline">volatilitet</Link> og bonusmekanikker baseret på data fra vores egne tests og hundredvis af bonus hunts.
+            </p>
             <p>
               I marts 2026 blev Casinoaftaler.dk officiel affiliate partner med <strong>Pragmatic Play</strong> – en af verdens absolut største og mest anerkendte spiludviklere inden for iGaming-industrien. Partnerskabet er et direkte resultat af vores redaktionelle arbejde med at teste, analysere og dokumentere online casinospil for det danske marked.
             </p>
