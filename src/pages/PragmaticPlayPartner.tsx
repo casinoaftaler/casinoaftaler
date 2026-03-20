@@ -440,7 +440,7 @@ const PragmaticPlayPartner = () => {
               {
                 icon: Target,
                 title: "RTP-verifikation",
-                desc: "Vi sammenholder den officielle RTP (Return to Player) med vores egne sessionsdata. For Pragmatic Play spil kan vi nu validere dette mod deres officielle tekniske dokumentation, hvilket giver et ekstra lag af præcision. De fleste Pragmatic Play slots har en standard RTP mellem 96,48% og 96,53%, men mange tilbyder også en Ante Bet-funktion, der ændrer RTP-profilen.",
+                desc: "Vi sammenholder den officielle RTP (Return to Player) med vores egne sessionsdata. Baseret på data fra vores egne tests kan vi nu validere dette mod Pragmatic Plays officielle tekniske dokumentation, hvilket giver et ekstra lag af præcision. De fleste Pragmatic Play slots har en standard RTP mellem 96,48% og 96,53%, men mange tilbyder også en Ante Bet-funktion, der ændrer RTP-profilen.",
               },
               {
                 icon: BarChart3,
