@@ -55,7 +55,7 @@ const MariaCasinoAnmeldelse = () => {
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Velkomstbonus</p><p className="text-lg font-bold text-foreground">100 kr. gratis</p></div>
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Omsætningskrav</p><p className="text-lg font-bold text-foreground">10x</p></div>
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Licens</p><p className="text-lg font-bold text-foreground">Spillemyndigheden</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Operatør</p><p className="text-lg font-bold text-foreground">Kindred Group</p></div>
+                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Operatør</p><p className="text-lg font-bold text-foreground">FDJ United</p></div>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center mt-4">
                 <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Min. indbetaling</p><p className="text-lg font-bold text-foreground">80 kr.</p></div>
