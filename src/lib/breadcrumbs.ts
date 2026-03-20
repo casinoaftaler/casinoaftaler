@@ -143,6 +143,7 @@ export const routeLabels: Record<string, string> = {
   "/casino-med-mobilepay": "Casino med MobilePay",
   "/om": "Om Casinoaftaler.dk",
   "/forretningsmodel": "Forretningsmodel",
+  "/pragmatic-play-partner": "Pragmatic Play Partner",
   "/redaktionel-politik": "Redaktionel Politik",
   "/kontakt": "Kontakt",
   "/privatlivspolitik": "Privatlivspolitik",
