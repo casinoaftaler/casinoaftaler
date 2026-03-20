@@ -141,7 +141,7 @@ const NetEntGuide = () => (
 
         <h3 className="text-xl font-bold mb-3 mt-6">RTP-Gennemsigtighed: NetEnts Skjulte Konkurrencefordel</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          I en branche hvor operatør-konfigurerbar RTP bliver mere udbredt, er NetEnts faste RTP-politik en markant differentiator. Starburst har altid 96,08% RTP. Dead or Alive 2 har altid 96,82%. Blood Suckers har altid 98,00%. Uanset om du spiller hos et stort dansk casino eller en maltesisk operatør, er matematikken identisk.
+          I en branche hvor operatør-konfigurerbar RTP bliver mere udbredt, er NetEnts typisk faste RTP-politik en markant differentiator. Standardversionerne af Starburst har 96,08% RTP, Dead or Alive 2 har 96,82% og Blood Suckers har 98,00%. Selvom alternative RTP-versioner kan eksistere hos visse operatører, er NetEnts standardkonfigurationer generelt konsistente på tværs af licenserede casinoer.
         </p>
         <p className="text-muted-foreground leading-relaxed">
           Denne politik giver informerede spillere en fordel: de behøver ikke researche RTP-indstillinger per casino, som de skal med Pragmatic Play-titler. Det er en form for forbrugerbeskyttelse der er indkodet i NetEnts forretningsmodel – og det er en af grundene til, at danske casinoer fortsat prioriterer NetEnt-spil i deres lobbyer og bonustilbud.
