@@ -367,7 +367,7 @@ const Forretningsmodel = () => {
                   <img
                     src={pragmaticPlayLogo}
                     alt="Pragmatic Play logo"
-                    className="h-12 w-auto dark:drop-shadow-[0_0_1px_rgba(255,255,255,0.3)]"
+                    className="h-12 w-auto brightness-0 dark:brightness-100 dark:filter-none"
                   />
                 </div>
                 {/* Content section */}
