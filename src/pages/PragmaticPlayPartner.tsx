@@ -620,7 +620,7 @@ const PragmaticPlayPartner = () => {
                 to="/free-spins-i-dag"
                 className="group flex items-center justify-between rounded-lg border border-border bg-background px-5 py-3.5 font-medium text-primary transition-all hover:border-primary/40 hover:shadow-sm"
               >
-                <span>Spil Pragmatic Play slots med bonus</span>
+                <span>Hent free spins til Pragmatic Play slots i dag</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
