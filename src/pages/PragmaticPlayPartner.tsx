@@ -854,11 +854,24 @@ const PragmaticPlayPartner = () => {
             </p>
             <ul className="space-y-2">
               <li><strong>Hurtigere dækning af nye udgivelser:</strong> Med tidlig adgang til information kan vi have anmeldelser og guides klar ved lanceringsdagen for nye Pragmatic Play spil.</li>
-              <li><strong>Dybere tekniske analyser:</strong> Adgang til officiel dokumentation giver os mulighed for at lave mere detaljerede analyser af spilmekanikker, matematiske modeller og gevinstpotentiale.</li>
+              <li><strong>Dybere tekniske analyser:</strong> Adgang til officiel dokumentation giver os mulighed for at lave mere detaljerede analyser af spilmekanikker, matematiske modeller og gevinstpotentiale. Analyseret direkte fra Pragmatic Plays dokumentation.</li>
               <li><strong>Eksklusive indsigter:</strong> Vi forventer at kunne dele eksklusive indsigter om kommende funktioner, nye spilserier og Pragmatic Plays strategi for det danske marked.</li>
               <li><strong>Community-integration:</strong> Vi undersøger muligheder for at integrere Pragmatic Play-indhold i vores community-aktiviteter, herunder bonus hunts og turneringer, hvor Pragmatic Play-titler allerede er blandt de mest populære.</li>
               <li><strong>Udvidet slot-dækning:</strong> Med direkte adgang til Pragmatic Plays udgivelseskalender kan vi planlægge vores indholdsproduktion mere effektivt og sikre, at ingen vigtig udgivelse går ubemærket hen på det danske marked.</li>
             </ul>
+
+            <h3>Forventede trends og udvikling i 2026</h3>
+            <p>
+              Baseret på vores direkte dialog med Pragmatic Play og vores analyse af branchens retning, ser vi flere konkrete trends, der vil forme Pragmatic Plays portefølje i den kommende periode:
+            </p>
+            <ul className="space-y-2">
+              <li><strong>Megaways-adaptioner af legacy-titler:</strong> Efter succesen med Big Bass Bonanza Megaways forventer vi, at flere af Pragmatic Plays mest elskede spil vil få Megaways-varianter i Q2-Q3 2026. Det betyder nye versioner af klassikere med op til 117.649 gevinstlinjer.</li>
+              <li><strong>AI-drevet personalisering:</strong> Pragmatic Play investerer i intelligent spiloplevelsesdesign, hvor turneringsindhold og spilforslag tilpasses den enkelte spillers præferencer – en trend, der allerede ses i deres Drops &amp; Wins-kampagner.</li>
+              <li><strong>Udvidelse af live casino-studier:</strong> Med nye studier planlagt i Østeuropa og Latinamerika forventer vi, at Pragmatic Play Live også vil udvide med dansk-sprogede bordspil, hvilket vil gavne danske spillere direkte.</li>
+              <li><strong>Gamification og turneringsfunktioner:</strong> Vi ser en bevægelse mod indbyggede turneringsmekanikker direkte i spillemaskinerne – ikke kun som operatør-lag, men som en del af selve spildesignet.</li>
+              <li><strong>Stærkere compliance-integration:</strong> Med skærpede regulatoriske krav i Europa arbejder Pragmatic Play på endnu tættere integration med nationale selvudelukkelsessystemer som ROFUS og mere granulær RTP-rapportering.</li>
+            </ul>
+
             <p>
               Casinoaftaler er mere end et traditionelt anmeldelsessite – vi er et{" "}
               <Link to="/community" className="text-primary hover:underline">aktivt community</Link>{" "}
