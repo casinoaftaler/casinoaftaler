@@ -363,11 +363,11 @@ const Forretningsmodel = () => {
             <CardContent className="p-0">
               <div className="flex flex-col sm:flex-row">
                 {/* Logo section */}
-                <div className="flex items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5 p-8 sm:w-48 sm:flex-shrink-0">
+                <div className="flex items-center justify-center bg-gray-900 p-8 sm:w-48 sm:flex-shrink-0 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none">
                   <img
                     src={pragmaticPlayLogo}
                     alt="Pragmatic Play logo"
-                    className="h-12 w-auto brightness-0 dark:brightness-100 dark:filter-none"
+                    className="h-12 w-auto"
                   />
                 </div>
                 {/* Content section */}
