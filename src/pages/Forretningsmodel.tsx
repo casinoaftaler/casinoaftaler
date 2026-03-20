@@ -467,7 +467,7 @@ const Forretningsmodel = () => {
         <LatestNewsByCategory pagePath="/forretningsmodel" />
         <RelatedGuides currentPath="/forretningsmodel" maxLinks={5} />
 
-        <AuthorBio author="niklas" showCommunity={false} />
+        <AuthorBio author="ajse" showCommunity={false} />
       </div>
     </>
   );
