@@ -613,7 +613,7 @@ const PragmaticPlayPartner = () => {
                 to="/casino-bonus"
                 className="group flex items-center justify-between rounded-lg border border-border bg-background px-5 py-3.5 font-medium text-primary transition-all hover:border-primary/40 hover:shadow-sm"
               >
-                <span>Få bonus på Pragmatic Play slots</span>
+                <span>Find casinoer med Pragmatic Play + bonusser</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
