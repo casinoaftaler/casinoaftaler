@@ -13,13 +13,13 @@ const casinoA: ComparisonCasino = {
   wagering: "10x (d)",
   minDeposit: "100 kr.",
   payoutTime: "Under 24 timer (Trustly: ~2 timer)",
-  gameCount: "2.500+",
+  gameCount: "2.000+",
   license: "Dansk licens",
   mobileFriendly: true,
   liveCasino: true,
   pros: [
     "Prisbelønnet mobilcasino – 'King of Mobile'",
-    "2.500+ spil fra 50+ udbydere",
+    "2.000+ spil fra 50+ udbydere",
     "10x omsætning kun på indbetalingen (ikke bonus)",
     "Branchens hurtigste udbetalinger (~2 timer via Trustly)",
     "Ejet af MGM Resorts – massiv finansiel baggrund",
@@ -53,7 +53,7 @@ const casinoB: ComparisonCasino = {
     "Gennemsigtige bonusvilkår uden skjulte begrænsninger",
   ],
   cons: [
-    "Spiludvalget (1.000+) er mindre end LeoVegas (2.500+)",
+    "Spiludvalget (1.000+) er mindre end LeoVegas (2.000+)",
     "Færre betalingsmetoder – ingen MobilePay eller Paysafecard",
     "Ingen sportsbetting eller poker – rendyrket casino",
     "Live chat ikke 24/7 på dansk",
@@ -68,7 +68,7 @@ const categories: ComparisonCategory[] = [
   },
   {
     label: "Spiludvalg",
-    casinoA: { score: 5, detail: "2.500+ spil, 50+ udbydere" },
+    casinoA: { score: 5, detail: "2.000+ spil, 50+ udbydere" },
     casinoB: { score: 3, detail: "1.000+ kuraterede spil" },
   },
   {
@@ -106,7 +106,7 @@ const categories: ComparisonCategory[] = [
 const faqs = [
   {
     question: "Hvad er forskellen på LeoVegas og Mr Green for danske spillere?",
-    answer: "LeoVegas er 'King of Mobile Casino' med 2.500+ spil, branchens hurtigste udbetalinger (~2 timer) og eksklusive live casino-borde. Mr Green fokuserer på ansvarligt spil via det prisvindende Green Gaming-værktøj og tilbyder et kurateret spiludvalg med 1.000+ håndplukkede titler. Begge har 10x omsætningskrav og dansk licens. LeoVegas har den bedre bonus-EV (10x kun på indbetaling), mens Mr Green sætter standarden for spillerbeskyttelse.",
+    answer: "LeoVegas er 'King of Mobile Casino' med 2.000+ spil, branchens hurtigste udbetalinger (~2 timer) og eksklusive live casino-borde. Mr Green fokuserer på ansvarligt spil via det prisvindende Green Gaming-værktøj og tilbyder et kurateret spiludvalg med 1.000+ håndplukkede titler. Begge har 10x omsætningskrav og dansk licens. LeoVegas har den bedre bonus-EV (10x kun på indbetaling), mens Mr Green sætter standarden for spillerbeskyttelse.",
   },
   {
     question: "Hvem har den bedste bonus – LeoVegas eller Mr Green?",
@@ -149,7 +149,7 @@ export default function LeoVegasVsMrGreen() {
       casinoA={casinoA}
       casinoB={casinoB}
       categories={categories}
-      verdict="LeoVegas vinder med 37/40 mod Mr Greens 32/40. LeoVegas dominerer på spiludvalg (2.500+ vs. 1.000+), udbetalingshastighed (~2 timer vs. <24 timer), live casino og bonusværdi (10x kun på indbetaling). Mr Green vinder klart på ansvarligt spil med Green Gaming-værktøjet og tilbyder et kurateret kvalitetsudvalg. Spillere der prioriterer mobil, bredde og hastighed vælger LeoVegas. Spillere der prioriterer ansvarligt spil og design vælger Mr Green."
+      verdict="LeoVegas vinder med 37/40 mod Mr Greens 32/40. LeoVegas dominerer på spiludvalg (2.000+ vs. 1.000+), udbetalingshastighed (~2 timer vs. <24 timer), live casino og bonusværdi (10x kun på indbetaling). Mr Green vinder klart på ansvarligt spil med Green Gaming-værktøjet og tilbyder et kurateret kvalitetsudvalg. Spillere der prioriterer mobil, bredde og hastighed vælger LeoVegas. Spillere der prioriterer ansvarligt spil og design vælger Mr Green."
       verdictWinner="A"
       faqs={faqs}
       ctaSlug="leovegas"
@@ -212,7 +212,7 @@ export default function LeoVegasVsMrGreen() {
       </section>
 
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Spiludvalg – 2.500+ vs. 1.000+ kuraterede</h2>
+        <h2 className="mb-4 text-3xl font-bold">Spiludvalg – 2.000+ vs. 1.000+ kuraterede</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Spiludvalget er det område med den mest markante forskel mellem de to casinoer. LeoVegas tilbyder over 2.500 spiltitler fra mere end 50 spiludbydere – et af de mest omfattende kataloger på det danske marked. Mr Green har over 1.000 spil, men hvert spil er håndplukket for kvalitet.
         </p>
@@ -243,7 +243,7 @@ export default function LeoVegasVsMrGreen() {
           Mobiloplevelsen er et område, hvor begge casinoer exceller – men LeoVegas har en unik position. Da LeoVegas blev grundlagt i 2012, var deres vision krystalklar: at bygge verdens bedste mobilcasino. De designede hele deres teknologiske infrastruktur med mobilen som den primære enhed. Resultatet er 6 gange "Mobile Operator of the Year" ved EGR Awards – en rekord ingen anden operatør har matchet.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          LeoVegas' platform føles som en native app med indlæsningstider under 1,5 sekunder, touch-optimeret navigation, swipe-baseret spilfiltrering og 2.500+ spil tilgængelige på mobil. Mr Green har også en dedikeret mobilapp til iOS og Android med flot design og biometrisk login, men LeoVegas er mobile-first, mens Mr Green er mobile-optimeret – en subtil, men mærkbar forskel i polish og performance.
+          LeoVegas' platform føles som en native app med indlæsningstider under 1,5 sekunder, touch-optimeret navigation, swipe-baseret spilfiltrering og 2.000+ spil tilgængelige på mobil. Mr Green har også en dedikeret mobilapp til iOS og Android med flot design og biometrisk login, men LeoVegas er mobile-first, mens Mr Green er mobile-optimeret – en subtil, men mærkbar forskel i polish og performance.
         </p>
       </section>
 
@@ -344,12 +344,12 @@ export default function LeoVegasVsMrGreen() {
 
       {/* SECTION: Søgelogik og katalogopdagelse */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Søgelogik, filtrering og hvorfor 2.500+ spil ikke altid er det vigtigste tal</h2>
+        <h2 className="mb-4 text-3xl font-bold">Søgelogik, filtrering og hvorfor 2.000+ spil ikke altid er det vigtigste tal</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          LeoVegas har den åbenlyse volumenfordel med 2.500+ spil, men enterprise-spørgsmålet er, hvordan spilleren faktisk bruger et så stort katalog. For den aktive og nysgerrige bruger, der elsker at browse nye releases, skifte mellem providers og afprøve nicheudgivelser, er LeoVegas tæt på ideel. Platformen er bygget til høj throughput: mange valg, hurtig navigation og en oplevelse, hvor det altid føles som om der er noget nyt at prøve. Mr Green arbejder ud fra en anden logik. Her er ambitionen ikke at imponere med maksimal rå størrelse, men at skabe et katalog hvor gennemsnitskvaliteten føles høj og støjen lavere.
+          LeoVegas har den åbenlyse volumenfordel med 2.000+ spil, men enterprise-spørgsmålet er, hvordan spilleren faktisk bruger et så stort katalog. For den aktive og nysgerrige bruger, der elsker at browse nye releases, skifte mellem providers og afprøve nicheudgivelser, er LeoVegas tæt på ideel. Platformen er bygget til høj throughput: mange valg, hurtig navigation og en oplevelse, hvor det altid føles som om der er noget nyt at prøve. Mr Green arbejder ud fra en anden logik. Her er ambitionen ikke at imponere med maksimal rå størrelse, men at skabe et katalog hvor gennemsnitskvaliteten føles høj og støjen lavere.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Det betyder, at katalogopdagelse føles forskellig. LeoVegas belønner spilleren, der søger spænding gennem bredde og release-tempo. Mr Green belønner spilleren, der søger ro, kuratering og en oplevelse hvor færre valg faktisk er en fordel. Mange sammenligninger stopper ved at konstatere, at 2.500+ er mere end 1.000+, men det er kun halvdelen af sandheden. Hvis brugeren alligevel ender i de samme 25 spil og sætter pris på et mere redigeret miljø, kan Mr Greens mindre bibliotek skabe mere oplevet kvalitet per session.
+          Det betyder, at katalogopdagelse føles forskellig. LeoVegas belønner spilleren, der søger spænding gennem bredde og release-tempo. Mr Green belønner spilleren, der søger ro, kuratering og en oplevelse hvor færre valg faktisk er en fordel. Mange sammenligninger stopper ved at konstatere, at 2.000+ er mere end 1.000+, men det er kun halvdelen af sandheden. Hvis brugeren alligevel ender i de samme 25 spil og sætter pris på et mere redigeret miljø, kan Mr Greens mindre bibliotek skabe mere oplevet kvalitet per session.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Derfor skal du læse LeoVegas som premium-bredde og Mr Green som premium-kuratering. Den første er stærkest for entusiaster og højfrekvente brugere. Den anden er stærkest for spillere, der ønsker mindre visuel og beslutningsmæssig støj. Det er ikke et spørgsmål om hvem der objektivt har det bedste katalog, men om hvilken type katalog der passer til din måde at vælge spil på.
@@ -431,7 +431,7 @@ export default function LeoVegasVsMrGreen() {
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå hvilket brand? – anti-fit gør valget skarpere</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          LeoVegas er ikke det bedste valg for spilleren, der bliver træt af meget volumen, mange releases og et højt produkttempo. Hvis du ikke får reel værdi af 2.500+ spil, hvis du foretrækker et mere roligt miljø, eller hvis ansvarligt spil som brandidentitet betyder meget for dig, kan LeoVegas føles lidt for energisk og lidt for performance-drevet. Brandet er fremragende – men det er fremragende på sine egne, ret tydelige præmisser.
+          LeoVegas er ikke det bedste valg for spilleren, der bliver træt af meget volumen, mange releases og et højt produkttempo. Hvis du ikke får reel værdi af 2.000+ spil, hvis du foretrækker et mere roligt miljø, eller hvis ansvarligt spil som brandidentitet betyder meget for dig, kan LeoVegas føles lidt for energisk og lidt for performance-drevet. Brandet er fremragende – men det er fremragende på sine egne, ret tydelige præmisser.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Mr Green er omvendt ikke ideelt for spilleren, der vil have maksimal bredde, absolut hurtigst cashout og den mest eksplosive mobiloplevelse. Hvis du måler kvalitet i release-tempo, likviditet og live-casino-tyngde, vil Mr Green ofte fremstå mere begrænset end LeoVegas. Det er ikke en fejl i produktet; det er en konsekvens af, at de optimerer mod en anden type premium-værdi.
@@ -451,7 +451,7 @@ export default function LeoVegasVsMrGreen() {
         <h3 className="mb-3 text-xl font-semibold">Vælg LeoVegas hvis du:</h3>
         <ul className="mb-6 space-y-2">
           {[
-            "Vil have det bredeste spiludvalg med 2.500+ titler fra 50+ udbydere",
+            "Vil have det bredeste spiludvalg med 2.000+ titler fra 50+ udbydere",
             "Prioriterer mobilcasino og ønsker den hurtigste, mest polerede performance-oplevelse",
             "Ønsker branchens hurtigste udbetalinger og højest oplevet likviditet",
             "Elsker live casino med eksklusive VIP-borde og høj release-energi",

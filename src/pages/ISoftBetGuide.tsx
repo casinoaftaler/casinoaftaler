@@ -35,7 +35,7 @@ const ISoftBetGuide = () => (
           For danske spillere er iSoftBet vigtigere end de fleste er klar over. GAP-platformen driver spilintegrationen hos adskillige danske licenserede casinoer, og iSoftBets egne titler – fra Hold & Win-serien til Moriarty Megaways – er tilgængelige i de fleste danske lobbyer. Matematisk leverer iSoftBet en bred vifte: fra lavvolatile underholdningsslots med 96%+ RTP til højvolatile monster-titler med 10.000x+ maks. gevinster. Denne bredde afspejler deres datadrene tilgang: de designer spil baseret på reel markedsefterspørgsel snarere end kreativ intuition alene.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          iSoftBets tekniske kompetence manifesterer sig i en platform der håndterer compliance, lokalisering og regulatorisk rapportering automatisk. Når et casino integrerer GAP, får de øjeblikkelig adgang til 10.000+ spiltitler fra 70+ studios – alle pre-certificeret til de jurisdiktioner casinoet opererer i. For operatører er dette enormt værdifuldt: det reducerer integrationsomkostningerne med op til 80% sammenlignet med direkte aftaler med individuelle spiludviklere. For spillere betyder det, at casinoer der bruger GAP typisk har større og mere diverse spilbiblioteker.
+          iSoftBets tekniske kompetence manifesterer sig i en platform der håndterer compliance, lokalisering og regulatorisk rapportering automatisk. Når et casino integrerer GAP, får de øjeblikkelig adgang til tusindvis af spiltitler fra et stort antal studios – alle pre-certificeret til de jurisdiktioner casinoet opererer i. For operatører er dette enormt værdifuldt: det reducerer integrationsomkostningerne med op til 80% sammenlignet med direkte aftaler med individuelle spiludviklere. For spillere betyder det, at casinoer der bruger GAP typisk har større og mere diverse spilbiblioteker.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Selskabet har sine rødder i 2010, men den strategiske transformation til dobbelt-rolle aktør (platform + indhold) begyndte for alvor i 2015-2016. Siden da har iSoftBet opbygget en portfolio der spænder fra licenserede branded-slots (baseret på populære franchises) til originale titler med innovative mekanikker. Deres Hold & Win-implementation er en af branchens bedst udførte, og deres Megaways-titler demonstrerer en teknisk modenhed der matcher <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gamings</Link> originale vision for formatet.
@@ -60,7 +60,7 @@ const ISoftBetGuide = () => (
 
         <h3 className="text-xl font-bold mb-3 mt-6">Data-Drevet Spildesign: Når Platformen Informerer Produktet</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          iSoftBets mest underkendte strategiske fordel er den dataindsigt GAP-platformen genererer. Med millioner af daglige spins fra 70+ studios på 300+ casinoer har iSoftBet adgang til et af branchens mest omfattende datasæt om spilleradfærd. De ved hvilke temaer der performer bedst i hvilke markeder, hvilke volatilitetsniveauer der driver højest engagement, og hvilke mekanikker der genererer flest return-sessions. Denne viden informerer direkte iSoftBets egne spildesign-beslutninger.
+          iSoftBets mest underkendte strategiske fordel er den dataindsigt GAP-platformen genererer. Med millioner af daglige spins fra et bredt netværk af studios på hundredvis af casinoer har iSoftBet adgang til et af branchens mest omfattende datasæt om spilleradfærd. De ved hvilke temaer der performer bedst i hvilke markeder, hvilke volatilitetsniveauer der driver højest engagement, og hvilke mekanikker der genererer flest return-sessions. Denne viden informerer direkte iSoftBets egne spildesign-beslutninger.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Konsekvensen er spil der er designet med en præcision de fleste konkurrenter ikke kan matche. Når iSoftBet lancerer en ny Hold & Win-titel, er den kalibreret til markeder hvor den type mekanik har dokumenteret efterspørgsel. Når de udgiver en Megaways-variant, er den designet til de spillerprofiler der data viser har størst appetit for den mekanik. Det er ikke kreativ inspiration – det er informeret produktudvikling baseret på reelle markedsdata. For danske spillere betyder det, at iSoftBets titler generelt rammer en mainstream-appel der er mere kompatibel med det gennemsnitlige danske spillermønster end mange niche-studiers eksperimenter.
@@ -132,7 +132,7 @@ const ISoftBetGuide = () => (
       { year: "2019", event: "GAP passerer 50 integrerede studios – platformens position som branche-aggregator cementeres" },
       { year: "2020", event: "Moriarty Megaways lanceres og demonstrerer iSoftBets Megaways-kompetence" },
       { year: "2022", event: "GAP udbygges med AI-drevet spilanbefalingsmotor og personaliserede lobbyfunktioner" },
-      { year: "2024", event: "Porteføljen passerer 200 egne titler – GAP integrerer 70+ studios med 10.000+ spil" },
+      { year: "2024", event: "Porteføljen passerer 200 egne titler – GAP integrerer et omfattende netværk af partnerstudios" },
     ]}
     gamesIntro={
       <>
@@ -176,7 +176,7 @@ const ISoftBetGuide = () => (
     faqs={[
       {
         question: "Hvad er iSoftBets GAP-platform, og hvorfor er den vigtig for spillere?",
-        answer: "GAP (Game Aggregation Platform) er iSoftBets aggregeringssystem der distribuerer spil fra 70+ studios til 300+ casinoer. For spillere betyder det, at casinoer der bruger GAP typisk har et større og mere varieret spilbibliotek. Det påvirker også iSoftBets egne spildesign, da platformen genererer data om spilleradfærd der bruges til at skabe bedre kalibrerede spil."
+        answer: "GAP (Game Aggregation Platform) er iSoftBets aggregeringssystem der distribuerer spil fra adskillige studios til 300+ casinoer. For spillere betyder det, at casinoer der bruger GAP typisk har et større og mere varieret spilbibliotek. Det påvirker også iSoftBets egne spildesign, da platformen genererer data om spilleradfærd der bruges til at skabe bedre kalibrerede spil."
       },
       {
         question: "Er iSoftBet-slots tilgængelige på danske casinoer?",
@@ -188,7 +188,7 @@ const ISoftBetGuide = () => (
       },
       {
         question: "Hvad er forskellen på iSoftBets egne spil og GAP-aggregerede spil?",
-        answer: "iSoftBets egne 200+ titler er udviklet internt af iSoftBets kreative team. GAP-aggregerede spil er tredjepartstitler fra 70+ andre studios der distribueres via iSoftBets platform. For spilleren er forskellen typisk usynlig – begge typer spil spilles via det samme casino-interface. Forskellen er primært teknisk: iSoftBets egne titler har direkte adgang til platformens avancerede features."
+        answer: "iSoftBets egne 200+ titler er udviklet internt af iSoftBets kreative team. GAP-aggregerede spil er tredjepartstitler fra adskillige andre studios der distribueres via iSoftBets platform. For spilleren er forskellen typisk usynlig – begge typer spil spilles via det samme casino-interface. Forskellen er primært teknisk: iSoftBets egne titler har direkte adgang til platformens avancerede features."
       },
       {
         question: "Hvordan er iSoftBets RTP sammenlignet med andre udviklere?",
