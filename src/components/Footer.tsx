@@ -3,6 +3,7 @@ import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, Fi
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useLatestNews } from "@/hooks/useLatestNews";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
+import pragmaticPlayLogo from "@/assets/providers/pragmatic-play.png";
 
 export function Footer() {
   const { data: siteSettings } = useSiteSettings();
