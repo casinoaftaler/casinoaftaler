@@ -146,7 +146,7 @@ const PragmaticPlayPartner = () => {
         ═══════════════════════════════════════════════════════════ */}
         <section className="mb-12 rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
           <div className="flex flex-col items-center gap-6 md:flex-row md:items-start">
-            <div className="flex shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-background p-4">
+            <div className="flex shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-gray-900 p-4">
               <img
                 src={pragmaticPlayLogo}
                 alt="Pragmatic Play officielt partner-logo"
