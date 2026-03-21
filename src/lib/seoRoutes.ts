@@ -469,7 +469,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/cookies", changefreq: "yearly", priority: 0.3, lastmod: "2026-03-05" },
 
   // ── Partner ──
-  { path: "/pragmatic-play-partner", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-20",
+  { path: "/pragmatic-play-partner", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-21",
     author: "jonas", articleTitle: "Officiel Pragmatic Play Partner", articleCategory: "Partner",
     articleExcerpt: "Casinoaftaler.dk er officiel affiliate partner med Pragmatic Play – læs om partnerskabet og hvad det betyder." },
   // /sitemap – excluded: has noindex in Sitemap.tsx (noindex + sitemap = conflicting signals)
