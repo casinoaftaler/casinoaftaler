@@ -121,7 +121,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-anmeldelser/danske-spil", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/comeon", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/getlucky", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
-  { path: "/casino-anmeldelser/mr-green", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
+  { path: "/casino-anmeldelser/mr-green", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-21" },
   { path: "/casino-anmeldelser/videoslots", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/mr-vegas", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/leovegas", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
