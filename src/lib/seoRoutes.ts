@@ -255,7 +255,7 @@ export const seoRoutes: SeoRoute[] = ([
   // ── Spiludviklere ──
   { path: "/spiludviklere", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/spiludviklere/netent", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
-  { path: "/spiludviklere/pragmatic-play", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
+  { path: "/spiludviklere/pragmatic-play", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-21" },
   { path: "/spiludviklere/relax-gaming", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/spiludviklere/play-n-go", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/spiludviklere/hacksaw-gaming", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
