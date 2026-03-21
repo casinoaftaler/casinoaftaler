@@ -143,7 +143,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-anmeldelser/marathonbet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
 
   // ── VS / Sammenligningssider ──
-  { path: "/casino-anmeldelser/bet365-vs-unibet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
+  { path: "/casino-anmeldelser/bet365-vs-unibet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-21" },
   { path: "/casino-anmeldelser/leovegas-vs-mr-green", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/danske-spil-vs-spilnu", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/spilleautomaten-vs-spildansknu", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-16" },
