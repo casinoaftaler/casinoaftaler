@@ -131,7 +131,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-anmeldelser/unibet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-21" },
   { path: "/casino-anmeldelser/bet365", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-21" },
   { path: "/casino-anmeldelser/royal-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
-  { path: "/casino-anmeldelser/maria-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
+  { path: "/casino-anmeldelser/maria-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-21" },
   { path: "/casino-anmeldelser/kapow-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/nordicbet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/one-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
