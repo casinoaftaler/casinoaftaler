@@ -6,6 +6,166 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+function dataUrlToBytes(dataUrl: string): { bytes: Uint8Array; mimeType: string } {
+  const [meta, base64] = dataUrl.split(",");
+  const mimeMatch = meta?.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64$/);
+
+  if (!mimeMatch || !base64) {
+    throw new Error("Invalid generated image format");
+  }
+
+  const mimeType = mimeMatch[1];
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+
+  return { bytes, mimeType };
+}
+
+function imageExtensionFromMime(mimeType: string): string {
+  if (mimeType.includes("png")) return "png";
+  if (mimeType.includes("webp")) return "webp";
+  if (mimeType.includes("jpeg") || mimeType.includes("jpg")) return "jpg";
+  return "png";
+}
+
+function buildHeroImagePrompt(
+  articleTitle: string,
+  articleExcerpt: string,
+  dataSummary: {
+    campaigns: Array<{ casino: string; title: string; spins: number | null; type: string }>;
+    events: Array<{ headline: string; category: string; impact: string }>;
+  }
+): string {
+  const campaignSignals = dataSummary.campaigns
+    .slice(0, 4)
+    .map((c) => `${c.casino}: ${c.title} (${c.spins ?? 0} spins, ${c.type})`)
+    .join(" | ");
+
+  const eventSignals = dataSummary.events
+    .slice(0, 3)
+    .map((e) => `${e.headline} (${e.category}, ${e.impact})`)
+    .join(" | ");
+
+  return `Create a cinematic editorial hero image for a Danish casino market news article.
+
+Context:
+- Title: ${articleTitle}
+- Excerpt: ${articleExcerpt}
+- Campaign signals: ${campaignSignals || "No campaign signals"}
+- Market event signals: ${eventSignals || "No market signals"}
+
+Visual direction:
+- Premium online casino atmosphere in Denmark
+- Abstract slot reels, chips, subtle digital depth and motion feel
+- Clear focus on competition around free spins and bonus campaigns
+- Blue-indigo high-contrast palette with professional newsroom mood
+- Modern, realistic, high-detail, wide composition
+- No people, no faces
+
+CRITICAL constraints:
+- ABSOLUTELY NO text, NO letters, NO words, NO readable symbols
+- NO logos, NO brand names, NO watermark
+- NO webpage or UI mockup
+- Image only, clean hero composition for article header`;
+}
+
+async function generateHeroImageDataUrl(apiKey: string, prompt: string): Promise<string> {
+  const imageResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "google/gemini-2.5-flash-image",
+      messages: [{ role: "user", content: prompt }],
+      modalities: ["image", "text"],
+    }),
+  });
+
+  if (!imageResponse.ok) {
+    const imageErr = await imageResponse.text();
+    console.error("Hero image generation error:", imageResponse.status, imageErr);
+    throw new Error(`Hero image generation failed: ${imageResponse.status}`);
+  }
+
+  const imageData = await imageResponse.json();
+  const heroDataUrl = imageData?.choices?.[0]?.message?.images?.[0]?.image_url?.url as string | undefined;
+
+  if (!heroDataUrl) {
+    throw new Error("Hero image generation returned no image");
+  }
+
+  return heroDataUrl;
+}
+
+async function imageHasReadableText(apiKey: string, imageDataUrl: string): Promise<boolean> {
+  const checkResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "google/gemini-2.5-flash",
+      messages: [
+        {
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: "Check if this image contains prominent overlay text such as headlines, watermarks, brand names, or readable words/sentences. Ignore normal slot symbols/icons (like fruits or number symbols on reels) and decorative graphics. Return has_text=true only when obvious typographic text is visible.",
+            },
+            {
+              type: "image_url",
+              image_url: {
+                url: imageDataUrl,
+              },
+            },
+          ],
+        },
+      ],
+      tools: [
+        {
+          type: "function",
+          function: {
+            name: "text_check",
+            description: "Check whether an image contains readable text",
+            parameters: {
+              type: "object",
+              properties: {
+                has_text: { type: "boolean" },
+              },
+              required: ["has_text"],
+              additionalProperties: false,
+            },
+          },
+        },
+      ],
+      tool_choice: { type: "function", function: { name: "text_check" } },
+    }),
+  });
+
+  if (!checkResponse.ok) {
+    const errText = await checkResponse.text();
+    console.error("Hero image text-check error:", checkResponse.status, errText);
+    throw new Error(`Hero image text-check failed: ${checkResponse.status}`);
+  }
+
+  const checkData = await checkResponse.json();
+  const toolCall = checkData?.choices?.[0]?.message?.tool_calls?.[0];
+  if (!toolCall?.function?.arguments) {
+    throw new Error("Hero image text-check returned no result");
+  }
+
+  const parsed = JSON.parse(toolCall.function.arguments);
+  return Boolean(parsed?.has_text);
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -19,7 +179,6 @@ Deno.serve(async (req) => {
 
     const fourDaysAgo = new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString();
 
-    // 1. Fetch compliance changes
     const { data: complianceChanges } = await supabase
       .from("casino_compliance_history")
       .select("*")
@@ -27,7 +186,6 @@ Deno.serve(async (req) => {
       .order("changed_at", { ascending: false })
       .limit(20);
 
-    // 2. Fetch new/updated campaigns
     const { data: campaigns } = await supabase
       .from("free_spin_campaigns")
       .select("casino_name, title, spin_count, wagering_requirement, offer_type, source_type")
@@ -36,7 +194,6 @@ Deno.serve(async (req) => {
       .order("updated_at", { ascending: false })
       .limit(15);
 
-    // 3. Fetch market intelligence events
     const { data: miEvents } = await supabase
       .from("market_intelligence_events")
       .select("headline, summary, category, impact_level, casino_slug")
@@ -45,7 +202,6 @@ Deno.serve(async (req) => {
       .order("published_at", { ascending: false })
       .limit(10);
 
-    // If no data at all, skip
     const totalChanges = (complianceChanges?.length || 0) + (campaigns?.length || 0) + (miEvents?.length || 0);
     if (totalChanges === 0) {
       return new Response(
@@ -54,23 +210,22 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Build data summary for AI
     const dataSummary = {
-      compliance: (complianceChanges || []).map(c => ({
+      compliance: (complianceChanges || []).map((c) => ({
         casino: c.casino_slug,
         field: c.field_changed,
         old: c.old_value,
         new: c.new_value,
         type: c.change_type,
       })),
-      campaigns: (campaigns || []).map(c => ({
+      campaigns: (campaigns || []).map((c) => ({
         casino: c.casino_name,
         title: c.title,
         spins: c.spin_count,
         wagering: c.wagering_requirement,
         type: c.offer_type,
       })),
-      events: (miEvents || []).map(e => ({
+      events: (miEvents || []).map((e) => ({
         headline: e.headline,
         summary: e.summary,
         category: e.category,
@@ -79,7 +234,6 @@ Deno.serve(async (req) => {
       })),
     };
 
-    // Generate article via Lovable AI
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY not configured");
@@ -98,7 +252,7 @@ Deno.serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `Du er en dansk casino-journalist der skriver faktabaserede markedsopdateringer for Casinoaftaler.dk. 
+            content: `Du er en dansk casino-journalist der skriver faktabaserede markedsopdateringer for Casinoaftaler.dk.
 Skriv ALTID på flydende dansk. Brug data du får – opfind ALDRIG fakta.
 Artiklen skal være 1000-1500 ord i HTML format med følgende struktur:
 <p>[Indledning – 2-3 sætninger der opsummerer de vigtigste ændringer]</p>
@@ -168,15 +322,47 @@ VIGTIGE REGLER:
 
     const article = JSON.parse(toolCall.function.arguments);
 
-    // Generate slug from title
     const slug = article.title
       .toLowerCase()
-      .replace(/æ/g, "ae").replace(/ø/g, "oe").replace(/å/g, "aa")
+      .replace(/æ/g, "ae")
+      .replace(/ø/g, "oe")
+      .replace(/å/g, "aa")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "")
       .substring(0, 60);
 
-    // Insert as draft
+    const heroPrompt = buildHeroImagePrompt(article.title, article.excerpt, {
+      campaigns: dataSummary.campaigns,
+      events: dataSummary.events,
+    });
+
+    const heroDataUrl = await generateHeroImageDataUrl(LOVABLE_API_KEY, heroPrompt);
+    const hasText = await imageHasReadableText(LOVABLE_API_KEY, heroDataUrl);
+
+    if (hasText) {
+      throw new Error("Generated hero image contained readable text; article skipped to keep image quality standard");
+    }
+
+    const { bytes, mimeType } = dataUrlToBytes(heroDataUrl);
+    const imageExt = imageExtensionFromMime(mimeType);
+    const imagePath = `market-pulse/${new Date().toISOString().slice(0, 10)}/${slug}.${imageExt}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("news-images")
+      .upload(imagePath, bytes, {
+        contentType: mimeType,
+        upsert: true,
+        cacheControl: "31536000",
+      });
+
+    if (uploadError) {
+      console.error("Hero image upload error:", uploadError);
+      throw new Error(`Hero image upload failed: ${uploadError.message}`);
+    }
+
+    const { data: publicImage } = supabase.storage.from("news-images").getPublicUrl(imagePath);
+    const featuredImageUrl = publicImage.publicUrl;
+
     const { data: inserted, error: insertError } = await supabase
       .from("casino_news")
       .insert({
@@ -190,7 +376,7 @@ VIGTIGE REGLER:
         meta_title: article.meta_title,
         meta_description: article.meta_description,
         author_id: "system",
-        featured_image: "/hero-images/casino-nyheder.jpg",
+        featured_image: featuredImageUrl,
       })
       .select("id, slug")
       .single();
@@ -200,7 +386,6 @@ VIGTIGE REGLER:
       throw new Error(`Failed to insert article: ${insertError.message}`);
     }
 
-    // Touch news hub page
     await supabase
       .from("page_metadata")
       .update({ updated_at: new Date().toISOString() })
@@ -211,6 +396,7 @@ VIGTIGE REGLER:
         status: "created",
         article_id: inserted.id,
         slug: inserted.slug,
+        featured_image: featuredImageUrl,
         data_sources: {
           compliance_changes: complianceChanges?.length || 0,
           campaigns: campaigns?.length || 0,
