@@ -68,6 +68,7 @@ import { PageMetadataSyncSection } from "@/components/admin/PageMetadataSyncSect
 import { CasinoTrustAdminSection } from "@/components/admin/CasinoTrustAdminSection";
 import { ErrorLogsSection } from "@/components/admin/ErrorLogsSection";
 import { CacheClearSection } from "@/components/admin/CacheClearSection";
+import { ReviewModerationSection } from "@/components/admin/ReviewModerationSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
