@@ -324,7 +324,16 @@ VIGTIGE REGLER:
 - Hold en neutral, journalistisk tone
 - Inkludér konkrete tal (bonus beløb, omsætningskrav, RTP etc.)
 - BRUG IKKE <strong> til casinonavne eller tal i brødtekst. Brug KUN <strong> i FAQ-spørgsmål og i <li> labels (fx "Velkomstbonusser:"). Artiklen skal læses naturligt uden overdreven fremhævning.
-- Brug <ul>/<li> lister til at strukturere data, ikke lange tekstblokke`,
+- Brug <ul>/<li> lister til at strukturere data, ikke lange tekstblokke
+
+INTERNE LINKS (MEGET VIGTIGT):
+- Indsæt 3-5 naturlige inline links i brødteksten til relevante sider på Casinoaftaler.dk.
+- Link KUN første forekomst af hvert begreb. Varier ankerteksterne naturligt.
+- Brug ALDRIG den nøjagtige sidetitel som ankertekst – brug naturlige variationer.
+- Tilladt link-liste (brug href som angivet):
+${INLINE_LINK_TARGETS}
+- Eksempel: I stedet for "free spins tilbud", skriv <a href="/free-spins-i-dag">free spins tilbud</a>
+- Indsæt IKKE links i overskrifter (<h2>) eller FAQ-spørgsmål.`,
           },
           {
             role: "user",
