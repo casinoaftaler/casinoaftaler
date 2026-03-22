@@ -7,7 +7,7 @@ const BankTransferGuide = () => {
     <PaymentMethodPage
       ctaCasinoSlug="spilleautomaten"
       seoTitle="Bankoverførsel Casino 2026 – Sikker men Langsom"
-      seoDescription="Alt om bankoverførsler på danske casinoer. Direkte banktransaktioner, sikkerhed, behandlingstider, gebyrer og sammenligninger med hurtigere alternativer."
+      seoDescription="Bankoverførsler på danske casinoer: Sikkerhed, behandlingstider, gebyrer og sammenligninger med hurtigere alternativer. Se de bedste casinoer."
       name="Bankoverførsel"
       heroImage={bankTransferHero}
       heroImageAlt="Bankoverførsel betalingsmetode på danske casinoer"

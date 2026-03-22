@@ -8,7 +8,7 @@ const EndorphinaGuide = () => (
   <ProviderPage
     ctaCasinoSlug="betinia"
     seoTitle="Endorphina Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
-    seoDescription="Komplet guide til Endorphina – tjekkisk spiludvikler med matematisk præcise spillemaskiner, høj RTP (96-97%), stilren grafik og innovativ Chance Feature. 100+ premium HTML5-slots."
+    seoDescription="Endorphina slots: Tjekkisk studio med matematisk præcise spillemaskiner, høj RTP 96-97 %, stilren grafik og innovativ Chance Feature. 100+ titler."
     name="Endorphina"
     heroImage={endorphinaHero}
     heroImageAlt="Endorphina – tjekkisk premium spiludvikler"

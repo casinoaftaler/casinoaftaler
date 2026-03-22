@@ -104,7 +104,7 @@ const CrazyTimeGuide = () => {
     <>
       <SEO
         title="Crazy Time – RTP, Bonusrunder & Komplet Analyse (2026)"
-        description="Alt om Crazy Time: RTP på 95,5 %, 4 unikke bonusspil, Top Slot-multiplikatorer og matematisk EV-analyse. Den mest populære live game show forklaret."
+        description="Crazy Time: RTP på 95,5 %, 4 unikke bonusspil, Top Slot-multiplikatorer og matematisk EV-analyse. Den mest populære live game show forklaret."
         jsonLd={[articleSchema, faqJsonLd, howToJsonLd]}
       />
 

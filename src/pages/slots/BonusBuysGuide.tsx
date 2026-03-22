@@ -212,7 +212,7 @@ const BonusBuysGuide = () => {
   const faqJsonLd = buildFaqSchema(bonusBuyFaqs);
   const articleSchema = buildArticleSchema({
     headline: "Bonus Buys – Guide, Matematik & Bedste Slots",
-    description: "Komplet guide til bonus buy i spillemaskiner. Lær matematikken bag buy feature, sammenlign RTP, og find de bedste slots med bonus buy i Danmark.",
+    description: "Bonus buy i spillemaskiner: Lær matematikken bag buy feature, sammenlign RTP og find de bedste slots med bonus buy i Danmark.",
     url: `${SITE_URL}/casinospil/spillemaskiner/bonus-buys`,
     datePublished: "2026-02-19",
     authorName: "Jonas",
@@ -239,7 +239,7 @@ const BonusBuysGuide = () => {
     <>
       <SEO
         title="Bonus Buys – Guide, Matematik & Bedste Slots"
-        description="Komplet guide til bonus buy i spillemaskiner. Lær matematikken bag buy feature, sammenlign RTP, og find de bedste slots med bonus buy."
+        description="Bonus buy i spillemaskiner: Lær matematikken bag buy feature, sammenlign RTP og find de bedste slots med bonus buy i Danmark."
         jsonLd={[articleSchema, faqJsonLd, howToJsonLd]}
       />
 

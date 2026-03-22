@@ -7,7 +7,7 @@ const YggdrasilGuide = () => (
   <ProviderPage
     ctaCasinoSlug="betinia"
     seoTitle="Yggdrasil Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
-    seoDescription="Komplet guide til Yggdrasil Gaming – grundlagt af NetEnts tidligere CEO. BOOST tools, Gigablox, Splitz. 230+ spil, platform-innovation."
+    seoDescription="Yggdrasil Gaming: Grundlagt af NetEnts tidligere CEO. BOOST tools, Gigablox, Splitz-mekanikker og 230+ spil med platform-innovation."
     name="Yggdrasil Gaming"
     heroSubtitle="Yggdrasil Gaming blev grundlagt af NetEnts tidligere CEO med en vision om at ændre casinobranchen. Med BOOST-tools, Gigablox og Splitz-mekanikker har de skabt en platform-drevet innovationsmodel."
     heroImage={yggdrasilHero}

@@ -144,7 +144,7 @@ const ReloadBonus = () => {
   const faqJsonLd = buildFaqSchema(reloadFaqs);
   const articleJsonLd = buildArticleSchema({
     headline: "Reload Bonus – Komplet Guide til Casino Reload Bonusser 2026",
-    description: "Alt om reload bonusser på danske casinoer. Lær hvordan reload fungerer, hvornår de tilbydes, og hvordan du maksimerer din bonusværdi som eksisterende spiller.",
+    description: "Reload bonusser på danske casinoer: Lær hvordan reload fungerer, hvornår de tilbydes, og hvordan du maksimerer din bonusværdi som eksisterende spiller.",
     url: `${SITE_URL}/reload-bonus`,
     datePublished: "2026-02-27",
   });
@@ -160,7 +160,7 @@ const ReloadBonus = () => {
     <>
       <SEO
         title="Reload Bonus – Bonusser for Eksisterende Spillere 2026 | Casinoaftaler"
-        description="Alt om reload bonusser på danske casinoer. Lær hvordan reload fungerer, hvornår de tilbydes, og find de bedste tilbud til eksisterende spillere."
+        description="Reload bonusser på danske casinoer: Lær hvordan reload fungerer, hvornår de tilbydes, og find de bedste tilbud til eksisterende spillere."
         jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 

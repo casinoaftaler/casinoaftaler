@@ -9,7 +9,7 @@ const HacksawGamingGuide = () => (
   <ProviderPage
     ctaCasinoSlug="spilleautomaten"
     seoTitle="Hacksaw Gaming Spillemaskiner – Bedste Slots (2026)"
-    seoDescription="Komplet guide til Hacksaw Gaming – kreativ rebel bag Wanted Dead or a Wild og Chaos Crew. Ekstremt høj volatilitet, kompakte layouts, 80+ titler."
+    seoDescription="Hacksaw Gaming: Kreativ rebel bag Wanted Dead or a Wild og Chaos Crew. Ekstremt høj volatilitet, kompakte layouts og 80+ titler."
     name="Hacksaw Gaming"
     heroSubtitle="Hacksaw Gaming er casinobranchens kreative rebel. Fra skrabelodder til high-volatility slots med op til 55.000x gevinster – de bryder alle konventioner."
     heroImage={hacksawHero}

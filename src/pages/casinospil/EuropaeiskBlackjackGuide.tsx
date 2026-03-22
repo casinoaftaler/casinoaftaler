@@ -106,7 +106,7 @@ const EuropaeiskBlackjackGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
   const articleSchema = buildArticleSchema({
     headline: "Europæisk Blackjack 2026 – ENHC, OBO & Strategi Guide",
-    description: "Komplet guide til europæisk blackjack med ENHC/OBO-regler, tilpasset basic strategy og house edge-sammenligning med amerikansk variant.",
+    description: "Europæisk blackjack: ENHC/OBO-regler, tilpasset basic strategy og house edge-sammenligning med amerikansk variant.",
     url: `${SITE_URL}/casinospil/blackjack/europaeisk-blackjack`,
     datePublished: "2026-03-02",
     authorName: "Jonas",
@@ -117,7 +117,7 @@ const EuropaeiskBlackjackGuide = () => {
     <>
       <SEO
         title="Europæisk Blackjack 2026 – ENHC, OBO & Regler"
-        description="Komplet guide til europæisk blackjack: ENHC vs. OBO-regler, tilpasset basic strategy og matematisk sammenligning med amerikansk variant."
+        description="Europæisk blackjack: ENHC vs. OBO-regler, tilpasset basic strategy og matematisk sammenligning med amerikansk variant. Se hvad der passer dig."
         type="article"
         datePublished="2026-03-02"
         jsonLd={[faqJsonLd, articleSchema]}

@@ -105,7 +105,7 @@ const AmerikanskBlackjackGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
   const articleSchema = buildArticleSchema({
     headline: "Amerikansk Blackjack 2026 – Regler, Strategi & House Edge",
-    description: "Komplet guide til amerikansk blackjack med hole card-regler, optimal strategi, house edge-analyse og sammenligning med europæisk blackjack.",
+    description: "Amerikansk blackjack: Hole card-regler, optimal strategi, house edge-analyse og sammenligning med europæisk blackjack.",
     url: `${SITE_URL}/casinospil/blackjack/amerikansk-blackjack`,
     datePublished: "2026-03-02",
     authorName: "Jonas",
@@ -116,7 +116,7 @@ const AmerikanskBlackjackGuide = () => {
     <>
       <SEO
         title="Amerikansk Blackjack 2026 – Regler, Hole Card & Strategi"
-        description="Komplet guide til amerikansk blackjack: hole card-regler, optimal basic strategy, house edge-analyse og sammenligning med europæisk variant."
+        description="Amerikansk blackjack: Hole card-regler, optimal basic strategy, house edge-analyse og sammenligning med europæisk variant. Se hvad der passer dig."
         type="article"
         datePublished="2026-03-02"
         jsonLd={[faqJsonLd, articleSchema]}

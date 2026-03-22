@@ -8,7 +8,7 @@ const PushGamingGuide = () => (
   <ProviderPage
     ctaCasinoSlug="spildansknu"
     seoTitle="Push Gaming Slots – Bedste Spil, Fat-Serien & Guide (2026)"
-    seoDescription="Komplet guide til Push Gaming – innovativt britisk indie-studio bag Fat Santa, Jammin' Jars og Razor Returns. RTP 96-96,5%, medium-høj volatilitet, 40+ slots."
+    seoDescription="Push Gaming slots: Britisk indie-studio bag Fat Santa, Jammin' Jars og Razor Returns. RTP 96-96,5 %, medium-høj volatilitet, 40+ titler."
     name="Push Gaming"
     heroImage={pushGamingHero}
     heroImageAlt="Push Gaming – innovativt britisk indie-studio"

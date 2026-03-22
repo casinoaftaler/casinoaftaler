@@ -88,7 +88,7 @@ const LiveCasinoUdbydereGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
   const articleJsonLd = buildArticleSchema({
     headline: "Live Casino Udbydere – Evolution, Pragmatic Play & Alle Leverandører 2026",
-    description: "Komplet guide til live casino-udbydere 2026. Evolution Gaming, Pragmatic Play Live, Playtech og Ezugi sammenlignet. Teknologi, studier, spil og licensering.",
+    description: "Live casino-udbydere 2026: Evolution Gaming, Pragmatic Play Live, Playtech og Ezugi sammenlignet. Teknologi, studier, spil og licensering.",
     url: `${SITE_URL}/live-casino/udbydere`,
     datePublished: "2026-03-16",
     authorName: "Jonas",

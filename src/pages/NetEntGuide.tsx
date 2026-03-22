@@ -8,7 +8,7 @@ const NetEntGuide = () => (
   <ProviderPage
     ctaCasinoSlug="campobet"
     seoTitle="NetEnt Spillemaskiner – Bedste Slots & RTP Guide (2026)"
-    seoDescription="Komplet guide til NetEnt – svensk spiludvikler med ikoniske titler som Starburst og Gonzo's Quest. RTP 95-98%, medium volatilitet, 200+ spil."
+    seoDescription="NetEnt: Svensk spiludvikler bag Starburst og Gonzo's Quest. RTP 95-98 %, medium volatilitet og 200+ ikoniske slots. Se de bedste NetEnt-spil."
     name="NetEnt"
     heroSubtitle="NetEnt er synonym med kvalitet i casinobranchen. Lær alt om den svenske spiludvikler, der har revolutioneret online slots med titler som Starburst, Gonzo's Quest og Dead or Alive."
     heroImage={netentHero}

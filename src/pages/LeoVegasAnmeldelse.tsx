@@ -38,13 +38,13 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const LeoVegasAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "LeoVegas Anmeldelse 2026 – King of Mobile Casino i Danmark", description: "Komplet anmeldelse af LeoVegas Casino. MGM-ejet mobilcasino med dansk licens, 2.000+ spil og prisbevindende mobiloplevelse.", url: "https://casinoaftaler.dk/casino-anmeldelser/leovegas", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "8_nQyVEJEcU", ...casinoReviewEntities("LeoVegas Casino", "leovegas") });
+  const articleSchema = buildArticleSchema({ headline: "LeoVegas Anmeldelse 2026 – King of Mobile Casino i Danmark", description: "LeoVegas Casino testet: MGM-ejet mobilcasino med dansk licens, 2.000+ spil og prisbevindende mobiloplevelse.", url: "https://casinoaftaler.dk/casino-anmeldelser/leovegas", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "8_nQyVEJEcU", ...casinoReviewEntities("LeoVegas Casino", "leovegas") });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "LeoVegas Casino", itemUrl: "https://www.leovegas.dk/", ratingValue: "4.5", ratingCount: "241", reviewBody: "LeoVegas Casino er markedsledende inden for mobilcasino med 2.000+ spil, MGM-ejerskab og dansk licens. Prisbevindende mobiloplevelse." });
 
   return (
     <>
-      <SEO title="LeoVegas Anmeldelse 2026 – Mobilcasino & Bonus" description="Komplet anmeldelse af LeoVegas – 'King of Mobile Casino'. MGM-ejet, 2.000+ spil, dansk licens og prisbevindende mobiloplevelse. Læs vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/leovegas", "8_nQyVEJEcU", { title: "LeoVegas Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan LeoVegas ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
+      <SEO title="LeoVegas Anmeldelse 2026 – Mobilcasino & Bonus" description="LeoVegas testet: MGM-ejet mobilcasino med 2.000+ spil, dansk licens og prisbelønnet mobiloplevelse. Se vores dybdegående test og rating." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/leovegas", "8_nQyVEJEcU", { title: "LeoVegas Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan LeoVegas ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

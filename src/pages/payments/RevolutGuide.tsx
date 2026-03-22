@@ -7,7 +7,7 @@ const RevolutGuide = () => {
     <PaymentMethodPage
       ctaCasinoSlug="betinia"
       seoTitle="Revolut Casino 2026 – Digital Bank til Casino?"
-      seoDescription="Alt om Revolut på danske casinoer. Digital bank med øjeblikkelige overførsler, valutaveksling, budgetværktøjer og de bedste Revolut casinoer i Danmark."
+      seoDescription="Revolut på danske casinoer: Digital bank med øjeblikkelige overførsler, valutaveksling, budgetværktøjer og de bedste Revolut-casinoer i Danmark."
       name="Revolut"
       heroImage={revolutHero}
       heroImageAlt="Revolut digital bank betalingsmetode på danske casinoer"

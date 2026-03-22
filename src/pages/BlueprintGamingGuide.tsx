@@ -8,7 +8,7 @@ const BlueprintGamingGuide = () => (
   <ProviderPage
     ctaCasinoSlug="betinia"
     seoTitle="Blueprint Gaming Slots – Bedste Spil, Jackpot King & Guide (2026)"
-    seoDescription="Komplet guide til Blueprint Gaming – britisk studio med Jackpot King-netværket og Megaways-licens. RTP 94-96,5%, høj volatilitet, 200+ spillemaskiner."
+    seoDescription="Blueprint Gaming: Britisk studio med Jackpot King-netværket og Megaways-licens. RTP 94-96,5 %, høj volatilitet og 200+ spillemaskiner."
     name="Blueprint Gaming"
     heroImage={blueprintHero}
     heroImageAlt="Blueprint Gaming – britisk spiludvikler med Jackpot King"

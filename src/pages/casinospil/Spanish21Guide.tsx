@@ -77,7 +77,7 @@ const Spanish21Guide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
   const articleSchema = buildArticleSchema({
     headline: "Spanish 21 2026 – Regler, Strategi & House Edge",
-    description: "Komplet guide til Spanish 21: bonusregler, manglende 10'ere, strategiændringer og sammenligning med andre blackjack-varianter.",
+    description: "Spanish 21: Bonusregler, manglende 10'ere, strategiændringer og sammenligning med andre blackjack-varianter.",
     url: `${SITE_URL}/casinospil/blackjack/spanish-21`,
     datePublished: "2026-03-02",
     authorName: "Jonas",

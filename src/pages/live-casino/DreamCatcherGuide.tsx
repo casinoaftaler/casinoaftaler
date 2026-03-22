@@ -77,7 +77,7 @@ const DreamCatcherGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
   const articleSchema = buildArticleSchema({
     headline: "Dream Catcher – Komplet Matematisk Guide til Money Wheel",
-    description: "Alt om Dream Catcher: RTP op til 96,6 %, segmentfordeling, multiplikator-matematik, EV-analyse og volatilitetsprofil. Det originale live game show forklaret.",
+    description: "Dream Catcher: RTP op til 96,6 %, segmentfordeling, multiplikator-matematik, EV-analyse og volatilitetsprofil. Det originale live game show.",
     url: `${SITE_URL}/live-casino/dream-catcher`,
     datePublished: "2026-03-08",
     authorName: "Jonas",

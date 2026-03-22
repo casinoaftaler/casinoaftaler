@@ -7,7 +7,7 @@ const PaysafecardGuide = () => {
     <PaymentMethodPage
       ctaCasinoSlug="campobet"
       seoTitle="Paysafecard Casino 2026 – Anonym Indbetaling"
-      seoDescription="Alt om Paysafecard på danske casinoer. Forudbetalt og anonym indbetaling, sikkerhed, begrænsninger og de bedste Paysafecard casinoer i Danmark."
+      seoDescription="Paysafecard på danske casinoer: Forudbetalt og anonym indbetaling, sikkerhed, begrænsninger og de bedste Paysafecard-casinoer i Danmark."
       name="Paysafecard"
       heroImage={paysafecardHero}
       heroImageAlt="Paysafecard forudbetalt betalingsmetode på danske casinoer"

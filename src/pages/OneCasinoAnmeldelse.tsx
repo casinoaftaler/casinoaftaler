@@ -96,7 +96,7 @@ const OneCasinoAnmeldelse = () => {
     <>
       <SEO
         title="One Casino Anmeldelse 2026 – Eksklusive Spil & Bonus | Casinoaftaler"
-        description="Komplet anmeldelse af One Casino. Dansk licens, eksklusive in-house spil, gratis bonus ved tilmelding. Læs vores ærlige vurdering."
+        description="One Casino testet: Dansk licens, eksklusive in-house spil og gratis bonus ved tilmelding. Se vores ærlige vurdering og rating."
         jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
       />
 

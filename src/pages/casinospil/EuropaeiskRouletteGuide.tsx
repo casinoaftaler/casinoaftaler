@@ -75,7 +75,7 @@ export default function EuropaeiskRouletteGuide() {
     <>
       <SEO
         title="Europæisk Roulette 2026 – Single Zero, House Edge & Guide"
-        description="Komplet guide til europæisk roulette: single zero mekanik, 2,70% house edge, call bets, sector betting, simuleringsdata og strategiske anbefalinger."
+        description="Europæisk roulette: Single zero mekanik, 2,70 % house edge, call bets, sector betting og strategiske anbefalinger. Se hvornår du bør spille det."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

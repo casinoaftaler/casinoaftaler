@@ -98,7 +98,7 @@ const BwinAnmeldelse = () => {
     <>
       <SEO
         title="bwin Anmeldelse 2026 – Sport & Casino | Casinoaftaler"
-        description="Komplet anmeldelse af bwin i Danmark. Europæisk sportsgigant med voksende casino. Dansk licens, live betting og 1.000+ casinospil."
+        description="bwin testet: Europæisk sportsgigant med voksende casino, dansk licens, live betting og 1.000+ casinospil. Se vores ærlige vurdering."
         jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
       />
 

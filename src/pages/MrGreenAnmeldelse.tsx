@@ -39,13 +39,13 @@ const mrgreenFaqs: { question: string; answer: ReactNode }[] = [
 const MrGreenAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Mr Green Casino Anmeldelse 2026 – Dansk Licens, Bonus & Ansvarligt Spil", description: "Komplet anmeldelse af Mr Green Casino. Prisbelønnet platform med dansk licens, Green Gaming og kurateret spiludvalg.", url: "https://casinoaftaler.dk/casino-anmeldelser/mr-green", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "htCLh4TK6tA", ...casinoReviewEntities("Mr Green Casino", "mr-green") });
+  const articleSchema = buildArticleSchema({ headline: "Mr Green Casino Anmeldelse 2026 – Dansk Licens, Bonus & Ansvarligt Spil", description: "Mr Green Casino testet: Prisbelønnet platform med dansk licens, Green Gaming og kurateret spiludvalg.", url: "https://casinoaftaler.dk/casino-anmeldelser/mr-green", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "htCLh4TK6tA", ...casinoReviewEntities("Mr Green Casino", "mr-green") });
   const faqJsonLd = buildFaqSchema(mrgreenFaqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Mr Green Casino", itemUrl: "https://www.mrgreen.com/dk/", ratingValue: "4.3", ratingCount: "219", reviewBody: "Mr Green Casino er en prisbelønnet platform med dansk licens, innovativt Green Gaming-værktøj og et kurateret spiludvalg af høj kvalitet." });
 
   return (
     <>
-      <SEO title="Mr Green Anmeldelse 2026 – Green Gaming & Kurateret Udvalg" description="Komplet anmeldelse af Mr Green Casino. Prisbelønnet casino med dansk licens, Green Gaming-værktøj, kurateret spiludvalg og hurtige udbetalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/mr-green", "htCLh4TK6tA", { title: "Mr Green Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Mr Green ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
+      <SEO title="Mr Green Anmeldelse 2026 – Green Gaming & Kurateret Udvalg" description="Mr Green Casino testet: Prisbelønnet Green Gaming-værktøj, kurateret spiludvalg, dansk licens og hurtige udbetalinger. Se vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/mr-green", "htCLh4TK6tA", { title: "Mr Green Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Mr Green ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

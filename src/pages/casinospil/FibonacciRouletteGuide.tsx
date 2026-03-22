@@ -85,7 +85,7 @@ export default function FibonacciRouletteGuide() {
     <>
       <SEO
         title="Fibonacci Roulette 2026 – System, Matematik & Ærlig Analyse"
-        description="Komplet guide til Fibonacci-systemet i roulette: den gyldne spiral på casinobordet, to-trin-tilbage mekanik, Monte Carlo simulering og ærlig vurdering."
+        description="Fibonacci-systemet i roulette: Den gyldne spiral på casinobordet, to-trin-tilbage mekanik og Monte Carlo simulering. Se om det slår huset."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

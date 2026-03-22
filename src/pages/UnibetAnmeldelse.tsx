@@ -39,7 +39,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const UnibetAnmeldelse = () => {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background_image;
-  const articleSchema = buildArticleSchema({ headline: "Unibet Anmeldelse 2026 – Casino, Sports & Poker i Danmark", description: "Komplet anmeldelse af Unibet. Kindred Group-ejet allround-platform med dansk licens, casino, sports, poker og live casino.", url: "https://casinoaftaler.dk/casino-anmeldelser/unibet", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "53m8Fk6tmw8", ...casinoReviewEntities("Unibet", "unibet") });
+  const articleSchema = buildArticleSchema({ headline: "Unibet Anmeldelse 2026 – Casino, Sports & Poker i Danmark", description: "Unibet testet: Kindred Group-ejet allround-platform med dansk licens, casino, sports, poker og live casino.", url: "https://casinoaftaler.dk/casino-anmeldelser/unibet", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "53m8Fk6tmw8", ...casinoReviewEntities("Unibet", "unibet") });
   const faqJsonLd = buildFaqSchema(faqs);
   const reviewJsonLd = buildReviewSchema({ itemName: "Unibet", itemUrl: "https://www.unibet.dk/", ratingValue: "4.3", ratingCount: "234", reviewBody: "Unibet er en af de mest komplette spilleplatforme i Danmark med casino, sports, poker og live casino under Kindred Groups paraply." });
 
@@ -47,7 +47,7 @@ const UnibetAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="Unibet Anmeldelse 2026 – Casino, Sports, Poker & Bonus | Casinoaftaler" description="Komplet anmeldelse af Unibet – Danmarks mest komplette spilleplatform. Casino, sportsbetting, poker, live casino, dansk licens og hurtige udbetalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]} />
+      <SEO title="Unibet Anmeldelse 2026 – Casino, Sports, Poker & Bonus | Casinoaftaler" description="Unibet testet: Danmarks mest komplette spilleplatform med casino, sportsbetting, poker, live casino og dansk licens. Se vores ærlige rating." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

@@ -132,7 +132,7 @@ const BonusUdenOmsaetningskrav = () => {
     <>
       <SEO
         title="Bonus uden Omsætningskrav – Komplet Guide (2026)"
-        description="Alt om bonusser uden omsætningskrav hos danske casinoer. EV-konvertering, regneeksempler, faldgruber og strategier for at maksimere din omsætningsfrie bonus."
+        description="Bonus uden omsætningskrav hos danske casinoer: EV-konvertering, regneeksempler, faldgruber og strategier for at maksimere din omsætningsfrie bonus."
         jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 

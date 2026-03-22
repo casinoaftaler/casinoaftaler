@@ -73,7 +73,7 @@ const DealOrNoDealGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
   const articleSchema = buildArticleSchema({
     headline: "Deal or No Deal Live – Komplet Matematisk Analyse",
-    description: "Alt om Deal or No Deal Live: RTP, kvalifikationsrunde, bankierens tilbuds-matematik, prospect theory og EV-analyse. Det interaktive live game show analyseret.",
+    description: "Deal or No Deal Live: RTP, kvalifikationsrunde, bankierens tilbuds-matematik, prospect theory og EV-analyse af det interaktive game show.",
     url: `${SITE_URL}/live-casino/deal-or-no-deal`,
     datePublished: "2026-03-08",
     authorName: "Jonas",

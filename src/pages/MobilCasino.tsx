@@ -176,7 +176,7 @@ const MobilCasino = () => {
     <>
       <SEO
         title="Mobil Casino – Bedste Casino på Mobilen 2026"
-        description="Alt om mobil casino i Danmark: Bedste mobilcasinoer med dansk licens, app vs. browser, betalingsmetoder, sikkerhed, performance og tips. Komplet guide."
+        description="Mobil casino i Danmark: Bedste mobilcasinoer med dansk licens, app vs. browser, betalingsmetoder, sikkerhed og performance-tips. Se vores test."
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
 

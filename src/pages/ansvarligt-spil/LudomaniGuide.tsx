@@ -151,7 +151,7 @@ const LudomaniGuide = () => {
     <>
       <SEO
         title="Ludomani – Komplet Guide til Spilleafhængighed"
-        description="Alt om ludomani: Symptomer, årsager, behandlingsmuligheder, statistik og gratis hjælp i Danmark. Lær at genkende spilleafhængighed og find støtte."
+        description="Ludomani i Danmark: Symptomer, årsager, behandlingsmuligheder, statistik og gratis hjælp. Lær at genkende spilleafhængighed og find støtte."
         jsonLd={[faqJsonLd, articleJsonLd]}
         datePublished="2026-03-07"
       />

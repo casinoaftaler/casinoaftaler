@@ -8,7 +8,7 @@ const ThunderkickGuide = () => (
   <ProviderPage
     ctaCasinoSlug="campobet"
     seoTitle="Thunderkick Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
-    seoDescription="Komplet guide til Thunderkick – svensk indie-studio med unikke mekanikker som Barrell Shift og Ticket Collect. RTP 96-96,5%, medium-høj volatilitet, 60+ slots."
+    seoDescription="Thunderkick slots: Svensk indie-studio med Barrell Shift og Ticket Collect. RTP 96-96,5 %, medium-høj volatilitet og 60+ unikke titler."
     name="Thunderkick"
     heroImage={thunderkickHero}
     heroImageAlt="Thunderkick – svensk indie-spiludvikler"

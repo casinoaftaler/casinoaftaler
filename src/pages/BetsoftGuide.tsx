@@ -8,7 +8,7 @@ const BetsoftGuide = () => (
   <ProviderPage
     ctaCasinoSlug="spildansknu"
     seoTitle="Betsoft Spillemaskiner – Bedste 3D Slots, RTP & Guide (2026)"
-    seoDescription="Komplet guide til Betsoft – pioneren inden for cinematiske 3D-slots med SLOTS3-teknologi, 250+ titler, RTP 94,5-97,1% og innovativt narrativt spildesign."
+    seoDescription="Betsoft slots: Pioneren inden for cinematiske 3D-slots med SLOTS3-teknologi, 250+ titler og RTP 94,5-97,1 %. Se de bedste Betsoft-spil."
     name="Betsoft"
     heroImage={betsoftHero}
     heroImageAlt="Betsoft – pioneren inden for cinematiske 3D-slots"

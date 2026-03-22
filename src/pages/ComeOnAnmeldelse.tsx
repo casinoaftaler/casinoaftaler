@@ -63,7 +63,7 @@ const ComeOnAnmeldelse = () => {
 
   const articleSchema = buildArticleSchema({
     headline: "ComeOn Casino Anmeldelse 2026 – Bonus, Spil & Udbetaling",
-    description: "Komplet anmeldelse af ComeOn Casino. Dansk licens, bredt spiludvalg, hurtige udbetalinger og gennemsigtige bonusvilkår.",
+    description: "ComeOn Casino testet: Dansk licens, bredt spiludvalg, hurtige udbetalinger og gennemsigtige bonusvilkår.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/comeon",
     datePublished: "2026-02-15",
     authorName: "Jonas",
@@ -81,7 +81,7 @@ const ComeOnAnmeldelse = () => {
     <>
       <SEO
         title="ComeOn Anmeldelse 2026 – Hurtige Udbetalinger & Dansk Licens"
-        description="Komplet anmeldelse af ComeOn Casino. Dansk licens, 1.000+ spil, hurtige udbetalinger og gennemsigtige bonusvilkår. Læs vores ærlige vurdering."
+        description="ComeOn Casino testet: 1.000+ spil, hurtige udbetalinger, gennemsigtige bonusvilkår og dansk licens. Se vores ærlige vurdering og rating."
         jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/comeon", "tW_E0RmzSHg", { title: "ComeOn Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan ComeOn ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]}
       />
 

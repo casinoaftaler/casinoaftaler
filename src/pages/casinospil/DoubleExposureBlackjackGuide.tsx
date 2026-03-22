@@ -108,7 +108,7 @@ const DoubleExposureBlackjackGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
   const articleSchema = buildArticleSchema({
     headline: "Double Exposure Blackjack 2026 – Regler, Strategi & EV-Analyse",
-    description: "Komplet guide til Double Exposure Blackjack: begge dealerkort synlige, tilpasset strategi, house edge-matematik og sammenligning med klassisk blackjack.",
+    description: "Double Exposure Blackjack: Begge dealerkort synlige, tilpasset strategi, house edge-matematik og sammenligning med klassisk blackjack.",
     url: `${SITE_URL}/casinospil/blackjack/double-exposure-blackjack`,
     datePublished: "2026-03-02",
     authorName: "Jonas",

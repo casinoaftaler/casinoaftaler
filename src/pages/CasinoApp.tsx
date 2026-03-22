@@ -164,7 +164,7 @@ const CasinoApp = () => {
     <>
       <SEO
         title="Casino App – Bedste Casino Apps med Dansk Licens 2026"
-        description="Alt om casino apps i Danmark: Download, sikkerhed, iOS vs. Android, PWA vs. native, spiludvalg og de bedste casino apps med dansk licens. Komplet guide."
+        description="Casino apps i Danmark: Download, sikkerhed, iOS vs. Android, PWA vs. native, spiludvalg og de bedste casino apps med dansk licens. Se vores test."
         jsonLd={[faqJsonLd, articleJsonLd, softwareAppSchema]}
       />
 
