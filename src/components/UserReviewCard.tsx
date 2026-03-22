@@ -12,6 +12,25 @@ interface UserReviewCardProps {
 }
 
 // Quick-summary tag detection
+const TAG_RULES: { keywords: string[]; label: string; icon: React.ReactNode }[] = [
+  { keywords: ["hurtig", "hurtigt", "hurtige", "udbetaling", "udbetalinger"], label: "Hurtige udbetalinger", icon: <Zap className="h-3 w-3" /> },
+  { keywords: ["spiludvalg", "spil", "slots", "spillemaskiner", "provider"], label: "Stort spiludvalg", icon: <Gamepad2 className="h-3 w-3" /> },
+  { keywords: ["support", "kundeservice", "chat", "hjælp"], label: "God support", icon: <Headphones className="h-3 w-3" /> },
+  { keywords: ["bonus", "velkomstbonus", "free spins", "gratis"], label: "Gode bonusser", icon: <Gift className="h-3 w-3" /> },
+  { keywords: ["mobil", "app", "mobilvenlig"], label: "Mobilvenlig", icon: <Clock className="h-3 w-3" /> },
+];
+
+function detectTags(text: string): { label: string; icon: React.ReactNode }[] {
+  const lower = text.toLowerCase();
+  const matched: { label: string; icon: React.ReactNode }[] = [];
+  for (const rule of TAG_RULES) {
+    if (matched.length >= 3) break;
+    if (rule.keywords.some(k => lower.includes(k))) {
+      matched.push({ label: rule.label, icon: rule.icon });
+    }
+  }
+  return matched;
+}
 
 export function UserReviewCard({ review, onHelpful, isLoggedIn }: UserReviewCardProps) {
   const [expanded, setExpanded] = useState(false);
@@ -24,7 +43,6 @@ export function UserReviewCard({ review, onHelpful, isLoggedIn }: UserReviewCard
   });
 
   const tags = useMemo(() => detectTags(review.review_text), [review.review_text]);
-  const highlightedText = useMemo(() => highlightText(rawText), [rawText]);
 
   return (
     <div className="border border-border/60 rounded-xl bg-card shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
