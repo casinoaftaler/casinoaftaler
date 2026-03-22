@@ -15,8 +15,7 @@ export function HeroSection() {
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const isLive = twitchStatus?.isLive ?? false;
   const contentReady = !settingsLoading;
-  const homepageLastmod = getRouteLastmod("/");
-  const freshnessLabel = homepageLastmod ? formatLastmodDanish(homepageLastmod) : "løbende";
+  const freshnessLabel = "dagligt";
 
   return (
     <>
