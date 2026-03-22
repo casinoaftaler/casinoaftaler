@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { SubmitReviewData } from "@/hooks/useUserReviews";
-import type { User } from "@supabase/supabase-js";
 
 interface UserReviewFormProps {
   casinoSlug: string;
