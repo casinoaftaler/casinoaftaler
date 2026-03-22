@@ -210,7 +210,7 @@ export function BonusHuntSeoText() {
               licensforhold
             </Link>. For hvert casino, vi bruger i en hunt, publicerer vi et Casino Context Card med direkte
             link til vores dybdegående anmeldelse, så du altid kan verificere casinoets bonusvilkår,{" "}
-            <Link to="/casino-bonus/velkomstbonus" className="text-primary hover:underline">
+            <Link to="/velkomstbonus" className="text-primary hover:underline">
               velkomstbonus
             </Link>{" "}
             og{" "}
