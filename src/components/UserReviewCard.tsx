@@ -41,8 +41,9 @@ function detectTags(text: string): { label: string; icon: React.ReactNode }[] {
 
 function highlightText(text: string): React.ReactNode[] {
   // Build a regex that matches any highlight word (case-insensitive)
+  // Use word boundaries to only match whole words (not "Bonusserne" for "bonus")
   const escaped = HIGHLIGHT_WORDS.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-  const regex = new RegExp(`(${escaped.join('|')})`, 'gi');
+  const regex = new RegExp(`\\b(${escaped.join('|')})\\b`, 'gi');
   const parts = text.split(regex);
 
   return parts.map((part, i) => {
