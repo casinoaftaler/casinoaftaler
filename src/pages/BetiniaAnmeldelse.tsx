@@ -124,7 +124,7 @@ const BetiniaAnmeldelse = () => {
   };
 
   const faqJsonLd = buildFaqSchema(betiniaFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Betinia Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Komplet anmeldelse af Betinia. No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/betinia", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "GyqEjKQiCJU", ...casinoReviewEntities("Betinia", "betinia") });
+  const articleSchema = buildArticleSchema({ headline: "Betinia Anmeldelse 2026 – No-Sticky Bonus & Odds", description: "Betinia testet: No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og dansk licens.", url: "https://casinoaftaler.dk/casino-anmeldelser/betinia", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "GyqEjKQiCJU", ...casinoReviewEntities("Betinia", "betinia") });
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Betinia", itemUrl: "https://www.betinia.dk", ratingValue: "4.9", ratingCount: "214", reviewBody: "Betinia er et dansk dual-motor casino med No-Sticky velkomstbonus på 100% op til 1.000 kr., 10x omsætning, sportsbetting med akkumulatorboost, over 40 spiludbydere og 19 betalingsmetoder." });
 
