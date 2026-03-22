@@ -11,13 +11,6 @@ interface UserReviewCardProps {
   isLoggedIn: boolean;
 }
 
-// Keyword detection for subtle highlighting
-const HIGHLIGHT_WORDS = [
-  "bonus", "udbetaling", "udbetalinger", "support", "kundeservice",
-  "free spins", "velkomstbonus", "omsætningskrav", "licens", "sikker",
-  "hurtigt", "hurtige", "hurtig", "spiludvalg", "mobil",
-];
-
 // Quick-summary tag detection
 const TAG_RULES: { keywords: string[]; label: string; icon: React.ReactNode }[] = [
   { keywords: ["hurtig", "hurtigt", "hurtige", "udbetaling", "udbetalinger"], label: "Hurtige udbetalinger", icon: <Zap className="h-3 w-3" /> },
@@ -39,28 +32,6 @@ function detectTags(text: string): { label: string; icon: React.ReactNode }[] {
   return matched;
 }
 
-function highlightText(text: string): React.ReactNode[] {
-  // Build a regex that matches any highlight word (case-insensitive)
-  // Use word boundaries to only match whole words (not "Bonusserne" for "bonus")
-  const escaped = HIGHLIGHT_WORDS.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-  const regex = new RegExp(`\\b(${escaped.join('|')})\\b`, 'gi');
-  const parts = text.split(regex);
-
-  return parts.map((part, i) => {
-    if (regex.test(part)) {
-      // Reset lastIndex after test
-      regex.lastIndex = 0;
-      return (
-        <span key={i} className="font-semibold text-foreground">
-          {part}
-        </span>
-      );
-    }
-    regex.lastIndex = 0;
-    return <span key={i}>{part}</span>;
-  });
-}
-
 export function UserReviewCard({ review, onHelpful, isLoggedIn }: UserReviewCardProps) {
   const [expanded, setExpanded] = useState(false);
   const displayName = review.display_name || review.guest_name || "Anonym";
@@ -72,7 +43,6 @@ export function UserReviewCard({ review, onHelpful, isLoggedIn }: UserReviewCard
   });
 
   const tags = useMemo(() => detectTags(review.review_text), [review.review_text]);
-  const highlightedText = useMemo(() => highlightText(rawText), [rawText]);
 
   return (
     <div className="border border-border/60 rounded-xl bg-card shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden">
@@ -125,7 +95,7 @@ export function UserReviewCard({ review, onHelpful, isLoggedIn }: UserReviewCard
       {/* ── BODY ── */}
       <div className="px-5 pb-3">
         <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line max-w-prose">
-          {highlightedText}
+          {rawText}
         </p>
         {isLong && (
           <button
