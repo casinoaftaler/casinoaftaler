@@ -1,0 +1,1 @@
+UPDATE casino_news SET author_id = 'ajse' WHERE author_id = 'system' AND category = 'markedspuls';
