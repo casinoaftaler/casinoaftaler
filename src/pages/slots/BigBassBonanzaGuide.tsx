@@ -109,7 +109,7 @@ const BigBassBonanzaGuide = () => {
     <>
       <SEO
         title="Big Bass Bonanza Spilleautomat – RTP 96,71% (2026)"
-        description="Big Bass Bonanza 2026: 96,71 % RTP, medium volatilitet, 2.100× max win og Money Collect-mekanikken forklaret."
+        description="Big Bass Bonanza 2026: 96,71 % RTP, medium volatilitet og 2.100× max win. Money Collect-mekanikken og EV-analyse for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, howToJsonLd, videoJsonLd]}
       />
 

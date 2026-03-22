@@ -85,7 +85,7 @@ const StarburstGuide = () => {
     <>
       <SEO
         title="Starburst Spilleautomat – RTP 96,08% & Volatilitet (2026)"
-        description="Komplet analyse af Starburst: RTP 96,08 %, volatilitet, wagering-egnethed, max win 800x og sammenligning med moderne slots."
+        description="Starburst analyse: RTP 96,08 %, lav volatilitet, wagering-egnethed og 800x max win. Sammenligning med moderne slots og vurdering for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, howToJsonLd]}
       />
 

@@ -41,7 +41,7 @@ const WildWestGoldGuide = () => {
 
   return (
     <>
-      <SEO title="Wild West Gold – Sticky Wilds & RTP" description="Dybdegående analyse af Wild West Gold: sticky wild-multiplikatorer, 96,51 % RTP, 12.500× max win og bankroll-strategi." jsonLd={[faqJsonLd, articleSchema]} />
+      <SEO title="Wild West Gold – Sticky Wilds & RTP" description="Wild West Gold analyse: Sticky wild-multiplikatorer, 96,51 % RTP og 12.500× max win. Se bankroll-strategi og EV-beregninger for danske spillere." jsonLd={[faqJsonLd, articleSchema]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">

@@ -42,7 +42,7 @@ const ThunderstruckIIGuide = () => {
     <>
       <SEO
         title="Thunderstruck II – RTP, bonus og max win"
-        description="Komplet analyse af Thunderstruck II: progressiv Great Hall of Spins, 96,65 % RTP, 8.000× max win og fire unikke bonusniveauer."
+        description="Thunderstruck II analyse: Great Hall of Spins med fire bonusniveauer, 96,65 % RTP og 8.000× max win. Se EV-vurdering for danske spillere."
         jsonLd={[articleSchema, faqJsonLd]}
       />
       <div className="container py-8 md:py-12">

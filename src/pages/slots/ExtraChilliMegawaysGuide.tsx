@@ -42,7 +42,7 @@ const ExtraChilliMegawaysGuide = () => {
 
   return (
     <>
-      <SEO title="Extra Chilli Megaways – Feature Drop & RTP" description="Dybdegående analyse af Extra Chilli Megaways: 96,82 % RTP, Feature Drop, free spins-gamble og 20.000× max win." jsonLd={[faqJsonLd, articleSchema]} />
+      <SEO title="Extra Chilli Megaways – Feature Drop & RTP" description="Extra Chilli Megaways analyse: 96,82 % RTP, Feature Drop, free spins-gamble og 20.000× max win. Se EV-beregninger og strategi for bonuskøb." jsonLd={[faqJsonLd, articleSchema]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">

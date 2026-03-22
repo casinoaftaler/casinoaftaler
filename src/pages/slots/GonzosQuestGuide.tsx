@@ -98,7 +98,7 @@ const GonzosQuestGuide = () => {
     <>
       <SEO
         title="Gonzo's Quest Spilleautomat – RTP & Avalanche (2026)"
-        description="Dybdegående analyse af Gonzo's Quest: RTP 95,97 %, Avalanche-mekanik, multiplikator-matematik og vurdering for danske spillere."
+        description="Gonzo's Quest analyse: RTP 95,97 %, Avalanche-mekanik og multiplikator-matematik. Se EV-beregninger og vurdering for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, howToJsonLd]}
       />
 

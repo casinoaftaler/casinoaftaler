@@ -96,7 +96,7 @@ const BookOfDeadGuide = () => {
     <>
       <SEO
         title="Book of Dead Spilleautomat – RTP 96,21% & Free Spins"
-        description="Komplet analyse af Book of Dead: expanding symbols-matematik, EV-beregninger, bonus-compatibility og hvem spillet passer til."
+        description="Book of Dead analyse: Expanding symbols-matematik, EV-beregninger og bonus-compatibility. Se hvem spillet passer til og strategisk vurdering."
         jsonLd={[faqJsonLd, articleSchema, howToJsonLd, videoJsonLd]}
       />
 

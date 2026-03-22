@@ -97,7 +97,7 @@ const SweetBonanzaGuide = () => {
     <>
       <SEO
         title="Sweet Bonanza Spilleautomat – RTP 96,48% & Max Win (2026)"
-        description="Sweet Bonanza analyse 2026: 96,48 % RTP, høj volatilitet, 21.175× max win og Tumble-multiplikatorer forklaret."
+        description="Sweet Bonanza analyse 2026: 96,48 % RTP, høj volatilitet og 21.175× max win. Tumble-multiplikatorer og EV-vurdering for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, howToJsonLd, videoJsonLd]}
       />
 

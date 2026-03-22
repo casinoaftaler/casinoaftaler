@@ -41,7 +41,7 @@ const CleopatraGuide = () => {
 
   return (
     <>
-      <SEO title="Cleopatra – Klassiker-Analyse & RTP" description="Dybdegående analyse af Cleopatra fra IGT: 95,02 % RTP, 3× free spins-multiplikator, 10.000× max win og EV-beregninger." jsonLd={[faqJsonLd, articleSchema]} />
+      <SEO title="Cleopatra – Klassiker-Analyse & RTP" description="Cleopatra fra IGT analyse: 95,02 % RTP, 3× free spins-multiplikator og 10.000× max win. Se EV-beregninger og vurdering for danske spillere." jsonLd={[faqJsonLd, articleSchema]} />
       {/* ── HERO ── */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">

@@ -41,7 +41,7 @@ const ChaosCrewGuide = () => {
 
   return (
     <>
-      <SEO title="Chaos Crew – Dual Wild & RTP-Analyse" description="Dybdegående analyse af Chaos Crew: Cranky & Sketchy wilds, 96,50 % RTP, sticky multiplikatorer og 10.000× max win." jsonLd={[faqJsonLd, articleSchema]} />
+      <SEO title="Chaos Crew – Dual Wild & RTP-Analyse" description="Chaos Crew analyse: Cranky & Sketchy wilds, 96,50 % RTP, sticky multiplikatorer og 10.000× max win. Se EV og volatilitetsdata for danske spillere." jsonLd={[faqJsonLd, articleSchema]} />
       {/* ── HERO ── */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">
