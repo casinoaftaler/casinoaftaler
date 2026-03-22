@@ -133,7 +133,7 @@ const Spillemyndigheden = () => {
 
   const articleJsonLd = buildArticleSchema({
     headline: "Spillemyndigheden – Danmarks Regulering af Online Spil",
-    description: "Komplet guide til Spillemyndigheden i Danmark. Lær om licenstyper, spillerbeskyttelse, ROFUS, lovgivning og hvad den danske spillemyndighed gør for at sikre fair og ansvarligt spil.",
+    description: "Spillemyndigheden i Danmark: Licenstyper, spillerbeskyttelse, ROFUS, lovgivning og hvad den danske spillemyndighed gør for at sikre fair og ansvarligt spil.",
     url: `${SITE_URL}/spillemyndigheden`,
     datePublished: "2026-02-14",
     authorName: "Ajse",

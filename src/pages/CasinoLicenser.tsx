@@ -72,7 +72,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const CasinoLicenser = () => {
   const articleSchema = buildArticleSchema({
     headline: "Casino Licenser – Dansk og Udenlandske Licenser Forklaret",
-    description: "Komplet guide til casino-licenser: Dansk licens, MGA, Curaçao og UK. Forstå forskellen og hvad det betyder for din sikkerhed.",
+    description: "Casino-licenser forklaret: Dansk licens, MGA, Curaçao og UK. Forstå forskellen og hvad det betyder for din sikkerhed.",
     url: `${SITE_URL}/casino-licenser`,
     datePublished: "2026-02-16",
     authorName: "Ajse",

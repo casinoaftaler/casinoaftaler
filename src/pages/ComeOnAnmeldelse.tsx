@@ -63,7 +63,7 @@ const ComeOnAnmeldelse = () => {
 
   const articleSchema = buildArticleSchema({
     headline: "ComeOn Casino Anmeldelse 2026 – Bonus, Spil & Udbetaling",
-    description: "Komplet anmeldelse af ComeOn Casino. Dansk licens, bredt spiludvalg, hurtige udbetalinger og gennemsigtige bonusvilkår.",
+    description: "ComeOn Casino testet: Dansk licens, bredt spiludvalg, hurtige udbetalinger og gennemsigtige bonusvilkår.",
     url: "https://casinoaftaler.dk/casino-anmeldelser/comeon",
     datePublished: "2026-02-15",
     authorName: "Jonas",
