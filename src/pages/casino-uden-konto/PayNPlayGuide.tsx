@@ -100,7 +100,7 @@ const PayNPlayGuide = () => {
     <>
       <SEO
         title="Pay N Play – Trustly's Casino-Teknologi Forklaret 2026"
-        description="Teknisk deep-dive i Trustly Pay N Play: Open banking-protokollen, bankkompatibilitetsmatrice for 15+ danske banker, PSD2-compliance, sikkerhedsarkitektur og tidstest."
+        description="Pay N Play via Trustly: Spil uden konto, bankkompatibilitet, PSD2-sikkerhed og hastighedstest. Se hvilke danske casinoer der tilbyder det."
         jsonLd={[faqJsonLd, articleJsonLd]}
         datePublished="2026-03-08"
       />

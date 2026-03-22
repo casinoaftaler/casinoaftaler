@@ -151,7 +151,7 @@ const VipProgram = () => {
     <>
       <SEO
         title="VIP Program – Casino Loyalitetsprogram Guide 2026"
-        description="Alt om VIP-programmer hos danske casinoer: Tier-systemer, comp points, cashback vs. reload bonus, matematisk EV-analyse og de bedste loyalitetsprogrammer i Danmark."
+        description="VIP-programmer hos danske casinoer: Tier-systemer, comp points, cashback og EV-analyse. Find de bedste loyalitetsprogrammer."
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
 

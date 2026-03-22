@@ -144,7 +144,7 @@ const Spillemyndigheden = () => {
     <>
       <SEO
         title="Spillemyndigheden – Danmarks Regulering af Online Spil | Casinoaftaler"
-        description="Komplet guide til Spillemyndigheden i Danmark. Lær om licenstyper, spillerbeskyttelse, ROFUS, lovgivning og hvad den danske spillemyndighed gør for at sikre fair og ansvarligt spil."
+        description="Spillemyndigheden i Danmark: licenstyper, spillerbeskyttelse, ROFUS og lovgivning. Alt om den danske regulering af online casinoer."
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
 

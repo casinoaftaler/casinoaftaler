@@ -77,7 +77,7 @@ const SpilleautomatenAnmeldelse = () => {
     <>
       <SEO
         title="Spilleautomaten Anmeldelse 2026 – Bonus & Præmieshop"
-        description="Komplet anmeldelse af Spilleautomaten.dk. 100% bonus op til 1.000 kr. fordelt over 5 dage, kun 10x omsætning, Præmieshop med kontante præmier og hurtige MobilePay-udbetalinger. Testet over 14 dage."
+        description="Spilleautomaten anmeldelse 2026: 100% bonus op til 1.000 kr., 10x omsætning, Præmieshop og hurtige MobilePay-udbetalinger. Se vores test."
         jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]}
       />
 

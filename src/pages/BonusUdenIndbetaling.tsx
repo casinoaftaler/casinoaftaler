@@ -136,7 +136,7 @@ const BonusUdenIndbetaling = () => {
     <>
       <SEO
         title="Bonus uden Indbetaling – No Deposit Bonus Guide (2026)"
-        description="Komplet teknisk guide til no deposit bonus hos danske casinoer. EV-analyse, regneeksempler, faldgruber og strategier for at maksimere din bonus uden indbetaling."
+        description="No deposit bonus hos danske casinoer: EV-analyse, regneeksempler og strategier. Få mest ud af din bonus uden indbetaling."
         jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 

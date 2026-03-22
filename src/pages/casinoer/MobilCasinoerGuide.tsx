@@ -37,7 +37,7 @@ const MobilCasinoerGuide = () => {
 
   return (
     <>
-      <SEO title="Mobil Casinoer 2026 – Bedste Casino Apps & Mobilsider i Danmark" description="Find de bedste mobil casinoer i Danmark 2026. Komplet guide til casino på mobilen – apps vs. browser, betalingsmetoder, spil og tips til den optimale mobiloplevelse." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="Mobil Casinoer 2026 – Bedste Casino Apps & Mobilsider i Danmark" description="Bedste mobil casinoer i Danmark 2026: Apps vs. browser, betalingsmetoder og spiludvalg. Find det optimale mobilcasino her." jsonLd={[articleSchema, faqSchema]} />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"

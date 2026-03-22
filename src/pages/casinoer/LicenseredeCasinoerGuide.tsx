@@ -34,7 +34,7 @@ const LicenseredeCasinoerGuide = () => {
 
   return (
     <>
-      <SEO title="Licenserede Casinoer i Danmark 2026 – Komplet Guide til Sikre Casinoer" description="Guide til licenserede danske casinoer 2026. Forstå licenskrav, spillerbeskyttelse, skatteforhold og hvorfor du altid bør vælge et casino med dansk licens fra Spillemyndigheden." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="Licenserede Casinoer i Danmark 2026 – Komplet Guide til Sikre Casinoer" description="Licenserede casinoer i Danmark 2026: licenskrav, spillerbeskyttelse og skattefri gevinster. Find sikre casinoer med dansk licens." jsonLd={[articleSchema, faqSchema]} />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"

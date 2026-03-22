@@ -99,7 +99,7 @@ const DreamCatcherGuide = () => {
     <>
       <SEO
         title="Dream Catcher – RTP, Segmenter & Komplet Guide (2026)"
-        description="Alt om Dream Catcher live game show: RTP op til 96,6 %, segmentfordeling, multiplikator-matematik, EV-analyse og strategianalyse. Det originale money wheel forklaret."
+        description="Dream Catcher live: RTP op til 96,6 %, segmentfordeling og multiplikator-matematik. Det originale money wheel analyseret."
         jsonLd={[articleSchema, faqJsonLd, howToJsonLd]}
       />
 

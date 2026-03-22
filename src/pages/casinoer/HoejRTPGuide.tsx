@@ -37,7 +37,7 @@ const HoejRTPGuide = () => {
 
   return (
     <>
-      <SEO title="Casinoer med Høj RTP 2026 – Find Spil med Bedst Tilbagebetaling" description="Find danske casinoer med de højeste RTP-værdier i 2026. Komplet guide til spilleautomater og bordspil med bedst tilbagebetalingsprocent. Maksimér dine vinderchancer." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="Casinoer med Høj RTP 2026 – Find Spil med Bedst Tilbagebetaling" description="Casinoer med høj RTP 2026: Find spilleautomater og bordspil med bedst tilbagebetaling. Sammenlign RTP-data og maksimér dine chancer." jsonLd={[articleSchema, faqSchema]} />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"

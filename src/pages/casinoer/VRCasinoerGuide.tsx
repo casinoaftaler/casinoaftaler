@@ -35,7 +35,7 @@ const VRCasinoerGuide = () => {
 
   return (
     <>
-      <SEO title="VR Casinoer 2026 – Guide til Virtual Reality Casino i Danmark" description="Komplet guide til VR casinoer i 2026. Udforsk virtual reality gambling, VR-headsets, tilgængelige spil, fordele og fremtidsudsigter for immersiv casinounderholdning." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="VR Casinoer 2026 – Guide til Virtual Reality Casino i Danmark" description="VR casinoer 2026: Virtual reality gambling, VR-headsets, tilgængelige spil og fremtidsudsigter. Udforsk immersiv casinounderholdning." jsonLd={[articleSchema, faqSchema]} />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"

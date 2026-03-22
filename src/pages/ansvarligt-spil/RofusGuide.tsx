@@ -184,7 +184,7 @@ const RofusGuide = () => {
     <>
       <SEO
         title="ROFUS – Komplet Guide til Selvudelukkelse"
-        description="Alt om ROFUS: Tilmelding via MitID, midlertidig vs. permanent udelukkelse, ophævelse, lovgivning og statistik. Beskyt dig selv via Danmarks officielle register."
+        description="ROFUS guide: Tilmelding via MitID, midlertidig vs. permanent udelukkelse og ophævelse. Beskyt dig selv via det officielle register."
         jsonLd={[faqJsonLd, articleJsonLd, howToSchema]}
         datePublished="2026-03-07"
       />

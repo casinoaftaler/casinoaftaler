@@ -37,7 +37,7 @@ const CryptoCasinoGuide = () => {
 
   return (
     <>
-      <SEO title="Crypto Casino 2026 – Guide til Bitcoin & Krypto Gambling i Danmark" description="Komplet guide til crypto casinoer i Danmark 2026. Lær om Bitcoin gambling, provably fair-teknologi, fordele, risici og skatteforhold ved kryptovaluta-baseret casinospil." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="Crypto Casino 2026 – Guide til Bitcoin & Krypto Gambling i Danmark" description="Crypto casino i Danmark 2026: Bitcoin gambling, provably fair, fordele, risici og skatteforhold. Alt om krypto-casinoer med dansk licens." jsonLd={[articleSchema, faqSchema]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container">

@@ -77,7 +77,7 @@ export default function JamesBondRouletteGuide() {
     <>
       <SEO
         title="James Bond Roulette 2026 – 007's System, Matematik & Ærlig Test"
-        description="Komplet guide til James Bond roulette-systemet: dækningsmønsteret, sandsynlighedsmatematik, Monte Carlo simulering og ærlig vurdering af 007's casinostrategi."
+        description="James Bond roulette: 007's dækningsmønster, sandsynlighedsmatematik og Monte Carlo simulering. Virker Bond-strategien? Se analysen."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

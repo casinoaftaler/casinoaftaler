@@ -61,7 +61,7 @@ const SpilDanskNuAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="SpilDanskNu Anmeldelse 2026 – Bonus & Vilkår" description="Komplet anmeldelse af SpilDanskNu.dk. 100% bonus op til 1.000 kr., kun 10x omsætning, over 2.500 slots, loyalitetsprogram og hurtige udbetalinger. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]} />
+      <SEO title="SpilDanskNu Anmeldelse 2026 – Bonus & Vilkår" description="SpilDanskNu anmeldelse 2026: 100% bonus op til 1.000 kr., 10x omsætning, 2.500+ slots og loyalitetsprogram. Se vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
