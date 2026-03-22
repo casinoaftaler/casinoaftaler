@@ -1,5 +1,6 @@
-import { Star, MessageSquare } from "lucide-react";
+import { Star, MessageSquare, ShieldCheck, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { UserReviewForm } from "@/components/UserReviewForm";
 import { UserReviewCard } from "@/components/UserReviewCard";
 import { useUserReviews, type SortOption } from "@/hooks/useUserReviews";
@@ -16,6 +17,32 @@ const SORT_LABELS: Record<SortOption, string> = {
   lowest: "Laveste",
   helpful: "Mest nyttige",
 };
+
+function PlaceholderReviewCard() {
+  return (
+    <Card className="border-dashed border-muted opacity-40">
+      <CardContent className="p-4 space-y-2">
+        <div className="flex items-center gap-2">
+          <div className="h-8 w-8 rounded-full bg-muted" />
+          <div className="space-y-1">
+            <div className="h-3 w-24 rounded bg-muted" />
+            <div className="h-2 w-16 rounded bg-muted" />
+          </div>
+          <div className="ml-auto flex gap-0.5">
+            {[1, 2, 3, 4, 5].map((s) => (
+              <Star key={s} className="h-3 w-3 text-muted" />
+            ))}
+          </div>
+        </div>
+        <div className="space-y-1.5">
+          <div className="h-2.5 w-full rounded bg-muted" />
+          <div className="h-2.5 w-4/5 rounded bg-muted" />
+          <div className="h-2.5 w-3/5 rounded bg-muted" />
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
 
 export function UserReviewSection({ casinoSlug, casinoName }: UserReviewSectionProps) {
   const {
@@ -43,6 +70,24 @@ export function UserReviewSection({ casinoSlug, casinoName }: UserReviewSectionP
         <MessageSquare className="h-6 w-6 text-primary" />
         Brugeranmeldelser af {casinoName}
       </h2>
+
+      {/* Motivation copy */}
+      <p className="text-sm text-muted-foreground mb-3">
+        Din anmeldelse hjælper andre spillere med at vælge det rigtige casino.
+      </p>
+
+      {/* Trust badges */}
+      <div className="flex flex-wrap gap-3 mb-6 text-xs text-muted-foreground">
+        <span className="flex items-center gap-1">
+          <ShieldCheck className="h-3.5 w-3.5 text-green-500" /> 100% ægte anmeldelser
+        </span>
+        <span className="flex items-center gap-1">
+          <Eye className="h-3.5 w-3.5 text-primary" /> Modereres for spam
+        </span>
+        <span className="flex items-center gap-1">
+          <EyeOff className="h-3.5 w-3.5 text-muted-foreground" /> Email vises ikke offentligt
+        </span>
+      </div>
 
       {/* Aggregate summary */}
       {reviewCount > 0 && avgRating && (
@@ -83,7 +128,7 @@ export function UserReviewSection({ casinoSlug, casinoName }: UserReviewSectionP
         />
       </div>
 
-      {/* Sort bar */}
+      {/* Sort bar + reviews */}
       {reviewCount > 0 && (
         <>
           <div className="flex items-center gap-2 mb-4 flex-wrap">
@@ -103,7 +148,6 @@ export function UserReviewSection({ casinoSlug, casinoName }: UserReviewSectionP
 
           <Separator className="mb-4" />
 
-          {/* Reviews list */}
           <div className="space-y-4">
             {reviews.map((review) => (
               <UserReviewCard
@@ -125,10 +169,17 @@ export function UserReviewSection({ casinoSlug, casinoName }: UserReviewSectionP
         </>
       )}
 
+      {/* Empty state */}
       {reviewCount === 0 && !reviewsLoading && (
-        <p className="text-sm text-muted-foreground text-center py-4">
-          Ingen brugeranmeldelser endnu. Vær den første til at anmelde {casinoName}!
-        </p>
+        <div className="space-y-3">
+          <p className="text-sm text-muted-foreground text-center py-2">
+            Vær den første til at anmelde {casinoName} – det tager kun 30 sekunder ⏱️
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 opacity-60 pointer-events-none">
+            <PlaceholderReviewCard />
+            <PlaceholderReviewCard />
+          </div>
+        </div>
       )}
     </section>
   );
