@@ -359,6 +359,15 @@ export default function Contact() {
                     <Mail className="h-5 w-5" />
                     info@casinoaftaler.dk
                   </a>
+                   <a
+                    href="https://about.me/casinoaftaler"
+                    target="_blank"
+                    rel="noopener"
+                    className="flex items-center gap-3 text-primary hover:underline"
+                  >
+                    <User className="h-5 w-5" />
+                    about.me/casinoaftaler
+                  </a>
                   <p className="text-sm text-muted-foreground">
                     Alle seriøse henvendelser bliver gennemgået og besvaret.
                     Læs mere{" "}

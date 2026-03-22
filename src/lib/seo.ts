@@ -54,6 +54,7 @@ export const organizationSchema = {
     "https://dk.trustpilot.com/review/casinoaftaler.dk",
     "https://dk.pinterest.com/casinoaftaler/",
     "https://www.pragmaticplay.com/",
+    "https://about.me/casinoaftaler",
   ],
   contactPoint: {
     "@type": "ContactPoint",
@@ -82,8 +83,9 @@ export const JONAS_SAME_AS = [
   "https://www.linkedin.com/in/casinoaftaler-dk-5782203b1/",
   "https://x.com/casinoaftaler",
   "https://www.snapchat.com/@fedesvinsejer",
-  "https://gravatar.com/casinoaftaler",
-  // facebook.com/casinoaftaler belongs to the Organization entity – not added here
+   "https://gravatar.com/casinoaftaler",
+   "https://about.me/casinoaftaler",
+   // facebook.com/casinoaftaler belongs to the Organization entity – not added here
 ];
 
 export const KEVIN_SAME_AS = [
