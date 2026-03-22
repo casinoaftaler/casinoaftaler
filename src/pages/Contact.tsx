@@ -386,6 +386,15 @@ export default function Contact() {
                     <Newspaper className="h-5 w-5" />
                     Vores guide på Medium
                   </a>
+                  <a
+                    href="https://dk.trustpilot.com/review/casinoaftaler.dk"
+                    target="_blank"
+                    rel="noopener"
+                    className="flex items-center gap-3 text-primary hover:underline"
+                  >
+                    <BadgeCheck className="h-5 w-5" />
+                    Anmeld os på Trustpilot
+                  </a>
                   <p className="text-sm text-muted-foreground">
                     Alle seriøse henvendelser bliver gennemgået og besvaret.
                     Læs mere{" "}
