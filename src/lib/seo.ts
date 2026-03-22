@@ -54,6 +54,7 @@ export const organizationSchema = {
     "https://dk.trustpilot.com/review/casinoaftaler.dk",
     "https://dk.pinterest.com/casinoaftaler/",
     "https://www.pragmaticplay.com/",
+    "https://about.me/casinoaftaler",
   ],
   contactPoint: {
     "@type": "ContactPoint",
