@@ -103,7 +103,7 @@ Skriv ALTID på flydende dansk. Brug data du får – opfind ALDRIG fakta.
 Artiklen skal være 1000-1500 ord i HTML format med følgende struktur:
 <p>[Indledning – 2-3 sætninger der opsummerer de vigtigste ændringer]</p>
 <h2>Hvad er ændret</h2>
-<p>[Konkrete ændringer fra data, brug <strong> til at fremhæve vigtige tal]</p>
+<p>[Konkrete ændringer fra data]</p>
 <h2>Kontekst i dansk marked</h2>
 <p>[Sæt ændringerne i kontekst – hvad betyder det for markedet]</p>
 <h2>Konsekvenser for spillerne</h2>
@@ -119,7 +119,9 @@ VIGTIGE REGLER:
 - Brug KUN data fra det vedlagte datasæt
 - Nævn kun casinoer der faktisk optræder i data
 - Hold en neutral, journalistisk tone
-- Inkludér konkrete tal (bonus beløb, omsætningskrav, RTP etc.)`,
+- Inkludér konkrete tal (bonus beløb, omsætningskrav, RTP etc.)
+- BRUG IKKE <strong> til casinonavne eller tal i brødtekst. Brug KUN <strong> i FAQ-spørgsmål og i <li> labels (fx "Velkomstbonusser:"). Artiklen skal læses naturligt uden overdreven fremhævning.
+- Brug <ul>/<li> lister til at strukturere data, ikke lange tekstblokke`,
           },
           {
             role: "user",
@@ -188,6 +190,7 @@ VIGTIGE REGLER:
         meta_title: article.meta_title,
         meta_description: article.meta_description,
         author_id: "system",
+        featured_image: "/hero-images/casino-nyheder.jpg",
       })
       .select("id, slug")
       .single();
