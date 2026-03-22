@@ -336,21 +336,11 @@ VIGTIGE REGLER:
       events: dataSummary.events,
     });
 
-    let heroDataUrl: string | null = null;
-    for (let attempt = 1; attempt <= 3; attempt++) {
-      const candidateImage = await generateHeroImageDataUrl(LOVABLE_API_KEY, heroPrompt);
-      const hasText = await imageHasReadableText(LOVABLE_API_KEY, candidateImage);
+    const heroDataUrl = await generateHeroImageDataUrl(LOVABLE_API_KEY, heroPrompt);
+    const hasText = await imageHasReadableText(LOVABLE_API_KEY, heroDataUrl);
 
-      if (!hasText) {
-        heroDataUrl = candidateImage;
-        break;
-      }
-
-      console.warn(`Hero image attempt ${attempt} rejected due to readable text`);
-    }
-
-    if (!heroDataUrl) {
-      throw new Error("Could not generate a text-free hero image after 3 attempts");
+    if (hasText) {
+      throw new Error("Generated hero image contained readable text; article skipped to keep image quality standard");
     }
 
     const { bytes, mimeType } = dataUrlToBytes(heroDataUrl);
