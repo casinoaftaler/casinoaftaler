@@ -200,7 +200,7 @@ const TopCasinoOnline = () => {
     <>
       <SEO
         title="Top 10 Casino Online 2026 – Bedste Online Casinoer i Danmark"
-        description="Opdateret top 10 liste over de bedste online casinoer i Danmark 2026. Sammenlign bonusser, free spins, betalingsmetoder og vilkår hos danske casinoer med licens."
+        description="Top 10 bedste online casinoer i Danmark 2026 – testet og rangeret. Sammenlign bonus, udbetalingstid og spiludvalg. Se hvilke casinoer der scorer højest."
         jsonLd={[articleJsonLd, faqJsonLd, itemListJsonLd]}
       />
 
