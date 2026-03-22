@@ -375,7 +375,7 @@ VIGTIGE REGLER:
         status: "draft",
         meta_title: article.meta_title,
         meta_description: article.meta_description,
-        author_id: "system",
+        author_id: "ajse",
         featured_image: featuredImageUrl,
       })
       .select("id, slug")
