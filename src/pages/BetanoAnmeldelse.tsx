@@ -132,22 +132,22 @@ const BetanoAnmeldelse = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Casino-spil</p>
-                  <p className="text-lg font-bold text-foreground">~2.000</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Casino-spil</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">~2.000</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Sportsgrene</p>
-                  <p className="text-lg font-bold text-foreground">35+</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Sportsgrene</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">35+</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Omsætningskrav</p>
-                  <p className="text-lg font-bold text-foreground">10x (d+b)</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Omsætningskrav</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">10x (d+b)</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Udbetaling</p>
-                  <p className="text-lg font-bold text-foreground">Under 24 timer</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Udbetaling</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Under 24 timer</p>
                 </div>
               </div>
               <QuickFactsProviders

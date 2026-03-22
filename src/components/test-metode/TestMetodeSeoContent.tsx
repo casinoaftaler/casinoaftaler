@@ -139,14 +139,14 @@ export function TestMetodeSeoContent() {
               Pengene var på vores bankkonto næste bankdag kl. 09:15 – i alt 18 timer og 52 minutter.
               Det er hurtigere end gennemsnittet for de casinoer vi har testet (22-26 timer).
             </p>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
                 { label: "Udbetalingsbeløb", value: "847 kr." },
                 { label: "Godkendelsestid", value: "38 min" },
                 { label: "Total behandlingstid", value: "18t 52m" },
               ].map((stat) => (
-                <div key={stat.label} className="rounded-lg bg-muted/50 p-3 text-center">
-                  <p className="text-xs text-muted-foreground">{stat.label}</p>
+                <div key={stat.label} className="rounded-lg bg-muted/50 p-2 sm:p-3 text-center min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground truncate">{stat.label}</p>
                   <p className="text-sm font-semibold">{stat.value}</p>
                 </div>
               ))}

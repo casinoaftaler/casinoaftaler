@@ -163,36 +163,36 @@ const BwinAnmeldelse = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Casino Bonus</p>
-                  <p className="text-lg font-bold text-foreground">Op til 1.000 kr.</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Casino Bonus</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 1.000 kr.</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Licens</p>
-                  <p className="text-lg font-bold text-foreground">Spillemyndigheden</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Licens</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Spillemyndigheden</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Grundlagt</p>
-                  <p className="text-lg font-bold text-foreground">1997</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Grundlagt</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">1997</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Ejer</p>
-                  <p className="text-lg font-bold text-foreground">Entain plc</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Ejer</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Entain plc</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center mt-4">
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Casino spil</p>
-                  <p className="text-lg font-bold text-foreground">1.000+</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Casino spil</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">1.000+</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Sportsvæddemål</p>
-                  <p className="text-lg font-bold text-foreground">30+ sportsgrene</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Sportsvæddemål</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">30+ sportsgrene</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Live streaming</p>
-                  <p className="text-lg font-bold text-foreground">Ja</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Live streaming</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Ja</p>
                 </div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Evolution Gaming", "Pragmatic Play", "Red Tiger", "Microgaming"]} />

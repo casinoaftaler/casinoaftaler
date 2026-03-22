@@ -93,11 +93,11 @@ const SpilDanskNuAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader><div className="flex items-center justify-between"><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – SpilDanskNu</CardTitle><QuickFactsLogo logoUrl={casino?.logo_url} casinoName={casino?.name} /></div></CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                {[{ label: "Velkomstbonus", value: "100% op til 1.000 kr." }, { label: "Omsætningskrav", value: "10x (d+b)" }, { label: "Licens", value: "Spillemyndigheden" }, { label: "Lanceret", value: "2017" }].map((f) => (<div key={f.label} className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">{f.label}</p><p className="text-lg font-bold text-foreground">{f.value}</p></div>))}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
+                {[{ label: "Velkomstbonus", value: "100% op til 1.000 kr." }, { label: "Omsætningskrav", value: "10x (d+b)" }, { label: "Licens", value: "Spillemyndigheden" }, { label: "Lanceret", value: "2017" }].map((f) => (<div key={f.label} className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">{f.label}</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">{f.value}</p></div>))}
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mt-4">
-                {[{ label: "Min. indbetaling", value: "75 kr." }, { label: "Bonusgyldighed", value: "60 dage" }, { label: "Gns. RTP", value: "96,3%" }, { label: "Operatør", value: "Winteq ApS" }].map((f) => (<div key={f.label} className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">{f.label}</p><p className="text-lg font-bold text-foreground">{f.value}</p></div>))}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center mt-4">
+                {[{ label: "Min. indbetaling", value: "75 kr." }, { label: "Bonusgyldighed", value: "60 dage" }, { label: "Gns. RTP", value: "96,3%" }, { label: "Operatør", value: "Winteq ApS" }].map((f) => (<div key={f.label} className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">{f.label}</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">{f.value}</p></div>))}
               </div>
               <QuickFactsProviders providers={["Pragmatic Play", "Play'n GO", "Quickspin", "Push Gaming", "Hacksaw Gaming", "Stakelogic", "Synot", "Greentube", "ELK Studios", "Wazdan", "Endorphina"]} />
               <QuickFactsLicense licenseId="21-67980" />
@@ -195,7 +195,7 @@ const SpilDanskNuAnmeldelse = () => {
 
           <Card className="border-border bg-card mb-6 border-l-4 border-l-accent">
             <CardContent className="pt-6">
-              <div className="flex items-center gap-3 mb-3"><Gift className="h-6 w-6 text-accent" /><h3 className="text-lg font-bold text-foreground">Aktuel bonuskode 2026</h3></div>
+              <div className="flex items-center gap-3 mb-3"><Gift className="h-6 w-6 text-accent" /><h3 className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Aktuel bonuskode 2026</h3></div>
               <div className="flex items-center gap-4 rounded-lg border border-border bg-muted/30 p-4">
                 <code className="text-2xl font-bold text-primary tracking-widest">VELKOMMEN</code>
                 <Badge variant="secondary" className="text-xs">Aktiv – bruges alle 5 dage</Badge>

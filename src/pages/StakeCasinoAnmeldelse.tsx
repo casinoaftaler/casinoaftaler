@@ -85,16 +85,16 @@ const StakeCasinoAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Stake Danmark</CardTitle></CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Status</p><p className="text-lg font-bold text-primary">Dansk licens ✓</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Licens</p><p className="text-lg font-bold text-foreground">Spillemyndigheden</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Grundlagt</p><p className="text-lg font-bold text-foreground">2017</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Unikke spil</p><p className="text-lg font-bold text-foreground">Stake Originals</p></div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Status</p><p className="text-sm sm:text-lg font-bold text-primary break-words leading-tight">Dansk licens ✓</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Licens</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Spillemyndigheden</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Grundlagt</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">2017</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Unikke spil</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Stake Originals</p></div>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center mt-4">
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Antal spil</p><p className="text-lg font-bold text-foreground">3.000+</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Kendt for</p><p className="text-lg font-bold text-foreground">Crypto & Originals</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Væddemål</p><p className="text-lg font-bold text-foreground">Ja ✓</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Antal spil</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">3.000+</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Kendt for</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Crypto & Originals</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Væddemål</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Ja ✓</p></div>
               </div>
               <QuickFactsProviders providers={["Pragmatic Play", "Evolution Gaming", "Hacksaw Gaming", "Nolimit City", "Play'n GO", "NetEnt"]} />
               <QuickFactsLicense licenseId="Stake Denmark A/S" authority="Spillemyndigheden" />

@@ -87,11 +87,11 @@ const ExpektAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Expekt</CardTitle></CardHeader><CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Velkomstbonus</p><p className="text-lg font-bold text-foreground">50 freespins</p></div>
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Omsætningskrav</p><p className="text-lg font-bold text-foreground">Ingen (på spins)</p></div>
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Licens</p><p className="text-lg font-bold text-foreground">Spillemyndigheden</p></div>
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Type</p><p className="text-lg font-bold text-foreground">Sports + Casino</p></div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
+            <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">50 freespins</p></div>
+            <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Omsætningskrav</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Ingen (på spins)</p></div>
+            <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Licens</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Spillemyndigheden</p></div>
+            <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Type</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Sports + Casino</p></div>
           </div>
           <QuickFactsProviders providers={["NetEnt", "Pragmatic Play", "Play'n GO", "Evolution Gaming", "Red Tiger", "Microgaming"]} />
           <QuickFactsLicense licenseId="18-0042" />

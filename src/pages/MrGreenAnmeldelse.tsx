@@ -72,16 +72,16 @@ const MrGreenAnmeldelse = () => {
 
         {/* Hurtige Fakta */}
         <section className="mb-12"><Card className="border-border bg-card border-l-4 border-l-primary"><CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – Mr Green Casino</CardTitle></CardHeader><CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Velkomstbonus</p><p className="text-lg font-bold text-foreground">Op til 1.000 kr. + FS</p></div>
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Omsætningskrav</p><p className="text-lg font-bold text-foreground">10x (d+b)</p></div>
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Licens</p><p className="text-lg font-bold text-foreground">Spillemyndigheden</p></div>
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Grundlagt</p><p className="text-lg font-bold text-foreground">2008</p></div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
+            <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 1.000 kr. + FS</p></div>
+            <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Omsætningskrav</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">10x (d+b)</p></div>
+            <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Licens</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Spillemyndigheden</p></div>
+            <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Grundlagt</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">2008</p></div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center mt-4">
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Min. indbetaling</p><p className="text-lg font-bold text-foreground">100 kr.</p></div>
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Udbetaling</p><p className="text-lg font-bold text-foreground">1–3 hverdage</p></div>
-            <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Ejer</p><p className="text-lg font-bold text-foreground">Evoke PLC (tidl. 888 Holdings)</p></div>
+            <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Min. indbetaling</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">100 kr.</p></div>
+            <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Udbetaling</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">1–3 hverdage</p></div>
+            <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Ejer</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Evoke PLC (tidl. 888 Holdings)</p></div>
           </div>
           <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Evolution Gaming", "Yggdrasil", "Red Tiger", "Pragmatic Play", "Thunderkick", "Blueprint Gaming"]} />
           <QuickFactsLicense licenseId="18-0044" />

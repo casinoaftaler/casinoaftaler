@@ -59,16 +59,16 @@ const MarathonBetAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – MarathonBet</CardTitle></CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Styrke</p><p className="text-lg font-bold text-foreground">Bedste odds</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Licens</p><p className="text-lg font-bold text-foreground">Spillemyndigheden</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Grundlagt</p><p className="text-lg font-bold text-foreground">1997</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Marginer</p><p className="text-lg font-bold text-foreground">2-3 % (fodbold)</p></div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Styrke</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Bedste odds</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Licens</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Spillemyndigheden</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Grundlagt</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">1997</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Marginer</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">2-3 % (fodbold)</p></div>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center mt-4">
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Sportsgrene</p><p className="text-lg font-bold text-foreground">25+</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Casino spil</p><p className="text-lg font-bold text-foreground">600+</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Live betting</p><p className="text-lg font-bold text-foreground">Ja</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Sportsgrene</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">25+</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Casino spil</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">600+</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Live betting</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Ja</p></div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Microgaming", "Pragmatic Play", "Evolution Gaming"]} />
               <QuickFactsLicense licenseId="18-0067" />
