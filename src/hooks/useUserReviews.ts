@@ -17,7 +17,7 @@ export interface UserReview {
   helpful_count: number;
   is_verified_player: boolean;
   created_at: string;
-  // Joined profile data
+  // Enriched profile data
   display_name?: string | null;
   avatar_url?: string | null;
 }
@@ -45,7 +45,7 @@ export function useUserReviews(casinoSlug: string) {
   const [sort, setSort] = useState<SortOption>("newest");
   const [page, setPage] = useState(0);
 
-  // Fetch approved reviews
+  // Fetch approved reviews + enrich with profile data
   const {
     data: reviewsData,
     isLoading: reviewsLoading,
@@ -68,7 +68,32 @@ export function useUserReviews(casinoSlug: string) {
       query = query.range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1);
       const { data, error } = await query;
       if (error) throw error;
-      return data as UserReview[];
+
+      const reviews = (data || []) as UserReview[];
+
+      // Enrich with profile data for logged-in reviewers
+      const userIds = [...new Set(reviews.filter(r => r.user_id).map(r => r.user_id!))];
+      if (userIds.length > 0) {
+        const { data: profiles } = await supabase
+          .from("profiles")
+          .select("user_id, display_name, avatar_url")
+          .in("user_id", userIds);
+
+        if (profiles) {
+          const profileMap = new Map(profiles.map(p => [p.user_id, p]));
+          for (const review of reviews) {
+            if (review.user_id) {
+              const profile = profileMap.get(review.user_id);
+              if (profile) {
+                review.display_name = profile.display_name;
+                review.avatar_url = profile.avatar_url;
+              }
+            }
+          }
+        }
+      }
+
+      return reviews;
     },
   });
 
@@ -136,7 +161,6 @@ export function useUserReviews(casinoSlug: string) {
   const helpfulMutation = useMutation({
     mutationFn: async (reviewId: string) => {
       if (!user?.id) throw new Error("Must be logged in");
-      // Toggle: check if already voted
       const { data: existing } = await supabase
         .from("casino_review_helpful_votes")
         .select("id")
