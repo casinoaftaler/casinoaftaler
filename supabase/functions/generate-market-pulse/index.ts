@@ -427,7 +427,7 @@ ${INLINE_LINK_TARGETS}
         title: article.title,
         slug: `markedspuls-${slug}`,
         excerpt: article.excerpt,
-        content: article.content,
+        content: appendInternalLinksSection(article.content, slug),
         category: "markedspuls",
         tags: article.tags,
         status: "draft",
