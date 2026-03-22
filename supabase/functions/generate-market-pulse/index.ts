@@ -60,17 +60,110 @@ Context:
 
 Visual direction:
 - Premium online casino atmosphere in Denmark
-- Abstract slot reels, chips, digital dashboards, subtle motion feel
+- Abstract slot reels, chips, subtle digital depth and motion feel
 - Clear focus on competition around free spins and bonus campaigns
 - Blue-indigo high-contrast palette with professional newsroom mood
 - Modern, realistic, high-detail, wide composition
 - No people, no faces
 
 CRITICAL constraints:
-- NO text, NO letters, NO numbers
+- ABSOLUTELY NO text, NO letters, NO words, NO readable symbols
 - NO logos, NO brand names, NO watermark
-- NO UI screenshots or webpage mockups
-- Image only, clean hero composition for news article`;
+- NO webpage or UI mockup
+- Image only, clean hero composition for article header`;
+}
+
+async function generateHeroImageDataUrl(apiKey: string, prompt: string): Promise<string> {
+  const imageResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "google/gemini-2.5-flash-image",
+      messages: [{ role: "user", content: prompt }],
+      modalities: ["image", "text"],
+    }),
+  });
+
+  if (!imageResponse.ok) {
+    const imageErr = await imageResponse.text();
+    console.error("Hero image generation error:", imageResponse.status, imageErr);
+    throw new Error(`Hero image generation failed: ${imageResponse.status}`);
+  }
+
+  const imageData = await imageResponse.json();
+  const heroDataUrl = imageData?.choices?.[0]?.message?.images?.[0]?.image_url?.url as string | undefined;
+
+  if (!heroDataUrl) {
+    throw new Error("Hero image generation returned no image");
+  }
+
+  return heroDataUrl;
+}
+
+async function imageHasReadableText(apiKey: string, imageDataUrl: string): Promise<boolean> {
+  const checkResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "google/gemini-2.5-flash",
+      messages: [
+        {
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: "Check this image for ANY readable text, letters, words, numbers, or logo text. Return has_text=true if any such text is visible, otherwise false.",
+            },
+            {
+              type: "image_url",
+              image_url: {
+                url: imageDataUrl,
+              },
+            },
+          ],
+        },
+      ],
+      tools: [
+        {
+          type: "function",
+          function: {
+            name: "text_check",
+            description: "Check whether an image contains readable text",
+            parameters: {
+              type: "object",
+              properties: {
+                has_text: { type: "boolean" },
+              },
+              required: ["has_text"],
+              additionalProperties: false,
+            },
+          },
+        },
+      ],
+      tool_choice: { type: "function", function: { name: "text_check" } },
+    }),
+  });
+
+  if (!checkResponse.ok) {
+    const errText = await checkResponse.text();
+    console.error("Hero image text-check error:", checkResponse.status, errText);
+    throw new Error(`Hero image text-check failed: ${checkResponse.status}`);
+  }
+
+  const checkData = await checkResponse.json();
+  const toolCall = checkData?.choices?.[0]?.message?.tool_calls?.[0];
+  if (!toolCall?.function?.arguments) {
+    throw new Error("Hero image text-check returned no result");
+  }
+
+  const parsed = JSON.parse(toolCall.function.arguments);
+  return Boolean(parsed?.has_text);
 }
 
 Deno.serve(async (req) => {
@@ -231,41 +324,33 @@ VIGTIGE REGLER:
 
     const slug = article.title
       .toLowerCase()
-      .replace(/æ/g, "ae").replace(/ø/g, "oe").replace(/å/g, "aa")
+      .replace(/æ/g, "ae")
+      .replace(/ø/g, "oe")
+      .replace(/å/g, "aa")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "")
       .substring(0, 60);
 
-    // Generate hero image (mandatory)
     const heroPrompt = buildHeroImagePrompt(article.title, article.excerpt, {
       campaigns: dataSummary.campaigns,
       events: dataSummary.events,
     });
 
-    const imageResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "google/gemini-2.5-flash-image",
-        messages: [{ role: "user", content: heroPrompt }],
-        modalities: ["image", "text"],
-      }),
-    });
+    let heroDataUrl: string | null = null;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      const candidateImage = await generateHeroImageDataUrl(LOVABLE_API_KEY, heroPrompt);
+      const hasText = await imageHasReadableText(LOVABLE_API_KEY, candidateImage);
 
-    if (!imageResponse.ok) {
-      const imageErr = await imageResponse.text();
-      console.error("Hero image generation error:", imageResponse.status, imageErr);
-      throw new Error(`Hero image generation failed: ${imageResponse.status}`);
+      if (!hasText) {
+        heroDataUrl = candidateImage;
+        break;
+      }
+
+      console.warn(`Hero image attempt ${attempt} rejected due to readable text`);
     }
 
-    const imageData = await imageResponse.json();
-    const heroDataUrl = imageData?.choices?.[0]?.message?.images?.[0]?.image_url?.url as string | undefined;
-
     if (!heroDataUrl) {
-      throw new Error("Hero image generation returned no image");
+      throw new Error("Could not generate a text-free hero image after 3 attempts");
     }
 
     const { bytes, mimeType } = dataUrlToBytes(heroDataUrl);
