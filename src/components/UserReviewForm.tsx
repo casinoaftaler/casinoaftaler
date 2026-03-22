@@ -94,7 +94,7 @@ export function UserReviewForm({
       <CardHeader>
         <CardTitle className="text-xl flex items-center gap-2">
           Skriv en anmeldelse af {casinoName}
-          {user && (
+          {isLoggedIn && (
             <Badge variant="outline" className="text-xs border-green-500/50 text-green-400">
               Verificeret spiller
             </Badge>
