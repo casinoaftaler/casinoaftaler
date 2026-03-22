@@ -102,7 +102,7 @@ const Spillemaskiner = () => {
     <>
       <SEO
         title="Spillemaskiner 2026 – Guide til Online Slots"
-        description="Alt om spillemaskiner hos danske online casinoer. Lær om RTP, volatilitet, Megaways, jackpots og bonusfunktioner i 2026."
+        description="Guide til spillemaskiner online 2026. Forstå RTP, volatilitet og bonusfunktioner. Se de bedste slots med høj RTP og find dit næste yndlingsspil."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
