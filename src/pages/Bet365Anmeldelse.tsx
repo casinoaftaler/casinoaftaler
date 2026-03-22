@@ -22,7 +22,6 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import {
-import { UserReviewSection } from "@/components/UserReviewSection";
   Star,
   CreditCard,
   Trophy,
@@ -40,6 +39,7 @@ import { UserReviewSection } from "@/components/UserReviewSection";
   Target,
   BarChart3,
 } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
