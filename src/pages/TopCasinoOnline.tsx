@@ -219,7 +219,7 @@ const TopCasinoOnline = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Trophy className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret {getDanishMonthYear()}
+              Verificeret Top 10
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Top 10 Online Casino i Danmark 2026
@@ -261,7 +261,7 @@ const TopCasinoOnline = () => {
         {/* Top 10 Casino List */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
-            Top 10 Online Casino – {getDanishMonthYear()}
+            Top 10 Online Casino i Danmark
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Herunder finder du vores håndplukkede top 10 over de bedste online casinoer i Danmark lige nu. Listen er opdateret månedligt og baseret på vores dybdegående test af hvert enkelt spillested. Klik på et casino for at se detaljer om bonus, spiludvalg og vores ekspertvurdering.

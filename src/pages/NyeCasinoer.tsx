@@ -252,7 +252,7 @@ const NyeCasinoer = () => {
         {/* Casino Cards */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
-            Nye casinoer i Danmark – {getDanishMonthYear()}
+            Nye casinoer i Danmark
           </h2>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">

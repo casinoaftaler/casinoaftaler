@@ -111,7 +111,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/nye-casinoer/lav-wagering", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-07" },
   // /nye-casinoer/bedste – 301 redirected to /nye-casinoer (cannibalization fix: spoke undermined hub)
   { path: "/nye-casinoer/vs-etablerede", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-07" },
-  { path: "/top-10-casino-online", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-08" },
+  { path: "/top-10-casino-online", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-22" },
   { path: "/casino-anmeldelser/spilleautomaten", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/campobet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
   { path: "/casino-anmeldelser/betinia", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
