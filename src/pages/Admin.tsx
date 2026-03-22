@@ -1123,6 +1123,9 @@ function AdminDashboard() {
             <div className="mt-6">
               <CacheClearSection />
             </div>
+            <div className="mt-6">
+              <StaleContentAlerts />
+            </div>
           </TabsContent>
 
           {/* Link Density Monitor Tab */}
