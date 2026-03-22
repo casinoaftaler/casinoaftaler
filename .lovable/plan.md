@@ -1,50 +1,34 @@
 
 
-## Plan: 3 SEO Automations
+## Plan: Auto Internal Linking in Markedspuls Articles
 
-### 1. Compliance Trigger → Touch Casino Review Pages
-**SQL migration** adding a trigger on `casino_compliance` (AFTER UPDATE) that touches:
-- `/casino-anmeldelser/{casino_slug}` (the specific review)
-- `/casino-licenser`, `/markedsindsigt` (hub pages)
-- Plus existing money pages array
+### Problem
+Market pulse articles are generated without any internal links to money pages. This wastes link equity that should flow from fresh content → commercial pages.
 
-This extends the existing `touch_money_pages_on_activity()` pattern but is specific to compliance changes.
+### Solution: Two-layer approach
 
-### 2. AI Market Pulse Edge Function (Monday + Thursday)
-**New edge function**: `supabase/functions/generate-market-pulse/index.ts`
+**Layer 1: AI-generated contextual inline links**
+Update the system prompt in `generate-market-pulse/index.ts` to instruct the AI to weave in 3-5 natural inline links to money pages within the article body. Provide the AI with a fixed list of allowed link targets (the same ones from `newsInternalLinks.ts`).
 
-Logic:
-1. Query `casino_compliance_history` for changes in last 4 days
-2. Query `free_spin_campaigns` for new/updated campaigns in last 4 days
-3. Query `market_intelligence_events` for recent events
-4. If no changes found → exit early (no empty articles)
-5. Use Lovable AI (Gemini 2.5 Flash) to generate ~1200 word Danish article with structure matching existing news:
-   - `<h2>Hvad er ændret</h2>` + `<h2>Kontekst i dansk marked</h2>` + `<h2>Konsekvenser for spillerne</h2>` + `<h2>FAQ</h2>`
-6. Insert as `status: 'draft'` in `casino_news` with auto-generated slug, meta_title, meta_description, category `'markedspuls'`, tags
-7. Touch `/casino-nyheder` page_metadata
+Example: Instead of writing "free spins tilbud", the AI writes `<a href="/free-spins-i-dag">free spins tilbud</a>`.
 
-**Cron schedule**: `pg_cron` + `pg_net` calling the edge function Monday + Thursday at 07:30 UTC.
+**Layer 2: Appended "Relaterede guider" section**
+After AI content generation but before DB insert, append a `<section data-enterprise-news-links="true">` block with 8-12 categorized internal links — replicating the same logic as `appendEnterpriseInternalLinks()` but server-side in the edge function.
 
-**Config**: Add `[functions.generate-market-pulse]` to `supabase/config.toml`.
+### Changes
 
-### 3. Stale Content Detector
-**SQL migration**:
-- New table `stale_content_alerts` (id, casino_slug, casino_name, days_stale, alert_type, created_at, resolved_at)
-- RLS: admin-only read/write
-- Weekly cron (Sunday 08:00 UTC) that:
-  1. Clears unresolved alerts
-  2. Inserts new alerts for `casino_compliance` records where `last_checked < now() - interval '30 days'`
+**File: `supabase/functions/generate-market-pulse/index.ts`**
 
-**New component**: `src/components/admin/StaleContentAlerts.tsx`
-- Shows flagged casinos with days since last verification
-- "Markér som løst" button
-- Integrated into Settings tab in Admin page
+1. Add money page link targets as a constant in the edge function
+2. Update system prompt to include linking instructions + the allowed link targets list
+3. Add a `appendInternalLinksSection()` helper that builds the "Relaterede guider" HTML section
+4. Call it on `article.content` before inserting into `casino_news`
 
-### Files created/changed
-1. **SQL migration** – compliance trigger + stale_content_alerts table + cron jobs
-2. **`supabase/functions/generate-market-pulse/index.ts`** – AI article generator
-3. **`supabase/config.toml`** – add function config block
-4. **`src/components/admin/StaleContentAlerts.tsx`** – admin widget
-5. **`src/pages/Admin.tsx`** – import and add StaleContentAlerts to settings tab
-6. **Cron schedules** (via insert tool, not migration) for market-pulse + stale detector
+### Technical details
+
+- Money page targets embedded in prompt: `/casino-bonus`, `/free-spins-i-dag`, `/velkomstbonus`, `/top-10-casino-online`, `/nye-casinoer`, `/casino-med-mobilepay`, `/casino-anmeldelser`, `/cashback-bonus`, `/reload-bonus`
+- Markedspuls-specific category links added: `/casino-licenser`, `/ansvarligt-spil`, `/ordbog/omsaetningskrav`
+- AI instructed to use max 5 inline links, vary anchor text, only link first occurrence
+- Appended section uses rotated selection (seeded by slug) for variety across articles
+- No changes to frontend rendering — `CasinoNyhedArticle.tsx` already renders raw HTML with `dangerouslySetInnerHTML`
 
