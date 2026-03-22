@@ -45,7 +45,7 @@ const GetLuckyAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="GetLucky Anmeldelse 2026 – 1.500+ Spil & Loyalitetsprogram" description="Komplet anmeldelse af GetLucky Casino. 1.500+ spil, dansk licens, loyalitetsprogram og gennemsigtige vilkår. Læs vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/getlucky", "N1MyxsYcmMk", { title: "GetLucky Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan GetLucky ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
+      <SEO title="GetLucky Anmeldelse 2026 – 1.500+ Spil & Loyalitetsprogram" description="GetLucky Casino testet: 1.500+ spil, loyalitetsprogram, dansk licens og gennemsigtige vilkår. Se vores ærlige vurdering og rating." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/getlucky", "N1MyxsYcmMk", { title: "GetLucky Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan GetLucky ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><Star className="mr-1.5 h-3.5 w-3.5" />4.0 / 5 – Stort Spiludvalg</Badge>
