@@ -118,7 +118,7 @@ async function imageHasReadableText(apiKey: string, imageDataUrl: string): Promi
           content: [
             {
               type: "text",
-              text: "Check this image for ANY readable text, letters, words, numbers, or logo text. Return has_text=true if any such text is visible, otherwise false.",
+              text: "Check if this image contains prominent overlay text such as headlines, watermarks, brand names, or readable words/sentences. Ignore normal slot symbols/icons (like fruits or number symbols on reels) and decorative graphics. Return has_text=true only when obvious typographic text is visible.",
             },
             {
               type: "image_url",
