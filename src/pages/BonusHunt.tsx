@@ -72,12 +72,15 @@ export default function BonusHunt() {
     queryClient.invalidateQueries({ queryKey: ['bonus-hunt-avgx-bets'] });
   }, [queryClient]);
 
-  const maxHuntNumber = latestHuntNumber;
+  // maxHuntNumber = highest known hunt (could be live hunt above latest archived)
+  const activeSessionHuntNumber = session?.status === 'active' ? session.hunt_number : undefined;
+  const liveHuntNumber = activeSessionHuntNumber || (huntData?.status === 'active' ? huntData.visibleId : undefined);
+  const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber || 0);
 
-  const currentHuntNumber = huntIdOverride || huntData?.visibleId || latestHuntNumber;
+  const currentHuntNumber = huntIdOverride || huntData?.visibleId || maxHuntNumber;
   const isSessionCurrentActive = session?.status === 'active' && session?.hunt_number === currentHuntNumber;
-  const isDataCurrentActive = huntData?.status === 'active' && currentHuntNumber === maxHuntNumber;
-  const isLive = !!(isSessionCurrentActive || isDataCurrentActive);
+  const isDataCurrentActive = huntData?.status === 'active';
+  const isLive = !!(isSessionCurrentActive || (isDataCurrentActive && currentHuntNumber > latestHuntNumber));
   const isArchived = !isLive && archivedHuntNumbers.includes(currentHuntNumber);
   const currentArchive = useMemo(() => allArchives.find((a: any) => a.hunt_number === currentHuntNumber), [allArchives, currentHuntNumber]);
   const huntVideo = useMemo(() => getHuntVideoFromArchive(currentArchive), [currentArchive]);
@@ -86,8 +89,9 @@ export default function BonusHunt() {
   const availableHuntNumbers = useMemo(() => {
     const numbers = new Set(archivedHuntNumbers);
     numbers.add(latestHuntNumber);
+    if (liveHuntNumber) numbers.add(liveHuntNumber);
     return [...numbers].sort((a, b) => b - a);
-  }, [archivedHuntNumbers, latestHuntNumber]);
+  }, [archivedHuntNumbers, latestHuntNumber, liveHuntNumber]);
 
   const handleNavigate = useCallback((dir: 'first' | 'prev' | 'next' | 'last') => {
     const orderedHunts = [...availableHuntNumbers].sort((a, b) => a - b);
