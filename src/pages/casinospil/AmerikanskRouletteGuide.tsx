@@ -110,7 +110,7 @@ export default function AmerikanskRouletteGuide() {
     <>
       <SEO
         title="Amerikansk Roulette 2026 – Double Zero, House Edge & Strategi"
-        description="Komplet guide til amerikansk roulette: dobbelt-nul mekanik, 5,26% house edge analyse, Five Number Bet fælden, 10.000-spins simulering og casino-anbefalinger."
+        description="Amerikansk roulette: Dobbelt-nul mekanik, 5,26 % house edge, Five Number Bet fælden og 10.000-spins simulering. Se om det er værd at spille."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

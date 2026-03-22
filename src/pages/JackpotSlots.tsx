@@ -108,7 +108,7 @@ const JackpotSlots = () => {
     <>
       <SEO
         title="Jackpot Slots – Progressive Jackpot Spilleautomater 2026"
-        description="Komplet guide til jackpot-slots: Progressive og faste jackpots, Mega Moolah, Dream Drop, RTP-matematik og strategi. Find de bedste jackpot-slots i Danmark."
+        description="Jackpot-slots: Progressive og faste jackpots, Mega Moolah, Dream Drop, RTP-matematik og strategi. Find de bedste jackpot-slots i Danmark."
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
 

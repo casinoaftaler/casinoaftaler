@@ -71,7 +71,7 @@ export default function FranskRouletteGuide() {
     <>
       <SEO
         title="Fransk Roulette 2026 – La Partage, 1,35% HE & Komplet Guide"
-        description="Komplet guide til fransk roulette: La Partage & En Prison regler, 1,35% house edge, bordlayout med franske betegnelser, call bets og casino-anbefalinger."
+        description="Fransk roulette: La Partage og En Prison regler, 1,35 % house edge, franske betegnelser, call bets og casino-anbefalinger. Se hvorfor det er bedst."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

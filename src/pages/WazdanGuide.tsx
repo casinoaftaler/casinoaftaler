@@ -8,7 +8,7 @@ const WazdanGuide = () => (
   <ProviderPage
     ctaCasinoSlug="spildansknu"
     seoTitle="Wazdan Spillemaskiner – Bedste Slots, RTP & Komplet Guide (2026)"
-    seoDescription="Komplet guide til Wazdan – polsk spiludvikler med unik Volatility Levels™-teknologi, 200+ slots, RTP 95-96,5% og innovative features som Unique Gamble og Energy Saving Mode."
+    seoDescription="Wazdan slots: Polsk studio med Volatility Levels™-teknologi, 200+ titler, RTP 95-96,5 % og innovative features som Unique Gamble. Se populære spil."
     name="Wazdan"
     heroImage={wazdanHero}
     heroImageAlt="Wazdan – polsk innovativ spiludvikler"

@@ -239,7 +239,7 @@ const BonusBuysGuide = () => {
     <>
       <SEO
         title="Bonus Buys – Guide, Matematik & Bedste Slots"
-        description="Komplet guide til bonus buy i spillemaskiner. Lær matematikken bag buy feature, sammenlign RTP, og find de bedste slots med bonus buy."
+        description="Bonus buy i spillemaskiner: Lær matematikken bag buy feature, sammenlign RTP og find de bedste slots med bonus buy i Danmark."
         jsonLd={[articleSchema, faqJsonLd, howToJsonLd]}
       />
 

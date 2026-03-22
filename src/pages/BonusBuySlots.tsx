@@ -121,7 +121,7 @@ const BonusBuySlots = () => {
     <>
       <SEO
         title="Bonus Buy Slots – Feature Buy Spilleautomater 2026"
-        description="Komplet guide til bonus buy-slots: Køb free spins direkte, matematik bag prissætning, bedste titler og strategi. Find de bedste bonus buy-slots i Danmark."
+        description="Bonus buy-slots: Køb free spins direkte, forstå matematik bag prissætning, bedste titler og strategi. Find de bedste bonus buy-slots i Danmark."
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
 

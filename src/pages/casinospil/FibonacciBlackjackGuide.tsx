@@ -124,7 +124,7 @@ const FibonacciBlackjackGuide = () => {
     <>
       <SEO
         title="Fibonacci Blackjack 2026 – System, Matematik & Test"
-        description="Komplet guide til Fibonacci-systemet i blackjack: talrækken, to-trin-reglen, 5.000-hånds simulering og sammenligning med Martingale og D'Alembert."
+        description="Fibonacci-systemet i blackjack: Talrækken, to-trin-reglen, 5.000-hånds simulering og sammenligning med Martingale. Se om det virker."
         type="article"
         datePublished="2026-03-02"
         jsonLd={[faqJsonLd, articleSchema]}
