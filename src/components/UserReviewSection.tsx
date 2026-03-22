@@ -79,6 +79,7 @@ export function UserReviewSection({ casinoSlug, casinoName }: UserReviewSectionP
           isLoading={submitLoading}
           isSuccess={submitSuccess}
           userHasReviewed={userHasReviewed}
+          isLoggedIn={isLoggedIn}
         />
       </div>
 

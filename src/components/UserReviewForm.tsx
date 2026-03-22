@@ -156,9 +156,9 @@ export function UserReviewForm({
           )}
 
           {/* Logged in user info */}
-          {user && profile?.display_name && (
+          {isLoggedIn && displayName && (
             <p className="text-sm text-muted-foreground">
-              Du skriver som <strong className="text-foreground">{profile.display_name}</strong>
+              Du skriver som <strong className="text-foreground">{displayName}</strong>
             </p>
           )}
 
