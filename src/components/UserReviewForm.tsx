@@ -67,9 +67,6 @@ export function UserReviewForm({
     if (reviewText.length < 50) { setError("Anmeldelsen skal være mindst 50 tegn"); return; }
     if (reviewText.length > 2000) { setError("Anmeldelsen må maks. være 2000 tegn"); return; }
     if (!isLoggedIn && !guestName.trim()) { setError("Indtast dit navn"); return; }
-    if (!isLoggedIn && (!guestEmail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail))) {
-      setError("Indtast en gyldig e-mail"); return;
-    }
 
     try {
       await onSubmit({
