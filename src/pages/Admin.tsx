@@ -40,7 +40,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket, Menu, ChevronDown, Shield, Target, Database, Trophy, Link2 } from "lucide-react";
+import { Plus, Trash2, LogOut, Star, Loader2, Pencil, GripVertical, Gift, ShoppingBag, BarChart3, Settings, Users, Video, Gamepad2, Bell, Sparkles, Ticket, Menu, ChevronDown, Shield, Target, Database, Trophy, Link2, MessageSquare } from "lucide-react";
 import { LinkDensityMonitor } from "@/components/LinkDensityMonitor";
 import { AdminUserManagement } from "@/components/AdminUserManagement";
 import { HighlightsAdminSection } from "@/components/HighlightsAdminSection";
@@ -68,6 +68,7 @@ import { PageMetadataSyncSection } from "@/components/admin/PageMetadataSyncSect
 import { CasinoTrustAdminSection } from "@/components/admin/CasinoTrustAdminSection";
 import { ErrorLogsSection } from "@/components/admin/ErrorLogsSection";
 import { CacheClearSection } from "@/components/admin/CacheClearSection";
+import { ReviewModerationSection } from "@/components/admin/ReviewModerationSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -768,6 +769,7 @@ function AdminDashboard() {
     { value: "content", label: "Indhold", icon: Gift },
     { value: "news", label: "Nyheder", icon: Bell },
     { value: "community-clips", label: "Community", icon: Sparkles },
+    { value: "reviews", label: "Anmeldelser", icon: MessageSquare },
     { value: "slotmachine", label: "Spillemaskine", icon: Gamepad2 },
     
     { value: "tournaments", label: "Turneringer", icon: Trophy },
@@ -1186,6 +1188,11 @@ function AdminDashboard() {
                 <SlotPointsManagement />
               </div>
             </div>
+          </TabsContent>
+
+          {/* Reviews Tab */}
+          <TabsContent value="reviews">
+            <ReviewModerationSection />
           </TabsContent>
         </Tabs>
       </main>

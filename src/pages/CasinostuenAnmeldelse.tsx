@@ -20,6 +20,7 @@ import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsP
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, Gamepad2, Sparkles, Headphones, TrendingUp, BarChart3 } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -232,6 +233,7 @@ const CasinostuenAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed"><strong>Den overordnede konklusion:</strong> Casinostuen konkurrerer ikke på volumen, hastighed eller VIP-funktioner. Det konkurrerer på nærhed, enkelhed og lokal forankring. I et marked domineret af internationale giganter er der stadig plads til den lille, hyggelige platform – forudsat at den kender sit segment og leverer kvalitet inden for det. Casinostuen gør præcis det.</p>
         </section>
 
+        <UserReviewSection casinoSlug="casinostuen" casinoName="Casinostuen" />
         <RelatedReviews currentSlug="casinostuen" />
         <InlineCasinoCards count={3} />
 

@@ -19,6 +19,7 @@ import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsP
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { ShieldCheck, Zap, Check, X, Globe, Gamepad2, Trophy, Headphones, Wallet, Target, Users, TrendingUp, BarChart3 } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -320,6 +321,7 @@ const NordicBetAnmeldelse = () => {
           </p>
         </section>
 
+        <UserReviewSection casinoSlug="nordicbet" casinoName="NordicBet" />
         <RelatedReviews currentSlug="nordicbet" />
         <InlineCasinoCards count={3} />
 

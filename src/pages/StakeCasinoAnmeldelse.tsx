@@ -19,6 +19,7 @@ import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsP
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, Zap, Check, X, ShieldCheck, AlertTriangle, Gamepad2, Users, Target, Trophy, Headphones, CreditCard, TrendingUp, BarChart3 } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -319,6 +320,7 @@ const StakeCasinoAnmeldelse = () => {
           </div>
         </section>
 
+        <UserReviewSection casinoSlug="stake-casino" casinoName="Stake Casino" />
         <RelatedReviews currentSlug="stake-casino" />
         <InlineCasinoCards count={3} />
 

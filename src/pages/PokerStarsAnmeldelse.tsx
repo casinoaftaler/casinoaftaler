@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/compone
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { UserReviewSection } from "@/components/UserReviewSection";
 const linkClass = "text-primary underline hover:text-primary/80";
 const pokerstarsFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er PokerStars lovligt i Danmark?", answer: (<>Ja, PokerStars har dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. PokerStars ejes af Flutter Entertainment, verdens største online gambling-koncern.</>) },
@@ -305,6 +306,7 @@ const PokerStarsAnmeldelse = () => {
           </div>
         </section>
 
+        <UserReviewSection casinoSlug="pokerstars" casinoName="PokerStars" />
         <RelatedReviews currentSlug="pokerstars" />
         <InlineCasinoCards count={3} />
         <Separator className="my-10" />

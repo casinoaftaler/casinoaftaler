@@ -22,6 +22,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import {
+import { UserReviewSection } from "@/components/UserReviewSection";
   ShieldCheck, Shield, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
   Smartphone, Headphones, Users, Globe, AlertTriangle, Target,
@@ -546,6 +547,7 @@ const BetanoAnmeldelse = () => {
           </div>
         </section>
 
+        <UserReviewSection casinoSlug="betano" casinoName="Betano" />
         <RelatedReviews currentSlug="betano" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["betano"]} />
         <LatestNewsByCategory pagePath="/casino-anmeldelser/betano" />

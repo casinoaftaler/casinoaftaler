@@ -21,6 +21,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Zap, Check, X, Crown, Gamepad2, Trophy, Sparkles, Headphones, Wallet, Target, Users, Smartphone, Globe, TrendingUp } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -430,6 +431,7 @@ const LeoVegasAnmeldelse = () => {
           </p>
         </section>
 
+        <UserReviewSection casinoSlug="leovegas" casinoName="LeoVegas" />
         <RelatedReviews currentSlug="leovegas" />
         <InlineCasinoCards count={3} />
 

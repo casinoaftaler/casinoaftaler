@@ -19,6 +19,7 @@ import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsP
 import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { Star, Zap, Check, X, Gamepad2, Trophy, Sparkles, Shield, Headphones, CreditCard, Users, Target, Smartphone, ShieldCheck, TrendingUp } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -487,6 +488,7 @@ const OneCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">For spillere, der overvejer One Casino i dag, er den mest realistiske prognose: platformen vil forblive en niche-aktør med et specifikt appeal. Den vil sandsynligvis ikke blive en mainstream-konkurrent, men den vil heller ikke forsvinde – Betreels Ltd har opereret stabilt i over et årti, og det eksklusive spilunivers tiltrækker en loyal, om end lille, spillerbase. Gratisbonussen gør det risikofrit at teste, og for den rette spiller er One Casino en unik oplevelse, der beriger casinolandskabet med variation og originalitet.</p>
         </section>
 
+        <UserReviewSection casinoSlug="one-casino" casinoName="One Casino" />
         <RelatedReviews currentSlug="one-casino" />
         <InlineCasinoCards count={3} />
 

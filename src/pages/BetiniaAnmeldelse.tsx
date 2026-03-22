@@ -26,6 +26,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import {
+import { UserReviewSection } from "@/components/UserReviewSection";
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
   Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
@@ -951,6 +952,7 @@ const BetiniaAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        <UserReviewSection casinoSlug="betinia" casinoName="Betinia" />
         <RelatedReviews currentSlug="betinia" />
 
         <InlineCasinoCards

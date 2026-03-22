@@ -27,6 +27,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import {
+import { UserReviewSection } from "@/components/UserReviewSection";
   ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, BookOpen, Smartphone, Headphones,
   Gamepad2, Wallet, Zap, RotateCcw, Check, X, Globe, Award,
@@ -842,6 +843,7 @@ const SwiftCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <UserReviewSection casinoSlug="swift-casino" casinoName="Swift Casino" />
         <RelatedReviews currentSlug="swift-casino" />
         <InlineCasinoCards excludeSlugs={["swift-casino"]} />
         <Separator className="my-10" />
