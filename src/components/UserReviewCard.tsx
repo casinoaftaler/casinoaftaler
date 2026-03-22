@@ -11,55 +11,7 @@ interface UserReviewCardProps {
   isLoggedIn: boolean;
 }
 
-// Keyword detection for subtle highlighting
-const HIGHLIGHT_WORDS = [
-  "bonus", "udbetaling", "udbetalinger", "support", "kundeservice",
-  "free spins", "velkomstbonus", "omsætningskrav", "licens", "sikker",
-  "hurtigt", "hurtige", "hurtig", "spiludvalg", "mobil",
-];
-
 // Quick-summary tag detection
-const TAG_RULES: { keywords: string[]; label: string; icon: React.ReactNode }[] = [
-  { keywords: ["hurtig", "hurtigt", "hurtige", "udbetaling", "udbetalinger"], label: "Hurtige udbetalinger", icon: <Zap className="h-3 w-3" /> },
-  { keywords: ["spiludvalg", "spil", "slots", "spillemaskiner", "provider"], label: "Stort spiludvalg", icon: <Gamepad2 className="h-3 w-3" /> },
-  { keywords: ["support", "kundeservice", "chat", "hjælp"], label: "God support", icon: <Headphones className="h-3 w-3" /> },
-  { keywords: ["bonus", "velkomstbonus", "free spins", "gratis"], label: "Gode bonusser", icon: <Gift className="h-3 w-3" /> },
-  { keywords: ["mobil", "app", "mobilvenlig"], label: "Mobilvenlig", icon: <Clock className="h-3 w-3" /> },
-];
-
-function detectTags(text: string): { label: string; icon: React.ReactNode }[] {
-  const lower = text.toLowerCase();
-  const matched: { label: string; icon: React.ReactNode }[] = [];
-  for (const rule of TAG_RULES) {
-    if (matched.length >= 3) break;
-    if (rule.keywords.some(k => lower.includes(k))) {
-      matched.push({ label: rule.label, icon: rule.icon });
-    }
-  }
-  return matched;
-}
-
-function highlightText(text: string): React.ReactNode[] {
-  // Build a regex that matches any highlight word (case-insensitive)
-  // Use word boundaries to only match whole words (not "Bonusserne" for "bonus")
-  const escaped = HIGHLIGHT_WORDS.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-  const regex = new RegExp(`\\b(${escaped.join('|')})\\b`, 'gi');
-  const parts = text.split(regex);
-
-  return parts.map((part, i) => {
-    if (regex.test(part)) {
-      // Reset lastIndex after test
-      regex.lastIndex = 0;
-      return (
-        <span key={i} className="font-semibold text-foreground">
-          {part}
-        </span>
-      );
-    }
-    regex.lastIndex = 0;
-    return <span key={i}>{part}</span>;
-  });
-}
 
 export function UserReviewCard({ review, onHelpful, isLoggedIn }: UserReviewCardProps) {
   const [expanded, setExpanded] = useState(false);
