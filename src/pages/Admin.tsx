@@ -769,6 +769,7 @@ function AdminDashboard() {
     { value: "content", label: "Indhold", icon: Gift },
     { value: "news", label: "Nyheder", icon: Bell },
     { value: "community-clips", label: "Community", icon: Sparkles },
+    { value: "reviews", label: "Anmeldelser", icon: MessageSquare },
     { value: "slotmachine", label: "Spillemaskine", icon: Gamepad2 },
     
     { value: "tournaments", label: "Turneringer", icon: Trophy },
