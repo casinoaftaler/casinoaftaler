@@ -209,9 +209,13 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
 }
 
 async function fetchLatestHuntNumber(): Promise<number> {
+  // Return the latest COMPLETED archived hunt number.
+  // Active hunts in archives should not count as "latest archived" –
+  // otherwise the live hunt gets treated as a past hunt.
   const { data: archiveLatest } = await supabase
     .from('bonus_hunt_archives')
     .select('hunt_number')
+    .neq('hunt_status', 'active')
     .order('hunt_number', { ascending: false })
     .limit(1)
     .maybeSingle();
@@ -221,6 +225,7 @@ async function fetchLatestHuntNumber(): Promise<number> {
   const { data: sessionLatest } = await supabase
     .from('bonus_hunt_sessions')
     .select('hunt_number')
+    .eq('status', 'completed')
     .order('hunt_number', { ascending: false })
     .limit(1)
     .maybeSingle();
