@@ -75,7 +75,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 const NyeCasinoerUdenRofus = () => {
   const articleSchema = buildArticleSchema({
     headline: "Nye Casinoer uden ROFUS – Hvad du skal vide",
-    description: "Alt om nye casinoer uden ROFUS-tilslutning. Forstå risici, lovgivning og hvorfor vi anbefaler danske licenserede casinoer.",
+    description: "Nye casinoer uden ROFUS-tilslutning: Forstå risici, lovgivning og hvorfor vi anbefaler danske licenserede casinoer.",
     url: `${SITE_URL}/nye-casinoer/uden-rofus`,
     datePublished: "2026-01-25",
     authorName: "Jonas",

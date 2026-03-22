@@ -32,7 +32,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
 ];
 
 const MobilCasinoerGuide = () => {
-  const articleSchema = buildArticleSchema({ headline: "Mobil Casinoer 2026 – Spil Casino på Din Smartphone", description: "Komplet guide til mobil casino i Danmark 2026.", url: `${SITE_URL}/casinoer/mobil-casinoer`, datePublished: "2026-02-01" });
+  const articleSchema = buildArticleSchema({ headline: "Mobil Casinoer 2026 – Spil Casino på Din Smartphone", description: "Mobil casino i Danmark 2026: De bedste mobilcasinoer med dansk licens, app vs. browser og betalingsmetoder.", url: `${SITE_URL}/casinoer/mobil-casinoer`, datePublished: "2026-02-01" });
   const faqSchema = buildFaqSchema(faqs);
 
   return (

@@ -97,7 +97,7 @@ const AndroidCasinoGuide = () => {
   const faqJsonLd = buildFaqSchema(faqs);
   const articleJsonLd = buildArticleSchema({
     headline: "Casino på Android – Komplet Guide til Android Casino i 2026",
-    description: "Alt om casino på Android: Google Play vs. APK, performance-benchmarks, fragmentering, betalingsmetoder og de bedste Android-casinoer i Danmark.",
+    description: "Casino på Android: Google Play vs. APK, performance-benchmarks, fragmentering, betalingsmetoder og de bedste Android-casinoer i Danmark.",
     url: `${SITE_URL}/mobil-casino/android`,
     datePublished: "2026-03-08",
     authorName: "Jonas",

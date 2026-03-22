@@ -97,7 +97,7 @@ const JackpotSlots = () => {
   const faqJsonLd = buildFaqSchema(jackpotFaqs);
   const articleJsonLd = buildArticleSchema({
     headline: "Jackpot Slots – Guide til Progressive Jackpot-Spilleautomater 2026",
-    description: "Alt om jackpot-slots: Progressive og faste jackpots, bedste titler, RTP-matematik, netværks-analyse og strategi. Komplet dansk guide.",
+    description: "Jackpot-slots: Progressive og faste jackpots, bedste titler, RTP-matematik, netværks-analyse og strategi. Find de bedste i Danmark.",
     url: `${SITE_URL}/jackpot-slots`,
     datePublished: "2026-03-07",
     authorName: "Jonas",
