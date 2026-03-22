@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Award, BookOpen, ShieldCheck } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useTwitchStatus } from "@/hooks/useTwitchStatus";
-import { formatLastmodDanish, getRouteLastmod } from "@/lib/seoRoutes";
+
 
 export function HeroSection() {
   const { data: siteSettings, isLoading: settingsLoading } = useSiteSettings();
