@@ -25,7 +25,6 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { AuthorBio } from "@/components/AuthorBio";
 import {
-import { UserReviewSection } from "@/components/UserReviewSection";
   ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, BookOpen, Smartphone, Headphones,
   Gamepad2, Wallet, Zap, RotateCcw, Check, X, Globe, Award,
@@ -33,6 +32,7 @@ import { UserReviewSection } from "@/components/UserReviewSection";
   BarChart3, Activity, ShoppingBag, BadgeCheck, CalendarDays,
   Calculator, AlertTriangle, Timer, MessageSquare, Mail,
 } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 

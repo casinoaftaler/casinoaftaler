@@ -26,7 +26,6 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import {
-import { UserReviewSection } from "@/components/UserReviewSection";
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
   Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
@@ -34,6 +33,7 @@ import { UserReviewSection } from "@/components/UserReviewSection";
   Shield, Flame, ArrowRight, Percent, DollarSign, Eye, Search,
   ThumbsUp, ThumbsDown, MessageSquare, Mail,
 } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 

@@ -26,11 +26,11 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import {
-import { UserReviewSection } from "@/components/UserReviewSection";
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   Zap, RotateCcw, Check, X, Globe, Target, TrendingUp, Award,
   Gamepad2, Wallet, Headphones, Smartphone, BarChart3,
 } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
