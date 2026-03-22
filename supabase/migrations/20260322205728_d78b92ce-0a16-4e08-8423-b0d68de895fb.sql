@@ -1,0 +1,1 @@
+UPDATE site_settings SET value = 'Bedste Online Casinoer i Danmark 2026 – Testet & Verificeret' WHERE key = 'hero_title';
