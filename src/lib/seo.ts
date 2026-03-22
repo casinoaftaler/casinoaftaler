@@ -53,7 +53,7 @@ export const organizationSchema = {
     "https://github.com/casinoaftaler",
     "https://dk.trustpilot.com/review/casinoaftaler.dk",
     "https://dk.pinterest.com/casinoaftaler/",
-    "https://www.pragmaticplay.com/",
+    
     "https://about.me/casinoaftaler",
     "https://medium.com/@casinoaftaler",
   ],
