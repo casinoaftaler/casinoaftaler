@@ -2384,6 +2384,36 @@ export type Database = {
         }
         Relationships: []
       }
+      stale_content_alerts: {
+        Row: {
+          alert_type: string
+          casino_name: string
+          casino_slug: string
+          created_at: string
+          days_stale: number
+          id: string
+          resolved_at: string | null
+        }
+        Insert: {
+          alert_type?: string
+          casino_name: string
+          casino_slug: string
+          created_at?: string
+          days_stale?: number
+          id?: string
+          resolved_at?: string | null
+        }
+        Update: {
+          alert_type?: string
+          casino_name?: string
+          casino_slug?: string
+          created_at?: string
+          days_stale?: number
+          id?: string
+          resolved_at?: string | null
+        }
+        Relationships: []
+      }
       tournament_credit_tracking: {
         Row: {
           created_at: string
