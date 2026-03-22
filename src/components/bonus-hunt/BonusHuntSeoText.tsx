@@ -72,7 +72,7 @@ export function BonusHuntSeoText() {
             Fra et matematisk perspektiv kan Expected Value (EV) for en bonus hunt estimeres via formlen:{" "}
             <em className="text-foreground">EV = Σ(Bonus Payout) − Σ(Bonus Cost)</em>. Da de fleste slots har
             en{" "}
-            <Link to="/rtp-return-to-player" className="text-primary hover:underline">
+            <Link to="/ordbog/rtp" className="text-primary hover:underline">
               RTP (Return to Player)
             </Link>{" "}
             under 100 % i base game, handler bonus hunts om at udnytte den forhøjede RTP, der typisk
