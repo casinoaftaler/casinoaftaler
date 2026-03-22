@@ -190,6 +190,7 @@ VIGTIGE REGLER:
         meta_title: article.meta_title,
         meta_description: article.meta_description,
         author_id: "system",
+        featured_image: "/hero-images/casino-nyheder.jpg",
       })
       .select("id, slug")
       .single();
