@@ -50,7 +50,7 @@ const BedsteNyeCasinoer = () => {
 
   return (
     <>
-      <SEO title="Bedste Nye Casinoer 2026 – Top Nye Spillesteder i DK" description="De bedste nye casinoer i Danmark 2026. Grundigt testede og rangeret efter bonus, spiludvalg, udbetalinger og sikkerhed." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="Bedste Nye Casinoer 2026 – Top Nye Spillesteder i DK" description="De bedste nye casinoer i Danmark 2026. Grundigt testede og rangeret efter bonus, spiludvalg, udbetalinger og sikkerhed. Se hvilke der scorer højest." jsonLd={[articleSchema, faqSchema]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

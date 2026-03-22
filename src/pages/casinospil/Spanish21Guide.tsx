@@ -88,7 +88,7 @@ const Spanish21Guide = () => {
     <>
       <SEO
         title="Spanish 21 2026 – Regler, Strategi & House Edge"
-        description="Lær Spanish 21: bonusregler, husets fordel, Double Down Rescue og hvordan varianten adskiller sig fra klassisk blackjack."
+        description="Spanish 21 guide: Bonusregler, husets fordel, Double Down Rescue og forskelle fra klassisk blackjack. Se optimal strategi for danske spillere."
         type="article"
         datePublished="2026-03-02"
         jsonLd={[faqJsonLd, articleSchema]}

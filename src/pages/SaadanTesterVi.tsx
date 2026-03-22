@@ -171,7 +171,7 @@ const SaadanTesterVi = () => {
     <>
       <SEO
         title="Sådan tester vi casinoer | Vores testmetode | Casinoaftaler"
-        description="Se hvordan vi tester og vurderer online casinoer i Danmark. Læs om vores testkriterier, vurderingsmodel og gennemsigtige metode."
+        description="Se vores testmetode: Sådan tester og vurderer vi online casinoer i Danmark. Læs om testkriterier, vurderingsmodel og hvorfor du kan stole på os."
         jsonLd={[articleJsonLd, faqJsonLd]}
       />
 

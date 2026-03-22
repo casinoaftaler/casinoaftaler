@@ -162,7 +162,7 @@ export default function Contact() {
     <>
       <SEO
         title="Kontakt – Erhverv & Presse | Casinoaftaler"
-        description="Kontakt Casinoaftaler.dk for casino partnerskaber, affiliate henvendelser, kommercielle forslag og presseforespørgsler."
+        description="Kontakt Casinoaftaler.dk for partnerskaber, affiliate samarbejde, kommercielle forslag og pressehenvendelser. Vi svarer inden for 48 timer."
         jsonLd={faqJsonLd}
       />
 

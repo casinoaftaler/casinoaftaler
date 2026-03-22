@@ -88,7 +88,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
     <>
       <SEO
         title="Nye Casinoer med Hurtig Udbetaling – Hurtigste Nye Spillesteder"
-        description="Find nye casinoer med de hurtigste udbetalinger i 2026. Sammenlign udbetalingstider via Trustly, MobilePay og andre metoder."
+        description="Nye casinoer med hurtig udbetaling 2026: Sammenlign udbetalingstider via Trustly, MobilePay og andre metoder. Se hvilke casinoer der betaler hurtigst."
         jsonLd={[articleSchema, faqSchema]}
       />
 

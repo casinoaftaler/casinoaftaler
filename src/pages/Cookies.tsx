@@ -54,7 +54,7 @@ const Terms = () => {
     <>
       <SEO
         title="Cookiepolitik | Casinoaftaler"
-        description="Læs om Casinoaftalers brug af cookies. Vi forklarer, hvilke cookies vi bruger, og hvordan du administrerer dine præferencer."
+        description="Casinoaftalers cookiepolitik: Se hvilke cookies vi bruger, hvorfor vi bruger dem, og hvordan du administrerer dine præferencer og samtykke."
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
 

@@ -89,7 +89,7 @@ const MartingaleBlackjackGuide = () => {
     <>
       <SEO
         title="Martingale Blackjack 2026 – Matematik, Risiko & Fejl"
-        description="Virker Martingale i blackjack? Vi analyserer matematikken, risk of ruin og hvorfor fordoblingsstrategien bryder sammen i praksis."
+        description="Martingale i blackjack: Vi analyserer matematikken, risk of ruin og hvorfor fordoblingsstrategien bryder sammen. Se simuleringen og vores vurdering."
         type="article"
         datePublished="2026-03-02"
         jsonLd={[faqJsonLd, articleSchema]}

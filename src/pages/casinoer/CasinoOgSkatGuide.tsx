@@ -35,7 +35,7 @@ const CasinoOgSkatGuide = () => {
 
   return (
     <>
-      <SEO title="Casino og Skat 2026 – Er Casinogevinster Skattefri i Danmark?" description="Er casinogevinster skattefri? Ja – med dansk licens. Se reglerne for udenlandske casinoer, krypto og hvornår du skal betale skat." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="Casino og Skat 2026 – Er Casinogevinster Skattefri i Danmark?" description="Er casinogevinster skattefri i Danmark? Ja – med dansk licens. Se reglerne for udenlandske casinoer, krypto og hvornår du skal betale skat." jsonLd={[articleSchema, faqSchema]} />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"

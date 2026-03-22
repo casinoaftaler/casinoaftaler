@@ -155,7 +155,7 @@ export default function CasinoerHub() {
     <>
       <SEO
         title="Alle Casinoer – Komplet Guide til Online Casino i Danmark (2026)"
-        description="Alle casino-kategorier i Danmark: Hurtig udbetaling, høj RTP, crypto, mobil og licenser. Analyseret og testet af vores team."
+        description="Alle casino-kategorier i Danmark 2026: Hurtig udbetaling, høj RTP, crypto, mobil og licenser. Analyseret og grundigt testet af vores redaktion."
         jsonLd={jsonLd}
       />
 

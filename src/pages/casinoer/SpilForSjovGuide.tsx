@@ -35,7 +35,7 @@ const SpilForSjovGuide = () => {
 
   return (
     <>
-      <SEO title="Spil Casino for Sjov 2026 – Gratis Casino Spil uden Risiko" description="Spil casino for sjov: Gratis demo-spil, free spins uden indbetaling og bonusser. Lær casinospil at kende helt risikofrit." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="Spil Casino for Sjov 2026 – Gratis Casino Spil uden Risiko" description="Spil casino for sjov i 2026: Gratis demo-spil, free spins uden indbetaling og velkomstbonusser. Lær casinospil at kende helt risikofrit." jsonLd={[articleSchema, faqSchema]} />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
