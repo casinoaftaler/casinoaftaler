@@ -57,7 +57,7 @@ const NyeCasinoerMitID = () => {
 
   return (
     <>
-      <SEO title="Nye Casinoer med MitID – Hurtig Verifikation 2026" description="Find nye casinoer med MitID-verifikation i 2026. Opret konto på under 2 minutter med sikker digital identifikation." jsonLd={[articleSchema, faqSchema, howToSchema]} />
+      <SEO title="Nye Casinoer med MitID – Hurtig Verifikation 2026" description="Nye casinoer med MitID-verifikation i 2026. Opret konto på under 2 minutter med sikker digital identifikation. Se de bedste nye casinoer her." jsonLd={[articleSchema, faqSchema, howToSchema]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

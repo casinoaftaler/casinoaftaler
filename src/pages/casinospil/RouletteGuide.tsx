@@ -105,7 +105,7 @@ const RouletteGuide = () => {
     <>
       <SEO
         title="Roulette Regler 2026 – Væddemål, Odds og Varianter"
-        description="Komplet guide til roulette: regler, bet-typer, hjulets opbygning, odds, European vs American og live roulette. Alt du skal vide."
+        description="Roulette guide 2026: Regler, bet-typer, odds, European vs American og live roulette. Alt du skal vide for at spille optimalt på danske casinoer."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

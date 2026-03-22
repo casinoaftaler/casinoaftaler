@@ -106,7 +106,7 @@ const OnlineLotteriGuide = () => {
     <>
       <SEO
         title="Online Lotteri – Jackpot-Sandsynlighed & EV-Analyse"
-        description="Dybdegående analyse af lotteri-sandsynligheder: kombinatorik, EV, house edge, regression to the mean og jackpot-psykologi."
+        description="Lotteri-sandsynligheder analyseret: Kombinatorik, EV, house edge og regression to the mean. Se matematikken bag jackpots og hvad odds reelt betyder."
         jsonLd={[articleSchema, faqJsonLd]}
       />
 

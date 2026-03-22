@@ -49,7 +49,7 @@ const EyeOfHorusGuide = () => {
 
   return (
     <>
-      <SEO title="Eye of Horus – Symbol Upgrade & RTP-Analyse" description="Komplet analyse af Eye of Horus: symbol upgrade-mekanik, expanding symbols, RTP 96,31 % og EV-beregninger for danske spillere." jsonLd={[faqJsonLd, articleSchema, videoJsonLd]} />
+      <SEO title="Eye of Horus – Symbol Upgrade & RTP-Analyse" description="Eye of Horus analyse: Symbol upgrade-mekanik, expanding symbols, RTP 96,31 % og EV-beregninger. Se vurdering og strategi for danske spillere." jsonLd={[faqJsonLd, articleSchema, videoJsonLd]} />
       {/* ── HERO ── */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">

@@ -144,7 +144,7 @@ export default function MarketIntelligence() {
     <>
       <SEO
         title="Markedsindsigt 2026 – Casinooverblik"
-        description="Offentligt overblik over verificerede licens-, bonus- og compliance-opdateringer på det danske casinomarked."
+        description="Verificerede licens-, bonus- og compliance-opdateringer på det danske casinomarked. Se de seneste ændringer og hvad de betyder for dig."
         type="article"
         datePublished="2026-03-17"
         dateModified={dateModified}

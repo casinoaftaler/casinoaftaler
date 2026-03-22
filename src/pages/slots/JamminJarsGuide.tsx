@@ -96,7 +96,7 @@ const JamminJarsGuide = () => {
     <>
       <SEO
         title="Jammin' Jars – RTP, cluster pays og max win"
-        description="Komplet analyse af Jammin' Jars: jar-wild mekanik, cluster pays på 8×8 grid, RTP 96,83 %, volatilitetsprofil og EV-vurdering."
+        description="Jammin' Jars analyse: Jar-wild mekanik, cluster pays på 8×8 grid, RTP 96,83 % og volatilitetsprofil. Se EV-vurdering for danske spillere."
         jsonLd={[articleSchema, faqJsonLd]}
       />
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-background to-background">

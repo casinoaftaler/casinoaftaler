@@ -97,7 +97,7 @@ const DeadOrAlive2Guide = () => {
     <>
       <SEO
         title="Dead or Alive 2 Spilleautomat – Max Win 111.111× & RTP"
-        description="Komplet analyse af Dead or Alive 2: RTP 96,82 %, max win 111.111x, tre free spins-modes og strategisk valg for danske spillere."
+        description="Dead or Alive 2 analyse: RTP 96,82 %, max win 111.111x og tre free spins-modes. Se strategisk valg og EV-vurdering for danske spillere."
         jsonLd={[faqJsonLd, articleSchema, howToJsonLd, videoJsonLd]}
       />
 

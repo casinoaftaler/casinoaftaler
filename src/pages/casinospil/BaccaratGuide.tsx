@@ -88,7 +88,7 @@ const BaccaratGuide = () => {
     <>
       <SEO
         title="Baccarat Matematik 2026 – Odds, Edge og Analyse"
-        description="Matematisk analyse af baccarat: Banker vs Player edge, kommissionsberegning, varians, korttælling og high roller-perspektiv."
+        description="Baccarat guide 2026: Banker vs Player edge, kommissionsberegning, varians og korttælling. Se matematisk analyse og strategi for danske spillere."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

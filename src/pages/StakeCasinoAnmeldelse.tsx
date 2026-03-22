@@ -42,7 +42,7 @@ const StakeCasinoAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="Stake Casino Anmeldelse 2026 – Nu Med Dansk Licens | Casinoaftaler" description="Stake Casino anmeldelse 2026: Dansk licens, Stake Originals, VIP-program og crypto-baggrund. Se hvad den danske version tilbyder." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
+      <SEO title="Stake Casino Anmeldelse 2026 – Nu Med Dansk Licens | Casinoaftaler" description="Stake Casino anmeldelse 2026: Dansk licens, Stake Originals, VIP-program og crypto-baggrund. Se hvad den danske version tilbyder danske spillere." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

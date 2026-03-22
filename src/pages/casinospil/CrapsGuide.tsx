@@ -91,7 +91,7 @@ const CrapsGuide = () => {
     <>
       <SEO
         title="Craps Matematik 2026 – Odds, Edge og Analyse"
-        description="Matematisk analyse af craps: terningekombinationer, house edge for alle væddemål, EV-beregning, varians og bankroll management."
+        description="Craps guide 2026: Terningekombinationer, house edge for alle væddemål, EV-beregning og bankroll management. Se optimal strategi for danske spillere."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

@@ -50,7 +50,7 @@ const NyeVsEtablerede = () => {
 
   return (
     <>
-      <SEO title="Nye vs. Etablerede Casinoer – Komplet Sammenligning 2026" description="Nye casinoer vs. etablerede casinoer i Danmark. Sammenlign bonusser, sikkerhed, spiludvalg og udbetalinger side om side." jsonLd={[articleSchema, faqSchema]} />
+      <SEO title="Nye vs. Etablerede Casinoer – Komplet Sammenligning 2026" description="Nye casinoer vs. etablerede casinoer i Danmark 2026. Sammenlign bonusser, sikkerhed, spiludvalg og udbetalinger. Se hvilken type der passer dig bedst." jsonLd={[articleSchema, faqSchema]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ background: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))' }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">

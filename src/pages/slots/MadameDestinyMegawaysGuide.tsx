@@ -41,7 +41,7 @@ const MadameDestinyMegawaysGuide = () => {
 
   return (
     <>
-      <SEO title="Madame Destiny Megaways – Ante Bet & RTP" description="Dybdegående analyse af Madame Destiny Megaways: 200.704 ways, 96,56 % RTP, Ante Bet-strategi og 5.000× max win." jsonLd={[faqJsonLd, articleSchema]} />
+      <SEO title="Madame Destiny Megaways – Ante Bet & RTP" description="Madame Destiny Megaways analyse: 200.704 ways, 96,56 % RTP og 5.000× max win. Ante Bet-strategi og EV-beregninger for danske spillere." jsonLd={[faqJsonLd, articleSchema]} />
       {/* ── HERO ── */}
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))" }}>
         <div className="container">

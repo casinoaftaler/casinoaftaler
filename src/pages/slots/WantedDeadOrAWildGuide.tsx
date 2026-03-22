@@ -44,7 +44,7 @@ const WantedDeadOrAWildGuide = () => {
     <>
       <SEO
         title="Wanted Dead or a Wild – RTP, duel og max win"
-        description="Komplet analyse af Wanted Dead or a Wild: Duel at Dawn-mekanik, 96,38 % RTP, ekstremt høj volatilitet og 12.500× max win."
+        description="Wanted Dead or a Wild analyse: Duel at Dawn-mekanik, 96,38 % RTP, ekstremt høj volatilitet og 12.500× max win. Se EV og strategi her."
         jsonLd={[articleSchema, faqJsonLd]}
       />
       <div className="container py-8 md:py-12">

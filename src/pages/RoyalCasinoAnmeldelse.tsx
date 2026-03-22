@@ -45,7 +45,7 @@ const RoyalCasinoAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="Royal Casino Anmeldelse 2026 – Bonus op til 750 kr." description="Komplet anmeldelse af Royal Casino: ejerforhold, licens, bonus op til 750 kr., spiludvalg, live casino og betalinger." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]} />
+      <SEO title="Royal Casino Anmeldelse 2026 – Bonus op til 750 kr." description="Royal Casino anmeldelse 2026: Ejerforhold, licens, bonus op til 750 kr., spiludvalg, live casino og betalingsmetoder. Se vores ærlige vurdering." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]} />
 
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
