@@ -8,7 +8,7 @@ const QuickspinGuide = () => (
   <ProviderPage
     ctaCasinoSlug="betinia"
     seoTitle="Quickspin Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
-    seoDescription="Komplet guide til Quickspin – svensk premium-studio med Achievement Engine, fast RTP på 96,0-96,7%, medium volatilitet og 80+ kvalitetsslots. Læs alt om Quickspins spil og teknologi."
+    seoDescription="Quickspin slots: Svensk premium-studio med Achievement Engine, fast RTP 96,0-96,7 %, medium volatilitet og 80+ kvalitetsslots. Se populære spil."
     name="Quickspin"
     heroImage={quickspinHero}
     heroImageAlt="Quickspin – svensk premium spiludvikler"

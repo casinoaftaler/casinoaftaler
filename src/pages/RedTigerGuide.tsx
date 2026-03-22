@@ -7,7 +7,7 @@ const RedTigerGuide = () => (
   <ProviderPage
     ctaCasinoSlug="betinia"
     seoTitle="Red Tiger Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
-    seoDescription="Komplet guide til Red Tiger Gaming – opkøbt af NetEnt for £200M. Daily Jackpots, Tournaments, Megaways-specialist. 220+ spil under Evolution."
+    seoDescription="Red Tiger Gaming: Daily Jackpots, Tournaments og Megaways-specialist. Opkøbt af NetEnt for £200M, nu under Evolution. 220+ spil."
     name="Red Tiger Gaming"
     heroSubtitle="Red Tiger Gaming har innoveret casinobranchen med garanterede Daily Jackpots og Tournaments-funktionen. Opkøbt for £200M, nu en nøglebrik i Evolution-koncernen."
     heroImage={redTigerHero}

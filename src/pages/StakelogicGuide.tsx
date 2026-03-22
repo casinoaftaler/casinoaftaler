@@ -8,7 +8,7 @@ const StakelogicGuide = () => (
   <ProviderPage
     ctaCasinoSlug="campobet"
     seoTitle="Stakelogic Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
-    seoDescription="Komplet guide til Stakelogic – hollandsk spiludvikler med Super Stake™, Stake Logik-mekanik, 150+ slots og fokus på regulerede europæiske markeder. RTP 95,5-96,5%."
+    seoDescription="Stakelogic slots: Hollandsk studio med Super Stake™, 150+ titler, RTP 95,5-96,5 % og fokus på regulerede europæiske markeder. Se populære spil."
     name="Stakelogic"
     heroImage={stakelogicHero}
     heroImageAlt="Stakelogic – hollandsk innovativ spiludvikler"

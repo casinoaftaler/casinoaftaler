@@ -7,7 +7,7 @@ const BigTimeGamingGuide = () => (
   <ProviderPage
     ctaCasinoSlug="campobet"
     seoTitle="Big Time Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
-    seoDescription="Komplet guide til Big Time Gaming – Megaways-opfinderne. 117.649+ vinderkombinationer, licenseret til 100+ spil fra andre studios. Opkøbt af Evolution."
+    seoDescription="Big Time Gaming – Megaways-opfinderne med 117.649+ vinderkombinationer, licenseret til 100+ spil fra andre studios. Opkøbt af Evolution."
     name="Big Time Gaming"
     heroSubtitle="Big Time Gaming opfandt Megaways-mekanikken – den mest licenserede innovation i casinobranchen. Med op til 248.832 vinderkombinationer per spin ændrede de spillets regler permanent."
     heroImage={btgHero}

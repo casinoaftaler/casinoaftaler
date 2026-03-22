@@ -7,7 +7,7 @@ const MicrogamingGuide = () => (
   <ProviderPage
     ctaCasinoSlug="campobet"
     seoTitle="Microgaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
-    seoDescription="Komplet guide til Microgaming – branchens pioner siden 1994. Mega Moolah: €1 milliard+ udbetalt. 900+ spil, Quickfire-aggregator, eCOGRA-medstifter."
+    seoDescription="Microgaming: Branchens pioner siden 1994. Mega Moolah med €1 milliard+ udbetalt, 900+ spil, Quickfire-aggregator og eCOGRA-medstifter."
     name="Microgaming"
     heroSubtitle="Microgaming er casinobranchens historiske fundament. Grundlagt i 1994 – blandt de første online casinoer. Mega Moolah har udbetalt over €1 milliard i progressive jackpots."
     heroImage={microgamingHero}

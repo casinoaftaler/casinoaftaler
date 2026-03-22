@@ -8,7 +8,7 @@ const ISoftBetGuide = () => (
   <ProviderPage
     ctaCasinoSlug="betinia"
     seoTitle="iSoftBet Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
-    seoDescription="Komplet guide til iSoftBet – innovativt B2B-studio med GAP-aggregeringsplatform, Hold & Win-mekanikker, 200+ slots og tilstedeværelse i 20+ regulerede markeder."
+    seoDescription="iSoftBet slots: GAP-aggregeringsplatform, Hold & Win-mekanikker, 200+ titler og tilstedeværelse i 20+ regulerede markeder. Se populære spil."
     name="iSoftBet"
     heroImage={isoftbetHero}
     heroImageAlt="iSoftBet – innovativt B2B spiludvikler"

@@ -9,7 +9,7 @@ const NolimitCityGuide = () => (
   <ProviderPage
     ctaCasinoSlug="campobet"
     seoTitle="Nolimit City Spillemaskiner – xWays & High Vol (2026)"
-    seoDescription="Komplet guide til Nolimit City – opkøbt af Evolution for €340M. xWays, xNudge, xBomb-patenter. San Quentin xWays: 2.084.000x maks. gevinst."
+    seoDescription="Nolimit City slots: xWays, xNudge og xBomb-patenter. San Quentin xWays med 2.084.000× maks. gevinst. Opkøbt af Evolution for €340M."
     name="Nolimit City"
     heroSubtitle="Nolimit City har redefineret high-volatility slots med patenterede mekanikker som xWays, xNudge og xBomb. Opkøbt af Evolution Gaming for €340 millioner – en anerkendelse af deres unikke position."
     heroImage={nolimitHero}

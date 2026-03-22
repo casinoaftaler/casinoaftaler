@@ -7,7 +7,7 @@ const RelaxGamingGuide = () => (
   <ProviderPage
     ctaCasinoSlug="betinia"
     seoTitle="Relax Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
-    seoDescription="Komplet guide til Relax Gaming – innovativ spiludvikler bag Money Train og Dream Drop Jackpots. 150+ titler, mekanik-drevet design, aggregator-platform."
+    seoDescription="Relax Gaming: Innovativ spiludvikler bag Money Train og Dream Drop Jackpots. 150+ titler, mekanik-drevet design og aggregator-platform."
     name="Relax Gaming"
     heroSubtitle="Relax Gaming kombinerer mekanik-drevet innovation med en stærk aggregeringsplatform. Money Train-serien og Dream Drop Jackpots har cementeret deres position som branchens kreative kraftcenter."
     heroImage={relaxHero}
