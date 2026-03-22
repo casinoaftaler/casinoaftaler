@@ -43,7 +43,7 @@ const ExpektAnmeldelse = () => {
 
   return (
     <>
-      <SEO title="Expekt Anmeldelse 2026 – Sportsbetting & Casino | Casinoaftaler" description="Komplet anmeldelse af Expekt – kombineret sportsbook og casino. Betsson Group-ejet, dansk licens og komplet spiludbud. Læs vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/expekt", "TzSmePJgd84", { title: "Expekt Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Expekt ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
+      <SEO title="Expekt Anmeldelse 2026 – Sportsbetting & Casino | Casinoaftaler" description="Expekt testet: Betsson Group-ejet sportsbook og casino. Dansk licens, live betting og 1.000+ casinospil. Se vores dybdegående test." jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/expekt", "TzSmePJgd84", { title: "Expekt Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Expekt ser ud indefra.", uploadDate: "2026-02-18", duration: "PT2M" })]} />
       <section className="relative overflow-hidden py-12 text-white md:py-20" style={{ backgroundImage: heroBackgroundImage ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})` : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))", backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="container"><div className="mx-auto max-w-3xl text-center">
           <Badge variant="secondary" className="mb-4"><Globe className="mr-1.5 h-3.5 w-3.5" />3.8 / 5 – Sports & Casino</Badge>

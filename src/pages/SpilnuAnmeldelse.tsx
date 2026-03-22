@@ -105,7 +105,7 @@ const SpilnuAnmeldelse = () => {
     <>
       <SEO
         title="Spilnu Anmeldelse 2026 – Bingo & Casino | Casinoaftaler"
-        description="Komplet anmeldelse af Spilnu.dk. Del af Danske Spil, populær bingo, 700+ casinospil. Læs vores ærlige vurdering af denne traditionsrige danske platform."
+        description="Spilnu.dk testet: Del af Danske Spil, populær bingo, 700+ casinospil og dansk licens. Se vores ærlige vurdering af denne traditionsrige platform."
         jsonLd={[articleSchema, faqJsonLd, reviewJsonLd]}
       />
 
