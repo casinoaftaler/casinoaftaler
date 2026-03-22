@@ -202,7 +202,7 @@ const Betalingsmetoder = () => {
     <>
       <SEO
         title="Casino Betalingsmetoder 2026 – Strategisk Guide til Danske Spillere"
-        description="Strategisk beslutningsguide til betalingsmetoder på danske casinoer. Sammenlign Trustly, MobilePay, Visa, PayPal og 7 andre metoder – hastighed, bonus og sikkerhed."
+        description="Sammenlign betalingsmetoder på danske casinoer: MobilePay, Trustly, Visa og PayPal. Se hastighed, gebyrer og hvilke metoder der kvalificerer til bonus."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 
