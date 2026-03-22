@@ -582,6 +582,18 @@ export function Footer() {
                 loading="lazy"
               />
             </a>
+
+            {/* Trustpilot */}
+            <a
+              href="https://dk.trustpilot.com/review/casinoaftaler.dk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-lg border border-border bg-muted/50 px-4 py-2 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+            >
+              <Star className="h-4 w-4 text-primary" />
+              Trustpilot
+              <ExternalLink className="h-3 w-3" />
+            </a>
           </div>
         </div>
 
