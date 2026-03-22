@@ -27,8 +27,8 @@ import { buildVideoSchema } from "@/lib/seo";
 import { CommunityActivityWidget } from "@/components/CommunityActivityWidget";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
-import {
 import { UserReviewSection } from "@/components/UserReviewSection";
+import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   Zap, RotateCcw, Check, X, Award, TrendingUp, BarChart3, Target,
   Gamepad2, Headphones, Smartphone, Store, Calculator
