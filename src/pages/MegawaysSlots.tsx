@@ -145,7 +145,7 @@ const MegawaysSlots = () => {
     <>
       <SEO
         title="Megaways Slots – Bedste Megaways Spilleautomater 2026"
-        description="Komplet guide til Megaways-spilleautomater: Op til 117.649 vinderkombinationer, cascading wins, bedste titler og RTP-data. Alt du skal vide om Megaways i Danmark."
+        description="Megaways slots: Op til 117.649 vinderkombinationer, cascading wins og bedste titler. Se RTP-data og find de bedste Megaways-spil."
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
 

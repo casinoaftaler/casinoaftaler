@@ -149,7 +149,7 @@ const StopSpilletGuide = () => {
     <>
       <SEO
         title="StopSpillet – Gratis Rådgivning for Spillere og Pårørende"
-        description="Alt om StopSpillet: Gratis, anonym rådgivning for spilleafhængighed. Telefon 70 22 28 25, chat, åbningstider og hvordan tjenesten hjælper spillere og pårørende."
+        description="StopSpillet: Gratis, anonym rådgivning for spilleafhængighed. Ring 70 22 28 25 eller brug chatten. Hjælp til spillere og pårørende."
         jsonLd={[faqJsonLd, articleJsonLd]}
         datePublished="2026-03-07"
       />

@@ -116,7 +116,7 @@ const Casinospil = () => {
     <>
       <SEO
         title="Casinospil – Guide til Online Casinospil 2026"
-        description="Komplet guide til casinospil i Danmark 2026. Forstå RTP, house edge, volatilitet og find det rette spil til din spillestil – fra spillemaskiner til live casino."
+        description="Casinospil i Danmark 2026: RTP, house edge og volatilitet forklaret. Find det rette spil til din spillestil – slots, bordspil og live casino."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

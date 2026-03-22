@@ -76,7 +76,7 @@ export default function CaribbeanStudGuide() {
     <>
       <SEO
         title="Caribbean Stud Poker Guide 2026 – Odds, Regler & Strategi"
-        description="Lær Caribbean Stud Poker fra bunden. Komplet dansk guide med optimal strategi, progressiv jackpot-matematik, udbetalingstabeller og de bedste casinoer med dansk licens."
+        description="Caribbean Stud Poker: Optimal strategi, progressiv jackpot-matematik og udbetalingstabeller. Find de bedste spil hos danske casinoer."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

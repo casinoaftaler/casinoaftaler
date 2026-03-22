@@ -81,7 +81,7 @@ export default function VideoPokerGuide() {
     <>
       <SEO
         title="Video Poker Guide 2026 – RTP, Strategi & Bedste Varianter"
-        description="Komplet dansk video poker guide. Sammenlign RTP på Jacks or Better (99,54 %), Deuces Wild og Joker Poker. Lær optimal strategi og find de bedste spil på licenserede casinoer."
+        description="Video poker guide: Jacks or Better (99,54 % RTP), Deuces Wild og Joker Poker. Lær optimal strategi og find spil hos danske casinoer."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

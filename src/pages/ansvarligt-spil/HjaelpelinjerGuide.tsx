@@ -145,7 +145,7 @@ const HjaelpelinjerGuide = () => {
     <>
       <SEO
         title="Hjælpelinjer – Alle Danske Hjælpemuligheder for Spilleproblemer"
-        description="Komplet oversigt over danske hjælpelinjer: StopSpillet, Center for Ludomani, Anonyme Gamblere, kommunale tilbud og pårørendestøtte. Gratis og fortrolig hjælp."
+        description="Danske hjælpelinjer for spilleproblemer: StopSpillet, Center for Ludomani og Anonyme Gamblere. Gratis og fortrolig rådgivning."
         type="article"
         image={`${SITE_URL}/og-image.png`}
         jsonLd={[articleSchema, faqSchema]}

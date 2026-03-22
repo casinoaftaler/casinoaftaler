@@ -96,7 +96,7 @@ const DealOrNoDealGuide = () => {
     <>
       <SEO
         title="Deal or No Deal Live – RTP, Strategi & Komplet Guide (2026)"
-        description="Alt om Deal or No Deal Live: RTP på 95,4 %, kvalifikationsrunde, bankierens tilbud-matematik, prospect theory og kuffert-strategi. Det interaktive casino game show analyseret."
+        description="Deal or No Deal Live: 95,4 % RTP, bankierens tilbud-matematik og kuffert-strategi. Det interaktive game show analyseret og testet."
         jsonLd={[articleSchema, faqJsonLd, howToJsonLd]}
       />
 

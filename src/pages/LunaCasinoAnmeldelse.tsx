@@ -116,7 +116,7 @@ const LunaCasinoAnmeldelse = () => {
     <>
       <SEO
         title="Luna Casino Anmeldelse 2026 – Kurateret Kvalitet"
-        description="Dybdegående anmeldelse af Luna Casino efter 14 dages test. 100% bonus op til 500 kr., kun 10x omsætning, loyalitetsprogram, daglige kampagner og kurateret spiludvalg. Komplet analyse."
+        description="Luna Casino anmeldelse 2026: 100% bonus op til 500 kr., 10x omsætning, loyalitetsprogram og kurateret spiludvalg. Se vores ærlige vurdering."
         jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]}
       />
 

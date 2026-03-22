@@ -88,7 +88,7 @@ export default function MartingaleRouletteGuide() {
     <>
       <SEO
         title="Martingale Roulette 2026 – System, Matematik & Ærlig Test"
-        description="Komplet guide til Martingale-systemet i roulette: fordoblingsprincippet, eksponentiel risiko, 10.000-spins simulering, bordgrænse-fælden og realistiske alternativer."
+        description="Martingale i roulette: Fordoblingsprincippet, eksponentiel risiko og 10.000-spins simulering. Virker det? Se vores ærlige analyse."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

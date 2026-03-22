@@ -77,7 +77,7 @@ export default function LabouchereRouletteGuide() {
     <>
       <SEO
         title="Labouchère Roulette 2026 – Cancellation System, Matematik & Test"
-        description="Komplet guide til Labouchère-systemet: cancellation-mekanismen, sekvensdesign, Monte Carlo simulering og ærlig vurdering af det mest strategiske roulette-system."
+        description="Labouchère roulette: Cancellation-systemet, sekvensdesign og Monte Carlo simulering. Virker strategien? Se vores ærlige test."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

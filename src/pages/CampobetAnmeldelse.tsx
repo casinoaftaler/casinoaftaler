@@ -133,7 +133,7 @@ const CampobetAnmeldelse = () => {
     <>
       <SEO
         title="Campobet Anmeldelse 2026 – No-Sticky Bonus"
-        description="Komplet anmeldelse af Campobet.dk. 100% No-Sticky bonus op til 1.000 kr., kun 10x omsætning, sportsbetting, tusindvis af spil og hurtige udbetalinger. Læs vores ærlige vurdering."
+        description="Campobet anmeldelse 2026: 100% No-Sticky bonus op til 1.000 kr., 10x omsætning, sportsbetting og tusindvis af spil. Se vores test."
         jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]}
       />
 

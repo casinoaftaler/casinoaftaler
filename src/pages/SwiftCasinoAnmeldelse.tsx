@@ -129,7 +129,7 @@ const SwiftCasinoAnmeldelse = () => {
     <>
       <SEO
         title="Swift Casino Anmeldelse 2026 – Hot Or Cold"
-        description="Dybdegående anmeldelse af Swift Casino efter 14 dages test. 100% bonus op til 500 kr. (kode SWIFT), 10x omsætning, 3.300+ spil, unik Hot Or Cold-funktion og PayPal/Trustly. Komplet analyse."
+        description="Swift Casino anmeldelse 2026: 100% bonus op til 500 kr., 3.300+ spil, Hot Or Cold-funktion og PayPal. Testet over 14 dage. Se vores rating."
         jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]}
       />
 
