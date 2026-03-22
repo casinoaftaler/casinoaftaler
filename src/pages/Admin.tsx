@@ -1189,6 +1189,11 @@ function AdminDashboard() {
               </div>
             </div>
           </TabsContent>
+
+          {/* Reviews Tab */}
+          <TabsContent value="reviews">
+            <ReviewModerationSection />
+          </TabsContent>
         </Tabs>
       </main>
     </div>
