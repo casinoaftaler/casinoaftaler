@@ -95,7 +95,7 @@ export function UserReviewCard({ review, onHelpful, isLoggedIn }: UserReviewCard
       {/* ── BODY ── */}
       <div className="px-5 pb-3">
         <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line max-w-prose">
-          {highlightedText}
+          {rawText}
         </p>
         {isLong && (
           <button
