@@ -89,7 +89,7 @@ const Spillemaskiner = () => {
   const faqJsonLd = buildFaqSchema(spillemaskineFaqs);
   const articleSchema = buildArticleSchema({
     headline: "Spillemaskiner 2026 – Guide til Online Slots",
-    description: "Alt om spillemaskiner hos danske online casinoer. Lær om RTP, volatilitet, Megaways, jackpots og bonusfunktioner.",
+    description: "Guide til spillemaskiner online 2026. Forstå RTP, volatilitet og bonusfunktioner. Se de bedste slots med høj RTP og find dit næste yndlingsspil.",
     url: `${SITE_URL}/casinospil/spillemaskiner`,
     datePublished: "2026-02-15",
     authorName: "Jonas",

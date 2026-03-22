@@ -191,7 +191,7 @@ const Betalingsmetoder = () => {
 
   const articleSchema = buildArticleSchema({
     headline: "Casino Betalingsmetoder i Danmark – Den Ultimative Guide 2026",
-    description: "Strategisk beslutningsguide til alle betalingsmetoder på danske online casinoer. Sammenlign hastighed, bonus-kvalificering, sikkerhed og regulatoriske forhold.",
+    description: "Sammenlign betalingsmetoder på danske casinoer: MobilePay, Trustly, Visa og PayPal. Se hastighed, gebyrer og hvilke metoder der kvalificerer til bonus.",
     url: `${SITE_URL}/betalingsmetoder`,
     datePublished: "2026-01-15",
     authorName: "Jonas",
