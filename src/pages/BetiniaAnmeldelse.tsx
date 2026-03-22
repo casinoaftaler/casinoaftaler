@@ -218,40 +218,40 @@ const BetiniaAnmeldelse = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Velkomstbonus</p>
-                  <p className="text-lg font-bold text-foreground">100% op til 1.000 kr.</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">100% op til 1.000 kr.</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Bonustype</p>
-                  <p className="text-lg font-bold text-foreground">No-Sticky</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Bonustype</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">No-Sticky</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Omsætningskrav</p>
-                  <p className="text-lg font-bold text-foreground">10x (d+b)</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Omsætningskrav</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">10x (d+b)</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Licens</p>
-                  <p className="text-lg font-bold text-foreground">DK + MGA</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Licens</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">DK + MGA</p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mt-4">
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Min. indbetaling</p>
-                  <p className="text-lg font-bold text-foreground">100 kr.</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center mt-4">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Min. indbetaling</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">100 kr.</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Bonusgyldighed</p>
-                  <p className="text-lg font-bold text-foreground">60 dage</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Bonusgyldighed</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">60 dage</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Grundlagt</p>
-                  <p className="text-lg font-bold text-foreground">2022 (DK)</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Grundlagt</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">2022 (DK)</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Betalingsmetoder</p>
-                  <p className="text-lg font-bold text-foreground">19 metoder</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Betalingsmetoder</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">19 metoder</p>
                 </div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Evolution Gaming", "Play'n GO", "Quickspin", "Wazdan", "ELK Studios", "Big Time Gaming", "Nolimit City", "Pragmatic Play", "Yggdrasil", "Red Tiger", "Hacksaw Gaming", "Push Gaming", "Relax Gaming", "Thunderkick", "Blueprint Gaming"]} />
@@ -450,7 +450,7 @@ const BetiniaAnmeldelse = () => {
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-3">
                 <ShieldCheck className="h-6 w-6 text-accent" />
-                <h3 className="text-lg font-bold text-foreground">No-Sticky vs. Sticky – den kritiske forskel</h3>
+                <h3 className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">No-Sticky vs. Sticky – den kritiske forskel</h3>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 Med en No-Sticky bonus holdes din indbetaling og bonusmidlerne i separate lommer. Du starter altid med at spille for din egen saldo. Vinder du stort, kan du frit hæve dine gevinster uden krav – bonusmidlerne forbliver uberørt i reserve. Bonusmidlerne aktiveres KUN, hvis din egen saldo rammer 0 kr. Det er den mest spillervenlige bonusstruktur der findes, og det er ekstremt sjældent at se den kombineret med et omsætningskrav på kun 10x.
@@ -476,19 +476,19 @@ const BetiniaAnmeldelse = () => {
                 Scenarie: Du indbetaler 1.000 kr. og modtager 1.000 kr. i No-Sticky bonus.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-center">
-                <div className="rounded-lg border border-border p-3">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                   <p className="text-xs text-muted-foreground">Indskud + Bonus</p>
                   <p className="text-xl font-bold text-foreground">2.000 kr.</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                   <p className="text-xs text-muted-foreground">× 10 omsætning</p>
                   <p className="text-xl font-bold text-foreground">= 20.000 kr.</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                   <p className="text-xs text-muted-foreground">Indenfor</p>
                   <p className="text-xl font-bold text-foreground">60 dage</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                   <p className="text-xs text-muted-foreground">Forventet tab (RTP 96%)</p>
                   <p className="text-xl font-bold text-foreground">~800 kr.</p>
                 </div>
@@ -575,17 +575,17 @@ const BetiniaAnmeldelse = () => {
                 Vælger du oddsbonussen frem for casinobonussen, får du 100 % matchbonus op til 1.000 kr. med kun 5x omsætningskrav. Minimum odds er 2,0 for enkeltvæddemål og 1,5 pr. valg i multibets. 60 dages gyldighed. Matematisk set er oddsbonussen lettere at gennemspille (5.000 kr. vs. 20.000 kr. for casinobonussen), men kræver strategisk spiludvælgelse og en vis forståelse for odds-markeder.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-                <div className="rounded-lg border border-border p-3">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                   <p className="text-xs text-muted-foreground">Odds-omsætning</p>
-                  <p className="text-lg font-bold text-foreground">1.000 × 5 = 5.000 kr.</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">1.000 × 5 = 5.000 kr.</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                   <p className="text-xs text-muted-foreground">Min. odds</p>
-                  <p className="text-lg font-bold text-foreground">2,0 (singel)</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">2,0 (singel)</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                   <p className="text-xs text-muted-foreground">Gyldighed</p>
-                  <p className="text-lg font-bold text-foreground">60 dage</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">60 dage</p>
                 </div>
               </div>
             </CardContent>

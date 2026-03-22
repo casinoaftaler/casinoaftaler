@@ -47,16 +47,16 @@ const PokerStarsAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary">
             <CardHeader><CardTitle className="flex items-center gap-2 text-xl"><Zap className="h-6 w-6 text-primary" />Hurtige Fakta – PokerStars</CardTitle></CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Velkomstbonus</p><p className="text-lg font-bold text-foreground">Op til 1.000 kr. (100%)</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Licens</p><p className="text-lg font-bold text-foreground">Spillemyndigheden</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Grundlagt</p><p className="text-lg font-bold text-foreground">2001</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Ejer</p><p className="text-lg font-bold text-foreground">Flutter Entertainment</p></div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Op til 1.000 kr. (100%)</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Licens</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Spillemyndigheden</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Grundlagt</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">2001</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Ejer</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Flutter Entertainment</p></div>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center mt-4">
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Kerneprodukt</p><p className="text-lg font-bold text-foreground">Online Poker</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Casino spil</p><p className="text-lg font-bold text-foreground">1.500+</p></div>
-                <div className="rounded-lg border border-border p-3"><p className="text-xs text-muted-foreground uppercase mb-1">Turneringer</p><p className="text-lg font-bold text-foreground">100+ dagligt</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Kerneprodukt</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Online Poker</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Casino spil</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">1.500+</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Turneringer</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">100+ dagligt</p></div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Pragmatic Play", "Evolution Gaming", "Red Tiger", "Big Time Gaming", "Microgaming"]} />
               <QuickFactsLicense licenseId="18-0029" />

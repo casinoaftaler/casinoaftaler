@@ -195,29 +195,29 @@ const SwiftCasinoAnmeldelse = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
                 {[
                   { label: "Velkomstbonus", value: "100% op til 500 kr." },
                   { label: "Bonuskode", value: "SWIFT" },
                   { label: "Omsætningskrav", value: "10x (d+b)" },
                   { label: "Licens", value: "Spillemyndigheden" },
                 ].map((f) => (
-                  <div key={f.label} className="rounded-lg border border-border p-3">
-                    <p className="text-xs text-muted-foreground uppercase mb-1">{f.label}</p>
-                    <p className="text-lg font-bold text-foreground">{f.value}</p>
+                  <div key={f.label} className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                    <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">{f.label}</p>
+                    <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">{f.value}</p>
                   </div>
                 ))}
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mt-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center mt-4">
                 {[
                   { label: "Min. indbetaling", value: "100 kr." },
                   { label: "Bonusgyldighed", value: "60 dage" },
                   { label: "Grundlagt", value: "2020" },
                   { label: "Antal spil", value: "3.300+" },
                 ].map((f) => (
-                  <div key={f.label} className="rounded-lg border border-border p-3">
-                    <p className="text-xs text-muted-foreground uppercase mb-1">{f.label}</p>
-                    <p className="text-lg font-bold text-foreground">{f.value}</p>
+                  <div key={f.label} className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                    <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">{f.label}</p>
+                    <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">{f.value}</p>
                   </div>
                 ))}
               </div>
@@ -443,7 +443,7 @@ const SwiftCasinoAnmeldelse = () => {
               <CardContent className="pt-6">
                 <div className="flex items-center gap-3 mb-3">
                   <Flame className="h-6 w-6 text-accent" />
-                  <h3 className="text-lg font-bold text-foreground">Hvad Hot Or Cold VIS</h3>
+                  <h3 className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Hvad Hot Or Cold VIS</h3>
                 </div>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>• Historiske udbetalingsmønstre i den seneste periode</li>
@@ -457,7 +457,7 @@ const SwiftCasinoAnmeldelse = () => {
               <CardContent className="pt-6">
                 <div className="flex items-center gap-3 mb-3">
                   <Activity className="h-6 w-6 text-destructive" />
-                  <h3 className="text-lg font-bold text-foreground">Hvad Hot Or Cold IKKE er</h3>
+                  <h3 className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Hvad Hot Or Cold IKKE er</h3>
                 </div>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li>• Ikke en prædiktor for fremtidige resultater</li>

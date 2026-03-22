@@ -154,40 +154,40 @@ const SpilleautomatenAnmeldelse = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Velkomstbonus</p>
-                  <p className="text-lg font-bold text-foreground">100% op til 1.000 kr.</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Velkomstbonus</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">100% op til 1.000 kr.</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Bonusmodel</p>
-                  <p className="text-lg font-bold text-foreground">5-dages fordeling</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Bonusmodel</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">5-dages fordeling</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Omsætningskrav</p>
-                  <p className="text-lg font-bold text-foreground">10x (d+b)</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Omsætningskrav</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">10x (d+b)</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Licens</p>
-                  <p className="text-lg font-bold text-foreground">Spillemyndigheden</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Licens</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Spillemyndigheden</p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mt-4">
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Min. indbetaling</p>
-                  <p className="text-lg font-bold text-foreground">75 kr.</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center mt-4">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Min. indbetaling</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">75 kr.</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Bonusgyldighed</p>
-                  <p className="text-lg font-bold text-foreground">60 dage</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Bonusgyldighed</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">60 dage</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Operatør</p>
-                  <p className="text-lg font-bold text-foreground">Winteq ApS</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Operatør</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Winteq ApS</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
-                  <p className="text-xs text-muted-foreground uppercase mb-1">Lanceret</p>
-                  <p className="text-lg font-bold text-foreground">Juli 2024</p>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                  <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Lanceret</p>
+                  <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Juli 2024</p>
                 </div>
               </div>
               <QuickFactsProviders providers={["Hacksaw Gaming", "Pragmatic Play", "Play'n GO", "Wazdan", "Quickspin", "Push Gaming", "ELK Studios", "Endorphina", "Stakelogic", "Synot", "NetEnt", "Nolimit City", "Red Tiger"]} />
@@ -367,7 +367,7 @@ const SpilleautomatenAnmeldelse = () => {
             <CardContent className="pt-6">
               <div className="flex items-center gap-3 mb-3">
                 <BarChart3 className="h-6 w-6 text-accent" />
-                <h3 className="text-lg font-bold text-foreground">Strategisk analyse: Hvorfor 5 dage slår 1 dag</h3>
+                <h3 className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">Strategisk analyse: Hvorfor 5 dage slår 1 dag</h3>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 Ved en traditionel matchbonus binder du hele beløbet på én gang. Hvis casinoet ikke lever op til forventningerne, har du allerede investeret 1.000 kr. Med 5-dages modellen investerer du kun 200 kr. ad gangen. Efter dag 1 ved du, om spiludvalget passer dig. Efter dag 3 har du testet udbetalingshastigheden. Hvis du er utilfreds på noget tidspunkt, stopper du simpelthen – og har kun brugt en brøkdel af det fulde beløb.
@@ -390,19 +390,19 @@ const SpilleautomatenAnmeldelse = () => {
                 Scenarie: Du gennemfører alle 5 bonusdage med maks. indbetaling (200 kr. × 5 = 1.000 kr.).
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-center">
-                <div className="rounded-lg border border-border p-3">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                   <p className="text-xs text-muted-foreground">5 × indskud</p>
                   <p className="text-xl font-bold text-foreground">1.000 kr.</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                   <p className="text-xs text-muted-foreground">5 × bonus</p>
                   <p className="text-xl font-bold text-foreground">1.000 kr.</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                   <p className="text-xs text-muted-foreground">× 10 omsætning</p>
                   <p className="text-xl font-bold text-foreground">= 20.000 kr.</p>
                 </div>
-                <div className="rounded-lg border border-border p-3">
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                   <p className="text-xs text-muted-foreground">Forventet tab (RTP 96%)</p>
                   <p className="text-xl font-bold text-foreground">~800 kr.</p>
                 </div>

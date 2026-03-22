@@ -187,29 +187,29 @@ const CampobetAnmeldelse = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
                 {[
                   { label: "Velkomstbonus", value: "100% op til 1.000 kr." },
                   { label: "Bonustype", value: "No-Sticky" },
                   { label: "Omsætningskrav", value: "10x (d+b)" },
                   { label: "Licens", value: "Spillemyndigheden" },
                 ].map((f) => (
-                  <div key={f.label} className="rounded-lg border border-border p-3">
-                    <p className="text-xs text-muted-foreground uppercase mb-1">{f.label}</p>
-                    <p className="text-lg font-bold text-foreground">{f.value}</p>
+                  <div key={f.label} className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                    <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">{f.label}</p>
+                    <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">{f.value}</p>
                   </div>
                 ))}
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mt-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center mt-4">
                 {[
                   { label: "Min. indbetaling", value: "100 kr." },
                   { label: "Bonusgyldighed", value: "60 dage" },
                   { label: "Grundlagt", value: "2018 (DK 2024)" },
                   { label: "Operatør", value: "Denix Limited" },
                 ].map((f) => (
-                  <div key={f.label} className="rounded-lg border border-border p-3">
-                    <p className="text-xs text-muted-foreground uppercase mb-1">{f.label}</p>
-                    <p className="text-lg font-bold text-foreground">{f.value}</p>
+                  <div key={f.label} className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
+                    <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">{f.label}</p>
+                    <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">{f.value}</p>
                   </div>
                 ))}
               </div>
