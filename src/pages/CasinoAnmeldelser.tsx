@@ -118,7 +118,7 @@ const faqJsonLd = buildFaqSchema(faqs);
 
 const articleSchema = buildArticleSchema({
   headline: "Casino Anmeldelser 2026 – Danmarks mest grundige testcenter",
-  description: "Dybdegående casino anmeldelser baseret på rigtige penge-tests. Vi evaluerer 29 danske casinoer på bonusvilkår, udbetalingshastighed, spiludvalg og sikkerhed.",
+  description: "29 casino anmeldelser testet med rigtige penge. Sammenlign bonus, udbetalingstider og spiludvalg hos danske casinoer med licens. Se vores ratings.",
   url: `${SITE_URL}/casino-anmeldelser`,
   datePublished: "2025-06-15",
 });
