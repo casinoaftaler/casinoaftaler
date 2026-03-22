@@ -67,9 +67,6 @@ export function UserReviewForm({
     if (reviewText.length < 50) { setError("Anmeldelsen skal være mindst 50 tegn"); return; }
     if (reviewText.length > 2000) { setError("Anmeldelsen må maks. være 2000 tegn"); return; }
     if (!isLoggedIn && !guestName.trim()) { setError("Indtast dit navn"); return; }
-    if (!isLoggedIn && (!guestEmail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail))) {
-      setError("Indtast en gyldig e-mail"); return;
-    }
 
     try {
       await onSubmit({
@@ -133,25 +130,14 @@ export function UserReviewForm({
 
           {/* Guest fields */}
           {!isLoggedIn && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label className="text-sm font-medium mb-1 block">Navn *</label>
-                <Input
-                  value={guestName}
-                  onChange={(e) => setGuestName(e.target.value)}
-                  placeholder="Dit navn"
-                  maxLength={100}
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium mb-1 block">E-mail * <span className="text-muted-foreground font-normal">(vises ikke offentligt)</span></label>
-                <Input
-                  type="email"
-                  value={guestEmail}
-                  onChange={(e) => setGuestEmail(e.target.value)}
-                  placeholder="din@email.dk"
-                />
-              </div>
+            <div>
+              <label className="text-sm font-medium mb-1 block">Navn *</label>
+              <Input
+                value={guestName}
+                onChange={(e) => setGuestName(e.target.value)}
+                placeholder="Dit navn"
+                maxLength={100}
+              />
             </div>
           )}
 
