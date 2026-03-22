@@ -110,3 +110,6 @@ verify_jwt = false
 
 [functions.slot-deep-content]
 verify_jwt = false
+
+[functions.generate-market-pulse]
+verify_jwt = false
