@@ -134,7 +134,7 @@ const CasinoBonus = () => {
     <>
       <SEO
         title="Bedste Casino Bonus 2026 – Komplet Guide til Alle Bonustyper"
-        description="Den ultimative guide til casino bonus i Danmark 2026. Sammenlign no-sticky, free spins, velkomstbonus og 7+ bonustyper. Matematiske analyser og strategier."
+        description="Komplet guide til casino bonus i Danmark 2026. Sammenlign no-sticky, free spins, velkomstbonus og 7+ bonustyper med matematiske analyser."
         jsonLd={[faqJsonLd, articleSchema, {
           "@context": "https://schema.org",
           "@type": "ItemList",
