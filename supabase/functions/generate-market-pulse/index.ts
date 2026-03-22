@@ -32,6 +32,55 @@ function imageExtensionFromMime(mimeType: string): string {
   return "png";
 }
 
+const MONEY_PAGE_LINKS = [
+  { href: "/casino-bonus", label: "Casino bonus" },
+  { href: "/free-spins-i-dag", label: "Free spins i dag" },
+  { href: "/velkomstbonus", label: "Velkomstbonus" },
+  { href: "/cashback-bonus", label: "Cashback bonus" },
+  { href: "/reload-bonus", label: "Reload bonus" },
+  { href: "/vip-program", label: "VIP program" },
+  { href: "/nye-casinoer", label: "Nye casinoer" },
+  { href: "/top-10-casino-online", label: "Top 10 casino online" },
+  { href: "/casino-anmeldelser", label: "Casino anmeldelser" },
+  { href: "/betalingsmetoder", label: "Betalingsmetoder" },
+  { href: "/casino-med-mobilepay", label: "Casino med MobilePay" },
+  { href: "/casino-med-trustly", label: "Casino med Trustly" },
+  { href: "/ansvarligt-spil", label: "Ansvarligt spil" },
+  { href: "/ordbog/omsaetningskrav", label: "Omsætningskrav" },
+  { href: "/ordbog/spillemyndigheden", label: "Spillemyndigheden" },
+  { href: "/casino-licenser", label: "Casino licenser" },
+];
+
+const INLINE_LINK_TARGETS = MONEY_PAGE_LINKS
+  .slice(0, 9)
+  .map((l) => `${l.label} → ${l.href}`)
+  .join("\n");
+
+function simpleHash(value: string): number {
+  let hash = 0;
+  for (let i = 0; i < value.length; i++) {
+    hash = (hash << 5) - hash + value.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
+
+function appendInternalLinksSection(html: string, slug: string): string {
+  if (!html) return html;
+  if (html.includes('data-enterprise-news-links="true"')) return html;
+
+  const limit = 12;
+  const offset = MONEY_PAGE_LINKS.length > 0 ? simpleHash(slug) % MONEY_PAGE_LINKS.length : 0;
+  const rotated = [...MONEY_PAGE_LINKS.slice(offset), ...MONEY_PAGE_LINKS.slice(0, offset)];
+  const selected = rotated.slice(0, limit);
+
+  const listHtml = selected
+    .map((link) => `<li><a href="${link.href}">${link.label}</a></li>`)
+    .join("");
+
+  return `${html}\n\n<section data-enterprise-news-links="true"><h2>Relaterede guider og anmeldelser</h2><ul>${listHtml}</ul></section>`;
+}
+
 function buildHeroImagePrompt(
   articleTitle: string,
   articleExcerpt: string,
