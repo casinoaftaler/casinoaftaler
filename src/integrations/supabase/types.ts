@@ -446,6 +446,107 @@ export type Database = {
         }
         Relationships: []
       }
+      casino_review_aggregates: {
+        Row: {
+          avg_rating: number
+          casino_slug: string
+          review_count: number
+          updated_at: string
+        }
+        Insert: {
+          avg_rating?: number
+          casino_slug: string
+          review_count?: number
+          updated_at?: string
+        }
+        Update: {
+          avg_rating?: number
+          casino_slug?: string
+          review_count?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      casino_review_helpful_votes: {
+        Row: {
+          created_at: string
+          id: string
+          review_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          review_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          review_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "casino_review_helpful_votes_review_id_fkey"
+            columns: ["review_id"]
+            isOneToOne: false
+            referencedRelation: "casino_user_reviews"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      casino_user_reviews: {
+        Row: {
+          casino_slug: string
+          created_at: string
+          guest_email: string | null
+          guest_name: string | null
+          helpful_count: number
+          id: string
+          is_verified_player: boolean
+          rating: number
+          rejection_reason: string | null
+          review_text: string
+          status: Database["public"]["Enums"]["review_status"]
+          title: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          casino_slug: string
+          created_at?: string
+          guest_email?: string | null
+          guest_name?: string | null
+          helpful_count?: number
+          id?: string
+          is_verified_player?: boolean
+          rating: number
+          rejection_reason?: string | null
+          review_text: string
+          status?: Database["public"]["Enums"]["review_status"]
+          title?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          casino_slug?: string
+          created_at?: string
+          guest_email?: string | null
+          guest_name?: string | null
+          helpful_count?: number
+          id?: string
+          is_verified_player?: boolean
+          rating?: number
+          rejection_reason?: string | null
+          review_text?: string
+          status?: Database["public"]["Enums"]["review_status"]
+          title?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       casinos: {
         Row: {
           affiliate_url: string | null
@@ -2836,6 +2937,7 @@ export type Database = {
       app_role: "admin" | "user" | "casino_owner"
       clip_status: "pending" | "approved" | "rejected"
       license_status: "valid" | "suspended" | "revoked"
+      review_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -2966,6 +3068,7 @@ export const Constants = {
       app_role: ["admin", "user", "casino_owner"],
       clip_status: ["pending", "approved", "rejected"],
       license_status: ["valid", "suspended", "revoked"],
+      review_status: ["pending", "approved", "rejected"],
     },
   },
 } as const
