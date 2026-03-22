@@ -219,7 +219,7 @@ const TopCasinoOnline = () => {
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Trophy className="mr-1.5 h-3.5 w-3.5" />
-              Opdateret {getDanishMonthYear()}
+              Verificeret Top 10
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
               Top 10 Online Casino i Danmark 2026
