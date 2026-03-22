@@ -14,6 +14,8 @@ interface UserReviewFormProps {
   isLoading: boolean;
   isSuccess: boolean;
   userHasReviewed: boolean;
+  isLoggedIn: boolean;
+  displayName?: string | null;
 }
 
 export function UserReviewForm({
@@ -23,8 +25,9 @@ export function UserReviewForm({
   isLoading,
   isSuccess,
   userHasReviewed,
+  isLoggedIn,
+  displayName,
 }: UserReviewFormProps) {
-  const { user, profile } = useAuth();
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
   const [title, setTitle] = useState("");
