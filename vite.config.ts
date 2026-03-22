@@ -187,7 +187,7 @@ ${articleUrls.join("\n")}
       }
 
       // ── 4. sitemap-priority.xml (top money pages, priority ≥ 0.8) ──
-      const priorityRoutes = seoRoutes.filter((r) => r.priority >= 0.8);
+      const priorityRoutes = seoRoutes.filter((r) => r.priority >= 0.9);
       if (priorityRoutes.length > 0) {
         const priorityUrls = priorityRoutes.map((route) => {
           const loc = route.path === "/" ? SITE_URL + "/" : SITE_URL + route.path;
