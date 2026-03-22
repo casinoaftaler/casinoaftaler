@@ -134,7 +134,7 @@ const Velkomstbonus = () => {
 
   const articleJsonLd = buildArticleSchema({
     headline: "Velkomstbonus – Komplet Guide til Casino Velkomstbonusser 2026",
-    description: "Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav og tips.",
+    description: "Velkomstbonus hos danske casinoer 2026 – sammenlign matchbonus, free spins og no-deposit tilbud. Se hvilke bonusser der har de bedste vilkår.",
     url: `${SITE_URL}/velkomstbonus`,
     datePublished: "2025-06-01",
     videoId: "oK5PvebkvGY",
@@ -151,7 +151,7 @@ const Velkomstbonus = () => {
     <>
       <SEO
         title="Velkomstbonus – Komplet Guide til Casino Velkomstbonusser 2026 | Casinoaftaler"
-        description="Alt du skal vide om velkomstbonusser på danske casinoer. Typer, omsætningskrav, betingelser og tips til at vælge den bedste velkomstbonus."
+        description="Velkomstbonus hos danske casinoer 2026 – sammenlign matchbonus, free spins og no-deposit tilbud. Se hvilke bonusser der har de bedste vilkår."
         jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 

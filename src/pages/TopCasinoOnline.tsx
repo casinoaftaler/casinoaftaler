@@ -174,7 +174,7 @@ const TopCasinoOnline = () => {
 
   const articleJsonLd = buildArticleSchema({
     headline: "Top 10 Online Casino i Danmark 2026 – Bedste Online Casinoer",
-    description: "Komplet guide til de 10 bedste online casinoer i Danmark 2026. Sammenlign bonusser, spiludvalg, betalingsmetoder og udbetalingstider.",
+    description: "Top 10 bedste online casinoer i Danmark 2026 – testet og rangeret. Sammenlign bonus, udbetalingstid og spiludvalg. Se hvilke casinoer der scorer højest.",
     url: `${SITE_URL}/top-10-casino-online`,
     datePublished: "2026-01-15",
   });
@@ -200,7 +200,7 @@ const TopCasinoOnline = () => {
     <>
       <SEO
         title="Top 10 Casino Online 2026 – Bedste Online Casinoer i Danmark"
-        description="Opdateret top 10 liste over de bedste online casinoer i Danmark 2026. Sammenlign bonusser, free spins, betalingsmetoder og vilkår hos danske casinoer med licens."
+        description="Top 10 bedste online casinoer i Danmark 2026 – testet og rangeret. Sammenlign bonus, udbetalingstid og spiludvalg. Se hvilke casinoer der scorer højest."
         jsonLd={[articleJsonLd, faqJsonLd, itemListJsonLd]}
       />
 

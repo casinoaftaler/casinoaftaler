@@ -141,7 +141,7 @@ const FreeSpins = () => {
 
   const articleJsonLd = buildArticleSchema({
     headline: "Free Spins – Komplet Guide til Gratis Spins 2026",
-    description: "Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav, betingelser og strategier.",
+    description: "Free spins på danske casinoer 2026 – se aktuelle tilbud, omsætningskrav og betingelser. Lær hvordan du får mest værdi ud af gratis spins.",
     url: `${SITE_URL}/free-spins`,
     datePublished: "2025-06-01",
     videoId: "q4jeGo9TPEk",
@@ -158,7 +158,7 @@ const FreeSpins = () => {
     <>
       <SEO
         title="Free Spins – Komplet Guide til Gratis Spins 2026 | Casinoaftaler"
-        description="Alt du skal vide om free spins på danske casinoer. Typer, omsætningskrav, betingelser og strategier til at få mest ud af dine gratis spins."
+        description="Free spins på danske casinoer 2026 – se aktuelle tilbud, omsætningskrav og betingelser. Lær hvordan du får mest værdi ud af gratis spins."
         jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
