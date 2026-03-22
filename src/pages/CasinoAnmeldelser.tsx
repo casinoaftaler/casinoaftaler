@@ -200,7 +200,7 @@ const CasinoAnmeldelser = () => {
     <>
       <SEO
         title="Casino Anmeldelser 2026 – Ærlige & Dybdegående Reviews"
-        description="Læs vores dybdegående casino anmeldelser af 29 danske online casinoer. Uafhængige reviews baseret på rigtige penge-tests med fokus på bonusvilkår, udbetalingstider, spiludvalg og sikkerhed."
+        description="29 casino anmeldelser testet med rigtige penge. Sammenlign bonus, udbetalingstider og spiludvalg hos danske casinoer med licens. Se vores ratings."
         jsonLd={[articleSchema, faqJsonLd, itemListSchema]}
       />
 
