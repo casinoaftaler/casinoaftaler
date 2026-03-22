@@ -27,6 +27,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import {
+import { UserReviewSection } from "@/components/UserReviewSection";
   ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, BookOpen, Smartphone, Headphones,
   Gamepad2, Zap, RotateCcw, Check, X, Globe, Award, Clock, Target,
@@ -810,6 +811,7 @@ const LunaCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <UserReviewSection casinoSlug="luna-casino" casinoName="Luna Casino" />
         <RelatedReviews currentSlug="luna-casino" />
         <InlineCasinoCards excludeSlugs={["luna-casino"]} />
         <Separator className="my-10" />

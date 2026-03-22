@@ -19,6 +19,7 @@ import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsP
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, Zap, Check, X, ShieldCheck, Trophy, Headphones, Target, Users, Wallet, Gamepad2, TrendingUp } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -570,6 +571,7 @@ const BwinAnmeldelse = () => {
           </p>
         </section>
 
+        <UserReviewSection casinoSlug="bwin" casinoName="bwin" />
         <RelatedReviews currentSlug="bwin" />
         <InlineCasinoCards count={3} />
 

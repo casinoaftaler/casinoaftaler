@@ -22,6 +22,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X, Smartphone, Headphones, Users, Globe } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -345,6 +346,7 @@ const DanskeSpilAnmeldelse = () => {
           </div>
         </section>
 
+        <UserReviewSection casinoSlug="danske-spil" casinoName="Danske Spil" />
         <RelatedReviews currentSlug="danske-spil" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["danske-spil"]} />
         <LatestNewsByCategory pagePath="/casino-anmeldelser/danske-spil" />

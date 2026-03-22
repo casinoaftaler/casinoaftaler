@@ -22,6 +22,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import {
+import { UserReviewSection } from "@/components/UserReviewSection";
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet,
   TrendingUp, Award, Zap, RotateCcw, Check, X, Smartphone, Headphones, Users, Globe,
 } from "lucide-react";
@@ -350,6 +351,7 @@ const ComeOnAnmeldelse = () => {
           </div>
         </section>
 
+        <UserReviewSection casinoSlug="comeon" casinoName="ComeOn" />
         <RelatedReviews currentSlug="comeon" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["comeon"]} />
         <LatestNewsByCategory pagePath="/casino-anmeldelser/comeon" />

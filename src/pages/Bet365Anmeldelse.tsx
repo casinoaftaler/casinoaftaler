@@ -22,6 +22,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import {
+import { UserReviewSection } from "@/components/UserReviewSection";
   Star,
   CreditCard,
   Trophy,
@@ -651,6 +652,7 @@ const Bet365Anmeldelse = () => {
           </div>
         </section>
 
+        <UserReviewSection casinoSlug="bet365" casinoName="bet365" />
         <RelatedReviews currentSlug="bet365" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["bet365"]} />
         <LatestNewsByCategory pagePath="/casino-anmeldelser/bet365" />

@@ -25,6 +25,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { AuthorBio } from "@/components/AuthorBio";
 import {
+import { UserReviewSection } from "@/components/UserReviewSection";
   ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, BookOpen, Smartphone, Headphones,
   Gamepad2, Wallet, Zap, RotateCcw, Check, X, Globe, Award,
@@ -786,6 +787,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        <UserReviewSection casinoSlug="spilleautomaten" casinoName="Spilleautomaten" />
         <RelatedReviews currentSlug="spilleautomaten" />
 
         <InlineCasinoCards

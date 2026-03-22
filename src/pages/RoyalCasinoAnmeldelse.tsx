@@ -21,6 +21,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, Check, X, Smartphone, Headphones, Users, Globe, AlertTriangle, Target, Crown } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -267,6 +268,7 @@ const RoyalCasinoAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary mt-6"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground leading-relaxed">Spil altid ansvarligt. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25 (gratis, anonymt, tilgængeligt døgnet rundt).</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Regler og vilkår gælder | Annoncering</p></CardContent></Card>
         </section>
 
+        <UserReviewSection casinoSlug="royal-casino" casinoName="Royal Casino" />
         <RelatedReviews currentSlug="royal-casino" />
         <InlineCasinoCards count={3} />
 

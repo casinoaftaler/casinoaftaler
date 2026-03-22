@@ -26,6 +26,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import {
+import { UserReviewSection } from "@/components/UserReviewSection";
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   Zap, RotateCcw, Check, X, Globe, Target, TrendingUp, Award,
   Gamepad2, Wallet, Headphones, Smartphone, BarChart3,
@@ -580,6 +581,7 @@ const CampobetAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
+        <UserReviewSection casinoSlug="campobet" casinoName="Campobet" />
         <RelatedReviews currentSlug="campobet" />
         <InlineCasinoCards excludeSlugs={["campobet"]} />
         <LatestNewsByCategory pagePath="/casino-anmeldelser/campobet" />

@@ -22,6 +22,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Crown, Award, ShieldCheck, Headphones, TrendingUp, BarChart3 } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -342,6 +343,7 @@ const Casino888Anmeldelse = () => {
             <Button asChild variant="outline" size="lg" className="flex-1"><Link to="/casino-anmeldelser"><Star className="mr-2 h-5 w-5" />Alle Casino Anmeldelser</Link></Button>
           </div>
         </section>
+        <UserReviewSection casinoSlug="888-casino" casinoName="888 Casino" />
         <RelatedReviews currentSlug="888-casino" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["888-casino"]} />
         <LatestNewsByCategory pagePath="/casino-anmeldelser/888-casino" />

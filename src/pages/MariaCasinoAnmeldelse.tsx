@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/compone
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { UserReviewSection } from "@/components/UserReviewSection";
 const linkClass = "text-primary underline hover:text-primary/80";
 const mariaFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er Maria Casino lovligt i Danmark?", answer: (<>Ja, Maria Casino opererer med dansk licens fra Spillemyndigheden via Unibet Denmark Limited under FDJ United (tidl. Kindred Group). Platformen er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> og overholder alle danske regler for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Kindred Group (nu en del af FDJ United) var tidligere børsnoteret (nu del af FDJ United).</>) },
@@ -222,6 +223,7 @@ const MariaCasinoAnmeldelse = () => {
           </div>
         </section>
 
+        <UserReviewSection casinoSlug="maria-casino" casinoName="Maria Casino" />
         <RelatedReviews currentSlug="maria-casino" />
         <InlineCasinoCards count={3} />
         <LatestNewsByCategory pagePath="/casino-anmeldelser/maria-casino" />

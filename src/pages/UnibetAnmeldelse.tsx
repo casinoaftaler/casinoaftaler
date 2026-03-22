@@ -22,6 +22,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Shield, Globe, ShieldCheck, Smartphone, Headphones, Users, Clock, Award, TrendingUp, BarChart3 } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -363,6 +364,7 @@ const UnibetAnmeldelse = () => {
           </div>
         </section>
 
+        <UserReviewSection casinoSlug="unibet" casinoName="Unibet" />
         <RelatedReviews currentSlug="unibet" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["unibet"]} />
         <LatestNewsByCategory pagePath="/casino-anmeldelser/unibet" />

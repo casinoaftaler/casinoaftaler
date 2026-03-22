@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/compone
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { UserReviewSection } from "@/components/UserReviewSection";
 const linkClass = "text-primary underline hover:text-primary/80";
 const faqs: { question: string; answer: ReactNode }[] = [
   { question: "Er Mr Vegas Casino lovligt i Danmark?", answer: (<>Ja, Mr Vegas Casino har en dansk licens fra Spillemyndigheden og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Platformen drives af Betsson Group, som er en af Nordens største spiludbydere med licenser i over 20 lande og rødder helt tilbage til 1963. Alle krav til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> overholdes, og MitID bruges til identitetsverifikation ved oprettelse. Betsson Group er børsnoteret på Nasdaq Stockholm, hvilket sikrer fuld finansiel gennemsigtighed.</>) },
@@ -269,6 +270,7 @@ const MrVegasAnmeldelse = () => {
           </div>
         </section>
 
+        <UserReviewSection casinoSlug="mr-vegas" casinoName="Mr Vegas" />
         <RelatedReviews currentSlug="mr-vegas" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["mr-vegas"]} />
         <LatestNewsByCategory pagePath="/casino-anmeldelser/mr-vegas" />

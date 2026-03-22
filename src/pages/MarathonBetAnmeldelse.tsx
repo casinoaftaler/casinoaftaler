@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/compone
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { UserReviewSection } from "@/components/UserReviewSection";
 const linkClass = "text-primary underline hover:text-primary/80";
 const marathonbetFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er MarathonBet lovligt i Danmark?", answer: (<>Ja, MarathonBet opererer med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Platformen overholder alle danske krav til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> og bruger MitID til registrering. MarathonBet har opereret i Danmark siden licenssystemet blev indført og har aldrig modtaget sanktioner fra Spillemyndigheden.</>) },
@@ -313,6 +314,7 @@ const MarathonBetAnmeldelse = () => {
           </div>
         </section>
 
+        <UserReviewSection casinoSlug="marathonbet" casinoName="MarathonBet" />
         <RelatedReviews currentSlug="marathonbet" />
         <InlineCasinoCards count={3} />
         <LatestNewsByCategory pagePath="/casino-anmeldelser/marathonbet" />

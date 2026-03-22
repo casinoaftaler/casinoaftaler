@@ -21,6 +21,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, AlertTriangle, Users, TrendingUp, Target, BarChart3, Swords } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -308,6 +309,7 @@ const VideoslotsAnmeldelse = () => {
           <Card className="border-border bg-card border-l-4 border-l-primary mt-6"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground leading-relaxed">Spil ansvarligt. Har du brug for hjælp? Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25 (gratis og anonymt).</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Regler og vilkår gælder | Annoncering</p></CardContent></Card>
         </section>
 
+        <UserReviewSection casinoSlug="videoslots" casinoName="Videoslots" />
         <RelatedReviews currentSlug="videoslots" />
         <InlineCasinoCards count={3} />
 

@@ -19,6 +19,7 @@ import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsP
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, Zap, Check, X, Gamepad2, ShieldCheck, Trophy, Headphones, Wallet, Users, Target, CreditCard, Smartphone, TrendingUp } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -506,6 +507,7 @@ const SpilnuAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">For den danske spiller, der vælger Spilnu i dag, er fremtidsudsigterne positive. Platformen vil sandsynligvis blive bedre – ikke dårligere – over tid. Danske Spils ressourcer, regulatoriske fordel og strategiske fokus på digitalisering sikrer, at Spilnu forbliver en relevant og troværdig aktør i det danske spillandskab. Og med bingo-sektionens dominerende markedsposition som fundament har platformen en unikke differentiering, der er svær at angribe for konkurrenterne.</p>
         </section>
 
+        <UserReviewSection casinoSlug="spilnu" casinoName="Spilnu" />
         <RelatedReviews currentSlug="spilnu" />
         <InlineCasinoCards count={3} />
 

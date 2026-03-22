@@ -22,6 +22,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Users, TrendingUp } from "lucide-react";
+import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -278,6 +279,7 @@ const MrGreenAnmeldelse = () => {
           </div>
         </section>
 
+        <UserReviewSection casinoSlug="mr-green" casinoName="Mr Green" />
         <RelatedReviews currentSlug="mr-green" />
         <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["mr-green"]} />
         <LatestNewsByCategory pagePath="/casino-anmeldelser/mr-green" />
