@@ -119,7 +119,7 @@ const IPhoneCasinoGuide = () => {
     <>
       <SEO
         title="Casino på iPhone – Komplet iOS Casino Guide 2026"
-        description="Alt om casino på iPhone: Face ID, Apple Pay, Safari vs. app, PWA-installation, performance-tests og de bedste mobilcasinoer til iOS i Danmark."
+        description="Casino på iPhone: Face ID, Apple Pay, Safari vs. app, PWA-installation og de bedste mobilcasinoer til iOS i Danmark. Se vores test."
         jsonLd={[faqJsonLd, articleJsonLd, howToJsonLd]}
       />
 

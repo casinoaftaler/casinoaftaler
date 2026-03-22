@@ -17,7 +17,7 @@ import boomingHero from "@/assets/images/providers/booming-games-hero.jpg";
 const BoomingGamesGuide = () => (
   <ProviderPage
     seoTitle="Booming Games – Komplet Guide til Spiludvikleren (2026)"
-    seoDescription="Alt om Booming Games: Innovative spillemaskiner, unik Felt-teknologi, B2B-løsninger og 200+ spil. Læs om licenser, RTP-profiler og populære titler fra dette Malta-baserede studio."
+    seoDescription="Booming Games: Innovative spillemaskiner, unik Felt-teknologi, B2B-løsninger og 200+ spil. Se licenser, RTP-profiler og populære titler."
     name="Booming Games"
     heroImage={boomingHero}
     heroImageAlt="Booming Games – Malta-baseret spiludvikler"

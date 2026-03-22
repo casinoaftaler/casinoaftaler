@@ -7,7 +7,7 @@ const ZimplerGuide = () => {
     <PaymentMethodPage
       ctaCasinoSlug="betinia"
       seoTitle="Zimpler Casino 2026 – Open Banking uden Gebyrer"
-      seoDescription="Alt om Zimpler på danske casinoer. Svensk fintech med open banking, MitID-sikkerhed, ingen gebyrer og øjeblikkelige konto-til-konto-overførsler."
+      seoDescription="Zimpler på danske casinoer: Svensk fintech med open banking, MitID-sikkerhed, ingen gebyrer og øjeblikkelige konto-til-konto-overførsler."
       name="Zimpler"
       heroImage={zimplerHero}
       heroImageAlt="Zimpler betalingsmetode på danske casinoer"

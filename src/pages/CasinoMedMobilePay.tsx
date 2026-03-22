@@ -169,7 +169,7 @@ const CasinoMedMobilePay = () => {
     <>
       <SEO
         title="Casino med MobilePay – Indbetal med MobilePay 2026"
-        description="Alt om MobilePay på danske casinoer: Komplet guide til indbetalinger, gebyrer, sikkerhed, bonuskvalificering og sammenligning med Trustly og Apple Pay."
+        description="MobilePay på danske casinoer: Indbetalinger, gebyrer, sikkerhed, bonuskvalificering og sammenligning med Trustly og Apple Pay. Se casinoer her."
         jsonLd={[faqJsonLd, articleJsonLd, howToJsonLd]}
       />
 

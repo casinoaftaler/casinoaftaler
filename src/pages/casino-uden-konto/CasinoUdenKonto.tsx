@@ -214,7 +214,7 @@ const CasinoUdenKonto = () => {
     <>
       <SEO
         title="Casino uden Konto – Pay N Play Casinoer i Danmark 2026"
-        description="Alt om casino uden konto: Pay N Play via Trustly, hurtig registrering, bankkompatibilitet, sikkerhed og de bedste casinoer uden kontooprettelse i Danmark."
+        description="Casino uden konto: Pay N Play via Trustly, hurtig registrering, bankkompatibilitet og de bedste casinoer uden kontooprettelse i Danmark."
         jsonLd={[faqJsonLd, articleJsonLd]}
         datePublished="2026-03-08"
       />

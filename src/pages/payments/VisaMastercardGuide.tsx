@@ -7,7 +7,7 @@ const VisaMastercardGuide = () => {
     <PaymentMethodPage
       ctaCasinoSlug="spilleautomaten"
       seoTitle="Visa & Mastercard Casino 2026 – Kortbetaling Guide"
-      seoDescription="Alt om Visa og Mastercard på danske casinoer. 3D Secure, øjeblikkelige indbetalinger, gebyrer, bonusregler og de bedste kortbetalings-casinoer i Danmark."
+      seoDescription="Visa og Mastercard på danske casinoer: 3D Secure, øjeblikkelige indbetalinger, gebyrer, bonusregler og de bedste kortbetalings-casinoer i Danmark."
       name="Visa / Mastercard"
       heroImage={visaMastercardHero}
       heroImageAlt="Visa og Mastercard kortbetaling på danske casinoer"

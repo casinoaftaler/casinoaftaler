@@ -155,7 +155,7 @@ const CashbackBonus = () => {
     <>
       <SEO
         title="Cashback Bonus – Få Penge Tilbage fra Dit Casino 2026 | Casinoaftaler"
-        description="Alt om cashback bonusser på danske casinoer. Lær hvordan cashback fungerer, hvilke typer der findes, og find de bedste cashback-tilbud i Danmark."
+        description="Cashback bonusser på danske casinoer: Lær hvordan cashback fungerer, hvilke typer der findes, og find de bedste cashback-tilbud i Danmark."
         jsonLd={[faqJsonLd, articleJsonLd, videoJsonLd]}
       />
 
