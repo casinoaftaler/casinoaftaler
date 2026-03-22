@@ -66,8 +66,8 @@ export function UserReviewForm({
     if (rating === 0) { setError("Vælg en rating (1-5 stjerner)"); return; }
     if (reviewText.length < 50) { setError("Anmeldelsen skal være mindst 50 tegn"); return; }
     if (reviewText.length > 2000) { setError("Anmeldelsen må maks. være 2000 tegn"); return; }
-    if (!user && !guestName.trim()) { setError("Indtast dit navn"); return; }
-    if (!user && (!guestEmail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail))) {
+    if (!isLoggedIn && !guestName.trim()) { setError("Indtast dit navn"); return; }
+    if (!isLoggedIn && (!guestEmail.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail))) {
       setError("Indtast en gyldig e-mail"); return;
     }
 
@@ -77,8 +77,8 @@ export function UserReviewForm({
         rating,
         review_text: reviewText,
         title: title || undefined,
-        guest_name: !user ? guestName : undefined,
-        guest_email: !user ? guestEmail : undefined,
+        guest_name: !isLoggedIn ? guestName : undefined,
+        guest_email: !isLoggedIn ? guestEmail : undefined,
       });
     } catch (err: any) {
       setError(err?.message?.includes("duplicate") 
