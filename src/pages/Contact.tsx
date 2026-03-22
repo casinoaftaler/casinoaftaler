@@ -377,6 +377,15 @@ export default function Contact() {
                     <BookOpen className="h-5 w-5" />
                     Følg os på Medium
                   </a>
+                  <a
+                    href="https://medium.com/@casinoaftaler/how-to-choose-a-safe-online-casino-in-denmark-89e5bbb095a5"
+                    target="_blank"
+                    rel="noopener"
+                    className="flex items-center gap-3 text-primary hover:underline"
+                  >
+                    <Newspaper className="h-5 w-5" />
+                    Vores guide på Medium
+                  </a>
                   <p className="text-sm text-muted-foreground">
                     Alle seriøse henvendelser bliver gennemgået og besvaret.
                     Læs mere{" "}
