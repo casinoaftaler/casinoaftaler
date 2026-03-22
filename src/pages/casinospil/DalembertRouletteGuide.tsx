@@ -71,7 +71,7 @@ export default function DalembertRouletteGuide() {
     <>
       <SEO
         title="D'Alembert Roulette 2026 – System, Matematik & Ærlig Test"
-        description="Komplet guide til D'Alembert-systemet i roulette: lineær progression, equilibrium-teori, 10.000-spins Monte Carlo simulering og sammenligning med Martingale."
+        description="D'Alembert i roulette: Lineær progression, equilibrium-teori, 10.000-spins Monte Carlo simulering og sammenligning med Martingale. Se om det virker."
         jsonLd={[faqJsonLd, articleSchema]}
       />
 

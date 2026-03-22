@@ -115,7 +115,7 @@ const AndroidCasinoGuide = () => {
     <>
       <SEO
         title="Casino på Android – Komplet Android Casino Guide 2026"
-        description="Alt om casino på Android: Google Play vs. APK, Samsung vs. Pixel, performance-benchmarks, OS-fragmentering og de bedste Android-casinoer i Danmark."
+        description="Casino på Android: Google Play vs. APK, Samsung vs. Pixel, performance-benchmarks og de bedste Android-casinoer med dansk licens. Se vores test."
         jsonLd={[faqJsonLd, articleJsonLd, howToJsonLd]}
       />
 

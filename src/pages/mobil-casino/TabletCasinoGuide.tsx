@@ -97,7 +97,7 @@ const TabletCasinoGuide = () => {
     <>
       <SEO
         title="Casino på Tablet – iPad & Android Tablet Guide 2026"
-        description="Alt om casino på tablet: iPad vs. Samsung Galaxy Tab, landscape vs. portrait, live casino, multi-tabling og performance-benchmarks. Komplet guide."
+        description="Casino på tablet: iPad vs. Samsung Galaxy Tab, landscape vs. portrait, live casino, multi-tabling og performance-benchmarks. Se vores test."
         jsonLd={[faqJsonLd, articleJsonLd]}
       />
 

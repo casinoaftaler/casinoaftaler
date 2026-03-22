@@ -88,7 +88,7 @@ const NyeCasinoerUdenRofus = () => {
     <>
       <SEO
         title="Nye Casinoer uden ROFUS – Risici og Alternativer 2026"
-        description="Alt om nye casinoer uden ROFUS. Forstå risiciene, lovgivningen og hvorfor danske licenserede casinoer med ROFUS er det sikre valg."
+        description="Nye casinoer uden ROFUS: Forstå risiciene, lovgivningen og hvorfor danske licenserede casinoer med ROFUS er det sikre valg. Se alternativer."
         jsonLd={[articleSchema, faqSchema]}
       />
 
