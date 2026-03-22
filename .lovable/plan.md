@@ -1,39 +1,50 @@
 
 
-## Plan: Fix de 5 største meta description-problemer (Batch 1: 2 af 5)
+## Plan: 3 SEO Automations
 
-### De 5 problemer (prioriteret)
-1. **Forsiden** (`/`) – 167 tegn, for lang, mangler CTA (SEO 6/10, CTR 5/10)
-2. **Casino Anmeldelser** (`/casino-anmeldelser`) – 193 tegn, ALT FOR LANG (SEO 5/10, CTR 4/10)
-3. **Top 10 Casino** (`/top-10-casino-online`) – 165 tegn, for lang (SEO 6/10, CTR 5/10)
-4. **Betalingsmetoder** (`/betalingsmetoder`) – 168 tegn, for lang (SEO 7/10, CTR 6/10)
-5. **Spillemaskiner** (`/casinospil/spillemaskiner`) – 122 tegn, for KORT (SEO 5/10, CTR 4/10)
+### 1. Compliance Trigger → Touch Casino Review Pages
+**SQL migration** adding a trigger on `casino_compliance` (AFTER UPDATE) that touches:
+- `/casino-anmeldelser/{casino_slug}` (the specific review)
+- `/casino-licenser`, `/markedsindsigt` (hub pages)
+- Plus existing money pages array
 
----
+This extends the existing `touch_money_pages_on_activity()` pattern but is specific to compliance changes.
 
-### Batch 1: Forsiden + Casino Anmeldelser
+### 2. AI Market Pulse Edge Function (Monday + Thursday)
+**New edge function**: `supabase/functions/generate-market-pulse/index.ts`
 
-**1. `src/pages/Index.tsx` (linje 128)**
+Logic:
+1. Query `casino_compliance_history` for changes in last 4 days
+2. Query `free_spin_campaigns` for new/updated campaigns in last 4 days
+3. Query `market_intelligence_events` for recent events
+4. If no changes found → exit early (no empty articles)
+5. Use Lovable AI (Gemini 2.5 Flash) to generate ~1200 word Danish article with structure matching existing news:
+   - `<h2>Hvad er ændret</h2>` + `<h2>Kontekst i dansk marked</h2>` + `<h2>Konsekvenser for spillerne</h2>` + `<h2>FAQ</h2>`
+6. Insert as `status: 'draft'` in `casino_news` with auto-generated slug, meta_title, meta_description, category `'markedspuls'`, tags
+7. Touch `/casino-nyheder` page_metadata
 
-Nuværende (167 tegn):
-> "Find de bedste online casinoer med bonus og dansk licens. Sammenlign nye casinoer, live casino, free spins og spil ansvarligt med vores uafhængige anmeldelser."
+**Cron schedule**: `pg_cron` + `pg_net` calling the edge function Monday + Thursday at 07:30 UTC.
 
-Ny (148 tegn):
-> "Bedste online casinoer i Danmark 2026 – sammenlign bonus, udbetalingstider og licenser. Uafhængige tests med rigtige penge. Se toplisten nu."
+**Config**: Add `[functions.generate-market-pulse]` to `supabase/config.toml`.
 
-**2. `src/pages/CasinoAnmeldelser.tsx` (linje 203 + linje 121)**
+### 3. Stale Content Detector
+**SQL migration**:
+- New table `stale_content_alerts` (id, casino_slug, casino_name, days_stale, alert_type, created_at, resolved_at)
+- RLS: admin-only read/write
+- Weekly cron (Sunday 08:00 UTC) that:
+  1. Clears unresolved alerts
+  2. Inserts new alerts for `casino_compliance` records where `last_checked < now() - interval '30 days'`
 
-Nuværende SEO description (193 tegn):
-> "Læs vores dybdegående casino anmeldelser af 29 danske online casinoer. Uafhængige reviews baseret på rigtige penge-tests med fokus på bonusvilkår, udbetalingstider, spiludvalg og sikkerhed."
+**New component**: `src/components/admin/StaleContentAlerts.tsx`
+- Shows flagged casinos with days since last verification
+- "Markér som løst" button
+- Integrated into Settings tab in Admin page
 
-Ny (152 tegn):
-> "29 casino anmeldelser testet med rigtige penge. Sammenlign bonus, udbetalingstider og spiludvalg hos danske casinoer med licens. Se vores ratings."
-
-Opdater også `articleSchema` description (linje 121) til at matche.
-
----
-
-### Batch 2 (næste runde): Top 10 + Betalingsmetoder + Spillemaskiner
-
-Implementeres efter batch 1 er godkendt.
+### Files created/changed
+1. **SQL migration** – compliance trigger + stale_content_alerts table + cron jobs
+2. **`supabase/functions/generate-market-pulse/index.ts`** – AI article generator
+3. **`supabase/config.toml`** – add function config block
+4. **`src/components/admin/StaleContentAlerts.tsx`** – admin widget
+5. **`src/pages/Admin.tsx`** – import and add StaleContentAlerts to settings tab
+6. **Cron schedules** (via insert tool, not migration) for market-pulse + stale detector
 
