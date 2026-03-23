@@ -77,11 +77,6 @@ const CasinoNyhedArticle = () => {
     return { contentWithoutFaq: autoLinkEntities(beforeFaq + afterFaqContent), faqs: parsedFaqs };
   }, [article?.content]);
 
-  const strategicInternalLinks = useMemo(
-    () => getEnterpriseNewsInternalLinks(article?.category || "generelt", article?.slug || slug || "", 12),
-    [article?.category, article?.slug, slug],
-  );
-
   const internalLinkCountInBody = useMemo(() => countInternalLinksInHtml(contentWithoutFaq), [contentWithoutFaq]);
 
   if (isLoading) {
