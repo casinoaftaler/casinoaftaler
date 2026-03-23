@@ -57,7 +57,7 @@ const swiftFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvor stort er Swift Casinos spiludvalg, og hvilke kategorier dækkes?",
     answer: (
       <>
-        Swift Casino har over 3.000+ spil fordelt på spilleautomater, bordspil, video poker og{" "}
+        Swift Casino har over 3.000 spil fordelt på spilleautomater, bordspil, video poker og{" "}
         <Link to="/live-casino" className={linkClass}>live casino</Link>. Spilleautomater udgør størstedelen med titler fra førende udviklere som{" "}
         <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
         <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>,{" "}
@@ -119,7 +119,7 @@ const SwiftCasinoAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(swiftFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Swift Casino Anmeldelse 2026 – Hot Or Cold & 3.300+ Spil", description: "Dybdegående anmeldelse af Swift Casino. 100% bonus op til 500 kr., 10x omsætning, Hot Or Cold-funktion og 3.000+ spil.", url: "https://casinoaftaler.dk/casino-anmeldelser/swift-casino", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "BVYnQxwqHG0", ...casinoReviewEntities("Swift Casino", "swift-casino") });
+  const articleSchema = buildArticleSchema({ headline: "Swift Casino Anmeldelse 2026 – Hot Or Cold & 3.000+ Spil", description: "Dybdegående anmeldelse af Swift Casino. 100% bonus op til 500 kr., 10x omsætning, Hot Or Cold-funktion og 3.000+ spil.", url: "https://casinoaftaler.dk/casino-anmeldelser/swift-casino", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "BVYnQxwqHG0", ...casinoReviewEntities("Swift Casino", "swift-casino") });
 
   const reviewJsonLd = buildReviewSchema({ itemName: "Swift Casino", itemUrl: "https://www.swiftcasino.dk/", ratingValue: "4.6", ratingCount: "187", reviewBody: "Swift Casino er Data-Innovatøren blandt danske casinoer – et veletableret casino med 3.000+ spil, 100% bonus op til 500 kr. med 10x omsætning, den unikke Hot Or Cold-funktion, PayPal/Trustly-support og hurtige udbetalinger." });
 
@@ -236,7 +236,7 @@ const SwiftCasinoAnmeldelse = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Swift Casino blev lanceret i 2020 af Skill On Net Ltd, det samme selskab der driver{" "}
-            <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link>. Mens Luna Casino satser på kvalitetskuratering med et bevidst begrænset katalog, har Swift Casino valgt den modsatte strategi: over 3.000+ spiltitler fra alle de store udbydere, kombineret med innovative værktøjer der hjælper spillere med at navigere det omfattende udvalg.
+            <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link>. Mens Luna Casino satser på kvalitetskuratering med et bevidst begrænset katalog, har Swift Casino valgt den modsatte strategi: over 3.000 spiltitler fra alle de store udbydere, kombineret med innovative værktøjer der hjælper spillere med at navigere det omfattende udvalg.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Med gyldig dansk licens fra Spillemyndigheden (nr. 16-1066791), en{" "}
@@ -276,7 +276,7 @@ const SwiftCasinoAnmeldelse = () => {
               <CardContent>
                 <ul className="space-y-2">
                   {[
-                    "Over 3.000+ spiltitler fra 20+ udbydere",
+                    "Over 3.000 spiltitler fra 20+ udbydere",
                     "Kun 10x omsætningskrav (d+b) – blandt de laveste i DK",
                     "Unik Hot Or Cold-funktion med realtidsdata",
                     "PayPal- og Trustly-support for hurtige udbetalinger",
