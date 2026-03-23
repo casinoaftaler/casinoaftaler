@@ -79,7 +79,7 @@ export function WeeklyRotationReviews() {
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
-        <RefreshCw className="h-5 w-5 text-primary" />
+        <span aria-hidden="true">🔄</span>
         Senest Opdaterede Anmeldelser
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">

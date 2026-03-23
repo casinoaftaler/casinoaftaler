@@ -51,7 +51,7 @@ export function HomepageCasinospilSection() {
 export function HomepageAnmeldelserSection() {
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold">Casino Anmeldelser – Uafhængige og Dybdegående</h2>
+      <h2 className="mb-4 text-3xl font-bold">📝 Casino Anmeldelser – Uafhængige og Dybdegående</h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Vi anmelder hvert online casino grundigt med fokus på de faktorer, der reelt betyder noget for danske spillere. Vores anmeldelser dækker alt fra vilkår og spiludvalg til{" "}
         <Link to="/betalingsmetoder" className="text-primary hover:underline font-medium">betalingsmetoder</Link>

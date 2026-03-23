@@ -90,8 +90,9 @@ export function HomepageLiveCommunity() {
       <div className="container">
         <div className="flex items-center gap-3 mb-6">
           <div className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
-          <h2 className="text-2xl md:text-3xl font-bold">Live fra Communityet</h2>
-          <Tv className="h-5 w-5 text-primary ml-1" />
+          <h2 className="text-2xl md:text-3xl font-bold">
+            <span aria-hidden="true">📡</span> Live fra Communityet
+          </h2>
         </div>
         <p className="text-muted-foreground mb-8 max-w-3xl leading-relaxed">
           Følg med i real-time data fra vores{" "}

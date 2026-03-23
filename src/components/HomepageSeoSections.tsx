@@ -27,7 +27,7 @@ export function HomepageSeoSections() {
     <>
       {/* Section 1: Hvorfor sammenligne online casinoer? */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Hvorfor Sammenligne Online Casinoer?</h2>
+        <h2 className="mb-4 text-3xl font-bold">🔍 Hvorfor Sammenligne Online Casinoer?</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Med over 30 licenserede online casinoer i Danmark kan det være overvældende at finde det rette spillested. Hvert online casino har sine styrker og svagheder – fra spiludvalg og udbetalingshastighed til kundeservice og mobiloplevelse. Derfor er en grundig sammenligning afgørende, før du opretter en konto og indbetaler penge.
         </p>
