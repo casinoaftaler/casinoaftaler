@@ -394,6 +394,11 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Taktisk bonusstrategi med Hot Or Cold.</strong> Her kommer Swift Casinos unikke funktion i spil: du kan bruge Hot Or Cold til at identificere slots med aktuel høj aktivitet og potentielt bruge dem under bonusgennemspilning. Det er ingen garanti for bedre resultater (RNG er RNG), men det kan gøre gennemspilningsprocessen mere underholdende og give en følelse af informeret beslutningstagning.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/velkomstbonus.webp"
+            alt="Swift Casino velkomstbonus – 100 procent op til 500 kr. med bonuskode SWIFT"
+            caption="Swift Casinos velkomstbonus med 100 % match op til 500 kr. ved første indbetaling."
+          />
         </section>
 
         <Separator className="my-10" />
