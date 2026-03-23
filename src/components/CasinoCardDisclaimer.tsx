@@ -76,7 +76,7 @@ export function CasinoCardDisclaimer() {
   const hasRemainingContent = detailedText.length > 0;
 
   return (
-    <div className="text-[11px] text-white/70 text-center leading-snug">
+    <div className="text-[11px] text-muted-foreground text-center leading-snug">
       {/* Header line with pipe separators - shown as a single flowing line */}
       <p className="leading-tight">
         {renderWithLinks(headerLine)}
