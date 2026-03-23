@@ -512,6 +512,11 @@ const CampobetAnmeldelse = () => {
             </table>
           </div>
           <p className="text-xs text-muted-foreground">*Skrill og Neteller kvalificerer ikke til bonusser. Alle transaktioner er gebyrfri. Min. udbetaling: 100 kr.</p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/betalingsmetoder.webp"
+            alt="Campobet indbetalingsside med MobilePay, Visa, Mastercard, PayPal, Trustly, Skrill, Zimpler, Paysafecard og danske banker"
+            caption="Campobets betalingsudvalg – det bredeste på det danske marked med MobilePay, PayPal, Zimpler og direkte bankoverførsel."
+          />
         </section>
 
         <Separator className="my-10" />
