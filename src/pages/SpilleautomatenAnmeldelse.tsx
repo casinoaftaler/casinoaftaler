@@ -591,6 +591,11 @@ const SpilleautomatenAnmeldelse = () => {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/livecasino.webp"
+            alt="Spilleautomaten live casino med American Blackjack, European Roulette og Vegas Drops Roulette"
+            caption="Live casino-sektionen med blackjack- og rouletteborde fra Evolution Gaming."
+          />
         </section>
 
         <Separator className="my-10" />
