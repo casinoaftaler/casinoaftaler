@@ -24,7 +24,7 @@ import {
 export function HomepageCasinospilSection() {
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold">Casinospil – Slots, Bordspil og Live Casino</h2>
+      <h2 className="mb-4 text-3xl font-bold">🎲 Casinospil – Slots, Bordspil og Live Casino</h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Et komplet online casino tilbyder hundredvis af forskellige{" "}
         <Link to="/casinospil" className="text-primary hover:underline font-medium">casinospil</Link>
