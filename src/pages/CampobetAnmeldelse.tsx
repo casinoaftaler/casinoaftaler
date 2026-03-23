@@ -533,6 +533,7 @@ const CampobetAnmeldelse = () => {
             alt="Campobet live casino med Crazy Pachinko, Speed Roulette, Lightning Roulette og blackjack-varianter"
             caption="Campobets live casino-sektion med roulette, blackjack, baccarat og game shows fra Evolution Gaming."
           />
+        </section>
 
         <Separator className="my-10" />
 
