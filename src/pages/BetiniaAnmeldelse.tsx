@@ -34,6 +34,7 @@ import {
   ThumbsUp, ThumbsDown, MessageSquare, Mail,
 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -290,6 +291,12 @@ const BetiniaAnmeldelse = () => {
             <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Betinia ser ud indefra</h3>
             <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Betinias hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/lobby-forside.webp"
+            alt="Betinia casino forside med populære spilleautomater, anbefalede spil og sportsbegivenheder"
+            caption="Betinias forside med Mine Spil, anbefalede slots og live sportsopdateringer – alt samlet i ét overblik."
+            eager={true}
+          />
         </section>
 
         <Separator className="my-10" />
@@ -325,6 +332,11 @@ const BetiniaAnmeldelse = () => {
               </div>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/login-mitid.webp"
+            alt="Betinia login-dialog med MitID-verifikation for sikker adgang"
+            caption="Login hos Betinia sker via MitID – hurtigt, sikkert og uden manuel verifikation."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -500,6 +512,11 @@ const BetiniaAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/betinia-points.webp"
+            alt="Betinia loyalitetspoint – tjen points ved indskud og spil"
+            caption="Tjen Betinia Points ved indskud (1 point pr. 150 kr.) og spil (1 point pr. 75 kr.) – points kan bruges til bonusser."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -691,6 +708,11 @@ const BetiniaAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Blackjack-udvalget inkluderer Standard, Infinite, Speed, VIP og Lightning-varianter med indsatser fra 25 kr. til over 50.000 kr. pr. hånd. Vi oplevede ingen ventekøer under testperioden – selv ikke fredag aften kl. 21:00, hvilket tyder på tilstrækkelig bordkapacitet. Roulette-sektionen omfatter European, French, Auto, Speed og Lightning Roulette med multipliers op til 500x.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/live-casino.webp"
+            alt="Betinia live casino med Speed Roulette, Lightning Baccarat og blackjack-varianter fra Evolution Gaming"
+            caption="Betinias live casino-sektion med 195+ borde – inkl. Dansk Roulette, Lightning Baccarat og 146 blackjack-varianter."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -707,6 +729,11 @@ const BetiniaAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Sportsbetting-sektionen er fuldt funktionel på mobil med livescores, in-play betting og kampstatistikker. Akkumulatorboostet beregnes automatisk i kuponen, og "Foran med 2"-markeder er let tilgængelige. MobilePay-indbetalinger er særligt smidige på mobil – appen åbner automatisk, og transaktionen gennemføres med et enkelt swipe. Den eneste begrænsning er, at skærmens størrelse gør lange sportslister lidt uoverskuelige – scroll kan kræves for at finde specifikke markeder.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/mobilapp.webp"
+            alt="Betinia mobilapp-side med QR-kode download og sponsorater"
+            caption="Betinias mobilapp-sektion med QR-kode download, casinospil og sportsbetting – plus deres danske sponsorater."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -756,6 +783,11 @@ const BetiniaAnmeldelse = () => {
           <p className="text-xs text-muted-foreground mb-4">
             *Skrill og Neteller kvalificerer IKKE til bonusser. Min. indbetaling: 100 kr. Min. udbetaling: 100 kr. Alle indbetalinger og udbetalinger er gebyrfri. PayPal var den hurtigste udbetalingsmetode i vores test.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/betalingsmetoder.webp"
+            alt="Betinia betalingsmetoder med MobilePay, Visa, Mastercard og Trustly"
+            caption="Betinias indbetalingsside med MobilePay, Visa/Mastercard og Trustly – alle gebyrfri med min. 100 kr."
+          />
         </section>
 
         <Separator className="my-10" />
