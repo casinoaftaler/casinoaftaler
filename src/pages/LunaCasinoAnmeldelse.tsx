@@ -547,6 +547,11 @@ const LunaCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Begrænsning:</strong> Live casino-spil bidrager typisk ikke til omsætningskravet for bonussen. Hvis du primært spiller live casino, bør du gennemspille bonussen på slots først og derefter skifte til live-borde med egne midler.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/live-casino.webp"
+            alt="Luna Casino live casino med roulette, blackjack og game shows fra Evolution Gaming og Playtech"
+            caption="Luna Casinos live casino-sektion med roulette-varianter, blackjack og eksklusive borde."
+          />
         </section>
 
         <Separator className="my-10" />
