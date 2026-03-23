@@ -249,6 +249,12 @@ const CampobetAnmeldelse = () => {
               <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
             </p>
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/lobby.webp"
+            alt="Campobet lobby med populære spilleautomater som 30 Coins, Le Zeus, 9 Masks of Fire og kategorinavigation"
+            caption="Campobets spillemaskinsektion med populære titler og kategorier som Golden Slots, Nye Spil og Eksklusive Spil."
+            eager
+          />
         </section>
 
         <Separator className="my-10" />
