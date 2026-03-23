@@ -222,6 +222,12 @@ const SpilleautomatenAnmeldelse = () => {
             <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Spilleautomaten ser ud indefra</h3>
             <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Spilleautomatens hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video. Videoen er en del af vores dybdegående indhold om <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> og <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.</p>
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/lobby.webp"
+            alt="Spilleautomaten lobby med populære spilleautomater som Legacy of Dead, Sweet Bonanza og kategorinavigation"
+            caption="Spilleautomatens forside med live-gevinstfeed, populære slots og kategorinavigation."
+            eager
+          />
         </section>
 
         <Separator className="my-10" />
