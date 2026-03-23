@@ -149,7 +149,7 @@ export function HomepageBonusHuntSection() {
 export function HomepageNyhederSection() {
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold">Casino Nyheder</h2>
+      <h2 className="mb-4 text-3xl font-bold">📰 Casino Nyheder</h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Hold dig opdateret med de seneste nyheder, analyser og ændringer fra det danske online casino-marked. Vi dækker licensudstedelser, bonusændringer, nye lanceringer og lovgivning – alt sammen med fokus på, hvad det betyder for dig som dansk spiller.
       </p>
