@@ -24,6 +24,7 @@ import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { AuthorBio } from "@/components/AuthorBio";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import {
   ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, BookOpen, Smartphone, Headphones,
@@ -221,6 +222,12 @@ const SpilleautomatenAnmeldelse = () => {
             <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Spilleautomaten ser ud indefra</h3>
             <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Spilleautomatens hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video. Videoen er en del af vores dybdegående indhold om <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> og <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.</p>
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/lobby.webp"
+            alt="Spilleautomaten lobby med populære spilleautomater som Legacy of Dead, Sweet Bonanza og kategorinavigation"
+            caption="Spilleautomatens forside med live-gevinstfeed, populære slots og kategorinavigation."
+            eager
+          />
         </section>
 
         <Separator className="my-10" />
@@ -256,6 +263,11 @@ const SpilleautomatenAnmeldelse = () => {
               </div>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/login.webp"
+            alt="Spilleautomaten login-dialog med MitID-verifikation og e-mail/adgangskode felter"
+            caption="Login hos Spilleautomaten foregår via MitID eller traditionelt e-mail login."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -414,6 +426,11 @@ const SpilleautomatenAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/bonus.webp"
+            alt="Spilleautomaten bonusside med 100% velkomstbonus op til 1.000 kr. og VELKOMMEN1-kode"
+            caption="Spilleautomatens bonusside viser den trinvise velkomstbonus med 10x omsætningskrav."
+          />
         </section>
 
         {/* ───── EV ANALYSE ───── */}
@@ -502,6 +519,11 @@ const SpilleautomatenAnmeldelse = () => {
               </div>
             ))}
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/praemieshop.webp"
+            alt="Spilleautomaten Præmieshop med kontante præmier fra 50 til 1.000 DKK og pointpriser"
+            caption="Præmieshoppen hvor loyalitetspoints konverteres til kontante bonusmidler – fra 5.000 til 90.000 points."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -569,6 +591,11 @@ const SpilleautomatenAnmeldelse = () => {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/livecasino.webp"
+            alt="Spilleautomaten live casino med American Blackjack, European Roulette og Vegas Drops Roulette"
+            caption="Live casino-sektionen med blackjack- og rouletteborde fra Evolution Gaming."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -612,6 +639,11 @@ const SpilleautomatenAnmeldelse = () => {
           <p className="text-xs text-muted-foreground">
             Min. indbetaling: 75 kr. | Min. udbetaling: 75 kr. | Alle gebyrfri. MobilePay-udbetalinger er en sjældenhed blandt danske casinoer – mange tilbyder kun MobilePay til indbetaling.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/betalinger.webp"
+            alt="Spilleautomaten ind- og udbetalinger med MobilePay, Trustly, Visa, Mastercard og Dankort"
+            caption="Oversigt over Spilleautomatens betalingsmetoder – alle gebyrfri med øjeblikkelig indbetaling."
+          />
         </section>
 
         <Separator className="my-10" />
