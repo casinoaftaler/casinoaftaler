@@ -469,6 +469,11 @@ const LunaCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Daglige kampagner i detaljer.</strong> Luna Casino kører en roterende kampagnekalender med nye tilbud hver dag: mandage bringer typisk reload-bonusser, onsdage free spins på udvalgte spil, fredage cashback-tilbud og weekender turneringsadgang. Vilkårene er konsekvent fair med 10x omsætning – samme niveau som velkomstbonussen. Det er denne konsistens, der gør Luna Casino attraktivt for spillere, der vægter løbende værdi højere end en stor engangsbonusmaksimum.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/kampagner.webp"
+            alt="Luna Casino turneringer og kampagner med eksklusive tilbud og personalets udvalg"
+            caption="Luna Casinos kampagnesektion med turneringer, eksklusive kampagner og personalets udvalg."
+          />
         </section>
 
         <Separator className="my-10" />
