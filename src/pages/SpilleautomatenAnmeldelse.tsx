@@ -263,6 +263,11 @@ const SpilleautomatenAnmeldelse = () => {
               </div>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/login.webp"
+            alt="Spilleautomaten login-dialog med MitID-verifikation og e-mail/adgangskode felter"
+            caption="Login hos Spilleautomaten foregår via MitID eller traditionelt e-mail login."
+          />
         </section>
 
         <Separator className="my-10" />
