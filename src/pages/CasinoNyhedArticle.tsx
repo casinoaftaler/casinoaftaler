@@ -13,6 +13,7 @@ import { formatTimestampDanish } from "@/hooks/usePageLastmod";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { countInternalLinksInHtml } from "@/lib/newsInternalLinks";
+import { capWagerInText } from "@/lib/wagerCap";
 import { getCategoryLabel } from "@/lib/newsCategoryLabels";
 import { AJSE_SAME_AS, buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { CalendarDays, Loader2, Newspaper, Crown, RefreshCw } from "lucide-react";
@@ -44,6 +45,9 @@ const CasinoNyhedArticle = () => {
 
     // Strip injected enterprise news links section from DB content
     html = html.replace(/<section data-enterprise-news-links="true">[\s\S]*?<\/section>/gi, "");
+
+    // Enforce 10x wager cap on all rendered content
+    html = capWagerInText(html) || html;
 
     const faqHeadingRegex = /<h2[^>]*>\s*FAQ\s*<\/h2>/i;
     const match = html.match(faqHeadingRegex);
