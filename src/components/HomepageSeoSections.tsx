@@ -80,7 +80,7 @@ export function HomepageSeoSections() {
 
       {/* Section 3: Nye online casinoer i Danmark */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Nye Online Casinoer i Danmark 2026</h2>
+        <h2 className="mb-4 text-3xl font-bold">🆕 Nye Online Casinoer i Danmark 2026</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Det danske marked for online casino byder løbende på nye spillesteder, og 2026 er ingen undtagelse. Nye online casinoer bringer ofte innovativt design, hurtigere betalingsløsninger og konkurrencedygtige tilbud for at tiltrække spillere fra de etablerede platforme.
         </p>
