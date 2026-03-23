@@ -541,8 +541,7 @@ const SpilleautomatenAnmeldelse = () => {
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Den bevidste fraværelse af digitale RNG-bordspil (roulette, blackjack i software-version) er et strategisk valg. I stedet kanaliseres bordspil-energien ind i{" "}
-            <Link to="/live-casino" className={linkClass}>live casino-sektionen</Link>, der drives af{" "}
-            <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> med professionelle dealere. Det er kompakt men funktionelt: European Roulette, Super Stake Blackjack, Speed Baccarat og et par game shows. Sektionen er under løbende udvidelse.
+            <Link to="/live-casino" className={linkClass}>live casino-sektionen</Link>, der drives af Stakelogic Live med professionelle dealere. Det er kompakt men funktionelt: American Blackjack, European Roulette Glam, Super Stake Roulette, Vegas Drops Roulette og et par game shows. Sektionen er under løbende udvidelse.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
