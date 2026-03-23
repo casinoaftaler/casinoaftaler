@@ -46,6 +46,9 @@ const CasinoNyhedArticle = () => {
     // Strip injected enterprise news links section from DB content
     html = html.replace(/<section data-enterprise-news-links="true">[\s\S]*?<\/section>/gi, "");
 
+    // Enforce 10x wager cap on all rendered content
+    html = capWagerInText(html) || html;
+
     const faqHeadingRegex = /<h2[^>]*>\s*FAQ\s*<\/h2>/i;
     const match = html.match(faqHeadingRegex);
 
