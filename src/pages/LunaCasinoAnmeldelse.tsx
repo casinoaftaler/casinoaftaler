@@ -214,7 +214,7 @@ const LunaCasinoAnmeldelse = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Bag Luna Casino står SkillOnNet Limited, et selskab med gyldig dansk licens fra Spillemyndigheden (nr. 16-1066791) og mange års erfaring på det europæiske marked. SkillOnNet driver også{" "}
-            <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link>, hvilket vidner om et veletableret selskab med dokumenteret pålidelighed. Mens Swift Casino satser på volumen med over 3.300 spil, har Luna Casino bevidst begrænset sit katalog til nøje udvalgte titler fra premium-udbydere som{" "}
+            <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link>, hvilket vidner om et veletableret selskab med dokumenteret pålidelighed. Mens Swift Casino satser på volumen med over 3.000+ spil, har Luna Casino bevidst begrænset sit katalog til nøje udvalgte titler fra premium-udbydere som{" "}
             <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
             <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>,{" "}
             <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> og{" "}
@@ -465,7 +465,7 @@ const LunaCasinoAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Spiludvalget: Kvalitetskuratering som filosofi</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Her adskiller Luna Casino sig mest markant fra konkurrenterne. Hvor{" "}
-            <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link> (samme operatør) tilbyder 3.300+ titler og{" "}
+            <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link> (samme operatør) tilbyder 3.000+ titler og{" "}
             <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> har 2.500+, har Luna Casino bevidst valgt et mindre, kurateret katalog. Hvert spil er nøje udvalgt fra premium-udbydere:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -680,7 +680,7 @@ const LunaCasinoAnmeldelse = () => {
           </p>
           <div className="space-y-4">
             {[
-              { title: "Spillere der vil have maksimal bredde", desc: "Hvis du elsker at browse tusindvis af titler, teste obscure spiludbydere og altid have adgang til de nyeste releases, vil Luna Casinos kuraterede tilgang føles begrænsende. Overvej i stedet Swift Casino (3.300+ spil) eller Videoslots (4.000+ spil)." },
+              { title: "Spillere der vil have maksimal bredde", desc: "Hvis du elsker at browse tusindvis af titler, teste obscure spiludbydere og altid have adgang til de nyeste releases, vil Luna Casinos kuraterede tilgang føles begrænsende. Overvej i stedet Swift Casino (3.000+ spil) eller Videoslots (4.000+ spil)." },
               { title: "Spillere der prioriterer betalingsfleksibilitet", desc: "Fraværet af PayPal og Trustly er en reel ulempe. Hvis hurtige udbetalinger via e-wallets er afgørende for dig, tilbyder konkurrenter som bet365 og Unibet langt flere muligheder." },
               { title: "High-rollers med store bonusbehov", desc: "Med en maks. bonus på 500 kr. er Luna Casino ikke attraktivt for spillere der ønsker fuld bonusudnyttelse. Hos bet365 og Unibet kan du også få op til 1.000 kr. (dansk lovmæssigt maksimum) – det dobbelte af Luna." },
               { title: "Sportsbettere", desc: "Luna Casino er udelukkende et casino. Hvis du også spiller odds, skal du supplere med en separat bettingplatform – eller vælge et kombineret casino/sportsbook som bet365 eller Betinia." },
@@ -723,7 +723,7 @@ const LunaCasinoAnmeldelse = () => {
                 {[
                   { cat: "Velkomstbonus", luna: "100% op til 500 kr.", swift: "100% op til 500 kr.", bet: "100% op til 1.000 kr." },
                   { cat: "Omsætningskrav", luna: "10x (d+b)", swift: "10x (d+b)", bet: "10x (d+b)" },
-                  { cat: "Spiludvalg", luna: "Kurateret premium", swift: "3.300+ titler", bet: "2.500+ titler" },
+                  { cat: "Spiludvalg", luna: "Kurateret premium", swift: "3.000+ titler", bet: "2.500+ titler" },
                   { cat: "Live casino", luna: "Evolution", swift: "Evolution", bet: "Evolution + Playtech" },
                   { cat: "MobilePay", luna: "✓ (kun indbetaling)", swift: "✓ (kun indbetaling)", bet: "✓ (ind + ud)" },
                   { cat: "PayPal", luna: "✗", swift: "✓", bet: "✓" },
@@ -744,7 +744,7 @@ const LunaCasinoAnmeldelse = () => {
             </table>
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Luna vs. Swift Casino (søstercasinoer):</strong> Begge drives af SkillOnNet med identiske omsætningskrav og bonusmaksimum. Forskellen er filosofisk: Swift Casino satser på volumen (3.300+ spil, Hot Or Cold-funktion, flere betalingsmetoder), mens Luna Casino satser på kuratering og loyalitet. Vælg Swift hvis du vil have maksimal bredde; vælg Luna hvis du foretrækker kvalitetsfokus og et loyalitetsprogram der belønner trofasthed.
+            <strong className="text-foreground">Luna vs. Swift Casino (søstercasinoer):</strong> Begge drives af SkillOnNet med identiske omsætningskrav og bonusmaksimum. Forskellen er filosofisk: Swift Casino satser på volumen (3.000+ spil, Hot Or Cold-funktion, flere betalingsmetoder), mens Luna Casino satser på kuratering og loyalitet. Vælg Swift hvis du vil have maksimal bredde; vælg Luna hvis du foretrækker kvalitetsfokus og et loyalitetsprogram der belønner trofasthed.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Luna vs. bet365:</strong> bet365 vinder på næsten alle kvantitative parametre: højere bonus (1.000 kr.), flere spil, flere betalingsmetoder og sportsbetting. Men Luna Casinos loyalitetsprogram med stigende levels og daglige kampagner giver bedre løbende værdi for trofaste spillere. Hvis du er engangs-spiller, vælg bet365. Hvis du spiller regelmæssigt og vil belønnes for det, har Luna Casino en stærkere proposition.

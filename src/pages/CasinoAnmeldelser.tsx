@@ -727,7 +727,7 @@ const CasinoAnmeldelser = () => {
               {
                 name: "Swift Casino",
                 slug: "casino-anmeldelser/swift-casino",
-                text: "Swift Casinos Hot Or Cold-funktion er en unik innovation, der viser hvilke spilleautomater, der aktuelt udbetaler over eller under gennemsnittet. Med 3.300+ spil og en no-sticky bonus med 10x omsætning leverer platformen solid substans. Udbetalingerne er hurtige – vores test viste 4–10 timer via Trustly. Svagheden er et lidt begrænset live casino-katalog og fraværet af free spins i velkomstpakken.",
+                text: "Swift Casinos Hot Or Cold-funktion er en unik innovation, der viser hvilke spilleautomater, der aktuelt udbetaler over eller under gennemsnittet. Med 3.000+ spil og en no-sticky bonus med 10x omsætning leverer platformen solid substans. Udbetalingerne er hurtige – vores test viste 4–10 timer via Trustly. Svagheden er et lidt begrænset live casino-katalog og fraværet af free spins i velkomstpakken.",
                 partner: true,
               },
               {
