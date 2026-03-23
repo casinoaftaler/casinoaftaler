@@ -44,7 +44,7 @@ function renderWithLinks(text: string) {
           href={LINK_MAP[earliestMatch.key]}
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-white/80 transition-colors"
+          className="underline hover:text-foreground/80 transition-colors"
           aria-label={`${earliestMatch.key} – åbner i nyt vindue`}
         >
           {earliestMatch.key}
