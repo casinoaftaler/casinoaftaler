@@ -51,7 +51,7 @@ export function HomepagePaymentSection() {
 export function HomepageProviderSection() {
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold">Spiludviklere bag Online Casino-spil</h2>
+      <h2 className="mb-4 text-3xl font-bold">🎮 Spiludviklere bag Online Casino-spil</h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Kvaliteten af dit online casino afhænger i høj grad af de{" "}
         <Link to="/spiludviklere" className="text-primary hover:underline font-medium">spiludviklere</Link>
