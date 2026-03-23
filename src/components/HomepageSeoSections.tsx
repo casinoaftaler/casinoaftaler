@@ -49,7 +49,7 @@ export function HomepageSeoSections() {
 
       {/* Section 2: Hvad kendetegner det bedste online casino? */}
       <section className="mb-12">
-        <h2 className="mb-6 text-3xl font-bold">Hvad Kendetegner det Bedste Online Casino?</h2>
+        <h2 className="mb-6 text-3xl font-bold">🏅 Hvad Kendetegner det Bedste Online Casino?</h2>
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Der findes ikke ét objektivt bedste online casino – det afhænger af, hvad du prioriterer. Men der er en række faktorer, som adskiller de bedste online casinoer fra gennemsnittet. Her er de vigtigste kriterier, vi vurderer hvert spillested på:
         </p>
