@@ -585,7 +585,7 @@ const SpilleautomatenAnmeldelse = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Super Wheel og udvalgte Evolution Gaming-game shows. Et friskt supplement til slots, der giver variation uden at forlade den underholdningsfokuserede atmosfære. Perfekt til spillere, der søger et afbræk fra spins.
+                  Stakelogic Super Wheel Choice og udvalgte game shows. Et friskt supplement til slots, der giver variation uden at forlade den underholdningsfokuserede atmosfære. Perfekt til spillere, der søger et afbræk fra spins.
                 </p>
               </CardContent>
             </Card>
