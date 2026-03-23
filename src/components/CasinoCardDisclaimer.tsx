@@ -97,7 +97,7 @@ export function CasinoCardDisclaimer() {
           
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center justify-center gap-1 mx-auto mt-1 text-xs min-h-[44px] px-3 text-white/50 hover:text-white/70 transition-colors"
+            className="flex items-center justify-center gap-1 mx-auto mt-1 text-xs min-h-[44px] px-3 text-muted-foreground/70 hover:text-muted-foreground transition-colors"
           >
             {isExpanded ? 'Vis mindre' : 'Vis vilkår'}
             <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
