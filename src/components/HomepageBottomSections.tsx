@@ -24,7 +24,7 @@ import {
 export function HomepageCasinospilSection() {
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold">Casinospil – Slots, Bordspil og Live Casino</h2>
+      <h2 className="mb-4 text-3xl font-bold">🎲 Casinospil – Slots, Bordspil og Live Casino</h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Et komplet online casino tilbyder hundredvis af forskellige{" "}
         <Link to="/casinospil" className="text-primary hover:underline font-medium">casinospil</Link>
@@ -51,7 +51,7 @@ export function HomepageCasinospilSection() {
 export function HomepageAnmeldelserSection() {
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold">Casino Anmeldelser – Uafhængige og Dybdegående</h2>
+      <h2 className="mb-4 text-3xl font-bold">📝 Casino Anmeldelser – Uafhængige og Dybdegående</h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Vi anmelder hvert online casino grundigt med fokus på de faktorer, der reelt betyder noget for danske spillere. Vores anmeldelser dækker alt fra vilkår og spiludvalg til{" "}
         <Link to="/betalingsmetoder" className="text-primary hover:underline font-medium">betalingsmetoder</Link>
@@ -89,7 +89,7 @@ export function HomepageBonusHuntSection() {
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-        <Target className="h-7 w-7 text-primary" />
+        <span aria-hidden="true">🎯</span>
         Live Bonus Hunts – Dokumenterede Resultater
       </h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -149,7 +149,7 @@ export function HomepageBonusHuntSection() {
 export function HomepageNyhederSection() {
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold">Casino Nyheder</h2>
+      <h2 className="mb-4 text-3xl font-bold">📰 Casino Nyheder</h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Hold dig opdateret med de seneste nyheder, analyser og ændringer fra det danske online casino-marked. Vi dækker licensudstedelser, bonusændringer, nye lanceringer og lovgivning – alt sammen med fokus på, hvad det betyder for dig som dansk spiller.
       </p>
@@ -168,7 +168,7 @@ export function HomepageNyhederSection() {
 export function HomepageTrendsSection() {
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold">Online Casino-trends i Danmark 2026</h2>
+      <h2 className="mb-4 text-3xl font-bold">📈 Online Casino-trends i Danmark 2026</h2>
       <p className="mb-6 text-muted-foreground leading-relaxed">
         Det danske marked for online casino udvikler sig hurtigt. Her er de vigtigste trends, der former din spiloplevelse i 2026:
       </p>
@@ -208,7 +208,7 @@ export function HomepageTrendsSection() {
 export function HomepageGennemsigtighedSection() {
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold">Gennemsigtighed og Troværdighed</h2>
+      <h2 className="mb-4 text-3xl font-bold">🤝 Gennemsigtighed og Troværdighed</h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Fuld gennemsigtighed er grundlaget for alt, vi gør. Sitet er en gratis ressource, finansieret gennem affiliate-partnerskaber med udvalgte online casinoer. Når du klikker på et link og registrerer dig, modtager vi en provision – det koster dig aldrig ekstra og påvirker ikke vores vurderinger.
       </p>
@@ -229,7 +229,7 @@ export function HomepageSlotShowcase() {
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-        <Gamepad2 className="h-7 w-7 text-primary" />
+        <span aria-hidden="true">🆕</span>
         Nye Spillemaskiner 2026
       </h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -322,7 +322,7 @@ export function HomepageKonverteringsSection() {
       <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-transparent">
         <CardContent className="py-10 text-center space-y-4">
           <Search className="h-12 w-12 mx-auto text-primary" />
-          <h2 className="text-2xl md:text-3xl font-bold">Find dit Online Casino i Danmark</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">🏆 Find dit Online Casino i Danmark</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Vi har gjort forarbejdet, så du ikke behøver det. Sammenlign de bedste online casinoer med dansk licens – filtrér efter betalingsmetoder, spiludvalg og udbetalingshastighed, og find præcis det spillested, der passer til dig.
           </p>

@@ -49,7 +49,7 @@ export function WeeklyGuideRotation() {
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
-        <BookOpen className="h-5 w-5 text-primary" />
+        <span aria-hidden="true">📚</span>
         Populære Guides Denne Uge
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">

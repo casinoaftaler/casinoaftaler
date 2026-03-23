@@ -291,7 +291,7 @@ const Index = () => {
 
         {/* Sikkerhed og licens */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og Licens – Spil Trygt på Online Casino</h2>
+          <h2 className="mb-4 text-3xl font-bold">🔒 Sikkerhed og Licens – Spil Trygt på Online Casino</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Danmark har et af Europas mest strengt regulerede markeder for online casino. Spillemyndigheden udsteder licenser og fører løbende tilsyn med alle operatører, hvilket sikrer, at dit spil foregår i trygge og kontrollerede rammer. Alle online casinoer, vi anbefaler på Casinoaftaler, har gyldig dansk licens – det er vores absolutte ufravigelige krav.
           </p>

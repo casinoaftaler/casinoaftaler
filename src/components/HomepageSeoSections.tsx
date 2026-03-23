@@ -27,7 +27,7 @@ export function HomepageSeoSections() {
     <>
       {/* Section 1: Hvorfor sammenligne online casinoer? */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Hvorfor Sammenligne Online Casinoer?</h2>
+        <h2 className="mb-4 text-3xl font-bold">🔍 Hvorfor Sammenligne Online Casinoer?</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Med over 30 licenserede online casinoer i Danmark kan det være overvældende at finde det rette spillested. Hvert online casino har sine styrker og svagheder – fra spiludvalg og udbetalingshastighed til kundeservice og mobiloplevelse. Derfor er en grundig sammenligning afgørende, før du opretter en konto og indbetaler penge.
         </p>
@@ -49,7 +49,7 @@ export function HomepageSeoSections() {
 
       {/* Section 2: Hvad kendetegner det bedste online casino? */}
       <section className="mb-12">
-        <h2 className="mb-6 text-3xl font-bold">Hvad Kendetegner det Bedste Online Casino?</h2>
+        <h2 className="mb-6 text-3xl font-bold">🏅 Hvad Kendetegner det Bedste Online Casino?</h2>
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Der findes ikke ét objektivt bedste online casino – det afhænger af, hvad du prioriterer. Men der er en række faktorer, som adskiller de bedste online casinoer fra gennemsnittet. Her er de vigtigste kriterier, vi vurderer hvert spillested på:
         </p>
@@ -80,7 +80,7 @@ export function HomepageSeoSections() {
 
       {/* Section 3: Nye online casinoer i Danmark */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Nye Online Casinoer i Danmark 2026</h2>
+        <h2 className="mb-4 text-3xl font-bold">🆕 Nye Online Casinoer i Danmark 2026</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Det danske marked for online casino byder løbende på nye spillesteder, og 2026 er ingen undtagelse. Nye online casinoer bringer ofte innovativt design, hurtigere betalingsløsninger og konkurrencedygtige tilbud for at tiltrække spillere fra de etablerede platforme.
         </p>
@@ -105,7 +105,7 @@ export function HomepageSeoSections() {
 
       {/* Section 4: Bonusser og kampagner */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Bonusser og Kampagner hos Online Casinoer</h2>
+        <h2 className="mb-4 text-3xl font-bold">🎁 Bonusser og Kampagner hos Online Casinoer</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           De fleste online casinoer tilbyder en form for velkomstpakke til nye spillere. Det kan være en matchbonus, free spins eller begge dele. Bonussen er dog kun én af mange faktorer, du bør overveje, når du vælger online casino – spiludvalg, udbetalingshastighed og vilkår er mindst lige så vigtige.
         </p>

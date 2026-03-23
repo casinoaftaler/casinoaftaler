@@ -55,7 +55,7 @@ export function HomepagePopularSlots() {
   return (
     <section className="container py-8 md:py-12">
       <h2 className="mb-2 text-2xl font-bold flex items-center gap-2">
-        <TrendingUp className="h-6 w-6 text-primary" />
+        <span aria-hidden="true">🔥</span>
         Populære Spillemaskiner
       </h2>
       <p className="mb-6 text-muted-foreground">

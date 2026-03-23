@@ -38,7 +38,7 @@ export function PopularReviewsSection() {
 
   return (
     <section className="mb-12" style={{ minHeight: '280px' }}>
-      <h2 className="mb-4 text-3xl font-bold">Populære Casino Anmeldelser</h2>
+      <h2 className="mb-4 text-3xl font-bold">⭐ Populære Casino Anmeldelser</h2>
       <p className="mb-6 text-muted-foreground leading-relaxed">
         Læs vores dybdegående og uafhængige anmeldelser af de mest populære danske online casinoer. Hver anmeldelse dækker bonus, spiludvalg, betalingsmetoder og vores ekspertvurdering.
       </p>
