@@ -332,6 +332,11 @@ const BetiniaAnmeldelse = () => {
               </div>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/login-mitid.webp"
+            alt="Betinia login-dialog med MitID-verifikation for sikker adgang"
+            caption="Login hos Betinia sker via MitID – hurtigt, sikkert og uden manuel verifikation."
+          />
         </section>
 
         <Separator className="my-10" />
