@@ -451,6 +451,11 @@ const CampobetAnmeldelse = () => {
               </Card>
             ))}
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/trofaesamlingen.webp"
+            alt="Campobet Trofæsamlingen med Europa, Football, Tennis og Hockey trofæer og bonuspræmier"
+            caption="Campobets unikke Trofæsamling – saml kort og vind kontante præmier op til 200 kr. pr. kollektion."
+          />
         </section>
 
         <Separator className="my-10" />
