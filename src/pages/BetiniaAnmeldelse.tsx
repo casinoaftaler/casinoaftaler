@@ -708,6 +708,11 @@ const BetiniaAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Blackjack-udvalget inkluderer Standard, Infinite, Speed, VIP og Lightning-varianter med indsatser fra 25 kr. til over 50.000 kr. pr. hånd. Vi oplevede ingen ventekøer under testperioden – selv ikke fredag aften kl. 21:00, hvilket tyder på tilstrækkelig bordkapacitet. Roulette-sektionen omfatter European, French, Auto, Speed og Lightning Roulette med multipliers op til 500x.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/live-casino.webp"
+            alt="Betinia live casino med Speed Roulette, Lightning Baccarat og blackjack-varianter fra Evolution Gaming"
+            caption="Betinias live casino-sektion med 195+ borde – inkl. Dansk Roulette, Lightning Baccarat og 146 blackjack-varianter."
+          />
         </section>
 
         <Separator className="my-10" />
