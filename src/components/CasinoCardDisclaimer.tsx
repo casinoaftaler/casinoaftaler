@@ -44,7 +44,7 @@ function renderWithLinks(text: string) {
           href={LINK_MAP[earliestMatch.key]}
           target="_blank"
           rel="noopener noreferrer"
-          className="underline hover:text-white/80 transition-colors"
+          className="underline hover:text-foreground/80 transition-colors"
           aria-label={`${earliestMatch.key} – åbner i nyt vindue`}
         >
           {earliestMatch.key}
@@ -76,7 +76,7 @@ export function CasinoCardDisclaimer() {
   const hasRemainingContent = detailedText.length > 0;
 
   return (
-    <div className="text-[11px] text-white/70 text-center leading-snug">
+    <div className="text-[11px] text-muted-foreground text-center leading-snug">
       {/* Header line with pipe separators - shown as a single flowing line */}
       <p className="leading-tight">
         {renderWithLinks(headerLine)}
@@ -97,7 +97,7 @@ export function CasinoCardDisclaimer() {
           
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center justify-center gap-1 mx-auto mt-1 text-xs min-h-[44px] px-3 text-white/50 hover:text-white/70 transition-colors"
+            className="flex items-center justify-center gap-1 mx-auto mt-1 text-xs min-h-[44px] px-3 text-muted-foreground/70 hover:text-muted-foreground transition-colors"
           >
             {isExpanded ? 'Vis mindre' : 'Vis vilkår'}
             <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />

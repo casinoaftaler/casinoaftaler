@@ -24,7 +24,7 @@ export const SourceCitations = forwardRef<HTMLElement>(function SourceCitations(
           <span>
             Licensoplysninger verificeret via{" "}
             <a
-              href="https://www.spillemyndigheden.dk/tilladelser/tilladelsesindehavere"
+              href="https://www.spillemyndigheden.dk/tilladelsesindehavere"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary underline hover:text-primary/80"
