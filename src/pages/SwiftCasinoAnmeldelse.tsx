@@ -327,6 +327,11 @@ const SwiftCasinoAnmeldelse = () => {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/login-mitid.webp?v=20260323-swift-fix"
+            alt="Swift Casino registrering med MitID-godkendelse og notifikations-popup"
+            caption="Registreringsprocessen hos Swift Casino med digital identitetsgodkendelse via MitID."
+          />
         </section>
 
         <Separator className="my-10" />
