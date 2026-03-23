@@ -40,7 +40,11 @@ const CasinoNyhedArticle = () => {
   const { contentWithoutFaq, faqs } = useMemo(() => {
     if (!article?.content) return { contentWithoutFaq: "", faqs: [] };
 
-    const html = article.content;
+    let html = article.content;
+
+    // Strip injected enterprise news links section from DB content
+    html = html.replace(/<section data-enterprise-news-links="true">[\s\S]*?<\/section>/gi, "");
+
     const faqHeadingRegex = /<h2[^>]*>\s*FAQ\s*<\/h2>/i;
     const match = html.match(faqHeadingRegex);
 
