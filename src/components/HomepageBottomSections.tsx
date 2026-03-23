@@ -322,7 +322,7 @@ export function HomepageKonverteringsSection() {
       <Card className="border-primary/30 bg-gradient-to-br from-primary/5 to-transparent">
         <CardContent className="py-10 text-center space-y-4">
           <Search className="h-12 w-12 mx-auto text-primary" />
-          <h2 className="text-2xl md:text-3xl font-bold">Find dit Online Casino i Danmark</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">🏆 Find dit Online Casino i Danmark</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Vi har gjort forarbejdet, så du ikke behøver det. Sammenlign de bedste online casinoer med dansk licens – filtrér efter betalingsmetoder, spiludvalg og udbetalingshastighed, og find præcis det spillested, der passer til dig.
           </p>
