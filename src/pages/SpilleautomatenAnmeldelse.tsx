@@ -571,7 +571,7 @@ const SpilleautomatenAnmeldelse = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Kompakt men funktionelt live casino fra Evolution Gaming. European Roulette Pro, Super Stake Blackjack og Speed Baccarat med professionelle dealere. Indsatser fra 10 kr. Streaming i HD uden buffering. Under løbende udvidelse.
+                  Kompakt men funktionelt live casino fra Stakelogic Live. American Blackjack, European Roulette Glam, Super Stake Roulette og Vegas Drops Roulette med professionelle dealere. Indsatser fra 10 kr. Streaming i HD uden buffering. Under løbende udvidelse.
                 </p>
               </CardContent>
             </Card>
