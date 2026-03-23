@@ -105,7 +105,7 @@ export function HomepageSeoSections() {
 
       {/* Section 4: Bonusser og kampagner */}
       <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Bonusser og Kampagner hos Online Casinoer</h2>
+        <h2 className="mb-4 text-3xl font-bold">🎁 Bonusser og Kampagner hos Online Casinoer</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           De fleste online casinoer tilbyder en form for velkomstpakke til nye spillere. Det kan være en matchbonus, free spins eller begge dele. Bonussen er dog kun én af mange faktorer, du bør overveje, når du vælger online casino – spiludvalg, udbetalingshastighed og vilkår er mindst lige så vigtige.
         </p>
