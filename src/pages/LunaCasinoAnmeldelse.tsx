@@ -680,7 +680,7 @@ const LunaCasinoAnmeldelse = () => {
           </p>
           <div className="space-y-4">
             {[
-              { title: "Spillere der vil have maksimal bredde", desc: "Hvis du elsker at browse tusindvis af titler, teste obscure spiludbydere og altid have adgang til de nyeste releases, vil Luna Casinos kuraterede tilgang føles begrænsende. Overvej i stedet Swift Casino (2.500+ spil) eller Videoslots (2.500+ spil)." },
+              { title: "Spillere der vil have maksimal bredde", desc: "Hvis du elsker at browse tusindvis af titler, teste obscure spiludbydere og altid have adgang til de nyeste releases, vil Luna Casinos kuraterede tilgang føles begrænsende. Overvej i stedet Swift Casino (2.500+ spil) eller Videoslots (5.000+ spil)." },
               { title: "Spillere der prioriterer betalingsfleksibilitet", desc: "Fraværet af PayPal og Trustly er en reel ulempe. Hvis hurtige udbetalinger via e-wallets er afgørende for dig, tilbyder konkurrenter som bet365 og Unibet langt flere muligheder." },
               { title: "High-rollers med store bonusbehov", desc: "Med en maks. bonus på 500 kr. er Luna Casino ikke attraktivt for spillere der ønsker fuld bonusudnyttelse. Hos bet365 og Unibet kan du også få op til 1.000 kr. (dansk lovmæssigt maksimum) – det dobbelte af Luna." },
               { title: "Sportsbettere", desc: "Luna Casino er udelukkende et casino. Hvis du også spiller odds, skal du supplere med en separat bettingplatform – eller vælge et kombineret casino/sportsbook som bet365 eller Betinia." },

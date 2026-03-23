@@ -425,7 +425,7 @@ const CampobetAnmeldelse = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: Gamepad2, title: "Spilleautomater", desc: "2.500+ titler fra Pragmatic Play, Hacksaw, Nolimit City, NetEnt, Red Tiger, Big Time Gaming, Yggdrasil m.fl." },
+              { icon: Gamepad2, title: "Spilleautomater", desc: "2.000+ titler fra Pragmatic Play, Hacksaw, Nolimit City, NetEnt, Red Tiger, Big Time Gaming, Yggdrasil m.fl." },
               { icon: Trophy, title: "Bordspil", desc: "~100 RNG-bordspil: roulette, blackjack, baccarat, video poker, Sic Bo, Casino Hold'em i multiple varianter." },
               { icon: Sparkles, title: "Live Casino", desc: "~100 borde via Evolution Gaming: Speed/Lightning blackjack, roulette, baccarat, Crazy Time, Dream Catcher." },
               { icon: Globe, title: "Sportsbetting", desc: "~40 sportsgrene: fodbold, håndbold, tennis, basketball, ishockey, e-sport. Pre-match, live og Bet Builder." },
