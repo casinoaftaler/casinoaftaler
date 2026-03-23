@@ -568,6 +568,11 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Anbefalede live-spil:</strong> Lightning Roulette (RTP 97,3 %) – hurtige runder med multiplikatorer op til 500x. Blackjack VIP (RTP 99,29 %) – for spillere med højere indsatser. Crazy Time – game show-format med fire bonusrunder og maks. gevinst på 25.000x.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/live-casino.webp"
+            alt="Swift Casino live casino med blackjack, roulette og game shows fra Playtech og Evolution"
+            caption="Swift Casinos live casino-sektion med populære bordspil og eksklusive borde."
+          />
         </section>
 
         <Separator className="my-10" />
