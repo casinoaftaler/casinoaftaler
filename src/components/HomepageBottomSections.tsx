@@ -89,7 +89,7 @@ export function HomepageBonusHuntSection() {
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-        <Target className="h-7 w-7 text-primary" />
+        <span aria-hidden="true">🎯</span>
         Live Bonus Hunts – Dokumenterede Resultater
       </h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
