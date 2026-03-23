@@ -1,31 +1,36 @@
 
 
-## Plan: Indsæt Screenshots i Spilleautomaten-anmeldelsen
+## Plan: Indsæt 6 Screenshots i Betinia-anmeldelsen + Fix Build Errors
 
-### Hvad der sker
-De 6 uploadede screenshots placeres kontekstuelt i anmeldelsen ved hjælp af den eksisterende `ReviewScreenshot`-komponent. Billederne konverteres til WebP, komprimeres til under 150KB og uploades til storage.
+### Opgave 1: Fix build errors i Casinostuen og Kapow
+Undersøg og fix de rapporterede TSX-fejl. Linjerne ser korrekte ud i nuværende kode – dette kan være stale errors, men vi verificerer og fikser hvis nødvendigt.
 
-### Billedplacering (baseret på screenshots)
+### Opgave 2: Upload og indsæt 6 Betinia-screenshots
 
-| # | Screenshot | Placering i artiklen | Alt-tekst |
-|---|-----------|----------------------|-----------|
-| 1 | **Lobby/Forside** | Efter intro-sektionen (linje ~223, efter video-boksen) | "Spilleautomaten lobby med populære spilleautomater og kategorinavigation" |
-| 2 | **Præmieshop/Rewards** | I Præmieshop-sektionen (linje ~504, efter feature-grid) | "Spilleautomaten Præmieshop med loyalitetspoints og kontante præmier" |
-| 3 | **Live Casino** | I spiludvalg-sektionen (linje ~571, efter spilkort-grid) | "Spilleautomaten live casino med Evolution Gaming-borde" |
-| 4 | **Bonus/Kampagner** | I bonus-sektionen (linje ~416, efter bonusmatematik) | "Spilleautomaten bonusaktivering med VELKOMMEN-koder" |
-| 5 | **Betalingsmetoder** | I betalings-sektionen (linje ~613, efter tabellen) | "Spilleautomaten betalingsmetoder med MobilePay og Trustly" |
-| 6 | **Login/Registrering** | I 14-dages test-sektionen (linje ~258, efter testlog) | "Spilleautomaten login via MitID-verifikation" |
+**Billedbehandling:**
+- Konverter alle 6 billeder til WebP (allerede WebP/PNG)
+- Komprimer til under 150KB
+- Upload til storage: `news-images/reviews/betinia/`
 
-### Teknisk flow
+**Placering i artiklen:**
 
-1. **Konverter + komprimer**: Kør ImageMagick-script på de 6 uploadede billeder → WebP, max 150KB
-2. **Upload til storage**: `news-images/reviews/spilleautomaten/` bucket
-3. **Indsæt `<ReviewScreenshot>`**: 6 steder i `SpilleautomatenAnmeldelse.tsx` med unikke alt-tekster og captions
-4. **Første billede**: `eager={true}` (lobby-screenshot, tættest på top)
+| # | Screenshot | Sektion | Placering (efter linje) | Alt-tekst |
+|---|-----------|---------|------------------------|-----------|
+| 1 | Lobby/Forside | Intro-sektion | ~292, efter video-boksen | "Betinia casino forside med populære spilleautomater, anbefalede spil og sportsbegivenheder" |
+| 2 | Login/MitID | 14-dages test | ~327, efter testlog-card | "Betinia login-dialog med MitID-verifikation for sikker adgang" |
+| 3 | Betinia Points | Bonus-sektion | ~502, efter bonusmatematik | "Betinia loyalitetspoint – tjen points ved indskud og spil" |
+| 4 | Live Casino | Live casino-sektion | ~693, efter live casino tekst | "Betinia live casino med Speed Roulette, Lightning Baccarat og blackjack-varianter fra Evolution Gaming" |
+| 5 | Betalingsmetoder | Betalings-sektion | ~758, efter betalingstabel | "Betinia betalingsmetoder med MobilePay, Visa, Mastercard og Trustly" |
+| 6 | Mobilapp | Mobil-sektion | ~709, efter mobiltekst | "Betinia mobilapp-side med QR-kode download og sponsorater" |
 
-### Fil der ændres
-- `src/pages/SpilleautomatenAnmeldelse.tsx` — tilføj import + 6 `<ReviewScreenshot>` indsættelser
+### Teknisk implementation
+- Import `ReviewScreenshot` component
+- Screenshot #1 (lobby): `eager={true}` (tættest på top)
+- Alle andre: default `lazy` loading
+- Captions på dansk der beskriver hvad billedet viser
 
-### Ingen visuel påvirkning uden billeder
-Komponenten viser kun noget når `src` peger på et eksisterende billede. Ingen layout-ændringer uden data.
+### Filer der ændres
+- `src/pages/BetiniaAnmeldelse.tsx` — tilføj import + 6 `<ReviewScreenshot>`
+- `src/pages/CasinostuenAnmeldelse.tsx` — fix build error (hvis stadig relevant)
+- `src/pages/KapowCasinoAnmeldelse.tsx` — fix build error (hvis stadig relevant)
 
