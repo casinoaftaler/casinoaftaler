@@ -245,7 +245,7 @@ const SpilleautomatenAnmeldelse = () => {
                   { day: "Dag 1", title: "Registrering + VELKOMMEN1", desc: "MitID-registrering afsluttet på 3 minutter. Indbetalte 200 kr. med kode VELKOMMEN1 – 200 kr. bonus krediteret øjeblikkeligt. Satte indbetalingsgrænser som lovkrævet. Spillede 150 spins på Fire Joker (RTP 96,15%). Saldo efter dag 1: 287 kr. egne + 200 kr. bonus." },
                   { day: "Dag 2–3", title: "VELKOMMEN2 + VELKOMMEN3", desc: "Indbetalte 200 kr. pr. dag med respektive koder. Testede Sweet Bonanza 1000 (RTP 96,48%) og Legacy of Dead (RTP 96,58%). Begyndte at akkumulere loyalitetspoints – 40 kr. omsat = 8 points pr. dag 2. Præmieshoppen synlig i menuen med tilgængelige indløsningsniveauer." },
                   { day: "Dag 4–5", title: "VELKOMMEN4 + VELKOMMEN5 – fuld bonus", desc: "Afsluttede 5-dages bonusforløbet med samlet indbetaling: 1.000 kr. og 1.000 kr. bonus. Den trinvise tilgang føltes tryg – vi vidste allerede, at casinoet fungerede, før vi committede de sidste 400 kr. Total omsætningskrav: 2.000 × 10 = 20.000 kr. inden for 60 dage." },
-                  { day: "Dag 6–9", title: "Spiludvalg og RTP-analyse", desc: "Systematisk test af 35 spilleautomater fra 10 forskellige udbydere. Hacksaw Gaming og Nolimit City havde de mest volatilte titler. Play'n GO's Book of Dead og Pragmatic Plays Gates of Olympus var de mest populære baseret på placering i lobbyen. Live casino-sektionen testet: kompakt men funktionel med Evolution Gaming." },
+                  { day: "Dag 6–9", title: "Spiludvalg og RTP-analyse", desc: "Systematisk test af 35 spilleautomater fra 10 forskellige udbydere. Hacksaw Gaming og Nolimit City havde de mest volatilte titler. Play'n GO's Book of Dead og Pragmatic Plays Gates of Olympus var de mest populære baseret på placering i lobbyen. Live casino-sektionen testet: kompakt men funktionel med Stakelogic Live." },
                   { day: "Dag 10–12", title: "Præmieshop-test + udbetalinger", desc: "Akkumulerede 847 loyalitetspoints over 12 dage. Indløste 500 points til 25 kr. kontant bonusmidler i Præmieshoppen – processen var simpel og øjeblikkelig. Udbetalingstest: MobilePay (anmodning kl. 11:00, modtaget kl. 13:15 – 2 t 15 min), Trustly (anmodning kl. 09:30, modtaget kl. 12:45 – 3 t 15 min), Visa (1,5 bankdage)." },
                   { day: "Dag 13–14", title: "Kundeservice og omsætningsafslutning", desc: "Kontaktede kundeservice 4 gange via live chat. Gns. svartid: 1 min. 50 sek. Dansk support, kompetente svar. Gennemspillede bonusomsætning (20.000 kr. nået dag 13). Resterende bonussaldo: 210 kr. – hævet direkte. Samlede loyalitetspoints efter 14 dage: 1.247." },
                 ].map((item) => (
@@ -541,8 +541,7 @@ const SpilleautomatenAnmeldelse = () => {
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Den bevidste fraværelse af digitale RNG-bordspil (roulette, blackjack i software-version) er et strategisk valg. I stedet kanaliseres bordspil-energien ind i{" "}
-            <Link to="/live-casino" className={linkClass}>live casino-sektionen</Link>, der drives af{" "}
-            <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> med professionelle dealere. Det er kompakt men funktionelt: European Roulette, Super Stake Blackjack, Speed Baccarat og et par game shows. Sektionen er under løbende udvidelse.
+            <Link to="/live-casino" className={linkClass}>live casino-sektionen</Link>, der drives af Stakelogic Live med professionelle dealere. Det er kompakt men funktionelt: American Blackjack, European Roulette Glam, Super Stake Roulette, Vegas Drops Roulette og et par game shows. Sektionen er under løbende udvidelse.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -572,7 +571,7 @@ const SpilleautomatenAnmeldelse = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Kompakt men funktionelt live casino fra Evolution Gaming. European Roulette Pro, Super Stake Blackjack og Speed Baccarat med professionelle dealere. Indsatser fra 10 kr. Streaming i HD uden buffering. Under løbende udvidelse.
+                  Kompakt men funktionelt live casino fra Stakelogic Live. American Blackjack, European Roulette Glam, Super Stake Roulette og Vegas Drops Roulette med professionelle dealere. Indsatser fra 10 kr. Streaming i HD uden buffering. Under løbende udvidelse.
                 </p>
               </CardContent>
             </Card>
@@ -586,15 +585,15 @@ const SpilleautomatenAnmeldelse = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Super Wheel og udvalgte Evolution Gaming-game shows. Et friskt supplement til slots, der giver variation uden at forlade den underholdningsfokuserede atmosfære. Perfekt til spillere, der søger et afbræk fra spins.
+                  Stakelogic Super Wheel Choice og udvalgte game shows. Et friskt supplement til slots, der giver variation uden at forlade den underholdningsfokuserede atmosfære. Perfekt til spillere, der søger et afbræk fra spins.
                 </p>
               </CardContent>
             </Card>
           </div>
           <ReviewScreenshot
             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/livecasino.webp"
-            alt="Spilleautomaten live casino med American Blackjack, European Roulette og Vegas Drops Roulette"
-            caption="Live casino-sektionen med blackjack- og rouletteborde fra Evolution Gaming."
+            alt="Spilleautomaten live casino med American Blackjack, European Roulette Glam og Vegas Drops Roulette fra Stakelogic Live"
+            caption="Live casino-sektionen med blackjack- og rouletteborde fra Stakelogic Live."
           />
         </section>
 
