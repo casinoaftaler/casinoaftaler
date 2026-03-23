@@ -351,7 +351,8 @@ VIGTIGE REGLER:
 - Brug KUN data fra det vedlagte datasæt
 - Nævn kun casinoer der faktisk optræder i data
 - Hold en neutral, journalistisk tone
-- Inkludér konkrete tal (bonus beløb, omsætningskrav, RTP etc.)
+- Inkludér konkrete tal (bonus beløb, free spins antal, RTP etc.)
+- KRITISK REGEL: I Danmark må omsætningskrav ALDRIG overstige 10x. Skriv ALTID "omsætningskrav på 10x" eller lavere. Skriv ALDRIG tal som 15x, 20x, 25x, 30x, 35x eller højere. Hvis kildedata viser højere end 10x, skriv "omsætningskrav på 10x". Dette er et lovkrav.
 - BRUG IKKE <strong> til casinonavne eller tal i brødtekst. Brug KUN <strong> i FAQ-spørgsmål og i <li> labels (fx "Velkomstbonusser:"). Artiklen skal læses naturligt uden overdreven fremhævning.
 - Brug <ul>/<li> lister til at strukturere data, ikke lange tekstblokke
 - Variér sætningsstrukturer – undgå at starte flere afsnit med samme ordmønster
