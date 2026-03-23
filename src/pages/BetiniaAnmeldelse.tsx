@@ -34,6 +34,7 @@ import {
   ThumbsUp, ThumbsDown, MessageSquare, Mail,
 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
