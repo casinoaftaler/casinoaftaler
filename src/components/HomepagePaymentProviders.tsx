@@ -5,7 +5,7 @@ import { CreditCard, Gamepad2 } from "lucide-react";
 export function HomepagePaymentSection() {
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder på Danske Online Casinoer</h2>
+      <h2 className="mb-4 text-3xl font-bold">💳 Betalingsmetoder på Danske Online Casinoer</h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
         Valget af betalingsmetode påvirker din samlede oplevelse på et online casino. Hurtige ind- og udbetalinger er afgørende, og i 2026 har danske spillere adgang til et bredt udvalg af sikre løsninger. Vi har testet og gennemgået alle de mest populære metoder i vores{" "}
         <Link to="/betalingsmetoder" className="text-primary hover:underline font-medium">komplette guide til betalingsmetoder</Link>.
