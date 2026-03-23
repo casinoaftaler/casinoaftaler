@@ -667,7 +667,7 @@ const NoStickyBonus = () => {
               {
                 name: "Swift Casino",
                 slug: "swift-casino-anmeldelse",
-                text: "Swift Casinos Hot Or Cold-funktion er unik i det danske marked – den viser hvilke spilleautomater, der aktuelt udbetaler over eller under gennemsnittet. Kombineret med en No-Sticky velkomstbonus med 10x omsætning, giver dette informerede spillere et ekstra værktøj til at optimere spilvalget under omsætning. 3.000+ spiltitler sikrer bredde, men live casino-kataloget er mindre dybdegående end de bedste konkurrenter.",
+                text: "Swift Casinos Hot Or Cold-funktion er unik i det danske marked – den viser hvilke spilleautomater, der aktuelt udbetaler over eller under gennemsnittet. Kombineret med en No-Sticky velkomstbonus med 10x omsætning, giver dette informerede spillere et ekstra værktøj til at optimere spilvalget under omsætning. 2.500+ spiltitler sikrer bredde, men live casino-kataloget er mindre dybdegående end de bedste konkurrenter.",
               },
               {
                 name: "Luna Casino",

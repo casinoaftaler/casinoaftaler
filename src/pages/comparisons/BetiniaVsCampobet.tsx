@@ -38,12 +38,12 @@ const casinoB: ComparisonCasino = {
   wagering: "10x (d+b)",
   minDeposit: "100 kr.",
   payoutTime: "1–3 hverdage",
-  gameCount: "3.000+ spil",
+  gameCount: "2.500+ spil",
   license: "Multi-licenseret",
   mobileFriendly: true,
   liveCasino: true,
   pros: [
-    "3.000+ spil og meget bred udviklerdækning",
+    "2.500+ spil og meget bred udviklerdækning",
     "No-Sticky bonus kombineret med sportssektion",
     "Bet Builder, livebetting og ugentlige reloads",
     "Meget bred betalingstack",
@@ -69,7 +69,7 @@ const categories: ComparisonCategory[] = [
   {
     label: "Casino-dybde",
     casinoA: { score: 4, detail: "Mange udbydere og stærk bredde" },
-    casinoB: { score: 5, detail: "3.000+ spil og meget bred dækning" },
+    casinoB: { score: 5, detail: "2.500+ spil og meget bred dækning" },
   },
   {
     label: "Live casino",
@@ -117,7 +117,7 @@ const faqs = [
   },
   {
     question: "Hvem har flest spil – Betinia eller Campobet?",
-    answer: "Campobet er stærkest på ren volumen. Platformen profilerer sig på 3.000+ spil og et meget bredt udvalg af udbydere. Betinia er også bred, men den klareste styrke ligger mere i den samlede kombination af bonus, sport og live casino end i ren katalogstørrelse.",
+    answer: "Campobet er stærkest på ren volumen. Platformen profilerer sig på 2.500+ spil og et meget bredt udvalg af udbydere. Betinia er også bred, men den klareste styrke ligger mere i den samlede kombination af bonus, sport og live casino end i ren katalogstørrelse.",
   },
   {
     question: "Er Betinia og Campobet lovlige i Danmark?",
@@ -199,7 +199,7 @@ export default function BetiniaVsCampobet() {
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Casino-katalog, live-tyngde og browsingadfærd</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Campobet er meget stærk på ren katalogmasse med 3.000+ spil og høj udbyderdækning. For spillere der elsker at browse bredt, jage nye titler og konstant skifte kategori, er det en klar fordel. Den type bruger får reelt mere eksplorativ værdi ud af Campobet.
+          Campobet er meget stærk på ren katalogmasse med 2.500+ spil og høj udbyderdækning. For spillere der elsker at browse bredt, jage nye titler og konstant skifte kategori, er det en klar fordel. Den type bruger får reelt mere eksplorativ værdi ud af Campobet.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Betinia er stadig bred, men føles ofte mere prioriteret i hvordan casino og live præsenteres i relation til sportsbooken. For spillere der vil have hurtig retning frem for maksimal mængde, kan dette give lavere friktion pr. session.

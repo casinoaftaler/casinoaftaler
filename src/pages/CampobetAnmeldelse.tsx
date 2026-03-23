@@ -417,7 +417,7 @@ const CampobetAnmeldelse = () => {
 
         {/* Spiludvalg dybdegående */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">3.000+ spil fra 43 udbydere – En teknisk gennemgang</h2>
+          <h2 className="mb-4 text-3xl font-bold">2.500+ spil fra 43 udbydere – En teknisk gennemgang</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Campobets spiludvalg er bygget på bredde og dybde. Med over 3.000 casinospil fra 43 forskellige <Link to="/spiludviklere" className={linkClass}>spiludbydere</Link> er det et af de mest omfattende kataloger tilgængelige for danske spillere. Udvalget spænder fra high-volatility spilleautomater fra <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> til klassiske low-volatility titler fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> og <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Spilleautomaterne udgør naturligvis størstedelen af kataloget med tusindvis af titler fordelt på alle tænkelige kategorier: megaways, cluster pays, bonus buy, hold & win, cascading reels og klassiske 3-hjuls maskiner. Vi bemærkede, at nye titler typisk er tilgængelige inden for 1-2 uger efter global lancering, hvilket er hurtigere end gennemsnittet for danske casinoer. Populære titler som Sugar Rush 1000, Gates of Olympus 1000, Wanted Dead or a Wild og Mental er alle tilgængelige.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Bordspilssektionen er overraskende dyb med næsten 100 digitale bordspil. Her finder du europæisk, fransk og amerikansk roulette, multiple blackjack-varianter (inkl. Single Deck og Multi-Hand), baccarat, video poker i over 20 varianter samt specialspil som Sic Bo og Casino Hold'em. Det er et udvalg der overgår de fleste dedikerede casino-platforme.</p>
@@ -425,7 +425,7 @@ const CampobetAnmeldelse = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: Gamepad2, title: "Spilleautomater", desc: "3.000+ titler fra Pragmatic Play, Hacksaw, Nolimit City, NetEnt, Red Tiger, Big Time Gaming, Yggdrasil m.fl." },
+              { icon: Gamepad2, title: "Spilleautomater", desc: "2.500+ titler fra Pragmatic Play, Hacksaw, Nolimit City, NetEnt, Red Tiger, Big Time Gaming, Yggdrasil m.fl." },
               { icon: Trophy, title: "Bordspil", desc: "~100 RNG-bordspil: roulette, blackjack, baccarat, video poker, Sic Bo, Casino Hold'em i multiple varianter." },
               { icon: Sparkles, title: "Live Casino", desc: "~100 borde via Evolution Gaming: Speed/Lightning blackjack, roulette, baccarat, Crazy Time, Dream Catcher." },
               { icon: Globe, title: "Sportsbetting", desc: "~40 sportsgrene: fodbold, håndbold, tennis, basketball, ishockey, e-sport. Pre-match, live og Bet Builder." },

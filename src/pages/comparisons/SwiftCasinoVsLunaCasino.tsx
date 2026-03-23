@@ -13,12 +13,12 @@ const casinoA: ComparisonCasino = {
   wagering: "10x (d+b)",
   minDeposit: "100 kr.",
   payoutTime: "Op til 24 timer",
-  gameCount: "3.000+ spil",
+  gameCount: "2.500+ spil",
   license: "Dansk licens",
   mobileFriendly: true,
   liveCasino: true,
   pros: [
-    "3.000+ spil og meget bred platform",
+    "2.500+ spil og meget bred platform",
     "Hot Or Cold-funktion giver ekstra transparens",
     "Stærk betalingsbredde med PayPal og Trustly",
     "God blanding af slots, live og klassiske bordspil",
@@ -63,7 +63,7 @@ const categories: ComparisonCategory[] = [
   },
   {
     label: "Spiludvalg",
-    casinoA: { score: 5, detail: "3.000+ spil og høj volumen" },
+    casinoA: { score: 5, detail: "2.500+ spil og høj volumen" },
     casinoB: { score: 3, detail: "Kurateret frem for bredt" },
   },
   {
@@ -101,7 +101,7 @@ const categories: ComparisonCategory[] = [
 const faqs = [
   {
     question: "Hvad er den største forskel på Swift Casino og Luna Casino?",
-    answer: "Den største forskel er filosofi. Swift Casino vinder på bredde, data og volumen med 3.000+ spil og Hot Or Cold-funktionen. Luna Casino vinder på fokus, kuratering og et mere roligt miljø med stærkere loyalitetsprofil og daglige kampagner.",
+    answer: "Den største forskel er filosofi. Swift Casino vinder på bredde, data og volumen med 2.500+ spil og Hot Or Cold-funktionen. Luna Casino vinder på fokus, kuratering og et mere roligt miljø med stærkere loyalitetsprofil og daglige kampagner.",
   },
   {
     question: "Har Swift Casino og Luna Casino samme bonus?",
@@ -186,7 +186,7 @@ export default function SwiftCasinoVsLunaCasino() {
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Swift Casino: volumen, data og explorativ styrke</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Swift Casinos største styrke er katalogdybden. Med 3.000+ spil har platformen volumen til at understøtte næsten enhver sessionsstrategi, fra klassiske slots til nicheprægede titler og hyppige skift mellem kategorier. For erfarne spillere, der bevidst bruger tid på at opdage nye titler, er dette en markant fordel.
+          Swift Casinos største styrke er katalogdybden. Med 2.500+ spil har platformen volumen til at understøtte næsten enhver sessionsstrategi, fra klassiske slots til nicheprægede titler og hyppige skift mellem kategorier. For erfarne spillere, der bevidst bruger tid på at opdage nye titler, er dette en markant fordel.
         </p>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Den dataorienterede profil understøttes af funktioner som Hot Or Cold, der giver brugeren en oplevelse af højere informationskontrol i browsingfasen. Selvom sådanne indikatorer ikke ændrer den grundlæggende RNG-logik, ændrer de adfærden: spilleren får en tydeligere prioritering i store kataloger og kan træffe hurtigere valg.
