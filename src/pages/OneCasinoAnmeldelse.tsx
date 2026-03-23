@@ -269,7 +269,7 @@ const OneCasinoAnmeldelse = () => {
                     "Enkel, ukompliceret brugerflade uden distraktioner",
                     "Dansk licens fra Spillemyndigheden + ROFUS-tilslutning",
                     "Standard omsætningskrav på 10x (dansk standard)",
-                    "Solide core-udbydere (NetEnt, Play'n GO, Evolution)",
+                    "Solide core-udbydere (NetEnt, Play'n GO, Pragmatic Play)",
                     "Hurtig mobiloplevelse med responsivt design",
                     "Dobbelt velkomsttilbud (gratis + matchbonus)",
                     "Fejlfri platformsstabilitet i hele testperioden",
