@@ -512,6 +512,11 @@ const BetiniaAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/betinia-points.webp"
+            alt="Betinia loyalitetspoint – tjen points ved indskud og spil"
+            caption="Tjen Betinia Points ved indskud (1 point pr. 150 kr.) og spil (1 point pr. 75 kr.) – points kan bruges til bonusser."
+          />
         </section>
 
         <Separator className="my-10" />
