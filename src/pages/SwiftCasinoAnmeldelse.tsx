@@ -270,8 +270,11 @@ const SwiftCasinoAnmeldelse = () => {
             I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem Swift Casinos platform – fra registrering og bonusaktivering til navigation, Hot Or Cold-funktionen og spilvalg. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
           </div>
 
-        <Separator className="my-10" />
-
+        <ReviewScreenshot
+          src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/login-mitid.webp"
+          alt="Swift Casino registrering med MitID-godkendelse og notifikations-popup"
+          caption="Registreringsprocessen hos Swift Casino med digital identitetsgodkendelse via MitID."
+        />
 
         <Separator className="my-10" />
 
