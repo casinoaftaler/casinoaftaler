@@ -69,7 +69,7 @@ const KapowCasinoAnmeldelse = () => {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center mt-4">
                 <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Min. indbetaling</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">100 kr.</p></div>
                 <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Udbetaling</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">24t–4 hverdage</p></div>
-                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Antal spil</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">4.000+</p></div>
+                <div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Antal spil</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight"><div className="rounded-lg border border-border p-2 sm:p-3 min-w-0"><p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">Antal spil</p><p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">2.000+</p></div>
               </div>
               <QuickFactsProviders providers={["NetEnt", "Microgaming", "Play'n GO", "Evolution Gaming", "Pragmatic Play", "Nolimit City", "Red Tiger"]} />
               <QuickFactsLicense licenseId="18-0073" />
