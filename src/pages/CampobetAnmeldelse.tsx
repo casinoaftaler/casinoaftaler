@@ -528,7 +528,11 @@ const CampobetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Blackjack er den stærkeste kategori med varianter som Classic, Speed, Lightning, Infinite og VIP. Indsatsgrænserne spænder fra 50 kr. til over 50.000 kr. pr. hånd, hvilket tilgodeser både micro-stake spillere og high rollers. Speed Blackjack er særligt populært med en gennemsnitlig håndduration under 30 sekunder. Vi oplevede konsekvent høj videokvalitet (1080p) og professional dealere med flydende engelsk.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Roulette-sektionen omfatter europæisk, fransk og auto-roulette samt Lightning Roulette, der tilføjer tilfældige multiplikatorer op til 500x. Baccarat er repræsenteret med standard og Speed-varianter. Game show-sektionen inkluderer Crazy Time, Dream Catcher og Monopoly Live – men udvalget er mere begrænset end hos casinoer, der har dedikerede aftaler med multiple live casino-leverandører.</p>
           <p className="text-muted-foreground leading-relaxed">En bemærkelsesværdig observation er, at der ikke er dedikerede danske borde. Det er en begrænsning for spillere, der foretrækker at kommunikere med dealeren på dansk – her har konkurrenter som <Link to="/royal-casino-anmeldelse" className={linkClass}>Royal Casino</Link> en klar fordel med deres eksklusive danske live dealer-borde.</p>
-        </section>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/live-casino.webp"
+            alt="Campobet live casino med Crazy Pachinko, Speed Roulette, Lightning Roulette og blackjack-varianter"
+            caption="Campobets live casino-sektion med roulette, blackjack, baccarat og game shows fra Evolution Gaming."
+          />
 
         <Separator className="my-10" />
 
