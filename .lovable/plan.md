@@ -1,34 +1,44 @@
 
 
-## Plan: Auto Internal Linking in Markedspuls Articles
+## Plan: Eliminer Template Footprints i Markedspuls-artikler
 
 ### Problem
-Market pulse articles are generated without any internal links to money pages. This wastes link equity that should flow from fresh content → commercial pages.
+Alle markedspuls-artikler (og potentielt andre auto-genererede nyheder) bruger identisk H2-struktur: "Hvad er ændret" → "Kontekst i dansk marked" → "Konsekvenser for spillerne" → "Top 3 berørte casinoer" → "FAQ" med de samme 3 spørgsmål. Google ser dette som template-genereret indhold.
 
-### Solution: Two-layer approach
+15 artikler i databasen. 2 markedspuls-artikler har identisk struktur. De øvrige 13 (manuelt oprettede) har varieret struktur — fokus er primært på markedspuls-generatoren.
 
-**Layer 1: AI-generated contextual inline links**
-Update the system prompt in `generate-market-pulse/index.ts` to instruct the AI to weave in 3-5 natural inline links to money pages within the article body. Provide the AI with a fixed list of allowed link targets (the same ones from `newsInternalLinks.ts`).
+### Ændringer
 
-Example: Instead of writing "free spins tilbud", the AI writes `<a href="/free-spins-i-dag">free spins tilbud</a>`.
+#### 1. Omskriv system prompt med variabel struktur (`generate-market-pulse/index.ts`)
 
-**Layer 2: Appended "Relaterede guider" section**
-After AI content generation but before DB insert, append a `<section data-enterprise-news-links="true">` block with 8-12 categorized internal links — replicating the same logic as `appendEnterpriseInternalLinks()` but server-side in the edge function.
+**Erstat den faste H2-skabelon** med en pool af 6 strukturvarianter, valgt tilfældigt per kørsel:
 
-### Changes
+```text
+Variant A: "De vigtigste ændringer" → "Bag om tallene" → "Spillernes muligheder" → "Casinoer i fokus"
+Variant B: "Overblik over ugen" → "Hvad tallene viser" → "Ekspertens perspektiv" → "Hvem er mest berørt"
+Variant C: "Nye tendenser" → "Markedsdata i dybden" → "Hvad det betyder for dig" → "Vindere og tabere"
+Variant D: "Ugens highlights" → "Analyse af ændringerne" → "Spillerens fordele" → "De mest aktive casinoer"
+Variant E: "Hvad sker der lige nu" → "Data og kontekst" → "Konsekvenser i praksis" → "Casinoer der skiller sig ud"
+Variant F: "Markedsudvikling" → "Tal og tendenser" → "Sådan påvirker det spillere" → "Fokus på operatørerne"
+```
 
-**File: `supabase/functions/generate-market-pulse/index.ts`**
+**FAQ-pool**: 12+ mulige spørgsmål, AI vælger 3 per artikel:
+- "Hvad betyder disse ændringer?", "Skal jeg skifte casino?", "Er mine penge sikre?", "Hvornår træder ændringerne i kraft?", "Hvilke casinoer er bedst lige nu?", "Hvordan finder jeg det bedste tilbud?", "Er omsætningskravene fair?", "Kan jeg kombinere tilbud?", "Hvad siger Spillemyndigheden?", "Er det sikkert at spille online?", "Hvordan sammenligner jeg bonusser?", "Hvad bør nye spillere gøre?"
 
-1. Add money page link targets as a constant in the edge function
-2. Update system prompt to include linking instructions + the allowed link targets list
-3. Add a `appendInternalLinksSection()` helper that builds the "Relaterede guider" HTML section
-4. Call it on `article.content` before inserting into `casino_news`
+#### 2. Deduplikeringskontrol
+Før AI-kald: hent seneste markedspuls-artikels titel + H2-headings fra DB. Send til AI'en med instruktion: "Din artikel SKAL bruge en helt anden struktur og vinkel end denne."
 
-### Technical details
+#### 3. Fix slug-problemer
+- Fjern "markedspuls" fra title inden slugification (undgå `markedspuls-markedspuls-...`)
+- Begræns slug til max 50 chars / 5 ord
 
-- Money page targets embedded in prompt: `/casino-bonus`, `/free-spins-i-dag`, `/velkomstbonus`, `/top-10-casino-online`, `/nye-casinoer`, `/casino-med-mobilepay`, `/casino-anmeldelser`, `/cashback-bonus`, `/reload-bonus`
-- Markedspuls-specific category links added: `/casino-licenser`, `/ansvarligt-spil`, `/ordbog/omsaetningskrav`
-- AI instructed to use max 5 inline links, vary anchor text, only link first occurrence
-- Appended section uses rotated selection (seeded by slug) for variety across articles
-- No changes to frontend rendering — `CasinoNyhedArticle.tsx` already renders raw HTML with `dangerouslySetInnerHTML`
+#### 4. Reducer data-overlap
+- Skift lookback fra 4 dage til 72 timer
+- Tilføj minimum-check: skip hvis <3 unikke datapunkter vs. seneste artikel
+
+### Filer der ændres
+- `supabase/functions/generate-market-pulse/index.ts` — alle ændringer samlet i denne ene fil
+
+### Eksisterende artikler
+De 2 identiske markedspuls-artikler i DB har allerede identisk indhold. Disse kan ikke automatisk rettes (de er allerede gemt). Men fremtidige artikler vil aldrig have identisk struktur igen.
 
