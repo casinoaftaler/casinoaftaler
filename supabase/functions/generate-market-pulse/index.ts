@@ -56,6 +56,90 @@ const INLINE_LINK_TARGETS = MONEY_PAGE_LINKS
   .map((l) => `${l.label} → ${l.href}`)
   .join("\n");
 
+// --- ANTI-FOOTPRINT: Structure variants ---
+const STRUCTURE_VARIANTS = [
+  {
+    id: "A",
+    sections: [
+      "De vigtigste ændringer",
+      "Bag om tallene",
+      "Spillernes muligheder",
+      "Casinoer i fokus",
+    ],
+  },
+  {
+    id: "B",
+    sections: [
+      "Overblik over ugen",
+      "Hvad tallene viser",
+      "Ekspertens perspektiv",
+      "Hvem er mest berørt",
+    ],
+  },
+  {
+    id: "C",
+    sections: [
+      "Nye tendenser",
+      "Markedsdata i dybden",
+      "Hvad det betyder for dig",
+      "Vindere og tabere",
+    ],
+  },
+  {
+    id: "D",
+    sections: [
+      "Ugens highlights",
+      "Analyse af ændringerne",
+      "Spillerens fordele",
+      "De mest aktive casinoer",
+    ],
+  },
+  {
+    id: "E",
+    sections: [
+      "Hvad sker der lige nu",
+      "Data og kontekst",
+      "Konsekvenser i praksis",
+      "Casinoer der skiller sig ud",
+    ],
+  },
+  {
+    id: "F",
+    sections: [
+      "Markedsudvikling",
+      "Tal og tendenser",
+      "Sådan påvirker det spillere",
+      "Fokus på operatørerne",
+    ],
+  },
+];
+
+const FAQ_POOL = [
+  "Hvad betyder disse ændringer for mig som spiller?",
+  "Skal jeg overveje at skifte casino?",
+  "Er mine penge og data sikre?",
+  "Hvornår træder ændringerne i kraft?",
+  "Hvilke casinoer er bedst lige nu?",
+  "Hvordan finder jeg det bedste tilbud?",
+  "Er omsætningskravene fair?",
+  "Kan jeg kombinere flere tilbud?",
+  "Hvad siger Spillemyndigheden til udviklingen?",
+  "Er det sikkert at spille online i Danmark?",
+  "Hvordan sammenligner jeg bonusser korrekt?",
+  "Hvad bør nye spillere være opmærksomme på?",
+];
+
+function pickRandom<T>(arr: readonly T[], count: number, seed?: number): T[] {
+  const shuffled = [...arr];
+  let s = seed ?? Math.floor(Math.random() * 2147483647);
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    s = ((s * 1103515245 + 12345) & 0x7fffffff);
+    const j = s % (i + 1);
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled.slice(0, count);
+}
+
 function simpleHash(value: string): number {
   let hash = 0;
   for (let i = 0; i < value.length; i++) {
@@ -79,6 +163,23 @@ function appendInternalLinksSection(html: string, slug: string): string {
     .join("");
 
   return `${html}\n\n<section data-enterprise-news-links="true"><h2>Relaterede guider og anmeldelser</h2><ul>${listHtml}</ul></section>`;
+}
+
+function slugify(title: string): string {
+  // Remove "markedspuls" from title to avoid double prefix
+  const cleaned = title.replace(/markedspuls[:\-–—\s]*/gi, "").trim();
+
+  const slug = cleaned
+    .toLowerCase()
+    .replace(/æ/g, "ae")
+    .replace(/ø/g, "oe")
+    .replace(/å/g, "aa")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  // Limit to ~5 meaningful words (max 50 chars)
+  const words = slug.split("-").slice(0, 5).join("-");
+  return words.substring(0, 50).replace(/-$/, "");
 }
 
 function buildHeroImagePrompt(
@@ -215,6 +316,57 @@ async function imageHasReadableText(apiKey: string, imageDataUrl: string): Promi
   return Boolean(parsed?.has_text);
 }
 
+function buildSystemPrompt(
+  structureVariant: typeof STRUCTURE_VARIANTS[number],
+  faqQuestions: string[],
+  previousArticle: { title: string; headings: string } | null
+): string {
+  const h2Template = structureVariant.sections
+    .map((s) => `<h2>${s}</h2>\n<p>[Relevant indhold baseret på data]</p>`)
+    .join("\n");
+
+  const faqTemplate = faqQuestions
+    .map((q) => `<p><strong>${q}</strong><br>[Svar baseret på data]</p>`)
+    .join("\n");
+
+  const dedupInstruction = previousArticle
+    ? `\n\nDEDUPLIKERING (KRITISK):
+Den seneste markedspuls-artikel havde titlen: "${previousArticle.title}"
+Med følgende H2-struktur: ${previousArticle.headings}
+Du SKAL bruge en HELT ANDEN vinkel, tone og opbygning. Gentag IKKE samme pointer eller formuleringer.`
+    : "";
+
+  return `Du er en dansk casino-journalist der skriver faktabaserede markedsopdateringer for Casinoaftaler.dk.
+Skriv ALTID på flydende dansk. Brug data du får – opfind ALDRIG fakta.
+Artiklen skal være 1000-1500 ord i HTML format med følgende struktur:
+
+<p>[Indledning – 2-3 sætninger der opsummerer de vigtigste ændringer. Variér åbningen – brug IKKE altid "Det danske casinomarked". Start med et tal, en observation, eller en direkte konstatering.]</p>
+
+${h2Template}
+
+<h2>FAQ</h2>
+${faqTemplate}
+
+VIGTIGE REGLER:
+- Brug KUN data fra det vedlagte datasæt
+- Nævn kun casinoer der faktisk optræder i data
+- Hold en neutral, journalistisk tone
+- Inkludér konkrete tal (bonus beløb, omsætningskrav, RTP etc.)
+- BRUG IKKE <strong> til casinonavne eller tal i brødtekst. Brug KUN <strong> i FAQ-spørgsmål og i <li> labels (fx "Velkomstbonusser:"). Artiklen skal læses naturligt uden overdreven fremhævning.
+- Brug <ul>/<li> lister til at strukturere data, ikke lange tekstblokke
+- Variér sætningsstrukturer – undgå at starte flere afsnit med samme ordmønster
+- Brug IKKE ordene "markedspuls" eller "markedsopdatering" i overskriften
+
+INTERNE LINKS (MEGET VIGTIGT):
+- Indsæt 3-5 naturlige inline links i brødteksten til relevante sider på Casinoaftaler.dk.
+- Link KUN første forekomst af hvert begreb. Varier ankerteksterne naturligt.
+- Brug ALDRIG den nøjagtige sidetitel som ankertekst – brug naturlige variationer.
+- Tilladt link-liste (brug href som angivet):
+${INLINE_LINK_TARGETS}
+- Eksempel: I stedet for "free spins tilbud", skriv <a href="/free-spins-i-dag">free spins tilbud</a>
+- Indsæt IKKE links i overskrifter (<h2>) eller FAQ-spørgsmål.${dedupInstruction}`;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -226,19 +378,20 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    const fourDaysAgo = new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString();
+    // Reduced lookback: 72 hours instead of 4 days
+    const threeDaysAgo = new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString();
 
     const { data: complianceChanges } = await supabase
       .from("casino_compliance_history")
       .select("*")
-      .gte("changed_at", fourDaysAgo)
+      .gte("changed_at", threeDaysAgo)
       .order("changed_at", { ascending: false })
       .limit(20);
 
     const { data: campaigns } = await supabase
       .from("free_spin_campaigns")
       .select("casino_name, title, spin_count, wagering_requirement, offer_type, source_type")
-      .gte("updated_at", fourDaysAgo)
+      .gte("updated_at", threeDaysAgo)
       .eq("is_active", true)
       .order("updated_at", { ascending: false })
       .limit(15);
@@ -246,7 +399,7 @@ Deno.serve(async (req) => {
     const { data: miEvents } = await supabase
       .from("market_intelligence_events")
       .select("headline, summary, category, impact_level, casino_slug")
-      .gte("published_at", fourDaysAgo)
+      .gte("published_at", threeDaysAgo)
       .eq("is_public", true)
       .order("published_at", { ascending: false })
       .limit(10);
@@ -254,9 +407,28 @@ Deno.serve(async (req) => {
     const totalChanges = (complianceChanges?.length || 0) + (campaigns?.length || 0) + (miEvents?.length || 0);
     if (totalChanges === 0) {
       return new Response(
-        JSON.stringify({ status: "skipped", reason: "No changes in last 4 days" }),
+        JSON.stringify({ status: "skipped", reason: "No changes in last 3 days" }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
+    }
+
+    // --- DEDUPLICATION: Fetch previous markedspuls article ---
+    const { data: previousArticles } = await supabase
+      .from("casino_news")
+      .select("title, content")
+      .eq("category", "markedspuls")
+      .order("created_at", { ascending: false })
+      .limit(1);
+
+    let previousArticle: { title: string; headings: string } | null = null;
+    if (previousArticles && previousArticles.length > 0) {
+      const prev = previousArticles[0];
+      // Extract H2 headings from previous article
+      const h2Matches = prev.content.match(/<h2[^>]*>(.*?)<\/h2>/gi) || [];
+      const headings = h2Matches
+        .map((h: string) => h.replace(/<[^>]+>/g, "").trim())
+        .join(" → ");
+      previousArticle = { title: prev.title, headings };
     }
 
     const dataSummary = {
@@ -290,6 +462,22 @@ Deno.serve(async (req) => {
 
     const today = new Date().toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" });
 
+    // --- ANTI-FOOTPRINT: Pick random structure + FAQ questions ---
+    // Exclude the variant used in previous article (if detectable)
+    let availableVariants = STRUCTURE_VARIANTS;
+    if (previousArticle) {
+      availableVariants = STRUCTURE_VARIANTS.filter(
+        (v) => !v.sections.some((s) => previousArticle!.headings.includes(s))
+      );
+      if (availableVariants.length === 0) availableVariants = STRUCTURE_VARIANTS;
+    }
+    const chosenVariant = availableVariants[Math.floor(Math.random() * availableVariants.length)];
+    const chosenFAQs = pickRandom(FAQ_POOL, 3);
+
+    console.log(`Anti-footprint: Using structure variant ${chosenVariant.id}, FAQs: ${chosenFAQs.join(" | ")}`);
+
+    const systemPrompt = buildSystemPrompt(chosenVariant, chosenFAQs, previousArticle);
+
     const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -301,43 +489,11 @@ Deno.serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `Du er en dansk casino-journalist der skriver faktabaserede markedsopdateringer for Casinoaftaler.dk.
-Skriv ALTID på flydende dansk. Brug data du får – opfind ALDRIG fakta.
-Artiklen skal være 1000-1500 ord i HTML format med følgende struktur:
-<p>[Indledning – 2-3 sætninger der opsummerer de vigtigste ændringer]</p>
-<h2>Hvad er ændret</h2>
-<p>[Konkrete ændringer fra data]</p>
-<h2>Kontekst i dansk marked</h2>
-<p>[Sæt ændringerne i kontekst – hvad betyder det for markedet]</p>
-<h2>Konsekvenser for spillerne</h2>
-<p>[Praktisk betydning for danske spillere]</p>
-<h2>Top 3 berørte casinoer</h2>
-<p>[List de mest berørte casinoer med korte forklaringer]</p>
-<h2>FAQ</h2>
-<p><strong>Hvad betyder disse ændringer?</strong><br>[Svar]</p>
-<p><strong>Skal jeg skifte casino?</strong><br>[Svar]</p>
-<p><strong>Er mine penge sikre?</strong><br>[Svar]</p>
-
-VIGTIGE REGLER:
-- Brug KUN data fra det vedlagte datasæt
-- Nævn kun casinoer der faktisk optræder i data
-- Hold en neutral, journalistisk tone
-- Inkludér konkrete tal (bonus beløb, omsætningskrav, RTP etc.)
-- BRUG IKKE <strong> til casinonavne eller tal i brødtekst. Brug KUN <strong> i FAQ-spørgsmål og i <li> labels (fx "Velkomstbonusser:"). Artiklen skal læses naturligt uden overdreven fremhævning.
-- Brug <ul>/<li> lister til at strukturere data, ikke lange tekstblokke
-
-INTERNE LINKS (MEGET VIGTIGT):
-- Indsæt 3-5 naturlige inline links i brødteksten til relevante sider på Casinoaftaler.dk.
-- Link KUN første forekomst af hvert begreb. Varier ankerteksterne naturligt.
-- Brug ALDRIG den nøjagtige sidetitel som ankertekst – brug naturlige variationer.
-- Tilladt link-liste (brug href som angivet):
-${INLINE_LINK_TARGETS}
-- Eksempel: I stedet for "free spins tilbud", skriv <a href="/free-spins-i-dag">free spins tilbud</a>
-- Indsæt IKKE links i overskrifter (<h2>) eller FAQ-spørgsmål.`,
+            content: systemPrompt,
           },
           {
             role: "user",
-            content: `Dato: ${today}\n\nHer er data fra de seneste 4 dage:\n\n${JSON.stringify(dataSummary, null, 2)}\n\nSkriv markedspuls-artiklen.`,
+            content: `Dato: ${today}\n\nHer er data fra de seneste 3 dage:\n\n${JSON.stringify(dataSummary, null, 2)}\n\nSkriv markedspuls-artiklen.`,
           },
         ],
         tools: [
@@ -349,7 +505,7 @@ ${INLINE_LINK_TARGETS}
               parameters: {
                 type: "object",
                 properties: {
-                  title: { type: "string", description: "Article title in Danish, max 80 chars" },
+                  title: { type: "string", description: "Article title in Danish, max 80 chars. Do NOT include 'markedspuls' in the title." },
                   excerpt: { type: "string", description: "Short excerpt in Danish, max 200 chars" },
                   content: { type: "string", description: "Full HTML article content" },
                   meta_title: { type: "string", description: "SEO meta title, max 60 chars" },
@@ -380,14 +536,7 @@ ${INLINE_LINK_TARGETS}
 
     const article = JSON.parse(toolCall.function.arguments);
 
-    const slug = article.title
-      .toLowerCase()
-      .replace(/æ/g, "ae")
-      .replace(/ø/g, "oe")
-      .replace(/å/g, "aa")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "")
-      .substring(0, 60);
+    const slug = slugify(article.title);
 
     const heroPrompt = buildHeroImagePrompt(article.title, article.excerpt, {
       campaigns: dataSummary.campaigns,
@@ -455,6 +604,7 @@ ${INLINE_LINK_TARGETS}
         article_id: inserted.id,
         slug: inserted.slug,
         featured_image: featuredImageUrl,
+        structure_variant: chosenVariant.id,
         data_sources: {
           compliance_changes: complianceChanges?.length || 0,
           campaigns: campaigns?.length || 0,
