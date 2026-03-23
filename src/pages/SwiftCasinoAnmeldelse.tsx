@@ -259,6 +259,13 @@ const SwiftCasinoAnmeldelse = () => {
             uploadDate="2026-02-18"
             duration="PT2M"
           />
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/lobby-forside.webp"
+            alt="Swift Casino forside med Jackpotternes Land-banner, spilkategorier og udvalgte spil"
+            caption="Swift Casinos forside med jackpot-banner og hurtig adgang til slots, live casino og arkadespil."
+            eager
+          />
+
           <div className="mb-8 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground leading-relaxed">
             I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem Swift Casinos platform – fra registrering og bonusaktivering til navigation, Hot Or Cold-funktionen og spilvalg. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
           </div>
