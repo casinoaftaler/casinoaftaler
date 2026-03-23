@@ -57,7 +57,7 @@ const swiftFaqs: { question: string; answer: ReactNode }[] = [
     question: "Hvor stort er Swift Casinos spiludvalg, og hvilke kategorier dækkes?",
     answer: (
       <>
-        Swift Casino har over 3.300 spil fordelt på spilleautomater, bordspil, video poker og{" "}
+        Swift Casino har over 3.000+ spil fordelt på spilleautomater, bordspil, video poker og{" "}
         <Link to="/live-casino" className={linkClass}>live casino</Link>. Spilleautomater udgør størstedelen med titler fra førende udviklere som{" "}
         <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>,{" "}
         <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>,{" "}
@@ -119,9 +119,9 @@ const SwiftCasinoAnmeldelse = () => {
   const handleBonusClick = () => { if (casino) getAffiliateRedirect(casino.slug, user?.id); };
 
   const faqJsonLd = buildFaqSchema(swiftFaqs);
-  const articleSchema = buildArticleSchema({ headline: "Swift Casino Anmeldelse 2026 – Hot Or Cold & 3.300+ Spil", description: "Dybdegående anmeldelse af Swift Casino. 100% bonus op til 500 kr., 10x omsætning, Hot Or Cold-funktion og 3.300+ spil.", url: "https://casinoaftaler.dk/casino-anmeldelser/swift-casino", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "BVYnQxwqHG0", ...casinoReviewEntities("Swift Casino", "swift-casino") });
+  const articleSchema = buildArticleSchema({ headline: "Swift Casino Anmeldelse 2026 – Hot Or Cold & 3.300+ Spil", description: "Dybdegående anmeldelse af Swift Casino. 100% bonus op til 500 kr., 10x omsætning, Hot Or Cold-funktion og 3.000+ spil.", url: "https://casinoaftaler.dk/casino-anmeldelser/swift-casino", datePublished: "2026-02-15", authorName: "Jonas", authorUrl: "https://casinoaftaler.dk/forfatter/jonas", videoId: "BVYnQxwqHG0", ...casinoReviewEntities("Swift Casino", "swift-casino") });
 
-  const reviewJsonLd = buildReviewSchema({ itemName: "Swift Casino", itemUrl: "https://www.swiftcasino.dk/", ratingValue: "4.6", ratingCount: "187", reviewBody: "Swift Casino er Data-Innovatøren blandt danske casinoer – et veletableret casino med 3.300+ spil, 100% bonus op til 500 kr. med 10x omsætning, den unikke Hot Or Cold-funktion, PayPal/Trustly-support og hurtige udbetalinger." });
+  const reviewJsonLd = buildReviewSchema({ itemName: "Swift Casino", itemUrl: "https://www.swiftcasino.dk/", ratingValue: "4.6", ratingCount: "187", reviewBody: "Swift Casino er Data-Innovatøren blandt danske casinoer – et veletableret casino med 3.000+ spil, 100% bonus op til 500 kr. med 10x omsætning, den unikke Hot Or Cold-funktion, PayPal/Trustly-support og hurtige udbetalinger." });
 
   const videoJsonLd = buildVideoSchema("https://casinoaftaler.dk/casino-anmeldelser/swift-casino", "BVYnQxwqHG0", { title: "Swift Casino Anmeldelse 2026 – Ærlig Gennemgang", description: "Se hvordan Swift Casino ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features – så du ved præcis hvad du kan forvente, før du opretter en konto.", uploadDate: "2026-02-18", duration: "PT2M" });
 
@@ -129,7 +129,7 @@ const SwiftCasinoAnmeldelse = () => {
     <>
       <SEO
         title="Swift Casino Anmeldelse 2026 – Hot Or Cold"
-        description="Swift Casino anmeldelse 2026: 100% bonus op til 500 kr., 3.300+ spil, Hot Or Cold-funktion og PayPal. Testet over 14 dage. Se vores rating."
+        description="Swift Casino anmeldelse 2026: 100% bonus op til 500 kr., 3.000+ spil, Hot Or Cold-funktion og PayPal. Testet over 14 dage. Se vores rating."
         jsonLd={[articleSchema, faqJsonLd, reviewJsonLd, videoJsonLd]}
       />
 
@@ -150,7 +150,7 @@ const SwiftCasinoAnmeldelse = () => {
             </div>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Swift Casino Anmeldelse 2026</h1>
             <p className="mb-6 text-lg text-white/80">
-              14 dages dybdegående test af Swift Casino – Data-Innovatøren med den unikke Hot Or Cold-funktion. 100 % bonus op til 500 kr. med bonuskode SWIFT, kun 10x omsætningskrav, 3.300+ spiltitler, PayPal &amp; Trustly og hurtige udbetalinger.
+              14 dages dybdegående test af Swift Casino – Data-Innovatøren med den unikke Hot Or Cold-funktion. 100 % bonus op til 500 kr. med bonuskode SWIFT, kun 10x omsætningskrav, 3.000+ spiltitler, PayPal &amp; Trustly og hurtige udbetalinger.
             </p>
             <Button onClick={handleBonusClick} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-base px-8">
               <Gift className="mr-2 h-5 w-5" />Hent Bonus hos Swift Casino
@@ -214,7 +214,7 @@ const SwiftCasinoAnmeldelse = () => {
                   { label: "Min. indbetaling", value: "100 kr." },
                   { label: "Bonusgyldighed", value: "60 dage" },
                   { label: "Grundlagt", value: "2020" },
-                  { label: "Antal spil", value: "3.300+" },
+                  { label: "Antal spil", value: "3.000+" },
                 ].map((f) => (
                   <div key={f.label} className="rounded-lg border border-border p-2 sm:p-3 min-w-0">
                     <p className="text-[10px] sm:text-xs text-muted-foreground uppercase mb-1 truncate">{f.label}</p>
@@ -236,7 +236,7 @@ const SwiftCasinoAnmeldelse = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Swift Casino blev lanceret i 2020 af Skill On Net Ltd, det samme selskab der driver{" "}
-            <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link>. Mens Luna Casino satser på kvalitetskuratering med et bevidst begrænset katalog, har Swift Casino valgt den modsatte strategi: over 3.300 spiltitler fra alle de store udbydere, kombineret med innovative værktøjer der hjælper spillere med at navigere det omfattende udvalg.
+            <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link>. Mens Luna Casino satser på kvalitetskuratering med et bevidst begrænset katalog, har Swift Casino valgt den modsatte strategi: over 3.000+ spiltitler fra alle de store udbydere, kombineret med innovative værktøjer der hjælper spillere med at navigere det omfattende udvalg.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Med gyldig dansk licens fra Spillemyndigheden (nr. 16-1066791), en{" "}
@@ -276,7 +276,7 @@ const SwiftCasinoAnmeldelse = () => {
               <CardContent>
                 <ul className="space-y-2">
                   {[
-                    "Over 3.300 spiltitler fra 20+ udbydere",
+                    "Over 3.000+ spiltitler fra 20+ udbydere",
                     "Kun 10x omsætningskrav (d+b) – blandt de laveste i DK",
                     "Unik Hot Or Cold-funktion med realtidsdata",
                     "PayPal- og Trustly-support for hurtige udbetalinger",
@@ -485,9 +485,9 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── SPILUDVALG ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">3.300+ spil: Bredde med substans</h2>
+          <h2 className="mb-4 text-3xl font-bold">3.000+ spil: Bredde med substans</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Swift Casinos spiludvalg er et af de mest omfattende på det danske marked. Med over 3.300 titler fra 20+ udbydere dækker platformen alt fra klassiske slots til de nyeste releases fra nicheudbydere. Det er her, forskellen til søstercasinoet{" "}
+            Swift Casinos spiludvalg er et af de mest omfattende på det danske marked. Med over 3.000 titler fra 20+ udbydere dækker platformen alt fra klassiske slots til de nyeste releases fra nicheudbydere. Det er her, forskellen til søstercasinoet{" "}
             <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link> er mest markant.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -525,7 +525,7 @@ const SwiftCasinoAnmeldelse = () => {
             <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> og Hacksaw Gaming en afgørende differentiator. Titler som San Quentin xWays (36.000x maks. gevinst), Mental (66.666x) og Wanted Dead or a Wild (12.500x) tiltrækker en specifik type spiller, der ikke finder disse titler hos alle danske casinoer.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Filtrering og navigation.</strong> Med 3.300+ spil er effektiv filtrering afgørende. Swift Casino tilbyder filtrering på: kategori (slots, bordspil, live, jackpots), provider, popularitet, A-Z og "Nye spil". Søgefunktionen er hurtig og præcis. Kombineret med Hot Or Cold giver det tre uafhængige metoder til at finde det rette spil.
+            <strong className="text-foreground">Filtrering og navigation.</strong> Med 3.000+ spil er effektiv filtrering afgørende. Swift Casino tilbyder filtrering på: kategori (slots, bordspil, live, jackpots), provider, popularitet, A-Z og "Nye spil". Søgefunktionen er hurtig og præcis. Kombineret med Hot Or Cold giver det tre uafhængige metoder til at finde det rette spil.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">RTP-gennemsnit.</strong> Vi analyserede RTP på 50 af de mest prominente slots i kataloget og fandt et gennemsnit på 96,1 % – i tråd med branchestandarden. De laveste RTP-niveauer (94–95 %) fandt vi primært på jackpot-slots, hvor en del af indsatsen bidrager til den progressive pulje.
@@ -685,7 +685,7 @@ const SwiftCasinoAnmeldelse = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { icon: <BarChart3 className="h-5 w-5 text-primary" />, title: "Data-orienterede spillere", desc: "Du vil gerne have indblik i realtidsdata og bruge Hot Or Cold til at inspirere dit spilvalg. Du værdsætter transparens og information." },
-              { icon: <Layers className="h-5 w-5 text-primary" />, title: "Bredde-elskere", desc: "Du vil have 3.300+ spil at vælge imellem, inkl. nichetitler fra Nolimit City, Hacksaw Gaming og Push Gaming. Du browser gerne og opdager nye spil." },
+              { icon: <Layers className="h-5 w-5 text-primary" />, title: "Bredde-elskere", desc: "Du vil have 3.000+ spil at vælge imellem, inkl. nichetitler fra Nolimit City, Hacksaw Gaming og Push Gaming. Du browser gerne og opdager nye spil." },
               { icon: <Wallet className="h-5 w-5 text-primary" />, title: "Betalingsfleksible spillere", desc: "Du vil have PayPal, Trustly, MobilePay og Skrill. Hurtige udbetalinger er afgørende for dig – under 6 timer via PayPal, under 4 timer via Trustly." },
               { icon: <Gift className="h-5 w-5 text-primary" />, title: "Bonusbevidste spillere", desc: "Du forstår vigtigheden af 10x omsætningskrav og vil maksimere den forventede bonusværdi. Du husker bonuskoden SWIFT." },
             ].map((item) => (
@@ -713,7 +713,7 @@ const SwiftCasinoAnmeldelse = () => {
           <div className="space-y-4">
             {[
               { title: "Spillere der vil have en høj velkomstbonus", desc: "Maks. 500 kr. i bonus er lavt sammenlignet med de fleste konkurrenter der alle maksimalt tilbyder 1.000 kr. (dansk lovmæssigt loft). Hvis bonusmaksimum er din primære beslutningsfaktor, bør du kigge andetsteds." },
-              { title: "Spillere der foretrækker kuratering over bredde", desc: "3.300+ spil kan føles overvældende. Hvis du foretrækker et nøje udvalgt katalog med kun premium-titler, er søstercasinoet Luna Casino et bedre valg." },
+              { title: "Spillere der foretrækker kuratering over bredde", desc: "3.000+ spil kan føles overvældende. Hvis du foretrækker et nøje udvalgt katalog med kun premium-titler, er søstercasinoet Luna Casino et bedre valg." },
               { title: "Sportsbettere", desc: "Swift Casino er udelukkende et casino. For kombineret casino og sportsbetting, overvej bet365, Betinia eller Unibet." },
               { title: "High-rollers med store bonusbehov", desc: "Med 500 kr. maks. bonus og 200 kr. minimumsudbetaling er Swift Casino designet til casual og mid-range spillere. High-rollers finder bedre vilkår hos bet365 eller Unibet." },
               { title: "Spillere der vil have et loyalitetsprogram", desc: "Swift Casino mangler et struktureret level-baseret loyalitetsprogram à la Luna Casino. De tilbyder kampagner og turneringer, men intet permanent system med stigende fordele." },
@@ -756,7 +756,7 @@ const SwiftCasinoAnmeldelse = () => {
                   { cat: "Velkomstbonus", swift: "100% op til 500 kr.", luna: "100% op til 500 kr.", bet: "100% op til 1.000 kr." },
                   { cat: "Bonuskode", swift: "SWIFT (påkrævet)", luna: "Ikke nødvendig", bet: "365BONUS" },
                   { cat: "Omsætningskrav", swift: "10x (d+b)", luna: "10x (d+b)", bet: "10x (d+b)" },
-                  { cat: "Spiludvalg", swift: "3.300+ titler", luna: "Kurateret premium", bet: "2.500+ titler" },
+                  { cat: "Spiludvalg", swift: "3.000+ titler", luna: "Kurateret premium", bet: "2.500+ titler" },
                   { cat: "Unik funktion", swift: "Hot Or Cold", luna: "Loyalitetsprogram", bet: "Bet Builder" },
                   { cat: "PayPal", swift: "✓", luna: "✗", bet: "✓" },
                   { cat: "Trustly", swift: "✓", luna: "✗", bet: "✓" },
@@ -776,7 +776,7 @@ const SwiftCasinoAnmeldelse = () => {
             </table>
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Swift vs. Luna Casino (søstercasinoer):</strong> Begge har 10x omsætning og 500 kr. maks. bonus, men filosofien er diametralt modsat. Swift satser på volumen (3.300+ spil), innovation (Hot Or Cold) og betalingsfleksibilitet (PayPal, Trustly). Luna satser på kuratering, loyalitetsprogram og personalisering. Vælg Swift hvis du vil have bredde, data og hurtige udbetalinger. Vælg Luna hvis du vil have kvalitetsfokus og langsigtet loyalitetsværdi.
+            <strong className="text-foreground">Swift vs. Luna Casino (søstercasinoer):</strong> Begge har 10x omsætning og 500 kr. maks. bonus, men filosofien er diametralt modsat. Swift satser på volumen (3.000+ spil), innovation (Hot Or Cold) og betalingsfleksibilitet (PayPal, Trustly). Luna satser på kuratering, loyalitetsprogram og personalisering. Vælg Swift hvis du vil have bredde, data og hurtige udbetalinger. Vælg Luna hvis du vil have kvalitetsfokus og langsigtet loyalitetsværdi.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Swift vs. bet365:</strong> bet365 vinder på bonusmaksimum (1.000 kr.), sportsbetting og MobilePay til udbetaling. Men Swift Casino har Hot Or Cold-funktionen, flere spiludbydere (Nolimit City, Hacksaw Gaming) og sammenlignelige udbetalingshastigheder. Hvis du udelukkende spiller casino og værdsætter transparens, er Swift Casino et stærkt alternativ.
@@ -822,7 +822,7 @@ const SwiftCasinoAnmeldelse = () => {
             Efter 14 dages intensiv test bekræfter vi, at Swift Casino fortjener sin position som Data-Innovatøren i det danske casinomarked. Det er et casino der har fundet sin niche ved at kombinere et massivt spiludvalg med innovative værktøjer og stærk betalingsinfrastruktur.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Styrker der definerer Swift Casino:</strong> Hot Or Cold-funktionen er unik og tilføjer et element af data-transparens, som ingen anden dansk platform tilbyder. 3.300+ spil dækker alle segmenter fra mainstream til niche. PayPal- og Trustly-udbetalinger under 6 timer er en reel konkurrencefordel. 10x omsætningskrav giver matematisk fair bonusværdi.
+            <strong className="text-foreground">Styrker der definerer Swift Casino:</strong> Hot Or Cold-funktionen er unik og tilføjer et element af data-transparens, som ingen anden dansk platform tilbyder. 3.000+ spil dækker alle segmenter fra mainstream til niche. PayPal- og Trustly-udbetalinger under 6 timer er en reel konkurrencefordel. 10x omsætningskrav giver matematisk fair bonusværdi.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Svagheder der trækker ned:</strong> Bonuskoden SWIFT er let at glemme – automatisk aktivering ville være bedre. Maks. 500 kr. bonus er lavt for high-rollers. Min. udbetaling 200 kr. er over branchegennemsnittet. Intet struktureret loyalitetsprogram. Bankoverførselsgebyr under 3.700 kr. er unødvendigt.
