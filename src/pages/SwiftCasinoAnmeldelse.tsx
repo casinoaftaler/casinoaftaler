@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
@@ -258,12 +259,22 @@ const SwiftCasinoAnmeldelse = () => {
             uploadDate="2026-02-18"
             duration="PT2M"
           />
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/lobby-forside.webp"
+            alt="Swift Casino forside med Jackpotternes Land-banner, spilkategorier og udvalgte spil"
+            caption="Swift Casinos forside med jackpot-banner og hurtig adgang til slots, live casino og arkadespil."
+            eager
+          />
+
           <div className="mb-8 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground leading-relaxed">
             I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem Swift Casinos platform – fra registrering og bonusaktivering til navigation, Hot Or Cold-funktionen og spilvalg. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
           </div>
 
-        <Separator className="my-10" />
-
+        <ReviewScreenshot
+          src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/login-mitid.webp"
+          alt="Swift Casino registrering med MitID-godkendelse og notifikations-popup"
+          caption="Registreringsprocessen hos Swift Casino med digital identitetsgodkendelse via MitID."
+        />
 
         <Separator className="my-10" />
 
@@ -383,6 +394,11 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Taktisk bonusstrategi med Hot Or Cold.</strong> Her kommer Swift Casinos unikke funktion i spil: du kan bruge Hot Or Cold til at identificere slots med aktuel høj aktivitet og potentielt bruge dem under bonusgennemspilning. Det er ingen garanti for bedre resultater (RNG er RNG), men det kan gøre gennemspilningsprocessen mere underholdende og give en følelse af informeret beslutningstagning.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/velkomstbonus.webp"
+            alt="Swift Casino velkomstbonus – 100 procent op til 500 kr. med bonuskode SWIFT"
+            caption="Swift Casinos velkomstbonus med 100 % match op til 500 kr. ved første indbetaling."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -479,6 +495,11 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Brugsanbefalinger:</strong> Brug Hot Or Cold som inspiration til at opdage spil, du ikke har prøvet. Lad dig inspirere af "Hot"-markeringer, men vælg altid spil baseret på RTP, volatilitet og personlig præference. Undgå at jagte "Cold"-slots i håb om, at de "skal til at betale" – gambler's fallacy er en faldgrube, uanset hvad dataen viser.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/hot-cold.webp"
+            alt="Swift Casino Hot Or Cold-funktion med realtidsdata over trending spilleautomater"
+            caption="Hot Or Cold-funktionen viser i realtid hvilke spil der udbetaler mest – en unik feature hos Swift Casino."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -547,6 +568,11 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Anbefalede live-spil:</strong> Lightning Roulette (RTP 97,3 %) – hurtige runder med multiplikatorer op til 500x. Blackjack VIP (RTP 99,29 %) – for spillere med højere indsatser. Crazy Time – game show-format med fire bonusrunder og maks. gevinst på 25.000x.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/live-casino.webp"
+            alt="Swift Casino live casino med blackjack, roulette og game shows fra Playtech og Evolution"
+            caption="Swift Casinos live casino-sektion med populære bordspil og eksklusive borde."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -603,6 +629,11 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Ulempen: 200 kr. minimumsudbealing.</strong> Min. udbetaling på 200 kr. er højere end branchegennemsnittet på 100 kr. Det kan frustrere spillere med mindre saldi. Bankoverførselsgebyret for beløb under 3.700 kr. er ligeledes unødvendigt – de fleste konkurrenter tilbyder gebyrfri bankoverførsler.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/betalingsmetoder.webp"
+            alt="Swift Casino betalingsmetoder med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal"
+            caption="Swift Casinos indbetalingsmuligheder inklusiv MobilePay, Trustly og PayPal – alle gebyrfrie."
+          />
         </section>
 
         <Separator className="my-10" />
