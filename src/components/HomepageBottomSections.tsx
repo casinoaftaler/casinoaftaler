@@ -168,7 +168,7 @@ export function HomepageNyhederSection() {
 export function HomepageTrendsSection() {
   return (
     <section className="mb-12">
-      <h2 className="mb-4 text-3xl font-bold">Online Casino-trends i Danmark 2026</h2>
+      <h2 className="mb-4 text-3xl font-bold">📈 Online Casino-trends i Danmark 2026</h2>
       <p className="mb-6 text-muted-foreground leading-relaxed">
         Det danske marked for online casino udvikler sig hurtigt. Her er de vigtigste trends, der former din spiloplevelse i 2026:
       </p>
