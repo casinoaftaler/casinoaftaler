@@ -31,6 +31,7 @@ import {
   Gamepad2, Wallet, Headphones, Smartphone, BarChart3,
 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
