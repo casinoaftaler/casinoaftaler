@@ -272,9 +272,12 @@ const CampobetAnmeldelse = () => {
               <p className="text-sm text-muted-foreground"><strong className="text-foreground">Testresultat:</strong> Campobets dual-platform imponerer med teknisk stabilitet, hurtige udbetalinger og en sportssektion der faktisk konkurrerer med dedikerede bookmakers. No-Sticky bonusstrukturen giver reel spillerfordel, og den tredobbelte licensering skaber tryghed. Svaghederne – kundeservice primært på engelsk og manglende loyalitetsprogram – er reelle, men ikke showstoppere.</p>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/login-mitid.webp"
+            alt="Campobet login via MitID med bruger-ID felt og sikker verifikation"
+            caption="Campobets MitID-loginflow – registrering og login sker hurtigt via NemID/MitID."
+          />
         </section>
-
-        <Separator className="my-10" />
 
         {/* Fordele/Ulemper */}
         <section className="mb-12">
