@@ -721,13 +721,13 @@ const CasinoAnmeldelser = () => {
               {
                 name: "Campobet",
                 slug: "casino-anmeldelser/campobet",
-                text: "Campobet leverer en af markedets stærkeste dual-platform oplevelser. Casino-sektionen med 3.000+ spil er dybdegående, og sportsbetting-sektionen dækker bredt med konkurrencedygtige odds. Evolution Gamings live casino er velsorteret, og Trustly-udbetalinger behandles typisk inden for 6–14 timer. Platformen passer bedst til spillere, der vil have casino og sport under én konto uden at gå på kompromis med kvaliteten i nogen af delene.",
+                text: "Campobet leverer en af markedets stærkeste dual-platform oplevelser. Casino-sektionen med 2.500+ spil er dybdegående, og sportsbetting-sektionen dækker bredt med konkurrencedygtige odds. Evolution Gamings live casino er velsorteret, og Trustly-udbetalinger behandles typisk inden for 6–14 timer. Platformen passer bedst til spillere, der vil have casino og sport under én konto uden at gå på kompromis med kvaliteten i nogen af delene.",
                 partner: true,
               },
               {
                 name: "Swift Casino",
                 slug: "casino-anmeldelser/swift-casino",
-                text: "Swift Casinos Hot Or Cold-funktion er en unik innovation, der viser hvilke spilleautomater, der aktuelt udbetaler over eller under gennemsnittet. Med 3.000+ spil og en no-sticky bonus med 10x omsætning leverer platformen solid substans. Udbetalingerne er hurtige – vores test viste 4–10 timer via Trustly. Svagheden er et lidt begrænset live casino-katalog og fraværet af free spins i velkomstpakken.",
+                text: "Swift Casinos Hot Or Cold-funktion er en unik innovation, der viser hvilke spilleautomater, der aktuelt udbetaler over eller under gennemsnittet. Med 2.500+ spil og en no-sticky bonus med 10x omsætning leverer platformen solid substans. Udbetalingerne er hurtige – vores test viste 4–10 timer via Trustly. Svagheden er et lidt begrænset live casino-katalog og fraværet af free spins i velkomstpakken.",
                 partner: true,
               },
               {
