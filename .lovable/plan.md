@@ -1,44 +1,31 @@
 
 
-## Plan: Eliminer Template Footprints i Markedspuls-artikler
+## Plan: Indsæt Screenshots i Spilleautomaten-anmeldelsen
 
-### Problem
-Alle markedspuls-artikler (og potentielt andre auto-genererede nyheder) bruger identisk H2-struktur: "Hvad er ændret" → "Kontekst i dansk marked" → "Konsekvenser for spillerne" → "Top 3 berørte casinoer" → "FAQ" med de samme 3 spørgsmål. Google ser dette som template-genereret indhold.
+### Hvad der sker
+De 6 uploadede screenshots placeres kontekstuelt i anmeldelsen ved hjælp af den eksisterende `ReviewScreenshot`-komponent. Billederne konverteres til WebP, komprimeres til under 150KB og uploades til storage.
 
-15 artikler i databasen. 2 markedspuls-artikler har identisk struktur. De øvrige 13 (manuelt oprettede) har varieret struktur — fokus er primært på markedspuls-generatoren.
+### Billedplacering (baseret på screenshots)
 
-### Ændringer
+| # | Screenshot | Placering i artiklen | Alt-tekst |
+|---|-----------|----------------------|-----------|
+| 1 | **Lobby/Forside** | Efter intro-sektionen (linje ~223, efter video-boksen) | "Spilleautomaten lobby med populære spilleautomater og kategorinavigation" |
+| 2 | **Præmieshop/Rewards** | I Præmieshop-sektionen (linje ~504, efter feature-grid) | "Spilleautomaten Præmieshop med loyalitetspoints og kontante præmier" |
+| 3 | **Live Casino** | I spiludvalg-sektionen (linje ~571, efter spilkort-grid) | "Spilleautomaten live casino med Evolution Gaming-borde" |
+| 4 | **Bonus/Kampagner** | I bonus-sektionen (linje ~416, efter bonusmatematik) | "Spilleautomaten bonusaktivering med VELKOMMEN-koder" |
+| 5 | **Betalingsmetoder** | I betalings-sektionen (linje ~613, efter tabellen) | "Spilleautomaten betalingsmetoder med MobilePay og Trustly" |
+| 6 | **Login/Registrering** | I 14-dages test-sektionen (linje ~258, efter testlog) | "Spilleautomaten login via MitID-verifikation" |
 
-#### 1. Omskriv system prompt med variabel struktur (`generate-market-pulse/index.ts`)
+### Teknisk flow
 
-**Erstat den faste H2-skabelon** med en pool af 6 strukturvarianter, valgt tilfældigt per kørsel:
+1. **Konverter + komprimer**: Kør ImageMagick-script på de 6 uploadede billeder → WebP, max 150KB
+2. **Upload til storage**: `news-images/reviews/spilleautomaten/` bucket
+3. **Indsæt `<ReviewScreenshot>`**: 6 steder i `SpilleautomatenAnmeldelse.tsx` med unikke alt-tekster og captions
+4. **Første billede**: `eager={true}` (lobby-screenshot, tættest på top)
 
-```text
-Variant A: "De vigtigste ændringer" → "Bag om tallene" → "Spillernes muligheder" → "Casinoer i fokus"
-Variant B: "Overblik over ugen" → "Hvad tallene viser" → "Ekspertens perspektiv" → "Hvem er mest berørt"
-Variant C: "Nye tendenser" → "Markedsdata i dybden" → "Hvad det betyder for dig" → "Vindere og tabere"
-Variant D: "Ugens highlights" → "Analyse af ændringerne" → "Spillerens fordele" → "De mest aktive casinoer"
-Variant E: "Hvad sker der lige nu" → "Data og kontekst" → "Konsekvenser i praksis" → "Casinoer der skiller sig ud"
-Variant F: "Markedsudvikling" → "Tal og tendenser" → "Sådan påvirker det spillere" → "Fokus på operatørerne"
-```
+### Fil der ændres
+- `src/pages/SpilleautomatenAnmeldelse.tsx` — tilføj import + 6 `<ReviewScreenshot>` indsættelser
 
-**FAQ-pool**: 12+ mulige spørgsmål, AI vælger 3 per artikel:
-- "Hvad betyder disse ændringer?", "Skal jeg skifte casino?", "Er mine penge sikre?", "Hvornår træder ændringerne i kraft?", "Hvilke casinoer er bedst lige nu?", "Hvordan finder jeg det bedste tilbud?", "Er omsætningskravene fair?", "Kan jeg kombinere tilbud?", "Hvad siger Spillemyndigheden?", "Er det sikkert at spille online?", "Hvordan sammenligner jeg bonusser?", "Hvad bør nye spillere gøre?"
-
-#### 2. Deduplikeringskontrol
-Før AI-kald: hent seneste markedspuls-artikels titel + H2-headings fra DB. Send til AI'en med instruktion: "Din artikel SKAL bruge en helt anden struktur og vinkel end denne."
-
-#### 3. Fix slug-problemer
-- Fjern "markedspuls" fra title inden slugification (undgå `markedspuls-markedspuls-...`)
-- Begræns slug til max 50 chars / 5 ord
-
-#### 4. Reducer data-overlap
-- Skift lookback fra 4 dage til 72 timer
-- Tilføj minimum-check: skip hvis <3 unikke datapunkter vs. seneste artikel
-
-### Filer der ændres
-- `supabase/functions/generate-market-pulse/index.ts` — alle ændringer samlet i denne ene fil
-
-### Eksisterende artikler
-De 2 identiske markedspuls-artikler i DB har allerede identisk indhold. Disse kan ikke automatisk rettes (de er allerede gemt). Men fremtidige artikler vil aldrig have identisk struktur igen.
+### Ingen visuel påvirkning uden billeder
+Komponenten viser kun noget når `src` peger på et eksisterende billede. Ingen layout-ændringer uden data.
 
