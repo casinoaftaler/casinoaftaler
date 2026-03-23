@@ -246,8 +246,20 @@ const LunaCasinoAnmeldelse = () => {
             I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem Luna Casinos platform – fra registrering og bonusaktivering til navigation, loyalitetsprogram og spilvalg. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
           </div>
 
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/lobby-forside.webp"
+            alt="Luna Casino forside med velkomstbonus-banner, spilkategorier og udvalgte spilleautomater"
+            caption="Luna Casinos forside med rumtema, velkomstbonus og hurtig adgang til slots, live casino og jackpots."
+            eager
+          />
+
         <Separator className="my-10" />
 
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/login-mitid.webp"
+            alt="Luna Casino registrering med MitID digital identitetsgodkendelse"
+            caption="Registreringsprocessen hos Luna Casino med MitID-verifikation for sikker adgang."
+          />
 
         <Separator className="my-10" />
 
