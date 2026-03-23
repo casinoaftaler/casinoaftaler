@@ -24,6 +24,7 @@ import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { AuthorBio } from "@/components/AuthorBio";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import {
   ShieldCheck, Star, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, BookOpen, Smartphone, Headphones,
