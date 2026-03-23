@@ -519,6 +519,11 @@ const SpilleautomatenAnmeldelse = () => {
               </div>
             ))}
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/praemieshop.webp"
+            alt="Spilleautomaten Præmieshop med kontante præmier fra 50 til 1.000 DKK og pointpriser"
+            caption="Præmieshoppen hvor loyalitetspoints konverteres til kontante bonusmidler – fra 5.000 til 90.000 points."
+          />
         </section>
 
         <Separator className="my-10" />
