@@ -629,6 +629,11 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Ulempen: 200 kr. minimumsudbealing.</strong> Min. udbetaling på 200 kr. er højere end branchegennemsnittet på 100 kr. Det kan frustrere spillere med mindre saldi. Bankoverførselsgebyret for beløb under 3.700 kr. er ligeledes unødvendigt – de fleste konkurrenter tilbyder gebyrfri bankoverførsler.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/betalingsmetoder.webp"
+            alt="Swift Casino betalingsmetoder med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal"
+            caption="Swift Casinos indbetalingsmuligheder inklusiv MobilePay, Trustly og PayPal – alle gebyrfrie."
+          />
         </section>
 
         <Separator className="my-10" />
