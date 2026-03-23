@@ -495,6 +495,11 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Brugsanbefalinger:</strong> Brug Hot Or Cold som inspiration til at opdage spil, du ikke har prøvet. Lad dig inspirere af "Hot"-markeringer, men vælg altid spil baseret på RTP, volatilitet og personlig præference. Undgå at jagte "Cold"-slots i håb om, at de "skal til at betale" – gambler's fallacy er en faldgrube, uanset hvad dataen viser.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/hot-cold.webp"
+            alt="Swift Casino Hot Or Cold-funktion med realtidsdata over trending spilleautomater"
+            caption="Hot Or Cold-funktionen viser i realtid hvilke spil der udbetaler mest – en unik feature hos Swift Casino."
+          />
         </section>
 
         <Separator className="my-10" />
