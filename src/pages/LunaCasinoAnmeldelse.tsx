@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
@@ -245,8 +246,20 @@ const LunaCasinoAnmeldelse = () => {
             I videoen ovenfor guider <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> dig igennem Luna Casinos platform – fra registrering og bonusaktivering til navigation, loyalitetsprogram og spilvalg. Videoen er et supplement til denne skriftlige anmeldelse og giver dig et visuelt overblik, før du beslutter dig.
           </div>
 
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/lobby-forside.webp"
+            alt="Luna Casino forside med velkomstbonus-banner, spilkategorier og udvalgte spilleautomater"
+            caption="Luna Casinos forside med rumtema, velkomstbonus og hurtig adgang til slots, live casino og jackpots."
+            eager
+          />
+
         <Separator className="my-10" />
 
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/login-mitid.webp"
+            alt="Luna Casino registrering med MitID digital identitetsgodkendelse"
+            caption="Registreringsprocessen hos Luna Casino med MitID-verifikation for sikker adgang."
+          />
 
         <Separator className="my-10" />
 
@@ -456,6 +469,11 @@ const LunaCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Daglige kampagner i detaljer.</strong> Luna Casino kører en roterende kampagnekalender med nye tilbud hver dag: mandage bringer typisk reload-bonusser, onsdage free spins på udvalgte spil, fredage cashback-tilbud og weekender turneringsadgang. Vilkårene er konsekvent fair med 10x omsætning – samme niveau som velkomstbonussen. Det er denne konsistens, der gør Luna Casino attraktivt for spillere, der vægter løbende værdi højere end en stor engangsbonusmaksimum.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/kampagner.webp"
+            alt="Luna Casino turneringer og kampagner med eksklusive tilbud og personalets udvalg"
+            caption="Luna Casinos kampagnesektion med turneringer, eksklusive kampagner og personalets udvalg."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -507,6 +525,11 @@ const LunaCasinoAnmeldelse = () => {
             <strong className="text-foreground">Ulempen ved kuratering.</strong> Spillere der jager nichetitler, progressive jackpot-netværk (Mega Moolah, Hall of Gods) eller specifikke udbydere som{" "}
             <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> vil finde udvalget begrænset. Luna Casino satser på bredde inden for premium-segmentet, ikke på at dække alle hjørner af markedet.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/hot-cold.webp"
+            alt="Luna Casino Hot Or Cold-funktion med realtidsdata over trending spilleautomater"
+            caption="Hot Or Cold-funktionen hos Luna Casino viser hvilke spil der aktuelt udbetaler mest."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -524,6 +547,11 @@ const LunaCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Begrænsning:</strong> Live casino-spil bidrager typisk ikke til omsætningskravet for bonussen. Hvis du primært spiller live casino, bør du gennemspille bonussen på slots først og derefter skifte til live-borde med egne midler.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/live-casino.webp"
+            alt="Luna Casino live casino med roulette, blackjack og game shows fra Evolution Gaming og Playtech"
+            caption="Luna Casinos live casino-sektion med roulette-varianter, blackjack og eksklusive borde."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -593,6 +621,11 @@ const LunaCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Skrill-gebyret.</strong> 5 % gebyr på Skrill-indbetalinger er usædvanligt i det danske marked og bør bemærkes. Ved en indbetaling på 500 kr. mister du 25 kr. i gebyr alene. Vi anbefaler Visa/Mastercard eller MobilePay for at undgå unødvendige omkostninger.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/betalingsmetoder.webp"
+            alt="Luna Casino betalingsmetoder med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal"
+            caption="Luna Casinos indbetalingsmuligheder med kontomenu, betalingsmetoder og kampagneadgang."
+          />
         </section>
 
         <Separator className="my-10" />
