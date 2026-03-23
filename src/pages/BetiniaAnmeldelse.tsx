@@ -291,6 +291,12 @@ const BetiniaAnmeldelse = () => {
             <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Betinia ser ud indefra</h3>
             <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Betinias hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/lobby-forside.webp"
+            alt="Betinia casino forside med populære spilleautomater, anbefalede spil og sportsbegivenheder"
+            caption="Betinias forside med Mine Spil, anbefalede slots og live sportsopdateringer – alt samlet i ét overblik."
+            eager={true}
+          />
         </section>
 
         <Separator className="my-10" />
