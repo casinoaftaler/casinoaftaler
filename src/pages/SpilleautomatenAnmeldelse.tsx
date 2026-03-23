@@ -426,6 +426,11 @@ const SpilleautomatenAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/bonus.webp"
+            alt="Spilleautomaten bonusside med 100% velkomstbonus op til 1.000 kr. og VELKOMMEN1-kode"
+            caption="Spilleautomatens bonusside viser den trinvise velkomstbonus med 10x omsætningskrav."
+          />
         </section>
 
         {/* ───── EV ANALYSE ───── */}
