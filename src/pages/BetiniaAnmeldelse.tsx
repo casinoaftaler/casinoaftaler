@@ -783,6 +783,11 @@ const BetiniaAnmeldelse = () => {
           <p className="text-xs text-muted-foreground mb-4">
             *Skrill og Neteller kvalificerer IKKE til bonusser. Min. indbetaling: 100 kr. Min. udbetaling: 100 kr. Alle indbetalinger og udbetalinger er gebyrfri. PayPal var den hurtigste udbetalingsmetode i vores test.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/betalingsmetoder.webp"
+            alt="Betinia betalingsmetoder med MobilePay, Visa, Mastercard og Trustly"
+            caption="Betinias indbetalingsside med MobilePay, Visa/Mastercard og Trustly – alle gebyrfri med min. 100 kr."
+          />
         </section>
 
         <Separator className="my-10" />
