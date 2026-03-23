@@ -185,7 +185,7 @@ const OneCasinoAnmeldelse = () => {
                   <p className="text-sm sm:text-lg font-bold text-foreground break-words leading-tight">800+</p>
                 </div>
               </div>
-              <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Evolution Gaming", "Microgaming", "One Casino Exclusive"]} />
+              <QuickFactsProviders providers={["NetEnt", "Play'n GO", "Pragmatic Play", "Microgaming", "One Casino Exclusive"]} />
               <QuickFactsLicense licenseId="18-0061" />
             </CardContent>
           </Card>
