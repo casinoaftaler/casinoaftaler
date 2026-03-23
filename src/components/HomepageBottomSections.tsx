@@ -229,7 +229,7 @@ export function HomepageSlotShowcase() {
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-        <Gamepad2 className="h-7 w-7 text-primary" />
+        <span aria-hidden="true">🆕</span>
         Nye Spillemaskiner 2026
       </h2>
       <p className="mb-4 text-muted-foreground leading-relaxed">
