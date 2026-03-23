@@ -711,7 +711,7 @@ const BetiniaAnmeldelse = () => {
           <ReviewScreenshot
             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/live-casino.webp"
             alt="Betinia live casino med Speed Roulette, Lightning Baccarat og blackjack-varianter fra Evolution Gaming"
-            caption="Betinias live casino-sektion med 195+ borde – inkl. Dansk Roulette, Lightning Baccarat og 146 blackjack-varianter."
+            caption="Betinias live casino-sektion med blackjack, roulette, baccarat og game shows fra Evolution Gaming."
           />
         </section>
 

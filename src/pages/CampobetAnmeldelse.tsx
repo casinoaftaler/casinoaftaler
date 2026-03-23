@@ -31,6 +31,7 @@ import {
   Gamepad2, Wallet, Headphones, Smartphone, BarChart3,
 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -248,6 +249,12 @@ const CampobetAnmeldelse = () => {
               <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
             </p>
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/lobby.webp"
+            alt="Campobet lobby med populære spilleautomater som 30 Coins, Le Zeus, 9 Masks of Fire og kategorinavigation"
+            caption="Campobets spillemaskinsektion med populære titler og kategorier som Golden Slots, Nye Spil og Eksklusive Spil."
+            eager
+          />
         </section>
 
         <Separator className="my-10" />
@@ -265,9 +272,12 @@ const CampobetAnmeldelse = () => {
               <p className="text-sm text-muted-foreground"><strong className="text-foreground">Testresultat:</strong> Campobets dual-platform imponerer med teknisk stabilitet, hurtige udbetalinger og en sportssektion der faktisk konkurrerer med dedikerede bookmakers. No-Sticky bonusstrukturen giver reel spillerfordel, og den tredobbelte licensering skaber tryghed. Svaghederne – kundeservice primært på engelsk og manglende loyalitetsprogram – er reelle, men ikke showstoppere.</p>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/login-mitid.webp"
+            alt="Campobet login via MitID med bruger-ID felt og sikker verifikation"
+            caption="Campobets MitID-loginflow – registrering og login sker hurtigt via NemID/MitID."
+          />
         </section>
-
-        <Separator className="my-10" />
 
         {/* Fordele/Ulemper */}
         <section className="mb-12">
@@ -411,6 +421,11 @@ const CampobetAnmeldelse = () => {
               </Card>
             ))}
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/kampagner.webp"
+            alt="Campobet kampagneside med casino velkomstbonus, reload bonus, Bore Draw refund og akkumulator boost"
+            caption="Campobets kampagnesektion med både casino- og sportsbonusser, inkl. reload og akkumulator boost."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -436,6 +451,11 @@ const CampobetAnmeldelse = () => {
               </Card>
             ))}
           </div>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/trofaesamlingen.webp"
+            alt="Campobet Trofæsamlingen med Europa, Football, Tennis og Hockey trofæer og bonuspræmier"
+            caption="Campobets unikke Trofæsamling – saml kort og vind kontante præmier op til 200 kr. pr. kollektion."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -492,6 +512,11 @@ const CampobetAnmeldelse = () => {
             </table>
           </div>
           <p className="text-xs text-muted-foreground">*Skrill og Neteller kvalificerer ikke til bonusser. Alle transaktioner er gebyrfri. Min. udbetaling: 100 kr.</p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/betalingsmetoder.webp"
+            alt="Campobet indbetalingsside med MobilePay, Visa, Mastercard, PayPal, Trustly, Skrill, Zimpler, Paysafecard og danske banker"
+            caption="Campobets betalingsudvalg – det bredeste på det danske marked med MobilePay, PayPal, Zimpler og direkte bankoverførsel."
+          />
         </section>
 
         <Separator className="my-10" />
@@ -503,6 +528,11 @@ const CampobetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Blackjack er den stærkeste kategori med varianter som Classic, Speed, Lightning, Infinite og VIP. Indsatsgrænserne spænder fra 50 kr. til over 50.000 kr. pr. hånd, hvilket tilgodeser både micro-stake spillere og high rollers. Speed Blackjack er særligt populært med en gennemsnitlig håndduration under 30 sekunder. Vi oplevede konsekvent høj videokvalitet (1080p) og professional dealere med flydende engelsk.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Roulette-sektionen omfatter europæisk, fransk og auto-roulette samt Lightning Roulette, der tilføjer tilfældige multiplikatorer op til 500x. Baccarat er repræsenteret med standard og Speed-varianter. Game show-sektionen inkluderer Crazy Time, Dream Catcher og Monopoly Live – men udvalget er mere begrænset end hos casinoer, der har dedikerede aftaler med multiple live casino-leverandører.</p>
           <p className="text-muted-foreground leading-relaxed">En bemærkelsesværdig observation er, at der ikke er dedikerede danske borde. Det er en begrænsning for spillere, der foretrækker at kommunikere med dealeren på dansk – her har konkurrenter som <Link to="/royal-casino-anmeldelse" className={linkClass}>Royal Casino</Link> en klar fordel med deres eksklusive danske live dealer-borde.</p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/live-casino.webp"
+            alt="Campobet live casino med Crazy Pachinko, Speed Roulette, Lightning Roulette og blackjack-varianter"
+            caption="Campobets live casino-sektion med roulette, blackjack, baccarat og game shows fra Evolution Gaming."
+          />
         </section>
 
         <Separator className="my-10" />
