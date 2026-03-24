@@ -228,6 +228,11 @@ const SpilleautomatenAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Vores redaktion testede Spilleautomaten systematisk over to uger med fokus på bonusforløbet, Præmieshoppen og den daglige spiloplevelse:
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/login.webp"
+            alt="Spilleautomaten login-dialog med MitID-verifikation og e-mail/adgangskode felter"
+            caption="Login hos Spilleautomaten foregår via MitID eller traditionelt e-mail login."
+          />
           <Card className="border-border bg-card mb-6">
             <CardContent className="pt-6">
               <div className="space-y-4">
@@ -253,11 +258,6 @@ const SpilleautomatenAnmeldelse = () => {
               </div>
             </CardContent>
           </Card>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/login.webp"
-            alt="Spilleautomaten login-dialog med MitID-verifikation og e-mail/adgangskode felter"
-            caption="Login hos Spilleautomaten foregår via MitID eller traditionelt e-mail login."
-          />
         </section>
 
         <Separator className="my-10" />
