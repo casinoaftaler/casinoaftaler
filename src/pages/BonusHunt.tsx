@@ -77,7 +77,8 @@ export default function BonusHunt() {
   const liveHuntNumber = activeSessionHuntNumber || (huntData?.status === 'active' ? huntData.visibleId : undefined);
   const maxHuntNumber = Math.max(latestHuntNumber, liveHuntNumber || 0);
 
-  const currentHuntNumber = huntIdOverride || huntData?.visibleId || maxHuntNumber;
+  // Prefer live hunt when no explicit override is set
+  const currentHuntNumber = huntIdOverride || liveHuntNumber || huntData?.visibleId || maxHuntNumber;
   const isSessionCurrentActive = session?.status === 'active' && session?.hunt_number === currentHuntNumber;
   const isDataCurrentActive = huntData?.status === 'active';
   const isLive = !!(isSessionCurrentActive || (isDataCurrentActive && currentHuntNumber > latestHuntNumber));
