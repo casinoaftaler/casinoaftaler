@@ -281,7 +281,9 @@ const SpilDanskNuAnmeldelse = () => {
           </div>
         </section>
 
-        <Separator className="my-10" />
+          <ReviewScreenshot src={spildansknuBelonningsprogram} alt="SpilDanskNu belønningsprogram med pointoversigt og vilkår" caption="Belønningsprogrammets oversigt med pointoptjening og vilkår" />
+
+          <Separator className="my-10" />
 
         {/* Spiludvalg */}
         <section className="mb-12">
