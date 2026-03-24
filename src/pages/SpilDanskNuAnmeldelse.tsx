@@ -264,6 +264,8 @@ const SpilDanskNuAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Mekanikken er enkel: for hver 5 kr. du omsætter på spilleautomater, modtager du 1 loyalitetspoint. Pointene har ingen udløbsdato – en sjældenhed der giver dig fuld frihed til at spare op over tid og indløse, når du er klar. Programmet aktiveres automatisk ved registrering og nyhedsbrevstilmelding, og du kan følge din pointsaldo direkte i din kontooversigt. Bordspil og live casino bidrager typisk med færre points pr. omsat krone, og bonusspil tæller ikke med.</p>
           <p className="text-muted-foreground leading-relaxed">Under vores 14-dages test optjente vi 487 points ved at omsætte ca. 2.435 kr. Det er et moderat tempo, men over måneder akkumulerer det til en reel ekstraværdi. Sammenlignet med konkurrenternes loyalitetsprogrammer er SpilDanskNus model transparentere og mere spillervenlig – du ved præcis, hvad dine points er værd, og der er ingen risiko for at miste dem til en status-nulstilling.</p>
 
+          <ReviewScreenshot src={spildansknuPraemieshop} alt="SpilDanskNu Præmieshop med kontante præmier fra 50 til 1000 DKK" caption="Præmieshoppen hos SpilDanskNu – indløs loyalitetspoints til kontante præmier" />
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
             {[
               { icon: Award, title: "Automatisk deltagelse", desc: "Aktiveres ved registrering + nyhedsbrev. Ingen ekstra aktivering påkrævet." },
