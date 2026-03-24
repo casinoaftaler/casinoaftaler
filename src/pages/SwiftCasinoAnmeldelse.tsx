@@ -541,14 +541,14 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Streamingkvalitet.</strong> Vi testede live casinoet på Wi-Fi (fiber), 5G og 4G. Resultater: Wi-Fi gav fejlfri HD-streaming uden forsinkelse. 5G var næsten identisk. 4G havde minimal forsinkelse (0,5–1 sekund) men ingen buffering eller frame drops. Dealerne var professionelle, engagerede og håndterede chat-interaktion med spillere naturligt.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Anbefalede live-spil:</strong> Lightning Roulette (RTP 97,3 %) – hurtige runder med multiplikatorer op til 500x. Blackjack VIP (RTP 99,29 %) – for spillere med højere indsatser. Crazy Time – game show-format med fire bonusrunder og maks. gevinst på 25.000x.
-          </p>
           <ReviewScreenshot
             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/live-casino.webp?v=20260323-swift-fix"
             alt="Swift Casino live casino med blackjack, roulette og game shows fra Playtech og Evolution"
             caption="Swift Casinos live casino-sektion med populære bordspil og eksklusive borde."
           />
+          <p className="text-muted-foreground leading-relaxed">
+            <strong className="text-foreground">Anbefalede live-spil:</strong> Lightning Roulette (RTP 97,3 %) – hurtige runder med multiplikatorer op til 500x. Blackjack VIP (RTP 99,29 %) – for spillere med højere indsatser. Crazy Time – game show-format med fire bonusrunder og maks. gevinst på 25.000x.
+          </p>
         </section>
 
         <Separator className="my-10" />
