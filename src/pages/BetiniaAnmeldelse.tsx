@@ -678,6 +678,11 @@ const BetiniaAnmeldelse = () => {
             <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> og{" "}
             <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> tilbyder det ikke konsekvent. Bordet kører typisk fra kl. 10:00 til midnat med minimumsindsats på 10 kr. og maksimum på 25.000 kr.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/live-casino.webp"
+            alt="Betinia live casino med Speed Roulette, Lightning Baccarat og blackjack-varianter fra Evolution Gaming"
+            caption="Betinias live casino-sektion med blackjack, roulette, baccarat og game shows fra Evolution Gaming."
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Game show-sektionen er impressiv med 15+ titler. Crazy Time dominerer med sin fire-hjuls bonusstruktur og multipliers op til 25.000x. Vi spillede en 45-minutters session med startkapital på 200 kr. og endte på 310 kr. – et beskedent plus, men underholdningsværdien er høj. Monopoly Live, Dream Catcher og det nyere Funky Time er alle tilgængelige med stabile streams og engagerende dealere.
           </p>
