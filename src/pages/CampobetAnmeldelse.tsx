@@ -456,6 +456,11 @@ const CampobetAnmeldelse = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Det bredeste betalingsudvalg i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Campobet har det mest omfattende udvalg af <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> blandt danske casinoer. Hvor de fleste konkurrenter tilbyder 4-6 metoder, har Campobet hele 10+ muligheder – alle uden gebyrer. Det giver en fleksibilitet, der er svær at matche.</p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/betalingsmetoder.webp"
+            alt="Campobet indbetalingsside med MobilePay, Visa, Mastercard, PayPal, Trustly, Skrill, Zimpler, Paysafecard og danske banker"
+            caption="Campobets betalingsudvalg – det bredeste på det danske marked med MobilePay, PayPal, Zimpler og direkte bankoverførsel."
+          />
 
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm">
