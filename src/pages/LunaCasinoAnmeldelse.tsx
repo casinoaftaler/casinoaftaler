@@ -503,15 +503,15 @@ const LunaCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">RTP-gennemsnit.</strong> Vi analyserede RTP-niveauerne på de mest prominente spil i kataloget og fandt et gennemsnit på 96,2 % – marginalt over branchegennemsnittet. Det bekræfter, at kurateringen ikke kun handler om æstetik, men også om at prioritere spil med fair udbetalingsprocenter.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Ulempen ved kuratering.</strong> Spillere der jager nichetitler, progressive jackpot-netværk (Mega Moolah, Hall of Gods) eller specifikke udbydere som{" "}
-            <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> vil finde udvalget begrænset. Luna Casino satser på bredde inden for premium-segmentet, ikke på at dække alle hjørner af markedet.
-          </p>
           <ReviewScreenshot
             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/hot-cold.webp"
             alt="Luna Casino Hot Or Cold-funktion med realtidsdata over trending spilleautomater"
             caption="Hot Or Cold-funktionen hos Luna Casino viser hvilke spil der aktuelt udbetaler mest."
           />
+          <p className="text-muted-foreground leading-relaxed">
+            <strong className="text-foreground">Ulempen ved kuratering.</strong> Spillere der jager nichetitler, progressive jackpot-netværk (Mega Moolah, Hall of Gods) eller specifikke udbydere som{" "}
+            <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> vil finde udvalget begrænset. Luna Casino satser på bredde inden for premium-segmentet, ikke på at dække alle hjørner af markedet.
+          </p>
         </section>
 
         <Separator className="my-10" />
