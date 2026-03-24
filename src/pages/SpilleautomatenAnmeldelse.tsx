@@ -378,8 +378,14 @@ const SpilleautomatenAnmeldelse = () => {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Den psykologiske fordel er også markant: at investere 200 kr. føles overkommeligt, mens 1.000 kr. kan skabe præstationsangst. Det fører typisk til bedre beslutninger ved spillebordet, fordi du ikke føler dig presset til at "tjene hele investeringen hjem" med det samme.
               </p>
-            </CardContent>
+           </CardContent>
           </Card>
+
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/bonus.webp"
+            alt="Spilleautomaten bonusside med 100% velkomstbonus op til 1.000 kr. og VELKOMMEN1-kode"
+            caption="Spilleautomatens bonusside viser den trinvise velkomstbonus med 10x omsætningskrav."
+          />
 
           <Card className="border-border bg-card">
             <CardHeader className="pb-2">
@@ -416,11 +422,6 @@ const SpilleautomatenAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/bonus.webp"
-            alt="Spilleautomaten bonusside med 100% velkomstbonus op til 1.000 kr. og VELKOMMEN1-kode"
-            caption="Spilleautomatens bonusside viser den trinvise velkomstbonus med 10x omsætningskrav."
-          />
         </section>
 
         {/* ───── EV ANALYSE ───── */}
