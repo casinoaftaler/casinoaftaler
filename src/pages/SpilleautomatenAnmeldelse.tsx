@@ -490,6 +490,11 @@ const SpilleautomatenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Mekanikken er transparent: for hver 5 kr. du omsætter på spilleautomater (med rigtige penge, ikke bonus), optjener du 1 loyalitetspoint. Points akkumuleres uden udløbsdato – du mister dem aldrig, uanset om du holder pause. I Præmieshoppen kan du indløse points til kontante bonusmidler med stigende værdi: 500 points = 25 kr., 1.000 points = 55 kr., 2.500 points = 150 kr. Jo flere points du indløser på én gang, desto bedre er konverteringsraten.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/praemieshop.webp"
+            alt="Spilleautomaten Præmieshop med kontante præmier fra 50 til 1.000 DKK og pointpriser"
+            caption="Præmieshoppen hvor loyalitetspoints konverteres til kontante bonusmidler – fra 5.000 til 90.000 points."
+          />
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Under vores 14-dages test akkumulerede vi 1.247 points og indløste 500 af dem til 25 kr. i kontante bonusmidler. Processen var øjeblikkelig – pointene blev trukket, og bonusmidlerne krediteret inden for sekunder. Det er bemærkelsesværdigt simpelt sammenlignet med VIP-programmer hos store casinoer, der ofte kræver kontakt med en kontoadministrator.
           </p>
@@ -510,11 +515,6 @@ const SpilleautomatenAnmeldelse = () => {
               </div>
             ))}
           </div>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/praemieshop.webp"
-            alt="Spilleautomaten Præmieshop med kontante præmier fra 50 til 1.000 DKK og pointpriser"
-            caption="Præmieshoppen hvor loyalitetspoints konverteres til kontante bonusmidler – fra 5.000 til 90.000 points."
-          />
         </section>
 
         <Separator className="my-10" />
