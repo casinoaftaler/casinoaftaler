@@ -364,17 +364,17 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Vores faktiske resultat:</strong> Med maks. bonus (500 kr. indskud + 500 kr. bonus) gennemførte vi omsætningskravet på dag 10 med en saldo på 720 kr. – et tab på kun 280 kr. mod de forventede 400 kr. Det bekræfter, at 10x omsætning giver en realistisk chance for at beholde bonusværdien.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/velkomstbonus.webp?v=20260323-swift-fix"
+            alt="Swift Casino velkomstbonus – 100 procent op til 500 kr. med bonuskode SWIFT"
+            caption="Swift Casinos velkomstbonus med 100 % match op til 500 kr. ved første indbetaling."
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Vigtige bonusregler:</strong> Maks. indsats med bonus er 50 kr. pr. spin. Kun spilleautomater bidrager 100 % til omsætningskravet – bordspil bidrager 10 %, live casino typisk 0 %. Bonussen er ikke No-Sticky. Gyldigheden er 60 dage. Ved inaktivitet i mere end 30 dage kan bonusmidler blive tilbagekaldt.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Taktisk bonusstrategi med Hot Or Cold.</strong> Her kommer Swift Casinos unikke funktion i spil: du kan bruge Hot Or Cold til at identificere slots med aktuel høj aktivitet og potentielt bruge dem under bonusgennemspilning. Det er ingen garanti for bedre resultater (RNG er RNG), men det kan gøre gennemspilningsprocessen mere underholdende og give en følelse af informeret beslutningstagning.
           </p>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/velkomstbonus.webp?v=20260323-swift-fix"
-            alt="Swift Casino velkomstbonus – 100 procent op til 500 kr. med bonuskode SWIFT"
-            caption="Swift Casinos velkomstbonus med 100 % match op til 500 kr. ved første indbetaling."
-          />
         </section>
 
         <Separator className="my-10" />
