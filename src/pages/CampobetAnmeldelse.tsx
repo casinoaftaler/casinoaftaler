@@ -406,11 +406,6 @@ const CampobetAnmeldelse = () => {
               </Card>
             ))}
           </div>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/kampagner.webp"
-            alt="Campobet kampagneside med casino velkomstbonus, reload bonus, Bore Draw refund og akkumulator boost"
-            caption="Campobets kampagnesektion med både casino- og sportsbonusser, inkl. reload og akkumulator boost."
-          />
         </section>
 
         <Separator className="my-10" />
