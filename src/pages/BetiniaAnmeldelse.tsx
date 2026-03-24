@@ -699,6 +699,11 @@ const BetiniaAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betinia har ingen dedikeret app, men den mobiloptimerede hjemmeside fungerer som en progressiv web-app, der dækker alle funktioner. Vi testede mobilversionen på iPhone 15 Pro (Safari), Samsung Galaxy S24 (Chrome) og iPad Air (Safari) over 4 dage med fokus på navigation, spilleautomater, live casino, sportsbetting og betalingsflows.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/mobilapp.webp"
+            alt="Betinia mobilapp-side med QR-kode download og sponsorater"
+            caption="Betinias mobilapp-sektion med QR-kode download, casinospil og sportsbetting – plus deres danske sponsorater."
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Navigationen er intuitiv med en velstruktureret bundmenu, der giver hurtig adgang til casino, sport, live casino og kontofunktioner. Spilleautomater indlæses på 2–3 sekunder over 4G, og touchkontrollerne er responsive. Live casino-streams holder HD-kvalitet selv på 4G-forbindelse, og vi oplevede ingen buffering eller frame drops under vores test.
           </p>
