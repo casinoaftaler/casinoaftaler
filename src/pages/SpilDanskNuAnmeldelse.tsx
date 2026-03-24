@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spildansknuLobby from "@/assets/reviews/spildansknu-lobby.png";
+import spildansknuCasinospil from "@/assets/reviews/spildansknu-casinospil.png";
+import spildansknuBonus from "@/assets/reviews/spildansknu-bonus.webp";
+import spildansknuIndbetaling from "@/assets/reviews/spildansknu-indbetaling.webp";
+import spildansknuPraemieshop from "@/assets/reviews/spildansknu-praemieshop.png";
+import spildansknuBelonningsprogram from "@/assets/reviews/spildansknu-belonningsprogram.webp";
+import spildansknuLogin from "@/assets/reviews/spildansknu-login.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
