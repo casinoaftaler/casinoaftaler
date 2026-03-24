@@ -710,11 +710,6 @@ const BetiniaAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Sportsbetting-sektionen er fuldt funktionel på mobil med livescores, in-play betting og kampstatistikker. Akkumulatorboostet beregnes automatisk i kuponen, og "Foran med 2"-markeder er let tilgængelige. MobilePay-indbetalinger er særligt smidige på mobil – appen åbner automatisk, og transaktionen gennemføres med et enkelt swipe. Den eneste begrænsning er, at skærmens størrelse gør lange sportslister lidt uoverskuelige – scroll kan kræves for at finde specifikke markeder.
           </p>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/mobilapp.webp"
-            alt="Betinia mobilapp-side med QR-kode download og sponsorater"
-            caption="Betinias mobilapp-sektion med QR-kode download, casinospil og sportsbetting – plus deres danske sponsorater."
-          />
         </section>
 
         <Separator className="my-10" />
