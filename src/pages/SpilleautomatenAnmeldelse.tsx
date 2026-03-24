@@ -627,14 +627,14 @@ const SpilleautomatenAnmeldelse = () => {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-muted-foreground">
-            Min. indbetaling: 75 kr. | Min. udbetaling: 75 kr. | Alle gebyrfri. MobilePay-udbetalinger er en sjældenhed blandt danske casinoer – mange tilbyder kun MobilePay til indbetaling.
-          </p>
           <ReviewScreenshot
             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/betalinger.webp"
             alt="Spilleautomaten ind- og udbetalinger med MobilePay, Trustly, Visa, Mastercard og Dankort"
             caption="Oversigt over Spilleautomatens betalingsmetoder – alle gebyrfri med øjeblikkelig indbetaling."
           />
+          <p className="text-xs text-muted-foreground">
+            Min. indbetaling: 75 kr. | Min. udbetaling: 75 kr. | Alle gebyrfri. MobilePay-udbetalinger er en sjældenhed blandt danske casinoer – mange tilbyder kun MobilePay til indbetaling.
+          </p>
         </section>
 
         <Separator className="my-10" />

@@ -600,14 +600,14 @@ const LunaCasinoAnmeldelse = () => {
             <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> en reel ulempe. Begge metoder tilbyder hurtigere udbetalinger (ofte under 1 time) og bedre forbrugerbeskyttelse end traditionelle kortbetalinger. Hos konkurrenter som{" "}
             <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link> (samme operatør!) er begge tilgængelige – hvilket gør fraværet hos Luna Casino endnu mere bemærkelsesværdigt.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Skrill-gebyret.</strong> 5 % gebyr på Skrill-indbetalinger er usædvanligt i det danske marked og bør bemærkes. Ved en indbetaling på 500 kr. mister du 25 kr. i gebyr alene. Vi anbefaler Visa/Mastercard eller MobilePay for at undgå unødvendige omkostninger.
-          </p>
           <ReviewScreenshot
             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/betalingsmetoder.webp"
             alt="Luna Casino betalingsmetoder med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal"
             caption="Luna Casinos indbetalingsmuligheder med kontomenu, betalingsmetoder og kampagneadgang."
           />
+          <p className="text-muted-foreground leading-relaxed">
+            <strong className="text-foreground">Skrill-gebyret.</strong> 5 % gebyr på Skrill-indbetalinger er usædvanligt i det danske marked og bør bemærkes. Ved en indbetaling på 500 kr. mister du 25 kr. i gebyr alene. Vi anbefaler Visa/Mastercard eller MobilePay for at undgå unødvendige omkostninger.
+          </p>
         </section>
 
         <Separator className="my-10" />

@@ -599,17 +599,17 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">PayPal som fordel.</strong> I vores test tog PayPal-udbetalingen 5 timer og 45 minutter – markant hurtigere end Visa/Mastercard (2–3 dage). PayPal tilbyder desuden forbrugerbeskyttelse, hvilket giver ekstra tryghed. Det er en reel fordel overfor Luna Casino, hvor PayPal ikke er tilgængelig.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/betalingsmetoder.webp?v=20260323-swift-fix"
+            alt="Swift Casino betalingsmetoder med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal"
+            caption="Swift Casinos indbetalingsmuligheder inklusiv MobilePay, Trustly og PayPal – alle gebyrfrie."
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Trustly – den hurtigste metode.</strong> Trustly-udbetalingen var den hurtigste i vores test: 3 timer og 20 minutter. Trustly fungerer via bank-til-bank-overførsel med MitID-godkendelse og kræver ingen separat konto. For spillere der prioriterer hastighed, er Trustly den oplagte metode.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Ulempen: 200 kr. minimumsudbealing.</strong> Min. udbetaling på 200 kr. er højere end branchegennemsnittet på 100 kr. Det kan frustrere spillere med mindre saldi. Bankoverførselsgebyret for beløb under 3.700 kr. er ligeledes unødvendigt – de fleste konkurrenter tilbyder gebyrfri bankoverførsler.
           </p>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/betalingsmetoder.webp?v=20260323-swift-fix"
-            alt="Swift Casino betalingsmetoder med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal"
-            caption="Swift Casinos indbetalingsmuligheder inklusiv MobilePay, Trustly og PayPal – alle gebyrfrie."
-          />
         </section>
 
         <Separator className="my-10" />
