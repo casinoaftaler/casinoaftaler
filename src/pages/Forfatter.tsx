@@ -81,7 +81,7 @@ const faqs = [
 ];
 
 /** Articles sourced from centralized registry */
-import { getAuthorArticles, getAuthorReviewVideos, getAuthorGuideVideos, getAuthorAllVideos } from "@/data/authorContent";
+import { getAuthorArticles, getAuthorReviewVideos, getAuthorGuideVideos } from "@/data/authorContent";
 const jonasArticles = getAuthorArticles("jonas");
 const jonasGuideVideos = getAuthorGuideVideos("jonas");
 
@@ -261,36 +261,17 @@ export default function Forfatter() {
 
   const faqJsonLd = buildFaqSchema(faqs);
 
-  const allJonasVideos = [
-    ...getAuthorAllVideos("jonas"),
-    { id: "ZKDrnL7373o", title: "Jonas' bedste highlights" },
-  ];
-
-  const videoSchemas = allJonasVideos.map((v, i) => ({
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "@id": `${SITE_URL}/forfatter/jonas#video-${i + 1}`,
-    name: `${v.title} – Casinoaftaler.dk`,
-    description: `Jonas gennemgår ${v.title.toLowerCase()} på Casinoaftaler.dk.`,
-    thumbnailUrl: `https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`,
-    uploadDate: "2026-02-18T12:00:00+01:00",
-    duration: "PT2M",
-    embedUrl: `https://www.youtube.com/embed/${v.id}?rel=0&modestbranding=1`,
-    contentUrl: `https://www.youtube.com/watch?v=${v.id}`,
-    publisher: {
-      "@type": "Organization",
-      "@id": `${SITE_URL}/#organization`,
-      name: "Casinoaftaler.dk",
-      url: SITE_URL,
-    },
-  }));
+  // VideoObject schemas intentionally NOT emitted here.
+  // Each video's schema belongs on the page where the video is actually embedded
+  // (e.g. casino review pages), not on the author profile page.
+  // Having 60+ VideoObjects on /forfatter/jonas confused Google Search Console.
 
   return (
     <>
       <SEO
         title="Jonas – Forfatter & Grundlægger | Casinoaftaler"
         description="Mød Jonas, grundlæggeren af Casinoaftaler.dk og casino-streamer på Twitch. Læs om hans baggrund, streamingstil og passion for casinospil."
-        jsonLd={[faqJsonLd, personSchema, ...videoSchemas]}
+        jsonLd={[faqJsonLd, personSchema]}
       />
 
       {/* Hero */}
