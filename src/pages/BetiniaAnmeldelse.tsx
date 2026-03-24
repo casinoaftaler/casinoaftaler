@@ -37,11 +37,6 @@ import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/login-mitid.webp"
-            alt="Betinia login-dialog med MitID-verifikation for sikker adgang"
-            caption="Login hos Betinia sker via MitID – hurtigt, sikkert og uden manuel verifikation."
-          />
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -293,6 +288,11 @@ const BetiniaAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Vi testede Betinia systematisk over to uger med fokus på begge platforme: casino og sportsbetting. Her er de vigtigste observationer fra vores testperiode, dag for dag:
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/betinia/login-mitid.webp"
+            alt="Betinia login-dialog med MitID-verifikation for sikker adgang"
+            caption="Login hos Betinia sker via MitID – hurtigt, sikkert og uden manuel verifikation."
+          />
 
           <Card className="border-border bg-card mb-6">
             <CardContent className="pt-6">
