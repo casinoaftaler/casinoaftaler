@@ -526,14 +526,14 @@ const LunaCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Under vores test var vi imponeret over streamingkvaliteten – selv på mobilnetværk oplevede vi ingen buffering eller forsinkelser. Dealerne var professionelle og engagerede, og chat-funktionen fungerede problemfrit. Vi spillede Lightning Roulette (RTP 97,3 %), Blackjack VIP (RTP 99,29 %) og Crazy Time – sidstnævnte er et game show-format der kombinerer underholdning med gambling.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Begrænsning:</strong> Live casino-spil bidrager typisk ikke til omsætningskravet for bonussen. Hvis du primært spiller live casino, bør du gennemspille bonussen på slots først og derefter skifte til live-borde med egne midler.
-          </p>
           <ReviewScreenshot
             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/live-casino.webp"
             alt="Luna Casino live casino med roulette, blackjack og game shows fra Evolution Gaming og Playtech"
             caption="Luna Casinos live casino-sektion med roulette-varianter, blackjack og eksklusive borde."
           />
+          <p className="text-muted-foreground leading-relaxed">
+            <strong className="text-foreground">Begrænsning:</strong> Live casino-spil bidrager typisk ikke til omsætningskravet for bonussen. Hvis du primært spiller live casino, bør du gennemspille bonussen på slots først og derefter skifte til live-borde med egne midler.
+          </p>
         </section>
 
         <Separator className="my-10" />
