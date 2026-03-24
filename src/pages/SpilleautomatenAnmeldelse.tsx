@@ -535,6 +535,12 @@ const SpilleautomatenAnmeldelse = () => {
             <Link to="/live-casino" className={linkClass}>live casino-sektionen</Link>, der drives af Stakelogic Live med professionelle dealere. Det er kompakt men funktionelt: American Blackjack, European Roulette Glam, Super Stake Roulette, Vegas Drops Roulette og et par game shows. Sektionen er under løbende udvidelse.
           </p>
 
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/livecasino.webp"
+            alt="Spilleautomaten live casino med American Blackjack, European Roulette Glam og Vegas Drops Roulette fra Stakelogic Live"
+            caption="Live casino-sektionen med blackjack- og rouletteborde fra Stakelogic Live."
+          />
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
@@ -581,11 +587,6 @@ const SpilleautomatenAnmeldelse = () => {
               </CardContent>
             </Card>
           </div>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/livecasino.webp"
-            alt="Spilleautomaten live casino med American Blackjack, European Roulette Glam og Vegas Drops Roulette fra Stakelogic Live"
-            caption="Live casino-sektionen med blackjack- og rouletteborde fra Stakelogic Live."
-          />
         </section>
 
         <Separator className="my-10" />
