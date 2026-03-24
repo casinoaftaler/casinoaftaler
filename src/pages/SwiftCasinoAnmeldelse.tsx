@@ -364,17 +364,17 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Vores faktiske resultat:</strong> Med maks. bonus (500 kr. indskud + 500 kr. bonus) gennemførte vi omsætningskravet på dag 10 med en saldo på 720 kr. – et tab på kun 280 kr. mod de forventede 400 kr. Det bekræfter, at 10x omsætning giver en realistisk chance for at beholde bonusværdien.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/velkomstbonus.webp?v=20260323-swift-fix"
+            alt="Swift Casino velkomstbonus – 100 procent op til 500 kr. med bonuskode SWIFT"
+            caption="Swift Casinos velkomstbonus med 100 % match op til 500 kr. ved første indbetaling."
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Vigtige bonusregler:</strong> Maks. indsats med bonus er 50 kr. pr. spin. Kun spilleautomater bidrager 100 % til omsætningskravet – bordspil bidrager 10 %, live casino typisk 0 %. Bonussen er ikke No-Sticky. Gyldigheden er 60 dage. Ved inaktivitet i mere end 30 dage kan bonusmidler blive tilbagekaldt.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Taktisk bonusstrategi med Hot Or Cold.</strong> Her kommer Swift Casinos unikke funktion i spil: du kan bruge Hot Or Cold til at identificere slots med aktuel høj aktivitet og potentielt bruge dem under bonusgennemspilning. Det er ingen garanti for bedre resultater (RNG er RNG), men det kan gøre gennemspilningsprocessen mere underholdende og give en følelse af informeret beslutningstagning.
           </p>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/velkomstbonus.webp?v=20260323-swift-fix"
-            alt="Swift Casino velkomstbonus – 100 procent op til 500 kr. med bonuskode SWIFT"
-            caption="Swift Casinos velkomstbonus med 100 % match op til 500 kr. ved første indbetaling."
-          />
         </section>
 
         <Separator className="my-10" />
@@ -465,17 +465,17 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Vores eksperiment.</strong> Vi designede et simpelt test under vores 14-dages gennemgang: 50 spins à 10 kr. på "Hot"-markerede slots og 50 spins à 10 kr. på "Cold"-markerede slots. Resultaterne: "Hot"-spins returnerede 620 kr. (124 % RTP), mens "Cold"-spins returnerede 380 kr. (76 % RTP). Det er en interessant datapunkt, men med kun 100 spins er stikprøven alt for lille til at drage statistisk signifikante konklusioner.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/hot-cold.webp?v=20260323-swift-fix"
+            alt="Swift Casino Hot Or Cold-funktion med realtidsdata over trending spilleautomater"
+            caption="Hot Or Cold-funktionen viser i realtid hvilke spil der udbetaler mest – en unik feature hos Swift Casino."
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Den reelle værdi af Hot Or Cold.</strong> Funktionens styrke ligger ikke i dens prædiktive kraft (den har ingen), men i dens underholdningsværdi og den transparens den tilbyder. I et marked hvor casinoer typisk holder alle data tæt til kroppen, vælger Swift Casino at dele information med spillerne. Det er en progressiv tilgang, der signalerer tillid til produktet.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Brugsanbefalinger:</strong> Brug Hot Or Cold som inspiration til at opdage spil, du ikke har prøvet. Lad dig inspirere af "Hot"-markeringer, men vælg altid spil baseret på RTP, volatilitet og personlig præference. Undgå at jagte "Cold"-slots i håb om, at de "skal til at betale" – gambler's fallacy er en faldgrube, uanset hvad dataen viser.
           </p>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/hot-cold.webp?v=20260323-swift-fix"
-            alt="Swift Casino Hot Or Cold-funktion med realtidsdata over trending spilleautomater"
-            caption="Hot Or Cold-funktionen viser i realtid hvilke spil der udbetaler mest – en unik feature hos Swift Casino."
-          />
         </section>
 
         <Separator className="my-10" />
@@ -541,14 +541,14 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Streamingkvalitet.</strong> Vi testede live casinoet på Wi-Fi (fiber), 5G og 4G. Resultater: Wi-Fi gav fejlfri HD-streaming uden forsinkelse. 5G var næsten identisk. 4G havde minimal forsinkelse (0,5–1 sekund) men ingen buffering eller frame drops. Dealerne var professionelle, engagerede og håndterede chat-interaktion med spillere naturligt.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Anbefalede live-spil:</strong> Lightning Roulette (RTP 97,3 %) – hurtige runder med multiplikatorer op til 500x. Blackjack VIP (RTP 99,29 %) – for spillere med højere indsatser. Crazy Time – game show-format med fire bonusrunder og maks. gevinst på 25.000x.
-          </p>
           <ReviewScreenshot
             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/live-casino.webp?v=20260323-swift-fix"
             alt="Swift Casino live casino med blackjack, roulette og game shows fra Playtech og Evolution"
             caption="Swift Casinos live casino-sektion med populære bordspil og eksklusive borde."
           />
+          <p className="text-muted-foreground leading-relaxed">
+            <strong className="text-foreground">Anbefalede live-spil:</strong> Lightning Roulette (RTP 97,3 %) – hurtige runder med multiplikatorer op til 500x. Blackjack VIP (RTP 99,29 %) – for spillere med højere indsatser. Crazy Time – game show-format med fire bonusrunder og maks. gevinst på 25.000x.
+          </p>
         </section>
 
         <Separator className="my-10" />
@@ -599,17 +599,17 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">PayPal som fordel.</strong> I vores test tog PayPal-udbetalingen 5 timer og 45 minutter – markant hurtigere end Visa/Mastercard (2–3 dage). PayPal tilbyder desuden forbrugerbeskyttelse, hvilket giver ekstra tryghed. Det er en reel fordel overfor Luna Casino, hvor PayPal ikke er tilgængelig.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/betalingsmetoder.webp?v=20260323-swift-fix"
+            alt="Swift Casino betalingsmetoder med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal"
+            caption="Swift Casinos indbetalingsmuligheder inklusiv MobilePay, Trustly og PayPal – alle gebyrfrie."
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Trustly – den hurtigste metode.</strong> Trustly-udbetalingen var den hurtigste i vores test: 3 timer og 20 minutter. Trustly fungerer via bank-til-bank-overførsel med MitID-godkendelse og kræver ingen separat konto. For spillere der prioriterer hastighed, er Trustly den oplagte metode.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Ulempen: 200 kr. minimumsudbealing.</strong> Min. udbetaling på 200 kr. er højere end branchegennemsnittet på 100 kr. Det kan frustrere spillere med mindre saldi. Bankoverførselsgebyret for beløb under 3.700 kr. er ligeledes unødvendigt – de fleste konkurrenter tilbyder gebyrfri bankoverførsler.
           </p>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/betalingsmetoder.webp?v=20260323-swift-fix"
-            alt="Swift Casino betalingsmetoder med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal"
-            caption="Swift Casinos indbetalingsmuligheder inklusiv MobilePay, Trustly og PayPal – alle gebyrfrie."
-          />
         </section>
 
         <Separator className="my-10" />

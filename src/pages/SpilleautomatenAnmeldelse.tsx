@@ -228,6 +228,11 @@ const SpilleautomatenAnmeldelse = () => {
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Vores redaktion testede Spilleautomaten systematisk over to uger med fokus på bonusforløbet, Præmieshoppen og den daglige spiloplevelse:
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/login.webp"
+            alt="Spilleautomaten login-dialog med MitID-verifikation og e-mail/adgangskode felter"
+            caption="Login hos Spilleautomaten foregår via MitID eller traditionelt e-mail login."
+          />
           <Card className="border-border bg-card mb-6">
             <CardContent className="pt-6">
               <div className="space-y-4">
@@ -253,11 +258,6 @@ const SpilleautomatenAnmeldelse = () => {
               </div>
             </CardContent>
           </Card>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/login.webp"
-            alt="Spilleautomaten login-dialog med MitID-verifikation og e-mail/adgangskode felter"
-            caption="Login hos Spilleautomaten foregår via MitID eller traditionelt e-mail login."
-          />
         </section>
 
         <Separator className="my-10" />
@@ -378,8 +378,14 @@ const SpilleautomatenAnmeldelse = () => {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Den psykologiske fordel er også markant: at investere 200 kr. føles overkommeligt, mens 1.000 kr. kan skabe præstationsangst. Det fører typisk til bedre beslutninger ved spillebordet, fordi du ikke føler dig presset til at "tjene hele investeringen hjem" med det samme.
               </p>
-            </CardContent>
+           </CardContent>
           </Card>
+
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/bonus.webp"
+            alt="Spilleautomaten bonusside med 100% velkomstbonus op til 1.000 kr. og VELKOMMEN1-kode"
+            caption="Spilleautomatens bonusside viser den trinvise velkomstbonus med 10x omsætningskrav."
+          />
 
           <Card className="border-border bg-card">
             <CardHeader className="pb-2">
@@ -416,11 +422,6 @@ const SpilleautomatenAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/bonus.webp"
-            alt="Spilleautomaten bonusside med 100% velkomstbonus op til 1.000 kr. og VELKOMMEN1-kode"
-            caption="Spilleautomatens bonusside viser den trinvise velkomstbonus med 10x omsætningskrav."
-          />
         </section>
 
         {/* ───── EV ANALYSE ───── */}
@@ -489,6 +490,11 @@ const SpilleautomatenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Mekanikken er transparent: for hver 5 kr. du omsætter på spilleautomater (med rigtige penge, ikke bonus), optjener du 1 loyalitetspoint. Points akkumuleres uden udløbsdato – du mister dem aldrig, uanset om du holder pause. I Præmieshoppen kan du indløse points til kontante bonusmidler med stigende værdi: 500 points = 25 kr., 1.000 points = 55 kr., 2.500 points = 150 kr. Jo flere points du indløser på én gang, desto bedre er konverteringsraten.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/praemieshop.webp"
+            alt="Spilleautomaten Præmieshop med kontante præmier fra 50 til 1.000 DKK og pointpriser"
+            caption="Præmieshoppen hvor loyalitetspoints konverteres til kontante bonusmidler – fra 5.000 til 90.000 points."
+          />
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Under vores 14-dages test akkumulerede vi 1.247 points og indløste 500 af dem til 25 kr. i kontante bonusmidler. Processen var øjeblikkelig – pointene blev trukket, og bonusmidlerne krediteret inden for sekunder. Det er bemærkelsesværdigt simpelt sammenlignet med VIP-programmer hos store casinoer, der ofte kræver kontakt med en kontoadministrator.
           </p>
@@ -509,11 +515,6 @@ const SpilleautomatenAnmeldelse = () => {
               </div>
             ))}
           </div>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/praemieshop.webp"
-            alt="Spilleautomaten Præmieshop med kontante præmier fra 50 til 1.000 DKK og pointpriser"
-            caption="Præmieshoppen hvor loyalitetspoints konverteres til kontante bonusmidler – fra 5.000 til 90.000 points."
-          />
         </section>
 
         <Separator className="my-10" />
@@ -533,6 +534,12 @@ const SpilleautomatenAnmeldelse = () => {
             Den bevidste fraværelse af digitale RNG-bordspil (roulette, blackjack i software-version) er et strategisk valg. I stedet kanaliseres bordspil-energien ind i{" "}
             <Link to="/live-casino" className={linkClass}>live casino-sektionen</Link>, der drives af Stakelogic Live med professionelle dealere. Det er kompakt men funktionelt: American Blackjack, European Roulette Glam, Super Stake Roulette, Vegas Drops Roulette og et par game shows. Sektionen er under løbende udvidelse.
           </p>
+
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/livecasino.webp"
+            alt="Spilleautomaten live casino med American Blackjack, European Roulette Glam og Vegas Drops Roulette fra Stakelogic Live"
+            caption="Live casino-sektionen med blackjack- og rouletteborde fra Stakelogic Live."
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card className="border-border bg-card">
@@ -580,11 +587,6 @@ const SpilleautomatenAnmeldelse = () => {
               </CardContent>
             </Card>
           </div>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/livecasino.webp"
-            alt="Spilleautomaten live casino med American Blackjack, European Roulette Glam og Vegas Drops Roulette fra Stakelogic Live"
-            caption="Live casino-sektionen med blackjack- og rouletteborde fra Stakelogic Live."
-          />
         </section>
 
         <Separator className="my-10" />
@@ -625,14 +627,14 @@ const SpilleautomatenAnmeldelse = () => {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-muted-foreground">
-            Min. indbetaling: 75 kr. | Min. udbetaling: 75 kr. | Alle gebyrfri. MobilePay-udbetalinger er en sjældenhed blandt danske casinoer – mange tilbyder kun MobilePay til indbetaling.
-          </p>
           <ReviewScreenshot
             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/betalinger.webp"
             alt="Spilleautomaten ind- og udbetalinger med MobilePay, Trustly, Visa, Mastercard og Dankort"
             caption="Oversigt over Spilleautomatens betalingsmetoder – alle gebyrfri med øjeblikkelig indbetaling."
           />
+          <p className="text-xs text-muted-foreground">
+            Min. indbetaling: 75 kr. | Min. udbetaling: 75 kr. | Alle gebyrfri. MobilePay-udbetalinger er en sjældenhed blandt danske casinoer – mange tilbyder kun MobilePay til indbetaling.
+          </p>
         </section>
 
         <Separator className="my-10" />
