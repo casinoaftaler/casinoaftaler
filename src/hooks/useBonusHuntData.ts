@@ -193,7 +193,12 @@ async function fetchBonusHuntData(huntId?: number, latestHuntNumber?: number): P
       return directData;
     }
 
-    // If a specific hunt was requested but has no slots, try latest archived
+    // If this is a live/active hunt (above latest archived), show empty state – don't fall back
+    if (directData.status === 'active' || (resolvedHuntId && latestHuntNumber && resolvedHuntId > latestHuntNumber)) {
+      return directData;
+    }
+
+    // If a specific past hunt was requested but has no slots, try latest archived
     if (latestHuntNumber) {
       const archivedFallback = await fetchLatestArchivedHunt(latestHuntNumber);
       if (archivedFallback) return archivedFallback;
