@@ -465,17 +465,17 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Vores eksperiment.</strong> Vi designede et simpelt test under vores 14-dages gennemgang: 50 spins à 10 kr. på "Hot"-markerede slots og 50 spins à 10 kr. på "Cold"-markerede slots. Resultaterne: "Hot"-spins returnerede 620 kr. (124 % RTP), mens "Cold"-spins returnerede 380 kr. (76 % RTP). Det er en interessant datapunkt, men med kun 100 spins er stikprøven alt for lille til at drage statistisk signifikante konklusioner.
           </p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/hot-cold.webp?v=20260323-swift-fix"
+            alt="Swift Casino Hot Or Cold-funktion med realtidsdata over trending spilleautomater"
+            caption="Hot Or Cold-funktionen viser i realtid hvilke spil der udbetaler mest – en unik feature hos Swift Casino."
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Den reelle værdi af Hot Or Cold.</strong> Funktionens styrke ligger ikke i dens prædiktive kraft (den har ingen), men i dens underholdningsværdi og den transparens den tilbyder. I et marked hvor casinoer typisk holder alle data tæt til kroppen, vælger Swift Casino at dele information med spillerne. Det er en progressiv tilgang, der signalerer tillid til produktet.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Brugsanbefalinger:</strong> Brug Hot Or Cold som inspiration til at opdage spil, du ikke har prøvet. Lad dig inspirere af "Hot"-markeringer, men vælg altid spil baseret på RTP, volatilitet og personlig præference. Undgå at jagte "Cold"-slots i håb om, at de "skal til at betale" – gambler's fallacy er en faldgrube, uanset hvad dataen viser.
           </p>
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/swift-casino/hot-cold.webp?v=20260323-swift-fix"
-            alt="Swift Casino Hot Or Cold-funktion med realtidsdata over trending spilleautomater"
-            caption="Hot Or Cold-funktionen viser i realtid hvilke spil der udbetaler mest – en unik feature hos Swift Casino."
-          />
         </section>
 
         <Separator className="my-10" />
