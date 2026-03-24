@@ -383,6 +383,11 @@ const CampobetAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Ugentlige reload-bonusser og sportskampagner</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Campobets bonusprogram stopper ikke ved velkomstpakken. Platformen har et af de mest aktive kampagneprogrammer på det danske marked med faste ugentlige og weekend reload-bonusser, der alle følger den samme No-Sticky struktur med 10x omsætningskrav. Det er usædvanligt – de fleste danske casinoer tilbyder reload-bonusser som sticky, hvilket gør Campobets tilgang markant mere spillervenlig.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den ugentlige reload-bonus er 100 % op til 500 kr. og kan aktiveres hver mandag–torsdag med minimum 100 kr. indbetaling. Weekend reload-bonussen følger samme model (100 % op til 500 kr.) men gælder fra fredag 00:00 til søndag 23:59. Begge bonusser er No-Sticky med 10x omsætningskrav og 60 dages gyldighed. Det giver en teoretisk ugentlig bonuskapacitet på 1.000 kr. – eller 4.000 kr. ekstra pr. måned for aktive spillere.</p>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/campobet/kampagner.webp"
+            alt="Campobet kampagneside med casino velkomstbonus, reload bonus, Bore Draw refund og akkumulator boost"
+            caption="Campobets kampagnesektion med både casino- og sportsbonusser, inkl. reload og akkumulator boost."
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">Sportssektionen har sin egen velkomstbonus: 100 % op til 1.000 kr. med kun 5x omsætningskrav. Minimum odds er 2,0 for enkeltvæddemål og 1,5 pr. valg i multibets, med en maks. indsats på 500 kr. pr. væddemål. Akkumulator-boostet giver op til 100 % ekstra gevinst på multibets med 3+ valg. "Foran med 2"-funktionen sikrer automatisk udbetaling, når dit fodboldhold fører med 2 mål – uanset kampens slutresultat. Det er en risikoreduktionfunktion, der ikke har noget modstykke hos rene casino-platforme.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
