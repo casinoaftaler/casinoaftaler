@@ -316,6 +316,8 @@ const SpilDanskNuAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Betalinger – MobilePay under 5 timer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">SpilDanskNu understøtter de mest populære danske <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Alle transaktioner er gebyrfri med en minimumsindbetaling på kun 75 kr. – lavere end de fleste konkurrenter. Indbetalinger krediteres øjeblikkeligt uanset metode, og udbetalinger behandles typisk inden for 1-3 hverdage afhængigt af betalingsmetode.</p>
 
+          <ReviewScreenshot src={spildansknuIndbetaling} alt="SpilDanskNu indbetalingsside med MobilePay, Mastercard, Visa og Trustly" caption="Indbetalingsmetoder hos SpilDanskNu – MobilePay, kort og Trustly med minimum 75 kr." />
+
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm">
               <thead><tr className="border-b border-border">
