@@ -81,7 +81,7 @@ const faqs = [
 ];
 
 /** Articles sourced from centralized registry */
-import { getAuthorArticles, getAuthorReviewVideos, getAuthorGuideVideos, getAuthorAllVideos } from "@/data/authorContent";
+import { getAuthorArticles, getAuthorReviewVideos, getAuthorGuideVideos } from "@/data/authorContent";
 const jonasArticles = getAuthorArticles("jonas");
 const jonasGuideVideos = getAuthorGuideVideos("jonas");
 
