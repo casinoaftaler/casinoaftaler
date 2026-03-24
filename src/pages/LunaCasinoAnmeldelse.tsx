@@ -448,14 +448,14 @@ const LunaCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Turneringer som social dimension.</strong> Luna Casino afholder regelmæssige turneringer – typisk ugentlige slots-turneringer med præmiepuljer op til 10.000 kr. Deltagelse er gratis for registrerede spillere, og rangering baseres på faktorer som samlede gevinster, antal spins eller største enkeltgevinst. Under vores test deltog vi i to turneringer og oplevede en motiverende konkurrencedimension, der tilføjede ekstra spænding til spillet.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">Daglige kampagner i detaljer.</strong> Luna Casino kører en roterende kampagnekalender med nye tilbud hver dag: mandage bringer typisk reload-bonusser, onsdage free spins på udvalgte spil, fredage cashback-tilbud og weekender turneringsadgang. Vilkårene er konsekvent fair med 10x omsætning – samme niveau som velkomstbonussen. Det er denne konsistens, der gør Luna Casino attraktivt for spillere, der vægter løbende værdi højere end en stor engangsbonusmaksimum.
-          </p>
           <ReviewScreenshot
             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/kampagner.webp"
             alt="Luna Casino turneringer og kampagner med eksklusive tilbud og personalets udvalg"
             caption="Luna Casinos kampagnesektion med turneringer, eksklusive kampagner og personalets udvalg."
           />
+          <p className="text-muted-foreground leading-relaxed">
+            <strong className="text-foreground">Daglige kampagner i detaljer.</strong> Luna Casino kører en roterende kampagnekalender med nye tilbud hver dag: mandage bringer typisk reload-bonusser, onsdage free spins på udvalgte spil, fredage cashback-tilbud og weekender turneringsadgang. Vilkårene er konsekvent fair med 10x omsætning – samme niveau som velkomstbonussen. Det er denne konsistens, der gør Luna Casino attraktivt for spillere, der vægter løbende værdi højere end en stor engangsbonusmaksimum.
+          </p>
         </section>
 
         <Separator className="my-10" />
