@@ -245,14 +245,6 @@ const LunaCasinoAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-          <ReviewScreenshot
-            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/login-mitid.webp"
-            alt="Luna Casino registrering med MitID digital identitetsgodkendelse"
-            caption="Registreringsprocessen hos Luna Casino med MitID-verifikation for sikker adgang."
-          />
-
-        <Separator className="my-10" />
-
         {/* ───── FORDELE & ULEMPER ───── */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Luna Casino</h2>
@@ -800,6 +792,11 @@ const LunaCasinoAnmeldelse = () => {
               </div>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/luna-casino/login-mitid.webp"
+            alt="Luna Casino registrering med MitID digital identitetsgodkendelse"
+            caption="Registreringsprocessen hos Luna Casino med MitID-verifikation for sikker adgang."
+          />
         </section>
 
         <Separator className="my-10" />
