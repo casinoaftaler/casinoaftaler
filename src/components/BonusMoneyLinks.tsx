@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Gamepad2, BarChart3, Cpu, Sparkles } from "lucide-react";
+import { ArrowRight, Gamepad2, BarChart3, Cpu, Sparkles, Smartphone, Globe, Zap } from "lucide-react";
 
 /**
  * Authority-loop closure component for bonus cluster pages.
