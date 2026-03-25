@@ -124,7 +124,7 @@ export function QuickComparisonTable({
                       className="h-8 text-xs gap-1"
                       onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
                     >
-                      Spil nu
+                      FÅ BONUS
                       <ExternalLink className="h-3 w-3" />
                     </Button>
                   </td>
