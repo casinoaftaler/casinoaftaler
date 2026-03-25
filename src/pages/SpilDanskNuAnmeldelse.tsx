@@ -377,7 +377,7 @@ const SpilDanskNuAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og dansk regulering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Winteq ApS – dansk ejet, dansk reguleret</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">SpilDanskNu opererer med gyldig licens fra Spillemyndigheden, udstedt til Winteq ApS. Det er værd at understrege forskellen mellem et casino drevet af et dansk selskab og et internationalt casino med dansk licens. Winteq ApS er underlagt dansk selskabslovgivning, dansk skatteret og dansk tilsyn – ud over spillereguleringen. Det giver et ekstra lag af beskyttelse, som internationale operatører ikke kan matche.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Platformen benytter SSL-kryptering til beskyttelse af alle data og transaktioner og er fuldt tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse. Registrering sker via MitID, og alle spil er certificeret af uafhængige testorganisationer. Obligatoriske indbetalingsgrænser, session-påmindelser og mulighed for midlertidig udelukkelse er implementeret i overensstemmelse med Spillemyndighedens regler.</p>
           <p className="text-muted-foreground leading-relaxed">Spil altid ansvarligt. Sæt et budget, hold pauser og spil aldrig for mere end du har råd til at tabe. Har du brug for hjælp, kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet</a> på telefon 70 22 28 25 eller via <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.</p>
