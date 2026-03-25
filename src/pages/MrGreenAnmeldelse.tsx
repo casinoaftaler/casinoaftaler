@@ -217,7 +217,7 @@ const MrGreenAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og regulatorisk infrastruktur</h2>
+          <h2 className="mb-4 text-3xl font-bold">William Hills regulatoriske infrastruktur bag Mr Green</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green Casino opererer under dansk licens fra Spillemyndigheden og er en del af Evoke PLC (tidl. 888 Holdings) – en af verdens mest regulerede spiludbydere med licenser i 20+ jurisdiktioner. Evoke PLC (tidl. 888 Holdings) er børsnoteret på London Stock Exchange, hvilket sikrer kvartalsvis offentlig rapportering og fuld finansiel gennemsigtighed. Den regulatoriske infrastruktur er dermed i absolut topklasse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Platformens sikkerhedsteknologi inkluderer 256-bit SSL-kryptering på alle transaktioner, PCI DSS Level 1-certificering for kortbehandling og avancerede anti-fraud-systemer, der monitorerer for usædvanlige transaktionsmønstre. Green Gaming-værktøjet tilføjer et ekstra lag af spillerbeskyttelse, der går langt ud over den lovmæssige minimumsstandard.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vores <Link to="/forretningsmodel" className={linkClass}>forretningsmodel</Link> og <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> sikrer objektive vurderinger – og på sikkerhedsparameteren scorer Mr Green 10/10. Der er intet, der tyder på nogen som helst sikkerhedsrisiko ved at spille hos Mr Green. Din data og dine penge er i trygge hænder.</p>
