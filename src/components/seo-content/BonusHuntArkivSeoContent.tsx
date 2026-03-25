@@ -38,8 +38,8 @@ export function BonusHuntArkivSeoContent() {
         <h2 className="text-2xl font-bold text-foreground" id="laes-statistikker">Sådan Læser Du Statistikkerne</h2>
         <p className="text-muted-foreground leading-relaxed">
           <strong>Gennemsnitlig X</strong> (Average X) er den vigtigste metrik i en bonus hunt. Den beregnes ved
-          at dividere den samlede gevinst fra alle åbnede bonusser med den samlede investering (summen af alle
-          bonus-køb). En X på 100 betyder break even – den samlede gevinst var præcis lig med investeringen.
+          at dividere den samlede gevinst fra alle åbnede bonusser med den samlede indsats (summen af alle
+          bonus-priser / indsatser brugt på at triggere bonusserne). En X på 100 betyder break even – den samlede gevinst var præcis lig med indsatsen.
           X over 100 betyder profit, X under 100 betyder tab.
         </p>
         <div className="bg-muted/50 rounded-lg p-4 border border-border font-mono text-sm text-foreground">
