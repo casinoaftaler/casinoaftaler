@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Target, BarChart3, ShieldCheck, Users } from "lucide-react";
+import bonusHuntOverlay from "@/assets/bonus-hunt/bonus-hunt-stream-overlay.png";
 
 const steps = [
   {
@@ -84,6 +85,21 @@ export function BonusHuntSeoContent() {
       <h2 className="text-lg font-bold text-foreground">
         Sådan dokumenterer vi vores bonus hunts
       </h2>
+
+      {/* Illustrative screenshot */}
+      <figure className="rounded-xl overflow-hidden border border-border/50">
+        <img
+          src={bonusHuntOverlay}
+          alt="Bonus hunt live stream med overlay der viser startbalance, REQ X, AVG X og listen over gemte bonusser under åbning"
+          className="w-full h-auto"
+          loading="lazy"
+          width={1512}
+          height={816}
+        />
+        <figcaption className="bg-card px-4 py-2.5 text-xs text-muted-foreground">
+          Live bonus hunt åbning – til højre ses listen med alle gemte bonusser, deres indsats og gevinst. REQ X viser den nødvendige gennemsnitlige multiplikator for break-even.
+        </figcaption>
+      </figure>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {steps.map((s) => (
