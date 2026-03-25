@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { InlineReviewCTA } from "@/components/InlineReviewCTA";
 import { LazySection } from "@/components/LazySection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
@@ -361,6 +362,8 @@ const LunaCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Personaliseret bonusspiludvalg.</strong> Et unikt aspekt ved Luna Casino er, at bonusspiludvalget skræddersys til din profil. Baseret på dine foretrukne spiltyper og historik modtager du kuraterede forslag til spil, der passer til din smag. Det er en detalje, der viser den gennemtænkte tilgang, som kendetegner Luna Casino generelt.
           </p>
+
+          <InlineReviewCTA casinoName="Luna Casino" bonusText="100% bonus op til 500 kr. – kun 10x omsætning" onClick={handleBonusClick} variant="bonus" />
         </section>
 
         <Separator className="my-10" />
@@ -412,6 +415,8 @@ const LunaCasinoAnmeldelse = () => {
               </CardContent>
             </Card>
           </div>
+
+          <InlineReviewCTA casinoName="Luna Casino" bonusText="Effektiv RTP 96,5–97,5% med loyalitetsprogram – bedre langsigtede odds" onClick={handleBonusClick} variant="ev" />
         </section>
 
         {/* ───── LOYALITETSPROGRAM ───── */}

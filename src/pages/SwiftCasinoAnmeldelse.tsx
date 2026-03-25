@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { InlineReviewCTA } from "@/components/InlineReviewCTA";
 import { LazySection } from "@/components/LazySection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
@@ -376,6 +377,8 @@ const SwiftCasinoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Taktisk bonusstrategi med Hot Or Cold.</strong> Her kommer Swift Casinos unikke funktion i spil: du kan bruge Hot Or Cold til at identificere slots med aktuel høj aktivitet og potentielt bruge dem under bonusgennemspilning. Det er ingen garanti for bedre resultater (RNG er RNG), men det kan gøre gennemspilningsprocessen mere underholdende og give en følelse af informeret beslutningstagning.
           </p>
+
+          <InlineReviewCTA casinoName="Swift Casino" bonusText="100% bonus op til 500 kr. – kun 10x omsætning" onClick={handleBonusClick} variant="bonus" />
         </section>
 
         <Separator className="my-10" />
@@ -423,6 +426,8 @@ const SwiftCasinoAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
+
+          <InlineReviewCTA casinoName="Swift Casino" bonusText="Matematikken viser: din EV ændres ikke af Hot Or Cold – men bonussen er stadig +EV" onClick={handleBonusClick} variant="ev" />
         </section>
 
         {/* ───── HOT OR COLD DEEP-DIVE ───── */}

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { InlineReviewCTA } from "@/components/InlineReviewCTA";
 import { LazySection } from "@/components/LazySection";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
@@ -495,6 +496,8 @@ const PlayKasinoAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
+
+          <InlineReviewCTA casinoName="PlayKasino" bonusText="100% bonus op til 500 kr. – positiv EV på +100 kr." onClick={handleBonusClick} variant="bonus" />
         </section>
 
         <Separator className="my-10" />

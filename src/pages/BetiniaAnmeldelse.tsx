@@ -495,6 +495,8 @@ const BetiniaAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
+
+          <InlineReviewCTA casinoName="Betinia" bonusText="No-Sticky bonus op til 1.000 kr. – kun 10x omsætning" onClick={handleBonusClick} variant="bonus" />
         </section>
 
         <Separator className="my-10" />

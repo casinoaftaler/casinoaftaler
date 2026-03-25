@@ -331,6 +331,8 @@ const CampobetAnmeldelse = () => {
               <p className="text-xs text-muted-foreground mt-3">Husk: Med No-Sticky spiller du altid først med din egen saldo. Omsætningskravet gælder kun bonusmidlerne. Læs vores guide til <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.</p>
             </CardContent>
           </Card>
+
+          <InlineReviewCTA casinoName="Campobet" bonusText="No-Sticky bonus op til 1.000 kr. – kun 10x omsætning" onClick={handleBonusClick} variant="bonus" />
         </section>
 
         <Separator className="my-10" />
@@ -376,6 +378,8 @@ const CampobetAnmeldelse = () => {
               </CardContent>
             </Card>
           </div>
+
+          <InlineReviewCTA casinoName="Campobet" bonusText="+260 kr. forventet værdi – positiv EV med No-Sticky bonus" onClick={handleBonusClick} variant="ev" />
         </section>
 
         <Separator className="my-10" />
