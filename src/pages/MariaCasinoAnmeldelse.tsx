@@ -161,7 +161,7 @@ const MariaCasinoAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – venligt design der fungerer</h2>
+          <h2 className="mb-4 text-3xl font-bold">Venligt design der virker på alle skærme</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Maria Casino har en responsiv mobilversion via browseren. Designet er venligt og brugervenligt med store knapper, logisk kategorisering og hurtige spilindlæsninger. Maria Casino har også haft en dedikeret app med de mest populære slots og live casino.</p>
           <p className="text-muted-foreground leading-relaxed">MobilePay og ApplePay fungerer direkte i mobilbrowseren. Live casino-streaming er stabil med god kvalitet. For de fleste danske mobilspillere er Maria Casinos mobiloplevelse fuldt tilstrækkelig.</p>
         </section>
