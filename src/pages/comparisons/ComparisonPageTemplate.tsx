@@ -112,6 +112,8 @@ export function ComparisonPageTemplate({
   faqs,
   ctaSlug,
   readTime = "30 min",
+  snippetAnswer,
+  prioritySlugs,
   children,
 }: ComparisonPageProps) {
   const canonicalUrl = `${SITE_URL}${path}`;

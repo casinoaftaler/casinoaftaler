@@ -158,6 +158,8 @@ export function PaymentMethodPage({
   howToName,
   howToTotalTime,
   ctaCasinoSlug,
+  snippetAnswer,
+  prioritySlugs,
 }: PaymentMethodPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
