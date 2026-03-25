@@ -4,7 +4,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
-import liveCasinoHero from "@/assets/heroes/live-casino-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
