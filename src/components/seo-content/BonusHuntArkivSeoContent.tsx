@@ -12,9 +12,9 @@ export function BonusHuntArkivSeoContent() {
         <h2 className="text-2xl font-bold text-foreground" id="om-arkivet">Om Bonus Hunt Arkivet</h2>
         <p className="text-muted-foreground leading-relaxed">
           Bonus hunt-arkivet er en komplet dokumentation af alle vores live bonus hunts på Twitch. Hver hunt
-          repræsenterer en session, hvor vi køber bonusser på en række{" "}
-          <Link to="/slot-database" className="text-primary hover:underline">spillemaskiner</Link> og åbner dem
-          én for én foran vores community. Vi spiller altid med rigtige penge på{" "}
+          starter med en fast balance, som vi spinner ned til 0 på udvalgte{" "}
+          <Link to="/slot-database" className="text-primary hover:underline">spillemaskiner</Link>. Undervejs gemmer vi
+          hver bonus der trigges, og til sidst åbner vi alle gemte bonusser på én gang foran vores community. Vi spiller altid med rigtige penge på{" "}
           <Link to="/casino-anmeldelser/spildansknu" className="text-primary hover:underline">licenserede danske casinoer</Link>,
           og alle resultater logges automatisk via vores StreamSystem-integration. Det sikrer 100% transparens
           og gør det muligt at verificere alle tal.
