@@ -958,22 +958,19 @@ const BetiniaAnmeldelse = () => {
         <Separator className="my-10" />
 
         <UserReviewSection casinoSlug="betinia" casinoName="Betinia" />
-        <RelatedReviews currentSlug="betinia" />
-
-        <InlineCasinoCards
-          title="Andre anbefalede casinoer"
-          count={6}
-          excludeSlugs={["betinia"]}
-        />
-
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
-        <LatestNewsByCategory pagePath="/casino-anmeldelser/betinia" />
-        <RelatedGuides currentPath="/casino-anmeldelser/betinia" />
-
-        <FAQSection title="Ofte stillede spørgsmål om Betinia" faqs={betiniaFaqs} />
+        <LazySection minHeight="400px">
+          <UserReviewSection casinoSlug="betinia" casinoName="Betinia" />
+        </LazySection>
+        <LazySection minHeight="300px">
+          <RelatedReviews currentSlug="betinia" />
+          <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["betinia"]} />
+        </LazySection>
+        <LazySection minHeight="200px">
+          <AuthorBio />
+          <LatestNewsByCategory pagePath="/casino-anmeldelser/betinia" />
+          <RelatedGuides currentPath="/casino-anmeldelser/betinia" />
+          <FAQSection title="Ofte stillede spørgsmål om Betinia" faqs={betiniaFaqs} />
+        </LazySection>
       </div>
       {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusAmount={casino.bonus_amount} bonusType={casino.bonus_type} freeSpins={casino.free_spins} wageringRequirements={casino.wagering_requirements} rating={casino.rating} logoUrl={casino.logo_url} isRecommended={casino.is_recommended} isHot={casino.is_hot} />}
     </>
