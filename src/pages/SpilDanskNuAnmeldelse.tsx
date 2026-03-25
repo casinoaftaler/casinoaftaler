@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import { InlineReviewCTA } from "@/components/InlineReviewCTA";
+import { LazySection } from "@/components/LazySection";
 import spildansknuLobby from "@/assets/reviews/spildansknu-lobby.png";
 import spildansknuCasinospil from "@/assets/reviews/spildansknu-casinospil.png";
 import spildansknuBonus from "@/assets/reviews/spildansknu-bonus.webp";
