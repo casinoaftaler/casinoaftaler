@@ -160,7 +160,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Betalingsmetoder med Test */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Wallet className="h-7 w-7 text-primary" />Betalingsmetoder og testresultater</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Wallet className="h-7 w-7 text-primary" />Transaktioner – alle metoder testet og dokumenteret</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casino er konsekvent i sit danske fokus: de <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, der tilbydes, er dem, danske spillere faktisk bruger. Det betyder MobilePay, Dankort og bankoverførsel – men ingen internationale e-wallets.</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
