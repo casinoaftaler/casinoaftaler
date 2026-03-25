@@ -367,7 +367,7 @@ const SpilDanskNuAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – Responsivt og stabilt</h2>
+          <h2 className="mb-4 text-3xl font-bold">Casinoet på farten – responsiv webapp i test</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">SpilDanskNu er bygget som en responsiv web-app, der kører direkte i browseren. Der er ingen dedikeret app i App Store eller Google Play, men mobiloplevelsen er gennemført og stabil. Vi testede på iPhone 15 Pro og Samsung Galaxy S23, og oplevelsen var konsekvent god på begge enheder.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Alle funktioner er tilgængelige på mobilen: spilleautomater, live casino, indbetalinger via MobilePay, udbetalinger, kontooversigt og kundeservice. Interfacet er touchvenligt med tilpassede menuer og hurtig navigation. Loadtiderne var generelt under 3 sekunder, selv på 4G-forbindelser. Spilleautomater tilpasser sig automatisk til skærmformatet, og live casino-spil streamer i acceptabel kvalitet.</p>
           <p className="text-muted-foreground leading-relaxed">MobilePay-integration er særligt velegnet til mobilspil – du kan gennemføre en indbetaling med blot et par tryk og en swipe. Login via MitID fungerer problemfrit fra mobile enheder. Designet er genkendeligt fra desktop-versionen, men optimeret til touchskærme med større knapstørrelser og forenklede menuer.</p>
