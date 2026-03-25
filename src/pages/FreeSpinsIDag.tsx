@@ -367,6 +367,10 @@ const FreeSpinsIDag = () => {
       </div>
 
       <div className="container py-4 md:py-6">
+        <SnippetAnswer answer="Vi scanner dagligt danske casinoers kampagnesider og viser kun verificerede free spins tilbud med confidence score over 60. Siden opdateres automatisk kl. 07:00 og 18:00 CET." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Free Spins" />
+
         {/* ─── Statistics ─── */}
         <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
           <StatCard icon={<Sparkles className="h-5 w-5 text-primary" />} value={animatedTotal} label="Casinoer med free spins" revealed={statsRevealed} delay={0} />
