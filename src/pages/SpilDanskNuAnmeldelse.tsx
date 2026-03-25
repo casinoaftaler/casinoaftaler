@@ -352,7 +352,7 @@ const SpilDanskNuAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Dansk kundeservice – Fordele og begrænsninger</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dansktalende rådgivere – tilgængelighed og ventetid</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">En af de mest værdifulde fordele ved SpilDanskNu er kundeservicen på dansk. Det lyder som en selvfølgelighed, men mange "danske" casinoer drives af internationale teams, hvor kundeservice foregår på engelsk med auto-oversættelse. Hos SpilDanskNu kommunikerer du med danske medarbejdere, der forstår nuancerne i dit spørgsmål og kan svare præcist og hurtigt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Live chat er tilgængelig dagligt kl. 08:00–23:00. Under vores 5 testkontakter oplevede vi en gennemsnitlig ventetid under 2 minutter og kompetente, venlige svar. E-mail support besvares typisk inden for 12-24 timer. Det er en begrænsning, at chatten ikke er døgnåben – for spillere der typisk er aktive sent om aftenen eller natten, kan det være frustrerende at stå uden live support efter kl. 23.</p>
           <p className="text-muted-foreground leading-relaxed">Der er ingen telefon-support, hvilket kan være en ulempe for spillere der foretrækker at ringe. En FAQ-sektion dækker de mest almindelige spørgsmål om konto, bonus, betaling og ansvarligt spil. Den er grundig og velskrevet – og naturligvis på dansk.</p>
