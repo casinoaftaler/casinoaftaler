@@ -163,7 +163,7 @@ const PlayKasinoAnmeldelse = () => {
             <div className="flex justify-center gap-2 mb-4 flex-wrap">
               <Badge variant="secondary">
                 <Star className="mr-1.5 h-3.5 w-3.5" />
-                4.5 / 5 – Nyt Dansk Casino
+                4.5 / 5 – Laveste omsætningskrav i DK
               </Badge>
               <Badge variant="outline" className="border-white/40 text-white">
                 SkillOnNet Platform
