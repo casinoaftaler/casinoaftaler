@@ -168,7 +168,7 @@ const FreeSpins = () => {
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
           backgroundImage:
-            "linear-gradient(150deg, hsl(240 60% 22%), hsl(220 70% 20%) 40%, hsl(200 60% 25%))",
+            "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
