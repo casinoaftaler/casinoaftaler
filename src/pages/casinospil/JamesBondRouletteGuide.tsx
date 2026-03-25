@@ -639,11 +639,10 @@ export default function JamesBondRouletteGuide() {
         <Separator className="mb-12" />
         <section className="mb-12"><FAQSection faqs={faqs} /></section>
         <Separator className="mb-12" />
-        <AuthorBio author="jonas" />
-        <Separator className="my-12" />
         <CasinospilMoneyLinks gameName="James Bond Roulette" currentPath="/casinospil/roulette/james-bond-roulette" />
         <LatestNewsByCategory pagePath="/casinospil/roulette/james-bond-roulette" />
         <RelatedGuides currentPath="/casinospil/roulette/james-bond-roulette" />
+        <AuthorBio author="jonas" />
       </div>
       <StickyCtaBySlug slug="spildansknu" />
     </>

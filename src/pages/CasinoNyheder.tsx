@@ -356,9 +356,9 @@ const CasinoNyheder = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio author="ajse" showCommunity={false} />
-
         <RelatedGuides currentPath="/casino-nyheder" maxLinks={5} />
+
+        <AuthorBio author="ajse" showCommunity={false} />
       </main>
     </>
   );

@@ -1114,12 +1114,10 @@ const VipProgram = () => {
 
         <Separator className="my-12" />
 
-        <AuthorBio author="jonas" />
-
-        <Separator className="my-12" />
-
         <LatestNewsByCategory pagePath="/vip-program" />
         <RelatedGuides currentPath="/vip-program" />
+
+        <AuthorBio author="jonas" />
       </div>
 
       <StickyCtaBySlug slug="spildansknu" />

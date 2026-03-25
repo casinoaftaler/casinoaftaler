@@ -1003,12 +1003,10 @@ const CasinoMedMobilePay = () => {
 
         <Separator className="my-12" />
 
-        <AuthorBio author="jonas" />
-
-        <Separator className="my-12" />
-
         <LatestNewsByCategory pagePath="/casino-med-mobilepay" />
         <RelatedGuides currentPath="/casino-med-mobilepay" />
+
+        <AuthorBio author="jonas" />
       </div>
 
       <StickyCtaBySlug slug="spildansknu" />

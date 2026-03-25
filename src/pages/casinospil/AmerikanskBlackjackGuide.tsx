@@ -934,13 +934,13 @@ const AmerikanskBlackjackGuide = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio />
-
         <CasinospilMoneyLinks gameName="Amerikansk Blackjack" currentPath="/casinospil/blackjack/amerikansk-blackjack" />
         <LatestNewsByCategory pagePath="/casinospil/blackjack/amerikansk-blackjack" />
         <RelatedGuides currentPath="/casinospil/blackjack/amerikansk-blackjack" />
 
         <FAQSection faqs={faqs} />
+
+        <AuthorBio />
       </div>
       <StickyCtaBySlug slug="betinia" />
     </>
