@@ -88,6 +88,10 @@ interface PaymentMethodPageProps {
   howToTotalTime?: string;
   /** Casino slug for sticky CTA bar */
   ctaCasinoSlug?: string;
+  /** Custom snippet answer for featured snippet capture. Falls back to generic template text. */
+  snippetAnswer?: string;
+  /** Priority casino slugs for QuickComparisonTable. Falls back to position-based. */
+  prioritySlugs?: string[];
 }
 
 const paymentLinks = [

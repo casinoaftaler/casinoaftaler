@@ -56,6 +56,10 @@ export interface ComparisonPageProps {
   faqs: { question: string; answer: ReactNode }[];
   ctaSlug: string;
   readTime?: string;
+  /** Custom snippet answer for featured snippet capture. Falls back to generic template text. */
+  snippetAnswer?: string;
+  /** Priority casino slugs for QuickComparisonTable. Falls back to position-based. */
+  prioritySlugs?: string[];
   /** Full enterprise body content rendered between comparison table and verdict */
   children?: ReactNode;
 }
