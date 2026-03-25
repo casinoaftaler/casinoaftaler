@@ -45,6 +45,8 @@ export function QuickComparisonTable({
 }: QuickComparisonTableProps) {
   const { data: casinos } = useCasinos();
   const { user } = useAuth();
+  const { pick } = useAntiFootprint();
+  const ctaText = pick(CTA_VARIANTS);
 
   if (!casinos?.length) return null;
 
