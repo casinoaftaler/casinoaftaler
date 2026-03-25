@@ -556,7 +556,7 @@ const CampobetAnmeldelse = () => {
 
         {/* Hvem bør IKKE vælge */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge Campobet?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Situationer hvor Campobet ikke er det optimale valg</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Trods de mange fordele er Campobet ikke det rigtige valg for alle spillertyper. Her er en ærlig vurdering af, hvem der bør overveje alternativer:</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Spillere der kræver dansk kundeservice.</strong> Hvis det er vigtigt for dig at kommunikere med support på flydende dansk – uden oversættelsesprogram – er casinoer drevet af danske selskaber som <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> eller <Link to="/casino-anmeldelser/royal-casino" className={linkClass}>Royal Casino</Link> bedre valg. Campobets internationale team er kompetent, men sprogbarrieren kan frustrere ved komplekse henvendelser.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Loyalitets- og VIP-jægere.</strong> Campobet mangler et struktureret loyalitetsprogram med points, niveauer og personlige rewards. Spillere der prioriterer langsigtede belønningssystemer vil finde bedre tilbud hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> med deres VIP-program eller <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link> med deres stigende loyalitetsniveauer.</p>

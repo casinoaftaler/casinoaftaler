@@ -689,7 +689,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── NEGATIV SEGMENTERING ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge Luna Casino?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Scenarier hvor Luna Casino falder igennem</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Ingen casino er perfekt til alle, og det er vigtigt at være ærlig om Luna Casinos begrænsninger:
           </p>

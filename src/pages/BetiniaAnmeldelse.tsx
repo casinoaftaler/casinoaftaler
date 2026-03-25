@@ -926,7 +926,7 @@ const BetiniaAnmeldelse = () => {
 
         {/* Final Verdict */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Endelig vurdering – Dual-Motor Casinoet der leverer</h2>
+          <h2 className="mb-4 text-3xl font-bold">Vores dom – Dual-Motor Casinoet der leverer på begge fronter</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Efter 14 dages intensiv test kan vi konkludere, at Betinia leverer på sit dual-motor løfte. Casino- og sportssektionen fungerer som to selvstændige, kvalitetsbevidste platforme under ét tag. No-Sticky velkomstbonussen på 100 % op til 1.000 kr. med kun 10x omsætning er objektivt set blandt de mest spillervenlige i Danmark – og den matematiske fordel ved No-Sticky strukturen kan ikke overvurderes.
           </p>

@@ -312,7 +312,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Hvem bør undgå Unibet */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå Unibet?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Når Unibet ikke er det bedste match</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ingen platform er perfekt til alle. Unibet er sandsynligvis <strong>ikke det bedste valg</strong> for følgende spillerprofiler:</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Den dedikerede high-roller casinospiller:</strong> Hvis du udelukkende spiller casino med høje insatser og forventer et VIP-program med personlig account manager, private borde og eksklusive bonusser, vil du finde bedre muligheder hos specialiserede casinoer som <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> eller <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Den MobilePay-afhængige spiller:</strong> Hvis MobilePay er din foretrukne betalingsmetode, er Unibet ikke ideelt. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> eller <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link> tilbyder MobilePay-integration.</p>
