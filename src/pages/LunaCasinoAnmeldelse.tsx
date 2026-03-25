@@ -247,7 +247,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── FORDELE & ULEMPER ───── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Luna Casino</h2>
+          <h2 className="mb-6 text-3xl font-bold">Kvaliteter og begrænsninger – Luna Casinos helhedsbillede</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader>
