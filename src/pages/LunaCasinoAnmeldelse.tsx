@@ -638,7 +638,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── SIKKERHED & LICENS ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og ansvarligt spil</h2>
+          <h2 className="mb-4 text-3xl font-bold">SkillOnNet-licenser og spillertryghed i praksis</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Luna Casino opererer med dansk licens fra Spillemyndigheden (nr. 16-1066791) udstedt til SkillOnNet Limited. Selskabet har haft tilstedeværelse på det danske marked siden 2017 og driver også{" "}
             <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link>, hvilket vidner om et veletableret og pålideligt selskab med dokumenteret erfaring.
