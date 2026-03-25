@@ -207,7 +207,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Poker-Specifik EV Deep Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Avanceret EV-analyse: Tre spillerprofiler på PokerStars</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />EV-beregning: Tre spillerprofiler på PokerStars gennemregnet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For poker-spillere er Expected Value (EV) beregningen fundamentalt anderledes end for casino-spillere: du spiller mod andre mennesker, ikke mod et house edge. Din EV afhænger af din skill-edge over feltet minus den rake, PokerStars opkræver. Vi analyserer tre realistiske spillerprofiler for danske PokerStars-brugere og beregner deres månedlige EV.</p>
           
           <Card className="border-border bg-card mb-6">

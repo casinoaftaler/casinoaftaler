@@ -905,7 +905,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Final Verdict */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Endelig vurdering – En solid newcomer med ét klart minus</h2>
+          <h2 className="mb-4 text-3xl font-bold">Samlet vurdering – en solid newcomer med ét klart minus</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Efter 14 dages intensiv test kan vi konkludere, at PlayKasino er en velbygget og gennemtænkt casinoplatform, der nyder godt af SkillOnNet's næsten to årtiers erfaring. Velkomstbonussen på 100 % op til 500 kr. med kun 10x omsætningskrav er matematisk set en af de mest fordelagtige på det danske marked – med en positiv forventet værdi på ca. +100 kr. ved gennemsnitlig slot-RTP.
           </p>
