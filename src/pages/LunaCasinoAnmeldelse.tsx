@@ -559,7 +559,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── BETALINGSMETODER ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder: Funktionelt men begrænset</h2>
+          <h2 className="mb-4 text-3xl font-bold">Transaktionsmetoder: Funktionelt med begrænset udvalg</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Luna Casinos{" "}
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> afspejler den fokuserede tilgang: færre valgmuligheder end de største casinoer, men de vigtigste metoder er dækket. Min. indbetaling er 100 kr. og min. udbetaling er 100 kr.
