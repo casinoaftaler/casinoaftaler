@@ -194,7 +194,7 @@ const GetLuckyAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – tilgængelighed og kvalitet</h2>
+          <h2 className="mb-4 text-3xl font-bold">Supportkanaler – hvornår og hvordan du får hjælp</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">GetLucky tilbyder kundeservice via live chat og e-mail. Vi testede live chatten tre gange under vores januar 2026-session. Første kontakt (onsdag kl. 14:20) gav en svartid på 4 minutter og 10 sekunder. Agenten var venlig og kompetent – besvarede spørgsmål om loyalitetsprogrammets pointkonvertering korrekt. Kommunikationen foregik på engelsk, da dansk support ikke er tilgængelig.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Anden kontakt (fredag kl. 22:00) havde en svartid på 8 minutter og 30 sekunder – mærkbart længere i spidsbelastningstiden. Agenten henviste os til FAQ for detaljer om free spins-vilkår, hvilket tyder på en mere generel (frem for specialiseret) supporttilgang. Tredje kontakt (søndag kl. 11:00) var den hurtigste med 2 minutter og 45 sekunder – et positivt datapunkt der viser, at weekendmorgen er den bedste tid at kontakte support.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">E-mail besvares typisk inden for 24 timer – vi modtog svar på 16 timer i vores test. Svaret var detaljeret og præcist, med links til relevante vilkårssider. Det er en bedre oplevelse end den gennemsnitlige e-mail-support i branchen, hvor standardsvar og copy-paste-løsninger er normen.</p>
