@@ -217,7 +217,7 @@ const Casino888Anmeldelse = () => {
 
         {/* Bankroll & EV Analysis */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Bankroll-matematik og Expected Value</h2>
+          <h2 className="mb-4 text-3xl font-bold">Forventet afkast og bankroll-krav hos 888</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at give et objektivt billede af 888 Casinos bonusværdi har vi beregnet Expected Value under optimale og realistiske betingelser. Disse tal hjælper dig med at vurdere, om bonussen er værd at aktivere baseret på din spillestil.</p>
           <Card className="border-border bg-card mb-6">
             <CardHeader><CardTitle className="text-lg">EV-beregning – 888 Casino matchbonus</CardTitle></CardHeader>

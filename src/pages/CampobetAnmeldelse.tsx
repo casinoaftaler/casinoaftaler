@@ -261,7 +261,7 @@ const CampobetAnmeldelse = () => {
 
         {/* Fordele/Ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Styrker og begrænsninger i praksis</h2>
+          <h2 className="mb-6 text-3xl font-bold">Hvad fungerer – og hvad kan forbedres hos Campobet</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader>

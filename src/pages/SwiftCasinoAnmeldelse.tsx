@@ -794,7 +794,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── REGISTRERING ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Tilmelding og registrering – trin for trin</h2>
+          <h2 className="mb-4 text-3xl font-bold">Fra oprettelse til første spin – registrering step-by-step</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Registreringsprocessen hos Swift Casino er hurtig via MitID-integration. Hele processen tager under 5 minutter:
           </p>

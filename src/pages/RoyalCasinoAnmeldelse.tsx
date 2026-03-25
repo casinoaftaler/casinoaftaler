@@ -216,7 +216,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* EV / Bankroll Analysis */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Bankroll-matematik og Expected Value</h2>
+          <h2 className="mb-4 text-3xl font-bold">Spillerøkonomi – hvad koster det reelt at spille på Royal Casino?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at give et matematisk grundlag for Royal Casinos bonusværdi har vi beregnet Expected Value under standardbetingelser. Disse tal giver et objektivt billede af bonussens reelle værdi for den typiske danske spiller.</p>
           <Card className="border-border bg-card mb-6">
             <CardHeader><CardTitle className="text-lg">EV-beregning – Royal Casino velkomstbonus</CardTitle></CardHeader>
