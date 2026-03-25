@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -11,7 +13,6 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
-import heroImage from "@/assets/heroes/hurtig-udbetaling-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 import {
@@ -128,10 +129,10 @@ const HurtigUdbetalingGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="22 min" />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Casinoer med hurtig udbetaling" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="De hurtigste casinoer i Danmark udbetaler via Trustly inden for 2 timer. MobilePay og bankoverførsler tager typisk 1-3 hverdage." />
+
+        <QuickComparisonTable count={3} title="Hurtigste Udbetalinger – Top 3" />
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over hurtige udbetalinger</h2>

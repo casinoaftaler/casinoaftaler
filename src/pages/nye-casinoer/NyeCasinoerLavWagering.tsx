@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import lavWageringHero from "@/assets/heroes/nye-casinoer-lav-wagering-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -87,10 +88,10 @@ const NyeCasinoerLavWagering = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="20 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={lavWageringHero} alt="Nye casinoer med lave omsætningskrav" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Nye casinoer med lave omsætningskrav (5-10x) giver dig reel mulighed for at hæve bonusgevinster. Sammenlign vilkår nedenfor." />
+
+        <QuickComparisonTable count={3} title="Lave Omsætningskrav – Top 3" />
         {/* Intro - differentiated from /omsaetningskrav */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Vælg nyt casino baseret på wagering – ikke bonusstørrelse</h2>

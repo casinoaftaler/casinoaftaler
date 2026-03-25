@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -11,7 +13,6 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
-import heroImage from "@/assets/heroes/casino-og-skat-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { Scale, Calculator, Star, Globe, Landmark, Shield, AlertTriangle, BookOpen, FileText, Coins, TrendingUp, HelpCircle } from "lucide-react";
@@ -62,10 +63,10 @@ const CasinoOgSkatGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="niklas" readTime="22 min" />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Casino og skat i Danmark" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Casino-gevinster på danske licenserede casinoer er skattefri. Gevinster fra udenlandske casinoer uden dansk licens kan være skattepligtige." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over casino og skat i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Det korte svar: Ja, gevinster fra danske licenserede casinoer er 100 % skattefri – uanset beløbet.</strong> Men situationen er mere nuanceret, når det gælder udenlandske casinoer, kryptovaluta og fysiske casinoer i udlandet. Skatteforhold ved gambling er et af de mest stillede spørgsmål blandt danske casinospillere, og det er forståeligt – konsekvenserne af fejlagtig selvangivelse kan være alvorlige.</p>

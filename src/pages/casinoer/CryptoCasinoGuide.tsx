@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -11,7 +13,6 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
-import heroImage from "@/assets/heroes/crypto-casino-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { Bitcoin, ShieldCheck, Zap, AlertTriangle, CheckCircle2, Globe, Lock, Star, Wallet, Scale, Eye, ArrowRight, Layers, Shield } from "lucide-react";
@@ -51,8 +52,11 @@ const CryptoCasinoGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="22 min" />
-        <div className="mb-10 overflow-hidden rounded-xl"><img src={heroImage} alt="Crypto casino – blockchain og kryptovaluta" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" /></div>
 
+
+        <SnippetAnswer answer="Crypto casinoer accepterer Bitcoin og Ethereum, men i Danmark kræver alle lovlige casinoer dansk licens uanset betalingsmetode." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over crypto casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kryptovalutaer har revolutioneret mange brancher, og online gambling er ingen undtagelse. Crypto casinoer tilbyder hurtigere transaktioner, lavere gebyrer og et niveau af gennemsigtighed, som traditionelle casinoer ikke kan matche – takket være blockchain-teknologi og provably fair-systemer. Men denne nye verden kommer også med unikke risici, som danske spillere bør forstå grundigt, før de dykker ind.</p>

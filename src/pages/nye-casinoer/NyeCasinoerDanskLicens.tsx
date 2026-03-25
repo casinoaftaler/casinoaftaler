@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import danskLicensHero from "@/assets/heroes/nye-casinoer-dansk-licens-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -97,10 +98,10 @@ const NyeCasinoerDanskLicens = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="20 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={danskLicensHero} alt="Nye casinoer med dansk licens fra Spillemyndigheden" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Nye casinoer med dansk licens fra Spillemyndigheden sikrer ROFUS-tilslutning, skattefri gevinster og fuld spillerbeskyttelse." />
+
+        <QuickComparisonTable count={3} title="Nye Licenserede Casinoer – Top 3" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvorfor dansk licens er afgørende for nye casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

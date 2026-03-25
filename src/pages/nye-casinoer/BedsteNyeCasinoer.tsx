@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import bedsteNyeCasinoerHero from "@/assets/heroes/bedste-nye-casinoer-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -63,10 +64,10 @@ const BedsteNyeCasinoer = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="20 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={bedsteNyeCasinoerHero} alt="Bedste nye casinoer i Danmark" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="De bedste nye casinoer i Danmark kombinerer friske bonusser, moderne platforme og hurtige udbetalinger. Vi har testet og rangeret dem alle." />
+
+        <QuickComparisonTable count={3} title="Bedste Nye Casinoer – Top 3" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">De bedste nye casinoer i Danmark – vores topvalg</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

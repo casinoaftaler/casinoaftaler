@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import nyeCasinoer2026Hero from "@/assets/heroes/nye-casinoer-2026-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -113,10 +114,10 @@ const NyeCasinoer2026 = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="22 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={nyeCasinoer2026Hero} alt="Nye casinoer i 2026 – futuristisk casino med neonlys" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Nye casinoer i 2026 byder på moderne teknologi, mobile-first design og konkurrencedygtige bonusser. Se hvilke der er værd at prøve." />
+
+        <QuickComparisonTable count={3} title="Nye Casinoer 2026 – Top 3" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Nye casinoer i Danmark 2026 – hvad kan du forvente?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
