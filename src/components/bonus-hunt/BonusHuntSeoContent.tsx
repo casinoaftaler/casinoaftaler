@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Target, BarChart3, ShieldCheck, Users } from "lucide-react";
-import bonusHuntOverlay from "@/assets/bonus-hunt/bonus-hunt-stream-overlay.png";
 
 const steps = [
   {
