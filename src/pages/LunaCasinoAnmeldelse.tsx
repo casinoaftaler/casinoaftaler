@@ -540,7 +540,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── MOBILOPLEVELSE ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse: Kuratering som mobilfordel</h2>
+          <h2 className="mb-4 text-3xl font-bold">Kurateret katalog på farten – mobiltest og vurdering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Luna Casino har ingen dedikeret app, men den mobiloptimerede hjemmeside fungerer fremragende i alle moderne browsere på iOS og Android. Vi testede på iPhone 15 Pro (Safari), Samsung Galaxy S24 (Chrome) og iPad Air (Safari) og oplevede konsekvent hurtige loadtider, smidig navigation og stabil live casino-streaming.
           </p>
