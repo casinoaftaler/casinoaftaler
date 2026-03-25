@@ -424,6 +424,8 @@ const SpilleautomatenAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
+
+          <InlineReviewCTA casinoName="Spilleautomaten" bonusText="100% bonus op til 1.000 kr. over 5 dage – kun 10x omsætning" onClick={handleBonusClick} variant="bonus" />
         </section>
 
         {/* ───── EV ANALYSE ───── */}
