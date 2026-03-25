@@ -11,7 +11,7 @@ import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
-import freeSpinsHero from "@/assets/heroes/free-spins-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
