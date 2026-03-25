@@ -3,10 +3,18 @@ import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
+import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 import { Link } from "react-router-dom";
 import { ExternalLink, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const CTA_VARIANTS = [
+  "FÅ BONUS",
+  "SE TILBUD",
+  "SPIL NU",
+  "PRØV HER",
+  "HENT BONUS",
+] as const;
 const PARTNER_SLUGS = [
   "spildansknu",
   "spilleautomaten",
