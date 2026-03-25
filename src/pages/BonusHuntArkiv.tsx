@@ -14,6 +14,7 @@ import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock"
 import { RelatedGuides } from "@/components/RelatedGuides";
 
 import bonusHuntArkivHero from "@/assets/bonus-hunt-arkiv-hero.jpg";
+import bonusHuntOverlay from "@/assets/bonus-hunt/bonus-hunt-stream-overlay.png";
 
 const faqItems = [
   {
@@ -128,6 +129,21 @@ export default function BonusHuntArkiv() {
             loading="eager"
           />
         </div>
+
+        {/* Illustrative stream screenshot */}
+        <figure className="rounded-xl overflow-hidden border border-border/50 mb-8">
+          <img
+            src={bonusHuntOverlay}
+            alt="Bonus hunt live stream med overlay der viser startbalance, REQ X, AVG X og listen over gemte bonusser under åbning"
+            className="w-full h-auto"
+            loading="lazy"
+            width={1512}
+            height={816}
+          />
+          <figcaption className="bg-card px-4 py-2.5 text-xs text-muted-foreground">
+            Live bonus hunt åbning – til højre ses listen med alle gemte bonusser, deres indsats og gevinst. REQ X viser den nødvendige gennemsnitlige multiplikator for break-even.
+          </figcaption>
+        </figure>
 
         {/* SEO Content BEFORE cards (Type B: content-first layout) */}
         <BonusHuntArkivSeoContent />
