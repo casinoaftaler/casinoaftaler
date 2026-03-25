@@ -3,10 +3,18 @@ import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
+import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 import { Link } from "react-router-dom";
 import { ExternalLink, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const CTA_VARIANTS = [
+  "FÅ BONUS",
+  "SE TILBUD",
+  "SPIL NU",
+  "PRØV HER",
+  "HENT BONUS",
+] as const;
 const PARTNER_SLUGS = [
   "spildansknu",
   "spilleautomaten",
@@ -37,6 +45,8 @@ export function QuickComparisonTable({
 }: QuickComparisonTableProps) {
   const { data: casinos } = useCasinos();
   const { user } = useAuth();
+  const { pick } = useAntiFootprint();
+  const ctaText = pick(CTA_VARIANTS);
 
   if (!casinos?.length) return null;
 
@@ -124,7 +134,7 @@ export function QuickComparisonTable({
                       className="h-8 text-xs gap-1"
                       onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
                     >
-                      FÅ BONUS
+                      {ctaText}
                       <ExternalLink className="h-3 w-3" />
                     </Button>
                   </td>
