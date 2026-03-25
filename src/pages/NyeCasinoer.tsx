@@ -198,8 +198,8 @@ const NyeCasinoer = () => {
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
           backgroundImage: heroBackgroundImage
-            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
-            : 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+            ? `linear-gradient(160deg, hsl(200 80% 20% / 0.95), hsl(180 60% 25% / 0.9)), url(${heroBackgroundImage})`
+            : 'linear-gradient(160deg, hsl(200 80% 20%), hsl(190 70% 18%) 40%, hsl(170 60% 22%))',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
