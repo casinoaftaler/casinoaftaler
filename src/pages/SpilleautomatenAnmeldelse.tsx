@@ -686,7 +686,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Security */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og Winteq ApS</h2>
+          <h2 className="mb-4 text-3xl font-bold">Winteq ApS – licens, SSL og spillertryghed</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Spilleautomaten opererer under dansk licens fra{" "}
             <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> (licensnr. 21-67980), udstedt til Winteq ApS. Winteq er et dansk selskab med hovedsæde i Danmark – ikke Malta eller Gibraltar – hvilket giver ekstra juridisk tilgængelighed for danske spillere. Selskabet driver tre danske casino-brands: Spilleautomaten, SpilDanskNu og Bingo.dk.
