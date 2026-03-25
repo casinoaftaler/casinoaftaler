@@ -235,9 +235,9 @@ const CasinoAnmeldelser = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="35 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={casinoAnmeldelserHero} alt="Casino anmeldelser – dokumenter og ratings" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="Vi har testet 29 danske casinoer med rigtige penge over 14+ dage hver. Sammenlign bonus, udbetalingstid og spiludvalg – alle med gyldig dansk licens fra Spillemyndigheden." />
+
+        <QuickComparisonTable count={3} title="Top 3 Casinoer – Hurtig Sammenligning" />
 
         {/* ===== SEKTION 1: Strategisk intro ===== */}
         <section className="mb-12">

@@ -179,20 +179,10 @@ const MegawaysSlots = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="25 Min." />
-        <p className="text-sm text-muted-foreground mt-2 mb-6">
-          Testet og skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
-        </p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={megawaysHero}
-            alt="Megaways spilleautomat med 117.649 vinderkombinationer – dynamiske hjul med farverige symboler"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
+        <SnippetAnswer answer="Megaways-slots bruger dynamiske hjul med op til 117.649 vinderkombinationer per spin. RTP ligger typisk på 95,5–96,5% med høj volatilitet. Cascading wins og stigende multiplikatorer gør free spins-runder særligt lukrative." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Megaways Slots" />
 
         {/* ── 1. HVAD ER MEGAWAYS? ── */}
         <section className="mb-12" id="hvad-er-megaways">
