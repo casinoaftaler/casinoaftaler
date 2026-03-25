@@ -190,7 +190,7 @@ const Velkomstbonus = () => {
 
         <SnippetAnswer answer="En velkomstbonus matcher din første indbetaling – typisk 100% op til 1.000 kr. med 10x omsætningskrav i Danmark. No-sticky versioner giver bedst reel værdi. Sammenlign vilkår nedenfor." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["betinia", "spilleautomaten", "playkasino"]}} />
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["betinia", "spilleautomaten", "playkasino"]} />
 
 {/* Intro */}
         <section className="mb-12">

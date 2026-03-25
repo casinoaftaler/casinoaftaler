@@ -157,7 +157,7 @@ const IPhoneCasinoGuide = () => {
 
         <SnippetAnswer answer="iPhone casinoer udnytter Face ID, Haptic Touch og ProMotion-display til den bedste mobilcasino-oplevelse i Danmark." />
 
-        <QuickComparisonTable count={3} title="Bedste iPhone Casinoer – Top 3" prioritySlugs={["spilleautomaten", "betinia", "swift-casino"]}} />
+        <QuickComparisonTable count={3} title="Bedste iPhone Casinoer – Top 3" prioritySlugs={["spilleautomaten", "betinia", "swift-casino"]} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Testet og skrevet af Jonas Theill, casino-ekspert hos Casinoaftaler.dk.
         </p>

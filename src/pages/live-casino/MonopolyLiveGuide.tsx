@@ -112,7 +112,7 @@ const MonopolyLiveGuide = () => {
 
         <SnippetAnswer answer="Monopoly Live kombinerer money wheel med augmented reality-bonusrunder. RTP er 96,23% med op til 10.000x gevinst." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer til Monopoly Live" prioritySlugs={["luna-casino", "swift-casino", "campobet"]}} />
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Monopoly Live" prioritySlugs={["luna-casino", "swift-casino", "campobet"]} />
 <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her analyserer vi Monopoly Live specifikt – Evolutions populære game show, der kombinerer et live pengehjul med en immersiv 3D Monopoly-bonusrunde. Alt indhold er baseret på matematisk analyse og personlig erfaring fra 100+ timer med Monopoly Live-sessions. For en bredere oversigt over game shows, se vores <Link to="/casinospil/game-shows" className={linkClass}>game show guide</Link>.
         </p>

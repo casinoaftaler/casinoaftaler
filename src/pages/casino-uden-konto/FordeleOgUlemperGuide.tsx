@@ -144,7 +144,7 @@ const FordeleOgUlemperGuide = () => {
 
         <SnippetAnswer answer="Casino uden konto tilbyder hurtigere adgang, men med færre bonusmuligheder og begrænset loyalitetsprogram." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" prioritySlugs={["swift-casino", "betinia", "spilleautomaten"]}} />
+        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" prioritySlugs={["swift-casino", "betinia", "spilleautomaten"]} />
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" />En balanceret vurdering</h2>

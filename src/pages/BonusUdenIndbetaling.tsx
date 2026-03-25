@@ -173,7 +173,7 @@ const BonusUdenIndbetaling = () => {
 
         <SnippetAnswer answer="Bonus uden indbetaling giver dig gratis spillemidler ved registrering – nul risiko. Gevinster er underlagt omsætningskrav (typisk 10x) og gevinstlofter (500-1.000 kr.)." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["playkasino", "betinia", "swift-casino"]}} />
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["playkasino", "betinia", "swift-casino"]} />
 
 {/* Cross-link to nye casinoer sub */}
         <div className="mb-8 rounded-lg border border-primary/30 bg-accent/30 p-4">

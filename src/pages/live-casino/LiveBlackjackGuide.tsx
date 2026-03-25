@@ -127,7 +127,7 @@ const LiveBlackjackGuide = () => {
 
         <SnippetAnswer answer="Live blackjack med perfekt grundstrategi har en husfordel på kun 0,5%. Sidebets som Perfect Pairs og 21+3 øger variansen." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer til Live Blackjack" prioritySlugs={["campobet", "spildansknu", "spilleautomaten"]}} />
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Live Blackjack" prioritySlugs={["campobet", "spildansknu", "spilleautomaten"]} />
 <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her dykker vi ned i live blackjack specifikt – det spil, der kombinerer den laveste house edge i hele live casino-segmentet med ægte strategisk dybde. Hvor pillar-guiden giver overblikket, giver denne side dig de præcise regler, matematiske modeller og strategiske værktøjer, du behøver for at spille live blackjack med dealer optimalt.
         </p>

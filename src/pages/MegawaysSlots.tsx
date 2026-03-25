@@ -182,7 +182,7 @@ const MegawaysSlots = () => {
 
         <SnippetAnswer answer="Megaways-slots bruger dynamiske hjul med op til 117.649 vinderkombinationer per spin. RTP ligger typisk på 95,5–96,5% med høj volatilitet. Cascading wins og stigende multiplikatorer gør free spins-runder særligt lukrative." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer til Megaways Slots" prioritySlugs={["spilleautomaten", "campobet", "betinia"]}} />
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Megaways Slots" prioritySlugs={["spilleautomaten", "campobet", "betinia"]} />
 
         {/* ── 1. HVAD ER MEGAWAYS? ── */}
         <section className="mb-12" id="hvad-er-megaways">

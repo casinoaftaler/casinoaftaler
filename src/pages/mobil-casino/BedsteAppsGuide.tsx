@@ -93,7 +93,7 @@ const BedsteAppsGuide = () => {
 
         <SnippetAnswer answer="De bedste casino apps kombinerer hastighed, spiludvalg og mobiloptimeret design med Touch ID og push-notifikationer." />
 
-        <QuickComparisonTable count={3} title="Bedste Casino Apps – Top 3" prioritySlugs={["betinia", "swift-casino", "spilleautomaten"]}} />
+        <QuickComparisonTable count={3} title="Bedste Casino Apps – Top 3" prioritySlugs={["betinia", "swift-casino", "spilleautomaten"]} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Testet og skrevet af Jonas Theill, casino-ekspert hos Casinoaftaler.dk.</p>
 
         {/* 1. INTRODUKTION */}

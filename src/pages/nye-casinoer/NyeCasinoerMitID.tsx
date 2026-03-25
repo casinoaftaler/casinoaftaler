@@ -74,7 +74,7 @@ const NyeCasinoerMitID = () => {
 
         <SnippetAnswer answer="Nye casinoer med MitID giver hurtig verifikation og øjeblikkelig adgang til spil med dansk licens og fuld ROFUS-integration." />
 
-        <QuickComparisonTable count={3} title="MitID Casinoer – Top 3" prioritySlugs={["spildansknu", "betinia", "spilleautomaten"]}} />
+        <QuickComparisonTable count={3} title="MitID Casinoer – Top 3" prioritySlugs={["spildansknu", "betinia", "spilleautomaten"]} />
         {/* Intro section */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">MitID hos nye casinoer i Danmark – den komplette guide</h2>

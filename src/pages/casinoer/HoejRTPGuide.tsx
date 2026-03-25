@@ -68,7 +68,7 @@ const HoejRTPGuide = () => {
 
         <SnippetAnswer answer="Casinoer med høj RTP tilbyder slots med 96%+ tilbagebetaling. Tjek altid den specifikke RTP-konfiguration – den kan variere mellem casinoer." />
 
-        <QuickComparisonTable count={3} title="Højeste RTP Casinoer – Top 3" prioritySlugs={["spilleautomaten", "campobet", "betinia"]}} />
+        <QuickComparisonTable count={3} title="Højeste RTP Casinoer – Top 3" prioritySlugs={["spilleautomaten", "campobet", "betinia"]} />
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Forstå RTP og maksimér dine vinderchancer</h2>

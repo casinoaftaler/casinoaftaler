@@ -136,7 +136,7 @@ const HurtigRegistreringGuide = () => {
 
         <SnippetAnswer answer="Hurtig registrering via MitID eller BankID tager under 2 minutter – sammenlign med traditionel registrering og Pay N Play." />
 
-        <QuickComparisonTable count={3} title="Hurtig Registrering – Top 3" prioritySlugs={["swift-casino", "spilleautomaten", "playkasino"]}} />
+        <QuickComparisonTable count={3} title="Hurtig Registrering – Top 3" prioritySlugs={["swift-casino", "spilleautomaten", "playkasino"]} />
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />Tre veje til dit casinospil</h2>
