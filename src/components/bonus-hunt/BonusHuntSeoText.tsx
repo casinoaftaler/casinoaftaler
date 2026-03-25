@@ -15,8 +15,8 @@ export function BonusHuntSeoText() {
         </h2>
         <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
           <p>
-            En bonus hunt er en struktureret live-stream-session, hvor værten indsamler et bestemt antal bonusser
-            fra udvalgte{" "}
+            En bonus hunt er en struktureret live-stream-session, hvor værten starter med en fast balance og spinner
+            den ned til 0 på udvalgte{" "}
             <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
               spilleautomater
             </Link>{" "}
