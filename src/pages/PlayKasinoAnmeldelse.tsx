@@ -56,7 +56,7 @@ const playkasinoFaqs: { question: string; answer: ReactNode }[] = [
     answer: (
       <>
         PlayKasino tilbyder nye spillere en velkomstbonus på 100 % op til 500 kr. Bonussen krediteres automatisk ved din første indbetaling på minimum 100 kr. – ingen bonuskode nødvendig.{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravet</Link> er 10x (indbetaling + bonus), og du har 60 dage til at gennemspille det. Maksimum indsats med aktiv bonus er 50 kr. pr. spin. Sammenlignet med branchegennemsnittet på 25–40x er 10x exceptionelt lavt. Læs mere om{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravet</Link> er 10x (indbetaling + bonus), og du har 60 dage til at gennemspille det. Maksimum indsats med aktiv bonus er 50 kr. pr. spin. Med det lovmæssige maksimum på 10x i Danmark matcher PlayKasino den lavest mulige omsætning. Læs mere om{" "}
         <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
       </>
     ),
@@ -391,7 +391,7 @@ const PlayKasinoAnmeldelse = () => {
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Det der virkelig adskiller denne bonus er{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>omsætningskravet</Link> på kun 10x (indbetaling + bonus). For at sætte det i perspektiv: branchegennemsnittet i Danmark ligger på 25–40x. Hos de fleste konkurrenter skal du omsætte din bonus 25 gange eller mere, før du kan hæve gevinster. Hos PlayKasino er kravet blot 10x – det er en markant fordel for spilleren, og det er matematisk set en af de mest fordelagtige bonusstrukturer på det danske marked.
+            <Link to="/omsaetningskrav" className={linkClass}>omsætningskravet</Link> på kun 10x (indbetaling + bonus). I Danmark er det lovmæssige maksimum 10x, og PlayKasino matcher denne grænse præcist. Det betyder, at du får den lavest mulige omsætning der er tilladt – en klar fordel for spilleren, og matematisk set den mest fordelagtige bonusstruktur på det danske marked.
           </p>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Bonussen har 60 dages gyldighed, hvilket giver rigelig tid til at gennemspille omsætningskravet, selv for casual-spillere. Maksimum indsats med aktiv bonus er 50 kr. pr. spin – et standard-loft, der forhindrer bonusmisbrug, men som ikke begrænser normal spilaktivitet. Alle spilleautomater bidrager 100 % til omsætningskravet, mens bordspil typisk bidrager 10–20 %.
