@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Gamepad2, BarChart3, Cpu, Sparkles } from "lucide-react";
+import { ArrowRight, Gamepad2, BarChart3, Cpu, Sparkles, Smartphone, Globe, Zap } from "lucide-react";
 
 /**
  * Authority-loop closure component for bonus cluster pages.
@@ -89,6 +89,51 @@ export function BonusMoneyLinks({ currentPath }: BonusMoneyLinksProps) {
             <p className="font-semibold">Spillemaskiner Guide</p>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Alt om spillemaskiner – typer, funktioner og strategier til at vælge de rigtige slots.
+            </p>
+          </div>
+          <ArrowRight className="mt-0.5 h-4 w-4 text-muted-foreground flex-shrink-0" />
+        </Link>
+
+        {/* Cross-cluster: Nye Casinoer */}
+        <Link
+          to="/nye-casinoer"
+          className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+        >
+          <Sparkles className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+          <div className="flex-1 min-w-0">
+            <p className="font-semibold">Nye Casinoer 2026</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              De nyeste licenserede casinoer i Danmark – ofte med bedre bonusvilkår end etablerede sider.
+            </p>
+          </div>
+          <ArrowRight className="mt-0.5 h-4 w-4 text-muted-foreground flex-shrink-0" />
+        </Link>
+
+        {/* Cross-cluster: Mobil Casino */}
+        <Link
+          to="/mobil-casino"
+          className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+        >
+          <Smartphone className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+          <div className="flex-1 min-w-0">
+            <p className="font-semibold">Mobil Casino</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Komplet guide til casino på mobilen – apps, mobile-first design og iOS/Android-tips.
+            </p>
+          </div>
+          <ArrowRight className="mt-0.5 h-4 w-4 text-muted-foreground flex-shrink-0" />
+        </Link>
+
+        {/* Cross-cluster: Casino uden Konto */}
+        <Link
+          to="/casino-uden-konto"
+          className="flex items-start gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
+        >
+          <Zap className="mt-0.5 h-5 w-5 text-primary flex-shrink-0" />
+          <div className="flex-1 min-w-0">
+            <p className="font-semibold">Casino uden Konto</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Spil via Pay N Play uden registrering – hurtigste vej til casino med Trustly.
             </p>
           </div>
           <ArrowRight className="mt-0.5 h-4 w-4 text-muted-foreground flex-shrink-0" />

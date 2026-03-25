@@ -42,6 +42,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bRoyal Casino\b/i], href: "/casino-anmeldelser/royal-casino", anchor: "Royal Casino" },
   { patterns: [/\bMaria Casino\b/i], href: "/casino-anmeldelser/maria-casino", anchor: "Maria Casino" },
   { patterns: [/\bKapow Casino\b/i], href: "/casino-anmeldelser/kapow-casino", anchor: "Kapow Casino" },
+  { patterns: [/\bPlayKasino\b/i, /\bPlay Kasino\b/i], href: "/casino-anmeldelser/playkasino", anchor: "PlayKasino" },
   { patterns: [/\bOne Casino\b/i], href: "/casino-anmeldelser/one-casino", anchor: "One Casino" },
   { patterns: [/\bCasinostuen\b/], href: "/casino-anmeldelser/casinostuen", anchor: "Casinostuen" },
   { patterns: [/\bMarathonBet\b/i], href: "/casino-anmeldelser/marathonbet", anchor: "MarathonBet" },

@@ -194,6 +194,7 @@ const allReviews: GuideLink[] = [
   { to: "/casino-anmeldelser/swift-casino", label: "Swift Casino", icon: Zap, desc: "Hurtigt og enkelt casinooplevelse" },
   { to: "/casino-anmeldelser/unibet", label: "Unibet", icon: Trophy, desc: "Nordisk gigant med komplet udbud" },
   { to: "/casino-anmeldelser/videoslots", label: "Videoslots", icon: Gamepad2, desc: "Enormt spiludvalg og Battle of Slots" },
+  { to: "/casino-anmeldelser/playkasino", label: "PlayKasino", icon: Star, desc: "SkillOnNet-casino med 10x omsætning og mobilapp" },
   // VS / Sammenligningssider
   { to: "/casino-anmeldelser/bet365-vs-unibet", label: "bet365 vs Unibet", icon: BarChart3, desc: "Komplet sammenligning af to giganter" },
   { to: "/casino-anmeldelser/leovegas-vs-mr-green", label: "LeoVegas vs Mr Green", icon: BarChart3, desc: "Mobilcasino vs ansvarligt spil-pioner" },
