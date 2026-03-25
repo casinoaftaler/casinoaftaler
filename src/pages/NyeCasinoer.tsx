@@ -221,11 +221,57 @@ const NyeCasinoer = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="38 Min." />
-        
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={nyeCasinoerHero} alt="Nye casinoer i Danmark – futuristisk casino med neonlys og moderne design" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="De bedste nye casinoer i Danmark 2026 har dansk licens, 10x omsætningskrav, hurtige udbetalinger via Trustly/MobilePay og gennemprøvede platforme. Vi tester hvert casino med rigtige penge over 14 dage før det når vores liste." />
+
+        {/* Casino Cards – LIST FIRST for intent match */}
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">
+            Nye casinoer i Danmark
+          </h2>
+          {isLoading ? (
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            </div>
+          ) : newCasinos.length === 0 ? (
+            <p className="py-8 text-center text-muted-foreground">
+              Ingen nye casinoer tilgængelige i øjeblikket.
+            </p>
+          ) : (
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                {newCasinos.slice(0, 2).map((casino, index) => (
+                  <CasinoCard
+                    key={casino.id}
+                    casino={mapCasino(casino)}
+                    rank={index + 1}
+                    open={openCasinoId === casino.id}
+                    onOpenChange={(open) =>
+                      setOpenCasinoId(open ? casino.id : null)
+                    }
+                  />
+                ))}
+              </div>
+              {newCasinos.length > 2 && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                  {newCasinos.slice(2).map((casino, index) => (
+                    <CasinoCard
+                      key={casino.id}
+                      casino={mapCasino(casino)}
+                      rank={index + 3}
+                      open={openCasinoId === casino.id}
+                      onOpenChange={(open) =>
+                        setOpenCasinoId(open ? casino.id : null)
+                      }
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </section>
+
+        <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
             SECTION 1: Hvad er et "nyt casino" i 2026?
