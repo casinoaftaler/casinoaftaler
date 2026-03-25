@@ -2943,11 +2943,11 @@ export type Database = {
       refresh_slot_leaderboard: { Args: never; Returns: undefined }
       upsert_slot_catalog: {
         Args: {
-          p_multiplier?: number
+          p_multiplier: number
           p_provider: string
-          p_rtp?: number
+          p_rtp: number
           p_slot_name: string
-          p_win?: number
+          p_win: number
         }
         Returns: undefined
       }
