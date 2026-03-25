@@ -135,7 +135,7 @@ const CasinostuenAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – test og erfaringer</h2>
+          <h2 className="mb-4 text-3xl font-bold">Indskud og hævninger – praktisk test</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Casinostuen understøtter de mest gængse danske <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Vi testede fire metoder i januar 2026:</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border border-border rounded-lg">
