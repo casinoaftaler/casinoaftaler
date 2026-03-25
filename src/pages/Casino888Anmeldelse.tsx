@@ -158,7 +158,7 @@ const Casino888Anmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice og support</h2>
+          <h2 className="mb-4 text-3xl font-bold">Supportoplevelsen – responstid og kvalitet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">888 Casino tilbyder kundeservice via live chat (24/7), e-mail og en omfattende FAQ-sektion. Vi testede live chatten to gange:</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Onsdag kl. 14:00</h3><p className="text-sm text-muted-foreground">Svartid: 2 min 30 sek. Agent var kompetent og besvarede spørgsmål om 888 Club-niveauer korrekt. Kommunikation på engelsk med forståelse for danske forhold.</p></div></div>
