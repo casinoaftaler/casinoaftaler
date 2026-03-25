@@ -592,7 +592,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Payment Methods */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – MobilePay, Apple Pay og mere</h2>
+          <h2 className="mb-4 text-3xl font-bold">Pengestrømme – MobilePay, Apple Pay og øvrige kanaler</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             PlayKasino understøtter et solidt udvalg af{" "}
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> tilpasset det danske marked. Inklusionen af både{" "}
