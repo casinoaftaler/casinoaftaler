@@ -118,8 +118,8 @@ export function BonusHuntSeoText() {
             <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
               spilleautomater
             </Link>{" "}
-            med høj volatilitet og bonus buy-funktionalitet, da disse giver de mest dramatiske og
-            dokumenterbare resultater. Her er de kategorier, vi typisk inkluderer:
+            med høj volatilitet, da disse giver de mest dramatiske og
+            dokumenterbare resultater. Vi hunter primært bonusserne organisk, men slots med bonus buy-option giver fleksibilitet. Her er de kategorier, vi typisk inkluderer:
           </p>
           <ul className="list-disc pl-5 space-y-2">
             <li>
