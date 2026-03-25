@@ -123,7 +123,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalinger</h2>
+          <h2 className="mb-4 text-3xl font-bold">Overførselsmetoder – indskud og cashout</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { title: "Skrill (testet)", desc: "Udbetaling anmodet kl. 21:15, modtaget kl. 03:22 natten efter. Total: 6 timer og 7 minutter.", speed: "⚡ 6t 7min (testet)" },
