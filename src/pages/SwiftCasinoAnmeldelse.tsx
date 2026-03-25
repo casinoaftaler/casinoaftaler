@@ -639,7 +639,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── KUNDESERVICE ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice: Hurtig, kompetent og løsningsorienteret</h2>
+          <h2 className="mb-4 text-3xl font-bold">Supporten: Hurtig respons og løsningsorienterede rådgivere</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Swift Casino tilbyder kundeservice via live chat og e-mail. Under vores 14-dages test kontaktede vi live chat fire gange med varierende forespørgsler og oplevede konsekvent hurtige svartider (1–3 minutter).
           </p>
