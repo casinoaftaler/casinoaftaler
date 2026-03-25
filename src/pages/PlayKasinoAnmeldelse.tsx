@@ -807,7 +807,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Who should NOT choose PlayKasino */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge PlayKasino?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Fem situationer hvor PlayKasino ikke er det rette</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Trods sine styrker er PlayKasino ikke det optimale valg for alle spillertyper. Her er de profiler, der sandsynligvis vil finde bedre alternativer:
           </p>
