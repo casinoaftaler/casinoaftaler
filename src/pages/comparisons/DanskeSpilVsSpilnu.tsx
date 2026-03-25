@@ -159,6 +159,8 @@ export default function DanskeSpilVsSpilnu() {
       faqs={faqs}
       ctaSlug="danske-spil"
       readTime="58 min"
+      snippetAnswer="Danske Spil har det bredeste spiludvalg og stærkeste brand, men Spilnu matcher på dansk licens og tilbyder ofte mere aggressive bonusvilkår. Valget afhænger af om du prioriterer tillid eller bonus."
+      prioritySlugs={["betinia", "spilleautomaten", "campobet"]}
     >
       {/* ═══════════════════════════════════════════
           ENTERPRISE BODY CONTENT – 8000+ WORDS

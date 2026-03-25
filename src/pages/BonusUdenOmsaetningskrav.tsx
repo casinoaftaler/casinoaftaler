@@ -169,7 +169,7 @@ const BonusUdenOmsaetningskrav = () => {
 
         <SnippetAnswer answer="Bonus uden omsætningskrav giver 100% gevinstkonvertering – du hæver gevinster direkte. Gevinstloftet (typisk 500-2.000 kr.) er den reelle begrænsning, ikke omsætningen." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["betinia", "playkasino", "spilleautomaten"]}} />
 
 {/* === SEKTION 1: Mekanisk breakdown === */}
         <section className="mb-12">

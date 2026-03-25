@@ -153,7 +153,7 @@ const AndroidCasinoGuide = () => {
 
         <SnippetAnswer answer="De bedste Android casino apps tilbyder 1.500+ spil, biometrisk login og MobilePay-integration. Se vores test nedenfor." />
 
-        <QuickComparisonTable count={3} title="Bedste Android Casinoer – Top 3" />
+        <QuickComparisonTable count={3} title="Bedste Android Casinoer – Top 3" prioritySlugs={["betinia", "spilleautomaten", "swift-casino"]}} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Testet og skrevet af Jonas Theill, casino-ekspert hos Casinoaftaler.dk.
         </p>

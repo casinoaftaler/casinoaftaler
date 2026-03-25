@@ -68,7 +68,7 @@ const MobilCasinoerGuide = () => {
 
         <SnippetAnswer answer="De bedste mobilcasinoer i Danmark tilbyder PWA-apps med fuld funktionalitet, biometrisk login og optimeret touch-navigation." />
 
-        <QuickComparisonTable count={3} title="Bedste Mobilcasinoer – Top 3" />
+        <QuickComparisonTable count={3} title="Bedste Mobilcasinoer – Top 3" prioritySlugs={["betinia", "swift-casino", "spilleautomaten"]}} />
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over mobil casinoer</h2>

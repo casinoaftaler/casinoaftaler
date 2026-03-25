@@ -117,7 +117,7 @@ const TabletCasinoGuide = () => {
 
         <SnippetAnswer answer="Casino på tablet udnytter den store skærm til bedre overblik ved bordspil og live casino – se vores test af iPad og Android tablets." />
 
-        <QuickComparisonTable count={3} title="Bedste Tablet Casinoer – Top 3" />
+        <QuickComparisonTable count={3} title="Bedste Tablet Casinoer – Top 3" prioritySlugs={["betinia", "campobet", "spilleautomaten"]}} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Testet og skrevet af Jonas Theill, casino-ekspert hos Casinoaftaler.dk.</p>
 
         {/* 1. INTRODUKTION */}

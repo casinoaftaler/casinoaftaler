@@ -288,6 +288,8 @@ const VisaMastercardGuide = () => {
         { name: "Gennemfør 3D Secure-godkendelse", text: "Bekræft betalingen via din banks 3D Secure-system (Verified by Visa eller Mastercard SecureCode) med SMS-kode eller bankapp." },
         { name: "Beløbet krediteres din konto", text: "Indbetalingen vises øjeblikkeligt på din casinokonto efter godkendelse." },
       ]}
+      snippetAnswer="Visa og Mastercard er universelt accepterede på alle danske casinoer med fuld bonuskvalificering. Indbetalinger er instant, men udbetalinger tager 2-4 hverdage – langsommere end Trustly."
+      prioritySlugs={["spilleautomaten", "betinia", "spildansknu"]}
     />
   );
 };

@@ -88,6 +88,10 @@ interface PaymentMethodPageProps {
   howToTotalTime?: string;
   /** Casino slug for sticky CTA bar */
   ctaCasinoSlug?: string;
+  /** Custom snippet answer for featured snippet capture. Falls back to generic template text. */
+  snippetAnswer?: string;
+  /** Priority casino slugs for QuickComparisonTable. Falls back to position-based. */
+  prioritySlugs?: string[];
 }
 
 const paymentLinks = [
@@ -154,6 +158,8 @@ export function PaymentMethodPage({
   howToName,
   howToTotalTime,
   ctaCasinoSlug,
+  snippetAnswer,
+  prioritySlugs,
 }: PaymentMethodPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
@@ -223,9 +229,9 @@ export function PaymentMethodPage({
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="22 Min." />
 
-        <SnippetAnswer answer={`${name} på danske casinoer: Se vores dybdegående test af hastighed, sikkerhed og bonuskvalificering. Sammenlign med alternative betalingsmetoder nedenfor.`} />
+       <SnippetAnswer answer={snippetAnswer || `${name} på danske casinoer: Se vores dybdegående test af hastighed, sikkerhed og bonuskvalificering. Sammenlign med alternative betalingsmetoder nedenfor.`} />
 
-        <QuickComparisonTable count={3} title={`Bedste Casinoer med ${name}`} />
+       <QuickComparisonTable count={3} title={`Bedste Casinoer med ${name}`} prioritySlugs={prioritySlugs} />
 
         {/* Intro */}
         <section className="mb-12">

@@ -124,7 +124,7 @@ const LiveRouletteGuide = () => {
 
         <SnippetAnswer answer="Live roulette med europæisk hjul har 97,30% RTP. Fransk roulette med La Partage giver 98,65% på lige væddemål." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer til Live Roulette" />
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Live Roulette" prioritySlugs={["spildansknu", "campobet", "betinia"]}} />
 <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her fokuserer vi udelukkende på live roulette med rigtig dealer – det mest ikoniske casinospil, nu tilgængeligt i HD med multi-angle kameraer og op til 80 spins i timen. Vi adskiller os fra den overordnede pillar-guide ved at dykke ekstremt dybt ned i bordtyper, matematiske modeller for hvert bet-type, og en ærlig analyse af populære betting-systemer.
         </p>

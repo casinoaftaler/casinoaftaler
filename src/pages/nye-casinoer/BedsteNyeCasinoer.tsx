@@ -67,7 +67,7 @@ const BedsteNyeCasinoer = () => {
 
         <SnippetAnswer answer="De bedste nye casinoer i Danmark kombinerer friske bonusser, moderne platforme og hurtige udbetalinger. Vi har testet og rangeret dem alle." />
 
-        <QuickComparisonTable count={3} title="Bedste Nye Casinoer – Top 3" />
+        <QuickComparisonTable count={3} title="Bedste Nye Casinoer – Top 3" prioritySlugs={["swift-casino", "luna-casino", "playkasino"]}} />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">De bedste nye casinoer i Danmark – vores topvalg</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

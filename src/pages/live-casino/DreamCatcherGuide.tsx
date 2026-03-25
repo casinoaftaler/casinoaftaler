@@ -122,7 +122,7 @@ const DreamCatcherGuide = () => {
 
         <SnippetAnswer answer="Dream Catcher er Evolutions enkleste money wheel med 96,58% RTP. Ideelt for begyndere i live casino game shows." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer til Dream Catcher" />
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Dream Catcher" prioritySlugs={["swift-casino", "luna-casino", "campobet"]}} />
         {/* ── H2 1 ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crown className="h-5 w-5 text-primary" />Hvad er Dream Catcher – pioneren bag live game shows</h2>

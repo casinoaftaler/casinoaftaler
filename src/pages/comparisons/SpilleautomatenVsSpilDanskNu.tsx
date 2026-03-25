@@ -153,6 +153,8 @@ export default function SpilleautomatenVsSpilDanskNu() {
       faqs={faqs}
       ctaSlug="spilleautomaten"
       readTime="36 min"
+      snippetAnswer="Spilleautomaten scorer højest på spiludvalg med 4.000+ titler, mens SpilDanskNu vinder på sikkerhed og ugentlige kampagner. Begge har 10x omsætning og 24-timers udbetalinger."
+      prioritySlugs={["betinia", "campobet", "playkasino"]}
     >
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">To sider af samme danske casinofilosofi</h2>

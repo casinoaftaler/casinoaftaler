@@ -66,7 +66,7 @@ const SpilForSjovGuide = () => {
 
         <SnippetAnswer answer="Spil for sjov med demo-versioner af populære slots og bordspil – helt uden risiko og uden registrering." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer til Demo-Spil – Top 3" />
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Demo-Spil – Top 3" prioritySlugs={["spilleautomaten", "campobet", "betinia"]}} />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over gratis casinospil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ikke al casinospil handler om penge. Mange danske spillere nyder casinospil som ren underholdning – ligesom man ser en film eller spiller et videospil. Heldigvis er der masser af muligheder for at spille casino helt gratis, hvad enten du vil lære et nyt spil at kende, teste en strategi eller blot have det sjovt uden finansiel risiko. I 2026 er udvalget af gratis casinomuligheder større end nogensinde, med tusindvis af spilleautomater, bordspil og specialspil tilgængelige i demo-tilstand på de fleste danske licenserede casinoer.</p>

@@ -154,6 +154,8 @@ export default function LeoVegasVsMrGreen() {
       faqs={faqs}
       ctaSlug="leovegas"
       readTime="60 min"
+      snippetAnswer="LeoVegas dominerer på mobiloplevelse og live casino med dedikeret app, mens Mr Green vinder på ansvarligt spil-værktøjer og overskuelig navigation. Begge har dansk licens og 10x omsætning."
+      prioritySlugs={["betinia", "spilleautomaten", "swift-casino"]}
     >
       {/* ═══════════════════════════════════════════
           ENTERPRISE BODY CONTENT – 8000+ WORDS

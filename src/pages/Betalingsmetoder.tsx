@@ -239,7 +239,7 @@ const Betalingsmetoder = () => {
 
         <SnippetAnswer answer="Din betalingsmetode afgør udbetalingshastighed, bonuskvalificering og sikkerhed. Trustly giver hurtigste udbetalinger (under 6 timer), mens MobilePay og Visa er universelt accepterede." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["spilleautomaten", "betinia", "spildansknu"]}} />
 
 {/* ═══════════════════════════════════════════
             SECTION 1: Strategisk intro

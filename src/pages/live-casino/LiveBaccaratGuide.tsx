@@ -112,7 +112,7 @@ const LiveBaccaratGuide = () => {
 
         <SnippetAnswer answer="Live baccarat har en af de laveste husforbedeler med 1,06% på banker-væddemål. Tilgængeligt på alle danske licenserede casinoer." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer til Live Baccarat" />
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Live Baccarat" prioritySlugs={["spildansknu", "campobet", "betinia"]}} />
 <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her fokuserer vi specifikt på live baccarat – det spil, der globalt genererer mere omsætning end nogen anden bordspilkategori, primært drevet af det asiatiske marked, men med stigende popularitet i Danmark og Europa. Alt indhold er baseret på matematisk analyse og personlig erfaring fra hundredvis af timer ved live baccarat-borde.
         </p>

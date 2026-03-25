@@ -66,7 +66,7 @@ const CasinoOgSkatGuide = () => {
 
         <SnippetAnswer answer="Casino-gevinster på danske licenserede casinoer er skattefri. Gevinster fra udenlandske casinoer uden dansk licens kan være skattepligtige." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" />
+        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" prioritySlugs={["spildansknu", "betinia", "campobet"]}} />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over casino og skat i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Det korte svar: Ja, gevinster fra danske licenserede casinoer er 100 % skattefri – uanset beløbet.</strong> Men situationen er mere nuanceret, når det gælder udenlandske casinoer, kryptovaluta og fysiske casinoer i udlandet. Skatteforhold ved gambling er et af de mest stillede spørgsmål blandt danske casinospillere, og det er forståeligt – konsekvenserne af fejlagtig selvangivelse kan være alvorlige.</p>

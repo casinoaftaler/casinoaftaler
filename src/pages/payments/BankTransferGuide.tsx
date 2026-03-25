@@ -274,6 +274,8 @@ const BankTransferGuide = () => {
         { question: "Hvad sker der, hvis jeg glemmer at inkludere mit spillernummer som reference?", answer: "I vores test forårsagede en manglende reference en forsinkelse på 3 ekstra hverdage og krævede to kundeserviceopkald plus indsendelse af bankudtog. Casinoets finansafdeling skulle manuelt matche betalingen med din konto baseret på beløb og afsenderkonto. Kontakt altid kundeservice øjeblikkeligt – jo hurtigere du reagerer, desto kortere forsinkelse." },
       ]}
       currentPath="/betalingsmetoder/bankoverforsler"
+      snippetAnswer="Bankoverførsel er den mest pålidelige, men langsomste metode – 2-5 hverdage for udbetalinger. Ingen beløbsgrænser og fuld bonuskvalificering. Bedst til store beløb over 50.000 kr."
+      prioritySlugs={["spildansknu", "betinia", "campobet"]}
     />
   );
 };

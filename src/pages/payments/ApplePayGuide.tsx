@@ -310,6 +310,8 @@ const ApplePayGuide = () => {
         { name: "Indtast indbetalingsbeløb", text: "Angiv det ønskede beløb. Minimum er typisk 50-100 kr. hos danske casinoer." },
         { name: "Godkend med Face ID eller Touch ID", text: "Bekræft betalingen med Face ID, Touch ID eller din enheds adgangskode. Pengene krediteres øjeblikkeligt." },
       ]}
+      snippetAnswer="Apple Pay bruger Face ID/Touch ID til øjeblikkelige indbetalinger via dit betalingskort. Kun 2 af 4 testede casinoer understøtter udbetalinger – hav Trustly som backup."
+      prioritySlugs={["betinia", "spilleautomaten", "swift-casino"]}
     />
   );
 };

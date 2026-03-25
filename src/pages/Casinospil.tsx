@@ -153,7 +153,7 @@ const Casinospil = () => {
 
         <SnippetAnswer answer="Casinospil dækker alt fra spilleautomater og bordspil til live casino og game shows. Forstå RTP, house edge og volatilitet for at vælge de rigtige spil til din spillestil." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["campobet", "spilleautomaten", "betinia"]}} />
 
 {/* ═══════════════════════════════════════════
             SECTION 1: Hvad er casinospil?

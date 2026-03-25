@@ -109,7 +109,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
 
         <SnippetAnswer answer="Nye casinoer med hurtig udbetaling behandler dine gevinster inden for 24 timer – ofte via Trustly eller MobilePay." />
 
-        <QuickComparisonTable count={3} title="Hurtig Udbetaling – Top 3" />
+        <QuickComparisonTable count={3} title="Hurtig Udbetaling – Top 3" prioritySlugs={["spilleautomaten", "betinia", "swift-casino"]}} />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Nye casinoer med de hurtigste udbetalinger i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

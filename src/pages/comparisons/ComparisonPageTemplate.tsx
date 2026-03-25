@@ -56,6 +56,10 @@ export interface ComparisonPageProps {
   faqs: { question: string; answer: ReactNode }[];
   ctaSlug: string;
   readTime?: string;
+  /** Custom snippet answer for featured snippet capture. Falls back to generic template text. */
+  snippetAnswer?: string;
+  /** Priority casino slugs for QuickComparisonTable. Falls back to position-based. */
+  prioritySlugs?: string[];
   /** Full enterprise body content rendered between comparison table and verdict */
   children?: ReactNode;
 }
@@ -108,6 +112,8 @@ export function ComparisonPageTemplate({
   faqs,
   ctaSlug,
   readTime = "30 min",
+  snippetAnswer,
+  prioritySlugs,
   children,
 }: ComparisonPageProps) {
   const canonicalUrl = `${SITE_URL}${path}`;
@@ -176,9 +182,9 @@ export function ComparisonPageTemplate({
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author={author} readTime={readTime} />
 
-        <SnippetAnswer answer={`${casinoA.name} vs ${casinoB.name}: Vi har testet begge casinoer med rigtige penge og sammenligner bonus, spiludvalg, udbetalingstid og mobil. Se hvem der vinder nedenfor.`} />
+        <SnippetAnswer answer={snippetAnswer || `${casinoA.name} vs ${casinoB.name}: Vi har testet begge casinoer med rigtige penge og sammenligner bonus, spiludvalg, udbetalingstid og mobil. Se hvem der vinder nedenfor.`} />
 
-        <QuickComparisonTable count={3} title="Top 3 Alternativer" />
+        <QuickComparisonTable count={3} title="Top 3 Alternativer" prioritySlugs={prioritySlugs} />
 
         {/* Quick comparison cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">

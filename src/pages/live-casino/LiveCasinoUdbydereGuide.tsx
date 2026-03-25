@@ -136,7 +136,7 @@ const LiveCasinoUdbydereGuide = () => {
 
         <SnippetAnswer answer="Evolution dominerer live casino med 85%+ markedsandel. Pragmatic Play Live og Playtech tilbyder billigere alternativer." />
 
-        <QuickComparisonTable count={3} title="Bedste Live Casinoer – Top 3" />
+        <QuickComparisonTable count={3} title="Bedste Live Casinoer – Top 3" prioritySlugs={["campobet", "luna-casino", "swift-casino"]}} />
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Mens pillar-guiden giver dig overblikket over spiltyper og strategi, dykker denne guide ned i den tekniske infrastruktur bag live casino: hvem er udbyderne? Hvor streames bordene fra? Hvilken teknologi sikrer fair play? Og hvorfor har det betydning for din oplevelse, hvilken udbyder dit valgte casino bruger?
         </p>

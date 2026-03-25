@@ -299,6 +299,8 @@ const ZimplerGuide = () => {
         { name: "Verificér med MitID og vælg bank", text: "Log ind med MitID, vælg din bank og godkend overførslen direkte fra din bankkonto." },
         { name: "Pengene krediteres øjeblikkeligt", text: "Indbetalingen behandles i realtid og vises på din casinokonto inden for sekunder." },
       ]}
+      snippetAnswer="Zimpler kombinerer mobilfakturering med bankoverførsel – indbetal via SMS-bekræftelse uden at dele bankoplysninger. Lav tilgængelighed i Danmark, men stærk på svenske casinoer."
+      prioritySlugs={["swift-casino", "spilleautomaten", "betinia"]}
     />
   );
 };

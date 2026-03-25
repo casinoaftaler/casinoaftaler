@@ -119,7 +119,7 @@ const DealOrNoDealGuide = () => {
 
         <SnippetAnswer answer="Deal or No Deal Live kombinerer den kendte tv-mekanik med live casino. RTP er 95,42% og banker-tilbuddet kræver strategi." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer til Deal or No Deal" />
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Deal or No Deal" prioritySlugs={["luna-casino", "campobet", "swift-casino"]}} />
         {/* ── H2 1 ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crown className="h-5 w-5 text-primary" />Hvad er Deal or No Deal Live – det interaktive game show</h2>

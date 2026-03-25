@@ -109,7 +109,7 @@ const NyeCasinoerUdenRofus = () => {
 
         <SnippetAnswer answer="Casinoer uden ROFUS mangler dansk licens og spillerbeskyttelse. Vi anbefaler altid licenserede alternativer med fuldt tilsyn." />
 
-        <QuickComparisonTable count={3} title="Sikre Alternativer – Top 3" />
+        <QuickComparisonTable count={3} title="Sikre Alternativer – Top 3" prioritySlugs={["spildansknu", "betinia", "spilleautomaten"]}} />
         <Card className="mb-8 border-l-4 border-l-destructive">
           <CardContent className="pt-6">
             <div className="flex items-start gap-3">

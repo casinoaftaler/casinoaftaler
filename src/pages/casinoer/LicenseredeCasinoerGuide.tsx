@@ -65,7 +65,7 @@ const LicenseredeCasinoerGuide = () => {
 
         <SnippetAnswer answer="Alle casinoer med dansk licens er overvåget af Spillemyndigheden, tilsluttet ROFUS og tilbyder skattefri gevinster." />
 
-        <QuickComparisonTable count={3} title="Licenserede Casinoer – Top 3" />
+        <QuickComparisonTable count={3} title="Licenserede Casinoer – Top 3" prioritySlugs={["spildansknu", "betinia", "spilleautomaten"]}} />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over licenserede casinoer i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Når du spiller på et online casino, er der ét kriterium, der bør trumfe alle andre: <strong>Har casinoet en gyldig dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>?</strong> Licensen er ikke bare et stempel – den er din garanti for fair spil, beskyttede midler, skattefri gevinster og adgang til et system af selvbegrænsningsværktøjer, der beskytter dig som spiller. Uden dansk licens mister du alle disse beskyttelser, og du risikerer at spille på en platform, der ikke er underlagt nogen form for dansk myndighedskontrol.</p>
