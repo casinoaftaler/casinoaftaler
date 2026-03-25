@@ -185,7 +185,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Kundeservice & Mobil */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Headphones className="h-7 w-7 text-primary" />Kundeservice og mobiloplevelse</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Headphones className="h-7 w-7 text-primary" />Hjælp og mobiladgang – hvad vi oplevede</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kundeservice foregår primært via e-mail og telefon i dagtimerne. Ifølge de seneste offentlige oplysninger ligger supportvinduet omkring kl. 10:00–18:00, så svartid kan variere uden for åbningstid. Vi anbefaler at bruge FAQ/hjælpesider ved akutte spørgsmål uden for supporttid.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mobiloplevelsen er mere poleret end man måske forventer. Browserversionen er fuldt responsiv med store touch-venlige knapper, intuitive kategorier og hurtige spilindlæsninger. Live casino-borde fungerer upåklageligt på mobil med justerbare kameravinkler. Designet er elegant-minimalistisk med dybrøde og guldtoner, der signalerer premium uden at virke overdrevet.</p>
           <p className="text-muted-foreground leading-relaxed">Der er dog ingen dedikeret app, hvilket betyder, at du mister push-notifikationer om kampagner og den hurtigere opstart, en native app tilbyder. For den dedikerede mobilspiller er <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' prisbelønnede app stadig den bedste i Danmark. For lejlighedsvise mobilsessioner er Royal Casinos browserversion dog mere end tilstrækkelig.</p>
