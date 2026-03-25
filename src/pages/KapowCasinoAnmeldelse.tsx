@@ -167,7 +167,7 @@ const KapowCasinoAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og SkillOnNet-troværdighed</h2>
+          <h2 className="mb-4 text-3xl font-bold">Regulering under SkillOnNet-paraplyen</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kapow Casino opererer under dansk licens fra Spillemyndigheden og har også licenser fra Malta Gaming Authority og UK Gambling Commission. SkillOnNet har drevet online casinoer siden 2005 uden større regulatoriske sanktioner – en vigtig indikator for pålidelighed. SSL-kryptering (256-bit) beskytter alle transaktioner.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">ROFUS-tilslutning og <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer er implementeret som krævet af dansk lovgivning. Indskudsgrænser, tabsgrænser og selvudelukkelse er tilgængelige. Spillermidler opbevares på separate konti. SkillOnNets compliance-team håndterer regelmæssige audits fra alle tre regulatoriske myndigheder.</p>
           <p className="text-muted-foreground leading-relaxed">Den vigtigste forbehold er, at SkillOnNet ikke er børsnoteret. Det betyder, at der er mindre finansiel gennemsigtighed sammenlignet med børsnoterede operatører som Betsson Group, Flutter Entertainment eller FDJ United (tidl. Kindred Group). For de fleste spillere er dette ikke et praktisk problem – licenserne fra tre respekterede myndigheder giver tilstrækkelig sikkerhed – men det er en faktor, der bør nævnes i en ærlig anmeldelse.</p>
