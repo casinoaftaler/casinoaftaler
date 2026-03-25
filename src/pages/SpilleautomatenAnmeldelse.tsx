@@ -264,7 +264,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Pros & Cons */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper – Ærlig vurdering efter 14 dage</h2>
+          <h2 className="mb-6 text-3xl font-bold">Kvaliteter og mangler – den usminkede sandhed</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
