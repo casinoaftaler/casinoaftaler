@@ -500,6 +500,94 @@ const PlayKasinoAnmeldelse = () => {
           <InlineReviewCTA casinoName="PlayKasino" bonusText="100% bonus op til 500 kr. – positiv EV på +100 kr." onClick={handleBonusClick} variant="bonus" />
         </section>
 
+        {/* Optimal Bonus Strategy */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Optimal bonusstrategi – Sådan gennemspiller du 10x mest effektivt</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            PlayKasinos 10x omsætningskrav er allerede markedets mest fordelagtige, men den rigtige spilstrategi kan forbedre dine chancer for at gå i plus markant. Her gennemgår vi tre dokumenterede tilgange til bonusomsætning baseret på matematisk analyse og vores egne erfaringer fra 14 dages test.
+          </p>
+
+          <Card className="border-border bg-card mb-6">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Target className="h-5 w-5 text-primary" />
+                Strategi 1: Lav-volatilitet grinding (anbefalet for nybegyndere)
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                Vælg{" "}
+                <Link to="/ordbog/volatilitet" className={linkClass}>lav-volatilitet slots</Link> med RTP over 96 % og spil med 10–20 kr. pr. spin. Denne tilgang minimerer variansen og giver den mest forudsigelige vej igennem omsætningskravet. Med 10 kr. pr. spin kræver det ca. 1.000 spins for at nå 10.000 kr. i omsætning. Ved 600 spins/time er du igennem på under 2 timer.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">Anbefalede spil:</strong>{" "}
+                <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> (RTP 96,08 %, lav volatilitet),{" "}
+                Blood Suckers (RTP 98,00 %, lav volatilitet), Thunderstruck II (RTP 96,65 %, medium volatilitet). Fordelen ved lav-volatilitet er, at din saldo sjældent afviger mere end ±30 % fra startpunktet, hvilket giver en rolig og kontrollerbar bonusomsætning.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border bg-card mb-6">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Flame className="h-5 w-5 text-primary" />
+                Strategi 2: Medium-volatilitet balancering (for erfarne spillere)
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                Denne tilgang blander lav- og medium-volatilitet spil for at bevare en chance for større gevinster uden at risikere hele bonussaldoen. Start med 70 % af dine spins på lav-volatilitet titler for at bygge en buffer, og skift derefter til medium-volatilitet spil som{" "}
+                <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> (RTP 96,21 %) eller Reactoonz (RTP 96,51 %) for de sidste 30 %.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">Risikoprofil:</strong> Denne strategi har en højere varians end ren grinding, men den matematiske forventningsværdi forbliver positiv (ca. +100 kr. ved 96 % RTP). Du accepterer en ca. 15 % sandsynlighed for at tabe hele bonussaldoen mod en tilsvarende sandsynlighed for at fordoble den.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border bg-card mb-6">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <TrendingUp className="h-5 w-5 text-primary" />
+                Strategi 3: Bordspil-supplement (for matematisk fokuserede spillere)
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                Selvom bordspil typisk kun bidrager 10–20 % til omsætningskravet hos PlayKasino, har de markant højere RTP end slots. European Roulette (RTP 97,30 %) og Blackjack (RTP op til 99,50 % med optimal strategi) giver en lavere house edge pr. krone omsat. Ulempen er, at du skal omsætte 5–10x mere i reel indsats for at nå den ækvivalente omsætning.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">Anbefaling:</strong> Brug bordspil som supplement – ikke som primær strategi. Spil 80 % af omsætningskravet via slots (100 % bidrag) og brug de sidste 20 % af din spilletid på bordspil for en lavere house edge på den resterende saldo. Det kræver mere tålmodighed, men giver en marginalt bedre EV.
+              </p>
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="rounded-lg border border-border p-4 text-center">
+              <p className="text-xs text-muted-foreground uppercase mb-1">Gennemspitningstid</p>
+              <p className="text-2xl font-bold text-foreground">~2 timer</p>
+              <p className="text-xs text-muted-foreground">ved 10 kr./spin, 600 spins/time</p>
+            </div>
+            <div className="rounded-lg border border-border p-4 text-center">
+              <p className="text-xs text-muted-foreground uppercase mb-1">Anbefalet RTP</p>
+              <p className="text-2xl font-bold text-foreground">96 %+</p>
+              <p className="text-xs text-muted-foreground">vælg slots med dokumenteret RTP</p>
+            </div>
+            <div className="rounded-lg border border-border p-4 text-center">
+              <p className="text-xs text-muted-foreground uppercase mb-1">Optimal indsats</p>
+              <p className="text-2xl font-bold text-foreground">10–20 kr.</p>
+              <p className="text-xs text-muted-foreground">balance mellem hastighed og risiko</p>
+            </div>
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed">
+            Uanset hvilken strategi du vælger, er den vigtigste regel at holde sig inden for maks-indsatsen på 50 kr. pr. spin. Overskridelse kan medføre annullering af bonussen og tilhørende gevinster. Vi anbefaler desuden at sætte en{" "}
+            <Link to="/ansvarligt-spil" className={linkClass}>personlig tidsgrænse</Link> og aldrig forsøge at "chasse" tab under bonusomsætningen – det er en matematisk positiv situation, så lad variansen arbejde for dig over tid.
+          </p>
+
+          <InlineReviewCTA casinoName="PlayKasino" bonusText="+100 kr. forventet værdi – positiv EV med 10x omsætning" onClick={handleBonusClick} variant="ev" />
+        </section>
+
         <Separator className="my-10" />
 
         {/* Game Selection */}
