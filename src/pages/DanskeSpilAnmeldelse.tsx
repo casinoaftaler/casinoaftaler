@@ -253,7 +253,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed – i en klasse for sig</h2>
+          <h2 className="mb-4 text-3xl font-bold">Statslig regulering og spillerbeskyttelse uden sidestykke</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Når det kommer til sikkerhed, er Danske Spil Casino i en klasse for sig. Som delvist statsejet operatør er der en ekstra dimension af offentlig kontrol og gennemsigtighed, der adskiller sig markant fra private aktører. Danske Spil er underlagt parlamentarisk kontrol via Kulturministeriet, revideres af Rigsrevisionen, og deres årsrapporter er offentligt tilgængelige. Det er et sikkerhedsniveau, som ingen privat operatør – uanset størrelse – kan matche.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den tekniske sikkerhed er ligeledes i top med 256-bit SSL-kryptering, PCI DSS-certificering for kortbehandling og avancerede anti-fraud-systemer. MitID-integration eliminerer risikoen for identitetssvindel og gør verifikationsprocessen øjeblikkelig. <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>-tilslutning sikrer, at selvudelukkede spillere ikke kan oprette konto.</p>
 
