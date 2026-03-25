@@ -104,7 +104,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Fordele og ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Unibet</h2>
+          <h2 className="mb-6 text-3xl font-bold">Det der imponerer – og det der kan forbedres</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Komplet alt-i-en platform: casino, sport, poker, live", "Børsnoteret Kindred Group – fuld gennemsigtighed", "2.000+ casinospil fra topudbydere", "Dedikerede mobilapps til iOS og Android", "Et af Nordens mest aktive pokerrum", "Hurtige udbetalinger via Trustly (under 24 timer)", "40+ sportsgrene med live-betting og Bet Builder", "Dansk licens fra Spillemyndigheden", "Stærkt engagement i ansvarligt spil med 2030-målsætning", "Eksklusive Unibet-spil du ikke finder andre steder"].map((p) => (<li key={p} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{p}</span></li>))}</ul></CardContent></Card>
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Casino-velkomstbonus er gennemsnitlig sammenlignet med specialiserede casinoer", "Platform kan føles kompleks for nye brugere pga. mange produkter", "Casino-sektionen kan drukne i sports-orienteret design", "VIP-program er ikke så gennemsigtigt som konkurrenters", "Ingen MobilePay – Trustly er primær bankløsning", "Kundeservice-ventetid kan være lang i spidsbelastningsperioder"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
@@ -190,7 +190,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – app vs. browser</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dedikeret app vs. mobilbrowser – test og sammenligning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Unibet tilbyder dedikerede mobilapps til både iOS og Android, og de er blandt de mest funktionsrige casino-apps på det danske marked. Appen dækker hele produktpaletten – casino, sportsbetting, live casino og poker – med en optimeret touch-navigation, der gør det nemt at skifte mellem produkter. Biometrisk login via Face ID eller fingeraftryk sikrer hurtig og sikker adgang.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I vores test på iPhone 15 Pro målte vi en appstarttid på 1,8 sekunder og jævne animationer ved 60fps på tværs af alle sektioner. Casinospil loader typisk inden for 3-4 sekunder, og live casino-streams starter uden mærkbar forsinkelse. Samsung Galaxy S24-testen viste tilsvarende resultater med en marginalt hurtigere appstart (1,6 sekunder), hvilket tyder på god optimering til Android-platformen.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Browser-oplevelsen via mobilens webbrowser er også solid, men appen har klare fordele: push-notifikationer om kampagner og live-resultater, hurtigere navigation og bedre integration med telefonens funktioner. Pokersektionen er kun tilgængelig via den dedikerede poker-app (separat download), hvilket er en lille ulempe for spillere, der ønsker alt samlet ét sted.</p>
@@ -201,7 +201,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalingshastighed</h2>
+          <h2 className="mb-4 text-3xl font-bold">Pengeprocesering – hastighed og tilgængelige kanaler</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Unibet understøtter alle populære danske <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> med <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> som den primære bankbaserede løsning. Det er værd at bemærke, at Unibet ikke tilbyder <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> som betalingsmetode – en mangel, der kan irritere danske spillere, der er vant til MobilePay hos konkurrenter som <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -225,7 +225,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – flersproget men med ventetid</h2>
+          <h2 className="mb-4 text-3xl font-bold">Flersproget support – kompetent men med variable ventetider</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Unibet tilbyder kundeservice via live chat, e-mail og en omfattende FAQ-sektion. Live chatten er tilgængelig 24/7, men det er vigtigt at bemærke, at den primært betjenes på engelsk med mulighed for dansk support i begrænset tidsrum (typisk 09:00-22:00 dansk tid). Uden for dansk åbningstid vil du sandsynligvis kommunikere med engelsktalende agenter.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I vores test kontaktede vi live chatten fem gange på forskellige tidspunkter. Gennemsnitlig ventetid var 4 minutter og 30 sekunder – acceptabelt men ikke imponerende. Den hurtigste forbindelse var 1 minut (tirsdag formiddag), den langsomste var 11 minutter (lørdag aften). Agenternes vidensniveau var generelt højt, men vi oplevede en enkelt situation, hvor en agent ikke kunne besvare et specifikt spørgsmål om bonusvilkår og måtte eskalere til en specialist, hvilket tog yderligere 15 minutter.</p>
           <p className="text-muted-foreground leading-relaxed">FAQ-sektionen er veldokumenteret og dækker de fleste standardspørgsmål om konto, betalinger, bonusser og ansvarligt spil. For de fleste spillere vil FAQ-sektionen eliminere behovet for direkte kontakt. E-mail-support besvares typisk inden for 24 timer, men vi oplevede en sag, der tog 36 timer at få svar på – sandsynligvis pga. weekend-overlap.</p>
@@ -235,7 +235,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og Kindred Groups ansvarlige tilgang</h2>
+          <h2 className="mb-4 text-3xl font-bold">Kindred Groups regulering og ansvarligt spil-profil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Unibet opererer under dansk licens fra Spillemyndigheden (licens nr. 18-0098) og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Som en del af Kindred Group PLC – børsnoteret (nu del af FDJ United) – er den finansielle gennemsigtighed uovertruffen. Du kan tilgå Kindred Groups årsrapporter, kvartalsresultater og ESG-rapporter offentligt, hvilket giver et indsigt i virksomhedens finansielle sundhed, som ingen privat operatør kan matche.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kindred Groups "Journey towards zero" er branchens mest ambitiøse ansvarlig-spil-initiativ. Målet er at eliminere al skadelig spilaktivitet inden 2030 – defineret som spil, der påvirker spillerens liv negativt. Initiativet bruger AI-drevet adfærdsanalyse til proaktivt at identificere risikospillere og intervenere med personlige beskeder, grænseforslag og i alvorlige tilfælde kontobegrænsninger. I 2024 udgjorde indkomst fra "high-risk" spillere under 4% af Kindred Groups samlede omsætning – et konkret bevis på, at initiativet har effekt.</p>
 
@@ -312,7 +312,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Hvem bør undgå Unibet */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå Unibet?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Når Unibet ikke er det bedste match</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ingen platform er perfekt til alle. Unibet er sandsynligvis <strong>ikke det bedste valg</strong> for følgende spillerprofiler:</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Den dedikerede high-roller casinospiller:</strong> Hvis du udelukkende spiller casino med høje insatser og forventer et VIP-program med personlig account manager, private borde og eksklusive bonusser, vil du finde bedre muligheder hos specialiserede casinoer som <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> eller <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Den MobilePay-afhængige spiller:</strong> Hvis MobilePay er din foretrukne betalingsmetode, er Unibet ikke ideelt. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> eller <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link> tilbyder MobilePay-integration.</p>

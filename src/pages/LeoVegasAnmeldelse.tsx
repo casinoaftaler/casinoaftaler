@@ -346,7 +346,7 @@ const LeoVegasAnmeldelse = () => {
 
         {/* EV Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Avanceret EV-analyse: Bonusværdi og spillerøkonomi</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Bonusøkonomi: Reel spillerværdi og matematisk gennemgang</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at vurdere LeoVegas' reelle værdi for danske spillere har vi gennemført en matematisk analyse af bonus-EV, løbende kampagner og VIP-programmets estimerede afkast. Denne analyse anvender standardformlen: <strong>EV = Bonusbeløb − (Total Omsætning × House Edge)</strong>, hvor House Edge er den statistiske fordel casinoet har over spilleren.</p>
 
           <Card className="border-border bg-card mb-6">

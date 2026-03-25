@@ -329,7 +329,7 @@ const Bet365Anmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalingstid</h2>
+          <h2 className="mb-4 text-3xl font-bold">Ind- og udbetalinger – testede hastigheder og metoder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             bet365 understøtter de gængse danske <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>: <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> og <Link to="/betalingsmetoder/paysafecard" className={linkClass}>Paysafecard</Link>. Indbetalinger er øjeblikkelige uanset metode. Der er ingen gebyrer fra bet365's side – men din bank eller e-wallet kan opkræve egne gebyrer.
           </p>
@@ -401,7 +401,7 @@ const Bet365Anmeldelse = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             <Shield className="inline h-7 w-7 text-primary mr-2" />
-            Sikkerhed og licens
+            Regulatorisk compliance og spillerbeskyttelse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             bet365 opererer under dansk licens fra Spillemyndigheden og er fuldt tilsluttet ROFUS. Platformen bruger 256-bit SSL-kryptering til alle data- og betalingstransaktioner. Som en af verdens mest kontrollerede gambling-virksomheder er bet365 underlagt regulering fra myndigheder i over 20 lande, herunder UK Gambling Commission.
@@ -430,7 +430,7 @@ const Bet365Anmeldelse = () => {
 
         {/* Fordele og ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper</h2>
+          <h2 className="mb-6 text-3xl font-bold">Styrker og begrænsninger i praksis</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
@@ -502,7 +502,7 @@ const Bet365Anmeldelse = () => {
 
         {/* EV Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Avanceret EV-analyse: Casino-bonus og sportsvæddemål</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Bonusmatematik: Expected Value på casino og sport</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at vurdere bet365's reelle værdi for danske spillere har vi beregnet Expected Value (EV) på tværs af casino-bonus, løbende kampagner og sportsvæddemål. Formlen er: <strong>EV = Bonusbeløb − (Total Omsætning × House Edge)</strong>.</p>
 
           <Card className="border-border bg-card mb-6">
@@ -577,7 +577,7 @@ const Bet365Anmeldelse = () => {
 
         {/* Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" />Hvem bør undgå bet365?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" />Spillertyper der bør vælge et alternativ</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Pure casino-spillere:</strong> Hvis du aldrig vedder på sport og udelukkende spiller slots og live casino, er bet365 det forkerte startsted. Casinoet er godt men designet som et supplement – navigation, bonusser og marketing er sportsfokuseret. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (mobilcasino-specialist), <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> (bredeste katalog) eller <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (5.000+ spil) giver en markant bedre rendyrket casino-oplevelse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Spillere der kræver dansk kundeservice:</strong> bet365's support foregår primært på engelsk. For spillere med begrænset engelskkundskab – eller som simpelthen foretrækker at kommunikere på dansk – er dette en reel barriere. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>, <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link> og <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> tilbyder alle dansk support.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Bonusjægere:</strong> bet365's casino-velkomstbonus er gennemsnitlig med en EV på ~+200 kr. Spillere der aktivt optimerer bonusværdi bør starte hos operatører med højere EV-bonusser (<Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> +510 kr., <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> +600 kr.) og evt. bruge bet365 som sekundær platform for sportsvæddemål.</p>
@@ -607,7 +607,7 @@ const Bet365Anmeldelse = () => {
 
         {/* Endelig vurdering */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Vores endelige vurdering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Konklusion – er bet365 det rigtige valg?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             bet365 er den mest komplette spilleplatform, der er tilgængelig for danske spillere. Sportsbook'en er i en liga for sig selv med dybde, live streaming og innovative værktøjer, som ingen konkurrent matcher. Casino-sektionen er solid med et bredt udvalg, og live casinoet er blandt de bedste. Udbetalinger er hurtige, platformen er stabil, og 20+ års erfaring mærkes i hvert aspekt af produktet.
           </p>

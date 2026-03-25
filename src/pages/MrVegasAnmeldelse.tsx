@@ -76,7 +76,7 @@ const MrVegasAnmeldelse = () => {
 
         {/* Fordele og ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Mr Vegas Casino</h2>
+          <h2 className="mb-6 text-3xl font-bold">Stærke sider og mangler hos Mr Vegas</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Generøs velkomstbonus op til 1.000 kr. + 200 FS", "Enormt spiludvalg med 2.200+ titler fra 25+ udbydere", "Del af Betsson Group med 60+ års erfaring", "Dansk licens fra Spillemyndigheden + ROFUS", "Hurtige udbetalinger – Trustly på under 15 timer i vores test", "Moderne og visuelt tiltalende design", "Stærkt live casino med Evolution Gaming og Pragmatic Live", "Mange betalingsmetoder tilpasset Danmark inkl. MobilePay", "Realtids-bonustracker der viser omsætningsprogression", "Automatisk KYC via MitID – ingen manuelle uploads nødvendige"].map((p) => (<li key={p} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{p}</span></li>))}</ul></CardContent></Card>
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Relativt nyt brand – lanceret 2023, kortere track record end CasinoEuro", "Kundeservice ikke tilgængelig 24/7 – lukker kl. 23:00 dansk tid", "Ingen dedikeret mobilapp – kun responsiv browser", "VIP-programmet er begrænset for danske spillere ift. internationale markeder", "Sportsvæddemål er ikke tilgængeligt – ren casino-platform", "Designet kan virke overvældende for spillere der foretrækker minimalisme", "Free spins er bundet til specifikke spil – ingen valgfrihed"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
@@ -123,7 +123,7 @@ const MrVegasAnmeldelse = () => {
 
         {/* Mobiloplevelsen */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – browser-first strategi under test</h2>
+          <h2 className="mb-4 text-3xl font-bold">Browser-first på mobil – fungerer det i praksis?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Vegas Casino har valgt en browser-first mobilstrategi fremfor at udvikle en dedikeret iOS/Android-app. Det er en bevidst beslutning, der eliminerer behovet for app-downloads og opdateringer, men som også betyder, at push-notifikationer og homescreen-integration er begrænset. Vi testede mobiloplevelsen på iPhone 15 Pro (iOS 18) og Samsung Galaxy S24 (Android 14).</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">På iPhone 15 Pro indlæste lobbyen på 1.6 sekunder over Wi-Fi og 2.3 sekunder over 5G. Navigation mellem kategorier var flydende med swipe-gestures. Spilstart for slots tog gennemsnitligt 2.1 sekunder – hurtigere end gennemsnittet for danske platforme. Live casino-streaming var stabil med HD-kvalitet og ingen buffering under en 30-minutters session. Betalinger via Trustly og MobilePay fungerede uden problemer direkte i browseren.</p>
           <p className="text-muted-foreground leading-relaxed">Samsung Galaxy S24 leverede lignende resultater med marginalt hurtigere lobby-indlæsning (1.4 sekunder). Touch-responsiviteten var excellent på begge enheder. Den eneste irritation var, at adressebaren i Safari fylder unødvendig skærmplads, som en dedikeret app ville eliminere. Mr Vegas har implementeret en "Tilføj til hjemmeskærm"-funktion, der delvist løser dette, men det kræver, at spilleren aktivt konfigurerer det. Samlet set er mobiloplevelsen over gennemsnittet, men ikke i LeoVegas-klassen, der fortsat sætter standarden for mobilt casino-spil i Danmark.</p>
@@ -133,7 +133,7 @@ const MrVegasAnmeldelse = () => {
 
         {/* Betalingsmetoder med testdata */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – vores testresultater</h2>
+          <h2 className="mb-4 text-3xl font-bold">Ind- og udbetalingskanaler – vores dokumenterede test</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Vegas Casino understøtter alle de vigtige danske <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Vi testede tre udbetalingsmetoder og dokumenterede resultaterne præcist for at give dig et realistisk billede af, hvad du kan forvente.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
@@ -152,7 +152,7 @@ const MrVegasAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – professionel men ikke døgndækket</h2>
+          <h2 className="mb-4 text-3xl font-bold">Live chat og e-mail – kompetent men tidsbegrænset</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Vegas Casino tilbyder kundeservice via live chat og e-mail. Live chat er tilgængelig dagligt fra 09:00 til 23:00 dansk tid – en begrænsning sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, der begge tilbyder 24/7 support. E-mail-henvendelser besvares typisk inden for 4-6 timer på hverdage.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede live chatten tre gange i testperioden. Ventetiden var konsekvent under 2 minutter, og agenterne var dansktalende og kompetente. Første henvendelse vedrørte bonusvilkår, og vi fik et præcist og detaljeret svar. Anden henvendelse handlede om udbetalingsstatus, og agenten kunne straks verificere status i systemet. Tredje henvendelse var en teknisk test om et spil, der ikke indlæste korrekt – agenten eskalerede sagen og fulgte op via e-mail med en løsning inden for 2 timer.</p>
           <p className="text-muted-foreground leading-relaxed">FAQ-sektionen er omfattende og dækker de mest almindelige spørgsmål om registrering, betalinger, bonusser og ansvarligt spil. For de fleste standardspørgsmål finder du svar uden at kontakte support. Den manglende 24/7-dækning er den eneste reelle svaghed – hvis du spiller sent om natten og støder på et problem, må du vente til næste morgen.</p>
@@ -162,7 +162,7 @@ const MrVegasAnmeldelse = () => {
 
         {/* Sikkerhed og licens */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og Betsson-gruppens regulatoriske profil</h2>
+          <h2 className="mb-4 text-3xl font-bold">Betsson-gruppens licensprofil og databeskyttelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Vegas Casino opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> – den danske reguleringsmyndighed, der håndhæver nogle af Europas strengeste spilleregler. Alle spil på platformen er RNG-certificerede af uafhængige testlaboratorier som eCOGRA og iTech Labs. SSL-kryptering (256-bit) beskytter alle transaktioner og personoplysninger.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Betsson Groups regulatoriske profil er exceptionel. Koncernen har aktive licenser i Sverige, Danmark, Norge, Finland, UK, Malta, Spanien, Italien, Belgien, Kroatien, Colombia og flere andre jurisdiktioner. Denne brede licensportefølje er et konkret bevis på, at virksomheden kan opfylde de strengeste krav globalt. Ingen operatør med tvivlsom praksis opretholder 20+ licenser samtidig – omkostningerne og compliance-kravene er simpelthen for høje.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">ROFUS-tilslutning sikrer, at selvudelukket spillere automatisk blokeres fra at oprette eller bruge en konto. Indskudsgrænser kan konfigureres på daglig, ugentlig eller månedlig basis. Session-timere minder spillerne om varighed, og tabsgrænser kan sættes individuelt. Betsson-gruppens <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-protokoller er blandt de mest omfattende i branchen og inkluderer proaktiv kontakt til spillere, der viser risikoadfærd.</p>
@@ -249,7 +249,7 @@ const MrVegasAnmeldelse = () => {
 
         {/* Endelig vurdering */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Vores endelige vurdering – substans bag Vegas-glamouren</h2>
+          <h2 className="mb-4 text-3xl font-bold">Samlet bedømmelse – substans bag Vegas-glamouren</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Vegas Casino er mere end flashy design og store bonustal. Det er en platform bygget på Betsson Groups 60+ års operatørerfaring, med en infrastruktur der processer milliarder årligt og en licensportefølje, der vidner om seriøs compliance. Vores test viste, at substansen matcher stilen: hurtige udbetalinger (14 timer via Trustly), fejlfri betalingsintegrationer, kompetent kundeservice og et spiludvalg, der i omfang overgår de fleste danske konkurrenter.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Velkomstbonussen på 100% op til 1.000 kr. plus free spins er konkurrencedygtig, og med det danske maksimale 10x omsætningskrav er den faktisk realistisk at omsætte – en klar fordel sammenlignet med uregulerede markeder, hvor kravene er langt højere. Svagheder inkluderer manglen på en dedikeret mobilapp, begrænset VIP-program for danske spillere og kundeservice, der ikke er døgndækket. Men samlet set leverer Mr Vegas en casino-oplevelse, der fortjener sin plads i top-tier af det danske marked. Læs om <Link to="/forfatter/jonas" className={linkClass}>forfatteren</Link> og vores <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["mr-vegas"].scores} total={CASINO_SCORES["mr-vegas"].total} />

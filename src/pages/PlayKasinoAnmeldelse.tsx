@@ -592,7 +592,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Payment Methods */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – MobilePay, Apple Pay og mere</h2>
+          <h2 className="mb-4 text-3xl font-bold">Pengestrømme – MobilePay, Apple Pay og øvrige kanaler</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             PlayKasino understøtter et solidt udvalg af{" "}
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> tilpasset det danske marked. Inklusionen af både{" "}
@@ -640,7 +640,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Mobile Experience */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – Dedikeret app til iOS og Android</h2>
+          <h2 className="mb-4 text-3xl font-bold">App-test – dedikeret download til iOS og Android</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             I modsætning til mange danske casinoer, der udelukkende tilbyder mobiloptimerede hjemmesider, har PlayKasino investeret i dedikerede native apps til både iOS (App Store) og Android (Google Play). Det er en direkte fordel af SkillOnNet-platformen, som har teknisk kapacitet til at udvikle og vedligeholde native applikationer.
           </p>
@@ -659,7 +659,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Customer Service */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – E-mail uden live chat</h2>
+          <h2 className="mb-4 text-3xl font-bold">Support via e-mail – ingen live chat tilgængelig</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Her kommer PlayKasinos mest markante svaghed: kundeservice er udelukkende tilgængelig via e-mail (support@playkasino.com). Der er ingen live chat – en funktion, som de fleste danske spillere forventer i 2026. Det er en overraskende mangel for et casino drevet af en så erfaren operatør som SkillOnNet, der tilbyder live chat på flere af sine andre brands.
           </p>
@@ -693,7 +693,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Security & Licenses */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, triple licens og ansvarligt spil</h2>
+          <h2 className="mb-4 text-3xl font-bold">Triple licens, ROFUS og SkillOnNets compliance-profil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             PlayKasino opererer med en sjælden triple licensering: dansk licens fra{" "}
             <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, international licens fra Malta Gaming Authority (MGA) og licens fra UK Gambling Commission (UKGC). Det er den mest omfattende licenserings-profil blandt nye danske casinoer i 2026, og det er en direkte konsekvens af SkillOnNet's globale compliance-infrastruktur.
@@ -739,7 +739,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Pros & Cons */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper – Ærlig vurdering efter 14 dage</h2>
+          <h2 className="mb-6 text-3xl font-bold">Hvad taler for – og hvad taler imod PlayKasino</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
@@ -807,7 +807,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Who should NOT choose PlayKasino */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge PlayKasino?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Fem situationer hvor PlayKasino ikke er det rette</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Trods sine styrker er PlayKasino ikke det optimale valg for alle spillertyper. Her er de profiler, der sandsynligvis vil finde bedre alternativer:
           </p>
@@ -905,7 +905,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Final Verdict */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Endelig vurdering – En solid newcomer med ét klart minus</h2>
+          <h2 className="mb-4 text-3xl font-bold">Samlet vurdering – en solid newcomer med ét klart minus</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Efter 14 dages intensiv test kan vi konkludere, at PlayKasino er en velbygget og gennemtænkt casinoplatform, der nyder godt af SkillOnNet's næsten to årtiers erfaring. Velkomstbonussen på 100 % op til 500 kr. med kun 10x omsætningskrav er matematisk set en af de mest fordelagtige på det danske marked – med en positiv forventet værdi på ca. +100 kr. ved gennemsnitlig slot-RTP.
           </p>

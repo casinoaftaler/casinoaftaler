@@ -352,7 +352,7 @@ const SpilDanskNuAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Dansk kundeservice – Fordele og begrænsninger</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dansktalende rådgivere – tilgængelighed og ventetid</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">En af de mest værdifulde fordele ved SpilDanskNu er kundeservicen på dansk. Det lyder som en selvfølgelighed, men mange "danske" casinoer drives af internationale teams, hvor kundeservice foregår på engelsk med auto-oversættelse. Hos SpilDanskNu kommunikerer du med danske medarbejdere, der forstår nuancerne i dit spørgsmål og kan svare præcist og hurtigt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Live chat er tilgængelig dagligt kl. 08:00–23:00. Under vores 5 testkontakter oplevede vi en gennemsnitlig ventetid under 2 minutter og kompetente, venlige svar. E-mail support besvares typisk inden for 12-24 timer. Det er en begrænsning, at chatten ikke er døgnåben – for spillere der typisk er aktive sent om aftenen eller natten, kan det være frustrerende at stå uden live support efter kl. 23.</p>
           <p className="text-muted-foreground leading-relaxed">Der er ingen telefon-support, hvilket kan være en ulempe for spillere der foretrækker at ringe. En FAQ-sektion dækker de mest almindelige spørgsmål om konto, bonus, betaling og ansvarligt spil. Den er grundig og velskrevet – og naturligvis på dansk.</p>
@@ -367,7 +367,7 @@ const SpilDanskNuAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – Responsivt og stabilt</h2>
+          <h2 className="mb-4 text-3xl font-bold">Casinoet på farten – responsiv webapp i test</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">SpilDanskNu er bygget som en responsiv web-app, der kører direkte i browseren. Der er ingen dedikeret app i App Store eller Google Play, men mobiloplevelsen er gennemført og stabil. Vi testede på iPhone 15 Pro og Samsung Galaxy S23, og oplevelsen var konsekvent god på begge enheder.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Alle funktioner er tilgængelige på mobilen: spilleautomater, live casino, indbetalinger via MobilePay, udbetalinger, kontooversigt og kundeservice. Interfacet er touchvenligt med tilpassede menuer og hurtig navigation. Loadtiderne var generelt under 3 sekunder, selv på 4G-forbindelser. Spilleautomater tilpasser sig automatisk til skærmformatet, og live casino-spil streamer i acceptabel kvalitet.</p>
           <p className="text-muted-foreground leading-relaxed">MobilePay-integration er særligt velegnet til mobilspil – du kan gennemføre en indbetaling med blot et par tryk og en swipe. Login via MitID fungerer problemfrit fra mobile enheder. Designet er genkendeligt fra desktop-versionen, men optimeret til touchskærme med større knapstørrelser og forenklede menuer.</p>
@@ -377,7 +377,7 @@ const SpilDanskNuAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og dansk regulering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Winteq ApS – dansk ejet, dansk reguleret</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">SpilDanskNu opererer med gyldig licens fra Spillemyndigheden, udstedt til Winteq ApS. Det er værd at understrege forskellen mellem et casino drevet af et dansk selskab og et internationalt casino med dansk licens. Winteq ApS er underlagt dansk selskabslovgivning, dansk skatteret og dansk tilsyn – ud over spillereguleringen. Det giver et ekstra lag af beskyttelse, som internationale operatører ikke kan matche.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Platformen benytter SSL-kryptering til beskyttelse af alle data og transaktioner og er fuldt tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse. Registrering sker via MitID, og alle spil er certificeret af uafhængige testorganisationer. Obligatoriske indbetalingsgrænser, session-påmindelser og mulighed for midlertidig udelukkelse er implementeret i overensstemmelse med Spillemyndighedens regler.</p>
           <p className="text-muted-foreground leading-relaxed">Spil altid ansvarligt. Sæt et budget, hold pauser og spil aldrig for mere end du har råd til at tabe. Har du brug for hjælp, kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet</a> på telefon 70 22 28 25 eller via <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.</p>
@@ -387,7 +387,7 @@ const SpilDanskNuAnmeldelse = () => {
 
         {/* Hvem bør IKKE vælge */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge SpilDanskNu?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Spillerprofiler der bør overveje alternativer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">SpilDanskNu er et fremragende valg for mange danske spillere, men det er ikke det rigtige casino for alle. Her er en ærlig vurdering af, hvem der bør overveje alternativer:</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Sportsbetting-entusiaster.</strong> Hvis du ønsker at kombinere casino med sportsvæddemål, er SpilDanskNu ikke det rigtige valg. Her bør du i stedet se mod <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobet</Link> eller <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link>, der tilbyder fuldt integrerede sportssektioner.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">High rollers og VIP-jægere.</strong> SpilDanskNus loyalitetsprogram er gennemsigtigt og ærligt, men det mangler de eksklusive VIP-fordele som personlige account managers, invitationer til events og skræddersyede bonusser, som casinoer som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> tilbyder.</p>

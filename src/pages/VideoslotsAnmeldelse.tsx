@@ -167,7 +167,7 @@ const VideoslotsAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><CreditCard className="h-7 w-7 text-primary" />Betalingsmetoder og testresultater</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><CreditCard className="h-7 w-7 text-primary" />Finansielle transaktioner – metoder og dokumenterede hastigheder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Videoslots tilbyder et bredt udvalg af <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> optimeret til det danske marked. Alle transaktioner er gebyrfri, og minimumsindbetalingen er 100 kr.</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
@@ -194,7 +194,7 @@ const VideoslotsAnmeldelse = () => {
 
         {/* Kundeservice & Mobil */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Headphones className="h-7 w-7 text-primary" />Kundeservice og mobiloplevelse</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Headphones className="h-7 w-7 text-primary" />Support og mobiltilgængelighed</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kundeservice er tilgængelig via live chat og e-mail. Live chat-svartiden i vores test var 4 minutter og 20 sekunder – tilfredsstillende. Agenten var kompetent og besvarede vores spørgsmål om Battle of Slots-regler og Weekend Booster-beregning korrekt. E-mailsvar modtog vi inden for 8 timer. Telefonisk support er ikke tilgængelig, hvilket er en ulempe for spillere, der foretrækker verbal kommunikation.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mobiloplevelsen er Videoslots' akilleshæl. Uden en dedikeret app er spillere henvist til browserversionen, som er funktionel men ikke optimeret til touch-navigation. Filtre for RTP og volatilitet – tilgængelige på desktop – mangler i mobilversionen. Battle of Slots fungerer på mobil, men turneringslobbyen kræver mere scrolling end nødvendigt. Spillene indlæses fint (under 5 sekunder), men den overordnede oplevelse føles som en desktop-site komprimeret til en mobilskærm snarere end en ægte mobil-first oplevelse.</p>
           <p className="text-muted-foreground leading-relaxed">For spillere, der primært spiller på mobil, er dette en reel svaghed. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> med sin dedikerede app og <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link> med sit mobiloptimerede interface er markant bedre mobiloplevelser. Videoslots er bedst nydt på en desktop eller laptop, hvor den fulde filtreringskraft og turneringslobby kan udnyttes optimalt.</p>
@@ -204,7 +204,7 @@ const VideoslotsAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><ShieldCheck className="h-7 w-7 text-primary" />Sikkerhed, regulering og RTP-verifikation</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><ShieldCheck className="h-7 w-7 text-primary" />RTP-verifikation, MGA-licens og regulatorisk ramme</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Videoslots opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, MGA-licens (Malta Gaming Authority) og UK Gambling Commission-licens. Tredobbelt licensering er sjældent og vidner om en operatør, der tager compliance alvorligt. Platformen er fuldt tilsluttet ROFUS og benytter 256-bit SSL-kryptering til alle dataoverførsler.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det, der gør Videoslots unik fra et sikkerhedsperspektiv, er deres <strong>Cash-out limit</strong>-system. I modsætning til mange operatører, der begrænser maksimale udbetalinger per uge eller måned, har Videoslots en af branchens højeste cash-out-grænser. Det betyder, at store gevinster udbetales som ét beløb snarere end i rater – en politik, der beskytter spillerens rettigheder og eliminerer risikoen for, at operatøren tilbageholder gevinster.</p>
           <p className="text-muted-foreground leading-relaxed">Ansvarligt spil-værktøjerne er kompetente med indbetalingsgrænser, tabsgrænser, sessionsgrænser og direkte ROFUS-integration. Videoslots viser også din "My Play"-statistik prominent, hvilket giver dig konstant overblik over din spilleaktivitet – en form for passiv ansvarligt spil-nudging, der er mere effektiv end de fleste pop-up-advarsler. Læs mere om vores tilgang på vores <Link to="/forretningsmodel" className={linkClass}>forretningsmodel</Link>-side.</p>

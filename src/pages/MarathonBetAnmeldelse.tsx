@@ -93,7 +93,7 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Fordele og ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper</h2>
+          <h2 className="mb-6 text-3xl font-bold">Hvad virker – og hvad mangler hos MarathonBet</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Branchens laveste marginer – dokumenteret 2-3 % på populær fodbold", "Tolerant over for vindende spillere og sharp bettors", "Bred sportsdækning med 25+ sportsgrene", "Konkurrencedygtige Asian Handicap-markeder", "Hurtige e-wallet-udbetalinger (19 timer i vores test)", "Dansk licens fra Spillemyndigheden og ROFUS-tilslutning", "Intet aggressive kontobekræftning for profitable spillere", "Grundlagt 1997 – 29 års erfaring i branchen"].map((p) => (<li key={p} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{p}</span></li>))}</ul></CardContent></Card>
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Funktionelt men utidssvarende brugerinterface", "Begrænset casino-udvalg med kun 600+ spil", "Ingen live-streaming af sportsbegivenheder", "Minimale bonusser og kampagner – ingen generøs velkomstpakke", "Kundeservice kan være langsom – op til 30 min. ventetid i peak", "Ikke ideel for nybegyndere – ingen onboarding eller guides", "Mobiloplevelsen halter bag konkurrenterne", "Manglende MobilePay-integration"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
@@ -125,7 +125,7 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Betalingsmetoder med testdata */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalinger – testresultater</h2>
+          <h2 className="mb-4 text-3xl font-bold">Ind- og udbetalinger – dokumenterede processer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBet understøtter de primære betalingsmetoder på det danske marked, om end med et lidt mere begrænset udvalg end de største operatører. Bemærkelsesværdigt er fraværet af MobilePay – et minus for danske spillere, der er vant til den sømløse integration hos <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> og <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
@@ -144,7 +144,7 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – funktionel men utidssvarende</h2>
+          <h2 className="mb-4 text-3xl font-bold">Mobil betting – et forældet interface under lup</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBets mobiloplevelse er platformens svageste punkt. Der er ingen dedikeret app, og den mobile webversion føles som en tilpasset version af desktop-sitet fremfor en native mobiloplevelse. Indlæsningstider er acceptable (2.4 sekunder på iPhone 15 Pro), men navigationen er mindre intuitiv end konkurrenternes.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sportsbog-navigationen fungerer på mobil – du kan finde kampe, placere væddemål og administrere din konto. Men sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365s</Link> polerede mobilapp eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibets</Link> intuitive interface føles MarathonBet en generation bagud. Live betting på mobil er særligt påvirket: den manglende visuelle polish kombineret med hurtige odds-ændringer gør oplevelsen hektisk fremfor glat.</p>
           <p className="text-muted-foreground leading-relaxed">Casino-sektionen på mobil er acceptabel med de fleste spil tilgængelige i touch-format. Slots kører flydende, og live casino-streaming fungerer stabilt. Men det ændrer ikke det overordnede billede: MarathonBets mobiloplevelse er designet til spillere, der tolererer dårligt UI til gengæld for bedre odds. Hvis mobiloplevelse er en prioritet, er denne platform ikke for dig.</p>
@@ -154,7 +154,7 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – den skjulte svaghed</h2>
+          <h2 className="mb-4 text-3xl font-bold">Kontakt og support – den skjulte svaghed</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBets kundeservice er et punkt, der kræver ærlig kritik. Live chat er tilgængelig, men ventetider kan være lange – vi oplevede op til 30 minutter i peak-timer (weekendaftener under store fodboldkampe). Den engelsksprogede support er kompetent, når du endelig kommer igennem, men dansktalende agenter er ikke altid tilgængelige.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">E-mail-support er et alternativ med typisk 12-24 timers svartid. Det er for langsomt for akutte problemer som betalingsfejl eller kontoproblemer under live-væddemål. Der er ingen telefon-support og ingen callback-funktion. FAQ-sektionen er minimal og dækker kun de mest grundlæggende spørgsmål.</p>
           <p className="text-muted-foreground leading-relaxed">Sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365s</Link> 24/7 live chat med under 1 minuts ventetid eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibets</Link> dansksprogede support er MarathonBets kundeservice objektivt underlegen. For erfarne bettors, der sjældent har behov for support, er det acceptabelt. For nye spillere kan det være frustrerende. Det er endnu en indikation af, at MarathonBet prioriterer sit produkt (odds) over servicen omkring det.</p>
@@ -164,7 +164,7 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og licensforhold</h2>
+          <h2 className="mb-4 text-3xl font-bold">Licenser og regulatorisk ramme</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBet opererer med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet ROFUS. Selskabet har også licenser fra UK Gambling Commission og Malta Gaming Authority – to af de strengeste regulatoriske myndigheder i verden. SSL-kryptering (256-bit) beskytter alle transaktioner, og spillermidler opbevares på separate konti adskilt fra selskabets driftskapital.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">ROFUS-integration sikrer, at selvudelukket spillere blokeres automatisk. <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjer inkluderer indskudsgrænser, tabsgrænser, session-tidsbegrænsninger og selvudelukkelse. MarathonBets compliance-historik er ren med ingen offentlige sanktioner fra danske myndigheder.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground">Spil ansvarligt – også sportsvæddemål. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25, hvis du eller en du kender har problemer med spil.</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Denne side indeholder reklamelinks</p></CardContent></Card>

@@ -100,7 +100,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Fordele og ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Danske Spil Casino</h2>
+          <h2 className="mb-6 text-3xl font-bold">Hvad fungerer – og hvad halter – ved Danske Spil Casino</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Delvist statsligt ejet – maksimal troværdighed og gennemsigtighed", "Dansk licens fra Spillemyndigheden med ekstra offentlig kontrol", "Bredt spiludvalg fra topudbydere som NetEnt, Evolution og Play'n GO", "MobilePay-integration med hurtige udbetalinger", "Dedikeret mobilapp til iOS og Android med MitID-login", "Stærkt live casino med professionelle dealere", "Overskud bidrager til danske almennyttige formål", "Gennemsigtige vilkår og ansvarligt spil i absolut fokus", "Tværgående platform: Casino, Lotto, Oddset under én konto", "Øjeblikkelig KYC via MitID – ingen dokumentupload"].map((pro) => (<li key={pro} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{pro}</span></li>))}</ul></CardContent></Card>
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Velkomstbonus er mere konservativ end hos private aktører", "Færre kampagner og promotions sammenlignet med nye casinoer", "Spiludvalget er lidt smallere end hos internationale operatører", "Ingen kryptovaluta eller e-wallets (Skrill/Neteller)", "Intet traditionelt VIP-program med niveauer", "Kundeservice ikke tilgængelig 24/7"].map((con) => (<li key={con} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{con}</span></li>))}</ul></CardContent></Card>
@@ -196,7 +196,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – MobilePay som flagskib</h2>
+          <h2 className="mb-4 text-3xl font-bold">MobilePay, Visa og Dankort – betalingsmulighederne testet</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">Danske Spil Casino understøtter de mest populære danske <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Som dansk virksomhed er der naturligt fokus på lokale løsninger – med <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> som den mest populære og hurtigste betalingsmetode. Det er en klar fordel over mange internationale operatører, der ikke tilbyder MobilePay.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -222,7 +222,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – app med MitID-integration</h2>
+          <h2 className="mb-4 text-3xl font-bold">App og responsivt design – MitID-login i praksis</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Danske Spil Casino tilbyder en af de bedste mobiloplevelser på det danske marked. Udover en fuldt responsiv hjemmeside har de en dedikeret app, der giver hurtig adgang til alle spil, kampagner og kontofunktioner. Appen er en af de mest downloadede casino-apps i Danmark, og den drage fordel af Danske Spils massive brandgenkendelse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I vores test på iPhone 15 Pro målte vi en appstarttid på 2,1 sekunder og jævne animationer på tværs af alle sektioner. Spilindlæsning tager gennemsnitligt 3,5 sekunder for slots og 4,0 sekunder for live casino – lidt langsommere end brancheledere som LeoVegas (2,8s) og Mr Green (3,2s), men stadig inden for acceptabel rækkevidde. Samsung Galaxy S24-testen viste tilsvarende resultater med en marginalt hurtigere appstart (1,9 sekunder).</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">MitID-integration til login er en unik fordel – du kan logge ind sikkert uden at huske passwords, og den biometriske integration med Face ID/fingeraftryk gør processen endnu hurtigere. Push-notifikationer holder dig opdateret om nye kampagner, og den tværgående integration med Oddset, Lotto og andre Danske Spil-produkter er sømløs.</p>
@@ -238,7 +238,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – dansk til fingerspidserne</h2>
+          <h2 className="mb-4 text-3xl font-bold">Helpdesk på modersmålet – tilgængelighed og ventetid</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Som Danmarks største spiloperatør har Danske Spil en veludviklet kundeservice med flere kontaktmuligheder. Al support foregår udelukkende på dansk – et naturligt valg for en dansk virksomhed, men en klar fordel for spillere, der foretrækker at kommunikere på deres modersmål. Det er en differentiator over for internationale operatører, der ofte betjener med engelsktalende agenter.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi kontaktede kundeservicen seks gange på forskellige tidspunkter. Live chat-gennemsnitlig ventetid var 3 minutter og 15 sekunder – hurtigere end branchegennemsnittet. Telefonisk support havde en ventetid på 2-5 minutter. Agenternes vidensniveau var konsekvent højt med korrekte og detaljerede svar på spørgsmål om bonusvilkår, betalinger og ansvarligt spil. Vi oplevede ingen behov for eskalering – alle sager blev løst i første kontakt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">FAQ-sektionen er veldokumenteret og dækker de fleste standardspørgsmål. Danske Spils hjælpesektion er struktureret og letforståelig med klare kategorier og en effektiv søgefunktion. E-mails besvares typisk inden for 24 timer med detaljerede og hjælpsomme svar.</p>
@@ -253,7 +253,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed – i en klasse for sig</h2>
+          <h2 className="mb-4 text-3xl font-bold">Statslig regulering og spillerbeskyttelse uden sidestykke</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Når det kommer til sikkerhed, er Danske Spil Casino i en klasse for sig. Som delvist statsejet operatør er der en ekstra dimension af offentlig kontrol og gennemsigtighed, der adskiller sig markant fra private aktører. Danske Spil er underlagt parlamentarisk kontrol via Kulturministeriet, revideres af Rigsrevisionen, og deres årsrapporter er offentligt tilgængelige. Det er et sikkerhedsniveau, som ingen privat operatør – uanset størrelse – kan matche.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den tekniske sikkerhed er ligeledes i top med 256-bit SSL-kryptering, PCI DSS-certificering for kortbehandling og avancerede anti-fraud-systemer. MitID-integration eliminerer risikoen for identitetssvindel og gør verifikationsprocessen øjeblikkelig. <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>-tilslutning sikrer, at selvudelukkede spillere ikke kan oprette konto.</p>
 
@@ -280,7 +280,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Hvem bør undgå */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå Danske Spil Casino?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Tre grunde til at Danske Spil Casino ikke passer alle</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Danske Spil Casino er det sikreste valg på det danske marked – men det er ikke det rigtige valg for alle spillerprofiler. Her er en ærlig vurdering af, hvem der bør kigge andre steder:</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Bonusjægeren:</strong> Hvis du primært vælger casino baseret på velkomstbonussens størrelse og jagter de mest generøse tilbud, vil Danske Spils konservative bonusstruktur skuffe dig. Operatører som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> eller <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link> tilbyder typisk mere attraktive velkomstpakker.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>High-volatility spilleren:</strong> Hvis du specifikt jagter de nyeste og mest volatile spilleautomater fra nicheudviklere som Hacksaw Gaming, Push Gaming eller Nolimit City, er Danske Spils katalog for begrænset. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> eller LeoVegas har et bredere udvalg af cutting-edge titler.</p>

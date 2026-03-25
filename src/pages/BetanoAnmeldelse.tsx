@@ -274,7 +274,7 @@ const BetanoAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalingstid</h2>
+          <h2 className="mb-4 text-3xl font-bold">Transaktioner – processer, hastighed og begrænsninger</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betano understøtter <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> og <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>. Indbetalinger er øjeblikkelige uanset metode. Ingen gebyrer fra Betanos side.
           </p>
@@ -330,7 +330,7 @@ const BetanoAnmeldelse = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             <Shield className="inline h-7 w-7 text-primary mr-2" />
-            Sikkerhed og licens
+            Licensforhold og databeskyttelse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betano opererer under dansk licens fra Spillemyndigheden og er fuldt tilsluttet ROFUS. Platformen bruger SSL-kryptering til alle transaktioner. Kaizen Gaming holder desuden licenser i 17+ markeder, herunder i Portugal, Rumænien, Brasilien og flere afrikanske markeder – et tegn på, at virksomheden tager regulatorisk compliance seriøst på tværs af jurisdiktioner.
@@ -359,7 +359,7 @@ const BetanoAnmeldelse = () => {
 
         {/* Fordele og ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper</h2>
+          <h2 className="mb-6 text-3xl font-bold">Afvejning – hvad taler for og imod Betano?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
@@ -433,7 +433,7 @@ const BetanoAnmeldelse = () => {
 
         {/* EV Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Avanceret EV-analyse: Bonusværdi og sportsvæddemål</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Spillerøkonomi: Matematisk bonusanalyse og odds-EV</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi har beregnet Expected Value (EV) på tværs af Betanos casino-bonus, sportsvæddemål og løbende kampagner for at give et matematisk funderet billede af platformens reelle værdi.</p>
           <Card className="border-border bg-card mb-6">
             <CardHeader><CardTitle className="text-lg">Casino-velkomstbonus EV (maks. indbetaling)</CardTitle></CardHeader>
@@ -472,7 +472,7 @@ const BetanoAnmeldelse = () => {
 
         {/* Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" />Hvem bør undgå Betano?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" />Hvilke spillere passer Betano IKKE til?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Dedikerede casino-spillere:</strong> <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.000+ spil, eksklusive live borde), <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (5.000+ titler) og <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> giver en dybere rendyrket casino-oplevelse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Seriøse bettors der jager laveste marginer:</strong> <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> har konsekvent 0,5-1,5 procentpoint lavere marginer – over et år sparer en aktiv bettor ~1.800 kr.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>High rollers og VIP-spillere:</strong> Betanos VIP-program er under modning. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' MGM-VIP, <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibets</Link> loyalitetsprogram eller bet365's high-roller services er klart stærkere.</p>
@@ -502,7 +502,7 @@ const BetanoAnmeldelse = () => {
 
         {/* Endelig vurdering */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Vores endelige vurdering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Samlet dom – Betanos plads i det danske marked</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betano er en seriøs aktør med et stærkt teknologisk fundament og en sportsbetting-sektion, der kan konkurrere med de bedste. Mobilappen er blandt de mest veldesignede på det danske marked, og dansktalende kundeservice er et reelt plus. Casino-sektionen er solid men ikke exceptionel – den mangler den dybde og det eksklusive live casino-indhold, der kendetegner de bedste dedikerede casino-operatører.
           </p>

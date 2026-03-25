@@ -130,7 +130,7 @@ const MariaCasinoAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – bredt udvalg med PayPal, MobilePay og Skrill</h2>
+          <h2 className="mb-4 text-3xl font-bold">Indbetalinger og hævninger – PayPal, MobilePay og flere</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Maria Casino adskiller sig positivt fra mange konkurrenter med et meget bredt udvalg af betalingsmetoder – inklusiv internationale e-wallets som PayPal, Skrill og Neteller, som mange danske casinoer mangler.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
@@ -151,7 +151,7 @@ const MariaCasinoAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – 24/7 tilgængelighed</h2>
+          <h2 className="mb-4 text-3xl font-bold">Døgnåben hjælp – responstid og kanaler</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Maria Casinos kundeservice er tilgængelig døgnet rundt via live chat, telefon og e-mail. Dansk support er tilgængeligt fra kl. 08:00 til midnat. I nattetimerne (00:00–08:00) foregår live chat på engelsk.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Du kan ringe til kundeservice på telefonnummer 80 82 60 00 (gratis fra fastnet) eller skrive til <a href="mailto:info@mariacasinosupport.dk" className={linkClass}>info@mariacasinosupport.dk</a>. FAQ-sektionen er vel-struktureret med kategorier for velkomsttilbud, kontostyring, produkter, mobilapp og casino guides.</p>
           <p className="text-muted-foreground leading-relaxed">24/7-tilgængeligheden er en klar fordel sammenlignet med mange mellemstore operatører. Det er et direkte resultat af FDJ Uniteds infrastruktur – samme supportsetup kører også hos <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>.</p>
@@ -161,7 +161,7 @@ const MariaCasinoAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – venligt design der fungerer</h2>
+          <h2 className="mb-4 text-3xl font-bold">Venligt design der virker på alle skærme</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Maria Casino har en responsiv mobilversion via browseren. Designet er venligt og brugervenligt med store knapper, logisk kategorisering og hurtige spilindlæsninger. Maria Casino har også haft en dedikeret app med de mest populære slots og live casino.</p>
           <p className="text-muted-foreground leading-relaxed">MobilePay og ApplePay fungerer direkte i mobilbrowseren. Live casino-streaming er stabil med god kvalitet. For de fleste danske mobilspillere er Maria Casinos mobiloplevelse fuldt tilstrækkelig.</p>
         </section>
@@ -170,7 +170,7 @@ const MariaCasinoAnmeldelse = () => {
 
         {/* Sikkerhed og Kindred */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og Kindred Groups ansvarlige tilgang</h2>
+          <h2 className="mb-4 text-3xl font-bold">Kindred Groups ansvarsprofil og dansk regulering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Maria Casino opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> via Unibet Denmark Limited. Al software kontrolleres og overvåges af tredjepartsvirksomheder. Spillene kører med certificerede tilfældighedsgeneratorer (RNG), og data krypteres med SSL-teknologi.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kindred Groups "Journey towards zero"-initiativ er branchens mest ambitiøse <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-program med mål om at eliminere indtjening fra skadelig spilleadfærd. Programmet bruger AI og adfærdsanalyse til at identificere risikospillere proaktivt.</p>
           <p className="text-muted-foreground leading-relaxed">ROFUS-tilslutning, indskudsgrænser, tabsgrænser og selvudelukkelse er alle tilgængelige. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25 ved behov.</p>

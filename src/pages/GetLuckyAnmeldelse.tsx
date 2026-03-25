@@ -163,7 +163,7 @@ const GetLuckyAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – muligheder og hastighed</h2>
+          <h2 className="mb-4 text-3xl font-bold">Pengeindsættelse og hævning – muligheder og tempo</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">GetLuckys betalingsudvalg dækker de mest gængse metoder, men mangler den danske favorit MobilePay. Her er en detaljeret oversigt baseret på vores testresultater:</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border border-border rounded-lg">
@@ -184,7 +184,7 @@ const GetLuckyAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse og interface</h2>
+          <h2 className="mb-4 text-3xl font-bold">Smartphone-oplevelsen og UI-kvalitet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">GetLucky har investeret i en responsiv mobilplatform, der fungerer godt på tværs af enheder. Vi testede på iPhone 15 (Safari) og Samsung Galaxy S24 (Chrome). Indlæsningstider: 3,1 sekunder (iOS) og 2,7 sekunder (Android) – tilfredsstillende og konkurrencedygtigt. Spil loadede inden for 3-5 sekunder, og gameplay var stabilt uden afbrydelser. Sammenlignet med LeoVegas' dedikerede app (1,2-1,4 sekunders load time) er det langsommere, men for en browser-baseret løsning er det acceptabelt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">GetLucky tilbyder ikke en dedikeret app, men den responsive hjemmeside fungerer som en kompetent erstatning. Touch-navigationen er intuitiv med store, tydelige knapper. Favorit-funktionen lader dig gemme op til 50 spil for hurtig adgang – nyttigt i et katalog med 1.500+ titler. Kontostyring, inklusive ind- og udbetalinger, er fuldt tilgængelig på mobil. Vi oplevede ingen layout-problemer eller funktionstab sammenlignet med desktop-versionen.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Et irritationsmoment: filtrering og sortering er mere begrænset på mobil end desktop. På desktop kan du filtrere efter udbyder, popularitet og kategori. På mobil er kun basale filtre tilgængelige, og der er ingen mulighed for at sortere efter "nyeste tilføjelser" – en funktion som explorér-segmentet, GetLuckys primære målgruppe, ville sætte stor pris på. Det er et UX-problem, der bør adresseres. Manglen på push-notifikationer (kun muligt med dedikeret app) betyder også, at du ikke modtager advarsler om nye spiludgivelser eller kampagner.</p>
@@ -194,7 +194,7 @@ const GetLuckyAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – tilgængelighed og kvalitet</h2>
+          <h2 className="mb-4 text-3xl font-bold">Supportkanaler – hvornår og hvordan du får hjælp</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">GetLucky tilbyder kundeservice via live chat og e-mail. Vi testede live chatten tre gange under vores januar 2026-session. Første kontakt (onsdag kl. 14:20) gav en svartid på 4 minutter og 10 sekunder. Agenten var venlig og kompetent – besvarede spørgsmål om loyalitetsprogrammets pointkonvertering korrekt. Kommunikationen foregik på engelsk, da dansk support ikke er tilgængelig.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Anden kontakt (fredag kl. 22:00) havde en svartid på 8 minutter og 30 sekunder – mærkbart længere i spidsbelastningstiden. Agenten henviste os til FAQ for detaljer om free spins-vilkår, hvilket tyder på en mere generel (frem for specialiseret) supporttilgang. Tredje kontakt (søndag kl. 11:00) var den hurtigste med 2 minutter og 45 sekunder – et positivt datapunkt der viser, at weekendmorgen er den bedste tid at kontakte support.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">E-mail besvares typisk inden for 24 timer – vi modtog svar på 16 timer i vores test. Svaret var detaljeret og præcist, med links til relevante vilkårssider. Det er en bedre oplevelse end den gennemsnitlige e-mail-support i branchen, hvor standardsvar og copy-paste-løsninger er normen.</p>
@@ -204,7 +204,7 @@ const GetLuckyAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og ansvarligt spil</h2>
+          <h2 className="mb-4 text-3xl font-bold">SkillOnNet-licenser og ansvarligt spil-værktøjer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">GetLucky Casino opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er fuldt tilsluttet ROFUS. Platformen drives af SkillOnNet Ltd, som også besidder licenser fra Malta Gaming Authority (MGA) og UK Gambling Commission – to af de strengeste reguleringsmyndigheder i branchen. Denne multi-jurisdiktionelle regulering betyder, at SkillOnNet underlægges løbende audits og compliance-krav fra tre uafhængige myndigheder – et ekstraordinært niveau af tilsyn for en mellemstor operatør.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">SkillOnNet har over 15 års erfaring med drift af online casinoer og driver et netværk af 30+ brands på sin platformsinfrastruktur. Det giver stordriftsfordele inden for sikkerhed, betalingsbehandling og spiludbyder-aftaler. Den finansielle stabilitet er solid – SkillOnNet er privatejede men underlægges ekstern revision som krav fra MGA-licensen. For den danske spiller betyder det en operatør med dyb teknisk erfaring og robust infrastruktur, der aldrig har modtaget offentlige sanktioner.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjer hos GetLucky inkluderer: indbetalingsgrænser (daglige, ugentlige, månedlige), tabsgrænser, sessionsgrænser med automatiske pop-up-påmindelser, afkølingsperioder (24 timer, 7 dage, 30 dage) og permanent selvudelukkelse via ROFUS. Alle grænser kan sættes direkte i kontosektionen uden at kontakte kundeservice – en vigtig detalje for spillere, der ønsker diskret selvregulering. Det er standard compliance, men det er implementeret korrekt og uden friktion.</p>
@@ -214,7 +214,7 @@ const GetLuckyAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge GetLucky?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Fire scenarier hvor GetLucky er det forkerte valg</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Udbetalingsprioriterede spillere:</strong> Med intern behandlingstid på op til 48 timer er GetLucky blandt de langsommere operatører. Hvis hurtige udbetalinger er dit vigtigste kriterium, er <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (4-6 timer) eller <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> (14 timer) markant bedre valg. Selv inden for SkillOnNet-familien er der ingen genvej – udbetalingsprocessen er centraliseret og gælder alle platformens brands.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Sportsbetting-interesserede:</strong> GetLucky er et rent casino uden sportsbook. Spillere, der ønsker sport og casino under ét tag, skal i stedet kigge mod <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobet</Link>, <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> eller <Link to="/casino-anmeldelser/bwin" className={linkClass}>bwin</Link>. Campobet er særligt interessant her, da det kombinerer No-Sticky bonusser, et massivt spiludvalg OG sportsbetting under ét tag.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>MobilePay-brugere:</strong> Hvis du insisterer på at bruge MobilePay til alle transaktioner, er GetLucky ikke en mulighed. <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>, <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> og <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> understøtter alle MobilePay og bør prioriteres i dette tilfælde.</p>
@@ -290,7 +290,7 @@ const GetLuckyAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Vores endelige vurdering af GetLucky Casino</h2>
+          <h2 className="mb-4 text-3xl font-bold">Opsummering – GetLucky Casinos samlede kvalitetsniveau</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">GetLucky Casino er en solid, moderne platform, der leverer på sit kerneområde: spiludvalg. Med 1.500+ titler fra 30+ udbydere – inklusive trendende studier som Nolimit City og Hacksaw Gaming – er det et paradis for slots-entusiasten, der elsker at udforske nye spil. SkillOnNets 19 års erfaring sikrer en stabil, pålidelig platform med tredobbelt licensering og et modent sikkerhedssetup.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Loyalitetsprogrammet er et positivt element, der belønner konsistens over størrelse og gør platformen tilgængelig for alle budgetter. Live casinoets lave minimumsindsatser er en unik fordel, og free spins-velkomsten fordelt over 5 dage er en smart retention-mekanik. Det er ikke den mest generøse bonus, men den er gennemtænkt.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Vi rater GetLucky til 4.0/5. Det trækkes ned af langsommere udbetalingstider (op til 48 timer), manglende MobilePay-understøttelse, engelsktalende kundeservice og delte live casino-borde. Men for spilleren, der prioriterer spilvariation og et stabilt, tredobbelt reguleret miljø med et demokratisk loyalitetsprogram, er det et fremragende valg i et velbesat dansk marked. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>

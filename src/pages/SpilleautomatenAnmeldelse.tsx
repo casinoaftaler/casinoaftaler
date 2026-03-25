@@ -264,7 +264,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Pros & Cons */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper – Ærlig vurdering efter 14 dage</h2>
+          <h2 className="mb-6 text-3xl font-bold">Kvaliteter og mangler – den usminkede sandhed</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
@@ -593,7 +593,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Payment Methods */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – MobilePay-udbetalinger testet</h2>
+          <h2 className="mb-4 text-3xl font-bold">MobilePay-udbetalinger og øvrige transaktionskanaler testet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Spilleautomaten tilbyder de mest populære danske{" "}
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> med fokus på hastighed. Vi testede 3 metoder under vores testperiode:
@@ -641,7 +641,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Customer Support */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – Dansk support med 1 min. 50 sek. svartid</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dansk support med 1 min. 50 sek. svartid – test og vurdering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vi kontaktede kundeservicen 4 gange under vores testperiode med spørgsmål om bonuskoder, Præmieshoppens konverteringsrater, udbetalingsstatus og en teknisk fejl (spil der ikke indlæste). Den gennemsnitlige svartid var 1 minut og 50 sekunder – hurtigere end de fleste danske konkurrenter.
           </p>
@@ -670,7 +670,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Mobile */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – Slots-specialist i lommen</h2>
+          <h2 className="mb-4 text-3xl font-bold">Slots på telefonen – dedikeret mobiloplevelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vi testede mobilversionen på iPhone 15 Pro (Safari) og Samsung Galaxy S24 (Chrome) over 4 dage. Spilleautomaten er bygget med mobile-first design og kører direkte i browseren. Ingen app nødvendig – og i dette tilfælde er det en styrke, da alle opdateringer sker automatisk.
           </p>
@@ -686,7 +686,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Security */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og Winteq ApS</h2>
+          <h2 className="mb-4 text-3xl font-bold">Winteq ApS – licens, SSL og spillertryghed</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Spilleautomaten opererer under dansk licens fra{" "}
             <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> (licensnr. 21-67980), udstedt til Winteq ApS. Winteq er et dansk selskab med hovedsæde i Danmark – ikke Malta eller Gibraltar – hvilket giver ekstra juridisk tilgængelighed for danske spillere. Selskabet driver tre danske casino-brands: Spilleautomaten, SpilDanskNu og Bingo.dk.
@@ -706,7 +706,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge Spilleautomaten?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Når Spilleautomaten ikke matcher dine behov</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Spilleautomatens niche-fokus er en styrke – men det betyder også, at bestemte spillertyper vil finde bedre alternativer:
           </p>
@@ -784,7 +784,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Final Verdict */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Endelig vurdering – Slots-Specialisten der leverer</h2>
+          <h2 className="mb-4 text-3xl font-bold">Konklusion – Slots-Specialisten holder hvad den lover</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Spilleautomaten er et eksempel på, at niche-fokus kan være en styrke i et marked domineret af generalister. Den 5-dages bonusmodel giver en kontrolleret opstart, Præmieshoppen belønner loyalitet med kontante midler, og spiludvalget – selvom det er smallere end de største casinoer – er kurateret med kvalitet for øje. MobilePay-udbetalinger på 2 timer 15 minutter og dansk kundeservice med under 2 minutters svartid runder billedet af.
           </p>

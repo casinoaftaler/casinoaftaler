@@ -95,7 +95,7 @@ const ExpektAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Expekt</h2>
+          <h2 className="mb-6 text-3xl font-bold">Argumenter for og imod Expekt</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Kombineret sportsbook og casino under ét login med fælles saldo", "Betsson Group-ejerskab: børsnoteret, finansielt stabilt", "19 timers Trustly-udbetaling i vores test – hurtigere end gennemsnittet", "Dansk licens fra Spillemyndigheden med ROFUS-tilslutning", "Godt live casino med Evolution Gaming", "Stærk sportsbook med 30+ sportsgrene og live-betting", "Konkurrencedygtige odds på populære sportsbegivenheder"].map((p) => (<li key={p} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{p}</span></li>))}</ul></CardContent></Card>
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Casino-udvalget er numerisk mindre end rene casino-platforme", "Navigationen mellem sport og casino føles usammenhængende", "Velkomstbonus er splittet – du må vælge mellem sport og casino", "Mangler VIP-program specifikt for casino-spillere", "Kundeservice er ikke 24/7 på dansk", "Ingen MobilePay-integration"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
@@ -129,7 +129,7 @@ const ExpektAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse og app-kvalitet</h2>
+          <h2 className="mb-4 text-3xl font-bold">Responsivt design og app-funktionalitet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekts mobile platform er responsiv og fungerer i alle moderne browsere. Under vores test på iPhone 15 og Samsung Galaxy S24 var indlæsningstiderne 3,2 sekunder (iOS) og 2,8 sekunder (Android) – begge acceptabelt. Casino-spil loadede inden for 4-6 sekunder, og gameplay var stabilt uden afbrydelser eller lag. Touch-navigationen er generelt intuitiv, og kontostyring – inklusive ind- og udbetalinger – kan klares fuldt ud på mobil.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det største problem på mobil er kontekstskiftet mellem sport og casino. Når du skifter fra sportssektionen til casino, ændrer layout, farvetema og navigationsstruktur sig markant. Det føles som to separate mobilsider snarere end én sammenhængende oplevelse. Sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>'s mere sømløse app-integration er der et klart forbedringspotentiale. Vi testede skiftet gentagne gange, og i ét tilfælde krævede det en manuel genindlæsning af siden for at se opdaterede casino-kampagner efter at have navigeret fra sportsbook'en.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekt tilbyder ikke en dedikeret downloadbar app for det danske marked, hvilket er en begrænsning for spillere, der foretrækker native app-oplevelsen med push-notifikationer om odds-ændringer og kampagner. Du kan tilføje hjemmesiden som genvej fra browseren, men det giver ikke samme funktionalitet. For den sportsfokuserede spiller, der ønsker den bedste mobile live-betting oplevelse, er <Link to="/casino-anmeldelser/bwin" className={linkClass}>bwin</Link>'s dedikerede app et stærkere alternativ.</p>
@@ -139,7 +139,7 @@ const ExpektAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice og supportoplevelse</h2>
+          <h2 className="mb-4 text-3xl font-bold">Chat og e-mail – vores erfaringer med Expekts helpdesk</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekts kundeservice er tilgængelig via live chat og e-mail. Vi testede live chatten to gange under vores januar 2026-session. Første kontakt (tirsdag kl. 11:30) resulterede i en svartid på 3 minutter og 15 sekunder – acceptabelt. Agenten kommunikerede på engelsk men forstod vores danske kontekst. Spørgsmål om bonusvilkår blev besvaret korrekt og præcist.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Anden kontakt (lørdag kl. 20:00) havde en svartid på 5 minutter og 40 sekunder – længere, men stadig inden for rimelighedens grænser. Agenten var kompetent men henviste os til FAQ-sektionen for detaljerede vilkår om free spins-omsætningskrav. Det er et tegn på standardiseret, international kundeservice snarere end den personlige, danske tilgang man får hos <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link> eller <Link to="/casino-anmeldelser/casinostuen" className={linkClass}>Casinostuen</Link>.</p>
           <p className="text-muted-foreground leading-relaxed">En vigtig bemærkning: Expekts kundeservice er primært på engelsk, ikke dansk. For spillere, der foretrækker modersmålssupport, er det en ulempe. FAQ-sektionen er dog tilgængelig på dansk og dækker de mest almindelige spørgsmål om konto, betalinger og bonusser. E-mailsvar modtog vi inden for 18 timer – inden for det lovede interval på 24 timer.</p>
@@ -148,7 +148,7 @@ const ExpektAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør – og hvem bør IKKE – vælge Expekt?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Ideelle og uegnede spillerprofiler til Expekt</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Expekt er til dig, hvis:</strong> Du er en aktiv sportsvæddemålsspiller, der ønsker at supplere med casino og live casino under ét login. Betsson Groups infrastruktur sikrer hurtige udbetalinger, solid sikkerhed og en sportsbook, der kan måle sig med de bedste. Hvis du betragter casino som en ekstra underholdningsdimension snarere end dit primære fokus, er Expekt en stærk kandidat.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Expekt er IKKE til dig, hvis:</strong> Du søger det bredeste casino-spiludvalg – <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> og <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> tilbyder det dobbelte eller tredobbelte antal spil. Hvis du prioriterer dansk kundeservice, er <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> eller <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link> bedre valg. Og hvis du udelukkende spiller casino uden interesse for sport, betaler du implicit for en sportsbog, du aldrig bruger – i det tilfælde er en ren casino-platform mere effektiv.</p>
           <p className="text-muted-foreground leading-relaxed">Det er desuden værd at overveje, at Expekts velkomstbonus kræver et valg mellem sport og casino – du kan ikke få begge. For spillere, der vil teste begge produkter med bonusmidler, er det en begrænsning, som platforme med samlede velkomstpakker (som <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>) ikke har.</p>
@@ -157,7 +157,7 @@ const ExpektAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – testet og dokumenteret</h2>
+          <h2 className="mb-4 text-3xl font-bold">Indskuds- og hævningsmetoder – testet i januar 2026</h2>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border border-border rounded-lg">
               <thead><tr className="bg-muted/50"><th className="p-3 text-left font-semibold">Metode</th><th className="p-3 text-left font-semibold">Indbetaling</th><th className="p-3 text-left font-semibold">Udbetaling</th><th className="p-3 text-left font-semibold">Gebyr</th><th className="p-3 text-left font-semibold">Testresultat</th></tr></thead>
@@ -184,7 +184,7 @@ const ExpektAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og Betsson Group-garantien</h2>
+          <h2 className="mb-4 text-3xl font-bold">Betsson Group-garantien og regulatorisk overblik</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekt opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet ROFUS. Betsson Groups børsnotering på Nasdaq Stockholm kræver kvartalsrapportering og ekstern revision – et gennemsigtighedsniveau, der overgår de fleste private operatører.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjer inkluderer indbetalingsgrænser, sessionsgrænser, afkølingsperioder og selvudelukkelse via ROFUS. Expekt tilbyder desuden en "Reality Check"-funktion, der viser din session-tid og nettoresultat med jævne intervaller. Vores <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> sikrer uafhængige vurderinger.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground">Spil ansvarligt. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> ved behov.</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Annoncering</p></CardContent></Card>

@@ -91,7 +91,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Fordele og ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper</h2>
+          <h2 className="mb-6 text-3xl font-bold">Trumfkort og akilleshæle</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Verdens største poker-netværk med 100.000+ samtidige spillere", "Uovertruffent turneringsudvalg – WCOOP, SCOOP, EPT qualifiers", "Branchens bedste poker-software med HUD-support", "1.500+ casino-spil fra topudbydere", "Flutter Entertainment-ejerskab – maksimal stabilitet", "Fremragende mobilapp til både poker og casino", "Lynhurtige udbetalinger – 6 timer til Skrill i vores test", "Dansk licens og fuld ROFUS-integration", "Fælles wallet på tværs af poker, casino og sport", "Spin & Go og Zoom Poker for hurtig action"].map((p) => (<li key={p} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{p}</span></li>))}</ul></CardContent></Card>
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Stars Rewards er markant ringere end det gamle VIP-program", "Rake er relativt høj – 5 % cap varierer efter stakes", "Poker kræver desktop-klient for fuld funktionalitet", "Casino-bonus er mindre generøs end hos specialister", "Sportsvæddemål kan ikke matche bet365 eller Unibet", "Interface kan virke overvældende for rene casino-spillere", "Mangel på Hacksaw Gaming og Nolimit City i casino-sektionen", "Pokermiljøet er tøft – mange regulars gør det svært for nybegyndere"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
@@ -113,7 +113,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Mobilapp */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobilappen – poker og casino i lommen</h2>
+          <h2 className="mb-4 text-3xl font-bold">Poker og casino i appen – mobiltest</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">PokerStars' mobilapp er tilgængelig til iOS og Android og dækker poker, casino og sport i én applikation. Poker-delen er imponerende med mulighed for multi-tabling (op til 4 borde), Zoom Poker og turneringsdeltagelse direkte fra mobilen. Touch-interfacet er optimeret til hurtige beslutninger med swipe-to-fold og tap-to-bet.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede appen på iPhone 15 Pro over 5 sessioner. App-start tog 2.3 sekunder, og lobby-navigation var flydende. Poker-bordene indlæste på 1.1 sekunder, og vi oplevede ingen lag eller disconnects under spil – heller ikke på 4G-forbindelse. Casino-sektionen er integreret med direkte adgang fra hovedmenuen, og slot-spil starter hurtigt med touch-optimerede interfaces.</p>
           <p className="text-muted-foreground leading-relaxed">Den største begrænsning er, at visse avancerede poker-funktioner kun er tilgængelige i desktop-klienten. HUD-integration, avancerede statistikvisninger og visse turneringsfiltre kræver computeren. For casual poker og al casino-brug er mobilappen dog mere end tilstrækkelig. Sammenlignet med konkurrenternes mobil-casino-oplevelser (LeoVegas, Mr Green) er PokerStars' casino-del middel – men poker-delen er i en klasse for sig.</p>
@@ -123,7 +123,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalinger</h2>
+          <h2 className="mb-4 text-3xl font-bold">Overførselsmetoder – indskud og cashout</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { title: "Skrill (testet)", desc: "Udbetaling anmodet kl. 21:15, modtaget kl. 03:22 natten efter. Total: 6 timer og 7 minutter.", speed: "⚡ 6t 7min (testet)" },
@@ -141,7 +141,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og Flutter-garantien</h2>
+          <h2 className="mb-4 text-3xl font-bold">Flutter Entertainment-garantien og dansk licensering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">PokerStars' sikkerhedsprofil er exceptionel. Flutter Entertainment er verdens største gambling-selskab med licenser i 100+ jurisdiktioner globalt. Den danske licens fra Spillemyndigheden sikrer lokal compliance, mens Flutters børsnotering på både London Stock Exchange og NYSE garanterer fuld finansiel gennemsigtighed. Spillermidler opbevares på segregerede konti adskilt fra driftskapital.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Poker-specifik sikkerhed er et område, hvor PokerStars investerer tungt. Et dedikeret Game Integrity-team overvåger alle spil for collusion (sammenspil mellem spillere), brug af forbudte HUDs, multi-accounting og andre former for snyd. PokerStars' detektionssystemer er de mest avancerede i branchen og har ført til hundredvis af kontolukninger og tilbagebetalinger til berørte spillere over årene.</p>
           <p className="text-muted-foreground leading-relaxed">ROFUS-tilslutning, <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer og 256-bit SSL-kryptering er standardfunktioner. PokerStars tilbyder også specifikke poker-relaterede ansvarligt spil-værktøjer: session-tidsmålere, hand-pauses og mulighed for at begrænse turneringsdeltagelse. Det er detaljer, der viser, at platformen forstår de unikke risikofaktorer ved poker sammenlignet med casino-spil.</p>
@@ -152,7 +152,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Hvem bør IKKE vælge PokerStars */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" />Hvem bør vælge en anden platform?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" />Når PokerStars ikke dækker dine behov</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Pure casino-spillere:</strong> Hvis du aldrig rører poker og udelukkende spiller slots og live casino, får du en bedre oplevelse hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> eller <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link>. PokerStars' casino er godt, men det er designet som et supplement til poker – interface, navigation og bonus-struktur afspejler det.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Sportsbet-fokuserede spillere:</strong> PokerStars Sports er funktionelt men langt bag <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>, <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> og <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link> på live-betting, odds-dybde og features. Bruger du primært sportsvæddemål, er PokerStars det forkerte startsted.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Poker-nybegyndere uden villighed til at lære:</strong> PokerStars' spillerpool er den mest kompetitive i verden. Selv på de laveste stakes er der regulars med tusindvis af timers erfaring. Hvis du vil lære poker, er PokerStars det bedste sted at gøre det – men forvent at betale "tuition" i form af tabs, mens du udvikler dine færdigheder. Spillere der ønsker blødere spil kan overveje partypoker eller 888poker.</p>
@@ -207,7 +207,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Poker-Specifik EV Deep Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Avanceret EV-analyse: Tre spillerprofiler på PokerStars</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />EV-beregning: Tre spillerprofiler på PokerStars gennemregnet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For poker-spillere er Expected Value (EV) beregningen fundamentalt anderledes end for casino-spillere: du spiller mod andre mennesker, ikke mod et house edge. Din EV afhænger af din skill-edge over feltet minus den rake, PokerStars opkræver. Vi analyserer tre realistiske spillerprofiler for danske PokerStars-brugere og beregner deres månedlige EV.</p>
           
           <Card className="border-border bg-card mb-6">

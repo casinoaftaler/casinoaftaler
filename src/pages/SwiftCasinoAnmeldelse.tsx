@@ -256,7 +256,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── FORDELE & ULEMPER ───── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Swift Casino</h2>
+          <h2 className="mb-6 text-3xl font-bold">Styrker og svagheder – den samlede vurdering af Swift Casino</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader>
@@ -555,7 +555,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── BETALINGSMETODER ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder: Swift Casinos konkurrencefordel</h2>
+          <h2 className="mb-4 text-3xl font-bold">Ind- og udbetalingsmetoder: Swift Casinos konkurrencefordel</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Her har Swift Casino en markant fordel over søstercasinoet Luna Casino: support for{" "}
             <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link>,{" "}
@@ -616,7 +616,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── MOBILOPLEVELSE ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse: Hot Or Cold i lommen</h2>
+          <h2 className="mb-4 text-3xl font-bold">Mobil-test: Hot Or Cold og casino i lommen</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Swift Casino har ingen dedikeret app, men den mobiloptimerede hjemmeside fungerer fremragende på alle testede enheder. Vi gennemførte detaljerede tests på iPhone 15 Pro (Safari), Samsung Galaxy S24 (Chrome) og iPad Air (Safari).
           </p>
@@ -639,7 +639,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── KUNDESERVICE ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice: Hurtig, kompetent og løsningsorienteret</h2>
+          <h2 className="mb-4 text-3xl font-bold">Supporten: Hurtig respons og løsningsorienterede rådgivere</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Swift Casino tilbyder kundeservice via live chat og e-mail. Under vores 14-dages test kontaktede vi live chat fire gange med varierende forespørgsler og oplevede konsekvent hurtige svartider (1–3 minutter).
           </p>
@@ -666,7 +666,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── SIKKERHED ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og ansvarligt spil</h2>
+          <h2 className="mb-4 text-3xl font-bold">Licens under SkillOnNet og ansvarligt spil-initiativer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Swift Casino opererer med dansk licens fra Spillemyndigheden (nr. 16-1066791) udstedt til Skill On Net Ltd. Selskabet har drevet danske casinoer siden 2017 og har en dokumenteret track record uden alvorlige sanktioner eller advarsler.
           </p>
@@ -713,7 +713,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── NEGATIV SEGMENTERING ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge Swift Casino?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Begrænsninger – når Swift Casino falder kort</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Ærlighed er vigtigt. Swift Casino er ikke det rigtige valg for alle:
           </p>
@@ -794,7 +794,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── REGISTRERING ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Tilmelding og registrering – trin for trin</h2>
+          <h2 className="mb-4 text-3xl font-bold">Fra oprettelse til første spin – registrering step-by-step</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Registreringsprocessen hos Swift Casino er hurtig via MitID-integration. Hele processen tager under 5 minutter:
           </p>

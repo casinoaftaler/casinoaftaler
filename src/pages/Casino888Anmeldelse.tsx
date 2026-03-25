@@ -158,7 +158,7 @@ const Casino888Anmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice og support</h2>
+          <h2 className="mb-4 text-3xl font-bold">Supportoplevelsen – responstid og kvalitet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">888 Casino tilbyder kundeservice via live chat (24/7), e-mail og en omfattende FAQ-sektion. Vi testede live chatten to gange:</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Onsdag kl. 14:00</h3><p className="text-sm text-muted-foreground">Svartid: 2 min 30 sek. Agent var kompetent og besvarede spørgsmål om 888 Club-niveauer korrekt. Kommunikation på engelsk med forståelse for danske forhold.</p></div></div>
@@ -170,7 +170,7 @@ const Casino888Anmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og regulering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Licenshierarkiet bag 888 Holdings</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">888 Casino er reguleret af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> i Danmark og UK Gambling Commission i Storbritannien. Børsnoteringen på London Stock Exchange kræver kvartalsrapportering og ekstern revision, hvilket giver et gennemsigtighedsniveau, som private operatører ikke er forpligtet til at levere. I praksis betyder det, at Evoke PLC (tidl. 888 Holdings)' regnskaber, markedsandele og regulatoriske udfordringer er offentligt tilgængelige – en transparens, der giver danske spillere ekstra tryghed.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Fusionen med William Hill International i 2022 skabte en af verdens største gambling-koncerner med en samlet omsætning på over 2 milliarder pund årligt. Det styrker den finansielle stabilitet men rejser også spørgsmål om konsolidering og konkurrencemæssig magt. For den individuelle spiller betyder det primært større ressourcer til produktudvikling og bedre forhandlingsposition overfor spiludbydere.</p>
           <p className="text-muted-foreground leading-relaxed"><Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjer inkluderer indbetalingsgrænser (daglige, ugentlige, månedlige), sessionsgrænser med automatiske påmindelser, tabsgrænser og selvudelukkelse via ROFUS. 888 Casino har desuden implementeret sin egen AI-baserede adfærdsmonitorering, der kan identificere spillere med potentielt risikable mønstre og proaktivt tilbyde hjælpeværktøjer. Det er en teknologi, der er udviklet internt af Evoke PLC (tidl. 888 Holdings) og repræsenterer en investering, som kun store koncerner har ressourcerne til at foretage.</p>
@@ -179,7 +179,7 @@ const Casino888Anmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse og platform-design</h2>
+          <h2 className="mb-4 text-3xl font-bold">Interface og mobiladgang – brugervenlighed i praksis</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">888 Casinos mobiloplevelse er en blandet oplevelse. Den responsive hjemmeside fungerer i alle moderne browsere, og de fleste spil er tilgængelige på mobil. Dog afslører mobiltesten en platform, der bærer præg af mange års teknologiske lag. Navigationsstrukturen er dyb med mange undertrin, og det kræver flere taps at nå frem til specifikke spilkategorier sammenlignet med nyere, mere strømlinede platforme.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede på iPhone 15 (Safari) og oplevede indlæsningstider på 4-5 sekunder for hjemmesiden og 5-7 sekunder for individuelle spil. Det er under gennemsnittet – <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> loader typisk 40% hurtigere. Selve spilafviklingen var dog stabil uden lag eller afbrydelser, når spillene først var indlæst. Touch-navigationen i spillene fungerede godt med responsive knapper og korrekt skalering.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">888 Casino tilbyder ikke en dedikeret app i App Store eller Google Play for det danske marked. Det er en begrænsning for spillere, der foretrækker app-oplevelsen med push-notifikationer og hurtig adgang fra hjemmeskærmen. Du kan tilføje hjemmesiden som en genvej, men det giver ikke den samme native-følelse. Sammenlignet med <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link>'s prisbelønnede app og bwins sportsapp er 888 Casino et skridt bagud på mobilfronten.</p>
@@ -198,7 +198,7 @@ const Casino888Anmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge 888 Casino?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Spillertyper der finder bedre alternativer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Mobilfokuserede spillere:</strong> Hvis du primært spiller på telefonen og forventer en native app-oplevelse med push-notifikationer, hurtig indlæsning og et sleek, moderne interface, er 888 Casino ikke det optimale valg. LeoVegas' prisbelønnede mobilapp og <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link>'s iOS-app leverer en markant bedre mobiloplevelse. 888 Casinos responsive hjemmeside fungerer, men føles som et kompromis snarere end en dedikeret mobiloplevelse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Utålmodige spillere:</strong> Med en testet udbetalingstid på 31 timer via Trustly – og et ekstra KYC-verifikationstrin udover MitID – er 888 Casino blandt de langsommere operatører i vores testbatch. Spillere, der forventer penge på kontoen inden for få timer, bør i stedet overveje <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (4-6 timer) eller <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> (14 timer). Det ekstra verifikationskrav kan desuden forsinke første udbetaling med op til 48 timer yderligere.</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Casual spillere med lavt budget:</strong> 888 Club-loyalitetsprogrammet belønner primært mellemstore til store spillere. På Bronze- og Sølv-niveauerne er fordelene beskedne – og det kræver flere måneders regelmæssigt spil at avancere til Platin, hvor de reelle fordele begynder. For spillere, der indsætter 100-500 kr. pr. måned, giver et flatrate-loyalitetsprogram som GetLuckys bedre umiddelbar værdi. 888 Casino er designet til den langsigtede, engagerede spiller – ikke lejlighedsspilleren.</p>
@@ -217,7 +217,7 @@ const Casino888Anmeldelse = () => {
 
         {/* Bankroll & EV Analysis */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Bankroll-matematik og Expected Value</h2>
+          <h2 className="mb-4 text-3xl font-bold">Forventet afkast og bankroll-krav hos 888</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at give et objektivt billede af 888 Casinos bonusværdi har vi beregnet Expected Value under optimale og realistiske betingelser. Disse tal hjælper dig med at vurdere, om bonussen er værd at aktivere baseret på din spillestil.</p>
           <Card className="border-border bg-card mb-6">
             <CardHeader><CardTitle className="text-lg">EV-beregning – 888 Casino matchbonus</CardTitle></CardHeader>

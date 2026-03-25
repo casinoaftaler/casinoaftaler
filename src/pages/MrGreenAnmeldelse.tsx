@@ -96,7 +96,7 @@ const MrGreenAnmeldelse = () => {
 
         {/* Fordele og ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Mr Green Casino</h2>
+          <h2 className="mb-6 text-3xl font-bold">Det der fungerer – og det der skuffer – ved Mr Green</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Prisbelønnet design og brugeroplevelse – æstetisk i topklasse", "Innovativt Green Gaming ansvarligt spil-værktøj med AI-analyse", "Kurateret spiludvalg af konsekvent høj kvalitet", "Dansk licens fra Spillemyndigheden", "Hurtige udbetalinger – typisk under 24 timer med e-wallets", "Dedikeret mobilapp (iOS/Android) med flere branchepriser", "Del af Evoke PLC (tidl. 888 Holdings) – børsnoteret med solid finansiel baggrund", "Gennemsigtige bonusvilkår uden skjulte begrænsninger", "Dedikerede Mr Green live casino-borde med lavere minimums", "Kampagner begrænses automatisk for risikospillere (ansvarligt)"].map((p) => (<li key={p} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{p}</span></li>))}</ul></CardContent></Card>
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Spiludvalget (1.000+) er mindre end hos konkurrenter med 2.000+", "Færre betalingsmetoder – ingen MobilePay eller Paysafecard", "Velkomstbonus er begrænset til 1.000 kr. (dansk lovmæssigt max)", "Live chat åbningstider er begrænsede (ikke 24/7 på dansk)", "Ingen sportsbetting eller poker – rendyrket casino", "VIP-programmet mangler gennemsigtighed i niveaustruktur"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
@@ -172,7 +172,7 @@ const MrGreenAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – prisbelønnet app</h2>
+          <h2 className="mb-4 text-3xl font-bold">Den prisbelønnede app – test af iOS og Android</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Greens mobilapp er ikke bare god – den er prisbelønnet. Appen har vundet EGR Operator Awards' "Mobile Operator of the Year" flere gange og er konsekvent en af de højest vurderede casino-apps i både App Store og Google Play. Designet er en direkte forlængelse af desktop-oplevelsen: rent, elegant og intuitivt med den karakteristiske grøn-sorte farvepalette.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I vores test på iPhone 15 Pro målte vi en appstarttid på 1,4 sekunder og jævne 60fps-animationer på tværs af alle sektioner. Spilindlæsningstiden var gennemsnitligt 2,8 sekunder for slots og 3,2 sekunder for live casino – begge under branchegennemsnittet. Samsung Galaxy S24-testen viste sammenlignelige resultater med 1,6 sekunders appstart, hvilket bekræfter god cross-platform optimering.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Touch-navigationen er optimeret specifikt til mobilbrug med store, let tilgængelige knapper og swipe-baserede menuer. Green Gaming-værktøjet er fuldt integreret i appen med push-notifikationer, der minder dig om dine grænser og giver periodiske "sundhedstjek". Biometrisk login via Face ID og fingeraftryk sikrer hurtig og sikker adgang – en detalje, der lyder banal, men som reelt sparer tid ved hver enkelt session.</p>
@@ -183,7 +183,7 @@ const MrGreenAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalingstider</h2>
+          <h2 className="mb-4 text-3xl font-bold">Pengetransaktioner – metoder og ventetid dokumenteret</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">Mr Green Casino tilbyder de mest populære <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> for danske spillere, om end udvalget er lidt snævrere end hos visse konkurrenter. Bemærkelsesværdigt fravær inkluderer <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> og <Link to="/betalingsmetoder/paysafecard" className={linkClass}>Paysafecard</Link> – to metoder, der er populære hos danske spillere og tilgængelige hos mange konkurrenter.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -206,7 +206,7 @@ const MrGreenAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – professionel men begrænset</h2>
+          <h2 className="mb-4 text-3xl font-bold">Helpdesk – professionel men med begrænset rækkevidde</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green tilbyder kundeservice via live chat og e-mail. Live chatten er tilgængelig i begrænset åbningstid (typisk 09:00-23:00 dansk tid), hvilket er en ulempe sammenlignet med operatører, der tilbyder 24/7 support. Uden for åbningstiden kan du sende en e-mail, der typisk besvares inden for 24 timer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede live chatten fire gange på forskellige tidspunkter. Gennemsnitlig ventetid var 3 minutter – hurtigere end branchegennemsnittet. Agenternes kompetence var generelt høj med korrekte svar på spørgsmål om bonusvilkår, betalingsmetoder og ansvarligt spil. Én agent var særligt imponerende og kunne detaljeret forklare, hvordan Green Gaming-algoritmens risikovurdering fungerer – et vidensniveau, der tyder på grundig intern træning.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">FAQ-sektionen er veldokumenteret med logisk kategorisering og søgefunktion. De fleste standardspørgsmål kan besvares her uden at kontakte support. Den dækker konto, bonus, betalinger, ansvarligt spil og tekniske spørgsmål med klare, letforståelige svar.</p>
@@ -217,7 +217,7 @@ const MrGreenAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og regulatorisk infrastruktur</h2>
+          <h2 className="mb-4 text-3xl font-bold">William Hills regulatoriske infrastruktur bag Mr Green</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green Casino opererer under dansk licens fra Spillemyndigheden og er en del af Evoke PLC (tidl. 888 Holdings) – en af verdens mest regulerede spiludbydere med licenser i 20+ jurisdiktioner. Evoke PLC (tidl. 888 Holdings) er børsnoteret på London Stock Exchange, hvilket sikrer kvartalsvis offentlig rapportering og fuld finansiel gennemsigtighed. Den regulatoriske infrastruktur er dermed i absolut topklasse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Platformens sikkerhedsteknologi inkluderer 256-bit SSL-kryptering på alle transaktioner, PCI DSS Level 1-certificering for kortbehandling og avancerede anti-fraud-systemer, der monitorerer for usædvanlige transaktionsmønstre. Green Gaming-værktøjet tilføjer et ekstra lag af spillerbeskyttelse, der går langt ud over den lovmæssige minimumsstandard.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vores <Link to="/forretningsmodel" className={linkClass}>forretningsmodel</Link> og <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> sikrer objektive vurderinger – og på sikkerhedsparameteren scorer Mr Green 10/10. Der er intet, der tyder på nogen som helst sikkerhedsrisiko ved at spille hos Mr Green. Din data og dine penge er i trygge hænder.</p>
@@ -235,7 +235,7 @@ const MrGreenAnmeldelse = () => {
 
         {/* Hvem bør undgå */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå Mr Green Casino?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Situationer hvor Mr Green ikke er det optimale valg</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green er et exceptionelt casino for den rigtige målgruppe – men det er ikke det rigtige valg for alle. Her er fire specifikke spillerprofiler med kvantificerede argumenter:</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Volumen-jægeren (spiller 5+ timer/uge):</strong> Med ~1.000 spil ligger Mr Green 50% under markedsgennemsnittet for store operatører. Spiller du dagligt med fokus på nye udgivelser, vil du udmatte kataloget inden for 4-6 uger. Kritisk: Mr Green mangler Hacksaw Gaming, Nolimit City og Push Gaming – tre af de mest eftertragtede high-volatility studios i 2026. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.000+ spil inkl. alle tre studios) er det oplagte alternativ.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Allround-spilleren (sport + casino + poker):</strong> Mr Green er et rendyrket casino. Ingen sportsbook, ingen pokerplatform. Hvis du bruger 40%+ af din spilletid på sportsvæddemål, kræver Mr Green en separat konto hos en anden operatør – med dobbelt KYC, dobbelt indbetaling og splittet bankroll. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> eller <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> tilbyder alt under ét tag med fælles saldo og samlet spillehistorik.</p>

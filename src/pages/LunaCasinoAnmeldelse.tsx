@@ -247,7 +247,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── FORDELE & ULEMPER ───── */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Luna Casino</h2>
+          <h2 className="mb-6 text-3xl font-bold">Kvaliteter og begrænsninger – Luna Casinos helhedsbillede</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader>
@@ -540,7 +540,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── MOBILOPLEVELSE ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse: Kuratering som mobilfordel</h2>
+          <h2 className="mb-4 text-3xl font-bold">Kurateret katalog på farten – mobiltest og vurdering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Luna Casino har ingen dedikeret app, men den mobiloptimerede hjemmeside fungerer fremragende i alle moderne browsere på iOS og Android. Vi testede på iPhone 15 Pro (Safari), Samsung Galaxy S24 (Chrome) og iPad Air (Safari) og oplevede konsekvent hurtige loadtider, smidig navigation og stabil live casino-streaming.
           </p>
@@ -559,7 +559,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── BETALINGSMETODER ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder: Funktionelt men begrænset</h2>
+          <h2 className="mb-4 text-3xl font-bold">Transaktionsmetoder: Funktionelt med begrænset udvalg</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Luna Casinos{" "}
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> afspejler den fokuserede tilgang: færre valgmuligheder end de største casinoer, men de vigtigste metoder er dækket. Min. indbetaling er 100 kr. og min. udbetaling er 100 kr.
@@ -614,7 +614,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── KUNDESERVICE ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice: Kompetent og tilgængelig</h2>
+          <h2 className="mb-4 text-3xl font-bold">Servicedesk: Kompetent rådgivning når du har brug for det</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Luna Casino tilbyder kundeservice via live chat og e-mail. Under vores test kontaktede vi live chat tre gange med forskellige forespørgsler og oplevede gennemsnitlige svartider på 1–3 minutter. Rådgiverne var kompetente, venlige og i stand til at besvare detaljerede spørgsmål om loyalitetsprogrammet, bonusvilkår og betalingsmetoder.
           </p>
@@ -638,7 +638,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── SIKKERHED & LICENS ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og ansvarligt spil</h2>
+          <h2 className="mb-4 text-3xl font-bold">SkillOnNet-licenser og spillertryghed i praksis</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Luna Casino opererer med dansk licens fra Spillemyndigheden (nr. 16-1066791) udstedt til SkillOnNet Limited. Selskabet har haft tilstedeværelse på det danske marked siden 2017 og driver også{" "}
             <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link>, hvilket vidner om et veletableret og pålideligt selskab med dokumenteret erfaring.
@@ -689,7 +689,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── NEGATIV SEGMENTERING ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge Luna Casino?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Scenarier hvor Luna Casino falder igennem</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Ingen casino er perfekt til alle, og det er vigtigt at være ærlig om Luna Casinos begrænsninger:
           </p>

@@ -261,7 +261,7 @@ const CampobetAnmeldelse = () => {
 
         {/* Fordele/Ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Styrker og begrænsninger i praksis</h2>
+          <h2 className="mb-6 text-3xl font-bold">Hvad fungerer – og hvad kan forbedres hos Campobet</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader>
@@ -519,7 +519,7 @@ const CampobetAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – Internationalt team med danske ambitioner</h2>
+          <h2 className="mb-4 text-3xl font-bold">Internationalt supportteam – responstid og sprogkompetence</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Campobets kundeservice er tilgængelig 24/7 via live chat direkte fra hjemmesiden, suppleret af e-mail support. Det er en fordel sammenlignet med mange danske casinoer, der kun tilbyder support i begrænsede tidsrum (typisk 08:00–23:00). Vi kontaktede support 5 gange under vores testperiode med spørgsmål om bonusvilkår, udbetalingsstatus og sportsmarkederne.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den største udfordring er sproget. Support-teamet kommunikerer primært på engelsk, med et automatisk oversættelsesprogram til dansk. Oversættelserne er generelt forståelige, men nuancerne går nogle gange tabt – særligt ved tekniske bonusrelaterede spørgsmål. Svartiderne var korte (under 2 minutter i alle 5 tests), og medarbejderne var kompetente og løsningsorienterede. E-mail-henvendelser blev besvaret inden for 6-12 timer.</p>
           <p className="text-muted-foreground leading-relaxed">Det er værd at bemærke, at der ikke er dansk telefon-support. For spillere, der foretrækker at ringe, er det en reel ulempe. En omfattende FAQ-sektion på dansk kompenserer delvist, men den dækker primært basale spørgsmål om registrering, indbetaling og bonus. For komplekse henvendelser er live chatten den bedste kanal.</p>
@@ -535,7 +535,7 @@ const CampobetAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – Responsivt design uden app</h2>
+          <h2 className="mb-4 text-3xl font-bold">Responsiv webapp – test uden dedikeret app</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Campobet har ingen dedikeret app i App Store eller Google Play, men den mobiloptimerede hjemmeside er teknisk imponerende. Under vores test på iPhone 15 Pro og Samsung Galaxy S24 oplevede vi konsekvent hurtige loadtider (under 2 sekunder pr. sidevisning), stabil performance og et touchvenligt interface der tilpasser sig automatisk til skærmstørrelsen.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Alle funktioner er fuldt tilgængelige på mobilen: spilleautomater, live casino, sportsbetting (inkl. Bet Builder og livebetting), indbetalinger, udbetalinger og kundeservice. Live casinoet streamer i høj kvalitet selv på 4G, og MobilePay-indbetalinger kan gennemføres med blot et par tryk. Sportssektionen er særligt veldesignet til mobil med swipe-baseret navigation mellem markeder og realtids-livescores.</p>
           <p className="text-muted-foreground leading-relaxed">Den eneste bemærkelsesværdige begrænsning på mobilen er, at filtreringssystemet i spillebiblioteket er lidt mindre intuitivt end desktop-versionen – med færre synlige filterkategorier og en tendens til at kræve ekstra tryk for at finde specifikke udbydere. Det er en kosmetisk irritation snarere end et funktionelt problem, men det er værd at nævne for spillere, der primært bruger mobilen.</p>
@@ -545,7 +545,7 @@ const CampobetAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Tredobbelt licens – Sikkerhed og regulering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Tre jurisdiktioner – tredobbelt regulatorisk dækning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Campobets tredobbelte licensering er usædvanlig på det danske marked. Med licenser fra Spillemyndigheden (DK), Malta Gaming Authority (MGA) og Spelinspektionen (SE) er platformen underlagt regulatorisk overvågning fra tre uafhængige myndigheder. Det betyder i praksis, at Campobet skal overholde de strengeste krav fra alle tre jurisdiktioner – og det er de danske og svenske regler, der typisk er de mest restriktive.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den danske licens (nr. 20-6359) sikrer fuld overholdelse af den danske spillelovgivning, herunder obligatoriske indbetalingsgrænser, tilslutning til <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> for selvudelukkelse, session-påmindelser efter 60 minutters spil og MitID-verifikation ved registrering. Alle persondata og transaktioner beskyttes med SSL-kryptering, og spilresultater genereres af certificerede tilfældighedsgeneratorer (RNG) der regelmæssigt auditeres af uafhængige testorganisationer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Denix Limited har drevet Campobet internationalt siden 2018 uden dokumenterede regulatoriske problemer eller spillerklager af væsentlig karakter. Selskabets track record i tre jurisdiktioner understreger en seriøs tilgang til compliance og spillerbeskyttelse. Det er dog værd at bemærke, at Campobet er relativt nyt på det danske marked (lanceret 2024), og det langsigtede track record skal stadig opbygges.</p>
@@ -556,7 +556,7 @@ const CampobetAnmeldelse = () => {
 
         {/* Hvem bør IKKE vælge */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge Campobet?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Situationer hvor Campobet ikke er det optimale valg</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Trods de mange fordele er Campobet ikke det rigtige valg for alle spillertyper. Her er en ærlig vurdering af, hvem der bør overveje alternativer:</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Spillere der kræver dansk kundeservice.</strong> Hvis det er vigtigt for dig at kommunikere med support på flydende dansk – uden oversættelsesprogram – er casinoer drevet af danske selskaber som <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> eller <Link to="/casino-anmeldelser/royal-casino" className={linkClass}>Royal Casino</Link> bedre valg. Campobets internationale team er kompetent, men sprogbarrieren kan frustrere ved komplekse henvendelser.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Loyalitets- og VIP-jægere.</strong> Campobet mangler et struktureret loyalitetsprogram med points, niveauer og personlige rewards. Spillere der prioriterer langsigtede belønningssystemer vil finde bedre tilbud hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> med deres VIP-program eller <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link> med deres stigende loyalitetsniveauer.</p>

@@ -159,7 +159,7 @@ const ComeOnAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper – ærligt afbalanceret</h2>
+          <h2 className="mb-6 text-3xl font-bold">Plus og minus – en transparent gennemgang</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card">
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader>
@@ -209,7 +209,7 @@ const ComeOnAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – test og dokumentation</h2>
+          <h2 className="mb-4 text-3xl font-bold">Pengeoverførsler – indskud og hævninger i praksis</h2>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border border-border rounded-lg">
               <thead><tr className="bg-muted/50"><th className="p-3 text-left font-semibold">Metode</th><th className="p-3 text-left font-semibold">Indbetaling</th><th className="p-3 text-left font-semibold">Udbetaling</th><th className="p-3 text-left font-semibold">Gebyr</th><th className="p-3 text-left font-semibold">Testresultat</th></tr></thead>
@@ -227,7 +227,7 @@ const ComeOnAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse og interface-design</h2>
+          <h2 className="mb-4 text-3xl font-bold">Mobil- og desktop-interfacet i detaljer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn har investeret i en responsiv mobilplatform, der fungerer i alle browsere uden dedikeret app. Designet er minimalistisk og funktionelt – rent interface med tydelige kategorier og en effektiv søgefunktion. Det er ikke det mest visuelt imponerende casino, men det er et af de mest brugervenlige.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede på iPhone 15 (Safari) og Samsung Galaxy S24 (Chrome). Indlæsningstid: 2,6 sekunder (iOS) og 2,3 sekunder (Android) – hurtigere end gennemsnittet. Spil loadede inden for 2-4 sekunder. Touch-navigationen er intuitiv med store, tydelige knapper og logisk layout. Registrering, indbetaling og udbetaling er alle tilgængelige direkte fra mobilen uden omdirigeringer.</p>
           <p className="text-muted-foreground leading-relaxed">Design-kritikken: ComeOns farvepalette er afdæmpet med fokus på læsbarhed. Det reducerer distraktioner men mangler den visuelle energi, man finder hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link>. Det er et bevidst valg – ComeOn lader spillene stå i centrum snarere end platformens æstetik.</p>
@@ -236,7 +236,7 @@ const ComeOnAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – dansk og direkte</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dansk support med personligt touch</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn tilbyder kundeservice på dansk via live chat og e-mail. Vi testede to gange:</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Torsdag kl. 13:00</h3><p className="text-sm text-muted-foreground">Svartid: 2 min 10 sek. Dansk agent, venlig og kompetent. Besvarede spørgsmål om spilbidragsprocenter korrekt og præcist.</p></div></div>
@@ -248,7 +248,7 @@ const ComeOnAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og regulering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Licens, kryptering og ansvarligt spil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn Casino opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet ROFUS. Platformen benytter 256-bit SSL-kryptering og drives af Cherry AB / Highlight Games Group – en koncern med licenser i flere europæiske jurisdiktioner, herunder Malta Gaming Authority og UK Gambling Commission. Denne multi-jurisdiktionelle regulering giver ComeOn et ekstra lag af troværdighed, da operatøren underlægges compliance-krav fra tre uafhængige myndigheder simultant.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Cherry AB har en lang historie i den nordiske spillebranche med rødder tilbage til 1960'erne som fysisk casinooperatør. Overgangen til online gambling startede i 2000'erne, og ComeOn blev lanceret som et primært online brand i 2010. Koncernen har gennemgået flere ejerskifte og rebranding-processer, men kerneinfrastrukturen har forblevet stabil. Det giver ComeOn en operationel modenhed, som nyere operatører uden denne historik ikke kan matche.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjer inkluderer indbetalingsgrænser (daglige, ugentlige, månedlige), sessionsgrænser med automatiske påmindelser, tabsgrænser og selvudelukkelse via ROFUS. ComeOn har desuden implementeret en "Reality Check"-funktion, der sender pop-up-påmindelser efter foruddefinerede tidsintervaller. Derudover tilbyder platformen afkølingsperioder på 24 timer, 7 dage eller 30 dage, hvor kontoen midlertidigt suspenderes uden permanent selvudelukkelse – en nyttig mellemoption for spillere, der har brug for en pause uden at lukke kontoen helt.</p>
@@ -301,7 +301,7 @@ const ComeOnAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge ComeOn?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Tre spillertyper der bør undgå ComeOn</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Den katalog-hungrige spilleautomat-entusiast:</strong> Med ~1.000 spil ligger ComeOn 50% under markedsgennemsnittet for store operatører (~2.000 titler). Spiller du 4+ gange ugentligt med fokus på nye udgivelser, vil du sandsynligvis opleve rotationsgrænsen inden for 2-3 måneder. ComeOn mangler desuden trendsættende high-volatility udbydere som <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>, som er must-haves for erfarne slots-spillere. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.000+ spil) eller <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (5.000+) er markant bedre for denne profil.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>High-roller VIP-spilleren:</strong> ComeOns fravær af et transparent VIP-program med navngivne niveauer er en strukturel svaghed. Der er ingen dedikeret account manager, ingen eksklusive events og ingen reducerede omsætningskrav for loyale spillere. Indsætter du 5.000+ kr. månedligt, får du markant bedre betingelser hos <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> (8-niveaus 888 Club med cashback op til 25%) eller <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' invitationsbaserede VIP-program med MGM-niveau fordele. ComeOns personaliserede e-mail-tilbud er ikke en erstatning for et struktureret loyalitetsprogram.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Sportsbetting-spilleren:</strong> ComeOn har ingen sportsbook. Hvis du vedder 3+ gange ugentligt på sport og ønsker casino som supplement, kræver ComeOn en separat konto. <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> (verdens største sportsbook + 500+ casino-spil), <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> eller <Link to="/casino-anmeldelser/nordicbet" className={linkClass}>NordicBet</Link> tilbyder alt under ét login.</p>

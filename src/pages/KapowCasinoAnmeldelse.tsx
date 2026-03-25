@@ -82,7 +82,7 @@ const KapowCasinoAnmeldelse = () => {
 
         {/* Fordele og ulemper */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Kapow Casino</h2>
+          <h2 className="mb-6 text-3xl font-bold">Kapow Casino i plus og minus</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Solidt spiludvalg med 2.000+ titler fra kvalitetsudbydere", "Nolimit City inkluderet – sjældent på denne prisklasse", "Dansk licens fra Spillemyndigheden og ROFUS", "100 Spins velkomstbonus med lavt omsætningskrav", "Progressive jackpots inkl. Mega Moolah", "Hurtige Trustly-udbetalinger (22t 45min i vores test)", "Daglige kampagner og cashback-tilbud", "Mobil-optimeret platform der fungerer på alle enheder"].map((p) => (<li key={p} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{p}</span></li>))}</ul></CardContent></Card>
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Polariserende comic-design – ikke for alle smag", "Omsætningstracker opdaterer med 10-15 min forsinkelse", "SkillOnNet er en mindre operatør – ikke børsnoteret", "Kundeservice lukker kl. 22:00 – ingen døgndækning", "Mobilnavigation kræver for mange klik", "Færre eksklusive kampagner end etablerede konkurrenter", "Ingen dedikeret mobilapp", "Langsommere udbetalinger end premium-platforme"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
@@ -129,7 +129,7 @@ const KapowCasinoAnmeldelse = () => {
 
         {/* Mobil */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – funktionel men ikke poleret</h2>
+          <h2 className="mb-4 text-3xl font-bold">Touch-oplevelsen – navigation og hastighed på mobil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kapow Casino har ingen dedikeret mobilapp – alt kører via den responsive browserversion. Vi testede på iPhone 15 Pro (iOS 18) og Samsung Galaxy S24 (Android 14). Lobby-indlæsning tog 2.1 sekunder på Wi-Fi – acceptabelt men mærkbart langsommere end <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (1.2s) og <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> (1.6s).</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den største irritation er navigationsstrukturen. At finde et specifikt spil kræver mindst 3 klik: kategori → underkategori → spil. Søgefunktionen virker, men autocomplete er langsom med 1-2 sekunders forsinkelse. Sammenlignet med LeoVegas' one-tap kategorier og Mr Greens intelligente søgning føles Kapow Casinos mobilnavigation en generation bagud.</p>
           <p className="text-muted-foreground leading-relaxed">Spilstart på mobil tog gennemsnitligt 2.8 sekunder – over branchestandarden. Live casino-streaming fungerede stabilt uden buffering. Betalinger via Trustly fungerede problemfrit. Det samlede mobilbillede er: funktionelt men ikke inspirerende. Designet som fungerer på desktop (farverigt, animeret, dynamisk) oversættes dårligere til mobilens begrænsede skærmplads.</p>
@@ -139,7 +139,7 @@ const KapowCasinoAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – testresultater og vurdering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Transaktionsmuligheder – fra MobilePay til bankoverførsel</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { title: "Trustly (testet)", desc: "Anmodet kl. 09:30, intern godkendelse kl. 15:45, modtaget kl. 08:15 næste morgen. Total: 22t 45min.", speed: "⚡ 22t 45min (testet)" },
@@ -157,7 +157,7 @@ const KapowCasinoAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – tilgængelig men med begrænsninger</h2>
+          <h2 className="mb-4 text-3xl font-bold">Hjælp og support – åbningstider og kompetence</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kapow Casino tilbyder kundeservice via live chat og e-mail. Live chat er tilgængelig dagligt fra 09:00 til 22:00 dansk tid – kortere åbningstider end de fleste konkurrenter, der typisk tilbyder support til mindst midnat. E-mail-henvendelser besvares inden for 24 timer på hverdage.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede live chatten to gange. Første henvendelse vedrørte bonusvilkår med en ventetid på 4 minutter og et præcist svar. Anden henvendelse handlede om et spil, der ikke indlæste korrekt – agenten var venlig men ikke teknisk kompetent nok til at diagnosticere problemet og eskalerede til e-mail-support, der svarede efter 6 timer med en løsning (cache-rydning).</p>
           <p className="text-muted-foreground leading-relaxed">Dansktalende support er tilgængelig, men ikke altid – vi oplevede en session på engelsk. FAQ-sektionen er basalt med standard-spørgsmål om registrering og betalinger. Sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365s</Link> 24/7 support eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibets</Link> omfattende hjælpecenter er Kapow Casinos kundeservice funktionel men ikke imponerende.</p>
@@ -167,7 +167,7 @@ const KapowCasinoAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og SkillOnNet-troværdighed</h2>
+          <h2 className="mb-4 text-3xl font-bold">Regulering under SkillOnNet-paraplyen</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kapow Casino opererer under dansk licens fra Spillemyndigheden og har også licenser fra Malta Gaming Authority og UK Gambling Commission. SkillOnNet har drevet online casinoer siden 2005 uden større regulatoriske sanktioner – en vigtig indikator for pålidelighed. SSL-kryptering (256-bit) beskytter alle transaktioner.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">ROFUS-tilslutning og <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer er implementeret som krævet af dansk lovgivning. Indskudsgrænser, tabsgrænser og selvudelukkelse er tilgængelige. Spillermidler opbevares på separate konti. SkillOnNets compliance-team håndterer regelmæssige audits fra alle tre regulatoriske myndigheder.</p>
           <p className="text-muted-foreground leading-relaxed">Den vigtigste forbehold er, at SkillOnNet ikke er børsnoteret. Det betyder, at der er mindre finansiel gennemsigtighed sammenlignet med børsnoterede operatører som Betsson Group, Flutter Entertainment eller FDJ United (tidl. Kindred Group). For de fleste spillere er dette ikke et praktisk problem – licenserne fra tre respekterede myndigheder giver tilstrækkelig sikkerhed – men det er en faktor, der bør nævnes i en ærlig anmeldelse.</p>
@@ -178,7 +178,7 @@ const KapowCasinoAnmeldelse = () => {
 
         {/* Negativ segmentering */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" />Hvem bør undgå Kapow Casino?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" />Når Kapow Casino ikke er det rette match</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Design-sensitive spillere:</strong> Kapow Casinos comic-æstetik er et bevidst valg, men det vil aktivt frastøde spillere, der foretrækker den minimalistiske skandinaviske tilgang. Hvis du finder LeoVegas, Mr Green eller Danske Spils design tiltalende, vil Kapow Casino sandsynligvis irritere dig.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Premium-fokuserede spillere:</strong> Kapow Casino mangler den polish og detaljegrad, du finder hos top-tier platforme. Omsætningstrackerens forsinkelse, den langsommere mobilnavigation og den mindre kompetente tekniske support indikerer, at platformen opererer på et lavere budget end de store brands. Hvis du forventer <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link>-niveau kvalitet, bliver du skuffet.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>High-roller VIP-spillere:</strong> Kapow Casinos VIP-program er begrænset sammenlignet med etablerede operatører. Hvis du spiller for store beløb og forventer personlig kontoadministrator, eksklusive events og skræddersyede bonusser, er platforme som <Link to="/casino-anmeldelser/royal-casino" className={linkClass}>Royal Casino</Link> eller <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> bedre rustede.</p>

@@ -324,7 +324,7 @@ const BetiniaAnmeldelse = () => {
 
         {/* Pros & Cons */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Betinia – Ærlig vurdering</h2>
+          <h2 className="mb-6 text-3xl font-bold">Betinia ærligt vurderet – hvad virker og hvad skuffer</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Efter 14 dages test kan vi præsentere en nuanceret liste over Betinias styrker og svagheder. Listen afspejler vores faktiske oplevelser – ikke markedsføringsmaterialet:
           </p>
@@ -695,7 +695,7 @@ const BetiniaAnmeldelse = () => {
 
         {/* Mobile Experience */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – Casino og sportsbetting i lommen</h2>
+          <h2 className="mb-4 text-3xl font-bold">Casino og sport på telefonen – dual-motor i praksis</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betinia har ingen dedikeret app, men den mobiloptimerede hjemmeside fungerer som en progressiv web-app, der dækker alle funktioner. Vi testede mobilversionen på iPhone 15 Pro (Safari), Samsung Galaxy S24 (Chrome) og iPad Air (Safari) over 4 dage med fokus på navigation, spilleautomater, live casino, sportsbetting og betalingsflows.
           </p>
@@ -801,7 +801,7 @@ const BetiniaAnmeldelse = () => {
 
         {/* Security & Licenses */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, dobbelt licens og ansvarligt spil</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dobbelt licens, kryptering og ROFUS-beskyttelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betinia opererer med en sjælden dobbelt licensering: dansk licens fra{" "}
             <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> (nr. 20-6359) og international licens fra Malta Gaming Authority (MGA). Den dobbelte licensering er ikke blot et markedsføringsargument – MGA-licensen kræver yderligere kapitalreserver, regelmæssig revision af tilfældighedsgeneratorer og adskilt spillerkontoføring. Det giver et ekstra lag af sikkerhed, der overstiger det danske minimumskrav.
@@ -844,7 +844,7 @@ const BetiniaAnmeldelse = () => {
 
         {/* Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge Betinia?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Tre scenarier hvor Betinia er det forkerte valg</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Trods sine mange styrker er Betinia ikke det optimale valg for alle spillertyper. Her er de profiler, der sandsynligvis vil finde bedre alternativer:
           </p>
@@ -926,7 +926,7 @@ const BetiniaAnmeldelse = () => {
 
         {/* Final Verdict */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Endelig vurdering – Dual-Motor Casinoet der leverer</h2>
+          <h2 className="mb-4 text-3xl font-bold">Vores dom – Dual-Motor Casinoet der leverer på begge fronter</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Efter 14 dages intensiv test kan vi konkludere, at Betinia leverer på sit dual-motor løfte. Casino- og sportssektionen fungerer som to selvstændige, kvalitetsbevidste platforme under ét tag. No-Sticky velkomstbonussen på 100 % op til 1.000 kr. med kun 10x omsætning er objektivt set blandt de mest spillervenlige i Danmark – og den matematiske fordel ved No-Sticky strukturen kan ikke overvurderes.
           </p>

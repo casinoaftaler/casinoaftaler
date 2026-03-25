@@ -160,7 +160,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Betalingsmetoder med Test */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Wallet className="h-7 w-7 text-primary" />Betalingsmetoder og testresultater</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Wallet className="h-7 w-7 text-primary" />Transaktioner – alle metoder testet og dokumenteret</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casino er konsekvent i sit danske fokus: de <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, der tilbydes, er dem, danske spillere faktisk bruger. Det betyder MobilePay, Dankort og bankoverførsel – men ingen internationale e-wallets.</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
@@ -185,7 +185,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Kundeservice & Mobil */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Headphones className="h-7 w-7 text-primary" />Kundeservice og mobiloplevelse</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Headphones className="h-7 w-7 text-primary" />Hjælp og mobiladgang – hvad vi oplevede</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kundeservice foregår primært via e-mail og telefon i dagtimerne. Ifølge de seneste offentlige oplysninger ligger supportvinduet omkring kl. 10:00–18:00, så svartid kan variere uden for åbningstid. Vi anbefaler at bruge FAQ/hjælpesider ved akutte spørgsmål uden for supporttid.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mobiloplevelsen er mere poleret end man måske forventer. Browserversionen er fuldt responsiv med store touch-venlige knapper, intuitive kategorier og hurtige spilindlæsninger. Live casino-borde fungerer upåklageligt på mobil med justerbare kameravinkler. Designet er elegant-minimalistisk med dybrøde og guldtoner, der signalerer premium uden at virke overdrevet.</p>
           <p className="text-muted-foreground leading-relaxed">Der er dog ingen dedikeret app, hvilket betyder, at du mister push-notifikationer om kampagner og den hurtigere opstart, en native app tilbyder. For den dedikerede mobilspiller er <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' prisbelønnede app stadig den bedste i Danmark. For lejlighedsvise mobilsessioner er Royal Casinos browserversion dog mere end tilstrækkelig.</p>
@@ -195,7 +195,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><ShieldCheck className="h-7 w-7 text-primary" />Sikkerhed og regulering – stærk dansk forankring</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><ShieldCheck className="h-7 w-7 text-primary" />Dansk forankret regulering og spillerbeskyttelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casinos sikkerhedsprofil er stærk i dansk kontekst. Platformen opererer under dansk licens og er underlagt løbende regulatorisk tilsyn. Det betyder krav til ansvarligt spil, anti-hvidvask, spillerverifikation og dokumentation af centrale processer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">ROFUS-integration er fuldstændig og øjeblikkelig. <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjerne er blandt de mest omfattende, vi har testet: indbetalingsgrænser (daglige, ugentlige, månedlige), tabsgrænser, sessionsgrænser, reality checks og selvudelukkelse – alt tilgængeligt med få klik.</p>
           <p className="text-muted-foreground leading-relaxed">For spillere, der prioriterer sikkerhed højt, er Royal Casino et solidt valg. Kombinationen af dansk licens, ROFUS-tilslutning og tydelige kontrolmekanismer giver en høj grad af tryghed. Læs mere om <Link to="/casino-licenser" className={linkClass}>casino licenser</Link> og deres betydning.</p>
@@ -205,7 +205,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* Hvem bør IKKE vælge Royal Casino */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" />Hvem bør vælge et andet casino?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><AlertTriangle className="h-7 w-7 text-destructive" />Tilfælde hvor et alternativt casino passer bedre</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Slots-entusiaster.</strong> Selvom kataloget markedsføres bredt, kan hardcore slots-spillere stadig opleve, at enkelte nicheudviklere eller specifikke nye titler mangler. Hvis dit primære kriterium er maksimal nichebredde, kan platforme som <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> eller <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link> være mere passende.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Bonusjægere.</strong> Royal Casinos sticky bonus og konservative kampagnestrategi appellerer ikke til spillere, der systematisk udnytter bonusser. Platforme som <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> med sin <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> og <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> med bonus uden indbetaling er matematisk mere fordelagtige for dette segment.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Internationale spillere.</strong> Fraværet af Skrill, PayPal, Neteller og kryptovaluta gør Royal Casino uegnet for spillere med internationale betalingspræferencer. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> dækker dette behov langt bedre med 10+ betalingsmetoder.</p>
@@ -216,7 +216,7 @@ const RoyalCasinoAnmeldelse = () => {
 
         {/* EV / Bankroll Analysis */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Bankroll-matematik og Expected Value</h2>
+          <h2 className="mb-4 text-3xl font-bold">Spillerøkonomi – hvad koster det reelt at spille på Royal Casino?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at give et matematisk grundlag for Royal Casinos bonusværdi har vi beregnet Expected Value under standardbetingelser. Disse tal giver et objektivt billede af bonussens reelle værdi for den typiske danske spiller.</p>
           <Card className="border-border bg-card mb-6">
             <CardHeader><CardTitle className="text-lg">EV-beregning – Royal Casino velkomstbonus</CardTitle></CardHeader>
