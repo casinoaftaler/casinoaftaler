@@ -695,7 +695,7 @@ const BetiniaAnmeldelse = () => {
 
         {/* Mobile Experience */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – Casino og sportsbetting i lommen</h2>
+          <h2 className="mb-4 text-3xl font-bold">Casino og sport på telefonen – dual-motor i praksis</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betinia har ingen dedikeret app, men den mobiloptimerede hjemmeside fungerer som en progressiv web-app, der dækker alle funktioner. Vi testede mobilversionen på iPhone 15 Pro (Safari), Samsung Galaxy S24 (Chrome) og iPad Air (Safari) over 4 dage med fokus på navigation, spilleautomater, live casino, sportsbetting og betalingsflows.
           </p>
