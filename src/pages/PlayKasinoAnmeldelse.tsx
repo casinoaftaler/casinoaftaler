@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { InlineReviewCTA } from "@/components/InlineReviewCTA";
 import { LazySection } from "@/components/LazySection";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
