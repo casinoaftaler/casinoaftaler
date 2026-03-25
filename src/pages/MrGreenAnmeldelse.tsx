@@ -206,7 +206,7 @@ const MrGreenAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – professionel men begrænset</h2>
+          <h2 className="mb-4 text-3xl font-bold">Helpdesk – professionel men med begrænset rækkevidde</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green tilbyder kundeservice via live chat og e-mail. Live chatten er tilgængelig i begrænset åbningstid (typisk 09:00-23:00 dansk tid), hvilket er en ulempe sammenlignet med operatører, der tilbyder 24/7 support. Uden for åbningstiden kan du sende en e-mail, der typisk besvares inden for 24 timer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede live chatten fire gange på forskellige tidspunkter. Gennemsnitlig ventetid var 3 minutter – hurtigere end branchegennemsnittet. Agenternes kompetence var generelt høj med korrekte svar på spørgsmål om bonusvilkår, betalingsmetoder og ansvarligt spil. Én agent var særligt imponerende og kunne detaljeret forklare, hvordan Green Gaming-algoritmens risikovurdering fungerer – et vidensniveau, der tyder på grundig intern træning.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">FAQ-sektionen er veldokumenteret med logisk kategorisering og søgefunktion. De fleste standardspørgsmål kan besvares her uden at kontakte support. Den dækker konto, bonus, betalinger, ansvarligt spil og tekniske spørgsmål med klare, letforståelige svar.</p>
