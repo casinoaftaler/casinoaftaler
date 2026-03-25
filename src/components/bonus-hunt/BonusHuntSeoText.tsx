@@ -23,7 +23,8 @@ export function BonusHuntSeoText() {
             på et{" "}
             <Link to="/casino-anmeldelser" className="text-primary hover:underline">
               dansk online casino
-            </Link>, og herefter åbner dem én for én foran et live-publikum. Formatet stammer fra den internationale
+            </Link>. Hver gang en bonus trigges, gemmes den og lukkes ned – og når balancen er i 0, åbnes alle gemte bonusser
+            på én gang foran et live-publikum. I nogle tilfælde kan bonusser også købes direkte (bonus buy), men hunting er standarden. Formatet stammer fra den internationale
             Twitch-scene, men har vundet enorm popularitet i Skandinavien – særligt i Danmark, hvor der stilles
             strenge krav til gennemsigtighed og{" "}
             <Link to="/casino-licenser" className="text-primary hover:underline">
