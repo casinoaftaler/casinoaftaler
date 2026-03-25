@@ -659,7 +659,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Customer Service */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – E-mail uden live chat</h2>
+          <h2 className="mb-4 text-3xl font-bold">Support via e-mail – ingen live chat tilgængelig</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Her kommer PlayKasinos mest markante svaghed: kundeservice er udelukkende tilgængelig via e-mail (support@playkasino.com). Der er ingen live chat – en funktion, som de fleste danske spillere forventer i 2026. Det er en overraskende mangel for et casino drevet af en så erfaren operatør som SkillOnNet, der tilbyder live chat på flere af sine andre brands.
           </p>
