@@ -141,6 +141,7 @@ const CasinostuenAnmeldelse = lazy(() => import("./pages/CasinostuenAnmeldelse")
 const PokerStarsAnmeldelse = lazy(() => import("./pages/PokerStarsAnmeldelse"));
 const BwinAnmeldelse = lazy(() => import("./pages/BwinAnmeldelse"));
 const MarathonBetAnmeldelse = lazy(() => import("./pages/MarathonBetAnmeldelse"));
+const PlayKasinoAnmeldelse = lazy(() => import("./pages/PlayKasinoAnmeldelse"));
 const CasinoAnmeldelser = lazy(() => import("./pages/CasinoAnmeldelser"));
 const Casinospil = lazy(() => import("./pages/Casinospil"));
 const Spillemaskiner = lazy(() => import("./pages/Spillemaskiner"));
@@ -467,6 +468,7 @@ const App = () => (
                 <Route path="/casino-anmeldelser/pokerstars" element={<PokerStarsAnmeldelse />} />
                 <Route path="/casino-anmeldelser/bwin" element={<BwinAnmeldelse />} />
                 <Route path="/casino-anmeldelser/marathonbet" element={<MarathonBetAnmeldelse />} />
+                <Route path="/casino-anmeldelser/playkasino" element={<PlayKasinoAnmeldelse />} />
                 <Route path="/casino-anmeldelser/bet365-vs-unibet" element={<Bet365VsUnibet />} />
                 <Route path="/casino-anmeldelser/leovegas-vs-mr-green" element={<LeoVegasVsMrGreen />} />
                 <Route path="/casino-anmeldelser/danske-spil-vs-spilnu" element={<DanskeSpilVsSpilnu />} />

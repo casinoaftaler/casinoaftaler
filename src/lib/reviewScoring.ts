@@ -95,8 +95,8 @@ export const CASINO_SCORES: Record<string, CasinoScoring> = {
   },
   playkasino: {
     slug: "playkasino",
-    scores: { sikkerhed: 4.5, spiludvalg: 4.3, bonus: 4.5, udbetaling: 4.3, kundeservice: 4.2, brugeroplevelse: 4.4 },
-    total: 4.5,
+    scores: { sikkerhed: 4.5, spiludvalg: 4.3, bonus: 4.5, udbetaling: 4.3, kundeservice: 3.5, brugeroplevelse: 4.4 },
+    total: 4.3,
   },
   spildansknu: {
     slug: "spildansknu",

@@ -141,6 +141,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-anmeldelser/pokerstars", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-21" },
   { path: "/casino-anmeldelser/bwin", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-21" },
   { path: "/casino-anmeldelser/marathonbet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
+  { path: "/casino-anmeldelser/playkasino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-25", author: "jonas", articleTitle: "PlayKasino Anmeldelse 2026", articleCategory: "Anmeldelse", articleExcerpt: "SkillOnNet-casino med 100% bonus op til 500 kr., 10x omsætning, 1.200+ spil og dedikeret mobilapp." },
 
   // ── VS / Sammenligningssider ──
   { path: "/casino-anmeldelser/bet365-vs-unibet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-21" },
