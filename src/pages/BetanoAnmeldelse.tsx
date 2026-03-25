@@ -433,7 +433,7 @@ const BetanoAnmeldelse = () => {
 
         {/* EV Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Avanceret EV-analyse: Bonusværdi og sportsvæddemål</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Spillerøkonomi: Matematisk bonusanalyse og odds-EV</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi har beregnet Expected Value (EV) på tværs af Betanos casino-bonus, sportsvæddemål og løbende kampagner for at give et matematisk funderet billede af platformens reelle værdi.</p>
           <Card className="border-border bg-card mb-6">
             <CardHeader><CardTitle className="text-lg">Casino-velkomstbonus EV (maks. indbetaling)</CardTitle></CardHeader>
