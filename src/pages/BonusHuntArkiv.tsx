@@ -22,7 +22,7 @@ const faqItems = [
   },
   {
     question: "Hvordan udføres en bonus hunt?",
-    answer: "Vi køber bonusser på en række spillemaskiner, noterer startbalancen, og åbner dem derefter én efter én live på stream. Alle resultater logges automatisk, og gennemsnitlig X beregnes fra de samlede gevinster."
+    answer: "Vi starter med en fast balance og spinner på udvalgte spillemaskiner. Hver gang vi rammer en bonus, gemmer vi den og lukker bonusrunden ned. Når balancen er spundet i 0, åbner vi alle gemte bonusser på én gang live på stream. I nogle tilfælde bruger vi bonus buy i stedet, men hunting er vores standard. Alle resultater logges automatisk, og gennemsnitlig X beregnes fra de samlede gevinster."
   },
   {
     question: "Kan jeg deltage i bonus hunts?",

@@ -434,9 +434,10 @@ export function BonusHuntSeoText() {
             som dokumentation for casinoets reelle spiloplevelse.
           </p>
           <p>
-            Ulempen er, at bonus buy-funktionen typisk har en højere pris end at opnå bonusrunden
-            organisk. En bonus buy koster ofte 50–100x din indsats, hvilket svarer til hundredvis af
-            base game-spins. Det er derfor vigtigt at forstå{" "}
+            Ved hunting spinner man hele balancen ned og samler bonusser organisk – fordelen er, at REQ X
+            kan ende under 100x, hvis man er heldig med at triggere bonusser hurtigt. Ulempen er, at man kan
+            være uheldig og bruge mange spins uden at ramme, hvilket giver en REQ X over 100-200x. Ved bonus buy
+            er REQ X altid ~100x, men man mister muligheden for den lavere pris. Det er derfor vigtigt at forstå{" "}
             <Link to="/casino-bonus" className="text-primary hover:underline">
               bonusstrukturer
             </Link>{" "}

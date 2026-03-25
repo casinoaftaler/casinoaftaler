@@ -396,10 +396,11 @@ export function BonusHuntArkivSeoContent() {
           underholdningsoplevelse og de mest interessante data.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          I de tidlige dage brugte vi primært organiske bonusser – det vil sige, vi spillede maskinerne og
-          ventede på, at bonus-runden triggede naturligt. Dette format var tidskrævende og uforudsigeligt,
-          med hunts der kunne vare 8-12 timer. Med introduktionen af Feature Buy har vi kunnet komprimere
-          hunt-formatet til 3-5 timer, hvilket giver en mere fokuseret og intens oplevelse.
+          Vores primære metode har altid været hunting – at spinne en balance ned til 0 og gemme bonusser undervejs.
+          Denne tilgang giver den mest autentiske oplevelse og kan resultere i en lavere REQ X end bonus buy, hvis
+          man er heldig med at triggere bonusser hurtigt. Feature Buy bruges som et supplement, når vi ønsker at
+          inkludere specifikke slots eller komprimere huntens varighed. Den typiske hunt varer 3-8 timer afhængigt af
+          mix'et af huntede og købte bonusser.
         </p>
         <p className="text-muted-foreground leading-relaxed">
           Vi har også indført automatisk data-logging via vores StreamSystem-integration, som eliminerer manuel

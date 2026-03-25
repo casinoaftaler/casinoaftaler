@@ -8,14 +8,14 @@ const steps = [
     heading: "Bonusser samles",
     description: (
       <>
-        Vi enten køber eller hunter bonusser fra udvalgte{" "}
+        Vi starter med en fast balance og spinner på udvalgte{" "}
         <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
           spilleautomater
         </Link>{" "}
         hos{" "}
         <Link to="/casino-anmeldelser" className="text-primary hover:underline">
           anmeldte danske casinoer
-        </Link>. Start balance logges automatisk.
+        </Link>. Hver bonus der trigges, gemmes og lukkes ned. Når balancen er i 0, er alle bonusser klar til åbning.
       </>
     ),
   },
