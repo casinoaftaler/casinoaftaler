@@ -472,7 +472,7 @@ const BetanoAnmeldelse = () => {
 
         {/* Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" />Hvem bør undgå Betano?</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Target className="h-7 w-7 text-primary" />Hvilke spillere passer Betano IKKE til?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Dedikerede casino-spillere:</strong> <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.000+ spil, eksklusive live borde), <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (5.000+ titler) og <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> giver en dybere rendyrket casino-oplevelse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Seriøse bettors der jager laveste marginer:</strong> <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> har konsekvent 0,5-1,5 procentpoint lavere marginer – over et år sparer en aktiv bettor ~1.800 kr.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>High rollers og VIP-spillere:</strong> Betanos VIP-program er under modning. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' MGM-VIP, <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibets</Link> loyalitetsprogram eller bet365's high-roller services er klart stærkere.</p>
