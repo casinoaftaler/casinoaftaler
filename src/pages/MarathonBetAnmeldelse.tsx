@@ -154,7 +154,7 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – den skjulte svaghed</h2>
+          <h2 className="mb-4 text-3xl font-bold">Kontakt og support – den skjulte svaghed</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBets kundeservice er et punkt, der kræver ærlig kritik. Live chat er tilgængelig, men ventetider kan være lange – vi oplevede op til 30 minutter i peak-timer (weekendaftener under store fodboldkampe). Den engelsksprogede support er kompetent, når du endelig kommer igennem, men dansktalende agenter er ikke altid tilgængelige.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">E-mail-support er et alternativ med typisk 12-24 timers svartid. Det er for langsomt for akutte problemer som betalingsfejl eller kontoproblemer under live-væddemål. Der er ingen telefon-support og ingen callback-funktion. FAQ-sektionen er minimal og dækker kun de mest grundlæggende spørgsmål.</p>
           <p className="text-muted-foreground leading-relaxed">Sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365s</Link> 24/7 live chat med under 1 minuts ventetid eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibets</Link> dansksprogede support er MarathonBets kundeservice objektivt underlegen. For erfarne bettors, der sjældent har behov for support, er det acceptabelt. For nye spillere kan det være frustrerende. Det er endnu en indikation af, at MarathonBet prioriterer sit produkt (odds) over servicen omkring det.</p>
