@@ -535,7 +535,7 @@ const CampobetAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – Responsivt design uden app</h2>
+          <h2 className="mb-4 text-3xl font-bold">Responsiv webapp – test uden dedikeret app</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Campobet har ingen dedikeret app i App Store eller Google Play, men den mobiloptimerede hjemmeside er teknisk imponerende. Under vores test på iPhone 15 Pro og Samsung Galaxy S24 oplevede vi konsekvent hurtige loadtider (under 2 sekunder pr. sidevisning), stabil performance og et touchvenligt interface der tilpasser sig automatisk til skærmstørrelsen.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Alle funktioner er fuldt tilgængelige på mobilen: spilleautomater, live casino, sportsbetting (inkl. Bet Builder og livebetting), indbetalinger, udbetalinger og kundeservice. Live casinoet streamer i høj kvalitet selv på 4G, og MobilePay-indbetalinger kan gennemføres med blot et par tryk. Sportssektionen er særligt veldesignet til mobil med swipe-baseret navigation mellem markeder og realtids-livescores.</p>
           <p className="text-muted-foreground leading-relaxed">Den eneste bemærkelsesværdige begrænsning på mobilen er, at filtreringssystemet i spillebiblioteket er lidt mindre intuitivt end desktop-versionen – med færre synlige filterkategorier og en tendens til at kræve ekstra tryk for at finde specifikke udbydere. Det er en kosmetisk irritation snarere end et funktionelt problem, men det er værd at nævne for spillere, der primært bruger mobilen.</p>
