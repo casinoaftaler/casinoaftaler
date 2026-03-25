@@ -41,7 +41,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { getRouteLastmod } from "@/lib/seoRoutes";
 import { Separator } from "@/components/ui/separator";
 
-const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"];
+const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];
 
 /**
  * Normalize feature strings for consistent filtering.

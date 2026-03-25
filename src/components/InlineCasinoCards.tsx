@@ -15,6 +15,7 @@ const PARTNER_SLUGS = [
   "campobet",
   "swift-casino",
   "luna-casino",
+  "playkasino",
 ];
 
 interface InlineCasinoCardsProps {

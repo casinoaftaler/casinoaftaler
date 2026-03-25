@@ -56,7 +56,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 
-const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"];
+const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];
 
 const DANISH_MONTHS = [
   "Januar", "Februar", "Marts", "April", "Maj", "Juni",

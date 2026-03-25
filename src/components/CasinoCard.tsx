@@ -363,15 +363,9 @@ function FeaturedCard({
                 </button>
               </CollapsibleTrigger>
 
-              {["spilleautomaten", "spildansknu", "campobet", "betinia", "swift-casino", "luna-casino"].includes(casino.slug) && (
+              {["spilleautomaten", "spildansknu", "campobet", "betinia", "swift-casino", "luna-casino", "playkasino"].includes(casino.slug) && (
                 <Link
-                  to={
-                    casino.slug === "spilleautomaten" ? "/casino-anmeldelser/spilleautomaten" :
-                    casino.slug === "spildansknu" ? "/casino-anmeldelser/spildansknu" :
-                    casino.slug === "campobet" ? "/casino-anmeldelser/campobet" :
-                    casino.slug === "betinia" ? "/casino-anmeldelser/betinia" :
-                    casino.slug === "swift-casino" ? "/casino-anmeldelser/swift-casino" :
-                    "/casino-anmeldelser/luna-casino"
+                  to={`/casino-anmeldelser/${casino.slug}`
                   }
                   className="text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
                 >

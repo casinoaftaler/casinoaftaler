@@ -44,7 +44,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino"];
+const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];
 const PRIORITY_SLUGS = ["spildansknu", "spilleautomaten"];
 
 const DANISH_MONTHS = [
