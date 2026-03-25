@@ -132,7 +132,7 @@ const HurtigUdbetalingGuide = () => {
 
         <SnippetAnswer answer="De hurtigste casinoer i Danmark udbetaler via Trustly inden for 2 timer. MobilePay og bankoverførsler tager typisk 1-3 hverdage." />
 
-        <QuickComparisonTable count={3} title="Hurtigste Udbetalinger – Top 3" prioritySlugs={["spilleautomaten", "betinia", "swift-casino"]}} />
+        <QuickComparisonTable count={3} title="Hurtigste Udbetalinger – Top 3" prioritySlugs={["spilleautomaten", "betinia", "swift-casino"]} />
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over hurtige udbetalinger</h2>

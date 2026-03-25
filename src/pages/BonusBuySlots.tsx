@@ -158,7 +158,7 @@ const BonusBuySlots = () => {
 
         <SnippetAnswer answer="Bonus buy (feature buy) lader dig købe free spins-runden direkte for 50–200x din indsats. Det er lovligt i Danmark, giver samme RTP som organisk trigger, og eliminerer ventetiden. Sweet Bonanza og Gates of Olympus er blandt de mest populære." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer til Bonus Buy Slots" prioritySlugs={["spilleautomaten", "campobet", "swift-casino"]}} />
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Bonus Buy Slots" prioritySlugs={["spilleautomaten", "campobet", "swift-casino"]} />
 
         {/* ── 1. HVAD ER BONUS BUY? ── */}
         <section className="mb-12" id="hvad-er-bonus-buy">

@@ -117,7 +117,7 @@ const NyeCasinoer2026 = () => {
 
         <SnippetAnswer answer="Nye casinoer i 2026 byder på moderne teknologi, mobile-first design og konkurrencedygtige bonusser. Se hvilke der er værd at prøve." />
 
-        <QuickComparisonTable count={3} title="Nye Casinoer 2026 – Top 3" prioritySlugs={["playkasino", "swift-casino", "luna-casino"]}} />
+        <QuickComparisonTable count={3} title="Nye Casinoer 2026 – Top 3" prioritySlugs={["playkasino", "swift-casino", "luna-casino"]} />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Nye casinoer i Danmark 2026 – hvad kan du forvente?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

@@ -146,7 +146,7 @@ const LiveCasinoStrategiGuide = () => {
 
         <SnippetAnswer answer="Live casino-strategi handler om at vælge spil med lav husfordel, bruge grundstrategi i blackjack og sætte stop-loss grænser." />
 
-        <QuickComparisonTable count={3} title="Bedste Live Casinoer – Top 3" prioritySlugs={["campobet", "spildansknu", "betinia"]}} />
+        <QuickComparisonTable count={3} title="Bedste Live Casinoer – Top 3" prioritySlugs={["campobet", "spildansknu", "betinia"]} />
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Hvor pillar-guiden giver dig overblikket over spiltyper og udbydere, dykker denne guide ned i den strategiske dimension: Hvordan minimerer du dit forventede tab? Hvordan styrer du din bankroll? Og hvorfor fejler alle populære betting-systemer matematisk? Vi besvarer disse spørgsmål med data, formler og konkrete anbefalinger – ikke mavefølelse.
         </p>

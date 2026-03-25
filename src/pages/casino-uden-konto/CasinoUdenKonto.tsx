@@ -253,7 +253,7 @@ const CasinoUdenKonto = () => {
 
         <SnippetAnswer answer="Casino uden konto (Pay N Play) lader dig spille med det samme via bankidentifikation – uden registrering eller KYC-ventetid." />
 
-        <QuickComparisonTable count={3} title="Bedste Pay N Play Casinoer – Top 3" prioritySlugs={["swift-casino", "spilleautomaten", "betinia"]}} />
+        <QuickComparisonTable count={3} title="Bedste Pay N Play Casinoer – Top 3" prioritySlugs={["swift-casino", "spilleautomaten", "betinia"]} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Testet og skrevet af Kevin, casino streamer & IT-medansvarlig hos Casinoaftaler.dk.
         </p>

@@ -124,7 +124,7 @@ export default function SpillemaskinerHoejRTP() {
 
         <SnippetAnswer answer="Spillemaskiner med høj RTP (96%+) giver bedre langsigtede vinderchancer. RTP er en matematisk konstant beregnet over milliarder spins – ikke en garanti for den enkelte session." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["spilleautomaten", "betinia", "campobet"]}} />
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["spilleautomaten", "betinia", "campobet"]} />
 
 {/* ── H2 1: Hvad betyder RTP egentlig – matematisk forklaring ── */}
         <section className="mb-12">

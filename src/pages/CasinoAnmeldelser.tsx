@@ -237,7 +237,7 @@ const CasinoAnmeldelser = () => {
 
         <SnippetAnswer answer="Vi har testet 29 danske casinoer med rigtige penge over 14+ dage hver. Sammenlign bonus, udbetalingstid og spiludvalg – alle med gyldig dansk licens fra Spillemyndigheden." />
 
-        <QuickComparisonTable count={3} title="Top 3 Casinoer – Hurtig Sammenligning" prioritySlugs={["betinia", "spilleautomaten", "campobet"]}} />
+        <QuickComparisonTable count={3} title="Top 3 Casinoer – Hurtig Sammenligning" prioritySlugs={["betinia", "spilleautomaten", "campobet"]} />
 
         {/* ===== SEKTION 1: Strategisk intro ===== */}
         <section className="mb-12">

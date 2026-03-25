@@ -91,7 +91,7 @@ const NyeCasinoerLavWagering = () => {
 
         <SnippetAnswer answer="Nye casinoer med lave omsætningskrav (5-10x) giver dig reel mulighed for at hæve bonusgevinster. Sammenlign vilkår nedenfor." />
 
-        <QuickComparisonTable count={3} title="Lave Omsætningskrav – Top 3" prioritySlugs={["betinia", "playkasino", "spilleautomaten"]}} />
+        <QuickComparisonTable count={3} title="Lave Omsætningskrav – Top 3" prioritySlugs={["betinia", "playkasino", "spilleautomaten"]} />
         {/* Intro - differentiated from /omsaetningskrav */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Vælg nyt casino baseret på wagering – ikke bonusstørrelse</h2>
