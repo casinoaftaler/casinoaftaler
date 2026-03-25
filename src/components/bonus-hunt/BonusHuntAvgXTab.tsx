@@ -185,11 +185,11 @@ export function BonusHuntAvgXTab({ session, bets, userId, openedBonuses = 0, onB
             </h4>
             <Input
               type="number"
-              placeholder={`Credits (${session.avgx_min_bet}-${session.avgx_max_bet})`}
+              placeholder={`Credits (min ${session.avgx_min_bet}${session.avgx_max_bet >= 999999 ? ', ingen max' : `-${session.avgx_max_bet}`})`}
               value={betAmount || (userBet ? String(userBet.bet_amount) : '')}
               onChange={e => setBetAmount(e.target.value)}
               min={session.avgx_min_bet}
-              max={session.avgx_max_bet}
+              {...(session.avgx_max_bet < 999999 ? { max: session.avgx_max_bet } : {})}
             />
             <Button onClick={handlePlaceBet} disabled={loading || (!selectedGroup && !userBet)} className="w-full">
               {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}

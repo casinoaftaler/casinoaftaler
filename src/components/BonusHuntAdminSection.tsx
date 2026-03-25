@@ -231,7 +231,7 @@ function SessionControls({ session }: { session: any }) {
             <span className="block">Vært: <strong>{session.host === 'jonas' ? 'Jonas' : 'Kevin'}</strong></span>
             <div className="grid grid-cols-2 gap-2">
               <span>GTW: {session.gtw_min_bet}-{session.gtw_max_bet} credits</span>
-              <span>AVG X: {session.avgx_min_bet}-{session.avgx_max_bet} credits</span>
+              <span>AVG X: {session.avgx_min_bet}-{session.avgx_max_bet >= 999999 ? '∞' : session.avgx_max_bet} credits</span>
             </div>
           </div>
 
