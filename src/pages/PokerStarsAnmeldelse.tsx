@@ -141,7 +141,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og Flutter-garantien</h2>
+          <h2 className="mb-4 text-3xl font-bold">Flutter Entertainment-garantien og dansk licensering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">PokerStars' sikkerhedsprofil er exceptionel. Flutter Entertainment er verdens største gambling-selskab med licenser i 100+ jurisdiktioner globalt. Den danske licens fra Spillemyndigheden sikrer lokal compliance, mens Flutters børsnotering på både London Stock Exchange og NYSE garanterer fuld finansiel gennemsigtighed. Spillermidler opbevares på segregerede konti adskilt fra driftskapital.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Poker-specifik sikkerhed er et område, hvor PokerStars investerer tungt. Et dedikeret Game Integrity-team overvåger alle spil for collusion (sammenspil mellem spillere), brug af forbudte HUDs, multi-accounting og andre former for snyd. PokerStars' detektionssystemer er de mest avancerede i branchen og har ført til hundredvis af kontolukninger og tilbagebetalinger til berørte spillere over årene.</p>
           <p className="text-muted-foreground leading-relaxed">ROFUS-tilslutning, <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer og 256-bit SSL-kryptering er standardfunktioner. PokerStars tilbyder også specifikke poker-relaterede ansvarligt spil-værktøjer: session-tidsmålere, hand-pauses og mulighed for at begrænse turneringsdeltagelse. Det er detaljer, der viser, at platformen forstår de unikke risikofaktorer ved poker sammenlignet med casino-spil.</p>
