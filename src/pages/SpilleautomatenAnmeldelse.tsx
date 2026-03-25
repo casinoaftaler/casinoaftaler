@@ -784,7 +784,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Final Verdict */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Endelig vurdering – Slots-Specialisten der leverer</h2>
+          <h2 className="mb-4 text-3xl font-bold">Konklusion – Slots-Specialisten holder hvad den lover</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Spilleautomaten er et eksempel på, at niche-fokus kan være en styrke i et marked domineret af generalister. Den 5-dages bonusmodel giver en kontrolleret opstart, Præmieshoppen belønner loyalitet med kontante midler, og spiludvalget – selvom det er smallere end de største casinoer – er kurateret med kvalitet for øje. MobilePay-udbetalinger på 2 timer 15 minutter og dansk kundeservice med under 2 minutters svartid runder billedet af.
           </p>

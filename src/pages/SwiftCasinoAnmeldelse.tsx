@@ -713,7 +713,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── NEGATIV SEGMENTERING ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge Swift Casino?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Begrænsninger – når Swift Casino falder kort</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Ærlighed er vigtigt. Swift Casino er ikke det rigtige valg for alle:
           </p>

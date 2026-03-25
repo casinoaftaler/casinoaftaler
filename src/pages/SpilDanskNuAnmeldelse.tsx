@@ -387,7 +387,7 @@ const SpilDanskNuAnmeldelse = () => {
 
         {/* Hvem bør IKKE vælge */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge SpilDanskNu?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Spillerprofiler der bør overveje alternativer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">SpilDanskNu er et fremragende valg for mange danske spillere, men det er ikke det rigtige casino for alle. Her er en ærlig vurdering af, hvem der bør overveje alternativer:</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Sportsbetting-entusiaster.</strong> Hvis du ønsker at kombinere casino med sportsvæddemål, er SpilDanskNu ikke det rigtige valg. Her bør du i stedet se mod <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobet</Link> eller <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link>, der tilbyder fuldt integrerede sportssektioner.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">High rollers og VIP-jægere.</strong> SpilDanskNus loyalitetsprogram er gennemsigtigt og ærligt, men det mangler de eksklusive VIP-fordele som personlige account managers, invitationer til events og skræddersyede bonusser, som casinoer som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> tilbyder.</p>
