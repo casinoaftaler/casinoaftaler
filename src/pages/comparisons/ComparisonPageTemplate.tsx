@@ -182,9 +182,9 @@ export function ComparisonPageTemplate({
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author={author} readTime={readTime} />
 
-        <SnippetAnswer answer={`${casinoA.name} vs ${casinoB.name}: Vi har testet begge casinoer med rigtige penge og sammenligner bonus, spiludvalg, udbetalingstid og mobil. Se hvem der vinder nedenfor.`} />
+        <SnippetAnswer answer={snippetAnswer || `${casinoA.name} vs ${casinoB.name}: Vi har testet begge casinoer med rigtige penge og sammenligner bonus, spiludvalg, udbetalingstid og mobil. Se hvem der vinder nedenfor.`} />
 
-        <QuickComparisonTable count={3} title="Top 3 Alternativer" />
+        <QuickComparisonTable count={3} title="Top 3 Alternativer" prioritySlugs={prioritySlugs} />
 
         {/* Quick comparison cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">

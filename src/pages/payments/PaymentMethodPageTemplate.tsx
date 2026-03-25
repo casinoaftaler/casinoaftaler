@@ -229,9 +229,9 @@ export function PaymentMethodPage({
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="22 Min." />
 
-        <SnippetAnswer answer={`${name} på danske casinoer: Se vores dybdegående test af hastighed, sikkerhed og bonuskvalificering. Sammenlign med alternative betalingsmetoder nedenfor.`} />
+       <SnippetAnswer answer={snippetAnswer || `${name} på danske casinoer: Se vores dybdegående test af hastighed, sikkerhed og bonuskvalificering. Sammenlign med alternative betalingsmetoder nedenfor.`} />
 
-        <QuickComparisonTable count={3} title={`Bedste Casinoer med ${name}`} />
+       <QuickComparisonTable count={3} title={`Bedste Casinoer med ${name}`} prioritySlugs={prioritySlugs} />
 
         {/* Intro */}
         <section className="mb-12">
