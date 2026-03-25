@@ -666,7 +666,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── SIKKERHED ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og ansvarligt spil</h2>
+          <h2 className="mb-4 text-3xl font-bold">Licens under SkillOnNet og ansvarligt spil-initiativer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Swift Casino opererer med dansk licens fra Spillemyndigheden (nr. 16-1066791) udstedt til Skill On Net Ltd. Selskabet har drevet danske casinoer siden 2017 og har en dokumenteret track record uden alvorlige sanktioner eller advarsler.
           </p>
