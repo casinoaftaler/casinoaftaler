@@ -236,7 +236,7 @@ const ComeOnAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – dansk og direkte</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dansk support med personligt touch</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn tilbyder kundeservice på dansk via live chat og e-mail. Vi testede to gange:</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="flex items-start gap-3 rounded-lg border border-border bg-card p-4"><Headphones className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" /><div><h3 className="font-semibold">Torsdag kl. 13:00</h3><p className="text-sm text-muted-foreground">Svartid: 2 min 10 sek. Dansk agent, venlig og kompetent. Besvarede spørgsmål om spilbidragsprocenter korrekt og præcist.</p></div></div>
