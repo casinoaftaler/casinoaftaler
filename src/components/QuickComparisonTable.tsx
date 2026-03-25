@@ -87,7 +87,7 @@ export function QuickComparisonTable({
                     <div className="flex items-center gap-2">
                       {casino.logo_url && (
                         <img
-                          src={optimizeStorageImage(casino.logo_url, { width: 32, height: 32 })}
+                          src={optimizeStorageImage(casino.logo_url, 32)}
                           alt={`${casino.name} logo`}
                           width={24}
                           height={24}
