@@ -502,7 +502,7 @@ const Bet365Anmeldelse = () => {
 
         {/* EV Deep-Dive */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Avanceret EV-analyse: Casino-bonus og sportsvæddemål</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><TrendingUp className="h-7 w-7 text-primary" />Bonusmatematik: Expected Value på casino og sport</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">For at vurdere bet365's reelle værdi for danske spillere har vi beregnet Expected Value (EV) på tværs af casino-bonus, løbende kampagner og sportsvæddemål. Formlen er: <strong>EV = Bonusbeløb − (Total Omsætning × House Edge)</strong>.</p>
 
           <Card className="border-border bg-card mb-6">
