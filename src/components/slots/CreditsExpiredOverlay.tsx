@@ -3,6 +3,11 @@ import { Clock, Sparkles, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CreditCoin } from "@/components/CreditCoin";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useCasinos } from "@/hooks/useCasinos";
+import { optimizeStorageImage } from "@/lib/imageOptimization";
+import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
 
 function getTimeUntilMidnightCopenhagen(): { hours: number; minutes: number; seconds: number } {
   const now = new Date();
@@ -19,19 +24,14 @@ function getTimeUntilMidnightCopenhagen(): { hours: number; minutes: number; sec
   };
 }
 
-const CASINO_PROMOS = [
-  { name: "SpilDanskNu", bonus: "1.000 kr. bonus", slug: "spildansknu", color: "from-blue-600 to-blue-800" },
-  { name: "Spilleautomaten", bonus: "1.000 kr. bonus", slug: "spilleautomaten", color: "from-emerald-600 to-emerald-800" },
-  { name: "Campobet", bonus: "1.000 kr. bonus", slug: "campobet", color: "from-orange-600 to-orange-800" },
-  { name: "Betinia", bonus: "1.000 kr. bonus", slug: "betinia", color: "from-purple-600 to-purple-800" },
-];
-
 interface CreditsExpiredOverlayProps {
   isVisible: boolean;
 }
 
 export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps) {
   const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnightCopenhagen);
+  const { data: casinos } = useCasinos();
+  const { user } = useAuth();
 
   useEffect(() => {
     if (!isVisible) return;
@@ -44,6 +44,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
   if (!isVisible) return null;
 
   const pad = (n: number) => String(n).padStart(2, "0");
+  const playkasino = casinos?.find((c) => c.slug === "playkasino");
 
   return (
     <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm rounded-xl">
@@ -88,26 +89,43 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
             ))}
           </div>
 
-          {/* Casino promos */}
-          <div className="border-t border-border/30 pt-3 space-y-2">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-              🎰 Spil for rigtige penge
+          {/* PlayKasino promo */}
+          <div className="border-t border-border/30 pt-4 space-y-3">
+            <p className="text-sm font-semibold text-foreground leading-snug">
+              Er du klar til at spille for rigtige penge? Prøv det helt nye danske casino, <span className="text-primary">PlayKasino</span>. (No-Sticky bonus!).
             </p>
-            <div className="grid grid-cols-2 gap-2">
-              {CASINO_PROMOS.map((casino) => (
-                <Link
-                  key={casino.slug}
-                  to={`/casino-anmeldelser/${casino.slug}`}
-                  className={`flex items-center justify-between gap-1.5 rounded-lg bg-gradient-to-r ${casino.color} px-3 py-2.5 text-white transition-transform hover:scale-[1.03] active:scale-95`}
+
+            {playkasino && (
+              <div className="rounded-xl border border-primary/30 bg-gradient-to-b from-primary/10 to-primary/5 p-4 space-y-3">
+                {playkasino.logo_url && (
+                  <img
+                    src={optimizeStorageImage(playkasino.logo_url, 120)}
+                    alt="PlayKasino logo"
+                    className="h-10 mx-auto object-contain"
+                    loading="lazy"
+                  />
+                )}
+                <p className="text-xs text-muted-foreground">{playkasino.bonus_amount}</p>
+                <Button
+                  size="sm"
+                  className="w-full gap-1.5"
+                  onClick={() => getAffiliateRedirect("playkasino", user?.id)}
                 >
-                  <div className="text-left min-w-0">
-                    <div className="text-xs font-bold truncate">{casino.name}</div>
-                    <div className="text-[10px] opacity-80">{casino.bonus}</div>
-                  </div>
-                  <ExternalLink className="h-3 w-3 shrink-0 opacity-70" />
-                </Link>
-              ))}
-            </div>
+                  Klik her!
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </Button>
+              </div>
+            )}
+
+            {!playkasino && (
+              <Link
+                to="/casino-anmeldelser/playkasino"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-primary to-primary/80 px-5 py-3 text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.03] active:scale-95"
+              >
+                Klik her!
+                <ExternalLink className="h-3.5 w-3.5" />
+              </Link>
+            )}
           </div>
 
           <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground/70 pt-1">
