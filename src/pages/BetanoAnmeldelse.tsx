@@ -274,7 +274,7 @@ const BetanoAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalingstid</h2>
+          <h2 className="mb-4 text-3xl font-bold">Transaktioner – processer, hastighed og begrænsninger</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betano understøtter <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> og <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link>. Indbetalinger er øjeblikkelige uanset metode. Ingen gebyrer fra Betanos side.
           </p>
