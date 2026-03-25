@@ -222,7 +222,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – app med MitID-integration</h2>
+          <h2 className="mb-4 text-3xl font-bold">App og responsivt design – MitID-login i praksis</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Danske Spil Casino tilbyder en af de bedste mobiloplevelser på det danske marked. Udover en fuldt responsiv hjemmeside har de en dedikeret app, der giver hurtig adgang til alle spil, kampagner og kontofunktioner. Appen er en af de mest downloadede casino-apps i Danmark, og den drage fordel af Danske Spils massive brandgenkendelse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I vores test på iPhone 15 Pro målte vi en appstarttid på 2,1 sekunder og jævne animationer på tværs af alle sektioner. Spilindlæsning tager gennemsnitligt 3,5 sekunder for slots og 4,0 sekunder for live casino – lidt langsommere end brancheledere som LeoVegas (2,8s) og Mr Green (3,2s), men stadig inden for acceptabel rækkevidde. Samsung Galaxy S24-testen viste tilsvarende resultater med en marginalt hurtigere appstart (1,9 sekunder).</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">MitID-integration til login er en unik fordel – du kan logge ind sikkert uden at huske passwords, og den biometriske integration med Face ID/fingeraftryk gør processen endnu hurtigere. Push-notifikationer holder dig opdateret om nye kampagner, og den tværgående integration med Oddset, Lotto og andre Danske Spil-produkter er sømløs.</p>
