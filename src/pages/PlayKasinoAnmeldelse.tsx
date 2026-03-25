@@ -657,6 +657,94 @@ const PlayKasinoAnmeldelse = () => {
           </p>
         </section>
 
+        {/* RTP Analysis */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">RTP-analyse – De mest profitable spil hos PlayKasino</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Return to Player ({" "}
+            <Link to="/ordbog/rtp" className={linkClass}>RTP</Link>) er den mest objektive indikator for et spils langsigtede rentabilitet. Vi har gennemgået PlayKasinos spilbibliotek og identificeret de 12 mest profitable titler baseret på dokumenteret RTP fra spilproducenterne. For danske spillere, der ønsker at maksimere deres bonusværdi, er dette den vigtigste sektion i anmeldelsen.
+          </p>
+
+          <div className="overflow-x-auto mb-6">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-4 font-semibold text-foreground">Spil</th>
+                  <th className="text-center py-3 px-4 font-semibold text-foreground">Udbyder</th>
+                  <th className="text-center py-3 px-4 font-semibold text-foreground">RTP</th>
+                  <th className="text-center py-3 px-4 font-semibold text-foreground">Volatilitet</th>
+                  <th className="text-center py-3 px-4 font-semibold text-foreground">Max Win</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { name: "Blood Suckers", provider: "NetEnt", rtp: "98,00 %", vol: "Lav", max: "900x" },
+                  { name: "Mega Joker", provider: "NetEnt", rtp: "99,00 %", vol: "Høj", max: "40.000 kr." },
+                  { name: "Starmania", provider: "NextGen", rtp: "97,87 %", vol: "Lav-Medium", max: "500x" },
+                  { name: "1429 Uncharted Seas", provider: "Thunderkick", rtp: "98,60 %", vol: "Medium", max: "670x" },
+                  { name: "Starburst", provider: "NetEnt", rtp: "96,08 %", vol: "Lav", max: "800x" },
+                  { name: "Thunderstruck II", provider: "Microgaming", rtp: "96,65 %", vol: "Medium", max: "2.400x" },
+                  { name: "Book of Dead", provider: "Play'n GO", rtp: "96,21 %", vol: "Høj", max: "5.000x" },
+                  { name: "Sweet Bonanza", provider: "Pragmatic Play", rtp: "96,48 %", vol: "Høj", max: "21.175x" },
+                  { name: "Reactoonz", provider: "Play'n GO", rtp: "96,51 %", vol: "Medium-Høj", max: "4.570x" },
+                  { name: "Age of the Gods", provider: "Playtech", rtp: "95,02 %", vol: "Medium", max: "Jackpot" },
+                  { name: "Buffalo Blitz", provider: "Playtech", rtp: "95,96 %", vol: "Høj", max: "10.000x" },
+                  { name: "Gates of Olympus", provider: "Pragmatic Play", rtp: "96,50 %", vol: "Høj", max: "5.000x" },
+                ].map((slot) => (
+                  <tr key={slot.name} className="border-b border-border">
+                    <td className="py-3 px-4 font-medium text-foreground">{slot.name}</td>
+                    <td className="py-3 px-4 text-center text-muted-foreground">{slot.provider}</td>
+                    <td className="py-3 px-4 text-center font-semibold text-foreground">{slot.rtp}</td>
+                    <td className="py-3 px-4 text-center text-muted-foreground">{slot.vol}</td>
+                    <td className="py-3 px-4 text-center text-muted-foreground">{slot.max}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            <strong className="text-foreground">Vigtig note om RTP-variationer:</strong> Nogle udbydere tilbyder operatører muligheden for at vælge mellem forskellige RTP-niveauer for det samme spil. De ovenfor angivne RTP-værdier er de officielle standardværdier fra producenterne. I praksis kan den faktiske RTP hos PlayKasino afvige marginalt (typisk ±0,5 %). Vi anbefaler altid at tjekke spillets informationsside (i-knappen) for den specifikke RTP-konfiguration på den pågældende platform.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            For bonusomsætning anbefaler vi at fokusere på spil med RTP over 96 % og lav til medium{" "}
+            <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link>. Høj-volatilitet spil som Book of Dead og Sweet Bonanza har potentiale for store gevinster, men de øger også risikoen for at tabe hele bonussaldoen, før omsætningskravet er opfyldt. Med PlayKasinos 10x omsætning er risikoen dog markant lavere end ved 35x – selv med høj-volatilitet spil har du en realistisk chance for at gå i plus.
+          </p>
+
+          <Card className="border-border bg-card mb-6 border-l-4 border-l-primary">
+            <CardContent className="pt-6">
+              <h3 className="text-lg font-bold text-foreground mb-2 flex items-center gap-2">
+                <Cpu className="h-5 w-5 text-primary" />
+                Playtech-eksklusive: Age of the Gods-serien
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                En af PlayKasinos mest unikke fordele er adgangen til Playtech's Age of the Gods-serie – et progressivt jackpotsystem, der er eksklusivt for SkillOnNet-platformen i Danmark. Serien omfatter over 15 individuelle spil, alle forbundet til den samme fire-niveau progressive jackpot: Power, Extra Power, Super Power og Ultimate Power. Ultimate Power-jackpotten starter typisk ved 100.000 kr. og kan vokse til millionbeløb.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                RTP'en for Age of the Gods-spillene ligger i intervallet 94,5–95,5 % – lavere end de bedste NetEnt-slots, men kompenseret af jackpotbidraget. For spillere, der drømmer om en livsforandrende gevinst, er dette det bedste progressive jackpotsystem tilgængeligt i det danske marked, der ikke allerede er dækket af Mega Moolah (Microgaming).
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Game Navigation & Filtering */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Spilnavigation og filtreringsmuligheder</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Med over 1.200 spil i kataloget er navigationen afgørende for brugeroplevelsen. PlayKasinos spilsektion er organiseret i hovedkategorier: Populære, Nye, Spilleautomater, Bordspil, Live Casino og Jackpot. Derudover kan du søge direkte efter spiltitel eller filtrere efter udbyder – en funktion, der er essentiel for at finde specifikke titler.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Under vores test fandt vi, at udbyderfiltrering fungerer effektivt: ved at vælge eksempelvis "Playtech" får du udelukkende vist Playtech-titler, inklusive Age of the Gods-serien, Buffalo Blitz og live casino-spillene. Søgefunktionen er responsiv og leverer resultater øjeblikkeligt ved tastetryk – ingen forsinkelse selv med 1.200+ titler i databasen.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det vi savner er avancerede filtre: volatilitets-filtrering (lav, medium, høj), RTP-interval (vis kun spil med RTP over 96 %) og temakategorier (ægyptisk, frugt, adventure osv.). Disse filtre findes hos mere modne aggregatorer som{" "}
+            <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link>, og de ville markant forbedre oplevelsen for spillere, der søger specifikke spiltyper. Det er et område, hvor SkillOnNet kan optimere via en platform-opdatering, og vi forventer, at det bliver adresseret i de kommende måneder.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            "Favoritter"-funktionen lader dig gemme de spil, du vender tilbage til, med et enkelt klik. Det er en simpel men vigtig feature, der reducerer navigationstiden betydeligt ved gentagne besøg. I appen synkroniseres favoritter automatisk med desktop-versionen, så din spilliste er tilgængelig på alle enheder.
+          </p>
+        </section>
+
         <Separator className="my-10" />
 
         {/* Live Casino Deep Dive */}
