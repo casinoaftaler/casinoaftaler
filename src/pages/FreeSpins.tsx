@@ -196,7 +196,7 @@ const FreeSpins = () => {
 
         <SnippetAnswer answer="De bedste free spins i 2026 har høj spinværdi (min. 1 kr.), lave eller ingen omsætningskrav og er knyttet til spil med høj RTP. Omsætningsfrie spins giver mest reel værdi – men tjek altid gevinstloftet." />
 
-        <InlineCasinoCards title="Bedste casinoer med free spins" count={6} />
+        <QuickComparisonTable count={3} title="Top 3 casinoer med free spins" prioritySlugs={["spildansknu", "campobet", "betinia"]} />
 
         <BonusClusterPriorityLinks currentPath="/free-spins" />
 

@@ -225,7 +225,7 @@ const NyeCasinoer = () => {
 
         <SnippetAnswer answer="De bedste nye casinoer i Danmark 2026 har dansk licens, 10x omsætningskrav, hurtige udbetalinger via Trustly/MobilePay og gennemprøvede platforme. Vi tester hvert casino med rigtige penge over 14 dage før det når vores liste." />
 
-        {/* Casino Cards – LIST FIRST for intent match */}
+        <QuickComparisonTable count={3} title="Top 3 nye casinoer – hurtig sammenligning" prioritySlugs={["spildansknu", "spilleautomaten", "betinia"]} />
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
             Nye casinoer i Danmark

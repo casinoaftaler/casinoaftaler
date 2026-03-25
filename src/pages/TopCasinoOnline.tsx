@@ -238,7 +238,7 @@ const TopCasinoOnline = () => {
 
         <SnippetAnswer answer="De 10 bedste online casinoer i Danmark 2026 er testet og rangeret efter bonus, udbetalingstid, spiludvalg og sikkerhed. Alle har dansk licens fra Spillemyndigheden, max 10x omsætningskrav og hurtige udbetalinger." />
 
-        {/* Top 10 Casino List – LIST FIRST */}
+        <QuickComparisonTable count={3} title="Top 3 casinoer – hurtig sammenligning" prioritySlugs={["spildansknu", "spilleautomaten", "campobet"]} />
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
             Top 10 Online Casino i Danmark

@@ -187,7 +187,7 @@ const CasinoBonus = () => {
 
         <SnippetAnswer answer="Den bedste casino bonus i Danmark 2026 er en no-sticky bonus med 10x omsætningskrav – det giver højest reel værdi. Sammenlign bonustyper, forstå omsætningsmodeller og find den bonus der passer din spillestil." />
 
-        <InlineCasinoCards title="Bedste casino bonus tilbud" count={6} />
+        <QuickComparisonTable count={3} title="Top 3 bonustilbud – hurtig sammenligning" prioritySlugs={["spildansknu", "spilleautomaten", "betinia"]} />
 
         <BonusClusterPriorityLinks currentPath="/casino-bonus" />
 
