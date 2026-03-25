@@ -330,7 +330,7 @@ const BetanoAnmeldelse = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             <Shield className="inline h-7 w-7 text-primary mr-2" />
-            Sikkerhed og licens
+            Licensforhold og databeskyttelse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betano opererer under dansk licens fra Spillemyndigheden og er fuldt tilsluttet ROFUS. Platformen bruger SSL-kryptering til alle transaktioner. Kaizen Gaming holder desuden licenser i 17+ markeder, herunder i Portugal, Rumænien, Brasilien og flere afrikanske markeder – et tegn på, at virksomheden tager regulatorisk compliance seriøst på tværs af jurisdiktioner.
