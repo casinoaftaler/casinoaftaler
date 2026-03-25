@@ -748,8 +748,6 @@ const BonusUdenOmsaetningskrav = () => {
           </div>
         </section>
 
-        <AuthorBio author="niklas" />
-
         <Separator className="my-10" />
 
         <LatestNewsByCategory pagePath="/bonus-uden-omsaetningskrav" />
@@ -757,6 +755,8 @@ const BonusUdenOmsaetningskrav = () => {
         <RelatedGuides currentPath="/bonus-uden-omsaetningskrav" />
 
         <FAQSection title="Tekniske spørgsmål om omsætningsfrie bonusser" faqs={faqs} />
+
+        <AuthorBio author="niklas" />
       </div>
       <StickyCtaBySlug slug="betinia" />
     </>
