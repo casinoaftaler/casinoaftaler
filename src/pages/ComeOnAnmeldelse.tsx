@@ -227,7 +227,7 @@ const ComeOnAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse og interface-design</h2>
+          <h2 className="mb-4 text-3xl font-bold">Mobil- og desktop-interfacet i detaljer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn har investeret i en responsiv mobilplatform, der fungerer i alle browsere uden dedikeret app. Designet er minimalistisk og funktionelt – rent interface med tydelige kategorier og en effektiv søgefunktion. Det er ikke det mest visuelt imponerende casino, men det er et af de mest brugervenlige.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede på iPhone 15 (Safari) og Samsung Galaxy S24 (Chrome). Indlæsningstid: 2,6 sekunder (iOS) og 2,3 sekunder (Android) – hurtigere end gennemsnittet. Spil loadede inden for 2-4 sekunder. Touch-navigationen er intuitiv med store, tydelige knapper og logisk layout. Registrering, indbetaling og udbetaling er alle tilgængelige direkte fra mobilen uden omdirigeringer.</p>
           <p className="text-muted-foreground leading-relaxed">Design-kritikken: ComeOns farvepalette er afdæmpet med fokus på læsbarhed. Det reducerer distraktioner men mangler den visuelle energi, man finder hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link>. Det er et bevidst valg – ComeOn lader spillene stå i centrum snarere end platformens æstetik.</p>
