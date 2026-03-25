@@ -152,7 +152,7 @@ const MrVegasAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – professionel men ikke døgndækket</h2>
+          <h2 className="mb-4 text-3xl font-bold">Live chat og e-mail – kompetent men tidsbegrænset</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Vegas Casino tilbyder kundeservice via live chat og e-mail. Live chat er tilgængelig dagligt fra 09:00 til 23:00 dansk tid – en begrænsning sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, der begge tilbyder 24/7 support. E-mail-henvendelser besvares typisk inden for 4-6 timer på hverdage.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede live chatten tre gange i testperioden. Ventetiden var konsekvent under 2 minutter, og agenterne var dansktalende og kompetente. Første henvendelse vedrørte bonusvilkår, og vi fik et præcist og detaljeret svar. Anden henvendelse handlede om udbetalingsstatus, og agenten kunne straks verificere status i systemet. Tredje henvendelse var en teknisk test om et spil, der ikke indlæste korrekt – agenten eskalerede sagen og fulgte op via e-mail med en løsning inden for 2 timer.</p>
           <p className="text-muted-foreground leading-relaxed">FAQ-sektionen er omfattende og dækker de mest almindelige spørgsmål om registrering, betalinger, bonusser og ansvarligt spil. For de fleste standardspørgsmål finder du svar uden at kontakte support. Den manglende 24/7-dækning er den eneste reelle svaghed – hvis du spiller sent om natten og støder på et problem, må du vente til næste morgen.</p>
