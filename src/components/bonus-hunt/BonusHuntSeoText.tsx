@@ -336,7 +336,7 @@ export function BonusHuntSeoText() {
             <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
               spilleautomater
             </Link>{" "}
-            reelt performer under bonus buy-betingelser – i modsætning til den teoretiske RTP, som{" "}
+            reelt performer i bonusrunder – i modsætning til den teoretiske RTP, som{" "}
             <Link to="/spiludviklere" className="text-primary hover:underline">
               spiludviklerne
             </Link>{" "}
