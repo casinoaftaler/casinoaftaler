@@ -17,7 +17,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { type ReactNode } from "react";
-import casinoBonusHero from "@/assets/heroes/casino-bonus-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import {
   Sparkles,
   ShieldCheck,
