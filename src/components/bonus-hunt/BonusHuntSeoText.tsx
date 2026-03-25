@@ -293,7 +293,7 @@ export function BonusHuntSeoText() {
           <p>
             Slot-selektion er baseret på flere faktorer: <strong className="text-foreground">volatilitet</strong>{" "}
             (høj volatilitet giver større udsving),{" "}
-            <strong className="text-foreground">bonus buy-pris</strong> (typisk 50–100x bet),{" "}
+            <strong className="text-foreground">bonus-triggerrate</strong> (hvor hurtigt maskinen typisk giver bonus),{" "}
             <strong className="text-foreground">max win</strong> (de fleste moderne slots har en cap
             på 5.000–20.000x) og{" "}
             <strong className="text-foreground">historisk performance</strong> fra tidligere hunts.
