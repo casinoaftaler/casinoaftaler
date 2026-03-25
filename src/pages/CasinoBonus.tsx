@@ -18,6 +18,7 @@ import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLink
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { type ReactNode } from "react";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
   Sparkles,
   ShieldCheck,
