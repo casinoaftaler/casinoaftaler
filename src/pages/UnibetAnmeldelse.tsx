@@ -225,7 +225,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – flersproget men med ventetid</h2>
+          <h2 className="mb-4 text-3xl font-bold">Flersproget support – kompetent men med variable ventetider</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Unibet tilbyder kundeservice via live chat, e-mail og en omfattende FAQ-sektion. Live chatten er tilgængelig 24/7, men det er vigtigt at bemærke, at den primært betjenes på engelsk med mulighed for dansk support i begrænset tidsrum (typisk 09:00-22:00 dansk tid). Uden for dansk åbningstid vil du sandsynligvis kommunikere med engelsktalende agenter.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I vores test kontaktede vi live chatten fem gange på forskellige tidspunkter. Gennemsnitlig ventetid var 4 minutter og 30 sekunder – acceptabelt men ikke imponerende. Den hurtigste forbindelse var 1 minut (tirsdag formiddag), den langsomste var 11 minutter (lørdag aften). Agenternes vidensniveau var generelt højt, men vi oplevede en enkelt situation, hvor en agent ikke kunne besvare et specifikt spørgsmål om bonusvilkår og måtte eskalere til en specialist, hvilket tog yderligere 15 minutter.</p>
           <p className="text-muted-foreground leading-relaxed">FAQ-sektionen er veldokumenteret og dækker de fleste standardspørgsmål om konto, betalinger, bonusser og ansvarligt spil. For de fleste spillere vil FAQ-sektionen eliminere behovet for direkte kontakt. E-mail-support besvares typisk inden for 24 timer, men vi oplevede en sag, der tog 36 timer at få svar på – sandsynligvis pga. weekend-overlap.</p>
