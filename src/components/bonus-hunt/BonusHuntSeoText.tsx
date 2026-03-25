@@ -15,15 +15,16 @@ export function BonusHuntSeoText() {
         </h2>
         <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
           <p>
-            En bonus hunt er en struktureret live-stream-session, hvor værten indsamler et bestemt antal bonusser
-            fra udvalgte{" "}
+            En bonus hunt er en struktureret live-stream-session, hvor værten starter med en fast balance og spinner
+            den ned til 0 på udvalgte{" "}
             <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
               spilleautomater
             </Link>{" "}
             på et{" "}
             <Link to="/casino-anmeldelser" className="text-primary hover:underline">
               dansk online casino
-            </Link>, og herefter åbner dem én for én foran et live-publikum. Formatet stammer fra den internationale
+            </Link>. Hver gang en bonus trigges, gemmes den og lukkes ned – og når balancen er i 0, åbnes alle gemte bonusser
+            på én gang foran et live-publikum. I nogle tilfælde kan bonusser også købes direkte (bonus buy), men hunting er standarden. Formatet stammer fra den internationale
             Twitch-scene, men har vundet enorm popularitet i Skandinavien – særligt i Danmark, hvor der stilles
             strenge krav til gennemsigtighed og{" "}
             <Link to="/casino-licenser" className="text-primary hover:underline">
@@ -66,7 +67,7 @@ export function BonusHuntSeoText() {
             <strong className="text-foreground">Gennemsnit X</strong> er den samlede payout divideret med den
             samlede indsats – en gennemsnit X på 150 betyder, at huntens bonusser i gennemsnit returnerede
             150 % af indsatsen. <strong className="text-foreground">Break-even X</strong> er den multiplikator,
-            der præcist dækker den samlede investering, inklusiv købspris for bonusser.
+            der præcist dækker den samlede indsats brugt på at triggere eller købe bonusserne.
           </p>
           <p>
             Fra et matematisk perspektiv kan Expected Value (EV) for en bonus hunt estimeres via formlen:{" "}
@@ -117,8 +118,8 @@ export function BonusHuntSeoText() {
             <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
               spilleautomater
             </Link>{" "}
-            med høj volatilitet og bonus buy-funktionalitet, da disse giver de mest dramatiske og
-            dokumenterbare resultater. Her er de kategorier, vi typisk inkluderer:
+            med høj volatilitet, da disse giver de mest dramatiske og
+            dokumenterbare resultater. Vi hunter primært bonusserne organisk, men slots med bonus buy-option giver fleksibilitet. Her er de kategorier, vi typisk inkluderer:
           </p>
           <ul className="list-disc pl-5 space-y-2">
             <li>
@@ -285,14 +286,14 @@ export function BonusHuntSeoText() {
         <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
           <p>
             En succesfuld bonus hunt handler ikke kun om held – det handler om struktureret bankroll
-            management og strategisk slot-selektion. Før hver hunt fastlægger vi et budget (startbalance)
-            og fordeler det på tværs af et bestemt antal bonusser. Typisk sigter vi efter 15–30 bonusser
-            per hunt for at opnå en statistisk meningsfuld sample size.
+            management og strategisk slot-selektion. Før hver hunt fastlægger vi en startbalance, som vi
+            spinner ned til 0 mens vi hunter bonusser. Antal bonusser afhænger af, hvor hurtigt vi rammer dem –
+            typisk ender vi med 15–30 bonusser per hunt, hvilket giver en statistisk meningsfuld sample size.
           </p>
           <p>
             Slot-selektion er baseret på flere faktorer: <strong className="text-foreground">volatilitet</strong>{" "}
             (høj volatilitet giver større udsving),{" "}
-            <strong className="text-foreground">bonus buy-pris</strong> (typisk 50–100x bet),{" "}
+            <strong className="text-foreground">bonus-triggerrate</strong> (hvor hurtigt maskinen typisk giver bonus),{" "}
             <strong className="text-foreground">max win</strong> (de fleste moderne slots har en cap
             på 5.000–20.000x) og{" "}
             <strong className="text-foreground">historisk performance</strong> fra tidligere hunts.
@@ -335,7 +336,7 @@ export function BonusHuntSeoText() {
             <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
               spilleautomater
             </Link>{" "}
-            reelt performer under bonus buy-betingelser – i modsætning til den teoretiske RTP, som{" "}
+            reelt performer i bonusrunder – i modsætning til den teoretiske RTP, som{" "}
             <Link to="/spiludviklere" className="text-primary hover:underline">
               spiludviklerne
             </Link>{" "}
@@ -433,9 +434,10 @@ export function BonusHuntSeoText() {
             som dokumentation for casinoets reelle spiloplevelse.
           </p>
           <p>
-            Ulempen er, at bonus buy-funktionen typisk har en højere pris end at opnå bonusrunden
-            organisk. En bonus buy koster ofte 50–100x din indsats, hvilket svarer til hundredvis af
-            base game-spins. Det er derfor vigtigt at forstå{" "}
+            Ved hunting spinner man hele balancen ned og samler bonusser organisk – fordelen er, at REQ X
+            kan ende under 100x, hvis man er heldig med at triggere bonusser hurtigt. Ulempen er, at man kan
+            være uheldig og bruge mange spins uden at ramme, hvilket giver en REQ X over 100-200x. Ved bonus buy
+            er REQ X altid ~100x, men man mister muligheden for den lavere pris. Det er derfor vigtigt at forstå{" "}
             <Link to="/casino-bonus" className="text-primary hover:underline">
               bonusstrukturer
             </Link>{" "}

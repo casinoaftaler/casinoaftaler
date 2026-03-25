@@ -12,9 +12,9 @@ export function BonusHuntArkivSeoContent() {
         <h2 className="text-2xl font-bold text-foreground" id="om-arkivet">Om Bonus Hunt Arkivet</h2>
         <p className="text-muted-foreground leading-relaxed">
           Bonus hunt-arkivet er en komplet dokumentation af alle vores live bonus hunts på Twitch. Hver hunt
-          repræsenterer en session, hvor vi køber bonusser på en række{" "}
-          <Link to="/slot-database" className="text-primary hover:underline">spillemaskiner</Link> og åbner dem
-          én for én foran vores community. Vi spiller altid med rigtige penge på{" "}
+          starter med en fast balance, som vi spinner ned til 0 på udvalgte{" "}
+          <Link to="/slot-database" className="text-primary hover:underline">spillemaskiner</Link>. Undervejs gemmer vi
+          hver bonus der trigges, og til sidst åbner vi alle gemte bonusser på én gang foran vores community. Vi spiller altid med rigtige penge på{" "}
           <Link to="/casino-anmeldelser/spildansknu" className="text-primary hover:underline">licenserede danske casinoer</Link>,
           og alle resultater logges automatisk via vores StreamSystem-integration. Det sikrer 100% transparens
           og gør det muligt at verificere alle tal.
@@ -38,8 +38,8 @@ export function BonusHuntArkivSeoContent() {
         <h2 className="text-2xl font-bold text-foreground" id="laes-statistikker">Sådan Læser Du Statistikkerne</h2>
         <p className="text-muted-foreground leading-relaxed">
           <strong>Gennemsnitlig X</strong> (Average X) er den vigtigste metrik i en bonus hunt. Den beregnes ved
-          at dividere den samlede gevinst fra alle åbnede bonusser med den samlede investering (summen af alle
-          bonus-køb). En X på 100 betyder break even – den samlede gevinst var præcis lig med investeringen.
+          at dividere den samlede gevinst fra alle åbnede bonusser med den samlede indsats (summen af alle
+          bonus-priser / indsatser brugt på at triggere bonusserne). En X på 100 betyder break even – den samlede gevinst var præcis lig med indsatsen.
           X over 100 betyder profit, X under 100 betyder tab.
         </p>
         <div className="bg-muted/50 rounded-lg p-4 border border-border font-mono text-sm text-foreground">
@@ -53,15 +53,15 @@ export function BonusHuntArkivSeoContent() {
 
         <h3 className="text-xl font-bold text-foreground mt-6">Startbalance & Slutbalance</h3>
         <p className="text-muted-foreground leading-relaxed">
-          <strong>Startbalance</strong> repræsenterer det samlede beløb investeret i at købe bonusser til hunten.
-          Dette inkluderer Feature Buy-priser samt eventuelle organiske bonusser, hvor "prisen" beregnes som
-          den kumulative indsats brugt for at triggere bonussen. <strong>Slutbalance</strong> er det samlede
-          beløb modtaget fra alle åbnede bonusser. Forskellen mellem slut- og startbalance er huntens nettoresultat.
+          <strong>Startbalance</strong> er det beløb, vi starter hunten med – den balance vi spinner ned til 0,
+          mens vi hunter bonusser. For hver bonus der trigges undervejs, registreres "prisen" som den kumulative
+          indsats brugt for at triggere den. Bruges bonus buy i stedet, er prisen den faste Feature Buy-pris.{" "}
+          <strong>Slutbalance</strong> er det samlede beløb modtaget fra alle åbnede bonusser. Forskellen mellem slut- og startbalance er huntens nettoresultat.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          Det er vigtigt at forstå, at startbalancen ikke nødvendigvis repræsenterer det fulde tab-risiko.
-          Da vi typisk åbner bonusser over flere timer, kan gevinster fra tidlige bonusser genbruges til at
-          købe flere bonusser. Den reelle risiko er typisk 40-60% af den viste startbalance.
+          Det er vigtigt at forstå, at startbalancen er det beløb, vi risikerer. Vi spinner hele balancen
+          ned til 0 og samler bonusser undervejs. Man kan være heldig at ramme mange bonusser hurtigt (lav REQ X),
+          eller uheldig og bruge mange spins per bonus (høj REQ X). Ved bonus buy er REQ X altid ~100x.
         </p>
 
         <h3 className="text-xl font-bold text-foreground mt-6">Antal Slots & Åbnede Slots</h3>
@@ -89,19 +89,20 @@ export function BonusHuntArkivSeoContent() {
         <div className="bg-muted/50 rounded-lg p-4 border border-border font-mono text-sm text-foreground">
           EV(Hunt) = Σ [EV(Slot_i)] for alle slots i hunten<br /><br />
           EV(Slot_i) = E[Payout_i] - Cost_i<br /><br />
-          For Feature Buy:<br />
-          Cost = Feature Buy-pris (fast)<br />
-          E[Payout] = Slot RTP × Buy-pris (tilnærmelse)<br /><br />
-          Typisk hunt med 30 slots:<br />
-          Gns. RTP for Feature Buy ≈ 70-75x pr. 100x investering<br />
-          EV(Hunt) = 30 × (72.5 - 100) = 30 × (-27.5) = -825x<br />
-          I kroner (10 kr base bet): -825 × 10 = -8.250 kr forventet tab
+          Ved hunting (organisk):<br />
+          Cost = Kumulativ indsats brugt til at triggere bonus<br />
+          REQ X kan være under 100x (heldig) eller over 100-200x (uheldig)<br /><br />
+          Ved bonus buy:<br />
+          Cost = Feature Buy-pris (fast, typisk ~100x)<br />
+          REQ X er altid ~100x<br /><br />
+          Fordelen ved hunting: Hvis REQ X ved åbning er under 100x,<br />
+          har det betalt sig at hunte – fordi bonus buy altid koster ~100x.
         </div>
         <p className="text-muted-foreground leading-relaxed">
-          Det er værd at bemærke, at Feature Buy-RTP'en ikke er identisk med maskinens overordnede RTP. Feature Buy
-          har typisk en RTP på 95-97% af købeprisen, men den faktiske gennemsnitlige udbetaling varierer enormt
-          afhængigt af volatiliteten. Ovenstående model er en grov tilnærmelse, der antager en gennemsnitlig
-          Feature Buy-udbetaling baseret på vores community-data.
+          Hunting er vores primære metode. Fordelen er, at man kan ramme basegame hits undervejs og triggere
+          bonusser billigere end et direkte bonus buy. Ulempen er, at man også kan være uheldig og bruge mange
+          spins uden at ramme – hvilket giver en REQ X over 100x. Bonus buy bruges som alternativ, når vi
+          ønsker en forudsigelig REQ X på ~100x og en kortere hunt-varighed.
         </p>
 
         <h3 className="text-xl font-bold text-foreground mt-6">Variance & Konfidensintervaller</h3>
@@ -282,11 +283,11 @@ export function BonusHuntArkivSeoContent() {
           Med 10 kr base bet: 1.500 kr forskel i forventet resultat
         </div>
 
-        <h3 className="text-xl font-bold text-foreground mt-6">Feature Buy-pris vs. potentiale</h3>
+        <h3 className="text-xl font-bold text-foreground mt-6">Bonus-pris vs. potentiale</h3>
         <p className="text-muted-foreground leading-relaxed">
-          Ikke alle Feature Buy-priser er skabt lige. En maskine med en 100x Feature Buy-pris og et max win
-          på 5.000x giver et helt andet risk/reward-forhold end en maskine med 200x Feature Buy-pris og 10.000x
-          max win. Vi evaluerer Feature Buy-prisen i forhold til:
+          Uanset om en bonus er huntet organisk eller købt via Feature Buy, varierer "prisen" per bonus.
+          Ved hunting afhænger prisen af, hvor hurtigt man rammer bonussen. Ved bonus buy er prisen fast (typisk 100x).
+          Vi evaluerer hver bonus' cost i forhold til:
         </p>
         <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
           <li>Den gennemsnitlige bonus-udbetaling i vores historiske data</li>
@@ -395,10 +396,11 @@ export function BonusHuntArkivSeoContent() {
           underholdningsoplevelse og de mest interessante data.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          I de tidlige dage brugte vi primært organiske bonusser – det vil sige, vi spillede maskinerne og
-          ventede på, at bonus-runden triggede naturligt. Dette format var tidskrævende og uforudsigeligt,
-          med hunts der kunne vare 8-12 timer. Med introduktionen af Feature Buy har vi kunnet komprimere
-          hunt-formatet til 3-5 timer, hvilket giver en mere fokuseret og intens oplevelse.
+          Vores primære metode har altid været hunting – at spinne en balance ned til 0 og gemme bonusser undervejs.
+          Denne tilgang giver den mest autentiske oplevelse og kan resultere i en lavere REQ X end bonus buy, hvis
+          man er heldig med at triggere bonusser hurtigt. Feature Buy bruges som et supplement, når vi ønsker at
+          inkludere specifikke slots eller komprimere huntens varighed. Den typiske hunt varer 3-8 timer afhængigt af
+          mix'et af huntede og købte bonusser.
         </p>
         <p className="text-muted-foreground leading-relaxed">
           Vi har også indført automatisk data-logging via vores StreamSystem-integration, som eliminerer manuel

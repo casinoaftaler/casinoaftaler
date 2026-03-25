@@ -6,11 +6,12 @@ const FAQ_ITEMS = [
     question: "Hvad er en bonus hunt?",
     answer: (
       <>
-        En bonus hunt hos os dokumenteres som en komplet session, hvor vi køber eller hunter bonusser på{" "}
+        En bonus hunt starter med en fast balance, som vi spinner ned til 0 på udvalgte{" "}
         <Link to="/casinospil/spillemaskiner" className="text-primary hover:underline">
           spilleautomater
-        </Link>{" "}
-        og åbner dem live på Twitch. Hver hunt arkiveres med fuld statistik – gennemsnit X, break-even analyse,
+        </Link>. Hver gang en bonus trigges undervejs, gemmer vi den og lukker bonusrunden ned – i stedet for at spille den med det samme.
+        Når balancen er i 0, åbner vi alle de gemte bonusser på én gang live på Twitch. I nogle tilfælde kan bonusser også købes direkte (bonus buy),
+        men hunting er vores primære metode. Hver hunt arkiveres med fuld statistik – gennemsnit X, break-even analyse,
         individuelle slot-resultater og VOD-link – så du kan gennemgå præcis hvad der skete.
       </>
     ),

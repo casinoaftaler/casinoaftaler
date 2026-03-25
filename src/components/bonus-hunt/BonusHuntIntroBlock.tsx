@@ -7,9 +7,10 @@ export function BonusHuntIntroBlock() {
         Hvad er en bonus hunt?
       </h2>
       <p className="text-sm text-muted-foreground leading-relaxed">
-        En bonus hunt er en populær live-stream inden for casinospil, hvor flere bonusser enten købes eller huntes, og så åbnes i
-        én session. Resultatet måles typisk i gennemsnit X, break-even X og top wins. På denne side finder
-        du både live og arkiverede bonus hunts med fuld dokumentation fra{" "}
+        En bonus hunt er en populær live-stream inden for casinospil, hvor man starter med en fast balance og spinner
+        på udvalgte spillemaskiner. Hver gang en bonus trigges, gemmes den og lukkes ned – og når balancen er spundet
+        i 0, åbnes alle gemte bonusser på én gang live. Resultatet måles i gennemsnit X, break-even X og top wins.
+        På denne side finder du både live og arkiverede bonus hunts med fuld dokumentation fra{" "}
         <Link to="/casino-anmeldelser" className="text-primary hover:underline">
           danske casinoer
         </Link>{" "}
