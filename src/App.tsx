@@ -141,6 +141,7 @@ const CasinostuenAnmeldelse = lazy(() => import("./pages/CasinostuenAnmeldelse")
 const PokerStarsAnmeldelse = lazy(() => import("./pages/PokerStarsAnmeldelse"));
 const BwinAnmeldelse = lazy(() => import("./pages/BwinAnmeldelse"));
 const MarathonBetAnmeldelse = lazy(() => import("./pages/MarathonBetAnmeldelse"));
+const PlayKasinoAnmeldelse = lazy(() => import("./pages/PlayKasinoAnmeldelse"));
 const CasinoAnmeldelser = lazy(() => import("./pages/CasinoAnmeldelser"));
 const Casinospil = lazy(() => import("./pages/Casinospil"));
 const Spillemaskiner = lazy(() => import("./pages/Spillemaskiner"));
