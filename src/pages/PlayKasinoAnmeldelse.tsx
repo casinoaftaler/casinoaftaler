@@ -1032,6 +1032,68 @@ const PlayKasinoAnmeldelse = () => {
           </div>
         </section>
 
+        {/* Responsible Gambling Tools */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Ansvarligt spil – PlayKasinos konkrete beskyttelsesværktøjer</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Som licenseret dansk casino er PlayKasino lovmæssigt forpligtet til at implementere{" "}
+            <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-værktøjer, men SkillOnNet's implementering går ud over minimumskravene. Her er en detaljeret gennemgang af de tilgængelige beskyttelsesmekanismer:
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <Card className="border-border bg-card">
+              <CardContent className="pt-6">
+                <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
+                  <Wallet className="h-5 w-5 text-primary" />
+                  Indbetalingsgrænser
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Obligatorisk ved kontooprettelse. Daglige, ugentlige og månedlige lofter. Sænkning sker øjeblikkeligt – forhøjelse kræver 24 timers karensperiode. Du kan til enhver tid se din aktuelle grænse-udnyttelse i kontoindstillingerne. SkillOnNet sender automatisk en notifikation, når du nærmer dig 80 % af din grænse.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardContent className="pt-6">
+                <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
+                  <Timer className="h-5 w-5 text-primary" />
+                  Session-påmindelser
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Automatisk popup efter 60 minutters sammenhængende spil, der viser din samlede spilletid og nettoresultat for sessionen. Du kan vælge at fortsætte, sætte en ny tidsgrænse eller afslutte sessionen. Denne funktion kan ikke deaktiveres – det er et lovkrav under Spillemyndigheden.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardContent className="pt-6">
+                <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
+                  <Shield className="h-5 w-5 text-primary" />
+                  Selvudelukkelse (midlertidig)
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Du kan selvudelukke i 24 timer, 7 dage, 30 dage eller 90 dage direkte fra kontoindstillingerne. Under udelukkelsen er det umuligt at logge ind, indbetale eller spille. Eventuel resterende saldo udbetales automatisk. For permanent udelukkelse fra alle danske casinoer kan du benytte ROFUS.
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="border-border bg-card">
+              <CardContent className="pt-6">
+                <h3 className="font-bold text-foreground mb-2 flex items-center gap-2">
+                  <Users className="h-5 w-5 text-primary" />
+                  Hjælperessourcer
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Direkte links til{" "}
+                  <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>StopSpillet</a> (gratis telefonrådgivning),{" "}
+                  <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a> (permanent selvudelukkelse) og Center for Ludomani. Linkene er placeret synligt i sidefoden og i kontoindstillingerne – ikke gemt væk i en undermenu.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <p className="text-muted-foreground leading-relaxed">
+            Vores vurdering er, at PlayKasinos ansvarligt spil-implementering er over gennemsnittet for danske casinoer. Den automatiske 80 %-grænse-notifikation og den tvungne session-timer er begge SkillOnNet-specifikke features, der ikke er standard hos alle operatører. Det afspejler SkillOnNet's erfaring med UKGC-regulering, som har nogle af verdens strengeste krav til spillerbeskyttelse – erfaringer, der nu gavner danske spillere.
+          </p>
+        </section>
+
         <Separator className="my-10" />
 
         {/* Pros & Cons */}
