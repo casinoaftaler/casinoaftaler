@@ -53,10 +53,10 @@ export function BonusHuntArkivSeoContent() {
 
         <h3 className="text-xl font-bold text-foreground mt-6">Startbalance & Slutbalance</h3>
         <p className="text-muted-foreground leading-relaxed">
-          <strong>Startbalance</strong> repræsenterer det samlede beløb investeret i at købe bonusser til hunten.
-          Dette inkluderer Feature Buy-priser samt eventuelle organiske bonusser, hvor "prisen" beregnes som
-          den kumulative indsats brugt for at triggere bonussen. <strong>Slutbalance</strong> er det samlede
-          beløb modtaget fra alle åbnede bonusser. Forskellen mellem slut- og startbalance er huntens nettoresultat.
+          <strong>Startbalance</strong> er det beløb, vi starter hunten med – den balance vi spinner ned til 0,
+          mens vi hunter bonusser. For hver bonus der trigges undervejs, registreres "prisen" som den kumulative
+          indsats brugt for at triggere den. Bruges bonus buy i stedet, er prisen den faste Feature Buy-pris.{" "}
+          <strong>Slutbalance</strong> er det samlede beløb modtaget fra alle åbnede bonusser. Forskellen mellem slut- og startbalance er huntens nettoresultat.
         </p>
         <p className="text-muted-foreground leading-relaxed">
           Det er vigtigt at forstå, at startbalancen ikke nødvendigvis repræsenterer det fulde tab-risiko.
