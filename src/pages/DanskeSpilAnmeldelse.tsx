@@ -196,7 +196,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – MobilePay som flagskib</h2>
+          <h2 className="mb-4 text-3xl font-bold">MobilePay, Visa og Dankort – betalingsmulighederne testet</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">Danske Spil Casino understøtter de mest populære danske <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Som dansk virksomhed er der naturligt fokus på lokale løsninger – med <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> som den mest populære og hurtigste betalingsmetode. Det er en klar fordel over mange internationale operatører, der ikke tilbyder MobilePay.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
