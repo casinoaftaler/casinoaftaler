@@ -216,6 +216,8 @@ const TrustlyGuide = () => {
         { name: "Log ind med MitID", text: "Du omdirigeres til Trustlys betalingsvindue, hvor du logger ind med MitID via app eller kodelæser." },
         { name: "Vælg din bank og godkend", text: "Vælg din bank fra listen, bekræft overførslen og godkend med MitID. Pengene krediteres øjeblikkeligt." },
       ]}
+      snippetAnswer="Trustly er den hurtigste betalingsmetode på danske casinoer – gennemsnitlig udbetalingstid på 45 minutter i vores test. Direkte bankforbindelse via MitID, ingen registrering og fuld bonuskvalificering."
+      prioritySlugs={["spilleautomaten", "betinia", "swift-casino"]}
     />
   );
 };

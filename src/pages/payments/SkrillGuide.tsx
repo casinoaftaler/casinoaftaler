@@ -222,6 +222,8 @@ const SkrillGuide = () => {
         { question: "Hvad sker der med mine penge, hvis Skrill går konkurs?", answer: "Skrill er reguleret af FCA og er forpligtet til at holde alle kundemidler adskilt fra virksomhedens driftskapital på separate klientkonti. I tilfælde af konkurs er dine midler beskyttede og kan ikke bruges til at betale Skrills kreditorer. Denne beskyttelse er lovfæstet under EU's e-penge-direktiv og overvåges af FCA." },
       ]}
       currentPath="/betalingsmetoder/skrill"
+      snippetAnswer="Skrill fungerer som digital tegnebog med instant indbetalinger og 0-4 timers udbetalinger. Gebyrfri casino-transaktioner, men udelukkes ofte fra bonusser ligesom PayPal."
+      prioritySlugs={["campobet", "spilleautomaten", "betinia"]}
     />
   );
 };

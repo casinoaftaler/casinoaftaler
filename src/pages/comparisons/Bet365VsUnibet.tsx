@@ -156,6 +156,8 @@ export default function Bet365VsUnibet() {
       faqs={faqs}
       ctaSlug="bet365"
       readTime="59 min"
+      snippetAnswer="bet365 scorer højest på udbetalingshastighed og live casino-bredde, mens Unibet vinder på spiludvalg og mobiloplevelse. For bonusjægere er bet365's lave omsætningskrav (10x) dog den afgørende faktor."
+      prioritySlugs={["spilleautomaten", "betinia", "campobet"]}
     >
       {/* ═══════════════════════════════════════════
           ENTERPRISE BODY CONTENT – 8000+ WORDS

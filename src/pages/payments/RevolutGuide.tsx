@@ -276,6 +276,8 @@ const RevolutGuide = () => {
         { question: "Hvad sker der, hvis Revolut blokerer min gambling-transaktion utilsigtet?", answer: "Hvis du ikke aktivt har slået gambling-blokeringen til, og din transaktion alligevel afvises, kan det skyldes Revoluts automatiske svindelovervågning. Kontakt Revoluts kundeservice via app-chatten – de kan typisk løse problemet inden for minutter. Alternativt kan du prøve med et mindre beløb først for at 'varme' algoritmen op til dit transaktionsmønster." },
       ]}
       currentPath="/betalingsmetoder/revolut"
+      snippetAnswer="Revolut er den eneste betalingsmetode med dedikeret gambling-blokering – ideel til ansvarligt spil. Instant indbetalinger via virtuelt kort og realtidsnotifikationer ved hver transaktion."
+      prioritySlugs={["betinia", "spildansknu", "spilleautomaten"]}
     />
   );
 };

@@ -221,6 +221,8 @@ const PayPalGuide = () => {
         { question: "Hvad sker der, hvis PayPal fryser min konto efter en casinoudbetaling?", answer: "PayPals AI-svindelovervågning kan midlertidigt begrænse konti ved usædvanlige transaktionsmønstre – herunder store casinoudbetalinger. Hvis det sker, skal du typisk verificere din identitet (upload pas/kørekort) og forklare transaktionens oprindelse. Processen tager typisk 24-72 timer. For at undgå dette anbefaler vi at verificere din PayPal-konto fuldt ud på forhånd og undgå pludselige store udbetalinger uden forudgående aktivitet." },
       ]}
       currentPath="/betalingsmetoder/paypal"
+      snippetAnswer="PayPal tilbyder køberbeskyttelse og hurtige udbetalinger (0-4 timer til saldo), men udelukkes ofte fra velkomstbonusser. Bedst som sekundær betalingsmetode efter Trustly."
+      prioritySlugs={["campobet", "betinia", "spilleautomaten"]}
     />
   );
 };

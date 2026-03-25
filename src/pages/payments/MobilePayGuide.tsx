@@ -281,6 +281,8 @@ const MobilePayGuide = () => {
         { name: "Godkend i MobilePay-appen", text: "Åbn MobilePay-appen på din telefon, gennemgå betalingsanmodningen og swipe for at godkende." },
         { name: "Pengene krediteres øjeblikkeligt", text: "Beløbet indsættes på din casinokonto inden for få sekunder efter godkendelse." },
       ]}
+      snippetAnswer="MobilePay giver instant indbetalinger med Swipe-bekræftelse og nul gebyrer. Udbetalinger sker via Trustly eller bankoverførsel. Ikke alle casinoer understøtter MobilePay – se hvilke der gør nedenfor."
+      prioritySlugs={["spildansknu", "betinia", "playkasino"]}
     />
   );
 };
