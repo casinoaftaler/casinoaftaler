@@ -59,9 +59,9 @@ export function BonusHuntArkivSeoContent() {
           <strong>Slutbalance</strong> er det samlede beløb modtaget fra alle åbnede bonusser. Forskellen mellem slut- og startbalance er huntens nettoresultat.
         </p>
         <p className="text-muted-foreground leading-relaxed">
-          Det er vigtigt at forstå, at startbalancen ikke nødvendigvis repræsenterer det fulde tab-risiko.
-          Da vi typisk åbner bonusser over flere timer, kan gevinster fra tidlige bonusser genbruges til at
-          købe flere bonusser. Den reelle risiko er typisk 40-60% af den viste startbalance.
+          Det er vigtigt at forstå, at startbalancen er det beløb, vi risikerer. Vi spinner hele balancen
+          ned til 0 og samler bonusser undervejs. Man kan være heldig at ramme mange bonusser hurtigt (lav REQ X),
+          eller uheldig og bruge mange spins per bonus (høj REQ X). Ved bonus buy er REQ X altid ~100x.
         </p>
 
         <h3 className="text-xl font-bold text-foreground mt-6">Antal Slots & Åbnede Slots</h3>
