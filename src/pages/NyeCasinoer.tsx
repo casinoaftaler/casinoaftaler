@@ -17,7 +17,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import nyeCasinoerHero from "@/assets/heroes/nye-casinoer-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { useState, useMemo, type ReactNode } from "react";
 import {
   Sparkles,
@@ -197,8 +198,8 @@ const NyeCasinoer = () => {
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
           backgroundImage: heroBackgroundImage
-            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
-            : 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+            ? `linear-gradient(160deg, hsl(200 80% 20% / 0.95), hsl(180 60% 25% / 0.9)), url(${heroBackgroundImage})`
+            : 'linear-gradient(160deg, hsl(200 80% 20%), hsl(190 70% 18%) 40%, hsl(170 60% 22%))',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -221,35 +222,10 @@ const NyeCasinoer = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="38 Min." />
-        
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={nyeCasinoerHero} alt="Nye casinoer i Danmark – futuristisk casino med neonlys og moderne design" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="De bedste nye casinoer i Danmark 2026 har dansk licens, 10x omsætningskrav, hurtige udbetalinger via Trustly/MobilePay og gennemprøvede platforme. Vi tester hvert casino med rigtige penge over 14 dage før det når vores liste." />
 
-        {/* ══════════════════════════════════════════════════════════════
-            SECTION 1: Hvad er et "nyt casino" i 2026?
-        ══════════════════════════════════════════════════════════════ */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvad er et "nyt casino" i 2026? – Definition og markedsanalyse</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Begrebet "nyt casino" har en præcis definition på det danske marked: et online spillested, der har lanceret med gyldig licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> inden for de seneste 12 måneder. Men virkeligheden er mere nuanceret end denne simple tidsramme. I 2026 ser vi tre distinkte kategorier af nye casinoer, der hver repræsenterer fundamentalt forskellige risikoprofiler og værdisætninger for danske spillere.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Den første kategori er de ægte nyskabelser – brands bygget fra bunden af nye iværksætterteams med frisk kapital og innovative koncepter. Disse casinoer repræsenterer den højeste innovationsgrad, men også den største usikkerhed, da de mangler operationel track record. Den anden kategori er erfarne internationale operatører, der ekspanderer til det danske marked. Selskaber som allerede driver succesfulde casinoer under Malta Gaming Authority (MGA) eller UK Gambling Commission (UKGC), og som nu ansøger om dansk licens for at tilbyde skattefri spil til danske kunder. Disse bringer global erfaring og gennemprøvede platforme, men skal stadig tilpasse sig danske regulatoriske krav og spillerpræferencer.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Den tredje kategori – og den mest overset – er rebrandings og relanceringer. Etablerede operatører, der lukker et eksisterende brand og relancerer under nyt navn med opdateret platform og friske bonustilbud. Disse udgør ca. 30% af alle "nye" lanceringer i 2025-2026 og kræver en anderledes vurdering, da den underliggende operationelle infrastruktur allerede er bevist.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Det danske marked for nye casinoer er vokset konsekvent siden liberaliseringen i 2012. Spillemyndighedens licensregister viser en steady-state på 35-40 aktive online casino-licenser, med en årlig udskiftningsrate på ca. 15-20%. I 2025 lancerede 8 nye casinoer med dansk licens, og baseret på ansøgningstendenser forventer vi 10-12 nye lanceringer i 2026. Denne vækst drives primært af tre faktorer: Danmarks høje digitale literacy (94% af befolkningen bruger NemID/MitID), et stabilt regulatorisk miljø der tiltrækker seriøse operatører, og den fortsatte popularitet af online gambling med et samlet marked på over 7,27 milliarder kr. i bruttospilleindtægt (GGR) årligt.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Forståelsen af disse kategorier er afgørende for at træffe informerede valg som spiller. Et "nyt casino" fra en erfaren operatør med 10 års track record fra MGA-markedet er fundamentalt anderledes end et brand-nyt selskab uden operationel historie. Vores evaluering tager højde for denne nuance – og det bør din beslutningsproces også.
-          </p>
-        </section>
-
-        {/* Casino Cards */}
+        <QuickComparisonTable count={3} title="Top 3 nye casinoer – hurtig sammenligning" prioritySlugs={["spildansknu", "spilleautomaten", "betinia"]} />
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
             Nye casinoer i Danmark
@@ -294,6 +270,30 @@ const NyeCasinoer = () => {
               )}
             </div>
           )}
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* ══════════════════════════════════════════════════════════════
+            SECTION 1: Hvad er et "nyt casino" i 2026?
+        ══════════════════════════════════════════════════════════════ */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Hvad er et "nyt casino" i 2026? – Definition og markedsanalyse</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Begrebet "nyt casino" har en præcis definition på det danske marked: et online spillested, der har lanceret med gyldig licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> inden for de seneste 12 måneder. Men virkeligheden er mere nuanceret end denne simple tidsramme. I 2026 ser vi tre distinkte kategorier af nye casinoer, der hver repræsenterer fundamentalt forskellige risikoprofiler og værdisætninger for danske spillere.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den første kategori er de ægte nyskabelser – brands bygget fra bunden af nye iværksætterteams med frisk kapital og innovative koncepter. Disse casinoer repræsenterer den højeste innovationsgrad, men også den største usikkerhed, da de mangler operationel track record. Den anden kategori er erfarne internationale operatører, der ekspanderer til det danske marked. Selskaber som allerede driver succesfulde casinoer under Malta Gaming Authority (MGA) eller UK Gambling Commission (UKGC), og som nu ansøger om dansk licens for at tilbyde skattefri spil til danske kunder. Disse bringer global erfaring og gennemprøvede platforme, men skal stadig tilpasse sig danske regulatoriske krav og spillerpræferencer.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Den tredje kategori – og den mest overset – er rebrandings og relanceringer. Etablerede operatører, der lukker et eksisterende brand og relancerer under nyt navn med opdateret platform og friske bonustilbud. Disse udgør ca. 30% af alle "nye" lanceringer i 2025-2026 og kræver en anderledes vurdering, da den underliggende operationelle infrastruktur allerede er bevist.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske marked for nye casinoer er vokset konsekvent siden liberaliseringen i 2012. Spillemyndighedens licensregister viser en steady-state på 35-40 aktive online casino-licenser, med en årlig udskiftningsrate på ca. 15-20%. I 2025 lancerede 8 nye casinoer med dansk licens, og baseret på ansøgningstendenser forventer vi 10-12 nye lanceringer i 2026. Denne vækst drives primært af tre faktorer: Danmarks høje digitale literacy (94% af befolkningen bruger NemID/MitID), et stabilt regulatorisk miljø der tiltrækker seriøse operatører, og den fortsatte popularitet af online gambling med et samlet marked på over 7,27 milliarder kr. i bruttospilleindtægt (GGR) årligt.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Forståelsen af disse kategorier er afgørende for at træffe informerede valg som spiller. Et "nyt casino" fra en erfaren operatør med 10 års track record fra MGA-markedet er fundamentalt anderledes end et brand-nyt selskab uden operationel historie. Vores evaluering tager højde for denne nuance – og det bør din beslutningsproces også.
+          </p>
         </section>
 
         <Separator className="my-10" />

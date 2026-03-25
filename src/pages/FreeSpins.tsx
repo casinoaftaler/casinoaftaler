@@ -11,7 +11,8 @@ import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
-import freeSpinsHero from "@/assets/heroes/free-spins-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -167,7 +168,7 @@ const FreeSpins = () => {
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
           backgroundImage:
-            "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+            "linear-gradient(150deg, hsl(240 60% 22%), hsl(220 70% 20%) 40%, hsl(200 60% 25%))",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -193,9 +194,13 @@ const FreeSpins = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="niklas" readTime="22 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={freeSpinsHero} alt="Free spins – farverige spilleautomater med mønter" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="De bedste free spins i 2026 har høj spinværdi (min. 1 kr.), lave eller ingen omsætningskrav og er knyttet til spil med høj RTP. Omsætningsfrie spins giver mest reel værdi – men tjek altid gevinstloftet." />
+
+        <QuickComparisonTable count={3} title="Top 3 casinoer med free spins" prioritySlugs={["spildansknu", "campobet", "betinia"]} />
+
+        <BonusClusterPriorityLinks currentPath="/free-spins" />
+
+        <Separator className="my-10" />
 
         {/* Intro */}
         <section className="mb-12">
@@ -273,9 +278,7 @@ const FreeSpins = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Bedste casinoer med free spins" count={6} />
-
-        <BonusClusterPriorityLinks currentPath="/free-spins" />
+        <Separator className="my-10" />
 
         <Separator className="my-10" />
 

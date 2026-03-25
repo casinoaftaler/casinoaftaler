@@ -4,7 +4,8 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
-import liveCasinoHero from "@/assets/heroes/live-casino-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
@@ -122,8 +123,8 @@ const LiveCasino = () => {
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
           backgroundImage: heroBackgroundImage
-            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
-            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+            ? `linear-gradient(140deg, hsl(350 60% 20% / 0.95), hsl(20 50% 22% / 0.9)), url(${heroBackgroundImage})`
+            : "linear-gradient(140deg, hsl(350 60% 20%), hsl(10 50% 18%) 40%, hsl(30 40% 22%))",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -147,9 +148,11 @@ const LiveCasino = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="22 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={liveCasinoHero} alt="Live casino dealer ved professionelt blackjack-bord i HD-studie" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="De bedste live casinoer i Danmark 2026 tilbyder blackjack, roulette og baccarat fra Evolution Gaming i HD/4K med lav house edge. Alle har dansk licens og ROFUS-tilslutning. Sammenlign bordudvalg og bonusvilkår nedenfor." />
+
+        <QuickComparisonTable count={3} title="Top 3 live casinoer – hurtig sammenligning" prioritySlugs={["spildansknu", "campobet", "spilleautomaten"]} />
+
+        <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════════════════════════
             H2 #1 – Hvad er Live Casino – og hvorfor er det vokset eksplosivt?
@@ -251,7 +254,6 @@ const LiveCasino = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Casinoer med stærkt live casino-udvalg" count={6} />
 
         <Separator className="my-10" />
 

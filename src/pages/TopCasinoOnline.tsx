@@ -16,7 +16,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { TopCasinoReviewLink } from "@/components/TopCasinoReviewLinks";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import topCasinoHero from "@/assets/heroes/top-casino-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { useState, type ReactNode } from "react";
 import {
   Accordion,
@@ -235,36 +236,15 @@ const TopCasinoOnline = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="25 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={topCasinoHero} alt="Top 10 casino – guldtrofæ med casino chips" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="De 10 bedste online casinoer i Danmark 2026 er testet og rangeret efter bonus, udbetalingstid, spiludvalg og sikkerhed. Alle har dansk licens fra Spillemyndigheden, max 10x omsætningskrav og hurtige udbetalinger." />
 
-        {/* Intro Section */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">De bedste online casinoer i Danmark</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Med det store antal spillesteder på det danske marked kan det virke uoverskueligt at finde det rigtige casino. Denne top 10-liste samler de bedste danske online casinoer i 2026 – alle verificeret via{" "}
-            <a href="https://www.spillemyndigheden.dk/tilladelsesindehavere" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Spillemyndighedens officielle licensregister</a>, med sikre{" "}
-            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> og gennemsigtige bonusvilkår.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Vi vurderer hvert casino ud fra en række nøgleparametre: velkomstbonus og{" "}
-            <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, spiludvalg fra førende{" "}
-            <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>, betalingsmuligheder, udbetalingstider, kundeservice og den samlede brugeroplevelse. Resultatet er en ærlig og opdateret rangering, du kan stole på.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Uanset om du er ny i verdenen af online casino eller en erfaren spiller, der leder efter et nyt spillested, giver vores guide dig alle de informationer, du behøver for at tage en informeret beslutning. Læs videre for at finde dit perfekte casino, eller spring direkte til vores{" "}
-            <Link to="/velkomstbonus" className={linkClass}>velkomstbonus guide</Link> for at lære mere om bonustyper.
-          </p>
-        </section>
-
-        {/* Top 10 Casino List */}
+        <QuickComparisonTable count={3} title="Top 3 casinoer – hurtig sammenligning" prioritySlugs={["spildansknu", "spilleautomaten", "campobet"]} />
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">
             Top 10 Online Casino i Danmark
           </h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Herunder finder du vores håndplukkede top 10 over de bedste online casinoer i Danmark lige nu. Listen er opdateret månedligt og baseret på vores dybdegående test af hvert enkelt spillested. Klik på et casino for at se detaljer om bonus, spiludvalg og vores ekspertvurdering.
+            Herunder finder du vores håndplukkede top 10 over de bedste online casinoer i Danmark lige nu. Listen er opdateret månedligt og baseret på vores dybdegående test af hvert enkelt spillested.
           </p>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
@@ -344,6 +324,27 @@ const TopCasinoOnline = () => {
               )}
             </div>
           )}
+        </section>
+
+        <Separator className="my-10" />
+
+        {/* Intro Section – moved below list */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">De bedste online casinoer i Danmark</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Med det store antal spillesteder på det danske marked kan det virke uoverskueligt at finde det rigtige casino. Denne top 10-liste samler de bedste danske online casinoer i 2026 – alle verificeret via{" "}
+            <a href="https://www.spillemyndigheden.dk/tilladelsesindehavere" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Spillemyndighedens officielle licensregister</a>, med sikre{" "}
+            <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> og gennemsigtige bonusvilkår.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vi vurderer hvert casino ud fra en række nøgleparametre: velkomstbonus og{" "}
+            <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>, spiludvalg fra førende{" "}
+            <Link to="/spiludviklere" className={linkClass}>spiludviklere</Link>, betalingsmuligheder, udbetalingstider, kundeservice og den samlede brugeroplevelse. Resultatet er en ærlig og opdateret rangering, du kan stole på.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Uanset om du er ny i verdenen af online casino eller en erfaren spiller, der leder efter et nyt spillested, giver vores guide dig alle de informationer, du behøver for at tage en informeret beslutning. Læs videre for at finde dit perfekte casino, eller spring direkte til vores{" "}
+            <Link to="/velkomstbonus" className={linkClass}>velkomstbonus guide</Link> for at lære mere om bonustyper.
+          </p>
         </section>
 
         <Separator className="my-10" />

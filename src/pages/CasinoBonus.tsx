@@ -17,7 +17,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { type ReactNode } from "react";
-import casinoBonusHero from "@/assets/heroes/casino-bonus-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
   Sparkles,
   ShieldCheck,
@@ -159,8 +160,8 @@ const CasinoBonus = () => {
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
           backgroundImage: heroBackgroundImage
-            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
-            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+            ? `linear-gradient(145deg, hsl(280 60% 22% / 0.95), hsl(320 50% 28% / 0.9)), url(${heroBackgroundImage})`
+            : "linear-gradient(145deg, hsl(280 60% 22%), hsl(300 50% 20%) 40%, hsl(330 40% 25%))",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -183,11 +184,14 @@ const CasinoBonus = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="35 Min." />
-        
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={casinoBonusHero} alt="Casino bonus oversigt – sammenligning af bonustyper i Danmark 2026" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="Den bedste casino bonus i Danmark 2026 er en no-sticky bonus med 10x omsætningskrav – det giver højest reel værdi. Sammenlign bonustyper, forstå omsætningsmodeller og find den bonus der passer din spillestil." />
+
+        <QuickComparisonTable count={3} title="Top 3 bonustilbud – hurtig sammenligning" prioritySlugs={["spildansknu", "spilleautomaten", "betinia"]} />
+
+        <BonusClusterPriorityLinks currentPath="/casino-bonus" />
+
+        <Separator className="my-10" />
 
         {/* ========== 1. INTRODUKTION ========== */}
         <section className="mb-12">
@@ -280,9 +284,7 @@ const CasinoBonus = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Bedste casino bonus tilbud" count={6} />
-
-        <BonusClusterPriorityLinks currentPath="/casino-bonus" />
+        <Separator className="my-10" />
 
         <Separator className="my-10" />
 
