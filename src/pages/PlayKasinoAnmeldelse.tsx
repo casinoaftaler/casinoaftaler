@@ -1162,6 +1162,114 @@ const PlayKasinoAnmeldelse = () => {
           </div>
         </section>
 
+        {/* Player Type Profiles */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">PlayKasino for fem spillertyper – hvem får mest værdi?</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Ikke alle casinoer passer til alle spillere. Baseret på vores 14-dages test og den matematiske analyse har vi identificeret fem spillertyper og vurderet, hvor godt PlayKasino matcher deres behov:
+          </p>
+
+          <div className="space-y-4 mb-6">
+            {[
+              {
+                icon: Gift,
+                title: "Bonusjægeren (Match: 9/10)",
+                desc: "PlayKasino er næsten perfekt for dig. 10x omsætningskrav er det laveste i Danmark, og den positive EV (+100 kr.) gør bonussen til en matematisk fordelagtig proposition. Det eneste minus er den relativt lave bonusmaksimum (500 kr.) – men den lave omsætning mere end kompenserer.",
+                color: "text-emerald-500",
+              },
+              {
+                icon: Gamepad2,
+                title: "Slot-entusiasten (Match: 8/10)",
+                desc: "1.200+ titler fra NetEnt, Microgaming, Play'n GO, Pragmatic Play og Playtech giver et solidt fundament. Playtech-eksklusive titler (Age of the Gods) er en unik bonus. Fradrag for manglende avancerede filtre (volatilitet, RTP) og lidt færre udbydere end de største aggregatorer.",
+                color: "text-primary",
+              },
+              {
+                icon: Trophy,
+                title: "Live Casino-spilleren (Match: 8/10)",
+                desc: "Playtech Live er et friskt alternativ til den Evolution-dominans, du finder overalt ellers. Adventures Beyond Wonderland, Quantum Roulette og Unlimited Blackjack tilbyder oplevelser, du ikke finder hos de fleste danske konkurrenter. Evolution-supplement sikrer, at du også har adgang til Crazy Time og Lightning Roulette.",
+                color: "text-primary",
+              },
+              {
+                icon: Smartphone,
+                title: "Mobilspilleren (Match: 9/10)",
+                desc: "Dedikeret app til iOS og Android, MobilePay og Apple Pay til hurtige indbetalinger, synkroniserede favoritter og stabil HD-streaming i live casino. PlayKasino er et af de bedste mobilcasino-valg i Danmark. Kun marginal fradrag for længere indlæsning af visse Playtech-titler på ældre enheder.",
+                color: "text-emerald-500",
+              },
+              {
+                icon: Headphones,
+                title: "Support-afhængige spilleren (Match: 4/10)",
+                desc: "Her fejler PlayKasino. Ingen live chat, kun e-mail med 3–6 timers svartid. Hvis du har brug for øjeblikkelig hjælp – særligt med bonusvilkår eller udbetalingsproblemer – er PlayKasino ikke det rette valg. Overvej Betinia eller SpilDanskNu i stedet.",
+                color: "text-destructive",
+              },
+            ].map((item) => (
+              <Card key={item.title} className="border-border bg-card">
+                <CardContent className="pt-6">
+                  <div className="flex items-start gap-3">
+                    <item.icon className={`h-6 w-6 flex-shrink-0 mt-0.5 ${item.color}`} />
+                    <div>
+                      <h3 className="font-bold text-foreground mb-1">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Market Analysis */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Markedsanalyse – PlayKasinos position i det danske casinolandskab</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Det danske online casino-marked er et af Europas mest regulerede og konkurrenceprægede. Med ca. 35 aktive licensholdere under{" "}
+            <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og en samlet bruttospilindtægt (GGR) på over 5 milliarder kr. årligt, er det et modent marked med etablerede aktører som{" "}
+            <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link> (Dansk Tipstjeneste-udspringer),{" "}
+            <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (nu ejet af MGM Resorts) og{" "}
+            <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> (global gigant).
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            PlayKasinos indtrædelse i marts 2026 repræsenterer SkillOnNet's første dedikerede danske brand. Strategien er klar: positionér sig som "bonus-venligt alternativ" med markedets laveste omsætningskrav (10x) og differentier via Playtech-integration og dedikeret mobilapp. Det er en nichestrategi, der undgår direkte konfrontation med de store spillere på bredde og brand-genkendelighed, og i stedet fokuserer på konkrete, målbare fordele for den prisbevidste spiller.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            SkillOnNet's track record på andre markeder er lovende. PlayOJO er et af de mest succesfulde online casinoer i UK og Sverige, og SkillOnNet's platformstabilitet er dokumenteret over næsten to årtier. Den primære risikofaktor for PlayKasino er brand-byggeri: danske spillere er generelt loyale over for etablerede brands, og det kan tage 12–18 måneder at opbygge den tillid, der kræves for at tage markedsandele fra de store aktører.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Vores vurdering er, at PlayKasino har potentialet til at etablere sig som et solid mid-tier casino i Danmark – ikke som en top-3 udfordrer på kort sigt, men som et troværdigt alternativ for spillere, der specifikt søger lave omsætningskrav, Playtech-indhold og en moden teknisk platform. Den manglende live chat er den største barriere for vækst, og vi forventer, at SkillOnNet vil adressere dette inden årets udgang.
+          </p>
+        </section>
+
+        {/* Future Outlook */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Fremtidsudsigter – Hvad vi forventer fra PlayKasino</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Baseret på SkillOnNet's track record med andre brands og vores samtaler med casinoets support-team, forventer vi følgende udviklinger i de kommende 6–12 måneder:
+          </p>
+          <div className="space-y-3 mb-6">
+            {[
+              { title: "Live chat-lancering", desc: "SkillOnNet tilbyder live chat på alle andre brands (PlayOJO, iGame, DrückGlück). Det er næsten sikkert, at PlayKasino vil tilføje denne funktion inden Q4 2026. Det vil fjerne casinoets mest markante svaghed og potentielt løfte kundeservice-scoren fra 3,5 til 4,5+.", likelihood: "Meget sandsynligt" },
+              { title: "Udvidet spiludvalg", desc: "SkillOnNet's globale platform understøtter 3.000+ titler. De 1.200+ tilgængelige i Danmark afspejler formentlig en gradvis udrulning snarere end en permanent begrænsning. Vi forventer 1.500+ titler inden årets udgang, med nye udbydere som Nolimit City og Hacksaw Gaming som mulige tilføjelser.", likelihood: "Sandsynligt" },
+              { title: "VIP- og loyalitetsprogram", desc: "PlayOJO har et veletableret OJO Plus-loyalitetsprogram, der returnerer en procentdel af alle indsatser. En lignende mekanik for PlayKasino ville styrke retentionen markant. Vi forventer, at et loyalitetsprogram lanceres inden H2 2026.", likelihood: "Sandsynligt" },
+              { title: "Avancerede spilfiltre", desc: "Volatilitets-, RTP- og temafiltre er standard hos de bedste danske casinoer. SkillOnNet har teknologien – det er et spørgsmål om prioritering. Vi forventer implementering som del af en bredere UX-opdatering.", likelihood: "Muligt" },
+              { title: "Sportsbook-integration", desc: "SkillOnNet har ikke et sportsbetting-produkt i sin nuværende portefølje. Det er usandsynligt, at PlayKasino vil tilføje sportsbetting på kort sigt. For spillere, der ønsker begge dele, anbefaler vi Betinia eller Campobet.", likelihood: "Usandsynligt" },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-3 rounded-lg border border-border bg-card p-4">
+                <Search className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="font-semibold text-foreground">{item.title}</h3>
+                    <Badge variant="outline" className="text-xs">{item.likelihood}</Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-muted-foreground leading-relaxed">
+            Vi vil opdatere denne anmeldelse løbende, efterhånden som PlayKasino udvikler sit tilbud. Alle ændringer vil blive verificeret via vores{" "}
+            <Link to="/saadan-tester-vi-casinoer" className={linkClass}>standardiserede testproces</Link> og dateret i sidens metadata.
+          </p>
+        </section>
+
         <Separator className="my-10" />
 
         {/* Who should NOT choose PlayKasino */}
