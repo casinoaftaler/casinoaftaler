@@ -519,7 +519,7 @@ const CampobetAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – Internationalt team med danske ambitioner</h2>
+          <h2 className="mb-4 text-3xl font-bold">Internationalt supportteam – responstid og sprogkompetence</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Campobets kundeservice er tilgængelig 24/7 via live chat direkte fra hjemmesiden, suppleret af e-mail support. Det er en fordel sammenlignet med mange danske casinoer, der kun tilbyder support i begrænsede tidsrum (typisk 08:00–23:00). Vi kontaktede support 5 gange under vores testperiode med spørgsmål om bonusvilkår, udbetalingsstatus og sportsmarkederne.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den største udfordring er sproget. Support-teamet kommunikerer primært på engelsk, med et automatisk oversættelsesprogram til dansk. Oversættelserne er generelt forståelige, men nuancerne går nogle gange tabt – særligt ved tekniske bonusrelaterede spørgsmål. Svartiderne var korte (under 2 minutter i alle 5 tests), og medarbejderne var kompetente og løsningsorienterede. E-mail-henvendelser blev besvaret inden for 6-12 timer.</p>
           <p className="text-muted-foreground leading-relaxed">Det er værd at bemærke, at der ikke er dansk telefon-support. For spillere, der foretrækker at ringe, er det en reel ulempe. En omfattende FAQ-sektion på dansk kompenserer delvist, men den dækker primært basale spørgsmål om registrering, indbetaling og bonus. For komplekse henvendelser er live chatten den bedste kanal.</p>
