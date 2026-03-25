@@ -247,7 +247,7 @@ const SpilnuAnmeldelse = () => {
 
         {/* Payment Table */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold"><CreditCard className="inline h-7 w-7 text-primary mr-2" />Betalingsmetoder og testede udbetalingstider</h2>
+          <h2 className="mb-4 text-3xl font-bold"><CreditCard className="inline h-7 w-7 text-primary mr-2" />Indskuds- og hævningskanaler – resultater fra vores test</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Spilnus betalingsmetoder er rettet mod det danske mainstream-marked. Platformen understøtter de mest gængse danske betalingsformer, men mangler internationale alternativer. Her er vores testede erfaringer med præcise tidsmålinger:</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
