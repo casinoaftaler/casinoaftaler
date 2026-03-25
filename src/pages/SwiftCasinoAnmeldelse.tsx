@@ -616,7 +616,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── MOBILOPLEVELSE ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse: Hot Or Cold i lommen</h2>
+          <h2 className="mb-4 text-3xl font-bold">Mobil-test: Hot Or Cold og casino i lommen</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Swift Casino har ingen dedikeret app, men den mobiloptimerede hjemmeside fungerer fremragende på alle testede enheder. Vi gennemførte detaljerede tests på iPhone 15 Pro (Safari), Samsung Galaxy S24 (Chrome) og iPad Air (Safari).
           </p>
