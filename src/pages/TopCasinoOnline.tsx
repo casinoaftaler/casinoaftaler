@@ -16,7 +16,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { TopCasinoReviewLink } from "@/components/TopCasinoReviewLinks";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import topCasinoHero from "@/assets/heroes/top-casino-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { useState, type ReactNode } from "react";
 import {
   Accordion,
