@@ -1,10 +1,11 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import monopolyLiveHero from "@/assets/heroes/monopoly-live-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -109,9 +110,10 @@ const MonopolyLiveGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="18 Min." />
 
-        <img src={monopolyLiveHero} alt="Monopoly Live game show hjul med Mr. Monopoly i et farverigt TV-studio" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
+        <SnippetAnswer answer="Monopoly Live kombinerer money wheel med augmented reality-bonusrunder. RTP er 96,23% med op til 10.000x gevinst." />
 
-        <p className="mb-6 text-muted-foreground leading-relaxed">
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Monopoly Live" />
+<p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her analyserer vi Monopoly Live specifikt – Evolutions populære game show, der kombinerer et live pengehjul med en immersiv 3D Monopoly-bonusrunde. Alt indhold er baseret på matematisk analyse og personlig erfaring fra 100+ timer med Monopoly Live-sessions. For en bredere oversigt over game shows, se vores <Link to="/casinospil/game-shows" className={linkClass}>game show guide</Link>.
         </p>
 

@@ -1,17 +1,17 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import liveCasinoStrategiHero from "@/assets/heroes/live-casino-strategi-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCasinoMoneyLinks } from "@/components/LiveCasinoMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
-import GuideHeroImage from "@/components/GuideHeroImage";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -143,8 +143,10 @@ const LiveCasinoStrategiGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="28 Min." />
 
-        <GuideHeroImage src={liveCasinoStrategiHero} alt="Live casino strategi guide med roulette-hjul, blackjack-kort og chips på et professionelt casinobord" />
 
+        <SnippetAnswer answer="Live casino-strategi handler om at vælge spil med lav husfordel, bruge grundstrategi i blackjack og sætte stop-loss grænser." />
+
+        <QuickComparisonTable count={3} title="Bedste Live Casinoer – Top 3" />
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Hvor pillar-guiden giver dig overblikket over spiltyper og udbydere, dykker denne guide ned i den strategiske dimension: Hvordan minimerer du dit forventede tab? Hvordan styrer du din bankroll? Og hvorfor fejler alle populære betting-systemer matematisk? Vi besvarer disse spørgsmål med data, formler og konkrete anbefalinger – ikke mavefølelse.
         </p>

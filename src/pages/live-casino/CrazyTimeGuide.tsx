@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -21,8 +23,6 @@ import {
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
-import crazyTimeHero from "@/assets/heroes/crazy-time-hero.jpg";
-import GuideHeroImage from "@/components/GuideHeroImage";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors font-medium";
 
@@ -123,8 +123,11 @@ const CrazyTimeGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="30 min" />
-        <GuideHeroImage src={crazyTimeHero} alt="Crazy Time live casino game show hjul i professionelt studie" />
 
+
+        <SnippetAnswer answer="Crazy Time fra Evolution har en gennemsnitlig RTP på 95,5% og fire bonus-runder med op til 25.000x. Det mest populære game show i Danmark." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Crazy Time" />
         {/* ── H2 1: Hvad er Crazy Time ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crown className="h-5 w-5 text-primary" />Hvad er Crazy Time – og hvorfor dominerer det live casino</h2>
