@@ -163,7 +163,7 @@ const GetLuckyAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – muligheder og hastighed</h2>
+          <h2 className="mb-4 text-3xl font-bold">Pengeindsættelse og hævning – muligheder og tempo</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">GetLuckys betalingsudvalg dækker de mest gængse metoder, men mangler den danske favorit MobilePay. Her er en detaljeret oversigt baseret på vores testresultater:</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border border-border rounded-lg">
