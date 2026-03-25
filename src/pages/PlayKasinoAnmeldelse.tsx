@@ -640,7 +640,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Mobile Experience */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – Dedikeret app til iOS og Android</h2>
+          <h2 className="mb-4 text-3xl font-bold">App-test – dedikeret download til iOS og Android</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             I modsætning til mange danske casinoer, der udelukkende tilbyder mobiloptimerede hjemmesider, har PlayKasino investeret i dedikerede native apps til både iOS (App Store) og Android (Google Play). Det er en direkte fordel af SkillOnNet-platformen, som har teknisk kapacitet til at udvikle og vedligeholde native applikationer.
           </p>
