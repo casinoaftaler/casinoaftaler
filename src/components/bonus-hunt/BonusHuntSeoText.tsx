@@ -286,9 +286,9 @@ export function BonusHuntSeoText() {
         <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
           <p>
             En succesfuld bonus hunt handler ikke kun om held – det handler om struktureret bankroll
-            management og strategisk slot-selektion. Før hver hunt fastlægger vi et budget (startbalance)
-            og fordeler det på tværs af et bestemt antal bonusser. Typisk sigter vi efter 15–30 bonusser
-            per hunt for at opnå en statistisk meningsfuld sample size.
+            management og strategisk slot-selektion. Før hver hunt fastlægger vi en startbalance, som vi
+            spinner ned til 0 mens vi hunter bonusser. Antal bonusser afhænger af, hvor hurtigt vi rammer dem –
+            typisk ender vi med 15–30 bonusser per hunt, hvilket giver en statistisk meningsfuld sample size.
           </p>
           <p>
             Slot-selektion er baseret på flere faktorer: <strong className="text-foreground">volatilitet</strong>{" "}
