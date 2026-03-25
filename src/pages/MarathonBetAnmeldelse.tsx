@@ -144,7 +144,7 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – funktionel men utidssvarende</h2>
+          <h2 className="mb-4 text-3xl font-bold">Mobil betting – et forældet interface under lup</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBets mobiloplevelse er platformens svageste punkt. Der er ingen dedikeret app, og den mobile webversion føles som en tilpasset version af desktop-sitet fremfor en native mobiloplevelse. Indlæsningstider er acceptable (2.4 sekunder på iPhone 15 Pro), men navigationen er mindre intuitiv end konkurrenternes.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sportsbog-navigationen fungerer på mobil – du kan finde kampe, placere væddemål og administrere din konto. Men sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365s</Link> polerede mobilapp eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibets</Link> intuitive interface føles MarathonBet en generation bagud. Live betting på mobil er særligt påvirket: den manglende visuelle polish kombineret med hurtige odds-ændringer gør oplevelsen hektisk fremfor glat.</p>
           <p className="text-muted-foreground leading-relaxed">Casino-sektionen på mobil er acceptabel med de fleste spil tilgængelige i touch-format. Slots kører flydende, og live casino-streaming fungerer stabilt. Men det ændrer ikke det overordnede billede: MarathonBets mobiloplevelse er designet til spillere, der tolererer dårligt UI til gengæld for bedre odds. Hvis mobiloplevelse er en prioritet, er denne platform ikke for dig.</p>
