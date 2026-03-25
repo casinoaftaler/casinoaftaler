@@ -167,7 +167,7 @@ const VideoslotsAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><CreditCard className="h-7 w-7 text-primary" />Betalingsmetoder og testresultater</h2>
+          <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><CreditCard className="h-7 w-7 text-primary" />Finansielle transaktioner – metoder og dokumenterede hastigheder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Videoslots tilbyder et bredt udvalg af <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> optimeret til det danske marked. Alle transaktioner er gebyrfri, og minimumsindbetalingen er 100 kr.</p>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
