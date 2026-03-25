@@ -283,11 +283,11 @@ export function BonusHuntArkivSeoContent() {
           Med 10 kr base bet: 1.500 kr forskel i forventet resultat
         </div>
 
-        <h3 className="text-xl font-bold text-foreground mt-6">Feature Buy-pris vs. potentiale</h3>
+        <h3 className="text-xl font-bold text-foreground mt-6">Bonus-pris vs. potentiale</h3>
         <p className="text-muted-foreground leading-relaxed">
-          Ikke alle Feature Buy-priser er skabt lige. En maskine med en 100x Feature Buy-pris og et max win
-          på 5.000x giver et helt andet risk/reward-forhold end en maskine med 200x Feature Buy-pris og 10.000x
-          max win. Vi evaluerer Feature Buy-prisen i forhold til:
+          Uanset om en bonus er huntet organisk eller købt via Feature Buy, varierer "prisen" per bonus.
+          Ved hunting afhænger prisen af, hvor hurtigt man rammer bonussen. Ved bonus buy er prisen fast (typisk 100x).
+          Vi evaluerer hver bonus' cost i forhold til:
         </p>
         <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
           <li>Den gennemsnitlige bonus-udbetaling i vores historiske data</li>
