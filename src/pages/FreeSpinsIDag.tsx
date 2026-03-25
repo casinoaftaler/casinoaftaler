@@ -529,6 +529,9 @@ const FreeSpinsIDag = () => {
         <LatestNewsByCategory pagePath="/free-spins-i-dag" />
         <RelatedGuides currentPath="/free-spins-i-dag" />
         <FAQSection title="Ofte Stillede Spørgsmål om Daglige Free Spins" faqs={freeSpinsIDagFaqs} />
+      </div>
+
+      <div className="container pb-8">
         <AuthorBio author="jonas" />
       </div>
 
