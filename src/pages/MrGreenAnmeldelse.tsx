@@ -172,7 +172,7 @@ const MrGreenAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – prisbelønnet app</h2>
+          <h2 className="mb-4 text-3xl font-bold">Den prisbelønnede app – test af iOS og Android</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Greens mobilapp er ikke bare god – den er prisbelønnet. Appen har vundet EGR Operator Awards' "Mobile Operator of the Year" flere gange og er konsekvent en af de højest vurderede casino-apps i både App Store og Google Play. Designet er en direkte forlængelse af desktop-oplevelsen: rent, elegant og intuitivt med den karakteristiske grøn-sorte farvepalette.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I vores test på iPhone 15 Pro målte vi en appstarttid på 1,4 sekunder og jævne 60fps-animationer på tværs af alle sektioner. Spilindlæsningstiden var gennemsnitligt 2,8 sekunder for slots og 3,2 sekunder for live casino – begge under branchegennemsnittet. Samsung Galaxy S24-testen viste sammenlignelige resultater med 1,6 sekunders appstart, hvilket bekræfter god cross-platform optimering.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Touch-navigationen er optimeret specifikt til mobilbrug med store, let tilgængelige knapper og swipe-baserede menuer. Green Gaming-værktøjet er fuldt integreret i appen med push-notifikationer, der minder dig om dine grænser og giver periodiske "sundhedstjek". Biometrisk login via Face ID og fingeraftryk sikrer hurtig og sikker adgang – en detalje, der lyder banal, men som reelt sparer tid ved hver enkelt session.</p>
