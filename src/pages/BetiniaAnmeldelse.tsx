@@ -324,7 +324,7 @@ const BetiniaAnmeldelse = () => {
 
         {/* Pros & Cons */}
         <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">Fordele og ulemper ved Betinia – Ærlig vurdering</h2>
+          <h2 className="mb-6 text-3xl font-bold">Betinia ærligt vurderet – hvad virker og hvad skuffer</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
             Efter 14 dages test kan vi præsentere en nuanceret liste over Betinias styrker og svagheder. Listen afspejler vores faktiske oplevelser – ikke markedsføringsmaterialet:
           </p>
