@@ -693,7 +693,7 @@ const PlayKasinoAnmeldelse = () => {
 
         {/* Security & Licenses */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, triple licens og ansvarligt spil</h2>
+          <h2 className="mb-4 text-3xl font-bold">Triple licens, ROFUS og SkillOnNets compliance-profil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             PlayKasino opererer med en sjælden triple licensering: dansk licens fra{" "}
             <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, international licens fra Malta Gaming Authority (MGA) og licens fra UK Gambling Commission (UKGC). Det er den mest omfattende licenserings-profil blandt nye danske casinoer i 2026, og det er en direkte konsekvens af SkillOnNet's globale compliance-infrastruktur.
