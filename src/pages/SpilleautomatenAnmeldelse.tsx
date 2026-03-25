@@ -641,7 +641,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Customer Support */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – Dansk support med 1 min. 50 sek. svartid</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dansk support med 1 min. 50 sek. svartid – test og vurdering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vi kontaktede kundeservicen 4 gange under vores testperiode med spørgsmål om bonuskoder, Præmieshoppens konverteringsrater, udbetalingsstatus og en teknisk fejl (spil der ikke indlæste). Den gennemsnitlige svartid var 1 minut og 50 sekunder – hurtigere end de fleste danske konkurrenter.
           </p>
