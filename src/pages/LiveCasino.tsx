@@ -253,7 +253,6 @@ const LiveCasino = () => {
           </p>
         </section>
 
-        <InlineCasinoCards title="Casinoer med stærkt live casino-udvalg" count={6} />
 
         <Separator className="my-10" />
 
