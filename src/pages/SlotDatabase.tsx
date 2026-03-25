@@ -333,14 +333,9 @@ export default function SlotDatabase() {
           </div>
         )}
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={slotDatabaseHero}
-            alt="Slot database med spillemaskiners RTP, volatilitet og community-statistikker"
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
+        <SnippetAnswer answer="Vores slot database indeholder ægte community-data fra live bonus hunts – ikke teoretiske tal. Se RTP, volatilitet og performance for 1.400+ spillemaskiner testet på Twitch." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Slots" />
 
         {/* Stats strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
