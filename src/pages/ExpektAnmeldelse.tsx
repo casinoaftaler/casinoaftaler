@@ -139,7 +139,7 @@ const ExpektAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice og supportoplevelse</h2>
+          <h2 className="mb-4 text-3xl font-bold">Chat og e-mail – vores erfaringer med Expekts helpdesk</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekts kundeservice er tilgængelig via live chat og e-mail. Vi testede live chatten to gange under vores januar 2026-session. Første kontakt (tirsdag kl. 11:30) resulterede i en svartid på 3 minutter og 15 sekunder – acceptabelt. Agenten kommunikerede på engelsk men forstod vores danske kontekst. Spørgsmål om bonusvilkår blev besvaret korrekt og præcist.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Anden kontakt (lørdag kl. 20:00) havde en svartid på 5 minutter og 40 sekunder – længere, men stadig inden for rimelighedens grænser. Agenten var kompetent men henviste os til FAQ-sektionen for detaljerede vilkår om free spins-omsætningskrav. Det er et tegn på standardiseret, international kundeservice snarere end den personlige, danske tilgang man får hos <Link to="/casino-anmeldelser/spilnu" className={linkClass}>Spilnu</Link> eller <Link to="/casino-anmeldelser/casinostuen" className={linkClass}>Casinostuen</Link>.</p>
           <p className="text-muted-foreground leading-relaxed">En vigtig bemærkning: Expekts kundeservice er primært på engelsk, ikke dansk. For spillere, der foretrækker modersmålssupport, er det en ulempe. FAQ-sektionen er dog tilgængelig på dansk og dækker de mest almindelige spørgsmål om konto, betalinger og bonusser. E-mailsvar modtog vi inden for 18 timer – inden for det lovede interval på 24 timer.</p>
