@@ -139,7 +139,7 @@ const KapowCasinoAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – testresultater og vurdering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Transaktionsmuligheder – fra MobilePay til bankoverførsel</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { title: "Trustly (testet)", desc: "Anmodet kl. 09:30, intern godkendelse kl. 15:45, modtaget kl. 08:15 næste morgen. Total: 22t 45min.", speed: "⚡ 22t 45min (testet)" },
