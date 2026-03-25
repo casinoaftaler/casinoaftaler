@@ -67,7 +67,7 @@ export function BonusHuntSeoText() {
             <strong className="text-foreground">Gennemsnit X</strong> er den samlede payout divideret med den
             samlede indsats – en gennemsnit X på 150 betyder, at huntens bonusser i gennemsnit returnerede
             150 % af indsatsen. <strong className="text-foreground">Break-even X</strong> er den multiplikator,
-            der præcist dækker den samlede investering, inklusiv købspris for bonusser.
+            der præcist dækker den samlede indsats brugt på at triggere eller købe bonusserne.
           </p>
           <p>
             Fra et matematisk perspektiv kan Expected Value (EV) for en bonus hunt estimeres via formlen:{" "}
