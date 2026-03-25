@@ -445,7 +445,7 @@ const BwinAnmeldelse = () => {
 
         {/* Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå bwin?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Spillerprofiler der bør se andre steder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Selvom bwin er en solid platform for den rigtige spillerprofil, er der flere typer spillere, som vil blive skuffede. Det er vigtigt at være ærlig om disse begrænsninger, da det sparer tid og frustration. bwins casino-sektion er et supplement til sportsbogen – ikke en selvstændig konkurrencedygtig casinooplevelse. Med ca. 1.000 spiltitler ligger bwin under halvdelen af det, som dedikerede casinoer som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.000+) og <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link> (5.000+) tilbyder.
           </p>
