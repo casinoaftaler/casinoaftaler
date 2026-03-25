@@ -290,7 +290,7 @@ const GetLuckyAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Vores endelige vurdering af GetLucky Casino</h2>
+          <h2 className="mb-4 text-3xl font-bold">Opsummering – GetLucky Casinos samlede kvalitetsniveau</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">GetLucky Casino er en solid, moderne platform, der leverer på sit kerneområde: spiludvalg. Med 1.500+ titler fra 30+ udbydere – inklusive trendende studier som Nolimit City og Hacksaw Gaming – er det et paradis for slots-entusiasten, der elsker at udforske nye spil. SkillOnNets 19 års erfaring sikrer en stabil, pålidelig platform med tredobbelt licensering og et modent sikkerhedssetup.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Loyalitetsprogrammet er et positivt element, der belønner konsistens over størrelse og gør platformen tilgængelig for alle budgetter. Live casinoets lave minimumsindsatser er en unik fordel, og free spins-velkomsten fordelt over 5 dage er en smart retention-mekanik. Det er ikke den mest generøse bonus, men den er gennemtænkt.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Vi rater GetLucky til 4.0/5. Det trækkes ned af langsommere udbetalingstider (op til 48 timer), manglende MobilePay-understøttelse, engelsktalende kundeservice og delte live casino-borde. Men for spilleren, der prioriterer spilvariation og et stabilt, tredobbelt reguleret miljø med et demokratisk loyalitetsprogram, er det et fremragende valg i et velbesat dansk marked. Læs mere om <Link to="/forfatter/jonas" className={linkClass}>forfatteren bag denne anmeldelse</Link>.</p>

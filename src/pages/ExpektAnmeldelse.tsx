@@ -184,7 +184,7 @@ const ExpektAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og Betsson Group-garantien</h2>
+          <h2 className="mb-4 text-3xl font-bold">Betsson Group-garantien og regulatorisk overblik</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekt opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet ROFUS. Betsson Groups børsnotering på Nasdaq Stockholm kræver kvartalsrapportering og ekstern revision – et gennemsigtighedsniveau, der overgår de fleste private operatører.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjer inkluderer indbetalingsgrænser, sessionsgrænser, afkølingsperioder og selvudelukkelse via ROFUS. Expekt tilbyder desuden en "Reality Check"-funktion, der viser din session-tid og nettoresultat med jævne intervaller. Vores <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> sikrer uafhængige vurderinger.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground">Spil ansvarligt. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> ved behov.</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Annoncering</p></CardContent></Card>

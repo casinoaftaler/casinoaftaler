@@ -280,7 +280,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Hvem bør undgå */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå Danske Spil Casino?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Tre grunde til at Danske Spil Casino ikke passer alle</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Danske Spil Casino er det sikreste valg på det danske marked – men det er ikke det rigtige valg for alle spillerprofiler. Her er en ærlig vurdering af, hvem der bør kigge andre steder:</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Bonusjægeren:</strong> Hvis du primært vælger casino baseret på velkomstbonussens størrelse og jagter de mest generøse tilbud, vil Danske Spils konservative bonusstruktur skuffe dig. Operatører som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> eller <Link to="/casino-anmeldelser/betano" className={linkClass}>Betano</Link> tilbyder typisk mere attraktive velkomstpakker.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>High-volatility spilleren:</strong> Hvis du specifikt jagter de nyeste og mest volatile spilleautomater fra nicheudviklere som Hacksaw Gaming, Push Gaming eller Nolimit City, er Danske Spils katalog for begrænset. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> eller LeoVegas har et bredere udvalg af cutting-edge titler.</p>
