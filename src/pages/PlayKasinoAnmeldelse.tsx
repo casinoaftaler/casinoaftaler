@@ -191,7 +191,7 @@ const PlayKasinoAnmeldelse = () => {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" readTime="32 Min." />
+        <AuthorMetaBar author="jonas" readTime="58 Min." />
 
         <CasinoReviewHero slug="playkasino" casinoName="PlayKasino" />
         <ReviewMoneyLinks showMobilePay />
