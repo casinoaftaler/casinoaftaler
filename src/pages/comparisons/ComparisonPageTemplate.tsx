@@ -176,17 +176,9 @@ export function ComparisonPageTemplate({
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author={author} readTime={readTime} />
 
-        {/* Hero image */}
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={heroImage}
-            alt={heroAlt}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-            width={1920}
-            height={600}
-          />
-        </div>
+        <SnippetAnswer answer={`${casinoA.name} vs ${casinoB.name}: Vi har testet begge casinoer med rigtige penge og sammenligner bonus, spiludvalg, udbetalingstid og mobil. Se hvem der vinder nedenfor.`} />
+
+        <QuickComparisonTable count={3} title="Top 3 Alternativer" />
 
         {/* Quick comparison cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
