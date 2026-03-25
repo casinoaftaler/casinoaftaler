@@ -113,7 +113,7 @@ const PokerStarsAnmeldelse = () => {
 
         {/* Mobilapp */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobilappen – poker og casino i lommen</h2>
+          <h2 className="mb-4 text-3xl font-bold">Poker og casino i appen – mobiltest</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">PokerStars' mobilapp er tilgængelig til iOS og Android og dækker poker, casino og sport i én applikation. Poker-delen er imponerende med mulighed for multi-tabling (op til 4 borde), Zoom Poker og turneringsdeltagelse direkte fra mobilen. Touch-interfacet er optimeret til hurtige beslutninger med swipe-to-fold og tap-to-bet.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede appen på iPhone 15 Pro over 5 sessioner. App-start tog 2.3 sekunder, og lobby-navigation var flydende. Poker-bordene indlæste på 1.1 sekunder, og vi oplevede ingen lag eller disconnects under spil – heller ikke på 4G-forbindelse. Casino-sektionen er integreret med direkte adgang fra hovedmenuen, og slot-spil starter hurtigt med touch-optimerede interfaces.</p>
           <p className="text-muted-foreground leading-relaxed">Den største begrænsning er, at visse avancerede poker-funktioner kun er tilgængelige i desktop-klienten. HUD-integration, avancerede statistikvisninger og visse turneringsfiltre kræver computeren. For casual poker og al casino-brug er mobilappen dog mere end tilstrækkelig. Sammenlignet med konkurrenternes mobil-casino-oplevelser (LeoVegas, Mr Green) er PokerStars' casino-del middel – men poker-delen er i en klasse for sig.</p>
