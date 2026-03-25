@@ -125,7 +125,7 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Betalingsmetoder med testdata */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalinger – testresultater</h2>
+          <h2 className="mb-4 text-3xl font-bold">Ind- og udbetalinger – dokumenterede processer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBet understøtter de primære betalingsmetoder på det danske marked, om end med et lidt mere begrænset udvalg end de største operatører. Bemærkelsesværdigt er fraværet af MobilePay – et minus for danske spillere, der er vant til den sømløse integration hos <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link> og <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
