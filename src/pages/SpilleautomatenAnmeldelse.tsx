@@ -670,7 +670,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Mobile */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – Slots-specialist i lommen</h2>
+          <h2 className="mb-4 text-3xl font-bold">Slots på telefonen – dedikeret mobiloplevelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vi testede mobilversionen på iPhone 15 Pro (Safari) og Samsung Galaxy S24 (Chrome) over 4 dage. Spilleautomaten er bygget med mobile-first design og kører direkte i browseren. Ingen app nødvendig – og i dette tilfælde er det en styrke, da alle opdateringer sker automatisk.
           </p>
