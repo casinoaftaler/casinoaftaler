@@ -614,7 +614,7 @@ const LunaCasinoAnmeldelse = () => {
 
         {/* ───── KUNDESERVICE ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice: Kompetent og tilgængelig</h2>
+          <h2 className="mb-4 text-3xl font-bold">Servicedesk: Kompetent rådgivning når du har brug for det</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Luna Casino tilbyder kundeservice via live chat og e-mail. Under vores test kontaktede vi live chat tre gange med forskellige forespørgsler og oplevede gennemsnitlige svartider på 1–3 minutter. Rådgiverne var kompetente, venlige og i stand til at besvare detaljerede spørgsmål om loyalitetsprogrammet, bonusvilkår og betalingsmetoder.
           </p>
