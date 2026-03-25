@@ -329,7 +329,7 @@ const Bet365Anmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalingstid</h2>
+          <h2 className="mb-4 text-3xl font-bold">Ind- og udbetalinger – testede hastigheder og metoder</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             bet365 understøtter de gængse danske <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>: <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link>, <Link to="/betalingsmetoder/visa-mastercard" className={linkClass}>Visa/Mastercard</Link>, <Link to="/betalingsmetoder/skrill" className={linkClass}>Skrill</Link> og <Link to="/betalingsmetoder/paysafecard" className={linkClass}>Paysafecard</Link>. Indbetalinger er øjeblikkelige uanset metode. Der er ingen gebyrer fra bet365's side – men din bank eller e-wallet kan opkræve egne gebyrer.
           </p>
