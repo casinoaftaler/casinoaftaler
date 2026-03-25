@@ -593,7 +593,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Payment Methods */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – MobilePay-udbetalinger testet</h2>
+          <h2 className="mb-4 text-3xl font-bold">MobilePay-udbetalinger og øvrige transaktionskanaler testet</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Spilleautomaten tilbyder de mest populære danske{" "}
             <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> med fokus på hastighed. Vi testede 3 metoder under vores testperiode:
