@@ -555,7 +555,7 @@ const SwiftCasinoAnmeldelse = () => {
 
         {/* ───── BETALINGSMETODER ───── */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder: Swift Casinos konkurrencefordel</h2>
+          <h2 className="mb-4 text-3xl font-bold">Ind- og udbetalingsmetoder: Swift Casinos konkurrencefordel</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Her har Swift Casino en markant fordel over søstercasinoet Luna Casino: support for{" "}
             <Link to="/betalingsmetoder/paypal" className={linkClass}>PayPal</Link>,{" "}
