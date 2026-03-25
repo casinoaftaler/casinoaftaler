@@ -133,7 +133,7 @@ const MrVegasAnmeldelse = () => {
 
         {/* Betalingsmetoder med testdata */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – vores testresultater</h2>
+          <h2 className="mb-4 text-3xl font-bold">Ind- og udbetalingskanaler – vores dokumenterede test</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Vegas Casino understøtter alle de vigtige danske <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>. Vi testede tre udbetalingsmetoder og dokumenterede resultaterne præcist for at give dig et realistisk billede af, hvad du kan forvente.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
