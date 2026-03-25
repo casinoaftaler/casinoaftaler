@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import trustlyHero from "@/assets/heroes/nye-casinoer-trustly-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -91,10 +92,10 @@ const NyeCasinoerTrustly = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="19 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={trustlyHero} alt="Nye casinoer med Trustly betaling" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Nye casinoer med Trustly tilbyder instant ind- og udbetalinger direkte fra din bankkonto uden kortoplysninger." />
+
+        <QuickComparisonTable count={3} title="Trustly Casinoer – Top 3" />
         {/* Intro - differentiated from /betalingsmetoder/trustly */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Trustly som casino-valgkriterie: Hvorfor det er afgørende hos nye casinoer</h2>

@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import udenRofusHero from "@/assets/heroes/nye-casinoer-uden-rofus-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -105,10 +106,10 @@ const NyeCasinoerUdenRofus = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="20 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={udenRofusHero} alt="Casino uden ROFUS – advarsler og risici" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Casinoer uden ROFUS mangler dansk licens og spillerbeskyttelse. Vi anbefaler altid licenserede alternativer med fuldt tilsyn." />
+
+        <QuickComparisonTable count={3} title="Sikre Alternativer – Top 3" />
         <Card className="mb-8 border-l-4 border-l-destructive">
           <CardContent className="pt-6">
             <div className="flex items-start gap-3">

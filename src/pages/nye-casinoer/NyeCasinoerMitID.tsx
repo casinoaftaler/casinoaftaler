@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import mitidHero from "@/assets/heroes/nye-casinoer-mitid-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -70,10 +71,10 @@ const NyeCasinoerMitID = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="18 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={mitidHero} alt="MitID verifikation hos nye casinoer" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Nye casinoer med MitID giver hurtig verifikation og øjeblikkelig adgang til spil med dansk licens og fuld ROFUS-integration." />
+
+        <QuickComparisonTable count={3} title="MitID Casinoer – Top 3" />
         {/* Intro section */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">MitID hos nye casinoer i Danmark – den komplette guide</h2>

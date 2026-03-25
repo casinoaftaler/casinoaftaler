@@ -1,8 +1,9 @@
 import React from "react";
-import heroFordeleUlemper from "@/assets/hero-fordele-og-ulemper.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinoUdenKontoCrossLinks } from "@/components/CasinoUdenKontoCrossLinks";
@@ -135,12 +136,15 @@ const FordeleOgUlemperGuide = () => {
       </section>
 
       <div className="container py-6">
-        <img src={heroFordeleUlemper} alt="Fordele og ulemper ved casino uden konto – balanceret vurdering" width={1920} height={1080} loading="eager" className="w-full h-auto object-cover rounded-lg max-h-[400px]" />
       </div>
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="32 Min." />
 
+
+        <SnippetAnswer answer="Casino uden konto tilbyder hurtigere adgang, men med færre bonusmuligheder og begrænset loyalitetsprogram." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" />
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Scale className="h-7 w-7 text-primary" />En balanceret vurdering</h2>
