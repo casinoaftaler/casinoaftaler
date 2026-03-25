@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { LazySection } from "@/components/LazySection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -831,14 +832,19 @@ const LunaCasinoAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
-        <UserReviewSection casinoSlug="luna-casino" casinoName="Luna Casino" />
-        <RelatedReviews currentSlug="luna-casino" />
-        <InlineCasinoCards excludeSlugs={["luna-casino"]} />
-        <Separator className="my-10" />
-        <LatestNewsByCategory pagePath="/casino-anmeldelser/luna-casino" />
-        <RelatedGuides currentPath="/casino-anmeldelser/luna-casino" />
-        <FAQSection title="Ofte stillede spørgsmål om Luna Casino" faqs={lunaFaqs} />
-        <AuthorBio author="jonas" />
+        <LazySection minHeight="400px">
+          <UserReviewSection casinoSlug="luna-casino" casinoName="Luna Casino" />
+        </LazySection>
+        <LazySection minHeight="300px">
+          <RelatedReviews currentSlug="luna-casino" />
+          <InlineCasinoCards excludeSlugs={["luna-casino"]} />
+        </LazySection>
+        <LazySection minHeight="200px">
+          <LatestNewsByCategory pagePath="/casino-anmeldelser/luna-casino" />
+          <RelatedGuides currentPath="/casino-anmeldelser/luna-casino" />
+          <FAQSection title="Ofte stillede spørgsmål om Luna Casino" faqs={lunaFaqs} />
+          <AuthorBio author="jonas" />
+        </LazySection>
       </div>
       {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusAmount={casino.bonus_amount} bonusType={casino.bonus_type} freeSpins={casino.free_spins} wageringRequirements={casino.wagering_requirements} rating={casino.rating} logoUrl={casino.logo_url} isRecommended={casino.is_recommended} isHot={casino.is_hot} />}
     </>

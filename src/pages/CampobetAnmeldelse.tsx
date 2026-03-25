@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { InlineReviewCTA } from "@/components/InlineReviewCTA";
+import { LazySection } from "@/components/LazySection";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
@@ -591,13 +593,19 @@ const CampobetAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
-        <UserReviewSection casinoSlug="campobet" casinoName="Campobet" />
-        <RelatedReviews currentSlug="campobet" />
-        <InlineCasinoCards excludeSlugs={["campobet"]} />
-        <LatestNewsByCategory pagePath="/casino-anmeldelser/campobet" />
-        <RelatedGuides currentPath="/casino-anmeldelser/campobet" />
-        <FAQSection title="Ofte stillede spørgsmål om Campobet" faqs={campobetFaqs} />
-        <AuthorBio author="jonas" />
+        <LazySection minHeight="400px">
+          <UserReviewSection casinoSlug="campobet" casinoName="Campobet" />
+        </LazySection>
+        <LazySection minHeight="300px">
+          <RelatedReviews currentSlug="campobet" />
+          <InlineCasinoCards excludeSlugs={["campobet"]} />
+        </LazySection>
+        <LazySection minHeight="200px">
+          <LatestNewsByCategory pagePath="/casino-anmeldelser/campobet" />
+          <RelatedGuides currentPath="/casino-anmeldelser/campobet" />
+          <FAQSection title="Ofte stillede spørgsmål om Campobet" faqs={campobetFaqs} />
+          <AuthorBio author="jonas" />
+        </LazySection>
       </div>
       {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusAmount={casino.bonus_amount} bonusType={casino.bonus_type} freeSpins={casino.free_spins} wageringRequirements={casino.wagering_requirements} rating={casino.rating} logoUrl={casino.logo_url} isRecommended={casino.is_recommended} isHot={casino.is_hot} />}
     </>

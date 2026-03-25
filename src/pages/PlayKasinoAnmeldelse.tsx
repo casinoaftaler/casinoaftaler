@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { LazySection } from "@/components/LazySection";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -937,23 +938,19 @@ const PlayKasinoAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <UserReviewSection casinoSlug="playkasino" casinoName="PlayKasino" />
-        <RelatedReviews currentSlug="playkasino" />
-
-        <InlineCasinoCards
-          title="Andre anbefalede casinoer"
-          count={6}
-          excludeSlugs={["playkasino"]}
-        />
-
-        <AuthorBio />
-
-        <Separator className="my-10" />
-
-        <LatestNewsByCategory pagePath="/casino-anmeldelser/playkasino" />
-        <RelatedGuides currentPath="/casino-anmeldelser/playkasino" />
-
-        <FAQSection title="Ofte stillede spørgsmål om PlayKasino" faqs={playkasinoFaqs} />
+        <LazySection minHeight="400px">
+          <UserReviewSection casinoSlug="playkasino" casinoName="PlayKasino" />
+        </LazySection>
+        <LazySection minHeight="300px">
+          <RelatedReviews currentSlug="playkasino" />
+          <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["playkasino"]} />
+        </LazySection>
+        <LazySection minHeight="200px">
+          <AuthorBio />
+          <LatestNewsByCategory pagePath="/casino-anmeldelser/playkasino" />
+          <RelatedGuides currentPath="/casino-anmeldelser/playkasino" />
+          <FAQSection title="Ofte stillede spørgsmål om PlayKasino" faqs={playkasinoFaqs} />
+        </LazySection>
       </div>
       {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusAmount={casino.bonus_amount} bonusType={casino.bonus_type} freeSpins={casino.free_spins ?? ""} wageringRequirements={casino.wagering_requirements} rating={casino.rating} logoUrl={casino.logo_url} isRecommended={casino.is_recommended} isHot={casino.is_hot} />}
     </>

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import { InlineReviewCTA } from "@/components/InlineReviewCTA";
+import { LazySection } from "@/components/LazySection";
 import spildansknuLobby from "@/assets/reviews/spildansknu-lobby.png";
 import spildansknuCasinospil from "@/assets/reviews/spildansknu-casinospil.png";
 import spildansknuBonus from "@/assets/reviews/spildansknu-bonus.webp";
@@ -103,46 +105,9 @@ const SpilDanskNuAnmeldelse = () => {
           </Card>
         </section>
 
-        {/* Introduktion: Det danske DNA */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Det danske DNA – Hvorfor SpilDanskNu er anderledes</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Der er en fundamental forskel mellem et dansk casino og et casino med dansk licens. SpilDanskNu er det første – en platform bygget fra bunden af et dansk selskab, drevet af et dansk team, med dansk kundeservice og en produktfilosofi formet af årelang erfaring med det danske spillemarked. Bag platformen står Winteq ApS, et selskab med adresse i Danmark, der også driver <Link to="/casino-anmeldelser/spilleautomaten" className={linkClass}>Spilleautomaten.dk</Link> og Bingo.dk. Det er ikke en international platform tilpasset det danske marked med en oversat hjemmeside og auto-translated support – det er et produkt skabt specifikt for danske spillere.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Siden lanceringen i 2017 har SpilDanskNu opbygget en loyal brugerbase med en tilgang, der prioriterer gennemsigtighed, enkelthed og fair vilkår over aggressiv markedsføring. Der er ingen opblæste bonusbeløb med skjulte vilkår, ingen komplicerede VIP-strukturer med uopnåelige tiers, og ingen sportsbetting eller bingo at navigere forbi. SpilDanskNu er et rent casinoprodukt – fokuseret, ærligt og gennemskueligt.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Velkomstpakken er et perfekt eksempel på denne filosofi: 100 % bonus op til 1.000 kr. fordelt over 5 dage med bonuskoden VELKOMMEN, kun 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og 60 dages gyldighed. Den 5-dages model er unik på det danske marked og giver spillere mulighed for at sprede deres risiko over flere indbetalinger i stedet for at binde hele bonusbeløbet på én gang. Det er en gennemtænkt tilgang, der afspejler Winteqs fokus på spillerbeskyttelse.</p>
-          <p className="text-muted-foreground leading-relaxed">I denne dybdegående anmeldelse gennemgår vi alt fra <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og Præmieshoppen til det fulde spiludvalg, <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, kundeservice, mobiloplevelse og sikkerhed. Vi har testet platformen over 14 dage for at give dig et komplet og ærligt billede af, hvad SpilDanskNu tilbyder i 2026. Læs mere om <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.</p>
-          <YoutubeEmbed videoId="_hHQkRwUzoU" title="SpilDanskNu Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan SpilDanskNu ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/spildansknu" />
-          <div className="rounded-lg border border-border bg-muted/30 p-5">
-            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan SpilDanskNu ser ud indefra</h3>
-            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig SpilDanskNus hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video. Videoen er en del af vores dybdegående indhold om <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> og <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.</p>
-          </div>
-          <ReviewScreenshot src={spildansknuLobby} alt="SpilDanskNu lobby og forside med spilkategorier, seneste gevinster og anbefalet slots" caption="SpilDanskNus forside med lobby, spilkategorier og seneste gevinster" eager />
-        </section>
+        {/* ===== ABOVE-THE-FOLD INTENT STACK ===== */}
 
-        <CommunityActivityWidget casinoName="SpilDanskNu" casinoSlug="spildansknu" />
-
-        <Separator className="my-10" />
-
-        {/* 14-dages test */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">14 dages test – Fra registrering til udbetaling</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Vi oprettede en konto hos SpilDanskNu den 1. februar 2026 og testede platformen systematisk over de næste to uger. Her er de vigtigste observationer fra vores testperiode – fra det helt første klik til den endelige udbetaling.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Registrering (dag 1).</strong> Tilmeldingen tog 3 minutter og 45 sekunder. MitID-verifikationen kørte problemfrit, og vi kunne sætte indbetalingsgrænser med det samme. Hele flowet er klart og intuitivt med tydelige instruktioner på dansk. Den første indbetaling på 200 kr. via MobilePay blev krediteret øjeblikkeligt, og bonusmidlerne (200 kr. med koden VELKOMMEN) dukkede op inden for sekunder.</p>
-
-          <ReviewScreenshot src={spildansknuLogin} alt="SpilDanskNu login-dialog med e-mail, adgangskode og MitID-godkendelse" caption="Login hos SpilDanskNu med e-mail og MitID-integration" />
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Bonusaktivering (dag 1-5).</strong> Vi testede den fulde 5-dages bonusmodel med daglige indbetalinger af 200 kr. Koderne VELKOMMEN (alle 5 dage bruger samme kode) fungerede fejlfrit, og bonusmidlerne blev krediteret øjeblikkeligt hver gang. Den samlede bonus efter 5 dage: 1.000 kr. Det samlede omsætningskrav: (1.000 + 1.000) × 10 = 20.000 kr. Med 60 dages gyldighed er det realistisk at gennemspille.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Spiloplevelsen (dag 3-12).</strong> Vi spillede gennem 63 forskellige spilleautomater fra 14 udbydere. Loadtiderne var konsekvent under 2,5 sekunder, og vi oplevede ikke et eneste crash eller teknisk fejl i løbet af testperioden. Filtreringssystemet er simpelt men effektivt med kategorier for populære, nye, jackpot og livecasino. RTP-niveauerne lå gennemsnitligt på 96,3 % baseret på de titler vi testede – i den gode ende af skalaen for danske casinoer.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Loyalitetsprogram (dag 1-14).</strong> Vi optjente 487 loyalitetspoints over testperioden ved at omsætte ca. 2.435 kr. i spilleautomater (1 point pr. 5 kr. omsat). I Præmieshoppen kunne disse points indløses til kontante bonusmidler – et system der er gennemsigtigt og let at forstå. Pointene har ingen udløbsdato, hvilket er en sjælden og spillervenlig feature.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Udbetaling (dag 13).</strong> Vi anmodede om udbetaling af 1.680 kr. via MobilePay kl. 10:15 en torsdag. Beløbet var tilgængeligt på vores MobilePay-konto kl. 14:42 samme dag – en behandlingstid på under 4,5 timer. Det er markant hurtigere end mange konkurrenter, og MitID-verifikationen eliminerede behovet for yderligere dokumentation.</p>
-          <Card className="border-border bg-card border-l-4 border-l-accent">
-            <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground"><strong className="text-foreground">Testresultat:</strong> SpilDanskNu leverer en stabil, gennemsigtig og ukompliceret casinooplevelse. Den 5-dages bonusmodel er innovativ og spillervenlig, loyalitetsprogrammet med kontante præmier er et reelt plus, og MobilePay-udbetalinger på under 5 timer sætter standarden for det danske marked. Begrænsningerne – intet sportsbetting, kundeservice kun til kl. 23:00, og ingen fast cashback – er kompromisser man kan leve med, hvis man prioriterer et fokuseret, dansk casinoprodukt.</p>
-            </CardContent>
-          </Card>
-        </section>
-
-        <Separator className="my-10" />
-
-        {/* Fordele/Ulemper */}
+        {/* 1. Fordele/Ulemper – instant value */}
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">Det der virker – og det der mangler</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -167,7 +132,7 @@ const SpilDanskNuAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        {/* Bonusanalyse */}
+        {/* 2. Bonusanalyse – high-intent */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">5-dages bonusmodellen – Matematikken og strategien</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">SpilDanskNus <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> adskiller sig markant fra de fleste danske casinoers tilgang. I stedet for at tilbyde et enkelt stort bonusbeløb ved første indbetaling, fordeler SpilDanskNu bonussen over 5 dage med bonuskoden VELKOMMEN. Hver dag kan du indbetale op til 200 kr. og modtage 100 % matchbonus – i alt op til 1.000 kr. i bonusmidler over perioden.</p>
@@ -216,13 +181,15 @@ const SpilDanskNuAnmeldelse = () => {
               </div>
             </CardContent>
           </Card>
+
+          <InlineReviewCTA casinoName="SpilDanskNu" bonusText="100% bonus op til 1.000 kr. – kun 10x omsætning" onClick={handleBonusClick} variant="bonus" />
         </section>
 
-        {/* ───── EV ANALYSE ───── */}
+        {/* 3. EV Analyse – differentiator */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Matematisk Analyse: Er bonussen +EV?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            For at vurdere om en bonus er matematisk fordelagtig, beregner vi dens "Expected Value" (EV). Dette er ikke en garanti for gevinst, men et statistisk gennemsnit over millioner af simulationer. SpilDanskNus bonus er særligt interessant på grund af det lave omsætningskrav på 10x.
+            For at vurdere om en <Link to="/casino-bonus" className={linkClass}>casino bonus</Link> er matematisk fordelagtig, beregner vi dens "Expected Value" (EV). Dette er ikke en garanti for gevinst, men et statistisk gennemsnit over millioner af simulationer. SpilDanskNus bonus er særligt interessant på grund af det lave omsætningskrav på 10x.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -251,13 +218,38 @@ const SpilDanskNuAnmeldelse = () => {
             </Card>
           </div>
 
+          <Badge variant="secondary" className="mb-4 text-sm px-4 py-1.5">✅ +EV Bonus – Matematisk fordelagtig</Badge>
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Konklusion:</strong> Med en positiv EV på +260 kr. er SpilDanskNus bonus matematisk fordelagtig. Det betyder, at hvis du spillede denne bonus tusindvis af gange, ville du i gennemsnit ende med 260 kr. i profit per gang. Dette er en af de højeste EV-værdier på det danske marked, primært drevet af det lave 10x omsætningskrav. Til sammenligning har en standard 10x (d+b) bonus på en side med lavere RTP (94%) en EV på kun +200 kr.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Varians-advarsel:</strong> Selv med positiv EV kan du tabe på kort sigt. Variansen på spilleautomater betyder, at dine resultater vil svinge markant omkring dette gennemsnit. Den 5-dages opdeling hjælper dog med at udglatte denne varians ved at give dig "flere skud" mod målet.
           </p>
+
+          <InlineReviewCTA casinoName="SpilDanskNu" bonusText="+260 kr. forventet værdi – markedets bedste EV" onClick={handleBonusClick} variant="ev" />
         </section>
+
+        <Separator className="my-10" />
+
+        {/* ===== CONTEXT & DEPTH ===== */}
+
+        {/* Introduktion: Det danske DNA */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Det danske DNA – Hvorfor SpilDanskNu er anderledes</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Der er en fundamental forskel mellem et dansk casino og et casino med dansk licens. SpilDanskNu er det første – en platform bygget fra bunden af et dansk selskab, drevet af et dansk team, med dansk kundeservice og en produktfilosofi formet af årelang erfaring med det danske spillemarked. Bag platformen står Winteq ApS, et selskab med adresse i Danmark, der også driver <Link to="/casino-anmeldelser/spilleautomaten" className={linkClass}>Spilleautomaten.dk</Link> og Bingo.dk. Det er ikke en international platform tilpasset det danske marked med en oversat hjemmeside og auto-translated support – det er et produkt skabt specifikt for danske spillere.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Siden lanceringen i 2017 har SpilDanskNu opbygget en loyal brugerbase med en tilgang, der prioriterer gennemsigtighed, enkelthed og fair vilkår over aggressiv markedsføring. Der er ingen opblæste bonusbeløb med skjulte vilkår, ingen komplicerede VIP-strukturer med uopnåelige tiers, og ingen sportsbetting eller bingo at navigere forbi. SpilDanskNu er et rent casinoprodukt – fokuseret, ærligt og gennemskueligt.</p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">Velkomstpakken er et perfekt eksempel på denne filosofi: 100 % bonus op til 1.000 kr. fordelt over 5 dage med bonuskoden VELKOMMEN, kun 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og 60 dages gyldighed. Den 5-dages model er unik på det danske marked og giver spillere mulighed for at sprede deres risiko over flere indbetalinger i stedet for at binde hele bonusbeløbet på én gang. Det er en gennemtænkt tilgang, der afspejler Winteqs fokus på spillerbeskyttelse.</p>
+          <p className="text-muted-foreground leading-relaxed">I denne dybdegående anmeldelse gennemgår vi alt fra <Link to="/velkomstbonus" className={linkClass}>velkomstbonus</Link> og Præmieshoppen til det fulde spiludvalg, <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, kundeservice, mobiloplevelse og sikkerhed. Vi har testet platformen over 14 dage for at give dig et komplet og ærligt billede af, hvad SpilDanskNu tilbyder i 2026. Læs mere om <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.</p>
+          <YoutubeEmbed videoId="_hHQkRwUzoU" title="SpilDanskNu Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan SpilDanskNu ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/spildansknu" />
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan SpilDanskNu ser ud indefra</h3>
+            <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig SpilDanskNus hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video. Videoen er en del af vores dybdegående indhold om <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> og <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.</p>
+          </div>
+          <ReviewScreenshot src={spildansknuLobby} alt="SpilDanskNu lobby og forside med spilkategorier, seneste gevinster og anbefalet slots" caption="SpilDanskNus forside med lobby, spilkategorier og seneste gevinster" eager />
+        </section>
+
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Præmieshoppen – Loyalitet der konverterer til kontanter</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">SpilDanskNus loyalitetsprogram er en af platformens mest underværderede funktioner. I en branche hvor loyalitetsprogrammer ofte er komplicerede konstruktioner med uopnåelige tiers og bonusmidler pakket ind i yderligere omsætningskrav, tilbyder SpilDanskNu noget bemærkelsesværdigt enkelt: du spiller, du optjener points, og du indløser dem til kontante præmier i Præmieshoppen. Ingen bonusmidler med skjulte vilkår – rigtige penge du kan hæve.</p>
@@ -346,6 +338,8 @@ const SpilDanskNuAnmeldelse = () => {
             </table>
           </div>
           <p className="text-xs text-muted-foreground">Alle transaktioner er gebyrfri. Min. udbetaling: 75 kr. Valuta: DKK.</p>
+
+          <InlineReviewCTA casinoName="SpilDanskNu" bonusText="MobilePay-indbetaling på under 30 sekunder" onClick={handleBonusClick} variant="payment" />
         </section>
 
         <Separator className="my-10" />
@@ -422,15 +416,24 @@ const SpilDanskNuAnmeldelse = () => {
         </section>
 
         <Separator className="my-10" />
-        <UserReviewSection casinoSlug="spildansknu" casinoName="Spil Dansk Nu" />
-        <RelatedReviews currentSlug="spildansknu" />
-        <InlineCasinoCards excludeSlugs={["spildansknu"]} />
+        <LazySection minHeight="400px">
+          <UserReviewSection casinoSlug="spildansknu" casinoName="Spil Dansk Nu" />
+        </LazySection>
+        <LazySection minHeight="300px">
+          <RelatedReviews currentSlug="spildansknu" />
+          <InlineCasinoCards excludeSlugs={["spildansknu"]} />
+        </LazySection>
         <Separator className="my-10" />
-        <LiveCommunityDataStrip context="casino" />
-        <LatestNewsByCategory pagePath="/casino-anmeldelser/spildansknu" />
-        <RelatedGuides currentPath="/casino-anmeldelser/spildansknu" />
-        <FAQSection title="Ofte stillede spørgsmål om SpilDanskNu" faqs={spilDanskNuFaqs} />
-        <AuthorBio author="jonas" />
+        <LazySection minHeight="200px">
+          <CommunityActivityWidget casinoName="SpilDanskNu" casinoSlug="spildansknu" />
+          <LiveCommunityDataStrip context="casino" />
+          <LatestNewsByCategory pagePath="/casino-anmeldelser/spildansknu" />
+        </LazySection>
+        <LazySection minHeight="300px">
+          <RelatedGuides currentPath="/casino-anmeldelser/spildansknu" />
+          <FAQSection title="Ofte stillede spørgsmål om SpilDanskNu" faqs={spilDanskNuFaqs} />
+          <AuthorBio author="jonas" />
+        </LazySection>
       </div>
       {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusAmount={casino.bonus_amount} bonusType={casino.bonus_type} freeSpins={casino.free_spins} wageringRequirements={casino.wagering_requirements} rating={casino.rating} logoUrl={casino.logo_url} isRecommended={casino.is_recommended} isHot={casino.is_hot} />}
     </>

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { InlineReviewCTA } from "@/components/InlineReviewCTA";
+import { LazySection } from "@/components/LazySection";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -810,21 +812,19 @@ const SpilleautomatenAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <UserReviewSection casinoSlug="spilleautomaten" casinoName="Spilleautomaten" />
-        <RelatedReviews currentSlug="spilleautomaten" />
-
-        <InlineCasinoCards
-          title="Andre anbefalede casinoer"
-          count={6}
-          excludeSlugs={["spilleautomaten"]}
-        />
-
-        <LatestNewsByCategory pagePath="/casino-anmeldelser/spilleautomaten" />
-        <RelatedGuides currentPath="/casino-anmeldelser/spilleautomaten" />
-
-        <FAQSection title="Ofte stillede spørgsmål om Spilleautomaten" faqs={spilleautomatenFaqs} />
-
-        <AuthorBio />
+        <LazySection minHeight="400px">
+          <UserReviewSection casinoSlug="spilleautomaten" casinoName="Spilleautomaten" />
+        </LazySection>
+        <LazySection minHeight="300px">
+          <RelatedReviews currentSlug="spilleautomaten" />
+          <InlineCasinoCards title="Andre anbefalede casinoer" count={6} excludeSlugs={["spilleautomaten"]} />
+        </LazySection>
+        <LazySection minHeight="200px">
+          <LatestNewsByCategory pagePath="/casino-anmeldelser/spilleautomaten" />
+          <RelatedGuides currentPath="/casino-anmeldelser/spilleautomaten" />
+          <FAQSection title="Ofte stillede spørgsmål om Spilleautomaten" faqs={spilleautomatenFaqs} />
+          <AuthorBio />
+        </LazySection>
       </div>
       {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusAmount={casino.bonus_amount} bonusType={casino.bonus_type} freeSpins={casino.free_spins} wageringRequirements={casino.wagering_requirements} rating={casino.rating} logoUrl={casino.logo_url} isRecommended={casino.is_recommended} isHot={casino.is_hot} />}
     </>
