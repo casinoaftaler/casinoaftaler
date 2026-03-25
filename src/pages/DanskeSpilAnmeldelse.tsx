@@ -238,7 +238,7 @@ const DanskeSpilAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – dansk til fingerspidserne</h2>
+          <h2 className="mb-4 text-3xl font-bold">Helpdesk på modersmålet – tilgængelighed og ventetid</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Som Danmarks største spiloperatør har Danske Spil en veludviklet kundeservice med flere kontaktmuligheder. Al support foregår udelukkende på dansk – et naturligt valg for en dansk virksomhed, men en klar fordel for spillere, der foretrækker at kommunikere på deres modersmål. Det er en differentiator over for internationale operatører, der ofte betjener med engelsktalende agenter.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi kontaktede kundeservicen seks gange på forskellige tidspunkter. Live chat-gennemsnitlig ventetid var 3 minutter og 15 sekunder – hurtigere end branchegennemsnittet. Telefonisk support havde en ventetid på 2-5 minutter. Agenternes vidensniveau var konsekvent højt med korrekte og detaljerede svar på spørgsmål om bonusvilkår, betalinger og ansvarligt spil. Vi oplevede ingen behov for eskalering – alle sager blev løst i første kontakt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">FAQ-sektionen er veldokumenteret og dækker de fleste standardspørgsmål. Danske Spils hjælpesektion er struktureret og letforståelig med klare kategorier og en effektiv søgefunktion. E-mails besvares typisk inden for 24 timer med detaljerede og hjælpsomme svar.</p>
