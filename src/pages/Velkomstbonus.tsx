@@ -11,7 +11,8 @@ import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
-import velkomstbonusHero from "@/assets/heroes/velkomstbonus-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -187,11 +188,11 @@ const Velkomstbonus = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="niklas" readTime="22 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={velkomstbonusHero} alt="Velkomstbonus – gaveboks med casino chips" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="En velkomstbonus matcher din første indbetaling – typisk 100% op til 1.000 kr. med 10x omsætningskrav i Danmark. No-sticky versioner giver bedst reel værdi. Sammenlign vilkår nedenfor." />
 
-        {/* Intro */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Hvad er en velkomstbonus?

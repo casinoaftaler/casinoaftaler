@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
-import stickyBonusHero from "@/assets/heroes/sticky-bonus-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -160,11 +161,11 @@ const StickyBonus = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="niklas" readTime="22 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={stickyBonusHero} alt="Sticky bonus vs non-sticky bonus sammenligning" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="En sticky bonus sammenblander din indbetaling og bonusmidler til én saldo. Over 80% af danske bonusser er sticky – de giver mere spillekapital, men kræver fuld omsætning før udbetaling." />
 
-        {/* Intro */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Hvornår giver en Sticky Bonus mening?

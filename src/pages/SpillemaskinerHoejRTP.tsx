@@ -35,8 +35,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import hoejRtpHero from "@/assets/heroes/hoej-rtp-hero.jpg";
 
+
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const hoejRtpFaqs: { question: string; answer: ReactNode }[] = [
@@ -120,18 +122,11 @@ export default function SpillemaskinerHoejRTP() {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="28 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={hoejRtpHero}
-            alt="Matematisk analyse af RTP i spillemaskiner"
-            width={1920}
-            height={600}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
+        <SnippetAnswer answer="Spillemaskiner med høj RTP (96%+) giver bedre langsigtede vinderchancer. RTP er en matematisk konstant beregnet over milliarder spins – ikke en garanti for den enkelte session." />
 
-        {/* ── H2 1: Hvad betyder RTP egentlig – matematisk forklaring ── */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* ── H2 1: Hvad betyder RTP egentlig – matematisk forklaring ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
             <Calculator className="mr-2 inline h-6 w-6 text-primary" />

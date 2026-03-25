@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import casinoLicenserHero from "@/assets/heroes/casino-licenser-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
@@ -104,11 +105,11 @@ const CasinoLicenser = () => {
         
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={casinoLicenserHero} alt="Casino licenser – danske og udenlandske licenser forklaret" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="Dansk licens fra Spillemyndigheden giver skattefri gevinster, max 10x omsætningskrav, ROFUS-beskyttelse og dansk klageadgang. MGA og Curaçao tilbyder ingen af disse fordele." />
 
-        {/* ── Introduktion ── */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* ── Introduktion ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvad er en casino-licens?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

@@ -12,7 +12,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import mobilepayHero from "@/assets/heroes/casino-mobilepay-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
   Smartphone,
   Shield,
@@ -207,19 +208,11 @@ const CasinoMedMobilePay = () => {
           Skrevet af Jonas Theill, casino betalingsekspert hos Casinoaftaler.dk.
         </p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={mobilepayHero}
-            alt="Smartphone med mobil betalingsinterface, casino chips og betalingskort i moderne fintech-æstetik"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
+        <SnippetAnswer answer="MobilePay accepteres på de fleste danske casinoer med instant indbetalinger, nul gebyrer og fuld bonuskvalificering. Udbetalinger sker via Trustly eller bankoverførsel." />
 
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
 
-        {/* ══════════════════════════════════════════════════════════════
+{/* ══════════════════════════════════════════════════════════════
             1. INTRODUKTION: HVORFOR MOBILEPAY?
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvorfor-mobilepay">

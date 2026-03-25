@@ -5,7 +5,8 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
-import bonusUdenIndbetalingHero from "@/assets/heroes/bonus-uden-indbetaling-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -170,11 +171,11 @@ const BonusUdenIndbetaling = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="niklas" readTime="18 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={bonusUdenIndbetalingHero} alt="Bonus uden indbetaling – teknisk analyse af no deposit bonusser i Danmark 2026" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="Bonus uden indbetaling giver dig gratis spillemidler ved registrering – nul risiko. Gevinster er underlagt omsætningskrav (typisk 10x) og gevinstlofter (500-1.000 kr.)." />
 
-        {/* Cross-link to nye casinoer sub */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* Cross-link to nye casinoer sub */}
         <div className="mb-8 rounded-lg border border-primary/30 bg-accent/30 p-4">
           <p className="text-sm text-muted-foreground">
             <strong>Leder du efter nye casinoer med bonus uden indbetaling?</strong>{" "}

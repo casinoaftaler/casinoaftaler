@@ -12,7 +12,8 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
-import cashbackHero from "@/assets/heroes/cashback-bonus-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -189,11 +190,11 @@ const CashbackBonus = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="niklas" readTime="16 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={cashbackHero} alt="Cashback bonus – casino chips der returneres til spilleren" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="Cashback returnerer 5-15% af dine nettotab – den mest gennemsigtige bonustype. Ingen komplicerede omsætningskrav, og værdien akkumulerer over tid for aktive spillere." />
 
-        {/* Intro */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvad er en cashback bonus?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
