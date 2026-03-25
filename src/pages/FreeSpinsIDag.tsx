@@ -316,7 +316,7 @@ const FreeSpinsIDag = () => {
       <section
         className="relative overflow-hidden py-10 md:py-16 text-white"
         style={{
-          backgroundImage: `linear-gradient(135deg, hsl(260 70% 18% / 0.95), hsl(250 60% 12% / 0.93) 40%, hsl(210 80% 18% / 0.92)), url(${heroImage})`,
+          backgroundImage: "linear-gradient(135deg, hsl(260 70% 18%), hsl(250 60% 12%) 40%, hsl(210 80% 18%))",
           backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed',
         }}
       >
