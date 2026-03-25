@@ -17,7 +17,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import nyeCasinoerHero from "@/assets/heroes/nye-casinoer-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { useState, useMemo, type ReactNode } from "react";
 import {
   Sparkles,
