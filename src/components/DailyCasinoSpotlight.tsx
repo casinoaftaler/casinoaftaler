@@ -21,6 +21,7 @@ const SPOTLIGHT_CASINOS: SpotlightCasino[] = [
   { name: "Campobet", slug: "campobet", tagline: "Sport og casino samlet ét sted" },
   { name: "Swift Casino", slug: "swift-casino", tagline: "Lynhurtige udbetalinger og no-sticky bonus" },
   { name: "Luna Casino", slug: "luna-casino", tagline: "Moderne design og spændende kampagner" },
+  { name: "PlayKasino", slug: "playkasino", tagline: "No-sticky bonus og 100% op til 500 kr." },
 ];
 
 function getDayOfYear(): number {

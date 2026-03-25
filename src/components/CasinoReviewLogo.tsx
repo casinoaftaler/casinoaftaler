@@ -38,6 +38,7 @@ const PATH_TO_SLUG: Record<string, string> = {
   "campobet": "campobet",
   "luna-casino": "luna-casino",
   "betit": "betit",
+  "playkasino": "playkasino",
 };
 
 export function CasinoReviewLogo({ slug }: CasinoReviewLogoProps) {
