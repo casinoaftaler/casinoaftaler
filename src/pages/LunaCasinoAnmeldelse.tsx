@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { LazySection } from "@/components/LazySection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
