@@ -21,7 +21,8 @@ import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock"
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { Separator } from "@/components/ui/separator";
 import { ProgrammaticPriorityLinks } from "@/components/ProgrammaticPriorityLinks";
-import slotDatabaseHero from "@/assets/slot-database-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
   buildSlotDatabasePath,
   buildSlotDatabaseSearchParams,
