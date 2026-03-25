@@ -157,7 +157,7 @@ const KapowCasinoAnmeldelse = () => {
 
         {/* Kundeservice */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Kundeservice – tilgængelig men med begrænsninger</h2>
+          <h2 className="mb-4 text-3xl font-bold">Hjælp og support – åbningstider og kompetence</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kapow Casino tilbyder kundeservice via live chat og e-mail. Live chat er tilgængelig dagligt fra 09:00 til 22:00 dansk tid – kortere åbningstider end de fleste konkurrenter, der typisk tilbyder support til mindst midnat. E-mail-henvendelser besvares inden for 24 timer på hverdage.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede live chatten to gange. Første henvendelse vedrørte bonusvilkår med en ventetid på 4 minutter og et præcist svar. Anden henvendelse handlede om et spil, der ikke indlæste korrekt – agenten var venlig men ikke teknisk kompetent nok til at diagnosticere problemet og eskalerede til e-mail-support, der svarede efter 6 timer med en løsning (cache-rydning).</p>
           <p className="text-muted-foreground leading-relaxed">Dansktalende support er tilgængelig, men ikke altid – vi oplevede en session på engelsk. FAQ-sektionen er basalt med standard-spørgsmål om registrering og betalinger. Sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365s</Link> 24/7 support eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibets</Link> omfattende hjælpecenter er Kapow Casinos kundeservice funktionel men ikke imponerende.</p>
