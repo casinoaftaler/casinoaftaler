@@ -12,7 +12,8 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import casinospilHero from "@/assets/casinospil-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { type ReactNode } from "react";
 import {
   Gamepad2,
@@ -150,16 +151,11 @@ const Casinospil = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="45 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={casinospilHero}
-            alt="Oversigt over casinospil – spilleautomater, kortborde og roulettehjul i et dansk online casino"
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
+        <SnippetAnswer answer="Casinospil dækker alt fra spilleautomater og bordspil til live casino og game shows. Forstå RTP, house edge og volatilitet for at vælge de rigtige spil til din spillestil." />
 
-        {/* ═══════════════════════════════════════════
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* ═══════════════════════════════════════════
             SECTION 1: Hvad er casinospil?
             ═══════════════════════════════════════════ */}
         <section className="mb-12">

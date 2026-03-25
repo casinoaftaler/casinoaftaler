@@ -25,6 +25,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import spillemaskinerHero from "@/assets/heroes/spillemaskiner-hero.jpg";
 
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 const linkClass = "text-primary underline hover:text-primary/80";
 
 const spillemaskineFaqs: { question: string; answer: ReactNode }[] = [
@@ -119,11 +121,11 @@ const Spillemaskiner = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="35 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={spillemaskinerHero} alt="Spillemaskiner og online slots i Danmark" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="Spillemaskiner (online slots) udgør 70% af casinoomsætningen. RTP varierer fra 94-97%, og volatilitet bestemmer gevinstmønsteret. Vælg spil baseret på matematik, ikke tema." />
 
-        {/* ── SEKTION 1: Historisk kontekst ── */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* ── SEKTION 1: Historisk kontekst ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Spillemaskinens Historie – Fra Mekanisk Vidunder til Digital Kunstform</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

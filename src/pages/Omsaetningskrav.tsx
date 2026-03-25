@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
-import omsaetningskravHero from "@/assets/heroes/omsaetningskrav-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
@@ -164,11 +165,11 @@ const Omsaetningskrav = () => {
         <AuthorMetaBar author="niklas" readTime="20 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Finansielt gennemgået og opdateret af Niklas, finansøkonom hos Casinoaftaler.dk.</p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={omsaetningskravHero} alt="Omsætningskrav – lommeregner og casino chips" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="Omsætningskrav er det antal gange du skal gennemspille din bonus før udbetaling. I Danmark er loftet 10x (d+b) – Europas laveste. Vælg spil med høj RTP for hurtigst mulig omsætning." />
 
-        {/* Intro - Hvad betyder omsætningskrav */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* Intro - Hvad betyder omsætningskrav */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Hvad betyder omsætningskrav?

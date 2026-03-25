@@ -12,7 +12,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import vipHero from "@/assets/heroes/vip-program-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
   Crown,
   Shield,
@@ -189,19 +190,11 @@ const VipProgram = () => {
           Skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
         </p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={vipHero}
-            alt="VIP casino lounge med lilla fløjl, champagneglas og eksklusivt roulettebord i luxury casino-æstetik"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
+        <SnippetAnswer answer="VIP-programmer belønner aktive spillere med cashback, reload-bonusser og dedikeret support. De bedste programmer giver 0,5-1,5% effektiv tilbagebetaling via comp points." />
 
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
 
-        {/* ══════════════════════════════════════════════════════════════
+{/* ══════════════════════════════════════════════════════════════
             1. HVAD ER ET VIP-PROGRAM?
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvad-er-vip-program">

@@ -15,6 +15,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import spillemyndighedenHero from "@/assets/spillemyndigheden-hero.jpg";
 
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 const keyFacts = [
   { label: "Grundlagt", value: "2000 (som Spillemyndigheden i 2012)" },
   { label: "Placering", value: "Odense, Danmark" },
@@ -179,17 +181,13 @@ const Spillemyndigheden = () => {
         <AuthorMetaBar author="ajse" readTime="12 Min." showAffiliateDisclaimer={false} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
-        {/* Hero image */}
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={spillemyndighedenHero}
-            alt="Spillemyndighedens bygning i Odense, Danmark"
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="lazy"
-          />
-        </div>
+        <SnippetAnswer answer="Spillemyndigheden er Danmarks tilsynsmyndighed for al lovlig gambling. De sikrer fair spil, administrerer ROFUS og håndhæver det danske 10x omsætningsloft." />
 
-        {/* Intro */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+        {/* Hero image */}
+
+{/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
             <Landmark className="h-8 w-8 text-primary" />

@@ -7,7 +7,8 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import betalingsmetoderHero from "@/assets/heroes/betalingsmetoder-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -235,13 +236,12 @@ const Betalingsmetoder = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="28 Min." />
-        
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={betalingsmetoderHero} alt="Betalingsmetoder på danske online casinoer – strategisk overblik" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="Din betalingsmetode afgør udbetalingshastighed, bonuskvalificering og sikkerhed. Trustly giver hurtigste udbetalinger (under 6 timer), mens MobilePay og Visa er universelt accepterede." />
 
-        {/* ═══════════════════════════════════════════
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* ═══════════════════════════════════════════
             SECTION 1: Strategisk intro
             ═══════════════════════════════════════════ */}
         <section className="mb-12">

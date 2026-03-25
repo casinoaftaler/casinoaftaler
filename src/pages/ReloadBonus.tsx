@@ -12,7 +12,8 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
-import reloadHero from "@/assets/heroes/reload-bonus-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -194,11 +195,11 @@ const ReloadBonus = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="niklas" readTime="14 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={reloadHero} alt="Reload bonus – tilbagevendende casinobonus med genopladningssymbol" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="Reload-bonus matcher din indbetaling med 25-50% – ugentligt eller månedligt. Matematisk ofte mere fordelagtig end velkomstbonussen takket være lavere omsætningskrav." />
 
-        {/* Intro */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Hvad er en reload bonus?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

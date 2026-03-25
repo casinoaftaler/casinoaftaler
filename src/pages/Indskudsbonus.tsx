@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
-import indskudsbonusHero from "@/assets/heroes/indskudsbonus-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -154,11 +155,11 @@ const Indskudsbonus = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="niklas" readTime="18 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={indskudsbonusHero} alt="Indskudsbonus – gyldne mønter og deposit bonus" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="En indskudsbonus (matchbonus) matcher din indbetaling med en procentdel – typisk 100% op til 1.000 kr. Den reelle værdi afhænger af omsætningskrav, bonusstruktur og RTP." />
 
-        {/* Intro */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Indskudsbonus i praksis: Et regneeksempel

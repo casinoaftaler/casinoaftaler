@@ -11,7 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import mobilCasinoHero from "@/assets/heroes/mobil-casino-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
   Smartphone,
   Shield,
@@ -214,19 +215,11 @@ const MobilCasino = () => {
           Testet og skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
         </p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={mobilCasinoHero}
-            alt="Mobil casino guide – smartphone med casinospil, chips og kort i moderne mobilgaming-æstetik"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
+        <SnippetAnswer answer="75% af al casinotrafik i Danmark kommer fra mobilen. De bedste mobilcasinoer har responsive HTML5-platforme, alle betalingsmetoder inkl. MobilePay og fuldt spiludvalg." />
 
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
 
-        {/* ══════════════════════════════════════════════════════════════
+{/* ══════════════════════════════════════════════════════════════
             1. HVAD ER MOBIL CASINO?
         ══════════════════════════════════════════════════════════════ */}
         <section className="mb-12" id="hvad-er-mobil-casino">

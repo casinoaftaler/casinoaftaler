@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
-import noStickyHero from "@/assets/heroes/no-sticky-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -166,11 +167,11 @@ const NoStickyBonus = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="niklas" readTime="38 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={noStickyHero} alt="No-sticky bonus – matematisk analyse og frihed" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="No-sticky bonus adskiller dine egne penge fra bonusmidler – du kan hæve gevinster fra egne penge uden omsætningskrav. Det er matematisk den mest fordelagtige bonustype i Danmark." />
 
-        {/* ===== S1: Strategisk intro ===== */}
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+
+{/* ===== S1: Strategisk intro ===== */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             Hvorfor No-Sticky er den eneste bonustype, der respekterer din bankroll
