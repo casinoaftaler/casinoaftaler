@@ -147,9 +147,11 @@ const LiveCasino = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="22 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={liveCasinoHero} alt="Live casino dealer ved professionelt blackjack-bord i HD-studie" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="De bedste live casinoer i Danmark 2026 tilbyder blackjack, roulette og baccarat fra Evolution Gaming i HD/4K med lav house edge. Alle har dansk licens og ROFUS-tilslutning. Sammenlign bordudvalg og bonusvilkår nedenfor." />
+
+        <InlineCasinoCards title="Casinoer med stærkt live casino-udvalg" count={6} />
+
+        <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════════════════════════
             H2 #1 – Hvad er Live Casino – og hvorfor er det vokset eksplosivt?

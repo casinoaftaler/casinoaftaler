@@ -277,9 +277,7 @@ const FreeSpins = () => {
           </div>
         </section>
 
-        <InlineCasinoCards title="Bedste casinoer med free spins" count={6} />
-
-        <BonusClusterPriorityLinks currentPath="/free-spins" />
+        <Separator className="my-10" />
 
         <Separator className="my-10" />
 
