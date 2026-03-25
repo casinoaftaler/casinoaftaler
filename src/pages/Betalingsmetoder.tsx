@@ -913,3 +913,4 @@ const Betalingsmetoder = () => {
 };
 
 export default Betalingsmetoder;
+
