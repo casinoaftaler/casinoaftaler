@@ -706,7 +706,7 @@ const SpilleautomatenAnmeldelse = () => {
 
         {/* Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge Spilleautomaten?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Når Spilleautomaten ikke matcher dine behov</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Spilleautomatens niche-fokus er en styrke – men det betyder også, at bestemte spillertyper vil finde bedre alternativer:
           </p>
