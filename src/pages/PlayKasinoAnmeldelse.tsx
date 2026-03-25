@@ -56,7 +56,7 @@ const playkasinoFaqs: { question: string; answer: ReactNode }[] = [
     answer: (
       <>
         PlayKasino tilbyder nye spillere en velkomstbonus på 100 % op til 500 kr. Bonussen krediteres automatisk ved din første indbetaling på minimum 100 kr. – ingen bonuskode nødvendig.{" "}
-        <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravet</Link> er 10x (indbetaling + bonus), og du har 60 dage til at gennemspille det. Maksimum indsats med aktiv bonus er 50 kr. pr. spin. Sammenlignet med branchegennemsnittet på 25–40x er 10x exceptionelt lavt. Læs mere om{" "}
+        <Link to="/omsaetningskrav" className={linkClass}>Omsætningskravet</Link> er 10x (indbetaling + bonus), og du har 60 dage til at gennemspille det. Maksimum indsats med aktiv bonus er 50 kr. pr. spin. Med det lovmæssige maksimum på 10x i Danmark matcher PlayKasino den lavest mulige omsætning. Læs mere om{" "}
         <Link to="/velkomstbonus" className={linkClass}>velkomstbonusser</Link>.
       </>
     ),
