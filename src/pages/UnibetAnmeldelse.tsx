@@ -190,7 +190,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Mobiloplevelse */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelse – app vs. browser</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dedikeret app vs. mobilbrowser – test og sammenligning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Unibet tilbyder dedikerede mobilapps til både iOS og Android, og de er blandt de mest funktionsrige casino-apps på det danske marked. Appen dækker hele produktpaletten – casino, sportsbetting, live casino og poker – med en optimeret touch-navigation, der gør det nemt at skifte mellem produkter. Biometrisk login via Face ID eller fingeraftryk sikrer hurtig og sikker adgang.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">I vores test på iPhone 15 Pro målte vi en appstarttid på 1,8 sekunder og jævne animationer ved 60fps på tværs af alle sektioner. Casinospil loader typisk inden for 3-4 sekunder, og live casino-streams starter uden mærkbar forsinkelse. Samsung Galaxy S24-testen viste tilsvarende resultater med en marginalt hurtigere appstart (1,6 sekunder), hvilket tyder på god optimering til Android-platformen.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Browser-oplevelsen via mobilens webbrowser er også solid, men appen har klare fordele: push-notifikationer om kampagner og live-resultater, hurtigere navigation og bedre integration med telefonens funktioner. Pokersektionen er kun tilgængelig via den dedikerede poker-app (separat download), hvilket er en lille ulempe for spillere, der ønsker alt samlet ét sted.</p>
