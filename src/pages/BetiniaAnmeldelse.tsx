@@ -844,7 +844,7 @@ const BetiniaAnmeldelse = () => {
 
         {/* Negative Segmentation */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør IKKE vælge Betinia?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Tre scenarier hvor Betinia er det forkerte valg</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Trods sine mange styrker er Betinia ikke det optimale valg for alle spillertyper. Her er de profiler, der sandsynligvis vil finde bedre alternativer:
           </p>
