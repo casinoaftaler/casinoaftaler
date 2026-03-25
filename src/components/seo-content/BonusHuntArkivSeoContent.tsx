@@ -89,19 +89,20 @@ export function BonusHuntArkivSeoContent() {
         <div className="bg-muted/50 rounded-lg p-4 border border-border font-mono text-sm text-foreground">
           EV(Hunt) = Σ [EV(Slot_i)] for alle slots i hunten<br /><br />
           EV(Slot_i) = E[Payout_i] - Cost_i<br /><br />
-          For Feature Buy:<br />
-          Cost = Feature Buy-pris (fast)<br />
-          E[Payout] = Slot RTP × Buy-pris (tilnærmelse)<br /><br />
-          Typisk hunt med 30 slots:<br />
-          Gns. RTP for Feature Buy ≈ 70-75x pr. 100x investering<br />
-          EV(Hunt) = 30 × (72.5 - 100) = 30 × (-27.5) = -825x<br />
-          I kroner (10 kr base bet): -825 × 10 = -8.250 kr forventet tab
+          Ved hunting (organisk):<br />
+          Cost = Kumulativ indsats brugt til at triggere bonus<br />
+          REQ X kan være under 100x (heldig) eller over 100-200x (uheldig)<br /><br />
+          Ved bonus buy:<br />
+          Cost = Feature Buy-pris (fast, typisk ~100x)<br />
+          REQ X er altid ~100x<br /><br />
+          Fordelen ved hunting: Hvis REQ X ved åbning er under 100x,<br />
+          har det betalt sig at hunte – fordi bonus buy altid koster ~100x.
         </div>
         <p className="text-muted-foreground leading-relaxed">
-          Det er værd at bemærke, at Feature Buy-RTP'en ikke er identisk med maskinens overordnede RTP. Feature Buy
-          har typisk en RTP på 95-97% af købeprisen, men den faktiske gennemsnitlige udbetaling varierer enormt
-          afhængigt af volatiliteten. Ovenstående model er en grov tilnærmelse, der antager en gennemsnitlig
-          Feature Buy-udbetaling baseret på vores community-data.
+          Hunting er vores primære metode. Fordelen er, at man kan ramme basegame hits undervejs og triggere
+          bonusser billigere end et direkte bonus buy. Ulempen er, at man også kan være uheldig og bruge mange
+          spins uden at ramme – hvilket giver en REQ X over 100x. Bonus buy bruges som alternativ, når vi
+          ønsker en forudsigelig REQ X på ~100x og en kortere hunt-varighed.
         </p>
 
         <h3 className="text-xl font-bold text-foreground mt-6">Variance & Konfidensintervaller</h3>
