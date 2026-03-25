@@ -401,7 +401,7 @@ const Bet365Anmeldelse = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
             <Shield className="inline h-7 w-7 text-primary mr-2" />
-            Sikkerhed og licens
+            Regulatorisk compliance og spillerbeskyttelse
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             bet365 opererer under dansk licens fra Spillemyndigheden og er fuldt tilsluttet ROFUS. Platformen bruger 256-bit SSL-kryptering til alle data- og betalingstransaktioner. Som en af verdens mest kontrollerede gambling-virksomheder er bet365 underlagt regulering fra myndigheder i over 20 lande, herunder UK Gambling Commission.
