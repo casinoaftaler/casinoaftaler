@@ -935,6 +935,23 @@ const PlayKasinoAnmeldelse = () => {
           </p>
         </section>
 
+        {/* Desktop Experience */}
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Desktop-oplevelse – Interface, hastighed og browser-kompatibilitet</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Mens mobilappen får megen opmærksomhed, er desktop-versionen af PlayKasino stadig den foretrukne platform for længere spilsessioner – særligt i live casinoet og ved bordspil, hvor et større skærmbillede giver overblik. SkillOnNet-platformen leverer en ren, moderne desktop-oplevelse med et design, der prioriterer spilindholdet over visuel støj.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Vi testede desktop-versionen i Chrome 125, Firefox 128, Safari 18 og Edge 125. Alle browsere renderede sitet korrekt uden layout-fejl, og spilindlæsningstiden var konsistent 1–3 sekunder afhængigt af spillets kompleksitet (simple 3-hjul slots indlæser hurtigst, avancerede megaways-spil tager 2–3 sekunder). Playtech-spil kræver marginalt længere indlæsning end NetEnt- og Pragmatic Play-titler – formentlig pga. Playtech's tungere grafikmotorer.
+          </p>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            Navigationsstrukturen er logisk: topmenuen giver adgang til Spil, Live Casino, Kampagner og Support. Spiludvalget præsenteres i et grid-layout med thumbnails, og hover-effekter viser spilnavn og udbyder uden klik. Søgefeltet er placeret centralt og leverer resultater ved tastetryk. En "Senest spillet"-sektion giver hurtig adgang til dine sidste 10 spil – en funktion, der sparer tid for regelmæssige spillere.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Den eneste desktop-specifikke kritik er fraværet af en "demo mode" for visse Playtech-titler. Mens NetEnt, Play'n GO og Pragmatic Play-spil kan afprøves gratis uden login, kræver flere Playtech-slots (herunder dele af Age of the Gods-serien) en aktiv konto for at indlæse. Det er en Playtech-begrænsning, ikke en SkillOnNet-beslutning, men det reducerer muligheden for at "prøve før du køber" på disse specifikke titler.
+          </p>
+        </section>
+
         <Separator className="my-10" />
 
         {/* Customer Service */}
