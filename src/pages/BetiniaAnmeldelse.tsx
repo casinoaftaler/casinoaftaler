@@ -801,7 +801,7 @@ const BetiniaAnmeldelse = () => {
 
         {/* Security & Licenses */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, dobbelt licens og ansvarligt spil</h2>
+          <h2 className="mb-4 text-3xl font-bold">Dobbelt licens, kryptering og ROFUS-beskyttelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betinia opererer med en sjælden dobbelt licensering: dansk licens fra{" "}
             <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> (nr. 20-6359) og international licens fra Malta Gaming Authority (MGA). Den dobbelte licensering er ikke blot et markedsføringsargument – MGA-licensen kræver yderligere kapitalreserver, regelmæssig revision af tilfældighedsgeneratorer og adskilt spillerkontoføring. Det giver et ekstra lag af sikkerhed, der overstiger det danske minimumskrav.
