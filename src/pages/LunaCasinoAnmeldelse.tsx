@@ -415,6 +415,8 @@ const LunaCasinoAnmeldelse = () => {
               </CardContent>
             </Card>
           </div>
+
+          <InlineReviewCTA casinoName="Luna Casino" bonusText="Effektiv RTP 96,5–97,5% med loyalitetsprogram – bedre langsigtede odds" onClick={handleBonusClick} variant="ev" />
         </section>
 
         {/* ───── LOYALITETSPROGRAM ───── */}

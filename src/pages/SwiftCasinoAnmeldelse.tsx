@@ -426,6 +426,8 @@ const SwiftCasinoAnmeldelse = () => {
               </p>
             </CardContent>
           </Card>
+
+          <InlineReviewCTA casinoName="Swift Casino" bonusText="Matematikken viser: din EV ændres ikke af Hot Or Cold – men bonussen er stadig +EV" onClick={handleBonusClick} variant="ev" />
         </section>
 
         {/* ───── HOT OR COLD DEEP-DIVE ───── */}

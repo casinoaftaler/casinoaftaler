@@ -378,6 +378,8 @@ const CampobetAnmeldelse = () => {
               </CardContent>
             </Card>
           </div>
+
+          <InlineReviewCTA casinoName="Campobet" bonusText="+260 kr. forventet værdi – positiv EV med No-Sticky bonus" onClick={handleBonusClick} variant="ev" />
         </section>
 
         <Separator className="my-10" />

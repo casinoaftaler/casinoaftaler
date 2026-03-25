@@ -481,6 +481,8 @@ const SpilleautomatenAnmeldelse = () => {
               </CardContent>
             </Card>
           </div>
+
+          <InlineReviewCTA casinoName="Spilleautomaten" bonusText="+200 kr. forventet værdi – positiv EV med 10x omsætning" onClick={handleBonusClick} variant="ev" />
         </section>
 
         <Separator className="my-10" />
