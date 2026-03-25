@@ -1408,9 +1408,6 @@ export default function SlotCatalogPage() {
           </section>
         )}
 
-        {/* Author bio */}
-        <AuthorBio author="jonas" showCommunity={false} />
-
         {/* RelatedGuides – replaces static "Udforsk Mere" box */}
         <RelatedGuides currentPath={`/slot-katalog/${slug}`} />
 
@@ -1420,6 +1417,9 @@ export default function SlotCatalogPage() {
             <ArrowLeft className="h-4 w-4" /> Tilbage til Slot Database
           </Link>
         </div>
+
+        {/* Author bio */}
+        <AuthorBio author="jonas" showCommunity={false} />
       </div>
     </>
   );

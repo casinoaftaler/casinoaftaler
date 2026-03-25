@@ -594,8 +594,6 @@ const ReloadBonus = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio author="niklas" />
-
         <Separator className="my-10" />
 
         <LatestNewsByCategory pagePath="/reload-bonus" />
@@ -603,6 +601,8 @@ const ReloadBonus = () => {
         <RelatedGuides currentPath="/reload-bonus" />
 
         <FAQSection title="Ofte stillede spørgsmål om reload bonus" faqs={reloadFaqs} />
+
+        <AuthorBio author="niklas" />
       </div>
       <StickyCtaBySlug slug="campobet" />
     </>

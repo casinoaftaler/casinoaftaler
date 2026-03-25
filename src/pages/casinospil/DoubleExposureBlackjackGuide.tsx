@@ -636,13 +636,13 @@ const DoubleExposureBlackjackGuide = () => {
 
         <Separator className="my-10" />
 
-        <AuthorBio />
-
         <CasinospilMoneyLinks gameName="Double Exposure Blackjack" currentPath="/casinospil/blackjack/double-exposure-blackjack" />
         <LatestNewsByCategory pagePath="/casinospil/blackjack/double-exposure-blackjack" />
         <RelatedGuides currentPath="/casinospil/blackjack/double-exposure-blackjack" />
 
         <FAQSection faqs={faqs} />
+
+        <AuthorBio />
       </div>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

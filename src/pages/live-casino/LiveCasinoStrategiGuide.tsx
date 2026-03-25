@@ -852,9 +852,9 @@ const LiveCasinoStrategiGuide = () => {
 
         <FAQSection faqs={faqs} />
 
-        <AuthorBio author="jonas" />
-
         <RelatedGuides currentPath="/live-casino/strategi" />
+
+        <AuthorBio author="jonas" />
 
         <StickyCtaBySlug slug="spildansknu" />
       </div>
