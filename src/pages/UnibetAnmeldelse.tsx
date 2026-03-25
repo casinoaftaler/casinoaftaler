@@ -201,7 +201,7 @@ const UnibetAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalingshastighed</h2>
+          <h2 className="mb-4 text-3xl font-bold">Pengeprocesering – hastighed og tilgængelige kanaler</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Unibet understøtter alle populære danske <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> med <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> som den primære bankbaserede løsning. Det er værd at bemærke, at Unibet ikke tilbyder <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> som betalingsmetode – en mangel, der kan irritere danske spillere, der er vant til MobilePay hos konkurrenter som <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
