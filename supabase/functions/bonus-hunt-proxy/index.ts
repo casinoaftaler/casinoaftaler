@@ -436,7 +436,7 @@ serve(async (req) => {
             gtw_min_bet: 1,
             gtw_max_bet: 50,
             avgx_min_bet: 1,
-            avgx_max_bet: 50,
+            avgx_max_bet: 999999,
             gtw_prizes: defaultPrizes,
             casino_slug: huntData.casino || 'spildansknu',
             host: 'kevin',
