@@ -11,7 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import casinoAppHero from "@/assets/heroes/casino-app-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
   Smartphone,
   Shield,
@@ -198,20 +199,10 @@ const CasinoApp = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="25 Min." />
-        <p className="text-sm text-muted-foreground mt-2 mb-6">
-          Testet og skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
-        </p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={casinoAppHero}
-            alt="Casino app guide – smartphones med casino applikationer, download-knapper og app store præsentation"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
+        <SnippetAnswer answer="De bedste casino apps i Danmark er fra licenserede casinoer med native iOS/Android apps eller optimerede PWA-versioner. Alle tilbyder biometrisk login, hurtige indbetalinger via MobilePay og samme spiludvalg som desktop." />
+
+        <QuickComparisonTable count={3} title="Top 3 Casino Apps – Hurtig Sammenligning" />
 
 
         {/* ══════════════════════════════════════════════════════════════

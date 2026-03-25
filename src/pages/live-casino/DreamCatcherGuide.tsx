@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -21,8 +23,6 @@ import {
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
-import dreamCatcherHero from "@/assets/heroes/dream-catcher-hero.jpg";
-import GuideHeroImage from "@/components/GuideHeroImage";
 
 const linkClass = "text-primary underline underline-offset-4 hover:text-primary/80 transition-colors font-medium";
 
@@ -118,8 +118,11 @@ const DreamCatcherGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="28 min" />
-        <GuideHeroImage src={dreamCatcherHero} alt="Dream Catcher money wheel i live casino studie" />
 
+
+        <SnippetAnswer answer="Dream Catcher er Evolutions enkleste money wheel med 96,58% RTP. Ideelt for begyndere i live casino game shows." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Dream Catcher" />
         {/* ── H2 1 ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crown className="h-5 w-5 text-primary" />Hvad er Dream Catcher – pioneren bag live game shows</h2>

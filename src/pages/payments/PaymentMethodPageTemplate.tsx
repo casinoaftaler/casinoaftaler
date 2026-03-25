@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -221,16 +223,9 @@ export function PaymentMethodPage({
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="22 Min." />
 
-        {heroImage && (
-          <div className="mb-10 overflow-hidden rounded-xl">
-            <img
-              src={heroImage}
-              alt={heroImageAlt || `${name} - betalingsmetode`}
-              className="w-full h-auto object-cover max-h-[400px]"
-              loading="eager"
-            />
-          </div>
-        )}
+        <SnippetAnswer answer={`${name} på danske casinoer: Se vores dybdegående test af hastighed, sikkerhed og bonuskvalificering. Sammenlign med alternative betalingsmetoder nedenfor.`} />
+
+        <QuickComparisonTable count={3} title={`Bedste Casinoer med ${name}`} />
 
         {/* Intro */}
         <section className="mb-12">

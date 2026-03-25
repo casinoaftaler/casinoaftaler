@@ -9,7 +9,8 @@ import { usePageLastmod } from "@/hooks/usePageLastmod";
 import { getRouteLastmod } from "@/lib/seoRoutes";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
-import heroImage from "@/assets/heroes/free-spins-i-dag-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { FreeSpinsMoneyPageLinks } from "@/components/FreeSpinsMoneyPageLinks";
@@ -315,7 +316,7 @@ const FreeSpinsIDag = () => {
       <section
         className="relative overflow-hidden py-10 md:py-16 text-white"
         style={{
-          backgroundImage: `linear-gradient(135deg, hsl(260 70% 18% / 0.95), hsl(250 60% 12% / 0.93) 40%, hsl(210 80% 18% / 0.92)), url(${heroImage})`,
+          backgroundImage: "linear-gradient(135deg, hsl(260 70% 18%), hsl(250 60% 12%) 40%, hsl(210 80% 18%))",
           backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed',
         }}
       >
@@ -366,6 +367,10 @@ const FreeSpinsIDag = () => {
       </div>
 
       <div className="container py-4 md:py-6">
+        <SnippetAnswer answer="Vi scanner dagligt danske casinoers kampagnesider og viser kun verificerede free spins tilbud med confidence score over 60. Siden opdateres automatisk kl. 07:00 og 18:00 CET." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Free Spins" />
+
         {/* ─── Statistics ─── */}
         <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
           <StatCard icon={<Sparkles className="h-5 w-5 text-primary" />} value={animatedTotal} label="Casinoer med free spins" revealed={statsRevealed} delay={0} />

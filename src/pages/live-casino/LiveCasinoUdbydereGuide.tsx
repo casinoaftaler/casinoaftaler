@@ -1,17 +1,17 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import liveCasinoUdbydereHero from "@/assets/heroes/live-casino-udbydere-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCasinoMoneyLinks } from "@/components/LiveCasinoMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
-import GuideHeroImage from "@/components/GuideHeroImage";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -133,8 +133,10 @@ const LiveCasinoUdbydereGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="26 Min." />
 
-        <GuideHeroImage src={liveCasinoUdbydereHero} alt="Live casino studie med multiple skærme der viser live dealer streams fra Evolution Gaming og andre udbydere" />
 
+        <SnippetAnswer answer="Evolution dominerer live casino med 85%+ markedsandel. Pragmatic Play Live og Playtech tilbyder billigere alternativer." />
+
+        <QuickComparisonTable count={3} title="Bedste Live Casinoer – Top 3" />
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Mens pillar-guiden giver dig overblikket over spiltyper og strategi, dykker denne guide ned i den tekniske infrastruktur bag live casino: hvem er udbyderne? Hvor streames bordene fra? Hvilken teknologi sikrer fair play? Og hvorfor har det betydning for din oplevelse, hvilken udbyder dit valgte casino bruger?
         </p>

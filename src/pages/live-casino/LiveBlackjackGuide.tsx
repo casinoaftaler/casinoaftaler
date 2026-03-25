@@ -1,12 +1,13 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import liveBlackjackHero from "@/assets/heroes/live-blackjack-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -124,9 +125,10 @@ const LiveBlackjackGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="22 Min." />
 
-        <img src={liveBlackjackHero} alt="Live blackjack bord med dealer og kort i et professionelt casino studio" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
+        <SnippetAnswer answer="Live blackjack med perfekt grundstrategi har en husfordel på kun 0,5%. Sidebets som Perfect Pairs og 21+3 øger variansen." />
 
-        <p className="mb-6 text-muted-foreground leading-relaxed">
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Live Blackjack" />
+<p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her dykker vi ned i live blackjack specifikt – det spil, der kombinerer den laveste house edge i hele live casino-segmentet med ægte strategisk dybde. Hvor pillar-guiden giver overblikket, giver denne side dig de præcise regler, matematiske modeller og strategiske værktøjer, du behøver for at spille live blackjack med dealer optimalt.
         </p>
         <p className="mb-6 text-muted-foreground leading-relaxed">

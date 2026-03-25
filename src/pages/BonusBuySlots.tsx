@@ -11,7 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import bonusBuyHero from "@/assets/heroes/bonus-buy-slots-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
   Gamepad2,
   Shield,
@@ -154,20 +155,10 @@ const BonusBuySlots = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="20 Min." />
-        <p className="text-sm text-muted-foreground mt-2 mb-6">
-          Testet og skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
-        </p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={bonusBuyHero}
-            alt="Bonus buy feature – BUY BONUS knap på en spilleautomat med free spins symboler"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
+        <SnippetAnswer answer="Bonus buy (feature buy) lader dig købe free spins-runden direkte for 50–200x din indsats. Det er lovligt i Danmark, giver samme RTP som organisk trigger, og eliminerer ventetiden. Sweet Bonanza og Gates of Olympus er blandt de mest populære." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Bonus Buy Slots" />
 
         {/* ── 1. HVAD ER BONUS BUY? ── */}
         <section className="mb-12" id="hvad-er-bonus-buy">

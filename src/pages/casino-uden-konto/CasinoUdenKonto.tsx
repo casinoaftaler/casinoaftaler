@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
@@ -13,7 +15,6 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import casinoUdenKontoHero from "@/assets/heroes/casino-uden-konto-hero.jpg";
 import {
   Zap,
   Shield,
@@ -249,20 +250,13 @@ const CasinoUdenKonto = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="32 Min." />
+
+        <SnippetAnswer answer="Casino uden konto (Pay N Play) lader dig spille med det samme via bankidentifikation – uden registrering eller KYC-ventetid." />
+
+        <QuickComparisonTable count={3} title="Bedste Pay N Play Casinoer – Top 3" />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Testet og skrevet af Kevin, casino streamer & IT-medansvarlig hos Casinoaftaler.dk.
         </p>
-
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={casinoUdenKontoHero}
-            alt="Casino uden konto guide – Pay N Play via Trustly, hurtig indbetaling uden registrering"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
 
         {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER CASINO UDEN KONTO?

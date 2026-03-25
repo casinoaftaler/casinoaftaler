@@ -1,8 +1,9 @@
 import React from "react";
-import heroPayNPlay from "@/assets/hero-pay-n-play.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinoUdenKontoCrossLinks } from "@/components/CasinoUdenKontoCrossLinks";
@@ -119,12 +120,15 @@ const PayNPlayGuide = () => {
       </section>
 
       <div className="container py-6">
-        <img src={heroPayNPlay} alt="Pay N Play bankteknologi – øjeblikkelig casino-betaling via Trustly" width={1920} height={1080} loading="eager" className="w-full h-auto object-cover rounded-lg max-h-[400px]" />
       </div>
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="34 Min." />
 
+
+        <SnippetAnswer answer="Pay N Play bruger Trustly til øjeblikkelig bank-identifikation og betaling i ét trin – ingen konto, ingen ventetid." />
+
+        <QuickComparisonTable count={3} title="Bedste Pay N Play Casinoer – Top 3" />
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />Hvad er Pay N Play?</h2>

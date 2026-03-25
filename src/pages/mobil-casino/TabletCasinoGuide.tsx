@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { MobilCasinoCrossLinks } from "@/components/MobilCasinoCrossLinks";
@@ -12,7 +14,6 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import heroImg from "@/assets/heroes/tablet-casino-hero.jpg";
 import {
   Smartphone, Shield, Clock, CheckCircle, ArrowRight, Zap, Star,
   TrendingUp, CreditCard, Gamepad2, Eye, Settings, Download, RefreshCw,
@@ -113,8 +114,11 @@ const TabletCasinoGuide = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" />
+
+        <SnippetAnswer answer="Casino på tablet udnytter den store skærm til bedre overblik ved bordspil og live casino – se vores test af iPad og Android tablets." />
+
+        <QuickComparisonTable count={3} title="Bedste Tablet Casinoer – Top 3" />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Testet og skrevet af Jonas Theill, casino-ekspert hos Casinoaftaler.dk.</p>
-        <div className="mb-10 overflow-hidden rounded-xl"><img src={heroImg} alt="Casino på tablet – iPad med blackjack og casino chips" width={1920} height={1080} className="w-full h-auto object-cover max-h-[400px]" loading="eager" /></div>
 
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">

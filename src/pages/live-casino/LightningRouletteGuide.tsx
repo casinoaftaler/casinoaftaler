@@ -1,12 +1,13 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import lightningRouletteHero from "@/assets/heroes/lightning-roulette-hero.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -121,9 +122,10 @@ const LightningRouletteGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="18 Min." />
 
-        <img src={lightningRouletteHero} alt="Lightning Roulette hjul med elektriske lyn-effekter i Evolution studio" width={1920} height={600} className="w-full max-h-[400px] object-cover rounded-xl mb-10" loading="eager" />
+        <SnippetAnswer answer="Lightning Roulette tilbyder op til 500x på lucky numbers med 97,30% RTP. Evolutions mest populære live roulette-variant." />
 
-        <p className="mb-6 text-muted-foreground leading-relaxed">
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Lightning Roulette" />
+<p className="mb-6 text-muted-foreground leading-relaxed">
           Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her dykker vi specifikt ned i Lightning Roulette – Evolutions mest populære innovation, der kombinerer klassisk roulette med RNG-multiplikatorer op til 500x. Fokus er udelukkende på multiplikator-mekanikken og dens matematiske implikationer – for generelle rouletteregler og bordtyper, se vores <Link to="/live-casino/roulette" className={linkClass}>live roulette guide</Link>.
         </p>
 

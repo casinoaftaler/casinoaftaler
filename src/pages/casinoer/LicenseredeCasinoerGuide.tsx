@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -10,7 +12,6 @@ import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
 
-import heroImage from "@/assets/heroes/licenserede-casinoer-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Scale, Lock, CheckCircle2, AlertTriangle, Star, FileText, BadgeCheck, Globe, Gavel, Eye, Wallet, Users, Clock, BookOpen, Search, Shield, Ban } from "lucide-react";
@@ -61,10 +62,10 @@ const LicenseredeCasinoerGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="22 min" />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Licenserede casinoer i Danmark" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Alle casinoer med dansk licens er overvåget af Spillemyndigheden, tilsluttet ROFUS og tilbyder skattefri gevinster." />
+
+        <QuickComparisonTable count={3} title="Licenserede Casinoer – Top 3" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over licenserede casinoer i Danmark</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Når du spiller på et online casino, er der ét kriterium, der bør trumfe alle andre: <strong>Har casinoet en gyldig dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>?</strong> Licensen er ikke bare et stempel – den er din garanti for fair spil, beskyttede midler, skattefri gevinster og adgang til et system af selvbegrænsningsværktøjer, der beskytter dig som spiller. Uden dansk licens mister du alle disse beskyttelser, og du risikerer at spille på en platform, der ikke er underlagt nogen form for dansk myndighedskontrol.</p>

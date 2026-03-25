@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import bonusUdenIndbetalingHero from "@/assets/heroes/nye-casinoer-bonus-uden-indbetaling-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -102,10 +103,10 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="18 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={bonusUdenIndbetalingHero} alt="Nye casinoer med bonus uden indbetaling" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Nye casinoer med bonus uden indbetaling giver dig free spins eller bonuspenge helt gratis – dog altid med omsætningskrav." />
+
+        <QuickComparisonTable count={3} title="Nye Casinoer uden Indbetaling – Top 3" />
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Gratis bonus hos nye casinoer i 2026 – den komplette guide</h2>

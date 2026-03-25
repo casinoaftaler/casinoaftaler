@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -11,7 +13,6 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 
-import heroImage from "@/assets/heroes/spil-for-sjov-hero.jpg";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { Sparkles, Star, AlertTriangle, Target, Heart, Smile, Gamepad2, Gift, BookOpen, Shield, Zap, Users } from "lucide-react";
@@ -62,10 +63,10 @@ const SpilForSjovGuide = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="21 min" />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={heroImage} alt="Spil casino for sjov – gratis casinospil" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Spil for sjov med demo-versioner af populære slots og bordspil – helt uden risiko og uden registrering." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Demo-Spil – Top 3" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over gratis casinospil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ikke al casinospil handler om penge. Mange danske spillere nyder casinospil som ren underholdning – ligesom man ser en film eller spiller et videospil. Heldigvis er der masser af muligheder for at spille casino helt gratis, hvad enten du vil lære et nyt spil at kende, teste en strategi eller blot have det sjovt uden finansiel risiko. I 2026 er udvalget af gratis casinomuligheder større end nogensinde, med tusindvis af spilleautomater, bordspil og specialspil tilgængelige i demo-tilstand på de fleste danske licenserede casinoer.</p>

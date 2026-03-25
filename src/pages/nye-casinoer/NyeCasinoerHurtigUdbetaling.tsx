@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import hurtigUdbetalingHero from "@/assets/heroes/nye-casinoer-hurtig-udbetaling-hero.jpg";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -105,10 +106,10 @@ const NyeCasinoerHurtigUdbetaling = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="18 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={hurtigUdbetalingHero} alt="Nye casinoer med hurtig udbetaling" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Nye casinoer med hurtig udbetaling behandler dine gevinster inden for 24 timer – ofte via Trustly eller MobilePay." />
+
+        <QuickComparisonTable count={3} title="Hurtig Udbetaling – Top 3" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Nye casinoer med de hurtigste udbetalinger i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

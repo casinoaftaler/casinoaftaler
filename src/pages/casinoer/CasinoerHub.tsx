@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
@@ -11,7 +13,6 @@ import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import casinoerHubHero from "@/assets/heroes/casinoer-hub-hero.jpg";
 import { type ReactNode } from "react";
 import {
   Zap, ShieldCheck, Monitor, Globe, Calculator, Smartphone,
@@ -182,10 +183,10 @@ export default function CasinoerHub() {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="35 min" />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={casinoerHubHero} width="1920" height="1080" alt="Casino guide hub – kompas med casino chips og spillekort" className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
 
+        <SnippetAnswer answer="Find det rette casino i Danmark – sammenlign licenserede casinoer efter bonus, udbetaling, spiludvalg og specialfunktioner." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" />
         {/* ── SECTION 1: Introduktion ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">

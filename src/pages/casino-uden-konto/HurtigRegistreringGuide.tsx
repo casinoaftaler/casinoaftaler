@@ -1,8 +1,9 @@
 import React from "react";
-import heroHurtigReg from "@/assets/hero-hurtig-registrering.jpg";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CasinoUdenKontoCrossLinks } from "@/components/CasinoUdenKontoCrossLinks";
@@ -127,12 +128,15 @@ const HurtigRegistreringGuide = () => {
       </section>
 
       <div className="container py-6">
-        <img src={heroHurtigReg} alt="Hurtig casino-registrering med biometrisk identitetsverifikation" width={1920} height={1080} loading="eager" className="w-full h-auto object-cover rounded-lg max-h-[400px]" />
       </div>
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="kevin" readTime="30 Min." />
 
+
+        <SnippetAnswer answer="Hurtig registrering via MitID eller BankID tager under 2 minutter – sammenlign med traditionel registrering og Pay N Play." />
+
+        <QuickComparisonTable count={3} title="Hurtig Registrering – Top 3" />
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />Tre veje til dit casinospil</h2>

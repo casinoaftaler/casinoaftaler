@@ -11,7 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import jackpotHero from "@/assets/heroes/jackpot-slots-hero.jpg";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
   Gamepad2,
   Shield,
@@ -141,20 +142,10 @@ const JackpotSlots = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="22 Min." />
-        <p className="text-sm text-muted-foreground mt-2 mb-6">
-          Testet og skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
-        </p>
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img
-            src={jackpotHero}
-            alt="Progressive jackpot spilleautomat med gylden jackpot-tæller og mønter"
-            width={1920}
-            height={1080}
-            className="w-full h-auto object-cover max-h-[400px]"
-            loading="eager"
-          />
-        </div>
+        <SnippetAnswer answer="Progressive jackpot-slots samler en pulje fra alle spillere i netværket – Mega Moolah holder rekorden med 130+ mio. kr. Basis-RTP er 88–94%, da en del af indsatsen går til puljen. Gevinster er skattefri i Danmark." />
+
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Jackpot Slots" />
 
         {/* ── 1. HVAD ER JACKPOT SLOTS? ── */}
         <section className="mb-12" id="hvad-er-jackpot-slots">
