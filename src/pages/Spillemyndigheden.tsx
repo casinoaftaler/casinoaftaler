@@ -183,7 +183,7 @@ const Spillemyndigheden = () => {
 
         <SnippetAnswer answer="Spillemyndigheden er Danmarks tilsynsmyndighed for al lovlig gambling. De sikrer fair spil, administrerer ROFUS og håndhæver det danske 10x omsætningsloft." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["spildansknu", "betinia", "spilleautomaten"]}} />
 
         {/* Hero image */}
 

@@ -169,7 +169,7 @@ const NoStickyBonus = () => {
 
         <SnippetAnswer answer="No-sticky bonus adskiller dine egne penge fra bonusmidler – du kan hæve gevinster fra egne penge uden omsætningskrav. Det er matematisk den mest fordelagtige bonustype i Danmark." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" />
+        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["betinia", "spilleautomaten", "playkasino"]}} />
 
 {/* ===== S1: Strategisk intro ===== */}
         <section className="mb-12">

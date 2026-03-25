@@ -127,7 +127,7 @@ const CrazyTimeGuide = () => {
 
         <SnippetAnswer answer="Crazy Time fra Evolution har en gennemsnitlig RTP på 95,5% og fire bonus-runder med op til 25.000x. Det mest populære game show i Danmark." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer til Crazy Time" />
+        <QuickComparisonTable count={3} title="Bedste Casinoer til Crazy Time" prioritySlugs={["campobet", "swift-casino", "luna-casino"]}} />
         {/* ── H2 1: Hvad er Crazy Time ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Crown className="h-5 w-5 text-primary" />Hvad er Crazy Time – og hvorfor dominerer det live casino</h2>

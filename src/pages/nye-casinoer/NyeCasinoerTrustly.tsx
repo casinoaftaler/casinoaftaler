@@ -95,7 +95,7 @@ const NyeCasinoerTrustly = () => {
 
         <SnippetAnswer answer="Nye casinoer med Trustly tilbyder instant ind- og udbetalinger direkte fra din bankkonto uden kortoplysninger." />
 
-        <QuickComparisonTable count={3} title="Trustly Casinoer – Top 3" />
+        <QuickComparisonTable count={3} title="Trustly Casinoer – Top 3" prioritySlugs={["spilleautomaten", "betinia", "swift-casino"]}} />
         {/* Intro - differentiated from /betalingsmetoder/trustly */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Trustly som casino-valgkriterie: Hvorfor det er afgørende hos nye casinoer</h2>

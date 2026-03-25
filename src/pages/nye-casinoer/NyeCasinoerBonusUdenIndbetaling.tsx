@@ -106,7 +106,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
 
         <SnippetAnswer answer="Nye casinoer med bonus uden indbetaling giver dig free spins eller bonuspenge helt gratis – dog altid med omsætningskrav." />
 
-        <QuickComparisonTable count={3} title="Nye Casinoer uden Indbetaling – Top 3" />
+        <QuickComparisonTable count={3} title="Nye Casinoer uden Indbetaling – Top 3" prioritySlugs={["playkasino", "swift-casino", "betinia"]}} />
         {/* Intro */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Gratis bonus hos nye casinoer i 2026 – den komplette guide</h2>

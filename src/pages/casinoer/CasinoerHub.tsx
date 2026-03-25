@@ -186,7 +186,7 @@ export default function CasinoerHub() {
 
         <SnippetAnswer answer="Find det rette casino i Danmark – sammenlign licenserede casinoer efter bonus, udbetaling, spiludvalg og specialfunktioner." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" />
+        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" prioritySlugs={["betinia", "spilleautomaten", "campobet"]}} />
         {/* ── SECTION 1: Introduktion ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">

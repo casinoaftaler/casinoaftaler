@@ -202,7 +202,7 @@ const CasinoApp = () => {
 
         <SnippetAnswer answer="De bedste casino apps i Danmark er fra licenserede casinoer med native iOS/Android apps eller optimerede PWA-versioner. Alle tilbyder biometrisk login, hurtige indbetalinger via MobilePay og samme spiludvalg som desktop." />
 
-        <QuickComparisonTable count={3} title="Top 3 Casino Apps – Hurtig Sammenligning" />
+        <QuickComparisonTable count={3} title="Top 3 Casino Apps – Hurtig Sammenligning" prioritySlugs={["betinia", "spilleautomaten", "swift-casino"]}} />
 
 
         {/* ══════════════════════════════════════════════════════════════
