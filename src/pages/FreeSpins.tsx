@@ -193,9 +193,13 @@ const FreeSpins = () => {
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="niklas" readTime="22 Min." />
 
-        <div className="mb-10 overflow-hidden rounded-xl">
-          <img src={freeSpinsHero} alt="Free spins – farverige spilleautomater med mønter" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />
-        </div>
+        <SnippetAnswer answer="De bedste free spins i 2026 har høj spinværdi (min. 1 kr.), lave eller ingen omsætningskrav og er knyttet til spil med høj RTP. Omsætningsfrie spins giver mest reel værdi – men tjek altid gevinstloftet." />
+
+        <InlineCasinoCards title="Bedste casinoer med free spins" count={6} />
+
+        <BonusClusterPriorityLinks currentPath="/free-spins" />
+
+        <Separator className="my-10" />
 
         {/* Intro */}
         <section className="mb-12">
