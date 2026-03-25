@@ -1,0 +1,1 @@
+UPDATE bonus_hunt_sessions SET avgx_max_bet = 999999 WHERE hunt_number = 125;
