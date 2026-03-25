@@ -194,6 +194,7 @@ export const REVIEW_TOP_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/campobet", label: "Campobet" },
   { to: "/casino-anmeldelser/swift-casino", label: "Swift Casino" },
   { to: "/casino-anmeldelser/luna-casino", label: "Luna Casino" },
+  { to: "/casino-anmeldelser/playkasino", label: "PlayKasino" },
 ];
 
 export const REVIEW_ALL_LINKS: NavLink[] = [
