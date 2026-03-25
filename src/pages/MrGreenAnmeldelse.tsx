@@ -183,7 +183,7 @@ const MrGreenAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder og udbetalingstider</h2>
+          <h2 className="mb-4 text-3xl font-bold">Pengetransaktioner – metoder og ventetid dokumenteret</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">Mr Green Casino tilbyder de mest populære <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link> for danske spillere, om end udvalget er lidt snævrere end hos visse konkurrenter. Bemærkelsesværdigt fravær inkluderer <Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> og <Link to="/betalingsmetoder/paysafecard" className={linkClass}>Paysafecard</Link> – to metoder, der er populære hos danske spillere og tilgængelige hos mange konkurrenter.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
