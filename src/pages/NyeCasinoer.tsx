@@ -295,53 +295,6 @@ const NyeCasinoer = () => {
           </p>
         </section>
 
-        {/* Casino Cards */}
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">
-            Nye casinoer i Danmark
-          </h2>
-          {isLoading ? (
-            <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            </div>
-          ) : newCasinos.length === 0 ? (
-            <p className="py-8 text-center text-muted-foreground">
-              Ingen nye casinoer tilgængelige i øjeblikket.
-            </p>
-          ) : (
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-                {newCasinos.slice(0, 2).map((casino, index) => (
-                  <CasinoCard
-                    key={casino.id}
-                    casino={mapCasino(casino)}
-                    rank={index + 1}
-                    open={openCasinoId === casino.id}
-                    onOpenChange={(open) =>
-                      setOpenCasinoId(open ? casino.id : null)
-                    }
-                  />
-                ))}
-              </div>
-              {newCasinos.length > 2 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-                  {newCasinos.slice(2).map((casino, index) => (
-                    <CasinoCard
-                      key={casino.id}
-                      casino={mapCasino(casino)}
-                      rank={index + 3}
-                      open={openCasinoId === casino.id}
-                      onOpenChange={(open) =>
-                        setOpenCasinoId(open ? casino.id : null)
-                      }
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        </section>
-
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
