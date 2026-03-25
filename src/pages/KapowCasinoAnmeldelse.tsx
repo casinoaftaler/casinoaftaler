@@ -129,7 +129,7 @@ const KapowCasinoAnmeldelse = () => {
 
         {/* Mobil */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Mobiloplevelsen – funktionel men ikke poleret</h2>
+          <h2 className="mb-4 text-3xl font-bold">Touch-oplevelsen – navigation og hastighed på mobil</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kapow Casino har ingen dedikeret mobilapp – alt kører via den responsive browserversion. Vi testede på iPhone 15 Pro (iOS 18) og Samsung Galaxy S24 (Android 14). Lobby-indlæsning tog 2.1 sekunder på Wi-Fi – acceptabelt men mærkbart langsommere end <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (1.2s) og <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link> (1.6s).</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den største irritation er navigationsstrukturen. At finde et specifikt spil kræver mindst 3 klik: kategori → underkategori → spil. Søgefunktionen virker, men autocomplete er langsom med 1-2 sekunders forsinkelse. Sammenlignet med LeoVegas' one-tap kategorier og Mr Greens intelligente søgning føles Kapow Casinos mobilnavigation en generation bagud.</p>
           <p className="text-muted-foreground leading-relaxed">Spilstart på mobil tog gennemsnitligt 2.8 sekunder – over branchestandarden. Live casino-streaming fungerede stabilt uden buffering. Betalinger via Trustly fungerede problemfrit. Det samlede mobilbillede er: funktionelt men ikke inspirerende. Designet som fungerer på desktop (farverigt, animeret, dynamisk) oversættes dårligere til mobilens begrænsede skærmplads.</p>
