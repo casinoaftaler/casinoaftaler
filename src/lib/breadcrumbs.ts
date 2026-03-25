@@ -170,6 +170,7 @@ export const routeLabels: Record<string, string> = {
   "/casino-anmeldelser/spilleautomaten": "Spilleautomaten",
   "/casino-anmeldelser/campobet": "Campobet",
   "/casino-anmeldelser/betinia": "Betinia",
+  "/casino-anmeldelser/playkasino": "PlayKasino",
   "/casino-anmeldelser/swift-casino": "Swift Casino",
   "/casino-anmeldelser/luna-casino": "Luna Casino",
   "/casino-anmeldelser/spildansknu": "SpilDanskNu",

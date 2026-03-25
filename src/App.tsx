@@ -468,6 +468,7 @@ const App = () => (
                 <Route path="/casino-anmeldelser/pokerstars" element={<PokerStarsAnmeldelse />} />
                 <Route path="/casino-anmeldelser/bwin" element={<BwinAnmeldelse />} />
                 <Route path="/casino-anmeldelser/marathonbet" element={<MarathonBetAnmeldelse />} />
+                <Route path="/casino-anmeldelser/playkasino" element={<PlayKasinoAnmeldelse />} />
                 <Route path="/casino-anmeldelser/bet365-vs-unibet" element={<Bet365VsUnibet />} />
                 <Route path="/casino-anmeldelser/leovegas-vs-mr-green" element={<LeoVegasVsMrGreen />} />
                 <Route path="/casino-anmeldelser/danske-spil-vs-spilnu" element={<DanskeSpilVsSpilnu />} />
