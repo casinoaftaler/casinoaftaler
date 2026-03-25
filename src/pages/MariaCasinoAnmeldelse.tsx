@@ -170,7 +170,7 @@ const MariaCasinoAnmeldelse = () => {
 
         {/* Sikkerhed og Kindred */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og Kindred Groups ansvarlige tilgang</h2>
+          <h2 className="mb-4 text-3xl font-bold">Kindred Groups ansvarsprofil og dansk regulering</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Maria Casino opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> via Unibet Denmark Limited. Al software kontrolleres og overvåges af tredjepartsvirksomheder. Spillene kører med certificerede tilfældighedsgeneratorer (RNG), og data krypteres med SSL-teknologi.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kindred Groups "Journey towards zero"-initiativ er branchens mest ambitiøse <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>-program med mål om at eliminere indtjening fra skadelig spilleadfærd. Programmet bruger AI og adfærdsanalyse til at identificere risikospillere proaktivt.</p>
           <p className="text-muted-foreground leading-relaxed">ROFUS-tilslutning, indskudsgrænser, tabsgrænser og selvudelukkelse er alle tilgængelige. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25 ved behov.</p>

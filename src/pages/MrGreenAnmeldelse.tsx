@@ -235,7 +235,7 @@ const MrGreenAnmeldelse = () => {
 
         {/* Hvem bør undgå */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Hvem bør undgå Mr Green Casino?</h2>
+          <h2 className="mb-4 text-3xl font-bold">Situationer hvor Mr Green ikke er det optimale valg</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green er et exceptionelt casino for den rigtige målgruppe – men det er ikke det rigtige valg for alle. Her er fire specifikke spillerprofiler med kvantificerede argumenter:</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Volumen-jægeren (spiller 5+ timer/uge):</strong> Med ~1.000 spil ligger Mr Green 50% under markedsgennemsnittet for store operatører. Spiller du dagligt med fokus på nye udgivelser, vil du udmatte kataloget inden for 4-6 uger. Kritisk: Mr Green mangler Hacksaw Gaming, Nolimit City og Push Gaming – tre af de mest eftertragtede high-volatility studios i 2026. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2.000+ spil inkl. alle tre studios) er det oplagte alternativ.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Allround-spilleren (sport + casino + poker):</strong> Mr Green er et rendyrket casino. Ingen sportsbook, ingen pokerplatform. Hvis du bruger 40%+ af din spilletid på sportsvæddemål, kræver Mr Green en separat konto hos en anden operatør – med dobbelt KYC, dobbelt indbetaling og splittet bankroll. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> eller <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> tilbyder alt under ét tag med fælles saldo og samlet spillehistorik.</p>

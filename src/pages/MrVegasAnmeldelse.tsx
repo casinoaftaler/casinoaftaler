@@ -249,7 +249,7 @@ const MrVegasAnmeldelse = () => {
 
         {/* Endelig vurdering */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Vores endelige vurdering – substans bag Vegas-glamouren</h2>
+          <h2 className="mb-4 text-3xl font-bold">Samlet bedømmelse – substans bag Vegas-glamouren</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Vegas Casino er mere end flashy design og store bonustal. Det er en platform bygget på Betsson Groups 60+ års operatørerfaring, med en infrastruktur der processer milliarder årligt og en licensportefølje, der vidner om seriøs compliance. Vores test viste, at substansen matcher stilen: hurtige udbetalinger (14 timer via Trustly), fejlfri betalingsintegrationer, kompetent kundeservice og et spiludvalg, der i omfang overgår de fleste danske konkurrenter.</p>
           <p className="mb-6 text-muted-foreground leading-relaxed">Velkomstbonussen på 100% op til 1.000 kr. plus free spins er konkurrencedygtig, og med det danske maksimale 10x omsætningskrav er den faktisk realistisk at omsætte – en klar fordel sammenlignet med uregulerede markeder, hvor kravene er langt højere. Svagheder inkluderer manglen på en dedikeret mobilapp, begrænset VIP-program for danske spillere og kundeservice, der ikke er døgndækket. Men samlet set leverer Mr Vegas en casino-oplevelse, der fortjener sin plads i top-tier af det danske marked. Læs om <Link to="/forfatter/jonas" className={linkClass}>forfatteren</Link> og vores <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link>.</p>
           <RatingBreakdown scores={CASINO_SCORES["mr-vegas"].scores} total={CASINO_SCORES["mr-vegas"].total} />

@@ -164,7 +164,7 @@ const MarathonBetAnmeldelse = () => {
 
         {/* Sikkerhed */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og licensforhold</h2>
+          <h2 className="mb-4 text-3xl font-bold">Licenser og regulatorisk ramme</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">MarathonBet opererer med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet ROFUS. Selskabet har også licenser fra UK Gambling Commission og Malta Gaming Authority – to af de strengeste regulatoriske myndigheder i verden. SSL-kryptering (256-bit) beskytter alle transaktioner, og spillermidler opbevares på separate konti adskilt fra selskabets driftskapital.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">ROFUS-integration sikrer, at selvudelukket spillere blokeres automatisk. <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjer inkluderer indskudsgrænser, tabsgrænser, session-tidsbegrænsninger og selvudelukkelse. MarathonBets compliance-historik er ren med ingen offentlige sanktioner fra danske myndigheder.</p>
           <Card className="border-border bg-card border-l-4 border-l-primary"><CardContent className="pt-6 space-y-3"><p className="text-muted-foreground">Spil ansvarligt – også sportsvæddemål. Kontakt <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> på tlf. 70 22 28 25, hvis du eller en du kender har problemer med spil.</p><p className="text-xs text-muted-foreground">18+ | Spil ansvarligt | Denne side indeholder reklamelinks</p></CardContent></Card>
