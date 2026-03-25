@@ -338,6 +338,8 @@ const SpilDanskNuAnmeldelse = () => {
             </table>
           </div>
           <p className="text-xs text-muted-foreground">Alle transaktioner er gebyrfri. Min. udbetaling: 75 kr. Valuta: DKK.</p>
+
+          <InlineReviewCTA casinoName="SpilDanskNu" bonusText="MobilePay-indbetaling på under 30 sekunder" onClick={handleBonusClick} variant="payment" />
         </section>
 
         <Separator className="my-10" />
