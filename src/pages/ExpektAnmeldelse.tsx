@@ -157,7 +157,7 @@ const ExpektAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – testet og dokumenteret</h2>
+          <h2 className="mb-4 text-3xl font-bold">Indskuds- og hævningsmetoder – testet i januar 2026</h2>
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border border-border rounded-lg">
               <thead><tr className="bg-muted/50"><th className="p-3 text-left font-semibold">Metode</th><th className="p-3 text-left font-semibold">Indbetaling</th><th className="p-3 text-left font-semibold">Udbetaling</th><th className="p-3 text-left font-semibold">Gebyr</th><th className="p-3 text-left font-semibold">Testresultat</th></tr></thead>
