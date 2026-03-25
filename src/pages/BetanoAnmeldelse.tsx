@@ -502,7 +502,7 @@ const BetanoAnmeldelse = () => {
 
         {/* Endelig vurdering */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Vores endelige vurdering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Samlet dom – Betanos plads i det danske marked</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Betano er en seriøs aktør med et stærkt teknologisk fundament og en sportsbetting-sektion, der kan konkurrere med de bedste. Mobilappen er blandt de mest veldesignede på det danske marked, og dansktalende kundeservice er et reelt plus. Casino-sektionen er solid men ikke exceptionel – den mangler den dybde og det eksklusive live casino-indhold, der kendetegner de bedste dedikerede casino-operatører.
           </p>

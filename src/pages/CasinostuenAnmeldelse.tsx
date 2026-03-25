@@ -186,7 +186,7 @@ const CasinostuenAnmeldelse = () => {
         <Separator className="my-10" />
 
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed, licens og ansvarlighed</h2>
+          <h2 className="mb-4 text-3xl font-bold">Spillemyndigheden-licens og ROFUS-tilslutning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Casinostuen opererer under dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er fuldt tilsluttet ROFUS. MitID-verifikation sikrer, at alle spillere er korrekt identificeret, og platformen overholder de danske regler for indbetalingsgrænser og selvudelukkelse. SSL-kryptering beskytter alle transaktioner og personlige data.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ansvarlighed er et område, hvor Casinostuen lever op til minimumskravene uden at gå ud over dem. Der er adgang til indbetalingsgrænser og selvudelukkelse via ROFUS, men der er ingen proaktive ansvarlighedsværktøjer som session-timers eller tab-alarmer, som man finder hos <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> med deres Green Gaming-system. For en platform, der henvender sig til nybegyndere, ville sådanne funktioner være et naturligt tillæg.</p>
           <p className="text-muted-foreground leading-relaxed">Vores <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> og <Link to="/forretningsmodel" className={linkClass}>forretningsmodel</Link> sikrer uafhængige vurderinger. Vi modtager affiliate-kommission, men det påvirker aldrig vores ratings eller anbefalinger. Læs mere om vores uafhængighed og metode.</p>

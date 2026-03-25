@@ -607,7 +607,7 @@ const Bet365Anmeldelse = () => {
 
         {/* Endelig vurdering */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Vores endelige vurdering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Konklusion – er bet365 det rigtige valg?</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             bet365 er den mest komplette spilleplatform, der er tilgængelig for danske spillere. Sportsbook'en er i en liga for sig selv med dybde, live streaming og innovative værktøjer, som ingen konkurrent matcher. Casino-sektionen er solid med et bredt udvalg, og live casinoet er blandt de bedste. Udbetalinger er hurtige, platformen er stabil, og 20+ års erfaring mærkes i hvert aspekt af produktet.
           </p>

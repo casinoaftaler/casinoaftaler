@@ -464,7 +464,7 @@ const BwinAnmeldelse = () => {
 
         {/* Security */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Sikkerhed og regulering</h2>
+          <h2 className="mb-4 text-3xl font-bold">Entains licensstruktur og spillergarantier</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             bwin opererer under en dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er fuldt tilsluttet ROFUS. Som en del af Entain-koncernen er bwin underlagt streng regulering i over 30 jurisdiktioner globalt, herunder UK Gambling Commission, Malta Gaming Authority og adskillige andre europæiske tilsynsmyndigheder. Børsnoteringen på London Stock Exchange tilføjer et ekstra lag af finansiel gennemsigtighed, da Entain er forpligtet til at offentliggøre kvartalsregnskaber og overholde Financial Conduct Authority-regler.
           </p>
