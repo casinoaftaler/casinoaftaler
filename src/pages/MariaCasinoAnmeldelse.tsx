@@ -130,7 +130,7 @@ const MariaCasinoAnmeldelse = () => {
 
         {/* Betalingsmetoder */}
         <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">Betalingsmetoder – bredt udvalg med PayPal, MobilePay og Skrill</h2>
+          <h2 className="mb-4 text-3xl font-bold">Indbetalinger og hævninger – PayPal, MobilePay og flere</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Maria Casino adskiller sig positivt fra mange konkurrenter med et meget bredt udvalg af betalingsmetoder – inklusiv internationale e-wallets som PayPal, Skrill og Neteller, som mange danske casinoer mangler.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
