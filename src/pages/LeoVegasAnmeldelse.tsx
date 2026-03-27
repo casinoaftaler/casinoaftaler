@@ -186,6 +186,14 @@ const LeoVegasAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den mest eksklusive feature er LeoVegas' dedikerede live casino-borde. Disse borde er kun tilgængelige for LeoVegas-spillere og opereres af dedikerede dealers i et LeoVegas-branded studiemiljø. Fordelen er lavere ventetider, en mere personlig oplevelse og bordgrænser, der er skræddersyet til LeoVegas' spillerbase. I vores test var den gennemsnitlige ventetid på eksklusive borde under 30 sekunder, mens standard Evolution-borde hos andre operatører ofte har 2-3 minutters ventetid i spidsbelastningstidspunkter.
           </p>
+
+          <ReviewScreenshot
+            src={leovegasLiveCasino}
+            alt="LeoVegas live casino Top 10 med Lightning Roulette, eksklusive blackjack-borde og Evolution Gaming"
+            caption="LeoVegas' live casino med Top 10 borde, eksklusive varianter og populære roulette-spil."
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">
             Streamingkvaliteten er konsekvent i HD-kvalitet med minimal latency – vi målte under 0,5 sekunders forsinkelse på alle testede borde. Det er afgørende for live dealer-spil, hvor timing og interaktion er centrale elementer. LeoVegas er et af de få casinoer, der også tilbyder mobiloptimerede live casino-borde med auto-landscape og touch-baseret chipplacering – endnu et eksempel på mobile-first filosofien i praksis.
           </p>
