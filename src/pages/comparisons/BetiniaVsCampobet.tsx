@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import heroImage from "@/assets/comparison-hero-bet365-unibet.jpg";
 
 const linkClass = "text-primary underline hover:text-primary/80";
