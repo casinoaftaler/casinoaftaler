@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonusAktiv from "@/assets/screenshots/betinia-velkomstbonus-aktiv.webp";
+import mrGreenCashSpins from "@/assets/screenshots/mr-green-cash-spins-uden-indbetaling.png";
 import { capWagerDisplay, capWagerInText, isWagerCompliant } from "@/lib/wagerCap";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -461,6 +462,12 @@ const FreeSpinsIDag = () => {
           alt="Betinia aktiv velkomstbonus med free spins-tilbud og bonusvilkår for nye spillere"
           caption="Betinias aktive velkomstbonus – free spins er ofte en del af velkomstpakken hos danske casinoer"
           size="full"
+        />
+
+        <ReviewScreenshot
+          src={mrGreenCashSpins}
+          alt="Mr Green daglige free spins kampagne med 50 cash spins uden indbetaling til Legacy of Dead"
+          caption="Mr Green tilbyder daglige cash spins uden omsætningskrav – et eksempel på et typisk free spins tilbud"
         />
 
         <Separator className="my-8" />

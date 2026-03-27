@@ -27,6 +27,7 @@ import {
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.png";
+import spillehallenGratisSpins from "@/assets/screenshots/spillehallen-gratis-spins-bonuskoder.png";
 import {
   Sparkles,
   ShieldCheck,
@@ -582,6 +583,12 @@ const FreeSpins = () => {
             </CardContent>
           </Card>
         </section>
+
+        <ReviewScreenshot
+          src={spillehallenGratisSpins}
+          alt="Spillehallen gratis spins bonuskoder med 75 kr. velkomsttilbud og daglige free spins muligheder"
+          caption="Spillehallen tilbyder bonuskoder til gratis spins – et eksempel på aktive free spins vilkår hos et dansk casino"
+        />
 
         <Separator className="my-10" />
 

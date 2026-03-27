@@ -15,6 +15,10 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import rofusForsideMitid from "@/assets/screenshots/rofus-forside-mitid-login.png";
+import rofusRegistrering from "@/assets/screenshots/rofus-registrering-udelukkelse.png";
+import danskeSpilSundeSpillevaner from "@/assets/screenshots/danske-spil-sunde-spillevaner.png";
 
 const warningSignItems = [
   "Bruger flere penge, end du har råd til at tabe",
@@ -285,6 +289,12 @@ const ResponsibleGaming = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={rofusForsideMitid}
+          alt="ROFUS.dk forside med MitID-login til Register Over Frivilligt Udelukkede Spillere og link til StopSpillet"
+          caption="ROFUS.dk – det danske selvudelukkelsesregister med MitID-login og direkte adgang til StopSpillet"
+        />
+
         <Separator className="my-10" />
 
         {/* Lovgivning */}
@@ -322,6 +332,12 @@ const ResponsibleGaming = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={rofusRegistrering}
+          alt="ROFUS registreringsside med valg mellem endelig og midlertidig udelukkelse fra alle danske online casinoer"
+          caption="ROFUS tilbyder endelig eller midlertidig udelukkelse – fra 24 timer op til permanent selvudelukkelse"
+        />
+
         <Separator className="my-10" />
 
         {/* Self-Exclusion */}
@@ -352,7 +368,11 @@ const ResponsibleGaming = () => {
           </p>
         </section>
 
-        
+        <ReviewScreenshot
+          src={danskeSpilSundeSpillevaner}
+          alt="Danske Spil sunde spillevaner sektion med AI-baseret spilscanner, forebyggelse og øget omsorgsindsats"
+          caption="Danske Spil investerer aktivt i sunde spillevaner – et eksempel på hvordan licenserede casinoer håndterer ansvarligt spil"
+        />
 
         <Separator className="my-10" />
 
