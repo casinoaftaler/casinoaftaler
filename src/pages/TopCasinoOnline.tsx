@@ -15,7 +15,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowRegistrering from "@/assets/screenshots/kapow-registrering.png";
 
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
-import { GPWASealBadge } from "@/components/GPWASealBadge";
+
 import { TopCasinoReviewLink } from "@/components/TopCasinoReviewLinks";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
