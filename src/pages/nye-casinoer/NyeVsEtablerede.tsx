@@ -10,7 +10,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrvegas from "@/assets/screenshots/mrvegas-forside.png";
-import nordicbetForside from "@/assets/screenshots/nordicbet-casino-forside.png";
+
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
