@@ -299,6 +299,12 @@ const BonusBuysGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaBonusbuyLobby}
+          alt="Betinia bonus buy-lobby med oversigt over slots med køb af bonusrunder – priser varierer fra 50× til 250× indsatsen"
+          caption="Betinias dedikerede bonus buy-sektion giver overblik over tilgængelige buy feature-slots"
+        />
+
         {/* H2: Hvorfor tilbyder slots en Buy Feature? */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">

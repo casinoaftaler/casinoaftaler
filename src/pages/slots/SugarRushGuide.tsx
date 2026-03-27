@@ -70,6 +70,12 @@ const SugarRushGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Visuelt præsenteres multiplikatorerne som farvede cirkler under hver position, der intensiveres i farve og størrelse, jo højere multiplikatoren er. Denne visuelle feedback er elegant designet og giver spilleren en umiddelbar forståelse af, hvilke positioner der har højest potentiale. Det er en af de mest intuitive multiplikator-præsentationer i moderne slot-design.</p>
         </section>
 
+        <ReviewScreenshot
+          src={playkasinoSpillemaskiner}
+          alt="PlayKasino spillemaskin-lobby med cluster pays-slots – Sugar Rush kan findes blandt Pragmatic Plays populære titler"
+          caption="PlayKasinos spillemaskin-lobby med adgang til cluster pays-titler som Sugar Rush"
+        />
+
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil: Cluster Pays på 7×7 Grid</h2>
           <Card className="mb-6"><CardContent className="pt-6">

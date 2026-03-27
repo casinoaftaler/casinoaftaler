@@ -89,6 +89,12 @@ const WantedDeadOrAWildGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Free spins trigger-frekvens estimeres til ca. 1 pr. 250-350 spins – lav selv for en ekstrem-volatil slot. Denne sjældenhed forstærker den "all-or-nothing" dynamik: du investerer mange spins i base game (med konstant tab) for sjældne men potentielt massive bonusrunder. Det er et bevidst designvalg fra Hacksaw Gaming, der appellerer til thrill-seekers.</p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia spillemaskin-lobby med Hacksaw Gaming – Wanted Dead or a Wild er en af de mest volatile titler tilgængelige hos danske casinoer"
+          caption="Betinias lobby med Hacksaw Gaming-titler, herunder Wanted Dead or a Wild"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

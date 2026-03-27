@@ -61,6 +61,12 @@ const JokerStrikeGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For spillere, der spiller med <Link to="/casino-bonus" className={linkClass}>bonusmidler</Link>, er Joker Strike's Hi Roller-mode den mest effektive gennemspilningsmaskine i markedet. Den lave house edge (1,89 %) minimerer det forventede tab under gennemspilning, og den lave volatilitet sikrer forudsigelig bankroll-progression. Mange erfarne bonus-spillere betragter Joker Strike som et must-have værktøj i deres arsenal.</p>
         </section>
 
+        <ReviewScreenshot
+          src={casinostuenSpillemaskiner}
+          alt="Casinostuens spillemaskin-lobby med Quickspin-slots – Joker Strike med sin 98,11% Hi Roller RTP er et sjældent fund"
+          caption="Casinostuens spillemaskin-lobby med klassiske slots som Joker Strike"
+        />
+
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Hi Roller-Funktionen: Premium-Tilstand Analyseret</h2>
           <Card className="mb-6"><CardContent className="pt-6">

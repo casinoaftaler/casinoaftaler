@@ -137,6 +137,12 @@ const JamminJarsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={playkasinoSpillemaskiner}
+          alt="PlayKasino spillemaskin-lobby med Push Gaming-slots – Jammin' Jars er en af de mest populære cluster pays-slots på markedet"
+          caption="PlayKasinos lobby med adgang til Push Gaming-titler som Jammin' Jars"
+        />
+
         <InlineCasinoCards />
 
         {/* ── RTP ── */}

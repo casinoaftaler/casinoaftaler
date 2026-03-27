@@ -70,6 +70,12 @@ const ExtraChilliMegawaysGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For Megaways-entusiaster, der allerede kender <Link to="/casinospil/spillemaskiner/bonanza" className={linkClass}>Bonanza</Link>, er Extra Chilli den naturlige evolution – bedre RTP, højere ceiling, og den kritiske free spins-gamble, der tilfører en strategisk dimension, originalen manglede.</p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaMegaways}
+          alt="Betinia Megaways-filter med Big Time Gaming-slots – Extra Chilli Megaways er en af de mest populære titler i kategorien"
+          caption="Betinias Megaways-filter giver hurtig adgang til BTG-titler som Extra Chilli Megaways"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

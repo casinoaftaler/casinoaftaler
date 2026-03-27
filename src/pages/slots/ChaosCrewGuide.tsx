@@ -79,6 +79,12 @@ const ChaosCrewGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Base game-RTP estimeres til 55-60 %, med de resterende 40-45 % allokeret til free spins. Denne fordeling er aggressiv for en high-volatility slot og indikerer, at bonusrunder er afgørende for den samlede matematiske performance – et karakteristisk Hacksaw Gaming-designvalg.</p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia casino-lobby med Hacksaw Gaming-slots – Chaos Crew og andre cluster pays-titler er tilgængelige her"
+          caption="Betinias spillemaskin-lobby med adgang til Hacksaw Gaming-titler som Chaos Crew"
+        />
+
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Cranky & Sketchy: De To Wild-Typer</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Chaos Crew's innovation er dens dual-wild system med to fundamentalt forskellige wild-typer, der tilbyder kontrasterende risk/reward profiler. Cranky (den orange anarkist) har faste multiplikatorer – typisk 2× eller 3× – der forbliver konstante under hele bonusrunden. Sketchy (den blå rebel) har tilfældige multiplikatorer, der rerolles hvert spin mellem 1× og 5×.</p>
