@@ -13,6 +13,7 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.png";
+import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.png";
 import {
   AlertTriangle,
   BarChart3,
