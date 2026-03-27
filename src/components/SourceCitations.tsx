@@ -81,7 +81,7 @@ export const SourceCitations = forwardRef<HTMLElement>(function SourceCitations(
         >
           GPWA-godkendt
         </a>.{" "}
-        <a href="/er-casinoaftaler-trovaerdig" className="text-primary underline hover:text-primary/80">
+        <a href="/om" className="text-primary underline hover:text-primary/80">
           Læs mere →
         </a>
       </p>

@@ -373,7 +373,6 @@ const App = () => (
                 <Route path="/forfatter/ajse" element={<ForfatterAjse />} />
                 <Route path="/forfatter/niklas" element={<ForfatterNiklas />} />
                 <Route path="/saadan-tester-vi-casinoer" element={<SaadanTesterVi />} />
-                <Route path="/er-casinoaftaler-trovaerdig" element={<ErCasinoaftalerTrovaerdig />} />
                 
                 <Route path="/kontakt" element={<Kontakt />} />
                 <Route path="/sitemap" element={<SitemapPage />} />
