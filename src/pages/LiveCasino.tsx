@@ -12,6 +12,7 @@ import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { GPWASealBadge } from "@/components/GPWASealBadge";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
