@@ -280,6 +280,13 @@ const Velkomstbonus = () => {
             til din spillestil og dit budget.
           </p>
 
+          <ReviewScreenshot
+            src={betiniaVelkomstbonus}
+            alt="Betinia velkomstbonus aktiveringsflow med 100% op til 1.000 kr. og 3-trins aktivering"
+            caption="Velkomstbonus hos Betinia – 3-trins aktivering: indbetal, aktiver bonus og spil"
+            size="compact"
+          />
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {bonusTypes.map((type) => (
               <Card key={type.id} className="border-border bg-card">
