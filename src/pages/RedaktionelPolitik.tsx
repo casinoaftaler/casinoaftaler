@@ -131,6 +131,12 @@ const RedaktionelPolitik = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenForside}
+          alt="Spillemyndighedens hjemmeside – vi krydsverificerer alle casinoinformationer mod denne officielle kilde"
+          caption="Spillemyndigheden er vores primære kilde til faktatjek af casinolicenser og bonusvilkår"
+        />
+
         <Separator className="my-10" />
 
         {/* Faktatjek & krydsverifikation */}
