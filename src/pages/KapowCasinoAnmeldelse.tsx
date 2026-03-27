@@ -185,6 +185,13 @@ const KapowCasinoAnmeldelse = () => {
             ))}
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">KYC-verifikation ved første udbetaling krævede upload af pas-kopi og screenshot af Trustly-bekræftelse. Processen tog 4 timer fra upload til godkendelse – langsommere end Betsson-gruppens automatiserede MitID-system (2 timer) men inden for normen for SkillOnNet-platforme. Der er ingen gebyrer fra Kapow Casinos side. Minimum udbetaling er 200 kr.</p>
+
+          <ReviewScreenshot
+            src={kapowIndbetaling}
+            alt="Kapow Casino indbetalingsside med Visa/Dankort og MobilePay som betalingsmetoder og beløbsforslag"
+            caption="Indbetalingssiden hos Kapow Casino – vælg mellem Visa/Dankort og MobilePay med hurtige beløbsforslag"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
