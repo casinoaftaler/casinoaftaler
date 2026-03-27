@@ -36,6 +36,10 @@ import bigTimeGamingLogo from "@/assets/providers/big-time-gaming.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-spil-lobby.png";
+import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.png";
+import spilleautomatenRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.png";
 import {
   ShieldCheck,
   Zap,
