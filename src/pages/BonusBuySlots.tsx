@@ -198,6 +198,7 @@ const BonusBuySlots = () => {
             src={betiniaBonusbuyLobby}
             alt="Gates of Olympus 1000 bonus buy dialog hos Betinia – køb gratis spins for 100 kr."
             caption="Bonus buy-dialog i Gates of Olympus 1000 – prisen for at købe free spins er tydeligt vist"
+            size="medium"
           />
         </section>
 
