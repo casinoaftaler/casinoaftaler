@@ -60,6 +60,7 @@ const PokerStarsAnmeldelse = () => {
             </CardContent>
           </Card>
         </section>
+          <ReviewScreenshot src={pokerstarsForside} alt="PokerStars poker forside med velkomsttilbud og Spin and Go turneringer" caption="PokerStars' poker-forside med velkomsttilbud på 100 kr. i ekstra spil og SCOOP 2026-turneringen." eager size="full" />
 
         {/* Introduktion – PokerStars' evolution */}
         <section className="mb-12">
