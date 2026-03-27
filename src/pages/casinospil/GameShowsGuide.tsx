@@ -150,6 +150,13 @@ const GameShowsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={royalcasinoLiveCasino}
+          alt="Live casino game show-lobby med Crazy Time, Dream Catcher og Monopoly Live samlet i én kategori"
+          caption="Game show-lobbyen hos et dansk casino – de mest populære Evolution-titler er samlet i én overskuelig sektion."
+          size="full"
+        />
+
         {/* ── H2 2 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
