@@ -21,6 +21,9 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, Zap, Check, X, ShieldCheck, AlertTriangle, Gamepad2, Users, Target, Trophy, Headphones, CreditCard, TrendingUp, BarChart3 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import stakeForside from "@/assets/screenshots/stake-forside.png";
+import stakeKampagner from "@/assets/screenshots/stake-kampagner.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
