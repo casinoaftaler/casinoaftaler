@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import hacksawHero from "@/assets/heroes/hacksaw-gaming-hero.jpg";
 
