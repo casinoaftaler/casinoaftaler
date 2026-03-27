@@ -82,6 +82,28 @@ export function BonusHuntGTWTab({ session, bets, userId, openedBonuses = 0, onBe
 
   return (
     <div className="space-y-4">
+      {/* Hunt result card – shown when settled */}
+      {endBalance != null && (
+        <Card className="border-primary/30 bg-gradient-to-r from-primary/5 to-primary/10">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60 mb-1">Faktisk End Balance</p>
+                <p className="text-2xl font-bold text-primary">{Number(endBalance).toLocaleString('da-DK')} kr</p>
+              </div>
+              {startBalance != null && (
+                <div className="text-right">
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60 mb-1">Resultat</p>
+                  <p className={`text-lg font-bold ${endBalance - startBalance >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                    {endBalance - startBalance >= 0 ? '+' : ''}{(endBalance - startBalance).toLocaleString('da-DK')} kr
+                  </p>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* User status cards */}
       <div className="grid grid-cols-2 gap-3">
         <Card>

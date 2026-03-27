@@ -299,6 +299,8 @@ export default function BonusHunt() {
                         userId={user?.id}
                         openedBonuses={huntData?.stats?.openedBonuses || 0}
                         onBetPlaced={refreshBets}
+                        endBalance={huntData?.stats?.endBalance}
+                        startBalance={huntData?.stats?.startBalance}
                       />
                     </TabsContent>
                     <TabsContent value="avgx" forceMount className="data-[state=inactive]:hidden">
