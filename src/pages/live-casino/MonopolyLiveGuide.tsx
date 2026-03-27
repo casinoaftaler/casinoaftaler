@@ -1,4 +1,6 @@
 import React from "react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import casinostuenLiveCasino from "@/assets/screenshots/casinostuen-live-casino.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
