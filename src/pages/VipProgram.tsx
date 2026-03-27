@@ -742,6 +742,12 @@ const VipProgram = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={comeonGetluckyVip}
+          alt="ComeOn og GetLucky VIP-kampagner med eksklusive bonustilbud og loyalitetsprogrammer for danske spillere"
+          caption="ComeOn og GetLucky tilbyder begge dedikerede kampagner og VIP-tilbud til loyale spillere"
+        />
+
         <Separator className="mb-12" />
 
         {/* ══════════════════════════════════════════════════════════════

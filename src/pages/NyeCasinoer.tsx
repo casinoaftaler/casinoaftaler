@@ -434,6 +434,12 @@ const NyeCasinoer = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={playkasinoForside}
+          alt="PlayKasino forside med 100% velkomstbonus op til 500 kr. – eksempel på nyt dansk casino med fuld licens"
+          caption="PlayKasino – et af de nyeste danske casinoer med moderne design og konkurrencedygtig velkomstbonus"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════

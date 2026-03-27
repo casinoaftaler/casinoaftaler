@@ -447,6 +447,12 @@ const Spillemyndigheden = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenVendor}
+          alt="Spillemyndighedens side for spilleverandører med ansøgningsblanketter og krav til tilladelse som spiludbyder i Danmark"
+          caption="Spillemyndighedens licensansøgningsportal – alle operatører skal igennem denne proces for at få dansk tilladelse"
+        />
+
         <Separator className="my-10" />
 
         {/* Husk-boks */}
