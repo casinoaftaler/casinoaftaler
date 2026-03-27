@@ -48,6 +48,12 @@ const TrustlyGuide = () => {
       whatIsTitle="Pay N Play – Fremtidens Casino-Registrering eller Niche-Feature?"
       whatIsContent={
         <>
+          <ReviewScreenshot
+            src={kapowMitidLogin}
+            alt="MitID-login via Scrive under Trustly-bankgodkendelse på dansk casino"
+            caption="MitID-login under Trustly-betalingsflow – din bank godkendes direkte via MitID"
+            size="full"
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Pay N Play er Trustlys mest innovative produkt og repræsenterer et fundamentalt anderledes syn på casino-registrering. I stedet for den traditionelle proces – opret konto, verificer identitet, tilføj betalingsmetode, indbetal – kombinerer Pay N Play alle fire trin i én handling. Du vælger dit casino, klikker "Spil nu", logger ind med MitID via Trustly, og Trustly verificerer automatisk din identitet, opretter din konto og gennemfører din første indbetaling. Hele processen tager under 60 sekunder.
           </p>

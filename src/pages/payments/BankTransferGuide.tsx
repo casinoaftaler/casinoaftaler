@@ -58,6 +58,12 @@ const BankTransferGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For den nysgerrige: Når du opretter en bankoverførsel i din netbank, godkendes den lokalt af din bank via MitID. Derefter sendes den til Nationalbankens clearingsystem, der verificerer modtagerens bankoplysninger og initierer overførslen. Modtagerbanken (casinoets bank) modtager overførslen ved næste clearingcyklus og krediterer casinoets konto. Casinoet skal derefter manuelt eller automatisk matche overførslen med din spillerkonto – det er typisk dette sidste trin, der tager længst tid og er mest fejlbehæftet.
           </p>
+          <ReviewScreenshot
+            src={kapowMitidLogin}
+            alt="MitID-login til bankgodkendelse ved casino-indbetaling via bankoverførsel"
+            caption="MitID-godkendelse er påkrævet ved bankoverførsler – her ses login-trinnet"
+            size="full"
+          />
         </>
       }
       securityTitle="Bankens Egne Vægge – Den Ultimative Sikkerhedsinfrastruktur"

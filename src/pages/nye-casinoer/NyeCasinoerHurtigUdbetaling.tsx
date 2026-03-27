@@ -182,6 +182,13 @@ const NyeCasinoerHurtigUdbetaling = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={kapowMitidGodkendt}
+          alt="MitID-verifikation godkendt med blåt skjold – pre-verifikation eliminerer forsinkelser ved første udbetaling"
+          caption="MitID-verifikation godkendt – pre-verifikation ved registrering sikrer hurtige udbetalinger fra dag ét"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

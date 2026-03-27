@@ -389,6 +389,13 @@ const NyeCasinoer = () => {
             </p>
           </div>
 
+          <ReviewScreenshot
+            src={kapowRegistrering}
+            alt="Registreringsproces hos nyt dansk casino med kontaktformular og overførselsgrænse"
+            caption="Registreringsformularen hos et nyt casino – CPR, kontaktinfo og overførselsgrænser udfyldes i første trin"
+            size="full"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Dag 1-2: Kontooprettelse og første indtryk.</strong> Vi opretter en reel konto via <Link to="/nye-casinoer/mitid" className={linkClass}>MitID</Link> og dokumenterer hele processen: tid fra klik til aktiv konto, klarhed i vilkår, og om KYC-verifikation kører problemfrit. Vi tester fra både desktop (Chrome, Safari) og mobil (iPhone, Android). Et casino der kræver mere end 5 minutter til kontooprettelse eller har en forvirrende MitID-integration, starter allerede med et negativt score.
           </p>

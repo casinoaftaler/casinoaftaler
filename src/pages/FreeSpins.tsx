@@ -471,6 +471,13 @@ const FreeSpins = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={kapowVelkomstbonus}
+          alt="Free spins som del af velkomstbonus ved registrering hos dansk online casino med 100 spins til Gates of Olympus"
+          caption="Free spins ved registrering – her tilbydes 100 spins som en del af velkomstbonussen"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* In-game Free Spins */}

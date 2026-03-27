@@ -878,9 +878,14 @@ const TopCasinoOnline = () => {
           </div>
         </section>
 
-        <Separator className="my-10" />
+        <ReviewScreenshot
+          src={kapowRegistrering}
+          alt="Registreringsformular hos dansk casino med felter til CPR, navn, email og overførselsgrænse ved kontooprettelse"
+          caption="Eksempel på registreringsformular – alle danske casinoer kræver personoplysninger og MitID-verifikation"
+          size="full"
+        />
 
-        {/* Casino Trends 2026 */}
+        <Separator className="my-10" />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Casino trends i 2026</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
