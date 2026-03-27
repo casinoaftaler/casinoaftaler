@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemaskiner.png";
 import spilnuVindere from "@/assets/screenshots/spilnu-vindere.png";
+import pokerstarsJackpots from "@/assets/screenshots/pokerstars-jackpot-spillemaskiner.png";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -245,6 +246,13 @@ const JackpotSlots = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={pokerstarsJackpots}
+          alt="PokerStars Casino jackpot-spillemaskiner med progressive beløb – Archdragon King (3.826 US$), Stars Queens (3.673.093 US$), Irish Riches Megaways (38.522 US$) og flere jackpot-slots fra Red Tiger og Blueprint Gaming"
+          caption="PokerStars Casino – jackpot-oversigt med progressive beløb opdateret i realtid"
+          size="full"
+        />
 
         <Separator className="my-10" />
 

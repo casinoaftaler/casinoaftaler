@@ -14,6 +14,10 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-spil-lobby.png";
+import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.png";
+import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.png";
 import { type ReactNode } from "react";
 import {
   Gamepad2,
@@ -232,6 +236,13 @@ const Casinospil = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spilleautomatenLobby}
+          alt="Spilleautomaten.dk casino spil-lobby med populære spillemaskiner som Sweet Bonanza 1000, Le Bandit, Fruit Party og Gates of Olympus sorteret efter anbefaling"
+          caption="Spilleautomaten.dk – et typisk dansk casino med bredt udvalg af spillemaskiner fra Pragmatic Play, Hacksaw Gaming og Play'n GO"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════
@@ -261,6 +272,13 @@ const Casinospil = () => {
             <Link to="/casinospil/baccarat" className={linkClass}>Baccarat</Link> er det simpleste bordspil: sats på banker (1,06 % house edge), spiller (1,24 %) eller uafgjort (14,36 % – undgå dette). <Link to="/casinospil/craps" className={linkClass}>Craps</Link> tilbyder 1,36 % house edge på "don't pass line" – men den komplekse tabel skræmmer mange nye spillere. <Link to="/casinospil/poker" className={linkClass}>Poker</Link> er unikt, fordi du spiller mod andre spillere, ikke huset. Casinoet tager en rake, men dine odds afhænger af din dygtighed relativt til modstanderne. Video poker-varianter som Jacks or Better kan nå 99,5 % RTP med perfekt strategi.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={spilleautomatenFilter}
+          alt="Spilleautomaten.dk spiludbyder-filter med antal spil pr. provider – Pragmatic Play (539), Play'n GO (352), Stakelogic (167), Synot (161) og Hacksaw Gaming (149)"
+          caption="Filtrer efter spiludbyder – Spilleautomaten viser antal tilgængelige spil fra hver provider"
+          size="full"
+        />
 
         <InlineCasinoCards title="Anbefalede casinoer med bredt spiludvalg" count={6} />
 
@@ -363,6 +381,13 @@ const Casinospil = () => {
             Varians (tæt relateret til volatilitet) beskriver, hvor langt de faktiske resultater afviger fra det forventede gennemsnit i en given session. Et spil med 96 % RTP kan i en session på 200 spins give alt fra 60 % til 140 % tilbagebetaling – det er variansen. Jo højere volatilitet, jo bredere denne spredning. Praktisk betydning: med lav varians kan du forudsige din sessions-performance nogenlunde (±30 %). Med høj varians er det rent kaos på kort sigt – du kan vinde 1.000x din indsats eller tabe alt på 50 spins. Forståelse af varians er nøglen til realistisk bankroll-styring.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={liveBlackjackClassic}
+          alt="Live Blackjack Classic bordspil med dealer, Super Stake-funktion og flere spillere ved bordet – eksempel på live casino bordspil hos et dansk casino"
+          caption="Live Blackjack Classic – et populært bordspil med rigtig dealer, Super Stake-multiplikatorer og op til 7 spillere"
+          size="full"
+        />
 
         <Separator className="my-10" />
 

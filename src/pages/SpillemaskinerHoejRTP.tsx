@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.png";
 import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.png";
+import zeusVsHadesRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -275,6 +276,13 @@ export default function SpillemaskinerHoejRTP() {
             For den matematisk orienterede spiller er den optimale kombination høj RTP med lav til middel volatilitet. Denne profil giver den laveste house edge kombineret med den mest forudsigelige gevinstfordeling – hvilket minimerer risikoen for ruin og maksimerer den forventede spilletid for et givet bankroll. Men "optimal" afhænger altid af den individuelle spillers risikopræference og underholdningsmål.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={zeusVsHadesRtp}
+          alt="Zeus vs Hades Gods of War spilleautomat med RTP på 94,04 %, spildetaljer fra Pragmatic Play, minimum indsats 0,50 kr. og volatilitets-gauge der viser høj volatilitet"
+          caption="Spildetaljer for Zeus vs Hades – RTP, volatilitet og udbyder vises direkte i casinoets interface"
+          size="medium"
+        />
 
         {/* ── H2 4: Standardafvigelse og varians ── */}
         <section className="mb-12">
