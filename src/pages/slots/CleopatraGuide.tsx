@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import onecasinoSpillemaskiner from "@/assets/screenshots/onecasino-spillemaskiner.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/cleopatra-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -66,6 +68,13 @@ const CleopatraGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">IGT's designfilosofi med Cleopatra var enkel: skab et spil, der belønner tålmodighed uden at straffe korte sessioner brutalt. Denne tilgang står i skarp kontrast til <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>'s moderne high-volatility titler, der bevidst ofrer base game-konsistens for eksplosive bonusrunder. For danske spillere, der søger underholdningsværdi over jackpot-jagt, er Cleopatra fortsat et relevant valg.</p>
           <p className="text-muted-foreground leading-relaxed">Den kulturelle arv er også værd at fremhæve: Cleopatra inspirerede direkte titler som Book of Dead, Cleopatra Gold, og Cleopatra Plus. <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link> fra Play'n GO kan spore sin DNA direkte tilbage til Cleopatras expanding symbol-mekanik under free spins. At forstå Cleopatra er at forstå fundamentet for hele den moderne slot-industri.</p>
         </section>
+
+        <ReviewScreenshot
+          src={onecasinoSpillemaskiner}
+          alt="Spillemaskiner-udvalg med klassiske slots – Cleopatra er en tidløs favorit blandt spillere"
+          caption="Klassiske spillemaskiner som Cleopatra findes stadig i de fleste online casinoers bibliotek."
+          size="full"
+        />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil: RTP, House Edge og Gevinststruktur</h2>

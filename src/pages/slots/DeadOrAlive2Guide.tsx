@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrvegasSpilleautomater from "@/assets/screenshots/mrvegas-spilleautomater.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/dead-or-alive-2-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -131,6 +133,13 @@ const DeadOrAlive2Guide = () => {
             Men det er netop denne asymmetri mellem risiko og belønning, der definerer Dead or Alive 2. Det er et spil for spillere, der forstår og accepterer, at de sandsynligvis aldrig rammer max win – men nyder jagten alligevel. Denne guide analyserer hvert aspekt af spillets matematiske model, fra bonusmode-valg til optimal bankroll-strategi, for at give dig det mest ærlige billede af, hvad du kan forvente.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={mrvegasSpilleautomater}
+          alt="Spilleautomater-lobby med high volatility slots – Dead or Alive 2 er kendt for ekstrem varians"
+          caption="Dead or Alive 2 er en af de mest populære high volatility slots og findes hos de fleste danske casinoer."
+          size="full"
+        />
 
         <YoutubeEmbed videoId="oz_VUxjLXZ0" title="Dead or Alive 2 gennemgang – Tre bonusmodes og max win" description="Se en komplet gennemgang af Dead or Alive 2: sticky wilds, tre free spins-modes og max win forklaret i praksis." uploadDate="2026-03-07" duration="PT2M30S" />
         <VideoContextBox heading="Her gennemgår vores streamer Dead or Alive 2 i praksis">

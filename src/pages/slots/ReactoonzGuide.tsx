@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemaskiner.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/reactoonz-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -133,6 +135,13 @@ const ReactoonzGuide = () => {
             Play'n GO's filosofi bag Reactoonz afspejler en bredere trend: at gøre slots mere interaktive og belønne spillerengagement over tid. Dette princip er synligt i hele deres portefølje, fra <Link to="/casinospil/spillemaskiner/book-of-dead" className={linkClass}>Book of Dead</Link>'s expanding symbols til Reactoonz' Quantum-meters. Forskellen er, at Reactoonz tilføjer et lag af progression, der giver spilleren en følelse af kontrol – selv om det matematiske resultat stadig er bestemt af RNG.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={playkasinoSpillemaskiner}
+          alt="Spillemaskiner-lobby med Play'n GO-spil – Reactoonz er en af udbyderens mest populære cluster pays slots"
+          caption="Reactoonz fra Play'n GO er en fast favorit i danske casinoers spillemaskiner-sektion."
+          size="full"
+        />
 
         <YoutubeEmbed videoId="ybFWBECwKbo" title="Reactoonz gennemgang – Cluster pays og Quantum-features" description="Se en komplet gennemgang af Reactoonz: cluster pays-mekanikken og Quantum-features forklaret i praksis." uploadDate="2026-03-07" duration="PT0M57S" />
         <VideoContextBox heading="Her gennemgår vores streamer Reactoonz i praksis">

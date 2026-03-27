@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import videoslotsForside from "@/assets/screenshots/videoslots-forside.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/thunderstruck-ii-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -75,6 +77,13 @@ const ThunderstruckIIGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Den progressive struktur skaber en interessant dynamik: tidlige sessioner (trigger 1-4) har lavere EV fra bonusrunder, mens sene sessioner (trigger 15+) har markant højere EV. For spillere, der planlægger lange sessioner, er denne front-loading af risiko og back-loading af belønning en attraktiv mekanik, der belønner tålmodighed og bankroll-disciplin.</p>
           <p className="text-muted-foreground leading-relaxed">Free spins trigger-frekvens estimeres til ca. 1 pr. 90-120 spins. Med 4 triggers nødvendige for at nå Loki-niveauet kræves ca. 360-480 spins – og for Thor-niveauet (15+ triggers) kræves ca. 1.350-1.800 spins. Det er denne progression, der kræver den tålmodige spillerprofil, vi beskrev ovenfor.</p>
         </section>
+
+        <ReviewScreenshot
+          src={videoslotsForside}
+          alt="Casino-forside med Microgaming-spillemaskiner – Thunderstruck II er en af de mest elskede titler"
+          caption="Thunderstruck II er en Microgaming-klassiker og findes hos casinoer med bredt Microgaming-udvalg."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
