@@ -411,6 +411,12 @@ const Spiludviklere = () => {
 
         <InlineCasinoCards title="Casinoer med det bredeste spiludvalg" count={6} />
 
+        <ReviewScreenshot
+          src={spilleautomatenLobby}
+          alt="Spilleautomaten.dk spil-lobby med spillemaskiner fra flere spiludviklere – eksempel på hvordan casinoer præsenterer spil"
+          caption="Et dansk casinos spil-lobby viser typisk titler fra 10-20+ forskellige spiludviklere"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════
