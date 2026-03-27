@@ -606,6 +606,12 @@ const LiveCasino = () => {
           <p className="text-muted-foreground leading-relaxed">
             Andre nævneværdige udbydere inkluderer Ezugi (budgetvenlige borde, populære i emerging markets), Authentic Gaming (streamer fra rigtige landbaserede casinoer) og On Air Entertainment (Microgaming-partnerskab med fokus på skræddersyede baccarat-borde).
           </p>
+          <ReviewScreenshot
+            src={mrgreenLiveRoulette}
+            alt="Live roulette-bord med europæisk hjul og HD-streaming hos dansk licenseret online casino"
+            caption="Live roulette hos Mr Green – europæisk hjul med professionel dealer i realtid"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

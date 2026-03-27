@@ -177,6 +177,12 @@ const LiveBlackjackGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Den tidsbaserede betting-mekanik adskiller live blackjack fra fysisk casino, hvor du har ubegrænset tid. I live-formatet har du typisk 10-15 sekunder til at handle – nok for spillere, der kender basisstrategien, men potentielt stressende for nybegyndere. Speed Blackjack reducerer dette til 7-8 sekunder. Det er derfor afgørende at kende din strategi <em>før</em> du sætter dig ved bordet.
           </p>
+          <ReviewScreenshot
+            src={betanoLiveCasino}
+            alt="Live casino-lobby hos Betano med oversigt over blackjack-borde og aktive dealere"
+            caption="Live casino-lobbyen hos Betano – her kan du vælge mellem flere blackjack-borde med forskellige limits"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

@@ -183,6 +183,12 @@ const LiveCasinoStrategiGuide = () => {
               </ul>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src={getluckyLiveCasino}
+            alt="Live casino-lobby hos GetLucky med oversigt over tilgængelige bordspil og dealere"
+            caption="GetLucky's live casino-sektion – et godt eksempel på hvordan du vælger bord ud fra limits og spiltype"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
