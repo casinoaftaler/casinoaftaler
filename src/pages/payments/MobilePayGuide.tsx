@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mobilePayHero from "@/assets/heroes/mobilepay-hero.jpg";
+import betiniaMobilpayKasse from "@/assets/screenshots/betinia-mobilepay-kasse.webp";
+import betiniaMobilpayBekraeft from "@/assets/screenshots/betinia-mobilepay-bekraeft.webp";
+import betiniaBetalingOversigt from "@/assets/screenshots/betinia-betaling-oversigt.webp";
 
 const MobilePayGuide = () => {
   return (
@@ -117,8 +121,29 @@ const MobilePayGuide = () => {
               <p className="text-muted-foreground leading-relaxed">
                 <strong>Mobil vs. desktop:</strong> MobilePay er designet som en mobil-first-løsning, men fungerer også fra desktop: Du indtaster dit mobilnummer i casinoets kasse på computeren, modtager betalingsanmodningen på din telefon og godkender derfra. I praksis er oplevelsen marginalt mere omstændelig end fra mobil, hvor hele processen foregår på én enhed. For desktop-spillere kan{" "}
                 <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
-                tilbyde en mere integreret oplevelse.
+                 tilbyde en mere integreret oplevelse.
               </p>
+
+              <ReviewScreenshot
+                src={betiniaMobilpayKasse}
+                alt="Betinia kasse med MobilePay valgt som indbetalingsmetode og betalingshistorik"
+                caption="MobilePay valgt i Betinias indbetalingskasse – MobilePay vises som anbefalet metode"
+                size="medium"
+              />
+
+              <ReviewScreenshot
+                src={betiniaMobilpayBekraeft}
+                alt="MobilePay bekræftelsesside med beløb og telefonnummer-input til casino-indbetaling"
+                caption="MobilePay bekræftelsesflow – indtast telefonnummer og godkend indbetalingen"
+                size="compact"
+              />
+
+              <ReviewScreenshot
+                src={betiniaBetalingOversigt}
+                alt="Komplet oversigt over betalingsmetoder hos Betinia inkl. MobilePay, Visa, Trustly og Dankort"
+                caption="Alle tilgængelige betalingsmetoder hos Betinia – MobilePay er listet øverst"
+                size="medium"
+              />
             </>
           ),
         },

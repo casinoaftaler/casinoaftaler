@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBetalingOversigt from "@/assets/screenshots/betinia-betaling-oversigt.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
 import { AuthorBio } from "@/components/AuthorBio";
@@ -265,6 +267,13 @@ const Betalingsmetoder = () => {
             for den fulde regulatoriske kontekst.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaBetalingOversigt}
+          alt="Oversigt over alle betalingsmetoder hos Betinia – MobilePay, Visa, Trustly, Dankort, Paysafecard og bankoverførsler"
+          caption="Betinias komplette udvalg af betalingsmetoder – fra MobilePay til bankoverførsel"
+          size="medium"
+        />
 
         <InlineCasinoCards title="Casinoer med det bedste udvalg af betalingsmetoder" count={6} />
 

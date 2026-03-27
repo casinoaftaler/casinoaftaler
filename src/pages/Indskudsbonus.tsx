@@ -1,5 +1,7 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -214,6 +216,13 @@ const Indskudsbonus = () => {
             </p>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaBonusvilkaar}
+          alt="Indskudsbonus vilkår hos Betinia med 100% match op til 1.000 kr. og detaljerede omsætningskrav"
+          caption="Betinias vilkår for indskudsbonus – matchbonus med 10x omsætningskrav og oversigt over spilbidrag"
+          size="medium"
+        />
 
         <InlineCasinoCards title="Bedste casinoer med indskudsbonus" count={6} />
 

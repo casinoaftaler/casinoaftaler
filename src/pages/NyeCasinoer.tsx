@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
@@ -295,6 +297,12 @@ const NyeCasinoer = () => {
             Forståelsen af disse kategorier er afgørende for at træffe informerede valg som spiller. Et "nyt casino" fra en erfaren operatør med 10 års track record fra MGA-markedet er fundamentalt anderledes end et brand-nyt selskab uden operationel historie. Vores evaluering tager højde for denne nuance – og det bør din beslutningsproces også.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia lobby med anbefalede spil, spilkategorier og velkomstbonus efter registrering"
+          caption="Betinias lobby efter kontooprettelse – overblik over spiludvalg og aktive kampagner"
+        />
 
         <Separator className="my-10" />
 

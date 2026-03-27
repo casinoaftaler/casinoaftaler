@@ -1,5 +1,7 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -281,6 +283,13 @@ const Omsaetningskrav = () => {
             akkumulerer – helt uden at risikere rigtige penge.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaBonusvilkaar}
+          alt="Omsætningskrav hos Betinia – 10x på indskud + bonus, 60 dages gyldighed og spilbidrag pr. kategori"
+          caption="Betinias bonusvilkår viser præcist hvordan omsætningskravet beregnes – 10x (d+b) med 60 dages tidsfrist"
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
