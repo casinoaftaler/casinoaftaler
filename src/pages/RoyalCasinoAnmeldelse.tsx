@@ -152,6 +152,7 @@ const RoyalCasinoAnmeldelse = () => {
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Klassisk <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, europæisk og fransk <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> samt flere varianter af poker og andre bordspil.</p></CardContent></Card>
           </div>
           <p className="text-muted-foreground leading-relaxed">For den gennemsnitlige danske spiller er udvalget bredt nok til daglig brug. Hvis du har meget specifikke præferencer for niche-studios eller helt nye udgivelser, kan det stadig være en god idé at sammenligne med flere platforme.</p>
+          <ReviewScreenshot src={royalcasinoSpillemaskiner} alt="Royal Casino populære spillemaskiner med Starburst, Sweet Bonanza, Gates of Olympus, Book of Dead og Gonzo's Quest" caption="Populære spillemaskiner hos Royal Casino – klassikere som Starburst og Book of Dead samt nyere titler som Le Bandit og Gold Blitz Express." size="full" />
         </section>
 
         <Separator className="my-10" />
