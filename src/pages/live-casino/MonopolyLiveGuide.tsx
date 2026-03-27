@@ -134,12 +134,6 @@ const MonopolyLiveGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Vigtige specialfelter i bonusrunden:</strong> "Go" giver en fast bonus. "Community Chest" og "Chance" giver tilfældige kontant-multiplikatorer eller ekstra kast. "Income Tax" og "Super Tax" fratrækker en del af din akkumulerede gevinst. "Go to Jail" stopper din runde medmindre du slår dobbelt – det er bonusrundens mest frustrerende element og forekommer i ca. 8 % af kastene. "Free Parking" giver ingen bonus men stopper heller ikke runden.
           </p>
-          <ReviewScreenshot
-            src={mariaBingo}
-            alt="Maria Casinos casual game-lobby med bingo og underholdningsspil beslægtet med Monopoly Live"
-            caption="Maria Casinos casual spil – game shows som Monopoly Live deler målgruppe med bingo og lignende"
-            size="full"
-          />
         </section>
 
         <Separator className="my-10" />
