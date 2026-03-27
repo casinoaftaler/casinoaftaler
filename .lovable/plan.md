@@ -1,37 +1,122 @@
 
 
-# Plan: Add End Balance / Result to Stats Tab and GTW Tab
+# Plan: GPWA Seal Optimization – SEO, CRO & E-E-A-T
 
-## Problem
-The Stats tab shows Start Balance, Target Balance, and End Balance but doesn't clearly present the **hunt result** (profit/loss). The GTW tab has no visibility into how the hunt ended, making it hard for users to see the actual end balance their guesses were measured against.
+## Overview
+Expand the existing GPWA seal from footer-only to strategic placements across money pages and trust pages, create a new trust page `/er-casinoaftaler-trovaerdig/`, add microcopy, fix lazy-loading, and enhance structured data.
+
+---
 
 ## Changes
 
-### 1. Stats Tab — Add "Resultat" (Profit/Loss) row
-**File:** `src/components/bonus-hunt/BonusHuntStatsTab.tsx`
+### 1. Create reusable `GPWASealBadge` component
+**New file:** `src/components/GPWASealBadge.tsx`
 
-- Add a new `StatRow` after "End Balance" (line 102) showing the profit/loss:
-  - Label: "Resultat" with a `TrendingUp`/`TrendingDown` icon
-  - Value: `endBalance - startBalance` formatted as `+X kr` or `-X kr`
-  - Highlight green if positive, red/muted if negative
-  - Only show when `endBalance` is not null (hunt is finished)
+A compact, reusable trust badge component with:
+- GPWA seal image (from `certify.gpwa.org`)
+- Popup verification onClick (existing pattern)
+- Configurable microcopy text (e.g. "Godkendt af GPWA – branchens tillidsstempel")
+- Configurable size variant: `inline` (small, for review intros) vs `block` (larger, for trust pages)
+- `loading="eager"` — no lazy-loading on this trust asset
+- Renders a `<noscript>` fallback link for crawlability
 
-### 2. GTW Tab — Add Hunt Result card
-**File:** `src/components/bonus-hunt/BonusHuntGTWTab.tsx`
+### 2. Place GPWA badge on casino review pages
+**File:** `src/components/CasinoReviewHero.tsx`
 
-- Pass `huntData` (or just `endBalance` + `startBalance`) as new props from `BonusHunt.tsx`
-- Add a prominent result card at the top (above user status cards) when the hunt is settled, showing:
-  - **End Balance** (the actual final number users were guessing)
-  - This makes it immediately clear what the correct answer was
+Add `<GPWASealBadge variant="inline" />` inside the hero section, below the casino name. This places it at the top of every review near the decision point.
 
-### 3. Wire new props
-**File:** `src/pages/BonusHunt.tsx`
+### 3. Place GPWA badge on bonus/money pages
+Add `<GPWASealBadge variant="inline" />` to these page components near their CTA or intro areas:
+- `src/pages/CasinoBonus.tsx`
+- `src/pages/FreeSpins.tsx`
+- `src/pages/LiveCasino.tsx`
+- `src/pages/TopCasinoOnline.tsx`
 
-- Pass `endBalance={huntData?.stats?.endBalance}` and `startBalance={huntData?.stats?.startBalance}` to `BonusHuntGTWTab`
+### 4. Add GPWA to AuthorBio component
+**File:** `src/components/AuthorBio.tsx`
+
+Add a small inline mention below the bio text:
+> "Casinoaftaler.dk er en GPWA-godkendt affiliate platform."
+
+With a link to the verification page and to `/er-casinoaftaler-trovaerdig/`. This automatically propagates to all 50+ content pages using AuthorBio.
+
+### 5. Fix footer GPWA seal loading
+**File:** `src/components/Footer.tsx`
+
+Change `loading="lazy"` → `loading="eager"` on the GPWA seal image (line 615) to ensure it's always visible to crawlers. Add microcopy text next to the seal: "Verificeret af GPWA".
+
+### 6. Create new trust page `/er-casinoaftaler-trovaerdig/`
+**New file:** `src/pages/ErCasinoaftalerTrovaerdig.tsx`
+
+Content sections:
+- **Hero:** "Er CasinoAftaler troværdig?" 
+- **Hvem vi er:** Team intro, link to `/om`
+- **Sådan tester vi:** Summary + link to `/saadan-tester-vi-casinoer`
+- **GPWA godkendelse:** What GPWA is, what approval means, verification link
+- **Spillemyndigheden:** Danish license verification
+- **Uafhængig redaktion:** Link to `/forretningsmodel`
+- GPWA seal prominently displayed
+- FAQ section with `buildFaqSchema`
+- Article JSON-LD with `buildArticleSchema`
+- `<AuthorBio author="jonas" />`
+
+SEO: `title="Er CasinoAftaler troværdig? | Sådan verificerer du os"`, `description` ~150 chars.
+
+### 7. Register route + SEO config
+- **`src/App.tsx`:** Add lazy import + route for `/er-casinoaftaler-trovaerdig/`
+- **`src/lib/seoRoutes.ts`:** Add entry with `changefreq: "monthly"`, `priority: 0.7`
+- **`src/lib/breadcrumbs.ts`:** Add `PARENT_OVERRIDES` entry under `/om` hub
+- **`src/lib/seoDatePolicy.ts`:** No dynamic date needed (static page)
+
+### 8. Internal linking
+Add links to `/er-casinoaftaler-trovaerdig/` from:
+- `src/components/WhyTrustUs.tsx` — Add a 5th trust point or link from existing "Uafhængig redaktion" card
+- `src/components/SourceCitations.tsx` — Add a line: "Casinoaftaler.dk er GPWA-godkendt. Læs mere →"
+
+### 9. Structured data enhancement
+**File:** `src/lib/seo.ts`
+
+Add to `organizationSchema`:
+```json
+"memberOf": {
+  "@type": "Organization",
+  "name": "Gambling Portal Webmasters Association",
+  "url": "https://www.gpwa.org"
+},
+"award": "GPWA Approved Portal"
+```
+
+### 10. Sitemap inclusion
+Add `/er-casinoaftaler-trovaerdig/` to `public/sitemap-priority.xml` with priority 0.7.
+
+---
 
 ## Technical Details
-- `endBalance` and `startBalance` are already available in `BonusHuntData.stats`
-- Profit/loss = `endBalance - startBalance` (simple subtraction)
-- Conditional rendering: only show result when `endBalance !== null`
-- GTW tab: show end balance in a highlighted card so participants can compare their guess vs actual
+
+- The GPWA script (`certify.gpwa.org/script/casinoaftaler.dk/`) stays in `Footer.tsx` useEffect — loaded once globally
+- The seal image URL `certify.gpwa.org/seal/casinoaftaler.dk/` is hosted externally per GPWA requirements
+- Verification popup uses the existing `window.open` pattern (480x560)
+- `GPWASealBadge` uses `loading="eager"` and no `fetchPriority` (not LCP)
+- New page follows existing patterns: `useSiteSettings()` for hero background, `AuthorMetaBar`, `FAQSection`, `RelatedGuides`, `LatestNewsByCategory`
+
+---
+
+## Files touched
+| File | Action |
+|------|--------|
+| `src/components/GPWASealBadge.tsx` | Create |
+| `src/pages/ErCasinoaftalerTrovaerdig.tsx` | Create |
+| `src/components/CasinoReviewHero.tsx` | Edit — add badge |
+| `src/components/AuthorBio.tsx` | Edit — add GPWA mention |
+| `src/components/Footer.tsx` | Edit — fix loading, add microcopy |
+| `src/components/WhyTrustUs.tsx` | Edit — add link |
+| `src/components/SourceCitations.tsx` | Edit — add GPWA line |
+| `src/lib/seo.ts` | Edit — add memberOf/award |
+| `src/App.tsx` | Edit — add route |
+| `src/lib/seoRoutes.ts` | Edit — add entry |
+| `src/lib/breadcrumbs.ts` | Edit — add parent override |
+| `src/pages/CasinoBonus.tsx` | Edit — add badge |
+| `src/pages/FreeSpins.tsx` | Edit — add badge |
+| `src/pages/LiveCasino.tsx` | Edit — add badge |
+| `src/pages/TopCasinoOnline.tsx` | Edit — add badge |
 
