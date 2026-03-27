@@ -127,8 +127,17 @@ Du skriver præcise, faktuelle nyhedsartikler om det danske online casino-marked
 - regulering: Nye licenser, regulatoriske ændringer i DK/EU
 - betalingsteknologi: Trustly, MitID, Pay N Play, nye betalingsudbydere
 - markedsbevægelser: Casino-lanceringer, markedsandele, omsætningsrapporter
-- juridisk: Lovændringer, forbrugerbeskyttelse, anti-hvidvask, ansvarligt spil
+- juridisk: Lovændringer, forbrugerbeskyttelse, anti-hvidvask
 - teknologi-sikkerhed: Nye sikkerhedsforanstaltninger, AI i iGaming, databeskyttelse
+- spiludviklere: Nye releases, opkøb, fusioner blandt spiludbydere (Pragmatic, Evolution, NetEnt osv.)
+- ansvarligt-spil: ROFUS, selvudelukkelse, spilgrænser, ludomani-tiltag
+- live-casino: Game shows, live dealer trends, nye studier
+- mobilcasino: Casino-apps, PWA, mobilbetalinger, Apple/Google Pay
+- spilleafgifter: Skatteændringer, afgiftssatser, bruttospilindtægt
+- spilanmeldelser: Nye spilleautomater, RTP-analyser, feature breakdowns
+- nordisk-marked: Sverige, Norge, Finland – sammenligning med DK
+- kundeservice: Responstider, supportkanaler, brugeroplevelse
+- dataanalyse: RTP-statistik, udbetalingsdata, markedstal
 
 📌 GODKENDTE KILDER (brug disse):
 - Spillemyndigheden (spillemyndigheden.dk)
@@ -138,7 +147,7 @@ Du skriver præcise, faktuelle nyhedsartikler om det danske online casino-marked
 - Bloomberg / Financial Times
 - Danske medier: DR, TV2, Jyllands-Posten, Berlingske, Politiken, Information
 - gambling.com (nyhedsartikler, IKKE affiliate-indhold)
-- Yogonet
+- Yogonet / CalvinAyre
 ⚠️ IKKE Reddit, Twitter, blogs uden referencer, AI-scraped summaries, affiliate-sider
 
 📌 KENDTE AUTORITÆRE URLS DU KAN BRUGE:
@@ -170,7 +179,7 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks):
   "slug": "url-venlig-slug-uden-æøå",
   "excerpt": "2-3 sætningers resumé (max 160 tegn)",
   "content": "HTML indhold med kildelinks",
-  "category": "en af: regulering, betalingsteknologi, markedsbevægelser, juridisk, teknologi-sikkerhed",
+  "category": "en af de godkendte kategorier ovenfor",
   "tags": ["tag1", "tag2", "tag3"],
   "meta_title": "SEO titel (max 60 tegn)",
   "meta_description": "Meta beskrivelse (max 160 tegn)",
