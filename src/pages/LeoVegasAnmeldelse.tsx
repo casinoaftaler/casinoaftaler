@@ -98,6 +98,15 @@ const LeoVegasAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne "mobile-first" filosofi har vist sig at være en af de mest forudseende strategibeslutninger i online gambling-historien. I dag spiller over 70 % af alle danske casinospillere primært på mobilen, og LeoVegas var klar til den revolution, længe før den ramte mainstream. Resultatet er en platform, der føles som en native app – indlæsningstider under 1,5 sekunder, touch-optimeret navigation, swipe-baseret spilfiltrering og en kontostryringsoplevelse, der kan klares med få tryk. Det er den slags polering, der kun opstår, når mobil ikke er en tilpasning, men det fundamentale designprincip.
           </p>
+
+          <ReviewScreenshot
+            src={leovegasLobby}
+            alt="LeoVegas forside med velkomsttilbud, Top 10 populære spilleautomater og spilkategorier"
+            caption="LeoVegas' forside med velkomsttilbud og Top 10 mest populære spil hos danske spillere."
+            eager
+            size="full"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             MGM Resorts Internationals opkøb af LeoVegas i 2022 for ca. 607 millioner dollars var en validering af denne strategi. MGM – der driver ikoniske ejendomme som Bellagio, MGM Grand og Mandalay Bay i Las Vegas – så i LeoVegas en mulighed for at ekspandere deres digitale fodaftryk med en operatør, der allerede havde knækket mobilkoden. Opkøbet har tilført LeoVegas yderligere kapital og global hospitality-ekspertise, mens den svenske teknologiplatform og brandidentitet er bevaret intakt. Det er en kombination af startup-innovation og koncernsikkerhed, som er sjælden i online gambling-branchen.
           </p>
