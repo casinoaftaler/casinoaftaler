@@ -188,23 +188,23 @@ export default function SpilleautomatenVsSpilDanskNu() {
 
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Produktstrategi: specialisering mod bredde</h2>
-         <p className="mb-4 text-muted-foreground leading-relaxed">
-191:           Spilleautomaten har en tydelig produktfortælling: hurtig adgang, tydelige slots-prioriteter og en loyalitetsmekanik, der føles tæt på den daglige adfærd. Det giver høj beslutningshastighed for spillere, der ikke ønsker at bruge tid på unødige menuer. Denne type fokus reducerer mental støj, især for brugere der spiller ofte, kort og målrettet.
-192:         </p>
-193:
-194:         <ReviewScreenshot
-195:           src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-lobby.webp"
-196:           alt="Spilleautomaten forside med slots-fokuseret navigation, bonusbanner og live gevinstfeed"
-197:           caption="Spilleautomatens forside – rendyrket slots-fokus med hurtig adgang til populære spil"
-198:           eager
-199:         />
-200:
-201:         <p className="mb-4 text-muted-foreground leading-relaxed">
-202:           SpilDanskNu er stærkere på katalogvariation og allround-præsentation. Et bredere spiludvalg og et mere synligt <Link to="/live-casino" className={linkClass}>live casino</Link>-lag gør siden relevant for spilleren, der ikke kun vil have slots i hver session. Det kan dog også øge kompleksiteten i navigationen, fordi platformen bevidst favner flere typer intentioner i samme interface.
-203:         </p>
-204:         <p className="text-muted-foreground leading-relaxed">
-205:           Ingen af strategierne er objektivt "rigtigst". De løser blot forskellige problemer: Spilleautomaten løser fokus og tempo; SpilDanskNu løser variation og bredde. Når valget skal træffes korrekt, bør du derfor starte med adfærdsspørgsmålet: Vil du optimere på hurtighed eller på valgmuligheder?
-206:         </p>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Spilleautomaten har en tydelig produktfortælling: hurtig adgang, tydelige slots-prioriteter og en loyalitetsmekanik, der føles tæt på den daglige adfærd. Det giver høj beslutningshastighed for spillere, der ikke ønsker at bruge tid på unødige menuer. Denne type fokus reducerer mental støj, især for brugere der spiller ofte, kort og målrettet.
+        </p>
+
+        <ReviewScreenshot
+          src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-lobby.webp"
+          alt="Spilleautomaten forside med slots-fokuseret navigation, bonusbanner og live gevinstfeed"
+          caption="Spilleautomatens forside – rendyrket slots-fokus med hurtig adgang til populære spil"
+          eager
+        />
+
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          SpilDanskNu er stærkere på katalogvariation og allround-præsentation. Et bredere spiludvalg og et mere synligt <Link to="/live-casino" className={linkClass}>live casino</Link>-lag gør siden relevant for spilleren, der ikke kun vil have slots i hver session. Det kan dog også øge kompleksiteten i navigationen, fordi platformen bevidst favner flere typer intentioner i samme interface.
+        </p>
+        <p className="text-muted-foreground leading-relaxed">
+          Ingen af strategierne er objektivt "rigtigst". De løser blot forskellige problemer: Spilleautomaten løser fokus og tempo; SpilDanskNu løser variation og bredde. Når valget skal træffes korrekt, bør du derfor starte med adfærdsspørgsmålet: Vil du optimere på hurtighed eller på valgmuligheder?
+        </p>
       </section>
 
       <section className="mb-12">
