@@ -28,6 +28,10 @@ import {
   Smartphone, Headphones, Users, Globe, AlertTriangle, Target,
   BarChart3, Activity, Crown,
 } from "lucide-react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betanoSportsbook from "@/assets/screenshots/betano-sportsbook.png";
+import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.png";
+import betanoCasinoLobby from "@/assets/screenshots/betano-casino-lobby.png";
 import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
