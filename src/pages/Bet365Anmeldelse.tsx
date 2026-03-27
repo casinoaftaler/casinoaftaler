@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import bet365Sportsbook from "@/assets/screenshots/bet365-sportsbook.png";
+import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.png";
+import bet365LiveCasino from "@/assets/screenshots/bet365-live-casino.png";
+import bet365Spilfilter from "@/assets/screenshots/bet365-spilfilter.png";
+import bet365Saldo from "@/assets/screenshots/bet365-saldo.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
