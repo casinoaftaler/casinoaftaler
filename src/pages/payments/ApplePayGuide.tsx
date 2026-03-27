@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import bet365Saldo from "@/assets/screenshots/bet365-saldo.png";
 import applePayHero from "@/assets/heroes/apple-pay-hero.jpg";
 
 const ApplePayGuide = () => {
