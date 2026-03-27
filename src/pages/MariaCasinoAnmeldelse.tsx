@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema, buildVideoSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import { YoutubeEmbed } from "@/components/YoutubeEmbed";import type { ReactNode } from "react";import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X, Smartphone, Headphones, Users, Globe, Heart, AlertTriangle } from "lucide-react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mariaForside from "@/assets/screenshots/maria-forside.png";
+import mariaBingo from "@/assets/screenshots/maria-bingo.png";
+import mariaKampagner from "@/assets/screenshots/maria-kampagner.png";
+import mariaLiveCasino from "@/assets/screenshots/maria-live-casino.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
@@ -65,6 +70,7 @@ const MariaCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Platformen er designet til at være venlig og inkluderende med fokus på casino, slots og live casino. Designet med sorte og elegant toner signalerer en platform, der tager kvalitet seriøst. Med 1.500+ spilleautomater, 270+ live spil og et bredt udvalg af betalingsmetoder (inkl. PayPal, MobilePay, Skrill og Trustly) henvender Maria Casino sig til danske spillere, der vil have et bredt spiludvalg i en tryg ramme.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Vigtigt at bemærke:</strong> Maria Casinos bingo-produkt, som er populært i andre lande som England og Norge, er <strong>ikke tilgængeligt i Danmark</strong>. I Danmark fokuserer platformen udelukkende på casino, slots og live casino.</p>
           <p className="text-muted-foreground leading-relaxed">Vores vurdering er baseret på vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> og evaluerer spiludvalg, bonus, betalinger, kundeservice, sikkerhed og mobiloplevelse. Maria Casino scorede 3.9 ud af 5 – en solid platform med god infrastruktur men gennemsnitlige bonusser.</p>
+          <ReviewScreenshot src={mariaForside} alt="Maria Casino forside med Top 10 slots i Danmark og kampagnebannere" caption="Maria Casinos forside med Top 10-ranglisten og kampagnebannere for aktuelle tilbud." eager size="full" />
         </section>
 
           <YoutubeEmbed
@@ -110,6 +116,7 @@ const MariaCasinoAnmeldelse = () => {
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">Løbende kampagner inkluderer daglige tilbud, ugentlige turneringer og sæsonbestemte events. Cash Back-tilbud om mandagen og free spins om fredagen er eksempler på den løbende underholdning, Maria Casino tilbyder sine aktive spillere.</p>
+          <ReviewScreenshot src={mariaKampagner} alt="Maria Casino kampagneside med Slingo Sweet Bonanza og Maria Plus medlemsklub" caption="Kampagnesiden hos Maria Casino med casino- og bingo-kampagner samt Maria+ medlemsklubben." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -124,6 +131,8 @@ const MariaCasinoAnmeldelse = () => {
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Bordspil & Poker</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Blackjack, roulette (europæisk, fransk, amerikansk), baccarat og 6 varianter af video poker.</p></CardContent></Card>
           </div>
           <p className="text-muted-foreground leading-relaxed">Live casinoet er bemærkelsesværdigt med 270+ spil – herunder Baccarat Live, Blackjack Live, Caribbean Stud Poker, Three Card Poker og Roulette Live. Der er borde for både highrollers og konservative spillere. Jackpot-spil som Mega Moolah og Divine Fortune er også tilgængelige.</p>
+          <ReviewScreenshot src={mariaLiveCasino} alt="Maria Casino live casino lobby med Lightning Roulette og eksklusive borde fra Evolution Gaming" caption="Live casino-lobbyen hos Maria Casino med udvalgte borde og roulette-varianter fra Evolution Gaming." size="full" />
+          <ReviewScreenshot src={mariaBingo} alt="Maria Casino bingo-sektion med Penny Room og Diamond Daily fra Relax Gaming" caption="Maria Casinos bingo-sektion – kun tilgængelig i visse lande, ikke i Danmark." size="full" />
         </section>
 
         <Separator className="my-10" />
