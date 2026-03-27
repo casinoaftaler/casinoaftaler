@@ -156,6 +156,13 @@ const UnibetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Casino-sektionen hos Unibet byder på over 2.000 spiltitler fra alle de store udbydere. Du finder <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomater</Link> fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link> og mange flere, suppleret med eksklusive Unibet-titler, der er udviklet i samarbejde med udvalgte studier. Disse eksklusive spil er en reel differentiator – du finder dem ingen andre steder, og de er ofte designet med innovative bonusfunktioner og gameplay-mekanikker.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Navigationen i casinosektionen er velstruktureret med kategorier som "Nye spil", "Populære", "Jackpots", "Megaways" og "Eksklusive". Søgefunktionen fungerer godt og tillader filtrering efter udbyder, hvilket er en stor fordel, hvis du har en favoritudvikler. Vi bemærkede dog, at kategoriseringen af bordspil kunne være mere granulær – alle varianter af <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> og <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> er blandet sammen uden underkategorier for antal dæk, side bets eller specielle regler.</p>
 
+          <ReviewScreenshot
+            src={unibetFiltre}
+            alt="Unibets avancerede filtreringssystem med spilletyper, udbydere, funktioner og temaer"
+            caption="Unibets filterpanel gør det nemt at finde præcis den type slot du leder efter."
+            size="full"
+          />
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">1.800+ slots inkl. klassikere som Starburst, Book of Dead, Gates of Olympus og eksklusive Unibet-titler.</p></CardContent></Card>
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Trophy className="h-5 w-5 text-primary" />Jackpots</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Progressive jackpots fra Pragmatic Play og Red Tiger med puljer der regelmæssigt overstiger 10 mio. kr.</p></CardContent></Card>
@@ -166,13 +173,6 @@ const UnibetAnmeldelse = () => {
           <h3 className="mt-6 mb-3 text-xl font-bold">RTP og gennemsigtighed</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">Et kritisk punkt for informerede spillere er RTP-gennemsigtighed. Unibet viser RTP-værdier direkte i spilinformationen for de fleste titler, hvilket er en positiv praksis, der ikke er standard hos alle operatører. Vi stikprøvetjekkkede 25 populære titler og fandt, at alle kørte med deres standardkonfigurerede RTP-værdier – ingen "nedjusterede" versioner, som man desværre ser hos visse mindre regulerede operatører. Spilleautomater som Starburst (96,08%), Book of Dead (96,21%) og Gates of Olympus (96,50%) kører alle med de forventede værdier.</p>
           <p className="text-muted-foreground leading-relaxed">Udvalget af <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj-RTP spilleautomater</Link> er solidt, men det er værd at bemærke, at Unibet ikke har den stærkeste repræsentation fra nyere nicheudviklere som Hacksaw Gaming eller Push Gaming. Hvis du specifikt jager high-volatility megaways-spil fra disse studier, kan <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> have et bredere udvalg. Unibets styrke er derimod bredden – du finder alt fra lavvolatile hyggemaskiner til progressive jackpots, og den samlede kvalitet er konsekvent høj.</p>
-
-          <ReviewScreenshot
-            src={unibetFiltre}
-            alt="Unibets avancerede filtreringssystem med spilletyper, udbydere, funktioner og temaer"
-            caption="Unibets filterpanel gør det nemt at finde præcis den type slot du leder efter."
-            size="full"
-          />
         </section>
 
         <Separator className="my-10" />
