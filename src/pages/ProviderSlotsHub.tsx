@@ -159,12 +159,8 @@ export default function ProviderSlotsHub() {
                   className="text-muted-foreground leading-relaxed space-y-4 [&>p]:leading-relaxed [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-primary/80"
                   dangerouslySetInnerHTML={{ __html: introHtmlWithAutoLinks }}
                 />
-                <ReviewScreenshot
-                  src={spilleautomatenLobby}
-                  alt={`Casino spil-lobby med ${content.displayName} spillemaskiner – dansk casino med bredt udvalg af slots`}
-                  caption={`Eksempel på et dansk casino der tilbyder ${content.displayName} spillemaskiner i deres lobby`}
-                />
               </section>
+            ),
             ),
             stats: stats ? (
               <section className="mb-12" key="stats">
