@@ -144,6 +144,8 @@ const PokerStarsAnmeldelse = () => {
             ))}
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">PokerStars' udbetalingsprocessering er generelt hurtig og pålidelig. MitID bruges til verifikation ved kontoprettelse, og yderligere KYC er sjældent nødvendig for standardbeløb. For større udbetalinger (over 50.000 kr.) kan der kræves yderligere dokumentation, hvilket er standard praksis under dansk lovgivning.</p>
+          <ReviewScreenshot src={pokerstarsBetalinger} alt="PokerStars betalingsmetoder med MobilePay, Visa, PayPal, Skrill og Trustly til Danmark" caption="Oversigt over alle betalingsmetoder hos PokerStars med ind- og udbetalingsmuligheder for danske spillere." size="full" />
+          <ReviewScreenshot src={pokerstarsKampagner} alt="PokerStars kampagner og belønninger med Kister, Challenges og Ranglister" caption="PokerStars' kampagne- og belønningssystem med Kister, Challenges og Mine Belønninger." size="full" />
         </section>
 
         <Separator className="my-10" />
