@@ -15,10 +15,16 @@ const TrustlyGuide = () => {
       heroSubtitle="Den tekniske bro mellem din bank og casinoet – vi dissekerer PSD2-rammen, tester Pay N Play og dokumenterer, hvorfor Trustly dominerer danske casino-udbetalinger."
       introTitle="Open Banking Forklaret – PSD2, API-Forbindelser og den Direkte Bankvej"
       introContent={
-        <>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Open banking er ikke bare et buzzword – det er en EU-lovgivning, der fundamentalt har ændret, hvordan penge kan bevæge sig mellem bankkonti og tredjepartstjenester. Under PSD2 (Payment Services Directive 2), vedtaget i 2018, er europæiske banker forpligtet til at give licenserede tredjepartsudbydere adgang til deres betalingsinfrastruktur via standardiserede API'er. Trustly er bygget på netop denne regulering: En teknologisk bro, der forbinder din bankkonto direkte med casinoets konto, uden at pengene passerer gennem en mellemkonto, en wallet eller en kortnetværksprocessor.
-          </p>
+         <>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             Open banking er ikke bare et buzzword – det er en EU-lovgivning, der fundamentalt har ændret, hvordan penge kan bevæge sig mellem bankkonti og tredjepartstjenester. Under PSD2 (Payment Services Directive 2), vedtaget i 2018, er europæiske banker forpligtet til at give licenserede tredjepartsudbydere adgang til deres betalingsinfrastruktur via standardiserede API'er. Trustly er bygget på netop denne regulering: En teknologisk bro, der forbinder din bankkonto direkte med casinoets konto, uden at pengene passerer gennem en mellemkonto, en wallet eller en kortnetværksprocessor.
+           </p>
+
+           <ReviewScreenshot
+             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-trustly-login.webp"
+             alt="Trustly MitID-login til open banking betalingsflow på dansk casino"
+             caption="MitID-godkendelse via Trustly – direkte og sikker bankforbindelse uden mellemmand"
+           />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne direkte forbindelse er Trustlys fundamentale fordel over alle wallet-baserede metoder. Hvor{" "}
             <Link to="/betalingsmetoder/skrill" className="text-primary underline hover:text-primary/80">Skrill</Link>{" "}
