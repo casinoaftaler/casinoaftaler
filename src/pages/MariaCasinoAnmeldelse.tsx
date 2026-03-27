@@ -70,6 +70,7 @@ const MariaCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Platformen er designet til at være venlig og inkluderende med fokus på casino, slots og live casino. Designet med sorte og elegant toner signalerer en platform, der tager kvalitet seriøst. Med 1.500+ spilleautomater, 270+ live spil og et bredt udvalg af betalingsmetoder (inkl. PayPal, MobilePay, Skrill og Trustly) henvender Maria Casino sig til danske spillere, der vil have et bredt spiludvalg i en tryg ramme.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Vigtigt at bemærke:</strong> Maria Casinos bingo-produkt, som er populært i andre lande som England og Norge, er <strong>ikke tilgængeligt i Danmark</strong>. I Danmark fokuserer platformen udelukkende på casino, slots og live casino.</p>
           <p className="text-muted-foreground leading-relaxed">Vores vurdering er baseret på vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> og evaluerer spiludvalg, bonus, betalinger, kundeservice, sikkerhed og mobiloplevelse. Maria Casino scorede 3.9 ud af 5 – en solid platform med god infrastruktur men gennemsnitlige bonusser.</p>
+          <ReviewScreenshot src={mariaForside} alt="Maria Casino forside med Top 10 slots i Danmark og kampagnebannere" caption="Maria Casinos forside med Top 10-ranglisten og kampagnebannere for aktuelle tilbud." eager size="full" />
         </section>
 
           <YoutubeEmbed
