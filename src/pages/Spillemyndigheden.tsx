@@ -337,6 +337,12 @@ const Spillemyndigheden = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenForside}
+          alt="Spillemyndigheden.dk forside med nyhedsbrev, pressemeddelelser og information om dansk spillelovgivning"
+          caption="Spillemyndigheden.dk – den officielle myndighed der regulerer alt online spil i Danmark"
+        />
+
         <Separator className="my-10" />
 
         {/* Spillerbeskyttelse */}
