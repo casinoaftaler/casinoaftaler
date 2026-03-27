@@ -30,12 +30,11 @@ serve(async (req) => {
       const authClient = createClient(supabaseUrl, supabaseAnonKey, {
         global: { headers: { Authorization: authHeader } },
       });
-      const { data: claimsData, error: claimsError } = await authClient.auth.getClaims(token);
-      if (claimsError || !claimsData?.claims) {
+      const { data: { user }, error: userError } = await authClient.auth.getUser(token);
+      if (userError || !user) {
         return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
       }
-      const userId = claimsData.claims.sub;
-      const { data: isAdmin } = await adminClient.rpc('has_role', { _user_id: userId, _role: 'admin' });
+      const { data: isAdmin } = await adminClient.rpc('has_role', { _user_id: user.id, _role: 'admin' });
       if (!isAdmin) {
         return new Response(JSON.stringify({ error: 'Admin only' }), { status: 403, headers: corsHeaders });
       }
