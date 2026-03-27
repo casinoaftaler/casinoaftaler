@@ -381,6 +381,7 @@ const Bet365Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             KYC-verifikation (Know Your Customer) kræves ved den første udbetaling. Du skal indsende billedlegitimation og bevis for bopæl. bet365's verifikationsproces er generelt hurtig – typisk afsluttet inden for 24 timer – men det kan tage op til 72 timer i spidsbelastningsperioder. Når du er verificeret, behandles efterfølgende udbetalinger automatisk.
           </p>
+          <ReviewScreenshot src={bet365Saldo} alt="bet365 bank og saldo-oversigt med ind- og udbetalingsmuligheder og bonusstatus" caption="Saldo-oversigten hos bet365 med separate bonusser for sport og casino samt nemme ind-/udbetalingsknapper." size="full" />
           <p className="text-muted-foreground leading-relaxed">
             Den samlede betalingsoplevelse hos bet365 er gnidningsfri. Ingen overraskelser, ingen skjulte gebyrer, ingen urimelige udbetalingsgrænser. Det er et af de områder, hvor skalaen giver en reel fordel – bet365's betalingsinfrastruktur er bygget til volumen og fungerer derefter.
           </p>
