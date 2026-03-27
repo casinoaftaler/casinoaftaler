@@ -174,6 +174,12 @@ const MobilePayGuide = () => {
               <p className="text-muted-foreground leading-relaxed">
                 MitID-kravet ved større MobilePay-transaktioner er en direkte konsekvens af PSD2-reguleringens krav om stærk kundegodkendelse (SCA). Tærskelværdien for, hvornår MitID kræves, bestemmes af din bank – typisk ved beløb over 3.000-5.000 kr. For lavere beløb er biometrisk godkendelse i MobilePay-appen tilstrækkelig. Denne trinvise sikkerhedsmodel giver en god balance mellem bekvemmelighed og beskyttelse.
               </p>
+
+              <ReviewScreenshot
+                src={betiniaMobilpayBekraeft}
+                alt="MobilePay bekræftelsesflow hos Betinia med swipe-godkendelse og beløbsvisning"
+                caption="MobilePay bekræftelsesflow – swipe for at godkende indbetalingen direkte i appen"
+              />
             </>
           ),
         },
