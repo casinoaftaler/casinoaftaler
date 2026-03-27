@@ -1,4 +1,7 @@
 import React from "react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBonusbuyLobby from "@/assets/screenshots/betinia-bonusbuy-lobby.webp";
+import betiniaBonusbuyGameplay from "@/assets/screenshots/betinia-bonusbuy-gameplay.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
