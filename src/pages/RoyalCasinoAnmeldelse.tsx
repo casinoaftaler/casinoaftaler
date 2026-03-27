@@ -23,6 +23,12 @@ import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, Check, X, Smartphone, Headphones, Users, Globe, AlertTriangle, Target, Crown } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import royalcasinoForside from "@/assets/screenshots/royalcasino-forside.png";
+import royalcasinoSpillemaskiner from "@/assets/screenshots/royalcasino-spillemaskiner.png";
+import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.png";
+import royalcasinoGruppen from "@/assets/screenshots/royalcasino-gruppen.png";
+import royalcasinoKampagner from "@/assets/screenshots/royalcasino-kampagner.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
