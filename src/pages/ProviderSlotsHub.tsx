@@ -16,11 +16,7 @@ import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-spil-lobby.png";
-import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.png";
-import spilleautomatenRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.png";
-import spillemyndighedenUdbyder from "@/assets/screenshots/spillemyndigheden-spilleverandoer.png";
+import { slugifySlotName } from "@/lib/slugify";
 import { slugifySlotName } from "@/lib/slugify";
 import { ProviderMoneyLinks } from "@/components/ProviderMoneyLinks";
 import {
