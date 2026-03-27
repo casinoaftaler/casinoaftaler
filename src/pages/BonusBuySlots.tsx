@@ -193,6 +193,12 @@ const BonusBuySlots = () => {
             certificerede og regulerede af{" "}
             <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={betiniaBonusbuyLobby}
+            alt="Gates of Olympus 1000 bonus buy dialog hos Betinia – køb gratis spins for 100 kr."
+            caption="Bonus buy-dialog i Gates of Olympus 1000 – prisen for at købe free spins er tydeligt vist"
+          />
         </section>
 
         <Separator className="my-10" />
