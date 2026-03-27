@@ -121,6 +121,7 @@ const Casino888Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Tidsbegrænsning:</strong> 30 dage for matchbonus, 14 dage for free spins-gevinster. <strong>Maksimal bonusgevinst:</strong> Ingen eksplicit grænse på matchbonus, men free spins-gevinster er typisk begrænset til 500 kr. <strong>Spilrestriktioner:</strong> Slots bidrager 100%, bordspil 10-20%, <Link to="/live-casino" className={linkClass}>live casino</Link> 0%. 888-eksklusive spil bidrager 100%.</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Sammenligning:</strong> <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> tilbyder op til 1.000 kr. i velkomstbonus med samme 10x-krav, men uden bonus uden indbetaling. <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> har 5x omsætning – det laveste på det danske marked. 888 Casinos unikke no-deposit tilbud er altså en reel differentiator – om end værdien er beskeden.</p>
         </section>
+          <ReviewScreenshot src={casino888Kampagner} alt="888 Casino kampagneside med velkomsttilbud og aktuelle kampagner som Gold Trio og jackpotspil" caption="888 Casinos kampagneoversigt med velkomsttilbud, spotlight-spil og jackpot-sektionen." size="full" />
 
         <Separator className="my-10" />
 
