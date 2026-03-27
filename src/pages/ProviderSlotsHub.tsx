@@ -186,6 +186,12 @@ export default function ProviderSlotsHub() {
                 <p className="text-sm text-muted-foreground mt-2">
                   Baseret på {stats.totalBonusHunts.toLocaleString("da-DK")} bonus hunt-optrædener i alt.
                 </p>
+                <ReviewScreenshot
+                  src={spillemyndighedenUdbyder}
+                  alt={`Spillemyndighedens liste over godkendte spiludbydere – ${content.displayName} er licenseret i Danmark`}
+                  caption={`Spillemyndigheden fører tilsyn med alle udbydere – ${content.displayName} er godkendt til det danske marked`}
+                  size="medium"
+                />
               </section>
             ) : null,
             top5: stats && stats.topSlots.length > 0 ? (
