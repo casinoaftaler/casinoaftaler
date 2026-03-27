@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Gamepad2, Instagram, MessageCircle, Trophy, BookOpen, Shield, Scale, FileText, Cookie, ExternalLink, Sparkles, CreditCard, Target, Zap, Tv, Star, Dices, ClipboardList, Users, AlertTriangle, Gift, Newspaper, Map, PenTool, TrendingUp, RefreshCw, Award } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
