@@ -19,7 +19,7 @@ interface Props {
   startBalance?: number | null;
 }
 
-export function BonusHuntGTWTab({ session, bets, userId, openedBonuses = 0, onBetPlaced }: Props) {
+export function BonusHuntGTWTab({ session, bets, userId, openedBonuses = 0, onBetPlaced, endBalance, startBalance }: Props) {
   const [guessAmount, setGuessAmount] = useState(() => "");
   const [betAmount, setBetAmount] = useState(() => "");
   const [loading, setLoading] = useState(false);
