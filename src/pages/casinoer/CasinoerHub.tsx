@@ -8,6 +8,8 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { FAQSection } from "@/components/FAQSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betanoLobby from "@/assets/screenshots/betano-casino-lobby.png";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Badge } from "@/components/ui/badge";
