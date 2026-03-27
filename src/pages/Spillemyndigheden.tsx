@@ -19,6 +19,8 @@ import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowMitidRegistrering from "@/assets/screenshots/kapow-mitid-registrering.png";
+import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.png";
+import spillemyndighedenVendor from "@/assets/screenshots/spillemyndigheden-spilleverandoer.png";
 const keyFacts = [
   { label: "Grundlagt", value: "2000 (som Spillemyndigheden i 2012)" },
   { label: "Placering", value: "Odense, Danmark" },
