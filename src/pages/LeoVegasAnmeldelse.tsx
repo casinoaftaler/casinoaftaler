@@ -162,12 +162,17 @@ const LeoVegasAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Bordspilssektionen er velforsynet med multiple varianter af <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>, <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> og video poker. Jackpot-kategorien inkluderer progressive jackpots som Mega Moolah og Mega Fortune, der regelmæssigt udbetaler milliongevinster. LeoVegas har desuden eksklusive spiltitler, der ikke er tilgængelige andre steder – en fordel, der yderligere styrker platformens unikke tilbud.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Filtreringssystemet fortjener særlig ros. Du kan sortere spil efter udbyder, kategori, popularitet og nye udgivelser. Favoritspil gemmes automatisk i din profil, og LeoVegas' proprietære anbefalingsmotor bruger maskinlæring til at foreslå spil baseret på din spillehistorik. Det er en funktion, der gør det markant lettere at navigere i et katalog af denne størrelse – og det er netop den slags innovation, der retfærdiggør LeoVegas' premium-position.
           </p>
-        </section>
 
-        <Separator className="my-10" />
+          <ReviewScreenshot
+            src={leovegasPopulaere}
+            alt="LeoVegas populære spil sektion med Gates of Olympus, Legacy of Dead og Sweet Bonanza 1000"
+            caption="LeoVegas' spilkatalog med populære titler, kategorier og eksklusive LeoVegas-spil."
+            size="full"
+          />
+        </section>
 
         {/* Live Casino */}
         <section className="mb-12">
