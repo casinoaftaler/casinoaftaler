@@ -77,6 +77,12 @@ const EyeOfHorusGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Spillets popularitet i Danmark – særligt blandt erfarne casino-spillere – skyldes delvist denne autenticitet. Hvor mange moderne slots føles "designet af algoritmer", har Eye of Horus en håndbygget kvalitet, der afspejler Merkurs årtiers erfaring med spilleautomatdesign. Det er en slot, der respekterer sine spillere med gennemsigtig matematik og ren mekanik.</p>
         </section>
 
+        <ReviewScreenshot
+          src={casinostuenSpillemaskiner}
+          alt="Casinostuens spillemaskin-lobby med Blueprint Gaming-slots – Eye of Horus er tilgængelig via flere danske licenserede casinoer"
+          caption="Casinostuens spillemaskin-lobby med adgang til klassiske slots som Eye of Horus"
+        />
+
         <YoutubeEmbed videoId="G8beL2DD1sI" title="Eye of Horus gennemgang – Symbol upgrade og RTP" description="Se en komplet gennemgang af Eye of Horus: symbol upgrade-mekanikken og expanding symbols forklaret i praksis." uploadDate="2026-03-07" duration="PT2M45S" />
         <VideoContextBox heading="Her gennemgår vores streamer Eye of Horus i praksis">
           <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser symbol upgrade-mekanikken, expanding symbols og retrigger-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}

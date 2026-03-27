@@ -143,6 +143,12 @@ const TheDogHouseGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaBonusbuyLobby}
+          alt="Betinia bonus buy-lobby med Pragmatic Play-slots – The Dog House tilbyder bonus buy for 60× indsatsen"
+          caption="Betinias bonus buy-sektion med hurtig adgang til The Dog House og andre Pragmatic Play-titler"
+        />
+
         <YoutubeEmbed videoId="_rC_ONf72gk" title="The Dog House gennemgang – Sticky Wilds og multiplikatorer" description="Se en komplet gennemgang af The Dog House: sticky wild-mekanikken og multiplikator-stacking forklaret i praksis." uploadDate="2026-03-07" duration="PT1M49S" />
         <VideoContextBox heading="Her gennemgår vores streamer The Dog House i praksis">
           <Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser sticky wild-mekanikken, multiplikator-stacking og free spins-systemet i detaljer. Videoen er en del af vores dybdegående indhold om{" "}
