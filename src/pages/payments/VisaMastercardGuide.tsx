@@ -83,9 +83,15 @@ const VisaMastercardGuide = () => {
       howToTitle="Sådan Bruger du Visa/Mastercard på Danske Casinoer"
       howToContent={
         <>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Indbetaling – detaljeret flow:</strong> Vælg Visa eller Mastercard i casinoets kasse. Indtast kortnummer (16 cifre), udløbsdato (MM/ÅÅ) og CVV-kode (3 cifre bag på kortet). For beløb over ca. 225 kr. aktiveres 3D Secure: Du modtager en push-notifikation i din banks app eller en SMS-kode. Bekræft med fingeraftryk, Face ID eller indtast koden. Pengene er tilgængelige øjeblikkeligt efter godkendelse – typisk inden for 5-20 sekunder.
-          </p>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             <strong>Indbetaling – detaljeret flow:</strong> Vælg Visa eller Mastercard i casinoets kasse. Indtast kortnummer (16 cifre), udløbsdato (MM/ÅÅ) og CVV-kode (3 cifre bag på kortet). For beløb over ca. 225 kr. aktiveres 3D Secure: Du modtager en push-notifikation i din banks app eller en SMS-kode. Bekræft med fingeraftryk, Face ID eller indtast koden. Pengene er tilgængelige øjeblikkeligt efter godkendelse – typisk inden for 5-20 sekunder.
+           </p>
+
+           <ReviewScreenshot
+             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-indbetaling.webp"
+             alt="Indbetalingsside på dansk casino med Visa og Mastercard som betalingsmuligheder blandt andre kortmetoder"
+             caption="Indbetalingssiden viser de tilgængelige kortbetalingsmetoder inkl. Visa og Mastercard"
+           />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Kortlagring:</strong> De fleste casinoer tilbyder at gemme dine kortoplysninger (tokeniseret) til fremtidige indbetalinger. Ved næste indbetaling behøver du kun at indtaste CVV-koden og bekræfte med 3D Secure – kortnummer og udløbsdato udfyldes automatisk. Denne funktion er sikker (casinoet gemmer en token, ikke dit faktiske kortnummer), men du kan fravælge det for ekstra sikkerhed.
           </p>

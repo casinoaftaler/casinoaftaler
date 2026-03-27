@@ -112,10 +112,16 @@ const SkrillGuide = () => {
           position: "after-whatis",
           title: "Vores Praktiske Test – Skrill på Tre Danske Casinoer",
           content: (
-            <>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
-                Vi testede Skrill på tre danske casinoer med Spillemyndighedens licens i februar 2026. Testen brugte en verificeret Skrill-konto på Standard-niveau (ingen VIP) med en saldo opfyldt via dansk bankoverførsel.
-              </p>
+             <>
+               <p className="mb-4 text-muted-foreground leading-relaxed">
+                 Vi testede Skrill på tre danske casinoer med Spillemyndighedens licens i februar 2026. Testen brugte en verificeret Skrill-konto på Standard-niveau (ingen VIP) med en saldo opfyldt via dansk bankoverførsel.
+               </p>
+
+               <ReviewScreenshot
+                 src={betiniaBetalingOversigt}
+                 alt="E-wallet muligheder i betalingsoversigten hos et dansk casino inkl. Skrill og andre digitale tegnebøger"
+                 caption="Skrill er tilgængelig som e-wallet-betalingsmetode i casinoets kassesystem"
+               />
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Indbetalingstest:</strong> Skrill var tilgængeligt på alle tre casinoer. Uden 1-Tap tog processen ca. 18 sekunder (login, bekræftelse, 2FA). Med 1-Tap aktiveret faldt det til 4-5 sekunder – den hurtigste e-wallet-oplevelse i vores test. Alle indbetalinger blev krediteret øjeblikkeligt.
               </p>
