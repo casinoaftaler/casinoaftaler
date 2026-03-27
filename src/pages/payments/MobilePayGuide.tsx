@@ -203,7 +203,6 @@ const MobilePayGuide = () => {
                 src={betiniaBetalingOversigt}
                 alt="Komplet oversigt over betalingsmetoder hos Betinia inkl. MobilePay, Visa, Trustly og Dankort"
                 caption="Alle tilgængelige betalingsmetoder hos Betinia – MobilePay er listet øverst"
-                size="medium"
               />
             </>
           ),
