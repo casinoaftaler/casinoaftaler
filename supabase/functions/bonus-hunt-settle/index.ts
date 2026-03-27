@@ -273,7 +273,7 @@ serve(async (req) => {
       .update({ gtw_betting_open: false, avgx_betting_open: false, status: 'completed' })
       .eq('id', sessionId);
 
-    return new Response(JSON.stringify({ success: true, results }), {
+    return new Response(JSON.stringify({ success: true, results, totalWinningsUsed: endBalance }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
