@@ -5,11 +5,23 @@ export const NEWS_CATEGORY_LABELS: Record<string, string> = {
   licenser: "Licenser",
   bonusser: "Bonusser",
   betalingsmetoder: "Betalingsmetoder",
+  betalingsteknologi: "Betalingsteknologi",
   lovgivning: "Lovgivning",
   teknologi: "Teknologi",
+  "teknologi-sikkerhed": "Teknologi & Sikkerhed",
   "nye-casinoer": "Nye Casinoer",
   markedsbevægelser: "Markedsanalyse",
   juridisk: "Juridisk",
+  spiludviklere: "Spiludviklere",
+  "ansvarligt-spil": "Ansvarligt Spil",
+  "live-casino": "Live Casino",
+  mobilcasino: "Mobilcasino",
+  spilleafgifter: "Spilleafgifter",
+  spilanmeldelser: "Spilanmeldelser",
+  "nordisk-marked": "Nordisk Marked",
+  kundeservice: "Kundeservice",
+  dataanalyse: "Dataanalyse",
+  markedspuls: "Markedspuls",
 };
 
 /** Get a human-readable Danish label for a category slug */

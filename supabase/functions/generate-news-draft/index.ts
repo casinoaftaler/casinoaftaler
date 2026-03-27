@@ -12,6 +12,15 @@ const ALLOWED_CATEGORIES = [
   "markedsbevægelser",
   "juridisk",
   "teknologi-sikkerhed",
+  "spiludviklere",
+  "ansvarligt-spil",
+  "live-casino",
+  "mobilcasino",
+  "spilleafgifter",
+  "spilanmeldelser",
+  "nordisk-marked",
+  "kundeservice",
+  "dataanalyse",
 ] as const;
 
 // ═══════════════════════════════════════════════════════════
@@ -60,14 +69,48 @@ const ALLOWED_DOMAINS = [
 ];
 
 const TOPIC_SEARCHES = [
+  // Regulering & licenser
   "Spillemyndigheden nye licenser Danmark 2026",
   "dansk online casino regulering ændringer 2026",
+  // Betalinger
   "Trustly MobilePay MitID casino betalinger Danmark",
+  "Pay N Play casino Danmark instant banking 2026",
+  // Marked & lanceringer
   "nye online casino lanceringer Danmark 2026",
-  "dansk gambling lovgivning forbrugerbeskyttelse 2026",
-  "iGaming teknologi sikkerhed AI 2026",
-  "anti-hvidvask online casino Danmark",
   "online gambling markedsandel Danmark omsætning",
+  // Juridisk
+  "dansk gambling lovgivning forbrugerbeskyttelse 2026",
+  "spilleafgift Danmark skat gambling 2026",
+  // Spiludviklere
+  "Pragmatic Play nye slots releases 2026",
+  "Evolution Gaming live casino nye spil 2026",
+  "NetEnt Novomatic spiludvikler opkøb fusion 2026",
+  "Play'n GO nye spilleautomater 2026",
+  // Ansvarligt spil
+  "ROFUS selvudelukkelse statistik Danmark 2026",
+  "ansvarligt spil tiltag online casino Danmark",
+  "spilgrænser mandatory deposit limit Danmark",
+  // Live casino
+  "live casino game shows Danmark 2026",
+  "danske live dealere Evolution casino studios",
+  // Mobil
+  "mobil casino app PWA Danmark 2026",
+  "mobilbetaling casino Danmark Apple Pay Google Pay",
+  // Teknologi & sikkerhed
+  "iGaming teknologi sikkerhed AI 2026",
+  "AI kunstig intelligens online casino svindel detection",
+  "blockchain cryptocurrency casino Danmark regulering",
+  // Nordisk marked
+  "Sverige Norge online casino regulering sammenligning 2026",
+  "nordisk gambling marked vækst 2026",
+  // Data & RTP
+  "RTP return to player online slots statistik 2026",
+  "casino udbetalingsprocent Danmark gennemsnit",
+  // Kundeservice
+  "online casino kundeservice Danmark responstid chat",
+  // Branche & events
+  "iGaming konference ICE London SiGMA 2026",
+  "gambling affiliate industri Danmark partnerskaber",
 ];
 
 const SYSTEM_PROMPT = `Du er en erfaren dansk casino-journalist på casinoaftaler.dk.
@@ -84,8 +127,17 @@ Du skriver præcise, faktuelle nyhedsartikler om det danske online casino-marked
 - regulering: Nye licenser, regulatoriske ændringer i DK/EU
 - betalingsteknologi: Trustly, MitID, Pay N Play, nye betalingsudbydere
 - markedsbevægelser: Casino-lanceringer, markedsandele, omsætningsrapporter
-- juridisk: Lovændringer, forbrugerbeskyttelse, anti-hvidvask, ansvarligt spil
+- juridisk: Lovændringer, forbrugerbeskyttelse, anti-hvidvask
 - teknologi-sikkerhed: Nye sikkerhedsforanstaltninger, AI i iGaming, databeskyttelse
+- spiludviklere: Nye releases, opkøb, fusioner blandt spiludbydere (Pragmatic, Evolution, NetEnt osv.)
+- ansvarligt-spil: ROFUS, selvudelukkelse, spilgrænser, ludomani-tiltag
+- live-casino: Game shows, live dealer trends, nye studier
+- mobilcasino: Casino-apps, PWA, mobilbetalinger, Apple/Google Pay
+- spilleafgifter: Skatteændringer, afgiftssatser, bruttospilindtægt
+- spilanmeldelser: Nye spilleautomater, RTP-analyser, feature breakdowns
+- nordisk-marked: Sverige, Norge, Finland – sammenligning med DK
+- kundeservice: Responstider, supportkanaler, brugeroplevelse
+- dataanalyse: RTP-statistik, udbetalingsdata, markedstal
 
 📌 GODKENDTE KILDER (brug disse):
 - Spillemyndigheden (spillemyndigheden.dk)
@@ -95,7 +147,7 @@ Du skriver præcise, faktuelle nyhedsartikler om det danske online casino-marked
 - Bloomberg / Financial Times
 - Danske medier: DR, TV2, Jyllands-Posten, Berlingske, Politiken, Information
 - gambling.com (nyhedsartikler, IKKE affiliate-indhold)
-- Yogonet
+- Yogonet / CalvinAyre
 ⚠️ IKKE Reddit, Twitter, blogs uden referencer, AI-scraped summaries, affiliate-sider
 
 📌 KENDTE AUTORITÆRE URLS DU KAN BRUGE:
@@ -127,7 +179,7 @@ Returnér UDELUKKENDE valid JSON (ingen markdown code blocks):
   "slug": "url-venlig-slug-uden-æøå",
   "excerpt": "2-3 sætningers resumé (max 160 tegn)",
   "content": "HTML indhold med kildelinks",
-  "category": "en af: regulering, betalingsteknologi, markedsbevægelser, juridisk, teknologi-sikkerhed",
+  "category": "en af de godkendte kategorier ovenfor",
   "tags": ["tag1", "tag2", "tag3"],
   "meta_title": "SEO titel (max 60 tegn)",
   "meta_description": "Meta beskrivelse (max 160 tegn)",
@@ -350,9 +402,9 @@ function checkDuplicate(
     }
   }
 
-  // Check category saturation (max 2 per category in 30 days)
+  // Check category saturation (max 3 per category in 30 days)
   const sameCat = recentArticles.filter(a => a.category === newCategory);
-  if (sameCat.length >= 5) {
+  if (sameCat.length >= 3) {
     return {
       isDuplicate: true,
       reason: `Kategori "${newCategory}" har allerede ${sameCat.length} artikler de sidste 30 dage`,
@@ -543,8 +595,29 @@ Deno.serve(async (req) => {
 
     const recentTopics = (recentArticles || []).map((a: any) => `"${a.title}"`).join(", ");
 
-    // Pick random topic
-    const topicIndex = Math.floor(Math.random() * TOPIC_SEARCHES.length);
+    // Pick topic – prefer categories not recently covered
+    const recentCats = new Set((recentArticles || []).map((a: any) => a.category));
+    // Group topics by approximate category mapping
+    const TOPIC_CAT_HINTS: Record<number, string> = {};
+    TOPIC_SEARCHES.forEach((_, i) => {
+      if (i <= 1) TOPIC_CAT_HINTS[i] = "regulering";
+      else if (i <= 3) TOPIC_CAT_HINTS[i] = "betalingsteknologi";
+      else if (i <= 5) TOPIC_CAT_HINTS[i] = "markedsbevægelser";
+      else if (i <= 7) TOPIC_CAT_HINTS[i] = "juridisk";
+      else if (i <= 11) TOPIC_CAT_HINTS[i] = "spiludviklere";
+      else if (i <= 14) TOPIC_CAT_HINTS[i] = "ansvarligt-spil";
+      else if (i <= 16) TOPIC_CAT_HINTS[i] = "live-casino";
+      else if (i <= 18) TOPIC_CAT_HINTS[i] = "mobilcasino";
+      else if (i <= 20) TOPIC_CAT_HINTS[i] = "teknologi-sikkerhed";
+      else if (i <= 22) TOPIC_CAT_HINTS[i] = "nordisk-marked";
+      else if (i <= 24) TOPIC_CAT_HINTS[i] = "dataanalyse";
+      else if (i === 25) TOPIC_CAT_HINTS[i] = "kundeservice";
+      else TOPIC_CAT_HINTS[i] = "markedsbevægelser";
+    });
+    // Prefer topics whose category hasn't been used recently
+    const freshTopicIndices = TOPIC_SEARCHES.map((_, i) => i).filter(i => !recentCats.has(TOPIC_CAT_HINTS[i]));
+    const candidateIndices = freshTopicIndices.length > 0 ? freshTopicIndices : TOPIC_SEARCHES.map((_, i) => i);
+    const topicIndex = candidateIndices[Math.floor(Math.random() * candidateIndices.length)];
     const searchQuery = TOPIC_SEARCHES[topicIndex];
 
     // ═══ Step 1: Research via Perplexity sonar-pro ═══

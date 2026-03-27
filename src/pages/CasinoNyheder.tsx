@@ -54,6 +54,10 @@ const CATEGORY_META: Record<string, { label: string; intro: string }> = {
     label: "Betalingsmetoder",
     intro: "Nyheder om betalingsløsninger på danske casinoer. Fra MobilePay-integrationer til nye fintech-partnerskaber – vi dækker alt der påvirker dine ind- og udbetalingsmuligheder.",
   },
+  betalingsteknologi: {
+    label: "Betalingsteknologi",
+    intro: "Teknologiske nyheder om betalingsløsninger i iGaming. Pay N Play, instant banking, MitID-integrationer og nye fintech-trends.",
+  },
   lovgivning: {
     label: "Lovgivning",
     intro: "Nyheder om lovgivning der påvirker danske casinoer og spillere. Vi oversætter nye love og bekendtgørelser til forståeligt dansk.",
@@ -61,6 +65,10 @@ const CATEGORY_META: Record<string, { label: string; intro: string }> = {
   teknologi: {
     label: "Teknologi",
     intro: "Teknologiske nyheder fra iGaming-branchen. AI, blockchain, nye platforme og softwareinnovationer der former fremtidens online casinoer.",
+  },
+  "teknologi-sikkerhed": {
+    label: "Teknologi & Sikkerhed",
+    intro: "Sikkerhedsteknologi og AI i iGaming-branchen. Svindelforebyggelse, databeskyttelse og nye sikkerhedsforanstaltninger på danske online casinoer.",
   },
   "markedsbevægelser": {
     label: "Markedsanalyse",
@@ -70,9 +78,55 @@ const CATEGORY_META: Record<string, { label: string; intro: string }> = {
     label: "Juridisk",
     intro: "Juridiske nyheder der berører danske spillere og casinooperatører. Fra forbrugerbeskyttelse til GDPR-compliance – vi oversætter juraen til forståeligt dansk.",
   },
+  spiludviklere: {
+    label: "Spiludviklere",
+    intro: "Nyheder om spiludviklere som Pragmatic Play, Evolution Gaming, NetEnt og Play'n GO. Nye releases, opkøb, fusioner og branchetrends blandt de førende leverandører.",
+  },
+  "ansvarligt-spil": {
+    label: "Ansvarligt Spil",
+    intro: "Nyheder om ansvarligt spil i Danmark. ROFUS-statistik, nye selvudelukkelsesværktøjer, spilgrænser og ludomani-forebyggelse.",
+  },
+  "live-casino": {
+    label: "Live Casino",
+    intro: "Trends og nyheder fra live casino-verdenen. Nye game shows, danske live dealere, studioudvidelser og innovationer fra Evolution og andre.",
+  },
+  mobilcasino: {
+    label: "Mobilcasino",
+    intro: "Nyheder om mobilcasino i Danmark. App-lanceringer, PWA-trends, mobilbetalinger og brugeroplevelsen på farten.",
+  },
+  spilleafgifter: {
+    label: "Spilleafgifter",
+    intro: "Nyheder om spilleafgifter og beskatning af gambling i Danmark. Afgiftssatser, bruttospilindtægt og skattemæssige ændringer.",
+  },
+  spilanmeldelser: {
+    label: "Spilanmeldelser",
+    intro: "Anmeldelser og analyser af nye spilleautomater. RTP-gennemgange, feature breakdowns og vurderinger af de seneste slot-releases.",
+  },
+  "nordisk-marked": {
+    label: "Nordisk Marked",
+    intro: "Sammenligning af det nordiske gambling-marked. Sverige, Norge og Finland – regulering, trends og markedsudvikling set i dansk perspektiv.",
+  },
+  kundeservice: {
+    label: "Kundeservice",
+    intro: "Test og nyheder om kundeservice hos danske online casinoer. Responstider, supportkanaler og brugeroplevelser evalueret.",
+  },
+  dataanalyse: {
+    label: "Dataanalyse",
+    intro: "Datadrevet indsigt i det danske casinomarked. RTP-statistik, udbetalingsdata, markedstal og trends baseret på faktiske data.",
+  },
+  markedspuls: {
+    label: "Markedspuls",
+    intro: "Automatiserede markedsopdateringer baseret på realtidsdata fra det danske casinomarked. Compliance-ændringer, kampagner og branchebevægelser.",
+  },
 };
 
-const CATEGORIES = ["alle", "generelt", "regulering", "licenser", "bonusser", "nye-casinoer", "betalingsmetoder", "lovgivning", "teknologi", "markedsbevægelser", "juridisk"];
+const CATEGORIES = [
+  "alle", "generelt", "regulering", "licenser", "bonusser", "nye-casinoer",
+  "betalingsmetoder", "betalingsteknologi", "lovgivning", "teknologi", "teknologi-sikkerhed",
+  "markedsbevægelser", "juridisk", "spiludviklere", "ansvarligt-spil", "live-casino",
+  "mobilcasino", "spilleafgifter", "spilanmeldelser", "nordisk-marked", "kundeservice",
+  "dataanalyse", "markedspuls",
+];
 
 const CasinoNyheder = () => {
   const [searchParams, setSearchParams] = useSearchParams();
