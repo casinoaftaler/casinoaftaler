@@ -244,6 +244,13 @@ const BonusBuySlots = () => {
             <Star className="h-7 w-7 text-primary" />
             Bedste bonus buy-slots i 2026
           </h2>
+
+          <ReviewScreenshot
+            src={betiniaBonusbuyGameplay}
+            alt="Gates of Olympus 1000 gameplay med scatter-symboler og free spins trigger hos Betinia"
+            caption="Gates of Olympus 1000 gameplay – 4x scatter-symboler udløser free spins-runden"
+          />
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {[
               {

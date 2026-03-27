@@ -112,6 +112,12 @@ const NyeCasinoerMitID = () => {
               </div>
             ))}
           </div>
+
+          <ReviewScreenshot
+            src={betiniaMitid}
+            alt="Betinia MitID login-skærm med MitID-knap til sikker verifikation ved kontooprettelse"
+            caption="MitID-verifikation hos Betinia – tryk på MitID-knappen for at godkende din identitet"
+          />
         </section>
 
         <Separator className="my-10" />
