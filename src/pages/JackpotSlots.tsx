@@ -178,6 +178,12 @@ const JackpotSlots = () => {
             har lavere basis-RTP end standard-slots, og chancen for at vinde den store jackpot er
             ekstremt lille.
           </p>
+          <ReviewScreenshot
+            src={playkasinoSpillemaskiner}
+            alt="PlayKasinos spilleautomater med jackpot-kategorier og populære titler"
+            caption="PlayKasinos spillemaskin-lobby – jackpot-slots er ofte samlet i en dedikeret kategori"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

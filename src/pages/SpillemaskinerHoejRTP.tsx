@@ -160,6 +160,12 @@ export default function SpillemaskinerHoejRTP() {
           <p className="text-muted-foreground leading-relaxed">
             Certificeringen af RTP udføres af uafhængige testlaboratorier som eCOGRA, iTech Labs og GLI. I Danmark overvåger <a href="https://www.spillemyndigheden.dk/" target="_blank" rel="noopener noreferrer" className={linkClass}>Spillemyndigheden</a>, at de oplyste RTP-værdier er korrekte, og at RNG-systemerne fungerer efter hensigten. Dette regulatoriske lag giver danske spillere en højere grad af sikkerhed end i uregulerede markeder, hvor RTP-oplysninger kan være upålidelige.
           </p>
+          <ReviewScreenshot
+            src={casinostuenSpillemaskiner}
+            alt="Casinostuens spillemaskin-lobby med RTP-filtrering og kategorier for høj-RTP slots"
+            caption="Casinostuens spilleautomater – nogle casinoer giver dig mulighed for at filtrere efter RTP"
+            size="full"
+          />
         </section>
 
         {/* ── H2 2: RTP vs House Edge ── */}
