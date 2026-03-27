@@ -148,6 +148,7 @@ const VideoslotsAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Den reelle bonus-værdi hos Videoslots ligger i <strong>Weekend Boosters</strong> – den ugentlige kontant-belønning baseret på din aktivitet. I vores test modtog vi 127 kr. for en uges moderat spil (samlet indsats ca. 4.000 kr.). Over en måned estimerer vi 300–600 kr. i booster-udbetalinger uden noget omsætningskrav. Det er ren cashback, og det er mere værd end de fleste velkomstbonusser, når man regner det ud over tid.</p>
           <p className="text-muted-foreground leading-relaxed">Battle of Slots-turneringerne fungerer også som en de facto bonus. Med hundredvis af daglige freerolls kan en aktiv spiller realistisk vinde 200–500 kr. om ugen uden at risikere egne penge. Samlet set er Videoslots' bonussystem unge sexigt, men matematisk solidt – og det er præcis den type tilgang, vores <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> værdsætter.</p>
         </section>
+          <ReviewScreenshot src={videoslotsWeekendBooster} alt="Videoslots Weekend Booster cashback-system med RTP-baseret tilbagebetaling og månedlig oversigt" caption="Weekend Booster-siden med vilkår, RTP-baseret cashback-formel og månedlig udbetalingsoversigt." size="full" />
 
         <Separator className="my-10" />
 
