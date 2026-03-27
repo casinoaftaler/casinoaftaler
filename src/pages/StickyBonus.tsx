@@ -1,5 +1,7 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import comeonKampagner from "@/assets/screenshots/comeon-kampagner.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -210,6 +212,12 @@ const StickyBonus = () => {
               <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> og{" "}
               <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
           </VideoContextBox>
+          <ReviewScreenshot
+            src={comeonKampagner}
+            alt="ComeOn Casinos kampagneside med bonustilbud og vilkår for sticky og non-sticky bonusser"
+            caption="ComeOns kampagneside – bonusvilkårene afgør om bonussen er sticky eller non-sticky"
+            size="full"
+          />
         </section>
 
         <BonusClusterPriorityLinks currentPath="/sticky-bonus" />

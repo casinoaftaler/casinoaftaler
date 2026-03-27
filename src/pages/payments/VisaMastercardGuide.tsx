@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pokerstarsBetalingImg from "@/assets/screenshots/pokerstars-betaling.png";
 import visaMastercardHero from "@/assets/heroes/visa-mastercard-hero.jpg";
 
 const VisaMastercardGuide = () => {
@@ -112,10 +113,16 @@ const VisaMastercardGuide = () => {
           position: "after-intro",
           title: "Vores Test – Visa og Mastercard på Fire Danske Casinoer",
           content: (
-            <>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
-                Vi testede kortbetalinger på fire danske casinoer med Spillemyndighedens licens i februar 2026. Vi brugte et Visa Debitkort (Danske Bank) og et Mastercard Debit (Nordea) for at evaluere begge netværk systematisk. Fokus var på hastighed, 3D Secure-oplevelse, udbetalingsmuligheder, bonuskvalificering og fejlhåndtering.
-              </p>
+             <>
+               <p className="mb-4 text-muted-foreground leading-relaxed">
+                 Vi testede kortbetalinger på fire danske casinoer med Spillemyndighedens licens i februar 2026. Vi brugte et Visa Debitkort (Danske Bank) og et Mastercard Debit (Nordea) for at evaluere begge netværk systematisk. Fokus var på hastighed, 3D Secure-oplevelse, udbetalingsmuligheder, bonuskvalificering og fejlhåndtering.
+               </p>
+               <ReviewScreenshot
+                 src={pokerstarsBetalingImg}
+                 alt="PokerStars betalingssektion med Visa og Mastercard indbetalingsmuligheder for danske spillere"
+                 caption="PokerStars' betalingssektion – kortbetaling med Visa og Mastercard er tilgængeligt hos alle danske casinoer"
+                 size="full"
+               />
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Indbetalingstest:</strong> Begge kort var tilgængelige på alle fire casinoer – den bredeste accept af alle testede metoder i hele vores serie. Gennemsnitlig indbetalingstid var 18 sekunder med Visa (inkl. 3D Secure via Danske Banks app) og 21 sekunder med Mastercard (inkl. 3D Secure via Nordeas app). Forskellen skyldes primært bankappens responstid, ikke kortnetværket. Alle indbetalinger blev krediteret øjeblikkeligt efter 3D Secure-godkendelse.
               </p>

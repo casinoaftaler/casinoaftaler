@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -146,6 +148,12 @@ const CrazyTimeGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For danske spillere er Crazy Time tilgængeligt hos alle større <Link to="/casino-anmeldelser" className={linkClass}>casinoer med dansk licens</Link>, der samarbejder med Evolution Gaming – hvilket inkluderer størstedelen af de licenserede danske operatører. Spillet er identisk uanset casino: samme studie, samme hjul, samme odds. Valget af casino bør derfor baseres på <Link to="/casino-bonus" className={linkClass}>bonus</Link>, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og udbetalingshastighed – ikke på gameplay-forskelle, der ikke eksisterer.
           </p>
+          <ReviewScreenshot
+            src={royalcasinoLiveCasino}
+            alt="RoyalCasino live casino-lobby med game shows som Crazy Time og Dream Catcher"
+            caption="RoyalCasino's live casino – herfra finder du Crazy Time og andre populære game shows fra Evolution"
+            size="full"
+          />
         </section>
 
         {/* ── H2 2: Hjulets opbygning ── */}

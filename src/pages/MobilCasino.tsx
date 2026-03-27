@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import comeonForside from "@/assets/screenshots/comeon-forside.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -290,6 +292,12 @@ const MobilCasino = () => {
               ))}
             </div>
           </div>
+          <ReviewScreenshot
+            src={comeonForside}
+            alt="ComeOn Casino forside med mobilvenligt design og oversigt over populære spil"
+            caption="ComeOns forside – et eksempel på et mobiloptimeret casino-interface med hurtig navigation"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

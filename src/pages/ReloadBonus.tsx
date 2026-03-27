@@ -1,5 +1,7 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import kampagner888 from "@/assets/screenshots/888-kampagner.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -222,6 +224,12 @@ const ReloadBonus = () => {
             <Link to="/casino-bonus" className={linkClass}>casino bonus hub</Link>. Vil du forstå hvordan{" "}
             <Link to="/cashback-bonus" className={linkClass}>cashback bonus</Link> adskiller sig fra reload, har vi en dedikeret guide.
           </p>
+          <ReviewScreenshot
+            src={kampagner888}
+            alt="888 Casinos kampagneside med reload-bonusser og ugentlige tilbud til eksisterende spillere"
+            caption="888 Casinos kampagneside – reload-bonusser er typisk tilgængelige som ugentlige tilbud"
+            size="full"
+          />
         </section>
 
         <BonusClusterPriorityLinks currentPath="/reload-bonus" />

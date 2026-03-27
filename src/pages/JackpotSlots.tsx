@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemaskiner.png";
+import spilnuVindere from "@/assets/screenshots/spilnu-vindere.png";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -175,6 +178,12 @@ const JackpotSlots = () => {
             har lavere basis-RTP end standard-slots, og chancen for at vinde den store jackpot er
             ekstremt lille.
           </p>
+          <ReviewScreenshot
+            src={playkasinoSpillemaskiner}
+            alt="PlayKasinos spilleautomater med jackpot-kategorier og populære titler"
+            caption="PlayKasinos spillemaskin-lobby – jackpot-slots er ofte samlet i en dedikeret kategori"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

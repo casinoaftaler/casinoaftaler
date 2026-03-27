@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import onecasinoSpillemaskiner from "@/assets/screenshots/onecasino-spillemaskiner.png";
 import heroImage from "@/assets/heroes/starburst-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -118,6 +120,12 @@ const StarburstGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Vi har gennemgået Starbursts matematiske model i detaljer, testet dens <Link to="/ordbog/wagering" className={linkClass}>wagering</Link>-egnethed med konkrete EV-beregninger, og sammenlignet den med de moderne alternativer, der har overtaget markedet. Resultatet er en ærlig vurdering af, hvornår Starburst stadig giver mening – og hvornår du bør vælge noget andet.
           </p>
+          <ReviewScreenshot
+            src={onecasinoSpillemaskiner}
+            alt="OneCasinos spillemaskin-lobby med populære slots som Starburst fremhævet"
+            caption="OneCasinos spilleautomater – Starburst er stadig en af de mest synlige titler i danske casino-lobbyer"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

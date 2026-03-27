@@ -1,6 +1,8 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import unibetLiveCasino from "@/assets/screenshots/unibet-live-casino.png";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -180,6 +182,12 @@ const LiveCasinoUdbydereGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For danske spillere er Evolution Gaming og Pragmatic Play Live de to vigtigste udbydere. Næsten alle <Link to="/casino-anmeldelser" className={linkClass}>danske licenserede casinoer</Link> tilbyder Evolutions borde, og et stigende antal integrerer også Pragmatic Play Live. Playtech er repræsenteret hos udvalgte operatører, mens Ezugi og andre niche-udbydere primært er relevante for spillere, der søger eksotiske varianter eller regionale specialiteter.
           </p>
+          <ReviewScreenshot
+            src={unibetLiveCasino}
+            alt="Unibet live casino-lobby med Evolution Gaming og Pragmatic Play borde til sammenligning"
+            caption="Unibets live casino – her ser du borde fra flere udbydere side om side, inklusiv Evolution og Pragmatic Play"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

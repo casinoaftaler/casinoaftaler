@@ -1,6 +1,8 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import getluckyLiveCasino from "@/assets/screenshots/getlucky-live-casino.png";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -181,6 +183,12 @@ const LiveCasinoStrategiGuide = () => {
               </ul>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src={getluckyLiveCasino}
+            alt="Live casino-lobby hos GetLucky med oversigt over tilgængelige bordspil og dealere"
+            caption="GetLucky's live casino-sektion – et godt eksempel på hvordan du vælger bord ud fra limits og spiltype"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

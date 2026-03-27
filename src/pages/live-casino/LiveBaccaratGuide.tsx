@@ -1,6 +1,8 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import leovegasLiveCasino from "@/assets/screenshots/leovegas-live-casino.png";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -137,6 +139,12 @@ const LiveBaccaratGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Denne simplicitet er baccarats største fordel – og dens største risiko. Fordi ingen strategiske beslutninger kræves, kan spillere let falde ind i en mekanisk rytme af hurtige indsatser uden refleksion. I min erfaring fra 300+ timer ved live baccarat-borde har jeg observeret, at de fleste spillere øger deres indsatser gradvist uden at bemærke det – en psykologisk fælde, der er langt mere farlig end selve <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>. Tempo-management er derfor det vigtigste værktøj i din baccarat-arsenal.
           </p>
+          <ReviewScreenshot
+            src={leovegasLiveCasino}
+            alt="Live baccarat-lobby hos LeoVegas med flere bordvarianter og professionelle dealere"
+            caption="Live casino hos LeoVegas – herfra kan du vælge mellem standard baccarat, Speed og Lightning varianter"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

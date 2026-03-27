@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling.png";
 import revolutHero from "@/assets/heroes/revolut-hero.jpg";
 
 const RevolutGuide = () => {
@@ -94,10 +96,16 @@ const RevolutGuide = () => {
           position: "after-intro",
           title: "Gambling-Blokering – Revoluts Unikke Ansvarligt Spil-Funktion",
           content: (
-            <>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
-                Revolut er den eneste betalingsmetode i vores test, der tilbyder en dedikeret gambling-blokeringsfunktion direkte i appen. Med ét tryk kan du blokere alle transaktioner kategoriseret som "gambling" – forsøg på casinoindbetalinger afvises øjeblikkeligt med beskeden "Transaction declined – gambling transactions are disabled." Funktionen kan aktiveres og deaktiveres efter behov, men Revolut tilføjer en bevidst "cooling off"-periode på 48 timer, inden blokering kan deaktiveres igen.
-              </p>
+             <>
+               <p className="mb-4 text-muted-foreground leading-relaxed">
+                 Revolut er den eneste betalingsmetode i vores test, der tilbyder en dedikeret gambling-blokeringsfunktion direkte i appen. Med ét tryk kan du blokere alle transaktioner kategoriseret som "gambling" – forsøg på casinoindbetalinger afvises øjeblikkeligt med beskeden "Transaction declined – gambling transactions are disabled." Funktionen kan aktiveres og deaktiveres efter behov, men Revolut tilføjer en bevidst "cooling off"-periode på 48 timer, inden blokering kan deaktiveres igen.
+               </p>
+               <ReviewScreenshot
+                 src={playkasinoIndbetaling}
+                 alt="PlayKasinos indbetalingsside med tilgængelige betalingsmetoder som kortbetaling og bankoverførsel"
+                 caption="PlayKasinos indbetalingskasse – her vælger du betalingsmetode og indtaster beløb"
+                 size="full"
+               />
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 Denne 48-timers forsinkelse er et sofistikeret ansvarligt spil-design: Den forhindrer impulsiv genoptagelse af spil efter en midlertidig blokering. Hvor casinoers egne indbetalingsgrænser ofte kan ændres øjeblikkeligt (eller inden for 24 timer), tvinger Revoluts model spilleren til at vente to fulde dage – nok tid til at revurdere sin beslutning. Det er en mekanisme, der har dokumenteret effekt mod problematisk spilleadfærd i den akademiske litteratur om "cooling off"-perioder.
               </p>

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import getluckyKampagner from "@/assets/screenshots/getlucky-kampagner.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -211,6 +213,12 @@ const BonusUdenOmsaetningskrav = () => {
               <Link to="/casino-bonus" className={linkClass}>casino bonus</Link>.
             </p>
           </div>
+          <ReviewScreenshot
+            src={getluckyKampagner}
+            alt="GetLucky kampagneside med omsætningsfrie tilbud og bonus uden gennemspilskrav"
+            caption="GetLuckys kampagneside – hold øje med tilbud uden omsætningskrav, som giver øjeblikkelig hæveadgang"
+            size="full"
+          />
         </section>
 
         <InlineCasinoCards title="Casinoer med omsætningsfrie bonusser" count={6} />

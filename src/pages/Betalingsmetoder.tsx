@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaBetalingOversigt from "@/assets/screenshots/betinia-betaling-oversigt.webp";
+import spilnuBetaling from "@/assets/screenshots/spilnu-betaling.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
 import { AuthorBio } from "@/components/AuthorBio";
@@ -315,7 +316,12 @@ const Betalingsmetoder = () => {
           </div>
         </section>
 
-        
+        <ReviewScreenshot
+          src={spilnuBetaling}
+          alt="Spilnu betalingssektion med oversigt over tilgængelige indbetalingsmetoder for danske spillere"
+          caption="Spilnu's betalingssektion – et eksempel på de typiske betalingsmetoder tilgængelige hos danske casinoer"
+          size="full"
+        />
 
         <Separator className="my-10" />
 

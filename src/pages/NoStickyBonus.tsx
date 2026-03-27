@@ -1,5 +1,7 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrgreenRakeback from "@/assets/screenshots/mrgreen-rakeback.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -216,6 +218,12 @@ const NoStickyBonus = () => {
               <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser uden omsætningskrav</Link>.
             </p>
           </div>
+          <ReviewScreenshot
+            src={mrgreenRakeback}
+            alt="Mr Green rakeback-program med bonusvilkår og no-sticky bonusstruktur"
+            caption="Mr Greens rakeback-sektion – no-sticky bonusser adskiller sig ved at dine egne penge altid er hævbare"
+            size="full"
+          />
         </section>
 
         <InlineCasinoCards title="Bedste casinoer med No-Sticky Bonus" count={6} />

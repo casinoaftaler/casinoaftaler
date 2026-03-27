@@ -1,6 +1,8 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import onecasinoLiveCasino from "@/assets/screenshots/onecasino-live-casino.png";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
@@ -178,6 +180,12 @@ const LiveRouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Dual Play Roulette:</strong> Et unikt format, hvor online spillere deler et fysisk bord med spillere i et landbaseret casino. Hjulet og dealeren er de samme – du ser det eksakt samme spin som dem, der fysisk er til stede. Tempoet bestemmes af de landbaserede spillere og er typisk 20-30 spins/time. House edge og regler er identiske med standard europæisk. Det er den mest autentiske live roulette-oplevelse tilgængelig online.
           </p>
+          <ReviewScreenshot
+            src={onecasinoLiveCasino}
+            alt="Live dealer-bord hos OneCasino med roulette og professionel croupier i HD-streaming"
+            caption="Live roulette hos OneCasino – et eksempel på professionel dealer-oplevelse med dansk licens"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

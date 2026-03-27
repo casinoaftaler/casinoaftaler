@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilBingo from "@/assets/screenshots/danskespil-bingo.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -138,6 +140,12 @@ const DreamCatcherGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For danske spillere er Dream Catcher tilgængeligt hos alle større <Link to="/casino-anmeldelser" className={linkClass}>casinoer med dansk licens</Link>, der samarbejder med Evolution Gaming. Spillet er identisk uanset casino – samme studie i Riga (Letland), samme hjul, samme odds. Valget af casino bør baseres på <Link to="/casino-bonus" className={linkClass}>bonus</Link>, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og udbetalingshastighed – ikke på gameplay-forskelle, der ikke eksisterer.
           </p>
+          <ReviewScreenshot
+            src={danskespilBingo}
+            alt="Danske Spils casual game-sektion med bingo og underholdningsspil i samme kategori som Dream Catcher"
+            caption="Danske Spils casual spil – Dream Catcher appellerer til samme spillertype som bingo og underholdningsspil"
+            size="full"
+          />
         </section>
 
         {/* ── H2 2: Segmentfordeling ── */}

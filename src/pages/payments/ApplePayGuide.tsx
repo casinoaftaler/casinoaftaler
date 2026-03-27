@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import bet365Saldo from "@/assets/screenshots/bet365-saldo.png";
 import applePayHero from "@/assets/heroes/apple-pay-hero.jpg";
 
 const ApplePayGuide = () => {
@@ -106,10 +108,16 @@ const ApplePayGuide = () => {
           position: "after-intro",
           title: "Vores Test af Apple Pay på Fire Danske Casinoer",
           content: (
-            <>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
-                For at give en reel vurdering af Apple Pay som casinobetalingsmetode testede vi tjenesten på fire danske casinoer med dansk licens fra Spillemyndigheden. Testen blev gennemført på en iPhone 15 Pro med Face ID i februar 2026. Vi målte indbetalingstid, udbetalingsmuligheder, bonuskvalificering og den generelle brugeroplevelse på både mobil og desktop (via Mac med Touch ID).
-              </p>
+             <>
+               <p className="mb-4 text-muted-foreground leading-relaxed">
+                 For at give en reel vurdering af Apple Pay som casinobetalingsmetode testede vi tjenesten på fire danske casinoer med dansk licens fra Spillemyndigheden. Testen blev gennemført på en iPhone 15 Pro med Face ID i februar 2026. Vi målte indbetalingstid, udbetalingsmuligheder, bonuskvalificering og den generelle brugeroplevelse på både mobil og desktop (via Mac med Touch ID).
+               </p>
+               <ReviewScreenshot
+                 src={bet365Saldo}
+                 alt="Bet365 saldooversigt med indbetalingshistorik og tilgængelige betalingsmetoder inkl. Apple Pay"
+                 caption="Saldooversigten hos Bet365 – Apple Pay-transaktioner vises som almindelige kortbetalinger i historikken"
+                 size="full"
+               />
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Indbetalingstest:</strong> På alle fire casinoer var Apple Pay tilgængeligt som betalingsmetode i kassen. Processen var identisk: Vælg Apple Pay, indtast beløb, dobbelttryk på sideknappen, Face ID-scanning, bekræftelse. Den gennemsnitlige tid fra tryk til krediteret saldo var 2,8 sekunder – den hurtigste indbetalingsmetode vi har testet. Til sammenligning tog en standard Visa-indbetaling med 3D Secure 15-25 sekunder,{" "}
                 <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link>{" "}

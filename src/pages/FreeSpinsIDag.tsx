@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaVelkomstbonusAktiv from "@/assets/screenshots/betinia-velkomstbonus-aktiv.webp";
 import { capWagerDisplay, capWagerInText, isWagerCompliant } from "@/lib/wagerCap";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -453,6 +455,13 @@ const FreeSpinsIDag = () => {
             </section>
           </>
         )}
+
+        <ReviewScreenshot
+          src={betiniaVelkomstbonusAktiv}
+          alt="Betinia aktiv velkomstbonus med free spins-tilbud og bonusvilkår for nye spillere"
+          caption="Betinias aktive velkomstbonus – free spins er ofte en del af velkomstpakken hos danske casinoer"
+          size="full"
+        />
 
         <Separator className="my-8" />
 

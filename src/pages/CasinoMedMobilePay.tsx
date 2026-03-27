@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import onecasinoIndbetaling from "@/assets/screenshots/onecasino-indbetaling.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -289,6 +291,13 @@ const CasinoMedMobilePay = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={onecasinoIndbetaling}
+          alt="OneCasinos indbetalingsside med MobilePay og andre betalingsmetoder tilgængelige for danske spillere"
+          caption="OneCasinos indbetalingskasse – MobilePay er et af de hurtigste betalingsvalg hos danske casinoer"
+          size="full"
+        />
 
         <Separator className="mb-12" />
 

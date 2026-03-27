@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import leovegasPopulaereSpil from "@/assets/screenshots/leovegas-populaere-spil.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -143,6 +145,12 @@ const Spillemaskiner = () => {
           <p className="text-muted-foreground leading-relaxed">
             Internettets fremkomst i slutningen af 1990'erne flyttede spillemaskinerne online. Microgaming lancerede det første online casino i 1994, og <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> fulgte i 1996. Online slots fjernede fysiske begrænsninger og muliggjorde temaer, animationer og mekanikker, som var umulige med fysiske hjul. I dag er spilleautomater langt det mest populære <Link to="/casinospil" className={linkClass}>casinospil</Link> globalt – de genererer over 70 % af den samlede online casinoomsætning og repræsenterer en industri til hundredvis af milliarder kroner årligt.
           </p>
+          <ReviewScreenshot
+            src={leovegasPopulaereSpil}
+            alt="Populære spillemaskiner i LeoVegas lobby med kategorier og filtreringsmuligheder"
+            caption="LeoVegas' spillemaskin-lobby – et eksempel på hvordan danske casinoer organiserer deres spilleautomater"
+            size="full"
+          />
         </section>
 
         <InlineCasinoCards title="Bedste casinoer til spillemaskiner" count={6} />

@@ -3,6 +3,9 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.png";
+import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.png";
 import { FAQSection } from "@/components/FAQSection";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -176,6 +179,12 @@ const LiveCasino = () => {
           <p className="text-muted-foreground leading-relaxed">
             I Danmark er live casino særligt populært blandt spillere i aldersgruppen 30-55 år, der værdsætter den sociale dimension og det langsommere tempo sammenlignet med spilleautomater. Det er en kategori inden for <Link to="/casinospil" className={linkClass}>casinospil</Link>, der appellerer til spillere, som søger en mere strategisk og kontrolleret spiloplevelse.
           </p>
+          <ReviewScreenshot
+            src={mrgreenLiveBlackjack}
+            alt="Live blackjack-bord hos Mr Green med professionel dealer og HD-streaming fra Evolution Gaming studie"
+            caption="Eksempel på et live blackjack-bord med professionel dealer – billedet er fra Mr Green Casino"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -597,6 +606,12 @@ const LiveCasino = () => {
           <p className="text-muted-foreground leading-relaxed">
             Andre nævneværdige udbydere inkluderer Ezugi (budgetvenlige borde, populære i emerging markets), Authentic Gaming (streamer fra rigtige landbaserede casinoer) og On Air Entertainment (Microgaming-partnerskab med fokus på skræddersyede baccarat-borde).
           </p>
+          <ReviewScreenshot
+            src={mrgreenLiveRoulette}
+            alt="Live roulette-bord med europæisk hjul og HD-streaming hos dansk licenseret online casino"
+            caption="Live roulette hos Mr Green – europæisk hjul med professionel dealer i realtid"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -265,6 +267,12 @@ const CasinoApp = () => {
               ))}
             </div>
           </div>
+          <ReviewScreenshot
+            src={bet365CasinoLobby}
+            alt="Bet365 casino-lobby med responsivt design optimeret til mobil og desktop brug"
+            caption="Bet365's casino-lobby – et eksempel på en app-lignende browser-oplevelse med responsivt design"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

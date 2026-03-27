@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import bwinCasinoLobby from "@/assets/screenshots/bwin-casino-lobby.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -148,6 +150,12 @@ const TabletCasinoGuide = () => {
               ))}
             </div>
           </div>
+          <ReviewScreenshot
+            src={bwinCasinoLobby}
+            alt="Bwin casino-lobby med bredt layout optimeret til tablet og større skærme"
+            caption="Bwins casino-lobby – tablet-brugere får fordel af det brede layout med flere synlige spilkategorier"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

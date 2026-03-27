@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrvegasProfil from "@/assets/screenshots/mrvegas-profil.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -237,6 +239,12 @@ const SpillegraenserGuide = () => {
             <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">overordnede guide til ansvarligt spil</Link>{" "}
             for en bredere introduktion.
           </p>
+          <ReviewScreenshot
+            src={mrvegasProfil}
+            alt="MrVegas profilindstillinger med spillegrænser og ansvarligt spil-funktioner"
+            caption="MrVegas' profilside – her kan du indstille indbetalingsgrænser, tabsgrænser og andre ansvarligt spil-værktøjer"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

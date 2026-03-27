@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrvegasForside from "@/assets/screenshots/mrvegas-forside.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -216,6 +218,12 @@ const AndroidCasinoGuide = () => {
               ))}
             </div>
           </div>
+          <ReviewScreenshot
+            src={mrvegasForside}
+            alt="MrVegas casino-lobby med Android-venligt design og responsivt mobilinterface"
+            caption="MrVegas' forside – designet fungerer problemfrit på Android-enheder uden behov for app-installation"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
