@@ -474,6 +474,13 @@ const BlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilLiveBlackjack}
+          alt="Danske Spil live blackjack-bord med dealer og bordregler – 3:2 udbetaling og forsikring 2:1 tydeligt markeret"
+          caption="Et Danske Spil Blackjack-bord viser de vigtigste regler direkte på filten: 3:2 blackjack-udbetaling og forsikring 2:1."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════════════════════════
