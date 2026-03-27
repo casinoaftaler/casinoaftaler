@@ -3,6 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import leovegasLiveCasino from "@/assets/screenshots/leovegas-live-casino.png";
+import danskespilLiveBaccarat from "@/assets/screenshots/danskespil-live-baccarat.png";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -242,6 +243,12 @@ const LiveBaccaratGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Gambler's Fallacy i praksis:</strong> "Banker har vundet 8 i træk, så player må vinde snart" er den klassiske fejlslutning. Den omvendte fejl – "banker er på en streak, så følg banker" – er lige så forkert. Begge antager, at tidligere resultater påvirker fremtidige. Det gør de ikke. Hvert spin er uafhængigt. Den eneste korrekte strategi er at spille banker konsekvent, uanset roadmap-mønstre.
           </p>
+          <ReviewScreenshot
+            src={danskespilLiveBaccarat}
+            alt="Live baccarat bord hos Danske Spil med Player og Banker hænder samt dealer i rødt outfit"
+            caption="Baccarat A hos Danske Spil – klassisk Player vs. Banker med indsatsgrænser fra 10 til 2.500 kr."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

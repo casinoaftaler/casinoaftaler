@@ -3,6 +3,8 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import getluckyLiveCasino from "@/assets/screenshots/getlucky-live-casino.png";
+import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card-poker.png";
+import danskespilUltimateTexas from "@/assets/screenshots/danskespil-ultimate-texas-holdem.png";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -322,6 +324,12 @@ const LiveCasinoStrategiGuide = () => {
               </div>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src={danskespilThreeCardPoker}
+            alt="Three Card Poker live bord hos Danske Spil med dealer og spillerkort i HD-streaming"
+            caption="Three Card Poker hos Danske Spil – et eksempel på live poker med Ante, Play og Pair Plus bets"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -406,6 +414,12 @@ const LiveCasinoStrategiGuide = () => {
               </p>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src={danskespilUltimateTexas}
+            alt="Ultimate Texas Hold'em live bord hos Danske Spil med community-kort og professionel dealer"
+            caption="Ultimate Texas Hold'em hos Danske Spil – live poker hvor korrekt strategi reducerer house edge til ca. 2,2 %"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

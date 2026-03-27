@@ -3,6 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import onecasinoLiveCasino from "@/assets/screenshots/onecasino-live-casino.png";
+import danskespilLiveRoulette from "@/assets/screenshots/danskespil-live-roulette.png";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
@@ -291,6 +292,12 @@ const LiveRouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Den ærlige konklusion:</strong> Intet betting-system kan overvinde house edge i roulette. For at forstå, hvordan <Link to="/casinospil/roulette" className={linkClass}>roulette-matematik</Link> fungerer i detaljer, se vores dedikerede rouletteguide. Den eneste "strategi" er at vælge den variant med lavest house edge (French, La Partage), bruge flat betting, og sætte en fast tabsgrænse. Alt andet er selvbedrag – underholdende selvbedrag, muligvis, men selvbedrag.
           </p>
+          <ReviewScreenshot
+            src={danskespilLiveRoulette}
+            alt="Danske Spil live roulette med europæisk hjul og professionel dealer i HD-streaming"
+            caption="Danske Spil Roulette – europæisk roulette med indsatsgrænser fra 1 til 2.500 kr. og live chat med dealer"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

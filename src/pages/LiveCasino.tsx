@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.png";
 import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.png";
+import danskespilUltimateTexas from "@/assets/screenshots/danskespil-ultimate-texas-holdem.png";
 import { FAQSection } from "@/components/FAQSection";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -326,6 +327,12 @@ const LiveCasino = () => {
           <p className="text-muted-foreground leading-relaxed">
             Konklusion: live casino er matematisk identisk i house edge, men op til 6-7x billigere pr. times underholdning på grund af det lavere tempo. For bankroll-bevidste spillere er dette en afgørende fordel.
           </p>
+          <ReviewScreenshot
+            src={danskespilUltimateTexas}
+            alt="Ultimate Texas Hold'em live bord hos Danske Spil med community-kort og dealer"
+            caption="Ultimate Texas Hold'em hos Danske Spil – live poker med professionel dealer og indsatsgrænser fra 5 til 2.500 kr."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
