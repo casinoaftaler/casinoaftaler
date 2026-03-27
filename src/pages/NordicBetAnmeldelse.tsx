@@ -98,6 +98,13 @@ const NordicBetAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Casino-sektionen har gennemgået en markant transformation de seneste år. Hvad der startede som et beskedent supplement til sportsbook'en er vokset til en konkurrencedygtig casino-platform med over 1.000 spiltitler fra alle de store udbydere. Denne udvikling afspejler Betsson Groups investering i at gøre NordicBet til en komplet spilleplatform – ikke blot en sportsbook med et casino-appendiks.
           </p>
+
+          <ReviewScreenshot
+            src={nordicbetForside}
+            alt="NordicBet casino-forside med populære slots som Rise of Olympus, Book of Dead og Sweet Bonanza samt seneste vindere"
+            caption="NordicBets casino-sektion – velkomstbonus, populære slots og seneste vindere på forsiden"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
