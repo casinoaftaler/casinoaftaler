@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.png";
 import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.png";
+import danskespilUltimateTexas from "@/assets/screenshots/danskespil-ultimate-texas-holdem.png";
 import { FAQSection } from "@/components/FAQSection";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
