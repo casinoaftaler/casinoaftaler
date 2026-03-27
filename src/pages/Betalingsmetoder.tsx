@@ -268,6 +268,13 @@ const Betalingsmetoder = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaBetalingOversigt}
+          alt="Oversigt over alle betalingsmetoder hos Betinia – MobilePay, Visa, Trustly, Dankort, Paysafecard og bankoverførsler"
+          caption="Betinias komplette udvalg af betalingsmetoder – fra MobilePay til bankoverførsel"
+          size="medium"
+        />
+
         <InlineCasinoCards title="Casinoer med det bedste udvalg af betalingsmetoder" count={6} />
 
         {/* ═══════════════════════════════════════════
