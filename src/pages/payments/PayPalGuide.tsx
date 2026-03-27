@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBetalingOversigt from "@/assets/screenshots/betinia-betaling-oversigt.webp";
 import paypalHero from "@/assets/heroes/paypal-hero.jpg";
 
 const PayPalGuide = () => {
