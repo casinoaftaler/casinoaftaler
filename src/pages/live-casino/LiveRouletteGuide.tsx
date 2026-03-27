@@ -268,6 +268,12 @@ const LiveRouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Den vigtigste konklusion: spil <strong>aldrig</strong> amerikansk roulette hvis europæisk er tilgængeligt. Forskellen er næsten dobbelt house edge – det svarer til at frivilligt betale dobbelt pris for den samme oplevelse. French roulette med La Partage er det absolutte optimum for even-money bets og den matematisk mest fordelagtige roulette-variant i hele live casino.
           </p>
+          <ReviewScreenshot
+            src={danskespilLiveRouletteBord}
+            alt="Danske Spil live roulette-bord med europæisk hjul, betting-grid og live dealer i HD"
+            caption="Danske Spil Roulette – europæisk layout med indsatsgrænser fra 1 til 2.500 kr. og racetrack-betting"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
