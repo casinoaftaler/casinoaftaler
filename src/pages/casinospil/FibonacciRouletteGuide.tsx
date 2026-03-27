@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilLiveRoulette from "@/assets/screenshots/danskespil-live-roulette.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -134,6 +136,13 @@ export default function FibonacciRouletteGuide() {
             Spoiler: Fibonacci er matematisk elegant men fundamentalt begrænset af det samme princip som alle andre systemer – ingen indsatsstrategi kan overkomme <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link> i det lange løb. Men forståelsen af HVORFOR det er tilfældet, gør dig til en mere informeret spiller.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilLiveRoulette}
+          alt="Roulette-hjul i bevægelse – Fibonacci-systemet følger talrækken for indsatsprogression"
+          caption="Fibonacci-systemet anvendes typisk på even-money roulette-bets, hvor sandsynligheden er tæt på 50 %."
+          size="full"
+        />
 
         {/* Sådan fungerer systemet */}
         <section className="mb-12">

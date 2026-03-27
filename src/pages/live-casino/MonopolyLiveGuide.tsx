@@ -1,4 +1,6 @@
 import React from "react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import casinostuenLiveCasino from "@/assets/screenshots/casinostuen-live-casino.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
@@ -135,6 +137,13 @@ const MonopolyLiveGuide = () => {
             <strong>Vigtige specialfelter i bonusrunden:</strong> "Go" giver en fast bonus. "Community Chest" og "Chance" giver tilfældige kontant-multiplikatorer eller ekstra kast. "Income Tax" og "Super Tax" fratrækker en del af din akkumulerede gevinst. "Go to Jail" stopper din runde medmindre du slår dobbelt – det er bonusrundens mest frustrerende element og forekommer i ca. 8 % af kastene. "Free Parking" giver ingen bonus men stopper heller ikke runden.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={casinostuenLiveCasino}
+          alt="Live casino-lobby med Monopoly Live og andre game shows fra Evolution Gaming"
+          caption="Et overblik over en typisk live casino game show-sektion – Monopoly Live er ofte placeret centralt blandt de mest populære titler."
+          size="full"
+        />
 
         <Separator className="my-10" />
 

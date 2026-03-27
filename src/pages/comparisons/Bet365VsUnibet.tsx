@@ -1,4 +1,6 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.png";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/comparison-hero-bet365-unibet.jpg";
@@ -244,6 +246,13 @@ export default function Bet365VsUnibet() {
           bet365 kører hyppige "Bonus Drop" kampagner med tilfældige belønninger under spil samt periodiske free spins-tilbud. Deres loyalitetsprogram er diskret og baseret på personlige tilbud. Unibet har et mere struktureret system med Unibet Points, ugentlige turneringer og cashback-tilbud. For aktive spillere giver Unibets systematiske tilgang typisk bedre langsigtet værdi. Se også vores <Link to="/casino-bonus/free-spins" className={linkClass}>free spins-guide</Link> for daglige tilbud.
         </p>
       </section>
+
+        <ReviewScreenshot
+          src={bet365CasinoLobby}
+          alt="Bet365 casino-lobby med spilkategorier og velkomstbonus – overblik over platformens design"
+          caption="Bet365s casino-sektion – en af Danmarks mest etablerede platforme med bredt spiludvalg."
+          size="full"
+        />
 
       {/* SECTION 3: Spiludvalg */}
       <section className="mb-12">

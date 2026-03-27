@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.png";
+import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -265,6 +268,13 @@ const BlackjackGuide = () => {
             Den mest præcise måde at forstå blackjacks edge er gennem begrebet "expected value" (EV). For hver mulig kombination af din hånd og dealerens kort eksisterer der en matematisk optimal handling – den handling, der maksimerer din EV. Basic strategy er simpelthen listen over alle disse optimale handlinger. At afvige fra basic strategy er at vælge en lavere EV end nødvendigt. Det svarer til at smide penge i skraldespanden frivilligt.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={mrgreenLiveBlackjack}
+          alt="Live blackjack-bord hos Mr Green med dealer, kort og chips – eksempel på professionelt online blackjack"
+          caption="Et typisk live blackjack-bord fra Evolution Gaming – her hos Mr Green med klassisk 7-seat format."
+          size="full"
+        />
 
         <InlineCasinoCards title="Casinoer med bedst blackjack-vilkår" count={4} />
 

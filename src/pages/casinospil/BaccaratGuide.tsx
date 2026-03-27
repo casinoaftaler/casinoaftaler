@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilLiveBaccarat from "@/assets/screenshots/danskespil-live-baccarat.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
@@ -141,6 +143,13 @@ const BaccaratGuide = () => {
             Denne guide analyserer baccarats matematik fra bunden: sandsynlighedsstrukturen, den præcise edge-beregning for alle væddemål, variansens betydning, korttællingens (u)mulighed, og det strategiske perspektiv for high rollers. Formålet er at give dig en analytisk forståelse af præcis hvad hvert væddemål koster – og hvorfor baccarat er det foretrukne spil for verdens mest sofistikerede spillere.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilLiveBaccarat}
+          alt="Live baccarat-bord hos Danske Spil med Banker, Player og Tie indsatsfelter"
+          caption="Et live baccarat-bord med de tre standardindsatser – Banker har den laveste house edge på kun 1,06 %."
+          size="full"
+        />
 
         <InlineCasinoCards title="Bedste Casinoer til Baccarat" count={4} />
 

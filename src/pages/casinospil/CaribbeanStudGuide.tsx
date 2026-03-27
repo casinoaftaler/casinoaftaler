@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card-poker.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -130,6 +132,13 @@ export default function CaribbeanStudGuide() {
             Sammenlignet med andre casino-pokervarianter som <Link to="/casinospil/poker/three-card-poker" className={linkClass}>Three Card Poker</Link> og Casino Hold'em tilbyder Caribbean Stud den længste spiltid pr. hånd (5 kort mod 3 kort i Three Card Poker) og det største jackpot-potentiale via den progressive side-bet. Ulempen er en relativt høj grundlæggende husets fordel (5,22 %) sammenlignet med Three Card Pokers 3,37 % og Casino Hold'ems 2,16 %.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilThreeCardPoker}
+          alt="Casino poker-bord med Ante og Raise indsatsstruktur – Caribbean Stud bruger lignende mekanik"
+          caption="Casino-pokerspil som Caribbean Stud deler grundmekanikken med Three Card Poker – spiller mod dealer med faste odds."
+          size="full"
+        />
 
         {/* ──── Sektion 2: Odds & Sandsynligheder ──── */}
         <section className="mb-12">

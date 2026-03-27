@@ -1,4 +1,6 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.png";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/comparison-hero-danskespil-spilnu.jpg";
@@ -214,6 +216,13 @@ export default function DanskeSpilVsSpilnu() {
           Spilnu vinder i absolut EV (300 kr. vs. 150 kr.), men begge har identisk EV-procent (30%). Med identisk omsætningskrav er det ren matematik: Spilnus bonus er dobbelt så værdifuld, fordi bonusbeløbet er dobbelt så stort. For spillere med begrænset budget er Danske Spils lavere bonusbeløb dog lettere at håndtere – du behøver kun 500 kr. i indbetaling mod 1.000 kr. for Spilnus max bonus. For en komplet guide til bonus-strategier, se vores <Link to="/casino-bonus" className={linkClass}>bonusoversigt</Link>.
         </p>
       </section>
+
+        <ReviewScreenshot
+          src={danskespilCasinoLobby}
+          alt="Danske Spil casino-lobby med populære spil og kategorier – Danmarks største spiludbyder"
+          caption="Danske Spils casino-lobby – den mest kendte danske platform med fokus på tryghed og dansk licens."
+          size="full"
+        />
 
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Spiludvalg – Spilnus casino + bingo vs. Danske Spils allround</h2>

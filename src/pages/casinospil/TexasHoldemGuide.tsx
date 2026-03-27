@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilUltimateTexasHoldem from "@/assets/screenshots/danskespil-ultimate-texas-holdem.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -229,6 +231,13 @@ const TexasHoldemGuide = () => {
             Denne rangering er et udgangspunkt – ikke et absolut system. Kontekst som position, modstandertype, stackstørrelse og turneringsstruktur påvirker alle, om en given hånd er profitabel at spille. En 77 fra cutoff i en aggressiv cash game kan være et stærkt raise, men et fold fra under the gun i en turneringens boblefase.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilUltimateTexasHoldem}
+          alt="Ultimate Texas Hold'em bord hos Danske Spil med community cards og indsatsstruktur"
+          caption="Ultimate Texas Hold'em hos Danske Spil – casino-versionen af Texas Hold'em med faste odds mod dealeren."
+          size="full"
+        />
 
         <InlineCasinoCards title="Casinoer med poker og live casino" count={4} />
 

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import ekspektSpillemaskiner from "@/assets/screenshots/expekt-spillemaskiner.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/wolf-gold-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -161,6 +163,13 @@ const WolfGoldGuide = () => {
             <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> har designet Wolf Gold som en "crossover"-slot: den tiltrækker både spillere, der migrerer fra land-baserede automater (genkendelig 5×3-struktur) og digitale natives, der søger moderne bonusmekanikker (Money Respin). Denne dobbelte appel forklarer delvist spillets vedvarende popularitet.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={ekspektSpillemaskiner}
+          alt="Spillemaskiner-udvalg med Pragmatic Play-slots – Wolf Gold er en af udbyderens mest ikoniske titler"
+          caption="Wolf Gold fra Pragmatic Play er bredt tilgængelig hos danske licenserede casinoer."
+          size="full"
+        />
 
         <YoutubeEmbed videoId="wk34dIvTJ-c" title="Wolf Gold gennemgang – Money Respin og jackpot" description="Se en komplet gennemgang af Wolf Gold: Money Respin-funktionen og jackpot-strukturen forklaret i praksis." uploadDate="2026-03-07" duration="PT0M59S" />
         <VideoContextBox heading="Her gennemgår vores streamer Wolf Gold i praksis">

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-roulette-bord.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -132,6 +134,13 @@ export default function FranskRouletteGuide() {
             </CardContent>
           </Card>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilLiveRouletteBord}
+          alt="Fransk roulette-bord med La Partage-reglen – det mest spillervenlige roulette-format"
+          caption="Fransk roulette anvender same hjul som europæisk, men La Partage-reglen halverer house edge på even-money bets."
+          size="full"
+        />
 
         <InlineCasinoCards title="Casinoer med Fransk Roulette & La Partage" count={3} />
 

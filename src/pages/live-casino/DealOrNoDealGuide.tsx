@@ -1,4 +1,6 @@
 import React from "react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import leovegasLiveCasino from "@/assets/screenshots/leovegas-live-casino.png";
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -136,6 +138,15 @@ const DealOrNoDealGuide = () => {
             For danske spillere er Deal or No Deal Live tilgængeligt hos alle casinoer med <Link to="/casino-licenser" className={linkClass}>dansk licens</Link>, der samarbejder med Evolution Gaming. Indsatser starter fra 1 kr., og max gevinst er 500x indsatsen – markant lavere end Crazy Times 25.000x, men med en mere interaktiv oplevelse og en følelse af personlig kontrol over udfaldet.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={leovegasLiveCasino}
+          alt="LeoVegas live casino-lobby med Deal or No Deal og andre Evolution game shows tilgængelige"
+          caption="LeoVegas' live casino-sektion – Deal or No Deal Live findes typisk under
+
+ game show-kategorien sammen med    Crazy Time og Dream Catcher."
+          size="full"
+        />
 
         {/* ── H2 2: Spillets tre faser ── */}
         <section className="mb-12">

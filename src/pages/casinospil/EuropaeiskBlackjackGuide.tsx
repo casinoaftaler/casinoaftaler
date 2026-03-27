@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -247,6 +249,13 @@ const EuropaeiskBlackjackGuide = () => {
             Mange europæiske casinoer har indført OBO-reglen (Original Bets Only) som kompensation: ved dealer-blackjack mister du kun din originale indsats, uanset fordoblinger eller splits. OBO eliminerer næsten hele forskellen og gør den europæiske variant matematisk ækvivalent med den amerikanske. Det er denne nuance – ENHC vs. OBO – der afgør, om europæisk blackjack er en god deal eller ej.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilLiveBlackjack}
+          alt="Europæisk blackjack-bord hos Danske Spil med dealer og spillergrænsefladen – no hole card format"
+          caption="Eksempel på et europæisk live blackjack-bord med synlig 3:2 udbetaling og no-peek regler."
+          size="full"
+        />
 
         <Separator className="my-10" />
 

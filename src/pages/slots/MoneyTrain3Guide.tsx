@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBonusbuyLobby from "@/assets/screenshots/betinia-bonusbuy-lobby.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/money-train-3-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -160,6 +162,13 @@ const MoneyTrain3Guide = () => {
             Den matematiske magi i Money Cart opstår, når modifiers interagerer. Et scenarie med Persistent Payer + Collector + Sniper kan akkumulere hundreder af gange indsatsen på en enkelt bonusrunde. Max win-cappen på 100.000× nås typisk kun, når flere high-value modifiers kombineres i en lang bonussekvens – et scenarie, der er ekstremt sjældent men teknisk muligt.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaBonusbuyLobby}
+          alt="Bonus buy-lobby med feature buy-muligheder – Money Train 3 er kendt for sin ekstreme bonus-potentiale"
+          caption="Money Train 3 er en af de mest populære bonus buy-slots og tilbyder op til 100.000x potentiale."
+          size="full"
+        />
 
         <YoutubeEmbed videoId="f9GAKjf63uo" title="Money Train 3 gennemgang – Money Cart-bonus og max win" description="Se en komplet gennemgang af Money Train 3: Money Cart-bonusrunden, modifiers og max win forklaret i praksis." uploadDate="2026-03-07" duration="PT3M16S" />
         <VideoContextBox heading="Her gennemgår vores streamer Money Train 3 i praksis">

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/big-bass-bonanza-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -143,6 +145,13 @@ const BigBassBonanzaGuide = () => {
             Denne analyse fokuserer på den originale Big Bass Bonanza – den simpleste og mest rene version af Money Collect-systemet. Vi gennemgår den matematiske model bag fisker-mekanikken, beregner EV for forskellige scenarier, og vurderer, om spillets popularitet er fortjent ud fra et rent statistisk perspektiv.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={casinostuenSpillemaskiner}
+          alt="Spillemaskiner-lobby med filtreringsmuligheder – Big Bass Bonanza findes i de fleste danske casinoers udvalg"
+          caption="En typisk spillemaskiner-lobby med søge- og filterfunktioner til at finde spil som Big Bass Bonanza."
+          size="full"
+        />
 
         <YoutubeEmbed
           videoId="Hguc2V01ouQ"

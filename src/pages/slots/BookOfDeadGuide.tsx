@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import leovegasPopulaereSpil from "@/assets/screenshots/leovegas-populaere-spil.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/book-of-dead-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -130,6 +132,13 @@ const BookOfDeadGuide = () => {
             Spoiler: Book of Deads ry som "det sikre valg" er matematisk velfunderet – men der er nuancer, som de fleste spilguides ikke fortæller dig. Den expanding symbol-mekanik er ikke bare en gimmick; den repræsenterer en grundlæggende anderledes gevinstfordelingsmodel end cluster-pays slots som Sweet Bonanza. Forståelse af denne forskel kan spare dig tusindvis af kroner i forkerte valg.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={leovegasPopulaereSpil}
+          alt="Casino-lobby med populære slots inklusiv Book of Dead – et af de mest spillede spil online"
+          caption="Book of Dead er fast inventar i de fleste casinoers populære spil-sektion."
+          size="full"
+        />
 
         <YoutubeEmbed videoId="Jw--inO4LNk" title="Book of Dead gennemgang – Expanding symbols og RTP" description="Se en komplet gennemgang af Book of Dead: expanding symbol-mekanikken og free spins-matematik forklaret i praksis." uploadDate="2026-03-07" duration="PT1M55S" />
         <VideoContextBox heading="Her gennemgår vores streamer Book of Dead i praksis">

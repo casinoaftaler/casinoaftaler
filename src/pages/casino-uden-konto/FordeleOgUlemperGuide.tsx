@@ -1,4 +1,6 @@
 import React from "react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import kapowMitidGodkendt from "@/assets/screenshots/kapow-mitid-godkendt.png";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -134,6 +136,13 @@ const FordeleOgUlemperGuide = () => {
           </div>
         </div>
       </section>
+
+        <ReviewScreenshot
+          src={kapowMitidGodkendt}
+          alt="MitID-godkendelse gennemført – eksempel på den hurtige verifikationsproces hos danske casinoer"
+          caption="MitID-godkendelsen tager typisk under 30 sekunder og giver øjeblikkelig adgang til spil."
+          size="full"
+        />
 
       <div className="container py-6">
       </div>

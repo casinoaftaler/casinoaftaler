@@ -1,4 +1,6 @@
 import React from "react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaMobilepayBekraeft from "@/assets/screenshots/betinia-mobilepay-bekraeft.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -118,6 +120,13 @@ const PayNPlayGuide = () => {
           </div>
         </div>
       </section>
+
+        <ReviewScreenshot
+          src={betiniaMobilepayBekraeft}
+          alt="MobilePay betalingsbekræftelse ved casino-indbetaling – hurtig Pay N Play oplevelse"
+          caption="MobilePay-bekræftelse illustrerer den sømløse betalingsoplevelse, der kendetegner Pay N Play-konceptet."
+          size="full"
+        />
 
       <div className="container py-6">
       </div>

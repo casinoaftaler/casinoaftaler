@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import videoslotsForside from "@/assets/screenshots/videoslots-forside.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/immortal-romance-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -75,6 +77,13 @@ const ImmortalRomanceGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">En kritisk detalje, som mange guides overser: bonus-trigger-tælleren nulstilles IKKE mellem sessioner i de fleste implementeringer. Det betyder, at din progression mod højere niveauer bevares – en sjælden og spillervenlig mekanisme, der belønner langsigtede spillere. Trigger-frekvens estimeres til ca. 1 pr. 100-130 spins, lidt hyppigere end Thunderstruck II.</p>
           <p className="text-muted-foreground leading-relaxed">Wild Desire er en separat, random-triggered base game-funktion, der kan konvertere op til alle 5 hjul til wild-hjul. Selvom den forekommer sjældent (estimeret 1 pr. 50-100 spins for mindst 1 wild reel), kan den producere massive base game-gevinster. Wild Desire er uafhængig af bonusniveauer og forekommer i alle spilstadier.</p>
         </section>
+
+        <ReviewScreenshot
+          src={videoslotsForside}
+          alt="Casino-forside med Microgaming-slots – Immortal Romance er en af Microgamings mest populære titler"
+          caption="Immortal Romance er en Microgaming-klassiker og findes hos casinoer med stort spiludvalg."
+          size="full"
+        />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil: RTP og Gevinststruktur</h2>

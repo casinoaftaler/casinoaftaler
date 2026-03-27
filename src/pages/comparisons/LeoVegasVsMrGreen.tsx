@@ -1,4 +1,6 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import leovegasLobby from "@/assets/screenshots/leovegas-lobby.png";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/comparison-hero-leovegas-mrgreen.jpg";
@@ -212,6 +214,13 @@ export default function LeoVegasVsMrGreen() {
           LeoVegas' bonus har en EV på ca. 650 kr. mod Mr Greens ca. 450 kr. Forskellen skyldes, at LeoVegas kun kræver omsætning af indbetalingen, mens Mr Green kræver omsætning af indskud + bonus – hvilket fordobler omsætningsvolumenet. For en komplet guide til bonus-matematik, se vores <Link to="/casino-bonus" className={linkClass}>bonusoversigt</Link>.
         </p>
       </section>
+
+        <ReviewScreenshot
+          src={leovegasLobby}
+          alt="LeoVegas casino-lobby med mobilvenligt design og featured spil"
+          caption="LeoVegas' casino-forside – kendt for sit mobilvenlige design og brede spiludvalg."
+          size="full"
+        />
 
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Spiludvalg – 2.000+ vs. 1.000+ kuraterede</h2>

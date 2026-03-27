@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.png";
+import lightningRouletteMultipliers from "@/assets/screenshots/xxxtreme-lightning-roulette-multipliers.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -147,6 +150,13 @@ const GameShowsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={royalcasinoLiveCasino}
+          alt="Live casino game show-lobby med Crazy Time, Dream Catcher og Monopoly Live samlet i én kategori"
+          caption="Game show-lobbyen hos et dansk casino – de mest populære Evolution-titler er samlet i én overskuelig sektion."
+          size="full"
+        />
+
         {/* ── H2 2 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
@@ -169,6 +179,13 @@ const GameShowsGuide = () => {
             Sammenlignet med <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> (1,06 % house edge på Banker) eller blackjack med optimal strategi (~0,5 %) er game shows markant dyrere for spilleren. Men de tilbyder noget, som bordspil ikke kan: en tv-lignende underholdningsoplevelse med social interaktion, visuelt spektakel og potentiale for ekstremt store enkeltgevinster. Spørgsmålet er, om denne underholdningsværdi retfærdiggør den ekstra pris.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={lightningRouletteMultipliers}
+          alt="Lightning Roulette multiplier-visning med tilfældige multiplikatorer op til 500x – eksempel på game show-mekanik i et bordspil"
+          caption="Multiplikator-mekanikken fra Lightning Roulette illustrerer, hvordan game show-elementer integreres i traditionelle casinospil."
+          size="full"
+        />
 
         {/* ── H2 3 ── */}
         <section className="mb-12">

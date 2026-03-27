@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-roulette-bord.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -136,6 +138,13 @@ export default function EuropaeiskRouletteGuide() {
             </CardContent>
           </Card>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilLiveRouletteBord}
+          alt="Europæisk roulette-hjul med 37 numre og single-zero layout hos Danske Spil"
+          caption="Det europæiske roulette-hjul med ét nul-felt – den variant med lavest house edge (2,7 %)."
+          size="full"
+        />
 
         <InlineCasinoCards title="Bedste Casinoer med Europæisk Roulette" count={3} />
 

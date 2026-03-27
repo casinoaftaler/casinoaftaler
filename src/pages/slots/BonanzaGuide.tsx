@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBonusbuyLobby from "@/assets/screenshots/betinia-bonusbuy-lobby.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/bonanza-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -121,6 +123,13 @@ const BonanzaGuide = () => {
             Spillets tema – en guldgravning i en mineskakt – er mere end blot æstetik. Det visuelle design understøtter spillets mekanik: symboler falder ned i skakten (cascading wins), og det horisontale hjul øverst repræsenterer minekarren, der transporterer scatter-symbolerne. Denne integration af tema og mekanik var banebrydende for sin tid og satte en ny standard for immersivt slot-design.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaBonusbuyLobby}
+          alt="Bonus buy-lobby med Megaways-slots – Bonanza var den første Megaways-spillemaskine"
+          caption="Bonus buy-sektionen viser slots med feature-køb – Bonanza er en af de originale Megaways-titler."
+          size="full"
+        />
 
         {/* ── Teknisk profil ── */}
         <section className="mb-10">

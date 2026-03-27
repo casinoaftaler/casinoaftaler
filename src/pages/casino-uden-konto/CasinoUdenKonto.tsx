@@ -1,4 +1,6 @@
 import React from "react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import kapowMitidRegistrering from "@/assets/screenshots/kapow-mitid-registrering.png";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -332,6 +334,13 @@ const CasinoUdenKonto = () => {
             -værktøjer.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={kapowMitidRegistrering}
+          alt="MitID registreringsflow hos et dansk online casino – hurtig verifikation uden traditionel kontoooprettelse"
+          caption="MitID-registrering illustrerer den hurtige adgang til spil, som kendetegner moderne danske casinoer."
+          size="full"
+        />
 
         <Separator className="my-10" />
 

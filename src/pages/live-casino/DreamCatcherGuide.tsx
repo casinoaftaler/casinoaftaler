@@ -1,4 +1,6 @@
 import React from "react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.png";
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -139,6 +141,13 @@ const DreamCatcherGuide = () => {
             For danske spillere er Dream Catcher tilgængeligt hos alle større <Link to="/casino-anmeldelser" className={linkClass}>casinoer med dansk licens</Link>, der samarbejder med Evolution Gaming. Spillet er identisk uanset casino – samme studie i Riga (Letland), samme hjul, samme odds. Valget af casino bør baseres på <Link to="/casino-bonus" className={linkClass}>bonus</Link>, <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> og udbetalingshastighed – ikke på gameplay-forskelle, der ikke eksisterer.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={royalcasinoLiveCasino}
+          alt="Live casino game show-lobby med Dream Catcher-hjulet synligt blandt andre Evolution-spil"
+          caption="Eksempel på en live casino-lobby hvor Dream Catcher er placeret blandt de øvrige game shows fra Evolution Gaming."
+          size="full"
+        />
 
         {/* ── H2 2: Segmentfordeling ── */}
         <section className="mb-12">

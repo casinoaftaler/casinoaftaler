@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -205,6 +207,13 @@ const AmerikanskBlackjackGuide = () => {
             I konteksten af <Link to="/casinospil" className={linkClass}>casinospil</Link> generelt er amerikansk blackjack et af de mest spillervenlige spil, der eksisterer. Kun craps' pass line bet (1,41 %) og <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> banker (1,06 %) konkurrerer på house edge – og ingen af dem tilbyder den strategiske dybde, som blackjack har. Det er kombinationen af lav house edge og spillerinddragelse, der har gjort varianten til kongen af bordspil.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={mrgreenLiveBlackjack}
+          alt="Amerikansk blackjack live-bord med hole card og peek-mekanik hos Mr Green Casino"
+          caption="Live blackjack med hole card-regler – dealeren modtager to kort fra starten, hvilket er kernen i den amerikanske variant."
+          size="full"
+        />
 
         <Separator className="my-10" />
 

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import stakeForside from "@/assets/screenshots/stake-forside.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/razor-shark-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -124,6 +126,13 @@ const RazorSharkGuide = () => {
             Vi har analyseret Mystery Stack-sandsynlighederne, beregnet EV for forskellige afsløringer, og testet spillets risikoprofil på tværs af hundredvis af simulerede sessioner. Resultatet er en analyse, der går langt dybere end "det er en fed slot" – vi viser dig præcist, hvorfor Razor Shark fungerer matematisk, og hvornår den er dit bedste valg.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={stakeForside}
+          alt="Casino-forside med Push Gaming-slots – Razor Shark er en af udbyderens mest kendte titler"
+          caption="Razor Shark fra Push Gaming er en populær high volatility slot tilgængelig hos mange danske casinoer."
+          size="full"
+        />
 
         <Separator className="my-10" />
 

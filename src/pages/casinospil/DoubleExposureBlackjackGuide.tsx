@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -202,6 +204,13 @@ const DoubleExposureBlackjackGuide = () => {
             Det centrale paradoks i Double Exposure er, at mere information ikke nødvendigvis giver bedre resultater. Spillere med standard <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>-erfaring vil instinktivt bruge forkert strategi (fordi de vurderer baseret på dealerens up card, ikke total), og dermed tabe mere end nødvendigt. Double Exposure kræver en fundamentalt anderledes strategisk tilgang.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={betanoLiveCasino}
+          alt="Live casino-lobby med blackjack-varianter – Double Exposure er tilgængelig som RNG-spil hos danske casinoer"
+          caption="Live casino-lobbyen viser udvalget af blackjack-borde – Double Exposure findes typisk under RNG-sektionen hos de fleste udbydere."
+          size="full"
+        />
 
         <Separator className="my-10" />
 
