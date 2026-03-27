@@ -22,6 +22,11 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, Gamepad2, Sparkles, Headphones, TrendingUp, BarChart3 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import casinostuenForside from "@/assets/screenshots/casinostuen-forside.png";
+import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.png";
+import casinostuenLiveCasino from "@/assets/screenshots/casinostuen-live-casino.png";
+import casinostuenShop from "@/assets/screenshots/casinostuen-shop.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -95,6 +100,7 @@ const CasinostuenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Casinostuen er en af de mere niche-orienterede casinoplatforme på det danske marked. Navnet afspejler konceptet – en hyggelig "stue", hvor danske spillere kan nyde casinospil i en afslappet atmosfære. Platformen differentierer sig fra de store internationale operatører ved at fokusere udelukkende på det danske marked med et gennemgående dansk præg. Alt fra kundeservice til kampagnetekster er udelukkende på dansk, og der er ingen følelse af oversatte internationale sider.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Casinostuen henvender sig primært til den danske casual spiller – den type bruger, der ikke nødvendigvis søger 3.000 spilleautomater eller aggressive VIP-programmer, men derimod en overskuelig platform, hvor man hurtigt kan finde sine favoritspil og spille uden forvirring. Det er et bevidst valg fra operatørens side: hellere gøre få ting godt end mange ting middelmådigt. Konceptet minder om danske butikker som Irma versus Bilka – mindre udvalg, men kurateret kvalitet.</p>
           <p className="text-muted-foreground leading-relaxed">Registrering sker via MitID, og platformen er fuldt tilsluttet ROFUS. Casinostuen er reguleret af <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og overholder alle danske regler for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>. Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> evaluerer alle platforme efter samme kriterier, uanset størrelse.</p>
+          <ReviewScreenshot src={casinostuenForside} alt="Casinostuen forside med velkomstbonus på 500 kr., 100 kr. freebet på sport og kategorier som Casino, Live Casino og WeSpin" caption="Casinostuens forside med velkomstbonus-valg mellem casino (500 kr.) og sport (100 kr. freebet) samt kategorinavigation." eager size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -116,6 +122,7 @@ const CasinostuenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Tidsbegrænsning:</strong> Bonussen skal omsættes inden for 60 dage fra aktivering. <strong>Min. indbetaling:</strong> 100 kr. <strong>Maks. indbetaling:</strong> 500 kr. <strong>Maksimal gevinst:</strong> Der er ingen eksplicit loft på bonusgevinster, men vær opmærksom på, at kun spilleautomater bidrager 100% til omsætningen. Bordspil bidrager typisk 10–20%, og <Link to="/live-casino" className={linkClass}>live casino</Link> bidrager 0%.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Løbende kampagner inkluderer ugentlige <Link to="/free-spins" className={linkClass}>free spins</Link>-tilbud og sæsonbaserede kampagner. Frekvensen er lavere end hos de store internationale platforme – forvent 1–2 kampagner pr. uge versus de 4–5 daglige kampagner hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/bet365" className={linkClass}>Bet365</Link>. Casinostuen satser mere på at skabe en loyal spillerbase end på aggressive bonusprogrammer.</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Sammenligning:</strong> Casinostuen tilbyder 100% match op til 500 kr. med 10x (d+b) omsætningskrav. <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn Casino</Link> tilbyder derimod op til 1.000 kr. med 10x (d+b) omsætning – et højere bonusloft. Forskellen i bonusstørrelse gør ComeOn til det bedre valg, hvis du ønsker at maksimere din velkomstbonus.</p>
+          <ReviewScreenshot src={casinostuenShop} alt="Casinostuen bonusshop med pengebonusser fra 250-1000 kr., Ruby Lounge freespins og Bet Builder free bets til sport" caption="Casinostuens bonusshop med pengebonusser, Ruby Lounge freespins og free bets til sportsvæddemål – loyalitetspoint kan veksles til bonusser." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -130,6 +137,7 @@ const CasinostuenAnmeldelse = () => {
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">RTP-niveauet på de tilgængelige spil ligger generelt i intervallet 95–97%, hvilket er standard. Book of Dead (96,21%), Starburst (96,08%) og Sweet Bonanza (96,48%) er alle til stede i deres standardversioner. Vi verificerede RTP-niveauerne under vores test og fandt ingen afvigelser fra de officielle tal – et positivt tegn, der indikerer, at Casinostuen ikke bruger reducerede RTP-versioner.</p>
           <p className="text-muted-foreground leading-relaxed">Den største mangel i spiludvalget er fraværet af nyere, innovative udbydere. <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>, <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og <Link to="/spiludviklere/elk-studios" className={linkClass}>ELK Studios</Link> – der alle er populære blandt danske spillere – er fraværende. For spillere, der følger med i de nyeste spiltrends, er det en mærkbar begrænsning. For casual spillere, der holder sig til klassikerne, er det derimod irrelevant.</p>
+          <ReviewScreenshot src={casinostuenSpillemaskiner} alt="Casinostuen spilleautomater med eksklusive spil, anbefalede titler som Temple Tumble og Book of Evil, nye spil og klassikere" caption="Casinostuens spilleautomater med eksklusive titler, anbefalede spil og klassikere som Starburst og Reactoonz." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -168,6 +176,7 @@ const CasinostuenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Casinostuens live casino-sektion er den mest begrænsede del af platformen. Udvalget begrænser sig til basisvarianter af roulette og blackjack – der er ingen game shows som Crazy Time, Lightning Roulette eller Dream Catcher. For en platform, der henvender sig til casual spillere, er det et bevidst valg: live casino kræver typisk højere minimumsindsat (ofte 50-100 kr. pr. runde) og appellerer til et mere erfarent segment.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede tre live blackjack-borde under vores januar 2026-session. Streamingkvaliteten var stabil med minimal forsinkelse – ca. 1-2 sekunders delay, hvilket er standard for Evolution Gaming-borde. Dealerne var professionelle, og interfacet var velkendt fra andre Evolution-casinoer. Minimumsindsat var 50 kr. pr. hånd på standard-borde, hvilket er lavere end hos nogle konkurrenter.</p>
           <p className="text-muted-foreground leading-relaxed">Sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>Bet365</Link>'s 200+ live borde og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' eksklusive brandede borde er Casinostuens live casino klart den svageste kategori. For spillere, der primært søger live dealer-oplevelser, er Casinostuen ikke det rette valg. Men som supplement til spilleautomaterne fungerer det fint for lejlighedsmæssig brug.</p>
+          <ReviewScreenshot src={casinostuenLiveCasino} alt="Casinostuen live casino med Ruby Lounge, Nordic Ruby Blackjack, Dansk Roulette og Lightning Roulette fra Evolution Gaming" caption="Live casino-lobbyen hos Casinostuen med Ruby Lounge-borde, Nordic Ruby Blackjack-varianter og Lightning Roulette." size="full" />
         </section>
 
         <Separator className="my-10" />
