@@ -229,6 +229,12 @@ export default function ProviderSlotsHub() {
                   <Gamepad2 className="h-7 w-7 text-primary" />
                   Alle {content.displayName} Spillemaskiner
                 </h2>
+                <ReviewScreenshot
+                  src={spilleautomatenFilter}
+                  alt={`Spiludbyder-filter til at finde ${content.displayName} slots – filtrér efter udbyder hos danske casinoer`}
+                  caption={`Brug provider-filteret på danske casinoer til hurtigt at finde alle ${content.displayName} spillemaskiner`}
+                  size="medium"
+                />
                 <ProviderCatalogSlots providerSlug={validSlug} />
               </section>
             ),
