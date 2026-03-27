@@ -24,6 +24,10 @@ import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Shield, Globe, ShieldCheck, Smartphone, Headphones, Users, Clock, Award, TrendingUp, BarChart3 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import unibetLobby from "@/assets/screenshots/unibet-lobby.png";
+import unibetFiltre from "@/assets/screenshots/unibet-filtre.png";
+import unibetLiveCasino from "@/assets/screenshots/unibet-live-casino.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -87,6 +91,14 @@ const UnibetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Det, der virkelig adskiller Unibet fra konkurrenterne, er den sømløse integration mellem produkterne. Du kan veksle fra en <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomat</Link> til et live sportsvæddemål og videre til et pokerboard uden nogensinde at forlade platformen. Denne fleksibilitet er ikke bare en bekvemmelighed – det er en fundamental designfilosofi, som Kindred Group har investeret massivt i over de seneste år. I praksis betyder det, at din saldo er fælles på tværs af alle produkter, dine bonusser er klart opdelt per sektion, og din transaktionshistorik viser alt samlet i én overskuelig oversigt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> evaluerer Unibet som en helhed, og den samlede pakke er imponerende. Kindred Groups koncernstruktur under FDJ United sikrer finansiel gennemsigtighed – du kan faktisk tilgå deres kvartalsrapporter og se præcis, hvordan virksomheden performer. Deres engagement i <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> er brancheførende med et ambitiøst mål om at eliminere skadeligt spil inden 2030 – et mål, som ingen anden stor operatør har sat offentligt.</p>
           <p className="text-muted-foreground leading-relaxed">I denne anmeldelse dykker vi ned i hver enkelt del af Unibet-oplevelsen: casino, sport, poker, live casino, mobilapp, betalingsmetoder, kundeservice og sikkerhed. Vi har testet platformen i over to uger med reelle indbetalinger og udbetalinger for at give dig et ærligt og datadrevet billede af, hvad du kan forvente. Slutresultatet? En platform, der gør alt godt – og det meste af det rigtig godt.</p>
+
+          <ReviewScreenshot
+            src={unibetLobby}
+            alt="Unibet casino lobby med spilleautomater, kategorier og søgefunktion efter login"
+            caption="Unibets casino-lobby med overblik over 1.661 slots, kategorier og søgefiltre."
+            eager
+            size="full"
+          />
         </section>
 
           <YoutubeEmbed
@@ -153,6 +165,13 @@ const UnibetAnmeldelse = () => {
           <h3 className="mt-6 mb-3 text-xl font-bold">RTP og gennemsigtighed</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">Et kritisk punkt for informerede spillere er RTP-gennemsigtighed. Unibet viser RTP-værdier direkte i spilinformationen for de fleste titler, hvilket er en positiv praksis, der ikke er standard hos alle operatører. Vi stikprøvetjekkkede 25 populære titler og fandt, at alle kørte med deres standardkonfigurerede RTP-værdier – ingen "nedjusterede" versioner, som man desværre ser hos visse mindre regulerede operatører. Spilleautomater som Starburst (96,08%), Book of Dead (96,21%) og Gates of Olympus (96,50%) kører alle med de forventede værdier.</p>
           <p className="text-muted-foreground leading-relaxed">Udvalget af <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj-RTP spilleautomater</Link> er solidt, men det er værd at bemærke, at Unibet ikke har den stærkeste repræsentation fra nyere nicheudviklere som Hacksaw Gaming eller Push Gaming. Hvis du specifikt jager high-volatility megaways-spil fra disse studier, kan <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> have et bredere udvalg. Unibets styrke er derimod bredden – du finder alt fra lavvolatile hyggemaskiner til progressive jackpots, og den samlede kvalitet er konsekvent høj.</p>
+
+          <ReviewScreenshot
+            src={unibetFiltre}
+            alt="Unibets avancerede filtreringssystem med spilletyper, udbydere, funktioner og temaer"
+            caption="Unibets filterpanel gør det nemt at finde præcis den type slot du leder efter."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -174,6 +193,13 @@ const UnibetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/live-casino" className={linkClass}>Live casinoet</Link> er af høj kvalitet med <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>-borde som rygrad. Du finder alle de klassiske formater – <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>, baccarat og casino hold'em – suppleret med Evolutions populære game shows som Crazy Time, Dream Catcher, Lightning Roulette og Monopoly Live. Videostreaming-kvaliteten er konsekvent høj med minimal latency, selv på mobilforbindelser.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Unibet tilbyder dedikerede borde med Unibet-branding, hvilket giver en eksklusiv oplevelse. Disse dedikerede borde har typisk lavere minimumsindsat end de generelle borde, hvilket er ideelt for rekreative spillere, der ønsker live-oplevelsen uden at satse store beløb. Vi testede tre dedikerede blackjack-borde og fandt minimumsinsatser fra 50 kr. – markant lavere end de 100-200 kr., der er standard på delte borde.</p>
           <p className="text-muted-foreground leading-relaxed">Et område, hvor Unibets live casino ikke når helt op, er antallet af borde. Med cirka 80 live-borde er udvalget solidt, men det er mindre end hvad <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (200+ borde) eller <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> (150+ borde) tilbyder. For de fleste spillere er 80 borde rigeligt, men hvis du specifikt søger niche-varianter som Speed Baccarat eller Sic Bo, kan udvalget føles begrænset i spidstimerne.</p>
+
+          <ReviewScreenshot
+            src={unibetLiveCasino}
+            alt="Unibet live casino sektion med Evolution Gaming roulette og blackjack borde"
+            caption="Unibets live casino med dedikerede borde, Lightning Roulette og eksklusive Unibet-varianter."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
