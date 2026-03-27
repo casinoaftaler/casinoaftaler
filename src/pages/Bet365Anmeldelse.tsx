@@ -223,6 +223,7 @@ const Bet365Anmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Hvad der adskiller bet365 fra de fleste danske konkurrenter, er skala. Virksomheden beskæftiger over 5.000 medarbejdere, behandler millioner af daglige transaktioner og har investeret massivt i egen teknologi. De bruger ikke tredjepartsplatforme som mange mindre operatører – alt fra odds-beregning til betalingsinfrastruktur er bygget internt. Det giver en stabilitet og reaktionshastighed, der er sjælden i branchen. Læs mere om vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>.
           </p>
+          <ReviewScreenshot src={bet365Sportsbook} alt="bet365 sportsbook forside med boost væddemål, international fodbold og live odds" caption="bet365s sportsbook med boost-væddemål, dybe markeder og live-odds – platformen er bygget til sportsbetting." eager size="full" />
         </section>
 
           <YoutubeEmbed
