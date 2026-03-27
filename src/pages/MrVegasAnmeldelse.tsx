@@ -154,6 +154,8 @@ const MrVegasAnmeldelse = () => {
             ))}
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">KYC-verifikation håndteres automatisk via MitID ved kontoprettelse. I vores test blev den første udbetaling behandlet uden yderligere dokumentationskrav – et klart plus sammenlignet med platforme, der kræver pas-upload og adressebevis. Betsson-gruppens automatiserede verifikationssystem er tydeligt et af de mest effektive på markedet.</p>
+          <ReviewScreenshot src={mrvegasBetaling} alt="Mr Vegas indbetalingsside med MobilePay, Visa, Mastercard, Skrill, Neteller og Paysafecard betalingsmetoder" caption="Indbetalingssiden med alle tilgængelige betalingsmetoder inklusiv MobilePay og e-wallets – gebyrfri transaktioner." size="full" />
+          <ReviewScreenshot src={mrvegasProfil} alt="Mr Vegas profilside med XP-niveausystem, trofæer, gevinsthistorik og kontooversigt" caption="Profilsiden med Mr Vegas' gamification-system: XP-niveauer, trofæer og detaljeret spilhistorik." size="full" />
         </section>
 
         <Separator className="my-10" />
