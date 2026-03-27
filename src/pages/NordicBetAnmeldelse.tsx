@@ -191,6 +191,13 @@ const NordicBetAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Sammenlignet med konkurrenterne er NordicBets bonus-setup gennemsnitligt for det danske marked. <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> tilbyder en lignende struktur med separate sport- og casinobonusser. For spillere, der udelukkende søger casino-bonus, er <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> (op til 1.000 kr. + FS) og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (1.000 kr. + 100 FS) solide alternativer. NordicBets fordel er den kombinerede værdi af sport- og casinobonussen for spillere, der udnytter begge.
           </p>
+
+          <ReviewScreenshot
+            src={nordicbetKampagner}
+            alt="NordicBet kampagneside med velkomsttilbud, freebet, casino-bonus og løbende kampagner som Kombi-Boost og Månedens Spil"
+            caption="NordicBets kampagneoversigt – separate velkomsttilbud for sport og casino samt løbende kampagner"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
