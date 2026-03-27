@@ -15,6 +15,10 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import rofusForsideMitid from "@/assets/screenshots/rofus-forside-mitid-login.png";
+import rofusRegistrering from "@/assets/screenshots/rofus-registrering-udelukkelse.png";
+import danskeSpilSundeSpillevaner from "@/assets/screenshots/danske-spil-sunde-spillevaner.png";
 
 const warningSignItems = [
   "Bruger flere penge, end du har råd til at tabe",
