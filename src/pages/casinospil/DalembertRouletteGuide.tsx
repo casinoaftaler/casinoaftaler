@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -145,6 +147,13 @@ export default function DalembertRouletteGuide() {
             </CardContent>
           </Card>
         </section>
+
+        <ReviewScreenshot
+          src={mrgreenLiveRoulette}
+          alt="Live roulette-bord med chips – D'Alembert-systemets lineære progression passer godt til even-money bets"
+          caption="D'Alembert bruges primært på even-money bets (rød/sort, lige/ulige) – her vist på et live roulette-bord."
+          size="full"
+        />
 
         <InlineCasinoCards title="Casinoer med Live Roulette til Strategi-Test" count={3} />
 

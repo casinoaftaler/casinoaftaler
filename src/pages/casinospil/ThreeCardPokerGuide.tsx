@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card-poker.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -187,6 +189,13 @@ const ThreeCardPokerGuide = () => {
             <strong>Historisk kontekst:</strong> Three Card Poker blev opfundet i 1994 af Derek Webb, en britisk pokerspiller, der ønskede at skabe et casinobordspil med pokerens appel men casinoets tilgængelighed. Spillet var oprindeligt kendt som "Brit-Brag" og blev hurtigt det mest succesrige nye casinobordspil i årtier. I dag er Three Card Poker tilgængeligt i praktisk talt hvert casino i verden – fra Las Vegas til Macau, fra London til København.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilThreeCardPoker}
+          alt="Three Card Poker-bord hos Danske Spil med Ante og Play indsatsfelter"
+          caption="Three Card Poker hos Danske Spil – et af de få casino-pokerspil med relativt lav house edge."
+          size="full"
+        />
 
         <InlineCasinoCards title="Casinoer med Three Card Poker" count={4} />
 

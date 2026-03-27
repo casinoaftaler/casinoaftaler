@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -137,6 +139,13 @@ export default function MartingaleRouletteGuide() {
             Vores tilgang er datadrevet: vi bruger faktisk sandsynlighedsregning, ikke anekdoter. Og konklusionen er entydig – Martingale er et system, der vinder ofte men taber stort, og over tid vil den negative forventede værdi altid dominere. Læs videre for at forstå præcis hvorfor.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={mrgreenLiveRoulette}
+          alt="Live roulette-bord med indsatsmuligheder – Martingale kræver fordobling efter hvert tab"
+          caption="Et live roulette-bord viser de praktiske begrænsninger for Martingale – bordets maksimum sætter grænsen for fordoblinger."
+          size="full"
+        />
 
         {/* Sådan fungerer Martingale */}
         <section className="mb-12">

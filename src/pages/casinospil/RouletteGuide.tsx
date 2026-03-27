@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-roulette-bord.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
@@ -160,6 +162,13 @@ const RouletteGuide = () => {
             I denne guide gennemgår vi hvert element i detaljer: hjulets fysiske opbygning, bordets layout, alle bet-typer med odds og udbetalinger, de vigtigste varianter, forskellen mellem live og RNG-roulette, og den danske regulering. Formålet er ikke at love dig en vinderstrategi – det er at give dig den viden, du behøver for at træffe informerede valg, når du sætter dig ved bordet.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilLiveRouletteBord}
+          alt="Europæisk roulette-bord med 37 felter – det mest udbredte format hos danske online casinoer"
+          caption="Et live roulette-bord med europæisk layout – single-zero formatet giver 2,7 % house edge."
+          size="full"
+        />
 
         <InlineCasinoCards title="Bedste Casinoer til Roulette" count={6} />
 

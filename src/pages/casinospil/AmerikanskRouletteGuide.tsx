@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilLiveRoulette from "@/assets/screenshots/danskespil-live-roulette.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -176,6 +178,13 @@ export default function AmerikanskRouletteGuide() {
             Men denne guide handler ikke bare om at sige "spil europæisk i stedet" – selvom det er det korrekte råd i 99 % af tilfældene. Vi dykker ned i den komplette matematik bag det amerikanske hjul, analyserer alle væddemålstyper, dokumenterer den berygtede Five Number Bet, simulerer 10.000 spins, og giver dig de data du har brug for til at forstå præcis hvad du betaler for den ekstra underholdning.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilLiveRoulette}
+          alt="Roulette-bord med hjulvisning – amerikansk roulette har et ekstra double-zero felt"
+          caption="Sammenlign hjuldesignet: amerikansk roulette tilføjer et 00-felt, der øger house edge til 5,26 %."
+          size="full"
+        />
 
         <InlineCasinoCards title="Casinoer med Live Roulette-Borde" count={3} />
 

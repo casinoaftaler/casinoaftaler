@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pokerstarsForside from "@/assets/screenshots/pokerstars-forside.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
@@ -216,6 +218,13 @@ const PokerGuide = () => {
             Denne cornerstone-guide fungerer som dit overblik over hele poker-universet. Vi dækker varianter, matematik, strategi, psykologi, regulering og det danske marked – og linker til dybdegående specialguides for hvert emne. Brug denne side som dit kompas og dyk ned i de emner, der interesserer dig mest.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={pokerstarsForside}
+          alt="PokerStars forside med turneringer og cash games – verdens største online poker-platform"
+          caption="PokerStars er den mest kendte poker-platform globalt og tilbyder cash games, turneringer og Sit & Go-formater."
+          size="full"
+        />
 
         {/* ═══════════════ CLUSTER NAVIGATION GRID ═══════════════ */}
         <section className="mb-12">
