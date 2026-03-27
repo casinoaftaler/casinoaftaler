@@ -212,6 +212,12 @@ const StickyBonus = () => {
               <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> og{" "}
               <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>.
           </VideoContextBox>
+          <ReviewScreenshot
+            src={comeonKampagner}
+            alt="ComeOn Casinos kampagneside med bonustilbud og vilkår for sticky og non-sticky bonusser"
+            caption="ComeOns kampagneside – bonusvilkårene afgør om bonussen er sticky eller non-sticky"
+            size="full"
+          />
         </section>
 
         <BonusClusterPriorityLinks currentPath="/sticky-bonus" />

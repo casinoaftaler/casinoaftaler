@@ -219,6 +219,12 @@ const CashbackBonus = () => {
             <Link to="/casino-bonus" className={linkClass}>casino bonus guide</Link>, der sammenligner cashback med matchbonusser, free spins og andre tilbud. Vil du forstå forskellen mellem cashback og{" "}
             <Link to="/reload-bonus" className={linkClass}>reload bonus</Link>, har vi en dedikeret guide til det.
           </p>
+          <ReviewScreenshot
+            src={betiniaBonussektion}
+            alt="Betinias bonussektion med cashback-tilbud og andre aktive kampagner for danske spillere"
+            caption="Betinias bonussektion – cashback-tilbud vises typisk sammen med andre aktive kampagner"
+            size="full"
+          />
         </section>
 
         <BonusClusterPriorityLinks currentPath="/cashback-bonus" />

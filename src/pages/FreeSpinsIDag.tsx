@@ -456,6 +456,13 @@ const FreeSpinsIDag = () => {
           </>
         )}
 
+        <ReviewScreenshot
+          src={betiniaVelkomstbonusAktiv}
+          alt="Betinia aktiv velkomstbonus med free spins-tilbud og bonusvilkår for nye spillere"
+          caption="Betinias aktive velkomstbonus – free spins er ofte en del af velkomstpakken hos danske casinoer"
+          size="full"
+        />
+
         <Separator className="my-8" />
 
         {/* Money-page routing: dofollow links to casino reviews */}

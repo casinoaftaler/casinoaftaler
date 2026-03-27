@@ -277,6 +277,12 @@ const VipProgram = () => {
               </ul>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src={royalcasinoKampagner}
+            alt="RoyalCasinos kampagneside med VIP-tilbud og eksklusive bonusser for loyale spillere"
+            caption="RoyalCasinos kampagner – VIP-programmer tilbyder ofte eksklusive bonusser og personlige tilbud"
+            size="full"
+          />
         </section>
 
         <Separator className="mb-12" />
