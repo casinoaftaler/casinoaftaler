@@ -233,6 +233,7 @@ const BetanoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Streaming-kvaliteten er stabil, og interfacet er rent og funktionelt. Betanos live casino er ikke et område, der skiller sig ud – hverken positivt eller negativt. Det fungerer, det er professionelt, men det er ikke en grund i sig selv til at vælge Betano. For spillere, der prioriterer live casino højt, vil <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller bet365 med deres eksklusive borde og dybere katalog typisk være det bedre valg.
           </p>
+          <ReviewScreenshot src={betanoLiveCasino} alt="Betano live casino med eksklusive Betano Dansk Blackjack og Roulette fra Playtech" caption="Betanos live casino-lobby med eksklusive danske borde og Live Dealere fra Evolution Gaming." size="full" />
         </section>
 
         <Separator className="my-10" />
