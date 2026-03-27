@@ -87,6 +87,12 @@ const NyeVsEtablerede = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={mrvegas}
+          alt="Mr Vegas casino forside som eksempel på et nyere dansk online casino med moderne design og spiludvalg"
+          caption="Mr Vegas repræsenterer den nyere generation af danske casinoer med frisk design"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

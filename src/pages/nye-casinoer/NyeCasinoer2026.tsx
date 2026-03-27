@@ -142,6 +142,12 @@ const NyeCasinoer2026 = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={getluckyForside}
+          alt="GetLucky casino forside lanceret i Danmark med velkomstbonus og populære spilleautomater"
+          caption="GetLucky er blandt de nyeste casinoer lanceret i Danmark med dansk licens"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

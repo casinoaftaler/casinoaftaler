@@ -140,6 +140,12 @@ const NyeCasinoerUdenRofus = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spilnuLobby}
+          alt="Spilnu casino-lobby som eksempel på et ROFUS-tilsluttet dansk licenseret casino med spillerbeskyttelse"
+          caption="Spilnu er et eksempel på et dansk licenseret casino med fuld ROFUS-tilslutning og spillerbeskyttelse"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

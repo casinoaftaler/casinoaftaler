@@ -86,6 +86,12 @@ const BedsteNyeCasinoer = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={kapowForside}
+          alt="Kapow casino forside med populære spil og moderne design som eksempel på et nyt dansk casino"
+          caption="Kapow er et eksempel på et nyt dansk licenseret casino med moderne brugerflade og kureret spiludvalg"
+        />
+
         <InlineCasinoCards title="Bedste Nye Casinoer" />
 
         <Separator className="my-10" />
