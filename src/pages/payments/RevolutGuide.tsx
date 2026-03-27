@@ -93,7 +93,7 @@ const RevolutGuide = () => {
       }
       additionalSections={[
         {
-          position: "after-intro",
+          position: "after-whatis",
           title: "Gambling-Blokering – Revoluts Unikke Ansvarligt Spil-Funktion",
           content: (
              <>
