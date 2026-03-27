@@ -23,6 +23,12 @@ import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, Check, X, Smartphone, Headphones, Users, Globe, AlertTriangle, Target, Crown } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import royalcasinoForside from "@/assets/screenshots/royalcasino-forside.png";
+import royalcasinoSpillemaskiner from "@/assets/screenshots/royalcasino-spillemaskiner.png";
+import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.png";
+import royalcasinoGruppen from "@/assets/screenshots/royalcasino-gruppen.png";
+import royalcasinoKampagner from "@/assets/screenshots/royalcasino-kampagner.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -84,6 +90,7 @@ const RoyalCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">I et marked domineret af internationale giganter som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> profilerer Royal Casino sig som en dansk-licenseret platform med stærkt fokus på live casino, klassisk design og lokal brugerflade. Det giver høj genkendelighed for danske spillere, men uden at platformen er statsejet eller en del af Danske Spil.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Men troværdighed alene sælger ikke i 2026. Det danske casinomarked er mere konkurrencepræget end nogensinde, og spillere forventer stort spiludvalg, hurtige udbetalinger, aggressive bonusser og polerede mobiloplevelser. Royal Casino leverer på nogle af disse parametre – særligt live casino og udbetalingshastighed – men halter på andre. Denne anmeldelse er en ærlig evaluering af, hvornår Royal Casino er det rigtige valg, og hvornår du bør kigge andetsteds.</p>
           <p className="text-muted-foreground leading-relaxed">Vores vurdering er baseret på en 10-dages testperiode i januar 2026 og følger vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>, der evaluerer spiludvalg, bonus, betalinger, kundeservice, sikkerhed og mobiloplevelse. Royal Casino scorede 4.2 ud af 5 – primært trukket op af live casino og sikkerhed, men ned af spiludvalgets begrænsede bredde.</p>
+          <ReviewScreenshot src={royalcasinoForside} alt="Royal Casino forside med velkomstbonus på 750 kr., 200 chancer ved oprettelse og anbefalede spil som Pirots 4 og Le Bunny" caption="Royal Casinos forside med velkomstbonus-banner, 200 chancer ved oprettelse og anbefalede spil som Pirots 4 og Hades Fever Boost." eager size="full" />
         </section>
 
           <YoutubeEmbed
@@ -118,6 +125,7 @@ const RoyalCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Udvalget dækker alle kernekategorier: europæisk <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> (inkl. Lightning Roulette, Immersive Roulette og dansk roulette), <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> (Infinite Blackjack, VIP-borde med indsatser op til 50.000 kr., og standard-borde fra 50 kr.), <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> i flere varianter, og et komplet game show-sortiment med Crazy Time, Monopoly Live, Dream Catcher, Lightning Dice og Deal or No Deal.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">De danske borde er tilgængelige primært i aftentimerne (16:00–02:00) og hele weekenden. Dealerne taler flydende dansk, og interaktionen føles naturlig og afslappet. Vi observerede en gennemsnitlig ventetid på under 30 sekunder for at finde en plads på dansk blackjack – hurtigere end de fleste landbaserede casinoer. Streaming-kvaliteten var konsistent høj med jævn 60fps-video og klar lyd.</p>
           <p className="text-muted-foreground leading-relaxed">Sammenlignet med <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>s live casino er Royal Casinos udvalg smallere (60+ vs. 100+ borde), men de danske dealer-borde giver en intimitet og kulturel relevans, som ingen international operatør kan matche. For danske spillere, der vægter den autentiske casinooplevelse, er Royal Casinos live casino-sektion den bedste i landet.</p>
+          <ReviewScreenshot src={royalcasinoLiveCasino} alt="Royal Casino live casino med Evolution og Pragmatic Play lobbyer, Lightning Roulette, Crazy Pachinko og mange roulette-varianter" caption="Royal Casinos live casino-lobby med Evolution Gaming og Pragmatic Play – bredt udvalg af roulette, blackjack og game shows." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -129,6 +137,7 @@ const RoyalCasinoAnmeldelse = () => {
            <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Regneeksempel:</strong> Du indbetaler 750 kr. og modtager 750 kr. i matchbonus. Samlet saldo: 1.500 kr. Omsætningskrav: (750 + 750) × 10 = 15.000 kr. Med en gennemsnitlig slot-RTP på 96% er dit statistisk forventede tab under omsætningen ca. 600 kr. Det efterlader dig med ca. 900 kr. – en reel bonusværdi på ca. 150 kr. (750 bonus minus 600 statistisk tab). Det er en positiv forventet værdi, som gør bonussen værd at tage, men du skal være forberedt på variansen.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Løbende kampagner inkluderer ugentlige <Link to="/free-spins" className={linkClass}>free spins</Link>-tildelinger, sæsonbaserede events og live casino-kampagner med ekstra-gevinster på udvalgte borde. Kampagnefrekvensen er lavere end hos aggressive operatører som <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link>, men vilkårene fremstår forholdsvis tydelige og nemme at gennemgå.</p>
           <p className="text-muted-foreground leading-relaxed">Det er værd at bemærke, at Royal Casino <strong>ikke</strong> tilbyder en <Link to="/no-sticky-bonus" className={linkClass}>no-sticky bonus</Link> eller <Link to="/bonus-uden-indbetaling" className={linkClass}>bonus uden indbetaling</Link>. For bonusjægere er platforme som <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> (no-sticky) eller <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link> (bonus uden indbetaling) mere fordelagtige. Royal Casinos bonusstrategi handler om at tiltrække langsigtede spillere snarere end at vinde bonusjæger-segmentet.</p>
+          <ReviewScreenshot src={royalcasinoKampagner} alt="Royal Casino kampagner med 200 chancer ved oprettelse, 750 kr. bonus, marts-bonus og weekend-mission til Cygnus 5" caption="Kampagnesiden hos Royal Casino med velkomstbonusser, sæsonkampagner og weekend-missioner med chancer til udvalgte spil." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -143,6 +152,7 @@ const RoyalCasinoAnmeldelse = () => {
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Sparkles className="h-5 w-5 text-primary" />Bordspil</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Klassisk <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, europæisk og fransk <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> samt flere varianter af poker og andre bordspil.</p></CardContent></Card>
           </div>
           <p className="text-muted-foreground leading-relaxed">For den gennemsnitlige danske spiller er udvalget bredt nok til daglig brug. Hvis du har meget specifikke præferencer for niche-studios eller helt nye udgivelser, kan det stadig være en god idé at sammenligne med flere platforme.</p>
+          <ReviewScreenshot src={royalcasinoSpillemaskiner} alt="Royal Casino populære spillemaskiner med Starburst, Sweet Bonanza, Gates of Olympus, Book of Dead og Gonzo's Quest" caption="Populære spillemaskiner hos Royal Casino – klassikere som Starburst og Book of Dead samt nyere titler som Le Bandit og Gold Blitz Express." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -199,6 +209,7 @@ const RoyalCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casinos sikkerhedsprofil er stærk i dansk kontekst. Platformen opererer under dansk licens og er underlagt løbende regulatorisk tilsyn. Det betyder krav til ansvarligt spil, anti-hvidvask, spillerverifikation og dokumentation af centrale processer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">ROFUS-integration er fuldstændig og øjeblikkelig. <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjerne er blandt de mest omfattende, vi har testet: indbetalingsgrænser (daglige, ugentlige, månedlige), tabsgrænser, sessionsgrænser, reality checks og selvudelukkelse – alt tilgængeligt med få klik.</p>
           <p className="text-muted-foreground leading-relaxed">For spillere, der prioriterer sikkerhed højt, er Royal Casino et solidt valg. Kombinationen af dansk licens, ROFUS-tilslutning og tydelige kontrolmekanismer giver en høj grad af tryghed. Læs mere om <Link to="/casino-licenser" className={linkClass}>casino licenser</Link> og deres betydning.</p>
+          <ReviewScreenshot src={royalcasinoGruppen} alt="Royal Gruppen med RoyalCasino.dk online casino og Royal Casino Aarhus fysisk casino på Store Torv" caption="Royal Gruppen bag platformen – RoyalCasino.dk og det fysiske Royal Casino Aarhus på Store Torv med over 30 års historie." size="full" />
         </section>
 
         <Separator className="my-10" />
