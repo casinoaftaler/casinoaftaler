@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-roulette-bord.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
@@ -163,13 +162,6 @@ const RouletteStrategiGuide = () => {
             Denne side er skrevet for spillere, der vil forstå <em>hvorfor</em> de taber – ikke for spillere, der leder efter magiske systemer. Hvis du accepterer den præmis, har du allerede en fordel: ikke over casinoet, men over de 90 % af roulette-spillere, der stadig tror, at det næste spin skylder dem noget. Herfra bygger vi en matematisk forståelse, der gør dig i stand til at træffe rationelle beslutninger om dit spil, dit budget og din risikotolerance.
           </p>
         </section>
-
-        <ReviewScreenshot
-          src={danskespilLiveRouletteBord}
-          alt="Roulette-bord med overblik over indsatsfelter – strategisk valg af væddemål påvirker variansen"
-          caption="Roulette-bordets layout viser de forskellige indsatsmuligheder – fra inside bets med høj varians til outside bets med lavere."
-          size="full"
-        />
 
         <InlineCasinoCards title="Bedste Casinoer til Roulette" count={4} />
 

@@ -9,7 +9,6 @@ import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import bet365Lobby from "@/assets/screenshots/bet365-casino-lobby.png";
 import rofusRegistrering from "@/assets/screenshots/rofus-registrering-udelukkelse.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -272,12 +271,6 @@ const StopSpilletGuide = () => {
             første kontaktperson, der lytter, vejleder og åbner døre til videre støtte.
           </p>
         </section>
-
-        <ReviewScreenshot
-          src={bet365Lobby}
-          alt="Bet365 casino-lobby – alle danske licenserede casinoer er forpligtet til at vise links til StopSpillet og ROFUS"
-          caption="Licenserede casinoer som Bet365 skal tydeligt linke til StopSpillet og hjælperessourcer"
-        />
 
         <Separator className="my-10" />
 

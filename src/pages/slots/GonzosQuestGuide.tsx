@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import leovegasLobby from "@/assets/screenshots/leovegas-lobby.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/gonzos-quest-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -134,13 +133,6 @@ const GonzosQuestGuide = () => {
             Denne guide undersøger Gonzo's Quests matematiske model i detaljer, sammenligner den med moderne alternativer, og vurderer, hvornår den stadig er et relevant valg – og hvornår du bør vælge noget nyere. Det er en ærlig analyse af en legende.
           </p>
         </section>
-
-        <ReviewScreenshot
-          src={leovegasLobby}
-          alt="Casino-lobby med NetEnt-spil – Gonzo's Quest er en af NetEnts mest ikoniske titler"
-          caption="Gonzo's Quest er en NetEnt-klassiker der findes i praktisk talt alle danske casinoers spiludvalg."
-          size="full"
-        />
 
         <Separator className="my-10" />
 

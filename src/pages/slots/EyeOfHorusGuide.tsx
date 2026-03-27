@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.png";
 import heroImage from "@/assets/heroes/eye-of-horus-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -76,12 +75,6 @@ const EyeOfHorusGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Denne landbaserede arv giver Eye of Horus en særlig karakter, der adskiller den fra rent digitale slots. Interfacet er bevidst minimalistisk, lyddesignet er atmosfærisk men ikke overvældende, og gameplay-tempoet er lidt langsommere end moderne online-designede slots. For spillere, der kender Merkur-automater fra europæiske spillehaller, er Eye of Horus et nostalgisk gensyn med et velkendt matematisk fundament.</p>
           <p className="text-muted-foreground leading-relaxed">Spillets popularitet i Danmark – særligt blandt erfarne casino-spillere – skyldes delvist denne autenticitet. Hvor mange moderne slots føles "designet af algoritmer", har Eye of Horus en håndbygget kvalitet, der afspejler Merkurs årtiers erfaring med spilleautomatdesign. Det er en slot, der respekterer sine spillere med gennemsigtig matematik og ren mekanik.</p>
         </section>
-
-        <ReviewScreenshot
-          src={casinostuenSpillemaskiner}
-          alt="Casinostuens spillemaskin-lobby med Blueprint Gaming-slots – Eye of Horus er tilgængelig via flere danske licenserede casinoer"
-          caption="Casinostuens spillemaskin-lobby med adgang til klassiske slots som Eye of Horus"
-        />
 
         <YoutubeEmbed videoId="G8beL2DD1sI" title="Eye of Horus gennemgang – Symbol upgrade og RTP" description="Se en komplet gennemgang af Eye of Horus: symbol upgrade-mekanikken og expanding symbols forklaret i praksis." uploadDate="2026-03-07" duration="PT2M45S" />
         <VideoContextBox heading="Her gennemgår vores streamer Eye of Horus i praksis">

@@ -12,7 +12,6 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.png";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.png";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -213,13 +212,6 @@ const FibonacciBlackjackGuide = () => {
             </CardContent>
           </Card>
         </section>
-
-        <ReviewScreenshot
-          src={betanoLiveCasino}
-          alt="Live casino-lobby med blackjack-borde – Fibonacci-systemet kan anvendes ved alle bordtyper med varierende indsatsgrænser"
-          caption="En live casino-lobby med flere blackjack-varianter – Fibonacci-systemet kan bruges ved ethvert bord inden for dets indsatsgrænser."
-          size="full"
-        />
 
         <Separator className="mb-12" />
 

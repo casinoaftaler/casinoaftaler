@@ -3,7 +3,6 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.png";
-import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.png";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
@@ -288,12 +287,6 @@ const LiveBlackjackGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             Konklusion: Card counting fungerer ikke i live casino online. Fokusér i stedet på perfekt basisstrategi – den giver 0,50 % house edge, som er lavere end næsten alle andre spilformer. Supplér med disciplineret bankroll management, og du har den mest fordelagtige spilleoplevelse, live casino tilbyder. Det er vigtigere at spille 10.000 hænder med perfekt basisstrategi end at forsøge at tælle kort i 100 hænder.
           </p>
-          <ReviewScreenshot
-            src={danskespilLiveBlackjack}
-            alt="Danske Spil live blackjack-bord med dealer, kort-shoe og Blackjack betaler 3 til 2 regler synlige"
-            caption="Danske Spil Blackjack – live bord med 3:2 udbetaling, forsikring 2:1 og indsatsgrænser fra 50 til 2.500 kr."
-            size="full"
-          />
         </section>
 
         <Separator className="my-10" />

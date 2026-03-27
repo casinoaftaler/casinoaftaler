@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spildansknuLobby from "@/assets/reviews/spildansknu-lobby.png";
-import kapowRegistrering from "@/assets/screenshots/kapow-registrering.png";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
@@ -155,13 +154,6 @@ const NyeCasinoerDanskLicens = () => {
             ))}
           </div>
         </section>
-
-        <ReviewScreenshot
-          src={kapowRegistrering}
-          alt="Registreringsformular med CPR-verifikation og overførselsgrænser hos dansk licenseret online casino"
-          caption="Kontooprettelse hos et dansk licenseret casino – dansk licens kræver CPR og MitID-verifikation"
-          size="full"
-        />
 
         <Separator className="my-10" />
 

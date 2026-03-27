@@ -1,6 +1,5 @@
 import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import kapowRegistrering from "@/assets/screenshots/kapow-registrering.png";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -128,13 +127,6 @@ const HurtigRegistreringGuide = () => {
           </div>
         </div>
       </section>
-
-        <ReviewScreenshot
-          src={kapowRegistrering}
-          alt="Registreringsformular hos dansk casino med MitID-integration for hurtig kontoverifikation"
-          caption="Registreringsprocessen hos moderne danske casinoer kræver kun få klik takket være MitID-integration."
-          size="full"
-        />
 
       <div className="container py-6">
       </div>

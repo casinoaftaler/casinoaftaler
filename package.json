@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/seo-guardrails.mjs && vite build",
-    "build:dev": "node scripts/seo-guardrails.mjs && vite build --mode development",
+    "build": "node scripts/seo-guardrails.mjs && node scripts/screenshot-reuse-guardrail.mjs && vite build",
+    "build:dev": "node scripts/seo-guardrails.mjs && node scripts/screenshot-reuse-guardrail.mjs && vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
     "seo:guardrails": "node scripts/seo-guardrails.mjs"

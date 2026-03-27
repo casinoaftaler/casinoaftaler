@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import heroImage from "@/assets/heroes/buffalo-king-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -68,12 +67,6 @@ const BuffaloKingGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> har designet Buffalo King specifikt til at appellere til spillere, der jager store enkelt-gevinster. Det 6×4 grid med 4.096 gevinstmuligheder (All Ways) sikrer, at der er mange potentielle gevinstlinjer, mens multiplikator-stacking giver hver linje potentiale for ekstreme forstørrelser. Resultatet er en slot med en gevinstfordeling, der er ekstremt skævvredet mod sjældne, store hændelser.</p>
           <p className="text-muted-foreground leading-relaxed">Den matematiske realitet er dog nøgtern: gennemsnitlig multiplikatorværdi under free spins er estimeret til kun 1,3-1,5× (fordi de fleste symboler IKKE får tildelt multiplikatorer). De exceptionelle stacking-øjeblikke, der driver max win-potentialet, forekommer med ekstremt lav frekvens. Buffalo King er et klassisk eksempel på en slot, hvor markedsføringens max win-tal (93.750×) afspejler et statistisk yderpunkt, ikke en realistisk forventning.</p>
         </section>
-
-        <ReviewScreenshot
-          src={betiniaLobby}
-          alt="Betinia casino-lobby med Pragmatic Play-filter – her finder du Buffalo King og andre høj-volatile spillemaskiner"
-          caption="Betinia's spillemaskin-lobby med mulighed for at filtrere efter Pragmatic Play-titler som Buffalo King"
-        />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil og Volatilitetsanalyse</h2>

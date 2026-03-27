@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.png";
-import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-roulette-bord.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -129,13 +127,6 @@ export default function LabouchereRouletteGuide() {
             Labouchère er særligt populært blandt erfarne spillere, der finder Martingale for aggressivt og <Link to="/casinospil/roulette/dalembert-roulette" className={linkClass}>D'Alembert</Link> for passivt. Det repræsenterer en mellemvej – men som vi vil demonstrere, er det stadig en vej med negativ forventet værdi i enden.
           </p>
         </section>
-
-        <ReviewScreenshot
-          src={mrgreenLiveRoulette}
-          alt="Live roulette-bord med chips arrangeret – Labouchere-systemet kræver en talrække til at styre indsatser"
-          caption="Et roulette-bord egner sig til Labouchere-systemet – indsatsen beregnes ud fra den aktuelle talrækkes ydre tal."
-          size="full"
-        />
 
         {/* Sådan fungerer det */}
         <section className="mb-12">
@@ -273,13 +264,6 @@ export default function LabouchereRouletteGuide() {
             Vores anbefaling er den flade sekvens (1-1-1-1-1) eller den svagt pyramidiske (1-1-2-1-1). De giver de bedste odds for at gennemføre sekvensen, selvom profitmålet er lavere. Husk: det er bedre at gennemføre 10 sekvenser á 250 kr. end at fejle 3 sekvenser á 650 kr. og miste mere, end du har vundet.
           </p>
         </section>
-
-        <ReviewScreenshot
-          src={danskespilLiveRouletteBord}
-          alt="Danske Spil live roulette med europæisk hjul og indsatsområde – velegnet til Labouchère-sekvenser på lige-chancer"
-          caption="Europæisk live roulette hos Danske Spil – det foretrukne format til Labouchère-systemets lige-chancer indsatser"
-          size="full"
-        />
 
         {/* Simulering */}
         <section className="mb-12">

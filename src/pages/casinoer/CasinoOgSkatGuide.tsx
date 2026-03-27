@@ -9,7 +9,6 @@ import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -76,12 +75,6 @@ const CasinoOgSkatGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">I denne dybdegående guide gennemgår vi alle skattemæssige aspekter af casinospil i Danmark: Det danske afgiftssystem, skatteforhold for forskellige casinotyper, kryptovaluta-specifike overvejelser, fysiske casinoer i udlandet, praktisk selvangivelse for skattepligtige gevinster, og konkrete regneksempler der illustrerer den økonomiske forskel mellem skattefrit og skattepligtigt spil.</p>
           <Card className="bg-primary/5 border-primary/20 my-6"><CardContent className="pt-6"><p className="text-sm text-muted-foreground"><strong>Juridisk disclaimer:</strong> Denne guide er udarbejdet med omhyggelighed og baseret på gældende dansk skattelovgivning per februar 2026. Den erstatter dog ikke professionel skatterådgivning. Skatteforhold kan ændre sig, og individuelle omstændigheder kan påvirke din skattesituation. Ved tvivl anbefaler vi at konsultere en skatterevisor eller SKAT direkte.</p></CardContent></Card>
         </section>
-
-        <ReviewScreenshot
-          src={betiniaBonusvilkaar}
-          alt="Betinia bonusvilkår og omsætningskrav – vigtige betingelser at kende for skattefri gevinster"
-          caption="Bonusvilkår på et dansk licenseret casino – gevinster herfra er skattefri for danske spillere"
-        />
 
         <InlineCasinoCards title="Skattefri casinoer med dansk licens" />
 

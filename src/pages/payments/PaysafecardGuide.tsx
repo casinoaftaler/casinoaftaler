@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import betiniaBetalingOversigt from "@/assets/screenshots/betinia-betaling-oversigt.webp";
 import paysafecardHero from "@/assets/heroes/paysafecard-hero.jpg";
 
 const PaysafecardGuide = () => {
@@ -140,12 +139,6 @@ const PaysafecardGuide = () => {
                <p className="mb-4 text-muted-foreground leading-relaxed">
                  Vi testede Paysafecard på tre danske casinoer med Spillemyndighedens licens i februar 2026. Vi købte tre fysiske Paysafecard-kuponer à 500 kr. i en 7-Eleven i København. Testen fokuserede på indbetalingshastighed, brugeroplevelse, bonuskvalificering og udbetalingsalternativer.
                </p>
-
-               <ReviewScreenshot
-                 src={betiniaBetalingOversigt}
-                 alt="Forudbetalte betalingsmetoder inkl. Paysafecard i kassesystemet hos et dansk licenseret casino"
-                 caption="Paysafecard er tilgængelig som forudbetalt indbetalingsmetode i casinoets kasse"
-               />
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Købsoplevelse:</strong> Kuponkøbet tog under 2 minutter. Vi betalte med kontanter (for anonymitetstest) og modtog en kvittering med den 16-cifrede PIN-kode. Kassemedarbejderen stillede ingen spørgsmål og krævede ingen identifikation. Alternativt kan kuponer købes digitalt via paysafecard.com med MitID-login, men dette eliminerer anonymitetsfordelen.
               </p>
