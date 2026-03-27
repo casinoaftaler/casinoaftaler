@@ -3,12 +3,19 @@
  * Uses semantic <figure>/<figcaption> for SEO (Google Image search).
  * Images are lazy-loaded by default (set eager=true for above-the-fold).
  * Includes an evergreen "Verificeret screenshot" badge for E-E-A-T.
+ *
+ * Size variants:
+ *   - "full"    → full container width (default, for wide landscape screenshots)
+ *   - "medium"  → max 600px, centered (for UI dialogs, login screens, etc.)
+ *   - "compact" → max 420px, centered (for narrow/portrait screenshots)
  */
 
 import { Camera } from "lucide-react";
 
+type ScreenshotSize = "full" | "medium" | "compact";
+
 interface ReviewScreenshotProps {
-  /** Full URL to the image (storage bucket) */
+  /** Full URL to the image (storage bucket or import) */
   src: string;
   /** Unique, descriptive alt text – critical for SEO */
   alt: string;
@@ -16,12 +23,20 @@ interface ReviewScreenshotProps {
   caption?: string;
   /** Set to true for the first image in the article */
   eager?: boolean;
+  /** Controls the max-width of the screenshot */
+  size?: ScreenshotSize;
 }
 
-export function ReviewScreenshot({ src, alt, caption, eager = false }: ReviewScreenshotProps) {
+const sizeClasses: Record<ScreenshotSize, string> = {
+  full: "w-full",
+  medium: "w-full max-w-[600px] mx-auto",
+  compact: "w-full max-w-[420px] mx-auto",
+};
+
+export function ReviewScreenshot({ src, alt, caption, eager = false, size = "full" }: ReviewScreenshotProps) {
   return (
     <figure className="my-6">
-      <div className="relative">
+      <div className={`relative ${sizeClasses[size]}`}>
         <img
           src={src}
           alt={alt}
