@@ -76,6 +76,12 @@ const VRCasinoerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">I denne dybdegående guide gennemgår vi alt, du behøver at vide om VR casinoer i 2026: Teknologiens nuværende tilstand, de tilgængelige platforme og spil, det nødvendige udstyr, samt fordelene og begrænsningerne. Vi analyserer også, hvordan VR-gambling forholder sig til dansk regulering og <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>, samt giver vores vurdering af, hvornår VR casinoer vil blive mainstream i Danmark.</p>
         </section>
 
+        <ReviewScreenshot
+          src={videoslotsForside}
+          alt="Videoslots casino-forside med innovativt spiludvalg og avancerede funktioner som Battle of Slots"
+          caption="Videoslots er et eksempel på et innovativt casino med unikke spilmekanikker og stort spiludvalg"
+        />
+
         <InlineCasinoCards title="Anbefalede licenserede casinoer med innovative spil" />
 
         <section className="mb-12">

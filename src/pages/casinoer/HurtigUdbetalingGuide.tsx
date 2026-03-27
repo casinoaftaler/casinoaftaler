@@ -158,6 +158,12 @@ const HurtigUdbetalingGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaBetalingOversigt}
+          alt="Betinia udbetalingsoversigt med betalingsmetoder og behandlingstider for danske spillere"
+          caption="Betinias betalingsoversigt viser de tilgængelige udbetalingsmetoder og forventede behandlingstider"
+        />
+
         <InlineCasinoCards title="Anbefalede casinoer med hurtige udbetalinger" />
 
         {/* Hvad definerer hurtig udbetaling */}

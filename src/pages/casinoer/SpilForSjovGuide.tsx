@@ -76,6 +76,12 @@ const SpilForSjovGuide = () => {
           <p className="text-muted-foreground leading-relaxed">I denne guide gennemgår vi alle muligheder for at spille casino for sjov: Demo-tilstand på spilleautomater og bordspil, <Link to="/bonus-uden-indbetaling" className={linkClass}>gratis bonusser uden indbetaling</Link>, <Link to="/free-spins" className={linkClass}>free spins</Link> og sociale casinospil. Vi forklarer, hvordan du finder de bedste gratis muligheder, hvad du skal være opmærksom på med bonusvilkår, og hvordan du udnytter gratis spil til at forbedre din forståelse af casinospil.</p>
         </section>
 
+        <ReviewScreenshot
+          src={onecasinoSpillemaskiner}
+          alt="OneCasino spillemaskin-lobby med gratis demo-versioner af populære slots tilgængelige uden registrering"
+          caption="Mange danske casinoer som OneCasino tilbyder demo-tilstand, hvor du kan afprøve spil helt gratis"
+        />
+
         <InlineCasinoCards title="Casinoer med gratis demo-spil og bonusser" />
 
         <section className="mb-12">

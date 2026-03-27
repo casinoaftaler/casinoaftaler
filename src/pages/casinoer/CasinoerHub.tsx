@@ -209,6 +209,12 @@ export default function CasinoerHub() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={betanoLobby}
+          alt="Betano casino-lobby med overblik over kategorier, populære spil og navigationsmuligheder på dansk"
+          caption="Et typisk dansk casino-lobby med kategoriseret spiludvalg og hurtig navigation"
+        />
+
         {/* ── SECTION 2: Alle Casino-Kategorier (cards) ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">

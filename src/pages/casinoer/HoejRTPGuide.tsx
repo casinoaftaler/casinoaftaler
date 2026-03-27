@@ -88,6 +88,12 @@ const HoejRTPGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia spillemaskin-lobby med filtrering efter RTP og spiludbyder til at finde spil med høj tilbagebetaling"
+          caption="Betinias lobby giver mulighed for at filtrere og sortere spil, så du nemt finder titler med høj RTP"
+        />
+
         <InlineCasinoCards title="Anbefalede casinoer med spil med høj RTP" />
 
         {/* Hvad er RTP */}

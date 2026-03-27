@@ -76,6 +76,12 @@ const LicenseredeCasinoerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">I denne dybdegående guide gennemgår vi alt, du behøver at vide om licenserede casinoer i Danmark: Hvad licensen kræver, hvilken beskyttelse den giver dig, hvordan du verificerer et casinos licens, og hvorfor du altid bør undgå ulicenserede platforme. Vi sammenligner også den danske licens med internationale alternativer og giver dig konkrete værktøjer til at vurdere kvaliteten af licenserede casinoer.</p>
         </section>
 
+        <ReviewScreenshot
+          src={spildanskForside}
+          alt="Danske Spil forside som eksempel på et licenseret dansk online casino med Spillemyndigheden-godkendelse"
+          caption="Danske Spil er et eksempel på et fuldt licenseret casino reguleret af Spillemyndigheden"
+        />
+
         <InlineCasinoCards title="Anbefalede licenserede casinoer i Danmark" />
 
         <section className="mb-12">
