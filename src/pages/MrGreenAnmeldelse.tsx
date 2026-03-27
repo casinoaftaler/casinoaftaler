@@ -140,6 +140,13 @@ const MrGreenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Lad os beregne den reelle bonusværdi: Du indbetaler 1.000 kr. og modtager 1.000 kr. i bonus. Med 10x omsætningskrav skal du gennemspille (1.000 + 1.000) × 10 = 20.000 kr. Ved en gennemsnitlig RTP på 96% er det statistisk forventede tab under gennemspilningen ~800 kr. – hvilket giver en teoretisk nettogevinst på ~200 kr. fra bonussen. Mr Greens kuraterede spiludvalg har typisk højere gennemsnitlig RTP end markeder med mange lavkvalitetsspil.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Udover velkomstbonussen har Mr Green et af branchens bedste kampagneprogrammer for eksisterende spillere. Ugentlige <Link to="/free-spins" className={linkClass}>free spins</Link>-tilbud, sæsonkampagner og eksklusive turneringer sikrer, at der altid er noget at se frem til. Mr Greens kampagner er typisk mere kreative og veldesignede end branchens gennemsnit – et afspejling af brandets generelle tilgang til kvalitet. Vi har set alt fra "mystery bonusser" med variabel værdi til tematiske kampagner knyttet til nye spiludgivelser.</p>
           <p className="text-muted-foreground leading-relaxed">En bemærkelsesværdig og kontroversiel detalje er, at Mr Greens Green Gaming-værktøj kan påvirke dine kampagnetilbud. Hvis systemet vurderer, at din spilleadfærd viser risikotegn, kan visse kampagner begrænses eller helt fjernes fra dit tilbud. Det er en tilgang, der prioriterer spillerbeskyttelse over profit – selv på bekostning af kampagneindtægter. For den ansvarlige spiller er det en tryghed; for den bonusjæger, der ønsker maksimal værdi uden begrænsninger, kan det føles frustrerende. Vi vurderer det som en positiv praksis, der understreger Mr Greens seriøsitet.</p>
+
+          <ReviewScreenshot
+            src={mrgreenRakeback}
+            alt="Mr Green 20 procent ugentlig rakeback kampagne med Gentlemanden-tema"
+            caption="Mr Greens løbende kampagner – her 20% ugentlig rakeback for eksisterende spillere."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
