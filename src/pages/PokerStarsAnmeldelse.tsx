@@ -104,6 +104,7 @@ const PokerStarsAnmeldelse = () => {
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Stars Rewards er markant ringere end det gamle VIP-program", "Rake er relativt høj – 5 % cap varierer efter stakes", "Poker kræver desktop-klient for fuld funktionalitet", "Casino-bonus er mindre generøs end hos specialister", "Sportsvæddemål kan ikke matche bet365 eller Unibet", "Interface kan virke overvældende for rene casino-spillere", "Mangel på Hacksaw Gaming og Nolimit City i casino-sektionen", "Pokermiljøet er tøft – mange regulars gør det svært for nybegyndere"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
           </div>
           <ReviewScreenshot src={pokerstarsSpillemaskiner} alt="PokerStars Casino spillemaskiner med populære titler som Legacy of Dead og Gates of Olympus" caption="PokerStars Casino med populære spillemaskiner, eksklusive titler og kategorifiltre." size="full" />
+          <p className="text-muted-foreground leading-relaxed">Casino-sektionen suppleres af et fuldt udbygget live casino drevet af Evolution Gaming, hvor PokerStars har sikret sig eksklusive brandede borde med dedikerede dealers.</p>
           <ReviewScreenshot src={pokerstarsLiveCasino} alt="PokerStars live casino med eksklusive PokerStars-borde og Lightning Roulette fra Evolution Gaming" caption="Live casino-lobbyen med eksklusive PokerStars-brandede borde, blackjack og roulette-varianter." size="full" />
         </section>
 
@@ -145,6 +146,7 @@ const PokerStarsAnmeldelse = () => {
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">PokerStars' udbetalingsprocessering er generelt hurtig og pålidelig. MitID bruges til verifikation ved kontoprettelse, og yderligere KYC er sjældent nødvendig for standardbeløb. For større udbetalinger (over 50.000 kr.) kan der kræves yderligere dokumentation, hvilket er standard praksis under dansk lovgivning.</p>
           <ReviewScreenshot src={pokerstarsBetalinger} alt="PokerStars betalingsmetoder med MobilePay, Visa, PayPal, Skrill og Trustly til Danmark" caption="Oversigt over alle betalingsmetoder hos PokerStars med ind- og udbetalingsmuligheder for danske spillere." size="full" />
+          <p className="text-muted-foreground leading-relaxed">Belønningssystemet hos PokerStars erstatter traditionelle bonusser med Kister og Challenges, der giver cashback og free spins uden omsætningskrav – en tilgang der belønner regelmæssigt spil frem for store enkeltindskud.</p>
           <ReviewScreenshot src={pokerstarsKampagner} alt="PokerStars kampagner og belønninger med Kister, Challenges og Ranglister" caption="PokerStars' kampagne- og belønningssystem med Kister, Challenges og Mine Belønninger." size="full" />
         </section>
 
