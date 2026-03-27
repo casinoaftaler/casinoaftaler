@@ -21,6 +21,10 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { ShieldCheck, Zap, Check, X, Globe, Gamepad2, Trophy, Headphones, Wallet, Target, Users, TrendingUp, BarChart3 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import nordicbetForside from "@/assets/screenshots/nordicbet-casino-forside.png";
+import nordicbetKampagner from "@/assets/screenshots/nordicbet-kampagner-bonusser.png";
+import nordicbetLiveCasino from "@/assets/screenshots/nordicbet-live-casino-lobby.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -94,6 +98,13 @@ const NordicBetAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Casino-sektionen har gennemgået en markant transformation de seneste år. Hvad der startede som et beskedent supplement til sportsbook'en er vokset til en konkurrencedygtig casino-platform med over 1.000 spiltitler fra alle de store udbydere. Denne udvikling afspejler Betsson Groups investering i at gøre NordicBet til en komplet spilleplatform – ikke blot en sportsbook med et casino-appendiks.
           </p>
+
+          <ReviewScreenshot
+            src={nordicbetForside}
+            alt="NordicBet casino-forside med populære slots som Rise of Olympus, Book of Dead og Sweet Bonanza samt seneste vindere"
+            caption="NordicBets casino-sektion – velkomstbonus, populære slots og seneste vindere på forsiden"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -154,6 +165,13 @@ const NordicBetAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <Link to="/live-casino" className={linkClass}>Live casinoet</Link> er drevet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> med et bredt udvalg af borde. Klassisk blackjack og roulette er tilgængeligt i multiple varianter, og game shows som Crazy Time, Monopoly Live og Dream Catcher tilbyder underholdningsværdi ud over traditionelt bordspil. Der mangler dog eksklusive NordicBet-borde – en feature, som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> tilbyder og som giver en mere premium-agtig oplevelse.
           </p>
+
+          <ReviewScreenshot
+            src={nordicbetLiveCasino}
+            alt="NordicBet live casino-lobby med Lightning Roulette, XXXtreme Lightning Roulette, Lightning Blackjack og eksklusive NordicBet-borde"
+            caption="NordicBets live casino – Lyn Borde-kategorien med Lightning-varianter og eksklusive NordicBet Lounge-borde"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -173,6 +191,13 @@ const NordicBetAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Sammenlignet med konkurrenterne er NordicBets bonus-setup gennemsnitligt for det danske marked. <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> tilbyder en lignende struktur med separate sport- og casinobonusser. For spillere, der udelukkende søger casino-bonus, er <Link to="/casino-anmeldelser/mr-green" className={linkClass}>Mr Green</Link> (op til 1.000 kr. + FS) og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (1.000 kr. + 100 FS) solide alternativer. NordicBets fordel er den kombinerede værdi af sport- og casinobonussen for spillere, der udnytter begge.
           </p>
+
+          <ReviewScreenshot
+            src={nordicbetKampagner}
+            alt="NordicBet kampagneside med velkomsttilbud, freebet, casino-bonus og løbende kampagner som Kombi-Boost og Månedens Spil"
+            caption="NordicBets kampagneoversigt – separate velkomsttilbud for sport og casino samt løbende kampagner"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
