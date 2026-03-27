@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import pokerstarsLiveCasino from "@/assets/screenshots/pokerstars-live-casino.png";
 import danskespilRedDoorRoulette from "@/assets/screenshots/danskespil-red-door-roulette.png";
+import xxxtremeLightningRoulette from "@/assets/screenshots/xxxtreme-lightning-roulette-multipliers.png";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
@@ -334,6 +335,12 @@ const LightningRouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             For yderligere perspektiv: sandsynligheden for IKKE at ramme 500x i 1.000 spins er ca. 91 %. I 5.000 spins er den ca. 64 %. Selv efter 10.000 spins har du stadig ca. 41 % chance for aldrig at have ramt 500x. Lightning Roulette er underholdning med potentiale – det er ikke en investering, og 500x bør aldrig være dit "mål" eller din forventning.
           </p>
+          <ReviewScreenshot
+            src={xxxtremeLightningRoulette}
+            alt="XXXtreme Lightning Roulette med tre aktive multiplikatorer på 100x, 100x og 300x vist i Lightning-rammer"
+            caption="XXXtreme Lightning Roulette – her ses tre samtidige Lightning-numre med multiplikatorer op til 300x"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
