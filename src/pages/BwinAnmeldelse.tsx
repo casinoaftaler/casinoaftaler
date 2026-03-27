@@ -205,6 +205,7 @@ const BwinAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Denne segmentering er vigtig at forstå, fordi den forklarer mange af bwins valg: moderate casinobonusser (budgettet prioriterer sports-promotions), et godt-men-ikke-exceptionelt spiludvalg (fokus er på sportsbogen) og en app, der er optimeret til live betting (frem for casino-navigation). Med denne kontekst in mente, lad os gennemgå platformen i detaljer.
           </p>
+          <ReviewScreenshot src={bwinSportsbook} alt="bwin sportsbook forside med Price Boost odds, populære kombispil og live betting på fodbold og tennis" caption="bwins sportsbook med Price Boost-tilbud, populære kombispil og bred dækning af internationale kampe." eager size="full" />
         </section>
 
         <Separator className="my-10" />
