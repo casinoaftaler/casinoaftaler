@@ -8,6 +8,8 @@ import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import unibet from "@/assets/screenshots/unibet-lobby.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
