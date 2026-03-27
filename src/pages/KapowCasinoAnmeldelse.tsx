@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/compone
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowMitidGodkendt from "@/assets/screenshots/kapow-mitid-godkendt.png";
+import kapowForside from "@/assets/screenshots/kapow-forside-populaere-spil.png";
+import kapowKampagner from "@/assets/screenshots/kapow-kampagner-bonusser.png";
+import kapowLiveCasino from "@/assets/screenshots/kapow-live-casino-lobby.png";
+import kapowIndbetaling from "@/assets/screenshots/kapow-indbetaling-visa-mobilepay.png";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
