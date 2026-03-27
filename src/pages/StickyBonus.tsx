@@ -2,6 +2,7 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import comeonKampagner from "@/assets/screenshots/comeon-kampagner.png";
+import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
