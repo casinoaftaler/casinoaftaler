@@ -16,6 +16,7 @@ const NolimitCityGuide = () => (
     heroImage={nolimitHero}
     heroImageAlt="Nolimit City – high-volatility slots med xWays, xNudge og xBomb mekanikker"
     currentPath="/spiludviklere/nolimit-city"
+    extraJsonLd={[buildVideoSchema(`${SITE_URL}/spiludviklere/nolimit-city`, "oLToV0bHrjU", { title: "Nolimit City – Bonus åbninger live", description: "Se Jonas åbne bonusser på populære Nolimit City spillemaskiner live – xWays, xNudge og xBomb mekanikker i praksis.", uploadDate: "2026-03-07", duration: "PT25M0S" })]}
     readTime="18 Min."
     sectionOrder={["strategic", "technical", "intro", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
     strategicTitle="Provokation som Brandstrategi: Tabuer og Markedsposition"
