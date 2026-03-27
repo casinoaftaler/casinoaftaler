@@ -297,6 +297,13 @@ const CasinoBonus = () => {
 
         <Separator className="my-10" />
 
+        <ReviewScreenshot
+          src={kapowVelkomstbonus}
+          alt="Casino bonusvalg ved kontooprettelse med velkomstbonus-tilbud og mulighed for at spille uden bonus"
+          caption="Sådan præsenteres et typisk bonusvalg under oprettelsen – her med free spins som velkomstbonus"
+          size="full"
+        />
+
         {/* ========== 3. GENNEMGANG AF ALLE BONUSTYPER ========== */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Alle bonustyper på det danske marked – dybdegående analyse</h2>

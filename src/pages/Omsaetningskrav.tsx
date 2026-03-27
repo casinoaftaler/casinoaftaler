@@ -361,6 +361,13 @@ const Omsaetningskrav = () => {
             </Card>
           </div>
         </section>
+        <ReviewScreenshot
+          src={kapowRegistrering}
+          alt="Casino registreringsformular med overførselsgrænse og indbetalingsgrænser der påvirker omsætningskrav"
+          caption="Overførselsgrænser fastsættes allerede ved registrering – de påvirker hvor hurtigt du kan opfylde omsætningskrav"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* Strategier */}

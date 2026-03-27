@@ -156,6 +156,13 @@ const NyeCasinoerDanskLicens = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={kapowRegistrering}
+          alt="Registreringsformular med CPR-verifikation og overførselsgrænser hos dansk licenseret online casino"
+          caption="Kontooprettelse hos et dansk licenseret casino – dansk licens kræver CPR og MitID-verifikation"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

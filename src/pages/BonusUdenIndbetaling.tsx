@@ -506,6 +506,13 @@ const BonusUdenIndbetaling = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={kapowVelkomstbonus}
+          alt="Sammenligning af bonus ved indbetaling vs. uden indbetaling med tydelig valgmulighed under casinoregistrering"
+          caption="Bonusvalg ved registrering – de fleste velkomstbonusser kræver en indbetaling for aktivering"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* === SEKTION 6: Hvem passer no deposit bonusser til? === */}

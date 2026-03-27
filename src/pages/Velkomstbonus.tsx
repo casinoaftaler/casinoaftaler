@@ -479,6 +479,13 @@ const Velkomstbonus = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={kapowVelkomstbonus}
+          alt="Kapow Casino bonusvalg ved registrering med 100 spins til Gates of Olympus og toggle til at fortsætte uden bonus"
+          caption="Bonusvalg ved oprettelse – her vælger du aktivt din velkomstbonus eller fortsætter uden"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* Hvilke spil */}

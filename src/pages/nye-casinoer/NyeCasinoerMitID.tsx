@@ -121,6 +121,13 @@ const NyeCasinoerMitID = () => {
           />
         </section>
 
+        <ReviewScreenshot
+          src={kapowMitidRegistrering}
+          alt="MitID-registreringsside hos nyt dansk casino med knap til at starte MitID-verifikation"
+          caption="Trin 2 i registreringen – her starter MitID-verifikationen med ét klik"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* Onboarding comparison - UNIQUE to this page */}

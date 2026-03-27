@@ -160,6 +160,13 @@ const CasinoLicenser = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={kapowMitidRegistrering}
+          alt="MitID-verifikation som del af licenskrav – danske casinoer kræver digital identitetskontrol"
+          caption="Dansk licens kræver MitID-verifikation – her ses trinnet fra et dansk licenseret casino"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── Curaçao Licens ── */}

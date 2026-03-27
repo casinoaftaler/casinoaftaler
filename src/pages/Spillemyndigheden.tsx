@@ -224,6 +224,13 @@ const Spillemyndigheden = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={kapowMitidRegistrering}
+          alt="KYC-identitetsverifikation via MitID på dansk licenseret casino som krævet af Spillemyndigheden"
+          caption="MitID-verifikation er lovpligtigt – Spillemyndigheden kræver identitetskontrol ved oprettelse"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* Roller og Ansvar */}

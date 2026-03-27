@@ -354,6 +354,13 @@ const Indskudsbonus = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={kapowVelkomstbonus}
+          alt="Trin-for-trin bonusaktivering ved indskud hos dansk casino med valgmulighed mellem bonus og spil uden bonus"
+          caption="Eksempel på bonusaktivering ved første indskud – bonussen kan til- eller fravælges"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* Betingelser */}
