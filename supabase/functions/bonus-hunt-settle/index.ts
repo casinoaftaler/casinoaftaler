@@ -42,7 +42,7 @@ serve(async (req) => {
     }
 
     const body = await req.json();
-    const { sessionId, endBalance, averageX } = body;
+    const { sessionId, endBalance: manualEndBalance, averageX } = body;
 
     if (!sessionId) {
       return new Response(JSON.stringify({ error: 'Missing sessionId' }), { status: 400, headers: corsHeaders });
@@ -59,6 +59,27 @@ serve(async (req) => {
       return new Response(JSON.stringify({ error: 'Session not found' }), { status: 404, headers: corsHeaders });
     }
 
+    // Always fetch total winnings from StreamSystem API
+    let totalWinnings = manualEndBalance;
+    try {
+      const STREAMSYSTEM_BASE = "https://www.streamsystem.bet/api/bonushunt/data";
+      const apiUrl = `${STREAMSYSTEM_BASE}/${session.streamsystem_hunt_id}`;
+      const apiResponse = await fetch(apiUrl, { headers: { Accept: 'application/json' } });
+      if (apiResponse.ok) {
+        const apiData = await apiResponse.json();
+        if (apiData?.data?.bonuses && Array.isArray(apiData.data.bonuses)) {
+          const openedSlots = apiData.data.bonuses.filter((b: any) => b.isOpen);
+          const sumWinnings = openedSlots.reduce((sum: number, b: any) => sum + (Number(b.win) || 0), 0);
+          if (sumWinnings > 0) {
+            totalWinnings = sumWinnings;
+          }
+        }
+      }
+    } catch (e) {
+      console.error('Failed to fetch StreamSystem data for total winnings:', e);
+    }
+
+    const endBalance = totalWinnings;
     const results: Record<string, unknown> = {};
 
     // --- Settle GTW ---
