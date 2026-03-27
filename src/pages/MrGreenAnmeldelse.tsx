@@ -176,6 +176,14 @@ const MrGreenAnmeldelse = () => {
 
           <h3 className="mt-6 mb-3 text-xl font-bold">Hvad mangler i Mr Greens katalog?</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det kuraterede udvalg har en bagside. Spillere, der jagter de nyeste udgivelser fra nicheudviklere som Hacksaw Gaming, Push Gaming eller NoLimit City, vil finde et mere begrænset udvalg end hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>. Specifikt manglede Mr Green flere populære high-volatility megaways-titler under vores test, herunder spil fra Hacksaw Gaming, som er en af de mest efterspurgte udviklere blandt erfarne spillere i 2026.</p>
+
+          <ReviewScreenshot
+            src={mrgreenJackpots}
+            alt="Mr Green jackpot-sektion med progressive jackpots og Jackpot Hunt med millionpuljer"
+            caption="Mr Greens jackpot-sektion med progressive puljer op til 6,7 mio. kr. og den eksklusive Jackpot Hunt."
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">For spillere, der prioriterer <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj RTP</Link> og velkendte kvalitetstitler, er Mr Greens udvalg dog mere end tilstrækkeligt. Det er en klassisk quality-vs-quantity afvejning, og Mr Green har truffet et klart og konsistent valg. Spørgsmålet er, om det valg passer til din spilleprofil – og det afhænger helt af, hvad du prioriterer.</p>
         </section>
 
