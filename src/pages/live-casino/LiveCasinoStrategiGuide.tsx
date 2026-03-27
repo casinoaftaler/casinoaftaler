@@ -414,6 +414,12 @@ const LiveCasinoStrategiGuide = () => {
               </p>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src={danskespilUltimateTexas}
+            alt="Ultimate Texas Hold'em live bord hos Danske Spil med community-kort og professionel dealer"
+            caption="Ultimate Texas Hold'em hos Danske Spil – live poker hvor korrekt strategi reducerer house edge til ca. 2,2 %"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
