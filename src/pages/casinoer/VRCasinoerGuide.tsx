@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import videoslotsForside from "@/assets/screenshots/videoslots-forside.png";
+import leovegasLobby from "@/assets/screenshots/leovegas-lobby.png";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
