@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import expektBetaling from "@/assets/screenshots/expekt-betaling.png";
+import expektSpillemaskiner from "@/assets/screenshots/expekt-spillemaskiner.png";
+import expektLiveCasino from "@/assets/screenshots/expekt-live-casino.png";
+import expektSportsbook from "@/assets/screenshots/expekt-sportsbook.png";
+import expektKampagne from "@/assets/screenshots/expekt-kampagne.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
@@ -63,6 +69,7 @@ const ExpektAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekt er ikke bare endnu et casino med en sportsbook boltet på. Det er et af de ældste sportsbetting-brands i Europa, grundlagt i Sverige i slutningen af 1990'erne, og nu en del af Betsson Group AB – en børsnoteret koncern med en årlig omsætning på over 8 milliarder SEK og licenser i mere end 20 jurisdiktioner. Det er en baggrund, der giver Expekt en infrastrukturel soliditet, som mange mindre operatører ikke kan matche.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Nøgletal for Betsson Group (2025): 8,2 mia. SEK i omsætning, 1,8 mia. SEK i EBITDA, over 2.000 ansatte på tværs af 15 kontorer globalt, og licenser i 23 regulerede markeder. Expekt er ét af koncernens seks primære brands – de andre inkluderer Betsson, Betsafe, Mr Vegas, CasiTabi og NordicBet. Denne diversificering betyder, at Expekt drager fordel af stordriftsfordele i teknologi, spiludbydere og compliance.</p>
           <p className="text-muted-foreground leading-relaxed">For den danske spiller er den praktiske konsekvens: Expekt lukker ikke i morgen. Platformens finansielle ryggrad gør den til en af de sikreste operatører på det danske marked. Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> vurderer operatørens finansielle stabilitet som en del af den samlede troværdighedsvurdering.</p>
+          <ReviewScreenshot src={expektSportsbook} alt="Expekt sportsbook med Top Oddsboosts, Missioner med freebets og populære fodboldkampe med live odds" caption="Expekts sportsbook med oddsboosts, missioner der belønner med freebets og bred dækning af internationale kampe." eager size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -109,6 +116,7 @@ const ExpektAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekt splitter velkomstbonussen i to spor: casino og sport. Du skal vælge ved første indbetaling. Casino-bonussen er 50 Gold Spins ved indbetaling af 100 kr. Gevinster fra disse spins er uden <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Sportsbonussen er typisk et risk-free bet eller odds-boost.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Casino-bonus regneeksempel:</strong> Indbetal 100 kr. → modtag 50 Gold Spins. Omsætningskrav på gevinster: 0 kr. Du skal blot omsætte din indbetaling på 100 kr. én gang for at kunne udbetale. Det er markedets måske mest fair bonus.</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Sammenligning:</strong> Expekts casino-bonus er mere beskeden end <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' op til 1.000 kr. + 100 FS og <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link>'s 1.000 kr. + no-deposit bonus. Men Expekt kompenserer med sportsbook-dimensionen – noget hverken LeoVegas eller 888 Casino tilbyder i samme omfang. For den alsidige spiller er den samlede værdi sammenlignelig.</p>
+          <ReviewScreenshot src={expektKampagne} alt="Expekt sportsbetting freebet-tilbud med 100 kr. freebet ved indbetaling og aktivering af tilbud" caption="Expekts freebet-kampagne med tydelige vilkår – indbetal 100 kr. og modtag et 100 kr. freebet til sport." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -123,6 +131,7 @@ const ExpektAnmeldelse = () => {
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sportsbook'en er Expekts ubestridte styrke. Med dækning af 30+ sportsgrene – fra fodbold, tennis og ishockey til mere niche sportsgrene som dart, snooker og MMA – er det en af de mest komplette sportsbooks på det danske marked. Live-betting er responsiv med hurtige odds-opdateringer og cash-out funktionalitet på de fleste markeder.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi analyserede RTP-niveauerne på de mest populære slots under vores test. Starburst (96,08%), Book of Dead (96,21%), Sweet Bonanza (96,48%) og Gates of Olympus (96,50%) var alle til stede i deres standardversioner. Expekt anvender ikke reducerede RTP-versioner – et positivt tegn, der bekræfter, at Betsson Group opretholder fair spilleforhold på tværs af sine brands. Bordspil som blackjack tilbyder standard RTP på 99,5% med optimal strategi.</p>
+          <ReviewScreenshot src={expektSpillemaskiner} alt="Expekt Casino spillemaskiner med populære slots, Expekt Eksklusiv-titler og udbyderoversigt med Pragmatic Play og Hacksaw Gaming" caption="Expekts casino-sektion med populære spillemaskiner, eksklusive titler og nem navigation efter spiludbyder." size="full" />
           <p className="text-muted-foreground leading-relaxed">For spillere, der primært er casino-fokuserede, fungerer sportssektionen som en ekstra dimension af underholdning. Din saldo er delt, så du kan seamlessly skifte mellem at satse på en Champions League-kamp og spille en runde Gates of Olympus. Denne fleksibilitet er Expekts primære differentiator – og den er reel.</p>
         </section>
 
@@ -169,6 +178,7 @@ const ExpektAnmeldelse = () => {
               </tbody>
             </table>
           </div>
+          <ReviewScreenshot src={expektBetaling} alt="Expekt indbetalingsside med MobilePay, Visa, Mastercard, Trustly og Skrill betalingsmetoder" caption="Expekts indbetalingsside med alle tilgængelige betalingsmetoder – MobilePay, kort, Trustly og Skrill." size="full" />
           <p className="text-muted-foreground leading-relaxed">Expekt tilbyder de vigtigste danske betalingsmetoder, men mangler to populære optioner: MobilePay og PayPal. For en platform der opererer på det danske marked, er fraværet af MobilePay en overraskende mangel. Sammenlignet med <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>, der begge tilbyder MobilePay, er det et minus.</p>
         </section>
 
@@ -177,6 +187,7 @@ const ExpektAnmeldelse = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Live casino – Evolution under Betsson-paraplyen</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekts live casino er drevet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og tilbyder ca. 80 borde – et respektabelt antal, om end markant mindre end <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link>'s 200+. Udvalget dækker klassisk <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>, <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> og populære game shows (Crazy Time, Lightning Roulette, Dream Catcher). Minimumsindsat starter ved 10 kr. på standard roulette-borde.</p>
+          <ReviewScreenshot src={expektLiveCasino} alt="Expekt live casino med eksklusive Expekt Roulette, Bet Stacker Blackjack og Top 10 mest populære live spil fra Evolution Gaming" caption="Expekts live casino med eksklusive brandede borde, Top 10-ranking og bred roulette- og blackjack-dækning." size="full" />
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi spillede Lightning Roulette og Blackjack under vores test. Streamingkvaliteten var HD med ca. 1 sekunds forsinkelse – standard for Evolution-borde. Dealerne var professionelle, og interfacet var responsivt. En detalje værd at notere: live casino bidrager kun 5% til bonusomsætning hos Expekt, hvilket er lavt men stadig bedre end de 0%, som mange konkurrenter tilbyder. Med 10x omsætningskrav og 5% bidrag kræves 200.000 kr. i live casino-indsatser for at opfylde et 10.000 kr. krav – praktisk talt umuligt for de fleste spillere.</p>
           <p className="text-muted-foreground leading-relaxed">For den dedikerede live casino-spiller er Expekt ikke det optimale valg. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> har eksklusive brandede borde med højere tilgængelighed, og <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link>'s 10% bidragssats er dobbelt så høj. Men som supplement til sportsbetting og slots fungerer Expekts live casino fint for lejlighedsmæssig brug – særligt hvis du allerede har en konto og ønsker variation uden at skifte platform.</p>
         </section>
