@@ -265,14 +265,6 @@ const Velkomstbonus = () => {
           </div>
         </section>
 
-        <ReviewScreenshot
-          src={betiniaVelkomstbonus}
-          alt="Betinia velkomstbonus aktiveringsflow med 100% op til 1.000 kr. og 3-trins aktivering"
-          caption="Velkomstbonus hos Betinia – 3-trins aktivering: indbetal, aktiver bonus og spil"
-          size="medium"
-        />
-
-
         <InlineCasinoCards title="Bedste casinoer med velkomstbonus" count={6} />
 
         <BonusClusterPriorityLinks currentPath="/velkomstbonus" />
@@ -287,6 +279,13 @@ const Velkomstbonus = () => {
             at kende forskellen, så du vælger det tilbud, der passer bedst
             til din spillestil og dit budget.
           </p>
+
+          <ReviewScreenshot
+            src={betiniaVelkomstbonus}
+            alt="Betinia velkomstbonus aktiveringsflow med 100% op til 1.000 kr. og 3-trins aktivering"
+            caption="Velkomstbonus hos Betinia – 3-trins aktivering: indbetal, aktiver bonus og spil"
+            size="compact"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {bonusTypes.map((type) => (
