@@ -70,6 +70,13 @@ const KapowCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">SkillOnNet Ltd blev grundlagt i 2005 og har hovedsæde i Malta. Selskabet er en mellemstor operatør der driver 30+ casino-brands globalt – herunder PlayOJO, SpinGenie og Slingo – med licenser fra Malta Gaming Authority, UK Gambling Commission og Spillemyndigheden. Det er ikke en Betsson eller Flutter i størrelse, men det er heller ikke en fly-by-night startup. 19 års drift uden større regulatoriske sanktioner giver en vis troværdighedsbasis.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kapow Casino opererer i Danmark med licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er fuldt tilsluttet ROFUS. Spiludvalget tæller over 2.000 titler fra respekterede udbydere. Velkomstbonussen giver 100 Spins til Gates of Olympus ved en overførsel på 100 kr. med 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Men den reelle test er, om substansen bag den eksplosive branding holder i en dybdegående analyse – og det er hvad vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> afslører.</p>
           <p className="text-muted-foreground leading-relaxed">Vores tilgang til Kapow Casino er bevidst anderledes end vores anmeldelser af de store brands. Hvor <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> vurderes som premium-platforme med årtiers track record, vurderer vi Kapow Casino som en mellemoprør-platform der forsøger at differentiere sig via branding og bonus-generøsitet. Det er en vigtig kontekst for resten af denne anmeldelse.</p>
+
+          <ReviewScreenshot
+            src={kapowForside}
+            alt="Kapow Casino forside med populære spil som Gates of Olympus, Starburst og Book of Dead i comic-inspireret design"
+            caption="Kapow Casinos forside – det eksplosive comic-design og populære slots som Gates of Olympus og Book of Dead"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
