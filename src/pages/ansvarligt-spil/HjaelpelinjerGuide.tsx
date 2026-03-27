@@ -506,6 +506,12 @@ const HjaelpelinjerGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={rofusForside}
+          alt="ROFUS forsiden med MitID-login – Danmarks nationale register for selvudelukkelse fra online gambling"
+          caption="ROFUS er det primære værktøj til selvudelukkelse i Danmark – tilgængeligt via MitID"
+        />
+
         <Separator className="my-10" />
 
         {/* ── Sammenligningstabel ── */}

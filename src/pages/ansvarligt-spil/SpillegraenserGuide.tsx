@@ -537,6 +537,12 @@ const SpillegraenserGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilSundeSpillevaner}
+          alt="Danske Spils sektion for sunde spillevaner – eksempel på ansvarligt spil-værktøjer hos et dansk casino"
+          caption="Danske Spil tilbyder avancerede spillegrænse-værktøjer som del af deres ansvarligt spil-program"
+        />
+
         <Separator className="my-10" />
 
         {/* ── EV-model ── */}

@@ -571,6 +571,12 @@ const LudomaniGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={rofusRegistrering}
+          alt="ROFUS selvudelukkelses-registrering – vælg udelukkelsesperiode for at beskytte dig mod ludomani"
+          caption="ROFUS giver mulighed for selvudelukkelse i 24 timer, 1 måned, 3 måneder, 6 måneder eller permanent"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════

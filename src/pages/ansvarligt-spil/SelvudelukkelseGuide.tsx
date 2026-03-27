@@ -438,6 +438,12 @@ const SelvudelukkelseGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={rofusForside}
+          alt="ROFUS-forsiden med MitID-login – her registrerer du selvudelukkelse fra danske online casinoer"
+          caption="ROFUS er Danmarks officielle register for selvudelukkelse – tilgængeligt døgnet rundt via MitID"
+        />
+
         <Separator className="my-10" />
 
         {/* ── Internationale ordninger ── */}

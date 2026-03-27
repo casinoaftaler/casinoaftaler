@@ -581,6 +581,12 @@ const StopSpilletGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={rofusRegistrering}
+          alt="ROFUS udelukkelsesregistrering – vælg mellem midlertidig eller permanent udelukkelse fra gambling"
+          caption="Via ROFUS kan du udelukke dig fra alle danske casinoer med det samme – et vigtigt supplement til StopSpillet"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════

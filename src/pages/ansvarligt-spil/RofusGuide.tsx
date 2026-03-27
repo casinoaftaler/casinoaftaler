@@ -650,6 +650,12 @@ const RofusGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenForside}
+          alt="Spillemyndighedens officielle hjemmeside – den danske myndighed der administrerer ROFUS-registret"
+          caption="Spillemyndigheden fører tilsyn med ROFUS og alle danske casinolicenser"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
