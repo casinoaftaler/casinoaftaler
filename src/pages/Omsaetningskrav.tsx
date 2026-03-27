@@ -3,7 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
 import kapowRegistrering from "@/assets/screenshots/kapow-registrering.png";
-import bet365Bonus from "@/assets/screenshots/bet365-velkomstbonus-vilkaar.png";
+import campobetBonus from "@/assets/screenshots/bet365-velkomstbonus-vilkaar.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -590,9 +590,9 @@ const Omsaetningskrav = () => {
         </section>
 
         <ReviewScreenshot
-          src={bet365Bonus}
-          alt="Bet365 Casino velkomstbonus med 100% op til 1.000 kr. og omsætningskrav på 10x indbetaling plus bonus"
-          caption="Bet365s bonusvilkår viser tydeligt omsætningskravet – 10x på indbetaling + bonus inden for 60 dage"
+          src={campobetBonus}
+          alt="Campobet Casino velkomstbonus med 100% op til 1.000 kr. og omsætningskrav på 10x indbetaling plus bonus"
+          caption="Campobets bonusvilkår viser tydeligt omsætningskravet – 10x på indbetaling + bonus inden for 60 dage"
         />
 
         <Separator className="my-10" />
