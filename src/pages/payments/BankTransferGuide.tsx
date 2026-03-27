@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import bankTransferHero from "@/assets/heroes/bank-transfer-hero.jpg";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import kapowMitidLogin from "@/assets/screenshots/kapow-mitid-login.png";
 
 const BankTransferGuide = () => {
   return (
