@@ -90,6 +90,15 @@ const MrGreenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green Casino er ikke bare endnu et online casino – det er et brand, der har redefineret, hvad en casinooplevelse kan være. Grundlagt i Stockholm i 2008 af tre svenske entreprenører med en fælles vision om at skabe "verdens bedste online casino", har Mr Green konsekvent vundet branchepriser for design, innovation og ansvarligt spil. Hvor de fleste operatører konkurrerer på bonusstørrelser og antal spil, har Mr Green valgt en fundamentalt anderledes tilgang: kvalitet over kvantitet, design over volumen, og spillerbeskyttelse over profitmaksimering.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Denne filosofi gennemsyrer alle aspekter af platformen. Fra det ikoniske grøn-sorte farveskema og den elegante typografi til den kuraterede spilliste og det patenterede Green Gaming-værktøj – alt er designet med omhu og intention. Det er en tilgang, der resonerer dybt med en bestemt type spiller: den bevidste, designorienterede spiller, der ser online casino som en raffineret underholdningsform snarere end et sted at jage den største bonus.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Med en dansk licens fra Spillemyndigheden er platformen fuldt lovlig og sikker for danske spillere. Ejerskabet af Evoke PLC (tidl. 888 Holdings) – en af verdens mest regulerede spilkoncerner med børsnotering på London Stock Exchange – giver en ekstra dimension af finansiel stabilitet og gennemsigtighed, som smaller operatører simpelthen ikke kan matche.</p>
+
+          <ReviewScreenshot
+            src={mrgreenLobby}
+            alt="Mr Green casino forside med Jackpot Hunt, favoritter og velkomstbonus efter login"
+            caption="Mr Greens forside med Jackpot Hunt-sektion, personlige favoritter og det karakteristiske grønne design."
+            eager
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">I denne anmeldelse tester vi Mr Green Casino fra bunden: vi har gennemspillet over 200 spil, testet Green Gaming-værktøjet med reelle data, foretaget ind- og udbetalinger med tre forskellige metoder, og kontaktet kundeservice på fem separate tidspunkter. Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> vægter ansvarligt spil og brugervenlighed højt, og på begge parametre scorer Mr Green Casino exceptionelt.</p>
           <YoutubeEmbed videoId="htCLh4TK6tA" title="Mr Green Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan Mr Green ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/mr-green" />
           <div className="rounded-lg border border-border bg-muted/30 p-5">
