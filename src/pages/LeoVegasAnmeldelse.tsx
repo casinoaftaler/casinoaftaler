@@ -23,6 +23,10 @@ import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Zap, Check, X, Crown, Gamepad2, Trophy, Sparkles, Headphones, Wallet, Target, Users, Smartphone, Globe, TrendingUp } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import leovegasLobby from "@/assets/screenshots/leovegas-lobby.png";
+import leovegasPopulaere from "@/assets/screenshots/leovegas-populaere-spil.png";
+import leovegasLiveCasino from "@/assets/screenshots/leovegas-live-casino.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -94,6 +98,15 @@ const LeoVegasAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne "mobile-first" filosofi har vist sig at være en af de mest forudseende strategibeslutninger i online gambling-historien. I dag spiller over 70 % af alle danske casinospillere primært på mobilen, og LeoVegas var klar til den revolution, længe før den ramte mainstream. Resultatet er en platform, der føles som en native app – indlæsningstider under 1,5 sekunder, touch-optimeret navigation, swipe-baseret spilfiltrering og en kontostryringsoplevelse, der kan klares med få tryk. Det er den slags polering, der kun opstår, når mobil ikke er en tilpasning, men det fundamentale designprincip.
           </p>
+
+          <ReviewScreenshot
+            src={leovegasLobby}
+            alt="LeoVegas forside med velkomsttilbud, Top 10 populære spilleautomater og spilkategorier"
+            caption="LeoVegas' forside med velkomsttilbud og Top 10 mest populære spil hos danske spillere."
+            eager
+            size="full"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             MGM Resorts Internationals opkøb af LeoVegas i 2022 for ca. 607 millioner dollars var en validering af denne strategi. MGM – der driver ikoniske ejendomme som Bellagio, MGM Grand og Mandalay Bay i Las Vegas – så i LeoVegas en mulighed for at ekspandere deres digitale fodaftryk med en operatør, der allerede havde knækket mobilkoden. Opkøbet har tilført LeoVegas yderligere kapital og global hospitality-ekspertise, mens den svenske teknologiplatform og brandidentitet er bevaret intakt. Det er en kombination af startup-innovation og koncernsikkerhed, som er sjælden i online gambling-branchen.
           </p>
@@ -149,9 +162,16 @@ const LeoVegasAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Bordspilssektionen er velforsynet med multiple varianter af <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>, <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> og video poker. Jackpot-kategorien inkluderer progressive jackpots som Mega Moolah og Mega Fortune, der regelmæssigt udbetaler milliongevinster. LeoVegas har desuden eksklusive spiltitler, der ikke er tilgængelige andre steder – en fordel, der yderligere styrker platformens unikke tilbud.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             Filtreringssystemet fortjener særlig ros. Du kan sortere spil efter udbyder, kategori, popularitet og nye udgivelser. Favoritspil gemmes automatisk i din profil, og LeoVegas' proprietære anbefalingsmotor bruger maskinlæring til at foreslå spil baseret på din spillehistorik. Det er en funktion, der gør det markant lettere at navigere i et katalog af denne størrelse – og det er netop den slags innovation, der retfærdiggør LeoVegas' premium-position.
           </p>
+
+          <ReviewScreenshot
+            src={leovegasPopulaere}
+            alt="LeoVegas populære spil sektion med Gates of Olympus, Legacy of Dead og Sweet Bonanza 1000"
+            caption="LeoVegas' spilkatalog med populære titler, kategorier og eksklusive LeoVegas-spil."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -168,6 +188,14 @@ const LeoVegasAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den mest eksklusive feature er LeoVegas' dedikerede live casino-borde. Disse borde er kun tilgængelige for LeoVegas-spillere og opereres af dedikerede dealers i et LeoVegas-branded studiemiljø. Fordelen er lavere ventetider, en mere personlig oplevelse og bordgrænser, der er skræddersyet til LeoVegas' spillerbase. I vores test var den gennemsnitlige ventetid på eksklusive borde under 30 sekunder, mens standard Evolution-borde hos andre operatører ofte har 2-3 minutters ventetid i spidsbelastningstidspunkter.
           </p>
+
+          <ReviewScreenshot
+            src={leovegasLiveCasino}
+            alt="LeoVegas live casino Top 10 med Lightning Roulette, eksklusive blackjack-borde og Evolution Gaming"
+            caption="LeoVegas' live casino med Top 10 borde, eksklusive varianter og populære roulette-spil."
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">
             Streamingkvaliteten er konsekvent i HD-kvalitet med minimal latency – vi målte under 0,5 sekunders forsinkelse på alle testede borde. Det er afgørende for live dealer-spil, hvor timing og interaktion er centrale elementer. LeoVegas er et af de få casinoer, der også tilbyder mobiloptimerede live casino-borde med auto-landscape og touch-baseret chipplacering – endnu et eksempel på mobile-first filosofien i praksis.
           </p>
