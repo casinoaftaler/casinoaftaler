@@ -830,33 +830,55 @@ function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex">
       <LinkDensityMonitor />
-      <header className="border-b border-border bg-card">
-        <div className="container flex h-16 items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="lg:hidden"
-              onClick={() => setSidebarOpen(true)}
+
+      {/* Desktop sidebar */}
+      <aside className="hidden lg:flex w-64 flex-col border-r border-border bg-card fixed inset-y-0 left-0 z-30">
+        <div className="flex h-14 items-center gap-2 border-b border-border px-4">
+          <h1 className="text-lg font-bold truncate">Admin</h1>
+        </div>
+        <nav className="flex-1 overflow-y-auto p-2 space-y-0.5">
+          {navItems.map((item) => (
+            <button
+              key={item.value}
+              onClick={() => setActiveTab(item.value)}
+              className={`flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                activeTab === item.value
+                  ? "bg-primary/10 text-primary"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
             >
-              <Menu className="h-5 w-5" />
-            </Button>
-            <h1 className="text-lg font-bold lg:text-xl">Admin Dashboard</h1>
-          </div>
-          <div className="flex items-center gap-2 lg:gap-4">
-            <span className="hidden text-sm text-muted-foreground sm:inline">{user?.email}</span>
+              <item.icon className="h-4 w-4 shrink-0" />
+              {item.label}
+            </button>
+          ))}
+        </nav>
+        <div className="border-t border-border p-3 space-y-2">
+          <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+          <div className="flex items-center gap-2">
             <ThemeToggle />
-            <Button onClick={handleSignOut} variant="outline" size="sm">
-              <LogOut className="h-4 w-4" />
-              <span className="hidden sm:inline ml-2">Log Ud</span>
+            <Button onClick={handleSignOut} variant="outline" size="sm" className="flex-1 gap-1">
+              <LogOut className="h-3.5 w-3.5" />
+              Log Ud
             </Button>
           </div>
         </div>
-      </header>
+      </aside>
 
-      {/* Mobile sidebar sheet */}
+      {/* Mobile header + sheet */}
+      <header className="fixed top-0 left-0 right-0 z-20 flex h-14 items-center gap-2 border-b border-border bg-card px-4 lg:hidden">
+        <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)}>
+          <Menu className="h-5 w-5" />
+        </Button>
+        <h1 className="text-lg font-bold">Admin</h1>
+        <div className="ml-auto flex items-center gap-2">
+          <ThemeToggle />
+          <Button onClick={handleSignOut} variant="outline" size="icon">
+            <LogOut className="h-4 w-4" />
+          </Button>
+        </div>
+      </header>
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContent side="left" className="w-72 p-0">
           <SheetHeader className="border-b border-border p-4">
@@ -884,16 +906,10 @@ function AdminDashboard() {
         </SheetContent>
       </Sheet>
 
-      <main className="container py-8">
+      {/* Main content area */}
+      <main className="flex-1 lg:ml-64 pt-14 lg:pt-0">
+        <div className="p-6 lg:p-8 max-w-6xl">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="hidden lg:grid w-full grid-cols-14 mb-8 h-auto">
-              {navItems.map((item) => (
-                <TabsTrigger key={item.value} value={item.value} className="flex items-center gap-2 py-3">
-                  <item.icon className="h-4 w-4" />
-                  <span className="hidden xl:inline">{item.label}</span>
-                </TabsTrigger>
-              ))}
-            </TabsList>
 
             {/* Indhold Tab (Casino Tilbud + Butik + Highlights) */}
           <TabsContent value="content">
@@ -1199,6 +1215,7 @@ function AdminDashboard() {
             <ReviewModerationSection />
           </TabsContent>
         </Tabs>
+        </div>
       </main>
     </div>
   );
