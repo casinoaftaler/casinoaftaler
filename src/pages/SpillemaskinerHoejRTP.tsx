@@ -277,6 +277,13 @@ export default function SpillemaskinerHoejRTP() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={zeusVsHadesRtp}
+          alt="Zeus vs Hades Gods of War spilleautomat med RTP på 94,04 %, spildetaljer fra Pragmatic Play, minimum indsats 0,50 kr. og volatilitets-gauge der viser høj volatilitet"
+          caption="Spildetaljer for Zeus vs Hades – RTP, volatilitet og udbyder vises direkte i casinoets interface"
+          size="medium"
+        />
+
         {/* ── H2 4: Standardafvigelse og varians ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">

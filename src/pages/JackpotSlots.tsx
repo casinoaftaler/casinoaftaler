@@ -247,6 +247,13 @@ const JackpotSlots = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={pokerstarsJackpots}
+          alt="PokerStars Casino jackpot-spillemaskiner med progressive beløb – Archdragon King (3.826 US$), Stars Queens (3.673.093 US$), Irish Riches Megaways (38.522 US$) og flere jackpot-slots fra Red Tiger og Blueprint Gaming"
+          caption="PokerStars Casino – jackpot-oversigt med progressive beløb opdateret i realtid"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── 3. BEDSTE JACKPOT SLOTS ── */}
