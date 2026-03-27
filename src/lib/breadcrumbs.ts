@@ -163,7 +163,7 @@ export const routeLabels: Record<string, string> = {
   "/casino-licenser": "Casino Licenser",
   "/licenserede-casinoer": "Licenserede Casinoer",
   "/saadan-tester-vi-casinoer": "Sådan Tester Vi Casinoer",
-  "/er-casinoaftaler-trovaerdig": "Er CasinoAftaler troværdig?",
+  
   // Top Lister
   "/top-10-casino-online": "Top 10 Casino Online",
   // Casino Anmeldelser
