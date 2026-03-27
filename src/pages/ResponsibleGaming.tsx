@@ -332,6 +332,12 @@ const ResponsibleGaming = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={rofusRegistrering}
+          alt="ROFUS registreringsside med valg mellem endelig og midlertidig udelukkelse fra alle danske online casinoer"
+          caption="ROFUS tilbyder endelig eller midlertidig udelukkelse – fra 24 timer op til permanent selvudelukkelse"
+        />
+
         <Separator className="my-10" />
 
         {/* Self-Exclusion */}
