@@ -164,6 +164,7 @@ const BetanoAnmeldelse = () => {
             Det store spørgsmål er, om teknologisk ambition alene er nok. Betano er stadig relativt ny i Danmark, og brand-genkendelsen er lavere end hos <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>, <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> eller <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>. Det er en platform, der gør mange ting rigtigt – men den mangler stadig den dybde og markedsmodenhed, som 20+ års tilstedeværelse giver. Læs mere om vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>.
           </p>
         </section>
+          <ReviewScreenshot src={betanoSportsbook} alt="Betano sportsbook forside med live odds på fodboldkampe og Bet Mentor-funktion" caption="Betanos sportsbook med live odds, BB Boost-tilbud og den integrerede Bet Mentor-funktion." eager size="full" />
 
           <YoutubeEmbed
             videoId="Uu3NBZzt-Sk"
