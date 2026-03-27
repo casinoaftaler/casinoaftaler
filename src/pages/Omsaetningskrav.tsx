@@ -3,6 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
 import kapowRegistrering from "@/assets/screenshots/kapow-registrering.png";
+import bet365Bonus from "@/assets/screenshots/bet365-velkomstbonus-vilkaar.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
