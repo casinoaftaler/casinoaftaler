@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilForside from "@/assets/screenshots/danskespil-forside.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
