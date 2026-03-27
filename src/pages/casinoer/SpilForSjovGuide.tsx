@@ -8,6 +8,8 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import onecasinoSpillemaskiner from "@/assets/screenshots/onecasino-spillemaskiner.png";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -73,6 +75,12 @@ const SpilForSjovGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Gratis casinospil tjener flere vigtige formål. For nye spillere er det den perfekte introduktion til casinoverdenens mekanik og terminologi uden risiko for at tabe penge. For erfarne spillere er det en mulighed for at teste nye spil og spiludbydere, udforske bonusfunktioner, og evaluere et casinos platform inden de forpligter sig med en indbetaling. Og for alle, der blot ønsker underholdning, er demo-tilstand en uendelig kilde til gratis tidsfordriv.</p>
           <p className="text-muted-foreground leading-relaxed">I denne guide gennemgår vi alle muligheder for at spille casino for sjov: Demo-tilstand på spilleautomater og bordspil, <Link to="/bonus-uden-indbetaling" className={linkClass}>gratis bonusser uden indbetaling</Link>, <Link to="/free-spins" className={linkClass}>free spins</Link> og sociale casinospil. Vi forklarer, hvordan du finder de bedste gratis muligheder, hvad du skal være opmærksom på med bonusvilkår, og hvordan du udnytter gratis spil til at forbedre din forståelse af casinospil.</p>
         </section>
+
+        <ReviewScreenshot
+          src={onecasinoSpillemaskiner}
+          alt="OneCasino spillemaskin-lobby med gratis demo-versioner af populære slots tilgængelige uden registrering"
+          caption="Mange danske casinoer som OneCasino tilbyder demo-tilstand, hvor du kan afprøve spil helt gratis"
+        />
 
         <InlineCasinoCards title="Casinoer med gratis demo-spil og bonusser" />
 

@@ -8,6 +8,8 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spildanskForside from "@/assets/screenshots/danskespil-forside.png";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -73,6 +75,12 @@ const LicenseredeCasinoerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">I Danmark blev online gambling legaliseret og reguleret med Spilleloven i 2012, som åbnede markedet for private operatører under streng myndighedskontrol. Siden da har Spillemyndigheden udviklet sig til en af Europas mest kompetente og strengeste reguleringsmyndigheder. Myndigheden gennemfører regelmæssige auditeringer, behandler spillerklager, og har magt til at udstede bøder og tilbagekalde licenser ved overtrædelser.</p>
           <p className="text-muted-foreground leading-relaxed">I denne dybdegående guide gennemgår vi alt, du behøver at vide om licenserede casinoer i Danmark: Hvad licensen kræver, hvilken beskyttelse den giver dig, hvordan du verificerer et casinos licens, og hvorfor du altid bør undgå ulicenserede platforme. Vi sammenligner også den danske licens med internationale alternativer og giver dig konkrete værktøjer til at vurdere kvaliteten af licenserede casinoer.</p>
         </section>
+
+        <ReviewScreenshot
+          src={spildanskForside}
+          alt="Danske Spil forside som eksempel på et licenseret dansk online casino med Spillemyndigheden-godkendelse"
+          caption="Danske Spil er et eksempel på et fuldt licenseret casino reguleret af Spillemyndigheden"
+        />
 
         <InlineCasinoCards title="Anbefalede licenserede casinoer i Danmark" />
 

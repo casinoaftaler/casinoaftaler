@@ -8,6 +8,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pokerstarsSpillemaskiner from "@/assets/screenshots/pokerstars-spillemaskiner.png";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -134,6 +136,12 @@ export default function PokerStrategiGuide() {
             <strong>Resultater vs. beslutninger:</strong> Det vigtigste mindset-skift for nye pokerspillere er at fokusere på <em>beslutningskvalitet</em> fremfor resultater. Du kan lave den perfekte all-in med AA preflop og tabe mod 72o, der rammer to par. Det ændrer ikke, at din beslutning var korrekt. Over tid belønner poker gode beslutninger matematisk – men på kort sigt kan varians producere resultater der tilsyneladende modsiger dette. Disciplinen til at fastholde optimal strategi trods kortsigtede tab er det, der adskiller vindende spillere fra tabende.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={pokerstarsSpillemaskiner}
+          alt="PokerStars platform med spilleautomater og bordspil – et casino der tilbyder både poker og strategisk spil"
+          caption="PokerStars tilbyder udover poker også et bredt udvalg af casinospil til strategisk underholdning"
+        />
 
         {/* ═══════════ SEKTION 2: Positionsspil ═══════════ */}
         <section className="mb-12">

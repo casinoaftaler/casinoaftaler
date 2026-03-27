@@ -8,6 +8,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilForside from "@/assets/screenshots/danskespil-forside.png";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -146,6 +148,12 @@ const OnlineLotteriGuide = () => {
             Denne guide analyserer lotteri fra et rent sandsynlighedsteoretisk perspektiv: kombinatorik, forventet værdi, varians, regression to the mean og den psykologiske mekanik bag progressiv jackpot-akkumulering. Formålet er ikke at anbefale eller fraråde lotterispil, men at give en præcis matematisk forståelse af, hvad du betaler for – og hvad du reelt kan forvente.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilForside}
+          alt="Danske Spil forside med Lotto, Eurojackpot og skrabespil – Danmarks officielle lotteriudbyder"
+          caption="Danske Spil er den primære udbyder af online lotteri i Danmark med Lotto og Eurojackpot"
+        />
 
         {/* ── H2 2 ── */}
         <section className="mb-12">

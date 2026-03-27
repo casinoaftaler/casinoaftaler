@@ -8,6 +8,8 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import getluckyForside from "@/assets/screenshots/getlucky-forside.png";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -139,6 +141,12 @@ const NyeCasinoer2026 = () => {
             </p>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={getluckyForside}
+          alt="GetLucky casino forside lanceret i Danmark med velkomstbonus og populære spilleautomater"
+          caption="GetLucky er blandt de nyeste casinoer lanceret i Danmark med dansk licens"
+        />
 
         <Separator className="my-10" />
 

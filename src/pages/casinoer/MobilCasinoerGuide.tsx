@@ -8,6 +8,8 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import leovegasLobby from "@/assets/screenshots/leovegas-lobby.png";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -77,6 +79,12 @@ const MobilCasinoerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Alle casinoer vi anbefaler har gyldig dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, hvilket sikrer, at din mobiloplevelse er lige så sikker og reguleret som desktop-versionen. Licenserede casinoer bruger den samme 256-bit SSL-kryptering på mobil, og din konto er beskyttet med MitID-verifikation uanset enhed.</p>
           <p className="text-muted-foreground leading-relaxed">I 2026 er grænsen mellem mobil og desktop næsten udvisket. De fleste spiludviklere designer nu deres spil "mobile-first", hvilket betyder, at mobilversionen ofte er den primære version, mens desktop-versionen er en tilpasning. Dette paradigmeskifte har resulteret i markant forbedrede mobiloplevelser med hurtigere indlæsningstider, bedre grafikoptimering og mere intuitive touch-baserede brugergrænseflader.</p>
         </section>
+
+        <ReviewScreenshot
+          src={leovegasLobby}
+          alt="LeoVegas mobiloptimeret casino-lobby med touch-venlig navigation og populære spilleautomater"
+          caption="LeoVegas er kendt for sin mobiloptimerede platform med hurtig indlæsning og intuitivt touch-design"
+        />
 
         <InlineCasinoCards title="Bedste mobil casinoer i Danmark 2026" />
 

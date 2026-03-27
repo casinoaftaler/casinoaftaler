@@ -8,6 +8,8 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import videoslotsForside from "@/assets/screenshots/videoslots-forside.png";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -73,6 +75,12 @@ const VRCasinoerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">VR casinoer repræsenterer skæringspunktet mellem to massive industrier: Virtual reality (forventet global markedsværdi på $50+ mia. i 2026) og online gambling (forventet global markedsværdi på $100+ mia.). Denne kombination skaber en unik underholdningsform, der fusionerer den bekvemmelighed, du kender fra online casinoer, med den immersive sociale oplevelse fra fysiske casinoer. Det er en kategori i hurtig vækst, drevet af teknologiske fremskridt, faldende hardware-priser og ændrede forbrugervaner.</p>
           <p className="text-muted-foreground leading-relaxed">I denne dybdegående guide gennemgår vi alt, du behøver at vide om VR casinoer i 2026: Teknologiens nuværende tilstand, de tilgængelige platforme og spil, det nødvendige udstyr, samt fordelene og begrænsningerne. Vi analyserer også, hvordan VR-gambling forholder sig til dansk regulering og <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>, samt giver vores vurdering af, hvornår VR casinoer vil blive mainstream i Danmark.</p>
         </section>
+
+        <ReviewScreenshot
+          src={videoslotsForside}
+          alt="Videoslots casino-forside med innovativt spiludvalg og avancerede funktioner som Battle of Slots"
+          caption="Videoslots er et eksempel på et innovativt casino med unikke spilmekanikker og stort spiludvalg"
+        />
 
         <InlineCasinoCards title="Anbefalede licenserede casinoer med innovative spil" />
 

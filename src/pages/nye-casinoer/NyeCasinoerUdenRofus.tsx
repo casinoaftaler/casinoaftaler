@@ -8,6 +8,8 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spilnuLobby from "@/assets/screenshots/spilnu-lobby.png";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -137,6 +139,12 @@ const NyeCasinoerUdenRofus = () => {
             I det følgende gennemgår vi de konkrete risici med dokumenterede beregninger, den juridiske ramme, håndhævelsesmekanismer, og et detaljeret migrationsforløb for spillere der ønsker at skifte fra ulovlige til lovlige casinoer.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={spilnuLobby}
+          alt="Spilnu casino-lobby som eksempel på et ROFUS-tilsluttet dansk licenseret casino med spillerbeskyttelse"
+          caption="Spilnu er et eksempel på et dansk licenseret casino med fuld ROFUS-tilslutning og spillerbeskyttelse"
+        />
 
         <Separator className="my-10" />
 

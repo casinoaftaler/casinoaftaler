@@ -8,6 +8,8 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import kapowForside from "@/assets/screenshots/kapow-forside-populaere-spil.png";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -83,6 +85,12 @@ const BedsteNyeCasinoer = () => {
             Herunder præsenterer vi de nye casinoer, der har scoret 8/10 eller højere i vores samlede vurdering. Listen opdateres løbende, og vi gennemfører kvartalsvise re-evalueringer for at sikre, at kvaliteten fastholdes.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={kapowForside}
+          alt="Kapow casino forside med populære spil og moderne design som eksempel på et nyt dansk casino"
+          caption="Kapow er et eksempel på et nyt dansk licenseret casino med moderne brugerflade og kureret spiludvalg"
+        />
 
         <InlineCasinoCards title="Bedste Nye Casinoer" />
 

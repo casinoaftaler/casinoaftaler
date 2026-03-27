@@ -8,6 +8,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pokerstarsLiveCasino from "@/assets/screenshots/pokerstars-live-casino.png";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -139,6 +141,12 @@ export default function PokerBedsteSiderGuide() {
             I denne guide gennemgår vi de bedste pokersider med dansk licens, analyserer deres styrker og svagheder, og giver dig konkrete anbefalinger baseret på din spillestil – uanset om du er nybegynder, recreational spiller eller aspirerende grinder. For en bredere oversigt over alle pokervarianter, se vores <Link to="/casinospil/poker" className={linkClass}>poker hub</Link>.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={pokerstarsLiveCasino}
+          alt="PokerStars live casino og poker-lobby med cash games, turneringer og bordspil for danske pokerspillere"
+          caption="PokerStars er en af de mest populære pokersider med dansk licens og bredt turneringsudvalg"
+        />
 
         <InlineCasinoCards title="Bedste casinoer med poker" count={5} />
 

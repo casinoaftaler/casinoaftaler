@@ -8,6 +8,8 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilLiveCasino from "@/assets/screenshots/danskespil-live-casino.png";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -144,6 +146,12 @@ const CrapsGuide = () => {
             Denne guide er en matematisk gennemgang af craps. Vi analyserer sandsynlighedsfordelingen, beregner house edge for alle relevante væddemål, forklarer Expected Value (EV) med konkrete tal, og vurderer varians og risikoprofiler. Formålet er ikke at lære dig "tricks" eller "systemer" – det er at give dig den analytiske forståelse, der gør dig til en informeret spiller, der ved præcis hvad hvert væddemål koster.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilLiveCasino}
+          alt="Danske Spil live casino-lobby med bordspil inklusiv craps, roulette og blackjack hos et dansk licenseret casino"
+          caption="Live casino-lobbyen hos Danske Spil viser det tilgængelige udvalg af bordspil for danske spillere"
+        />
 
         <InlineCasinoCards title="Bedste Casinoer til Craps" count={6} />
 

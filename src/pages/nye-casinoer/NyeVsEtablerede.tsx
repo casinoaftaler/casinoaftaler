@@ -8,6 +8,9 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrvegas from "@/assets/screenshots/mrvegas-forside.png";
+import nordicbetForside from "@/assets/screenshots/nordicbet-casino-forside.png";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -83,6 +86,12 @@ const NyeVsEtablerede = () => {
             Konklusionen (spoiler): de fleste spillere vil have gavn af at have konti hos begge typer. Men rækkefølgen – og hvilken der får din primære opmærksomhed – afhænger af din spillerprofil.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={mrvegas}
+          alt="Mr Vegas casino forside som eksempel på et nyere dansk online casino med moderne design og spiludvalg"
+          caption="Mr Vegas repræsenterer den nyere generation af danske casinoer med frisk design"
+        />
 
         <Separator className="my-10" />
 

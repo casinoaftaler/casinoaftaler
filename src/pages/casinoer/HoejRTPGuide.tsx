@@ -8,6 +8,8 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -85,6 +87,12 @@ const HoejRTPGuide = () => {
             Alle casinoer vi anbefaler har gyldig dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, som kræver fuld gennemsigtighed omkring RTP-værdier. Det betyder, at du altid kan finde den præcise RTP for hvert spil – en rettighed, som spillere i mange andre lande ikke har. Udnyt denne gennemsigtighed til din fordel.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia spillemaskin-lobby med filtrering efter RTP og spiludbyder til at finde spil med høj tilbagebetaling"
+          caption="Betinias lobby giver mulighed for at filtrere og sortere spil, så du nemt finder titler med høj RTP"
+        />
 
         <InlineCasinoCards title="Anbefalede casinoer med spil med høj RTP" />
 

@@ -8,6 +8,8 @@ import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import stakeForside from "@/assets/screenshots/stake-forside.png";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -64,6 +66,12 @@ const CryptoCasinoGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Det er vigtigt at forstå konteksten: I Danmark har vi et veludviklet og spillervenligt reguleret marked, hvor casinogevinster er skattefri, og spillere har stærk forbrugerbeskyttelse. Crypto casinoer opererer typisk uden for denne regulering, hvilket både tilbyder frihed og medfører risici. Denne guide hjælper dig med at navigere disse kompleksiteter.</p>
           <Card className="bg-destructive/10 border-destructive/30 my-6"><CardContent className="pt-6"><div className="flex items-start gap-3"><AlertTriangle className="h-6 w-6 text-destructive flex-shrink-0 mt-1" /><div><h3 className="font-bold text-destructive mb-2">Vigtig advarsel</h3><p className="text-sm text-muted-foreground">De fleste crypto casinoer opererer uden dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Det betyder, at du ikke har den samme forbrugerbeskyttelse som på licenserede danske casinoer. Gevinster kan være skattepligtige, og der er ingen garanteret adskillelse af spillermidler. Vi anbefaler altid at prioritere <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> for maksimal sikkerhed.</p></div></div></CardContent></Card>
         </section>
+
+        <ReviewScreenshot
+          src={stakeForside}
+          alt="Stake casino forside som eksempel på et populært crypto casino med kryptovaluta-betalinger"
+          caption="Stake er blandt de mest kendte crypto casinoer – bemærk at platformen ikke har dansk licens"
+        />
 
         <InlineCasinoCards title="Licenserede alternativer vi anbefaler" />
 
