@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.png";
+import xxxtremeLightning from "@/assets/screenshots/xxxtreme-lightning-roulette-multipliers.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
