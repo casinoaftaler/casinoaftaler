@@ -27,6 +27,7 @@ import {
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.png";
+import spillehallenGratisSpins from "@/assets/screenshots/spillehallen-gratis-spins-bonuskoder.png";
 import {
   Sparkles,
   ShieldCheck,
