@@ -267,6 +267,12 @@ const CasinoApp = () => {
               ))}
             </div>
           </div>
+          <ReviewScreenshot
+            src={bet365CasinoLobby}
+            alt="Bet365 casino-lobby med responsivt design optimeret til mobil og desktop brug"
+            caption="Bet365's casino-lobby – et eksempel på en app-lignende browser-oplevelse med responsivt design"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

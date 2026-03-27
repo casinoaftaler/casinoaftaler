@@ -232,6 +232,12 @@ const IPhoneCasinoGuide = () => {
               ))}
             </div>
           </div>
+          <ReviewScreenshot
+            src={mariaForside}
+            alt="Maria Casino forside med iPhone-venligt mobildesign og populære spillekategorier"
+            caption="Maria Casinos forside – et eksempel på en iPhone-optimeret casinooplevelse med Touch/Face ID-support"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

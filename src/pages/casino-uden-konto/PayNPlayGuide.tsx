@@ -177,6 +177,12 @@ const PayNPlayGuide = () => {
               ))}
             </div>
           </div>
+          <ReviewScreenshot
+            src={bet365Sportsbook}
+            alt="Bet365 hurtig adgang med sportsbook og casino-integration uden separat kontooprettelse"
+            caption="Bet365 – eksempel på en platform med hurtig adgang og minimal registreringsproces"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

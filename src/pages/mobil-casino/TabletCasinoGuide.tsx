@@ -150,6 +150,12 @@ const TabletCasinoGuide = () => {
               ))}
             </div>
           </div>
+          <ReviewScreenshot
+            src={bwinCasinoLobby}
+            alt="Bwin casino-lobby med bredt layout optimeret til tablet og større skærme"
+            caption="Bwins casino-lobby – tablet-brugere får fordel af det brede layout med flere synlige spilkategorier"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

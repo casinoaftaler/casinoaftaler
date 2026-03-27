@@ -184,6 +184,12 @@ const HurtigRegistreringGuide = () => {
               ))}
             </div>
           </div>
+          <ReviewScreenshot
+            src={comeonSportsbook}
+            alt="ComeOn registreringsproces med hurtig kontooprettelse og MitID-integration"
+            caption="ComeOns platform – registreringsprocessen er designet til hurtig oprettelse via MitID"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

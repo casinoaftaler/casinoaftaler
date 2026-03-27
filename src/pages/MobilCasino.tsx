@@ -292,6 +292,12 @@ const MobilCasino = () => {
               ))}
             </div>
           </div>
+          <ReviewScreenshot
+            src={comeonForside}
+            alt="ComeOn Casino forside med mobilvenligt design og oversigt over populære spil"
+            caption="ComeOns forside – et eksempel på et mobiloptimeret casino-interface med hurtig navigation"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
