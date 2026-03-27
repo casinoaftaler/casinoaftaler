@@ -711,6 +711,12 @@ const Spiludviklere = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spilleautomatenFilter}
+          alt="Spiludbyder-filter hos Spilleautomaten.dk – sorter spillemaskiner efter din foretrukne developer"
+          caption="De fleste danske casinoer tilbyder filtrering efter spiludbyder – en nem måde at finde dine favoritter"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════
