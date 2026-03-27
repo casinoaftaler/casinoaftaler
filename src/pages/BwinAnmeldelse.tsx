@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import bwinSportsbook from "@/assets/screenshots/bwin-sportsbook.png";
+import bwinCasinoLobby from "@/assets/screenshots/bwin-casino-lobby.png";
+import bwinLiveCasino from "@/assets/screenshots/bwin-live-casino.png";
+import bwinKampagner from "@/assets/screenshots/bwin-kampagner.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
