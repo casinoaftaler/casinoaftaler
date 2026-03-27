@@ -338,6 +338,13 @@ const JackpotSlots = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spilnuVindere}
+          alt="Spilnu vinderoversigt med seneste jackpot-udbetalinger og gevinstbeløb"
+          caption="Spilnus vinderoversigt viser aktuelle jackpot-udbetalinger – et godt overblik over, hvilke beløb der faktisk falder."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ── 4. MATEMATIK ── */}

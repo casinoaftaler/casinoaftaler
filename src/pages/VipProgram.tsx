@@ -652,6 +652,13 @@ const VipProgram = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={casinostuenShop}
+          alt="Casinostuens VIP-shop med eksklusive præmier og loyalitetsbelønninger"
+          caption="Casinostuens shop illustrerer, hvordan VIP-point kan omsættes til konkrete præmier – en central del af loyalitets-økonomien."
+          size="full"
+        />
+
         <Separator className="mb-12" />
 
         {/* ══════════════════════════════════════════════════════════════

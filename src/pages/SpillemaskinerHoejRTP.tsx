@@ -358,6 +358,13 @@ export default function SpillemaskinerHoejRTP() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={playkasinoHotcold}
+          alt="PlayKasino hot and cold spillemaskiner – visuel indikation af hvilke slots der har udbetalt mest og mindst"
+          caption="PlayKasinos Hot & Cold-funktion giver overblik over hvilke slots der aktuelt kører varmt eller koldt – nyttigt til session-planlægning."
+          size="full"
+        />
+
         {/* ── H2 6: Langsigtet vs kortsigtet ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
