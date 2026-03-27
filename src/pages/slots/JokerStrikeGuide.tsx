@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.png";
 import heroImage from "@/assets/heroes/joker-strike-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -60,12 +59,6 @@ const JokerStrikeGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Den kritiske detalje: 98,11 % RTP gælder KUN med Hi Roller-funktionen aktiveret. Standard spiltilstand har en basis-RTP på 96,60 % – stadig god, men ikke exceptionel. Hi Roller koster 30× din standard indsats for 10 spins, men den dramatisk forbedrede RTP gør det til den klart optimale spilstrategi. At spille Joker Strike uden Hi Roller er som at købe en Ferrari og kun bruge 1. gear.</p>
           <p className="text-muted-foreground leading-relaxed">For spillere, der spiller med <Link to="/casino-bonus" className={linkClass}>bonusmidler</Link>, er Joker Strike's Hi Roller-mode den mest effektive gennemspilningsmaskine i markedet. Den lave house edge (1,89 %) minimerer det forventede tab under gennemspilning, og den lave volatilitet sikrer forudsigelig bankroll-progression. Mange erfarne bonus-spillere betragter Joker Strike som et must-have værktøj i deres arsenal.</p>
         </section>
-
-        <ReviewScreenshot
-          src={casinostuenSpillemaskiner}
-          alt="Casinostuens spillemaskin-lobby med Quickspin-slots – Joker Strike med sin 98,11% Hi Roller RTP er et sjældent fund"
-          caption="Casinostuens spillemaskin-lobby med klassiske slots som Joker Strike"
-        />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Hi Roller-Funktionen: Premium-Tilstand Analyseret</h2>

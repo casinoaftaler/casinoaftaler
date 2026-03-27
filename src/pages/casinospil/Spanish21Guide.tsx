@@ -9,7 +9,6 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mrGreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.png";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
@@ -130,12 +129,6 @@ const Spanish21Guide = () => {
             Hvis du vil sammenligne varianten med andre blackjack-spor, så brug hovedguiden til <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, eller se forskellen til <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikansk blackjack</Link> og <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link>.
           </p>
         </section>
-
-        <ReviewScreenshot
-          src={mrGreenLiveBlackjack}
-          alt="Mr Green live blackjack-bord med dealer – Spanish 21 og andre blackjack-varianter er tilgængelige hos danske casinoer"
-          caption="Live blackjack hos Mr Green – lignende varianter som Spanish 21 kan findes hos danske licenserede casinoer"
-        />
 
         <Separator className="my-10" />
 

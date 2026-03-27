@@ -12,7 +12,6 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.png";
 import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.png";
 import {
   AlertTriangle,
@@ -173,13 +172,6 @@ const MartingaleBlackjackGuide = () => {
             </Card>
           </div>
         </section>
-
-        <ReviewScreenshot
-          src={danskespilLiveBlackjack}
-          alt="Blackjack-bord med indsatsmuligheder – Martingale kræver fordobling efter hvert tab op mod bordets maksimum"
-          caption="Et live blackjack-bord illustrerer de praktiske begrænsninger for Martingale – bordets minimums- og maksimumsindsats sætter grænsen."
-          size="full"
-        />
 
         <Separator className="mb-12" />
 

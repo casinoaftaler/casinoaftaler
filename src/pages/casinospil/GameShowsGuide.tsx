@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.png";
 import lightningRouletteMultipliers from "@/assets/screenshots/xxxtreme-lightning-roulette-multipliers.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -149,13 +148,6 @@ const GameShowsGuide = () => {
             Det interessante ved game shows er ikke deres matematik – den er relativt simpel sammenlignet med spillemaskiner. Det interessante er, hvordan designet bevidst skjuler denne matematik bag lag af underholdning, spænding og social interaktion. Denne guide analyserer begge sider: den reelle matematik og den perceptuelle ramme, der gør game shows til casinobranchens hurtigst voksende segment.
           </p>
         </section>
-
-        <ReviewScreenshot
-          src={royalcasinoLiveCasino}
-          alt="Live casino game show-lobby med Crazy Time, Dream Catcher og Monopoly Live samlet i én kategori"
-          caption="Game show-lobbyen hos et dansk casino – de mest populære Evolution-titler er samlet i én overskuelig sektion."
-          size="full"
-        />
 
         {/* ── H2 2 ── */}
         <section className="mb-12">

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
-import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import heroImage from "@/assets/heroes/wanted-dead-or-a-wild-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -88,12 +87,6 @@ const WantedDeadOrAWildGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">RTP-fordelingen er aggressivt skæv mod bonusrunder: estimeret 45-50 % af den samlede RTP kommer fra base game, med de resterende 50-55 % fra Duel at Dawn. Denne fordeling er mere ekstrem end de fleste high-volatility slots (typisk 60/40) og forklarer de lange base game-tørkeperioder, der er karakteristisk for Wanted Dead or a Wild.</p>
           <p className="text-muted-foreground leading-relaxed">Free spins trigger-frekvens estimeres til ca. 1 pr. 250-350 spins – lav selv for en ekstrem-volatil slot. Denne sjældenhed forstærker den "all-or-nothing" dynamik: du investerer mange spins i base game (med konstant tab) for sjældne men potentielt massive bonusrunder. Det er et bevidst designvalg fra Hacksaw Gaming, der appellerer til thrill-seekers.</p>
         </section>
-
-        <ReviewScreenshot
-          src={betiniaLobby}
-          alt="Betinia spillemaskin-lobby med Hacksaw Gaming – Wanted Dead or a Wild er en af de mest volatile titler tilgængelige hos danske casinoer"
-          caption="Betinias lobby med Hacksaw Gaming-titler, herunder Wanted Dead or a Wild"
-        />
 
         <Separator className="my-10" />
 

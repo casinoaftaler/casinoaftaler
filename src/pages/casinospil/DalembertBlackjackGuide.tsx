@@ -12,7 +12,6 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.png";
 import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.png";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -195,13 +194,6 @@ const DalembertBlackjackGuide = () => {
             </CardContent>
           </Card>
         </section>
-
-        <ReviewScreenshot
-          src={mrgreenLiveBlackjack}
-          alt="Live blackjack-bord med chipstakke – D'Alembert-systemets lineære progression kræver moderate indsatsstigninger"
-          caption="Et live blackjack-bord egner sig godt til D'Alembert, da systemets langsomme eskalering sjældent rammer bordets maksimum."
-          size="full"
-        />
 
         <Separator className="mb-12" />
 

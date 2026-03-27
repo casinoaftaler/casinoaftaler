@@ -23,7 +23,6 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.png";
-import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import {
   Accordion,
   AccordionContent,
@@ -238,12 +237,6 @@ export default function Contact() {
           src={spillemyndighedenForside}
           alt="Spillemyndighedens hjemmeside – den officielle danske reguleringsmyndighed for online gambling"
           caption="Vi samarbejder med Spillemyndigheden og følger dansk spillelovgivning – kontakt os ved spørgsmål"
-        />
-
-        <ReviewScreenshot
-          src={betiniaLobby}
-          alt="Betinia casino lobby – eksempel på et af de casinoer vi anmelder og overvåger"
-          caption="Vi anmelder og opdaterer løbende information om danske licenserede casinoer som Betinia"
         />
 
         <Separator className="my-10" />

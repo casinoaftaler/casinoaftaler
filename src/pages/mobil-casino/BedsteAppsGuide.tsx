@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilForside from "@/assets/screenshots/danskespil-forside.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -104,12 +103,6 @@ const BedsteAppsGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">Det danske online casino-marked tilbyder et bredt udvalg af mobiloplevelser – fra dedikerede native apps i App Store og Google Play til avancerede Progressive Web Apps (PWA'er) og responsive mobilwebsteder. Men hvilken tilgang er bedst? Og hvilke specifikke casino-apps fortjener din download?</p>
           <p className="text-muted-foreground leading-relaxed mb-4">I denne guide har vi testet og rangeret de bedste casino apps tilgængelige for danske spillere i 2026. Vores rangering er baseret på en vægtet scoring-model, der evaluerer performance, spiludvalg, brugervenlighed, sikkerhed og App Store-ratings. Vi sammenligner også native apps, PWA'er og browser-baserede løsninger for at hjælpe dig med at vælge den bedste tilgang til dit mobilcasino-behov.</p>
           <p className="text-muted-foreground leading-relaxed mb-4">Alle casinoer i vores rangering har <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">gyldig dansk licens</Link> fra Spillemyndigheden. For device-specifikke guides, se vores <Link to="/mobil-casino/iphone" className="text-primary underline hover:text-primary/80">iPhone-guide</Link>, <Link to="/mobil-casino/android" className="text-primary underline hover:text-primary/80">Android-guide</Link> og <Link to="/mobil-casino/tablet" className="text-primary underline hover:text-primary/80">tablet-guide</Link>.</p>
-          <ReviewScreenshot
-            src={danskespilForside}
-            alt="Danske Spil forside med native app-design og dansk licenseret casinooplevelse"
-            caption="Danske Spils forside – et eksempel på en af de mest populære casino-apps hos danske spillere"
-            size="full"
-          />
         </section>
 
         <Separator className="my-10" />

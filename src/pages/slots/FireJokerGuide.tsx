@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import comeonForside from "@/assets/screenshots/comeon-forside.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/fire-joker-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -112,13 +111,6 @@ const FireJokerGuide = () => {
             Det er værd at bemærke, at Fire Joker konsekvent rangerer blandt de 10 mest spillede slots i Danmark – ikke på grund af hype eller streamers, men fordi dens simple elegance appellerer til det bredest mulige segment af casino-spillere. Den er det slot-ækvivalent til en pålidelig hverdag­sbil: ikke prangende, men den gør sit job upåklageligt.
           </p>
         </section>
-
-        <ReviewScreenshot
-          src={comeonForside}
-          alt="Casino-forside med klassiske spillemaskiner – Fire Joker er en populær 3-hjuls slot fra Play'n GO"
-          caption="Fire Joker er en simpel men populær 3-hjuls spillemaskine, der ofte er featured på casino-forsider."
-          size="full"
-        />
 
         {/* ── Spilmekanik ── */}
         <section className="mb-10">
