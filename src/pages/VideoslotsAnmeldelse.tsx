@@ -94,7 +94,8 @@ const VideoslotsAnmeldelse = () => {
             <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Videoslots ser ud indefra</h3>
             <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Videoslots' hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
           </div>
-        </section>
+         </section>
+          <ReviewScreenshot src={videoslotsForside} alt="Videoslots Casino forside med Battle of Slots, over 5.000 spil og Bushido Gold featured slot" caption="Videoslots' forside med Battle of Slots-turneringer, spilkategorier og over 5.326 tilgængelige spil." eager size="full" />
 
         <Separator className="my-10" />
 
