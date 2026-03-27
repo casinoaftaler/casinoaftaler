@@ -235,6 +235,12 @@ const HjaelpelinjerGuide = () => {
           </Card>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaRegMitid}
+          alt="MitID-verifikation ved casinoregistrering – alle danske licenserede casinoer kræver identitetskontrol som spillerbeskyttelse"
+          caption="MitID-verifikation sikrer, at kun verificerede spillere kan oprette konti hos danske casinoer"
+        />
+
         <Separator className="my-10" />
 
         {/* ── StopSpillet ── */}

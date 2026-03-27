@@ -233,6 +233,12 @@ const SelvudelukkelseGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={unibet}
+          alt="Unibet casino-lobby med selvudelukkelsesværktøjer og ansvarligt spil-funktioner tilgængelige for danske spillere"
+          caption="Licenserede casinoer som Unibet tilbyder selvudelukkelsesmuligheder direkte i platformen"
+        />
+
         <Separator className="my-10" />
 
         {/* ── ROFUS vs. Casino ── */}

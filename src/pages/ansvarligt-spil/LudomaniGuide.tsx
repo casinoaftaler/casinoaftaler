@@ -276,6 +276,12 @@ const LudomaniGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilCasinoLobby}
+          alt="Danske Spil casino-lobby med ansvarligt spil-funktioner og indbetalingsgrænser integreret i platformen"
+          caption="Licenserede casinoer som Danske Spil har integrerede værktøjer til ansvarligt spil og spillerbeskyttelse"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════

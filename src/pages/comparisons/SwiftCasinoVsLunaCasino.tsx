@@ -171,6 +171,12 @@ export default function SwiftCasinoVsLunaCasino() {
         </p>
       </section>
 
+      <ReviewScreenshot
+        src={comeonForside}
+        alt="ComeOn casino forside – et lignende dansk licenseret casino med moderne UX og bred spillekatalog"
+        caption="ComeOn illustrerer den type moderne, licenserede casinoplatforme som Swift og Luna konkurrerer med"
+      />
+
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Bonusøkonomi: identisk indgang, forskellig hverdag</h2>
         <p className="mb-4 text-muted-foreground leading-relaxed">
