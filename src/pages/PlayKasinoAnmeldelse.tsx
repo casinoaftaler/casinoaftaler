@@ -822,6 +822,7 @@ const PlayKasinoAnmeldelse = () => {
           <p className="text-xs text-muted-foreground mb-4">
             Min. indbetaling: 100 kr. Min. udbetaling: 100 kr. Alle transaktioner er gebyrfri. MobilePay og Apple Pay er kun tilgængelige til indbetaling. PayPal var den hurtigste udbetalingsmetode i vores test.
           </p>
+          <ReviewScreenshot src={playkasinoIndbetaling} alt="PlayKasino indbetalingsmuligheder med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal" caption="PlayKasinos indbetalingsside med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal – alle gebyrfri." size="full" />
         </section>
 
         {/* Registration Process */}
