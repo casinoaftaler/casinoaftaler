@@ -774,6 +774,7 @@ const PlayKasinoAnmeldelse = () => {
             Indsatsniveauerne spænder fra 10 kr. til 50.000+ kr. pr. runde, hvilket gør sektionen tilgængelig for alle budgetter. Vi oplevede ingen tekniske problemer, buffering eller afbrydelser under vores testperiode – heller ikke i spidsbelastningsperioder fredag og lørdag aften.
           </p>
         </section>
+        <ReviewScreenshot src={playkasionBordspil} alt="PlayKasino live casino og bordspil med European Blackjack, Roulette og Baccarat fra Playtech" caption="PlayKasinos bordspils-sektion med Playtech Live-titler som European Blackjack Turbo, Roulette og Dynasty Speed Baccarat." size="full" />
 
         <Separator className="my-10" />
 
