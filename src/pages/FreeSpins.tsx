@@ -24,6 +24,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.png";
 import {
   Sparkles,
   ShieldCheck,
