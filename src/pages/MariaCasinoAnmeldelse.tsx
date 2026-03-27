@@ -116,6 +116,7 @@ const MariaCasinoAnmeldelse = () => {
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">Løbende kampagner inkluderer daglige tilbud, ugentlige turneringer og sæsonbestemte events. Cash Back-tilbud om mandagen og free spins om fredagen er eksempler på den løbende underholdning, Maria Casino tilbyder sine aktive spillere.</p>
+          <ReviewScreenshot src={mariaKampagner} alt="Maria Casino kampagneside med Slingo Sweet Bonanza og Maria Plus medlemsklub" caption="Kampagnesiden hos Maria Casino med casino- og bingo-kampagner samt Maria+ medlemsklubben." size="full" />
         </section>
 
         <Separator className="my-10" />
