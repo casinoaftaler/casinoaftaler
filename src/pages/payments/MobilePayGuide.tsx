@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mobilePayHero from "@/assets/heroes/mobilepay-hero.jpg";
+import betiniaMobilpayKasse from "@/assets/screenshots/betinia-mobilepay-kasse.webp";
+import betiniaMobilpayBekraeft from "@/assets/screenshots/betinia-mobilepay-bekraeft.webp";
+import betiniaBetalingOversigt from "@/assets/screenshots/betinia-betaling-oversigt.webp";
 
 const MobilePayGuide = () => {
   return (
