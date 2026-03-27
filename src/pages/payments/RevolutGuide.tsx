@@ -106,7 +106,6 @@ const RevolutGuide = () => {
                  caption="PlayKasinos indbetalingskasse – her vælger du betalingsmetode og indtaster beløb"
                  size="full"
                />
-              </p>
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 Denne 48-timers forsinkelse er et sofistikeret ansvarligt spil-design: Den forhindrer impulsiv genoptagelse af spil efter en midlertidig blokering. Hvor casinoers egne indbetalingsgrænser ofte kan ændres øjeblikkeligt (eller inden for 24 timer), tvinger Revoluts model spilleren til at vente to fulde dage – nok tid til at revurdere sin beslutning. Det er en mekanisme, der har dokumenteret effekt mod problematisk spilleadfærd i den akademiske litteratur om "cooling off"-perioder.
               </p>
