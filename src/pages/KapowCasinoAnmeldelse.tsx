@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/compone
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowMitidGodkendt from "@/assets/screenshots/kapow-mitid-godkendt.png";
+import kapowForside from "@/assets/screenshots/kapow-forside-populaere-spil.png";
+import kapowKampagner from "@/assets/screenshots/kapow-kampagner-bonusser.png";
+import kapowLiveCasino from "@/assets/screenshots/kapow-live-casino-lobby.png";
+import kapowIndbetaling from "@/assets/screenshots/kapow-indbetaling-visa-mobilepay.png";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
@@ -66,6 +70,13 @@ const KapowCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">SkillOnNet Ltd blev grundlagt i 2005 og har hovedsæde i Malta. Selskabet er en mellemstor operatør der driver 30+ casino-brands globalt – herunder PlayOJO, SpinGenie og Slingo – med licenser fra Malta Gaming Authority, UK Gambling Commission og Spillemyndigheden. Det er ikke en Betsson eller Flutter i størrelse, men det er heller ikke en fly-by-night startup. 19 års drift uden større regulatoriske sanktioner giver en vis troværdighedsbasis.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kapow Casino opererer i Danmark med licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er fuldt tilsluttet ROFUS. Spiludvalget tæller over 2.000 titler fra respekterede udbydere. Velkomstbonussen giver 100 Spins til Gates of Olympus ved en overførsel på 100 kr. med 10x <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link>. Men den reelle test er, om substansen bag den eksplosive branding holder i en dybdegående analyse – og det er hvad vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> afslører.</p>
           <p className="text-muted-foreground leading-relaxed">Vores tilgang til Kapow Casino er bevidst anderledes end vores anmeldelser af de store brands. Hvor <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> og <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> vurderes som premium-platforme med årtiers track record, vurderer vi Kapow Casino som en mellemoprør-platform der forsøger at differentiere sig via branding og bonus-generøsitet. Det er en vigtig kontekst for resten af denne anmeldelse.</p>
+
+          <ReviewScreenshot
+            src={kapowForside}
+            alt="Kapow Casino forside med populære spil som Gates of Olympus, Starburst og Book of Dead i comic-inspireret design"
+            caption="Kapow Casinos forside – det eksplosive comic-design og populære slots som Gates of Olympus og Book of Dead"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -107,6 +118,13 @@ const KapowCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Ved en overførsel på 100 kr. modtager du 100 Spins (værdi 100 kr.). Omsætningskrav: 10x × (100 kr. spins + 100 kr. overførsel) = 2.000 kr. Med 96 % gennemsnitlig slots-RTP forventer du at miste 4 % af 2.000 = 80 kr. under omsætning. Bonussens netto-EV er altså spingevinster minus omsætningstab. Med gennemsnitlige spingevinster på ~100 kr. og 80 kr. forventet tab giver det en reel bonusværdi på ca. 20 kr. – beskeden men med lav risiko.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sammenlignet med <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> (1.000 kr. bonus med 10x omsætning) er Kapow Casinos bonus mere beskeden i beløb, men har til gengæld en meget lav indgangsbarriere med kun 100 kr. i overførsel. Den månedlige bonuskode giver desuden eksisterende spillere en ekstra 100 kr. bonus hver måned – det er Kapow Casinos stærkeste loyalitetselement.</p>
           <p className="text-muted-foreground leading-relaxed">Løbende kampagner inkluderer daglige tilbud (free spins eller reload-bonusser), weekend-bonusser med forhøjet match-procent, cashback på tab (typisk 10-15 % af nettotab returneret som bonuspenge) og turnerings-events med præmiepuljer. Cashback-tilbuddene er faktisk Kapow Casinos stærkeste kampagne-element – de giver en sikkerhedsnet for aktive spillere og er mere forudsigelige i værdi end tilfældige free spins-pakker.</p>
+
+          <ReviewScreenshot
+            src={kapowKampagner}
+            alt="Kapow Casino kampagneside med velkomstbonus, måneds-bonus, mandags-spins og æggejagt-event"
+            caption="Kapow Casinos kampagneside – velkomstbonus med 100 Spins, månedlig bonus og sæsonbaserede events"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -132,6 +150,13 @@ const KapowCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/live-casino" className={linkClass}>Live casino</Link>-sektionen er drevet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og tilbyder den samme høje kvalitet, du finder på enhver Evolution-platform. Omkring 50+ borde er tilgængelige i peak-timer med roulette, blackjack, baccarat, Sic Bo og game shows som Crazy Time, Monopoly Live og Dream Catcher.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Streaming-kvaliteten er HD med lav latency. Betting-interfacet er standard Evolution med tydelig chipplacering og hurtige bekræftelser. Der er ingen Kapow-branded borde – alle borde er delte med andre Evolution-klienter, hvilket er normen for operatører af denne størrelse. For dedikerede live casino-spillere, der ønsker eksklusive borde, er <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> bedre alternativer.</p>
           <p className="text-muted-foreground leading-relaxed">Danske dealere er tilgængelige på udvalgte borde i peak-timer. Game shows-sektionen er populær, og Kapow Casino fremhæver Crazy Time og Sweet Bonanza Candyland (Pragmatic Play Live) prominent i lobbyen. Minimumindsatser starter fra 10 kr. på roulette og 50 kr. på blackjack – standarden for det danske marked.</p>
+
+          <ReviewScreenshot
+            src={kapowLiveCasino}
+            alt="Kapow Casino live casino-lobby med roulette- og blackjack-borde fra Evolution Gaming og Pragmatic Play"
+            caption="Kapow Casinos live casino-sektion – roulette-varianter inkl. Lightning Roulette, XXXtreme og danske borde"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -160,6 +185,13 @@ const KapowCasinoAnmeldelse = () => {
             ))}
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">KYC-verifikation ved første udbetaling krævede upload af pas-kopi og screenshot af Trustly-bekræftelse. Processen tog 4 timer fra upload til godkendelse – langsommere end Betsson-gruppens automatiserede MitID-system (2 timer) men inden for normen for SkillOnNet-platforme. Der er ingen gebyrer fra Kapow Casinos side. Minimum udbetaling er 200 kr.</p>
+
+          <ReviewScreenshot
+            src={kapowIndbetaling}
+            alt="Kapow Casino indbetalingsside med Visa/Dankort og MobilePay som betalingsmetoder og beløbsforslag"
+            caption="Indbetalingssiden hos Kapow Casino – vælg mellem Visa/Dankort og MobilePay med hurtige beløbsforslag"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
