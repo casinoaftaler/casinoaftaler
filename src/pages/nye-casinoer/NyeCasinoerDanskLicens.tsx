@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spildansknuLobby from "@/assets/reviews/spildansknu-lobby.png";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
