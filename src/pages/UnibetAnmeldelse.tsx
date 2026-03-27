@@ -192,8 +192,6 @@ const UnibetAnmeldelse = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Live casino – Evolution-drevet med dansk flair</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/live-casino" className={linkClass}>Live casinoet</Link> er af høj kvalitet med <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>-borde som rygrad. Du finder alle de klassiske formater – <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>, baccarat og casino hold'em – suppleret med Evolutions populære game shows som Crazy Time, Dream Catcher, Lightning Roulette og Monopoly Live. Videostreaming-kvaliteten er konsekvent høj med minimal latency, selv på mobilforbindelser.</p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">Unibet tilbyder dedikerede borde med Unibet-branding, hvilket giver en eksklusiv oplevelse. Disse dedikerede borde har typisk lavere minimumsindsat end de generelle borde, hvilket er ideelt for rekreative spillere, der ønsker live-oplevelsen uden at satse store beløb. Vi testede tre dedikerede blackjack-borde og fandt minimumsinsatser fra 50 kr. – markant lavere end de 100-200 kr., der er standard på delte borde.</p>
-          <p className="text-muted-foreground leading-relaxed">Et område, hvor Unibets live casino ikke når helt op, er antallet af borde. Med cirka 80 live-borde er udvalget solidt, men det er mindre end hvad <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (200+ borde) eller <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> (150+ borde) tilbyder. For de fleste spillere er 80 borde rigeligt, men hvis du specifikt søger niche-varianter som Speed Baccarat eller Sic Bo, kan udvalget føles begrænset i spidstimerne.</p>
 
           <ReviewScreenshot
             src={unibetLiveCasino}
@@ -201,6 +199,9 @@ const UnibetAnmeldelse = () => {
             caption="Unibets live casino med dedikerede borde, Lightning Roulette og eksklusive Unibet-varianter."
             size="full"
           />
+
+          <p className="mb-4 text-muted-foreground leading-relaxed">Unibet tilbyder dedikerede borde med Unibet-branding, hvilket giver en eksklusiv oplevelse. Disse dedikerede borde har typisk lavere minimumsindsat end de generelle borde, hvilket er ideelt for rekreative spillere, der ønsker live-oplevelsen uden at satse store beløb. Vi testede tre dedikerede blackjack-borde og fandt minimumsinsatser fra 50 kr. – markant lavere end de 100-200 kr., der er standard på delte borde.</p>
+          <p className="text-muted-foreground leading-relaxed">Et område, hvor Unibets live casino ikke når helt op, er antallet af borde. Med cirka 80 live-borde er udvalget solidt, men det er mindre end hvad <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (200+ borde) eller <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> (150+ borde) tilbyder. For de fleste spillere er 80 borde rigeligt, men hvis du specifikt søger niche-varianter som Speed Baccarat eller Sic Bo, kan udvalget føles begrænset i spidstimerne.</p>
         </section>
 
         <Separator className="my-10" />
