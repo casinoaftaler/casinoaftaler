@@ -277,6 +277,13 @@ export default function DalembertRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={xxxtremeLightning}
+          alt="XXXtreme Lightning Roulette med multiplikator-overlay – eksempel på avanceret roulette-variant hvor D'Alembert kan testes"
+          caption="Lightning Roulette – en populær live roulette-variant med tilfældige multiplikatorer op til 2.000x"
+          size="full"
+        />
+
         {/* SECTION 4 – Praktisk Session-Protokol */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">

@@ -147,6 +147,13 @@ const VRCasinoerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Vores anbefaling for de fleste spillere i 2026 er Meta Quest 3 som den bedste kombination af pris, kvalitet og brugervenlighed. Standalone-funktionaliteten gør det nemt at komme i gang uden yderligere udstyr, og det voksende app-bibliotek sikrer adgang til de mest populære VR casinoplatforme.</p>
         </section>
 
+        <ReviewScreenshot
+          src={leovegasLobby}
+          alt="LeoVegas casino lobby med spillemaskiner og live casino – eksempel på et traditionelt online casino, som VR-casinoer søger at efterligne i immersivt 3D"
+          caption="LeoVegas – et topmoderne 2D-casino, der viser den standard, VR-casinoer forsøger at matche i immersiv 3D-oplevelse"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

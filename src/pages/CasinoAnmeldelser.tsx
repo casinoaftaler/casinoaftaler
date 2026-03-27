@@ -562,6 +562,13 @@ const CasinoAnmeldelser = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={mrgreenLobby}
+          alt="Mr Green casino forside med featured spil, jackpots og kampagner – dansk licenseret casino med rent interface"
+          caption="Mr Green – premium casinodesign med kurateret spiludvalg og intuitiv navigation"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ===== SEKTION 5: Markedsanalyse 2026 ===== */}

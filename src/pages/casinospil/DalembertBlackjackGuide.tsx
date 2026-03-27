@@ -356,6 +356,13 @@ const DalembertBlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={liveBlackjackClassic}
+          alt="Live Blackjack Classic med dealer og indsatsmuligheder – ideelt til D'Alembert-systemets gradvise indsatsjusteringer"
+          caption="Live Blackjack Classic – et bord med moderate indsatsgrænser, der passer perfekt til D'Alemberts konservative progressioner"
+          size="full"
+        />
+
         <InlineCasinoCards title="Prøv D'Alembert på Disse Live Blackjack-Borde" />
 
         <Separator className="mb-12" />

@@ -285,6 +285,13 @@ export default function FibonacciRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilLiveRouletteBord}
+          alt="Danske Spil live roulette-bord med europæisk hjul og betting grid – perfekt til at teste Fibonacci-systemet med lige-chancer indsatser"
+          caption="Live roulette hos Danske Spil – europæisk bord med enkelt nul, velegnet til Fibonacci-progressionen"
+          size="full"
+        />
+
         {/* Simulering */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">

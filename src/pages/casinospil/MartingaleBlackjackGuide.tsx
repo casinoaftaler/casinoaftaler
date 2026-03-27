@@ -243,6 +243,13 @@ const MartingaleBlackjackGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={liveBlackjackClassic}
+          alt="Live Blackjack Classic bord med dealer, Super Stake-multiplikatorer og flere spillere – eksempel på et bordspil hvor Martingale typisk testes"
+          caption="Live Blackjack Classic – et populært bord med indsatsgrænser fra 50 til 25.000 kr., der illustrerer bordmaksimumets begrænsning af Martingale"
+          size="full"
+        />
+
         <Separator className="mb-12" />
 
         <section className="mb-12">

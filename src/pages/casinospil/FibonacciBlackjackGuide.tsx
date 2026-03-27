@@ -341,6 +341,13 @@ const FibonacciBlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilLiveBlackjack}
+          alt="Danske Spil live blackjack-bord med kort og indsatsområder – velegnet til at teste Fibonacci-progressionen med faste indsatsskridt"
+          caption="Live blackjack hos Danske Spil – et af de mest populære danske borde til progressionssystemer som Fibonacci"
+          size="full"
+        />
+
         <InlineCasinoCards title="Test Fibonacci på Disse Live Blackjack-Borde" />
 
         <Separator className="mb-12" />

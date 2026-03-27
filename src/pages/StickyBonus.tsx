@@ -294,6 +294,13 @@ const StickyBonus = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaBonusvilkaar}
+          alt="Betinia bonusvilkår med omsætningskrav, gyldighed og sticky bonus-regler tydeligt beskrevet i casinoets vilkårssektion"
+          caption="Betinia – eksempel på sticky bonus-vilkår med detaljeret beskrivelse af omsætningskrav og restriktioner"
+          size="full"
+        />
+
         
 
         <Separator className="my-10" />

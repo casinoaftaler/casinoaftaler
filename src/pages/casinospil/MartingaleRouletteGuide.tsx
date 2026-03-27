@@ -314,6 +314,13 @@ export default function MartingaleRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilLiveRouletteBord}
+          alt="Live roulette-bord hos Danske Spil med europæisk hjul, betting layout og indsatsmuligheder – ideelt til Martingale-test"
+          caption="Live roulette hos Danske Spil – europæisk variant med enkelt nul, som giver den laveste house edge til Martingale"
+          size="full"
+        />
+
         {/* Bordmaksimum-fælden */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">

@@ -274,6 +274,13 @@ export default function LabouchereRouletteGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilLiveRouletteBord}
+          alt="Danske Spil live roulette med europæisk hjul og indsatsområde – velegnet til Labouchère-sekvenser på lige-chancer"
+          caption="Europæisk live roulette hos Danske Spil – det foretrukne format til Labouchère-systemets lige-chancer indsatser"
+          size="full"
+        />
+
         {/* Simulering */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">
