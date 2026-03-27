@@ -422,7 +422,6 @@ const Velkomstbonus = () => {
           src={betiniaBonusvilkaar}
           alt="Betinia bonusvilkår med omsætningskrav på 10x, spilbidrag og maks. indsats på 36 kr."
           caption="Detaljerede bonusvilkår hos Betinia – 10x omsætningskrav med fuld gennemsigtighed"
-          size="medium"
         />
 
         <Separator className="my-10" />
