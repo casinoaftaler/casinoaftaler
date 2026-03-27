@@ -287,6 +287,7 @@ const BwinAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Løbende kampagner er primært fokuseret på sport med odds-boosts, free bets og akkumulatortilbud. Casino-kampagner kører også, men med lavere frekvens – typisk ugentlige free spins-tilbud og sæsonbaserede events. bwins bonusprogram er moderat sammenlignet med aggressive konkurrenter som <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link>, men vilkårene er fair og gennemsigtige.
           </p>
+          <ReviewScreenshot src={bwinKampagner} alt="bwin kampagneoversigt med casino cashback, sportsbonusser, Kombi Boost og pokertilbud" caption="bwins kampagneside med separate tilbud for casino, sport og poker – her ses cashback, Kombi Boost og Re-Bet." size="full" />
         </section>
 
         <Separator className="my-10" />
