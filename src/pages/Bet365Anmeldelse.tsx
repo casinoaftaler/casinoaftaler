@@ -268,6 +268,7 @@ const Bet365Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Hvor bet365 halter lidt, er på niche-udbydere. Studier som Nolimit City, Hacksaw Gaming og Push Gaming er repræsenteret, men med færre titler end hos eksempelvis <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link>, der har over 5.000+ spil. For de fleste spillere er forskellen ubetydelig – men entusiaster, der jagter specifikke titler fra mindre studier, vil indimellem opleve at et spil mangler.
           </p>
+          <ReviewScreenshot src={bet365Spilfilter} alt="bet365 spilfilter med udbydere som Playtech, Pragmatic, NetEnt, BTG og Push Gaming" caption="Det avancerede filtreringssystem gør det nemt at finde spil efter udbyder, type, tema og RTP." size="full" />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Nye spilrelease kommer typisk inden for den første uge efter lancering. bet365 er sjældent den allerførste operatør med en ny titel, men forsinkelsen er minimal. Jackpot-sektionen inkluderer progressive puljer fra Pragmatic Play og NetEnt. Gevinster i millionklassen er sjældne men dokumenterede – og bet365 har historik for at udbetale store jackpots uden drama.
           </p>
