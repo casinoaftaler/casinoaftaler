@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemaskiner.png";
 import spilnuVindere from "@/assets/screenshots/spilnu-vindere.png";
+import pokerstarsJackpots from "@/assets/screenshots/pokerstars-jackpot-spillemaskiner.png";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
