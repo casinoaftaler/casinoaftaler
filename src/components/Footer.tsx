@@ -594,7 +594,32 @@ export function Footer() {
               />
             </a>
 
-            {/* Trustpilot */}
+            {/* GPWA Approved Portal Seal */}
+            <a
+              href="https://certify.gpwa.org/verify/casinoaftaler.dk/"
+              onClick={(e) => {
+                e.preventDefault();
+                window.open(
+                  "https://certify.gpwa.org/verify/casinoaftaler.dk/",
+                  "GPWAVerification",
+                  "height=560,width=480,toolbar=no,menubar=no,scrollbars=yes"
+                );
+              }}
+              id="GPWASeal"
+              className="inline-block"
+            >
+              <img
+                src="https://certify.gpwa.org/seal/casinoaftaler.dk/"
+                alt="GPWA Approved Portal – verificeret affiliateportal"
+                style={{ height: 60, width: "auto" }}
+                loading="lazy"
+                onError={(e) => {
+                  const img = e.currentTarget;
+                  img.width = 0;
+                  img.height = 0;
+                }}
+              />
+            </a>
             <a
               href="https://dk.trustpilot.com/review/casinoaftaler.dk"
               target="_blank"
