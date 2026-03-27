@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.png";
+import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
