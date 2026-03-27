@@ -209,15 +209,22 @@ export default function SpilleautomatenVsSpilDanskNu() {
 
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Slots-katalog, kuratering og sessionskvalitet</h2>
-        <p className="mb-4 text-muted-foreground leading-relaxed">
-          En af de mest undervurderede forskelle mellem søstersider som disse er ikke antallet af spil i sig selv, men kvaliteten af kuratering i førstegangsoplevelsen. Hvis brugeren hurtigt kan finde de rette titler, opleves et mindre katalog ofte stærkere end et større katalog med svag prioritering. Spilleautomaten har generelt fordel i netop denne type fokuseret kuratering, hvor slots-intentionen er synlig fra første klik.
-        </p>
-        <p className="mb-4 text-muted-foreground leading-relaxed">
-          SpilDanskNu svarer igen med en bredere totalpakke, hvor spilleren kan skifte retning i samme session. For brugere der veksler mellem klassiske slots, nyere releases og liveformater, er den ekstra bredde værdifuld. Den stærkeste brugeroplevelse opstår her, når spilleren faktisk bruger variationen aktivt – ikke hvis brugeren alligevel ender i de samme få spil hver gang.
-        </p>
-        <p className="text-muted-foreground leading-relaxed">
-          Derfor anbefaler vi at vurdere på sessionstype: Hvis du oftest går ind for at spille "det samme plus lidt", vinder Spilleautomaten. Hvis du ofte går ind uden at vide præcist hvad du vil spille, og sætter pris på at browse, vinder SpilDanskNu.
-        </p>
+         <p className="mb-4 text-muted-foreground leading-relaxed">
+           En af de mest undervurderede forskelle mellem søstersider som disse er ikke antallet af spil i sig selv, men kvaliteten af kuratering i førstegangsoplevelsen. Hvis brugeren hurtigt kan finde de rette titler, opleves et mindre katalog ofte stærkere end et større katalog med svag prioritering. Spilleautomaten har generelt fordel i netop denne type fokuseret kuratering, hvor slots-intentionen er synlig fra første klik.
+         </p>
+
+         <ReviewScreenshot
+           src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-slots-katalog.webp"
+           alt="Spilleautomaten slots-katalog med filtrering efter popularitet, kategorier og spiludbydere"
+           caption="Spilleautomatens slots-katalog – fokuseret kuratering med kategori- og udbyderfiltre"
+         />
+
+         <p className="mb-4 text-muted-foreground leading-relaxed">
+           SpilDanskNu svarer igen med en bredere totalpakke, hvor spilleren kan skifte retning i samme session. For brugere der veksler mellem klassiske slots, nyere releases og liveformater, er den ekstra bredde værdifuld. Den stærkeste brugeroplevelse opstår her, når spilleren faktisk bruger variationen aktivt – ikke hvis brugeren alligevel ender i de samme få spil hver gang.
+         </p>
+         <p className="text-muted-foreground leading-relaxed">
+           Derfor anbefaler vi at vurdere på sessionstype: Hvis du oftest går ind for at spille "det samme plus lidt", vinder Spilleautomaten. Hvis du ofte går ind uden at vide præcist hvad du vil spille, og sætter pris på at browse, vinder SpilDanskNu.
+         </p>
       </section>
 
       <section className="mb-12">
