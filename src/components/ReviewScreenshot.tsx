@@ -46,7 +46,7 @@ export function ReviewScreenshot({ src, alt, caption, eager = false, size = "ful
         />
         <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-md bg-background/80 backdrop-blur-sm px-2.5 py-1 text-xs font-medium text-muted-foreground border border-border/50">
           <Camera className="h-3 w-3" />
-          Verificeret screenshot
+          Verificeret dansk screenshot
         </span>
       </div>
       {caption && (

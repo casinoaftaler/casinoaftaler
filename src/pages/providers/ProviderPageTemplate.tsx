@@ -67,6 +67,8 @@ interface ProviderPageProps {
   cons: string[];
   faqs: FAQ[];
   currentPath: string;
+  /** Extra JSON-LD schemas (e.g. VideoObject) to inject alongside Article+FAQ */
+  extraJsonLd?: Record<string, unknown>[];
   responsibleGamingText?: string;
   strategicAnalysis?: ReactNode;
   technicalProfile?: ReactNode;
