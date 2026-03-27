@@ -21,6 +21,7 @@ export interface BonusHuntData {
     openedBonuses: number;
     startBalance: number;
     endBalance: number | null;
+    totalWinnings: number;
     targetBalance: number;
     averageBet: number;
     averageX: number | null;
@@ -59,6 +60,7 @@ function parseHuntResponse(raw: any): BonusHuntData {
   const openedSlots = slots.filter(s => s.opened);
   const totalBets = slots.reduce((sum, s) => sum + s.bet, 0);
   const avgBet = slots.length > 0 ? totalBets / slots.length : 0;
+  const totalWinnings = openedSlots.reduce((sum, s) => sum + s.win, 0);
 
   const multipliersOpen = openedSlots.filter(s => s.multiplier > 0);
   const avgX = multipliersOpen.length > 0
@@ -67,7 +69,8 @@ function parseHuntResponse(raw: any): BonusHuntData {
 
   const startBalance = huntData.start || totalBets;
   const breakEvenX = totalBets > 0 ? startBalance / totalBets : 0;
-  const endVal = huntData.end || null;
+  // End Balance = sum of all winnings (not the API's "end" field which is balance when bonuses are opened)
+  const endVal = totalWinnings > 0 ? totalWinnings : null;
 
   const parsedVisibleId = huntData.visibleId
     || (huntData.name ? parseInt(huntData.name.replace(/\D/g, ''), 10) || 0 : 0);
@@ -83,6 +86,7 @@ function parseHuntResponse(raw: any): BonusHuntData {
       openedBonuses: openedSlots.length,
       startBalance,
       endBalance: endVal,
+      totalWinnings,
       targetBalance: huntData.targetBalance || 0,
       averageBet: Math.round(avgBet * 100) / 100,
       averageX: avgX ? Math.round(avgX * 100) / 100 : null,
@@ -158,6 +162,7 @@ function createPendingLiveHuntData(huntNumber: number): BonusHuntData {
       openedBonuses: 0,
       startBalance: 0,
       endBalance: null,
+      totalWinnings: 0,
       targetBalance: 0,
       averageBet: 0,
       averageX: null,

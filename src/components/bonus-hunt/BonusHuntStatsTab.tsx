@@ -99,6 +99,7 @@ export function BonusHuntStatsTab({ data, huntNumber, huntDate, isLive = false, 
           <StatRow icon={Unlock} label="Åbnede" value={`${s.openedBonuses} / ${s.totalBonuses}`} />
           <StatRow icon={Wallet} label="Start Balance" value={`${s.startBalance.toLocaleString('da-DK')} kr`} />
           <StatRow icon={Target} label="Target Balance" value={`${s.targetBalance.toLocaleString('da-DK')} kr`} />
+          <StatRow icon={Trophy} label="Winnings" value={`${s.totalWinnings.toLocaleString('da-DK')} kr`} highlight={s.totalWinnings > 0} />
           <StatRow icon={Wallet} label="End Balance" value={s.endBalance !== null ? `${s.endBalance.toLocaleString('da-DK')} kr` : '—'} highlight={!!s.endBalance} />
           {s.endBalance !== null && (
             <div className={`flex items-center justify-between py-1.5 border-b border-border/20 last:border-0 group/row transition-all duration-[180ms] hover:bg-muted/20 rounded-md px-1`}>
