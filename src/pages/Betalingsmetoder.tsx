@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBetalingOversigt from "@/assets/screenshots/betinia-betaling-oversigt.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
 import { AuthorBio } from "@/components/AuthorBio";

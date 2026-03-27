@@ -298,6 +298,12 @@ const NyeCasinoer = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia lobby med anbefalede spil, spilkategorier og velkomstbonus efter registrering"
+          caption="Betinias lobby efter kontooprettelse – overblik over spiludvalg og aktive kampagner"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
