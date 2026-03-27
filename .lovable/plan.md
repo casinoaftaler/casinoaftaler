@@ -1,88 +1,108 @@
-## Plan: PlayKasino Anmeldelse – Fuld Enterprise SEO Casino Review
-
-### Verificerede fakta om PlayKasino (fra research)
 
 
-| Felt                    | Verificeret data                                                                       |
-| ----------------------- | -------------------------------------------------------------------------------------- |
-| Operatør                | SkillOnNet Ltd (Malta)                                                                 |
-| Licens                  | Spillemyndigheden (DK) + Malta Gaming Authority + UK GC                                |
-| Lanceret DK             | Marts 2026                                                                             |
-| Velkomstbonus           | 100% op til 500 kr. (auto-krediteret)                                                  |
-| Omsætningskrav          | 10x (indbetaling + bonus), 60 dage                                                     |
-| Min. indbetaling        | 100 kr.                                                                                |
-| Maks. indsats med bonus | 50 kr. pr. spin                                                                        |
-| Antal spil              | 1200+                                                                                  |
-| Live Casino             | Playtech (primær) + Evolution Gaming                                                   |
-| Betalingsmetoder        | MobilePay, Apple Pay, Trustly, PayPal, Visa/Mastercard, Skrill                         |
-| Kundeservice            | Kun e-mail ([support@playkasino.com](mailto:support@playkasino.com)) – ingen live chat |
-| Mobilapp                | iOS + Android app tilgængelig                                                          |
-| Adresse                 | Level 5, Quantum House, 75 Abate Rigord Street, Ta' Xbiex, Malta                       |
+# Plan: Genbrug eksisterende screenshots på money pages
 
+## Status – Hvad vi har
 
-### Filer der oprettes/redigeres
+### Allerede implementerede screenshots (på money pages)
+| Screenshot | Bruges på |
+|---|---|
+| `betinia-bonusvilkaar` | Omsaetningskrav, Indskudsbonus, Velkomstbonus |
+| `betinia-betaling-oversigt` | Betalingsmetoder, MobilePayGuide |
+| `betinia-mobilepay-kasse` | MobilePayGuide |
+| `betinia-mobilepay-bekraeft` | MobilePayGuide |
+| `betinia-lobby` | NyeCasinoer |
+| `betinia-reg-mitid` | NyeCasinoerMitID |
+| `betinia-velkomstbonus-aktiv` | Velkomstbonus |
+| `betinia-megaways-filter` | MegawaysSlots |
+| `betinia-bonusbuy-lobby/gameplay` | BonusBuySlots |
+| Spilleautomaten `vs-lobby/katalog/praemieshop` | Comparison |
 
-**1. `src/pages/PlayKasinoAnmeldelse.tsx**` (NY – ~800-900 linjer)
+### Ubrugte screenshots klar til placering
+| Screenshot | Kilde | Indhold |
+|---|---|---|
+| `betinia-bonussektion.webp` | Lokal asset | Betinia bonusoversigt |
+| `betinia-velkomstbonus-close.webp` | Lokal asset | Velkomstbonus detaljer |
+| Spilleautomaten `vs-beloningsprogram` | Supabase | Loyalitetsprogram |
+| Spilleautomaten `vs-trustly-bankvalg` | Supabase | Trustly bankvalg-flow |
+| Spilleautomaten `vs-trustly-login` | Supabase | Trustly MitID-login |
+| Spilleautomaten `vs-indbetaling` | Supabase | Indbetalingsside |
+| SpilDanskNu `bonus` | Lokal asset | Bonusside |
+| SpilDanskNu `indbetaling` | Lokal asset | Indbetalingsflow |
+| SpilDanskNu `login` | Lokal asset | Login/MitID |
+| SpilDanskNu `lobby` | Lokal asset | Forside/lobby |
+| SpilDanskNu `praemieshop` | Lokal asset | Præmieshop |
+| SpilDanskNu `belonningsprogram` | Lokal asset | Loyalitetsprogram |
+| SpilDanskNu `casinospil` | Lokal asset | Spiloversigt |
 
-Fuld anmeldelse med alle standard-sektioner:
+**= 13 ubrugte screenshots klar til placering**
 
-- SEO component med articleSchema, faqJsonLd, reviewJsonLd (ratingValue "4.5")
-- Hero section med badge "4.5 / 5 – Nyt dansk casino med kæmpe katalog"
-- AuthorMetaBar (author="jonas")
-- CasinoReviewHero (slug="playkasino")
-- ReviewMoneyLinks (showMobilePay)
-- Quick Facts kort (2 rækker × 4 kolonner)
-- QuickFactsProviders med leverandører
-- **Introduktion**: SkillOnNet-platformen, hvad det betyder, 4.400+ spil, DK lancering marts 2026
-- **Bonusanalyse**: 100% op til 500 kr., auto-krediteret, 10x omsætning, EV-beregning
-- **EV-analyse**: Bonus 500 kr., omsætning 10.000 kr., HE 4% → forventet tab 400 kr. → EV +100 kr.
-- **Spiludvalg**: 4.400+ slots, Playtech live casino, Evolution supplement, filtreringsmuligheder
-- **Live Casino**: Playtech-drevet med Evolution supplement
-- **Betalingsmetoder**: MobilePay, Apple Pay, Trustly, PayPal, Skrill, Visa/MC – tabel med detaljer
-- **Kundeservice**: Kun e-mail – ærlig kritik, sammenligning med konkurrenter
-- **Mobiloplevelse**: App til iOS/Android + responsiv web
-- **Sikkerhed & licens**: SkillOnNet, Spillemyndigheden, ROFUS, SSL, MitID via ZignSec
-- **SkillOnNet deep-dive**: Hvem er SkillOnNet, andre brands (PlayOJO), platform-fordele/ulemper
-- **Fordele/Ulemper**: Grid med Check/X ikoner
-- **Hvem bør IKKE vælge PlayKasino**: Ærlig segmentering
-- **Sammenligning**: vs SpilDanskNu, vs Campobet, vs Swift Casino
-- **Endelig vurdering** med RatingBreakdown
-- UserReviewSection, RelatedReviews, InlineCasinoCards, LatestNewsByCategory, RelatedGuides
-- FAQSection (7+ spørgsmål)
-- AuthorBio
-- StickyCTA med affiliate link
+---
 
-**2. `src/App.tsx**` – Tilføj lazy import + route:
+## Placeringsplan – Genbrug på money pages
 
-```
-const PlayKasinoAnmeldelse = lazy(() => import("./pages/PlayKasinoAnmeldelse"));
-// Route: /casino-anmeldelser/playkasino
-```
+Alle placeringer overholder: max 3 pr. side, aldrig consecutive, unikke alt-tekster, size="full".
 
-**3. `src/lib/seoRoutes.ts**` – Tilføj entry:
+### 1. TrustlyGuide.tsx (0 → 2 screenshots)
+- **Spilleautomaten `vs-trustly-bankvalg`** → i "How to"-sektionen (bankvalg-flow)
+- **Spilleautomaten `vs-trustly-login`** → i intro/Open Banking-sektionen (MitID-login)
 
-```
-{ path: "/casino-anmeldelser/playkasino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-25" }
-```
+### 2. VisaMastercardGuide.tsx (0 → 1 screenshot)
+- **Spilleautomaten `vs-indbetaling`** → i how-to-sektionen (indbetalingsside viser kortmuligheder)
 
-**4. `src/lib/breadcrumbs.ts**` – Tilføj:
+### 3. PayPalGuide.tsx (0 → 1 screenshot)  
+- **Betinia `betaling-oversigt`** → genbrug med unik alt-tekst om PayPal i kontekst af betalingsoversigten
 
-- PARENT_OVERRIDES label: `"PlayKasino"`
-- Parent path: `/casino-anmeldelser`
+### 4. SkrillGuide.tsx (0 → 1 screenshot)
+- **Betinia `betaling-oversigt`** → genbrug med alt-tekst fokuseret på e-wallet-muligheder
 
-**5. `src/lib/reviewScoring.ts**` – Justering af scores baseret på research:
+### 5. PaysafecardGuide.tsx (0 → 1 screenshot)
+- **Betinia `betaling-oversigt`** → genbrug med alt-tekst om forudbetalte metoder
 
-- kundeservice: 4.2 → 3.5 (kun e-mail, ingen live chat – bør afspejle den reelle svaghed)
-- Recalculate total
+### 6. NyeCasinoerTrustly.tsx (0 → 1 screenshot)
+- **Spilleautomaten `vs-trustly-bankvalg`** → genbrug med unik alt-tekst om Trustly hos nye casinoer
 
-### Tekniske detaljer
+### 7. NyeCasinoerHurtigUdbetaling.tsx (0 → 1 screenshot)
+- **SpilDanskNu `indbetaling`** → viser hurtigt betalingsflow
 
-- Alle interne links bruger `<Link to="...">` med `linkClass` pattern
-- Eksterne links bruger `<a>` med `target="_blank" rel="noopener noreferrer"`
-- casinoReviewEntities("PlayKasino", "playkasino") for schema
-- Affiliate redirect via `getAffiliateRedirect(casino.slug, user?.id)`
-- Unik sektionsrækkefølge for at undgå template footprint (SkillOnNet deep-dive placeres mellem bonus og spiludvalg)
+### 8. NyeCasinoerLavWagering.tsx (0 → 1 screenshot)
+- **SpilDanskNu `bonus`** → bonusvilkår med lav omsætning
 
-### Omfang
+### 9. NyeCasinoerDanskLicens.tsx (0 → 1 screenshot)
+- **SpilDanskNu `lobby`** → dansk licenseret casino-lobby
 
-~900 linjer TSX for hoveddokumentet + 4 small edits i eksisterende filer. Alt indhold er faktuelt verificeret via minimum 2 kilder (playkasino.com, betxpert.com, casino.guru, casinosdanmark.com).
+### 10. NyeCasinoerBonusUdenIndbetaling.tsx (0 → 1 screenshot)
+- **Betinia `bonussektion`** → bonusoversigt
+
+### 11. Casino Bonus hub (0 → 1 screenshot)
+- **Betinia `velkomstbonus-close`** → detaljeret bonusvisning
+
+### 12. Comparisons uden screenshots (4 sider → 1-2 hver)
+
+**BetiniaVsCampobet:**
+- **Betinia `lobby`** → genbrug med comparison-alt-tekst
+
+**SwiftCasinoVsLunaCasino:**
+- Kræver nye screenshots (ingen Swift/Luna i inventar uden for reviews)
+
+**Bet365VsUnibet / LeoVegasVsMrGreen / DanskeSpilVsSpilnu:**
+- Kræver nye screenshots
+
+---
+
+## Opsummering
+
+| Handling | Antal |
+|---|---|
+| Ubrugte screenshots der kan placeres NU | 13 |
+| Money pages der får screenshots fra eksisterende | ~12 sider |
+| Nye placeringer i alt | ~15 |
+| Money pages der stadig mangler (kræver NYE screenshots) | ~30-35 |
+
+### Teknisk implementering
+- Importér lokale assets eller brug Supabase storage URL'er
+- Alle med `<ReviewScreenshot>`, `size="full"`, unikke alt-tekster
+- Placering i relevant tekstafsnit (aldrig consecutive)
+
+Skal jeg implementere disse 15 placeringer?
+
