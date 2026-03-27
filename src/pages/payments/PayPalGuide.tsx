@@ -142,8 +142,8 @@ const PayPalGuide = () => {
               </p>
               <ReviewScreenshot
                 src={paypalKasse}
-                alt="Kassesektion på dansk casino med PayPal, Visa, Paysafecard og Trustly som betalingsmetoder – indbetalingsbeløb og kampagnekode synlig"
-                caption="Kassesektion med betalingsmetoder inkl. PayPal – screenshot fra vores test på Bet365.dk"
+                alt="Kassesektion på 888casino.dk med PayPal, Visa, Paysafecard og Trustly som betalingsmetoder – indbetalingsbeløb og kampagnekode synlig"
+                caption="Kassesektion med betalingsmetoder inkl. PayPal – screenshot fra vores test på 888casino.dk"
                 size="compact"
               />
             </>
