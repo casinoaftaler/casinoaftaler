@@ -207,10 +207,16 @@ const CasinoBonus = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne guide er bygget på princippet om, at markedsføring og reel værdi er to fundamentalt forskellige ting. Et casino kan annoncere "100% op til 1.000 kr." – men den reelle matematiske værdi af det tilbud kan være under 200 kr., når man indregner omsætningskrav, bonusstruktur og spilbidrag. Vi giver dig værktøjerne til at beregne den faktiske værdi af ethvert bonustilbud, så du aldrig betaler overpris for din casino bonus.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Guiden dækker alle 10 primære bonustyper på det danske marked, med matematiske analyser, strategiske anbefalinger og en ærlig vurdering af, hvem der bør – og hvem der bør undlade at – bruge bonusser. Vi har testet over 25 danske casinoer i januar-februar 2026 med reelle indbetalinger for at verificere vilkårene i praksis – alle resultater er dokumenteret i vores <Link to="/bonus-hunt/arkiv" className={linkClass}>Bonus Hunt Arkiv</Link> med gennemsnitlig X, break-even analyser og community-data. Tjek også <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> for de seneste bonustilbud. Det er ikke en markedsføringsguide – det er en beslutningsguide.
-          </p>
-        </section>
+           <p className="text-muted-foreground leading-relaxed">
+             Guiden dækker alle 10 primære bonustyper på det danske marked, med matematiske analyser, strategiske anbefalinger og en ærlig vurdering af, hvem der bør – og hvem der bør undlade at – bruge bonusser. Vi har testet over 25 danske casinoer i januar-februar 2026 med reelle indbetalinger for at verificere vilkårene i praksis – alle resultater er dokumenteret i vores <Link to="/bonus-hunt/arkiv" className={linkClass}>Bonus Hunt Arkiv</Link> med gennemsnitlig X, break-even analyser og community-data. Tjek også <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> for de seneste bonustilbud. Det er ikke en markedsføringsguide – det er en beslutningsguide.
+           </p>
+
+           <ReviewScreenshot
+             src={betiniaVelkomstbonusClose}
+             alt="Detaljeret visning af velkomstbonus med omsætningskrav og bonusstruktur hos dansk licenseret casino"
+             caption="Sådan ser en typisk velkomstbonus ud i praksis – tjek altid omsætningskrav og bonusstruktur"
+           />
+         </section>
 
         <Separator className="my-10" />
 
