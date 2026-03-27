@@ -165,6 +165,13 @@ const NordicBetAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <Link to="/live-casino" className={linkClass}>Live casinoet</Link> er drevet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> med et bredt udvalg af borde. Klassisk blackjack og roulette er tilgængeligt i multiple varianter, og game shows som Crazy Time, Monopoly Live og Dream Catcher tilbyder underholdningsværdi ud over traditionelt bordspil. Der mangler dog eksklusive NordicBet-borde – en feature, som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> og <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> tilbyder og som giver en mere premium-agtig oplevelse.
           </p>
+
+          <ReviewScreenshot
+            src={nordicbetLiveCasino}
+            alt="NordicBet live casino-lobby med Lightning Roulette, XXXtreme Lightning Roulette, Lightning Blackjack og eksklusive NordicBet-borde"
+            caption="NordicBets live casino – Lyn Borde-kategorien med Lightning-varianter og eksklusive NordicBet Lounge-borde"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
