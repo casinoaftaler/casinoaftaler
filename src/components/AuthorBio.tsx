@@ -134,7 +134,7 @@ export function AuthorBio({ author = "jonas", showCommunity = true }: AuthorBioP
                   GPWA-godkendt
                 </a>{" "}
                 affiliate platform.{" "}
-                <Link to="/er-casinoaftaler-trovaerdig" className="text-primary underline hover:text-primary/80">
+                <Link to="/om" className="text-primary underline hover:text-primary/80">
                   Læs mere
                 </Link>
               </p>

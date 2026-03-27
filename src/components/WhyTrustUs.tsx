@@ -37,7 +37,7 @@ const trustPoints = [
     description:
       "Vi er officielt godkendt af GPWA (Gambling Portal Webmasters Association) – branchens ældste tillidsmærke for casino-affiliates.",
     stat: "Verified Seal of Approval",
-    link: { to: "/er-casinoaftaler-trovaerdig", label: "Verificér os →" },
+    link: { to: "/om", label: "Verificér os →" },
   },
 ];
 

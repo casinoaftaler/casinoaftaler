@@ -163,7 +163,7 @@ export const routeLabels: Record<string, string> = {
   "/casino-licenser": "Casino Licenser",
   "/licenserede-casinoer": "Licenserede Casinoer",
   "/saadan-tester-vi-casinoer": "Sådan Tester Vi Casinoer",
-  "/er-casinoaftaler-trovaerdig": "Er CasinoAftaler troværdig?",
+  
   // Top Lister
   "/top-10-casino-online": "Top 10 Casino Online",
   // Casino Anmeldelser
@@ -519,7 +519,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/forretningsmodel": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/pragmatic-play-partner": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/redaktionel-politik": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
-  "/er-casinoaftaler-trovaerdig": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
+  
   "/kontakt": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
 
   // Ansvarligt Spil cluster – bundet til /ansvarligt-spil hub

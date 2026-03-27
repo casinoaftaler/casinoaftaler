@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { GPWASealBadge } from "@/components/GPWASealBadge";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { SEO } from "@/components/SEO";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -901,6 +902,29 @@ const OmTeamet = () => {
               <ArrowRight className="ml-1.5 h-4 w-4" />
             </Button>
           </Link>
+        </section>
+
+        {/* ═══ GPWA GODKENDELSE ═══ */}
+        <section className="mb-12">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                GPWA-godkendt affiliate portal
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Casinoaftaler.dk er officielt godkendt af <strong>GPWA (Gambling Portal Webmasters Association)</strong> – branchens ældste og mest anerkendte organisation for casino-affiliates, grundlagt i 2000. En GPWA "Seal of Approval" udstedes kun efter manuel gennemgang af indhold, anbefalinger og bonusoplysninger.
+              </p>
+              <div className="flex justify-start">
+                <GPWASealBadge variant="block" microcopy="GPWA Approved Portal" />
+              </div>
+              <p className="text-sm">
+                Klik på seglet ovenfor for at åbne GPWA's officielle verificeringsside, hvor casinoaftaler.dk fremgår som godkendt portal.
+              </p>
+            </CardContent>
+          </Card>
         </section>
       </div>
 

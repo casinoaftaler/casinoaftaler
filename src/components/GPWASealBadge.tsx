@@ -64,10 +64,10 @@ export function GPWASealBadge({
         )}
         {showTrustLink && (
           <Link
-            to="/er-casinoaftaler-trovaerdig"
+            to="/om"
             className="text-xs text-primary hover:underline"
           >
-            Læs mere om vores troværdighed →
+            Læs mere om os →
           </Link>
         )}
       </div>

@@ -31,7 +31,6 @@ const TopCasinoOnline = lazy(() => import("./pages/TopCasinoOnline"));
 // Lazy load remaining pages
 const CasinoSlugRedirect = lazy(() => import("./components/CasinoSlugRedirect"));
 const OmTeamet = lazy(() => import("./pages/OmTeamet"));
-const ErCasinoaftalerTrovaerdig = lazy(() => import("./pages/ErCasinoaftalerTrovaerdig"));
 const Forretningsmodel = lazy(() => import("./pages/Forretningsmodel"));
 const PragmaticPlayPartner = lazy(() => import("./pages/PragmaticPlayPartner"));
 const RedaktionelPolitik = lazy(() => import("./pages/RedaktionelPolitik"));
@@ -374,7 +373,6 @@ const App = () => (
                 <Route path="/forfatter/ajse" element={<ForfatterAjse />} />
                 <Route path="/forfatter/niklas" element={<ForfatterNiklas />} />
                 <Route path="/saadan-tester-vi-casinoer" element={<SaadanTesterVi />} />
-                <Route path="/er-casinoaftaler-trovaerdig" element={<ErCasinoaftalerTrovaerdig />} />
                 
                 <Route path="/kontakt" element={<Kontakt />} />
                 <Route path="/sitemap" element={<SitemapPage />} />

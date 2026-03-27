@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { GPWASealBadge } from "@/components/GPWASealBadge";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { TestMetodeSeoContent } from "@/components/test-metode/TestMetodeSeoContent";
@@ -204,6 +205,9 @@ const SaadanTesterVi = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="ajse" readTime="12 Min." showAffiliateDisclaimer={false} />
+        <div className="my-4">
+          <GPWASealBadge variant="inline" microcopy="GPWA-godkendt testmetode" showTrustLink />
+        </div>
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
