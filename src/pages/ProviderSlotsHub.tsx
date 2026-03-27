@@ -278,6 +278,7 @@ export default function ProviderSlotsHub() {
                   </Link>
                 </div>
               </section>
+            ),
           };
 
           // Shuffle section order deterministically per provider slug
