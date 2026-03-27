@@ -1,81 +1,108 @@
-# Plan: KapowCasino registrerings-screenshots på money pages
-
-## Billederne og deres indhold
-
-1. **kapow-velkomstbonus.png** — Trin 1: Bonusvalg med 100 kr = 100 Spins til Gates of Olympus, toggle "Fortsæt uden bonus"
-2. **kapow-registrering.png** — Trin 1: Kontaktformular med CPR, fornavn, efternavn, email, mobilnummer, tidsperiode, overførselsgrænse
-3. **kapow-mitid-registrering.png** — Trin 2: MitID-verificeringsside med "Registrer med MitID"
-4. **kapow-mitid-login.png** — Trin 2: Scrive MitID-login med bruger-ID felt
-5. **kapow-mitid-godkendt.png** — Trin 2: MitID-verifikation godkendt (blåt skjold)
-
-## Placeringsplan – 15 money pages
-
-Billederne matches til sider baseret på indholdets relevans:
-
-### Velkomstbonus-billedet (kapow-velkomstbonus.png)
 
 
-| Side                       | Kontekst                                   |
-| -------------------------- | ------------------------------------------ |
-| `Velkomstbonus.tsx`        | Ved sektion om bonusaktivering/valg        |
-| `Indskudsbonus.tsx`        | Ved trin-guide om bonusaktivering          |
-| `CasinoBonus.tsx`          | Ved sektion om velkomstbonustyper          |
-| `FreeSpins.tsx`            | Ved sektion om free spins ved registrering |
-| `BonusUdenIndbetaling.tsx` | Ved sammenligning med indbetalingsbonusser |
+# Plan: Genbrug af casino-anmeldelse screenshots på money pages
 
+## Nuværende status
 
-### Registreringsformular (kapow-registrering.png)
+**23 review-sider** har screenshots (104 billeder totalt i `src/assets/screenshots/`).
+**~28 money pages** har allerede screenshots (Kapow, Betinia m.fl.).
+**~40+ money pages** har INGEN screenshots endnu — disse er målene.
 
+## Tilgængelige review-screenshots og relevante money pages
 
-| Side                                      | Kontekst                               |
-| ----------------------------------------- | -------------------------------------- |
-| `TopCasinoOnline.tsx`                     | Ved "Opret konto med MitID" trin-guide |
-| `NyeCasinoer.tsx`                         | Ved sektion om registreringsproces     |
-| `nye-casinoer/NyeCasinoerDanskLicens.tsx` | Ved dansk licens-registreringskrav     |
-| `Omsaetningskrav.tsx`                     | Ved sektion om overførselsgrænser      |
+### 1. Live Casino screenshots → Live Casino money pages (0 screenshots i dag)
 
+| Screenshot | Target page | Kontekst |
+|---|---|---|
+| `mrgreen-live-blackjack.png` | `LiveCasino.tsx` | Ved live blackjack sektion |
+| `mrgreen-live-roulette.png` | `LiveCasino.tsx` | Ved live roulette sektion |
+| `betano-live-casino.png` | `live-casino/LiveBlackjackGuide.tsx` | Ved casino-lobby eksempel |
+| `onecasino-live-casino.png` | `live-casino/LiveRouletteGuide.tsx` | Ved live dealer eksempel |
+| `leovegas-live-casino.png` | `live-casino/LiveBaccaratGuide.tsx` | Ved live baccarat |
+| `getlucky-live-casino.png` | `live-casino/LiveCasinoStrategiGuide.tsx` | Ved strategi-eksempel |
+| `unibet-live-casino.png` | `live-casino/LiveCasinoUdbydereGuide.tsx` | Ved udbyder-sammenligning |
+| `pokerstars-live-casino.png` | `live-casino/LightningRouletteGuide.tsx` | Ved Evolution gaming |
+| `royalcasino-live-casino.png` | `live-casino/CrazyTimeGuide.tsx` | Ved game show lobby |
 
-### MitID-registrering (kapow-mitid-registrering.png)
+### 2. Spillemaskiner/lobby screenshots → Slots money pages (0 screenshots i dag)
 
+| Screenshot | Target page | Kontekst |
+|---|---|---|
+| `leovegas-populaere-spil.png` | `Spillemaskiner.tsx` | Ved populære spillemaskiner |
+| `casinostuen-spillemaskiner.png` | `SpillemaskinerHoejRTP.tsx` | Ved RTP-filtrering |
+| `playkasino-spillemaskiner.png` | `JackpotSlots.tsx` | Ved spilleautomater |
+| `unibet-filtre.png` | `slots/GatesOfOlympusGuide.tsx` | Ved slot-filter eksempel |
+| `onecasino-spillemaskiner.png` | `slots/StarburstGuide.tsx` | Ved populære slots |
+| `expekt-spillemaskiner.png` | `slots/SweetBonanzaGuide.tsx` | Ved spilleautomater |
 
-| Side                                | Kontekst                        |
-| ----------------------------------- | ------------------------------- |
-| `nye-casinoer/NyeCasinoerMitID.tsx` | Primær side om MitID – vigtigst |
-| `Spillemyndigheden.tsx`             | Ved KYC/identitetsverifikation  |
-| `CasinoLicenser.tsx`                | Ved licenskrav og MitID         |
+### 3. Betaling/indbetaling screenshots → Payment pages (mangler screenshots)
 
+| Screenshot | Target page | Kontekst |
+|---|---|---|
+| `bet365-saldo.png` | `payments/ApplePayGuide.tsx` | Ved indbetalingsoversigt |
+| `playkasino-indbetaling.png` | `payments/RevolutGuide.tsx` | Ved betalingsmetoder |
+| `mrvegas-betaling.png` | `payments/ZimplerGuide.tsx` | Ved betalingsoversigt |
+| `expekt-betaling.png` | `payments/PayPalGuide.tsx` | Ved betaling (mangler lokal) |
+| `onecasino-indbetaling.png` | `CasinoMedMobilePay.tsx` | Ved MobilePay-kasse |
+| `spilnu-betaling.png` | `Betalingsmetoder.tsx` | Ekstra betaling-eksempel |
+| `pokerstars-betaling.png` | `payments/VisaMastercardGuide.tsx` | Ved kort-betaling |
 
-### MitID-login (kapow-mitid-login.png)
+### 4. Kampagne/bonus screenshots → Bonus money pages (ingen screenshots)
 
+| Screenshot | Target page | Kontekst |
+|---|---|---|
+| `betinia-bonussektion.webp` | `CashbackBonus.tsx` | Ved bonustyper |
+| `888-kampagner.png` | `ReloadBonus.tsx` | Ved reload-kampagner |
+| `royalcasino-kampagner.png` | `VipProgram.tsx` | Ved VIP-kampagner |
+| `mrgreen-rakeback.png` | `NoStickyBonus.tsx` | Ved rakeback/sticky |
+| `stake-kampagner.png` | `BonusHunt.tsx` | Ved community/kampagner |
+| `comeon-kampagner.png` | `StickyBonus.tsx` | Ved bonusvilkår |
+| `getlucky-kampagner.png` | `BonusUdenOmsaetningskrav.tsx` | Ved kampagneeksempel |
+| `betinia-velkomstbonus-aktiv.webp` | `FreeSpinsIDag.tsx` | Ved aktiv bonus |
 
-| Side                             | Kontekst                                 |
-| -------------------------------- | ---------------------------------------- |
-| `payments/TrustlyGuide.tsx`      | Ved MitID-godkendelse for bankoverførsel |
-| `payments/BankTransferGuide.tsx` | Ved MitID-login til bankgodkendelse      |
+### 5. Forside/lobby screenshots → Generelle money pages
 
+| Screenshot | Target page | Kontekst |
+|---|---|---|
+| `bet365-casino-lobby.png` | `CasinoApp.tsx` | Ved casino-app eksempel |
+| `comeon-forside.png` | `MobilCasino.tsx` | Ved mobil-interface |
+| `danskespil-forside.png` | `mobil-casino/BedsteAppsGuide.tsx` | Ved danske apps |
+| `maria-forside.png` | `mobil-casino/IPhoneCasinoGuide.tsx` | Ved iPhone-venligt |
+| `mrvegas-forside.png` | `mobil-casino/AndroidCasinoGuide.tsx` | Ved mobil lobby |
+| `bwin-casino-lobby.png` | `mobil-casino/TabletCasinoGuide.tsx` | Ved tablet-layout |
 
-### MitID-godkendt (kapow-mitid-godkendt.png)
+### 6. Sportsbook screenshots → Casino-uden-konto pages
 
+| Screenshot | Target page | Kontekst |
+|---|---|---|
+| `bet365-sportsbook.png` | `casino-uden-konto/PayNPlayGuide.tsx` | Ved hurtig adgang |
+| `comeon-sportsbook.png` | `casino-uden-konto/HurtigRegistreringGuide.tsx` | Ved registrering |
 
-| Side                                           | Kontekst                         |
-| ---------------------------------------------- | -------------------------------- |
-| `nye-casinoer/NyeCasinoerHurtigUdbetaling.tsx` | Ved pre-verifikation via MitID   |
-| `KapowCasinoAnmeldelse.tsx`                    | Ved registrerings-/MitID-sektion |
+### 7. Specialiserede screenshots
 
+| Screenshot | Target page | Kontekst |
+|---|---|---|
+| `playkasino-hotcold.png` | `SpillemaskinerHoejRTP.tsx` | Ved hot/cold RTP-data |
+| `casinostuen-shop.png` | `VipProgram.tsx` | Ved loyalitetsshop |
+| `spilnu-vindere.png` | `JackpotSlots.tsx` | Ved jackpot-vindere |
+| `videoslots-battle-of-slots.png` | `BonusHunt.tsx` | Ved turneringsformat |
+| `danskespil-bingo.png` | `live-casino/DreamCatcherGuide.tsx` | Ved casual games |
+| `maria-bingo.png` | `live-casino/MonopolyLiveGuide.tsx` | Ved casual lobby |
+| `mrvegas-profil.png` | `ansvarligt-spil/SpillegraenserGuide.tsx` | Ved profilindstillinger |
+
+## Samlet omfang
+
+- **~50 screenshot-placeringer** på tværs af **~45 money pages**
+- Hvert screenshot bruges max 2-3 gange på tværs af sider
+- Unik alt-tekst og caption pr. instans
+- Max 1-2 screenshots pr. side (interleaved med tekst)
+- Ingen nye assets – alt genbruges fra eksisterende `src/assets/screenshots/`
 
 ## Teknisk implementation
 
-1. Copy 5 billeder til `src/assets/screenshots/`:
-  - `kapow-velkomstbonus.png`
-  - `kapow-registrering.png`
-  - `kapow-mitid-registrering.png`
-  - `kapow-mitid-login.png`
-  - `kapow-mitid-godkendt.png`
-2. I hver side: import billede, indsæt `<ReviewScreenshot>` med `size="full"`, unik alt-tekst og caption tilpasset sidens kontekst. Interleaved med tekst, aldrig stacked.
-3. Hvert billede bruges på 2-4 sider med unik alt-tekst pr. instans.
-4. Max 2 KapowCasino-screenshot pr. side (medmindre siden specifikt handler om registreringsprocessen, fx NyeCasinoerMitID).
+For hver side:
+1. Import det relevante screenshot-billede
+2. Import `ReviewScreenshot` komponenten
+3. Indsæt `<ReviewScreenshot src={...} alt="..." caption="..." size="full" />` mellem relevante tekstafsnit
+4. Aldrig stacked – altid interleaved med tekst
 
-## Estimat
-
-- 5 assets kopieret
-- ~15 sider redigeret med 1-2 screenshots hver
