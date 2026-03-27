@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { GPWASealBadge } from "@/components/GPWASealBadge";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { TestMetodeSeoContent } from "@/components/test-metode/TestMetodeSeoContent";
