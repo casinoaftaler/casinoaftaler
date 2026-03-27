@@ -595,8 +595,29 @@ Deno.serve(async (req) => {
 
     const recentTopics = (recentArticles || []).map((a: any) => `"${a.title}"`).join(", ");
 
-    // Pick random topic
-    const topicIndex = Math.floor(Math.random() * TOPIC_SEARCHES.length);
+    // Pick topic – prefer categories not recently covered
+    const recentCats = new Set((recentArticles || []).map((a: any) => a.category));
+    // Group topics by approximate category mapping
+    const TOPIC_CAT_HINTS: Record<number, string> = {};
+    TOPIC_SEARCHES.forEach((_, i) => {
+      if (i <= 1) TOPIC_CAT_HINTS[i] = "regulering";
+      else if (i <= 3) TOPIC_CAT_HINTS[i] = "betalingsteknologi";
+      else if (i <= 5) TOPIC_CAT_HINTS[i] = "markedsbevægelser";
+      else if (i <= 7) TOPIC_CAT_HINTS[i] = "juridisk";
+      else if (i <= 11) TOPIC_CAT_HINTS[i] = "spiludviklere";
+      else if (i <= 14) TOPIC_CAT_HINTS[i] = "ansvarligt-spil";
+      else if (i <= 16) TOPIC_CAT_HINTS[i] = "live-casino";
+      else if (i <= 18) TOPIC_CAT_HINTS[i] = "mobilcasino";
+      else if (i <= 20) TOPIC_CAT_HINTS[i] = "teknologi-sikkerhed";
+      else if (i <= 22) TOPIC_CAT_HINTS[i] = "nordisk-marked";
+      else if (i <= 24) TOPIC_CAT_HINTS[i] = "dataanalyse";
+      else if (i === 25) TOPIC_CAT_HINTS[i] = "kundeservice";
+      else TOPIC_CAT_HINTS[i] = "markedsbevægelser";
+    });
+    // Prefer topics whose category hasn't been used recently
+    const freshTopicIndices = TOPIC_SEARCHES.map((_, i) => i).filter(i => !recentCats.has(TOPIC_CAT_HINTS[i]));
+    const candidateIndices = freshTopicIndices.length > 0 ? freshTopicIndices : TOPIC_SEARCHES.map((_, i) => i);
+    const topicIndex = candidateIndices[Math.floor(Math.random() * candidateIndices.length)];
     const searchQuery = TOPIC_SEARCHES[topicIndex];
 
     // ═══ Step 1: Research via Perplexity sonar-pro ═══
