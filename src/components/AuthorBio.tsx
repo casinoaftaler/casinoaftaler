@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ShieldCheck as GpwaShield } from "lucide-react";
 import { ExternalLink, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CommunityPromoSection } from "@/components/CommunityPromoSection";
