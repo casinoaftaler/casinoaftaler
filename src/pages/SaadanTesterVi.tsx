@@ -11,6 +11,9 @@ import { buildFaqSchema, buildArticleSchema, AJSE_SAME_AS } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
+import spillemyndighedenLicens from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.png";
 import {
   Shield,
   Gamepad2,
@@ -237,6 +240,12 @@ const SaadanTesterVi = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia casino lobby under test – vi gennemgår alle aspekter af casinoet fra brugerflade til spilkatalog"
+          caption="Eksempel på en casinotest: Vi evaluerer lobby-layout, spilsortiment og brugervenlighed hos hvert casino"
+        />
+
         <Separator className="my-10" />
 
         {/* 2. Testkriterier */}
@@ -330,6 +339,12 @@ const SaadanTesterVi = () => {
             </CardContent>
           </Card>
         </section>
+
+        <ReviewScreenshot
+          src={spillemyndighedenLicens}
+          alt="Spillemyndighedens licensliste – vi verificerer alle casinoers licensstatus som del af vores testproces"
+          caption="Licensverifikation er det første skridt i vores testmetode – kun casinoer med aktiv dansk licens vurderes"
+        />
 
         <Separator className="my-10" />
 

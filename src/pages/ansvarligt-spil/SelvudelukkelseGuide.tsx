@@ -10,6 +10,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import unibet from "@/assets/screenshots/unibet-lobby.png";
+import rofusForside from "@/assets/screenshots/rofus-forside-mitid-login.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -436,6 +437,12 @@ const SelvudelukkelseGuide = () => {
             </Button>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={rofusForside}
+          alt="ROFUS-forsiden med MitID-login – her registrerer du selvudelukkelse fra danske online casinoer"
+          caption="ROFUS er Danmarks officielle register for selvudelukkelse – tilgængeligt døgnet rundt via MitID"
+        />
 
         <Separator className="my-10" />
 

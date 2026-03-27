@@ -7,6 +7,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.png";
+import spillemyndighedenLicens from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.png";
 import { AuthorBio } from "@/components/AuthorBio";
 import {
   Banknote,
@@ -131,6 +134,12 @@ const Forretningsmodel = () => {
             hvis de fortjener at blive nævnt.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={spillemyndighedenForside}
+          alt="Spillemyndighedens officielle hjemmeside – den danske reguleringsmyndighed der kontrollerer casinolicenser og spillelovgivning"
+          caption="Spillemyndigheden fører tilsyn med alle danske casinoer – vores forretningsmodel opererer inden for denne regulering"
+        />
 
         <Separator className="my-10" />
 
@@ -318,6 +327,12 @@ const Forretningsmodel = () => {
             </Link>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={spillemyndighedenLicens}
+          alt="Spillemyndighedens licensliste over godkendte online casinoer i Danmark – vi anbefaler kun licenserede operatører"
+          caption="Vi anbefaler udelukkende casinoer med aktiv dansk licens – verificerbart via Spillemyndighedens licensliste"
+        />
 
         <Separator className="my-10" />
 

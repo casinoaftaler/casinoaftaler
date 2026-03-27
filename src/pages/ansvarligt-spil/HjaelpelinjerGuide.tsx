@@ -10,6 +10,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaRegMitid from "@/assets/screenshots/betinia-reg-mitid.webp";
+import rofusForside from "@/assets/screenshots/rofus-forside-mitid-login.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -504,6 +505,12 @@ const HjaelpelinjerGuide = () => {
             </ul>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={rofusForside}
+          alt="ROFUS forsiden med MitID-login – Danmarks nationale register for selvudelukkelse fra online gambling"
+          caption="ROFUS er det primære værktøj til selvudelukkelse i Danmark – tilgængeligt via MitID"
+        />
 
         <Separator className="my-10" />
 

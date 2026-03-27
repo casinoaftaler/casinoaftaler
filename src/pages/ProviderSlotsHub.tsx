@@ -16,6 +16,10 @@ import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-spil-lobby.png";
+import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.png";
+import spilleautomatenRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.png";
 import { slugifySlotName } from "@/lib/slugify";
 import { ProviderMoneyLinks } from "@/components/ProviderMoneyLinks";
 import {
@@ -159,6 +163,11 @@ export default function ProviderSlotsHub() {
                   className="text-muted-foreground leading-relaxed space-y-4 [&>p]:leading-relaxed [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-primary/80"
                   dangerouslySetInnerHTML={{ __html: introHtmlWithAutoLinks }}
                 />
+                <ReviewScreenshot
+                  src={spilleautomatenLobby}
+                  alt={`Casino spil-lobby med ${content.displayName} spillemaskiner – dansk casino med bredt udvalg af slots`}
+                  caption={`Eksempel på et dansk casino der tilbyder ${content.displayName} spillemaskiner i deres lobby`}
+                />
               </section>
             ),
             stats: stats ? (
@@ -220,6 +229,12 @@ export default function ProviderSlotsHub() {
                   <Gamepad2 className="h-7 w-7 text-primary" />
                   Alle {content.displayName} Spillemaskiner
                 </h2>
+                <ReviewScreenshot
+                  src={spilleautomatenFilter}
+                  alt={`Spiludbyder-filter til at finde ${content.displayName} slots – filtrér efter udbyder hos danske casinoer`}
+                  caption={`Brug provider-filteret på danske casinoer til hurtigt at finde alle ${content.displayName} spillemaskiner`}
+                  size="medium"
+                />
                 <ProviderCatalogSlots providerSlug={validSlug} />
               </section>
             ),
@@ -277,6 +292,12 @@ export default function ProviderSlotsHub() {
                     <ArrowRight className="h-4 w-4 text-muted-foreground" />
                   </Link>
                 </div>
+                <ReviewScreenshot
+                  src={spilleautomatenRtp}
+                  alt={`RTP og volatilitet information for en spillemaskine – vigtigt at tjekke ved ${content.displayName} slots`}
+                  caption={`Tjek altid RTP og volatilitet før du spiller – seriøse udviklere som ${content.displayName} oplyser dette åbent`}
+                  size="medium"
+                />
               </section>
             ),
           };

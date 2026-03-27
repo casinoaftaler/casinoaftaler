@@ -36,6 +36,10 @@ import bigTimeGamingLogo from "@/assets/providers/big-time-gaming.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-spil-lobby.png";
+import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.png";
+import spilleautomatenRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.png";
 import {
   ShieldCheck,
   Zap,
@@ -407,6 +411,12 @@ const Spiludviklere = () => {
 
         <InlineCasinoCards title="Casinoer med det bredeste spiludvalg" count={6} />
 
+        <ReviewScreenshot
+          src={spilleautomatenLobby}
+          alt="Spilleautomaten.dk spil-lobby med spillemaskiner fra flere spiludviklere – eksempel på hvordan casinoer præsenterer spil"
+          caption="Et dansk casinos spil-lobby viser typisk titler fra 10-20+ forskellige spiludviklere"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════
@@ -701,6 +711,12 @@ const Spiludviklere = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spilleautomatenFilter}
+          alt="Spiludbyder-filter hos Spilleautomaten.dk – sorter spillemaskiner efter din foretrukne developer"
+          caption="De fleste danske casinoer tilbyder filtrering efter spiludbyder – en nem måde at finde dine favoritter"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════
@@ -889,6 +905,12 @@ const Spiludviklere = () => {
             </div>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={spilleautomatenRtp}
+          alt="Zeus vs Hades RTP-information hos Spilleautomaten.dk – viser Return to Player og volatilitet for individuelle slots"
+          caption="Seriøse spiludviklere oplyser altid RTP og volatilitet – her vist for Pragmatic Plays Zeus vs Hades"
+        />
 
         <Separator className="my-10" />
 

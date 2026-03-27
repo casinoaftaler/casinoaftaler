@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrvegasProfil from "@/assets/screenshots/mrvegas-profil.png";
+import danskespilSundeSpillevaner from "@/assets/screenshots/danske-spil-sunde-spillevaner.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -535,6 +536,12 @@ const SpillegraenserGuide = () => {
             <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilSundeSpillevaner}
+          alt="Danske Spils sektion for sunde spillevaner – eksempel på ansvarligt spil-værktøjer hos et dansk casino"
+          caption="Danske Spil tilbyder avancerede spillegrænse-værktøjer som del af deres ansvarligt spil-program"
+        />
 
         <Separator className="my-10" />
 

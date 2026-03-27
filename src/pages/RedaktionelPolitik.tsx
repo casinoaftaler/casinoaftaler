@@ -5,6 +5,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.png";
+import spillemyndighedenLicens from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.png";
 import { AuthorBio } from "@/components/AuthorBio";
 import {
   FileText,
@@ -127,6 +130,12 @@ const RedaktionelPolitik = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={spillemyndighedenForside}
+          alt="Spillemyndighedens hjemmeside – vi krydsverificerer alle casinoinformationer mod denne officielle kilde"
+          caption="Spillemyndigheden er vores primære kilde til faktatjek af casinolicenser og bonusvilkår"
+        />
 
         <Separator className="my-10" />
 
@@ -289,6 +298,12 @@ const RedaktionelPolitik = () => {
             Du kan se vores kildeangivelser i bunden af hver anmeldelse og guide.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={spillemyndighedenLicens}
+          alt="Spillemyndighedens licensliste – vores redaktion verificerer regelmæssigt casinoers licensstatus her"
+          caption="Licensverifikation er en central del af vores redaktionelle proces – vi tjekker regelmæssigt Spillemyndighedens register"
+        />
 
         <Separator className="my-10" />
 

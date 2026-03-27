@@ -10,6 +10,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.png";
+import rofusRegistrering from "@/assets/screenshots/rofus-registrering-udelukkelse.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -569,6 +570,12 @@ const LudomaniGuide = () => {
             neurobiologiske afhængighedscyklus.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={rofusRegistrering}
+          alt="ROFUS selvudelukkelses-registrering – vælg udelukkelsesperiode for at beskytte dig mod ludomani"
+          caption="ROFUS giver mulighed for selvudelukkelse i 24 timer, 1 måned, 3 måneder, 6 måneder eller permanent"
+        />
 
         <Separator className="my-10" />
 
