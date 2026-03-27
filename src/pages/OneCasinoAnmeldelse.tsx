@@ -21,6 +21,11 @@ import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { Star, Zap, Check, X, Gamepad2, Trophy, Sparkles, Shield, Headphones, CreditCard, Users, Target, Smartphone, ShieldCheck, TrendingUp } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import onecasinoForside from "@/assets/screenshots/onecasino-forside.png";
+import onecasinoSpillemaskiner from "@/assets/screenshots/onecasino-spillemaskiner.png";
+import onecasinoLiveCasino from "@/assets/screenshots/onecasino-live-casino.png";
+import onecasinoIndbetaling from "@/assets/screenshots/onecasino-indbetaling.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
