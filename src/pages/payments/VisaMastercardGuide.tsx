@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import visaMastercardHero from "@/assets/heroes/visa-mastercard-hero.jpg";
 
 const VisaMastercardGuide = () => {
