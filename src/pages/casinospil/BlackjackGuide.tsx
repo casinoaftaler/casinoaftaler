@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.png";
+import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
