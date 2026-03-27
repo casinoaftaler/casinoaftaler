@@ -150,6 +150,13 @@ const KapowCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/live-casino" className={linkClass}>Live casino</Link>-sektionen er drevet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og tilbyder den samme høje kvalitet, du finder på enhver Evolution-platform. Omkring 50+ borde er tilgængelige i peak-timer med roulette, blackjack, baccarat, Sic Bo og game shows som Crazy Time, Monopoly Live og Dream Catcher.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Streaming-kvaliteten er HD med lav latency. Betting-interfacet er standard Evolution med tydelig chipplacering og hurtige bekræftelser. Der er ingen Kapow-branded borde – alle borde er delte med andre Evolution-klienter, hvilket er normen for operatører af denne størrelse. For dedikerede live casino-spillere, der ønsker eksklusive borde, er <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> bedre alternativer.</p>
           <p className="text-muted-foreground leading-relaxed">Danske dealere er tilgængelige på udvalgte borde i peak-timer. Game shows-sektionen er populær, og Kapow Casino fremhæver Crazy Time og Sweet Bonanza Candyland (Pragmatic Play Live) prominent i lobbyen. Minimumindsatser starter fra 10 kr. på roulette og 50 kr. på blackjack – standarden for det danske marked.</p>
+
+          <ReviewScreenshot
+            src={kapowLiveCasino}
+            alt="Kapow Casino live casino-lobby med roulette- og blackjack-borde fra Evolution Gaming og Pragmatic Play"
+            caption="Kapow Casinos live casino-sektion – roulette-varianter inkl. Lightning Roulette, XXXtreme og danske borde"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
