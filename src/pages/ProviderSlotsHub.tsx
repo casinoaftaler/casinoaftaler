@@ -292,6 +292,12 @@ export default function ProviderSlotsHub() {
                     <ArrowRight className="h-4 w-4 text-muted-foreground" />
                   </Link>
                 </div>
+                <ReviewScreenshot
+                  src={spilleautomatenRtp}
+                  alt={`RTP og volatilitet information for en spillemaskine – vigtigt at tjekke ved ${content.displayName} slots`}
+                  caption={`Tjek altid RTP og volatilitet før du spiller – seriøse udviklere som ${content.displayName} oplyser dette åbent`}
+                  size="medium"
+                />
               </section>
             ),
           };
