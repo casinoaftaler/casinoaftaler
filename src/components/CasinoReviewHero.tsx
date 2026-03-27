@@ -1,4 +1,5 @@
 import { useCasinos } from "@/hooks/useCasinos";
+import { GPWASealBadge } from "@/components/GPWASealBadge";
 
 interface CasinoReviewHeroProps {
   slug: string;
