@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBonussektion from "@/assets/screenshots/betinia-bonussektion.webp";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
@@ -116,9 +118,15 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Nye casinoer bruger no-deposit bonusser som et strategisk værktøj til at tiltrække nye spillere i et konkurrencepræget marked. Det er en win-win: du får mulighed for at udforske platformen, teste <Link to="/betalingsmetoder" className={linkClass}>betalingsmetoder</Link>, kundeservice og spiludvalg uden at bruge dine egne penge. Casinoet får chancen for at imponere dig med sin spiloplevelse og konvertere dig til en fast spiller.
           </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            I denne guide går vi dybere end blot at liste no-deposit bonusser. Vi beregner den reelle forventede værdi (EV) af forskellige bonustyper, giver dig en step-by-step strategi til optimal udnyttelse, og analyserer vilkårene hos de mest generøse nye casinoer. Vi har testet no-deposit tilbud hos 15+ nye danske casinoer med rigtige konti.
-          </p>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             I denne guide går vi dybere end blot at liste no-deposit bonusser. Vi beregner den reelle forventede værdi (EV) af forskellige bonustyper, giver dig en step-by-step strategi til optimal udnyttelse, og analyserer vilkårene hos de mest generøse nye casinoer. Vi har testet no-deposit tilbud hos 15+ nye danske casinoer med rigtige konti.
+           </p>
+
+           <ReviewScreenshot
+             src={betiniaBonussektion}
+             alt="Bonusoversigt hos Betinia med aktive kampagner og velkomstbonus uden indbetaling"
+             caption="Eksempel på bonussektionen hos et nyt casino – her kan du se tilgængelige tilbud inkl. no-deposit bonusser"
+           />
           <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">
               <strong>Se også alle bonusser uden indbetaling</strong> – ikke kun hos nye casinoer. Vores <Link to="/bonus-uden-indbetaling" className={linkClass}>komplette guide til bonus uden indbetaling</Link> dækker no-deposit bonusser hos både nye og etablerede danske casinoer med fokus på konceptet generelt.

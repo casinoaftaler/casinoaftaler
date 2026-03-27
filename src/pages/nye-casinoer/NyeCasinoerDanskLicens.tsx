@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spildansknuLobby from "@/assets/reviews/spildansknu-lobby.png";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
@@ -113,9 +115,15 @@ const NyeCasinoerDanskLicens = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Den danske licensmodel er anerkendt som en af Europas mest spillervenlige. Med et lovmæssigt omsætningsloft på 10x – sammenlignet med 30–60x hos MGA-licenserede casinoer – har danske spillere markant bedre odds for at realisere bonusgevinster. Denne guide fokuserer på, hvad en dansk licens specifikt indebærer for nye casinoer, og hvordan vi verificerer dem. For en bredere sammenligning af alle licenstyper, se vores <Link to="/casino-licenser" className={linkClass}>guide til casino-licenser</Link>.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            I 2026 er adgangskravene til det danske marked blevet skærpet yderligere, hvilket betyder, at nye casinoer med dansk licens gennemgår en endnu mere grundig screening end tidligere. Det er en fordel for dig som spiller – kun de mest seriøse og kapitalstærke operatører slipper igennem nåleøjet.
-          </p>
+           <p className="text-muted-foreground leading-relaxed">
+             I 2026 er adgangskravene til det danske marked blevet skærpet yderligere, hvilket betyder, at nye casinoer med dansk licens gennemgår en endnu mere grundig screening end tidligere. Det er en fordel for dig som spiller – kun de mest seriøse og kapitalstærke operatører slipper igennem nåleøjet.
+           </p>
+
+           <ReviewScreenshot
+             src={spildansknuLobby}
+             alt="SpilDanskNu forside som eksempel på et nyt dansk licenseret casino med Spillemyndighedens godkendelse"
+             caption="SpilDanskNu – et nyt casino med dansk licens, ROFUS-tilslutning og fuld spillerbeskyttelse"
+           />
         </section>
 
         <InlineCasinoCards title="Nye Licenserede Casinoer i Danmark" />

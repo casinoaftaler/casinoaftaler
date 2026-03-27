@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBetalingOversigt from "@/assets/screenshots/betinia-betaling-oversigt.webp";
 import paypalHero from "@/assets/heroes/paypal-hero.jpg";
 
 const PayPalGuide = () => {
@@ -105,10 +107,16 @@ const PayPalGuide = () => {
           position: "after-intro",
           title: "Vores Praktiske Test – PayPal på Tre Danske Casino-Platforme",
           content: (
-            <>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
-                Vi testede PayPal på tre danske casinoer med Spillemyndighedens licens i februar 2026. Testen fokuserede på indbetalingshastighed, udbetalingstid, bonuskvalificering, gebyrer og den generelle brugeroplevelse. Vi brugte en verificeret dansk PayPal-konto med tilknyttet Visa Debitkort og dansk bankkonto.
-              </p>
+             <>
+               <p className="mb-4 text-muted-foreground leading-relaxed">
+                 Vi testede PayPal på tre danske casinoer med Spillemyndighedens licens i februar 2026. Testen fokuserede på indbetalingshastighed, udbetalingstid, bonuskvalificering, gebyrer og den generelle brugeroplevelse. Vi brugte en verificeret dansk PayPal-konto med tilknyttet Visa Debitkort og dansk bankkonto.
+               </p>
+
+               <ReviewScreenshot
+                 src={betiniaBetalingOversigt}
+                 alt="Betalingsoversigt hos Betinia der viser PayPal blandt tilgængelige e-wallet betalingsmetoder"
+                 caption="PayPal findes blandt de tilgængelige betalingsmetoder i casinoets kassesystem"
+               />
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Indbetalingstest:</strong> PayPal var tilgængeligt på alle tre casinoer. Processen krævede login i et pop-up-vindue – et trin, der føltes lidt mere omstændeligt end MobilePaysi push-notifikation eller Apple Pays Face ID-tryk. Gennemsnitlig indbetalingstid var 18 sekunder fra første klik til krediteret saldo. Ved brug af PayPals "Stay logged in"-funktion faldt dette til ca. 8 sekunder ved efterfølgende indbetalinger.
               </p>

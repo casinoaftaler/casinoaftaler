@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import heroImage from "@/assets/comparison-hero-bet365-unibet.jpg";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -164,10 +166,16 @@ export default function BetiniaVsCampobet() {
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Netop i denne type duel er overfladetal ofte utilstrækkelige. Begge platforme kan fremstå næsten identiske i kampagnelaget, men differencen bliver tydelig i execution: sportsbook-flow, live-tyngde, betalingsstack, katalogprioritering og retentionkvalitet. Det er disse lag, der afgør totalværdien over måneder.
         </p>
-        <p className="text-muted-foreground leading-relaxed">
-          Derfor er målet med denne enterprise-sammenligning at reducere fejlmatch. En korrekt matching mellem spillerprofil og platform giver højere tilfredshed, lavere friktion og markant bedre konverteringskvalitet i jeres money-page-cluster.
-        </p>
-      </section>
+         <p className="text-muted-foreground leading-relaxed">
+           Derfor er målet med denne enterprise-sammenligning at reducere fejlmatch. En korrekt matching mellem spillerprofil og platform giver højere tilfredshed, lavere friktion og markant bedre konverteringskvalitet i jeres money-page-cluster.
+         </p>
+
+         <ReviewScreenshot
+           src={betiniaLobby}
+           alt="Betinia casino lobby med navigation til sport, casino og live casino – hybridplatformens forside"
+           caption="Betinias lobby viser den integrerede hybrid-tilgang med casino og sport side om side"
+         />
+       </section>
 
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">No-Sticky bonus: samme princip, forskellig produktforlængelse</h2>
