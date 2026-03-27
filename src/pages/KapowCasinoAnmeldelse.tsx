@@ -118,6 +118,13 @@ const KapowCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Ved en overførsel på 100 kr. modtager du 100 Spins (værdi 100 kr.). Omsætningskrav: 10x × (100 kr. spins + 100 kr. overførsel) = 2.000 kr. Med 96 % gennemsnitlig slots-RTP forventer du at miste 4 % af 2.000 = 80 kr. under omsætning. Bonussens netto-EV er altså spingevinster minus omsætningstab. Med gennemsnitlige spingevinster på ~100 kr. og 80 kr. forventet tab giver det en reel bonusværdi på ca. 20 kr. – beskeden men med lav risiko.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sammenlignet med <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> (1.000 kr. bonus med 10x omsætning) er Kapow Casinos bonus mere beskeden i beløb, men har til gengæld en meget lav indgangsbarriere med kun 100 kr. i overførsel. Den månedlige bonuskode giver desuden eksisterende spillere en ekstra 100 kr. bonus hver måned – det er Kapow Casinos stærkeste loyalitetselement.</p>
           <p className="text-muted-foreground leading-relaxed">Løbende kampagner inkluderer daglige tilbud (free spins eller reload-bonusser), weekend-bonusser med forhøjet match-procent, cashback på tab (typisk 10-15 % af nettotab returneret som bonuspenge) og turnerings-events med præmiepuljer. Cashback-tilbuddene er faktisk Kapow Casinos stærkeste kampagne-element – de giver en sikkerhedsnet for aktive spillere og er mere forudsigelige i værdi end tilfældige free spins-pakker.</p>
+
+          <ReviewScreenshot
+            src={kapowKampagner}
+            alt="Kapow Casino kampagneside med velkomstbonus, måneds-bonus, mandags-spins og æggejagt-event"
+            caption="Kapow Casinos kampagneside – velkomstbonus med 100 Spins, månedlig bonus og sæsonbaserede events"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
