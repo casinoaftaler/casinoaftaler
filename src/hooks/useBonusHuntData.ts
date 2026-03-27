@@ -21,6 +21,7 @@ export interface BonusHuntData {
     openedBonuses: number;
     startBalance: number;
     endBalance: number | null;
+    totalWinnings: number;
     targetBalance: number;
     averageBet: number;
     averageX: number | null;
