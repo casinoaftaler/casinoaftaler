@@ -130,20 +130,6 @@ const MobilePayGuide = () => {
                 caption="MobilePay valgt i Betinias indbetalingskasse – MobilePay vises som anbefalet metode"
                 size="medium"
               />
-
-              <ReviewScreenshot
-                src={betiniaMobilpayBekraeft}
-                alt="MobilePay bekræftelsesside med beløb og telefonnummer-input til casino-indbetaling"
-                caption="MobilePay bekræftelsesflow – indtast telefonnummer og godkend indbetalingen"
-                size="compact"
-              />
-
-              <ReviewScreenshot
-                src={betiniaBetalingOversigt}
-                alt="Komplet oversigt over betalingsmetoder hos Betinia inkl. MobilePay, Visa, Trustly og Dankort"
-                caption="Alle tilgængelige betalingsmetoder hos Betinia – MobilePay er listet øverst"
-                size="medium"
-              />
             </>
           ),
         },
@@ -211,8 +197,15 @@ const MobilePayGuide = () => {
                 Et teknisk aspekt, der er relevant for casinospillere, er MobilePays "callback"-mekanisme. Når din bank bekræfter pengeoverførslen, sender MobilePay en webhook-callback til casinoets server med transaktionsstatus. Casinoet bruger denne callback til at kreditere din spillekonto. I sjældne tilfælde kan der opstå en forsinkelse mellem bankens godkendelse og casinoets modtagelse af callback – typisk 1-3 sekunder, men i worst case op til 30 sekunder. Hvis din saldo ikke opdateres øjeblikkeligt efter godkendelse, er dette sandsynligvis årsagen.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                MobilePay har også implementeret en "instant settlement"-funktion for casino-merchants, der eliminerer den traditionelle 1-2 dages settlement-periode for virksomhedsbetalinger. Det betyder, at casinoet modtager pengene øjeblikkeligt – ikke dagen efter – hvilket er en forudsætning for, at din spillesaldo kan krediteres i realtid. Ikke alle casinoer har aktiveret instant settlement, men de fleste større danske operatører har gjort det som standard.
+                 MobilePay har også implementeret en "instant settlement"-funktion for casino-merchants, der eliminerer den traditionelle 1-2 dages settlement-periode for virksomhedsbetalinger. Det betyder, at casinoet modtager pengene øjeblikkeligt – ikke dagen efter – hvilket er en forudsætning for, at din spillesaldo kan krediteres i realtid. Ikke alle casinoer har aktiveret instant settlement, men de fleste større danske operatører har gjort det som standard.
               </p>
+
+              <ReviewScreenshot
+                src={betiniaBetalingOversigt}
+                alt="Komplet oversigt over betalingsmetoder hos Betinia inkl. MobilePay, Visa, Trustly og Dankort"
+                caption="Alle tilgængelige betalingsmetoder hos Betinia – MobilePay er listet øverst"
+                size="medium"
+              />
             </>
           ),
         },
