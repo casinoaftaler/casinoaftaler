@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import expektSpillemaskiner from "@/assets/screenshots/expekt-spillemaskiner.png";
+import expektSpillemaskiner from "@/assets/screenshots/expekt-spillemaskiner.webp";
 import heroImage from "@/assets/heroes/sweet-bonanza-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";

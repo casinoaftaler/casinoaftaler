@@ -1,6 +1,6 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.png";
+import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/comparison-hero-bet365-unibet.jpg";

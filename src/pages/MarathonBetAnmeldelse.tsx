@@ -5,9 +5,9 @@ import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import marathonbetForside from "@/assets/screenshots/marathonbet-forside.png";
-import marathonbetCasino from "@/assets/screenshots/marathonbet-casino.png";
-import marathonbetLive from "@/assets/screenshots/marathonbet-live.png";
+import marathonbetForside from "@/assets/screenshots/marathonbet-forside.webp";
+import marathonbetCasino from "@/assets/screenshots/marathonbet-casino.webp";
+import marathonbetLive from "@/assets/screenshots/marathonbet-live.webp";
 const linkClass = "text-primary underline hover:text-primary/80";
 const marathonbetFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er MarathonBet lovligt i Danmark?", answer: (<>Ja, MarathonBet opererer med dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. Platformen overholder alle danske krav til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> og bruger MitID til registrering. MarathonBet har opereret i Danmark siden licenssystemet blev indført og har aldrig modtaget sanktioner fra Spillemyndigheden.</>) },

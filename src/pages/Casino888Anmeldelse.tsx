@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import casino888Forside from "@/assets/screenshots/888-forside.png";
-import casino888Eksklusive from "@/assets/screenshots/888-eksklusive.png";
-import casino888Kampagner from "@/assets/screenshots/888-kampagner.png";
-import casino888LiveCasino from "@/assets/screenshots/888-live-casino.png";
+import casino888Forside from "@/assets/screenshots/888-forside.webp";
+import casino888Eksklusive from "@/assets/screenshots/888-eksklusive.webp";
+import casino888Kampagner from "@/assets/screenshots/888-kampagner.webp";
+import casino888LiveCasino from "@/assets/screenshots/888-live-casino.webp";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";

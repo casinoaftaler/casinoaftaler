@@ -2,7 +2,7 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.png";
+import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.webp";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";

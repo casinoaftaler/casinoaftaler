@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.png";
-import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.png";
-import zeusVsHadesRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.png";
+import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.webp";
+import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.webp";
+import zeusVsHadesRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";

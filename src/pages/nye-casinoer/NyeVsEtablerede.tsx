@@ -9,7 +9,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mrvegas from "@/assets/screenshots/mrvegas-forside.png";
+import mrvegas from "@/assets/screenshots/mrvegas-forside.webp";
 
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";

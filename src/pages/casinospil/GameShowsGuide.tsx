@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import lightningRouletteMultipliers from "@/assets/screenshots/xxxtreme-lightning-roulette-multipliers.png";
+import lightningRouletteMultipliers from "@/assets/screenshots/xxxtreme-lightning-roulette-multipliers.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import spilnuLobby from "@/assets/screenshots/spilnu-lobby.png";
-import spilnuBetaling from "@/assets/screenshots/spilnu-betaling.png";
-import spilnuVindere from "@/assets/screenshots/spilnu-vindere.png";
-import spilnuBingo from "@/assets/screenshots/spilnu-bingo.png";
+import spilnuLobby from "@/assets/screenshots/spilnu-lobby.webp";
+import spilnuBetaling from "@/assets/screenshots/spilnu-betaling.webp";
+import spilnuVindere from "@/assets/screenshots/spilnu-vindere.webp";
+import spilnuBingo from "@/assets/screenshots/spilnu-bingo.webp";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
-import kapowRegistrering from "@/assets/screenshots/kapow-registrering.png";
-import playkasinoForside from "@/assets/screenshots/playkasino-forside-velkomst.png";
+import kapowRegistrering from "@/assets/screenshots/kapow-registrering.webp";
+import playkasinoForside from "@/assets/screenshots/playkasino-forside-velkomst.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 

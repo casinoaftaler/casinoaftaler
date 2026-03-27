@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import pokerstarsForside from "@/assets/screenshots/pokerstars-forside.png";
+import pokerstarsForside from "@/assets/screenshots/pokerstars-forside.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";

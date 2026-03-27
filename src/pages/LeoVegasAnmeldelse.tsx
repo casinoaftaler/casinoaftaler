@@ -24,9 +24,9 @@ import type { ReactNode } from "react";
 import { ShieldCheck, Zap, Check, X, Crown, Gamepad2, Trophy, Sparkles, Headphones, Wallet, Target, Users, Smartphone, Globe, TrendingUp } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import leovegasLobby from "@/assets/screenshots/leovegas-lobby.png";
-import leovegasPopulaere from "@/assets/screenshots/leovegas-populaere-spil.png";
-import leovegasLiveCasino from "@/assets/screenshots/leovegas-live-casino.png";
+import leovegasLobby from "@/assets/screenshots/leovegas-lobby.webp";
+import leovegasPopulaere from "@/assets/screenshots/leovegas-populaere-spil.webp";
+import leovegasLiveCasino from "@/assets/screenshots/leovegas-live-casino.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 

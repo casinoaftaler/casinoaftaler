@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import expektBetaling from "@/assets/screenshots/expekt-betaling.png";
-import expektSpillemaskiner from "@/assets/screenshots/expekt-spillemaskiner.png";
-import expektLiveCasino from "@/assets/screenshots/expekt-live-casino.png";
-import expektSportsbook from "@/assets/screenshots/expekt-sportsbook.png";
-import expektKampagne from "@/assets/screenshots/expekt-kampagne.png";
+import expektBetaling from "@/assets/screenshots/expekt-betaling.webp";
+import expektSpillemaskiner from "@/assets/screenshots/expekt-spillemaskiner.webp";
+import expektLiveCasino from "@/assets/screenshots/expekt-live-casino.webp";
+import expektSportsbook from "@/assets/screenshots/expekt-sportsbook.webp";
+import expektKampagne from "@/assets/screenshots/expekt-kampagne.webp";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";

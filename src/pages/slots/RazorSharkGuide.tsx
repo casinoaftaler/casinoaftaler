@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import stakeForside from "@/assets/screenshots/stake-forside.png";
+import stakeForside from "@/assets/screenshots/stake-forside.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/razor-shark-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

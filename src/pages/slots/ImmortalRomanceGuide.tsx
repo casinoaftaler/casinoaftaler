@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import videoslotsForside from "@/assets/screenshots/videoslots-forside.png";
+import videoslotsForside from "@/assets/screenshots/videoslots-forside.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/immortal-romance-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

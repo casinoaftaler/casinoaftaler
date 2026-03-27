@@ -26,8 +26,8 @@ import {
 } from "@/components/ui/accordion";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.png";
-import spillehallenGratisSpins from "@/assets/screenshots/spillehallen-gratis-spins-bonuskoder.png";
+import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.webp";
+import spillehallenGratisSpins from "@/assets/screenshots/spillehallen-gratis-spins-bonuskoder.webp";
 import {
   Sparkles,
   ShieldCheck,

@@ -1,6 +1,6 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.png";
+import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/comparison-hero-danskespil-spilnu.jpg";

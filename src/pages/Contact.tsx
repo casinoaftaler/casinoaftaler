@@ -22,7 +22,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.png";
+import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.webp";
 import {
   Accordion,
   AccordionContent,

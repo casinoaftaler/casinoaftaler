@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import ekspektSpillemaskiner from "@/assets/screenshots/expekt-spillemaskiner.png";
+import ekspektSpillemaskiner from "@/assets/screenshots/expekt-spillemaskiner.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/wolf-gold-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

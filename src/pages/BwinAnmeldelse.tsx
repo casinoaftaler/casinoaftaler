@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import bwinSportsbook from "@/assets/screenshots/bwin-sportsbook.png";
-import bwinCasinoLobby from "@/assets/screenshots/bwin-casino-lobby.png";
-import bwinLiveCasino from "@/assets/screenshots/bwin-live-casino.png";
-import bwinKampagner from "@/assets/screenshots/bwin-kampagner.png";
+import bwinSportsbook from "@/assets/screenshots/bwin-sportsbook.webp";
+import bwinCasinoLobby from "@/assets/screenshots/bwin-casino-lobby.webp";
+import bwinLiveCasino from "@/assets/screenshots/bwin-live-casino.webp";
+import bwinKampagner from "@/assets/screenshots/bwin-kampagner.webp";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";

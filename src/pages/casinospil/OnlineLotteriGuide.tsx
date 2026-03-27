@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilForside from "@/assets/screenshots/danskespil-forside.png";
+import danskespilForside from "@/assets/screenshots/danskespil-forside.webp";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";

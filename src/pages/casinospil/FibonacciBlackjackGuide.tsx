@@ -12,7 +12,7 @@ import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.png";
+import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.webp";
 import { Badge } from "@/components/ui/badge";
 import {
   Target,

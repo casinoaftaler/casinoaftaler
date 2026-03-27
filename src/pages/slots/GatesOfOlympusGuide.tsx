@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import unibetFiltre from "@/assets/screenshots/unibet-filtre.png";
+import unibetFiltre from "@/assets/screenshots/unibet-filtre.webp";
 import heroImage from "@/assets/heroes/gates-of-olympus-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";

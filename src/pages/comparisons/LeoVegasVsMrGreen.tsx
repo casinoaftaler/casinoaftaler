@@ -1,6 +1,6 @@
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import leovegasLobby from "@/assets/screenshots/leovegas-lobby.png";
+import leovegasLobby from "@/assets/screenshots/leovegas-lobby.webp";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/comparison-hero-leovegas-mrgreen.jpg";

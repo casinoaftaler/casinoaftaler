@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilLiveBaccarat from "@/assets/screenshots/danskespil-live-baccarat.png";
+import danskespilLiveBaccarat from "@/assets/screenshots/danskespil-live-baccarat.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";

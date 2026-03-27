@@ -3,7 +3,7 @@ import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import heroImage from "@/assets/comparison-hero-leovegas-mrgreen.jpg";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import comeonForside from "@/assets/screenshots/comeon-forside.png";
+import comeonForside from "@/assets/screenshots/comeon-forside.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
