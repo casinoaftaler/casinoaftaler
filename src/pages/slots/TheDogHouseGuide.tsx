@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import betiniaBonusbuyLobby from "@/assets/screenshots/betinia-bonusbuy-lobby.webp";
 import heroImage from "@/assets/heroes/the-dog-house-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
