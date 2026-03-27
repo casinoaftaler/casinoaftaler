@@ -27,6 +27,11 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemaskiner.png";
+import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.png";
+import playkasionBordspil from "@/assets/screenshots/playkasino-bordspil.png";
+import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling.png";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
