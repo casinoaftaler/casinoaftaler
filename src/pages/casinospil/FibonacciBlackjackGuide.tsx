@@ -11,6 +11,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.png";
 import { Badge } from "@/components/ui/badge";
 import {
   Target,
