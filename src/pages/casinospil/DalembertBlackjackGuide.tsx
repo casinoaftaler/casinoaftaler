@@ -195,6 +195,13 @@ const DalembertBlackjackGuide = () => {
           </Card>
         </section>
 
+        <ReviewScreenshot
+          src={mrgreenLiveBlackjack}
+          alt="Live blackjack-bord med chipstakke – D'Alembert-systemets lineære progression kræver moderate indsatsstigninger"
+          caption="Et live blackjack-bord egner sig godt til D'Alembert, da systemets langsomme eskalering sjældent rammer bordets maksimum."
+          size="full"
+        />
+
         <Separator className="mb-12" />
 
         {/* ═══════════════════════════════════════════════════════════════

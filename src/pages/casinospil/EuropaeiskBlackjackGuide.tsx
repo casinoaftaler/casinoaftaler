@@ -250,6 +250,13 @@ const EuropaeiskBlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilLiveBlackjack}
+          alt="Europæisk blackjack-bord hos Danske Spil med dealer og spillergrænsefladen – no hole card format"
+          caption="Eksempel på et europæisk live blackjack-bord med synlig 3:2 udbetaling og no-peek regler."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════ ENHC vs. OBO detaljeret ═══════════════ */}

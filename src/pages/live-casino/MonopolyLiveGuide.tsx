@@ -138,6 +138,13 @@ const MonopolyLiveGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={casinostuenLiveCasino}
+          alt="Live casino-lobby med Monopoly Live og andre game shows fra Evolution Gaming"
+          caption="Et overblik over en typisk live casino game show-sektion – Monopoly Live er ofte placeret centralt blandt de mest populære titler."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* H2 #2 – Hjulfordeling */}

@@ -139,6 +139,15 @@ const DealOrNoDealGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={leovegasLiveCasino}
+          alt="LeoVegas live casino-lobby med Deal or No Deal og andre Evolution game shows tilgængelige"
+          caption="LeoVegas' live casino-sektion – Deal or No Deal Live findes typisk under
+
+ game show-kategorien sammen med    Crazy Time og Dream Catcher."
+          size="full"
+        />
+
         {/* ── H2 2: Spillets tre faser ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Layers className="h-5 w-5 text-primary" />Spillets tre faser – fra kvalifikation til bankierens tilbud</h2>

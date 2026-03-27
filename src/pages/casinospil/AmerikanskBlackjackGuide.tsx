@@ -208,6 +208,13 @@ const AmerikanskBlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={mrgreenLiveBlackjack}
+          alt="Amerikansk blackjack live-bord med hole card og peek-mekanik hos Mr Green Casino"
+          caption="Live blackjack med hole card-regler – dealeren modtager to kort fra starten, hvilket er kernen i den amerikanske variant."
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════════════════════════

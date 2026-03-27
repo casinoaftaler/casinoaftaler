@@ -213,6 +213,13 @@ const FibonacciBlackjackGuide = () => {
           </Card>
         </section>
 
+        <ReviewScreenshot
+          src={betanoLiveCasino}
+          alt="Live casino-lobby med blackjack-borde – Fibonacci-systemet kan anvendes ved alle bordtyper med varierende indsatsgrænser"
+          caption="En live casino-lobby med flere blackjack-varianter – Fibonacci-systemet kan bruges ved ethvert bord inden for dets indsatsgrænser."
+          size="full"
+        />
+
         <Separator className="mb-12" />
 
         {/* ═══════════════════════════════════════════════════════════════

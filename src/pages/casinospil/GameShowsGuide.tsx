@@ -180,6 +180,13 @@ const GameShowsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={lightningRouletteMultipliers}
+          alt="Lightning Roulette multiplier-visning med tilfældige multiplikatorer op til 500x – eksempel på game show-mekanik i et bordspil"
+          caption="Multiplikator-mekanikken fra Lightning Roulette illustrerer, hvordan game show-elementer integreres i traditionelle casinospil."
+          size="full"
+        />
+
         {/* ── H2 3 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">

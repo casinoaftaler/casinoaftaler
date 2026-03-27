@@ -142,6 +142,13 @@ const DreamCatcherGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={royalcasinoLiveCasino}
+          alt="Live casino game show-lobby med Dream Catcher-hjulet synligt blandt andre Evolution-spil"
+          caption="Eksempel på en live casino-lobby hvor Dream Catcher er placeret blandt de øvrige game shows fra Evolution Gaming."
+          size="full"
+        />
+
         {/* ── H2 2: Segmentfordeling ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="h-5 w-5 text-primary" />Hjulets segmentfordeling – komplet matematisk breakdown</h2>

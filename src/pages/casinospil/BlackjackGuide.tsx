@@ -269,6 +269,13 @@ const BlackjackGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={mrgreenLiveBlackjack}
+          alt="Live blackjack-bord hos Mr Green med dealer, kort og chips – eksempel på professionelt online blackjack"
+          caption="Et typisk live blackjack-bord fra Evolution Gaming – her hos Mr Green med klassisk 7-seat format."
+          size="full"
+        />
+
         <InlineCasinoCards title="Casinoer med bedst blackjack-vilkår" count={4} />
 
         <Separator className="my-10" />

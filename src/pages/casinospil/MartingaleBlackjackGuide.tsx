@@ -173,6 +173,13 @@ const MartingaleBlackjackGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilLiveBlackjack}
+          alt="Blackjack-bord med indsatsmuligheder – Martingale kræver fordobling efter hvert tab op mod bordets maksimum"
+          caption="Et live blackjack-bord illustrerer de praktiske begrænsninger for Martingale – bordets minimums- og maksimumsindsats sætter grænsen."
+          size="full"
+        />
+
         <Separator className="mb-12" />
 
         <section className="mb-12">
