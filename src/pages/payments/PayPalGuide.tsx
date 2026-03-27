@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import paypalHero from "@/assets/heroes/paypal-hero.jpg";
+import paypalKasse from "@/assets/screenshots/paypal-indbetaling-betalingsmetoder.webp";
+import paypalLogin from "@/assets/screenshots/paypal-indbetalingsflow-login.webp";
+import paypalUdbetaling from "@/assets/screenshots/paypal-udbetaling-saldo.webp";
 
 const PayPalGuide = () => {
   return (
