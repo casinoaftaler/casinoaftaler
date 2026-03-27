@@ -242,15 +242,22 @@ export default function SpilleautomatenVsSpilDanskNu() {
 
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Loyalitet, belønninger og værdi efter velkomstperioden</h2>
-        <p className="mb-4 text-muted-foreground leading-relaxed">
-          Mange sammenligninger stopper ved velkomstbonussen. Det er en fejl for spillere, der planlægger at bruge samme casino over måneder. Den reelle økonomi ligger i retention-fasen: loyalitetsmekanikker, reload-kampagner, pointsystemer og hvor tydeligt belønningerne føles i daglig brug. Spilleautomaten har en stærk identitet omkring Præmieshop-værdien, hvilket typisk opleves som en direkte forlængelse af slots-adfærden.
-        </p>
-        <p className="mb-4 text-muted-foreground leading-relaxed">
-          SpilDanskNu er mere klassisk i sin brede kampagneprofil og kan være stærkere for spillere, der ønsker variation i kampagner på tværs af kategorier. Her bliver værdien mere fordelt ud i en større produktramme. For nogle spillere er det en fordel, for andre bliver det mere diffus værdi sammenlignet med en skarpere loyalitetskerne.
-        </p>
-        <p className="text-muted-foreground leading-relaxed">
-          Valget bør derfor ikke kun baseres på "hvor meget" du får, men "hvordan" du får det. Hvis du vil have et tydeligt points-til-værdi-flow, peger pilen mod Spilleautomaten. Hvis du vil have mere kampagnebredde i et allround-univers, peger pilen mod SpilDanskNu.
-        </p>
+         <p className="mb-4 text-muted-foreground leading-relaxed">
+           Mange sammenligninger stopper ved velkomstbonussen. Det er en fejl for spillere, der planlægger at bruge samme casino over måneder. Den reelle økonomi ligger i retention-fasen: loyalitetsmekanikker, reload-kampagner, pointsystemer og hvor tydeligt belønningerne føles i daglig brug. Spilleautomaten har en stærk identitet omkring Præmieshop-værdien, hvilket typisk opleves som en direkte forlængelse af slots-adfærden.
+         </p>
+
+         <ReviewScreenshot
+           src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-praemieshop.webp"
+           alt="Spilleautomaten Præmieshop med kontante præmier fra 50 til 1.000 DKK og pointbaseret indløsning"
+           caption="Præmieshoppen hos Spilleautomaten – indløs loyalitetspoints til kontante præmier"
+         />
+
+         <p className="mb-4 text-muted-foreground leading-relaxed">
+           SpilDanskNu er mere klassisk i sin brede kampagneprofil og kan være stærkere for spillere, der ønsker variation i kampagner på tværs af kategorier. Her bliver værdien mere fordelt ud i en større produktramme. For nogle spillere er det en fordel, for andre bliver det mere diffus værdi sammenlignet med en skarpere loyalitetskerne.
+         </p>
+         <p className="text-muted-foreground leading-relaxed">
+           Valget bør derfor ikke kun baseres på "hvor meget" du får, men "hvordan" du får det. Hvis du vil have et tydeligt points-til-værdi-flow, peger pilen mod Spilleautomaten. Hvis du vil have mere kampagnebredde i et allround-univers, peger pilen mod SpilDanskNu.
+         </p>
       </section>
 
       <section className="mb-12">
