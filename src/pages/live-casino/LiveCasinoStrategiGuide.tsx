@@ -324,6 +324,12 @@ const LiveCasinoStrategiGuide = () => {
               </div>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src={danskespilThreeCardPoker}
+            alt="Three Card Poker live bord hos Danske Spil med dealer og spillerkort i HD-streaming"
+            caption="Three Card Poker hos Danske Spil – et eksempel på live poker med Ante, Play og Pair Plus bets"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
