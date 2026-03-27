@@ -118,6 +118,11 @@ const ExpektAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed"><strong>Sammenligning:</strong> Expekts casino-bonus er mere beskeden end <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' op til 1.000 kr. + 100 FS og <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link>'s 1.000 kr. + no-deposit bonus. Men Expekt kompenserer med sportsbook-dimensionen – noget hverken LeoVegas eller 888 Casino tilbyder i samme omfang. For den alsidige spiller er den samlede værdi sammenlignelig.</p>
           <ReviewScreenshot src={expektKampagne} alt="Expekt sportsbetting freebet-tilbud med 100 kr. freebet ved indbetaling og aktivering af tilbud" caption="Expekts freebet-kampagne med tydelige vilkår – indbetal 100 kr. og modtag et 100 kr. freebet til sport." size="full" />
         </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">Casino-sektionen under lup</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Expekts casino-sektion har gennemgået markant udvikling. Hvor den for få år siden primært var et tillæg til sportsbook'en, er den nu en selvstændig casinooplevelse med hundredvis af titler. Dog: det er numerisk mindre end dedikerede casino-platforme. Forvent 600-800 spilleautomater versus 1.500+ hos <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link>.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg"><Gamepad2 className="h-5 w-5 text-primary" />Spilleautomater</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">600+ slots fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link> og <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>. Populære titler er til stede, men nyere niche-udbydere mangler.</p></CardContent></Card>
