@@ -91,6 +91,14 @@ const UnibetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Det, der virkelig adskiller Unibet fra konkurrenterne, er den sømløse integration mellem produkterne. Du kan veksle fra en <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomat</Link> til et live sportsvæddemål og videre til et pokerboard uden nogensinde at forlade platformen. Denne fleksibilitet er ikke bare en bekvemmelighed – det er en fundamental designfilosofi, som Kindred Group har investeret massivt i over de seneste år. I praksis betyder det, at din saldo er fælles på tværs af alle produkter, dine bonusser er klart opdelt per sektion, og din transaktionshistorik viser alt samlet i én overskuelig oversigt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> evaluerer Unibet som en helhed, og den samlede pakke er imponerende. Kindred Groups koncernstruktur under FDJ United sikrer finansiel gennemsigtighed – du kan faktisk tilgå deres kvartalsrapporter og se præcis, hvordan virksomheden performer. Deres engagement i <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> er brancheførende med et ambitiøst mål om at eliminere skadeligt spil inden 2030 – et mål, som ingen anden stor operatør har sat offentligt.</p>
           <p className="text-muted-foreground leading-relaxed">I denne anmeldelse dykker vi ned i hver enkelt del af Unibet-oplevelsen: casino, sport, poker, live casino, mobilapp, betalingsmetoder, kundeservice og sikkerhed. Vi har testet platformen i over to uger med reelle indbetalinger og udbetalinger for at give dig et ærligt og datadrevet billede af, hvad du kan forvente. Slutresultatet? En platform, der gør alt godt – og det meste af det rigtig godt.</p>
+
+          <ReviewScreenshot
+            src={unibetLobby}
+            alt="Unibet casino lobby med spilleautomater, kategorier og søgefunktion efter login"
+            caption="Unibets casino-lobby med overblik over 1.661 slots, kategorier og søgefiltre."
+            eager
+            size="full"
+          />
         </section>
 
           <YoutubeEmbed
