@@ -2,6 +2,7 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
+import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -352,6 +353,13 @@ const Indskudsbonus = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={kapowVelkomstbonus}
+          alt="Trin-for-trin bonusaktivering ved indskud hos dansk casino med valgmulighed mellem bonus og spil uden bonus"
+          caption="Eksempel på bonusaktivering ved første indskud – bonussen kan til- eller fravælges"
+          size="full"
+        />
 
         <Separator className="my-10" />
 

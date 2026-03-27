@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, AlertTriangle, TrendingUp, Globe } from "lucide-react";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import kapowMitidGodkendt from "@/assets/screenshots/kapow-mitid-godkendt.png";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
@@ -76,6 +78,13 @@ const KapowCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Under bonusomsætningen spillede vi primært Reactoonz 2, Sweet Bonanza og Fire Joker. Omsætningstrackerens opdatering var forsinket med 10-15 minutter – en irritation vi ikke oplever hos premium-platforme som LeoVegas eller Mr Green, hvor tracking er realtid. Efter 38 timer og cirka 280 spins havde vi opfyldt omsætningskravet med en saldo på 1.620 kr.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Ved første udbetaling krævede Kapow Casino KYC-dokumentation ud over MitID-verifikationen. Vi uploadede en kopi af vores pas samt en forbrugsregning som adressebevis direkte i kontoens verifikationssektion. Dokumenterne blev godkendt efter 4 timer – hurtigere end <Link to="/casino-anmeldelser/one-casino" className={linkClass}>One Casino</Link> (18 timer), men langsommere end <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> (2–4 timer). Processen var ukompliseret, men den ekstra dokumentation er en ulempe sammenlignet med rene MitID-operatører som <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>, der klarer hele KYC via NemID/MitID.</p>
           <p className="text-muted-foreground leading-relaxed">Udbetalingstest: vi anmodede om 1.500 kr. via Trustly kl. 09:30 en torsdag. Intern behandling tog 6 timer (godkendt kl. 15:45), og beløbet var på vores bankkonto kl. 08:15 næste morgen – total tid 22 timer og 45 minutter. Det er acceptabelt men ikke imponerende. Til sammenligning fik vi penge ud fra Mr Vegas på 14 timer og fra PokerStars på 6 timer.</p>
+
+          <ReviewScreenshot
+            src={kapowMitidGodkendt}
+            alt="MitID-verifikation godkendt hos Kapow Casino med blåt skjold og succesbesked"
+            caption="MitID-verifikation godkendt – registreringsprocessen hos Kapow Casino afsluttes med denne bekræftelse"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />

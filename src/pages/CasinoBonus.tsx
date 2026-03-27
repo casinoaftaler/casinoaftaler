@@ -3,6 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonusClose from "@/assets/screenshots/betinia-velkomstbonus-close.webp";
+import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.png";
 
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -295,6 +296,13 @@ const CasinoBonus = () => {
         <Separator className="my-10" />
 
         <Separator className="my-10" />
+
+        <ReviewScreenshot
+          src={kapowVelkomstbonus}
+          alt="Casino bonusvalg ved kontooprettelse med velkomstbonus-tilbud og mulighed for at spille uden bonus"
+          caption="Sådan præsenteres et typisk bonusvalg under oprettelsen – her med free spins som velkomstbonus"
+          size="full"
+        />
 
         {/* ========== 3. GENNEMGANG AF ALLE BONUSTYPER ========== */}
         <section className="mb-12">

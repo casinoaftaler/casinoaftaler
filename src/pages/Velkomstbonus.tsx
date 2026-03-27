@@ -3,6 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonus from "@/assets/screenshots/betinia-velkomstbonus-aktiv.webp";
 import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
+import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -477,6 +478,13 @@ const Velkomstbonus = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={kapowVelkomstbonus}
+          alt="Kapow Casino bonusvalg ved registrering med 100 spins til Gates of Olympus og toggle til at fortsætte uden bonus"
+          caption="Bonusvalg ved oprettelse – her vælger du aktivt din velkomstbonus eller fortsætter uden"
+          size="full"
+        />
 
         <Separator className="my-10" />
 

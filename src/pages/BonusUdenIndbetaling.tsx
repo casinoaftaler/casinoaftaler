@@ -11,6 +11,8 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.png";
 import {
   Sparkles,
   ShieldCheck,
@@ -503,6 +505,13 @@ const BonusUdenIndbetaling = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={kapowVelkomstbonus}
+          alt="Sammenligning af bonus ved indbetaling vs. uden indbetaling med tydelig valgmulighed under casinoregistrering"
+          caption="Bonusvalg ved registrering – de fleste velkomstbonusser kræver en indbetaling for aktivering"
+          size="full"
+        />
 
         <Separator className="my-10" />
 

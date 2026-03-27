@@ -24,6 +24,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.png";
 import {
   Sparkles,
   ShieldCheck,
@@ -468,6 +470,13 @@ const FreeSpins = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={kapowVelkomstbonus}
+          alt="Free spins som del af velkomstbonus ved registrering hos dansk online casino med 100 spins til Gates of Olympus"
+          caption="Free spins ved registrering – her tilbydes 100 spins som en del af velkomstbonussen"
+          size="full"
+        />
 
         <Separator className="my-10" />
 

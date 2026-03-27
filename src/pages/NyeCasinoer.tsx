@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
+import kapowRegistrering from "@/assets/screenshots/kapow-registrering.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
@@ -387,6 +388,13 @@ const NyeCasinoer = () => {
               I vores seneste testrunde (januar 2026) oprettede vi konti hos 4 nye casinoer via MitID. Den gennemsnitlige kontooprettelsestid var 3 minutter og 42 sekunder. Vi indbetalte 500 kr. via Trustly (gennemsnitlig behandlingstid: 8 sekunder) og 500 kr. via MobilePay (12 sekunder). Udbetalingstests viste markante forskelle: det hurtigste casino behandlede en Trustly-udbetaling på 4 minutter og 11 sekunder, mens det langsomste krævede 6 timer og 45 minutter for samme metode. Tre af fire casinoer bestod vores kvalitetskrav – ét blev afvist pga. mangelfuld dansk kundeservice og uklare bonusvilkår.
             </p>
           </div>
+
+          <ReviewScreenshot
+            src={kapowRegistrering}
+            alt="Registreringsproces hos nyt dansk casino med kontaktformular og overførselsgrænse"
+            caption="Registreringsformularen hos et nyt casino – CPR, kontaktinfo og overførselsgrænser udfyldes i første trin"
+            size="full"
+          />
 
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Dag 1-2: Kontooprettelse og første indtryk.</strong> Vi opretter en reel konto via <Link to="/nye-casinoer/mitid" className={linkClass}>MitID</Link> og dokumenterer hele processen: tid fra klik til aktiv konto, klarhed i vilkår, og om KYC-verifikation kører problemfrit. Vi tester fra både desktop (Chrome, Safari) og mobil (iPhone, Android). Et casino der kræver mere end 5 minutter til kontooprettelse eller har en forvirrende MitID-integration, starter allerede med et negativt score.
