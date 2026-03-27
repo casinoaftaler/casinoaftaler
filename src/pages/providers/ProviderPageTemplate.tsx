@@ -117,7 +117,7 @@ const defaultSectionOrder = [
 export function ProviderPage({
   seoTitle, seoDescription, name, heroSubtitle, heroImage, heroImageAlt,
   introTitle, introContent, historyTitle, historyIntro, timeline,
-  games, gamesIntro, licensesContent, pros, cons, faqs, currentPath,
+  games, gamesIntro, licensesContent, pros, cons, faqs, currentPath, extraJsonLd,
   responsibleGamingText, strategicAnalysis, technicalProfile,
   sectionOrder, readTime = "14 Min.",
   strategicTitle, technicalTitle, gamesTitle, licensesTitle, prosConsTitle, responsibleTitle,
