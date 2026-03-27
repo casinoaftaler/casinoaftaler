@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
+import { buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import hacksawHero from "@/assets/heroes/hacksaw-gaming-hero.jpg";
 
@@ -15,6 +16,7 @@ const HacksawGamingGuide = () => (
     heroImage={hacksawHero}
     heroImageAlt="Hacksaw Gaming – dristige og innovative spilleautomater med ekstremt høj volatilitet"
     currentPath="/spiludviklere/hacksaw-gaming"
+    extraJsonLd={[buildVideoSchema(`${SITE_URL}/spiludviklere/hacksaw-gaming`, "SQqTH2EgYTM", { title: "Jonas åbner bonusser på Hacksaw Gaming slots", description: "Se Jonas fra Casinoaftaler.dk åbne super bonusser på populære Hacksaw Gaming spillemaskiner – bl.a. Wanted Dead or a Wild, Chaos Crew og Dork Unit.", uploadDate: "2026-03-07", duration: "PT25M30S" })]}
     readTime="32 Min."
     strategicTitle="Rebellens Strategi: Hvorfor Hacksaw Bevidst Frastøder Flertallet"
     technicalTitle="Motorrum og Matematik: Hacksaws Tekniske Fundament"

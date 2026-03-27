@@ -67,6 +67,8 @@ interface ProviderPageProps {
   cons: string[];
   faqs: FAQ[];
   currentPath: string;
+  /** Extra JSON-LD schemas (e.g. VideoObject) to inject alongside Article+FAQ */
+  extraJsonLd?: Record<string, unknown>[];
   responsibleGamingText?: string;
   strategicAnalysis?: ReactNode;
   technicalProfile?: ReactNode;
@@ -115,7 +117,7 @@ const defaultSectionOrder = [
 export function ProviderPage({
   seoTitle, seoDescription, name, heroSubtitle, heroImage, heroImageAlt,
   introTitle, introContent, historyTitle, historyIntro, timeline,
-  games, gamesIntro, licensesContent, pros, cons, faqs, currentPath,
+  games, gamesIntro, licensesContent, pros, cons, faqs, currentPath, extraJsonLd,
   responsibleGamingText, strategicAnalysis, technicalProfile,
   sectionOrder, readTime = "14 Min.",
   strategicTitle, technicalTitle, gamesTitle, licensesTitle, prosConsTitle, responsibleTitle,
@@ -352,7 +354,7 @@ export function ProviderPage({
 
   return (
     <>
-      <SEO title={seoTitle} description={seoDescription} jsonLd={[faqJsonLd, articleSchema]} />
+      <SEO title={seoTitle} description={seoDescription} jsonLd={[faqJsonLd, articleSchema, ...(extraJsonLd || [])]} />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
