@@ -12,6 +12,15 @@ const ALLOWED_CATEGORIES = [
   "markedsbevægelser",
   "juridisk",
   "teknologi-sikkerhed",
+  "spiludviklere",
+  "ansvarligt-spil",
+  "live-casino",
+  "mobilcasino",
+  "spilleafgifter",
+  "spilanmeldelser",
+  "nordisk-marked",
+  "kundeservice",
+  "dataanalyse",
 ] as const;
 
 // ═══════════════════════════════════════════════════════════
