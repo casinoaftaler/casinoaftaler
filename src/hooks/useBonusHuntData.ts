@@ -161,7 +161,7 @@ function createPendingLiveHuntData(huntNumber: number): BonusHuntData {
       openedBonuses: 0,
       startBalance: 0,
       endBalance: null,
-      targetBalance: 0,
+      totalWinnings: 0,
       averageBet: 0,
       averageX: null,
       breakEvenX: 0,
