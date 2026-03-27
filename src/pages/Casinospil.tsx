@@ -273,6 +273,13 @@ const Casinospil = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spilleautomatenFilter}
+          alt="Spilleautomaten.dk spiludbyder-filter med antal spil pr. provider – Pragmatic Play (539), Play'n GO (352), Stakelogic (167), Synot (161) og Hacksaw Gaming (149)"
+          caption="Filtrer efter spiludbyder – Spilleautomaten viser antal tilgængelige spil fra hver provider"
+          size="full"
+        />
+
         <InlineCasinoCards title="Anbefalede casinoer med bredt spiludvalg" count={6} />
 
         <Separator className="my-10" />
