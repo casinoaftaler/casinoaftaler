@@ -280,6 +280,7 @@ const PlayKasinoAnmeldelse = () => {
             <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.
           </p>
         </section>
+        <ReviewScreenshot src={playkasinoSpillemaskiner} alt="PlayKasino spilleautomater med populære titler som Gates of Olympus, Book of Dead og Big Bass Splash" caption="PlayKasinos slots-sektion med anbefalede og populære spilleautomater fra NetEnt, Pragmatic Play og Play'n GO." eager size="full" />
 
         <Separator className="my-10" />
 
