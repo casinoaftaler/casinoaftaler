@@ -24,6 +24,10 @@ import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Shield, Globe, ShieldCheck, Smartphone, Headphones, Users, Clock, Award, TrendingUp, BarChart3 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import unibetLobby from "@/assets/screenshots/unibet-lobby.png";
+import unibetFiltre from "@/assets/screenshots/unibet-filtre.png";
+import unibetLiveCasino from "@/assets/screenshots/unibet-live-casino.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
