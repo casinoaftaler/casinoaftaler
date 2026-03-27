@@ -266,6 +266,14 @@ const CasinoAnmeldelser = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia casino lobby med populære spillemaskiner, kategorier og søgefunktion – et typisk dansk online casino interface"
+          caption="Betinia – et af de mest populære danske casinoer med et overskueligt lobby-design og bredt spiludvalg"
+          size="full"
+          eager
+        />
+
         {/* ===== SEKTION 2: Sådan tester vi – den fulde metodik ===== */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
