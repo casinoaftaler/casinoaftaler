@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import getluckyForside from "@/assets/screenshots/getlucky-forside.png";
+import getluckyLiveCasino from "@/assets/screenshots/getlucky-live-casino.png";
+import getluckyKampagner from "@/assets/screenshots/getlucky-kampagner.png";
+import getluckySportsbook from "@/assets/screenshots/getlucky-sportsbook.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
