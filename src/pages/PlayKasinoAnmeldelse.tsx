@@ -27,6 +27,11 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemaskiner.png";
+import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.png";
+import playkasionBordspil from "@/assets/screenshots/playkasino-bordspil.png";
+import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling.png";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
@@ -275,6 +280,7 @@ const PlayKasinoAnmeldelse = () => {
             <Link to="/saadan-tester-vi-casinoer" className={linkClass}>sådan tester vi casinoer</Link>.
           </p>
         </section>
+        <ReviewScreenshot src={playkasinoSpillemaskiner} alt="PlayKasino spilleautomater med populære titler som Gates of Olympus, Book of Dead og Big Bass Splash" caption="PlayKasinos slots-sektion med anbefalede og populære spilleautomater fra NetEnt, Pragmatic Play og Play'n GO." eager size="full" />
 
         <Separator className="my-10" />
 
@@ -744,6 +750,7 @@ const PlayKasinoAnmeldelse = () => {
             "Favoritter"-funktionen lader dig gemme de spil, du vender tilbage til, med et enkelt klik. Det er en simpel men vigtig feature, der reducerer navigationstiden betydeligt ved gentagne besøg. I appen synkroniseres favoritter automatisk med desktop-versionen, så din spilliste er tilgængelig på alle enheder.
           </p>
         </section>
+        <ReviewScreenshot src={playkasinoHotcold} alt="PlayKasino Hot og Cold funktion der viser hvilke spilleautomater der udbetaler mest i realtid" caption="PlayKasinos unikke Hot/Cold-funktion viser i realtid hvilke slots der udbetaler mest – en data-drevet navigationshjælp." size="full" />
 
         <Separator className="my-10" />
 
@@ -767,6 +774,7 @@ const PlayKasinoAnmeldelse = () => {
             Indsatsniveauerne spænder fra 10 kr. til 50.000+ kr. pr. runde, hvilket gør sektionen tilgængelig for alle budgetter. Vi oplevede ingen tekniske problemer, buffering eller afbrydelser under vores testperiode – heller ikke i spidsbelastningsperioder fredag og lørdag aften.
           </p>
         </section>
+        <ReviewScreenshot src={playkasionBordspil} alt="PlayKasino live casino og bordspil med European Blackjack, Roulette og Baccarat fra Playtech" caption="PlayKasinos bordspils-sektion med Playtech Live-titler som European Blackjack Turbo, Roulette og Dynasty Speed Baccarat." size="full" />
 
         <Separator className="my-10" />
 
@@ -814,6 +822,7 @@ const PlayKasinoAnmeldelse = () => {
           <p className="text-xs text-muted-foreground mb-4">
             Min. indbetaling: 100 kr. Min. udbetaling: 100 kr. Alle transaktioner er gebyrfri. MobilePay og Apple Pay er kun tilgængelige til indbetaling. PayPal var den hurtigste udbetalingsmetode i vores test.
           </p>
+          <ReviewScreenshot src={playkasinoIndbetaling} alt="PlayKasino indbetalingsmuligheder med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal" caption="PlayKasinos indbetalingsside med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal – alle gebyrfri." size="full" />
         </section>
 
         {/* Registration Process */}
