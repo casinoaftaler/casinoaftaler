@@ -106,9 +106,15 @@ const NyeCasinoerTrustly = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             I denne guide fokuserer vi på Trustly som et valgkriterie, når du sammenligner nye casinoer. Vi ser på den praktiske onboarding-oplevelse, bankkompatibilitet, ind- og udbetalingsgrænser hos specifikke nye casinoer, og den kritiske forskel mellem "standard Trustly" og "Trustly Pay N Play". For en generel introduktion til Trustly som betalingsmetode, se vores <Link to="/betalingsmetoder/trustly" className={linkClass}>dedikerede Trustly-guide</Link>.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Vi har testet Trustly-oplevelsen hos 15+ nye danske casinoer med reelle ind- og udbetalinger via flere danske banker. Resultatet er en praktisk guide, der hjælper dig med at vælge det nye casino, der giver den bedste Trustly-oplevelse specifikt til dine behov.
-          </p>
+           <p className="text-muted-foreground leading-relaxed">
+             Vi har testet Trustly-oplevelsen hos 15+ nye danske casinoer med reelle ind- og udbetalinger via flere danske banker. Resultatet er en praktisk guide, der hjælper dig med at vælge det nye casino, der giver den bedste Trustly-oplevelse specifikt til dine behov.
+           </p>
+
+           <ReviewScreenshot
+             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-trustly-bankvalg.webp"
+             alt="Trustly bankvalg hos nyt dansk casino med oversigt over alle understøttede danske banker"
+             caption="Trustlys bankvalg-flow hos et nyt casino – alle større danske banker understøttes"
+           />
         </section>
 
         <Separator className="my-10" />

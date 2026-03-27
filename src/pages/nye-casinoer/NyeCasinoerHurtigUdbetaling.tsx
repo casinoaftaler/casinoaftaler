@@ -123,9 +123,15 @@ const NyeCasinoerHurtigUdbetaling = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vi har testet udbetalingstider hos alle nye casinoer på vores liste ved at foretage reelle udbetalinger på forskellige tidspunkter (hverdag, weekend, nat). Casinoerne nedenfor er rangeret efter faktiske udbetalingshastigheder baseret på vores test. Se også vores <Link to="/nye-casinoer/trustly" className={linkClass}>Trustly-guide</Link> for dybere indsigt i Pay N Play-udbetalinger.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Denne guide fokuserer specifikt på nye casinoers udbetalingsarkitektur og testresultater. For en bredere gennemgang af betalingsmetoder generelt, se vores <Link to="/betalingsmetoder" className={linkClass}>oversigt over alle betalingsmetoder</Link>. Her handler det udelukkende om hastighed – fra det øjeblik du klikker "Udbetal" til pengene er på din konto.
-          </p>
+           <p className="text-muted-foreground leading-relaxed">
+             Denne guide fokuserer specifikt på nye casinoers udbetalingsarkitektur og testresultater. For en bredere gennemgang af betalingsmetoder generelt, se vores <Link to="/betalingsmetoder" className={linkClass}>oversigt over alle betalingsmetoder</Link>. Her handler det udelukkende om hastighed – fra det øjeblik du klikker "Udbetal" til pengene er på din konto.
+           </p>
+
+           <ReviewScreenshot
+             src={spildansknuIndbetaling}
+             alt="Hurtig indbetalingsproces hos SpilDanskNu med instant betalingsmetoder som Trustly og MobilePay"
+             caption="Indbetalingsflowet hos et nyt dansk casino – hurtige metoder som Trustly giver også hurtigere udbetalinger"
+           />
           <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">
               <strong>Se også alle casinoer med hurtig udbetaling</strong> – ikke kun nye. Vores <Link to="/casinoer/hurtig-udbetaling" className={linkClass}>komplette guide til casinoer med hurtig udbetaling</Link> dækker både nye og etablerede casinoer med de hurtigste udbetalingstider.

@@ -103,9 +103,15 @@ const NyeCasinoerLavWagering = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Hos <Link to="/nye-casinoer" className={linkClass}>nye casinoer</Link> ser vi en klar konkurrencetrend: lavere omsætningskrav bruges som differentiator for at tiltrække informerede spillere. Mens de fleste nye casinoer benytter det danske loft på 10x, skiller udvalgte casinoer sig ud med 5x wagering. Og en stigende gruppe tilbyder <Link to="/bonus-uden-omsaetningskrav" className={linkClass}>bonusser helt uden omsætningskrav</Link>.
           </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Denne guide fokuserer på praktisk casino-valg baseret på wagering. Vi sammenligner konkrete nye casinoer, beregner reelle bonusværdier og giver dig strategier til at maksimere din udnyttelse af bonussen. For den teoretiske forklaring af omsætningskrav, se vores <Link to="/omsaetningskrav" className={linkClass}>dedikerede guide til omsætningskrav</Link>.
-          </p>
+           <p className="text-muted-foreground leading-relaxed">
+             Denne guide fokuserer på praktisk casino-valg baseret på wagering. Vi sammenligner konkrete nye casinoer, beregner reelle bonusværdier og giver dig strategier til at maksimere din udnyttelse af bonussen. For den teoretiske forklaring af omsætningskrav, se vores <Link to="/omsaetningskrav" className={linkClass}>dedikerede guide til omsætningskrav</Link>.
+           </p>
+
+           <ReviewScreenshot
+             src={spildansknuBonus}
+             alt="Bonusvilkår og omsætningskrav hos SpilDanskNu med lav wagering på velkomstbonus"
+             caption="Bonussiden hos et nyt dansk casino – tjek altid omsætningskrav inden du aktiverer"
+           />
         </section>
 
         <InlineCasinoCards title="Nye Casinoer med Lavest Wagering" />
