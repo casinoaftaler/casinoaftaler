@@ -209,6 +209,7 @@ const RoyalCasinoAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Royal Casinos sikkerhedsprofil er stærk i dansk kontekst. Platformen opererer under dansk licens og er underlagt løbende regulatorisk tilsyn. Det betyder krav til ansvarligt spil, anti-hvidvask, spillerverifikation og dokumentation af centrale processer.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">ROFUS-integration er fuldstændig og øjeblikkelig. <Link to="/ansvarligt-spil" className={linkClass}>Ansvarligt spil</Link>-værktøjerne er blandt de mest omfattende, vi har testet: indbetalingsgrænser (daglige, ugentlige, månedlige), tabsgrænser, sessionsgrænser, reality checks og selvudelukkelse – alt tilgængeligt med få klik.</p>
           <p className="text-muted-foreground leading-relaxed">For spillere, der prioriterer sikkerhed højt, er Royal Casino et solidt valg. Kombinationen af dansk licens, ROFUS-tilslutning og tydelige kontrolmekanismer giver en høj grad af tryghed. Læs mere om <Link to="/casino-licenser" className={linkClass}>casino licenser</Link> og deres betydning.</p>
+          <ReviewScreenshot src={royalcasinoGruppen} alt="Royal Gruppen med RoyalCasino.dk online casino og Royal Casino Aarhus fysisk casino på Store Torv" caption="Royal Gruppen bag platformen – RoyalCasino.dk og det fysiske Royal Casino Aarhus på Store Torv med over 30 års historie." size="full" />
         </section>
 
         <Separator className="my-10" />
