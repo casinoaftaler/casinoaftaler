@@ -41,6 +41,12 @@ export const organizationSchema = {
     width: 512,
     height: 512,
   },
+  memberOf: {
+    "@type": "Organization",
+    name: "Gambling Portal Webmasters Association",
+    url: "https://www.gpwa.org",
+  },
+  award: "GPWA Approved Portal",
   sameAs: [
     "https://www.youtube.com/@infocasinoaftaler",
     "https://www.instagram.com/casinoaftaler/",

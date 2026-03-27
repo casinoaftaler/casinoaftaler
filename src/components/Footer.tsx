@@ -612,7 +612,7 @@ export function Footer() {
                 src="https://certify.gpwa.org/seal/casinoaftaler.dk/"
                 alt="GPWA Approved Portal – verificeret affiliateportal"
                 style={{ height: 60, width: "auto" }}
-                loading="lazy"
+                loading="eager"
                 onError={(e) => {
                   const img = e.currentTarget;
                   img.width = 0;

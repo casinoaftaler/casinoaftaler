@@ -72,6 +72,18 @@ export const SourceCitations = forwardRef<HTMLElement>(function SourceCitations(
       <p className="mt-3 text-[11px] text-muted-foreground/70">
         Alle anbefalinger på Casinoaftaler.dk omhandler udelukkende casinoer med gyldig dansk spillelicens.
         Indholdet er uafhængigt redaktionelt produceret.
+        Casinoaftaler.dk er{" "}
+        <a
+          href="https://certify.gpwa.org/verify/casinoaftaler.dk/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary underline hover:text-primary/80"
+        >
+          GPWA-godkendt
+        </a>.{" "}
+        <a href="/er-casinoaftaler-trovaerdig" className="text-primary underline hover:text-primary/80">
+          Læs mere →
+        </a>
       </p>
     </aside>
   );
