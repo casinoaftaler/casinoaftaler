@@ -21,6 +21,9 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.png";
+import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import {
   Accordion,
   AccordionContent,
