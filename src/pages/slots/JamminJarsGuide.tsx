@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemaskiner.png";
 import heroImage from "@/assets/heroes/jammin-jars-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -134,6 +136,12 @@ const JamminJarsGuide = () => {
             Når to eller flere jars indgår i samme vindende cluster, ganges deres individuelle <Link to="/ordbog/multiplikator" className={linkClass}>multiplikatorer</Link>. Denne mekanik er matematisk essentiel: to jars med multiplikatorer på 3× og 4× giver ikke 7× men 12×. Med tre jars kan den samlede multiplikator nå astronomiske niveauer – eksempelvis 5× × 4× × 3× = 60×. Denne eksponentielle multiplikator-stacking er kernen i Jammin' Jars' gevinstpotentiale og den primære årsag til den høje <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link>.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={playkasinoSpillemaskiner}
+          alt="PlayKasino spillemaskin-lobby med Push Gaming-slots – Jammin' Jars er en af de mest populære cluster pays-slots på markedet"
+          caption="PlayKasinos lobby med adgang til Push Gaming-titler som Jammin' Jars"
+        />
 
         <InlineCasinoCards />
 

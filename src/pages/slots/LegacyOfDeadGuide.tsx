@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemaskiner.png";
 import heroImage from "@/assets/heroes/legacy-of-dead-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -132,6 +134,12 @@ const LegacyOfDeadGuide = () => {
             Æstetisk fortsætter Legacy of Dead den egyptiske tematik fra Book of Dead, men med moderniseret grafik og forbedret animation. Symbologien er genkendelig – faraoner, Anubis, Horus og standard kortsymboler – men redesignet med mere detaljerede texturer og dynamisk belysning. Lyddesignet er ligeledes opgraderet med mere atmosfærisk scoring, der intensiveres under bonusrunder.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={playkasinoSpillemaskiner}
+          alt="PlayKasino spillemaskin-lobby med Play'n GO-slots – Legacy of Dead er en populær Book of Dead-variant med progressiv expanding symbol-mekanik"
+          caption="PlayKasinos lobby med Play'n GO-titler som Legacy of Dead"
+        />
 
         <YoutubeEmbed videoId="Ss2ZRXT0jCI" title="Legacy of Dead gennemgang – Progressiv expanding symbol" description="Se en komplet gennemgang af Legacy of Dead: det progressive expanding symbol-system forklaret i praksis." uploadDate="2026-03-07" duration="PT1M41S" />
         <VideoContextBox heading="Her gennemgår vores streamer Legacy of Dead i praksis">

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import betiniaMegaways from "@/assets/screenshots/betinia-megaways-filter.webp";
 import heroImage from "@/assets/heroes/madame-destiny-megaways-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -78,6 +80,12 @@ const MadameDestinyMegawaysGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed"><Link to="/ordbog/rtp" className={linkClass}>RTP</Link>'en på 96,56 % er den stærkeste i gruppen og kvalificerer den til <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj RTP-spillemaskiner</Link>. <Link to="/ordbog/house-edge" className={linkClass}>House edge</Link> på 3,44 % er lavere end Bonanza (4,00 %) og Sweet Bonanza (3,52 %), hvilket giver Madame Destiny MW en matematisk fordel over sine Megaways-konkurrenter i langsigtede sessioner.</p>
           <p className="text-muted-foreground leading-relaxed">Denne sammenligning afslører Madame Destiny MW's position i markedet: den er ikke den mest spændende Megaways-slot (det er Bonanza eller Sweet Bonanza), men den er muligvis den mest fornuftige. For spillere, der vil opleve Megaways-dynamikken uden den brutale volatilitet, er Madame Destiny MW et fremragende valg – og Ante Bet-funktionen giver en unik taktisk dimension, som konkurrenterne mangler.</p>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaMegaways}
+          alt="Betinia Megaways-filter med Pragmatic Play-slots – Madame Destiny Megaways er blandt de mest tilgængelige Megaways-titler"
+          caption="Betinias Megaways-kategori med Pragmatic Play-titler som Madame Destiny Megaways"
+        />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil og RTP-Analyse</h2>

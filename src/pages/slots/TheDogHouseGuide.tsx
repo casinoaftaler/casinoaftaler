@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import betiniaBonusbuyLobby from "@/assets/screenshots/betinia-bonusbuy-lobby.webp";
 import heroImage from "@/assets/heroes/the-dog-house-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -140,6 +142,12 @@ const TheDogHouseGuide = () => {
             Volatiliteten klassificeres som høj af Pragmatic Play, men den oplevede volatilitet er moderat-høj takket være den relativt generøse hit frequency på ~25 %. Standardafvigelsen estimeres til ~6-8, hvilket placerer The Dog House mellem Wolf Gold (~5-7) og <Link to="/casinospil/spillemaskiner/razor-shark" className={linkClass}>Razor Shark</Link> (~10-12) på volatilitetsskalaen.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaBonusbuyLobby}
+          alt="Betinia bonus buy-lobby med Pragmatic Play-slots – The Dog House tilbyder bonus buy for 60× indsatsen"
+          caption="Betinias bonus buy-sektion med hurtig adgang til The Dog House og andre Pragmatic Play-titler"
+        />
 
         <YoutubeEmbed videoId="_rC_ONf72gk" title="The Dog House gennemgang – Sticky Wilds og multiplikatorer" description="Se en komplet gennemgang af The Dog House: sticky wild-mekanikken og multiplikator-stacking forklaret i praksis." uploadDate="2026-03-07" duration="PT1M49S" />
         <VideoContextBox heading="Her gennemgår vores streamer The Dog House i praksis">

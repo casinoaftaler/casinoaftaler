@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import betiniaMegaways from "@/assets/screenshots/betinia-megaways-filter.webp";
 import heroImage from "@/assets/heroes/extra-chilli-megaways-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -67,6 +69,12 @@ const ExtraChilliMegawaysGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Spillet er IKKE ideelt for begyndere (de multiple beslutningslag kan forvirre), spillere med begrænset bankroll (den høje volatilitet kræver buffer), eller dem, der foretrækker simple mekanikker. For disse profiler anbefaler vi i stedet <Link to="/casinospil/spillemaskiner/starburst" className={linkClass}>Starburst</Link> (beginnervenlig) eller <Link to="/casinospil/spillemaskiner/fire-joker" className={linkClass}>Fire Joker</Link> (simpel klassiker).</p>
           <p className="text-muted-foreground leading-relaxed">For Megaways-entusiaster, der allerede kender <Link to="/casinospil/spillemaskiner/bonanza" className={linkClass}>Bonanza</Link>, er Extra Chilli den naturlige evolution – bedre RTP, højere ceiling, og den kritiske free spins-gamble, der tilfører en strategisk dimension, originalen manglede.</p>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaMegaways}
+          alt="Betinia Megaways-filter med Big Time Gaming-slots – Extra Chilli Megaways er en af de mest populære titler i kategorien"
+          caption="Betinias Megaways-filter giver hurtig adgang til BTG-titler som Extra Chilli Megaways"
+        />
 
         <Separator className="my-10" />
 

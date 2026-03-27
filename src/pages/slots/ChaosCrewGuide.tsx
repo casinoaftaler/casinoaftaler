@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import heroImage from "@/assets/heroes/chaos-crew-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -76,6 +78,12 @@ const ChaosCrewGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Hit frequency estimeres til 20-25 %, lavere end standard slots men typisk for cluster pays-mekanik, der kræver 5+ sammenhængende symboler for en gevinst. Tumble-funktionen (cascading wins) kompenserer delvist: gevindende clustre fjernes, og nye symboler falder ned med mulighed for kæde-gevinster. Gennemsnitlig tumble-kæde er 1,3-1,6 pr. gevindende spin.</p>
           <p className="text-muted-foreground leading-relaxed">Base game-RTP estimeres til 55-60 %, med de resterende 40-45 % allokeret til free spins. Denne fordeling er aggressiv for en high-volatility slot og indikerer, at bonusrunder er afgørende for den samlede matematiske performance – et karakteristisk Hacksaw Gaming-designvalg.</p>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia casino-lobby med Hacksaw Gaming-slots – Chaos Crew og andre cluster pays-titler er tilgængelige her"
+          caption="Betinias spillemaskin-lobby med adgang til Hacksaw Gaming-titler som Chaos Crew"
+        />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Zap className="h-5 w-5 text-primary" />Cranky & Sketchy: De To Wild-Typer</h2>

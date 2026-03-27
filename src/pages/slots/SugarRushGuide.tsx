@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import playkasinoSpillemaskiner from "@/assets/screenshots/playkasino-spillemaskiner.png";
 import heroImage from "@/assets/heroes/sugar-rush-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -67,6 +69,12 @@ const SugarRushGuide = () => {
           <p className="text-muted-foreground mb-4 leading-relaxed">Den strategiske implikation er, at Sugar Rush belønner længere bonusrunder disproportionalt. De første spins i en bonusrunde bygger multiplikator-fundamentet – de opbygger værdier på positioner. De sidste spins høster udbyttet – gevinster, der lander på positioner med akkumulerede multiplikatorer, forstørres dramatisk. Denne back-loaded gevinststruktur er kendetegnende for Sugar Rush og adskiller den fra slots med front-loaded bonus-mekanikker.</p>
           <p className="text-muted-foreground leading-relaxed">Visuelt præsenteres multiplikatorerne som farvede cirkler under hver position, der intensiveres i farve og størrelse, jo højere multiplikatoren er. Denne visuelle feedback er elegant designet og giver spilleren en umiddelbar forståelse af, hvilke positioner der har højest potentiale. Det er en af de mest intuitive multiplikator-præsentationer i moderne slot-design.</p>
         </section>
+
+        <ReviewScreenshot
+          src={playkasinoSpillemaskiner}
+          alt="PlayKasino spillemaskin-lobby med cluster pays-slots – Sugar Rush kan findes blandt Pragmatic Plays populære titler"
+          caption="PlayKasinos spillemaskin-lobby med adgang til cluster pays-titler som Sugar Rush"
+        />
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Teknisk Profil: Cluster Pays på 7×7 Grid</h2>

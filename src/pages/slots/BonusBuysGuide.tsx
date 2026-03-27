@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import betiniaBonusbuyLobby from "@/assets/screenshots/betinia-bonusbuy-lobby.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -296,6 +298,12 @@ const BonusBuysGuide = () => {
             En grundlæggende forståelse af <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link> og deres mekanikker er nyttig baggrundsviden, før du dykker ned i bonus buy-specifik matematik. Hvis du er ny inden for online slots, anbefaler vi at starte med vores overordnede spillemaskine-guide.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaBonusbuyLobby}
+          alt="Betinia bonus buy-lobby med oversigt over slots med køb af bonusrunder – priser varierer fra 50× til 250× indsatsen"
+          caption="Betinias dedikerede bonus buy-sektion giver overblik over tilgængelige buy feature-slots"
+        />
 
         {/* H2: Hvorfor tilbyder slots en Buy Feature? */}
         <section className="mb-12">
