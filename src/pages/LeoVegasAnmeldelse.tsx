@@ -174,6 +174,8 @@ const LeoVegasAnmeldelse = () => {
           />
         </section>
 
+        <Separator className="my-10" />
+
         {/* Live Casino */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
