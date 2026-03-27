@@ -906,6 +906,12 @@ const Spiludviklere = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spilleautomatenRtp}
+          alt="Zeus vs Hades RTP-information hos Spilleautomaten.dk – viser Return to Player og volatilitet for individuelle slots"
+          caption="Seriøse spiludviklere oplyser altid RTP og volatilitet – her vist for Pragmatic Plays Zeus vs Hades"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════
