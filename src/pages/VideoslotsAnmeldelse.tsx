@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import videoslotsForside from "@/assets/screenshots/videoslots-forside.png";
+import videoslotsWeekendBooster from "@/assets/screenshots/videoslots-weekend-booster.png";
+import videoslotsLiveCasino from "@/assets/screenshots/videoslots-live-casino.png";
+import videoslotsBattleOfSlots from "@/assets/screenshots/videoslots-battle-of-slots.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
@@ -89,7 +94,8 @@ const VideoslotsAnmeldelse = () => {
             <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan Videoslots ser ud indefra</h3>
             <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig Videoslots' hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
           </div>
-        </section>
+         </section>
+          <ReviewScreenshot src={videoslotsForside} alt="Videoslots Casino forside med Battle of Slots, over 5.000 spil og Bushido Gold featured slot" caption="Videoslots' forside med Battle of Slots-turneringer, spilkategorier og over 5.326 tilgængelige spil." eager size="full" />
 
         <Separator className="my-10" />
 
@@ -129,6 +135,7 @@ const VideoslotsAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Det, der gør systemet retfærdigt, er point-beregningen. Din score er baseret på din samlede gevinst divideret med din samlede indsats. Det betyder, at en spiller med 20 kr. indsats har præcis samme chance for at vinde som en med 200 kr. – det er den relative præstation, der tæller. Denne egalitære tilgang eliminerer pay-to-win-dynamikken, der plager de fleste andre turneringsformater i branchen.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Turneringerne kører i tre formater: <strong>Freeroll</strong> (gratis, lavere præmier), <strong>Head-to-Head</strong> (1v1 med fast buy-in) og <strong>Sit & Go</strong> (4–10 spillere, turneringen starter, når alle pladser er fyldt). Præmiepuljerne varierer fra 100 kr. i freerolls til over 50.000 kr. i premium-turneringer. Under vores testperiode deltog vi i 12 turneringer og oplevede, at konkurrenceniveauet varierer betydeligt – freerolls er afslappede med mange passive spillere, mens buy-in-turneringer tiltrækker erfarne spillere med aggressive strategier.</p>
           <p className="text-muted-foreground leading-relaxed">Det er værd at understrege: ingen anden operatør i Danmark – eller globalt – tilbyder noget, der minder om Battle of Slots i skala og kvalitet. Det er en ægte differentiator, der alene kan retfærdiggøre valget af Videoslots for konkurrencemindede spillere.</p>
+          <ReviewScreenshot src={videoslotsBattleOfSlots} alt="Videoslots Battle of Slots turnerings-lobby med Sit and Go og Freeroll-turneringer" caption="Battle of Slots-lobbyen med aktive turneringer, buy-ins og turneringsdetaljer for udvalgte slots." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -141,6 +148,7 @@ const VideoslotsAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Den reelle bonus-værdi hos Videoslots ligger i <strong>Weekend Boosters</strong> – den ugentlige kontant-belønning baseret på din aktivitet. I vores test modtog vi 127 kr. for en uges moderat spil (samlet indsats ca. 4.000 kr.). Over en måned estimerer vi 300–600 kr. i booster-udbetalinger uden noget omsætningskrav. Det er ren cashback, og det er mere værd end de fleste velkomstbonusser, når man regner det ud over tid.</p>
           <p className="text-muted-foreground leading-relaxed">Battle of Slots-turneringerne fungerer også som en de facto bonus. Med hundredvis af daglige freerolls kan en aktiv spiller realistisk vinde 200–500 kr. om ugen uden at risikere egne penge. Samlet set er Videoslots' bonussystem unge sexigt, men matematisk solidt – og det er præcis den type tilgang, vores <Link to="/redaktionel-politik" className={linkClass}>redaktionelle politik</Link> værdsætter.</p>
         </section>
+          <ReviewScreenshot src={videoslotsWeekendBooster} alt="Videoslots Weekend Booster cashback-system med RTP-baseret tilbagebetaling og månedlig oversigt" caption="Weekend Booster-siden med vilkår, RTP-baseret cashback-formel og månedlig udbetalingsoversigt." size="full" />
 
         <Separator className="my-10" />
 
@@ -150,6 +158,7 @@ const VideoslotsAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Videoslots' <Link to="/live-casino" className={linkClass}>live casino</Link> er drevet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og tilbyder 80+ borde. Det dækker alle standard-kategorier: <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> (inkl. Infinite Blackjack for lavere indsatser), <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> (europæisk, Lightning, Immersive), <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> og et fuldt game show-sortiment med Crazy Time, Monopoly Live, Dream Catcher og Lightning Dice.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sammenlignet med Videoslots' enorme slots-katalog er live casino-sektionen "blot" standard. Der er ingen eksklusive Videoslots-brandede borde (som f.eks. <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> tilbyder), og udvalget er identisk med det, du finder hos de fleste Evolution-partnere. For den dedikerede live casino-spiller er det en tilstrækkelig men ikke differentierende oplevelse.</p>
           <p className="text-muted-foreground leading-relaxed">Det er dog værd at bemærke, at Videoslots' <Link to="/casinospil/poker" className={linkClass}>poker</Link>-udvalg i live casinoet er over gennemsnittet, med Casino Hold'em, Three Card Poker og Caribbean Stud Poker tilgængelige i flere varianter. For bordspils-entusiasten, der primært spiller slots men lejlighedsvis vil have en runde live poker, er dækningen god nok.</p>
+          <ReviewScreenshot src={videoslotsLiveCasino} alt="Videoslots live casino med Crazy Coin Flip, blackjack-borde og Evolution Gaming-udbydere" caption="Videoslots' live casino-lobby med Crazy Coin Flip, blackjack-varianter og baccarat fra Evolution Gaming." size="full" />
         </section>
 
         <Separator className="my-10" />
