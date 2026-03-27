@@ -1,4 +1,6 @@
 import React from "react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaMegawaysFilter from "@/assets/screenshots/betinia-megaways-filter.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -344,6 +346,11 @@ const MegawaysSlots = () => {
             <Link to="/ordbog/bankroll-management" className={linkClass}>bankroll</Link> til at
             overleve de "tørre" perioder i base game.
           </p>
+          <ReviewScreenshot
+            src={betiniaMegawaysFilter}
+            alt="Megaways slots søgning hos Betinia med 100 Megaways-spillemaskiner tilgængelige"
+            caption="Betinias spiludvalg viser 100 Megaways-slots – et af de største udvalg blandt danske casinoer"
+          />
         </section>
 
         <Separator className="my-10" />

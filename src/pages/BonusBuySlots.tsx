@@ -1,4 +1,7 @@
 import React from "react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaBonusbuyLobby from "@/assets/screenshots/betinia-bonusbuy-lobby.webp";
+import betiniaBonusbuyGameplay from "@/assets/screenshots/betinia-bonusbuy-gameplay.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -190,6 +193,12 @@ const BonusBuySlots = () => {
             certificerede og regulerede af{" "}
             <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>.
           </p>
+
+          <ReviewScreenshot
+            src={betiniaBonusbuyLobby}
+            alt="Gates of Olympus 1000 bonus buy dialog hos Betinia – køb gratis spins for 100 kr."
+            caption="Bonus buy-dialog i Gates of Olympus 1000 – prisen for at købe free spins er tydeligt vist"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -235,6 +244,13 @@ const BonusBuySlots = () => {
             <Star className="h-7 w-7 text-primary" />
             Bedste bonus buy-slots i 2026
           </h2>
+
+          <ReviewScreenshot
+            src={betiniaBonusbuyGameplay}
+            alt="Gates of Olympus 1000 gameplay med scatter-symboler og free spins trigger hos Betinia"
+            caption="Gates of Olympus 1000 gameplay – 4x scatter-symboler udløser free spins-runden"
+          />
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {[
               {

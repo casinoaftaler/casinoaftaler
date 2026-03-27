@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaMitid from "@/assets/screenshots/betinia-reg-mitid.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -110,6 +112,12 @@ const NyeCasinoerMitID = () => {
               </div>
             ))}
           </div>
+
+          <ReviewScreenshot
+            src={betiniaMitid}
+            alt="Betinia MitID login-skærm med MitID-knap til sikker verifikation ved kontooprettelse"
+            caption="MitID-verifikation hos Betinia – tryk på MitID-knappen for at godkende din identitet"
+          />
         </section>
 
         <Separator className="my-10" />
