@@ -128,7 +128,6 @@ const MobilePayGuide = () => {
                 src={betiniaMobilpayKasse}
                 alt="Betinia kasse med MobilePay valgt som indbetalingsmetode og betalingshistorik"
                 caption="MobilePay valgt i Betinias indbetalingskasse – MobilePay vises som anbefalet metode"
-                size="medium"
               />
             </>
           ),
