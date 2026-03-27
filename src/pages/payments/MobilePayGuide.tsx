@@ -130,20 +130,6 @@ const MobilePayGuide = () => {
                 caption="MobilePay valgt i Betinias indbetalingskasse – MobilePay vises som anbefalet metode"
                 size="medium"
               />
-
-              <ReviewScreenshot
-                src={betiniaMobilpayBekraeft}
-                alt="MobilePay bekræftelsesside med beløb og telefonnummer-input til casino-indbetaling"
-                caption="MobilePay bekræftelsesflow – indtast telefonnummer og godkend indbetalingen"
-                size="compact"
-              />
-
-              <ReviewScreenshot
-                src={betiniaBetalingOversigt}
-                alt="Komplet oversigt over betalingsmetoder hos Betinia inkl. MobilePay, Visa, Trustly og Dankort"
-                caption="Alle tilgængelige betalingsmetoder hos Betinia – MobilePay er listet øverst"
-                size="medium"
-              />
             </>
           ),
         },
