@@ -12,6 +12,16 @@ export function Footer() {
   const siteName = siteSettings?.site_name || "Casinoaftaler.dk";
   const headerIcon = siteSettings?.header_icon || undefined;
   const discordUrl = siteSettings?.discord_url;
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://certify.gpwa.org/script/casinoaftaler.dk/";
+    script.async = true;
+    document.head.appendChild(script);
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
   const instagramUrl = siteSettings?.instagram_url;
   const twitchUrl = siteSettings?.twitch_url;
   const youtubeUrl = siteSettings?.youtube_url;
