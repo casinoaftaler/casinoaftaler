@@ -78,17 +78,24 @@ const TrustlyGuide = () => {
       }
       howToTitle="Fra Klik til Kreditering – Den Praktiske Proces i Detaljer"
       howToContent={
-        <>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Indbetaling (standard):</strong> Vælg Trustly i casinoets kasse. Du præsenteres for en liste over danske banker – vælg din. Du omdirigeres til Trustlys sikre side, hvor du logger ind med MitID (MitID-appen eller kodeviser). Vælg den konto, du vil betale fra, bekræft beløbet, og godkend overførslen i din bankapp. Pengene er på din spillekonto inden for sekunder. Hele processen tager 20-35 sekunder – den ekstra tid sammenlignet med MobilePay og Apple Pay skyldes MitID-loginprocessen.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Udbetaling:</strong> Trustly-udbetalinger er konsekvent de hurtigste i dansk online casino. Vælg Trustly i udbetalingssektionen, angiv beløbet og godkend med MitID. Pengene sendes direkte til din bankkonto – ofte inden for minutter, altid inden for 24 timer. Ingen mellemled, ingen ekstra gebyrer, ingen ventetid på wallet-til-bank-overførsel. I vores test var den gennemsnitlige udbetalingstid 22 minutter.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong>Pay N Play (registrering + indbetaling):</strong> Hos casinoer med Pay N Play klikker du "Spil nu", vælger Trustly, logger ind med MitID, og foretager din første indbetaling. Din konto oprettes automatisk med verificerede data fra din bank. Hele processen fra nyt casino til første spin tager typisk under 60 sekunder – den hurtigste onboarding-oplevelse i branchen.
-          </p>
-        </>
+         <>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             <strong>Indbetaling (standard):</strong> Vælg Trustly i casinoets kasse. Du præsenteres for en liste over danske banker – vælg din. Du omdirigeres til Trustlys sikre side, hvor du logger ind med MitID (MitID-appen eller kodeviser). Vælg den konto, du vil betale fra, bekræft beløbet, og godkend overførslen i din bankapp. Pengene er på din spillekonto inden for sekunder. Hele processen tager 20-35 sekunder – den ekstra tid sammenlignet med MobilePay og Apple Pay skyldes MitID-loginprocessen.
+           </p>
+
+           <ReviewScreenshot
+             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-trustly-bankvalg.webp"
+             alt="Trustly bankvalg-interface med liste over danske banker under indbetalingsflow på dansk online casino"
+             caption="Trustlys bankvalg – vælg din bank og godkend med MitID for øjeblikkelig indbetaling"
+           />
+
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             <strong>Udbetaling:</strong> Trustly-udbetalinger er konsekvent de hurtigste i dansk online casino. Vælg Trustly i udbetalingssektionen, angiv beløbet og godkend med MitID. Pengene sendes direkte til din bankkonto – ofte inden for minutter, altid inden for 24 timer. Ingen mellemled, ingen ekstra gebyrer, ingen ventetid på wallet-til-bank-overførsel. I vores test var den gennemsnitlige udbetalingstid 22 minutter.
+           </p>
+           <p className="text-muted-foreground leading-relaxed">
+             <strong>Pay N Play (registrering + indbetaling):</strong> Hos casinoer med Pay N Play klikker du "Spil nu", vælger Trustly, logger ind med MitID, og foretager din første indbetaling. Din konto oprettes automatisk med verificerede data fra din bank. Hele processen fra nyt casino til første spin tager typisk under 60 sekunder – den hurtigste onboarding-oplevelse i branchen.
+           </p>
+         </>
       }
       additionalSections={[
         {
