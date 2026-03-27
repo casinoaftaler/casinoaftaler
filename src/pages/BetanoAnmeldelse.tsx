@@ -213,6 +213,7 @@ const BetanoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Jackpot-sektionen er tilstrækkelig med progressive puljer fra Pragmatic Play (Drops & Wins-netværket), men Betano har ikke de store Mega Moolah-agtige progressive jackpots, som er kendetegnende for <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>-partnere. Det er en bevidst prioritering – Betano satser på high-RTP spil frem for lottery-style progressives.
           </p>
+          <ReviewScreenshot src={betanoCasinoLobby} alt="Betano casino lobby med eksklusive slots og Peter and Sons-kategorier" caption="Betanos casino-sektion med eksklusive spil, kategorifiltre og Peter & Sons-titler." size="full" />
         </section>
 
         <Separator className="my-10" />
