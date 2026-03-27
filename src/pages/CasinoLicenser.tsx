@@ -332,6 +332,12 @@ const CasinoLicenser = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenLicensliste}
+          alt="Spillemyndighedens officielle licensliste over godkendte onlinekasino-udbydere i Danmark med tilladelsestyper og domæner"
+          caption="Spillemyndighedens licensliste – alle godkendte udbydere med tilladelsestyper og tilknyttede domæner"
+        />
+
         <Separator className="my-10" />
 
         {/* ── Hvad betyder licensen for dig ── */}

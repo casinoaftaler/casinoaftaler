@@ -584,6 +584,12 @@ const FreeSpins = () => {
           </Card>
         </section>
 
+        <ReviewScreenshot
+          src={spillehallenGratisSpins}
+          alt="Spillehallen gratis spins bonuskoder med 75 kr. velkomsttilbud og daglige free spins muligheder"
+          caption="Spillehallen tilbyder bonuskoder til gratis spins – et eksempel på aktive free spins vilkår hos et dansk casino"
+        />
+
         <Separator className="my-10" />
 
         {/* EV-analyse af free spins */}

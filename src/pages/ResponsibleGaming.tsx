@@ -368,7 +368,11 @@ const ResponsibleGaming = () => {
           </p>
         </section>
 
-        
+        <ReviewScreenshot
+          src={danskeSpilSundeSpillevaner}
+          alt="Danske Spil sunde spillevaner sektion med AI-baseret spilscanner, forebyggelse og øget omsorgsindsats"
+          caption="Danske Spil investerer aktivt i sunde spillevaner – et eksempel på hvordan licenserede casinoer håndterer ansvarligt spil"
+        />
 
         <Separator className="my-10" />
 
