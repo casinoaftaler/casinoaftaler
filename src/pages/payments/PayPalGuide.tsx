@@ -128,6 +128,12 @@ const PayPalGuide = () => {
               <p className="text-muted-foreground leading-relaxed">
                 <strong>KYC og verifikation:</strong> PayPal-indbetalinger ændrede ikke KYC-processen hos nogen af casinoerne. Standard MitID-registrering var påkrævet, og ét casino bad om adressebekræftelse inden første udbetaling – identisk med processen for andre betalingsmetoder.
               </p>
+              <ReviewScreenshot
+                src={paypalKasse}
+                alt="Kassesektion på dansk casino med PayPal, Visa, Paysafecard og Trustly som betalingsmetoder – indbetalingsbeløb og kampagnekode synlig"
+                caption="Kassesektion med betalingsmetoder inkl. PayPal – screenshot fra vores test på Bet365.dk"
+                size="compact"
+              />
             </>
           ),
         },
