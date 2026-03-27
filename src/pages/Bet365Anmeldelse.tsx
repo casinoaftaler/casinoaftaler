@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import bet365Sportsbook from "@/assets/screenshots/bet365-sportsbook.png";
+import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.png";
+import bet365LiveCasino from "@/assets/screenshots/bet365-live-casino.png";
+import bet365Spilfilter from "@/assets/screenshots/bet365-spilfilter.png";
+import bet365Saldo from "@/assets/screenshots/bet365-saldo.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
@@ -217,6 +223,7 @@ const Bet365Anmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Hvad der adskiller bet365 fra de fleste danske konkurrenter, er skala. Virksomheden beskæftiger over 5.000 medarbejdere, behandler millioner af daglige transaktioner og har investeret massivt i egen teknologi. De bruger ikke tredjepartsplatforme som mange mindre operatører – alt fra odds-beregning til betalingsinfrastruktur er bygget internt. Det giver en stabilitet og reaktionshastighed, der er sjælden i branchen. Læs mere om vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>.
           </p>
+          <ReviewScreenshot src={bet365Sportsbook} alt="bet365 sportsbook forside med boost væddemål, international fodbold og live odds" caption="bet365s sportsbook med boost-væddemål, dybe markeder og live-odds – platformen er bygget til sportsbetting." eager size="full" />
         </section>
 
           <YoutubeEmbed
@@ -257,9 +264,11 @@ const Bet365Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             bet365 tilbyder cirka 2.500 <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomater</Link> og bordspil. Kataloget dækker alle de store udbydere: <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>, <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link>, <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>, <Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link> og <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link>. Du finder Gates of Olympus, Book of Dead, Sweet Bonanza og andre populære titler. Der er ingen huller i det basale udvalg.
           </p>
+          <ReviewScreenshot src={bet365CasinoLobby} alt="bet365 casino lobby med bonuskøb, månedens spil og nye spiltitler" caption="Casino-lobbyen hos bet365 med kampagner, jackpots og nye spil – overskueligt organiseret i kategorier." size="full" />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Hvor bet365 halter lidt, er på niche-udbydere. Studier som Nolimit City, Hacksaw Gaming og Push Gaming er repræsenteret, men med færre titler end hos eksempelvis <Link to="/casino-anmeldelser/videoslots" className={linkClass}>Videoslots</Link>, der har over 5.000+ spil. For de fleste spillere er forskellen ubetydelig – men entusiaster, der jagter specifikke titler fra mindre studier, vil indimellem opleve at et spil mangler.
           </p>
+          <ReviewScreenshot src={bet365Spilfilter} alt="bet365 spilfilter med udbydere som Playtech, Pragmatic, NetEnt, BTG og Push Gaming" caption="Det avancerede filtreringssystem gør det nemt at finde spil efter udbyder, type, tema og RTP." size="full" />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Nye spilrelease kommer typisk inden for den første uge efter lancering. bet365 er sjældent den allerførste operatør med en ny titel, men forsinkelsen er minimal. Jackpot-sektionen inkluderer progressive puljer fra Pragmatic Play og NetEnt. Gevinster i millionklassen er sjældne men dokumenterede – og bet365 har historik for at udbetale store jackpots uden drama.
           </p>
@@ -279,6 +288,7 @@ const Bet365Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <Link to="/live-casino" className={linkClass}>Live casinoet</Link> er et af de områder, hvor bet365 virkelig retfærdiggør sin størrelse. Med <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> som primær leverandør er der hundredvis af aktive borde på ethvert tidspunkt. Du finder blackjack fra 50 kr. til 500.000 kr. per hånd, roulette i alle varianter og game shows som Lightning Roulette, Crazy Time og Monopoly Live.
           </p>
+          <ReviewScreenshot src={bet365LiveCasino} alt="bet365 live casino med Top 10 mest populære borde, roulette og blackjack varianter" caption="Live casinoet hos bet365 med eksklusive borde, Top 10 ranking og bredt udvalg af roulette og blackjack." size="full" />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             bet365 har eksklusive live-borde med dedikerede dealers og branding – en fordel, der sjældent ses hos mindre operatører. Bordgrænserne er fleksible nok til at rumme både casual spillere og high rollers. Streaming-kvaliteten er stabil med minimal latency, og interfacet er rent og funktionelt. Her er ingen unødvendige animationer eller distraktioner – bare spillet.
           </p>
@@ -371,6 +381,7 @@ const Bet365Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             KYC-verifikation (Know Your Customer) kræves ved den første udbetaling. Du skal indsende billedlegitimation og bevis for bopæl. bet365's verifikationsproces er generelt hurtig – typisk afsluttet inden for 24 timer – men det kan tage op til 72 timer i spidsbelastningsperioder. Når du er verificeret, behandles efterfølgende udbetalinger automatisk.
           </p>
+          <ReviewScreenshot src={bet365Saldo} alt="bet365 bank og saldo-oversigt med ind- og udbetalingsmuligheder og bonusstatus" caption="Saldo-oversigten hos bet365 med separate bonusser for sport og casino samt nemme ind-/udbetalingsknapper." size="full" />
           <p className="text-muted-foreground leading-relaxed">
             Den samlede betalingsoplevelse hos bet365 er gnidningsfri. Ingen overraskelser, ingen skjulte gebyrer, ingen urimelige udbetalingsgrænser. Det er et af de områder, hvor skalaen giver en reel fordel – bet365's betalingsinfrastruktur er bygget til volumen og fungerer derefter.
           </p>
