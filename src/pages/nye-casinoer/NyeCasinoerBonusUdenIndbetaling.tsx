@@ -122,11 +122,6 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
              I denne guide går vi dybere end blot at liste no-deposit bonusser. Vi beregner den reelle forventede værdi (EV) af forskellige bonustyper, giver dig en step-by-step strategi til optimal udnyttelse, og analyserer vilkårene hos de mest generøse nye casinoer. Vi har testet no-deposit tilbud hos 15+ nye danske casinoer med rigtige konti.
            </p>
 
-           <ReviewScreenshot
-             src={betiniaBonussektion}
-             alt="Bonusoversigt hos Betinia med aktive kampagner og velkomstbonus uden indbetaling"
-             caption="Eksempel på bonussektionen hos et nyt casino – her kan du se tilgængelige tilbud inkl. no-deposit bonusser"
-           />
           <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">
               <strong>Se også alle bonusser uden indbetaling</strong> – ikke kun hos nye casinoer. Vores <Link to="/bonus-uden-indbetaling" className={linkClass}>komplette guide til bonus uden indbetaling</Link> dækker no-deposit bonusser hos både nye og etablerede danske casinoer med fokus på konceptet generelt.
@@ -225,6 +220,11 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Her er vores dokumenterede proces til at maksimere værdien af en no-deposit bonus hos nye casinoer. Vi bruger denne metode i vores egne test:
           </p>
+           <ReviewScreenshot
+             src={betiniaBonussektion}
+             alt="Bonusoversigt hos Betinia med aktive kampagner og velkomstbonus uden indbetaling"
+             caption="Eksempel på bonussektionen hos et nyt casino – her kan du se tilgængelige tilbud inkl. no-deposit bonusser"
+           />
           <div className="space-y-3">
             {[
               { step: "Trin 1: Læs vilkårene FØR du opretter konto", desc: "Find bonusvilkårene (typisk under 'Vilkår og betingelser' eller 'Bonusregler'). Noter fire nøgletal: omsætningskrav (Xx), udbetalingsgrænse (kr.), tidsfrist (dage) og eventuelle spilrestriktioner. Beregn den reelle EV med formlen ovenfor, inden du investerer tid i registrering." },

@@ -76,11 +76,6 @@ const LicenseredeCasinoerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">I denne dybdegående guide gennemgår vi alt, du behøver at vide om licenserede casinoer i Danmark: Hvad licensen kræver, hvilken beskyttelse den giver dig, hvordan du verificerer et casinos licens, og hvorfor du altid bør undgå ulicenserede platforme. Vi sammenligner også den danske licens med internationale alternativer og giver dig konkrete værktøjer til at vurdere kvaliteten af licenserede casinoer.</p>
         </section>
 
-        <ReviewScreenshot
-          src={spildanskForside}
-          alt="Danske Spil forside som eksempel på et licenseret dansk online casino med Spillemyndigheden-godkendelse"
-          caption="Danske Spil er et eksempel på et fuldt licenseret casino reguleret af Spillemyndigheden"
-        />
 
         <InlineCasinoCards title="Anbefalede licenserede casinoer i Danmark" />
 
@@ -123,6 +118,11 @@ const LicenseredeCasinoerGuide = () => {
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Shield className="h-7 w-7 text-primary" /> Licensprocessen: Fra ansøgning til godkendelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">At opnå en dansk casino-licens er en krævende proces, der afspejler den høje standard, Spillemyndigheden opretholder. Processen involverer flere faser, og mange ansøgere oplever, at de skal supplere med yderligere dokumentation undervejs. Her gennemgår vi de vigtigste trin i licensprocessen, så du kan forstå, hvad der ligger bag det licensmærke, du ser på et dansk casino.</p>
+        <ReviewScreenshot
+          src={spildanskForside}
+          alt="Danske Spil forside som eksempel på et licenseret dansk online casino med Spillemyndigheden-godkendelse"
+          caption="Danske Spil er et eksempel på et fuldt licenseret casino reguleret af Spillemyndigheden"
+        />
           <div className="space-y-4 mb-6">
             {[
               { step: "1", title: "Indledende ansøgning og dokumentation", desc: "Operatøren indsender en detaljeret ansøgning med selskabsdokumentation, ejerskabsstruktur, finansielle rapporter, forretningsplan og beskrivelse af den planlagte spilleplatform. Alle reelle ejere med mere end 5 % ejerandel skal identificeres og godkendes." },

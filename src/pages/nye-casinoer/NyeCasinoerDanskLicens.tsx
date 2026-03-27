@@ -119,11 +119,6 @@ const NyeCasinoerDanskLicens = () => {
              I 2026 er adgangskravene til det danske marked blevet skærpet yderligere, hvilket betyder, at nye casinoer med dansk licens gennemgår en endnu mere grundig screening end tidligere. Det er en fordel for dig som spiller – kun de mest seriøse og kapitalstærke operatører slipper igennem nåleøjet.
            </p>
 
-           <ReviewScreenshot
-             src={spildansknuLobby}
-             alt="SpilDanskNu forside som eksempel på et nyt dansk licenseret casino med Spillemyndighedens godkendelse"
-             caption="SpilDanskNu – et nyt casino med dansk licens, ROFUS-tilslutning og fuld spillerbeskyttelse"
-           />
         </section>
 
         <InlineCasinoCards title="Nye Licenserede Casinoer i Danmark" />
@@ -233,6 +228,11 @@ const NyeCasinoerDanskLicens = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Forskellen mellem en dansk licens og en udenlandsk licens er afgørende for din oplevelse og sikkerhed som dansk spiller. Her er en direkte, punkt-for-punkt sammenligning med de tre mest almindelige udenlandske licenstyper:
           </p>
+           <ReviewScreenshot
+             src={spildansknuLobby}
+             alt="SpilDanskNu forside som eksempel på et nyt dansk licenseret casino med Spillemyndighedens godkendelse"
+             caption="SpilDanskNu – et nyt casino med dansk licens, ROFUS-tilslutning og fuld spillerbeskyttelse"
+           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <Card className="border-border bg-card border-l-4 border-l-primary">
               <CardHeader className="pb-2">

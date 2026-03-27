@@ -110,11 +110,6 @@ const NyeCasinoerTrustly = () => {
              Vi har testet Trustly-oplevelsen hos 15+ nye danske casinoer med reelle ind- og udbetalinger via flere danske banker. Resultatet er en praktisk guide, der hjælper dig med at vælge det nye casino, der giver den bedste Trustly-oplevelse specifikt til dine behov.
            </p>
 
-           <ReviewScreenshot
-             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-trustly-bankvalg.webp"
-             alt="Trustly bankvalg hos nyt dansk casino med oversigt over alle understøttede danske banker"
-             caption="Trustlys bankvalg-flow hos et nyt casino – alle større danske banker understøttes"
-           />
         </section>
 
         <Separator className="my-10" />
@@ -250,6 +245,11 @@ const NyeCasinoerTrustly = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Når du vælger et nyt casino med Trustly-integration, får du mere end bare en betalingsmetode. Trustly-casinoer har typisk en mere moderne infrastruktur generelt, fordi Trustly-integrationen kræver investeringer, som kun seriøse operatører foretager:
           </p>
+           <ReviewScreenshot
+             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-trustly-bankvalg.webp"
+             alt="Trustly bankvalg hos nyt dansk casino med oversigt over alle understøttede danske banker"
+             caption="Trustlys bankvalg-flow hos et nyt casino – alle større danske banker understøttes"
+           />
           <div className="space-y-3">
             {[
               { title: "Instant-indbetalinger direkte fra din bank", desc: "Pengene er tilgængelige på din casinokonto inden for 2-5 sekunder. Ingen mellemkonto, ingen e-wallet-saldo at administrere. Pengene overføres direkte fra din bankkonto til casinoet via Trustlys sikre infrastruktur." },

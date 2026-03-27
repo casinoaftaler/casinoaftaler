@@ -87,11 +87,6 @@ const NyeVsEtablerede = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={mrvegas}
-          alt="Mr Vegas casino forside som eksempel på et nyere dansk online casino med moderne design og spiludvalg"
-          caption="Mr Vegas repræsenterer den nyere generation af danske casinoer med frisk design"
-        />
 
         <Separator className="my-10" />
 
@@ -341,6 +336,11 @@ const NyeVsEtablerede = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores anbefaling til de fleste danske spillere er en strategisk kombination af nye og etablerede casinoer. Her er den optimale tilgang i tre trin:
           </p>
+        <ReviewScreenshot
+          src={mrvegas}
+          alt="Mr Vegas casino forside som eksempel på et nyere dansk online casino med moderne design og spiludvalg"
+          caption="Mr Vegas repræsenterer den nyere generation af danske casinoer med frisk design"
+        />
           <div className="space-y-3">
             {[
               { step: "Trin 1: Start med nye casinoers velkomstbonusser", desc: "Opret konti hos 2–3 af de bedste nye casinoer og udnyt deres velkomstbonusser. Med 5–10x omsætningskrav er disse bonusser markant mere værdifulde end etablerede casinoers. Samlet EV fra 3 nye casinoers bonusser: typisk 1.500–3.000 kr." },

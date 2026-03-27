@@ -142,11 +142,6 @@ const NyeCasinoer2026 = () => {
           </div>
         </section>
 
-        <ReviewScreenshot
-          src={getluckyForside}
-          alt="GetLucky casino forside lanceret i Danmark med velkomstbonus og populære spilleautomater"
-          caption="GetLucky er blandt de nyeste casinoer lanceret i Danmark med dansk licens"
-        />
 
         <Separator className="my-10" />
 
@@ -185,6 +180,11 @@ const NyeCasinoer2026 = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Det danske online casinomarked omsatte for over 4,5 mia. kr. i bruttospilindtægt (BSI) i 2025, og prognosen for 2026 peger på fortsat moderat vækst på 5–8%. Spillemyndigheden udstedte 4 nye casinolicenser i 2025, og i Q1 2026 har yderligere 3 operatører modtaget foreløbig godkendelse. Det signalerer et marked med plads til nye aktører.
           </p>
+        <ReviewScreenshot
+          src={getluckyForside}
+          alt="GetLucky casino forside lanceret i Danmark med velkomstbonus og populære spilleautomater"
+          caption="GetLucky er blandt de nyeste casinoer lanceret i Danmark med dansk licens"
+        />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             En afgørende faktor i 2026 er den regulatoriske stramning. Spillemyndigheden har implementeret nye retningslinjer for markedsføring af bonusser, skærpet krav til ansvarligt spil-værktøjer og øget tilsynsfrekvensen. For spillere betyder det øget sikkerhed; for operatører betyder det højere adgangsbarrierer.
           </p>

@@ -149,12 +149,6 @@ export default function DalembertRouletteGuide() {
           </Card>
         </section>
 
-        <ReviewScreenshot
-          src={mrgreenLiveRoulette}
-          alt="Live roulette-bord med chips – D'Alembert-systemets lineære progression passer godt til even-money bets"
-          caption="D'Alembert bruges primært på even-money bets (rød/sort, lige/ulige) – her vist på et live roulette-bord."
-          size="full"
-        />
 
         <InlineCasinoCards title="Casinoer med Live Roulette til Strategi-Test" count={3} />
 
@@ -167,6 +161,12 @@ export default function DalembertRouletteGuide() {
           <p className="text-muted-foreground mb-4 leading-relaxed">
             D'Alembert har en fascinerende matematisk egenskab: i et perfekt fair spil (50/50 sandsynlighed) producerer det positiv forventet værdi. Beviset er elegant: hvis du spiller en session med præcis N gevinster og N tab (2N hænder), vil dine gevinst-hænder altid have en samlet indsats der er N × basisenheden højere end dine tab-hænder.
           </p>
+        <ReviewScreenshot
+          src={mrgreenLiveRoulette}
+          alt="Live roulette-bord med chips – D'Alembert-systemets lineære progression passer godt til even-money bets"
+          caption="D'Alembert bruges primært på even-money bets (rød/sort, lige/ulige) – her vist på et live roulette-bord."
+          size="full"
+        />
 
           <Card className="mb-6 bg-muted/30">
             <CardContent className="pt-6">

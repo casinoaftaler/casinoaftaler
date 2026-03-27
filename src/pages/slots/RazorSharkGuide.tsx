@@ -127,12 +127,6 @@ const RazorSharkGuide = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={stakeForside}
-          alt="Casino-forside med Push Gaming-slots – Razor Shark er en af udbyderens mest kendte titler"
-          caption="Razor Shark fra Push Gaming er en populær high volatility slot tilgængelig hos mange danske casinoer."
-          size="full"
-        />
 
         <Separator className="my-10" />
 
@@ -205,6 +199,12 @@ const RazorSharkGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Razor Sharks RTP på 96,70 % placerer den komfortabelt over branchens gennemsnit på ca. 96,20 %. House edge er 3,30 %, hvilket er lavere end de fleste konkurrerende høj-volatilitets slots. Over 1.000 spins á 10 kr. er dit forventede tab 330 kr. – ca. 60 kr. mindre end på en typisk 96,10 %-slot.
           </p>
+        <ReviewScreenshot
+          src={stakeForside}
+          alt="Casino-forside med Push Gaming-slots – Razor Shark er en af udbyderens mest kendte titler"
+          caption="Razor Shark fra Push Gaming er en populær high volatility slot tilgængelig hos mange danske casinoer."
+          size="full"
+        />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Men RTP'en fortæller ikke hele historien. På grund af Razor Sharks ekstreme volatilitet er den faktiske oplevede RTP for korte sessioner ekstremt variabel. Over 200 spins kan din oplevede RTP variere fra 20 % (næsten alt tabt) til 400 %+ (stor bonusgevinst). Det er først over 10.000+ spins, at den teoretiske RTP begynder at materialisere sig konsistent.
           </p>

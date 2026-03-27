@@ -137,11 +137,6 @@ const JamminJarsGuide = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={playkasinoSpillemaskiner}
-          alt="PlayKasino spillemaskin-lobby med Push Gaming-slots – Jammin' Jars er en af de mest populære cluster pays-slots på markedet"
-          caption="PlayKasinos lobby med adgang til Push Gaming-titler som Jammin' Jars"
-        />
 
         <InlineCasinoCards />
 
@@ -154,6 +149,11 @@ const JamminJarsGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-4">
             Jammin' Jars' RTP på 96,83 % placerer den i den absolutte elite blandt populære online slots. House edge er kun 3,17 % – til sammenligning tager et gennemsnitligt europæisk roulette-bord 2,70 %. Push Gaming tilbyder ikke variable RTP-konfigurationer, så denne værdi er garanteret på alle casinoer.
           </p>
+        <ReviewScreenshot
+          src={playkasinoSpillemaskiner}
+          alt="PlayKasino spillemaskin-lobby med Push Gaming-slots – Jammin' Jars er en af de mest populære cluster pays-slots på markedet"
+          caption="PlayKasinos lobby med adgang til Push Gaming-titler som Jammin' Jars"
+        />
           <Card className="border-border/50 bg-card/50 mb-4">
             <CardContent className="pt-6">
               <h3 className="font-semibold mb-3">RTP-sammenligning: top cluster-slots</h3>

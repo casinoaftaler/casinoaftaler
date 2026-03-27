@@ -107,11 +107,6 @@ const NyeCasinoerLavWagering = () => {
              Denne guide fokuserer på praktisk casino-valg baseret på wagering. Vi sammenligner konkrete nye casinoer, beregner reelle bonusværdier og giver dig strategier til at maksimere din udnyttelse af bonussen. For den teoretiske forklaring af omsætningskrav, se vores <Link to="/omsaetningskrav" className={linkClass}>dedikerede guide til omsætningskrav</Link>.
            </p>
 
-           <ReviewScreenshot
-             src={spildansknuBonus}
-             alt="Bonusvilkår og omsætningskrav hos SpilDanskNu med lav wagering på velkomstbonus"
-             caption="Bonussiden hos et nyt dansk casino – tjek altid omsætningskrav inden du aktiverer"
-           />
         </section>
 
         <InlineCasinoCards title="Nye Casinoer med Lavest Wagering" />
@@ -172,6 +167,11 @@ const NyeCasinoerLavWagering = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Ikke alle spil bidrager lige meget til omsætningskravet. De fleste nye casinoer anvender følgende standard, men der er vigtige afvigelser, du skal kende. Vi har gennemgået bonusvilkårene hos 15+ nye danske casinoer og fundet disse mønstre:
           </p>
+           <ReviewScreenshot
+             src={spildansknuBonus}
+             alt="Bonusvilkår og omsætningskrav hos SpilDanskNu med lav wagering på velkomstbonus"
+             caption="Bonussiden hos et nyt dansk casino – tjek altid omsætningskrav inden du aktiverer"
+           />
           <div className="overflow-x-auto rounded-lg border border-border mb-4">
             <table className="w-full text-sm">
               <thead>

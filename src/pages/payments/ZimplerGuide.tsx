@@ -98,7 +98,7 @@ const ZimplerGuide = () => {
       }
       additionalSections={[
         {
-          position: "after-intro",
+          position: "after-howto",
           title: "Vores Praktiske Test – Zimpler på Tre Danske Casinoer",
           content: (
              <>

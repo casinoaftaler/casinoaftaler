@@ -86,11 +86,6 @@ const BedsteNyeCasinoer = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={kapowForside}
-          alt="Kapow casino forside med populære spil og moderne design som eksempel på et nyt dansk casino"
-          caption="Kapow er et eksempel på et nyt dansk licenseret casino med moderne brugerflade og kureret spiludvalg"
-        />
 
         <InlineCasinoCards title="Bedste Nye Casinoer" />
 
@@ -101,6 +96,11 @@ const BedsteNyeCasinoer = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Vores scoringsmodel er designet til at fjerne subjektivitet og sikre konsistent kvalitetsvurdering. Hver parameter har specifikke målbare kriterier, der tilsammen giver en objektiv og reproducerbar score. Her er en detaljeret gennemgang:
           </p>
+        <ReviewScreenshot
+          src={kapowForside}
+          alt="Kapow casino forside med populære spil og moderne design som eksempel på et nyt dansk casino"
+          caption="Kapow er et eksempel på et nyt dansk licenseret casino med moderne brugerflade og kureret spiludvalg"
+        />
           <div className="space-y-3">
             {[
               { title: "1. Sikkerhed og licens – 30% (max 30 point)", desc: "Vi verificerer dansk licens direkte hos Spillemyndigheden (5p), tester SSL-implementering og krypteringsstyrke (5p), bekræfter ROFUS-tilslutning med testudelukkelse (5p), gennemgår privatlivspolitik og GDPR-compliance (5p), evaluerer AML/KYC-procedurernes effektivitet (5p) og kontrollerer bankgarantiens gyldighed (5p). Minimum 24/30 for toplisten." },

@@ -105,7 +105,7 @@ const ApplePayGuide = () => {
       }
       additionalSections={[
         {
-          position: "after-intro",
+          position: "after-security",
           title: "Vores Test af Apple Pay på Fire Danske Casinoer",
           content: (
              <>
