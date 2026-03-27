@@ -196,9 +196,6 @@ const FreeSpins = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="niklas" readTime="22 Min." />
-        <div className="my-4">
-          <GPWASealBadge variant="inline" showTrustLink />
-        </div>
 
         <SnippetAnswer answer="De bedste free spins i 2026 har høj spinværdi (min. 1 kr.), lave eller ingen omsætningskrav og er knyttet til spil med høj RTP. Omsætningsfrie spins giver mest reel værdi – men tjek altid gevinstloftet." />
 
