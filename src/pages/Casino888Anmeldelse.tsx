@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import casino888Forside from "@/assets/screenshots/888-forside.png";
+import casino888Eksklusive from "@/assets/screenshots/888-eksklusive.png";
+import casino888Kampagner from "@/assets/screenshots/888-kampagner.png";
+import casino888LiveCasino from "@/assets/screenshots/888-live-casino.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
@@ -93,6 +98,7 @@ const Casino888Anmeldelse = () => {
             <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan 888 Casino ser ud indefra</h3>
             <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig 888 Casinos hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
           </div>
+          <ReviewScreenshot src={casino888Forside} alt="888 Casino forside med velkomsttilbud og populære spilleautomater som Book of Dead og Sweet Bonanza" caption="888 Casinos forside med velkomstbanner, favoritter og personlige anbefalinger." eager size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -115,6 +121,7 @@ const Casino888Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Tidsbegrænsning:</strong> 30 dage for matchbonus, 14 dage for free spins-gevinster. <strong>Maksimal bonusgevinst:</strong> Ingen eksplicit grænse på matchbonus, men free spins-gevinster er typisk begrænset til 500 kr. <strong>Spilrestriktioner:</strong> Slots bidrager 100%, bordspil 10-20%, <Link to="/live-casino" className={linkClass}>live casino</Link> 0%. 888-eksklusive spil bidrager 100%.</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Sammenligning:</strong> <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> tilbyder op til 1.000 kr. i velkomstbonus med samme 10x-krav, men uden bonus uden indbetaling. <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> har 5x omsætning – det laveste på det danske marked. 888 Casinos unikke no-deposit tilbud er altså en reel differentiator – om end værdien er beskeden.</p>
         </section>
+          <ReviewScreenshot src={casino888Kampagner} alt="888 Casino kampagneside med velkomsttilbud og aktuelle kampagner som Gold Trio og jackpotspil" caption="888 Casinos kampagneoversigt med velkomsttilbud, spotlight-spil og jackpot-sektionen." size="full" />
 
         <Separator className="my-10" />
 
@@ -124,6 +131,7 @@ const Casino888Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi testede flere eksklusive titler: <strong>Millionaire Genie</strong> (progressiv jackpot, RTP 95,4%), <strong>Treasure Fair</strong> (klasssisk slot, RTP 96,2%) og <strong>Pirate Plunder</strong> (eventyrslot, RTP 94,8%). Grafisk er de acceptable men ikke i samme liga som AAA-titler fra <Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link> eller <Link to="/spiludviklere/pragmatic-play" className={linkClass}>Pragmatic Play</Link>. Gameplay-mekanikkerne er relativt simple – ingen Megaways-motorer, bonus buy-funktioner eller avancerede cascading wins. Det føles som spil fra en tidligere generation af online gambling.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Den progressive jackpot-funktion er dog en reel attraktion. Millionaire Genie har historisk udbetalt jackpots i millionklassen, og puljen er eksklusiv for 888-spillere, hvilket statistisk set giver bedre odds end Mega Moolah-typen, der deles på tværs af hundredvis af casinoer. For jackpot-jægere er det et legitimt argument for 888 Casino.</p>
           <p className="text-muted-foreground leading-relaxed">Udover de eksklusive titler tilbyder 888 Casino et standardkatalog på ca. 1.500 spil fra eksterne udbydere inkl. <Link to="/spiludviklere/play-n-go" className={linkClass}>Play'n GO</Link>, <Link to="/spiludviklere/red-tiger" className={linkClass}>Red Tiger</Link> og <Link to="/spiludviklere/big-time-gaming" className={linkClass}>Big Time Gaming</Link>. Udvalget er bredt nok til de fleste spillere, men numerisk mindre end <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link>'s 1.500+ eller <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>' 2.000+. Fraværende udbydere inkluderer <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link> og <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link>.</p>
+          <ReviewScreenshot src={casino888Eksklusive} alt="888 Casino eksklusive spil med Captain 8-serien og nyeste spilleautomater med jackpotbeløb" caption="888 Casinos eksklusive spilsektion med Captain 8-serien og de nyeste titler med progressive jackpots." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -193,6 +201,7 @@ const Casino888Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">888 Casinos live casino-sektion er drevet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> og inkluderer over 100 borde med roulette, blackjack, baccarat, poker og game shows. Platformen har desuden eksklusive 888-brandede borde med dedikerede dealers, der udelukkende betjener 888-spillere. Det reducerer ventetider og giver en mere intim oplevelse.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Vi spillede Lightning Roulette og Crazy Time under vores test. Streamingkvaliteten var HD med minimal forsinkelse (ca. 1 sekund). Dealerne var professionelle og engagerede. Minimumsindsat på standard roulette-borde var 10 kr. – tilgængeligt for de fleste budgetter. VIP-borde med højere grænser (op til 100.000 kr. pr. runde) er tilgængelige for high rollers, særligt for spillere på Prestige-niveau i 888 Club.</p>
           <p className="text-muted-foreground leading-relaxed">En bemærkelsesværdig detalje: 888 Casino har integreret sit loyalitetsprogram med live casinoet, så du optjener 888 Club-point for hver indsats på live borde. Satsen er 1 point pr. 30 kr. indsat – lavere end for slots, men det akkumulerer stadig over tid. For spillere, der primært nyder live casino, er det en bonus, som mange konkurrenter ikke tilbyder.</p>
+          <ReviewScreenshot src={casino888LiveCasino} alt="888 Casino live casino med Quickseat Blackjack, Dansk Roulette og eksklusive borde fra Evolution Gaming" caption="888 Casinos live casino-lobby med eksklusive borde, roulette-varianter og blackjack fra Evolution Gaming." size="full" />
         </section>
 
         <Separator className="my-10" />
