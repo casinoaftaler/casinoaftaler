@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import comeonForside from "@/assets/screenshots/comeon-forside.png";
+import comeonLiveCasino from "@/assets/screenshots/comeon-live-casino.png";
+import comeonSportsbook from "@/assets/screenshots/comeon-sportsbook.png";
+import comeonKampagner from "@/assets/screenshots/comeon-kampagner.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
