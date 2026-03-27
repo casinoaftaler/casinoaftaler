@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import heroImage from "@/assets/comparison-hero-danskespil-spilnu.jpg";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -190,6 +191,14 @@ export default function SpilleautomatenVsSpilDanskNu() {
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Spilleautomaten har en tydelig produktfortælling: hurtig adgang, tydelige slots-prioriteter og en loyalitetsmekanik, der føles tæt på den daglige adfærd. Det giver høj beslutningshastighed for spillere, der ikke ønsker at bruge tid på unødige menuer. Denne type fokus reducerer mental støj, især for brugere der spiller ofte, kort og målrettet.
         </p>
+
+        <ReviewScreenshot
+          src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-lobby.webp"
+          alt="Spilleautomaten forside med slots-fokuseret navigation, bonusbanner og live gevinstfeed"
+          caption="Spilleautomatens forside – rendyrket slots-fokus med hurtig adgang til populære spil"
+          eager
+        />
+
         <p className="mb-4 text-muted-foreground leading-relaxed">
           SpilDanskNu er stærkere på katalogvariation og allround-præsentation. Et bredere spiludvalg og et mere synligt <Link to="/live-casino" className={linkClass}>live casino</Link>-lag gør siden relevant for spilleren, der ikke kun vil have slots i hver session. Det kan dog også øge kompleksiteten i navigationen, fordi platformen bevidst favner flere typer intentioner i samme interface.
         </p>
@@ -200,15 +209,22 @@ export default function SpilleautomatenVsSpilDanskNu() {
 
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Slots-katalog, kuratering og sessionskvalitet</h2>
-        <p className="mb-4 text-muted-foreground leading-relaxed">
-          En af de mest undervurderede forskelle mellem søstersider som disse er ikke antallet af spil i sig selv, men kvaliteten af kuratering i førstegangsoplevelsen. Hvis brugeren hurtigt kan finde de rette titler, opleves et mindre katalog ofte stærkere end et større katalog med svag prioritering. Spilleautomaten har generelt fordel i netop denne type fokuseret kuratering, hvor slots-intentionen er synlig fra første klik.
-        </p>
-        <p className="mb-4 text-muted-foreground leading-relaxed">
-          SpilDanskNu svarer igen med en bredere totalpakke, hvor spilleren kan skifte retning i samme session. For brugere der veksler mellem klassiske slots, nyere releases og liveformater, er den ekstra bredde værdifuld. Den stærkeste brugeroplevelse opstår her, når spilleren faktisk bruger variationen aktivt – ikke hvis brugeren alligevel ender i de samme få spil hver gang.
-        </p>
-        <p className="text-muted-foreground leading-relaxed">
-          Derfor anbefaler vi at vurdere på sessionstype: Hvis du oftest går ind for at spille "det samme plus lidt", vinder Spilleautomaten. Hvis du ofte går ind uden at vide præcist hvad du vil spille, og sætter pris på at browse, vinder SpilDanskNu.
-        </p>
+         <p className="mb-4 text-muted-foreground leading-relaxed">
+           En af de mest undervurderede forskelle mellem søstersider som disse er ikke antallet af spil i sig selv, men kvaliteten af kuratering i førstegangsoplevelsen. Hvis brugeren hurtigt kan finde de rette titler, opleves et mindre katalog ofte stærkere end et større katalog med svag prioritering. Spilleautomaten har generelt fordel i netop denne type fokuseret kuratering, hvor slots-intentionen er synlig fra første klik.
+         </p>
+
+         <ReviewScreenshot
+           src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-slots-katalog.webp"
+           alt="Spilleautomaten slots-katalog med filtrering efter popularitet, kategorier og spiludbydere"
+           caption="Spilleautomatens slots-katalog – fokuseret kuratering med kategori- og udbyderfiltre"
+         />
+
+         <p className="mb-4 text-muted-foreground leading-relaxed">
+           SpilDanskNu svarer igen med en bredere totalpakke, hvor spilleren kan skifte retning i samme session. For brugere der veksler mellem klassiske slots, nyere releases og liveformater, er den ekstra bredde værdifuld. Den stærkeste brugeroplevelse opstår her, når spilleren faktisk bruger variationen aktivt – ikke hvis brugeren alligevel ender i de samme få spil hver gang.
+         </p>
+         <p className="text-muted-foreground leading-relaxed">
+           Derfor anbefaler vi at vurdere på sessionstype: Hvis du oftest går ind for at spille "det samme plus lidt", vinder Spilleautomaten. Hvis du ofte går ind uden at vide præcist hvad du vil spille, og sætter pris på at browse, vinder SpilDanskNu.
+         </p>
       </section>
 
       <section className="mb-12">
@@ -226,15 +242,22 @@ export default function SpilleautomatenVsSpilDanskNu() {
 
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Loyalitet, belønninger og værdi efter velkomstperioden</h2>
-        <p className="mb-4 text-muted-foreground leading-relaxed">
-          Mange sammenligninger stopper ved velkomstbonussen. Det er en fejl for spillere, der planlægger at bruge samme casino over måneder. Den reelle økonomi ligger i retention-fasen: loyalitetsmekanikker, reload-kampagner, pointsystemer og hvor tydeligt belønningerne føles i daglig brug. Spilleautomaten har en stærk identitet omkring Præmieshop-værdien, hvilket typisk opleves som en direkte forlængelse af slots-adfærden.
-        </p>
-        <p className="mb-4 text-muted-foreground leading-relaxed">
-          SpilDanskNu er mere klassisk i sin brede kampagneprofil og kan være stærkere for spillere, der ønsker variation i kampagner på tværs af kategorier. Her bliver værdien mere fordelt ud i en større produktramme. For nogle spillere er det en fordel, for andre bliver det mere diffus værdi sammenlignet med en skarpere loyalitetskerne.
-        </p>
-        <p className="text-muted-foreground leading-relaxed">
-          Valget bør derfor ikke kun baseres på "hvor meget" du får, men "hvordan" du får det. Hvis du vil have et tydeligt points-til-værdi-flow, peger pilen mod Spilleautomaten. Hvis du vil have mere kampagnebredde i et allround-univers, peger pilen mod SpilDanskNu.
-        </p>
+         <p className="mb-4 text-muted-foreground leading-relaxed">
+           Mange sammenligninger stopper ved velkomstbonussen. Det er en fejl for spillere, der planlægger at bruge samme casino over måneder. Den reelle økonomi ligger i retention-fasen: loyalitetsmekanikker, reload-kampagner, pointsystemer og hvor tydeligt belønningerne føles i daglig brug. Spilleautomaten har en stærk identitet omkring Præmieshop-værdien, hvilket typisk opleves som en direkte forlængelse af slots-adfærden.
+         </p>
+
+         <ReviewScreenshot
+           src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-praemieshop.webp"
+           alt="Spilleautomaten Præmieshop med kontante præmier fra 50 til 1.000 DKK og pointbaseret indløsning"
+           caption="Præmieshoppen hos Spilleautomaten – indløs loyalitetspoints til kontante præmier"
+         />
+
+         <p className="mb-4 text-muted-foreground leading-relaxed">
+           SpilDanskNu er mere klassisk i sin brede kampagneprofil og kan være stærkere for spillere, der ønsker variation i kampagner på tværs af kategorier. Her bliver værdien mere fordelt ud i en større produktramme. For nogle spillere er det en fordel, for andre bliver det mere diffus værdi sammenlignet med en skarpere loyalitetskerne.
+         </p>
+         <p className="text-muted-foreground leading-relaxed">
+           Valget bør derfor ikke kun baseres på "hvor meget" du får, men "hvordan" du får det. Hvis du vil have et tydeligt points-til-værdi-flow, peger pilen mod Spilleautomaten. Hvis du vil have mere kampagnebredde i et allround-univers, peger pilen mod SpilDanskNu.
+         </p>
       </section>
 
       <section className="mb-12">
