@@ -87,6 +87,7 @@ function parseHuntResponse(raw: any): BonusHuntData {
       startBalance,
       endBalance: endVal,
       totalWinnings,
+      targetBalance: huntData.targetBalance || 0,
       averageBet: Math.round(avgBet * 100) / 100,
       averageX: avgX ? Math.round(avgX * 100) / 100 : null,
       breakEvenX: Math.round(breakEvenX * 100) / 100,
