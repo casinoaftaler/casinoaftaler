@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import comeonSportsbook from "@/assets/screenshots/comeon-sportsbook.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -184,12 +182,6 @@ const HurtigRegistreringGuide = () => {
               ))}
             </div>
           </div>
-          <ReviewScreenshot
-            src={comeonSportsbook}
-            alt="ComeOn registreringsproces med hurtig kontooprettelse og MitID-integration"
-            caption="ComeOns platform – registreringsprocessen er designet til hurtig oprettelse via MitID"
-            size="full"
-          />
         </section>
 
         <Separator className="my-10" />

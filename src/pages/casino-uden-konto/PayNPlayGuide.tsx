@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import bet365Sportsbook from "@/assets/screenshots/bet365-sportsbook.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -177,12 +175,6 @@ const PayNPlayGuide = () => {
               ))}
             </div>
           </div>
-          <ReviewScreenshot
-            src={bet365Sportsbook}
-            alt="Bet365 hurtig adgang med sportsbook og casino-integration uden separat kontooprettelse"
-            caption="Bet365 – eksempel på en platform med hurtig adgang og minimal registreringsproces"
-            size="full"
-          />
         </section>
 
         <Separator className="my-10" />
