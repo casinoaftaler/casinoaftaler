@@ -3,6 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonusClose from "@/assets/screenshots/betinia-velkomstbonus-close.webp";
+import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.png";
 
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
