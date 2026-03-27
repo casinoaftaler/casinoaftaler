@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.png";
+import xxxtremeLightning from "@/assets/screenshots/xxxtreme-lightning-roulette-multipliers.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -275,6 +276,13 @@ export default function DalembertRouletteGuide() {
             D'Alembert placerer sig som den "midterste" progressionsstrategi: mere profit-sessions end flat betting (38 % vs. 31 %), lavere ruin-risiko end Fibonacci og Martingale, og mere kontrollerede drawdowns. Det er det "mindst dårlige" progressionssystem – men flat betting forbliver den sikreste tilgang med kun 6 % ruin-risiko.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={xxxtremeLightning}
+          alt="XXXtreme Lightning Roulette med multiplikator-overlay – eksempel på avanceret roulette-variant hvor D'Alembert kan testes"
+          caption="Lightning Roulette – en populær live roulette-variant med tilfældige multiplikatorer op til 2.000x"
+          size="full"
+        />
 
         {/* SECTION 4 – Praktisk Session-Protokol */}
         <section className="mb-12">

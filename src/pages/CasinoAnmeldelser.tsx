@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
+import leovegasLobby from "@/assets/screenshots/leovegas-lobby.png";
+import mrgreenLobby from "@/assets/screenshots/mrgreen-lobby.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -262,6 +266,14 @@ const CasinoAnmeldelser = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia casino lobby med populære spillemaskiner, kategorier og søgefunktion – et typisk dansk online casino interface"
+          caption="Betinia – et af de mest populære danske casinoer med et overskueligt lobby-design og bredt spiludvalg"
+          size="full"
+          eager
+        />
+
         {/* ===== SEKTION 2: Sådan tester vi – den fulde metodik ===== */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">
@@ -379,6 +391,13 @@ const CasinoAnmeldelser = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={leovegasLobby}
+          alt="LeoVegas casino forside med populære slots, live casino og hurtig navigation – dansk licenseret online casino"
+          caption="LeoVegas – kendt for sit mobilvenlige design og et af de største spiludvalg blandt danske casinoer"
+          size="full"
+        />
 
         <Separator className="my-10" />
 
@@ -542,6 +561,13 @@ const CasinoAnmeldelser = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={mrgreenLobby}
+          alt="Mr Green casino forside med featured spil, jackpots og kampagner – dansk licenseret casino med rent interface"
+          caption="Mr Green – premium casinodesign med kurateret spiludvalg og intuitiv navigation"
+          size="full"
+        />
 
         <Separator className="my-10" />
 

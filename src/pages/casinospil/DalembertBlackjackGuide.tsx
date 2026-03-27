@@ -13,6 +13,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.png";
+import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.png";
 import { Badge } from "@/components/ui/badge";
 import {
   Target,
@@ -354,6 +355,13 @@ const DalembertBlackjackGuide = () => {
             For spillere, der værdsætter forudsigelighed over spænding, er D'Alembert objektivt set det bedste progressionssystem. Det giver dig lidt mere varians end flat betting (og dermed lidt mere "action"), uden den emotionelle rutsjebane som Martingale eller Fibonacci skaber. Det er som at køre 90 km/t på motorvejen i stedet for 80 – lidt mere spænding, men stadig inden for den sikre zone.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={liveBlackjackClassic}
+          alt="Live Blackjack Classic med dealer og indsatsmuligheder – ideelt til D'Alembert-systemets gradvise indsatsjusteringer"
+          caption="Live Blackjack Classic – et bord med moderate indsatsgrænser, der passer perfekt til D'Alemberts konservative progressioner"
+          size="full"
+        />
 
         <InlineCasinoCards title="Prøv D'Alembert på Disse Live Blackjack-Borde" />
 

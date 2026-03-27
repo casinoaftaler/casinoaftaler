@@ -13,6 +13,7 @@ import { type ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.png";
+import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.png";
 import {
   AlertTriangle,
   BarChart3,
@@ -241,6 +242,13 @@ const MartingaleBlackjackGuide = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={liveBlackjackClassic}
+          alt="Live Blackjack Classic bord med dealer, Super Stake-multiplikatorer og flere spillere – eksempel på et bordspil hvor Martingale typisk testes"
+          caption="Live Blackjack Classic – et populært bord med indsatsgrænser fra 50 til 25.000 kr., der illustrerer bordmaksimumets begrænsning af Martingale"
+          size="full"
+        />
 
         <Separator className="mb-12" />
 

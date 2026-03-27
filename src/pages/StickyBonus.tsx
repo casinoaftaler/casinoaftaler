@@ -2,6 +2,7 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import comeonKampagner from "@/assets/screenshots/comeon-kampagner.png";
+import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -292,6 +293,13 @@ const StickyBonus = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaBonusvilkaar}
+          alt="Betinia bonusvilkår med omsætningskrav, gyldighed og sticky bonus-regler tydeligt beskrevet i casinoets vilkårssektion"
+          caption="Betinia – eksempel på sticky bonus-vilkår med detaljeret beskrivelse af omsætningskrav og restriktioner"
+          size="full"
+        />
 
         
 

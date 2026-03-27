@@ -13,6 +13,7 @@ import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { type ReactNode } from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.png";
+import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.png";
 import { Badge } from "@/components/ui/badge";
 import {
   Target,
@@ -339,6 +340,13 @@ const FibonacciBlackjackGuide = () => {
             <strong>Sammenlignet med min Martingale-simulering:</strong> Fibonacci tabte 2.450 kr. over 5.000 hænder (justeret for halvt antal hænder: ca. -4.900 kr. over 10.000). Martingale tabte 8.200 kr. over 10.000 hænder. Fibonacci var altså ca. 40 % "billigere" – primært fordi max-tab pr. ruinsekvens var 4.400 kr. vs. Martingales 6.350 kr.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilLiveBlackjack}
+          alt="Danske Spil live blackjack-bord med kort og indsatsområder – velegnet til at teste Fibonacci-progressionen med faste indsatsskridt"
+          caption="Live blackjack hos Danske Spil – et af de mest populære danske borde til progressionssystemer som Fibonacci"
+          size="full"
+        />
 
         <InlineCasinoCards title="Test Fibonacci på Disse Live Blackjack-Borde" />
 

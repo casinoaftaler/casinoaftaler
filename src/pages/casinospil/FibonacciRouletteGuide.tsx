@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveRoulette from "@/assets/screenshots/danskespil-live-roulette.png";
+import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-roulette-bord.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -283,6 +284,13 @@ export default function FibonacciRouletteGuide() {
             Den forventede værdi forbliver konstant uanset system: -2,70% per spin på <Link to="/casinospil/roulette/europaeisk-roulette" className={linkClass}>europæisk roulette</Link>. Fibonacci ændrer fordelingen af resultater (flere mellemstore gevinster og tab) men ikke gennemsnittet. Over tid vil EV altid dominere.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilLiveRouletteBord}
+          alt="Danske Spil live roulette-bord med europæisk hjul og betting grid – perfekt til at teste Fibonacci-systemet med lige-chancer indsatser"
+          caption="Live roulette hos Danske Spil – europæisk bord med enkelt nul, velegnet til Fibonacci-progressionen"
+          size="full"
+        />
 
         {/* Simulering */}
         <section className="mb-12">
