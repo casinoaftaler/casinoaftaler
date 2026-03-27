@@ -750,6 +750,7 @@ const PlayKasinoAnmeldelse = () => {
             "Favoritter"-funktionen lader dig gemme de spil, du vender tilbage til, med et enkelt klik. Det er en simpel men vigtig feature, der reducerer navigationstiden betydeligt ved gentagne besøg. I appen synkroniseres favoritter automatisk med desktop-versionen, så din spilliste er tilgængelig på alle enheder.
           </p>
         </section>
+        <ReviewScreenshot src={playkasinoHotcold} alt="PlayKasino Hot og Cold funktion der viser hvilke spilleautomater der udbetaler mest i realtid" caption="PlayKasinos unikke Hot/Cold-funktion viser i realtid hvilke slots der udbetaler mest – en data-drevet navigationshjælp." size="full" />
 
         <Separator className="my-10" />
 
