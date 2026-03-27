@@ -178,6 +178,7 @@ const ExpektAnmeldelse = () => {
               </tbody>
             </table>
           </div>
+          <ReviewScreenshot src={expektBetaling} alt="Expekt indbetalingsside med MobilePay, Visa, Mastercard, Trustly og Skrill betalingsmetoder" caption="Expekts indbetalingsside med alle tilgængelige betalingsmetoder – MobilePay, kort, Trustly og Skrill." size="full" />
           <p className="text-muted-foreground leading-relaxed">Expekt tilbyder de vigtigste danske betalingsmetoder, men mangler to populære optioner: MobilePay og PayPal. For en platform der opererer på det danske marked, er fraværet af MobilePay en overraskende mangel. Sammenlignet med <Link to="/casino-anmeldelser/comeon" className={linkClass}>ComeOn</Link> eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>, der begge tilbyder MobilePay, er det et minus.</p>
         </section>
 
