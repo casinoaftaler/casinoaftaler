@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import heroImage from "@/assets/comparison-hero-danskespil-spilnu.jpg";
 
 const linkClass = "text-primary underline hover:text-primary/80";
