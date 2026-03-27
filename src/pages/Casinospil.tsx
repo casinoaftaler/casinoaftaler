@@ -236,6 +236,13 @@ const Casinospil = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spilleautomatenLobby}
+          alt="Spilleautomaten.dk casino spil-lobby med populære spillemaskiner som Sweet Bonanza 1000, Le Bandit, Fruit Party og Gates of Olympus sorteret efter anbefaling"
+          caption="Spilleautomaten.dk – et typisk dansk casino med bredt udvalg af spillemaskiner fra Pragmatic Play, Hacksaw Gaming og Play'n GO"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════
