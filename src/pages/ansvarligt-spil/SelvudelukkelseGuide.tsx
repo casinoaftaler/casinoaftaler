@@ -8,6 +8,8 @@ import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import unibet from "@/assets/screenshots/unibet-lobby.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -230,6 +232,12 @@ const SelvudelukkelseGuide = () => {
             for en endnu dybere gennemgang af ROFUS-systemet specifikt.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={unibet}
+          alt="Unibet casino-lobby med selvudelukkelsesværktøjer og ansvarligt spil-funktioner tilgængelige for danske spillere"
+          caption="Licenserede casinoer som Unibet tilbyder selvudelukkelsesmuligheder direkte i platformen"
+        />
 
         <Separator className="my-10" />
 

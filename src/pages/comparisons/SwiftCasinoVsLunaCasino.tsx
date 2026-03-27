@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { ComparisonPageTemplate } from "./ComparisonPageTemplate";
 import type { ComparisonCasino, ComparisonCategory } from "./ComparisonPageTemplate";
 import heroImage from "@/assets/comparison-hero-leovegas-mrgreen.jpg";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import comeonForside from "@/assets/screenshots/comeon-forside.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -168,6 +170,12 @@ export default function SwiftCasinoVsLunaCasino() {
           Derfor bør valget ikke træffes på bonusoverskriften alene. Når bonusniveauet er næsten identisk, er det produktets daglige kvalitet – friktion, sessionsflow, navigationsbyrde og retentionværdi – der afgør den reelle totaloplevelse over tid.
         </p>
       </section>
+
+      <ReviewScreenshot
+        src={comeonForside}
+        alt="ComeOn casino forside – et lignende dansk licenseret casino med moderne UX og bred spillekatalog"
+        caption="ComeOn illustrerer den type moderne, licenserede casinoplatforme som Swift og Luna konkurrerer med"
+      />
 
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">Bonusøkonomi: identisk indgang, forskellig hverdag</h2>

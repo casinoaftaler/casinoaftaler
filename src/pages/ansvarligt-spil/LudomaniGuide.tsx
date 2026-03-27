@@ -8,6 +8,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -273,6 +275,12 @@ const LudomaniGuide = () => {
             påbegyndes, desto bedre er prognosen for recovery.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={danskespilCasinoLobby}
+          alt="Danske Spil casino-lobby med ansvarligt spil-funktioner og indbetalingsgrænser integreret i platformen"
+          caption="Licenserede casinoer som Danske Spil har integrerede værktøjer til ansvarligt spil og spillerbeskyttelse"
+        />
 
         <Separator className="my-10" />
 

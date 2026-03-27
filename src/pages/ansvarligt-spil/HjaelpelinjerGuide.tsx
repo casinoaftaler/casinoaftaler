@@ -8,6 +8,8 @@ import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaRegMitid from "@/assets/screenshots/betinia-reg-mitid.webp";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -232,6 +234,12 @@ const HjaelpelinjerGuide = () => {
             </CardContent>
           </Card>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaRegMitid}
+          alt="MitID-verifikation ved casinoregistrering – alle danske licenserede casinoer kræver identitetskontrol som spillerbeskyttelse"
+          caption="MitID-verifikation sikrer, at kun verificerede spillere kan oprette konti hos danske casinoer"
+        />
 
         <Separator className="my-10" />
 
