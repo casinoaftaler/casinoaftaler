@@ -98,6 +98,7 @@ const Casino888Anmeldelse = () => {
             <h3 className="mb-2 text-lg font-semibold">Her gennemgår vores streamer og forfatter Jonas, hvordan 888 Casino ser ud indefra</h3>
             <p className="text-muted-foreground leading-relaxed"><Link to="/forfatter/jonas" className={linkClass}>Jonas</Link> viser dig 888 Casinos hjemmeside, navigation, spilvalg og vigtige features i denne walkthrough-video.</p>
           </div>
+          <ReviewScreenshot src={casino888Forside} alt="888 Casino forside med velkomsttilbud og populære spilleautomater som Book of Dead og Sweet Bonanza" caption="888 Casinos forside med velkomstbanner, favoritter og personlige anbefalinger." eager size="full" />
         </section>
 
         <Separator className="my-10" />
