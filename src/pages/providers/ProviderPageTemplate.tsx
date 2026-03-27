@@ -354,7 +354,7 @@ export function ProviderPage({
 
   return (
     <>
-      <SEO title={seoTitle} description={seoDescription} jsonLd={[faqJsonLd, articleSchema]} />
+      <SEO title={seoTitle} description={seoDescription} jsonLd={[faqJsonLd, articleSchema, ...(extraJsonLd || [])]} />
 
       <section
         className="relative overflow-hidden py-12 text-white md:py-20"
