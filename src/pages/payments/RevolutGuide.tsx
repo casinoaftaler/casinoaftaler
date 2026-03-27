@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling.png";
+import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling.webp";
 import revolutHero from "@/assets/heroes/revolut-hero.jpg";
 
 const RevolutGuide = () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import kampagner888 from "@/assets/screenshots/888-kampagner.png";
+import kampagner888 from "@/assets/screenshots/888-kampagner.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";

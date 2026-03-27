@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mrvegasBetaling from "@/assets/screenshots/mrvegas-betaling.png";
+import mrvegasBetaling from "@/assets/screenshots/mrvegas-betaling.webp";
 import zimplerHero from "@/assets/heroes/zimpler-hero.jpg";
 
 const ZimplerGuide = () => {

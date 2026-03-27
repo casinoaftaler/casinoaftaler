@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema, buildVideoSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import { YoutubeEmbed } from "@/components/YoutubeEmbed";import type { ReactNode } from "react";import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X, Smartphone, Headphones, Users, Globe, Heart, AlertTriangle } from "lucide-react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mariaForside from "@/assets/screenshots/maria-forside.png";
-import mariaBingo from "@/assets/screenshots/maria-bingo.png";
-import mariaKampagner from "@/assets/screenshots/maria-kampagner.png";
-import mariaLiveCasino from "@/assets/screenshots/maria-live-casino.png";
+import mariaForside from "@/assets/screenshots/maria-forside.webp";
+import mariaBingo from "@/assets/screenshots/maria-bingo.webp";
+import mariaKampagner from "@/assets/screenshots/maria-kampagner.webp";
+import mariaLiveCasino from "@/assets/screenshots/maria-live-casino.webp";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";

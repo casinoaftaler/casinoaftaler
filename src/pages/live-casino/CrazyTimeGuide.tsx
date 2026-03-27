@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.png";
+import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";

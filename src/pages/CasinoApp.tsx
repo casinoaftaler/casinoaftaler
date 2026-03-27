@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.png";
+import bet365CasinoLobby from "@/assets/screenshots/bet365-casino-lobby.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";

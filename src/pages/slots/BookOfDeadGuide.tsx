@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import leovegasPopulaereSpil from "@/assets/screenshots/leovegas-populaere-spil.png";
+import leovegasPopulaereSpil from "@/assets/screenshots/leovegas-populaere-spil.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/book-of-dead-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

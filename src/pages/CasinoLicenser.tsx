@@ -15,8 +15,8 @@ import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ShieldCheck, AlertTriangle, Sparkles, CheckCircle2, XCircle, Scale, Globe, Landmark } from "lucide-react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import kapowMitidRegistrering from "@/assets/screenshots/kapow-mitid-registrering.png";
-import spillemyndighedenLicensliste from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.png";
+import kapowMitidRegistrering from "@/assets/screenshots/kapow-mitid-registrering.webp";
+import spillemyndighedenLicensliste from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.webp";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import type { ReactNode } from "react";
 

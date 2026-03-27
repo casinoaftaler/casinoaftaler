@@ -1,6 +1,6 @@
 import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import kapowMitidGodkendt from "@/assets/screenshots/kapow-mitid-godkendt.png";
+import kapowMitidGodkendt from "@/assets/screenshots/kapow-mitid-godkendt.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

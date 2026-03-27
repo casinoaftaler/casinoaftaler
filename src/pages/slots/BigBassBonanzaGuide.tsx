@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.png";
+import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/big-bass-bonanza-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

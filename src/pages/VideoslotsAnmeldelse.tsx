@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import videoslotsForside from "@/assets/screenshots/videoslots-forside.png";
-import videoslotsWeekendBooster from "@/assets/screenshots/videoslots-weekend-booster.png";
-import videoslotsLiveCasino from "@/assets/screenshots/videoslots-live-casino.png";
-import videoslotsBattleOfSlots from "@/assets/screenshots/videoslots-battle-of-slots.png";
+import videoslotsForside from "@/assets/screenshots/videoslots-forside.webp";
+import videoslotsWeekendBooster from "@/assets/screenshots/videoslots-weekend-booster.webp";
+import videoslotsLiveCasino from "@/assets/screenshots/videoslots-live-casino.webp";
+import videoslotsBattleOfSlots from "@/assets/screenshots/videoslots-battle-of-slots.webp";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";

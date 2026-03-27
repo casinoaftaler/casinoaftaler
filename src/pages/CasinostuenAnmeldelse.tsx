@@ -23,10 +23,10 @@ import type { ReactNode } from "react";
 import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, Gamepad2, Sparkles, Headphones, TrendingUp, BarChart3 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import casinostuenForside from "@/assets/screenshots/casinostuen-forside.png";
-import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.png";
-import casinostuenLiveCasino from "@/assets/screenshots/casinostuen-live-casino.png";
-import casinostuenShop from "@/assets/screenshots/casinostuen-shop.png";
+import casinostuenForside from "@/assets/screenshots/casinostuen-forside.webp";
+import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.webp";
+import casinostuenLiveCasino from "@/assets/screenshots/casinostuen-live-casino.webp";
+import casinostuenShop from "@/assets/screenshots/casinostuen-shop.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 

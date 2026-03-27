@@ -12,7 +12,7 @@ import { CasinoCard } from "@/components/CasinoCard";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import kapowRegistrering from "@/assets/screenshots/kapow-registrering.png";
+import kapowRegistrering from "@/assets/screenshots/kapow-registrering.webp";
 
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 

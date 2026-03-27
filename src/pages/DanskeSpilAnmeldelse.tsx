@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilForside from "@/assets/screenshots/danskespil-forside.png";
-import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.png";
-import danskespilLiveCasino from "@/assets/screenshots/danskespil-live-casino.png";
-import danskespilOddset from "@/assets/screenshots/danskespil-oddset.png";
-import danskespilBingo from "@/assets/screenshots/danskespil-bingo.png";
+import danskespilForside from "@/assets/screenshots/danskespil-forside.webp";
+import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.webp";
+import danskespilLiveCasino from "@/assets/screenshots/danskespil-live-casino.webp";
+import danskespilOddset from "@/assets/screenshots/danskespil-oddset.webp";
+import danskespilBingo from "@/assets/screenshots/danskespil-bingo.webp";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";

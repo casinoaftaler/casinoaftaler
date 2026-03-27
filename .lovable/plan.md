@@ -49,7 +49,7 @@
 ## Teknisk mønster (gentages for alle 5)
 ```tsx
 // 1. Import øverst i filen
-import comeonGetluckyVip from "@/assets/screenshots/comeon-getlucky-vip-tilbud.png";
+import comeonGetluckyVip from "@/assets/screenshots/comeon-getlucky-vip-tilbud.webp";
 
 // 2. Placering mellem sektioner
 <ReviewScreenshot

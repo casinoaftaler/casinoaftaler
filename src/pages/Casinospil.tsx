@@ -15,9 +15,9 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-spil-lobby.png";
-import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.png";
-import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.png";
+import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-spil-lobby.webp";
+import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.webp";
+import liveBlackjackClassic from "@/assets/screenshots/live-blackjack-classic-bordspil.webp";
 import { type ReactNode } from "react";
 import {
   Gamepad2,

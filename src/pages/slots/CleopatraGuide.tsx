@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import onecasinoSpillemaskiner from "@/assets/screenshots/onecasino-spillemaskiner.png";
+import onecasinoSpillemaskiner from "@/assets/screenshots/onecasino-spillemaskiner.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/cleopatra-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

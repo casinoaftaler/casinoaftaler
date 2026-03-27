@@ -37,9 +37,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-spil-lobby.png";
-import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.png";
-import spilleautomatenRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.png";
+import spilleautomatenLobby from "@/assets/screenshots/spilleautomaten-casino-spil-lobby.webp";
+import spilleautomatenFilter from "@/assets/screenshots/spilleautomaten-spiludbyder-filter.webp";
+import spilleautomatenRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.webp";
 import {
   ShieldCheck,
   Zap,

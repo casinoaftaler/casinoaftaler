@@ -9,7 +9,7 @@ import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import rofusRegistrering from "@/assets/screenshots/rofus-registrering-udelukkelse.png";
+import rofusRegistrering from "@/assets/screenshots/rofus-registrering-udelukkelse.webp";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";

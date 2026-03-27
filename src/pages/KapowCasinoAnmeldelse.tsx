@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, AlertTriangle, TrendingUp, Globe } from "lucide-react";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import kapowMitidGodkendt from "@/assets/screenshots/kapow-mitid-godkendt.png";
-import kapowForside from "@/assets/screenshots/kapow-forside-populaere-spil.png";
-import kapowKampagner from "@/assets/screenshots/kapow-kampagner-bonusser.png";
-import kapowLiveCasino from "@/assets/screenshots/kapow-live-casino-lobby.png";
-import kapowIndbetaling from "@/assets/screenshots/kapow-indbetaling-visa-mobilepay.png";
+import kapowMitidGodkendt from "@/assets/screenshots/kapow-mitid-godkendt.webp";
+import kapowForside from "@/assets/screenshots/kapow-forside-populaere-spil.webp";
+import kapowKampagner from "@/assets/screenshots/kapow-kampagner-bonusser.webp";
+import kapowLiveCasino from "@/assets/screenshots/kapow-live-casino-lobby.webp";
+import kapowIndbetaling from "@/assets/screenshots/kapow-indbetaling-visa-mobilepay.webp";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";

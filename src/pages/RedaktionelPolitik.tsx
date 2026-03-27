@@ -6,8 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.png";
-import spillemyndighedenLicens from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.png";
+import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.webp";
+import spillemyndighedenLicens from "@/assets/screenshots/spillemyndigheden-licensliste-onlinekasino.webp";
 import { AuthorBio } from "@/components/AuthorBio";
 import {
   FileText,

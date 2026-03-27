@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card-poker.png";
+import danskespilThreeCardPoker from "@/assets/screenshots/danskespil-three-card-poker.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";

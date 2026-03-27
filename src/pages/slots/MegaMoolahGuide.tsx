@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mrgreenJackpots from "@/assets/screenshots/mrgreen-jackpots.png";
+import mrgreenJackpots from "@/assets/screenshots/mrgreen-jackpots.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import heroImage from "@/assets/heroes/mega-moolah-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

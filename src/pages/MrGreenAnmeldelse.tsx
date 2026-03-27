@@ -25,11 +25,11 @@ import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Users, TrendingUp } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mrgreenLobby from "@/assets/screenshots/mrgreen-lobby.png";
-import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.png";
-import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.png";
-import mrgreenJackpots from "@/assets/screenshots/mrgreen-jackpots.png";
-import mrgreenRakeback from "@/assets/screenshots/mrgreen-rakeback.png";
+import mrgreenLobby from "@/assets/screenshots/mrgreen-lobby.webp";
+import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.webp";
+import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.webp";
+import mrgreenJackpots from "@/assets/screenshots/mrgreen-jackpots.webp";
+import mrgreenRakeback from "@/assets/screenshots/mrgreen-rakeback.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 

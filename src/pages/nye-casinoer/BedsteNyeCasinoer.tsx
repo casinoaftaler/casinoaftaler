@@ -9,7 +9,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import kapowForside from "@/assets/screenshots/kapow-forside-populaere-spil.png";
+import kapowForside from "@/assets/screenshots/kapow-forside-populaere-spil.webp";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
