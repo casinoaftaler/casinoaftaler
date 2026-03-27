@@ -1215,6 +1215,7 @@ function AdminDashboard() {
             <ReviewModerationSection />
           </TabsContent>
         </Tabs>
+        </div>
       </main>
     </div>
   );
