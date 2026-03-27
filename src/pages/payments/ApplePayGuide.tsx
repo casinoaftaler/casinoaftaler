@@ -118,7 +118,6 @@ const ApplePayGuide = () => {
                  caption="Saldooversigten hos Bet365 – Apple Pay-transaktioner vises som almindelige kortbetalinger i historikken"
                  size="full"
                />
-              </p>
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Indbetalingstest:</strong> På alle fire casinoer var Apple Pay tilgængeligt som betalingsmetode i kassen. Processen var identisk: Vælg Apple Pay, indtast beløb, dobbelttryk på sideknappen, Face ID-scanning, bekræftelse. Den gennemsnitlige tid fra tryk til krediteret saldo var 2,8 sekunder – den hurtigste indbetalingsmetode vi har testet. Til sammenligning tog en standard Visa-indbetaling med 3D Secure 15-25 sekunder,{" "}
                 <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link>{" "}
