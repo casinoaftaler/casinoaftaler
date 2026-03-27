@@ -191,6 +191,12 @@ const OmahaPokerGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={pokerstarsForside}
+          alt="PokerStars forside med Omaha Poker-turneringer og cash games tilgængelige for danske spillere"
+          caption="PokerStars tilbyder et bredt udvalg af Omaha Poker-varianter inklusiv PLO og PLO Hi-Lo"
+        />
+
         <InlineCasinoCards title="Casinoer med Omaha og poker" count={4} />
 
         {/* ═══════════════════════════════════════════════════════════════

@@ -147,6 +147,12 @@ const CrapsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilLiveCasino}
+          alt="Danske Spil live casino-lobby med bordspil inklusiv craps, roulette og blackjack hos et dansk licenseret casino"
+          caption="Live casino-lobbyen hos Danske Spil viser det tilgængelige udvalg af bordspil for danske spillere"
+        />
+
         <InlineCasinoCards title="Bedste Casinoer til Craps" count={6} />
 
         <Separator className="my-10" />

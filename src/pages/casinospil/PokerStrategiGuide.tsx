@@ -137,6 +137,12 @@ export default function PokerStrategiGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={pokerstarsSpillemaskiner}
+          alt="PokerStars platform med spilleautomater og bordspil – et casino der tilbyder både poker og strategisk spil"
+          caption="PokerStars tilbyder udover poker også et bredt udvalg af casinospil til strategisk underholdning"
+        />
+
         {/* ═══════════ SEKTION 2: Positionsspil ═══════════ */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-2">

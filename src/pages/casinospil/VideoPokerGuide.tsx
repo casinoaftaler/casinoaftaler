@@ -135,6 +135,12 @@ export default function VideoPokerGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={royalcasinoSpillemaskiner}
+          alt="Royal Casino spillemaskin-lobby med video poker og bordspil tilgængelige for danske spillere"
+          caption="Royal Casino tilbyder video poker-varianter blandt deres brede udvalg af casinospil"
+        />
+
         {/* ═══════════════════════════════════════════════════════
             SEKTION 2 – RTP-analyse og udbetalingstabeller
         ═══════════════════════════════════════════════════════ */}

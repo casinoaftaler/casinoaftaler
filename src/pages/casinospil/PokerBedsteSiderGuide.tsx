@@ -142,6 +142,12 @@ export default function PokerBedsteSiderGuide() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={pokerstarsLiveCasino}
+          alt="PokerStars live casino og poker-lobby med cash games, turneringer og bordspil for danske pokerspillere"
+          caption="PokerStars er en af de mest populære pokersider med dansk licens og bredt turneringsudvalg"
+        />
+
         <InlineCasinoCards title="Bedste casinoer med poker" count={5} />
 
         <Separator className="my-10" />

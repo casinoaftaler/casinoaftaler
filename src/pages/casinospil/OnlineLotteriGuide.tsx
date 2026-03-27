@@ -149,6 +149,12 @@ const OnlineLotteriGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={danskespilForside}
+          alt="Danske Spil forside med Lotto, Eurojackpot og skrabespil – Danmarks officielle lotteriudbyder"
+          caption="Danske Spil er den primære udbyder af online lotteri i Danmark med Lotto og Eurojackpot"
+        />
+
         {/* ── H2 2 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">

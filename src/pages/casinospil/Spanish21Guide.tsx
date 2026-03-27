@@ -131,6 +131,12 @@ const Spanish21Guide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={mrGreenLiveBlackjack}
+          alt="Mr Green live blackjack-bord med dealer – Spanish 21 og andre blackjack-varianter er tilgængelige hos danske casinoer"
+          caption="Live blackjack hos Mr Green – lignende varianter som Spanish 21 kan findes hos danske licenserede casinoer"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════ Spanish 21 vs Pontoon ═══════════════ */}
