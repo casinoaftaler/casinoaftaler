@@ -240,6 +240,12 @@ const SaadanTesterVi = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia casino lobby under test – vi gennemgår alle aspekter af casinoet fra brugerflade til spilkatalog"
+          caption="Eksempel på en casinotest: Vi evaluerer lobby-layout, spilsortiment og brugervenlighed hos hvert casino"
+        />
+
         <Separator className="my-10" />
 
         {/* 2. Testkriterier */}
