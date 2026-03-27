@@ -136,6 +136,7 @@ const CasinostuenAnmeldelse = () => {
           </div>
           <p className="mb-4 text-muted-foreground leading-relaxed">RTP-niveauet på de tilgængelige spil ligger generelt i intervallet 95–97%, hvilket er standard. Book of Dead (96,21%), Starburst (96,08%) og Sweet Bonanza (96,48%) er alle til stede i deres standardversioner. Vi verificerede RTP-niveauerne under vores test og fandt ingen afvigelser fra de officielle tal – et positivt tegn, der indikerer, at Casinostuen ikke bruger reducerede RTP-versioner.</p>
           <p className="text-muted-foreground leading-relaxed">Den største mangel i spiludvalget er fraværet af nyere, innovative udbydere. <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>, <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og <Link to="/spiludviklere/elk-studios" className={linkClass}>ELK Studios</Link> – der alle er populære blandt danske spillere – er fraværende. For spillere, der følger med i de nyeste spiltrends, er det en mærkbar begrænsning. For casual spillere, der holder sig til klassikerne, er det derimod irrelevant.</p>
+          <ReviewScreenshot src={casinostuenSpillemaskiner} alt="Casinostuen spilleautomater med eksklusive spil, anbefalede titler som Temple Tumble og Book of Evil, nye spil og klassikere" caption="Casinostuens spilleautomater med eksklusive titler, anbefalede spil og klassikere som Starburst og Reactoonz." size="full" />
         </section>
 
         <Separator className="my-10" />
