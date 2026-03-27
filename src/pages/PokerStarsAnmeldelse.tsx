@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, AlertTriangle, Gamepad2, Smartphone, Headphones, Globe, Users, TrendingUp, Award } from "lucide-react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pokerstarsForside from "@/assets/screenshots/pokerstars-forside.png";
+import pokerstarsSpillemaskiner from "@/assets/screenshots/pokerstars-spillemaskiner.png";
+import pokerstarsLiveCasino from "@/assets/screenshots/pokerstars-live-casino.png";
+import pokerstarsKampagner from "@/assets/screenshots/pokerstars-kampagner.png";
+import pokerstarsBetalinger from "@/assets/screenshots/pokerstars-betaling.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
@@ -54,6 +60,7 @@ const PokerStarsAnmeldelse = () => {
             </CardContent>
           </Card>
         </section>
+          <ReviewScreenshot src={pokerstarsForside} alt="PokerStars poker forside med velkomsttilbud og Spin and Go turneringer" caption="PokerStars' poker-forside med velkomsttilbud på 100 kr. i ekstra spil og SCOOP 2026-turneringen." eager size="full" />
 
         {/* Introduktion – PokerStars' evolution */}
         <section className="mb-12">
@@ -96,6 +103,8 @@ const PokerStarsAnmeldelse = () => {
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-primary"><Check className="h-5 w-5" />Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Verdens største poker-netværk med 100.000+ samtidige spillere", "Uovertruffent turneringsudvalg – WCOOP, SCOOP, EPT qualifiers", "Branchens bedste poker-software med HUD-support", "1.500+ casino-spil fra topudbydere", "Flutter Entertainment-ejerskab – maksimal stabilitet", "Fremragende mobilapp til både poker og casino", "Lynhurtige udbetalinger – 6 timer til Skrill i vores test", "Dansk licens og fuld ROFUS-integration", "Fælles wallet på tværs af poker, casino og sport", "Spin & Go og Zoom Poker for hurtig action"].map((p) => (<li key={p} className="flex items-start gap-2 text-sm"><Check className="h-4 w-4 text-emerald-500 flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{p}</span></li>))}</ul></CardContent></Card>
             <Card className="border-border bg-card"><CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-lg text-destructive/80"><X className="h-5 w-5" />Ulemper</CardTitle></CardHeader><CardContent><ul className="space-y-2">{["Stars Rewards er markant ringere end det gamle VIP-program", "Rake er relativt høj – 5 % cap varierer efter stakes", "Poker kræver desktop-klient for fuld funktionalitet", "Casino-bonus er mindre generøs end hos specialister", "Sportsvæddemål kan ikke matche bet365 eller Unibet", "Interface kan virke overvældende for rene casino-spillere", "Mangel på Hacksaw Gaming og Nolimit City i casino-sektionen", "Pokermiljøet er tøft – mange regulars gør det svært for nybegyndere"].map((c) => (<li key={c} className="flex items-start gap-2 text-sm"><X className="h-4 w-4 text-destructive flex-shrink-0 mt-0.5" /><span className="text-muted-foreground">{c}</span></li>))}</ul></CardContent></Card>
           </div>
+          <ReviewScreenshot src={pokerstarsSpillemaskiner} alt="PokerStars Casino spillemaskiner med populære titler som Legacy of Dead og Gates of Olympus" caption="PokerStars Casino med populære spillemaskiner, eksklusive titler og kategorifiltre." size="full" />
+          <ReviewScreenshot src={pokerstarsLiveCasino} alt="PokerStars live casino med eksklusive PokerStars-borde og Lightning Roulette fra Evolution Gaming" caption="Live casino-lobbyen med eksklusive PokerStars-brandede borde, blackjack og roulette-varianter." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -135,6 +144,8 @@ const PokerStarsAnmeldelse = () => {
             ))}
           </div>
           <p className="mt-4 text-muted-foreground leading-relaxed">PokerStars' udbetalingsprocessering er generelt hurtig og pålidelig. MitID bruges til verifikation ved kontoprettelse, og yderligere KYC er sjældent nødvendig for standardbeløb. For større udbetalinger (over 50.000 kr.) kan der kræves yderligere dokumentation, hvilket er standard praksis under dansk lovgivning.</p>
+          <ReviewScreenshot src={pokerstarsBetalinger} alt="PokerStars betalingsmetoder med MobilePay, Visa, PayPal, Skrill og Trustly til Danmark" caption="Oversigt over alle betalingsmetoder hos PokerStars med ind- og udbetalingsmuligheder for danske spillere." size="full" />
+          <ReviewScreenshot src={pokerstarsKampagner} alt="PokerStars kampagner og belønninger med Kister, Challenges og Ranglister" caption="PokerStars' kampagne- og belønningssystem med Kister, Challenges og Mine Belønninger." size="full" />
         </section>
 
         <Separator className="my-10" />
