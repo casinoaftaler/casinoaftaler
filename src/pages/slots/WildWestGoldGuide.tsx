@@ -78,6 +78,12 @@ const WildWestGoldGuide = () => {
           <p className="text-muted-foreground leading-relaxed">Den høje volatilitet er direkte forbundet med sticky wild-mekanikken: bonusrundens value er ekstremt variabel. En runde med 0-1 sticky wilds leverer minimal return, mens en runde med 4-6+ sticky wilds (med multiplikatorer) kan producere tusindvis af gange indsatsen. Denne binær distribution – "alt eller intet" – definerer Wild West Gold's risikoprofil.</p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia spillemaskin-lobby med Pragmatic Play-filter – Wild West Gold er en populær sticky wild-slot med 12.500× max win"
+          caption="Betinias spillemaskin-lobby med Pragmatic Play-titler som Wild West Gold"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">
