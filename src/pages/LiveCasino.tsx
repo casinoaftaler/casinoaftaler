@@ -179,6 +179,12 @@ const LiveCasino = () => {
           <p className="text-muted-foreground leading-relaxed">
             I Danmark er live casino særligt populært blandt spillere i aldersgruppen 30-55 år, der værdsætter den sociale dimension og det langsommere tempo sammenlignet med spilleautomater. Det er en kategori inden for <Link to="/casinospil" className={linkClass}>casinospil</Link>, der appellerer til spillere, som søger en mere strategisk og kontrolleret spiloplevelse.
           </p>
+          <ReviewScreenshot
+            src={mrgreenLiveBlackjack}
+            alt="Live blackjack-bord hos Mr Green med professionel dealer og HD-streaming fra Evolution Gaming studie"
+            caption="Eksempel på et live blackjack-bord med professionel dealer – billedet er fra Mr Green Casino"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
