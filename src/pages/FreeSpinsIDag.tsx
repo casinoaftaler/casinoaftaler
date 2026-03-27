@@ -454,18 +454,6 @@ const FreeSpinsIDag = () => {
           </>
         )}
 
-        <ReviewScreenshot
-          src={betiniaVelkomstbonusAktiv}
-          alt="Betinia aktiv velkomstbonus med free spins-tilbud og bonusvilkår for nye spillere"
-          caption="Betinias aktive velkomstbonus – free spins er ofte en del af velkomstpakken hos danske casinoer"
-          size="full"
-        />
-
-        <ReviewScreenshot
-          src={mrGreenCashSpins}
-          alt="Mr Green daglige free spins kampagne med 50 cash spins uden indbetaling til Legacy of Dead"
-          caption="Mr Green tilbyder daglige cash spins uden omsætningskrav – et eksempel på et typisk free spins tilbud"
-        />
 
         <Separator className="my-8" />
 
