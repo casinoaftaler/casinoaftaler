@@ -284,7 +284,6 @@ const Velkomstbonus = () => {
             src={betiniaVelkomstbonus}
             alt="Betinia velkomstbonus aktiveringsflow med 100% op til 1.000 kr. og 3-trins aktivering"
             caption="Velkomstbonus hos Betinia – 3-trins aktivering: indbetal, aktiver bonus og spil"
-            size="compact"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -423,7 +422,6 @@ const Velkomstbonus = () => {
           src={betiniaBonusvilkaar}
           alt="Betinia bonusvilkår med omsætningskrav på 10x, spilbidrag og maks. indsats på 36 kr."
           caption="Detaljerede bonusvilkår hos Betinia – 10x omsætningskrav med fuld gennemsigtighed"
-          size="medium"
         />
 
         <Separator className="my-10" />

@@ -221,7 +221,6 @@ const Indskudsbonus = () => {
           src={betiniaBonusvilkaar}
           alt="Indskudsbonus vilkår hos Betinia med 100% match op til 1.000 kr. og detaljerede omsætningskrav"
           caption="Betinias vilkår for indskudsbonus – matchbonus med 10x omsætningskrav og oversigt over spilbidrag"
-          size="medium"
         />
 
         <InlineCasinoCards title="Bedste casinoer med indskudsbonus" count={6} />
