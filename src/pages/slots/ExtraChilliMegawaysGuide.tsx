@@ -70,11 +70,6 @@ const ExtraChilliMegawaysGuide = () => {
           <p className="text-muted-foreground leading-relaxed">For Megaways-entusiaster, der allerede kender <Link to="/casinospil/spillemaskiner/bonanza" className={linkClass}>Bonanza</Link>, er Extra Chilli den naturlige evolution – bedre RTP, højere ceiling, og den kritiske free spins-gamble, der tilfører en strategisk dimension, originalen manglede.</p>
         </section>
 
-        <ReviewScreenshot
-          src={betiniaMegaways}
-          alt="Betinia Megaways-filter med Big Time Gaming-slots – Extra Chilli Megaways er en af de mest populære titler i kategorien"
-          caption="Betinias Megaways-filter giver hurtig adgang til BTG-titler som Extra Chilli Megaways"
-        />
 
         <Separator className="my-10" />
 
@@ -100,6 +95,11 @@ const ExtraChilliMegawaysGuide = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Flame className="h-7 w-7 text-primary" /> Free Spins-Gamble: Risk vs. Reward</h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">Extra Chilli's free spins-gamble er spillets mest kontroversielle og mest fængslende mekanik. Efter at have udløst free spins med 3+ scatters (3 = 8 spins, 4 = 12) præsenteres du med et valg: acceptér dine spins eller gamble for flere. Gamble-sekvensen er tre trin: 8→16 spins (50/50), 16→24 spins (50/50), og derefter spil. Hvis du taber på noget trin, mister du ALLE free spins.</p>
+        <ReviewScreenshot
+          src={betiniaMegaways}
+          alt="Betinia Megaways-filter med Big Time Gaming-slots – Extra Chilli Megaways er en af de mest populære titler i kategorien"
+          caption="Betinias Megaways-filter giver hurtig adgang til BTG-titler som Extra Chilli Megaways"
+        />
           <p className="text-muted-foreground mb-4 leading-relaxed">Matematikken er fascinator: gamble fra 8 til 24 spins giver 3× flere spins, men sandsynligheden for at nå 24 er kun 25 % (0,5 × 0,5). Der er en 75 % chance for at miste alt – men med 24 spins og en akkumulerende multiplikator er gevinstpotentialet enormt. For risiko-tolerante spillere er gamble-optionen en rationel strategi, hvis bankrollen kan absorbere de hyppige totaltab.</p>
           <p className="text-muted-foreground mb-4 leading-relaxed">Strategisk anbefaling: gamble kun fra 8 til 16 spins (50 % chance, fordoblet spincount). Den marginale EV-gevinst fra 16→24 retfærdiggør sjældent den 50 % tabsrisiko, medmindre din bankroll er meget stor. For konservative spillere: acceptér altid 8 spins og undgå gamble. RTP'en er identisk uanset valg – gamble ændrer kun variansen, ikke den forventede return.</p>
           <p className="text-muted-foreground leading-relaxed">Under free spins er tumble-mekanikken aktiv med en voksende multiplikator (starter ved 1×, øger med 1 for hver tumble-gevinst). Multiplikatoren har ingen øvre grænse og akkumulerer over hele bonusrunden. Med 24 spins og aggressiv tumbling kan multiplikatoren nå 30-50×+ – og det er disse scenarier, der driver max win (20.000×) potentialet.</p>

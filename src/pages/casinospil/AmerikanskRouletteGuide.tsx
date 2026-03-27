@@ -179,12 +179,6 @@ export default function AmerikanskRouletteGuide() {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={danskespilLiveRoulette}
-          alt="Roulette-bord med hjulvisning – amerikansk roulette har et ekstra double-zero felt"
-          caption="Sammenlign hjuldesignet: amerikansk roulette tilføjer et 00-felt, der øger house edge til 5,26 %."
-          size="full"
-        />
 
         <InlineCasinoCards title="Casinoer med Live Roulette-Borde" count={3} />
 
@@ -199,6 +193,12 @@ export default function AmerikanskRouletteGuide() {
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Det amerikanske roulette-hjul har en unik talrækkefølge, der adskiller sig markant fra det europæiske. Mens det europæiske hjul er designet til at sikre maksimal spredning af tal, har det amerikanske hjul en anden filosofi: 0 og 00 er placeret direkte overfor hinanden, og tal-parene er arrangeret så modstående numre altid er konsekutive (1-2, 3-4, etc.).
           </p>
+        <ReviewScreenshot
+          src={danskespilLiveRoulette}
+          alt="Roulette-bord med hjulvisning – amerikansk roulette har et ekstra double-zero felt"
+          caption="Sammenlign hjuldesignet: amerikansk roulette tilføjer et 00-felt, der øger house edge til 5,26 %."
+          size="full"
+        />
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Rækkefølgen på det amerikanske hjul (med uret): <strong>0, 28, 9, 26, 30, 11, 7, 20, 32, 17, 5, 22, 34, 15, 3, 24, 36, 13, 1, 00, 27, 10, 25, 29, 12, 8, 19, 31, 18, 6, 21, 33, 16, 4, 23, 35, 14, 2</strong>.
           </p>

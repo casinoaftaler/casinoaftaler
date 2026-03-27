@@ -158,11 +158,6 @@ const HurtigUdbetalingGuide = () => {
           </div>
         </section>
 
-        <ReviewScreenshot
-          src={betiniaBetalingOversigt}
-          alt="Betinia udbetalingsoversigt med betalingsmetoder og behandlingstider for danske spillere"
-          caption="Betinias betalingsoversigt viser de tilgængelige udbetalingsmetoder og forventede behandlingstider"
-        />
 
         <InlineCasinoCards title="Anbefalede casinoer med hurtige udbetalinger" />
 
@@ -338,6 +333,11 @@ const HurtigUdbetalingGuide = () => {
           <p className="text-muted-foreground mb-6">
             Lad os dykke dybere ned i de mest populære betalingsmetoder og deres styrker og svagheder specifikt i forhold til udbetalinger fra danske casinoer. Hver metode har sine unikke fordele, og den rette vælges ud fra dine personlige præferencer og behov.
           </p>
+        <ReviewScreenshot
+          src={betiniaBetalingOversigt}
+          alt="Betinia udbetalingsoversigt med betalingsmetoder og behandlingstider for danske spillere"
+          caption="Betinias betalingsoversigt viser de tilgængelige udbetalingsmetoder og forventede behandlingstider"
+        />
 
           <Card className="border-border bg-card mb-6">
             <CardHeader>

@@ -140,11 +140,6 @@ const NyeCasinoerUdenRofus = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={spilnuLobby}
-          alt="Spilnu casino-lobby som eksempel på et ROFUS-tilsluttet dansk licenseret casino med spillerbeskyttelse"
-          caption="Spilnu er et eksempel på et dansk licenseret casino med fuld ROFUS-tilslutning og spillerbeskyttelse"
-        />
 
         <Separator className="my-10" />
 
@@ -153,6 +148,11 @@ const NyeCasinoerUdenRofus = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Risiciene ved at spille hos casinoer uden dansk licens er ikke blot teoretiske – de kan kvantificeres i kroner og ører. Vi har beregnet den faktiske økonomiske forskel baseret på tre typiske spillerprofiler. Beregningerne viser, at casinoer uden ROFUS er markant dyrere for danske spillere:
           </p>
+        <ReviewScreenshot
+          src={spilnuLobby}
+          alt="Spilnu casino-lobby som eksempel på et ROFUS-tilsluttet dansk licenseret casino med spillerbeskyttelse"
+          caption="Spilnu er et eksempel på et dansk licenseret casino med fuld ROFUS-tilslutning og spillerbeskyttelse"
+        />
           <div className="overflow-x-auto mb-6">
             <table className="w-full text-sm border-collapse">
               <thead>

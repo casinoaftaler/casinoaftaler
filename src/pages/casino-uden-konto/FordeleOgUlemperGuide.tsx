@@ -137,12 +137,6 @@ const FordeleOgUlemperGuide = () => {
         </div>
       </section>
 
-        <ReviewScreenshot
-          src={kapowMitidGodkendt}
-          alt="MitID-godkendelse gennemført – eksempel på den hurtige verifikationsproces hos danske casinoer"
-          caption="MitID-godkendelsen tager typisk under 30 sekunder og giver øjeblikkelig adgang til spil."
-          size="full"
-        />
 
       <div className="container py-6">
       </div>
@@ -243,6 +237,12 @@ const FordeleOgUlemperGuide = () => {
           <p className="text-muted-foreground leading-relaxed mb-6">
             Vi har identificeret 7 primære ulemper ved casino uden konto, rangeret efter signifikans:
           </p>
+        <ReviewScreenshot
+          src={kapowMitidGodkendt}
+          alt="MitID-godkendelse gennemført – eksempel på den hurtige verifikationsproces hos danske casinoer"
+          caption="MitID-godkendelsen tager typisk under 30 sekunder og giver øjeblikkelig adgang til spil."
+          size="full"
+        />
           <div className="space-y-6">
             {[
               {

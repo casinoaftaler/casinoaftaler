@@ -232,12 +232,6 @@ const IPhoneCasinoGuide = () => {
               ))}
             </div>
           </div>
-          <ReviewScreenshot
-            src={mariaForside}
-            alt="Maria Casino forside med iPhone-venligt mobildesign og populære spillekategorier"
-            caption="Maria Casinos forside – et eksempel på en iPhone-optimeret casinooplevelse med Touch/Face ID-support"
-            size="full"
-          />
         </section>
 
         <Separator className="my-10" />
@@ -425,6 +419,12 @@ const IPhoneCasinoGuide = () => {
             til en af de mest sikre platforme for online gambling. Her gennemgår vi, hvordan biometrisk
             autentificering fungerer i praksis med danske casinoer:
           </p>
+          <ReviewScreenshot
+            src={mariaForside}
+            alt="Maria Casino forside med iPhone-venligt mobildesign og populære spillekategorier"
+            caption="Maria Casinos forside – et eksempel på en iPhone-optimeret casinooplevelse med Touch/Face ID-support"
+            size="full"
+          />
 
           <div className="rounded-xl border border-border bg-card p-6 mb-6">
             <h3 className="text-lg font-semibold mb-3">Biometrisk autentificering i casino-kontekst</h3>

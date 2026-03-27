@@ -191,11 +191,6 @@ const OmahaPokerGuide = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={pokerstarsForside}
-          alt="PokerStars forside med Omaha Poker-turneringer og cash games tilgængelige for danske spillere"
-          caption="PokerStars tilbyder et bredt udvalg af Omaha Poker-varianter inklusiv PLO og PLO Hi-Lo"
-        />
 
         <InlineCasinoCards title="Casinoer med Omaha og poker" count={4} />
 
@@ -210,6 +205,11 @@ const OmahaPokerGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Omaha følger den samme grundstruktur som Texas Hold'em: preflop, flop, turn, river. Forskellen ligger i de fire hole cards og den obligatoriske "must use 2"-regel. Lad os gennemgå reglerne i detaljer.
           </p>
+        <ReviewScreenshot
+          src={pokerstarsForside}
+          alt="PokerStars forside med Omaha Poker-turneringer og cash games tilgængelige for danske spillere"
+          caption="PokerStars tilbyder et bredt udvalg af Omaha Poker-varianter inklusiv PLO og PLO Hi-Lo"
+        />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Kortuddelingen:</strong> Hver spiller modtager fire private kort (hole cards). Blinds og dealing fungerer identisk med Hold'em – small blind til venstre for button, big blind til venstre for small blind. Preflop-action starter fra UTG og bevæger sig med uret. I PLO er der ingen ante (medmindre det specifikt er angivet), og blind-strukturen er fast i cash games.
           </p>

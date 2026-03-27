@@ -76,11 +76,6 @@ const VRCasinoerGuide = () => {
           <p className="text-muted-foreground leading-relaxed">I denne dybdegående guide gennemgår vi alt, du behøver at vide om VR casinoer i 2026: Teknologiens nuværende tilstand, de tilgængelige platforme og spil, det nødvendige udstyr, samt fordelene og begrænsningerne. Vi analyserer også, hvordan VR-gambling forholder sig til dansk regulering og <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>, samt giver vores vurdering af, hvornår VR casinoer vil blive mainstream i Danmark.</p>
         </section>
 
-        <ReviewScreenshot
-          src={videoslotsForside}
-          alt="Videoslots casino-forside med innovativt spiludvalg og avancerede funktioner som Battle of Slots"
-          caption="Videoslots er et eksempel på et innovativt casino med unikke spilmekanikker og stort spiludvalg"
-        />
 
         <InlineCasinoCards title="Anbefalede licenserede casinoer med innovative spil" />
 
@@ -151,6 +146,11 @@ const VRCasinoerGuide = () => {
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Gamepad2 className="h-7 w-7 text-primary" /> Tilgængelige VR casinospil i 2026</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">VR casinospillets kvalitet er steget markant de seneste år, drevet af forbedret hardware og øget udviklerinvestering. Dog er udvalget stadig begrænset sammenlignet med traditionelle online casinoer, og kvaliteten varierer betydeligt mellem platforme. Her er en detaljeret gennemgang af de tilgængelige spilkategorier og vores vurdering af deres VR-modenhed.</p>
+        <ReviewScreenshot
+          src={videoslotsForside}
+          alt="Videoslots casino-forside med innovativt spiludvalg og avancerede funktioner som Battle of Slots"
+          caption="Videoslots er et eksempel på et innovativt casino med unikke spilmekanikker og stort spiludvalg"
+        />
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             {[
               { title: "VR Poker", desc: "Det mest udviklede og populære VR casinospil. Platforme som PokerStars VR tilbyder Texas Hold'em og Omaha med fuld multiplayer, spatial voice chat, og realistisk fysik-baseret chip-håndtering. Du kan læse dine modstanderes kropssprog (via avatar-animation), bluff og social interaktion. Spillet har et aktivt community med tusindvis af samtidige spillere, og turneringer afholdes regelmæssigt. Pokerspil i VR er den kategori, der bedst demonstrerer VR casinoets potentiale.", rating: "★★★★★" },

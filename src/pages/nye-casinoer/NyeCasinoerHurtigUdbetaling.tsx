@@ -128,11 +128,6 @@ const NyeCasinoerHurtigUdbetaling = () => {
              Denne guide fokuserer specifikt på nye casinoers udbetalingsarkitektur og testresultater. For en bredere gennemgang af betalingsmetoder generelt, se vores <Link to="/betalingsmetoder" className={linkClass}>oversigt over alle betalingsmetoder</Link>. Her handler det udelukkende om hastighed – fra det øjeblik du klikker "Udbetal" til pengene er på din konto.
            </p>
 
-           <ReviewScreenshot
-             src={spildansknuIndbetaling}
-             alt="Hurtig indbetalingsproces hos SpilDanskNu med instant betalingsmetoder som Trustly og MobilePay"
-             caption="Indbetalingsflowet hos et nyt dansk casino – hurtige metoder som Trustly giver også hurtigere udbetalinger"
-           />
           <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">
               <strong>Se også alle casinoer med hurtig udbetaling</strong> – ikke kun nye. Vores <Link to="/casinoer/hurtig-udbetaling" className={linkClass}>komplette guide til casinoer med hurtig udbetaling</Link> dækker både nye og etablerede casinoer med de hurtigste udbetalingstider.
@@ -290,6 +285,11 @@ const NyeCasinoerHurtigUdbetaling = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Udbetalingsbeløbet påvirker direkte behandlingstiden. Danske casinoer er lovmæssigt forpligtet til at gennemføre AML-screening (anti-hvidvask) ved visse tærskelbeløb, og de fleste nye casinoer har interne compliance-regler, der udløser ekstra verifikation ved højere beløb. Vores test har kortlagt tre klare trin:
           </p>
+           <ReviewScreenshot
+             src={spildansknuIndbetaling}
+             alt="Hurtig indbetalingsproces hos SpilDanskNu med instant betalingsmetoder som Trustly og MobilePay"
+             caption="Indbetalingsflowet hos et nyt dansk casino – hurtige metoder som Trustly giver også hurtigere udbetalinger"
+           />
           <div className="space-y-3">
             {[
               { title: "Under 10.000 kr. – Automatisk behandling", desc: "Udbetalinger under 10.000 kr. behandles fuldautomatisk hos alle nye casinoer, vi har testet. Ingen manuelle godkendelsestrin, ingen ekstra verifikation. Det er her du oplever de hurtigste tider: typisk under 3 minutter via Trustly. Over 95% af alle daglige udbetalinger falder i denne kategori." },

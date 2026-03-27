@@ -113,11 +113,6 @@ const NyeCasinoerMitID = () => {
             ))}
           </div>
 
-          <ReviewScreenshot
-            src={betiniaMitid}
-            alt="Betinia MitID login-skærm med MitID-knap til sikker verifikation ved kontooprettelse"
-            caption="MitID-verifikation hos Betinia – tryk på MitID-knappen for at godkende din identitet"
-          />
         </section>
 
         <Separator className="my-10" />
@@ -173,6 +168,11 @@ const NyeCasinoerMitID = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             MitID fungerer med alle danske banker, men den praktiske oplevelse varierer. Nogle banker integrerer MitID-godkendelse sømløst i deres mobilbank-app, mens andre kræver, at du skifter manuelt til MitID-appen. Her er vores test af de største danske bankers MitID-integration med nye casinoer:
           </p>
+          <ReviewScreenshot
+            src={betiniaMitid}
+            alt="Betinia MitID login-skærm med MitID-knap til sikker verifikation ved kontooprettelse"
+            caption="MitID-verifikation hos Betinia – tryk på MitID-knappen for at godkende din identitet"
+          />
           <div className="overflow-x-auto rounded-lg border border-border">
             <table className="w-full text-sm">
               <thead>

@@ -135,11 +135,6 @@ export default function VideoPokerGuide() {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={royalcasinoSpillemaskiner}
-          alt="Royal Casino spillemaskin-lobby med video poker og bordspil tilgængelige for danske spillere"
-          caption="Royal Casino tilbyder video poker-varianter blandt deres brede udvalg af casinospil"
-        />
 
         {/* ═══════════════════════════════════════════════════════
             SEKTION 2 – RTP-analyse og udbetalingstabeller
@@ -259,6 +254,11 @@ export default function VideoPokerGuide() {
           <p className="text-muted-foreground leading-relaxed mb-4">
             Den optimale strategi for 9/6 Jacks or Better kan komprimeres til en rangeret liste af hold-prioriteter. Når du modtager dine fem kort, finder du den højest rangerede hold-kombination og beholder de tilsvarende kort. Listen nedenfor dækker alle 30+ beslutninger med deres Expected Value (EV) pr. coin ved max bet.
           </p>
+        <ReviewScreenshot
+          src={royalcasinoSpillemaskiner}
+          alt="Royal Casino spillemaskin-lobby med video poker og bordspil tilgængelige for danske spillere"
+          caption="Royal Casino tilbyder video poker-varianter blandt deres brede udvalg af casinospil"
+        />
 
           <Card className="mb-6">
             <CardHeader>

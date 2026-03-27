@@ -209,11 +209,6 @@ export default function CasinoerHub() {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={betanoLobby}
-          alt="Betano casino-lobby med overblik over kategorier, populære spil og navigationsmuligheder på dansk"
-          caption="Et typisk dansk casino-lobby med kategoriseret spiludvalg og hurtig navigation"
-        />
 
         {/* ── SECTION 2: Alle Casino-Kategorier (cards) ── */}
         <section className="mb-12">
@@ -262,6 +257,11 @@ export default function CasinoerHub() {
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Det absolut første du skal verificere ved ethvert online casino er licensen. I Danmark er det ulovligt at udbyde online casino uden en licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>, og det er ligeledes ulovligt for danske spillere at benytte ulicenserede operatører. Men ud over det juridiske aspekt er licensen din primære beskyttelse som forbruger: den garanterer, at casinoet opererer med segregerede spillerkonti (dine penge holdes adskilt fra casinoets driftsmidler), at tilfældighedsgeneratorer (RNG) auditeres af uafhængige tredjeparter, og at klager kan indgives til en officiel tilsynsmyndighed.
           </p>
+        <ReviewScreenshot
+          src={betanoLobby}
+          alt="Betano casino-lobby med overblik over kategorier, populære spil og navigationsmuligheder på dansk"
+          caption="Et typisk dansk casino-lobby med kategoriseret spiludvalg og hurtig navigation"
+        />
           <p className="text-muted-foreground mb-4 leading-relaxed">
             Spillemyndigheden har siden 2012 udstedt og tilbagekaldt et betydeligt antal licenser. I 2026 er ca. 35-40 operatører licenseret, ned fra et peak på ~50 i 2018-2019. Denne konsolidering afspejler de stigende compliance-krav: licensgebyrer, rapporteringsforpligtelser, obligatoriske ansvarligt spil-værktøjer og det danske 10x-loft på <Link to="/omsaetningskrav" className={linkClass}>omsætningskrav</Link> for bonusser. Casinoer, der ikke kan (eller vil) leve op til disse krav, forlader markedet – og det er en positiv udvikling for spillerne.
           </p>

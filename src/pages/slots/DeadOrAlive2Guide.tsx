@@ -134,12 +134,6 @@ const DeadOrAlive2Guide = () => {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={mrvegasSpilleautomater}
-          alt="Spilleautomater-lobby med high volatility slots – Dead or Alive 2 er kendt for ekstrem varians"
-          caption="Dead or Alive 2 er en af de mest populære high volatility slots og findes hos de fleste danske casinoer."
-          size="full"
-        />
 
         <YoutubeEmbed videoId="oz_VUxjLXZ0" title="Dead or Alive 2 gennemgang – Tre bonusmodes og max win" description="Se en komplet gennemgang af Dead or Alive 2: sticky wilds, tre free spins-modes og max win forklaret i praksis." uploadDate="2026-03-07" duration="PT2M30S" />
         <VideoContextBox heading="Her gennemgår vores streamer Dead or Alive 2 i praksis">
@@ -156,6 +150,12 @@ const DeadOrAlive2Guide = () => {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6">
             <Card><CardContent className="pt-6">
               <p className="text-sm text-muted-foreground">Udvikler</p>
+        <ReviewScreenshot
+          src={mrvegasSpilleautomater}
+          alt="Spilleautomater-lobby med high volatility slots – Dead or Alive 2 er kendt for ekstrem varians"
+          caption="Dead or Alive 2 er en af de mest populære high volatility slots og findes hos de fleste danske casinoer."
+          size="full"
+        />
               <p className="text-xl font-bold"><Link to="/spiludviklere/netent" className={linkClass}>NetEnt</Link></p>
             </CardContent></Card>
             <Card><CardContent className="pt-6">

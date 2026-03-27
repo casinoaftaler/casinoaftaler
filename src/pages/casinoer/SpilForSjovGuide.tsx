@@ -76,11 +76,6 @@ const SpilForSjovGuide = () => {
           <p className="text-muted-foreground leading-relaxed">I denne guide gennemgår vi alle muligheder for at spille casino for sjov: Demo-tilstand på spilleautomater og bordspil, <Link to="/bonus-uden-indbetaling" className={linkClass}>gratis bonusser uden indbetaling</Link>, <Link to="/free-spins" className={linkClass}>free spins</Link> og sociale casinospil. Vi forklarer, hvordan du finder de bedste gratis muligheder, hvad du skal være opmærksom på med bonusvilkår, og hvordan du udnytter gratis spil til at forbedre din forståelse af casinospil.</p>
         </section>
 
-        <ReviewScreenshot
-          src={onecasinoSpillemaskiner}
-          alt="OneCasino spillemaskin-lobby med gratis demo-versioner af populære slots tilgængelige uden registrering"
-          caption="Mange danske casinoer som OneCasino tilbyder demo-tilstand, hvor du kan afprøve spil helt gratis"
-        />
 
         <InlineCasinoCards title="Casinoer med gratis demo-spil og bonusser" />
 
@@ -98,6 +93,11 @@ const SpilForSjovGuide = () => {
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><Gamepad2 className="h-7 w-7 text-primary" /> Demo-tilstand: Den dybdegående guide</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Demo-tilstand er den mest tilgængelige og helt risikofrie måde at spille casino på. Den lader dig opleve casinospil i deres fulde funktionalitet med virtuelle penge i stedet for rigtige penge. Her dykker vi ned i, hvordan demo-tilstand fungerer teknisk, hvilke spil du kan spille, og hvordan du bruger det mest effektivt.</p>
+        <ReviewScreenshot
+          src={onecasinoSpillemaskiner}
+          alt="OneCasino spillemaskin-lobby med gratis demo-versioner af populære slots tilgængelige uden registrering"
+          caption="Mange danske casinoer som OneCasino tilbyder demo-tilstand, hvor du kan afprøve spil helt gratis"
+        />
           <p className="mb-4 text-muted-foreground leading-relaxed">Teknisk set fungerer demo-tilstand identisk med rigtige penge-versioner af spillene. Den samme tilfældighedsgenerator (RNG), den samme Return to Player (<Link to="/ordbog/rtp" className={linkClass}>RTP</Link>), de samme bonusfunktioner og den samme matematik ligger bag begge versioner. Denne lighed er ikke frivillig – det er et lovkrav for licenserede casinoer i Danmark. Spillemyndigheden kræver, at demo-versioner er en præcis repræsentation af det rigtige spil, så spillere ikke lokkes af urealistisk høje gevinstfrekvenser i demo-tilstand.</p>
           
           <div className="grid md:grid-cols-2 gap-6 mb-6">

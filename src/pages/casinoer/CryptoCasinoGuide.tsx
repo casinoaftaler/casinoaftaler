@@ -67,11 +67,6 @@ const CryptoCasinoGuide = () => {
           <Card className="bg-destructive/10 border-destructive/30 my-6"><CardContent className="pt-6"><div className="flex items-start gap-3"><AlertTriangle className="h-6 w-6 text-destructive flex-shrink-0 mt-1" /><div><h3 className="font-bold text-destructive mb-2">Vigtig advarsel</h3><p className="text-sm text-muted-foreground">De fleste crypto casinoer opererer uden dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link>. Det betyder, at du ikke har den samme forbrugerbeskyttelse som på licenserede danske casinoer. Gevinster kan være skattepligtige, og der er ingen garanteret adskillelse af spillermidler. Vi anbefaler altid at prioritere <Link to="/casino-licenser" className={linkClass}>licenserede casinoer</Link> for maksimal sikkerhed.</p></div></div></CardContent></Card>
         </section>
 
-        <ReviewScreenshot
-          src={stakeForside}
-          alt="Stake casino forside som eksempel på et populært crypto casino med kryptovaluta-betalinger"
-          caption="Stake er blandt de mest kendte crypto casinoer – bemærk at platformen ikke har dansk licens"
-        />
 
         <InlineCasinoCards title="Licenserede alternativer vi anbefaler" />
 
@@ -108,6 +103,11 @@ const CryptoCasinoGuide = () => {
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold flex items-center gap-2"><CheckCircle2 className="h-7 w-7 text-primary" /> Fordele og ulemper ved crypto casinoer</h2>
           <p className="text-muted-foreground mb-6">For at hjælpe dig med at træffe en informeret beslutning har vi samlet de vigtigste fordele og ulemper ved crypto casinoer sammenlignet med traditionelle danske licenserede casinoer. Det er vigtigt at veje begge sider, da crypto gambling ikke er for alle.</p>
+        <ReviewScreenshot
+          src={stakeForside}
+          alt="Stake casino forside som eksempel på et populært crypto casino med kryptovaluta-betalinger"
+          caption="Stake er blandt de mest kendte crypto casinoer – bemærk at platformen ikke har dansk licens"
+        />
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <Card className="border-green-500/30"><CardHeader><CardTitle className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-green-500" /> Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" /> Lynhurtige ind- og udbetalinger (minutter vs. dage)</li>

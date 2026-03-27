@@ -135,12 +135,6 @@ export default function FranskRouletteGuide() {
           </Card>
         </section>
 
-        <ReviewScreenshot
-          src={danskespilLiveRouletteBord}
-          alt="Fransk roulette-bord med La Partage-reglen – det mest spillervenlige roulette-format"
-          caption="Fransk roulette anvender same hjul som europæisk, men La Partage-reglen halverer house edge på even-money bets."
-          size="full"
-        />
 
         <InlineCasinoCards title="Casinoer med Fransk Roulette & La Partage" count={3} />
 
@@ -153,6 +147,12 @@ export default function FranskRouletteGuide() {
           <p className="text-muted-foreground mb-4 leading-relaxed">
             La Partage ("delingen") og En Prison ("i fængsel") er to varianter af den samme grundregel: spilleren mister ikke hele sin even-money indsats, når kuglen lander på nul. Begge producerer identisk forventet værdi (1,35 % house edge), men med forskellige mekanikker og variansegenskaber.
           </p>
+        <ReviewScreenshot
+          src={danskespilLiveRouletteBord}
+          alt="Fransk roulette-bord med La Partage-reglen – det mest spillervenlige roulette-format"
+          caption="Fransk roulette anvender same hjul som europæisk, men La Partage-reglen halverer house edge på even-money bets."
+          size="full"
+        />
 
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             <Card className="border-primary/30 bg-card">
