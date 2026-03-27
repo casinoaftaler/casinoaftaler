@@ -402,9 +402,9 @@ function checkDuplicate(
     }
   }
 
-  // Check category saturation (max 2 per category in 30 days)
+  // Check category saturation (max 3 per category in 30 days)
   const sameCat = recentArticles.filter(a => a.category === newCategory);
-  if (sameCat.length >= 5) {
+  if (sameCat.length >= 3) {
     return {
       isDuplicate: true,
       reason: `Kategori "${newCategory}" har allerede ${sameCat.length} artikler de sidste 30 dage`,
