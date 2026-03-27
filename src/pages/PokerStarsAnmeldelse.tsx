@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";import { AuthorMetaBar } from "@/components/AuthorMetaBar";import { AuthorBio } from "@/components/AuthorBio";import { FAQSection } from "@/components/FAQSection";import { SEO } from "@/components/SEO";import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";import { Badge } from "@/components/ui/badge";import { Separator } from "@/components/ui/separator";import { Button } from "@/components/ui/button";import { RelatedGuides } from "@/components/RelatedGuides";import { InlineCasinoCards } from "@/components/InlineCasinoCards";import { useSiteSettings } from "@/hooks/useSiteSettings";import { buildArticleSchema, buildFaqSchema, buildReviewSchema } from "@/lib/seo";import { casinoReviewEntities } from "@/lib/entitySchemaHelpers";import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsProviders";import { CasinoReviewHero } from "@/components/CasinoReviewHero";import type { ReactNode } from "react";import { Star, Zap, Check, X, ShieldCheck, Trophy, CreditCard, AlertTriangle, Gamepad2, Smartphone, Headphones, Globe, Users, TrendingUp, Award } from "lucide-react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pokerstarsForside from "@/assets/screenshots/pokerstars-forside.png";
+import pokerstarsSpillemaskiner from "@/assets/screenshots/pokerstars-spillemaskiner.png";
+import pokerstarsLiveCasino from "@/assets/screenshots/pokerstars-live-casino.png";
+import pokerstarsKampagner from "@/assets/screenshots/pokerstars-kampagner.png";
+import pokerstarsBetalinger from "@/assets/screenshots/pokerstars-betaling.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedReviews } from "@/components/RelatedReviews";
