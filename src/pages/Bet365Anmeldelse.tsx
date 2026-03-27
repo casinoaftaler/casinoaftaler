@@ -288,6 +288,7 @@ const Bet365Anmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <Link to="/live-casino" className={linkClass}>Live casinoet</Link> er et af de områder, hvor bet365 virkelig retfærdiggør sin størrelse. Med <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> som primær leverandør er der hundredvis af aktive borde på ethvert tidspunkt. Du finder blackjack fra 50 kr. til 500.000 kr. per hånd, roulette i alle varianter og game shows som Lightning Roulette, Crazy Time og Monopoly Live.
           </p>
+          <ReviewScreenshot src={bet365LiveCasino} alt="bet365 live casino med Top 10 mest populære borde, roulette og blackjack varianter" caption="Live casinoet hos bet365 med eksklusive borde, Top 10 ranking og bredt udvalg af roulette og blackjack." size="full" />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             bet365 har eksklusive live-borde med dedikerede dealers og branding – en fordel, der sjældent ses hos mindre operatører. Bordgrænserne er fleksible nok til at rumme både casual spillere og high rollers. Streaming-kvaliteten er stabil med minimal latency, og interfacet er rent og funktionelt. Her er ingen unødvendige animationer eller distraktioner – bare spillet.
           </p>
