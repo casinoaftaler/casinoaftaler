@@ -292,6 +292,13 @@ const CasinoMedMobilePay = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={onecasinoIndbetaling}
+          alt="OneCasinos indbetalingsside med MobilePay og andre betalingsmetoder tilgængelige for danske spillere"
+          caption="OneCasinos indbetalingskasse – MobilePay er et af de hurtigste betalingsvalg hos danske casinoer"
+          size="full"
+        />
+
         <Separator className="mb-12" />
 
         {/* ══════════════════════════════════════════════════════════════

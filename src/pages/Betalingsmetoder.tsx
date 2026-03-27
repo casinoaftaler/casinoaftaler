@@ -315,7 +315,12 @@ const Betalingsmetoder = () => {
           </div>
         </section>
 
-        
+        <ReviewScreenshot
+          src={spilnuBetaling}
+          alt="Spilnu betalingssektion med oversigt over tilgængelige indbetalingsmetoder for danske spillere"
+          caption="Spilnu's betalingssektion – et eksempel på de typiske betalingsmetoder tilgængelige hos danske casinoer"
+          size="full"
+        />
 
         <Separator className="my-10" />
 

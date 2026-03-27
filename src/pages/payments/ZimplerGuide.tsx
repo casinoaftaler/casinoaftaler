@@ -101,9 +101,16 @@ const ZimplerGuide = () => {
           position: "after-intro",
           title: "Vores Praktiske Test – Zimpler på Tre Danske Casinoer",
           content: (
-            <>
-              <p className="mb-4 text-muted-foreground leading-relaxed">
-                Vi testede Zimpler som betalingsmetode på tre danske casinoer med Spillemyndighedens licens i februar 2026. Testen blev gennemført med en Nordea-bankkonto og MitID-appen som godkendelsesmetode. Vi fokuserede på indbetalingshastighed, udbetalingstid, brugeroplevelse på mobil og bonuskvalificering.
+             <>
+               <p className="mb-4 text-muted-foreground leading-relaxed">
+                 Vi testede Zimpler som betalingsmetode på tre danske casinoer med Spillemyndighedens licens i februar 2026. Testen blev gennemført med en Nordea-bankkonto og MitID-appen som godkendelsesmetode. Vi fokuserede på indbetalingshastighed, udbetalingstid, brugeroplevelse på mobil og bonuskvalificering.
+               </p>
+               <ReviewScreenshot
+                 src={mrvegasBetaling}
+                 alt="MrVegas betalingsoversigt med tilgængelige ind- og udbetalingsmetoder på dansk casino"
+                 caption="MrVegas' betalingsoversigt – her ser du de tilgængelige metoder, inklusiv mulighed for bankoverførsel via Zimpler"
+                 size="full"
+               />
               </p>
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Indbetalingstest:</strong> Zimpler var tilgængeligt som betalingsmetode på to af tre testede casinoer – en lavere dækning end{" "}
