@@ -100,6 +100,20 @@ export function BonusHuntStatsTab({ data, huntNumber, huntDate, isLive = false, 
           <StatRow icon={Wallet} label="Start Balance" value={`${s.startBalance.toLocaleString('da-DK')} kr`} />
           <StatRow icon={Target} label="Target Balance" value={`${s.targetBalance.toLocaleString('da-DK')} kr`} />
           <StatRow icon={Wallet} label="End Balance" value={s.endBalance !== null ? `${s.endBalance.toLocaleString('da-DK')} kr` : '—'} highlight={!!s.endBalance} />
+          {s.endBalance !== null && (
+            <div className={`flex items-center justify-between py-1.5 border-b border-border/20 last:border-0 group/row transition-all duration-[180ms] hover:bg-muted/20 rounded-md px-1`}>
+              <span className="text-xs text-muted-foreground flex items-center gap-1.5">
+                {s.endBalance - s.startBalance >= 0
+                  ? <TrendingUp className="h-[14px] w-[14px] text-green-500 transition-all duration-[180ms] group-hover/row:drop-shadow-[0_0_4px_rgba(34,197,94,0.5)]" />
+                  : <TrendingDown className="h-[14px] w-[14px] text-red-500 transition-all duration-[180ms] group-hover/row:drop-shadow-[0_0_4px_rgba(239,68,68,0.5)]" />
+                }
+                Resultat
+              </span>
+              <span className={`text-xs font-semibold transition-transform duration-[180ms] group-hover/row:scale-[1.02] ${s.endBalance - s.startBalance >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                {s.endBalance - s.startBalance >= 0 ? '+' : ''}{(s.endBalance - s.startBalance).toLocaleString('da-DK')} kr
+              </span>
+            </div>
+          )}
           <StatRow icon={Dice3} label="Avg Bet" value={`${s.averageBet} kr`} />
           <StatRow icon={BarChart3} label="Average X" value={s.averageX !== null ? `${s.averageX}x` : '—'} highlight />
           <StatRow icon={Scale} label="Break-Even X" value={`${s.breakEvenX}x`} />
