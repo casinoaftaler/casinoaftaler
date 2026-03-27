@@ -289,6 +289,12 @@ const ResponsibleGaming = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={rofusForsideMitid}
+          alt="ROFUS.dk forside med MitID-login til Register Over Frivilligt Udelukkede Spillere og link til StopSpillet"
+          caption="ROFUS.dk – det danske selvudelukkelsesregister med MitID-login og direkte adgang til StopSpillet"
+        />
+
         <Separator className="my-10" />
 
         {/* Lovgivning */}
