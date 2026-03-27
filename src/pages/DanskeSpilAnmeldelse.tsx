@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilForside from "@/assets/screenshots/danskespil-forside.png";
+import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.png";
+import danskespilLiveCasino from "@/assets/screenshots/danskespil-live-casino.png";
+import danskespilOddset from "@/assets/screenshots/danskespil-oddset.png";
+import danskespilBingo from "@/assets/screenshots/danskespil-bingo.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
