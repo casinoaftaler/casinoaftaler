@@ -328,6 +328,12 @@ const Forretningsmodel = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenLicens}
+          alt="Spillemyndighedens licensliste over godkendte online casinoer i Danmark – vi anbefaler kun licenserede operatører"
+          caption="Vi anbefaler udelukkende casinoer med aktiv dansk licens – verificerbart via Spillemyndighedens licensliste"
+        />
+
         <Separator className="my-10" />
 
         {/* Hvordan rangering fungerer */}

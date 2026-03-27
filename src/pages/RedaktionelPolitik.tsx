@@ -299,6 +299,12 @@ const RedaktionelPolitik = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenLicens}
+          alt="Spillemyndighedens licensliste – vores redaktion verificerer regelmæssigt casinoers licensstatus her"
+          caption="Licensverifikation er en central del af vores redaktionelle proces – vi tjekker regelmæssigt Spillemyndighedens register"
+        />
+
         <Separator className="my-10" />
 
         {/* Opdateringspolitik */}

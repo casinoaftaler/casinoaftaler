@@ -234,6 +234,18 @@ export default function Contact() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenForside}
+          alt="Spillemyndighedens hjemmeside – den officielle danske reguleringsmyndighed for online gambling"
+          caption="Vi samarbejder med Spillemyndigheden og følger dansk spillelovgivning – kontakt os ved spørgsmål"
+        />
+
+        <ReviewScreenshot
+          src={betiniaLobby}
+          alt="Betinia casino lobby – eksempel på et af de casinoer vi anmelder og overvåger"
+          caption="Vi anmelder og opdaterer løbende information om danske licenserede casinoer som Betinia"
+        />
+
         <Separator className="my-10" />
 
         {/* Contact form + sidebar */}

@@ -340,6 +340,12 @@ const SaadanTesterVi = () => {
           </Card>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenLicens}
+          alt="Spillemyndighedens licensliste – vi verificerer alle casinoers licensstatus som del af vores testproces"
+          caption="Licensverifikation er det første skridt i vores testmetode – kun casinoer med aktiv dansk licens vurderes"
+        />
+
         <Separator className="my-10" />
 
         {/* 5. Transparens */}
