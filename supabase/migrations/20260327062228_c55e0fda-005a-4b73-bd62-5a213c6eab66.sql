@@ -1,0 +1,1 @@
+UPDATE casino_news SET featured_image = 'https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/partnerskab-pragmatic-play.jpg' WHERE id = '558761bb-39aa-4eb9-b53b-a1e8479774e4'
