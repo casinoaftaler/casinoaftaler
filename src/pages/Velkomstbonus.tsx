@@ -265,6 +265,19 @@ const Velkomstbonus = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaVelkomstbonus}
+          alt="Betinia velkomstbonus aktiveringsflow med 100% op til 1.000 kr. og 3-trins aktivering"
+          caption="Velkomstbonus hos Betinia – 3-trins aktivering: indbetal, aktiver bonus og spil"
+        />
+
+        <ReviewScreenshot
+          src={betiniaBonusvilkaar}
+          alt="Betinia bonusvilkår med omsætningskrav på 10x, spilbidrag og maks. indsats på 36 kr."
+          caption="Detaljerede bonusvilkår hos Betinia – 10x omsætningskrav med fuld gennemsigtighed"
+          size="medium"
+        />
+
         <InlineCasinoCards title="Bedste casinoer med velkomstbonus" count={6} />
 
         <BonusClusterPriorityLinks currentPath="/velkomstbonus" />

@@ -284,6 +284,13 @@ const Omsaetningskrav = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaBonusvilkaar}
+          alt="Omsætningskrav hos Betinia – 10x på indskud + bonus, 60 dages gyldighed og spilbidrag pr. kategori"
+          caption="Betinias bonusvilkår viser præcist hvordan omsætningskravet beregnes – 10x (d+b) med 60 dages tidsfrist"
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* Sådan fungerer det */}
