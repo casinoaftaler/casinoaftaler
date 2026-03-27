@@ -21,6 +21,10 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { ShieldCheck, Zap, Check, X, Globe, Gamepad2, Trophy, Headphones, Wallet, Target, Users, TrendingUp, BarChart3 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import nordicbetForside from "@/assets/screenshots/nordicbet-casino-forside.png";
+import nordicbetKampagner from "@/assets/screenshots/nordicbet-kampagner-bonusser.png";
+import nordicbetLiveCasino from "@/assets/screenshots/nordicbet-live-casino-lobby.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
