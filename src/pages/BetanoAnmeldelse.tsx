@@ -28,6 +28,10 @@ import {
   Smartphone, Headphones, Users, Globe, AlertTriangle, Target,
   BarChart3, Activity, Crown,
 } from "lucide-react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betanoSportsbook from "@/assets/screenshots/betano-sportsbook.png";
+import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.png";
+import betanoCasinoLobby from "@/assets/screenshots/betano-casino-lobby.png";
 import { UserReviewSection } from "@/components/UserReviewSection";
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -160,6 +164,7 @@ const BetanoAnmeldelse = () => {
             Det store spørgsmål er, om teknologisk ambition alene er nok. Betano er stadig relativt ny i Danmark, og brand-genkendelsen er lavere end hos <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>, <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> eller <Link to="/casino-anmeldelser/danske-spil" className={linkClass}>Danske Spil</Link>. Det er en platform, der gør mange ting rigtigt – men den mangler stadig den dybde og markedsmodenhed, som 20+ års tilstedeværelse giver. Læs mere om vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link>.
           </p>
         </section>
+          <ReviewScreenshot src={betanoSportsbook} alt="Betano sportsbook forside med live odds på fodboldkampe og Bet Mentor-funktion" caption="Betanos sportsbook med live odds, BB Boost-tilbud og den integrerede Bet Mentor-funktion." eager size="full" />
 
           <YoutubeEmbed
             videoId="Uu3NBZzt-Sk"
@@ -208,6 +213,7 @@ const BetanoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Jackpot-sektionen er tilstrækkelig med progressive puljer fra Pragmatic Play (Drops & Wins-netværket), men Betano har ikke de store Mega Moolah-agtige progressive jackpots, som er kendetegnende for <Link to="/spiludviklere/microgaming" className={linkClass}>Microgaming</Link>-partnere. Det er en bevidst prioritering – Betano satser på high-RTP spil frem for lottery-style progressives.
           </p>
+          <ReviewScreenshot src={betanoCasinoLobby} alt="Betano casino lobby med eksklusive slots og Peter and Sons-kategorier" caption="Betanos casino-sektion med eksklusive spil, kategorifiltre og Peter & Sons-titler." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -227,6 +233,7 @@ const BetanoAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Streaming-kvaliteten er stabil, og interfacet er rent og funktionelt. Betanos live casino er ikke et område, der skiller sig ud – hverken positivt eller negativt. Det fungerer, det er professionelt, men det er ikke en grund i sig selv til at vælge Betano. For spillere, der prioriterer live casino højt, vil <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller bet365 med deres eksklusive borde og dybere katalog typisk være det bedre valg.
           </p>
+          <ReviewScreenshot src={betanoLiveCasino} alt="Betano live casino med eksklusive Betano Dansk Blackjack og Roulette fra Playtech" caption="Betanos live casino-lobby med eksklusive danske borde og Live Dealere fra Evolution Gaming." size="full" />
         </section>
 
         <Separator className="my-10" />
