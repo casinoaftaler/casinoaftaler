@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import bwinSportsbook from "@/assets/screenshots/bwin-sportsbook.png";
+import bwinCasinoLobby from "@/assets/screenshots/bwin-casino-lobby.png";
+import bwinLiveCasino from "@/assets/screenshots/bwin-live-casino.png";
+import bwinKampagner from "@/assets/screenshots/bwin-kampagner.png";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
@@ -200,6 +205,7 @@ const BwinAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Denne segmentering er vigtig at forstå, fordi den forklarer mange af bwins valg: moderate casinobonusser (budgettet prioriterer sports-promotions), et godt-men-ikke-exceptionelt spiludvalg (fokus er på sportsbogen) og en app, der er optimeret til live betting (frem for casino-navigation). Med denne kontekst in mente, lad os gennemgå platformen i detaljer.
           </p>
+          <ReviewScreenshot src={bwinSportsbook} alt="bwin sportsbook forside med Price Boost odds, populære kombispil og live betting på fodbold og tennis" caption="bwins sportsbook med Price Boost-tilbud, populære kombispil og bred dækning af internationale kampe." eager size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -260,6 +266,8 @@ const BwinAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             <Link to="/live-casino" className={linkClass}>Live casinoet</Link> er drevet af Evolution Gaming og er en af bwins stærkere casino-vertikaler. Eksklusive bwin-borde med dedikerede dealers giver en premium-oplevelse. Udvalget inkluderer klassisk blackjack og roulette samt game shows som Crazy Time, Monopoly Live, Dream Catcher og Lightning Dice. Indsatser starter fra 10 kr. på standard-borde og op til 50.000+ kr. på VIP-borde.
           </p>
+          <ReviewScreenshot src={bwinCasinoLobby} alt="bwin casino lobby med cashback-kampagne, bwin-favoritter og populære spilleautomater som Book of Dead og Sweet Bonanza" caption="Casino-lobbyen hos bwin med 10% cashback-tilbud og et curateret udvalg af populære spilleautomater." size="full" />
+          <ReviewScreenshot src={bwinLiveCasino} alt="bwin live casino med eksklusive blackjack-borde, roulette-varianter og high roller baccarat fra Evolution Gaming" caption="Live casino-sektionen med eksklusive bwin-borde, Lightning Roulette og VIP-blackjack." size="full" />
         </section>
 
         <Separator className="my-10" />
@@ -279,6 +287,7 @@ const BwinAnmeldelse = () => {
           <p className="text-muted-foreground leading-relaxed">
             Løbende kampagner er primært fokuseret på sport med odds-boosts, free bets og akkumulatortilbud. Casino-kampagner kører også, men med lavere frekvens – typisk ugentlige free spins-tilbud og sæsonbaserede events. bwins bonusprogram er moderat sammenlignet med aggressive konkurrenter som <Link to="/casino-anmeldelser/mr-vegas" className={linkClass}>Mr Vegas</Link>, men vilkårene er fair og gennemsigtige.
           </p>
+          <ReviewScreenshot src={bwinKampagner} alt="bwin kampagneoversigt med casino cashback, sportsbonusser, Kombi Boost og pokertilbud" caption="bwins kampagneside med separate tilbud for casino, sport og poker – her ses cashback, Kombi Boost og Re-Bet." size="full" />
         </section>
 
         <Separator className="my-10" />
