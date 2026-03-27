@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { BonusMoneyLinks } from "@/components/BonusMoneyLinks";
+import { GPWASealBadge } from "@/components/GPWASealBadge";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -187,6 +188,9 @@ const CasinoBonus = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <div className="my-4">
+          <GPWASealBadge variant="inline" showTrustLink />
+        </div>
 
         <SnippetAnswer answer="Den bedste casino bonus i Danmark 2026 er en no-sticky bonus med 10x omsætningskrav – det giver højest reel værdi. Sammenlign bonustyper, forstå omsætningsmodeller og find den bonus der passer din spillestil." />
 

@@ -1,4 +1,5 @@
 import { useCasinos } from "@/hooks/useCasinos";
+import { GPWASealBadge } from "@/components/GPWASealBadge";
 
 interface CasinoReviewHeroProps {
   slug: string;
@@ -28,6 +29,9 @@ export function CasinoReviewHero({ slug, casinoName }: CasinoReviewHeroProps) {
         <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-5xl">
           {displayName}
         </h2>
+        <div className="mt-3">
+          <GPWASealBadge variant="inline" showTrustLink />
+        </div>
       </div>
     </div>
   );

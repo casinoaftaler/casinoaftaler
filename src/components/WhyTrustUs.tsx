@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ShieldCheck, BarChart3, Scale, Eye } from "lucide-react";
+import { ShieldCheck, BarChart3, Scale, Eye, Award } from "lucide-react";
 
 const trustPoints = [
   {
@@ -31,6 +31,14 @@ const trustPoints = [
       "Vi scanner casinoers bonusvilkår og licensstatus automatisk og dagligt, så vi opdager ændringer før du gør.",
     stat: "Daglig scanning",
   },
+  {
+    icon: Award,
+    title: "GPWA-godkendt portal",
+    description:
+      "Vi er officielt godkendt af GPWA (Gambling Portal Webmasters Association) – branchens ældste tillidsmærke for casino-affiliates.",
+    stat: "Verified Seal of Approval",
+    link: { to: "/er-casinoaftaler-trovaerdig", label: "Verificér os →" },
+  },
 ];
 
 export function WhyTrustUs() {
@@ -43,7 +51,7 @@ export function WhyTrustUs() {
             Vi er ikke endnu en affiliate-side med copy-paste bonuslister. Vores redaktion tester, beregner og verificerer – så du kan træffe informerede valg.
           </p>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
           {trustPoints.map((point) => (
             <div
               key={point.title}

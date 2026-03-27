@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ShieldCheck as GpwaShield } from "lucide-react";
 import { ExternalLink, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CommunityPromoSection } from "@/components/CommunityPromoSection";
@@ -120,6 +121,22 @@ export function AuthorBio({ author = "jonas", showCommunity = true }: AuthorBioP
 
               <p className="text-sm leading-relaxed text-muted-foreground">
                 {data.bio}
+              </p>
+              <p className="flex items-center gap-1 text-xs text-muted-foreground">
+                <GpwaShield className="h-3 w-3 text-primary" />
+                Casinoaftaler.dk er en{" "}
+                <a
+                  href="https://certify.gpwa.org/verify/casinoaftaler.dk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline hover:text-primary/80"
+                >
+                  GPWA-godkendt
+                </a>{" "}
+                affiliate platform.{" "}
+                <Link to="/er-casinoaftaler-trovaerdig" className="text-primary underline hover:text-primary/80">
+                  Læs mere
+                </Link>
               </p>
 
               <div className="flex flex-wrap items-center gap-3 pt-1">
