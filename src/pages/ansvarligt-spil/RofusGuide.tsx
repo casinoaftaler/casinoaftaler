@@ -10,6 +10,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaRegMitid from "@/assets/screenshots/betinia-reg-mitid.webp";
+import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
