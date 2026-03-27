@@ -135,6 +135,12 @@ const Forretningsmodel = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenForside}
+          alt="Spillemyndighedens officielle hjemmeside – den danske reguleringsmyndighed der kontrollerer casinolicenser og spillelovgivning"
+          caption="Spillemyndigheden fører tilsyn med alle danske casinoer – vores forretningsmodel opererer inden for denne regulering"
+        />
+
         <Separator className="my-10" />
 
         {/* Sådan fungerer det i praksis */}
