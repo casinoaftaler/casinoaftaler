@@ -194,7 +194,23 @@ const MrGreenAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Live casino – dedikerede Mr Green-borde</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/live-casino" className={linkClass}>Live casinoet</Link> er et af Mr Greens stærkeste kort. Med <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> som primær leverandør har du adgang til alle de klassiske formater: <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> i multiple varianter (Classic, VIP, Speed, Infinite), <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> (European, Lightning, Immersive, Auto), baccarat og casino hold'em. Derudover har du adgang til Evolutions game shows: Crazy Time, Dream Catcher, Lightning Dice, Monopoly Live og nyere titler som Funky Time.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det, der differentierer Mr Green fra mange konkurrenter, er de dedikerede Mr Green-brandede borde. Disse borde er eksklusivt tilgængelige for Mr Green-spillere, hvilket typisk betyder kortere ventetider og en mere intim oplevelse. Under vores test fandt vi tre dedikerede blackjack-borde og to dedikerede roulette-borde med Mr Green-branding. Minimumsinsatserne på de dedikerede borde startede ved 50 kr. for blackjack og 10 kr. for roulette – lavere end standardbordene, hvilket er ideelt for rekreative spillere.</p>
+
+          <ReviewScreenshot
+            src={mrgreenLiveBlackjack}
+            alt="Mr Green live casino blackjack med dedikerede danske borde, Manhattan og Cosmopolitan varianter"
+            caption="Mr Greens dedikerede live blackjack-borde med dansk dealer og eksklusive varianter."
+            size="full"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">Videostreaming-kvaliteten er upåklagelig. Vi testede live casinoet på desktop (fiberforbindelse), mobil (4G) og tablet (WiFi) og fandt konsekvent høj billedkvalitet med minimal latency. Dealer-interaktionen er professionel og venlig, og chat-funktionen fungerer gnidningsfrit. Spilhistorik og statistikker er let tilgængelige under spillet, hvilket giver bordspilsentusiasten de data, de har brug for til strategisk spil.</p>
+
+          <ReviewScreenshot
+            src={mrgreenLiveRoulette}
+            alt="Mr Green live casino roulette med eksklusive borde, Lightning Roulette og Vegas Roulette"
+            caption="Mr Greens live roulette-sektion med eksklusive borde og indsatser fra 2 kr. til 30.000 kr."
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">Det samlede antal live-borde (ca. 60) er dog mindre end hos storoperatører som LeoVegas (200+) eller bet365 (150+). For de fleste spillere er 60 borde rigeligt – men hvis du specifikt jagter niche-varianter som Teen Patti eller Andar Bahar, kan du opleve, at Mr Greens udvalg er begrænset. Det er endnu et eksempel på Mr Greens kuraterede tilgang: de tilbyder de mest efterspurgte formater i høj kvalitet snarere end et enormt antal varianter.</p>
         </section>
 
