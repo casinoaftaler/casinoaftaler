@@ -8,6 +8,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { AnsvarligtSpilResources } from "@/components/AnsvarligtSpilResources";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import danskespilCasinoLobby from "@/assets/screenshots/danskespil-casino-lobby.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
