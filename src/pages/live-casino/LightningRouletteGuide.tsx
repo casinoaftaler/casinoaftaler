@@ -290,7 +290,7 @@ const LightningRouletteGuide = () => {
             alt="Red Door Roulette hos Danske Spil med game show-format, roulettehjul og live dealer"
             caption="Red Door Roulette – Evolutions game show-variant med multiplikatorer og bonus-runder bag den røde dør"
             size="full"
-          </p>
+          />
         </section>
 
         <Separator className="my-10" />
