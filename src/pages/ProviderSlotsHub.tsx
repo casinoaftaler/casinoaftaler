@@ -161,7 +161,6 @@ export default function ProviderSlotsHub() {
                 />
               </section>
             ),
-            ),
             stats: stats ? (
               <section className="mb-12" key="stats">
                 <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
