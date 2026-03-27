@@ -69,14 +69,48 @@ const ALLOWED_DOMAINS = [
 ];
 
 const TOPIC_SEARCHES = [
+  // Regulering & licenser
   "Spillemyndigheden nye licenser Danmark 2026",
   "dansk online casino regulering ændringer 2026",
+  // Betalinger
   "Trustly MobilePay MitID casino betalinger Danmark",
+  "Pay N Play casino Danmark instant banking 2026",
+  // Marked & lanceringer
   "nye online casino lanceringer Danmark 2026",
-  "dansk gambling lovgivning forbrugerbeskyttelse 2026",
-  "iGaming teknologi sikkerhed AI 2026",
-  "anti-hvidvask online casino Danmark",
   "online gambling markedsandel Danmark omsætning",
+  // Juridisk
+  "dansk gambling lovgivning forbrugerbeskyttelse 2026",
+  "spilleafgift Danmark skat gambling 2026",
+  // Spiludviklere
+  "Pragmatic Play nye slots releases 2026",
+  "Evolution Gaming live casino nye spil 2026",
+  "NetEnt Novomatic spiludvikler opkøb fusion 2026",
+  "Play'n GO nye spilleautomater 2026",
+  // Ansvarligt spil
+  "ROFUS selvudelukkelse statistik Danmark 2026",
+  "ansvarligt spil tiltag online casino Danmark",
+  "spilgrænser mandatory deposit limit Danmark",
+  // Live casino
+  "live casino game shows Danmark 2026",
+  "danske live dealere Evolution casino studios",
+  // Mobil
+  "mobil casino app PWA Danmark 2026",
+  "mobilbetaling casino Danmark Apple Pay Google Pay",
+  // Teknologi & sikkerhed
+  "iGaming teknologi sikkerhed AI 2026",
+  "AI kunstig intelligens online casino svindel detection",
+  "blockchain cryptocurrency casino Danmark regulering",
+  // Nordisk marked
+  "Sverige Norge online casino regulering sammenligning 2026",
+  "nordisk gambling marked vækst 2026",
+  // Data & RTP
+  "RTP return to player online slots statistik 2026",
+  "casino udbetalingsprocent Danmark gennemsnit",
+  // Kundeservice
+  "online casino kundeservice Danmark responstid chat",
+  // Branche & events
+  "iGaming konference ICE London SiGMA 2026",
+  "gambling affiliate industri Danmark partnerskaber",
 ];
 
 const SYSTEM_PROMPT = `Du er en erfaren dansk casino-journalist på casinoaftaler.dk.
