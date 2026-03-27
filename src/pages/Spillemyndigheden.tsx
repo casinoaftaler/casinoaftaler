@@ -19,6 +19,8 @@ import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowMitidRegistrering from "@/assets/screenshots/kapow-mitid-registrering.png";
+import spillemyndighedenForside from "@/assets/screenshots/spillemyndigheden-dk-forside.png";
+import spillemyndighedenVendor from "@/assets/screenshots/spillemyndigheden-spilleverandoer.png";
 const keyFacts = [
   { label: "Grundlagt", value: "2000 (som Spillemyndigheden i 2012)" },
   { label: "Placering", value: "Odense, Danmark" },
@@ -335,6 +337,12 @@ const Spillemyndigheden = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={spillemyndighedenForside}
+          alt="Spillemyndigheden.dk forside med nyhedsbrev, pressemeddelelser og information om dansk spillelovgivning"
+          caption="Spillemyndigheden.dk – den officielle myndighed der regulerer alt online spil i Danmark"
+        />
+
         <Separator className="my-10" />
 
         {/* Spillerbeskyttelse */}
@@ -438,6 +446,12 @@ const Spillemyndigheden = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={spillemyndighedenVendor}
+          alt="Spillemyndighedens side for spilleverandører med ansøgningsblanketter og krav til tilladelse som spiludbyder i Danmark"
+          caption="Spillemyndighedens licensansøgningsportal – alle operatører skal igennem denne proces for at få dansk tilladelse"
+        />
 
         <Separator className="my-10" />
 

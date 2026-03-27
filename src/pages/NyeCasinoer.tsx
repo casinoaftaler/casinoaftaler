@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import kapowRegistrering from "@/assets/screenshots/kapow-registrering.png";
+import playkasinoForside from "@/assets/screenshots/playkasino-forside-velkomst.png";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
@@ -432,6 +433,12 @@ const NyeCasinoer = () => {
             Et nyt casino skal opnå minimum 7/10 i samlet score for at komme på vores generelle liste, og 8/10 for at kvalificere sig til vores topvalg. Læs den fulde gennemgang af vores metode på <Link to="/saadan-tester-vi-casinoer" className={linkClass}>Sådan tester vi casinoer</Link>.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={playkasinoForside}
+          alt="PlayKasino forside med 100% velkomstbonus op til 500 kr. – eksempel på nyt dansk casino med fuld licens"
+          caption="PlayKasino – et af de nyeste danske casinoer med moderne design og konkurrencedygtig velkomstbonus"
+        />
 
         <Separator className="my-10" />
 

@@ -3,6 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
 import kapowRegistrering from "@/assets/screenshots/kapow-registrering.png";
+import bet365Bonus from "@/assets/screenshots/bet365-velkomstbonus-vilkaar.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -587,6 +588,12 @@ const Omsaetningskrav = () => {
             <strong>Konklusion:</strong> 10x (b) giver 3x højere reel bonusværdi end 10x (d+b) – præcis fordi din indbetaling ikke indgår i beregningsgrundlaget. Når du sammenligner bonusser, skal du ALTID tjekke om kravet er (b) eller (d+b). En "5x (d+b)"-bonus svarer reelt til "10x (b)" i total omsætning – de er matematisk ækvivalente.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={bet365Bonus}
+          alt="Bet365 Casino velkomstbonus med 100% op til 1.000 kr. og omsætningskrav på 10x indbetaling plus bonus"
+          caption="Bet365s bonusvilkår viser tydeligt omsætningskravet – 10x på indbetaling + bonus inden for 60 dage"
+        />
 
         <Separator className="my-10" />
 

@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import royalcasinoKampagner from "@/assets/screenshots/royalcasino-kampagner.png";
 import casinostuenShop from "@/assets/screenshots/casinostuen-shop.png";
+import comeonGetluckyVip from "@/assets/screenshots/comeon-getlucky-vip-tilbud.png";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -740,6 +741,12 @@ const VipProgram = () => {
             </table>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={comeonGetluckyVip}
+          alt="ComeOn og GetLucky VIP-kampagner med eksklusive bonustilbud og loyalitetsprogrammer for danske spillere"
+          caption="ComeOn og GetLucky tilbyder begge dedikerede kampagner og VIP-tilbud til loyale spillere"
+        />
 
         <Separator className="mb-12" />
 
