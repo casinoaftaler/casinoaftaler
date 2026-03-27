@@ -24,6 +24,12 @@ import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Users, TrendingUp } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import mrgreenLobby from "@/assets/screenshots/mrgreen-lobby.png";
+import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.png";
+import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.png";
+import mrgreenJackpots from "@/assets/screenshots/mrgreen-jackpots.png";
+import mrgreenRakeback from "@/assets/screenshots/mrgreen-rakeback.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -84,6 +90,15 @@ const MrGreenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Mr Green Casino er ikke bare endnu et online casino – det er et brand, der har redefineret, hvad en casinooplevelse kan være. Grundlagt i Stockholm i 2008 af tre svenske entreprenører med en fælles vision om at skabe "verdens bedste online casino", har Mr Green konsekvent vundet branchepriser for design, innovation og ansvarligt spil. Hvor de fleste operatører konkurrerer på bonusstørrelser og antal spil, har Mr Green valgt en fundamentalt anderledes tilgang: kvalitet over kvantitet, design over volumen, og spillerbeskyttelse over profitmaksimering.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Denne filosofi gennemsyrer alle aspekter af platformen. Fra det ikoniske grøn-sorte farveskema og den elegante typografi til den kuraterede spilliste og det patenterede Green Gaming-værktøj – alt er designet med omhu og intention. Det er en tilgang, der resonerer dybt med en bestemt type spiller: den bevidste, designorienterede spiller, der ser online casino som en raffineret underholdningsform snarere end et sted at jage den største bonus.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Med en dansk licens fra Spillemyndigheden er platformen fuldt lovlig og sikker for danske spillere. Ejerskabet af Evoke PLC (tidl. 888 Holdings) – en af verdens mest regulerede spilkoncerner med børsnotering på London Stock Exchange – giver en ekstra dimension af finansiel stabilitet og gennemsigtighed, som smaller operatører simpelthen ikke kan matche.</p>
+
+          <ReviewScreenshot
+            src={mrgreenLobby}
+            alt="Mr Green casino forside med Jackpot Hunt, favoritter og velkomstbonus efter login"
+            caption="Mr Greens forside med Jackpot Hunt-sektion, personlige favoritter og det karakteristiske grønne design."
+            eager
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">I denne anmeldelse tester vi Mr Green Casino fra bunden: vi har gennemspillet over 200 spil, testet Green Gaming-værktøjet med reelle data, foretaget ind- og udbetalinger med tre forskellige metoder, og kontaktet kundeservice på fem separate tidspunkter. Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> vægter ansvarligt spil og brugervenlighed højt, og på begge parametre scorer Mr Green Casino exceptionelt.</p>
           <YoutubeEmbed videoId="htCLh4TK6tA" title="Mr Green Casino Anmeldelse 2026 – Ærlig Gennemgang" description="Se hvordan Mr Green ser ud indefra. Vi viser dig hjemmesiden, navigation, spilvalg og vigtige features." duration="PT2M" uploadDate="2026-02-18" articleUrl="https://casinoaftaler.dk/casino-anmeldelser/mr-green" />
           <div className="rounded-lg border border-border bg-muted/30 p-5">
@@ -125,6 +140,13 @@ const MrGreenAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Lad os beregne den reelle bonusværdi: Du indbetaler 1.000 kr. og modtager 1.000 kr. i bonus. Med 10x omsætningskrav skal du gennemspille (1.000 + 1.000) × 10 = 20.000 kr. Ved en gennemsnitlig RTP på 96% er det statistisk forventede tab under gennemspilningen ~800 kr. – hvilket giver en teoretisk nettogevinst på ~200 kr. fra bonussen. Mr Greens kuraterede spiludvalg har typisk højere gennemsnitlig RTP end markeder med mange lavkvalitetsspil.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Udover velkomstbonussen har Mr Green et af branchens bedste kampagneprogrammer for eksisterende spillere. Ugentlige <Link to="/free-spins" className={linkClass}>free spins</Link>-tilbud, sæsonkampagner og eksklusive turneringer sikrer, at der altid er noget at se frem til. Mr Greens kampagner er typisk mere kreative og veldesignede end branchens gennemsnit – et afspejling af brandets generelle tilgang til kvalitet. Vi har set alt fra "mystery bonusser" med variabel værdi til tematiske kampagner knyttet til nye spiludgivelser.</p>
           <p className="text-muted-foreground leading-relaxed">En bemærkelsesværdig og kontroversiel detalje er, at Mr Greens Green Gaming-værktøj kan påvirke dine kampagnetilbud. Hvis systemet vurderer, at din spilleadfærd viser risikotegn, kan visse kampagner begrænses eller helt fjernes fra dit tilbud. Det er en tilgang, der prioriterer spillerbeskyttelse over profit – selv på bekostning af kampagneindtægter. For den ansvarlige spiller er det en tryghed; for den bonusjæger, der ønsker maksimal værdi uden begrænsninger, kan det føles frustrerende. Vi vurderer det som en positiv praksis, der understreger Mr Greens seriøsitet.</p>
+
+          <ReviewScreenshot
+            src={mrgreenRakeback}
+            alt="Mr Green 20 procent ugentlig rakeback kampagne med Gentlemanden-tema"
+            caption="Mr Greens løbende kampagner – her 20% ugentlig rakeback for eksisterende spillere."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -154,6 +176,14 @@ const MrGreenAnmeldelse = () => {
 
           <h3 className="mt-6 mb-3 text-xl font-bold">Hvad mangler i Mr Greens katalog?</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det kuraterede udvalg har en bagside. Spillere, der jagter de nyeste udgivelser fra nicheudviklere som Hacksaw Gaming, Push Gaming eller NoLimit City, vil finde et mere begrænset udvalg end hos <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> eller <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>. Specifikt manglede Mr Green flere populære high-volatility megaways-titler under vores test, herunder spil fra Hacksaw Gaming, som er en af de mest efterspurgte udviklere blandt erfarne spillere i 2026.</p>
+
+          <ReviewScreenshot
+            src={mrgreenJackpots}
+            alt="Mr Green jackpot-sektion med progressive jackpots og Jackpot Hunt med millionpuljer"
+            caption="Mr Greens jackpot-sektion med progressive puljer op til 6,7 mio. kr. og den eksklusive Jackpot Hunt."
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">For spillere, der prioriterer <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>høj RTP</Link> og velkendte kvalitetstitler, er Mr Greens udvalg dog mere end tilstrækkeligt. Det er en klassisk quality-vs-quantity afvejning, og Mr Green har truffet et klart og konsistent valg. Spørgsmålet er, om det valg passer til din spilleprofil – og det afhænger helt af, hvad du prioriterer.</p>
         </section>
 
@@ -164,7 +194,23 @@ const MrGreenAnmeldelse = () => {
           <h2 className="mb-4 text-3xl font-bold">Live casino – dedikerede Mr Green-borde</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed"><Link to="/live-casino" className={linkClass}>Live casinoet</Link> er et af Mr Greens stærkeste kort. Med <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link> som primær leverandør har du adgang til alle de klassiske formater: <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> i multiple varianter (Classic, VIP, Speed, Infinite), <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> (European, Lightning, Immersive, Auto), baccarat og casino hold'em. Derudover har du adgang til Evolutions game shows: Crazy Time, Dream Catcher, Lightning Dice, Monopoly Live og nyere titler som Funky Time.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Det, der differentierer Mr Green fra mange konkurrenter, er de dedikerede Mr Green-brandede borde. Disse borde er eksklusivt tilgængelige for Mr Green-spillere, hvilket typisk betyder kortere ventetider og en mere intim oplevelse. Under vores test fandt vi tre dedikerede blackjack-borde og to dedikerede roulette-borde med Mr Green-branding. Minimumsinsatserne på de dedikerede borde startede ved 50 kr. for blackjack og 10 kr. for roulette – lavere end standardbordene, hvilket er ideelt for rekreative spillere.</p>
+
+          <ReviewScreenshot
+            src={mrgreenLiveBlackjack}
+            alt="Mr Green live casino blackjack med dedikerede danske borde, Manhattan og Cosmopolitan varianter"
+            caption="Mr Greens dedikerede live blackjack-borde med dansk dealer og eksklusive varianter."
+            size="full"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">Videostreaming-kvaliteten er upåklagelig. Vi testede live casinoet på desktop (fiberforbindelse), mobil (4G) og tablet (WiFi) og fandt konsekvent høj billedkvalitet med minimal latency. Dealer-interaktionen er professionel og venlig, og chat-funktionen fungerer gnidningsfrit. Spilhistorik og statistikker er let tilgængelige under spillet, hvilket giver bordspilsentusiasten de data, de har brug for til strategisk spil.</p>
+
+          <ReviewScreenshot
+            src={mrgreenLiveRoulette}
+            alt="Mr Green live casino roulette med eksklusive borde, Lightning Roulette og Vegas Roulette"
+            caption="Mr Greens live roulette-sektion med eksklusive borde og indsatser fra 2 kr. til 30.000 kr."
+            size="full"
+          />
+
           <p className="text-muted-foreground leading-relaxed">Det samlede antal live-borde (ca. 60) er dog mindre end hos storoperatører som LeoVegas (200+) eller bet365 (150+). For de fleste spillere er 60 borde rigeligt – men hvis du specifikt jagter niche-varianter som Teen Patti eller Andar Bahar, kan du opleve, at Mr Greens udvalg er begrænset. Det er endnu et eksempel på Mr Greens kuraterede tilgang: de tilbyder de mest efterspurgte formater i høj kvalitet snarere end et enormt antal varianter.</p>
         </section>
 
