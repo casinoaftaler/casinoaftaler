@@ -519,6 +519,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/forretningsmodel": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/pragmatic-play-partner": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/redaktionel-politik": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
+  "/er-casinoaftaler-trovaerdig": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
   "/kontakt": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
 
   // Ansvarligt Spil cluster – bundet til /ansvarligt-spil hub
