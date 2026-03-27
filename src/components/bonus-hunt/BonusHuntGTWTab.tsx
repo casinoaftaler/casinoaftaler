@@ -15,6 +15,8 @@ interface Props {
   userId?: string;
   openedBonuses?: number;
   onBetPlaced: () => void;
+  endBalance?: number | null;
+  startBalance?: number | null;
 }
 
 export function BonusHuntGTWTab({ session, bets, userId, openedBonuses = 0, onBetPlaced }: Props) {
