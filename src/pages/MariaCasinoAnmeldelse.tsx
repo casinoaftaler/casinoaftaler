@@ -132,6 +132,7 @@ const MariaCasinoAnmeldelse = () => {
           </div>
           <p className="text-muted-foreground leading-relaxed">Live casinoet er bemærkelsesværdigt med 270+ spil – herunder Baccarat Live, Blackjack Live, Caribbean Stud Poker, Three Card Poker og Roulette Live. Der er borde for både highrollers og konservative spillere. Jackpot-spil som Mega Moolah og Divine Fortune er også tilgængelige.</p>
           <ReviewScreenshot src={mariaLiveCasino} alt="Maria Casino live casino lobby med Lightning Roulette og eksklusive borde fra Evolution Gaming" caption="Live casino-lobbyen hos Maria Casino med udvalgte borde og roulette-varianter fra Evolution Gaming." size="full" />
+          <p className="text-muted-foreground leading-relaxed">Ud over live casino tilbyder Maria Casino også en dedikeret bingo-sektion – et arv fra brandets skandinaviske rødder, hvor bingo altid har været en central del af produktmixet.</p>
           <ReviewScreenshot src={mariaBingo} alt="Maria Casino bingo-sektion med Penny Room og Diamond Daily fra Relax Gaming" caption="Maria Casinos bingo-sektion – kun tilgængelig i visse lande, ikke i Danmark." size="full" />
         </section>
 

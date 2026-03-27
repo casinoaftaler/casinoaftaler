@@ -267,6 +267,7 @@ const BwinAnmeldelse = () => {
             <Link to="/live-casino" className={linkClass}>Live casinoet</Link> er drevet af Evolution Gaming og er en af bwins stærkere casino-vertikaler. Eksklusive bwin-borde med dedikerede dealers giver en premium-oplevelse. Udvalget inkluderer klassisk blackjack og roulette samt game shows som Crazy Time, Monopoly Live, Dream Catcher og Lightning Dice. Indsatser starter fra 10 kr. på standard-borde og op til 50.000+ kr. på VIP-borde.
           </p>
           <ReviewScreenshot src={bwinCasinoLobby} alt="bwin casino lobby med cashback-kampagne, bwin-favoritter og populære spilleautomater som Book of Dead og Sweet Bonanza" caption="Casino-lobbyen hos bwin med 10% cashback-tilbud og et curateret udvalg af populære spilleautomater." size="full" />
+          <p className="text-muted-foreground leading-relaxed">Navigationen mellem casino- og live casino-sektionerne er sømløs, og bwin har investeret i eksklusive borde med egne dealers – noget der giver en mere personlig oplevelse end de generiske Evolution-borde, man finder hos mange konkurrenter.</p>
           <ReviewScreenshot src={bwinLiveCasino} alt="bwin live casino med eksklusive blackjack-borde, roulette-varianter og high roller baccarat fra Evolution Gaming" caption="Live casino-sektionen med eksklusive bwin-borde, Lightning Roulette og VIP-blackjack." size="full" />
         </section>
 
