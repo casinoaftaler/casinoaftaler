@@ -382,6 +382,13 @@ const Casinospil = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={liveBlackjackClassic}
+          alt="Live Blackjack Classic bordspil med dealer, Super Stake-funktion og flere spillere ved bordet – eksempel på live casino bordspil hos et dansk casino"
+          caption="Live Blackjack Classic – et populært bordspil med rigtig dealer, Super Stake-multiplikatorer og op til 7 spillere"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ═══════════════════════════════════════════
