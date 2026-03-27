@@ -392,6 +392,13 @@ const CasinoAnmeldelser = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={leovegasLobby}
+          alt="LeoVegas casino forside med populære slots, live casino og hurtig navigation – dansk licenseret online casino"
+          caption="LeoVegas – kendt for sit mobilvenlige design og et af de største spiludvalg blandt danske casinoer"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* ===== SEKTION 3: Hvad adskiller danske casinoer? ===== */}
