@@ -12,7 +12,7 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
-import { GPWASealBadge } from "@/components/GPWASealBadge";
+
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
