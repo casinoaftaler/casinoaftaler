@@ -88,20 +88,32 @@ const PayPalGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Indbetaling:</strong> Vælg PayPal i casinoets kasse og indtast beløbet. Du omdirigeres til PayPals loginside (pop-up eller ny fane). Log ind med e-mail og adgangskode, bekræft eventuelt med 2FA, og godkend betalingen. Pengene krediteres din spillekonto øjeblikkeligt. Hele processen tager 15-30 sekunder – lidt langsommere end MobilePay og Apple Pay, men hurtigere end Trustly med MitID-login.
           </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            <strong>Udbetaling:</strong> PayPal-udbetalinger er en af metodens stærkeste sider. Vælg PayPal i udbetalingssektionen, angiv beløbet og bekræft. Pengene lander typisk i din PayPal-saldo inden for 0-4 timer – markant hurtigere end{" "}
-            <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">kortudbetalinger</Link>{" "}
-            (1-3 dage) og{" "}
-            <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link>{" "}
-            (2-5 dage). Fra PayPal kan du overføre til din bankkonto (gratis, 1-2 hverdage) eller bruge pengene direkte via PayPal.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            <strong>Kritisk bonusadvarsel:</strong> Tjek altid bonusvilkårene, inden du indbetaler med PayPal. Hvis vilkårene nævner "e-wallets udelukket fra velkomstbonus", gælder det PayPal. I sådanne tilfælde anbefaler vi at bruge{" "}
-            <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
-            eller{" "}
-            <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link>{" "}
-            til din første indbetaling og derefter skifte til PayPal for efterfølgende transaktioner.
-          </p>
+           <p className="mb-4 text-muted-foreground leading-relaxed">
+             <strong>Udbetaling:</strong> PayPal-udbetalinger er en af metodens stærkeste sider. Vælg PayPal i udbetalingssektionen, angiv beløbet og bekræft. Pengene lander typisk i din PayPal-saldo inden for 0-4 timer – markant hurtigere end{" "}
+             <Link to="/betalingsmetoder/visa-mastercard" className="text-primary underline hover:text-primary/80">kortudbetalinger</Link>{" "}
+             (1-3 dage) og{" "}
+             <Link to="/betalingsmetoder/bankoverforsler" className="text-primary underline hover:text-primary/80">bankoverførsler</Link>{" "}
+             (2-5 dage). Fra PayPal kan du overføre til din bankkonto (gratis, 1-2 hverdage) eller bruge pengene direkte via PayPal.
+           </p>
+           <ReviewScreenshot
+             src={paypalLogin}
+             alt="PayPal login-side under indbetalingsflow på dansk casino – e-mailadresse og mobilnummer felt synligt"
+             caption="PayPal-loginvinduet under indbetalingsflow – du omdirigeres hertil fra casinoets kasse"
+             size="compact"
+           />
+           <p className="text-muted-foreground leading-relaxed">
+             <strong>Kritisk bonusadvarsel:</strong> Tjek altid bonusvilkårene, inden du indbetaler med PayPal. Hvis vilkårene nævner "e-wallets udelukket fra velkomstbonus", gælder det PayPal. I sådanne tilfælde anbefaler vi at bruge{" "}
+             <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
+             eller{" "}
+             <Link to="/betalingsmetoder/mobilepay" className="text-primary underline hover:text-primary/80">MobilePay</Link>{" "}
+             til din første indbetaling og derefter skifte til PayPal for efterfølgende transaktioner.
+           </p>
+           <ReviewScreenshot
+             src={paypalUdbetaling}
+             alt="Udbetalingssektion på dansk casino med PayPal-saldo på 100 kr. og udbetalingsbeløbsfelt i DKK"
+             caption="Udbetalingsflow – din PayPal-saldo og udbetalingsfelt med DKK-beløb"
+             size="compact"
+           />
         </>
       }
       additionalSections={[
