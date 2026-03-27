@@ -127,12 +127,6 @@ export default function JamesBondRouletteGuide() {
           </p>
         </section>
 
-        <ReviewScreenshot
-          src={danskespilLiveRouletteBord}
-          alt="Roulette-bord med indsatsfelter markeret – James Bond-strategien dækker over 2/3 af bordet"
-          caption="James Bond-strategien bruger tre samtidige indsatser på et europæisk roulette-bord for at dække 25 af 37 numre."
-          size="full"
-        />
 
         {/* Sådan fungerer det */}
         <section className="mb-12">
