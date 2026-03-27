@@ -15,7 +15,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowRegistrering from "@/assets/screenshots/kapow-registrering.png";
 
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
-import { GPWASealBadge } from "@/components/GPWASealBadge";
+
 import { TopCasinoReviewLink } from "@/components/TopCasinoReviewLinks";
 import { useCasinos } from "@/hooks/useCasinos";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
@@ -238,9 +238,6 @@ const TopCasinoOnline = () => {
 
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="jonas" readTime="25 Min." />
-        <div className="my-4">
-          <GPWASealBadge variant="inline" showTrustLink />
-        </div>
 
         <SnippetAnswer answer="De 10 bedste online casinoer i Danmark 2026 er testet og rangeret efter bonus, udbetalingstid, spiludvalg og sikkerhed. Alle har dansk licens fra Spillemyndigheden, max 10x omsætningskrav og hurtige udbetalinger." />
 
