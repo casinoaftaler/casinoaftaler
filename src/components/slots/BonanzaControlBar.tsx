@@ -274,32 +274,34 @@ export function BonanzaControlBar({
     );
   }
 
+  const isBonanza = gameId === "fedesvin-bonanza";
+
   // ── DESKTOP LAYOUT ──
   return (
     <div className="relative w-full" style={{ height: 80 }}>
       {/* ─── LEFT: PayTable + Volume + Credit/Bet ─── */}
-      <div className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 sm:gap-2 z-10">
+      <div className={cn("absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 flex items-center z-10", isBonanza ? "gap-1.5 sm:gap-2" : "gap-1.5")}>
         {gameId === "gates-of-fedesvin" ? (
           <GatesPayTable gameId={gameId} bet={bet} />
-        ) : gameId === "fedesvin-bonanza" ? (
+        ) : isBonanza ? (
           <BonanzaPayTable gameId={gameId} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30" />
         ) : (
           <PayTable gameId={gameId} bet={bet} />
         )}
         <VolumeControl className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30" />
         {!bonusState.isActive && (
-          <div className="flex flex-col leading-none gap-0.5 pl-2 border-l border-pink-500/10">
-            <div className="flex items-center gap-2">
-              <span className="text-sm sm:text-base uppercase tracking-wider font-black text-orange-400" style={labelStyle}>Credit</span>
+          <div className={cn("flex flex-col leading-none gap-0.5 pl-2 border-l border-pink-500/10", !isBonanza && "pl-1.5")}>
+            <div className="flex items-center gap-1.5">
+              <span className={cn("uppercase tracking-wider font-black text-orange-400", isBonanza ? "text-sm sm:text-base" : "text-xs sm:text-sm")} style={labelStyle}>Credit</span>
               {spinsLoading ? (
                 <span className="text-lg animate-pulse text-white/40">...</span>
               ) : (
-                <span className="text-xl sm:text-2xl font-black tabular-nums text-white" style={valueStyle}>{spinsRemaining.toLocaleString()}</span>
+                <span className={cn("font-black tabular-nums text-white", isBonanza ? "text-xl sm:text-2xl" : "text-lg sm:text-xl")} style={valueStyle}>{spinsRemaining.toLocaleString()}</span>
               )}
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm sm:text-base uppercase tracking-wider font-black text-orange-400" style={labelStyle}>Bet</span>
-              <span className="text-xl sm:text-2xl font-black tabular-nums text-white" style={valueStyle}>{bet}</span>
+            <div className="flex items-center gap-1.5">
+              <span className={cn("uppercase tracking-wider font-black text-orange-400", isBonanza ? "text-sm sm:text-base" : "text-xs sm:text-sm")} style={labelStyle}>Bet</span>
+              <span className={cn("font-black tabular-nums text-white", isBonanza ? "text-xl sm:text-2xl" : "text-lg sm:text-xl")} style={valueStyle}>{bet}</span>
             </div>
           </div>
         )}
