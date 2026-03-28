@@ -7,6 +7,8 @@ import {
   Dices,
   CreditCard,
   Gamepad2,
+  Tv,
+  Star,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
@@ -18,6 +20,8 @@ const iconMap: Record<string, React.ElementType> = {
   dices: Dices,
   creditCard: CreditCard,
   gamepad2: Gamepad2,
+  tv: Tv,
+  star: Star,
 };
 
 function CategorySection({ category }: { category: SidebarCategory }) {
