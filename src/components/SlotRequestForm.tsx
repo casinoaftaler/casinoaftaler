@@ -73,6 +73,7 @@ export function SlotRequestForm() {
     setIsCustomMode(false);
 
     if (!user || hasReachedLimit || createRequest.isPending) return;
+    createRequest.reset();
     createRequest.mutate(
       { slot_name: slot.slot_name, provider: slot.provider, is_custom: false },
       {
