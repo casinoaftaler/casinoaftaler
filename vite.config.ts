@@ -291,12 +291,96 @@ ${sections}
         console.warn("⚠️ Failed to generate slot-directory.html:", err);
       }
 
-      // ── 6. sitemap-index.xml (all on same domain) ──
+      // ── 6. sitemap-images.xml (focused: casino reviews + key pages only) ──
+      try {
+        const casinos = await fetchAllRows<{ slug: string; name: string; logo_url: string | null }>(
+          "casinos",
+          "slug,name,logo_url",
+          "position",
+          "is_active=eq.true"
+        );
+
+        // Map casino slugs to their seoRoutes review pages
+        const reviewRoutes = seoRoutes.filter((r) => r.path.startsWith("/casino-anmeldelser/") && !r.path.includes("-vs-"));
+        const vsRoutes = seoRoutes.filter((r) => r.path.includes("-vs-"));
+
+        const imageUrls: string[] = [];
+
+        // Casino review pages — each gets its logo
+        for (const route of reviewRoutes) {
+          const slug = route.path.replace("/casino-anmeldelser/", "");
+          const casino = casinos.find((c) => c.slug === slug);
+          if (!casino?.logo_url) continue;
+
+          const casinoTitle = `${casino.name} Casino Logo – Dansk Anmeldelse`;
+          const casinoCaption = `Officielt logo for ${casino.name}, anmeldt på Casinoaftaler.dk`;
+
+          imageUrls.push(`  <url>
+    <loc>${SITE_URL}${route.path}</loc>
+    <image:image>
+      <image:loc>${escapeXml(casino.logo_url)}</image:loc>
+      <image:title>${escapeXml(casinoTitle)}</image:title>
+      <image:caption>${escapeXml(casinoCaption)}</image:caption>
+    </image:image>
+  </url>`);
+        }
+
+        // VS comparison pages — include both logos
+        for (const route of vsRoutes) {
+          const vsSlug = route.path.replace("/casino-anmeldelser/", "");
+          const slugParts = vsSlug.split("-vs-");
+          if (slugParts.length !== 2) continue;
+
+          const images: string[] = [];
+          for (const part of slugParts) {
+            const casino = casinos.find((c) => c.slug === part);
+            if (!casino?.logo_url) continue;
+            images.push(`    <image:image>
+      <image:loc>${escapeXml(casino.logo_url)}</image:loc>
+      <image:title>${escapeXml(casino.name)} Logo</image:title>
+      <image:caption>${escapeXml(`${casino.name} – sammenligning på Casinoaftaler.dk`)}</image:caption>
+    </image:image>`);
+          }
+
+          if (images.length > 0) {
+            imageUrls.push(`  <url>
+    <loc>${SITE_URL}${route.path}</loc>
+${images.join("\n")}
+  </url>`);
+          }
+        }
+
+        // Site brand assets on homepage
+        imageUrls.push(`  <url>
+    <loc>${SITE_URL}/</loc>
+    <image:image>
+      <image:loc>${SITE_URL}/icon-512x512.png</image:loc>
+      <image:title>Casinoaftaler.dk – Uafhængig casino guide</image:title>
+      <image:caption>Logo for Casinoaftaler.dk, Danmarks uafhængige casinoguide</image:caption>
+    </image:image>
+  </url>`);
+
+        if (imageUrls.length > 0) {
+          const imageSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${imageUrls.join("\n")}
+</urlset>
+`;
+          writeSitemapSnapshot("sitemap-images.xml", imageSitemap);
+          console.log(`✅ sitemap-images.xml generated with ${imageUrls.length} URLs (focused, no slot catalog)`);
+        }
+      } catch (err) {
+        console.warn("⚠️ Failed to generate sitemap-images.xml:", err);
+      }
+
+      // ── 7. sitemap-index.xml (all on same domain) ──
       const indexEntries = [
         `${SITE_URL}/sitemap.xml`,
         `${SITE_URL}/sitemap-priority.xml`,
         `${SITE_URL}/sitemap-slots.xml`,
         `${SITE_URL}/sitemap-articles.xml`,
+        `${SITE_URL}/sitemap-images.xml`,
       ].filter((loc) => fs.existsSync(path.join(outDir, loc.split("/").pop()!)));
 
       const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
