@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { CalendarDays, BookOpen, CheckCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TableOfContents } from "@/components/TableOfContents";
-import { getRouteMetadata, formatLastmodDanish } from "@/lib/seoRoutes";
+import { getRouteMetadata, formatLastmodDanish, getRouteFactChecker } from "@/lib/seoRoutes";
 import { usePageLastmod, formatTimestampDanish } from "@/hooks/usePageLastmod";
 
 /**
@@ -77,8 +77,8 @@ interface AuthorMetaBarProps {
   showFactCheck?: boolean;
   showVerified?: boolean;
   showAffiliateDisclaimer?: boolean;
-  /** Override which author is shown as fact-checker. Defaults to cross-check logic. */
-  factCheckBy?: "jonas" | "kevin" | "ajse" | "niklas";
+  /** Override which author is shown as fact-checker. Defaults to seoRoutes lookup, then cross-check logic. */
+  factCheckBy?: "jonas" | "kevin" | "ajse" | "niklas" | "frederik";
 }
 
 export function AuthorMetaBar({ author, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true, factCheckBy }: AuthorMetaBarProps) {
@@ -153,8 +153,10 @@ export function AuthorMetaBar({ author, showFactCheck = true, showVerified = fal
 
         {/* Right side: fact-check badge */}
         {showFactCheck && (() => {
-          // Determine fact-checker: explicit override > default cross-check
+          // Determine fact-checker: explicit prop > seoRoutes lookup > default cross-check
+          const routeChecker = getRouteFactChecker(pathname);
           const resolvedChecker = factCheckBy
+            ?? routeChecker
             ?? (author === "niklas" ? "ajse" : (author === "kevin" || author === "redaktionen") ? "jonas" : "kevin");
           const checkerInfo = authorConfig[resolvedChecker as keyof typeof authorConfig];
           return checkerInfo ? (
