@@ -22,7 +22,7 @@ export function SlotRequestForm() {
   const { data: myRequests, isLoading: requestsLoading } = useMySlotRequests();
   const createRequest = useCreateSlotRequest();
   const { data: siteSettings } = useSiteSettings();
-  const { slots, isLoading: slotsLoading } = useSlotCatalog();
+  const { data: slots, isLoading: slotsLoading } = useSlotCatalog();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSlot, setSelectedSlot] = useState<{ slot_name: string; provider: string } | null>(null);
