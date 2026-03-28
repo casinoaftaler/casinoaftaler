@@ -449,6 +449,25 @@ const OmTeamet = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Frederik quote */}
+            <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <Quote className="mb-4 h-8 w-8 text-primary/60" />
+                <p className="mb-6 text-xl font-medium leading-relaxed text-white/90 italic">
+                  "Der er intet bedre end at dele en fed bonus-åbning med chatten – den energi er unik."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-12 w-12 overflow-hidden rounded-xl border-2 border-primary/30">
+                    <img src={frederikImage} alt="Frederik" className="h-full w-full object-cover object-top" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Frederik</p>
+                    <p className="text-sm text-white/60">Streamer & Bonustester</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
