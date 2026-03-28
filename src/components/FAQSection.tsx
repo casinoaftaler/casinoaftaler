@@ -110,7 +110,7 @@ export const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(functio
         <div className="rounded-xl border border-border bg-card p-6 md:p-8">
           <h2 className="mb-6 flex items-center gap-2 text-3xl font-bold">
             <HelpCircle className="h-8 w-8 text-primary" />
-            {title}
+            {variedTitle}
           </h2>
           <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, index) => (
