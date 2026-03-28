@@ -128,6 +128,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Spiludviklere",
     iconName: "gamepad2",
+    hubTo: "/spiludviklere",
     links: [
       { to: "/spiludviklere", label: "Alle Spiludviklere" },
       { to: "/spiludviklere/netent", label: "NetEnt" },
