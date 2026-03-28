@@ -796,8 +796,11 @@ function AdminDashboard() {
   const defaultTab = (isModerator && !isAdmin) ? "bonus-hunt" : "content";
 
   useEffect(() => {
+    const isModOnly = isModerator && !isAdmin;
     if (!activeTab) {
-      setActiveTab((isModerator && !isAdmin) ? "bonus-hunt" : "content");
+      setActiveTab(isModOnly ? "bonus-hunt" : "content");
+    } else if (isModOnly && !moderatorAllowedTabs.includes(activeTab)) {
+      setActiveTab("bonus-hunt");
     }
   }, [isModerator, isAdmin, activeTab]);
 
