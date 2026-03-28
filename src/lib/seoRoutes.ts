@@ -464,6 +464,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/forfatter/kevin", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
   { path: "/forfatter/ajse", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-05" },
   { path: "/forfatter/niklas", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-15" },
+  { path: "/forfatter/frederik", changefreq: "monthly", priority: 0.6, lastmod: "2026-03-28" },
   { path: "/saadan-tester-vi-casinoer", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-18" },
   { path: "/privatlivspolitik", changefreq: "yearly", priority: 0.3, lastmod: "2026-03-05" },
   { path: "/terms", changefreq: "yearly", priority: 0.3, lastmod: "2026-03-05" },

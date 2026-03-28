@@ -64,10 +64,11 @@ const authorConfig = {
   kevin: { name: "Kevin", image: "/kevin-avatar.webp", alt: "Kevin – Casino-streamer", link: "/forfatter/kevin" },
   ajse: { name: "Ajse", image: "/ajse-avatar.webp", alt: "Ajse – Juridisk redaktør", link: "/forfatter/ajse" },
   niklas: { name: "Niklas", image: "/niklas-avatar.webp", alt: "Niklas – Finansøkonom", link: "/forfatter/niklas" },
+  frederik: { name: "Frederik", image: "/frederik-avatar.webp", alt: "Frederik – Casino-streamer", link: "/forfatter/frederik" },
 } as const;
 
 interface AuthorMetaBarProps {
-  author: "jonas" | "kevin" | "ajse" | "niklas" | "redaktionen";
+  author: "jonas" | "kevin" | "ajse" | "niklas" | "frederik" | "redaktionen";
   /**
    * @deprecated Read time is now auto-calculated from page content.
    * This prop is ignored – kept only for backwards compatibility.

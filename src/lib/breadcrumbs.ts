@@ -158,6 +158,7 @@ export const routeLabels: Record<string, string> = {
   "/forfatter/kevin": "Kevin",
   "/forfatter/ajse": "Ajse",
   "/forfatter/niklas": "Niklas",
+  "/forfatter/frederik": "Frederik Merkel",
   // Spillemyndighed & Licenser
   "/spillemyndigheden": "Spillemyndigheden",
   "/casino-licenser": "Casino Licenser",

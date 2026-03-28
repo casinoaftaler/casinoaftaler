@@ -125,17 +125,19 @@ function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: 
   const isAjse = authorName === "Ajse";
   const isNiklas = authorName === "Niklas";
 
-  const nameMap: Record<string, string> = { Ajse: "Ajse", Kevin: "Kevin", Niklas: "Niklas" };
-  const imageMap: Record<string, string> = { Ajse: "ajse-avatar.webp", Kevin: "kevin-avatar.webp", Niklas: "niklas-avatar.webp" };
+  const nameMap: Record<string, string> = { Ajse: "Ajse", Kevin: "Kevin", Niklas: "Niklas", Frederik: "Frederik Merkel" };
+  const imageMap: Record<string, string> = { Ajse: "ajse-avatar.webp", Kevin: "kevin-avatar.webp", Niklas: "niklas-avatar.webp", Frederik: "frederik-avatar.webp" };
   const jobTitleMap: Record<string, string> = {
     Ajse: "Juridisk redaktør & casinoanalytiker",
     Kevin: "Casino Streamer & IT-medansvarlig",
     Niklas: "Finansøkonom & forsikringsekspert",
+    Frederik: "Casino Streamer & Bonustester",
   };
   const knowsAboutMap: Record<string, string[]> = {
     Ajse: ["dansk spillelovgivning", "online casino regulering", "ansvarligt spil", "casino compliance", "slot-markedet", "Gambling Law", "Casino Regulation", "Responsible Gambling"],
     Kevin: ["online casino", "casino streaming", "betalingsmetoder", "spiludviklere", "IT-sikkerhed"],
     Niklas: ["finansiel analyse", "forsikring", "risikostyring", "bankroll management", "casino og skat", "bonusøkonomi", "EV-analyse", "Financial Analysis", "Insurance"],
+    Frederik: ["online casino", "casino streaming", "casino bonus", "spillemaskiner", "bonustest"],
   };
 
   return {

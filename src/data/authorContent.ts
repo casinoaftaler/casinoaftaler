@@ -385,6 +385,7 @@ export function getAuthorReviewVideos(author: AuthorId): AuthorVideo[] {
     case "kevin":
     case "ajse":
     case "niklas":
+    case "frederik":
       return [];
   }
 }
@@ -397,6 +398,7 @@ export function getAuthorGuideVideos(author: AuthorId): AuthorVideo[] {
     case "kevin":
     case "ajse":
     case "niklas":
+    case "frederik":
       return [];
   }
 }
