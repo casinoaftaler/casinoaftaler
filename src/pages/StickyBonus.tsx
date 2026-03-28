@@ -294,14 +294,7 @@ const StickyBonus = () => {
           </div>
         </section>
 
-        <ReviewScreenshot
-          src={leovegasStickyBonus}
-          alt="LeoVegas velkomstbonus-side med sticky bonus op til 1.000 kr. og 10x omsætningskrav på deposit plus bonus"
-          caption="LeoVegas – eksempel på en klassisk sticky velkomstbonus med 10x omsætningskrav på indbetaling + bonus"
-          size="full"
-        />
 
-        
 
         <Separator className="my-10" />
 
@@ -491,6 +484,13 @@ const StickyBonus = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={leovegasStickyBonus}
+          alt="LeoVegas sticky velkomstbonus med 10x omsætningskrav på indbetaling og bonus – typisk eksempel på danske sticky bonus-vilkår"
+          caption="LeoVegas – sticky bonus med 10x omsætningskrav (d+b), maks. bonus 1.000 kr. og 60 dages gyldighedsperiode"
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
