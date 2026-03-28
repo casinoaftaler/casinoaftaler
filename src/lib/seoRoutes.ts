@@ -33,10 +33,12 @@ export interface SeoRoute {
   // ── Author Profile Integration ──────────────────────────────────────
   // When these fields are set, the article automatically appears on the
   // author's profile page under "Artikler skrevet af …".
-  // This removes the need to manually register articles in authorContent.ts.
+  // factCheckedBy articles also appear in the checker's portfolio (as "Faktatjekket").
 
-  /** Author ID – must match AuthorId type ("jonas" | "kevin" | "ajse" | "niklas") */
+  /** Author ID – must match AuthorId type ("jonas" | "kevin" | "ajse" | "niklas" | "frederik") */
   author?: string;
+  /** Fact-checker ID – article also appears in this person's portfolio */
+  factCheckedBy?: string;
   /** Article title for the author profile card */
   articleTitle?: string;
   /** Category label (e.g. "Guide", "Anmeldelse") */
@@ -46,12 +48,12 @@ export interface SeoRoute {
 }
 
 /**
- * Get all seoRoutes entries that have author metadata set.
+ * Get all seoRoutes entries where the author wrote OR fact-checked.
  * Used by getAuthorArticles() to auto-derive articles for author profiles.
  */
 export function getSeoRoutesByAuthor(authorId: string) {
   return seoRoutes.filter(
-    (r) => r.author === authorId && r.articleTitle
+    (r) => (r.author === authorId || r.factCheckedBy === authorId) && r.articleTitle
   );
 }
 
@@ -141,7 +143,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casino-anmeldelser/pokerstars", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-21" },
   { path: "/casino-anmeldelser/bwin", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-21" },
   { path: "/casino-anmeldelser/marathonbet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-08" },
-  { path: "/casino-anmeldelser/playkasino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-25", author: "jonas", articleTitle: "PlayKasino Anmeldelse 2026", articleCategory: "Anmeldelse", articleExcerpt: "SkillOnNet-casino med 100% bonus op til 500 kr., 10x omsætning, 1.200+ spil og dedikeret mobilapp." },
+  { path: "/casino-anmeldelser/playkasino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-25", author: "jonas", factCheckedBy: "kevin", articleTitle: "PlayKasino Anmeldelse 2026", articleCategory: "Anmeldelse", articleExcerpt: "SkillOnNet-casino med 100% bonus op til 500 kr., 10x omsætning, 1.200+ spil og dedikeret mobilapp." },
 
   // ── VS / Sammenligningssider ──
   { path: "/casino-anmeldelser/bet365-vs-unibet", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-21" },
@@ -162,8 +164,8 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/live-casino/crazy-time", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/live-casino/dream-catcher", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
   { path: "/live-casino/deal-or-no-deal", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
-  { path: "/live-casino/strategi", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-16", author: "jonas", articleTitle: "Live Casino Strategi Guide 2026", articleCategory: "Guide", articleExcerpt: "Bankroll management, house edge-analyse og betting-systemanalyse for live casino." },
-  { path: "/live-casino/udbydere", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-16", author: "jonas", articleTitle: "Live Casino Udbydere – Evolution, Pragmatic Play & Mere", articleCategory: "Guide", articleExcerpt: "Komplet sammenligning af live casino-udbydere: spilkatalog, teknologi og danske casinoer." },
+  { path: "/live-casino/strategi", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-16", author: "jonas", factCheckedBy: "kevin", articleTitle: "Live Casino Strategi Guide 2026", articleCategory: "Guide", articleExcerpt: "Bankroll management, house edge-analyse og betting-systemanalyse for live casino." },
+  { path: "/live-casino/udbydere", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-16", author: "jonas", factCheckedBy: "kevin", articleTitle: "Live Casino Udbydere – Evolution, Pragmatic Play & Mere", articleCategory: "Guide", articleExcerpt: "Komplet sammenligning af live casino-udbydere: spilkatalog, teknologi og danske casinoer." },
   { path: "/casinospil", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-18" },
   { path: "/casinospil/spillemaskiner", changefreq: "daily", priority: 0.8, lastmod: "2026-03-05" },
   { path: "/casinospil/spillemaskiner/hoej-rtp", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
@@ -222,7 +224,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/poker/caribbean-stud", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/poker/video-poker", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/poker/poker-strategi", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
-  { path: "/casinospil/poker/bedste-sider", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-15", author: "kevin", articleTitle: "Bedste Pokersider i Danmark 2026", articleCategory: "Guide", articleExcerpt: "Komplet guide til de bedste pokersider med dansk licens – sammenlign PokerStars, Unibet, bet365 og Campobet." },
+  { path: "/casinospil/poker/bedste-sider", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-15", author: "kevin", factCheckedBy: "jonas", articleTitle: "Bedste Pokersider i Danmark 2026", articleCategory: "Guide", articleExcerpt: "Komplet guide til de bedste pokersider med dansk licens – sammenlign PokerStars, Unibet, bet365 og Campobet." },
   { path: "/casinospil/craps", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
   { path: "/casinospil/baccarat", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
   // /casinospil/roulette-strategi – 301 redirected to /casinospil/roulette (cannibalization fix)
@@ -230,28 +232,29 @@ export const seoRoutes: SeoRoute[] = ([
   // /casinospil/game-shows – 301 redirected to /live-casino/game-shows
 
   // ── Bonus Guides ──
-  { path: "/casino-bonus", changefreq: "weekly", priority: 0.95, lastmod: "2026-03-18" },
+  { path: "/casino-bonus", changefreq: "weekly", priority: 0.95, lastmod: "2026-03-18", author: "jonas", factCheckedBy: "frederik", articleTitle: "Casino Bonus Guide 2026", articleCategory: "Guide", articleExcerpt: "Komplet guide til casino bonusser i Danmark – sammenlign velkomstbonusser, free spins og omsætningskrav." },
   {
     path: "/markedsindsigt",
     changefreq: "daily",
     priority: 0.85,
     lastmod: "2026-03-17",
     author: "jonas",
+    factCheckedBy: "ajse",
     articleTitle: "Markedsindsigt 2026 – Offentligt casinooverblik",
     articleCategory: "Analyse",
     articleExcerpt: "Offentligt overblik over verificerede licens-, bonus- og compliance-opdateringer på det danske casinomarked.",
   },
-  { path: "/velkomstbonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
-  { path: "/free-spins", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
-  { path: "/free-spins-i-dag", changefreq: "daily", priority: 0.9, lastmod: "2026-03-10" },
-  { path: "/indskudsbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
-  { path: "/omsaetningskrav", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-06" },
-  { path: "/bonus-uden-indbetaling", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
-  { path: "/bonus-uden-omsaetningskrav", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06" },
-  { path: "/no-sticky-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
-  { path: "/sticky-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
-  { path: "/cashback-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
-  { path: "/reload-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18" },
+  { path: "/velkomstbonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18", author: "jonas", factCheckedBy: "frederik", articleTitle: "Velkomstbonus Guide 2026", articleCategory: "Guide", articleExcerpt: "Alt om velkomstbonusser hos danske casinoer – sammenlign tilbud, omsætningskrav og reel værdi." },
+  { path: "/free-spins", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18", author: "niklas", factCheckedBy: "frederik", articleTitle: "Free Spins Guide 2026", articleCategory: "Guide", articleExcerpt: "Komplet guide til free spins – typer, vilkår og de bedste tilbud hos danske casinoer." },
+  { path: "/free-spins-i-dag", changefreq: "daily", priority: 0.9, lastmod: "2026-03-10", author: "jonas", factCheckedBy: "frederik", articleTitle: "Free Spins i Dag – Daglige Tilbud", articleCategory: "Guide", articleExcerpt: "Dagligt opdaterede free spins-tilbud fra danske casinoer med licens." },
+  { path: "/indskudsbonus", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06", author: "jonas", factCheckedBy: "frederik", articleTitle: "Indskudsbonus Guide 2026", articleCategory: "Guide", articleExcerpt: "Alt om indskudsbonusser – deposit match, procentsatser og de bedste tilbud." },
+  { path: "/omsaetningskrav", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-06", author: "niklas", factCheckedBy: "frederik", articleTitle: "Omsætningskrav Forklaret", articleCategory: "Guide", articleExcerpt: "Forstå omsætningskrav – beregning, spilbidrag og hvad der er et godt krav." },
+  { path: "/bonus-uden-indbetaling", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18", author: "jonas", factCheckedBy: "frederik", articleTitle: "Bonus uden Indbetaling 2026", articleCategory: "Guide", articleExcerpt: "Find de bedste no-deposit bonusser hos danske casinoer – gratis bonus uden indskud." },
+  { path: "/bonus-uden-omsaetningskrav", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-06", author: "niklas", factCheckedBy: "frederik", articleTitle: "Bonus uden Omsætningskrav 2026", articleCategory: "Guide", articleExcerpt: "Omsætningsfrie bonusser – hvad du vinder, kan du beholde. Find de bedste tilbud." },
+  { path: "/no-sticky-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18", author: "jonas", factCheckedBy: "frederik", articleTitle: "No-Sticky Bonus Guide 2026", articleCategory: "Guide", articleExcerpt: "Alt om no-sticky bonusser – hvordan de fungerer, fordele og de bedste casinoer med no-sticky." },
+  { path: "/sticky-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18", author: "jonas", factCheckedBy: "frederik", articleTitle: "Sticky Bonus Guide 2026", articleCategory: "Guide", articleExcerpt: "Forstå sticky bonusser – forskellen fra no-sticky, fordele/ulemper og hvornår de er værd at bruge." },
+  { path: "/cashback-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18", author: "jonas", factCheckedBy: "frederik", articleTitle: "Cashback Bonus Guide 2026", articleCategory: "Guide", articleExcerpt: "Alt om cashback bonusser – få penge retur på tab hos danske casinoer." },
+  { path: "/reload-bonus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-18", author: "jonas", factCheckedBy: "frederik", articleTitle: "Reload Bonus Guide 2026", articleCategory: "Guide", articleExcerpt: "Reload bonusser for eksisterende spillere – de bedste tilbud og vilkår." },
 
   // ── Spiludviklere ──
   { path: "/spiludviklere", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-05" },
@@ -472,7 +475,7 @@ export const seoRoutes: SeoRoute[] = ([
 
   // ── Partner ──
   { path: "/pragmatic-play-partner", changefreq: "monthly", priority: 0.7, lastmod: "2026-03-21",
-    author: "jonas", articleTitle: "Officiel Pragmatic Play Partner", articleCategory: "Partner",
+    author: "jonas", factCheckedBy: "kevin", articleTitle: "Officiel Pragmatic Play Partner", articleCategory: "Partner",
     articleExcerpt: "Casinoaftaler.dk er officiel affiliate partner med Pragmatic Play – læs om partnerskabet og hvad det betyder." },
   // /sitemap – excluded: has noindex in Sitemap.tsx (noindex + sitemap = conflicting signals)
 

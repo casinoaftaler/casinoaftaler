@@ -342,12 +342,15 @@ const niklasArticles: AuthorArticle[] = [
  * Deduplicates by path (manual entries take precedence).
  */
 function mergeWithSeoRoutes(manualArticles: AuthorArticle[], authorId: AuthorId): AuthorArticle[] {
-  const seoArticles = getSeoRoutesByAuthor(authorId).map((r) => ({
-    title: r.articleTitle!,
-    path: r.path,
-    category: r.articleCategory || "Guide",
-    excerpt: r.articleExcerpt || "",
-  }));
+  const seoArticles = getSeoRoutesByAuthor(authorId).map((r) => {
+    const isFactChecker = r.factCheckedBy === authorId && r.author !== authorId;
+    return {
+      title: r.articleTitle!,
+      path: r.path,
+      category: isFactChecker ? "Faktatjekket" : (r.articleCategory || "Guide"),
+      excerpt: r.articleExcerpt || "",
+    };
+  });
 
   const manualPaths = new Set(manualArticles.map((a) => a.path));
   const uniqueSeoArticles = seoArticles.filter((a) => !manualPaths.has(a.path));
