@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
+import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 
 const RANK_STYLES: Record<number, string> = {
   0: "bg-amber-500/20 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/30",
@@ -11,7 +12,27 @@ const RANK_STYLES: Record<number, string> = {
   2: "bg-orange-600/20 text-orange-700 dark:text-orange-400 ring-1 ring-orange-500/30",
 };
 
+/** Title variants for anti-footprint */
+const WIDGET_TITLES = [
+  "Online casinoer",
+  "Top casinoer",
+  "Bedste casinoer",
+  "Casino ranking",
+  "Populære casinoer",
+];
+
+/** CTA variants for anti-footprint */
+const CTA_VARIANTS = [
+  "Mere",
+  "Se alle",
+  "Vis flere",
+  "Udforsk",
+  "Se ranking",
+];
+
 export function SidebarCasinoRatings() {
+  const { shuffle, pick } = useAntiFootprint();
+
   const { data: casinos } = useQuery({
     queryKey: ["sidebar-casinos"],
     queryFn: async () => {
@@ -29,16 +50,21 @@ export function SidebarCasinoRatings() {
 
   if (!casinos?.length) return null;
 
+  // Anti-footprint: shuffle casino order and pick varied texts
+  const shuffledCasinos = shuffle(casinos);
+  const widgetTitle = pick(WIDGET_TITLES);
+  const ctaText = pick(CTA_VARIANTS);
+
   return (
     <div className="overflow-hidden rounded-lg border border-border/60 shadow-sm">
       <div className="flex w-full items-center gap-2.5 px-4 py-3 font-semibold text-[15px] bg-gradient-to-r from-primary/20 to-primary/10 text-foreground">
         <span className="inline-flex items-center justify-center h-7 w-7 rounded-md bg-primary/15 flex-shrink-0">
           <Trophy className="h-4.5 w-4.5 text-primary" />
         </span>
-        <span>Online casinoer</span>
+        <span>{widgetTitle}</span>
       </div>
       <ul className="bg-card">
-        {casinos.map((casino, index) => {
+        {shuffledCasinos.map((casino, index) => {
           const ratingPercent = ((casino.rating ?? 0) / 5) * 100;
           const isTop3 = index < 3;
 
@@ -99,7 +125,7 @@ export function SidebarCasinoRatings() {
             to="/top-10-casino-online"
             className="flex items-center justify-center gap-1 px-4 py-2.5 text-[13px] text-primary hover:text-primary/80 border-t border-border/30 font-medium"
           >
-            Mere <ChevronRight className="h-3.5 w-3.5" />
+            {ctaText} <ChevronRight className="h-3.5 w-3.5" />
           </Link>
         </li>
       </ul>

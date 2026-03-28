@@ -12,6 +12,7 @@ export interface SidebarLink {
 export interface SidebarCategory {
   title: string;
   iconName: string;
+  hubTo?: string; // link for collapsed "Se alle" / category header
   links: SidebarLink[];
 }
 
@@ -19,6 +20,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Casinoer",
     iconName: "crown",
+    hubTo: "/top-10-casino-online",
     links: [
       { to: "/top-10-casino-online", label: "Top 10 Online Casino" },
       { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling" },
@@ -36,6 +38,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Nye Casinoer",
     iconName: "sparkles",
+    hubTo: "/nye-casinoer",
     links: [
       { to: "/nye-casinoer", label: "Nye Casinoer 2026" },
       { to: "/nye-casinoer/dansk-licens", label: "Med Dansk Licens" },
@@ -51,6 +54,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Casinospil",
     iconName: "dices",
+    hubTo: "/casinospil",
     links: [
       { to: "/casinospil", label: "Alle Casinospil" },
       { to: "/casinospil/spillemaskiner", label: "Spillemaskiner" },
@@ -68,6 +72,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Live Casino",
     iconName: "tv",
+    hubTo: "/live-casino",
     links: [
       { to: "/live-casino", label: "Live Casino" },
       { to: "/live-casino/blackjack", label: "Live Blackjack" },
@@ -86,6 +91,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Casino Bonus",
     iconName: "gift",
+    hubTo: "/casino-bonus",
     links: [
       { to: "/casino-bonus", label: "Casino Bonus" },
       { to: "/velkomstbonus", label: "Velkomstbonus" },
@@ -104,6 +110,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Betalingsmetoder",
     iconName: "creditCard",
+    hubTo: "/betalingsmetoder",
     links: [
       { to: "/betalingsmetoder", label: "Alle Betalingsmetoder" },
       { to: "/betalingsmetoder/apple-pay", label: "Apple Pay" },
@@ -121,6 +128,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Spiludviklere",
     iconName: "gamepad2",
+    hubTo: "/spiludviklere",
     links: [
       { to: "/spiludviklere", label: "Alle Spiludviklere" },
       { to: "/spiludviklere/netent", label: "NetEnt" },
@@ -150,6 +158,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Casino Anmeldelser",
     iconName: "star",
+    hubTo: "/casino-anmeldelser",
     links: [
       { to: "/casino-anmeldelser", label: "Alle Anmeldelser" },
       { to: "/casino-anmeldelser/spildansknu", label: "SpilDanskNu" },
