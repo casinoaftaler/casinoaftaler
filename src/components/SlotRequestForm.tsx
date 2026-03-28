@@ -68,9 +68,19 @@ export function SlotRequestForm() {
 
   const handleSelectSlot = (slot: { slot_name: string; provider: string }) => {
     setSelectedSlot(slot);
-    setSearchQuery(slot.slot_name);
+    setSearchQuery("");
     setShowDropdown(false);
     setIsCustomMode(false);
+
+    if (!user || hasReachedLimit || createRequest.isPending) return;
+    createRequest.mutate(
+      { slot_name: slot.slot_name, provider: slot.provider, is_custom: false },
+      {
+        onSuccess: () => {
+          setSelectedSlot(null);
+        },
+      }
+    );
   };
 
   const handleSwitchToCustom = () => {
@@ -185,13 +195,6 @@ export function SlotRequestForm() {
               </div>
             )}
 
-            {selectedSlot && (
-              <div className="flex items-center gap-2 text-sm bg-muted/30 rounded-lg p-2.5 border border-border">
-                <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
-                <span className="font-medium">{selectedSlot.slot_name}</span>
-                <span className="text-muted-foreground">af {selectedSlot.provider}</span>
-              </div>
-            )}
           </div>
         ) : (
           <div className="space-y-4">
@@ -229,18 +232,20 @@ export function SlotRequestForm() {
           </div>
         )}
 
-        <Button
-          onClick={handleSubmit}
-          disabled={!canSubmit}
-          className="w-full sm:w-auto gap-2"
-        >
-          {createRequest.isPending ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <Send className="h-4 w-4" />
-          )}
-          Send Request
-        </Button>
+        {isCustomMode && (
+          <Button
+            onClick={handleSubmit}
+            disabled={!canSubmit}
+            className="w-full sm:w-auto gap-2"
+          >
+            {createRequest.isPending ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Send className="h-4 w-4" />
+            )}
+            Send Request
+          </Button>
+        )}
       </div>
 
       {/* User's requests */}
