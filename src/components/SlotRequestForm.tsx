@@ -239,18 +239,20 @@ export function SlotRequestForm() {
           </div>
         )}
 
-        <Button
-          onClick={handleSubmit}
-          disabled={!canSubmit}
-          className="w-full sm:w-auto gap-2"
-        >
-          {createRequest.isPending ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <Send className="h-4 w-4" />
-          )}
-          Send Request
-        </Button>
+        {isCustomMode && (
+          <Button
+            onClick={handleSubmit}
+            disabled={!canSubmit}
+            className="w-full sm:w-auto gap-2"
+          >
+            {createRequest.isPending ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Send className="h-4 w-4" />
+            )}
+            Send Request
+          </Button>
+        )}
       </div>
 
       {/* User's requests */}
