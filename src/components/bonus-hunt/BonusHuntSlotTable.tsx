@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronLeft, ChevronRight, Search, ArrowUpDown, ChevronDown, Trophy, Rocket } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { BonusHuntSlotPopoverContent } from "./BonusHuntSlotInfoDialog";
@@ -224,7 +225,21 @@ export function BonusHuntSlotTable({ slots, huntNumber }: Props) {
                     {slot.opened ? <WinBadge win={slot.win} multiplier={slot.multiplier} /> : <WinBadge win={0} multiplier={0} />}
                   </td>
                   <td className="px-3 py-2 text-xs text-muted-foreground hidden sm:table-cell">
-                    {requesterMap?.get(slot.slot.toLowerCase()) || ''}
+                    {(() => {
+                      const requester = requesterMap?.get(slot.slot.toLowerCase());
+                      if (!requester) return null;
+                      const displayName = requester.displayName;
+                      const initials = displayName?.slice(0, 2).toUpperCase() || '?';
+                      return (
+                        <Link to={`/u/${encodeURIComponent(displayName)}`} className="inline-flex items-center gap-1.5 hover:text-primary transition-colors group">
+                          <Avatar className="h-5 w-5">
+                            <AvatarImage src={requester.avatarUrl || undefined} alt={displayName} />
+                            <AvatarFallback className="text-[8px]">{initials}</AvatarFallback>
+                          </Avatar>
+                          <span className="group-hover:underline">{displayName}</span>
+                        </Link>
+                      );
+                    })()}
                   </td>
                 </tr>
               ))}
