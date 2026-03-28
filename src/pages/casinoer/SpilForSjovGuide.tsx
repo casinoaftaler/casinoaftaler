@@ -10,6 +10,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import onecasinoSpillemaskiner from "@/assets/screenshots/onecasino-spillemaskiner.webp";
+import spildanskDemo from "@/assets/screenshots/spildansknu-demo-lobby-anbefalede.webp";
+import demosaldoIndsats from "@/assets/screenshots/spildansknu-demosaldo-indsats.webp";
+import hotFiestaDemo from "@/assets/screenshots/pragmaticplay-hot-fiesta-demo.webp";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -122,6 +125,13 @@ const SpilForSjovGuide = () => {
           <h3 className="text-xl font-bold mb-3 mt-6">Sådan finder du demo-spil</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">De fleste danske licenserede casinoer gør det nemt at finde demo-tilstand. Typisk kan du browse casinoets spiludvalg uden at logge ind, og klikke på "Prøv gratis", "Demo" eller "Play for fun"-knappen på hvert spil. Nogle casinoer kræver dog, at du opretter en konto (gratis), før du får adgang til demo-versioner. Alternativt kan du finde demo-spil direkte på spiludbydernes hjemmesider – f.eks. tilbyder NetEnt, Pragmatic Play og Play'n GO demo-versioner af deres spil på deres officielle sites.</p>
           <p className="text-muted-foreground leading-relaxed">Et praktisk tip: Brug demo-tilstand systematisk. Sæt dig et mål – f.eks. at teste 5 nye spilleautomater pr. uge i demo – og notér dine observationer om volatilitet, bonusfrekvens og samlet fornøjelse. Denne disciplinerede tilgang hjælper dig med at opbygge et solidt fundament af viden, der gør dig til en mere informeret spiller, hvis du senere vælger at spille med rigtige penge.</p>
+
+          <ReviewScreenshot
+            src={spildanskDemo}
+            alt="SpilDanskNu.dk anbefalede spil med synlige Spil- og Demo-knapper på Le Bandit fra Hacksaw Gaming"
+            caption="På SpilDanskNu.dk kan du nemt skifte mellem rigtige penge og demo-tilstand direkte fra spillobbyen"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -164,6 +174,12 @@ const SpilForSjovGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">En af de mest undervurderede fordele ved demo-tilstand er muligheden for systematisk at lære casinospillets mekanik. I stedet for blot at trykke på "spin"-knappen kan du bruge demo-spil som et læringsværktøj, der giver dig dybere forståelse af, hvordan spillene fungerer. Her er en praktisk guide til at bruge demo-tilstand effektivt som læringsredskab.</p>
           
           <h3 className="text-xl font-bold mb-3">Spilleautomater: Forstå volatilitet og bonusfunktioner</h3>
+          <ReviewScreenshot
+            src={demosaldoIndsats}
+            alt="Demo-tilstand med virtuel saldo på 5.000 kr. og demoindsats på 20 kr. vist i spillets interface"
+            caption="I demo-tilstand starter du med en virtuel saldo – her 5.000 kr. – og kan frit justere din indsats uden risiko"
+            size="compact"
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">Når du tester en ny spilleautomat i demo-tilstand, bør du fokusere på flere nøgleelementer: <strong>Volatilitet</strong> – spil 100-200 spins og observer gevinstfrekvensen og gevinsternes størrelse. Høj volatilitet giver sjældne men store gevinster, lav volatilitet giver hyppige men små gevinster. <strong>Bonusfunktioner</strong> – observer, hvor ofte bonusrunder udløses, og hvad de typisk udbetaler. Nogle bonusrunder kan give massive gevinster (100x+ indsatsen), mens andre er mere beskedne. <strong>Betalingslinjer og indsatsstruktur</strong> – forstå, hvordan gevinstlinjerne fungerer, og hvad den optimale indsats er for at aktivere alle funktioner.</p>
           
           <h3 className="text-xl font-bold mb-3">Bordspil: Øv strategi systematisk</h3>
@@ -178,6 +194,13 @@ const SpilForSjovGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Ud over demo-tilstand og gratis bonusser findes der en hel kategori af sociale casinospil (social casino games), der tilbyder casinooplevelser uden rigtige penge overhovedet. Disse spil er designet som ren underholdning og bruger virtuelle valutaer, der ikke kan veksles til rigtige penge. De er populære på mobilplatforme og sociale medier og tiltrækker millioner af spillere globalt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sociale casinospil inkluderer apps som Slotomania, DoubleDown Casino, Big Fish Casino og mange andre. Disse apps tilbyder hundredvis af spilleautomater og bordspil med virtuelle mønter. Du kan typisk tjene gratis mønter dagligt, spille turneringer mod andre spillere, og dele resultater med venner. Spillene er gratis at downloade og spille, men tilbyder in-app køb af ekstra virtuelle mønter.</p>
           <p className="text-muted-foreground leading-relaxed">Det er dog vigtigt at skelne mellem sociale casinospil og regulerede demo-tilstande på licenserede casinoer. Sociale casinospil er ikke reguleret af Spillemyndigheden og bruger ofte langt mere aggressive monetarisering og engagement-mekanikker. De kan også vise urealistiske gevinstfrekvenser for at fremme in-app køb. Vi anbefaler demo-tilstand på licenserede casinoer som den mest pålidelige og ærlige måde at opleve gratis casinospil.</p>
+
+          <ReviewScreenshot
+            src={hotFiestaDemo}
+            alt="Hot Fiesta fra Pragmatic Play i demo-tilstand på udbyderens hjemmeside med $100.000 virtuel saldo"
+            caption="Spiludbydere som Pragmatic Play tilbyder demo-versioner direkte på deres hjemmesider – helt uden registrering"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
