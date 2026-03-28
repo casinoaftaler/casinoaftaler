@@ -1053,7 +1053,7 @@ const NyeCasinoer = () => {
         <RelatedGuides currentPath="/nye-casinoer" />
         <FAQSection title="Ofte stillede spørgsmål om nye casinoer i Danmark" faqs={nyeCasinoerFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );
