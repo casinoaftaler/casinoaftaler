@@ -23,7 +23,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Badge } from "@/components/ui/badge";
 import { Plus, Trash2, Loader2, ChevronDown, UserPlus, Shield } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -31,6 +39,7 @@ import { z } from "zod";
 const inviteAdminSchema = z.object({
   email: z.string().trim().email({ message: "Ugyldig email adresse" }).max(255, { message: "Email må max være 255 tegn" }),
   password: z.string().min(6, { message: "Adgangskode skal være mindst 6 tegn" }).max(100, { message: "Adgangskode må max være 100 tegn" }),
+  role: z.enum(["admin", "moderator"]),
 });
 
 interface AdminUser {
@@ -49,6 +58,7 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
   const [dialogOpen, setDialogOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [selectedRole, setSelectedRole] = useState<"admin" | "moderator">("admin");
   const [error, setError] = useState("");
   const queryClient = useQueryClient();
 
@@ -66,9 +76,9 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
 
   // Create admin user mutation
   const createAdmin = useMutation({
-    mutationFn: async ({ email, password }: { email: string; password: string }) => {
+    mutationFn: async ({ email, password, role }: { email: string; password: string; role: string }) => {
       const { data, error } = await supabase.functions.invoke("create-admin-user", {
-        body: { email, password },
+        body: { email, password, role },
       });
 
       if (error) {
@@ -95,6 +105,7 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
       setDialogOpen(false);
       setEmail("");
       setPassword("");
+      setSelectedRole("admin");
       setError("");
     },
     onError: (error: Error) => {
@@ -105,9 +116,9 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
 
   // Delete admin user mutation
   const deleteAdmin = useMutation({
-    mutationFn: async (userId: string) => {
+    mutationFn: async ({ userId, role }: { userId: string; role: string }) => {
       const { data, error } = await supabase.functions.invoke("delete-admin-user", {
-        body: { userId },
+        body: { userId, role },
       });
 
       if (error) throw error;
@@ -127,13 +138,13 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
     e.preventDefault();
     setError("");
 
-    const validation = inviteAdminSchema.safeParse({ email, password });
+    const validation = inviteAdminSchema.safeParse({ email, password, role: selectedRole });
     if (!validation.success) {
       setError(validation.error.errors[0].message);
       return;
     }
 
-    createAdmin.mutate({ email, password });
+    createAdmin.mutate({ email, password, role: selectedRole });
   };
 
   const content = (
@@ -179,12 +190,24 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
                   Mindst 6 tegn
                 </p>
               </div>
+              <div className="space-y-2">
+                <Label>Rolle</Label>
+                <Select value={selectedRole} onValueChange={(v) => setSelectedRole(v as "admin" | "moderator")}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="admin">Admin</SelectItem>
+                    <SelectItem value="moderator">Moderator</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
               {error && (
                 <p className="text-sm text-destructive">{error}</p>
               )}
               <Button type="submit" className="w-full" disabled={createAdmin.isPending}>
                 {createAdmin.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Opret Admin Bruger
+                Opret Bruger
               </Button>
             </form>
           </DialogContent>
@@ -206,7 +229,12 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
                 <div className="flex items-center gap-3">
                   <Shield className="h-4 w-4 text-primary" />
                   <div>
-                    <p className="text-sm font-medium">{admin.email || admin.user_id}</p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-medium">{admin.email || admin.user_id}</p>
+                      <Badge variant={admin.role === "admin" ? "default" : "secondary"} className="text-[10px] px-1.5 py-0">
+                        {admin.role === "admin" ? "Admin" : "Moderator"}
+                      </Badge>
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       Oprettet: {new Date(admin.created_at).toLocaleDateString("da-DK")}
                     </p>
@@ -229,7 +257,7 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
                     <AlertDialogFooter>
                       <AlertDialogCancel>Annuller</AlertDialogCancel>
                       <AlertDialogAction
-                        onClick={() => deleteAdmin.mutate(admin.user_id)}
+                        onClick={() => deleteAdmin.mutate({ userId: admin.user_id, role: admin.role })}
                         className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                       >
                         Fjern

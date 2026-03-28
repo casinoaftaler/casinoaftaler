@@ -70,7 +70,8 @@ Deno.serve(async (req) => {
     }
 
     // Get request body
-    const { userId } = await req.json();
+    const { userId, role: targetRole } = await req.json();
+    const roleToDelete = targetRole === "moderator" ? "moderator" : "admin";
 
     if (!userId) {
       return new Response(
@@ -87,24 +88,24 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log(`Removing admin role for user: ${userId}`);
+    console.log(`Removing ${roleToDelete} role for user: ${userId}`);
 
-    // Remove admin role from user_roles table
+    // Remove role from user_roles table
     const { error: deleteRoleError } = await supabaseAdmin
       .from("user_roles")
       .delete()
       .eq("user_id", userId)
-      .eq("role", "admin");
+      .eq("role", roleToDelete);
 
     if (deleteRoleError) {
-      console.error("Error removing admin role:", deleteRoleError);
+      console.error("Error removing role:", deleteRoleError);
       return new Response(
-        JSON.stringify({ error: "Kunne ikke fjerne admin rolle" }),
+        JSON.stringify({ error: `Kunne ikke fjerne ${roleToDelete} rolle` }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    console.log(`Admin role removed for user: ${userId}`);
+    console.log(`${roleToDelete} role removed for user: ${userId}`);
 
     return new Response(
       JSON.stringify({ success: true }),

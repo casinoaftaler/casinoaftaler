@@ -70,7 +70,8 @@ Deno.serve(async (req) => {
     }
 
     // Get request body
-    const { email, password } = await req.json();
+    const { email, password, role: requestedRole } = await req.json();
+    const role = requestedRole === "moderator" ? "moderator" : "admin";
 
     if (!email || !password) {
       return new Response(
@@ -96,7 +97,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log(`Creating/promoting admin user: ${email}`);
+    console.log(`Creating/promoting ${role} user: ${email}`);
 
     let userId: string;
     let userEmail: string;
@@ -173,36 +174,36 @@ Deno.serve(async (req) => {
       console.log(`User created: ${userId}`);
     }
 
-    // Check if user already has admin role
+    // Check if user already has the requested role
     const { data: existingRole } = await supabaseAdmin
       .from("user_roles")
       .select("id")
       .eq("user_id", userId)
-      .eq("role", "admin")
+      .eq("role", role)
       .maybeSingle();
 
     if (existingRole) {
-      console.log(`User ${userId} is already an admin`);
+      console.log(`User ${userId} already has role: ${role}`);
       return new Response(
-        JSON.stringify({ success: true, userId, email: userEmail, message: "Bruger er allerede admin" }),
+        JSON.stringify({ success: true, userId, email: userEmail, message: `Bruger har allerede rollen: ${role}` }),
         { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    // Assign admin role
+    // Assign role
     const { error: roleInsertError } = await supabaseAdmin
       .from("user_roles")
-      .insert({ user_id: userId, role: "admin" });
+      .insert({ user_id: userId, role });
 
     if (roleInsertError) {
-      console.error("Error assigning admin role:", roleInsertError);
+      console.error("Error assigning role:", roleInsertError);
       return new Response(
-        JSON.stringify({ error: "Kunne ikke tildele admin rolle" }),
+        JSON.stringify({ error: `Kunne ikke tildele ${role} rolle` }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    console.log(`Admin role assigned to user: ${userId}`);
+    console.log(`${role} role assigned to user: ${userId}`);
 
     return new Response(
       JSON.stringify({ success: true, userId, email: userEmail }),

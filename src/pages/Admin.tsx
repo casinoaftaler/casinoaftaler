@@ -751,7 +751,7 @@ function SortableCasinoCard({
 
 
 function AdminDashboard() {
-  const { user, isAdmin, signOut } = useAuth();
+  const { user, isAdmin, isModerator, signOut } = useAuth();
   const { data: casinos, isLoading } = useCasinos(true);
   const { data: siteSettings } = useSiteSettings();
   const deleteCasino = useDeleteCasino();
@@ -763,11 +763,13 @@ function AdminDashboard() {
   const [editingCasino, setEditingCasino] = useState<Casino | null>(null);
   const [orderedCasinos, setOrderedCasinos] = useState<Casino[]>([]);
   const [headerIconUrl, setHeaderIconUrl] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState("content");
+  const [activeTab, setActiveTab] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [contentSubTab, setContentSubTab] = useState("casinos");
 
-  const navItems = [
+  const moderatorAllowedTabs = ["bonus-hunt", "requests"];
+
+  const allNavItems = [
     { value: "content", label: "Indhold", icon: Gift },
     { value: "news", label: "Nyheder", icon: Bell },
     { value: "community-clips", label: "Community", icon: Sparkles },
@@ -786,6 +788,18 @@ function AdminDashboard() {
     { value: "settings", label: "Indstillinger", icon: Settings },
     { value: "users", label: "Brugere", icon: Users },
   ];
+
+  const navItems = (isModerator && !isAdmin)
+    ? allNavItems.filter(item => moderatorAllowedTabs.includes(item.value))
+    : allNavItems;
+
+  const defaultTab = (isModerator && !isAdmin) ? "bonus-hunt" : "content";
+
+  useEffect(() => {
+    if (!activeTab) {
+      setActiveTab((isModerator && !isAdmin) ? "bonus-hunt" : "content");
+    }
+  }, [isModerator, isAdmin, activeTab]);
 
   useEffect(() => {
     if (siteSettings?.header_icon) {
@@ -1229,7 +1243,7 @@ function AdminDashboard() {
 }
 
 export default function Admin() {
-  const { user, loading, isAdmin, signOut } = useAuth();
+  const { user, loading, isAdmin, isModerator, signOut } = useAuth();
 
   if (loading) {
     return (
@@ -1243,15 +1257,15 @@ export default function Admin() {
     return <AdminLoginForm />;
   }
 
-  // Only allow admins
-  if (!isAdmin) {
+  // Allow admins and moderators
+  if (!isAdmin && !isModerator) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
         <Card className="max-w-md text-center">
           <CardContent className="pt-6">
             <h2 className="mb-4 text-xl font-bold">Adgang Nægtet</h2>
             <p className="mb-4 text-muted-foreground">
-              Du har ikke admin rettigheder.
+              Du har ikke admin eller moderator rettigheder.
             </p>
             <p className="mb-4 text-sm text-muted-foreground">
               Logget ind som: {user?.email}
@@ -1262,7 +1276,7 @@ export default function Admin() {
               }}
               className="w-full"
             >
-              Log ud og log ind som admin
+              Log ud og log ind med en autoriseret konto
             </Button>
           </CardContent>
         </Card>

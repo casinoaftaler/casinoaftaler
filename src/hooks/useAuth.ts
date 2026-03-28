@@ -7,6 +7,7 @@ export function useAuth() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isModerator, setIsModerator] = useState(false);
 
   useEffect(() => {
     // Set up auth state listener FIRST
@@ -18,10 +19,11 @@ export function useAuth() {
         // Check roles after auth state change
         if (session?.user) {
           setTimeout(() => {
-            checkAdminRole(session.user.id);
+            checkRoles(session.user.id);
           }, 0);
         } else {
           setIsAdmin(false);
+          setIsModerator(false);
         }
       }
     );
@@ -31,7 +33,7 @@ export function useAuth() {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        checkAdminRole(session.user.id);
+        checkRoles(session.user.id);
       }
       setLoading(false);
     });
@@ -39,18 +41,18 @@ export function useAuth() {
     return () => subscription.unsubscribe();
   }, []);
 
-  const checkAdminRole = async (userId: string) => {
+  const checkRoles = async (userId: string) => {
     const { data, error } = await supabase
       .from("user_roles")
       .select("role")
-      .eq("user_id", userId)
-      .eq("role", "admin")
-      .maybeSingle();
+      .eq("user_id", userId);
 
     if (!error && data) {
-      setIsAdmin(true);
+      setIsAdmin(data.some((r: any) => r.role === "admin"));
+      setIsModerator(data.some((r: any) => r.role === "moderator"));
     } else {
       setIsAdmin(false);
+      setIsModerator(false);
     }
   };
 
@@ -80,6 +82,7 @@ export function useAuth() {
     setUser(null);
     setSession(null);
     setIsAdmin(false);
+    setIsModerator(false);
     
     const { error } = await supabase.auth.signOut();
     return { error };
@@ -90,6 +93,7 @@ export function useAuth() {
     session,
     loading,
     isAdmin,
+    isModerator,
     signIn,
     signUp,
     signOut,
