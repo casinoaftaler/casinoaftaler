@@ -646,6 +646,12 @@ const NoStickyBonus = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Prognose:</strong> Vi forventer, at no-sticky bliver den dominerende bonustype i Danmark inden udgangen af 2027. Casinoer, der fastholder sticky bonusser med komplekse vilkår, vil opleve stigende konkurrencepres fra operatører, der tilbyder enklere, mere gennemsigtige alternativer. For spillere er denne udvikling udelukkende positiv – den indikerer et modent marked, der prioriterer spillerinteresser.
           </p>
+          <ReviewScreenshot
+            src={campobetVelkomst}
+            alt="Campobets dual-platform velkomstbonus med 100% op til 1.000 kr. for både sport og casino"
+            caption="Campobets moderne dual-platform tilbud – separat sport- og casinobonus med individuelle vilkår"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
