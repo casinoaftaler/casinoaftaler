@@ -921,7 +921,7 @@ const CasinoBonus = () => {
         <RelatedGuides currentPath="/casino-bonus" />
         <FAQSection title="Ofte stillede spørgsmål om casino bonus i Danmark" faqs={casinoBonusFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

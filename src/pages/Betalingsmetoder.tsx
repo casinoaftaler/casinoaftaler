@@ -921,7 +921,7 @@ const Betalingsmetoder = () => {
         <FAQSection title="Ofte stillede spørgsmål om casino-betalingsmetoder" faqs={betalingsmetoderFaqs} />
 
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

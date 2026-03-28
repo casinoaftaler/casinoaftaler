@@ -921,7 +921,7 @@ const CasinoAnmeldelser = () => {
         <RelatedGuides currentPath="/casino-anmeldelser" />
         <FAQSection title="Ofte stillede spørgsmål om casino anmeldelser" faqs={faqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

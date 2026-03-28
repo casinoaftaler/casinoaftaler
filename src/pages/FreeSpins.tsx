@@ -1003,7 +1003,7 @@ const FreeSpins = () => {
         <FAQSection title="Ofte stillede spørgsmål om free spins" faqs={freeSpinsFaqs} />
 
         <AuthorBio author="niklas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );

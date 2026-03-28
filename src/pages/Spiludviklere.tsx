@@ -981,7 +981,7 @@ const Spiludviklere = () => {
         <RelatedGuides currentPath="/spiludviklere" />
         <FAQSection title="Ofte stillede spørgsmål om casino-spiludviklere" faqs={spiludviklereFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );
