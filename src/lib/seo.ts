@@ -113,6 +113,12 @@ export const NIKLAS_SAME_AS = [
   "https://www.linkedin.com/in/niclas-finscet-hansen/",
 ];
 
+export const FREDERIK_SAME_AS = [
+  "https://www.youtube.com/@MerkelSpins",
+  "https://www.twitch.tv/fedesvinsejer",
+  "https://www.instagram.com/frederikmerkel/",
+];
+
 
 function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: string[]) {
   const isKevin = authorName === "Kevin";
