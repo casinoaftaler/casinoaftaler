@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Search, ArrowUpDown, ChevronDown, Trophy, Ro
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { BonusHuntSlotPopoverContent } from "./BonusHuntSlotInfoDialog";
 import { useProviderOverrides, useSlotCatalogMap } from "@/hooks/useSlotCatalog";
+import { useBonusHuntSlotRequesters } from "@/hooks/useSlotRequests";
 import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
 
 const PROVIDER_SLUG_MAP: Record<string, string> = {
