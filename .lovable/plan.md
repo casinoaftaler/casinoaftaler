@@ -1,46 +1,35 @@
 
 
-## Bug: "Requested By" not showing — Name Mismatch
+## Fix: "Requested By" not showing for non-bonus_hit requests
 
 ### Root Cause
 
-The `useBonusHuntSlotRequesters` hook stores a map keyed by `slot_requests.slot_name.toLowerCase()`. The table looks up with `slot.slot.toLowerCase()` — the name from the StreamSystem API.
+The `useBonusHuntSlotRequesters` hook filters by `status = 'bonus_hit'` only. But many requested slots have status `'settled'`, `'no_bonus'`, or `'pending'` — these are completely excluded from the requester map.
 
-These names often differ:
-- DB: `"Gates Of Olympus"` → key: `"gates of olympus"`
-- API: `"Gates of olympus super scatter"` → lookup: `"gates of olympus super scatter"`
-
-No match → no requester shown. This affects ALL slots, not just 100x+.
+**Example from hunt #182:**
+| Slot | Requester | Status | Shown? |
+|---|---|---|---|
+| Xpander | m_lazyturtle | bonus_hit | Yes |
+| Rotten | m_lazyturtle | settled | **No** |
+| Shaolin Master | m_lazyturtle | settled | **No** |
+| Ronin Stackways | m_lazyturtle | settled | **No** |
+| Mayan Stackways | m_lazyturtle | settled | **No** |
 
 ### Fix
 
-**File: `src/components/bonus-hunt/BonusHuntSlotTable.tsx`** (line ~229)
+**File: `src/hooks/useSlotRequests.ts`** (line 168)
 
-Change the lookup from exact match to a **contains-based fallback**:
-
+Change the query from:
 ```typescript
-// Current (exact match only):
-const requester = requesterMap?.get(slot.slot.toLowerCase());
-
-// Fixed (exact match first, then contains fallback):
-const slotLower = slot.slot.toLowerCase();
-let requester = requesterMap?.get(slotLower);
-if (!requester && requesterMap) {
-  for (const [key, val] of requesterMap) {
-    if (slotLower.includes(key) || key.includes(slotLower)) {
-      requester = val;
-      break;
-    }
-  }
-}
+.eq("status", "bonus_hit")
+```
+To include all relevant statuses:
+```typescript
+.in("status", ["bonus_hit", "settled", "no_bonus", "pending"])
 ```
 
-This handles cases like:
-- `"gates of olympus"` matches `"gates of olympus super scatter"` (key included in slot name)
-- `"toshi video club"` matches `"toshi ways club"` won't match (correctly), but `"toshi video club"` matches itself
+This shows the requester for **every** requested slot, regardless of whether it hit bonus or not. The "Requested By" column is about who picked the slot — not whether it won.
 
-### Why this is safe
-- The contains check only fires when exact match fails
-- Map iteration is tiny (typically <20 requesters per hunt)
-- No extra API calls or dependencies
+### One file change, no other modifications needed
+The fuzzy name matching (already in `BonusHuntSlotTable.tsx`) will continue to handle name mismatches.
 
