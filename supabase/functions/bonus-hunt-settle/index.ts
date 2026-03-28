@@ -13,24 +13,19 @@ serve(async (req) => {
 
   try {
     console.log('bonus-hunt-settle invoked');
-    const authHeader = req.headers.get('Authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      console.log('No auth header found');
-      return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
-    }
-
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
     const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const seJwtToken = Deno.env.get('STREAMELEMENTS_JWT_TOKEN');
 
-    const token = authHeader.replace('Bearer ', '');
+    const authHeader = req.headers.get('Authorization');
+    const token = authHeader?.replace('Bearer ', '') || '';
     const adminClient = createClient(supabaseUrl, serviceRoleKey);
 
-    // Allow service_role key directly, otherwise verify user is admin
-    if (token !== serviceRoleKey) {
+    // Auth: either service_role key or authenticated admin user
+    if (token && token !== serviceRoleKey) {
       const authClient = createClient(supabaseUrl, supabaseAnonKey, {
-        global: { headers: { Authorization: authHeader } },
+        global: { headers: { Authorization: `Bearer ${token}` } },
       });
       const { data: { user }, error: userError } = await authClient.auth.getUser(token);
       if (userError || !user) {
@@ -40,7 +35,10 @@ serve(async (req) => {
       if (!isAdmin) {
         return new Response(JSON.stringify({ error: 'Admin only' }), { status: 403, headers: corsHeaders });
       }
+    } else if (!token) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
     }
+    // If token === serviceRoleKey, skip auth check (trusted internal call)
 
     const body = await req.json();
     const { sessionId, endBalance: manualEndBalance, averageX } = body;
