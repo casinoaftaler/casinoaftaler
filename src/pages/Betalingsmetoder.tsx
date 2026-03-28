@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaBetalingOversigt from "@/assets/screenshots/betinia-betaling-oversigt.webp";
 import spilnuBetaling from "@/assets/screenshots/spilnu-betaling.webp";
