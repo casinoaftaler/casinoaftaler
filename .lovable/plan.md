@@ -1,35 +1,53 @@
 
 
-## Fix: "Requested By" not showing for non-bonus_hit requests
+## Remove Navigation Sidebar from Trust/Editorial/Author Pages
 
-### Root Cause
+### Problem
+The `ContentSidebar` (right-side navigation bar) appears on trust, editorial, and author pages where it's not needed. These pages should have full-width content without the sidebar.
 
-The `useBonusHuntSlotRequesters` hook filters by `status = 'bonus_hit'` only. But many requested slots have status `'settled'`, `'no_bonus'`, or `'pending'` — these are completely excluded from the requester map.
+### Approach
+Add a `hideSidebar` prop to `ContentPageLayout`. Set it to `true` on the affected pages. This avoids modifying the sidebar component itself and keeps the change localized.
 
-**Example from hunt #182:**
-| Slot | Requester | Status | Shown? |
-|---|---|---|---|
-| Xpander | m_lazyturtle | bonus_hit | Yes |
-| Rotten | m_lazyturtle | settled | **No** |
-| Shaolin Master | m_lazyturtle | settled | **No** |
-| Ronin Stackways | m_lazyturtle | settled | **No** |
-| Mayan Stackways | m_lazyturtle | settled | **No** |
+### Files to Change
 
-### Fix
+**1. `src/components/ContentPageLayout.tsx`** — Add optional `hideSidebar` prop; conditionally render `ContentSidebar`
 
-**File: `src/hooks/useSlotRequests.ts`** (line 168)
+**2. Pages that need `hideSidebar={true}`** (14 files):
+- `src/pages/SaadanTesterVi.tsx`
+- `src/pages/CasinoLicenser.tsx`
+- `src/pages/Spillemyndigheden.tsx`
+- `src/pages/Forfatter.tsx` (Jonas)
+- `src/pages/ForfatterKevin.tsx`
+- `src/pages/ForfatterAjse.tsx`
+- `src/pages/ForfatterNiklas.tsx`
+- `src/pages/ForfatterFrederik.tsx`
+- `src/pages/ansvarligt-spil/RofusGuide.tsx`
+- `src/pages/ansvarligt-spil/SelvudelukkelseGuide.tsx`
+- `src/pages/ansvarligt-spil/SpillegraenserGuide.tsx`
+- `src/pages/ansvarligt-spil/LudomaniGuide.tsx`
+- `src/pages/ansvarligt-spil/HjaelpelinjerGuide.tsx`
+- `src/pages/ansvarligt-spil/StopSpilletGuide.tsx`
 
-Change the query from:
-```typescript
-.eq("status", "bonus_hit")
+### Technical Detail
+
+```tsx
+// ContentPageLayout.tsx
+interface ContentPageLayoutProps {
+  children: ReactNode;
+  hideSidebar?: boolean;
+}
+
+export function ContentPageLayout({ children, hideSidebar = false }: ContentPageLayoutProps) {
+  return (
+    <div className="container py-8 md:py-12">
+      <div className={hideSidebar ? "" : "flex gap-8 xl:gap-10"}>
+        <div className="min-w-0 flex-1">{children}</div>
+        {!hideSidebar && <ContentSidebar />}
+      </div>
+    </div>
+  );
+}
 ```
-To include all relevant statuses:
-```typescript
-.in("status", ["bonus_hit", "settled", "no_bonus", "pending"])
-```
 
-This shows the requester for **every** requested slot, regardless of whether it hit bonus or not. The "Requested By" column is about who picked the slot — not whether it won.
-
-### One file change, no other modifications needed
-The fuzzy name matching (already in `BonusHuntSlotTable.tsx`) will continue to handle name mismatches.
+Each affected page changes from `<ContentPageLayout>` to `<ContentPageLayout hideSidebar>`.
 
