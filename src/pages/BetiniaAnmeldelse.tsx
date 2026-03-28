@@ -959,7 +959,6 @@ const BetiniaAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <UserReviewSection casinoSlug="betinia" casinoName="Betinia" />
         <LazySection minHeight="400px">
           <UserReviewSection casinoSlug="betinia" casinoName="Betinia" />
         </LazySection>
