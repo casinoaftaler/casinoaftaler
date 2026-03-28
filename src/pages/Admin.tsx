@@ -1243,7 +1243,7 @@ function AdminDashboard() {
 }
 
 export default function Admin() {
-  const { user, loading, isAdmin, signOut } = useAuth();
+  const { user, loading, isAdmin, isModerator, signOut } = useAuth();
 
   if (loading) {
     return (
@@ -1257,15 +1257,15 @@ export default function Admin() {
     return <AdminLoginForm />;
   }
 
-  // Only allow admins
-  if (!isAdmin) {
+  // Allow admins and moderators
+  if (!isAdmin && !isModerator) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
         <Card className="max-w-md text-center">
           <CardContent className="pt-6">
             <h2 className="mb-4 text-xl font-bold">Adgang Nægtet</h2>
             <p className="mb-4 text-muted-foreground">
-              Du har ikke admin rettigheder.
+              Du har ikke admin eller moderator rettigheder.
             </p>
             <p className="mb-4 text-sm text-muted-foreground">
               Logget ind som: {user?.email}
@@ -1276,7 +1276,7 @@ export default function Admin() {
               }}
               className="w-full"
             >
-              Log ud og log ind som admin
+              Log ud og log ind med en autoriseret konto
             </Button>
           </CardContent>
         </Card>
