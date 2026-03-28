@@ -42,6 +42,7 @@ function getSlotSlug(slotName: string): string {
 
 interface Props {
   slots: BonusHuntSlot[];
+  huntNumber?: number;
 }
 
 type SortKey = 'index' | 'slot' | 'bet' | 'multiplier' | 'win';
