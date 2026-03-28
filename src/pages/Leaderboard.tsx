@@ -20,6 +20,7 @@ import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock"
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
+import { ContentSidebar } from "@/components/ContentSidebar";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useAuth } from "@/hooks/useAuth";

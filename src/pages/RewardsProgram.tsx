@@ -277,6 +277,9 @@ export default function RewardsProgram() {
         <AuthorBio author="jonas" showCommunity={false} />
 
         <div className="pb-12" />
+          </div>
+          <ContentSidebar />
+        </div>
         </div>
       </div>
     </>
