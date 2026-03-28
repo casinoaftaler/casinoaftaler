@@ -279,6 +279,12 @@ const BedsteNyeCasinoer = () => {
           <p className="mt-4 text-muted-foreground leading-relaxed">
             Se vores dedikerede guide til <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link> for detaljerede EV-beregninger og bonusanalyser.
           </p>
+          <ReviewScreenshot
+            src={videoslotsIndbetaling}
+            alt="Videoslots indbetalingsside med Dankort, Visa, MobilePay, Skrill, Neteller og paysafecard – beløb fra 100 til 100.000 DKK"
+            caption="Videoslots tilbyder et bredt udvalg af danske betalingsmetoder inkl. MobilePay og bankoverførsel med 0% gebyr"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
