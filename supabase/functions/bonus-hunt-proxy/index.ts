@@ -522,6 +522,64 @@ serve(async (req) => {
         .then(() => triggerEnrich(supabase))
         .catch(e => console.error('Slot catalog sync error:', e));
 
+      // Auto-match pending slot requests against current hunt slots
+      if (huntNumber > 0 && huntData?.data?.length > 0) {
+        const huntSlotNames = huntData.data.map((s: any) => (s.title || '').toLowerCase()).filter(Boolean);
+        if (huntSlotNames.length > 0) {
+          (async () => {
+            try {
+              const { data: pendingReqs } = await supabase
+                .from('slot_requests')
+                .select('id, user_id, slot_name')
+                .eq('status', 'pending');
+
+              for (const req of (pendingReqs || [])) {
+                if (huntSlotNames.includes(req.slot_name.toLowerCase())) {
+                  // Auto bonus-hit
+                  await supabase.from('slot_requests').update({
+                    status: 'bonus_hit',
+                    hunt_number: huntNumber,
+                    credits_awarded: 200,
+                  }).eq('id', req.id);
+
+                  // Award 200 credits
+                  const today = new Date().toLocaleDateString('da-DK', { timeZone: 'Europe/Copenhagen' }).split('.').reverse().join('-');
+                  const { data: existing } = await supabase
+                    .from('slot_spins')
+                    .select('id, spins_remaining')
+                    .eq('user_id', req.user_id)
+                    .eq('date', today)
+                    .maybeSingle();
+
+                  if (existing) {
+                    await supabase.from('slot_spins').update({
+                      spins_remaining: existing.spins_remaining + 200,
+                    }).eq('id', existing.id);
+                  } else {
+                    await supabase.from('slot_spins').insert({
+                      user_id: req.user_id,
+                      date: today,
+                      spins_remaining: 200,
+                    });
+                  }
+
+                  await supabase.from('credit_allocation_log').insert({
+                    user_id: req.user_id,
+                    amount: 200,
+                    source: 'slot_request_bonus',
+                    note: `Auto bonus hit på slot request (hunt #${huntNumber})`,
+                  });
+
+                  console.log(`Auto-matched slot request "${req.slot_name}" for user ${req.user_id} in hunt #${huntNumber}`);
+                }
+              }
+            } catch (e) {
+              console.error('Auto-match slot requests error:', e);
+            }
+          })();
+        }
+      }
+
       // Inject our hunt_number as visibleId so frontend shows correct position
       if (huntNumber > 0 && data?.data) {
         data.data.visibleId = huntNumber;
