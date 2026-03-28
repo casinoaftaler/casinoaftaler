@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spildansknuLobby from "@/assets/reviews/spildansknu-lobby.png";
+import spillemyndighedenTilladelser from "@/assets/screenshots/spillemyndigheden-tilladelsesindehavere.webp";
+import spillemyndighedenSpilleverandor from "@/assets/screenshots/spillemyndigheden-spilleverandor.webp";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
