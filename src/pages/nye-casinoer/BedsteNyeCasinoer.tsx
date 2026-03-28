@@ -338,6 +338,13 @@ const BedsteNyeCasinoer = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={videoslotsLiveCasino}
+          alt="Videoslots live casino lobby med Evolution Gaming bordspil – XXXtreme Lightning Roulette, Blackjack og Baccarat varianter"
+          caption="Videoslots' live casino-sektion med 5.326 spil og filtrering efter udbydere – et godt eksempel på et bredt live-udbud"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">
