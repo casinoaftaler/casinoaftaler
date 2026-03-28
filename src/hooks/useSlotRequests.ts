@@ -106,6 +106,38 @@ export function useCreateSlotRequest() {
   });
 }
 
+export function useBonusHuntSlotRequesters(huntNumber?: number) {
+  return useQuery({
+    queryKey: ["bonus-hunt-slot-requesters", huntNumber],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("slot_requests" as any)
+        .select("slot_name, user_id")
+        .eq("hunt_number", huntNumber!)
+        .eq("status", "bonus_hit");
+      if (error) throw error;
+
+      const userIds = [...new Set((data as any[]).map((r: any) => r.user_id))];
+      if (userIds.length === 0) return new Map<string, string>();
+
+      const { data: profiles } = await supabase
+        .from("profiles")
+        .select("user_id, display_name")
+        .in("user_id", userIds);
+
+      const profileMap = new Map(profiles?.map((p) => [p.user_id, p.display_name]) ?? []);
+      const result = new Map<string, string>();
+      for (const r of data as any[]) {
+        const name = profileMap.get(r.user_id);
+        if (name) result.set(r.slot_name.toLowerCase(), name);
+      }
+      return result;
+    },
+    enabled: !!huntNumber && huntNumber > 0,
+    staleTime: 60000,
+  });
+}
+
 export function useUpdateSlotRequestStatus() {
   const queryClient = useQueryClient();
 
@@ -115,11 +147,13 @@ export function useUpdateSlotRequestStatus() {
       status,
       userId,
       awardCredits,
+      huntNumber,
     }: {
       requestId: string;
       status: string;
       userId: string;
       awardCredits?: boolean;
+      huntNumber?: number;
     }) => {
       // Update the request status
       const updateData: any = { status };
