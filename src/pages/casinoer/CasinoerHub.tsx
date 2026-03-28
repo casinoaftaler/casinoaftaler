@@ -465,6 +465,13 @@ export default function CasinoerHub() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={campobetIndbetaling}
+          alt="CampoBet kassesektion med betalingsmetoder som MobilePay, Visa, Mastercard, PayPal og Trustly til danske spillere"
+          caption="CampoBet.dk – eksempel på et dansk casinoes indbetalingssektion med populære danske betalingsmetoder"
+          size="medium"
+        />
+
         {/* ── SECTION 8: Mobil Casino ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
