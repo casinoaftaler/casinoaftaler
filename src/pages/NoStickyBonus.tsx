@@ -279,12 +279,6 @@ const NoStickyBonus = () => {
             <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og{" "}
             <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>, samt indsatser der overstiger den maksimale indsatsgrænse (typisk 25-50 kr. per spin). Overtrædelse af indsatsgrænsen kan medføre total annullering af bonus og gevinster – en faldgrube der koster mange spillere penge.
           </p>
-          <ReviewScreenshot
-            src={spilleautomatenVelkomst}
-            alt="Spilleautomatens velkomstbonus-side med 100% no-sticky bonus og Legacy of Dead"
-            caption="Spilleautomatens bonusside – et eksempel på en ren no-sticky velkomstbonus med tydelige vilkår"
-            size="compact"
-          />
         </section>
 
         <Separator className="my-10" />
