@@ -93,7 +93,6 @@ function useVariedFaqTitle(title: string, pathname: string): string {
 export const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(function FAQSection({ title = "Ofte Stillede Spørgsmål", faqs = defaultFaqs }, ref) {
   const { pathname } = useLocation();
   const variedTitle = useVariedFaqTitle(title, pathname);
-  const { pathname } = useLocation();
   const showTrustPanel = isCasinoTrustPath(pathname);
   const showMarketIntelligenceTeaser =
     pathname === "/casino-bonus" ||
