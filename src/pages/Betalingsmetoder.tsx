@@ -238,7 +238,7 @@ const Betalingsmetoder = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="28 Min." />
 
         <SnippetAnswer answer="Din betalingsmetode afgør udbetalingshastighed, bonuskvalificering og sikkerhed. Trustly giver hurtigste udbetalinger (under 6 timer), mens MobilePay og Visa er universelt accepterede." />
