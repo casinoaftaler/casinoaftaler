@@ -57,7 +57,7 @@ function CategorySection({ category }: { category: SidebarCategory }) {
 export function ContentSidebar() {
   return (
     <aside className="hidden xl:block w-[280px] flex-shrink-0">
-      <div className="sticky top-24 space-y-3 max-h-[calc(100vh-7rem)] overflow-y-auto scrollbar-thin">
+      <div className="space-y-3">
         <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1">
           Navigation
         </h3>

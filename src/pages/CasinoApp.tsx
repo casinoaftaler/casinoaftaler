@@ -15,8 +15,8 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
-import {
 import { ContentPageLayout } from "@/components/ContentPageLayout";
+import {
   Smartphone,
   Shield,
   Clock,
