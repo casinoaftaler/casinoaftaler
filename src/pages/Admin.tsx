@@ -751,7 +751,7 @@ function SortableCasinoCard({
 
 
 function AdminDashboard() {
-  const { user, isAdmin, signOut } = useAuth();
+  const { user, isAdmin, isModerator, signOut } = useAuth();
   const { data: casinos, isLoading } = useCasinos(true);
   const { data: siteSettings } = useSiteSettings();
   const deleteCasino = useDeleteCasino();
