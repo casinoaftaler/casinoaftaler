@@ -379,6 +379,7 @@ const LiveBlackjackGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Ikke alle live blackjack-borde er skabt lige. Evolution Gaming alene tilbyder 10+ varianter, hver med unikke regler, tempi og strategiske implikationer. At vælge den rigtige variant er næsten lige så vigtigt som at mestre basisstrategien. Her gennemgår vi de fire primære varianter, du møder hos danske casinoer, med dybdegående analyse af fordele, ulemper og optimal anvendelse.
           </p>
+          <ReviewScreenshot src={blackjackLobby} alt="Oversigt over live blackjack-lobbyen med Lightning, Infinite, Speed og Classic varianter hos dansk casino" caption="Blackjack-lobbyen hos et dansk online casino: Lightning, Infinite, Classic, Speed og VIP-varianter samlet ét sted." size="full" />
 
           <Card className="border-border bg-card mb-4">
             <CardHeader className="pb-2">
