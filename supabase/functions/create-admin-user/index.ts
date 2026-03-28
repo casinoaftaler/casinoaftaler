@@ -70,7 +70,8 @@ Deno.serve(async (req) => {
     }
 
     // Get request body
-    const { email, password } = await req.json();
+    const { email, password, role: requestedRole } = await req.json();
+    const role = requestedRole === "moderator" ? "moderator" : "admin";
 
     if (!email || !password) {
       return new Response(
