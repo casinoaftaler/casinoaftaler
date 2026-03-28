@@ -43,6 +43,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import gameShowsHero from "@/assets/heroes/game-shows-hero.jpg";
+import gameShowsLobby from "@/assets/screenshots/game-shows-lobby.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -148,6 +149,13 @@ const GameShowsGuide = () => {
             Det interessante ved game shows er ikke deres matematik – den er relativt simpel sammenlignet med spillemaskiner. Det interessante er, hvordan designet bevidst skjuler denne matematik bag lag af underholdning, spænding og social interaktion. Denne guide analyserer begge sider: den reelle matematik og den perceptuelle ramme, der gør game shows til casinobranchens hurtigst voksende segment.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={gameShowsLobby}
+          alt="Game shows-lobbyen på et dansk online casino med Crazy Coin Flip, Crazy Pachinko og Balloon Race"
+          caption="Udvalget af game shows på et dansk licenseret casino – spil som Crazy Coin Flip og Crazy Pachinko dominerer kategorien."
+          size="full"
+        />
 
         {/* ── H2 2 ── */}
         <section className="mb-12">
