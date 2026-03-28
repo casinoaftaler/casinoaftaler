@@ -2,9 +2,9 @@ import { useState, useCallback } from "react";
 import { SafeHelmet } from "@/lib/reactCompat";
 import { Play, Monitor, Video, MessageCircle, Calendar } from "lucide-react";
 import hunt5Thumbnail from "@/assets/bonus-hunt-5-thumbnail.jpg";
-import hunt4Thumbnail from "@/assets/bonus-hunt-4-thumbnail.png";
-import hunt3Thumbnail from "@/assets/bonus-hunt-3-thumbnail.png";
-import hunt2Thumbnail from "@/assets/bonus-hunt-2-thumbnail.png";
+import hunt4Thumbnail from "@/assets/bonus-hunt-4-thumbnail.webp";
+import hunt3Thumbnail from "@/assets/bonus-hunt-3-thumbnail.webp";
+import hunt2Thumbnail from "@/assets/bonus-hunt-2-thumbnail.webp";
 
 export interface HuntVideoData {
   twitchVideoId: string;
