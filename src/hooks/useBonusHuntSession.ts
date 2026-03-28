@@ -31,6 +31,23 @@ export function useBonusHuntSession() {
   });
 }
 
+export function useBonusHuntSessionByHuntNumber(huntNumber?: number) {
+  return useQuery({
+    queryKey: ['bonus-hunt-session-by-number', huntNumber],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('bonus_hunt_sessions' as any)
+        .select('*')
+        .eq('hunt_number', huntNumber!)
+        .maybeSingle();
+      if (error) throw error;
+      return data as any;
+    },
+    enabled: !!huntNumber && huntNumber > 0,
+    staleTime: 60000,
+  });
+}
+
 async function enrichBetsWithProfiles(bets: any[]) {
   if (!bets.length) return bets;
   const userIds = [...new Set(bets.map(b => b.user_id))];
