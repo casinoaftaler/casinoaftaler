@@ -364,6 +364,13 @@ const NyeCasinoerDanskLicens = () => {
               </p>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={spillemyndighedenTilladelser}
+            alt="Spillemyndighedens tilladelsesindehavere-register med søgefunktion og liste over licenserede danske casinoer som 25syv og 888"
+            caption="Spillemyndighedens officielle register over tilladelsesindehavere – her verificerer du, om et casino har gyldig dansk licens (kilde: spillemyndigheden.dk)"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
