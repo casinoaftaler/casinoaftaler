@@ -219,6 +219,8 @@ export default function SlotDatabase() {
     return filtered.slice(start, start + ROWS_PER_PAGE);
   }, [filtered, currentPage]);
 
+  const { data: documentedHuntCount } = useDocumentedHuntCount();
+
   const stats = useMemo(() => {
     if (!slots) return { total: 0, providers: 0, avgRtp: 0, totalHunts: 0 };
     const providersSet = new Set(slots.map(s => s.provider).filter(p => p && p !== "Custom Slot" && p !== "Unknown"));
@@ -228,9 +230,9 @@ export default function SlotDatabase() {
       total: slots.length,
       providers: providersSet.size,
       avgRtp: avgRtp.toFixed(2),
-      totalHunts: slots.reduce((sum, s) => sum + s.bonus_count, 0),
+      totalHunts: documentedHuntCount || 0,
     };
-  }, [slots]);
+  }, [slots, documentedHuntCount]);
 
   const slotCount = stats.total || 1400;
   const slotCountLabel = `${slotCount}+`;

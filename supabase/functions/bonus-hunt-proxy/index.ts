@@ -396,15 +396,19 @@ serve(async (req) => {
 
         isNewHunt = !existing;
 
+        const totalSlots = stats.numberOfSlots || 0;
+        const openedSlots = stats.openedSlots || 0;
+        const isCompleted = huntData.played || (totalSlots > 0 && openedSlots >= totalSlots);
+
         await supabase
           .from("bonus_hunt_archives")
           .upsert({
             hunt_number: huntNumber,
             api_data: data,
             hunt_name: huntData.name,
-            hunt_status: huntData.played ? 'completed' : 'active',
-            total_slots: stats.numberOfSlots || 0,
-            opened_slots: stats.openedSlots || 0,
+            hunt_status: isCompleted ? 'completed' : 'active',
+            total_slots: totalSlots,
+            opened_slots: openedSlots,
             start_balance: huntData.start || 0,
             end_balance: huntData.end || null,
             average_x: stats.runAverage ? parseFloat(stats.runAverage) : null,
