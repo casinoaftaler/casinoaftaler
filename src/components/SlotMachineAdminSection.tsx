@@ -1408,7 +1408,7 @@ const GAME_OPTIONS = [
   { id: "fedesvin-bonanza", label: "Fedesvin Bonanza" },
 ] as const;
 
-const GLOBAL_TABS = ["spins", "points", "combined-stats", "live-players", "requests", "tournaments"] as const;
+const GLOBAL_TABS = ["spins", "points", "combined-stats", "live-players", "tournaments"] as const;
 
 export function SlotMachineAdminSection() {
   const [selectedGame, setSelectedGame] = useState("book-of-fedesvin");
@@ -1459,10 +1459,6 @@ export function SlotMachineAdminSection() {
             <BarChart3 className="h-3.5 w-3.5" />
             Samlet Statistik
           </TabsTrigger>
-          <TabsTrigger value="requests" className="gap-1">
-            <Gamepad2 className="h-3.5 w-3.5" />
-            Requests
-          </TabsTrigger>
           <TabsTrigger value="tournaments" className="gap-1">
             <Trophy className="h-3.5 w-3.5" />
             Turneringer
@@ -1495,9 +1491,6 @@ export function SlotMachineAdminSection() {
           <LivePlayersAdminSection />
         </TabsContent>
 
-        <TabsContent value="requests">
-          <SlotRequestsAdminSection />
-        </TabsContent>
 
         <TabsContent value="tournaments">
           <TournamentAdminSection />
