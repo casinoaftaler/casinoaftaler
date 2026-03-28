@@ -946,10 +946,7 @@ async function calculateBonanzaFullSpin(
 }
 
 const DEFAULT_SYMBOL_WEIGHT = 10;
-    const MAX_SPINS_CAP = 10200;
-    const SUBSCRIBER_MAX_SPINS_CAP = 10300;
     const SUBSCRIBER_BONUS = 100;
-    const ABSOLUTE_MAX_CREDITS = 10000;
 
 // Secure random number generator (fallback for non-Gates games)
 function secureRandom(): number {
