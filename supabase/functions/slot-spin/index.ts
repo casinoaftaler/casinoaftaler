@@ -2281,8 +2281,7 @@ Deno.serve(async (req) => {
     const bonusSpinsPermanent = profileRes.data?.bonus_spins_permanent || 0;
     const isSubscriber = !!(profileRes.data as any)?.twitch_badges?.is_subscriber;
     const subBonus = isSubscriber ? SUBSCRIBER_BONUS : 0;
-    const capLimit = isSubscriber ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
-    const maxSpins = Math.min(dailySpinsValue + subBonus + bonusSpinsPermanent, capLimit);
+    const maxSpins = dailySpinsValue + subBonus + bonusSpinsPermanent;
 
     // Atomic spin deduction via RPC (handles init + carry-over + deduction in 1 call)
     const { data: newRemaining, error: rpcError } = await serviceClient

@@ -182,7 +182,7 @@ export function SpinManagementSection() {
           user_id: user.user_id,
           amount: actualAmount,
           source: "admin_manual",
-          note: `Bulk: +${amount} credits (fra ${user.spins_remaining} til ${newSpins}${newSpins === ABSOLUTE_MAX_CREDITS ? ", capped" : ""})`,
+          note: `Bulk: +${amount} credits (fra ${user.spins_remaining} til ${newSpins})`,
         });
 
         return spinResult;

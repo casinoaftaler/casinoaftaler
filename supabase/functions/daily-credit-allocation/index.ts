@@ -154,8 +154,7 @@ Deno.serve(async (req) => {
 
       const isSubscriber = !!(p as any).twitch_badges?.is_subscriber;
       const subBonus = isSubscriber ? SUBSCRIBER_BONUS : 0;
-      const capLimit = isSubscriber ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
-      const cap = Math.min(BASE_DAILY_SPINS + subBonus + (p.bonus_spins_permanent || 0), capLimit);
+      const cap = BASE_DAILY_SPINS + subBonus + (p.bonus_spins_permanent || 0);
       const previous = latestSpinMap.get(p.user_id);
 
       let startValue: number;
