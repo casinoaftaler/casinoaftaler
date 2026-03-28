@@ -68,9 +68,19 @@ export function SlotRequestForm() {
 
   const handleSelectSlot = (slot: { slot_name: string; provider: string }) => {
     setSelectedSlot(slot);
-    setSearchQuery(slot.slot_name);
+    setSearchQuery("");
     setShowDropdown(false);
     setIsCustomMode(false);
+
+    if (!user || hasReachedLimit || createRequest.isPending) return;
+    createRequest.mutate(
+      { slot_name: slot.slot_name, provider: slot.provider, is_custom: false },
+      {
+        onSuccess: () => {
+          setSelectedSlot(null);
+        },
+      }
+    );
   };
 
   const handleSwitchToCustom = () => {
