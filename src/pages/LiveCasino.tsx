@@ -907,7 +907,7 @@ const LiveCasino = () => {
         <RelatedGuides currentPath="/live-casino" />
         <FAQSection title="Ofte stillede spørgsmål om live casino" faqs={liveCasinoFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

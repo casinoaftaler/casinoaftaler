@@ -967,7 +967,7 @@ const Velkomstbonus = () => {
         <FAQSection title="Ofte stillede spørgsmål om velkomstbonus" faqs={velkomstbonusFaqs} />
 
         <AuthorBio author="niklas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

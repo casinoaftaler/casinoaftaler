@@ -1408,7 +1408,7 @@ const Casinospil = () => {
         <FAQSection title="Ofte stillede spørgsmål om casinospil" faqs={casinospilFaqs} />
 
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
