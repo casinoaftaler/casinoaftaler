@@ -448,12 +448,6 @@ const NoStickyBonus = () => {
             <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> er det overordnede begreb for alle matchbonusser. No-Sticky ER en type indskudsbonus – den spillervenlige variant. Når vi taler om indskudsbonus generelt, refererer vi til både sticky og no-sticky varianter. Hvis en{" "}
             <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelse</Link> ikke specificerer bonustypen, bør du altid antage, at det er sticky, og kontakte kundeservice for at verificere.
           </p>
-          <ReviewScreenshot
-            src={betiniaVelkomst}
-            alt="Betinias sport- og casino-velkomstbonus med 100% op til 1.000 kr. og separate bonusvilkår"
-            caption="Betinia tilbyder separate sport- og casinobonusser – bemærk forskellen i omsætningskrav (5x sport vs. 10x casino)"
-            size="full"
-          />
         </section>
 
         <Separator className="my-10" />
