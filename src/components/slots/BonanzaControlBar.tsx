@@ -226,7 +226,13 @@ export function BonanzaControlBar({
         <div className="w-full px-2">
           <div className="relative flex items-center justify-between w-full" style={{ minHeight: tumbleVisible ? 52 : 38 }}>
             <div className="flex items-center gap-1.5">
-              <BonanzaPayTable gameId={gameId || "fedesvin-bonanza"} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10" />
+              {gameId === "gates-of-fedesvin" ? (
+                <GatesPayTable gameId={gameId} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10" />
+              ) : gameId === "fedesvin-bonanza" ? (
+                <BonanzaPayTable gameId={gameId} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10" />
+              ) : (
+                <PayTable gameId={gameId} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10" />
+              )}
               <VolumeControl className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10" />
             </div>
 
