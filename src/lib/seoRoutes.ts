@@ -239,6 +239,7 @@ export const seoRoutes: SeoRoute[] = ([
     priority: 0.85,
     lastmod: "2026-03-17",
     author: "jonas",
+    factCheckedBy: "ajse",
     articleTitle: "Markedsindsigt 2026 – Offentligt casinooverblik",
     articleCategory: "Analyse",
     articleExcerpt: "Offentligt overblik over verificerede licens-, bonus- og compliance-opdateringer på det danske casinomarked.",
