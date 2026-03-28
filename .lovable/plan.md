@@ -1,54 +1,72 @@
 
 
-## Plan: Add "Requested By" to Bonus Hunt + 100x Credit Reward
+## Plan: Auto-match slot requests + prevent duplicates
 
-### Overview
-When a slot request gets "Bonus Hit", link the requester to the corresponding slot in the current bonus hunt. Show "Requested By" in the slot table. If the slot achieves 100x+ multiplier, award 500 credits to the requester.
+### Current flow (confirmed)
+1. User requests a slot → stored in `slot_requests` with status `pending`
+2. Slot gets added to StreamSystem by the streamer
+3. Admin manually clicks "Bonus Hit" → awards 200 credits, links to hunt_number
 
-### Database Changes
+### What changes
 
-**1. Add `hunt_number` column to `slot_requests`**
-```sql
-ALTER TABLE public.slot_requests ADD COLUMN hunt_number integer;
+**1. Auto-match in the proxy function**
+When `bonus-hunt-proxy` syncs slot data from StreamSystem, compare each slot name against pending `slot_requests`. If a match is found (case-insensitive), automatically set `status = 'bonus_hit'`, assign the `hunt_number`, and award 200 credits — no manual admin action needed.
+
+**2. Prevent duplicate slot requests**
+Before inserting a new request, check if:
+- The same slot name already has a `pending` or `bonus_hit` request (any user) for the current active hunt
+- The slot is already on the current bonus hunt list (from StreamSystem data)
+
+Show a toast message like "Denne slot er allerede blevet requested" or "Denne slot er allerede på listen".
+
+### Files to change
+
+**`supabase/functions/bonus-hunt-proxy/index.ts`** (~lines 520-523, after slot catalog sync)
+- Query `slot_requests` WHERE `status = 'pending'`
+- For each pending request, check if `slot_name` (lowercase) matches any slot in the current hunt data
+- If matched: update status to `bonus_hit`, set `hunt_number`, award 200 credits (same logic as `useUpdateSlotRequestStatus`), log to `credit_allocation_log`
+- This runs on every proxy call so it catches new slots as they appear
+
+**`src/hooks/useSlotRequests.ts`** — `useCreateSlotRequest` mutation
+- Before inserting, query `slot_requests` for existing `pending`/`bonus_hit` entries with the same `slot_name` (case-insensitive)
+- If found, throw error "Denne slot er allerede blevet requested"
+- Also add a DB-level unique constraint isn't needed since we check client-side
+
+**`src/components/SlotRequestForm.tsx`**
+- Update error handler to show the duplicate message from the mutation
+
+### Technical details
+
+Auto-match in proxy (fire-and-forget, non-blocking):
+```typescript
+// After syncSlotCatalog, auto-match pending requests
+const slotNames = huntData.data?.map(s => s.title?.toLowerCase()).filter(Boolean) || [];
+if (slotNames.length > 0) {
+  const { data: pendingReqs } = await supabase
+    .from('slot_requests')
+    .select('id, user_id, slot_name')
+    .eq('status', 'pending');
+  
+  for (const req of (pendingReqs || [])) {
+    if (slotNames.includes(req.slot_name.toLowerCase())) {
+      // Auto bonus-hit: update status, award credits
+      await supabase.from('slot_requests').update({ 
+        status: 'bonus_hit', hunt_number: huntNumber, credits_awarded: 200 
+      }).eq('id', req.id);
+      // Award credits to user...
+    }
+  }
+}
 ```
-When admin clicks "Bonus Hit", store the current active hunt number on the request.
 
-### Backend Changes
-
-**2. Update `useUpdateSlotRequestStatus` hook (`src/hooks/useSlotRequests.ts`)**
-- Accept `huntNumber` parameter in the mutation
-- When status = "bonus_hit", update the request with the current `hunt_number`
-
-**3. Update `SlotRequestsAdminSection.tsx`**
-- Fetch the current active hunt number (from `useBonusHuntSession` or `useLatestHuntNumber`)
-- Pass `huntNumber` to the `handleAction` call when clicking "Bonus Hit"
-
-**4. Create a new hook `useBonusHuntSlotRequesters` (`src/hooks/useSlotRequests.ts`)**
-- Query: `slot_requests` WHERE `hunt_number = X` AND `status = 'bonus_hit'`, joined with `profiles` for `display_name`
-- Returns a Map of `slot_name (lowercase) -> display_name` for the current hunt
-
-### Frontend Changes
-
-**5. Update `BonusHuntSlotTable.tsx`**
-- Import and call `useBonusHuntSlotRequesters(huntNumber)`
-- Add a "Requested By" column to the table
-- Match each slot's name against the requester map
-- Show the requester's display name, or leave empty if no match
-
-**6. Pass `huntNumber` prop to `BonusHuntSlotTable`**
-- Update `BonusHunt.tsx` to pass `currentHuntNumber` to the slot table component
-
-### Auto-Settle: 100x Reward
-
-**7. Update `bonus-hunt-auto-settle/index.ts`**
-- After settling, query `slot_requests` WHERE `hunt_number = session.hunt_number` AND `status = 'bonus_hit'`
-- For each matched request, check if the corresponding slot in the hunt data achieved 100x+ multiplier
-- If yes, award 500 credits to `request.user_id` (insert into `slot_spins` + `credit_allocation_log`)
-- Update the request with `credits_awarded` reflecting the total (200 base + 500 bonus = 700)
-
-### Technical Details
-- Slot name matching uses case-insensitive comparison (lowercase both sides)
-- The `hunt_number` on `slot_requests` creates a clean link between requests and hunts without a separate junction table
-- RLS: existing policies already allow admins to update `slot_requests`, so the new column is covered
-- The 500 credit reward uses the same credit-awarding pattern as existing GTW/AVG X settle logic
+Duplicate check in `useCreateSlotRequest`:
+```typescript
+const { data: existing } = await supabase
+  .from('slot_requests')
+  .select('id')
+  .ilike('slot_name', data.slot_name)
+  .in('status', ['pending', 'bonus_hit'])
+  .limit(1);
+if (existing?.length) throw new Error('Denne slot er allerede blevet requested');
+```
 
