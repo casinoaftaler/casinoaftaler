@@ -161,8 +161,11 @@ export function AuthorMetaBar({ author, showFactCheck = true, showVerified = fal
           const checkerInfo = authorConfig[resolvedChecker as keyof typeof authorConfig];
           return checkerInfo ? (
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="gap-1">
-                <CheckCircle className="h-3.5 w-3.5" />
+              <Badge
+                variant="secondary"
+                className="gap-1 relative overflow-hidden border-emerald-500/30 text-emerald-400 bg-emerald-950/40 before:absolute before:inset-0 before:bg-emerald-500/15 before:translate-x-[-100%] before:animate-[factcheck-sweep_1.2s_ease-out_0.3s_forwards]"
+              >
+                <CheckCircle className="h-3.5 w-3.5 text-emerald-400" />
                 Faktatjekket
               </Badge>
               <Link to={checkerInfo.link} className="flex items-center gap-1.5 group">
