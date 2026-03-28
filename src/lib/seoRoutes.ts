@@ -33,10 +33,12 @@ export interface SeoRoute {
   // ── Author Profile Integration ──────────────────────────────────────
   // When these fields are set, the article automatically appears on the
   // author's profile page under "Artikler skrevet af …".
-  // This removes the need to manually register articles in authorContent.ts.
+  // factCheckedBy articles also appear in the checker's portfolio (as "Faktatjekket").
 
-  /** Author ID – must match AuthorId type ("jonas" | "kevin" | "ajse" | "niklas") */
+  /** Author ID – must match AuthorId type ("jonas" | "kevin" | "ajse" | "niklas" | "frederik") */
   author?: string;
+  /** Fact-checker ID – article also appears in this person's portfolio */
+  factCheckedBy?: string;
   /** Article title for the author profile card */
   articleTitle?: string;
   /** Category label (e.g. "Guide", "Anmeldelse") */
