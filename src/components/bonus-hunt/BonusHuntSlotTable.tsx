@@ -194,7 +194,7 @@ export function BonusHuntSlotTable({ slots, huntNumber }: Props) {
                               {slot.slot}
                             </button>
                           </PopoverTrigger>
-                          <PopoverContent side="right" align="start" className="w-auto p-0 border-0 bg-transparent shadow-none">
+                          <PopoverContent side="bottom" align="start" className="w-auto p-0 border-0 bg-transparent shadow-none" style={{ zIndex: 50 }}>
                             <BonusHuntSlotPopoverContent slotName={slot.slot} />
                           </PopoverContent>
                         </Popover>
