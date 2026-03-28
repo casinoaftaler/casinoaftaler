@@ -97,7 +97,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log(`Creating/promoting admin user: ${email}`);
+    console.log(`Creating/promoting ${role} user: ${email}`);
 
     let userId: string;
     let userEmail: string;
