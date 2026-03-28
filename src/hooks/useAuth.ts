@@ -41,18 +41,18 @@ export function useAuth() {
     return () => subscription.unsubscribe();
   }, []);
 
-  const checkAdminRole = async (userId: string) => {
+  const checkRoles = async (userId: string) => {
     const { data, error } = await supabase
       .from("user_roles")
       .select("role")
-      .eq("user_id", userId)
-      .eq("role", "admin")
-      .maybeSingle();
+      .eq("user_id", userId);
 
     if (!error && data) {
-      setIsAdmin(true);
+      setIsAdmin(data.some((r: any) => r.role === "admin"));
+      setIsModerator(data.some((r: any) => r.role === "moderator"));
     } else {
       setIsAdmin(false);
+      setIsModerator(false);
     }
   };
 
