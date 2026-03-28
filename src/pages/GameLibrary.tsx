@@ -121,9 +121,6 @@ export default function GameLibrary() {
             <div className="sidebar-glass-hover rounded-xl">
               <CommunitySeoBridge />
             </div>
-            <div className="animate-border-glow rounded-xl">
-              <CommunityConversionCard />
-            </div>
             <SidebarLeaderboard />
             <SidebarSocialProof />
           </div>
