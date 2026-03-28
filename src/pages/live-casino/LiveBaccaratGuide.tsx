@@ -566,6 +566,12 @@ const LiveBaccaratGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Shuffling og shoe-integritet:</strong> Evolution bruger automatiske shufflemaskiner, der blander alle 8 dæk (416 kort) mellem hver shoe. Processen tager 2-3 minutter og er synlig for spillerne via et dedikeret kamera. Cut card placeres typisk 10-15 kort fra bunden af shoe'en. Den gennemsnitlige shoe varer 70-80 hænder. Denne transparens er designet til at opbygge tillid – og til at tilfredsstille regulatoriske krav fra spillemyndigheder som Spillemyndigheden i Danmark.
           </p>
+          <ReviewScreenshot
+            src={baccaratVideoindstillinger}
+            alt="Videoindstillinger i live baccarat med HD, Høj og Medium kvalitet samt valg mellem flere kameraer"
+            caption="Videoindstillinger i live baccarat – vælg mellem HD, Høj eller Medium kvalitet og flere kameravinkler"
+            size="compact"
+          />
         </section>
 
         <Separator className="my-10" />
