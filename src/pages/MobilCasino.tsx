@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import comeonForside from "@/assets/screenshots/comeon-forside.webp";
+import pipFoersteIndbetaling from "@/assets/screenshots/pip-foerste-indbetaling.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
