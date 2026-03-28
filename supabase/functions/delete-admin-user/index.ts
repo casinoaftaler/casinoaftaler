@@ -70,7 +70,8 @@ Deno.serve(async (req) => {
     }
 
     // Get request body
-    const { userId } = await req.json();
+    const { userId, role: targetRole } = await req.json();
+    const roleToDelete = targetRole === "moderator" ? "moderator" : "admin";
 
     if (!userId) {
       return new Response(
