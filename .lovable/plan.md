@@ -1,81 +1,72 @@
+## Elite Navigationsbar: Design + SEO Analyse og Plan
 
+### Nuværende Status
 
-## Sidebar Navigation for Money Pages
+Sidebaren fungerer og viser 8 kategorier + casino ratings. Men den er visuelt "flat" og mangler flere SEO-muligheder.
 
-The user wants a categorized sidebar navigation (like bedrageri.com) on content/money pages. Currently the site only has a small `QuickNavSidebar` on the homepage. All other pages are pure content with no sidebar navigation.
+### Designforbedringer
 
-### What We'll Build
+**1. Visuelt hierarki og polish**
 
-A reusable `ContentSidebar` component that renders on the right side of money pages, with collapsible categorized link groups:
+- Kategori-headers: Tilføj en subtil gradient (brand lilla) i stedet for den nuværende `bg-primary/10`. Gør ikonerne lidt større og brug `rounded-md` baggrund på dem for at skabe et "badge"-look
+- Aktiv kategori: Hele kategoriens header får en stærkere visuelt markering (filled gradient) når brugeren er på en side i den kategori, ikke bare den individuelle link
+- Links: Tilføj en lille farvet venstre-border på aktive links (`border-l-2 border-primary`) for tydeligt at vise "du er her"
+- Casino ratings: Vis en mini-progress bar under ratingen (fx 9.2 ud af 10 som en farvet bar) for at gøre det mere visuelt attraktivt
+- Spacing og afrunding: Mere luft mellem kategorier (`space-y-4`), subtile shadow på hover (`shadow-sm`), og smoothere transitions
 
-```text
-┌─────────────────────────────────────────────────────┐
-│  Main Content (existing)    │  Sidebar (new, ~280px) │
-│                             │  ┌──────────────────┐  │
-│                             │  │ Online Casinoer  │  │
-│                             │  │  Betinia    >    │  │
-│                             │  │  bwin       >    │  │
-│                             │  │  Campobet   >    │  │
-│                             │  │  ...             │  │
-│                             │  ├──────────────────┤  │
-│                             │  │ Betalingsmetoder │  │
-│                             │  │  Apple Pay  >    │  │
-│                             │  │  MobilePay  >    │  │
-│                             │  │  ...             │  │
-│                             │  ├──────────────────┤  │
-│                             │  │ Bonusser         │  │
-│                             │  │  Casino bonus >  │  │
-│                             │  │  Free spins  >  │  │
-│                             │  │  ...             │  │
-│                             │  ├──────────────────┤  │
-│                             │  │ Casino Spil      │  │
-│                             │  │  Blackjack   >  │  │
-│                             │  │  Roulette    >  │  │
-│                             │  │  ...             │  │
-│                             │  ├──────────────────┤  │
-│                             │  │ Spiludviklere    │  │
-│                             │  │  NetEnt      >  │  │
-│                             │  │  Play'n GO   >  │  │
-│                             │  │  ...             │  │
-│                             │  └──────────────────┘  │
-└─────────────────────────────────────────────────────┘
-```
+**2. Casino Ratings Widget**
 
-### Categories and Links
+- Tilføj casino-logoer (vi henter allerede `logo_url`) som små 20x20px ikoner ved siden af navnene
+- Nummer hvert casino (#1, #2, #3...) for at signalere ranking
+- Top 3 får et subtilt guld/sølv/bronze accent
 
-**Online Casinoer** - Links to all casino reviews (Betinia, bwin, Campobet, ComeOn!, Expekt, GetLucky, JackpotBet, LeoVegas, Luna Casino, Mr Green, PlayJango, Royal Casino, etc.)
+**3. Responsivt polish**
 
-**Flere kategorier** - Nye casinoer, Mobilcasinoer, Casinoer med dansk licens, Casinoer med rigtige penge, etc.
+- Sidebar width øges til `w-[300px]` for bedre læsbarhed
+- Tilføj en subtil left-border eller shadow for at adskille sidebar fra content
 
-**Betalingsmetoder** - Apple Pay, MobilePay, PayPal, Paysafecard, Revolut, Trustly, Visa/Mastercard, Skrill, etc.
+### SEO-forbedringer
 
-**Bonusser** - Casino bonus, Free spins, Uden indbetaling, Uden omsætningskrav, Velkomstbonus, Cashback, Reload bonus, etc.
+**4. Semantisk HTML**
 
-**Casino Spil** - Blackjack, Roulette, Poker, Baccarat, Slots, Live Casino, High Roller, etc.
+- Wrap hele sidebar i `<nav aria-label="Sidenavigation">` i stedet for bare `<aside>`
+- Brug `<ul>/<li>` for link-lister (korrekt semantik for navigation)
+- Tilføj `aria-current="page"` på aktive links
 
-**Spiludviklere** - All 22 providers (NetEnt, Play'n GO, Pragmatic Play, etc.)
+**5. Anti-footprint compliance**
 
-### Implementation Steps
+- Sidebaren vises på 160+ sider med identisk output, hvilket er en stor footprint-risiko
+- Implementer `useAntiFootprint` til at rotere rækkefølgen af kategorier og links per side
+- Casino ratings roterer naturligt fra databasen, men kategorilisten er statisk og bør varieres
 
-1. **Create `src/components/ContentSidebar.tsx`** - A new reusable component with collapsible category sections. Each category has a colored header with icon and a list of links with chevron arrows. Sticky positioning, hidden on mobile (shown only on `xl:` breakpoints). Styled to match the site's design language (dark purple/blue theme).
+**6. Crawl-værdi**
 
-2. **Create `src/components/ContentPageLayout.tsx`** - A wrapper layout component that takes `children` (the page content) and renders a 2-column grid: content on the left, `ContentSidebar` on the right. This makes it easy to add the sidebar to any money page.
+- Alle links er allerede dofollow HTML `<a>` tags, hvilket er korrekt
+- Casino ratings-widgetten leverer dynamisk intern linking til anmeldelser fra alle 160+ sider
 
-3. **Apply to key money pages** - Wrap the content of pages like `NyeCasinoer`, `CasinoBonus`, `FreeSpins`, `Betalingsmetoder`, `Casinospil`, `Spiludviklere`, `CasinoAnmeldelser` etc. in the new layout. The sidebar highlights the current page's category/link.
+### Implementeringsplan
 
-### Design Details
+**Fil 1: `src/components/ContentSidebar.tsx**`
 
-- Sticky sidebar (`sticky top-24`) matching bedrageri.com's pattern
-- Category headers with green/brand-colored backgrounds and icons (matching the uploaded screenshots)
-- Each link row has subtle hover state and a chevron `>` on the right
-- Active page highlighted in the sidebar
-- Hidden below `xl` breakpoint (1280px) to avoid crowding content on smaller screens
-- The existing `QuickNavSidebar` on the homepage remains unchanged
+- Tilføj `<nav>` wrapper med aria-label
+- Implementer `useAntiFootprint` rotation på kategori-rækkefølgen
+- Tilføj aktiv kategori-detection (match pathname mod kategoriens links)
+- Opgraderet visuelt design: gradient headers, active left-border, bedre spacing
 
-### Technical Notes
+**Fil 2: `src/components/SidebarCasinoRatings.tsx**`
 
-- No database changes needed
-- No new dependencies required
-- Uses existing routing structure and Link components
-- The sidebar data (categories + links) is defined as a static config array, making it easy to maintain
+- Tilføj casino-logoer (20x20 rounded)
+- Tilføj ranking-numre (#1-#10)
+- Top 3 guld/sølv/bronze accent
+- Rating progress bar
 
+**Fil 3: `src/components/contentSidebarData.ts**`
+
+- Ingen ændringer nødvendige
+
+### Hvad vi IKKE gør (performance)
+
+- Ingen nye dependencies
+- Ingen ekstra API-kald (logo_url hentes allerede)
+- Ingen JavaScript-tunge animationer
+- Anti-footprint bruger eksisterende `useAntiFootprint` hook (ren hash, ingen runtime cost)  
