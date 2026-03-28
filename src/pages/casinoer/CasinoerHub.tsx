@@ -632,6 +632,13 @@ export default function CasinoerHub() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={campobetAnsvarligt}
+          alt="CampoBet ansvarligt spil-sektion med indbetalingsgrænser, selvudelukkelse og links til StopSpillet og ROFUS"
+          caption="CampoBet.dk – ansvarligt spil-værktøjer med grænser, afkølingsperioder og ROFUS-selvudelukkelse"
+          size="medium"
+        />
+
         {/* ── SECTION 13: Fremtiden ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
