@@ -13,6 +13,10 @@ import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowRegistrering from "@/assets/screenshots/kapow-registrering.webp";
+import playkasinoForside from "@/assets/screenshots/playkasino-forside-velkomstbonus.webp";
+import playkasinoLiveCasino from "@/assets/screenshots/playkasino-live-casino-lobby.webp";
+import playkasinoBonusvilkaar from "@/assets/screenshots/playkasino-bonusvilkaar-smallprint.webp";
+import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling-betalingsmetoder.webp";
 
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 
@@ -472,6 +476,13 @@ const TopCasinoOnline = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={playkasinoForside}
+          alt="PlayKasino forside med eksklusivt velkomsttilbud på 100% op til 500 kr. og navigation til spilleautomater, live casino og jackpots"
+          caption="PlayKasino.dk – forsiden med velkomsttilbud og spillekategorier (marts 2026)"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* Types of Casino Games */}
@@ -544,6 +555,13 @@ const TopCasinoOnline = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={playkasinoLiveCasino}
+          alt="PlayKasino live casino lobby med Blackjack, Roulette, Lightning Roulette, Mega Roulette og Baccarat fra Playtech og Studio 27"
+          caption="Live casino-udvalget hos PlayKasino.dk med 16+ live dealer-borde (marts 2026)"
+          size="full"
+        />
 
         <Separator className="my-10" />
 
@@ -701,6 +719,13 @@ const TopCasinoOnline = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={playkasinoBonusvilkaar}
+          alt="PlayKasino bonusvilkår med info om omsætningskrav 10x, maks. bonus 500 kr., gyldighedsperiode 60 dage og spilbidrag for spilleautomater"
+          caption="Detaljerede bonusvilkår fra PlayKasino.dk – gennemsigtig information om omsætningskrav og betingelser"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* Payment Methods */}
@@ -748,6 +773,13 @@ const TopCasinoOnline = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={playkasinoIndbetaling}
+          alt="PlayKasino indbetalingsside med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal – alle med 0% gebyr og minimum 100 kr."
+          caption="Betalingsmetoder hos PlayKasino.dk – 6 indbetalingsmuligheder uden gebyrer (marts 2026)"
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
