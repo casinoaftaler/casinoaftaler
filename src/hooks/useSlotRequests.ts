@@ -160,6 +160,9 @@ export function useUpdateSlotRequestStatus() {
       if (awardCredits) {
         updateData.credits_awarded = 200;
       }
+      if (huntNumber) {
+        updateData.hunt_number = huntNumber;
+      }
       const { error: updateError } = await supabase
         .from("slot_requests" as any)
         .update(updateData)
