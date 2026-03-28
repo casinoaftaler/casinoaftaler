@@ -296,11 +296,11 @@ export default function ForfatterKevin() {
           </h2>
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
             <p className="text-muted-foreground leading-relaxed">
-              Kevin er 26 år og har streamet slots i mere end tre år. Han mødte{" "}
-              <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> gennem Twitch, hvor de hurtigt fandt fælles interesse for streaming, online casino og opbygning af engagerede communities. Siden har de samarbejdet på tværs af streams og udviklet et stærkt professionelt partnerskab.
+              Kevin er 26 år og har streamet slots i mere end tre år. Han blev introduceret til casino-streaming gennem Twitch, hvor han mødte{" "}
+              <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> og resten af teamet. Med en fælles passion for online casino og community-opbygning blev Kevin inviteret til at blive en del af Casinoaftaler-holdet – en rolle han hurtigt voksede ind i.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Tidligere har Kevin arbejdet som editor for <strong>FaZe Clan</strong>, en af verdens mest anerkendte gaming-organisationer. Erfaringen herfra har givet ham solid indsigt i content creation, digital branding og community management – kompetencer han i dag aktivt anvender i arbejdet med Casinoaftaler.dk.
+              Inden Kevin sluttede sig til Casinoaftaler, arbejdede han som editor for <strong>FaZe Clan</strong>, en af verdens mest anerkendte gaming-organisationer. Erfaringen herfra har givet ham solid indsigt i content creation, digital branding og community management – kompetencer han i dag aktivt anvender i sit daglige arbejde hos Casinoaftaler.dk.
             </p>
           </div>
         </section>
