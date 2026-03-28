@@ -232,7 +232,7 @@ export const seoRoutes: SeoRoute[] = ([
   // /casinospil/game-shows – 301 redirected to /live-casino/game-shows
 
   // ── Bonus Guides ──
-  { path: "/casino-bonus", changefreq: "weekly", priority: 0.95, lastmod: "2026-03-18" },
+  { path: "/casino-bonus", changefreq: "weekly", priority: 0.95, lastmod: "2026-03-18", author: "jonas", factCheckedBy: "frederik", articleTitle: "Casino Bonus Guide 2026", articleCategory: "Guide", articleExcerpt: "Komplet guide til casino bonusser i Danmark – sammenlign velkomstbonusser, free spins og omsætningskrav." },
   {
     path: "/markedsindsigt",
     changefreq: "daily",
