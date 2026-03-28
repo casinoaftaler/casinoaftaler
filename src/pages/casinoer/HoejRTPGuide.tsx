@@ -9,6 +9,9 @@ import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betiniaSpilleregler from "@/assets/screenshots/betinia-spilleregler-rtp-volatilitet.webp";
+import betiniaLiveCasino from "@/assets/screenshots/betinia-live-casino-bordspil.webp";
+import betiniaSpiludbydere from "@/assets/screenshots/betinia-spiludbyder-filter.webp";
 import { Separator } from "@/components/ui/separator";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -116,6 +119,13 @@ const HoejRTPGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaSpilleregler}
+          alt="Spilleregler fra dansk spilleautomat med RTP-oplysninger: teoretisk RTP 95,52%, Ante-indsats RTP 95,54%, Køb Gratis Spins RTP 95,55% samt volatilitetsniveau og indsatsgrænser"
+          caption="Eksempel på spilleregler med RTP og volatilitet – alle danske casinoer er forpligtet til at vise disse oplysninger"
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* Top spilleautomater */}
@@ -185,6 +195,13 @@ const HoejRTPGuide = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaLiveCasino}
+          alt="Live casino-udvalg med American Blackjack, Extended Blackjack, European Roulette Glam, Super Stake Roulette 5000x, Vegas Drops Roulette og American Blackjack Classic 2"
+          caption="Live casino bordspil hos Betinia.dk – Blackjack og Roulette varianter med høj RTP (marts 2026)"
+          size="full"
+        />
 
         <Separator className="my-10" />
 
@@ -258,6 +275,13 @@ const HoejRTPGuide = () => {
             </Card>
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={betiniaSpiludbydere}
+          alt="Spiludbyder-filter fra Betinia med antal spil pr. udvikler: Pragmatic Play 539, Play'n GO 352, Hacksaw Gaming 149, Stakelogic 167, Synot 161 og flere"
+          caption="Spiludbyder-filteret hos Betinia.dk – filtrér efter udvikler for at finde spil med høj RTP (marts 2026)"
+          size="compact"
+        />
 
         <Separator className="my-10" />
 
