@@ -556,6 +556,13 @@ const TopCasinoOnline = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={playkasinoLiveCasino}
+          alt="PlayKasino live casino lobby med Blackjack, Roulette, Lightning Roulette, Mega Roulette og Baccarat fra Playtech og Studio 27"
+          caption="Live casino-udvalget hos PlayKasino.dk med 16+ live dealer-borde (marts 2026)"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* Casino Bonuses Explained */}
