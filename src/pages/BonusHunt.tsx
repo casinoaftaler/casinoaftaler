@@ -283,7 +283,7 @@ export default function BonusHunt() {
                       <TabsTrigger value="stats">STATS</TabsTrigger>
                       <TabsTrigger value="gtw">GTW</TabsTrigger>
                       <TabsTrigger value="avgx">AVG X</TabsTrigger>
-                      {isLive && <TabsTrigger value="request">Request</TabsTrigger>}
+                      {isLive && <TabsTrigger value="request">REQUEST</TabsTrigger>}
                     </TabsList>
                     <TabsContent value="stats" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntStatsTab
