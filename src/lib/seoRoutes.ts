@@ -48,12 +48,12 @@ export interface SeoRoute {
 }
 
 /**
- * Get all seoRoutes entries that have author metadata set.
+ * Get all seoRoutes entries where the author wrote OR fact-checked.
  * Used by getAuthorArticles() to auto-derive articles for author profiles.
  */
 export function getSeoRoutesByAuthor(authorId: string) {
   return seoRoutes.filter(
-    (r) => r.author === authorId && r.articleTitle
+    (r) => (r.author === authorId || r.factCheckedBy === authorId) && r.articleTitle
   );
 }
 
