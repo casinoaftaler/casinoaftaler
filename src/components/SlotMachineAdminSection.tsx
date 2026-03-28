@@ -1491,9 +1491,6 @@ export function SlotMachineAdminSection() {
           <LivePlayersAdminSection />
         </TabsContent>
 
-        <TabsContent value="requests">
-          <SlotRequestsAdminSection />
-        </TabsContent>
 
         <TabsContent value="tournaments">
           <TournamentAdminSection />
