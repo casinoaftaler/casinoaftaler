@@ -190,12 +190,24 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
                   Mindst 6 tegn
                 </p>
               </div>
+              <div className="space-y-2">
+                <Label>Rolle</Label>
+                <Select value={selectedRole} onValueChange={(v) => setSelectedRole(v as "admin" | "moderator")}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="admin">Admin</SelectItem>
+                    <SelectItem value="moderator">Moderator</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
               {error && (
                 <p className="text-sm text-destructive">{error}</p>
               )}
               <Button type="submit" className="w-full" disabled={createAdmin.isPending}>
                 {createAdmin.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                Opret Admin Bruger
+                Opret Bruger
               </Button>
             </form>
           </DialogContent>
