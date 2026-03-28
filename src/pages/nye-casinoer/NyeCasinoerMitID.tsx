@@ -319,6 +319,12 @@ const NyeCasinoerMitID = () => {
               </div>
             ))}
           </div>
+          <ReviewScreenshot
+            src={pipAdgangskode}
+            alt="Pip.dk adgangskode-oprettelse med krav til stærk adgangskode under casinoregistrering"
+            caption="Adgangskode-oprettelse hos Pip.dk – ekstra sikkerhedslag udover MitID-verifikation (kilde: pip.dk)"
+            size="compact"
+          />
         </section>
 
         <Separator className="my-10" />
