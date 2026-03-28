@@ -110,6 +110,7 @@ export function useCreateSlotRequest() {
     onSuccess: () => {
       toast.success("Slot request sendt!");
       queryClient.invalidateQueries({ queryKey: ["my-slot-requests"] });
+      queryClient.invalidateQueries({ queryKey: ["all-slot-requests"] });
     },
     onError: (error: Error) => {
       toast.error(`Fejl: ${error.message}`);
