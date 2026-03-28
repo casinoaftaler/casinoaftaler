@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
+import { SidebarCasinoRatings } from "./SidebarCasinoRatings";
 
 const iconMap: Record<string, React.ElementType> = {
   crown: Crown,
@@ -62,6 +63,7 @@ export function ContentSidebar() {
   return (
     <aside className="hidden xl:block w-[280px] flex-shrink-0">
       <div className="space-y-3">
+        <SidebarCasinoRatings />
         <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1">
           Navigation
         </h3>
