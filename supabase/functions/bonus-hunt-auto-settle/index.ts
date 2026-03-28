@@ -299,6 +299,53 @@ Deno.serve(async (req) => {
         await admin.from('bonus_hunt_sessions').update({ average_x: averageX, winning_group: winningGroup!, status: 'completed' }).eq('id', session.id);
       }
 
+      // --- Settle Slot Request 100x Bonus ---
+      try {
+        const { data: bonusHitRequests } = await admin
+          .from('slot_requests')
+          .select('id, user_id, slot_name, credits_awarded')
+          .eq('hunt_number', session.hunt_number)
+          .eq('status', 'bonus_hit');
+
+        if (bonusHitRequests && bonusHitRequests.length > 0 && huntData?.slots) {
+          const slotMultipliers = new Map<string, number>();
+          for (const entry of huntData.slots) {
+            const slotInfo = entry.slot || {};
+            const name = (slotInfo.name || '').toLowerCase();
+            const win = entry.played ? (entry.win || 0) : 0;
+            const bet = entry.bet || 1;
+            const mult = win > 0 && bet > 0 ? win / bet : 0;
+            if (name) slotMultipliers.set(name, Math.max(slotMultipliers.get(name) || 0, mult));
+          }
+
+          for (const req of bonusHitRequests) {
+            const mult = slotMultipliers.get(req.slot_name.toLowerCase()) || 0;
+            if (mult >= 100) {
+              const bonusCredits = 500;
+              try {
+                const { data: spinsRow } = await admin.from('slot_spins').select('id, spins_remaining').eq('user_id', req.user_id).eq('date', today).single();
+                if (spinsRow) {
+                  await admin.from('slot_spins').update({ spins_remaining: spinsRow.spins_remaining + bonusCredits }).eq('id', spinsRow.id);
+                } else {
+                  await admin.from('slot_spins').insert({ user_id: req.user_id, date: today, spins_remaining: bonusCredits });
+                }
+                await admin.from('credit_allocation_log').insert({
+                  user_id: req.user_id, amount: bonusCredits, source: 'slot_request_100x_bonus',
+                  note: `Slot request 100x+ bonus: ${req.slot_name} (${mult.toFixed(1)}x)`,
+                });
+                const totalCredits = (req.credits_awarded || 200) + bonusCredits;
+                await admin.from('slot_requests').update({ credits_awarded: totalCredits }).eq('id', req.id);
+                settleResults.slotRequestBonuses = (settleResults.slotRequestBonuses as number || 0) + 1;
+              } catch (e) {
+                console.error(`Failed to award 100x bonus to user ${req.user_id}:`, e);
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.error('Slot request 100x settle error:', e);
+      }
+
       await admin.from('bonus_hunt_sessions').update({ gtw_betting_open: false, avgx_betting_open: false, status: 'completed' }).eq('id', session.id);
 
       results.push({ huntNumber: session.hunt_number, status: 'auto_settled', ...settleResults });
