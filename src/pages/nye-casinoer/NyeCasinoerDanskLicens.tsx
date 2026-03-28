@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spildansknuLobby from "@/assets/reviews/spildansknu-lobby.png";
+import spillemyndighedenTilladelser from "@/assets/screenshots/spillemyndigheden-tilladelsesindehavere.webp";
+import spillemyndighedenSpilleverandor from "@/assets/screenshots/spillemyndigheden-spilleverandor.webp";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
@@ -193,6 +195,13 @@ const NyeCasinoerDanskLicens = () => {
               <p className="text-xs text-muted-foreground">licensperiode</p>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={spillemyndighedenSpilleverandor}
+            alt="Spillemyndighedens side om spilleverandør-tilladelser med ansøgningsblanketter og krav til licensansøgning i Danmark"
+            caption="Spillemyndighedens licensside – her kan operatører ansøge om tilladelse til at udbyde onlinekasino i Danmark (kilde: spillemyndigheden.dk)"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -355,6 +364,13 @@ const NyeCasinoerDanskLicens = () => {
               </p>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={spillemyndighedenTilladelser}
+            alt="Spillemyndighedens tilladelsesindehavere-register med søgefunktion og liste over licenserede danske casinoer som 25syv og 888"
+            caption="Spillemyndighedens officielle register over tilladelsesindehavere – her verificerer du, om et casino har gyldig dansk licens (kilde: spillemyndigheden.dk)"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
