@@ -12,6 +12,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
+import { ContentSidebar } from "@/components/ContentSidebar";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
@@ -72,6 +73,8 @@ export default function RewardsProgram() {
           </div>
         </div>
         <div className="container py-8 md:py-12">
+        <div className="flex gap-8 xl:gap-10">
+          <div className="min-w-0 flex-1">
         <AuthorMetaBar author="jonas" showFactCheck={false} showAffiliateDisclaimer={false} />
 
         {/* Section: Community Highlights Rewards */}
@@ -274,6 +277,9 @@ export default function RewardsProgram() {
         <AuthorBio author="jonas" showCommunity={false} />
 
         <div className="pb-12" />
+          </div>
+          <ContentSidebar />
+        </div>
         </div>
       </div>
     </>

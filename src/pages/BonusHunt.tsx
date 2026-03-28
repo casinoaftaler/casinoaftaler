@@ -32,6 +32,7 @@ import { CommunityConversionCard } from "@/components/community/CommunityConvers
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
+import { ContentSidebar } from "@/components/ContentSidebar";
 import { useBonusHuntData, useLatestHuntNumber, useArchivedHuntNumbers } from "@/hooks/useBonusHuntData";
 import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { useBonusHuntSession, useBonusHuntSessionByHuntNumber, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
@@ -230,6 +231,9 @@ export default function BonusHunt() {
           </div>
         </div>
 
+        {/* Main content + right sidebar */}
+        <div className="flex gap-8 xl:gap-10">
+          <div className="min-w-0 flex-1">
         <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
           {/* Author meta bar */}
           <AuthorMetaBar author="kevin" readTime="8 Min." />
@@ -388,6 +392,9 @@ export default function BonusHunt() {
           <AuthorBio author="kevin" showCommunity={false} />
 
           <div className="pb-12" />
+        </div>
+          </div>
+          <ContentSidebar />
         </div>
         </div>
     </>

@@ -9,6 +9,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunityConversionCard } from "@/components/community/CommunityConversionCard";
+import { ContentSidebar } from "@/components/ContentSidebar";
 
 
 
@@ -112,9 +113,9 @@ export default function GameLibrary() {
       <GameLibraryHero />
       <CommunityNav />
 
-      {/* Main content with sidebar */}
+      {/* Main content with sidebars */}
       <div className="container relative">
-        {/* Sidebar */}
+        {/* Left sidebar */}
         <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
           <div className="sticky top-24 h-fit flex flex-col gap-4">
             <div className="sidebar-glass-hover rounded-xl">
@@ -128,7 +129,9 @@ export default function GameLibrary() {
           </div>
         </div>
 
-        {/* Main content */}
+        {/* Main content + right sidebar */}
+        <div className="flex gap-8 xl:gap-10">
+          <div className="min-w-0 flex-1">
         <div className="py-8 md:py-12 space-y-8 md:space-y-10">
 
           {/* Community CTA for logged-out users */}
@@ -229,6 +232,9 @@ export default function GameLibrary() {
           <AuthorBio author="kevin" />
 
           <div className="pb-8" />
+        </div>
+          </div>
+          <ContentSidebar />
         </div>
       </div>
     </div>
