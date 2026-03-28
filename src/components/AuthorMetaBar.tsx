@@ -153,8 +153,10 @@ export function AuthorMetaBar({ author, showFactCheck = true, showVerified = fal
 
         {/* Right side: fact-check badge */}
         {showFactCheck && (() => {
-          // Determine fact-checker: explicit override > default cross-check
+          // Determine fact-checker: explicit prop > seoRoutes lookup > default cross-check
+          const routeChecker = getRouteFactChecker(pathname);
           const resolvedChecker = factCheckBy
+            ?? routeChecker
             ?? (author === "niklas" ? "ajse" : (author === "kevin" || author === "redaktionen") ? "jonas" : "kevin");
           const checkerInfo = authorConfig[resolvedChecker as keyof typeof authorConfig];
           return checkerInfo ? (
