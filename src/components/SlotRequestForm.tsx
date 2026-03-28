@@ -251,7 +251,7 @@ export function SlotRequestForm() {
         <div className="space-y-2">
           <h4 className="text-sm font-medium text-muted-foreground">Dine requests</h4>
           <div className="space-y-2">
-            {myRequests.map((req) => {
+            {(showAllRequests ? myRequests : myRequests.slice(0, 5)).map((req) => {
               const config = STATUS_CONFIG[req.status] || STATUS_CONFIG.pending;
               const Icon = config.icon;
               return (
@@ -274,6 +274,16 @@ export function SlotRequestForm() {
               );
             })}
           </div>
+          {myRequests.length > 5 && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="w-full text-muted-foreground"
+              onClick={() => setShowAllRequests(!showAllRequests)}
+            >
+              {showAllRequests ? "Vis færre" : `Vis alle (${myRequests.length})`}
+            </Button>
+          )}
         </div>
       ) : null}
     </div>
