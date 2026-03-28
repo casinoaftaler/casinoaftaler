@@ -417,12 +417,6 @@ const LiveBaccaratGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Nøgleindsigt:</strong> Squeeze-baccarat er det matematisk billigste format pr. time takket være det laveste tempo. Hvis du spiller 4 timer Squeeze i stedet for 4 timer Speed, sparer du gennemsnitligt 170-191 kr. – ved kun 100 kr. indsats. Ved højere indsatser (500-1.000 kr.) skalerer besparelsen tilsvarende. Valget af variant er lige så vigtigt som valget af bet-type.
           </p>
-          <ReviewScreenshot
-            src={baccaratVideoindstillinger}
-            alt="Videoindstillinger i live baccarat med HD, Høj og Medium kvalitet samt valg mellem flere kameraer"
-            caption="Videoindstillinger i live baccarat – vælg mellem HD, Høj eller Medium kvalitet og flere kameravinkler"
-            size="compact"
-          />
         </section>
 
         <Separator className="my-10" />
