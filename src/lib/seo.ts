@@ -206,7 +206,7 @@ export function buildArticleSchema(opts: {
 }) {
   const authorName = opts.authorName || "Jonas";
   const authorUrl = opts.authorUrl || `${SITE_URL}/forfatter/jonas`;
-  const sameAsMap: Record<string, string[]> = { Kevin: KEVIN_SAME_AS, Ajse: AJSE_SAME_AS, Niklas: NIKLAS_SAME_AS };
+  const sameAsMap: Record<string, string[]> = { Kevin: KEVIN_SAME_AS, Ajse: AJSE_SAME_AS, Niklas: NIKLAS_SAME_AS, Frederik: FREDERIK_SAME_AS };
   const authorSameAs = opts.authorSameAs ?? (sameAsMap[authorName] || JONAS_SAME_AS);
 
   // Source of truth order:
