@@ -18,6 +18,7 @@ import { useAuth } from "@/hooks/useAuth";
 
 import { FeaturedSlotPanel } from "@/components/games/FeaturedSlotPanel";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
+import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Clock, Rocket } from "lucide-react";
