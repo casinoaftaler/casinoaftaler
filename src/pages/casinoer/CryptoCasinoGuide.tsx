@@ -105,8 +105,8 @@ const CryptoCasinoGuide = () => {
           <p className="text-muted-foreground mb-6">For at hjælpe dig med at træffe en informeret beslutning har vi samlet de vigtigste fordele og ulemper ved crypto casinoer sammenlignet med traditionelle danske licenserede casinoer. Det er vigtigt at veje begge sider, da crypto gambling ikke er for alle.</p>
         <ReviewScreenshot
           src={stakeForside}
-          alt="Stake casino forside som eksempel på et populært crypto casino med kryptovaluta-betalinger"
-          caption="Stake er blandt de mest kendte crypto casinoer – bemærk at platformen ikke har dansk licens"
+          alt="Stake.dk forside med dansk licens – casinoet accepterer DKK og kræver MitID-verifikation"
+          caption="Stake.dk har dansk licens og opererer med DKK – ikke kryptovaluta. Den udenlandske version Stake.com accepterer crypto, men er ulovlig for danske spillere"
         />
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <Card className="border-green-500/30"><CardHeader><CardTitle className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-green-500" /> Fordele</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">
