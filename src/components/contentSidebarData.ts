@@ -158,6 +158,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Casino Anmeldelser",
     iconName: "star",
+    hubTo: "/casino-anmeldelser",
     links: [
       { to: "/casino-anmeldelser", label: "Alle Anmeldelser" },
       { to: "/casino-anmeldelser/spildansknu", label: "SpilDanskNu" },
