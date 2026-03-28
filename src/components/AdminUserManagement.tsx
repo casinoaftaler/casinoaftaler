@@ -58,6 +58,7 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
   const [dialogOpen, setDialogOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [selectedRole, setSelectedRole] = useState<"admin" | "moderator">("admin");
   const [error, setError] = useState("");
   const queryClient = useQueryClient();
 
