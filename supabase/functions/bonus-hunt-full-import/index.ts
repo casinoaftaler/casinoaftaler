@@ -204,8 +204,9 @@ serve(async (req) => {
 
     console.log(`${validHunts.length} valid hunts with slots`);
 
-    const { error: deleteError } = await supabase.from('bonus_hunt_archives').delete().gte('hunt_number', 1);
-    if (deleteError) console.error('Delete error:', deleteError);
+    // SAFETY: Never bulk-delete archives. Upsert instead.
+    // Old code deleted all archives here - this caused catastrophic data loss of 171+ manually imported hunts.
+    // Instead, we now upsert (insert or update) each hunt individually.
 
     const results: Array<{ huntNumber: number; name: string; id: string; slots: number; casino: string }> = [];
 
@@ -214,8 +215,8 @@ serve(async (req) => {
       const { summary, detail } = validHunts[i];
       const row = buildArchiveRow(huntNumber, summary, detail);
 
-      const { error: insertError } = await supabase.from('bonus_hunt_archives').insert(row);
-      if (insertError) { console.error(`Failed to insert hunt #${huntNumber}:`, insertError); continue; }
+      const { error: insertError } = await supabase.from('bonus_hunt_archives').upsert(row, { onConflict: 'hunt_number' });
+      if (insertError) { console.error(`Failed to upsert hunt #${huntNumber}:`, insertError); continue; }
 
       for (const slot of (detail.slots || [])) {
         const slotName = slot.slot?.name || 'Unknown';

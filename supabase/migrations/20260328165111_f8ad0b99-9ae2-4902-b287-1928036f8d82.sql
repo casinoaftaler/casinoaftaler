@@ -1,0 +1,1 @@
+ALTER TABLE bonus_hunt_archives ADD CONSTRAINT bonus_hunt_archives_hunt_number_unique UNIQUE (hunt_number);
