@@ -175,6 +175,9 @@ export function BonusHuntSlotTable({ slots, huntNumber }: Props) {
                     </span>
                   </th>
                 ))}
+                <th className="px-3 py-2.5 text-left font-medium text-muted-foreground text-xs hidden sm:table-cell">
+                  Requested By
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/50">
