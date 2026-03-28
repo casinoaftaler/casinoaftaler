@@ -119,6 +119,12 @@ export function useCreateSlotRequest() {
   });
 }
 
+export interface SlotRequesterInfo {
+  displayName: string;
+  avatarUrl: string | null;
+  userId: string;
+}
+
 export function useBonusHuntSlotRequesters(huntNumber?: number) {
   return useQuery({
     queryKey: ["bonus-hunt-slot-requesters", huntNumber],
@@ -131,18 +137,24 @@ export function useBonusHuntSlotRequesters(huntNumber?: number) {
       if (error) throw error;
 
       const userIds = [...new Set((data as any[]).map((r: any) => r.user_id))];
-      if (userIds.length === 0) return new Map<string, string>();
+      if (userIds.length === 0) return new Map<string, SlotRequesterInfo>();
 
       const { data: profiles } = await supabase
         .from("profiles")
-        .select("user_id, display_name")
+        .select("user_id, display_name, avatar_url")
         .in("user_id", userIds);
 
-      const profileMap = new Map(profiles?.map((p) => [p.user_id, p.display_name]) ?? []);
-      const result = new Map<string, string>();
+      const profileMap = new Map(profiles?.map((p) => [p.user_id, { displayName: p.display_name, avatarUrl: p.avatar_url }]) ?? []);
+      const result = new Map<string, SlotRequesterInfo>();
       for (const r of data as any[]) {
-        const name = profileMap.get(r.user_id);
-        if (name) result.set(r.slot_name.toLowerCase(), name);
+        const profile = profileMap.get(r.user_id);
+        if (profile?.displayName) {
+          result.set(r.slot_name.toLowerCase(), {
+            displayName: profile.displayName,
+            avatarUrl: profile.avatarUrl,
+            userId: r.user_id,
+          });
+        }
       }
       return result;
     },
