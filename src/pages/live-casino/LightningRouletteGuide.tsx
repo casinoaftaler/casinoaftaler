@@ -3,7 +3,8 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import pokerstarsLiveCasino from "@/assets/screenshots/pokerstars-live-casino.webp";
-import danskespilRedDoorRoulette from "@/assets/screenshots/danskespil-red-door-roulette.webp";
+import lightningRouletteRegler from "@/assets/screenshots/lightning-roulette-regler.webp";
+import lightningRouletteGameplay from "@/assets/screenshots/lightning-roulette-gameplay.webp";
 import xxxtremeLightningRoulette from "@/assets/screenshots/xxxtreme-lightning-roulette-multipliers.webp";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
@@ -165,9 +166,15 @@ const LightningRouletteGuide = () => {
             <strong>Kritisk pointe:</strong> Kun straight-up bets (enkelttal) kvalificerer til Lightning-multiplikatorer. Outside bets (rød/sort, dozen, column etc.) påvirkes ikke og har identisk EV som i standard europæisk roulette. Inside bets som splits, streets og corners påvirkes heller ikke – kun rene enkelttal-bets. Derfor er bet-strategien i Lightning Roulette fundamentalt anderledes end i standard roulette: outside bets giver nøjagtig samme oplevelse som et standard bord, mens straight-up bets tilbyder en dramatisk anderledes risk/reward-profil.
           </p>
           <ReviewScreenshot
-            src={pokerstarsLiveCasino}
-            alt="PokerStars live casino med Evolution Gaming Lightning-serie og roulette-borde"
-            caption="PokerStars' live casino – herfra tilgås Lightning Roulette og andre Evolution Gaming-titler"
+            src={lightningRouletteGameplay}
+            alt="Lightning Roulette gameplay med tre aktive Lightning-numre (12, 16, 34) med 50x og 100x multiplikatorer"
+            caption="Lightning Roulette i aktion – tre Lightning-numre er valgt med multiplikatorer op til 100x, mens dealeren forbereder spinnet"
+            size="full"
+          />
+          <ReviewScreenshot
+            src={lightningRouletteRegler}
+            alt="Spilleregler for Lightning Roulette – oversigt over indsatstyper, udbetalinger og Lightning-multiplikatorer"
+            caption="De officielle spilleregler for Lightning Roulette – her forklares mekanikken bag Lightning-numre og multiplikatorer op til 500x"
             size="full"
           />
         </section>
@@ -286,12 +293,6 @@ const LightningRouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Volatilitetssammenligning:</strong> Standardafvigelsen pr. spin i standard roulette (straight-up) er ca. 5,76 enheder. I Lightning Roulette stiger den til ca. 12-15 enheder afhængigt af multiplikator-fordelingen. Det betyder 2-3x højere udsving – du vil opleve længere tabsperioder og sjældnere men markant større gevinster. Denne profil appellerer til spillere med "lotto-mentalitet" – og frastøder spillere, der foretrækker jævne resultater.
           </p>
-          <ReviewScreenshot
-            src={danskespilRedDoorRoulette}
-            alt="Red Door Roulette hos Danske Spil med game show-format, roulettehjul og live dealer"
-            caption="Red Door Roulette – Evolutions game show-variant med multiplikatorer og bonus-runder bag den røde dør"
-            size="full"
-          />
         </section>
 
         <Separator className="my-10" />
