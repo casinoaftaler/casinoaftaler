@@ -184,6 +184,8 @@ export default function SpinTheReel() {
         <HeroBackground />
 
         <div className="relative z-10 container py-6 md:py-10">
+          <div className="flex gap-8 xl:gap-10">
+            <div className="min-w-0 flex-1">
           {gate ? (
             gate
           ) : (
@@ -247,6 +249,9 @@ export default function SpinTheReel() {
               </div>
             </>
           )}
+            </div>
+            <ContentSidebar />
+          </div>
         </div>
       </main>
 
