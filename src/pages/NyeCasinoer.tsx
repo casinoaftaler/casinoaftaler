@@ -3,6 +3,9 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import kapowRegistrering from "@/assets/screenshots/kapow-registrering.webp";
 import playkasinoForside from "@/assets/screenshots/playkasino-forside-velkomst.webp";
+import videoslotsIndbetaling from "@/assets/screenshots/videoslots-indbetaling.webp";
+import videoslotsLiveCasino from "@/assets/screenshots/videoslots-live-casino.webp";
+import videoslotsChatbot from "@/assets/screenshots/videoslots-chatbot.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
@@ -599,6 +602,13 @@ const NyeCasinoer = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={videoslotsIndbetaling}
+          alt="Videoslots indbetalingsside med Dankort, Visa, MobilePay, Skrill, Neteller og paysafecard – beløb fra 100 til 100.000 DKK"
+          caption="Videoslots tilbyder et bredt udvalg af danske betalingsmetoder inkl. MobilePay og bankoverførsel med 0% gebyr"
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
@@ -622,6 +632,13 @@ const NyeCasinoer = () => {
             Vores evaluering af spiludvalg fokuserer ikke på kvantitet alene. Et nyt casino med 1.500 omhyggeligt kuraterede titler fra 30 kvalitetsudbydere scorer højere end ét med 5.000 titler fra 80 udbydere, hvor halvdelen er obskure softwareselskaber med tvivlsom RNG-certificering. Kvalitet, bredde i kategorier og aktualitet er de afgørende parametre.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={videoslotsLiveCasino}
+          alt="Videoslots live casino lobby med Evolution Gaming bordspil – XXXtreme Lightning Roulette, Blackjack og Baccarat varianter"
+          caption="Videoslots' live casino-sektion med 5.326 spil og filtrering efter udbydere – et godt eksempel på et bredt live-udbud"
+          size="full"
+        />
 
         <Separator className="my-10" />
 
@@ -666,6 +683,13 @@ const NyeCasinoer = () => {
             Vores primære risikoreduktionsstrategi er simpel: start altid med en mindre indbetaling (100-200 kr.), test udbetalingsprocessen med en lav udbetaling, og opbyg tillid gradvist. Et seriøst nyt casino har intet imod denne tilgang – det er faktisk et tegn på en moden spiller.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={videoslotsChatbot}
+          alt="Videoslots chatbot på dansk med velkomstbesked og AI-drevet kundeservice via Ada"
+          caption="Videoslots tilbyder dansk chatbot-support døgnet rundt – et eksempel på proaktiv kundeservice hos nye casinoer"
+          size="compact"
+        />
 
         <Separator className="my-10" />
 

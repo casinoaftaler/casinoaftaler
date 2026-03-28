@@ -10,9 +10,6 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowForside from "@/assets/screenshots/kapow-forside-populaere-spil.webp";
-import videoslotsIndbetaling from "@/assets/screenshots/videoslots-indbetaling.webp";
-import videoslotsLiveCasino from "@/assets/screenshots/videoslots-live-casino.webp";
-import videoslotsChatbot from "@/assets/screenshots/videoslots-chatbot.webp";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -210,13 +207,6 @@ const BedsteNyeCasinoer = () => {
           </div>
         </section>
 
-        <ReviewScreenshot
-          src={videoslotsChatbot}
-          alt="Videoslots chatbot på dansk med velkomstbesked og AI-drevet kundeservice via Ada"
-          caption="Videoslots tilbyder dansk chatbot-support døgnet rundt – et eksempel på proaktiv kundeservice hos nye casinoer"
-          size="compact"
-        />
-
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -279,12 +269,6 @@ const BedsteNyeCasinoer = () => {
           <p className="mt-4 text-muted-foreground leading-relaxed">
             Se vores dedikerede guide til <Link to="/nye-casinoer/lav-wagering" className={linkClass}>nye casinoer med lav wagering</Link> for detaljerede EV-beregninger og bonusanalyser.
           </p>
-          <ReviewScreenshot
-            src={videoslotsIndbetaling}
-            alt="Videoslots indbetalingsside med Dankort, Visa, MobilePay, Skrill, Neteller og paysafecard – beløb fra 100 til 100.000 DKK"
-            caption="Videoslots tilbyder et bredt udvalg af danske betalingsmetoder inkl. MobilePay og bankoverførsel med 0% gebyr"
-            size="medium"
-          />
         </section>
 
         <Separator className="my-10" />
@@ -338,12 +322,6 @@ const BedsteNyeCasinoer = () => {
           </div>
         </section>
 
-        <ReviewScreenshot
-          src={videoslotsLiveCasino}
-          alt="Videoslots live casino lobby med Evolution Gaming bordspil – XXXtreme Lightning Roulette, Blackjack og Baccarat varianter"
-          caption="Videoslots' live casino-sektion med 5.326 spil og filtrering efter udbydere – et godt eksempel på et bredt live-udbud"
-          size="full"
-        />
 
         <Separator className="my-10" />
 
