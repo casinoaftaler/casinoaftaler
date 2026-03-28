@@ -246,7 +246,7 @@ const NyeCasinoerTrustly = () => {
             Når du vælger et nyt casino med Trustly-integration, får du mere end bare en betalingsmetode. Trustly-casinoer har typisk en mere moderne infrastruktur generelt, fordi Trustly-integrationen kræver investeringer, som kun seriøse operatører foretager:
           </p>
            <ReviewScreenshot
-             src="https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/news-images/reviews/spilleautomaten/vs-trustly-bankvalg.webp"
+             src={trustlyBankvalg}
              alt="Trustly bankvalg hos nyt dansk casino med oversigt over alle understøttede danske banker"
              caption="Trustlys bankvalg-flow hos et nyt casino – alle større danske banker understøttes"
            />
