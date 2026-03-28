@@ -65,8 +65,10 @@ export default function BonusHunt() {
   const { data: huntData, isLoading: huntLoading } = useBonusHuntData(huntIdOverride);
   const { data: allArchives = [] } = useBonusHuntArchives();
   const { data: session } = useBonusHuntSession();
-  const { data: gtwBets = [] } = useBonusHuntGtwBets(session?.id);
-  const { data: avgxBets = [] } = useBonusHuntAvgxBets(session?.id);
+  const { data: archivedSession } = useBonusHuntSessionByHuntNumber(huntIdOverride);
+  const effectiveSessionId = huntIdOverride ? archivedSession?.id : session?.id;
+  const { data: gtwBets = [] } = useBonusHuntGtwBets(effectiveSessionId);
+  const { data: avgxBets = [] } = useBonusHuntAvgxBets(effectiveSessionId);
 
   const refreshBets = useCallback(() => {
     queryClient.invalidateQueries({ queryKey: ['bonus-hunt-gtw-bets'] });
