@@ -76,9 +76,9 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
 
   // Create admin user mutation
   const createAdmin = useMutation({
-    mutationFn: async ({ email, password }: { email: string; password: string }) => {
+    mutationFn: async ({ email, password, role }: { email: string; password: string; role: string }) => {
       const { data, error } = await supabase.functions.invoke("create-admin-user", {
-        body: { email, password },
+        body: { email, password, role },
       });
 
       if (error) {
