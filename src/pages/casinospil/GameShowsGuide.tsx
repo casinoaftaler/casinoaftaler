@@ -43,6 +43,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import gameShowsHero from "@/assets/heroes/game-shows-hero.jpg";
+import gameShowsLobby from "@/assets/screenshots/game-shows-lobby.webp";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
