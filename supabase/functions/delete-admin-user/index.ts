@@ -88,14 +88,14 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log(`Removing admin role for user: ${userId}`);
+    console.log(`Removing ${roleToDelete} role for user: ${userId}`);
 
-    // Remove admin role from user_roles table
+    // Remove role from user_roles table
     const { error: deleteRoleError } = await supabaseAdmin
       .from("user_roles")
       .delete()
       .eq("user_id", userId)
-      .eq("role", "admin");
+      .eq("role", roleToDelete);
 
     if (deleteRoleError) {
       console.error("Error removing admin role:", deleteRoleError);
