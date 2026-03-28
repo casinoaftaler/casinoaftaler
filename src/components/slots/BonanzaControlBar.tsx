@@ -4,6 +4,8 @@ import { AnimatedWinCounter } from "./AnimatedWinCounter";
 import { cn } from "@/lib/utils";
 import { VolumeControl } from "./VolumeControl";
 import { BonanzaPayTable } from "./BonanzaPayTable";
+import { GatesPayTable } from "./GatesPayTable";
+import { PayTable } from "./PayTable";
 import { AutoSpinPopover } from "./AutoSpinPopover";
 import { getSlotTheme } from "@/lib/slotTheme";
 
