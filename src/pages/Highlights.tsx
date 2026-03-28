@@ -76,56 +76,52 @@ function HighlightsTab() {
   const hasFilters = categoryId || platform || searchQuery.trim();
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6">
-      {/* Video grid – primary content, comes first */}
-      <div className="flex-1 min-w-0">
-        {filteredHighlights.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredHighlights.map((highlight) => (
-              <HighlightCard
-                key={highlight.id}
-                highlight={highlight}
-                isPlaying={playingVideoId === highlight.id}
-                onPlay={handlePlayVideo}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
-            <Video className="h-16 w-16 mb-4" />
-            <p className="text-lg">
-              {hasFilters ? "Ingen highlights matcher din søgning." : "Der er ingen highlights endnu."}
-            </p>
-            {searchQuery.trim() && (
-              <button onClick={() => setSearchQuery("")} className="mt-2 text-sm text-primary hover:underline">
-                Ryd søgning
-              </button>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Filters sidebar – right side on desktop */}
-      <div className="order-first lg:order-last lg:w-[260px] lg:shrink-0">
-        <div className="lg:sticky lg:top-24 space-y-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Søg efter highlights..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-          <HighlightFilterTabs
-            activeCategory={activeCategory}
-            activePlatform={activePlatform}
-            onCategoryChange={setActiveCategory}
-            onPlatformChange={setActivePlatform}
+    <div className="space-y-6">
+      {/* Filters – horizontal row above videos */}
+      <div className="flex flex-wrap items-center gap-3">
+        <div className="relative w-full sm:w-auto sm:min-w-[220px]">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            type="text"
+            placeholder="Søg efter highlights..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
           />
         </div>
+        <HighlightFilterTabs
+          activeCategory={activeCategory}
+          activePlatform={activePlatform}
+          onCategoryChange={setActiveCategory}
+          onPlatformChange={setActivePlatform}
+        />
       </div>
+
+      {/* Video grid */}
+      {filteredHighlights.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredHighlights.map((highlight) => (
+            <HighlightCard
+              key={highlight.id}
+              highlight={highlight}
+              isPlaying={playingVideoId === highlight.id}
+              onPlay={handlePlayVideo}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
+          <Video className="h-16 w-16 mb-4" />
+          <p className="text-lg">
+            {hasFilters ? "Ingen highlights matcher din søgning." : "Der er ingen highlights endnu."}
+          </p>
+          {searchQuery.trim() && (
+            <button onClick={() => setSearchQuery("")} className="mt-2 text-sm text-primary hover:underline">
+              Ryd søgning
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }
