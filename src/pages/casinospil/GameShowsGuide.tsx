@@ -150,6 +150,13 @@ const GameShowsGuide = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={gameShowsLobby}
+          alt="Game shows-lobbyen på et dansk online casino med Crazy Coin Flip, Crazy Pachinko og Balloon Race"
+          caption="Udvalget af game shows på et dansk licenseret casino – spil som Crazy Coin Flip og Crazy Pachinko dominerer kategorien."
+          size="full"
+        />
+
         {/* ── H2 2 ── */}
         <section className="mb-12">
           <h2 className="mb-4 text-2xl font-bold md:text-3xl">
