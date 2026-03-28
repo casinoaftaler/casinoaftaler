@@ -30,6 +30,7 @@ export function SlotRequestForm() {
   const [customSlotName, setCustomSlotName] = useState("");
   const [customProvider, setCustomProvider] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showAllRequests, setShowAllRequests] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
