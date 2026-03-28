@@ -257,7 +257,7 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
                     <AlertDialogFooter>
                       <AlertDialogCancel>Annuller</AlertDialogCancel>
                       <AlertDialogAction
-                        onClick={() => deleteAdmin.mutate(admin.user_id)}
+                        onClick={() => deleteAdmin.mutate({ userId: admin.user_id, role: admin.role })}
                         className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                       >
                         Fjern
