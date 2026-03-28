@@ -183,7 +183,7 @@ const OmTeamet = () => {
     <>
       <SEO
         title="Om teamet bag Casinoaftaler | Streamere & Casinoeksperter"
-        description="Mød teamet bag Casinoaftaler.dk. Læs om Jonas, Kevin, Ajse og Niklas – casino-streamere, redaktører og eksperter bag test, anmeldelser og udvikling."
+        description="Mød teamet bag Casinoaftaler.dk. Læs om Jonas, Kevin, Ajse, Niklas og Frederik – casino-streamere, redaktører og eksperter bag test, anmeldelser og udvikling."
         jsonLd={[organizationJsonLd]}
       />
 
