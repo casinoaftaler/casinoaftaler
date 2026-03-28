@@ -602,6 +602,13 @@ const LiveCasinoUdbydereGuide = () => {
             </table>
           </div>
 
+          <ReviewScreenshot
+            src={udbydereLobbySS}
+            alt="Komplet oversigt over alle spiludbydere i et dansk online casino – fra Pragmatic og Evolution til niche-studier"
+            caption="Det fulde udvalg af udbydere hos et dansk casino – over 100 leverandører fra Pragmatic til niche-studier som Hammertime og Alchemy Gaming."
+            size="full"
+          />
+
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Anbefaling:</strong> Hvis du vil have den bredeste live casino-oplevelse, vælg et casino med både Evolution og Pragmatic Play – f.eks. <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link>, <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> eller <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link>. Vil du have Playtech som supplement (Quantum-serien), er <Link to="/casino-anmeldelser/bet365" className={linkClass}>bet365</Link> det oplagte valg.
           </p>
