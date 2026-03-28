@@ -2,7 +2,7 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonus from "@/assets/screenshots/betinia-velkomstbonus-aktiv.webp";
-import pipFoersteIndbetaling from "@/assets/screenshots/pip-foerste-indbetaling.webp";
+import pipVelkomstbonus from "@/assets/screenshots/pip-velkomstbonus.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -306,9 +306,9 @@ const Velkomstbonus = () => {
         </section>
 
         <ReviewScreenshot
-          src={pipFoersteIndbetaling}
-          alt="Velkomstbonus-popup med 100% match op til 2.000 kr. ved første indbetaling hos dansk casino"
-          caption="Aktivering af velkomstbonus ved første indbetaling – vælg 'Ja til bonus' for at aktivere (kilde: pip.dk)"
+          src={pipVelkomstbonus}
+          alt="Velkomstbonus-popup hos Pip.dk med 100% bonus op til 1.000 kr. og mulighed for at vælge ja eller nej til bonus"
+          caption="Velkomstbonus-valg hos Pip.dk – vælg 'Ja til bonus' eller spil uden for at starte (kilde: pip.dk)"
           size="medium"
         />
 

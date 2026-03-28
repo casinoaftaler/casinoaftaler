@@ -5,7 +5,7 @@ import pipCprNummer from "@/assets/screenshots/pip-cpr-nummer.webp";
 import pipKontooplysninger from "@/assets/screenshots/pip-kontooplysninger.webp";
 import pipAdgangskode from "@/assets/screenshots/pip-adgangskode.webp";
 import pipVelkomstbonus from "@/assets/screenshots/pip-velkomstbonus.webp";
-import pipFoersteIndbetaling from "@/assets/screenshots/pip-foerste-indbetaling.webp";
+import pipMitidGodkend from "@/assets/screenshots/pip-mitid-godkend.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -120,7 +120,7 @@ const NyeCasinoerMitID = () => {
 
           <ReviewScreenshot
             src={pipCprNummer}
-            alt="Pip.dk registreringsformular med CPR-nummer felt til MitID-verifikation af dansk spiller"
+            alt="CPR-nummer indtastning ved Pip.dk registrering – første trin i MitID-verifikation"
             caption="CPR-verifikation hos Pip.dk – det første trin i MitID-registreringsflowet (kilde: pip.dk)"
             size="compact"
           />
@@ -383,10 +383,10 @@ const NyeCasinoerMitID = () => {
           />
 
           <ReviewScreenshot
-            src={pipFoersteIndbetaling}
-            alt="Pip.dk første indbetaling med velkomstbonus på op til 2.000 kr. og minimumsindbetaling"
-            caption="Første indbetaling hos Pip.dk med automatisk bonusaktivering – komplet flow fra registrering til spil (kilde: pip.dk)"
-            size="medium"
+            src={pipMitidGodkend}
+            alt="MitID-app godkendelsesskærm ved login hos Pip.dk – åbn app og godkend identitet"
+            caption="MitID-godkendelse ved Pip.dk – åbn din MitID-app og godkend for at fuldføre login (kilde: pip.dk)"
+            size="compact"
           />
           <div className="rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">

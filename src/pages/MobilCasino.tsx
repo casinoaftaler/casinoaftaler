@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import comeonForside from "@/assets/screenshots/comeon-forside.webp";
-import pipFoersteIndbetaling from "@/assets/screenshots/pip-foerste-indbetaling.webp";
+import pipMitidGodkend from "@/assets/screenshots/pip-mitid-godkend.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -720,10 +720,10 @@ const MobilCasino = () => {
           </p>
 
           <ReviewScreenshot
-            src={pipFoersteIndbetaling}
-            alt="Mobilcasino velkomstbonus-popup med 100% bonus op til 2.000 kr. og mulighed for at vælge bonus eller spille uden"
-            caption="Velkomstbonus ved første indbetaling på mobil – vælg bonus eller spil uden med ét tryk (kilde: pip.dk)"
-            size="medium"
+            src={pipMitidGodkend}
+            alt="MitID-godkendelse på mobil ved login hos dansk casino – åbn MitID-appen og godkend"
+            caption="MitID-verifikation på mobilen – hele godkendelsen sker direkte i MitID-appen (kilde: pip.dk)"
+            size="compact"
           />
         </section>
 
