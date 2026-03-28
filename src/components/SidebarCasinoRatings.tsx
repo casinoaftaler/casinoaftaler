@@ -39,7 +39,7 @@ export function SidebarCasinoRatings() {
       </div>
       <ul className="bg-card">
         {casinos.map((casino, index) => {
-          const ratingPercent = ((casino.rating ?? 0) / 10) * 100;
+          const ratingPercent = ((casino.rating ?? 0) / 5) * 100;
           const isTop3 = index < 3;
 
           return (
