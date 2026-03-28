@@ -111,16 +111,44 @@ Deno.serve(async (req) => {
     if (createError) {
       // If user already exists, look them up via database function and assign admin role
       if (createError.message?.includes("already been registered") || (createError as any)?.code === "email_exists") {
-        console.log(`User ${email} already exists, looking up via RPC...`);
+        console.log(`User ${email} already exists, looking up via admin API...`);
 
-        const { data: foundUserId, error: lookupError } = await supabaseAdmin
-          .rpc("get_user_id_by_email", { lookup_email: email });
+        // Use admin listUsers to find the existing user by email
+        const { data: listData, error: listError } = await supabaseAdmin.auth.admin.listUsers({
+          page: 1,
+          perPage: 1,
+        });
 
-        if (lookupError || !foundUserId) {
-          console.error("Error looking up user by email:", lookupError);
+        let foundUserId: string | null = null;
+        if (!listError && listData?.users) {
+          // listUsers doesn't filter by email, so use getUserByEmail approach
+          // Actually, let's just query auth.users via the RPC
+          const { data: rpcResult, error: rpcError } = await supabaseAdmin
+            .rpc("get_user_id_by_email", { lookup_email: email });
+
+          console.log(`RPC result:`, JSON.stringify(rpcResult), `error:`, JSON.stringify(rpcError));
+          
+          // The RPC returns a UUID directly as a scalar
+          if (rpcResult && !rpcError) {
+            foundUserId = typeof rpcResult === 'string' ? rpcResult : null;
+          }
+        }
+
+        if (!foundUserId) {
+          // Fallback: try to get user by updating their password (which requires knowing the user exists)
+          // Use a direct approach - search all users
+          const { data: allUsers } = await supabaseAdmin.auth.admin.listUsers({ perPage: 1000 });
+          const matchedUser = allUsers?.users?.find(u => u.email?.toLowerCase() === email.toLowerCase());
+          if (matchedUser) {
+            foundUserId = matchedUser.id;
+          }
+        }
+
+        if (!foundUserId) {
+          console.error("Could not find existing user with email:", email);
           return new Response(
-            JSON.stringify({ error: "Kunne ikke finde eksisterende bruger" }),
-            { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+            JSON.stringify({ error: "Kunne ikke finde eksisterende bruger. Prøv med den email, brugeren er registreret med." }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
           );
         }
 
