@@ -5,6 +5,7 @@ import { CommunitySeoBridge } from "./CommunitySeoBridge";
 import { CommunityConversionCard } from "./CommunityConversionCard";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
+import { ContentSidebar } from "@/components/ContentSidebar";
 import { type LucideIcon } from "lucide-react";
 import communityHero from "@/assets/community/community-hero.jpg";
 
@@ -33,7 +34,6 @@ export function CommunityPageLayout({
     <>
       {showHero && (
         <section className="relative overflow-hidden text-white">
-          {/* Hero background image */}
           <img
             src={communityHero}
             alt="Community hero baggrund"
@@ -42,7 +42,6 @@ export function CommunityPageLayout({
             className="absolute inset-0 w-full h-full object-cover"
             aria-hidden="true"
           />
-          {/* Gradient overlay */}
           <div
             className="absolute inset-0"
             style={{
@@ -67,7 +66,7 @@ export function CommunityPageLayout({
       )}
       <CommunityNav />
       <div className="container relative">
-        {/* Sidebar - positioned to the left, outside content flow */}
+        {/* Left sidebar - community specific */}
         {!hideSidebar && (
           <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
             <div className="sticky top-24 h-fit flex flex-col gap-4">
@@ -78,8 +77,11 @@ export function CommunityPageLayout({
             </div>
           </div>
         )}
-        {/* Main content - completely unaffected by sidebar */}
-        <div>{children}</div>
+        {/* Main content + right sidebar */}
+        <div className="flex gap-8 xl:gap-10">
+          <div className="min-w-0 flex-1">{children}</div>
+          <ContentSidebar />
+        </div>
       </div>
     </>
   );
