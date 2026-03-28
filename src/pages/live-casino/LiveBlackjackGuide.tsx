@@ -380,51 +380,53 @@ const LiveBlackjackGuide = () => {
             Ikke alle live blackjack-borde er skabt lige. Evolution Gaming alene tilbyder 10+ varianter, hver med unikke regler, tempi og strategiske implikationer. At vælge den rigtige variant er næsten lige så vigtigt som at mestre basisstrategien. Her gennemgår vi de fire primære varianter, du møder hos danske casinoer, med dybdegående analyse af fordele, ulemper og optimal anvendelse.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg">Classic Blackjack (7 pladser)</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Den originale live blackjack-oplevelse med maksimalt 7 spillere pr. bord. Fordelen er det mest autentiske tempo og den bedste sociale interaktion. Ulempen er ventetid – hvis bordet er fuldt, skal du vente. House edge: 0,50 % med basisstrategi. Minimumsindsats: typisk 50-100 kr. Du har 15 sekunder til at handle, hvilket giver god tid til at konsultere et strategy chart. Dette er vores anbefalede format for de fleste danske spillere.
-                </p>
-              </CardContent>
-            </Card>
+          <Card className="border-border bg-card mb-4">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">Classic Blackjack (7 pladser)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Den originale live blackjack-oplevelse med maksimalt 7 spillere pr. bord. Fordelen er det mest autentiske tempo og den bedste sociale interaktion. Ulempen er ventetid – hvis bordet er fuldt, skal du vente. House edge: 0,50 % med basisstrategi. Minimumsindsats: typisk 50-100 kr. Du har 15 sekunder til at handle, hvilket giver god tid til at konsultere et strategy chart. Dette er vores anbefalede format for de fleste danske spillere.
+              </p>
+            </CardContent>
+          </Card>
+          <ReviewScreenshot src={classicBlackjack} alt="Classic Blackjack bord med 7 pladser hos dansk online casino – dealer og chips på bordet" caption="Classic Blackjack med 7 pladser: det mest autentiske live blackjack-format med fysiske kort og dedikeret dealer." size="full" />
 
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg">Infinite Blackjack</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Ubegrænset antal spillere. Alle modtager de samme startkort men træffer individuelle beslutninger. Lavere minimumsindsats (fra 5 kr.) og ingen ventetid. "Six Card Charlie"-reglen (auto-win med 6 kort uden bust) sænker house edge marginalt til ca. 0,46 %. Perfekt for nybegyndere, bankroll-bevidste spillere og dem, der vil øve basisstrategi med lav risiko. Den lavere minimumsindsats gør det til det bedste "træningsbord" i live casino.
-                </p>
-              </CardContent>
-            </Card>
+          <Card className="border-border bg-card mb-4">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">Infinite Blackjack</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Ubegrænset antal spillere. Alle modtager de samme startkort men træffer individuelle beslutninger. Lavere minimumsindsats (fra 5 kr.) og ingen ventetid. "Six Card Charlie"-reglen (auto-win med 6 kort uden bust) sænker house edge marginalt til ca. 0,46 %. Perfekt for nybegyndere, bankroll-bevidste spillere og dem, der vil øve basisstrategi med lav risiko. Den lavere minimumsindsats gør det til det bedste "træningsbord" i live casino.
+              </p>
+            </CardContent>
+          </Card>
+          <ReviewScreenshot src={infiniteBlackjack} alt="Infinite Blackjack bord med ubegrænset antal spillere og Six Card Charlie-regel" caption="Infinite Blackjack: ubegrænset antal spillere, lav minimumsindsats og Six Card Charlie-reglen gør det ideelt til nybegyndere." size="medium" />
 
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg">Lightning Blackjack</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Tilfældige RNG-multiplikatorer (2x-25x) tilføjes til vindende hænder. For at finansiere multiplikatorerne betaler du et "Lightning Fee" på 100 % af din indsats (din indsats fordobles effektivt). RTP er 99,56 % – marginalt højere end standard. Volatiliteten er dog markant øget. For spillere, der søger store potentielle gevinster med accept af højere varians. Basisstrategien forbliver den samme – multiplikatorerne ændrer ikke den optimale handling.
-                </p>
-              </CardContent>
-            </Card>
+          <Card className="border-border bg-card mb-4">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">Lightning Blackjack</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Tilfældige RNG-multiplikatorer (2x-25x) tilføjes til vindende hænder. For at finansiere multiplikatorerne betaler du et "Lightning Fee" på 100 % af din indsats (din indsats fordobles effektivt). RTP er 99,56 % – marginalt højere end standard. Volatiliteten er dog markant øget. For spillere, der søger store potentielle gevinster med accept af højere varians. Basisstrategien forbliver den samme – multiplikatorerne ændrer ikke den optimale handling.
+              </p>
+            </CardContent>
+          </Card>
+          <ReviewScreenshot src={lightningBlackjack} alt="Lightning Blackjack med RNG-multiplikatorer op til 25x på vindende hænder" caption="Lightning Blackjack: multiplikatorer fra 2x til 25x tilføjes tilfældigt til vindende hænder – højere volatilitet, samme basisstrategi." size="medium" />
 
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg">Speed Blackjack</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  De hurtigste spillere handler først – ingen ventetid på langsomme medspillere. Reducer beslutningshastigheden til 7-8 sekunder og spil op til 80+ hænder/time. Samme regler og house edge som Classic. Ideel for erfarne spillere, der kender basisstrategien udenad og vil maksimere antal hænder. Advarsel: det højere tempo øger dit forventede tab pr. time med 33 % sammenlignet med Classic – fra 15 kr. til 20 kr./time ved 50 kr. indsats.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+          <Card className="border-border bg-card mb-4">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">Speed Blackjack</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                De hurtigste spillere handler først – ingen ventetid på langsomme medspillere. Reducer beslutningshastigheden til 7-8 sekunder og spil op til 80+ hænder/time. Samme regler og house edge som Classic. Ideel for erfarne spillere, der kender basisstrategien udenad og vil maksimere antal hænder. Advarsel: det højere tempo øger dit forventede tab pr. time med 33 % sammenlignet med Classic – fra 15 kr. til 20 kr./time ved 50 kr. indsats.
+              </p>
+            </CardContent>
+          </Card>
+          <ReviewScreenshot src={speedBlackjack} alt="Speed VIP Blackjack bord med hurtig dealing og flere spillere" caption="Speed Blackjack: de hurtigste spillere handler først – op til 80+ hænder i timen for erfarne spillere." size="full" />
 
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Salon Privé og VIP-borde:</strong> For high rollers tilbyder Evolution Salon Privé med minimumsindsatser fra 1.500-5.000 kr. og dedikeret dealer. Reglerne er typisk identiske med Classic, men bordet er privat – du spiller alene med dealeren, uden medspillere. Tempoet er hurtigere (70-90 hænder/time), og sociale forstyrrelser er elimineret. Det er den mest fokuserede live blackjack-oplevelse, men den høje minimumsindsats kræver en tilsvarende bankroll (60.000-200.000 kr.).
