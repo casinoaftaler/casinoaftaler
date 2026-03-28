@@ -91,6 +91,7 @@ export function BonusHuntSlotTable({ slots, huntNumber }: Props) {
 
   const { data: overrides } = useProviderOverrides();
   const { data: catalogData } = useSlotCatalogMap();
+  const { data: requesterMap } = useBonusHuntSlotRequesters(huntNumber);
   const catalogProviderMap = catalogData?.providerMap;
   const catalogNameMap = catalogData?.nameMap;
 
