@@ -3,6 +3,9 @@ import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award } from "lucide-react";
 import pragmaticPlayHero from "@/assets/heroes/pragmatic-play-hero.jpg";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pragmaticLiveCasino from "@/assets/screenshots/pragmatic-play-live-casino.webp";
+import pragmaticSlotKatalog from "@/assets/screenshots/pragmatic-play-slot-katalog.webp";
 
 const PragmaticPlayGuide = () => (
   <ProviderPage
