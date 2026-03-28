@@ -41,6 +41,7 @@ import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
 import niklasImage from "@/assets/niklas-forfatter.webp";
+import frederikImage from "@/assets/frederik-forfatter.webp";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import omHeroImage from "@/assets/heroes/om-hero.png";
@@ -87,6 +88,10 @@ const OmTeamet = () => {
       {
         "@type": "Person",
         "@id": "https://casinoaftaler.dk/forfatter/niklas#person",
+      },
+      {
+        "@type": "Person",
+        "@id": "https://casinoaftaler.dk/forfatter/frederik#person",
       },
     ],
     sameAs: [
@@ -178,7 +183,7 @@ const OmTeamet = () => {
     <>
       <SEO
         title="Om teamet bag Casinoaftaler | Streamere & Casinoeksperter"
-        description="Mød teamet bag Casinoaftaler.dk. Læs om Jonas, Kevin, Ajse og Niklas – casino-streamere, redaktører og eksperter bag test, anmeldelser og udvikling."
+        description="Mød teamet bag Casinoaftaler.dk. Læs om Jonas, Kevin, Ajse, Niklas og Frederik – casino-streamere, redaktører og eksperter bag test, anmeldelser og udvikling."
         jsonLd={[organizationJsonLd]}
       />
 
@@ -203,7 +208,7 @@ const OmTeamet = () => {
               Teamet bag Casinoaftaler.dk
             </h1>
             <p className="mb-4 text-xl font-semibold text-white/90 md:text-2xl">
-              To streamere, én juridisk redaktør og én finansøkonom. Ét fælles mål.
+              Tre streamere, én juridisk redaktør og én finansøkonom. Ét fælles mål.
               <br />
               At skabe gennemsigtighed i online casino i Danmark.
             </p>
@@ -220,6 +225,7 @@ const OmTeamet = () => {
                 { to: "/forfatter/kevin", img: kevinImage, alt: "Kevin – IT Medansvarlig", name: "Kevin" },
                 { to: "/forfatter/ajse", img: ajseImage, alt: "Ajse – Juridisk redaktør", name: "Ajse" },
                 { to: "/forfatter/niklas", img: niklasImage, alt: "Niklas – Finansøkonom", name: "Niklas" },
+                { to: "/forfatter/frederik", img: frederikImage, alt: "Frederik – Streamer", name: "Frederik" },
               ].map((m) => (
                 <Link key={m.name} to={m.to} className="group">
                   <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105">
@@ -256,6 +262,13 @@ const OmTeamet = () => {
                   <img src={niklasImage} alt="Niklas – Finansøkonom" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Niklas</p>
+              </Link>
+              <span className="text-3xl font-bold text-white/30">&</span>
+              <Link to="/forfatter/frederik" className="group">
+                <div className="mx-auto h-36 w-36 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105">
+                  <img src={frederikImage} alt="Frederik – Streamer" className="h-full w-full object-cover object-top" loading="eager" />
+                </div>
+                <p className="mt-2 text-sm font-medium text-white/80">Frederik</p>
               </Link>
             </div>
           </div>
@@ -436,6 +449,25 @@ const OmTeamet = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Frederik quote */}
+            <Card className="border-white/10 bg-white/5 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <Quote className="mb-4 h-8 w-8 text-primary/60" />
+                <p className="mb-6 text-xl font-medium leading-relaxed text-white/90 italic">
+                  "Der er intet bedre end at dele en fed bonus-åbning med chatten – den energi er unik."
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-12 w-12 overflow-hidden rounded-xl border-2 border-primary/30">
+                    <img src={frederikImage} alt="Frederik" className="h-full w-full object-cover object-top" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Frederik</p>
+                    <p className="text-sm text-white/60">Streamer & Bonustester</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -469,11 +501,11 @@ const OmTeamet = () => {
             Vores skribenter & redaktion
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Casinoaftaler.dk drives af fire faste skribenter med klare roller og ansvarsområder.
+            Casinoaftaler.dk drives af fem faste skribenter med klare roller og ansvarsområder.
             Alle artikler, anmeldelser og guides produceres internt af redaktionen og faktatjekkes
             af en anden redaktør end forfatteren inden publicering.
           </p>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {/* Jonas */}
             <div className="rounded-xl border border-border bg-card p-5">
               <Link to="/forfatter/jonas" className="group">
@@ -546,6 +578,24 @@ const OmTeamet = () => {
                 Se Niklas – Finansøkonom <ArrowRight className="ml-1 h-3.5 w-3.5" />
               </Link>
             </div>
+            {/* Frederik */}
+            <div className="rounded-xl border border-border bg-card p-5">
+              <Link to="/forfatter/frederik" className="group">
+                <div className="flex items-center gap-3 mb-3">
+                  <img src={frederikImage} alt="Frederik – Streamer" className="h-12 w-12 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors" width={48} height={48} loading="lazy" />
+                  <div>
+                    <p className="font-semibold group-hover:text-primary transition-colors">Frederik</p>
+                    <p className="text-xs text-muted-foreground">Streamer & Bonustester</p>
+                  </div>
+                </div>
+              </Link>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Tester <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">casino bonusser</Link> live på stream og skaber engagerende indhold på <Link to="/community/slots" className="text-primary underline hover:text-primary/80">Twitch</Link> og YouTube. Streamer med 4+ års erfaring.
+              </p>
+              <Link to="/forfatter/frederik" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                Se Frederik – Streamer <ArrowRight className="ml-1 h-3.5 w-3.5" />
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -586,7 +636,7 @@ const OmTeamet = () => {
                         ? new Date(article.published_at).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })
                         : ""}
                       {" · "}
-                      <span className="capitalize">{article.author_id === "ajse" ? "Ajse" : article.author_id === "kevin" ? "Kevin" : article.author_id === "niklas" ? "Niklas" : "Jonas"}</span>
+                      <span className="capitalize">{article.author_id === "ajse" ? "Ajse" : article.author_id === "kevin" ? "Kevin" : article.author_id === "niklas" ? "Niklas" : article.author_id === "frederik" ? "Frederik" : "Jonas"}</span>
                     </p>
                     <h3 className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
                       {article.title}
