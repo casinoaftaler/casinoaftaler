@@ -383,10 +383,10 @@ const NyeCasinoerMitID = () => {
           />
 
           <ReviewScreenshot
-            src={pipFoersteIndbetaling}
-            alt="Pip.dk første indbetaling med velkomstbonus på op til 2.000 kr. og minimumsindbetaling"
-            caption="Første indbetaling hos Pip.dk med automatisk bonusaktivering – komplet flow fra registrering til spil (kilde: pip.dk)"
-            size="medium"
+            src={pipMitidGodkend}
+            alt="MitID-app godkendelsesskærm ved login hos Pip.dk – åbn app og godkend identitet"
+            caption="MitID-godkendelse ved Pip.dk – åbn din MitID-app og godkend for at fuldføre login (kilde: pip.dk)"
+            size="compact"
           />
           <div className="rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">
