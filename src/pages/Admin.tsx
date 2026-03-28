@@ -67,6 +67,7 @@ import { PageMetadataAdminSection } from "@/components/PageMetadataAdminSection"
 import { PageMetadataSyncSection } from "@/components/admin/PageMetadataSyncSection";
 import { CasinoTrustAdminSection } from "@/components/admin/CasinoTrustAdminSection";
 import { ErrorLogsSection } from "@/components/admin/ErrorLogsSection";
+import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
 import { CacheClearSection } from "@/components/admin/CacheClearSection";
 import { ReviewModerationSection } from "@/components/admin/ReviewModerationSection";
 import { StaleContentAlerts } from "@/components/admin/StaleContentAlerts";
