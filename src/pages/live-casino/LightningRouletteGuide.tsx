@@ -166,9 +166,15 @@ const LightningRouletteGuide = () => {
             <strong>Kritisk pointe:</strong> Kun straight-up bets (enkelttal) kvalificerer til Lightning-multiplikatorer. Outside bets (rød/sort, dozen, column etc.) påvirkes ikke og har identisk EV som i standard europæisk roulette. Inside bets som splits, streets og corners påvirkes heller ikke – kun rene enkelttal-bets. Derfor er bet-strategien i Lightning Roulette fundamentalt anderledes end i standard roulette: outside bets giver nøjagtig samme oplevelse som et standard bord, mens straight-up bets tilbyder en dramatisk anderledes risk/reward-profil.
           </p>
           <ReviewScreenshot
-            src={pokerstarsLiveCasino}
-            alt="PokerStars live casino med Evolution Gaming Lightning-serie og roulette-borde"
-            caption="PokerStars' live casino – herfra tilgås Lightning Roulette og andre Evolution Gaming-titler"
+            src={lightningRouletteGameplay}
+            alt="Lightning Roulette gameplay med tre aktive Lightning-numre (12, 16, 34) med 50x og 100x multiplikatorer"
+            caption="Lightning Roulette i aktion – tre Lightning-numre er valgt med multiplikatorer op til 100x, mens dealeren forbereder spinnet"
+            size="full"
+          />
+          <ReviewScreenshot
+            src={lightningRouletteRegler}
+            alt="Spilleregler for Lightning Roulette – oversigt over indsatstyper, udbetalinger og Lightning-multiplikatorer"
+            caption="De officielle spilleregler for Lightning Roulette – her forklares mekanikken bag Lightning-numre og multiplikatorer op til 500x"
             size="full"
           />
         </section>
