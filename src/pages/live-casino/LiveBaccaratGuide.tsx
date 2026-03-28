@@ -327,6 +327,12 @@ const LiveBaccaratGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Tommelfingerregel:</strong> Jo højere udbetalingen er på et sidebet, jo højere er typisk house edge. 200:1 sidebets (som Perfect Pair i visse varianter) har ofte 10-15 % house edge. Undgå alle sidebets konsekvent – de er designet som impulskøb, der eroderer din bankroll langt hurtigere end hovedspillet.
           </p>
+          <ReviewScreenshot
+            src={baccaratSidebets}
+            alt="Nærbillede af baccarat sidebets med P Pair 11:1, B Pair 11:1, Perfect Pair 200:1, P Bonus og B Bonus felter"
+            caption="Sidebets i live baccarat – P Pair, B Pair, Perfect Pair og Bonus-felter med udbetalinger op til 200:1"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
