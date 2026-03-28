@@ -20,6 +20,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Casinoer",
     iconName: "crown",
+    hubTo: "/top-10-casino-online",
     links: [
       { to: "/top-10-casino-online", label: "Top 10 Online Casino" },
       { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling" },
