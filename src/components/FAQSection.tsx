@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { HelpCircle } from "lucide-react";
 import {
@@ -51,8 +51,48 @@ const defaultFaqs: FAQ[] = [
   },
 ];
 
+/**
+ * Anti-footprint: Rotates FAQ section titles that match the generic
+ * "Ofte Stillede Spørgsmål om [X]" pattern into 5 natural variants.
+ * Custom/unique titles are returned as-is.
+ */
+function useVariedFaqTitle(title: string, pathname: string): string {
+  return useMemo(() => {
+    const match = title.match(/^Ofte [Ss]tillede [Ss]pørgsmål(?:\s+om\s+(.+))?$/i);
+    if (!match) return title;
+
+    const topic = match[1]?.trim();
+
+    if (!topic) {
+      const genericVariants = [
+        "Ofte stillede spørgsmål",
+        "Spørgsmål & svar",
+        "Det vil du gerne vide",
+        "Gode spørgsmål fra læserne",
+        "FAQ",
+      ];
+      let hash = 0;
+      for (let i = 0; i < pathname.length; i++) hash = ((hash << 5) - hash + pathname.charCodeAt(i)) | 0;
+      return genericVariants[Math.abs(hash) % genericVariants.length];
+    }
+
+    const variants = [
+      `Ofte stillede spørgsmål om ${topic}`,
+      `Spørgsmål & svar om ${topic}`,
+      `${topic} – det vil du gerne vide`,
+      `Hyppige spørgsmål om ${topic}`,
+      `FAQ: ${topic}`,
+    ];
+
+    let hash = 0;
+    for (let i = 0; i < pathname.length; i++) hash = ((hash << 5) - hash + pathname.charCodeAt(i)) | 0;
+    return variants[Math.abs(hash) % variants.length];
+  }, [title, pathname]);
+}
+
 export const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(function FAQSection({ title = "Ofte Stillede Spørgsmål", faqs = defaultFaqs }, ref) {
   const { pathname } = useLocation();
+  const variedTitle = useVariedFaqTitle(title, pathname);
   const showTrustPanel = isCasinoTrustPath(pathname);
   const showMarketIntelligenceTeaser =
     pathname === "/casino-bonus" ||
@@ -70,7 +110,7 @@ export const FAQSection = React.forwardRef<HTMLElement, FAQSectionProps>(functio
         <div className="rounded-xl border border-border bg-card p-6 md:p-8">
           <h2 className="mb-6 flex items-center gap-2 text-3xl font-bold">
             <HelpCircle className="h-8 w-8 text-primary" />
-            {title}
+            {variedTitle}
           </h2>
           <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, index) => (
