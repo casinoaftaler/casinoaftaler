@@ -657,58 +657,121 @@ const NoStickyBonus = () => {
             Ikke alle No-Sticky Bonusser er skabt lige. Nedenfor vurderer vi de mest relevante tilbud i det danske marked baseret på vores testresultater.
           </p>
 
-          <div className="space-y-4">
-            {[
-              {
-                name: "Spilleautomaten",
-                slug: "spilleautomaten-anmeldelse",
-                text: "Spilleautomaten leverer en af markedets reneste No-Sticky oplevelser. 100% match op til 1.000 kr. med 10x omsætning – udelukkende på bonusdelen. Ingen gevinstloft, og alle standardslots bidrager 100%. Vores test viste konsistente udbetalinger via Trustly inden for 4-8 timer. Svagheden er fraværet af sportsbetting – men for rendyrkede casinospillere er dette det stærkeste No-Sticky tilbud i Danmark.",
-              },
-              {
-                name: "SpilDanskNu",
-                slug: "spildansknu-anmeldelse",
-                text: "SpilDanskNu kombinerer en No-Sticky velkomstbonus med et konsekvent dansk fokus. Hele platformen er designet til det danske marked, og kundeservicen er dansktalende. Bonusvilkårene er fair: 10x omsætning, ingen bonuskode nødvendig, og automatisk aktivering ved indbetaling. For spillere, der prioriterer en autentisk dansk spiloplevelse med gennemsigtige vilkår, er SpilDanskNu det oplagte valg.",
-              },
-              {
-                name: "Betinia",
-                slug: "betinia-anmeldelse",
-                text: "Betinia differentierer sig med det bredeste udvalg af spiludviklere – over 40 studier repræsenteret. No-Sticky bonussen med 10x omsætning er standard, men det enorme spiludvalg giver dig flere valgmuligheder under omsætning. Akkumulatorboost-funktionen tilføjer værdi for dual-platform spillere. Svagheden er fraværet af free spins i velkomstpakken – men den rene cash-bonus er let at forstå og vurdere.",
-              },
-              {
-                name: "Campobet",
-                slug: "campobet-anmeldelse",
-                text: "Campobets No-Sticky Bonus er integreret i en dual-platform med 3.000+ casinospil og et bredt sportsbetting-katalog. For spillere, der vil have begge dele under én konto, er det en stærk kombination. Evolution Gamings live casino er velsorteret, og Trustly-udbetalinger behandles typisk inden for 6-14 timer. Bonusvilkårene følger standarden med 10x omsætning.",
-              },
-              {
-                name: "Swift Casino",
-                slug: "swift-casino-anmeldelse",
-                text: "Swift Casinos Hot Or Cold-funktion er unik i det danske marked – den viser hvilke spilleautomater, der aktuelt udbetaler over eller under gennemsnittet. Kombineret med en No-Sticky velkomstbonus med 10x omsætning, giver dette informerede spillere et ekstra værktøj til at optimere spilvalget under omsætning. 2.500+ spiltitler sikrer bredde, men live casino-kataloget er mindre dybdegående end de bedste konkurrenter.",
-              },
-              {
-                name: "Luna Casino",
-                slug: "luna-casino-anmeldelse",
-                text: "Luna Casino skiller sig ud med et VIP-program, der belønner loyalitet med cashback uden omsætningskrav – en sjælden kombination. No-Sticky velkomstbonussen inkluderer 50 free spins, hvilket er unikt blandt vores topanbefalinger. For spillere, der planlægger langsigtet engagement med ét casino, tilbyder Luna den bedste samlede pakke af No-Sticky bonus og loyalitetsfordele.",
-              },
-            ].map((casino) => (
-              <Card key={casino.slug} className="border-border bg-card">
-                <CardHeader className="pb-2">
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <CheckCircle2 className="h-5 w-5 text-primary" />
-                    <Link to={`/${casino.slug}`} className={linkClass}>{casino.name}</Link>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{casino.text}</p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="space-y-6">
+            {/* Spilleautomaten */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <Link to="/spilleautomaten-anmeldelse" className={linkClass}>Spilleautomaten</Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">Spilleautomaten leverer en af markedets reneste No-Sticky oplevelser. 100% match op til 1.000 kr. med 10x omsætning – udelukkende på bonusdelen. Ingen gevinstloft, og alle standardslots bidrager 100%. Vores test viste konsistente udbetalinger via Trustly inden for 4-8 timer. Svagheden er fraværet af sportsbetting – men for rendyrkede casinospillere er dette det stærkeste No-Sticky tilbud i Danmark.</p>
+              </CardContent>
+            </Card>
+            <ReviewScreenshot
+              src={spilleautomatenVelkomst}
+              alt="Spilleautomatens velkomstbonus-side med 100% no-sticky bonus og Legacy of Dead"
+              caption="Spilleautomatens bonusside – 100% velkomstbonus med tydelige vilkår og 10x omsætning"
+              size="compact"
+            />
+
+            {/* SpilDanskNu */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu</Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">SpilDanskNu kombinerer en No-Sticky velkomstbonus med et konsekvent dansk fokus. Hele platformen er designet til det danske marked, og kundeservicen er dansktalende. Bonusvilkårene er fair: 10x omsætning, ingen bonuskode nødvendig, og automatisk aktivering ved indbetaling. For spillere, der prioriterer en autentisk dansk spiloplevelse med gennemsigtige vilkår, er SpilDanskNu det oplagte valg.</p>
+              </CardContent>
+            </Card>
+            <ReviewScreenshot
+              src={spildansknuVelkomst}
+              alt="SpilDanskNus velkomstbonus på 100% op til 1.000 kr. med trin-for-trin bonusaktivering"
+              caption="SpilDanskNus bonusside – omsæt velkomstbonus + indskud 10 gange"
+              size="compact"
+            />
+
+            {/* Betinia */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <Link to="/betinia-anmeldelse" className={linkClass}>Betinia</Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">Betinia differentierer sig med det bredeste udvalg af spiludviklere – over 40 studier repræsenteret. No-Sticky bonussen med 10x omsætning er standard, men det enorme spiludvalg giver dig flere valgmuligheder under omsætning. Akkumulatorboost-funktionen tilføjer værdi for dual-platform spillere. Svagheden er fraværet af free spins i velkomstpakken – men den rene cash-bonus er let at forstå og vurdere.</p>
+              </CardContent>
+            </Card>
+            <ReviewScreenshot
+              src={betiniaVelkomst}
+              alt="Betinias sport- og casino-velkomstbonus med 100% op til 1.000 kr. og separate bonusvilkår"
+              caption="Betinias dual-platform bonus – separate vilkår for sport (5x) og casino (10x)"
+              size="full"
+            />
+
+            {/* Campobet */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <Link to="/campobet-anmeldelse" className={linkClass}>Campobet</Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">Campobets No-Sticky Bonus er integreret i en dual-platform med 3.000+ casinospil og et bredt sportsbetting-katalog. For spillere, der vil have begge dele under én konto, er det en stærk kombination. Evolution Gamings live casino er velsorteret, og Trustly-udbetalinger behandles typisk inden for 6-14 timer. Bonusvilkårene følger standarden med 10x omsætning.</p>
+              </CardContent>
+            </Card>
+            <ReviewScreenshot
+              src={campobetVelkomst}
+              alt="Campobets dual-platform velkomstbonus med 100% op til 1.000 kr. for både sport og casino"
+              caption="Campobets velkomstbonus – separate sport- og casinobonusser med individuelle vilkår"
+              size="full"
+            />
+
+            {/* Swift Casino */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <Link to="/swift-casino-anmeldelse" className={linkClass}>Swift Casino</Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">Swift Casinos Hot Or Cold-funktion er unik i det danske marked – den viser hvilke spilleautomater, der aktuelt udbetaler over eller under gennemsnittet. Kombineret med en No-Sticky velkomstbonus med 10x omsætning, giver dette informerede spillere et ekstra værktøj til at optimere spilvalget under omsætning. 2.500+ spiltitler sikrer bredde, men live casino-kataloget er mindre dybdegående end de bedste konkurrenter.</p>
+              </CardContent>
+            </Card>
+            <ReviewScreenshot
+              src={swiftVelkomst}
+              alt="Swift Casinos velkomstbonus-banner med 100% op til 500 kr. og populære spilfigurer"
+              caption="Swift Casinos bonusside – 100% op til 500 kr. med hurtig aktivering"
+              size="medium"
+            />
+
+            {/* Luna Casino */}
+            <Card className="border-border bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground leading-relaxed">Luna Casino skiller sig ud med et VIP-program, der belønner loyalitet med cashback uden omsætningskrav – en sjælden kombination. No-Sticky velkomstbonussen inkluderer 50 free spins, hvilket er unikt blandt vores topanbefalinger. For spillere, der planlægger langsigtet engagement med ét casino, tilbyder Luna den bedste samlede pakke af No-Sticky bonus og loyalitetsfordele.</p>
+              </CardContent>
+            </Card>
+            <ReviewScreenshot
+              src={lunaVelkomst}
+              alt="Luna Casinos velkomstbonus med 3-trins registreringsflow: registrer, indbetal, modtag bonus"
+              caption="Luna Casinos onboarding – registrer, indbetal og modtag bonus i 3 trin"
+              size="medium"
+            />
           </div>
-          <ReviewScreenshot
-            src={swiftVelkomst}
-            alt="Swift Casinos velkomstbonus-banner med 100% op til 500 kr. og populære spilfigurer"
-            caption="Swift Casinos visuelle bonusside – designet til hurtig aktivering med tydelig CTA"
-            size="medium"
-          />
         </section>
 
         <Separator className="my-10" />
