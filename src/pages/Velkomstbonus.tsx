@@ -506,6 +506,12 @@ const Velkomstbonus = () => {
             bonusspil. Tjek altid de specifikke vilkår for den bonus, du
             aktiverer, så du undgår at spille på spil, der ikke tæller med.
           </p>
+          <ReviewScreenshot
+            src={velkomstSpilLobby}
+            alt="Populære spilleautomater i et dansk online casino – spil som Sweet Bonanza, Book of Dead og Le Bandit"
+            caption="Udvalget af populære spilleautomater hos Expekt – de fleste af disse spil kan spilles med bonuspenge fra din velkomstbonus."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
