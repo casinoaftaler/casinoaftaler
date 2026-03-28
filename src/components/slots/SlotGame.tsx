@@ -8,7 +8,7 @@ import { BonusStatusBar } from "./BonusStatusBar";
 import { BonusSymbolBar } from "./BonusSymbolBar";
 import { SlotMachineFrame } from "./SlotMachineFrame";
 import { WinCelebration } from "./WinCelebration";
-import { GatesControlBar } from "./GatesControlBar";
+import { BonanzaControlBar } from "./BonanzaControlBar";
 import { SlotIdleEffects } from "./SlotIdleEffects";
 import { SlotAmbientLight } from "./SlotAmbientLight";
 import { useSlotSymbols } from "@/hooks/useSlotSymbols";
@@ -1231,7 +1231,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
               )}
             </div>
             
-            <GatesControlBar
+            <BonanzaControlBar
               bet={effectiveBet}
               onBetChange={setBet}
               onSpin={handleSpin}
