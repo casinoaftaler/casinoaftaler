@@ -13,6 +13,10 @@ import { CASINO_SCORES } from "@/lib/reviewScoring";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowRegistrering from "@/assets/screenshots/kapow-registrering.webp";
+import playkasinoForside from "@/assets/screenshots/playkasino-forside-velkomstbonus.webp";
+import playkasinoLiveCasino from "@/assets/screenshots/playkasino-live-casino-lobby.webp";
+import playkasinoBonusvilkaar from "@/assets/screenshots/playkasino-bonusvilkaar-smallprint.webp";
+import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling-betalingsmetoder.webp";
 
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 
