@@ -82,6 +82,7 @@ export function useAuth() {
     setUser(null);
     setSession(null);
     setIsAdmin(false);
+    setIsModerator(false);
     
     const { error } = await supabase.auth.signOut();
     return { error };
