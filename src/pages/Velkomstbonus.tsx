@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonus from "@/assets/screenshots/betinia-velkomstbonus-aktiv.webp";
 import pipVelkomstbonus from "@/assets/screenshots/pip-velkomstbonus.webp";
