@@ -153,7 +153,7 @@ const Casinospil = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="45 Min." />
 
         <SnippetAnswer answer="Casinospil dækker alt fra spilleautomater og bordspil til live casino og game shows. Forstå RTP, house edge og volatilitet for at vælge de rigtige spil til din spillestil." />
