@@ -3,6 +3,8 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonus from "@/assets/screenshots/betinia-velkomstbonus-aktiv.webp";
 import pipVelkomstbonus from "@/assets/screenshots/pip-velkomstbonus.webp";
+import velkomstSpilLobby from "@/assets/screenshots/velkomstbonus-spil-lobby.webp";
+import velkomstKampagne from "@/assets/screenshots/velkomstbonus-kampagne.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
