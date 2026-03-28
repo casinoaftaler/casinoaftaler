@@ -37,6 +37,7 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import { type ReactNode } from "react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -156,7 +157,7 @@ const BonusBuySlots = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="20 Min." />
 
         <SnippetAnswer answer="Bonus buy (feature buy) lader dig købe free spins-runden direkte for 50–200x din indsats. Det er lovligt i Danmark, giver samme RTP som organisk trigger, og eliminerer ventetiden. Sweet Bonanza og Gates of Olympus er blandt de mest populære." />
@@ -510,7 +511,7 @@ const BonusBuySlots = () => {
         <RelatedGuides currentPath="/bonus-buy-slots" />
         <FAQSection title="Ofte Stillede Spørgsmål om Bonus Buy Slots" faqs={bonusBuyFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

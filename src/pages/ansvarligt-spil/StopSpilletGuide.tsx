@@ -17,6 +17,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import stopspilletHero from "@/assets/heroes/stopspillet-guide-hero.jpg";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Shield,
   Clock,
   AlertTriangle,
@@ -184,7 +185,7 @@ const StopSpilletGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="ajse" readTime="25 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Juridisk og fagligt gennemgået af Ajse, juridisk redaktør hos Casinoaftaler.dk.
@@ -911,7 +912,7 @@ const StopSpilletGuide = () => {
         <RelatedGuides currentPath="/ansvarligt-spil/stopspillet" />
         <FAQSection title="Ofte Stillede Spørgsmål om StopSpillet" faqs={stopspilletFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

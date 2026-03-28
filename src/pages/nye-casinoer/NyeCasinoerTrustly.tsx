@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import trustlyBankvalg from "@/assets/screenshots/trustly-bankvalg.webp";
 import { SEO } from "@/components/SEO";
@@ -91,7 +92,7 @@ const NyeCasinoerTrustly = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="19 Min." />
 
 
@@ -419,7 +420,7 @@ const NyeCasinoerTrustly = () => {
         <RelatedGuides currentPath="/nye-casinoer/trustly" />
         <FAQSection title="Ofte stillede spørgsmål om Trustly og nye casinoer" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );

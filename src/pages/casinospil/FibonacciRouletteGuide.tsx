@@ -3,6 +3,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveRoulette from "@/assets/screenshots/danskespil-live-roulette.webp";
 import danskespilLiveRouletteBord from "@/assets/screenshots/danskespil-live-roulette-bord.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -111,7 +112,7 @@ export default function FibonacciRouletteGuide() {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="38 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
@@ -812,7 +813,7 @@ export default function FibonacciRouletteGuide() {
         <RelatedGuides currentPath="/casinospil/roulette/fibonacci-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

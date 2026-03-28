@@ -27,6 +27,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import leovegasLobby from "@/assets/screenshots/leovegas-lobby.webp";
 import leovegasPopulaere from "@/assets/screenshots/leovegas-populaere-spil.webp";
 import leovegasLiveCasino from "@/assets/screenshots/leovegas-live-casino.webp";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -59,7 +60,7 @@ const LeoVegasAnmeldelse = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="36 Min." />
         <CasinoReviewHero slug="leovegas" casinoName="LeoVegas" />
         <ReviewMoneyLinks />
@@ -481,7 +482,7 @@ const LeoVegasAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/leovegas" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

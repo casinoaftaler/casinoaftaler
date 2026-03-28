@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import pokerstarsLiveCasino from "@/assets/screenshots/pokerstars-live-casino.webp";
@@ -124,7 +125,7 @@ const LightningRouletteGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="18 Min." />
 
         <SnippetAnswer answer="Lightning Roulette tilbyder op til 500x på lucky numbers med 97,30% RTP. Evolutions mest populære live roulette-variant." />
@@ -622,7 +623,7 @@ const LightningRouletteGuide = () => {
         <RelatedGuides currentPath="/live-casino/lightning-roulette" />
         <FAQSection title="Ofte stillede spørgsmål om Lightning Roulette" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

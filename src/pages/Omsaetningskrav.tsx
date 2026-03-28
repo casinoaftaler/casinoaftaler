@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
 import kapowRegistrering from "@/assets/screenshots/kapow-registrering.webp";
@@ -165,7 +166,7 @@ const Omsaetningskrav = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="niklas" readTime="20 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Finansielt gennemgået og opdateret af Niklas, finansøkonom hos Casinoaftaler.dk.</p>
 
@@ -886,7 +887,7 @@ const Omsaetningskrav = () => {
         <FAQSection title="Ofte stillede spørgsmål om omsætningskrav" faqs={omsaetningskravFaqs} />
 
         <AuthorBio author="niklas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

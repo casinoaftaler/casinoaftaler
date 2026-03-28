@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { SEO } from "@/components/SEO";
@@ -103,7 +104,7 @@ const CasinoLicenser = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="ajse" readTime="14 Min." />
         
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
@@ -406,7 +407,7 @@ const CasinoLicenser = () => {
         <RelatedGuides currentPath="/casino-licenser" />
         <FAQSection title="Ofte stillede spørgsmål om casino-licenser" faqs={faqs} />
         <AuthorBio author="ajse" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

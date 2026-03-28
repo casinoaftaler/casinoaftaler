@@ -38,6 +38,7 @@ import {
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -184,7 +185,7 @@ const BetiniaAnmeldelse = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="36 Min." />
 
         <CasinoReviewHero slug="betinia" casinoName="Betinia" />

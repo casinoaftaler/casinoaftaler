@@ -32,6 +32,7 @@ import {
   TrendingUp, Award, Zap, RotateCcw, Check, X, Smartphone, Headphones, Users, Globe,
 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -109,7 +110,7 @@ const ComeOnAnmeldelse = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="23 Min." />
         <CasinoReviewHero slug="comeon" casinoName="ComeOn Casino" />
         <ReviewMoneyLinks />
@@ -347,7 +348,7 @@ const ComeOnAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/comeon" />
         <FAQSection title="Ofte stillede spørgsmål om ComeOn Casino" faqs={comeonFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

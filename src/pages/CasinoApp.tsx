@@ -16,6 +16,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Smartphone,
   Shield,
   Clock,
@@ -199,7 +200,7 @@ const CasinoApp = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="25 Min." />
 
         <SnippetAnswer answer="De bedste casino apps i Danmark er fra licenserede casinoer med native iOS/Android apps eller optimerede PWA-versioner. Alle tilbyder biometrisk login, hurtige indbetalinger via MobilePay og samme spiludvalg som desktop." />
@@ -905,7 +906,7 @@ const CasinoApp = () => {
         <RelatedGuides currentPath="/casino-app" />
         <FAQSection title="Ofte Stillede Spørgsmål om Casino Apps" faqs={casinoAppFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

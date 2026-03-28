@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spildansknuLobby from "@/assets/reviews/spildansknu-lobby.png";
 import spillemyndighedenTilladelser from "@/assets/screenshots/spillemyndigheden-tilladelsesindehavere.webp";
@@ -99,7 +100,7 @@ const NyeCasinoerDanskLicens = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="20 Min." />
 
 
@@ -424,7 +425,7 @@ const NyeCasinoerDanskLicens = () => {
         <RelatedGuides currentPath="/nye-casinoer/dansk-licens" />
         <FAQSection title="Ofte stillede spørgsmål om nye casinoer med dansk licens" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

@@ -18,6 +18,7 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import hjaelpelinjerHero from "@/assets/heroes/hjaelpelinjer-guide-hero.jpg";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Shield,
   Clock,
   AlertTriangle,
@@ -181,7 +182,7 @@ const HjaelpelinjerGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="ajse" readTime="25 Min." showAffiliateDisclaimer={false} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
@@ -658,7 +659,7 @@ const HjaelpelinjerGuide = () => {
         <RelatedGuides currentPath="/ansvarligt-spil/hjaelpelinjer" />
         <FAQSection title="Ofte Stillede Spørgsmål om Hjælpelinjer" faqs={hjaelpelinjerFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

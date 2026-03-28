@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import betiniaMegaways from "@/assets/screenshots/betinia-megaways-filter.webp";
 import heroImage from "@/assets/heroes/extra-chilli-megaways-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -56,7 +57,7 @@ const ExtraChilliMegawaysGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="17 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Extra Chilli Megaways spillemaskine" loading="eager" />
@@ -157,7 +158,7 @@ const ExtraChilliMegawaysGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/extra-chilli-megaways" />
         <FAQSection title="Ofte Stillede Spørgsmål om Extra Chilli Megaways" faqs={extraChilliFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

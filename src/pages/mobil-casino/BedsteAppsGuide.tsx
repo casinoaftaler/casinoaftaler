@@ -16,6 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Smartphone, Shield, Clock, CheckCircle, ArrowRight, Zap, Star,
   TrendingUp, CreditCard, Gamepad2, Eye, Settings, Download, RefreshCw,
   Info, Trophy, BarChart3, Lock, Monitor, Wifi, Battery, AlertTriangle,
@@ -89,7 +90,7 @@ const BedsteAppsGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" />
 
         <SnippetAnswer answer="De bedste casino apps kombinerer hastighed, spiludvalg og mobiloptimeret design med Touch ID og push-notifikationer." />
@@ -808,7 +809,7 @@ const BedsteAppsGuide = () => {
         <RelatedGuides currentPath="/mobil-casino/bedste-apps" />
         <FAQSection title="Ofte Stillede Spørgsmål om Casino Apps" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

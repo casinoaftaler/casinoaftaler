@@ -28,6 +28,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import unibetLobby from "@/assets/screenshots/unibet-lobby.webp";
 import unibetFiltre from "@/assets/screenshots/unibet-filtre.webp";
 import unibetLiveCasino from "@/assets/screenshots/unibet-live-casino.webp";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -62,7 +63,7 @@ const UnibetAnmeldelse = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="35 Min." />
         <CasinoReviewHero slug="unibet" casinoName="Unibet" />
         <ReviewMoneyLinks />
@@ -379,7 +380,7 @@ const UnibetAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/unibet" />
         <FAQSection faqs={faqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

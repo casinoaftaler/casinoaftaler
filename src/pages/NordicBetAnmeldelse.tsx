@@ -25,6 +25,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import nordicbetForside from "@/assets/screenshots/nordicbet-casino-forside.webp";
 import nordicbetKampagner from "@/assets/screenshots/nordicbet-kampagner-bonusser.webp";
 import nordicbetLiveCasino from "@/assets/screenshots/nordicbet-live-casino-lobby.webp";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -56,7 +57,7 @@ const NordicBetAnmeldelse = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="35 Min." />
         <CasinoReviewHero slug="nordicbet" casinoName="NordicBet" />
         <ReviewMoneyLinks showMobilePay />
@@ -478,7 +479,7 @@ const NordicBetAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/nordicbet" />
         <FAQSection faqs={nordicbetFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -151,7 +152,7 @@ const LunaCasinoAnmeldelse = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="33 Min." />
 
         <CasinoReviewHero slug="luna-casino" casinoName="Luna Casino" />

@@ -38,6 +38,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { type ReactNode } from "react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -179,7 +180,7 @@ const MegawaysSlots = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="25 Min." />
 
         <SnippetAnswer answer="Megaways-slots bruger dynamiske hjul med op til 117.649 vinderkombinationer per spin. RTP ligger typisk på 95,5–96,5% med høj volatilitet. Cascading wins og stigende multiplikatorer gør free spins-runder særligt lukrative." />
@@ -700,7 +701,7 @@ const MegawaysSlots = () => {
         <RelatedGuides currentPath="/megaways-slots" />
         <FAQSection title="Ofte Stillede Spørgsmål om Megaways Slots" faqs={megawaysFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

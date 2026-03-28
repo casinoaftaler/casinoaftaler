@@ -33,6 +33,7 @@ import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.webp";
 import playkasionBordspil from "@/assets/screenshots/playkasino-bordspil.webp";
 import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling.webp";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
   Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
@@ -195,7 +196,7 @@ const PlayKasinoAnmeldelse = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="58 Min." />
 
         <CasinoReviewHero slug="playkasino" casinoName="PlayKasino" />

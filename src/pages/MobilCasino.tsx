@@ -17,6 +17,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Smartphone,
   Shield,
   Clock,
@@ -212,7 +213,7 @@ const MobilCasino = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="28 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Testet og skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
@@ -1637,7 +1638,7 @@ const MobilCasino = () => {
         <RelatedGuides currentPath="/mobil-casino" />
         <FAQSection title="Ofte Stillede Spørgsmål om Mobil Casino" faqs={mobilCasinoFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

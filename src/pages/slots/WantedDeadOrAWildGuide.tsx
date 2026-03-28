@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/wanted-dead-or-a-wild-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -48,7 +49,7 @@ const WantedDeadOrAWildGuide = () => {
         description="Wanted Dead or a Wild analyse: Duel at Dawn-mekanik, 96,38 % RTP, ekstremt høj volatilitet og 12.500× max win. Se EV og strategi her."
         jsonLd={[articleSchema, faqJsonLd]}
       />
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="17 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Wanted Dead or a Wild spillemaskine" loading="eager" />
@@ -162,7 +163,7 @@ const WantedDeadOrAWildGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/wanted-dead-or-a-wild" />
         <FAQSection title="Ofte Stillede Spørgsmål om Wanted Dead or a Wild" faqs={wantedFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

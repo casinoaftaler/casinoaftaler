@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -170,7 +171,7 @@ const BonusUdenIndbetaling = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="niklas" readTime="18 Min." />
 
         <SnippetAnswer answer="Bonus uden indbetaling giver dig gratis spillemidler ved registrering – nul risiko. Gevinster er underlagt omsætningskrav (typisk 10x) og gevinstlofter (500-1.000 kr.)." />
@@ -774,7 +775,7 @@ const BonusUdenIndbetaling = () => {
         <RelatedGuides currentPath="/bonus-uden-indbetaling" />
         <FAQSection title="Tekniske spørgsmål om no deposit bonusser" faqs={bonusUdenIndbetalingFaqs} />
         <AuthorBio author="niklas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

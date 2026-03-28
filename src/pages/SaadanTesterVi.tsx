@@ -29,6 +29,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import testMetodeHero from "@/assets/heroes/test-metode-hero.jpg";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const testKriterier = [
   {
@@ -204,7 +205,7 @@ const SaadanTesterVi = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="ajse" readTime="12 Min." showAffiliateDisclaimer={false} />
         <div className="my-4">
           <GPWASealBadge variant="inline" microcopy="GPWA-godkendt testmetode" showTrustLink />
@@ -447,7 +448,7 @@ const SaadanTesterVi = () => {
         <RelatedGuides currentPath="/saadan-tester-vi-casinoer" maxLinks={5} />
 
         <AuthorBio author="ajse" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

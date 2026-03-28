@@ -19,6 +19,7 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Zap,
   Shield,
   Clock,
@@ -251,7 +252,7 @@ const CasinoUdenKonto = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="32 Min." />
 
         <SnippetAnswer answer="Casino uden konto (Pay N Play) lader dig spille med det samme via bankidentifikation – uden registrering eller KYC-ventetid." />
@@ -864,7 +865,7 @@ const CasinoUdenKonto = () => {
         <RelatedGuides currentPath="/casino-uden-konto" />
         <FAQSection title="Ofte Stillede Spørgsmål om Casino uden Konto" faqs={casinoUdenKontoFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

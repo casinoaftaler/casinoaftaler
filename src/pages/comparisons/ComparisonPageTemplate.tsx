@@ -8,6 +8,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -179,7 +180,7 @@ export function ComparisonPageTemplate({
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author={author} readTime={readTime} />
 
         <SnippetAnswer answer={snippetAnswer || `${casinoA.name} vs ${casinoB.name}: Vi har testet begge casinoer med rigtige penge og sammenligner bonus, spiludvalg, udbetalingstid og mobil. Se hvem der vinder nedenfor.`} />
@@ -314,7 +315,7 @@ export function ComparisonPageTemplate({
         <RelatedGuides currentPath={path} />
         <FAQSection title={`Ofte stillede spørgsmål: ${casinoA.name} vs ${casinoB.name}`} faqs={faqs} />
         <AuthorBio author={author} />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug={ctaSlug} />
     </>
   );

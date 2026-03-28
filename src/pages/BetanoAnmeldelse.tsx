@@ -33,6 +33,7 @@ import betanoSportsbook from "@/assets/screenshots/betano-sportsbook.webp";
 import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.webp";
 import betanoCasinoLobby from "@/assets/screenshots/betano-casino-lobby.webp";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -102,7 +103,7 @@ const BetanoAnmeldelse = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="34 Min." />
         <CasinoReviewHero slug="betano" casinoName="Betano" />
         <ReviewMoneyLinks />
@@ -541,7 +542,7 @@ const BetanoAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/betano" />
         <FAQSection title="Ofte stillede spørgsmål om Betano" faqs={faqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kampagner888 from "@/assets/screenshots/888-kampagner.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -194,7 +195,7 @@ const ReloadBonus = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="niklas" readTime="14 Min." />
 
         <SnippetAnswer answer="Reload-bonus matcher din indbetaling med 25-50% – ugentligt eller månedligt. Matematisk ofte mere fordelagtig end velkomstbonussen takket være lavere omsætningskrav." />
@@ -611,7 +612,7 @@ const ReloadBonus = () => {
         <FAQSection title="Ofte stillede spørgsmål om reload bonus" faqs={reloadFaqs} />
 
         <AuthorBio author="niklas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

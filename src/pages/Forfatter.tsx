@@ -82,6 +82,7 @@ const faqs = [
 
 /** Articles sourced from centralized registry */
 import { getAuthorArticles, getAuthorReviewVideos, getAuthorGuideVideos } from "@/data/authorContent";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 const jonasArticles = getAuthorArticles("jonas");
 const jonasGuideVideos = getAuthorGuideVideos("jonas");
 
@@ -311,7 +312,7 @@ export default function Forfatter() {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="redaktionen" factCheckBy="kevin" readTime="5 Min." showVerified />
 
         {/* Profile card */}
@@ -836,7 +837,7 @@ export default function Forfatter() {
         <FAQSection title="Ofte stillede spørgsmål om Jonas" faqs={faqs} />
 
         <AuthorBio author="jonas" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
     </>
   );
 }

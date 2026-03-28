@@ -26,6 +26,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, Zap, Check, X, ShieldCheck, Trophy, Headphones, Target, Users, Wallet, Gamepad2, TrendingUp } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -134,7 +135,7 @@ const BwinAnmeldelse = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="33 Min." />
         <CasinoReviewHero slug="bwin" casinoName="bwin" />
         <ReviewMoneyLinks />
@@ -595,7 +596,7 @@ const BwinAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/bwin" />
         <FAQSection faqs={bwinFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

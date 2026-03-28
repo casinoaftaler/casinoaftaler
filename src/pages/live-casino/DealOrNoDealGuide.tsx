@@ -3,6 +3,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import leovegasLiveCasino from "@/assets/screenshots/leovegas-live-casino.webp";
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -115,7 +116,7 @@ const DealOrNoDealGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="28 min" />
 
 
@@ -466,7 +467,7 @@ const DealOrNoDealGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Deal or No Deal Live" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/deal-or-no-deal" />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

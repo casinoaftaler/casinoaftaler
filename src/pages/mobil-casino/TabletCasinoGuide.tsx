@@ -17,6 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Smartphone, Shield, Clock, CheckCircle, ArrowRight, Zap, Star,
   TrendingUp, CreditCard, Gamepad2, Eye, Settings, Download, RefreshCw,
   Info, Trophy, BarChart3, Lock, Monitor, Wifi, Battery, AlertTriangle,
@@ -114,7 +115,7 @@ const TabletCasinoGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" />
 
         <SnippetAnswer answer="Casino på tablet udnytter den store skærm til bedre overblik ved bordspil og live casino – se vores test af iPad og Android tablets." />
@@ -851,7 +852,7 @@ const TabletCasinoGuide = () => {
         <RelatedGuides currentPath="/mobil-casino/tablet" />
         <FAQSection title="Ofte Stillede Spørgsmål om Casino på Tablet" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

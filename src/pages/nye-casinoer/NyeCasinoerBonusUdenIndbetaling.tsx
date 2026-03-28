@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaBonussektion from "@/assets/screenshots/betinia-bonussektion.webp";
 import { SEO } from "@/components/SEO";
@@ -102,7 +103,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="18 Min." />
 
 
@@ -425,7 +426,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
         <RelatedGuides currentPath="/nye-casinoer/bonus-uden-indbetaling" />
         <FAQSection title="FAQ om nye casinoer med bonus uden indbetaling" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

@@ -30,6 +30,7 @@ import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles, Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X, Smartphone, Headphones, Users, Globe } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -65,7 +66,7 @@ const DanskeSpilAnmeldelse = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="30 Min." />
         <CasinoReviewHero slug="danske-spil" casinoName="Danske Spil Casino" />
         <ReviewMoneyLinks />
@@ -344,7 +345,7 @@ const DanskeSpilAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/danske-spil" />
         <FAQSection title="Ofte stillede spørgsmål om Danske Spil Casino" faqs={danskeSpilFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

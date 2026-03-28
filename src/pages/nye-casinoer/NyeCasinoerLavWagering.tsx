@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spildansknuBonus from "@/assets/reviews/spildansknu-bonus.webp";
 import { SEO } from "@/components/SEO";
@@ -87,7 +88,7 @@ const NyeCasinoerLavWagering = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="20 Min." />
 
 
@@ -436,7 +437,7 @@ const NyeCasinoerLavWagering = () => {
         <RelatedGuides currentPath="/nye-casinoer/lav-wagering" />
         <FAQSection title="Ofte stillede spørgsmål om lav wagering" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );

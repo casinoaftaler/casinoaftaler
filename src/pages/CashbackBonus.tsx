@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaBonussektion from "@/assets/screenshots/betinia-bonussektion.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -189,7 +190,7 @@ const CashbackBonus = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="niklas" readTime="16 Min." />
 
         <SnippetAnswer answer="Cashback returnerer 5-15% af dine nettotab – den mest gennemsigtige bonustype. Ingen komplicerede omsætningskrav, og værdien akkumulerer over tid for aktive spillere." />
@@ -657,7 +658,7 @@ const CashbackBonus = () => {
         <RelatedGuides currentPath="/cashback-bonus" />
         <FAQSection title="Ofte stillede spørgsmål om cashback bonus" faqs={cashbackFaqs} />
         <AuthorBio author="niklas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

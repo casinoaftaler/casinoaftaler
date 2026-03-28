@@ -30,6 +30,7 @@ import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Globe, Award, Headphones, TrendingUp } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -58,7 +59,7 @@ const ExpektAnmeldelse = () => {
           <p className="mb-6 text-lg text-white/80">Komplet anmeldelse af Expekt – en kombination af sportsbetting og casino fra Betsson Group med dansk licens og komplet spiludbud.</p>
         </div></div>
       </section>
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="32 Min." />
         <CasinoReviewHero slug="expekt" casinoName="Expekt" />
         <ReviewMoneyLinks />
@@ -277,7 +278,7 @@ const ExpektAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/expekt" />
         <FAQSection faqs={faqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

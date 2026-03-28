@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import leovegasPopulaereSpil from "@/assets/screenshots/leovegas-populaere-spil.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -120,7 +121,7 @@ const Spillemaskiner = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="35 Min." />
 
         <SnippetAnswer answer="Spillemaskiner (online slots) udgør 70% af casinoomsætningen. RTP varierer fra 94-97%, og volatilitet bestemmer gevinstmønsteret. Vælg spil baseret på matematik, ikke tema." />
@@ -595,7 +596,7 @@ const Spillemaskiner = () => {
         <FAQSection faqs={spillemaskineFaqs} />
 
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

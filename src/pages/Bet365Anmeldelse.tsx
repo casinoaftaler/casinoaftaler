@@ -47,6 +47,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -162,7 +163,7 @@ const Bet365Anmeldelse = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="34 Min." />
         <CasinoReviewHero slug="bet365" casinoName="bet365" />
         <ReviewMoneyLinks />
@@ -650,7 +651,7 @@ const Bet365Anmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/bet365" />
         <FAQSection title="Ofte stillede spørgsmål om bet365" faqs={faqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import unibetFiltre from "@/assets/screenshots/unibet-filtre.webp";
 import heroImage from "@/assets/heroes/gates-of-olympus-hero.jpg";
@@ -110,7 +111,7 @@ const GatesOfOlympusGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="26 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Gates of Olympus spillemaskine" loading="eager" />
@@ -461,7 +462,7 @@ const GatesOfOlympusGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/gates-of-olympus" />
         <FAQSection title="Ofte Stillede Spørgsmål om Gates of Olympus" faqs={gatesOfOlympusFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

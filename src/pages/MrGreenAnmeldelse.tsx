@@ -30,6 +30,7 @@ import mrgreenLiveBlackjack from "@/assets/screenshots/mrgreen-live-blackjack.we
 import mrgreenLiveRoulette from "@/assets/screenshots/mrgreen-live-roulette.webp";
 import mrgreenJackpots from "@/assets/screenshots/mrgreen-jackpots.webp";
 import mrgreenRakeback from "@/assets/screenshots/mrgreen-rakeback.webp";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -62,7 +63,7 @@ const MrGreenAnmeldelse = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="30 Min." />
         <CasinoReviewHero slug="mr-green" casinoName="Mr Green Casino" />
         <ReviewMoneyLinks />
@@ -322,7 +323,7 @@ const MrGreenAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/mr-green" />
         <FAQSection title="Ofte stillede spørgsmål om Mr Green Casino" faqs={mrgreenFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

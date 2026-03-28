@@ -29,6 +29,7 @@ import royalcasinoSpillemaskiner from "@/assets/screenshots/royalcasino-spillema
 import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.webp";
 import royalcasinoGruppen from "@/assets/screenshots/royalcasino-gruppen.webp";
 import royalcasinoKampagner from "@/assets/screenshots/royalcasino-kampagner.webp";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -62,7 +63,7 @@ const RoyalCasinoAnmeldelse = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="26 Min." />
         <CasinoReviewHero slug="royal-casino" casinoName="Royal Casino" />
         <ReviewMoneyLinks showMobilePay />
@@ -276,7 +277,7 @@ const RoyalCasinoAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/royal-casino" />
         <FAQSection faqs={royalFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

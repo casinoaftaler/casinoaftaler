@@ -24,6 +24,7 @@ import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import stakeForside from "@/assets/screenshots/stake-forside.webp";
 import stakeKampagner from "@/assets/screenshots/stake-kampagner.webp";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -56,7 +57,7 @@ const StakeCasinoAnmeldelse = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="35 Min." />
         <CasinoReviewHero slug="stake-casino" casinoName="Stake Casino" />
         <ReviewMoneyLinks showMobilePay />
@@ -342,7 +343,7 @@ const StakeCasinoAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/stake-casino" />
         <FAQSection faqs={stakeFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };
