@@ -29,7 +29,7 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 import { BonanzaColumn, type BonanzaColumnSpinState, type BonanzaCellAnimState } from "./BonanzaColumn";
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
 import { BonanzaBonusEntrySequence } from "./BonanzaBonusEntrySequence";
-import fedesvinBonanzaLogo from "@/assets/fedesvin-bonanza-logo.png";
+import fedesvinBonanzaLogo from "@/assets/fedesvin-bonanza-logo.webp";
 import { BonanzaRetriggerOverlay } from "./BonanzaRetriggerOverlay";
 import { BonanzaBonusEndOverlay } from "./BonanzaBonusEndOverlay";
 import { BonanzaTumbleWinPopup, type TumbleWinPopup } from "./BonanzaTumbleWinPopup";

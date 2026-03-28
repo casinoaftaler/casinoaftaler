@@ -6,7 +6,7 @@ import type { SlotSymbol } from "@/lib/slotGameLogic";
 import type { BombSymbol } from "@/hooks/useBombSymbols";
 import { useIdleShimmer } from "@/hooks/useIdleShimmer";
 import { BombFractureExplosion } from "./BombFractureExplosion";
-import bombExplodedDecal from "@/assets/bomb-exploded-decal.png";
+import bombExplodedDecal from "@/assets/bomb-exploded-decal.webp";
 
 const DEFAULT_SYMBOL_WIDTH = 180;
 const DEFAULT_SYMBOL_HEIGHT = 140;
