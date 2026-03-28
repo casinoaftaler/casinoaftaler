@@ -165,7 +165,7 @@ export function useBonusHuntSlotRequesters(huntNumber?: number) {
         .from("slot_requests" as any)
         .select("slot_name, user_id")
         .eq("hunt_number", huntNumber!)
-        .eq("status", "bonus_hit");
+        .in("status", ["bonus_hit", "settled", "no_bonus", "pending"]);
       if (error) throw error;
 
       const userIds = [...new Set((data as any[]).map((r: any) => r.user_id))];
