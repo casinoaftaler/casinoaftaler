@@ -12,6 +12,7 @@ export interface SidebarLink {
 export interface SidebarCategory {
   title: string;
   iconName: string;
+  hubTo?: string; // link for collapsed "Se alle" / category header
   links: SidebarLink[];
 }
 
