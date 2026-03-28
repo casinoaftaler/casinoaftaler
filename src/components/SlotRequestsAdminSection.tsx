@@ -24,7 +24,9 @@ export function SlotRequestsAdminSection() {
   const { data: requests, isLoading } = useAllSlotRequests();
   const updateStatus = useUpdateSlotRequestStatus();
   const { data: siteSettings } = useSiteSettings();
+  const { data: session } = useBonusHuntSession();
   const queryClient = useQueryClient();
+  const activeHuntNumber = session?.hunt_number;
 
   const currentMax = parseInt(siteSettings?.max_pending_slot_requests ?? "1", 10);
   const [maxLimit, setMaxLimit] = useState(currentMax);
