@@ -109,13 +109,14 @@ export function useCreateSlotRequest() {
         .limit(1)
         .maybeSingle();
 
-      if (activeSession?.hunt_number) {
+      const activeHuntNumber = (activeSession as any)?.hunt_number;
+      if (activeHuntNumber) {
         const { data: alreadyHit } = await supabase
           .from("slot_requests" as any)
           .select("id")
           .ilike("slot_name", data.slot_name)
           .eq("status", "bonus_hit")
-          .eq("hunt_number", activeSession.hunt_number)
+          .eq("hunt_number", activeHuntNumber)
           .limit(1);
 
         if ((alreadyHit as any[])?.length > 0) {
