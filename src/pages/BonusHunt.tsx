@@ -231,6 +231,9 @@ export default function BonusHunt() {
           </div>
         </div>
 
+        {/* Main content + right sidebar */}
+        <div className="flex gap-8 xl:gap-10">
+          <div className="min-w-0 flex-1">
         <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
           {/* Author meta bar */}
           <AuthorMetaBar author="kevin" readTime="8 Min." />
