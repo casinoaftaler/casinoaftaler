@@ -767,7 +767,9 @@ function AdminDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [contentSubTab, setContentSubTab] = useState("casinos");
 
-  const navItems = [
+  const moderatorAllowedTabs = ["bonus-hunt", "requests"];
+
+  const allNavItems = [
     { value: "content", label: "Indhold", icon: Gift },
     { value: "news", label: "Nyheder", icon: Bell },
     { value: "community-clips", label: "Community", icon: Sparkles },
@@ -786,6 +788,12 @@ function AdminDashboard() {
     { value: "settings", label: "Indstillinger", icon: Settings },
     { value: "users", label: "Brugere", icon: Users },
   ];
+
+  const navItems = (isModerator && !isAdmin)
+    ? allNavItems.filter(item => moderatorAllowedTabs.includes(item.value))
+    : allNavItems;
+
+  const defaultTab = (isModerator && !isAdmin) ? "bonus-hunt" : "content";
 
   useEffect(() => {
     if (siteSettings?.header_icon) {
