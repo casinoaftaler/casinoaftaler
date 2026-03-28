@@ -208,7 +208,7 @@ const OmTeamet = () => {
               Teamet bag Casinoaftaler.dk
             </h1>
             <p className="mb-4 text-xl font-semibold text-white/90 md:text-2xl">
-              To streamere, én juridisk redaktør og én finansøkonom. Ét fælles mål.
+              Tre streamere, én juridisk redaktør og én finansøkonom. Ét fælles mål.
               <br />
               At skabe gennemsigtighed i online casino i Danmark.
             </p>
