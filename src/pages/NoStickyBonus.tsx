@@ -733,6 +733,12 @@ const NoStickyBonus = () => {
               </Card>
             ))}
           </div>
+          <ReviewScreenshot
+            src={swiftVelkomst}
+            alt="Swift Casinos velkomstbonus-banner med 100% op til 500 kr. og populære spilfigurer"
+            caption="Swift Casinos visuelle bonusside – designet til hurtig aktivering med tydelig CTA"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
