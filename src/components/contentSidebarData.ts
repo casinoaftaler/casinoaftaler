@@ -38,6 +38,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Nye Casinoer",
     iconName: "sparkles",
+    hubTo: "/nye-casinoer",
     links: [
       { to: "/nye-casinoer", label: "Nye Casinoer 2026" },
       { to: "/nye-casinoer/dansk-licens", label: "Med Dansk Licens" },
