@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import bet365Saldo from "@/assets/screenshots/bet365-saldo.webp";
+import applePayIndbetaling from "@/assets/screenshots/apple-pay-indbetaling-betalingsmetoder.webp";
+import applePayLogo from "@/assets/screenshots/apple-pay-logo-mobilbetaling.webp";
 import applePayHero from "@/assets/heroes/apple-pay-hero.jpg";
 
 const ApplePayGuide = () => {
@@ -44,6 +46,12 @@ const ApplePayGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For at forstå, hvorfor Apple Pay er fundamentalt sikrere end en traditionel kortbetaling, er det nødvendigt at forstå tokeniseringsprocessen. Når du tilføjer et Visa- eller Mastercard til Apple Wallet, kontakter din enhed kortudstederen (din bank) via Apple's servere. Banken genererer derefter en unik Device Account Number – en 16-cifret kode, der kun er gyldig for din specifikke enhed. Denne token gemmes i enhedens Secure Element, en dedikeret sikkerhedschip, der er fysisk isoleret fra resten af operativsystemet. Hverken Apple, iOS-apps eller malware kan tilgå denne chip.
           </p>
+          <ReviewScreenshot
+            src={applePayLogo}
+            alt="Apple Pay logo – tokeniseret mobilbetaling via Face ID og Touch ID på danske casinoer"
+            caption="Apple Pay bruger tokenisering og biometrisk godkendelse til sikre casinoindbetalinger"
+            size="compact"
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Ved hver transaktion genererer Secure Element desuden en dynamisk sikkerhedskode – en engangsværdi, der er unik for den specifikke betaling. Denne kode sendes sammen med din Device Account Number til casinoets betalingsprocessor. Processoren sender tokenet videre til kortnetværket (Visa eller Mastercard), som de-tokeniserer det – det vil sige oversætter det tilbage til dit rigtige kortnummer – og gennemfører transaktionen med din bank. På intet tidspunkt ser casinoet, dets betalingsgateway eller nogen mellemled dit faktiske kortnummer.
           </p>
@@ -88,6 +96,12 @@ const ApplePayGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Indbetaling:</strong> Log ind på dit casino i Safari (Apple Pay fungerer mest pålideligt i Safari på iOS). Gå til kassesektionen og vælg Apple Pay som betalingsmetode. Indtast beløbet, og en Apple Pay-dialog vises med dit standardkort. Bekræft med Face ID (dobbelttryk på sideknappen, se på telefonen) eller Touch ID. Transaktionen gennemføres inden for 2-5 sekunder, og din spillesaldo opdateres øjeblikkeligt.
           </p>
+          <ReviewScreenshot
+            src={applePayIndbetaling}
+            alt="Casino indbetalingsside med Apple Pay synlig under Mobil-betalingsmetoder sammen med MobilePay"
+            caption="Apple Pay vises typisk under 'Mobil' i casinoets kassesystem – her sammen med MobilePay og andre betalingsmetoder"
+            size="medium"
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Udbetaling:</strong> Ikke alle casinoer understøtter Apple Pay til udbetalinger. Hos dem der gør, returneres pengene til det kort, du indbetalte med, via standard Visa/Mastercard-refunderingsprocessen. Behandlingstiden er 1–3 hverdage. Hos casinoer uden Apple Pay-udbetaling bruges typisk{" "}
             <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
