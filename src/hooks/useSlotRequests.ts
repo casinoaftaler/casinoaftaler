@@ -217,6 +217,7 @@ export function useUpdateSlotRequestStatus() {
       queryClient.invalidateQueries({ queryKey: ["my-slot-requests"] });
       queryClient.invalidateQueries({ queryKey: ["admin-user-spins"] });
       queryClient.invalidateQueries({ queryKey: ["credit-allocation-log"] });
+      queryClient.invalidateQueries({ queryKey: ["bonus-hunt-slot-requesters"] });
     },
     onError: (error: Error) => {
       toast.error(`Fejl: ${error.message}`);

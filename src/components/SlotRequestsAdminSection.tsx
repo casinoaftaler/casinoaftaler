@@ -51,7 +51,7 @@ export function SlotRequestsAdminSection() {
   };
 
   const handleAction = (requestId: string, userId: string, status: string, awardCredits?: boolean) => {
-    updateStatus.mutate({ requestId, status, userId, awardCredits });
+    updateStatus.mutate({ requestId, status, userId, awardCredits, huntNumber: awardCredits ? activeHuntNumber : undefined });
   };
 
   const pendingRequests = requests?.filter(req => req.status === "pending") ?? [];

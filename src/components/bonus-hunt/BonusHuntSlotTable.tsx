@@ -82,7 +82,7 @@ function WinBadge({ win, multiplier }: { win: number; multiplier: number }) {
   );
 }
 
-export function BonusHuntSlotTable({ slots }: Props) {
+export function BonusHuntSlotTable({ slots, huntNumber }: Props) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
   const [sortKey, setSortKey] = useState<SortKey>('index');
