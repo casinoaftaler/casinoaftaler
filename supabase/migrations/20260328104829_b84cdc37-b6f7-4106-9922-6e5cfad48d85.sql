@@ -1,0 +1,1 @@
+UPDATE bonus_hunt_archives SET hunt_name = 'Bonus Hunt #' || hunt_number WHERE hunt_name IS DISTINCT FROM ('Bonus Hunt #' || hunt_number);
