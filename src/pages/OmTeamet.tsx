@@ -89,6 +89,10 @@ const OmTeamet = () => {
         "@type": "Person",
         "@id": "https://casinoaftaler.dk/forfatter/niklas#person",
       },
+      {
+        "@type": "Person",
+        "@id": "https://casinoaftaler.dk/forfatter/frederik#person",
+      },
     ],
     sameAs: [
       "https://www.youtube.com/@infocasinoaftaler",
