@@ -316,12 +316,14 @@ export function BonanzaControlBar({
 
       {/* ─── RIGHT: [-] [SPIN+Autoplay] [+] ─── */}
       <div className="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 flex items-center gap-3 sm:gap-4 z-20">
-        <span
-          className="hidden lg:block text-base sm:text-lg font-black uppercase tracking-wider text-white"
-          style={{ textShadow: "0 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(255,255,255,0.2)" }}
-        >
-          TRYK PÅ SPACE FOR AT SPINNE
-        </span>
+        {isBonanza && (
+          <span
+            className="hidden lg:block text-base sm:text-lg font-black uppercase tracking-wider text-white"
+            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(255,255,255,0.2)" }}
+          >
+            TRYK PÅ SPACE FOR AT SPINNE
+          </span>
+        )}
 
         <button
           className={cn(
