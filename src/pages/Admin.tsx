@@ -796,6 +796,12 @@ function AdminDashboard() {
   const defaultTab = (isModerator && !isAdmin) ? "bonus-hunt" : "content";
 
   useEffect(() => {
+    if (!activeTab) {
+      setActiveTab((isModerator && !isAdmin) ? "bonus-hunt" : "content");
+    }
+  }, [isModerator, isAdmin, activeTab]);
+
+  useEffect(() => {
     if (siteSettings?.header_icon) {
       setHeaderIconUrl(siteSettings.header_icon);
     }
