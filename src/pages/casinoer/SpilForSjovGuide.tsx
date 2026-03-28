@@ -125,6 +125,13 @@ const SpilForSjovGuide = () => {
           <h3 className="text-xl font-bold mb-3 mt-6">Sådan finder du demo-spil</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">De fleste danske licenserede casinoer gør det nemt at finde demo-tilstand. Typisk kan du browse casinoets spiludvalg uden at logge ind, og klikke på "Prøv gratis", "Demo" eller "Play for fun"-knappen på hvert spil. Nogle casinoer kræver dog, at du opretter en konto (gratis), før du får adgang til demo-versioner. Alternativt kan du finde demo-spil direkte på spiludbydernes hjemmesider – f.eks. tilbyder NetEnt, Pragmatic Play og Play'n GO demo-versioner af deres spil på deres officielle sites.</p>
           <p className="text-muted-foreground leading-relaxed">Et praktisk tip: Brug demo-tilstand systematisk. Sæt dig et mål – f.eks. at teste 5 nye spilleautomater pr. uge i demo – og notér dine observationer om volatilitet, bonusfrekvens og samlet fornøjelse. Denne disciplinerede tilgang hjælper dig med at opbygge et solidt fundament af viden, der gør dig til en mere informeret spiller, hvis du senere vælger at spille med rigtige penge.</p>
+
+          <ReviewScreenshot
+            src={spildanskDemo}
+            alt="SpilDanskNu.dk anbefalede spil med synlige Spil- og Demo-knapper på Le Bandit fra Hacksaw Gaming"
+            caption="På SpilDanskNu.dk kan du nemt skifte mellem rigtige penge og demo-tilstand direkte fra spillobbyen"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
