@@ -557,7 +557,7 @@ const LiveBlackjackGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Vores anbefaling:</strong> Undgå alle sidebets konsekvent. Hvis du absolut ønsker sidebets som underholdning, begræns dem til 21+3 (lavest house edge) og sæt et fast sidebet-budget, der er adskilt fra din hovedindsats. Sidebets bør aldrig overstige 10 % af din totale indsats pr. hånd – og ideelt set bør de være 0 %.
           </p>
-          <ReviewScreenshot src={sidebetsBlackjack} alt="Classic Blackjack bord med sidebets som Perfect Pairs og 21+3 synlige ved hver plads" caption="Sidebets i live blackjack: Perfect Pairs og 21+3 felter er synlige ved hver spillerplads – men house edge er markant højere end hovedspillet." size="medium" />
+          <ReviewScreenshot src={sidebetsBlackjack} alt="Classic Blackjack bord med sidebets som Perfect Pairs og 21+3 synlige ved hver plads" caption="Sidebets i live blackjack: Perfect Pairs og 21+3 felter er synlige ved hver spillerplads – men house edge er markant højere end hovedspillet." size="full" />
         </section>
 
         <Separator className="my-10" />
