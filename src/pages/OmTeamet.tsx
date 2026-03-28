@@ -617,7 +617,7 @@ const OmTeamet = () => {
                         ? new Date(article.published_at).toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })
                         : ""}
                       {" · "}
-                      <span className="capitalize">{article.author_id === "ajse" ? "Ajse" : article.author_id === "kevin" ? "Kevin" : article.author_id === "niklas" ? "Niklas" : "Jonas"}</span>
+                      <span className="capitalize">{article.author_id === "ajse" ? "Ajse" : article.author_id === "kevin" ? "Kevin" : article.author_id === "niklas" ? "Niklas" : article.author_id === "frederik" ? "Frederik" : "Jonas"}</span>
                     </p>
                     <h3 className="font-semibold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-2">
                       {article.title}
