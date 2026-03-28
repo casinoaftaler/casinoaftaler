@@ -72,6 +72,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Live Casino",
     iconName: "tv",
+    hubTo: "/live-casino",
     links: [
       { to: "/live-casino", label: "Live Casino" },
       { to: "/live-casino/blackjack", label: "Live Blackjack" },
