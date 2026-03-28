@@ -524,7 +524,7 @@ serve(async (req) => {
 
       // Auto-match pending slot requests against current hunt slots
       if (huntNumber > 0 && huntData?.data?.length > 0) {
-        const huntSlotNames = huntData.data.map((s: any) => (s.title || '').toLowerCase()).filter(Boolean);
+        const huntSlotNames = huntData.data.map((s: any) => (s.slot?.searchName || s.slot?.name || s.title || '').toLowerCase()).filter(Boolean);
         if (huntSlotNames.length > 0) {
           (async () => {
             try {
