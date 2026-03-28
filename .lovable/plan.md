@@ -1,23 +1,20 @@
 
 
 ## Problem
-All `bonus_hunt_archives` rows have `created_at` set to the bulk-import timestamp (March 28, 2026) instead of the actual hunt date. The homepage community section uses `created_at` to display dates, so all hunts show "28. mar." incorrectly.
+The "Requested By" avatars in the Bonus Hunt slot table are invisible to regular users. The `slot_requests` table has RLS policies that only allow users to see **their own** requests. The `useBonusHuntSlotRequesters` hook queries all `bonus_hit` requests to build the requester map, but non-admin users get back an empty result set.
 
 ## Solution
-Run a single SQL migration to update `created_at` from the real timestamp stored in `api_data->>'createdAt'` for all rows where that field exists.
+Add a public SELECT policy on `slot_requests` for rows where `status = 'bonus_hit'`. This is safe — it only exposes `slot_name` and `user_id` for already-resolved requests, which is the same data displayed publicly in the UI.
 
-### Step 1 – Database migration
+## Technical Detail
+
+### Database Migration
 ```sql
-UPDATE bonus_hunt_archives
-SET created_at = to_timestamp((api_data->>'createdAt')::bigint)
-WHERE api_data->>'createdAt' IS NOT NULL
-  AND created_at != to_timestamp((api_data->>'createdAt')::bigint);
+CREATE POLICY "Anyone can view bonus hit requests"
+  ON public.slot_requests FOR SELECT
+  TO public
+  USING (status = 'bonus_hit');
 ```
 
-This corrects `created_at` for all ~180 rows using the original Unix timestamp from the StreamSystem API data. Hunt #180 (which has no `api_data`) will keep its current timestamp.
-
-### Step 2 – Verify
-Confirm the latest hunts now show distinct, correct dates on the homepage.
-
-**No code changes needed** – the UI already reads `created_at` correctly; only the stored data is wrong.
+This single policy change makes the requester data visible to all visitors. No code changes needed — `useBonusHuntSlotRequesters` already queries correctly, it just gets empty results due to RLS.
 
