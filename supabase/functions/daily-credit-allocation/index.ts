@@ -81,10 +81,7 @@ Deno.serve(async (req) => {
 
     const today = getTodayDanish();
     const BASE_DAILY_SPINS = 2000;
-    const MAX_SPINS_CAP = 10200;
-    const SUBSCRIBER_MAX_SPINS_CAP = 10300;
     const SUBSCRIBER_BONUS = 100;
-    const ABSOLUTE_MAX_CREDITS = 10000;
 
     // Get all users with a Twitch account (active users)
     const { data: profiles, error: profilesError } = await supabase
@@ -157,8 +154,7 @@ Deno.serve(async (req) => {
 
       const isSubscriber = !!(p as any).twitch_badges?.is_subscriber;
       const subBonus = isSubscriber ? SUBSCRIBER_BONUS : 0;
-      const capLimit = isSubscriber ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
-      const cap = Math.min(BASE_DAILY_SPINS + subBonus + (p.bonus_spins_permanent || 0), capLimit);
+      const cap = BASE_DAILY_SPINS + subBonus + (p.bonus_spins_permanent || 0);
       const previous = latestSpinMap.get(p.user_id);
 
       let startValue: number;

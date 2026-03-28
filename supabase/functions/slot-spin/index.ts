@@ -946,10 +946,7 @@ async function calculateBonanzaFullSpin(
 }
 
 const DEFAULT_SYMBOL_WEIGHT = 10;
-    const MAX_SPINS_CAP = 10200;
-    const SUBSCRIBER_MAX_SPINS_CAP = 10300;
     const SUBSCRIBER_BONUS = 100;
-    const ABSOLUTE_MAX_CREDITS = 10000;
 
 // Secure random number generator (fallback for non-Gates games)
 function secureRandom(): number {
@@ -1726,8 +1723,7 @@ Deno.serve(async (req) => {
       const bonusSpinsPerm = profileRes.data?.bonus_spins_permanent || 0;
       const isSub = !!(profileRes.data as any)?.twitch_badges?.is_subscriber;
       const subBon = isSub ? SUBSCRIBER_BONUS : 0;
-      const capLim = isSub ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
-      const maxSp = Math.min(dailySpinsValue + subBon + bonusSpinsPerm, capLim);
+      const maxSp = dailySpinsValue + subBon + bonusSpinsPerm;
       const { data: newRem, error: rpcErr } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayG, p_bet: bet, p_max_spins: maxSp, p_game_id: "shared" });
       if (rpcErr) return new Response(JSON.stringify({ error: "Failed to deduct spins" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       if (newRem === -1) return new Response(JSON.stringify({ error: "Not enough spins remaining" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
@@ -1870,8 +1866,7 @@ Deno.serve(async (req) => {
       const bonusSpinsPermB = profileRes.data?.bonus_spins_permanent || 0;
       const isSubB = !!(profileRes.data as any)?.twitch_badges?.is_subscriber;
       const subBonB = isSubB ? SUBSCRIBER_BONUS : 0;
-      const capLimB = isSubB ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
-      const maxSpB = Math.min(dailySpinsValue + subBonB + bonusSpinsPermB, capLimB);
+      const maxSpB = dailySpinsValue + subBonB + bonusSpinsPermB;
       const { data: newRemB, error: rpcErrB } = await serviceClient.rpc("deduct_spin", { p_user_id: userId, p_date: todayB, p_bet: effectiveBetCost, p_max_spins: maxSpB, p_game_id: "shared" });
       if (rpcErrB) return new Response(JSON.stringify({ error: "Failed to deduct spins" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
       if (newRemB === -1) return new Response(JSON.stringify({ error: "Not enough spins remaining" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
@@ -2286,8 +2281,7 @@ Deno.serve(async (req) => {
     const bonusSpinsPermanent = profileRes.data?.bonus_spins_permanent || 0;
     const isSubscriber = !!(profileRes.data as any)?.twitch_badges?.is_subscriber;
     const subBonus = isSubscriber ? SUBSCRIBER_BONUS : 0;
-    const capLimit = isSubscriber ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
-    const maxSpins = Math.min(dailySpinsValue + subBonus + bonusSpinsPermanent, capLimit);
+    const maxSpins = dailySpinsValue + subBonus + bonusSpinsPermanent;
 
     // Atomic spin deduction via RPC (handles init + carry-over + deduction in 1 call)
     const { data: newRemaining, error: rpcError } = await serviceClient

@@ -12,10 +12,7 @@ interface SlotSpins {
   game_id: string;
 }
 
-const MAX_SPINS_CAP = 10200;
-const SUBSCRIBER_MAX_SPINS_CAP = 10300;
 const SUBSCRIBER_BONUS = 100;
-const ABSOLUTE_MAX_CREDITS = 10000;
 
 export function useSlotSpins(_gameId: string = "book-of-fedesvin") {
   const { user } = useAuth();
@@ -76,8 +73,7 @@ export function useSlotSpins(_gameId: string = "book-of-fedesvin") {
 
   // Calculate max spins (daily + subscriber bonus + permanent bonus, capped dynamically)
   const subBonus = isSubscriber ? SUBSCRIBER_BONUS : 0;
-  const capLimit = isSubscriber ? SUBSCRIBER_MAX_SPINS_CAP : MAX_SPINS_CAP;
-  const maxSpins = Math.min(settings.dailySpins + subBonus + bonusSpinsPermanent, capLimit);
+  const maxSpins = settings.dailySpins + subBonus + bonusSpinsPermanent;
 
   const spinsRemaining = spinsData ? spinsData.spins_remaining : maxSpins;
 
