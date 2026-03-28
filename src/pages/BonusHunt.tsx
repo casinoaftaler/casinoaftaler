@@ -298,7 +298,7 @@ export default function BonusHunt() {
                     </TabsContent>
                     <TabsContent value="gtw" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntGTWTab
-                        session={isArchived ? null : session}
+                        session={isArchived ? archivedSession : session}
                         bets={gtwBets}
                         userId={user?.id}
                         openedBonuses={huntData?.stats?.openedBonuses || 0}
