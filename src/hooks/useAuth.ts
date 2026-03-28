@@ -6,6 +6,7 @@ export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [rolesLoading, setRolesLoading] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isModerator, setIsModerator] = useState(false);
 
@@ -42,6 +43,7 @@ export function useAuth() {
   }, []);
 
   const checkRoles = async (userId: string) => {
+    setRolesLoading(true);
     const { data, error } = await supabase
       .from("user_roles")
       .select("role")
@@ -54,6 +56,7 @@ export function useAuth() {
       setIsAdmin(false);
       setIsModerator(false);
     }
+    setRolesLoading(false);
   };
 
   const signIn = async (email: string, password: string) => {
@@ -91,7 +94,7 @@ export function useAuth() {
   return {
     user,
     session,
-    loading,
+    loading: loading || rolesLoading,
     isAdmin,
     isModerator,
     signIn,
