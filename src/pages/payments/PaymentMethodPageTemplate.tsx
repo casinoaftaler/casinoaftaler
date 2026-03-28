@@ -496,7 +496,7 @@ export function PaymentMethodPage({
         <FAQSection title={`Ofte stillede spørgsmål om ${name}`} faqs={faqs} />
 
         <AuthorBio author="kevin" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
       {ctaCasinoSlug && <StickyCtaBySlug slug={ctaCasinoSlug} />}
     </>
   );

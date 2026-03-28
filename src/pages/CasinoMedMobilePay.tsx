@@ -1017,7 +1017,7 @@ const CasinoMedMobilePay = () => {
         <RelatedGuides currentPath="/casino-med-mobilepay" />
 
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
 
       <StickyCtaBySlug slug="spildansknu" />
     </>
