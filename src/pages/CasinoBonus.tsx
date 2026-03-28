@@ -188,7 +188,7 @@ const CasinoBonus = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="35 Min." />
 
         <SnippetAnswer answer="Den bedste casino bonus i Danmark 2026 er en no-sticky bonus med 10x omsætningskrav – det giver højest reel værdi. Sammenlign bonustyper, forstå omsætningsmodeller og find den bonus der passer din spillestil." />
