@@ -1058,6 +1058,11 @@ function AdminDashboard() {
             <BonusHuntAdminSection />
           </TabsContent>
 
+          {/* Requests Tab */}
+          <TabsContent value="requests">
+            <SlotRequestsAdminSection />
+          </TabsContent>
+
           {/* Slot Katalog Tab */}
           <TabsContent value="slot-catalog">
             <div className="mb-6">
