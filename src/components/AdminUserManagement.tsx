@@ -116,9 +116,9 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
 
   // Delete admin user mutation
   const deleteAdmin = useMutation({
-    mutationFn: async (userId: string) => {
+    mutationFn: async ({ userId, role }: { userId: string; role: string }) => {
       const { data, error } = await supabase.functions.invoke("delete-admin-user", {
-        body: { userId },
+        body: { userId, role },
       });
 
       if (error) throw error;
