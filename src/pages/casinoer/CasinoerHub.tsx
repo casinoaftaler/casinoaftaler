@@ -10,6 +10,10 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { FAQSection } from "@/components/FAQSection";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betanoLobby from "@/assets/screenshots/betano-casino-lobby.webp";
+import campobetIndbetaling from "@/assets/screenshots/campobet-indbetaling-betalingsmetoder.webp";
+import campobetLiveCasino from "@/assets/screenshots/campobet-live-casino-lobby.webp";
+import campobetUdbydere from "@/assets/screenshots/campobet-spiludbydere-oversigt.webp";
+import campobetAnsvarligt from "@/assets/screenshots/campobet-ansvarligt-spil.webp";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Badge } from "@/components/ui/badge";
@@ -461,6 +465,13 @@ export default function CasinoerHub() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={campobetIndbetaling}
+          alt="CampoBet kassesektion med betalingsmetoder som MobilePay, Visa, Mastercard, PayPal og Trustly til danske spillere"
+          caption="CampoBet.dk – eksempel på et dansk casinoes indbetalingssektion med populære danske betalingsmetoder"
+          size="medium"
+        />
+
         {/* ── SECTION 8: Mobil Casino ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -546,6 +557,12 @@ export default function CasinoerHub() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={campobetLiveCasino}
+          alt="CampoBet live casino lobby med Lightning Roulette, Blackjack og Baccarat fra Evolution Gaming"
+          caption="CampoBet.dk – live casino-lobbyen med Evolution Gamings mest populære borde og game shows"
+        />
+
         {/* Casino cards removed – already shown above in "Top Casinoer med Hurtig Udbetaling" */}
 
         {/* ── SECTION 11: Spiludviklere ── */}
@@ -592,6 +609,12 @@ export default function CasinoerHub() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={campobetUdbydere}
+          alt="CampoBet spiludbyderoversigt med logoer fra NetEnt, Pragmatic Play, Evolution Gaming, Play'n GO og 80+ andre udbydere"
+          caption="CampoBet.dk – overblik over 80+ integrerede spiludviklere, der leverer slots, bordspil og live casino"
+        />
+
         {/* ── SECTION 12: Ansvarligt Spil ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
@@ -608,6 +631,13 @@ export default function CasinoerHub() {
             Hvis du eller nogen du kender har problemer med spilafhængighed, er <strong>StopSpillet</strong> (70 22 28 25) tilgængelig 24/7 med gratis, anonym rådgivning. <strong>ROFUS</strong> på rofus.nu giver øjeblikkelig selvudelukkelse fra alle danske casinoer. Læs vores komplette <Link to="/ansvarligt-spil" className={linkClass}>guide til ansvarligt spil</Link> for detaljerede strategier og ressourcer.
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={campobetAnsvarligt}
+          alt="CampoBet ansvarligt spil-sektion med indbetalingsgrænser, selvudelukkelse og links til StopSpillet og ROFUS"
+          caption="CampoBet.dk – ansvarligt spil-værktøjer med grænser, afkølingsperioder og ROFUS-selvudelukkelse"
+          size="medium"
+        />
 
         {/* ── SECTION 13: Fremtiden ── */}
         <section className="mb-12">
