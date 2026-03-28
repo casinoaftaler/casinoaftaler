@@ -20,6 +20,8 @@ const iconMap: Record<string, React.ElementType> = {
   dices: Dices,
   creditCard: CreditCard,
   gamepad2: Gamepad2,
+  tv: Tv,
+  star: Star,
 };
 
 function CategorySection({ category }: { category: SidebarCategory }) {
