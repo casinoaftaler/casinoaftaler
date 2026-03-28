@@ -205,7 +205,7 @@ const SaadanTesterVi = () => {
         </div>
       </section>
 
-      <ContentPageLayout>
+      <ContentPageLayout hideSidebar>
         <AuthorMetaBar author="ajse" readTime="12 Min." showAffiliateDisclaimer={false} />
         <div className="my-4">
           <GPWASealBadge variant="inline" microcopy="GPWA-godkendt testmetode" showTrustLink />

@@ -312,7 +312,7 @@ export default function Forfatter() {
         </div>
       </section>
 
-      <ContentPageLayout>
+      <ContentPageLayout hideSidebar>
         <AuthorMetaBar author="redaktionen" factCheckBy="kevin" readTime="5 Min." showVerified />
 
         {/* Profile card */}

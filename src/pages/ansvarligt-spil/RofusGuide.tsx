@@ -220,7 +220,7 @@ const RofusGuide = () => {
         </div>
       </section>
 
-      <ContentPageLayout>
+      <ContentPageLayout hideSidebar>
         <AuthorMetaBar author="ajse" readTime="25 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.

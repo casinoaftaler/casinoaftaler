@@ -220,7 +220,7 @@ export default function ForfatterNiklas() {
         </div>
       </section>
 
-      <ContentPageLayout>
+      <ContentPageLayout hideSidebar>
         <AuthorMetaBar author="redaktionen" factCheckBy="ajse" readTime="5 Min." showVerified />
 
         {/* Profile card */}
