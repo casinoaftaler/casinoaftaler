@@ -17,7 +17,6 @@ import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import rofusHero from "@/assets/heroes/rofus-guide-hero.jpg";
 import {
-import { ContentPageLayout } from "@/components/ContentPageLayout";
   Shield,
   Clock,
   AlertTriangle,
@@ -42,6 +41,7 @@ import { ContentPageLayout } from "@/components/ContentPageLayout";
   RefreshCw,
   Info,
 } from "lucide-react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
 // FAQ Data – 10 spørgsmål med dybdegående svar

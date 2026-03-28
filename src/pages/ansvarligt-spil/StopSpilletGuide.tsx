@@ -17,7 +17,6 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import stopspilletHero from "@/assets/heroes/stopspillet-guide-hero.jpg";
 import {
-import { ContentPageLayout } from "@/components/ContentPageLayout";
   Shield,
   Clock,
   AlertTriangle,
@@ -42,6 +41,7 @@ import { ContentPageLayout } from "@/components/ContentPageLayout";
   Calendar,
   UserCheck,
 } from "lucide-react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
 // FAQ Data

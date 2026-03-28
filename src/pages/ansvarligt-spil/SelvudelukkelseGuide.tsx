@@ -18,7 +18,6 @@ import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import selvudelukkelseHero from "@/assets/heroes/selvudelukkelse-guide-hero.jpg";
 import {
-import { ContentPageLayout } from "@/components/ContentPageLayout";
   Shield,
   Clock,
   AlertTriangle,
@@ -45,6 +44,7 @@ import { ContentPageLayout } from "@/components/ContentPageLayout";
   Key,
   Wallet,
 } from "lucide-react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
 // FAQ Data

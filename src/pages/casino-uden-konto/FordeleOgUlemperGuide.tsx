@@ -17,11 +17,11 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import {
-import { ContentPageLayout } from "@/components/ContentPageLayout";
   Shield, AlertTriangle, CheckCircle, Scale, Lock, Eye, BarChart3,
   ArrowRight, FileText, Globe, TrendingUp, Users, Gavel, Ban,
   Clock, CreditCard, Smartphone, Zap, RefreshCw,
 } from "lucide-react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const fordeleUlemperFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {

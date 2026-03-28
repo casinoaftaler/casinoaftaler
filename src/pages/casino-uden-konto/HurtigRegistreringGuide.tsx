@@ -16,11 +16,11 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import {
-import { ContentPageLayout } from "@/components/ContentPageLayout";
   Zap, Shield, Clock, ArrowRight, CheckCircle, AlertTriangle,
   BarChart3, Globe, CreditCard, Users, FileText, TrendingUp, Smartphone,
   Lock, Eye, Scale, Ban, RefreshCw, Landmark,
 } from "lucide-react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const hurtigRegFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {

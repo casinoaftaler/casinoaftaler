@@ -17,7 +17,6 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import {
-import { ContentPageLayout } from "@/components/ContentPageLayout";
   Smartphone,
   Shield,
   Clock,
@@ -49,6 +48,7 @@ import { ContentPageLayout } from "@/components/ContentPageLayout";
   Info,
   Trophy,
 } from "lucide-react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
 // FAQ Data

@@ -33,7 +33,6 @@ import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.webp";
 import playkasionBordspil from "@/assets/screenshots/playkasino-bordspil.webp";
 import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling.webp";
 import {
-import { ContentPageLayout } from "@/components/ContentPageLayout";
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
   Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
@@ -41,6 +40,7 @@ import { ContentPageLayout } from "@/components/ContentPageLayout";
   Shield, Flame, ArrowRight, Percent, Eye, Search,
   ThumbsUp, Mail, Building2, Cpu, Puzzle,
 } from "lucide-react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 

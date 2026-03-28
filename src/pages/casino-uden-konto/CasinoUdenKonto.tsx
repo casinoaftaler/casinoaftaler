@@ -19,7 +19,6 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import {
-import { ContentPageLayout } from "@/components/ContentPageLayout";
   Zap,
   Shield,
   Clock,
@@ -42,6 +41,7 @@ import { ContentPageLayout } from "@/components/ContentPageLayout";
   FileText,
   Smartphone,
 } from "lucide-react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
 // FAQ Data
