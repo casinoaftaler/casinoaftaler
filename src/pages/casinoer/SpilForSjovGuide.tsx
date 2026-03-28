@@ -187,6 +187,13 @@ const SpilForSjovGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">Ud over demo-tilstand og gratis bonusser findes der en hel kategori af sociale casinospil (social casino games), der tilbyder casinooplevelser uden rigtige penge overhovedet. Disse spil er designet som ren underholdning og bruger virtuelle valutaer, der ikke kan veksles til rigtige penge. De er populære på mobilplatforme og sociale medier og tiltrækker millioner af spillere globalt.</p>
           <p className="mb-4 text-muted-foreground leading-relaxed">Sociale casinospil inkluderer apps som Slotomania, DoubleDown Casino, Big Fish Casino og mange andre. Disse apps tilbyder hundredvis af spilleautomater og bordspil med virtuelle mønter. Du kan typisk tjene gratis mønter dagligt, spille turneringer mod andre spillere, og dele resultater med venner. Spillene er gratis at downloade og spille, men tilbyder in-app køb af ekstra virtuelle mønter.</p>
           <p className="text-muted-foreground leading-relaxed">Det er dog vigtigt at skelne mellem sociale casinospil og regulerede demo-tilstande på licenserede casinoer. Sociale casinospil er ikke reguleret af Spillemyndigheden og bruger ofte langt mere aggressive monetarisering og engagement-mekanikker. De kan også vise urealistiske gevinstfrekvenser for at fremme in-app køb. Vi anbefaler demo-tilstand på licenserede casinoer som den mest pålidelige og ærlige måde at opleve gratis casinospil.</p>
+
+          <ReviewScreenshot
+            src={hotFiestaDemo}
+            alt="Hot Fiesta fra Pragmatic Play i demo-tilstand på udbyderens hjemmeside med $100.000 virtuel saldo"
+            caption="Spiludbydere som Pragmatic Play tilbyder demo-versioner direkte på deres hjemmesider – helt uden registrering"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
