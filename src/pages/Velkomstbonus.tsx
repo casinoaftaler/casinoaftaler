@@ -738,6 +738,12 @@ const Velkomstbonus = () => {
           <p className="text-muted-foreground leading-relaxed">
             Husk også at tjekke, om velkomstbonussen er en <Link to="/sticky-bonus" className="text-primary underline hover:text-primary/80">sticky bonus</Link> eller en no-sticky bonus, da dette har stor betydning for, hvordan du kan bruge dine gevinster. De bedste velkomstbonusser i Danmark 2026 kombinerer en generøs matchprocent, lave <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>, og no-sticky struktur – og vi opdaterer løbende vores liste, så du altid finder det bedste tilbud.
           </p>
+          <ReviewScreenshot
+            src={velkomstKampagne}
+            alt="Velkomsttilbud hos et dansk casino med op til 1.000 kr. i kontant bonus fordelt på tre tilbud"
+            caption="Eksempel på en velkomstbonus i 2026 – vælg mellem tre indbetalingsniveauer med 10x omsætningskrav og kontant udbetaling."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
