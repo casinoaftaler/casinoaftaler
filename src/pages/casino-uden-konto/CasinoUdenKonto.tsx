@@ -711,6 +711,13 @@ const CasinoUdenKonto = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={spilleautomatenIndbetaling}
+          alt="Indbetalingsside hos Spilleautomaten med MobilePay, Mastercard, Visa og Trustly – alle med minimum 75 kr. og 4-trins flow fra betalingsvalg til bekræftelse"
+          caption="Indbetalingsflow hos Spilleautomaten.dk – vælg mellem MobilePay, kort eller Trustly med minimum 75 kr. (marts 2026)"
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
