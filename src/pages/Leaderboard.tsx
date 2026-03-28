@@ -15,7 +15,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
-import { CommunityConversionCard } from "@/components/community/CommunityConversionCard";
+
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
