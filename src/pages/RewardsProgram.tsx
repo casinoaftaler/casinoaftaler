@@ -13,7 +13,7 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { ContentSidebar } from "@/components/ContentSidebar";
-import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
+
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { RewardsSeoContent } from "@/components/community/RewardsSeoContent";
@@ -67,11 +67,6 @@ export default function RewardsProgram() {
       <CommunityNav />
 
       <div className="relative">
-        <div className="hidden lg:block absolute left-4 xl:left-8 top-8 w-[260px] z-10">
-          <div className="sticky top-24">
-            <CommunitySeoBridge />
-          </div>
-        </div>
         <div className="container py-8 md:py-12">
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
