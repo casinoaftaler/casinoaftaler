@@ -77,8 +77,8 @@ interface AuthorMetaBarProps {
   showFactCheck?: boolean;
   showVerified?: boolean;
   showAffiliateDisclaimer?: boolean;
-  /** Override which author is shown as fact-checker. Defaults to cross-check logic. */
-  factCheckBy?: "jonas" | "kevin" | "ajse" | "niklas";
+  /** Override which author is shown as fact-checker. Defaults to seoRoutes lookup, then cross-check logic. */
+  factCheckBy?: "jonas" | "kevin" | "ajse" | "niklas" | "frederik";
 }
 
 export function AuthorMetaBar({ author, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true, factCheckBy }: AuthorMetaBarProps) {
