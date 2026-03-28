@@ -557,6 +557,12 @@ export default function CasinoerHub() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={campobetLiveCasino}
+          alt="CampoBet live casino lobby med Lightning Roulette, Blackjack og Baccarat fra Evolution Gaming"
+          caption="CampoBet.dk – live casino-lobbyen med Evolution Gamings mest populære borde og game shows"
+        />
+
         {/* Casino cards removed – already shown above in "Top Casinoer med Hurtig Udbetaling" */}
 
         {/* ── SECTION 11: Spiludviklere ── */}
