@@ -2,6 +2,12 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrgreenRakeback from "@/assets/screenshots/mrgreen-rakeback.webp";
+import spilleautomatenVelkomst from "@/assets/screenshots/spilleautomaten-velkomstbonus.webp";
+import spildansknuVelkomst from "@/assets/screenshots/spildansknu-velkomstbonus.webp";
+import betiniaVelkomst from "@/assets/screenshots/betinia-velkomstbonus.webp";
+import campobetVelkomst from "@/assets/screenshots/campobet-velkomstbonus.webp";
+import lunaVelkomst from "@/assets/screenshots/luna-velkomstbonus.webp";
+import swiftVelkomst from "@/assets/screenshots/swift-velkomstbonus.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -273,6 +279,12 @@ const NoStickyBonus = () => {
             <Link to="/spiludviklere/hacksaw-gaming" className={linkClass}>Hacksaw Gaming</Link> og{" "}
             <Link to="/spiludviklere/nolimit-city" className={linkClass}>Nolimit City</Link>, samt indsatser der overstiger den maksimale indsatsgrænse (typisk 25-50 kr. per spin). Overtrædelse af indsatsgrænsen kan medføre total annullering af bonus og gevinster – en faldgrube der koster mange spillere penge.
           </p>
+          <ReviewScreenshot
+            src={spilleautomatenVelkomst}
+            alt="Spilleautomatens velkomstbonus-side med 100% no-sticky bonus og Legacy of Dead"
+            caption="Spilleautomatens bonusside – et eksempel på en ren no-sticky velkomstbonus med tydelige vilkår"
+            size="compact"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -349,6 +361,12 @@ const NoStickyBonus = () => {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src={spildansknuVelkomst}
+            alt="SpilDanskNus velkomstbonus på 100% op til 1.000 kr. med trin-for-trin bonusaktivering"
+            caption="SpilDanskNus bonusside – bemærk de tydelige vilkår: omsæt velkomstbonus + indskud 10 gange"
+            size="compact"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -442,6 +460,12 @@ const NoStickyBonus = () => {
             <Link to="/indskudsbonus" className={linkClass}>indskudsbonus</Link> er det overordnede begreb for alle matchbonusser. No-Sticky ER en type indskudsbonus – den spillervenlige variant. Når vi taler om indskudsbonus generelt, refererer vi til både sticky og no-sticky varianter. Hvis en{" "}
             <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelse</Link> ikke specificerer bonustypen, bør du altid antage, at det er sticky, og kontakte kundeservice for at verificere.
           </p>
+          <ReviewScreenshot
+            src={betiniaVelkomst}
+            alt="Betinias sport- og casino-velkomstbonus med 100% op til 1.000 kr. og separate bonusvilkår"
+            caption="Betinia tilbyder separate sport- og casinobonusser – bemærk forskellen i omsætningskrav (5x sport vs. 10x casino)"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -533,6 +557,12 @@ const NoStickyBonus = () => {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src={lunaVelkomst}
+            alt="Luna Casinos velkomstbonus med 3-trins registreringsflow: registrer, indbetal, modtag bonus"
+            caption="Luna Casinos onboarding – en klar 3-trins proces fra registrering til bonusaktivering"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -616,6 +646,12 @@ const NoStickyBonus = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Prognose:</strong> Vi forventer, at no-sticky bliver den dominerende bonustype i Danmark inden udgangen af 2027. Casinoer, der fastholder sticky bonusser med komplekse vilkår, vil opleve stigende konkurrencepres fra operatører, der tilbyder enklere, mere gennemsigtige alternativer. For spillere er denne udvikling udelukkende positiv – den indikerer et modent marked, der prioriterer spillerinteresser.
           </p>
+          <ReviewScreenshot
+            src={campobetVelkomst}
+            alt="Campobets dual-platform velkomstbonus med 100% op til 1.000 kr. for både sport og casino"
+            caption="Campobets moderne dual-platform tilbud – separat sport- og casinobonus med individuelle vilkår"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -697,6 +733,12 @@ const NoStickyBonus = () => {
               </Card>
             ))}
           </div>
+          <ReviewScreenshot
+            src={swiftVelkomst}
+            alt="Swift Casinos velkomstbonus-banner med 100% op til 500 kr. og populære spilfigurer"
+            caption="Swift Casinos visuelle bonusside – designet til hurtig aktivering med tydelig CTA"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
