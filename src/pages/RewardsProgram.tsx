@@ -13,6 +13,9 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { ContentSidebar } from "@/components/ContentSidebar";
+import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
+import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
+import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
