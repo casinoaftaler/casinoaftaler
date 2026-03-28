@@ -2,6 +2,7 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonus from "@/assets/screenshots/betinia-velkomstbonus-aktiv.webp";
+import pipKontooplysninger from "@/assets/screenshots/pip-kontooplysninger.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -303,6 +304,13 @@ const Velkomstbonus = () => {
             ))}
           </div>
         </section>
+
+        <ReviewScreenshot
+          src={pipKontooplysninger}
+          alt="Registreringsflow med kontooplysninger hos dansk casino – udfyld e-mail og mobilnummer for at aktivere velkomstbonus"
+          caption="Kontooplysninger under registrering hos Pip.dk – velkomstbonus aktiveres efter dette trin (kilde: pip.dk)"
+          size="compact"
+        />
 
         <Separator className="my-10" />
 

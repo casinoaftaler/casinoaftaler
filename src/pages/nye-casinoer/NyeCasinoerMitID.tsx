@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaMitid from "@/assets/screenshots/betinia-reg-mitid.webp";
+import pipCprNummer from "@/assets/screenshots/pip-cpr-nummer.webp";
+import pipKontooplysninger from "@/assets/screenshots/pip-kontooplysninger.webp";
+import pipAdgangskode from "@/assets/screenshots/pip-adgangskode.webp";
+import pipVelkomstbonus from "@/assets/screenshots/pip-velkomstbonus.webp";
+import pipFoersteIndbetaling from "@/assets/screenshots/pip-foerste-indbetaling.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -113,6 +118,12 @@ const NyeCasinoerMitID = () => {
             ))}
           </div>
 
+          <ReviewScreenshot
+            src={pipCprNummer}
+            alt="Pip.dk registreringsformular med CPR-nummer felt til MitID-verifikation af dansk spiller"
+            caption="CPR-verifikation hos Pip.dk – det første trin i MitID-registreringsflowet (kilde: pip.dk)"
+            size="compact"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -155,6 +166,12 @@ const NyeCasinoerMitID = () => {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src={pipKontooplysninger}
+            alt="Pip.dk kontooplysninger-formular med felter til e-mail, mobilnummer og adresse under registrering"
+            caption="Traditionelt registreringsflow hos Pip.dk med formularfelter – typisk for Tier 2/3 casinoer (kilde: pip.dk)"
+            size="medium"
+          />
           <p className="mt-4 text-muted-foreground leading-relaxed">
             I vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> vægter vi onboarding-oplevelsen som del af mobiloplevelse-parameteret (5% af den samlede score). Casinoer med Tier 1-registrering scorer konsekvent 9-10/10, mens Tier 3 typisk scorer 5-6/10. Forskellen kan virke marginal, men førstehåndsindtrykket er afgørende for den samlede oplevelse.
           </p>
@@ -308,6 +325,12 @@ const NyeCasinoerMitID = () => {
               </div>
             ))}
           </div>
+          <ReviewScreenshot
+            src={pipAdgangskode}
+            alt="Pip.dk adgangskode-oprettelse med krav til stærk adgangskode under casinoregistrering"
+            caption="Adgangskode-oprettelse hos Pip.dk – ekstra sikkerhedslag udover MitID-verifikation (kilde: pip.dk)"
+            size="compact"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -352,6 +375,19 @@ const NyeCasinoerMitID = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Denne kombination er særligt attraktiv, fordi den eliminerer alle de friktionspunkter, der traditionelt får potentielle spillere til at opgive registreringsprocessen. Branchetal viser, at op til 40% af nye spillere opgiver en registrering, der tager mere end 3 minutter. Med MitID + Trustly Pay N Play reduceres denne frafaldsprocent til under 5%.
           </p>
+          <ReviewScreenshot
+            src={pipVelkomstbonus}
+            alt="Pip.dk velkomstbonus-valg med mulighed for at vælge bonus eller spille uden bonus efter MitID-registrering"
+            caption="Bonusvalg hos Pip.dk efter MitID-registrering – vælg velkomstbonus eller spil uden (kilde: pip.dk)"
+            size="medium"
+          />
+
+          <ReviewScreenshot
+            src={pipFoersteIndbetaling}
+            alt="Pip.dk første indbetaling med velkomstbonus på op til 2.000 kr. og minimumsindbetaling"
+            caption="Første indbetaling hos Pip.dk med automatisk bonusaktivering – komplet flow fra registrering til spil (kilde: pip.dk)"
+            size="medium"
+          />
           <div className="rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">
               <strong>Vores test-resultat:</strong> Vi testede MitID + Trustly Pay N Play-flowet hos 5 nye casinoer. Den hurtigste registrering tog 42 sekunder (fra klik til lobby med penge). Den langsomste tog 58 sekunder pga. en ekstra sikkerhedsgodkendelse fra banken. Gennemsnittet: 49 sekunder. Det er den hurtigste casinoregistrering, vi nogensinde har målt.

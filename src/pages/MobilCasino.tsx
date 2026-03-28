@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import comeonForside from "@/assets/screenshots/comeon-forside.webp";
+import pipFoersteIndbetaling from "@/assets/screenshots/pip-foerste-indbetaling.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -793,6 +794,13 @@ const MobilCasino = () => {
               </div>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={pipFoersteIndbetaling}
+            alt="Første indbetaling på mobil casino med velkomstbonus og minimumsindbetaling via MitID-verificeret konto"
+            caption="Indbetalingsflow på mobil efter MitID-verifikation – velkomstbonus aktiveres automatisk (kilde: pip.dk)"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />

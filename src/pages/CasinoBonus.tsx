@@ -4,6 +4,7 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonusClose from "@/assets/screenshots/betinia-velkomstbonus-close.webp";
 import kapowVelkomstbonus from "@/assets/screenshots/kapow-velkomstbonus.webp";
+import pipVelkomstbonus from "@/assets/screenshots/pip-velkomstbonus.webp";
 
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -303,6 +304,13 @@ const CasinoBonus = () => {
           alt="Casino bonusvalg ved kontooprettelse med velkomstbonus-tilbud og mulighed for at spille uden bonus"
           caption="Sådan præsenteres et typisk bonusvalg under oprettelsen – her med free spins som velkomstbonus"
           size="full"
+        />
+
+        <ReviewScreenshot
+          src={pipVelkomstbonus}
+          alt="Velkomstbonus-valg hos dansk casino med mulighed for at vælge mellem forskellige bonustilbud ved oprettelse"
+          caption="Bonusvalg ved kontooprettelse hos Pip.dk – vælg den velkomstbonus der passer din spillestil (kilde: pip.dk)"
+          size="medium"
         />
 
         {/* ========== 3. GENNEMGANG AF ALLE BONUSTYPER ========== */}
