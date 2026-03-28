@@ -355,12 +355,6 @@ const NoStickyBonus = () => {
               </CardContent>
             </Card>
           </div>
-          <ReviewScreenshot
-            src={spildansknuVelkomst}
-            alt="SpilDanskNus velkomstbonus på 100% op til 1.000 kr. med trin-for-trin bonusaktivering"
-            caption="SpilDanskNus bonusside – bemærk de tydelige vilkår: omsæt velkomstbonus + indskud 10 gange"
-            size="compact"
-          />
         </section>
 
         <Separator className="my-10" />
