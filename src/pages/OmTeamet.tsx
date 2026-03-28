@@ -225,6 +225,7 @@ const OmTeamet = () => {
                 { to: "/forfatter/kevin", img: kevinImage, alt: "Kevin – IT Medansvarlig", name: "Kevin" },
                 { to: "/forfatter/ajse", img: ajseImage, alt: "Ajse – Juridisk redaktør", name: "Ajse" },
                 { to: "/forfatter/niklas", img: niklasImage, alt: "Niklas – Finansøkonom", name: "Niklas" },
+                { to: "/forfatter/frederik", img: frederikImage, alt: "Frederik – Streamer", name: "Frederik" },
               ].map((m) => (
                 <Link key={m.name} to={m.to} className="group">
                   <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105">
