@@ -13,6 +13,9 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { ContentSidebar } from "@/components/ContentSidebar";
+import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
+import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
+import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
@@ -66,8 +69,16 @@ export default function RewardsProgram() {
 
       <CommunityNav />
 
-      <div className="relative">
-        <div className="container py-8 md:py-12">
+      <div className="container relative">
+        {/* Left sidebar - community widgets */}
+        <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
+          <div className="sticky top-24 h-fit flex flex-col gap-4">
+            <SidebarSocialProof />
+            <SidebarLeaderboard />
+            <SidebarShopLeaderboard />
+          </div>
+        </div>
+        <div className="py-8 md:py-12">
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
         <AuthorMetaBar author="jonas" showFactCheck={false} showAffiliateDisclaimer={false} />
