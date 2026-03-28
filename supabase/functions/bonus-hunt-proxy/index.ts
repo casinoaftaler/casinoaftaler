@@ -383,12 +383,40 @@ serve(async (req) => {
     }
 
     // Archive the hunt data (upsert by hunt_number)
-    // Check if this hunt is already archived to determine isNewHunt
+    // Map StreamSystem hunt ID → our sequential position number
     let isNewHunt = false;
-    if (data?.data?.name) {
+    if (data?.data) {
       const huntData = data.data;
-      const huntNumber = parseInt(huntData.name.replace(/\D/g, ''), 10) || 0;
+      const ssHuntId = huntData.id || '';
       const stats = huntData.statistics || {};
+
+      // Look up position by matching the StreamSystem hunt ID in existing archives
+      let huntNumber = 0;
+      if (ssHuntId) {
+        // Find the archive whose api_data contains this StreamSystem hunt ID
+        const { data: matchingArchive } = await supabase
+          .from("bonus_hunt_archives")
+          .select("hunt_number")
+          .filter("api_data->data->>id", "eq", ssHuntId)
+          .order("hunt_number", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+
+        if (matchingArchive) {
+          huntNumber = matchingArchive.hunt_number;
+        }
+      }
+
+      // If no archive match, assign next sequential number
+      if (huntNumber === 0) {
+        const { data: maxRow } = await supabase
+          .from("bonus_hunt_archives")
+          .select("hunt_number")
+          .order("hunt_number", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+        huntNumber = (maxRow?.hunt_number || 0) + 1;
+      }
 
       if (huntNumber > 0 && !BLOCKED_HUNTS.has(huntNumber)) {
         // Check if archive exists already
