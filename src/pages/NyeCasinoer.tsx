@@ -7,6 +7,7 @@ import videoslotsIndbetaling from "@/assets/screenshots/videoslots-indbetaling.w
 import videoslotsLiveCasino from "@/assets/screenshots/videoslots-live-casino.webp";
 import videoslotsChatbot from "@/assets/screenshots/videoslots-chatbot.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
 import { AuthorBio } from "@/components/AuthorBio";
@@ -227,7 +228,7 @@ const NyeCasinoer = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="38 Min." />
 
         <SnippetAnswer answer="De bedste nye casinoer i Danmark 2026 har dansk licens, 10x omsætningskrav, hurtige udbetalinger via Trustly/MobilePay og gennemprøvede platforme. Vi tester hvert casino med rigtige penge over 14 dage før det når vores liste." />
@@ -1053,7 +1054,7 @@ const NyeCasinoer = () => {
         <RelatedGuides currentPath="/nye-casinoer" />
         <FAQSection title="Ofte stillede spørgsmål om nye casinoer i Danmark" faqs={nyeCasinoerFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaBetalingOversigt from "@/assets/screenshots/betinia-betaling-oversigt.webp";
 import spilnuBetaling from "@/assets/screenshots/spilnu-betaling.webp";
@@ -237,7 +238,7 @@ const Betalingsmetoder = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="28 Min." />
 
         <SnippetAnswer answer="Din betalingsmetode afgør udbetalingshastighed, bonuskvalificering og sikkerhed. Trustly giver hurtigste udbetalinger (under 6 timer), mens MobilePay og Visa er universelt accepterede." />
@@ -920,7 +921,7 @@ const Betalingsmetoder = () => {
         <FAQSection title="Ofte stillede spørgsmål om casino-betalingsmetoder" faqs={betalingsmetoderFaqs} />
 
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

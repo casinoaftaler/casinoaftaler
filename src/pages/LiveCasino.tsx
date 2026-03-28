@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -150,7 +151,7 @@ const LiveCasino = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="22 Min." />
 
         <SnippetAnswer answer="De bedste live casinoer i Danmark 2026 tilbyder blackjack, roulette og baccarat fra Evolution Gaming i HD/4K med lav house edge. Alle har dansk licens og ROFUS-tilslutning. Sammenlign bordudvalg og bonusvilkår nedenfor." />
@@ -906,7 +907,7 @@ const LiveCasino = () => {
         <RelatedGuides currentPath="/live-casino" />
         <FAQSection title="Ofte stillede spørgsmål om live casino" faqs={liveCasinoFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

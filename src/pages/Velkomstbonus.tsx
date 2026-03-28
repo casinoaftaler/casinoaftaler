@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonus from "@/assets/screenshots/betinia-velkomstbonus-aktiv.webp";
 import pipVelkomstbonus from "@/assets/screenshots/pip-velkomstbonus.webp";
@@ -190,7 +191,7 @@ const Velkomstbonus = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="niklas" readTime="22 Min." />
 
         <SnippetAnswer answer="En velkomstbonus matcher din første indbetaling – typisk 100% op til 1.000 kr. med 10x omsætningskrav i Danmark. No-sticky versioner giver bedst reel værdi. Sammenlign vilkår nedenfor." />
@@ -966,7 +967,7 @@ const Velkomstbonus = () => {
         <FAQSection title="Ofte stillede spørgsmål om velkomstbonus" faqs={velkomstbonusFaqs} />
 
         <AuthorBio author="niklas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

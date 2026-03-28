@@ -1,5 +1,6 @@
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/FAQSection";
@@ -152,7 +153,7 @@ const Casinospil = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="45 Min." />
 
         <SnippetAnswer answer="Casinospil dækker alt fra spilleautomater og bordspil til live casino og game shows. Forstå RTP, house edge og volatilitet for at vælge de rigtige spil til din spillestil." />
@@ -1407,7 +1408,7 @@ const Casinospil = () => {
         <FAQSection title="Ofte stillede spørgsmål om casinospil" faqs={casinospilFaqs} />
 
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

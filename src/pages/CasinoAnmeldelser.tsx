@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import leovegasLobby from "@/assets/screenshots/leovegas-lobby.webp";
@@ -236,7 +237,7 @@ const CasinoAnmeldelser = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="35 Min." />
 
         <SnippetAnswer answer="Vi har testet 29 danske casinoer med rigtige penge over 14+ dage hver. Sammenlign bonus, udbetalingstid og spiludvalg – alle med gyldig dansk licens fra Spillemyndigheden." />
@@ -920,7 +921,7 @@ const CasinoAnmeldelser = () => {
         <RelatedGuides currentPath="/casino-anmeldelser" />
         <FAQSection title="Ofte stillede spørgsmål om casino anmeldelser" faqs={faqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

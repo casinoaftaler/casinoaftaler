@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonusClose from "@/assets/screenshots/betinia-velkomstbonus-close.webp";
@@ -187,7 +188,7 @@ const CasinoBonus = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="35 Min." />
 
         <SnippetAnswer answer="Den bedste casino bonus i Danmark 2026 er en no-sticky bonus med 10x omsætningskrav – det giver højest reel værdi. Sammenlign bonustyper, forstå omsætningsmodeller og find den bonus der passer din spillestil." />
@@ -920,7 +921,7 @@ const CasinoBonus = () => {
         <RelatedGuides currentPath="/casino-bonus" />
         <FAQSection title="Ofte stillede spørgsmål om casino bonus i Danmark" faqs={casinoBonusFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );
