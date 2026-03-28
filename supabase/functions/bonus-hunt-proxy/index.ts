@@ -409,7 +409,7 @@ serve(async (req) => {
           .upsert({
             hunt_number: huntNumber,
             api_data: data,
-            hunt_name: huntData.name,
+            hunt_name: `Bonus Hunt #${huntNumber}`,
             hunt_status: isCompleted ? 'completed' : 'active',
             total_slots: totalSlots,
             opened_slots: openedSlots,
