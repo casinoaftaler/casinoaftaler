@@ -126,7 +126,7 @@ function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: 
   const isNiklas = authorName === "Niklas";
 
   const nameMap: Record<string, string> = { Ajse: "Ajse", Kevin: "Kevin", Niklas: "Niklas", Frederik: "Frederik Merkel" };
-  const imageMap: Record<string, string> = { Ajse: "ajse-avatar.webp", Kevin: "kevin-avatar.webp", Niklas: "niklas-avatar.webp", Frederik: "frederik-avatar.webp" };
+  const imageMap: Record<string, string> = { Ajse: "ajse-avatar.webp", Kevin: "kevin-avatar.webp", Niklas: "niklas-avatar.webp", Frederik: "frederik-forfatter.webp" };
   const jobTitleMap: Record<string, string> = {
     Ajse: "Juridisk redaktør & casinoanalytiker",
     Kevin: "Casino Streamer & IT-medansvarlig",
