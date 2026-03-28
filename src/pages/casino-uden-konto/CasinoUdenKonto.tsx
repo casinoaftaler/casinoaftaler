@@ -2,7 +2,6 @@ import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowMitidRegistrering from "@/assets/screenshots/kapow-mitid-registrering.webp";
 import spilleautomatenIndbetaling from "@/assets/screenshots/spilleautomaten-indbetaling-betalingsmetoder.webp";
-import pipKontooplysninger from "@/assets/screenshots/pip-kontooplysninger.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
