@@ -2,6 +2,7 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonus from "@/assets/screenshots/betinia-velkomstbonus-aktiv.webp";
+import pipKontooplysninger from "@/assets/screenshots/pip-kontooplysninger.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
