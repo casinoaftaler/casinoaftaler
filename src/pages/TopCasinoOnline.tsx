@@ -719,6 +719,13 @@ const TopCasinoOnline = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={playkasinoBonusvilkaar}
+          alt="PlayKasino bonusvilkår med info om omsætningskrav 10x, maks. bonus 500 kr., gyldighedsperiode 60 dage og spilbidrag for spilleautomater"
+          caption="Detaljerede bonusvilkår fra PlayKasino.dk – gennemsigtig information om omsætningskrav og betingelser"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* Payment Methods */}
