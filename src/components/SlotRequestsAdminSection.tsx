@@ -141,28 +141,32 @@ export function SlotRequestsAdminSection() {
                           <div className="flex items-center justify-end gap-1">
                             <Button
                               size="sm"
-                              onClick={() => handleAction(req.id, req.user_id, "bonus_hit", true)}
-                              disabled={updateStatus.isPending}
-                              className="gap-1"
-                            >
-                              <Trophy className="h-3.5 w-3.5" />
-                              Bonus Hit
-                            </Button>
-                            <Button
-                              size="sm"
                               variant="outline"
                               onClick={() => handleAction(req.id, req.user_id, "no_bonus")}
                               disabled={updateStatus.isPending}
+                              className="gap-1"
                             >
                               <Minus className="h-3.5 w-3.5" />
+                              No Hit
                             </Button>
                             <Button
                               size="sm"
                               variant="destructive"
                               onClick={() => handleAction(req.id, req.user_id, "rejected")}
                               disabled={updateStatus.isPending}
+                              className="gap-1"
                             >
                               <X className="h-3.5 w-3.5" />
+                              Afvis
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => handleAction(req.id, req.user_id, "bonus_hit", true)}
+                              disabled={updateStatus.isPending}
+                              title="Manuel Bonus Hit (fallback)"
+                            >
+                              <Trophy className="h-3.5 w-3.5" />
                             </Button>
                           </div>
                         )}
