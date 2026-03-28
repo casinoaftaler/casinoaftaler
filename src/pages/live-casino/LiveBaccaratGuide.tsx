@@ -2,8 +2,10 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import leovegasLiveCasino from "@/assets/screenshots/leovegas-live-casino.webp";
-import danskespilLiveBaccarat from "@/assets/screenshots/danskespil-live-baccarat.webp";
+import baccaratLobby from "@/assets/screenshots/baccarat-lobby.webp";
+import baccaratBord from "@/assets/screenshots/baccarat-bord.webp";
+import baccaratSidebets from "@/assets/screenshots/baccarat-sidebets.webp";
+import baccaratVideoindstillinger from "@/assets/screenshots/baccarat-videoindstillinger.webp";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -141,9 +143,9 @@ const LiveBaccaratGuide = () => {
             Denne simplicitet er baccarats største fordel – og dens største risiko. Fordi ingen strategiske beslutninger kræves, kan spillere let falde ind i en mekanisk rytme af hurtige indsatser uden refleksion. I min erfaring fra 300+ timer ved live baccarat-borde har jeg observeret, at de fleste spillere øger deres indsatser gradvist uden at bemærke det – en psykologisk fælde, der er langt mere farlig end selve <Link to="/ordbog/house-edge" className={linkClass}>house edge</Link>. Tempo-management er derfor det vigtigste værktøj i din baccarat-arsenal.
           </p>
           <ReviewScreenshot
-            src={leovegasLiveCasino}
-            alt="Live baccarat-lobby hos LeoVegas med flere bordvarianter og professionelle dealere"
-            caption="Live casino hos LeoVegas – herfra kan du vælge mellem standard baccarat, Speed og Lightning varianter"
+            src={baccaratLobby}
+            alt="Baccarat-lobby med over 20 bordvarianter inkl. Squeeze, Speed, Lightning og No Commission Baccarat"
+            caption="Baccarat-lobbyen viser det fulde udvalg – fra standard Baccarat A til Squeeze, Speed og Lightning varianter"
             size="full"
           />
         </section>
@@ -244,9 +246,9 @@ const LiveBaccaratGuide = () => {
             <strong>Gambler's Fallacy i praksis:</strong> "Banker har vundet 8 i træk, så player må vinde snart" er den klassiske fejlslutning. Den omvendte fejl – "banker er på en streak, så følg banker" – er lige så forkert. Begge antager, at tidligere resultater påvirker fremtidige. Det gør de ikke. Hvert spin er uafhængigt. Den eneste korrekte strategi er at spille banker konsekvent, uanset roadmap-mønstre.
           </p>
           <ReviewScreenshot
-            src={danskespilLiveBaccarat}
-            alt="Live baccarat bord hos Danske Spil med Player og Banker hænder samt dealer i rødt outfit"
-            caption="Baccarat A hos Danske Spil – klassisk Player vs. Banker med indsatsgrænser fra 10 til 2.500 kr."
+            src={baccaratBord}
+            alt="Live baccarat bord med dealer, Player og Banker indsatsfelter, sidebets og roadmap-scoreboard"
+            caption="Baccarat A – det fulde bordlayout med roadmaps, sidebets og indsatschips synlige"
             size="full"
           />
         </section>
@@ -325,6 +327,12 @@ const LiveBaccaratGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Tommelfingerregel:</strong> Jo højere udbetalingen er på et sidebet, jo højere er typisk house edge. 200:1 sidebets (som Perfect Pair i visse varianter) har ofte 10-15 % house edge. Undgå alle sidebets konsekvent – de er designet som impulskøb, der eroderer din bankroll langt hurtigere end hovedspillet.
           </p>
+          <ReviewScreenshot
+            src={baccaratSidebets}
+            alt="Nærbillede af baccarat sidebets med P Pair 11:1, B Pair 11:1, Perfect Pair 200:1, P Bonus og B Bonus felter"
+            caption="Sidebets i live baccarat – P Pair, B Pair, Perfect Pair og Bonus-felter med udbetalinger op til 200:1"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -409,6 +417,12 @@ const LiveBaccaratGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Nøgleindsigt:</strong> Squeeze-baccarat er det matematisk billigste format pr. time takket være det laveste tempo. Hvis du spiller 4 timer Squeeze i stedet for 4 timer Speed, sparer du gennemsnitligt 170-191 kr. – ved kun 100 kr. indsats. Ved højere indsatser (500-1.000 kr.) skalerer besparelsen tilsvarende. Valget af variant er lige så vigtigt som valget af bet-type.
           </p>
+          <ReviewScreenshot
+            src={baccaratVideoindstillinger}
+            alt="Videoindstillinger i live baccarat med HD, Høj og Medium kvalitet samt valg mellem flere kameraer"
+            caption="Videoindstillinger i live baccarat – vælg mellem HD, Høj eller Medium kvalitet og flere kameravinkler"
+            size="compact"
+          />
         </section>
 
         <Separator className="my-10" />
