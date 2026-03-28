@@ -20,7 +20,7 @@ import { MultiplierSymbolsAdmin } from "@/components/slots/MultiplierSymbolsAdmi
 import { BonanzaBombSymbolsAdmin } from "@/components/slots/BonanzaBombSymbolsAdmin";
 import { LivePlayersAdminSection } from "@/components/LivePlayersAdminSection";
 import { TournamentAdminSection } from "@/components/TournamentAdminSection";
-import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

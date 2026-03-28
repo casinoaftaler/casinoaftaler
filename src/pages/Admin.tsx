@@ -67,6 +67,7 @@ import { PageMetadataAdminSection } from "@/components/PageMetadataAdminSection"
 import { PageMetadataSyncSection } from "@/components/admin/PageMetadataSyncSection";
 import { CasinoTrustAdminSection } from "@/components/admin/CasinoTrustAdminSection";
 import { ErrorLogsSection } from "@/components/admin/ErrorLogsSection";
+import { SlotRequestsAdminSection } from "@/components/SlotRequestsAdminSection";
 import { CacheClearSection } from "@/components/admin/CacheClearSection";
 import { ReviewModerationSection } from "@/components/admin/ReviewModerationSection";
 import { StaleContentAlerts } from "@/components/admin/StaleContentAlerts";
@@ -775,6 +776,7 @@ function AdminDashboard() {
     
     { value: "tournaments", label: "Turneringer", icon: Trophy },
     { value: "bonus-hunt", label: "Bonus Hunt", icon: Target },
+    { value: "requests", label: "Requests", icon: Gamepad2 },
     { value: "slot-catalog", label: "Slot Katalog", icon: Database },
     { value: "codes", label: "Koder", icon: Ticket },
     { value: "notifications", label: "Notifikationer", icon: Bell },
@@ -1054,6 +1056,11 @@ function AdminDashboard() {
           {/* Bonus Hunt Tab */}
           <TabsContent value="bonus-hunt">
             <BonusHuntAdminSection />
+          </TabsContent>
+
+          {/* Requests Tab */}
+          <TabsContent value="requests">
+            <SlotRequestsAdminSection />
           </TabsContent>
 
           {/* Slot Katalog Tab */}
