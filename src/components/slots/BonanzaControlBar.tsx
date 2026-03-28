@@ -279,7 +279,13 @@ export function BonanzaControlBar({
     <div className="relative w-full" style={{ height: 80 }}>
       {/* ─── LEFT: PayTable + Volume + Credit/Bet ─── */}
       <div className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 sm:gap-2 z-10">
-        <BonanzaPayTable gameId={gameId || "fedesvin-bonanza"} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30" />
+        {gameId === "gates-of-fedesvin" ? (
+          <GatesPayTable gameId={gameId} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30" />
+        ) : gameId === "fedesvin-bonanza" ? (
+          <BonanzaPayTable gameId={gameId} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30" />
+        ) : (
+          <PayTable gameId={gameId} bet={bet} className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30" />
+        )}
         <VolumeControl className="w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30" />
         {!bonusState.isActive && (
           <div className="flex flex-col leading-none gap-0.5 pl-2 border-l border-pink-500/10">

@@ -1231,7 +1231,7 @@ export function SlotGame({ gameId = "book-of-fedesvin" }: SlotGameProps) {
               )}
             </div>
             
-            <GatesControlBar
+            <BonanzaControlBar
               bet={effectiveBet}
               onBetChange={setBet}
               onSpin={handleSpin}
