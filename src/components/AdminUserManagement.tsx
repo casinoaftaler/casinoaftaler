@@ -23,7 +23,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Badge } from "@/components/ui/badge";
 import { Plus, Trash2, Loader2, ChevronDown, UserPlus, Shield } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -31,6 +39,7 @@ import { z } from "zod";
 const inviteAdminSchema = z.object({
   email: z.string().trim().email({ message: "Ugyldig email adresse" }).max(255, { message: "Email må max være 255 tegn" }),
   password: z.string().min(6, { message: "Adgangskode skal være mindst 6 tegn" }).max(100, { message: "Adgangskode må max være 100 tegn" }),
+  role: z.enum(["admin", "moderator"]),
 });
 
 interface AdminUser {
