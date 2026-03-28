@@ -6,6 +6,7 @@ import { BonusHuntStatsTab } from "@/components/bonus-hunt/BonusHuntStatsTab";
 import { BonusHuntGTWTab } from "@/components/bonus-hunt/BonusHuntGTWTab";
 import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
 import { BonusHuntSlotCoupon } from "@/components/bonus-hunt/BonusHuntSlotCoupon";
+import { SlotRequestForm } from "@/components/SlotRequestForm";
 
 import { BonusHuntVideoSection, getHuntVideoFromArchive } from "@/components/bonus-hunt/BonusHuntVideoSection";
 import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream";
@@ -277,11 +278,12 @@ export default function BonusHunt() {
                 {/* Right column (40%) */}
                 <div className="lg:col-span-2 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
                   <Tabs defaultValue="coupon" className="w-full">
-                    <TabsList className="w-full grid grid-cols-4">
+                    <TabsList className={`w-full grid ${isLive ? 'grid-cols-5' : 'grid-cols-4'}`}>
                       <TabsTrigger value="coupon" className="text-[11px]">🎰 Kupon</TabsTrigger>
                       <TabsTrigger value="stats">STATS</TabsTrigger>
                       <TabsTrigger value="gtw">GTW</TabsTrigger>
                       <TabsTrigger value="avgx">AVG X</TabsTrigger>
+                      {isLive && <TabsTrigger value="request" className="text-[11px]">🎲 Request</TabsTrigger>}
                     </TabsList>
                     <TabsContent value="stats" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntStatsTab
@@ -324,6 +326,14 @@ export default function BonusHunt() {
                         couponOpen={session?.coupon_betting_open as boolean | undefined}
                       />
                     </TabsContent>
+                    {isLive && (
+                      <TabsContent value="request" forceMount className="data-[state=inactive]:hidden">
+                        <div className="rounded-xl border border-border bg-card p-4">
+                          <h3 className="text-sm font-semibold mb-3">Request en slot til hunten</h3>
+                          <SlotRequestForm />
+                        </div>
+                      </TabsContent>
+                    )}
                   </Tabs>
 
                   {!isLive && huntData && (
