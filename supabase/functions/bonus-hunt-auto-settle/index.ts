@@ -323,18 +323,31 @@ Deno.serve(async (req) => {
             if (mult >= 100) {
               const bonusCredits = 500;
               try {
-                const { data: spinsRow } = await admin.from('slot_spins').select('id, spins_remaining').eq('user_id', req.user_id).eq('date', today).single();
+                // Check if this bonus was already awarded (prevent duplicate rewards)
+                const { count: alreadyAwarded } = await admin.from('credit_allocation_log')
+                  .select('*', { count: 'exact', head: true })
+                  .eq('user_id', req.user_id)
+                  .eq('source', 'slot_request_100x_bonus')
+                  .like('note', `%${req.slot_name}%`)
+                  .eq('amount', bonusCredits);
+                
+                if ((alreadyAwarded || 0) > 0) {
+                  console.log(`Skipping duplicate 100x bonus for ${req.slot_name} (user ${req.user_id})`);
+                  continue;
+                }
+
+                const { data: spinsRow } = await admin.from('slot_spins').select('id, spins_remaining').eq('user_id', req.user_id).eq('date', today).eq('game_id', 'shared').single();
                 if (spinsRow) {
                   await admin.from('slot_spins').update({ spins_remaining: spinsRow.spins_remaining + bonusCredits }).eq('id', spinsRow.id);
                 } else {
-                  await admin.from('slot_spins').insert({ user_id: req.user_id, date: today, spins_remaining: bonusCredits });
+                  await admin.from('slot_spins').insert({ user_id: req.user_id, date: today, spins_remaining: bonusCredits, game_id: 'shared' });
                 }
                 await admin.from('credit_allocation_log').insert({
                   user_id: req.user_id, amount: bonusCredits, source: 'slot_request_100x_bonus',
                   note: `Slot request 100x+ bonus: ${req.slot_name} (${mult.toFixed(1)}x)`,
                 });
                 const totalCredits = (req.credits_awarded || 200) + bonusCredits;
-                await admin.from('slot_requests').update({ credits_awarded: totalCredits }).eq('id', req.id);
+                await admin.from('slot_requests').update({ credits_awarded: totalCredits, status: 'settled' }).eq('id', req.id);
                 settleResults.slotRequestBonuses = (settleResults.slotRequestBonuses as number || 0) + 1;
               } catch (e) {
                 console.error(`Failed to award 100x bonus to user ${req.user_id}:`, e);
