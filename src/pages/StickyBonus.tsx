@@ -293,9 +293,14 @@ const StickyBonus = () => {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={leovegasStickyMekanik}
+            alt="LeoVegas sticky bonus velkomstpakke – eksempel på hvordan en sticky bonus fungerer i praksis med omsætningskrav"
+            caption="LeoVegas – sticky bonus i praksis: bonussen forbliver låst indtil omsætningskravet er opfyldt"
+            size="medium"
+          />
         </section>
-
-
 
         <Separator className="my-10" />
 
