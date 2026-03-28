@@ -557,6 +557,12 @@ const NoStickyBonus = () => {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src={lunaVelkomst}
+            alt="Luna Casinos velkomstbonus med 3-trins registreringsflow: registrer, indbetal, modtag bonus"
+            caption="Luna Casinos onboarding – en klar 3-trins proces fra registrering til bonusaktivering"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
