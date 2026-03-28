@@ -57,6 +57,12 @@ export function getSeoRoutesByAuthor(authorId: string) {
   );
 }
 
+/** Look up the factCheckedBy field for a given path (normalised). */
+export function getRouteFactChecker(pathname: string): string | undefined {
+  const norm = pathname === "/" ? "/" : pathname.replace(/\/+$/, "").toLowerCase();
+  return getRouteMap().get(norm)?.factCheckedBy;
+}
+
 /** Map of path → SeoRoute for O(1) lookups */
 let _routeMap: Map<string, SeoRoute> | null = null;
 
