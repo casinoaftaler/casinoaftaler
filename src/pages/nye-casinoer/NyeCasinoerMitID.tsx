@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaMitid from "@/assets/screenshots/betinia-reg-mitid.webp";
+import pipCprNummer from "@/assets/screenshots/pip-cpr-nummer.webp";
+import pipKontooplysninger from "@/assets/screenshots/pip-kontooplysninger.webp";
+import pipAdgangskode from "@/assets/screenshots/pip-adgangskode.webp";
+import pipVelkomstbonus from "@/assets/screenshots/pip-velkomstbonus.webp";
+import pipFoersteIndbetaling from "@/assets/screenshots/pip-foerste-indbetaling.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
