@@ -776,6 +776,7 @@ function AdminDashboard() {
     
     { value: "tournaments", label: "Turneringer", icon: Trophy },
     { value: "bonus-hunt", label: "Bonus Hunt", icon: Target },
+    { value: "requests", label: "Requests", icon: Gamepad2 },
     { value: "slot-catalog", label: "Slot Katalog", icon: Database },
     { value: "codes", label: "Koder", icon: Ticket },
     { value: "notifications", label: "Notifikationer", icon: Bell },
