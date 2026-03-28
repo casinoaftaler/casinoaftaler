@@ -93,6 +93,7 @@ export function useAuth() {
     session,
     loading,
     isAdmin,
+    isModerator,
     signIn,
     signUp,
     signOut,
