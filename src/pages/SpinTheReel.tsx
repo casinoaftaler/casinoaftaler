@@ -1,6 +1,7 @@
 import { useState, useCallback, lazy, Suspense } from "react";
 import { SEO } from "@/components/SEO";
 import { CommunityNav } from "@/components/community/CommunityNav";
+import { ContentSidebar } from "@/components/ContentSidebar";
 import { SpinWheel } from "@/components/spin-the-reel/SpinWheel";
 import { RewardModal } from "@/components/spin-the-reel/RewardModal";
 import { HeroBackground } from "@/components/spin-the-reel/HeroBackground";
