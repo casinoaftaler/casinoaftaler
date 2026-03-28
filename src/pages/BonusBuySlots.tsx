@@ -133,8 +133,8 @@ const BonusBuySlots = () => {
         className="relative overflow-hidden py-12 text-white md:py-20"
         style={{
           backgroundImage: heroBackgroundImage
-            ? `linear-gradient(135deg, hsl(280 60% 30% / 0.95), hsl(150 70% 25% / 0.9)), url(${heroBackgroundImage})`
-            : "linear-gradient(135deg, hsl(280 60% 30%), hsl(270 50% 20%) 40%, hsl(150 70% 25%))",
+            ? `linear-gradient(135deg, hsl(260 70% 25% / 0.95), hsl(210 80% 30% / 0.9)), url(${heroBackgroundImage})`
+            : "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
