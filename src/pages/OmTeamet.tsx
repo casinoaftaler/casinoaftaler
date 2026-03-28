@@ -874,7 +874,7 @@ const OmTeamet = () => {
                   <h3 className="font-semibold text-sm">Rollefordeling</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Jonas står for anmeldelser og guides. Kevin dækker teknik og platformudvikling. Ajse er juridisk redaktør og dækker compliance, licenser og ansvarligt spil. Niklas er finansøkonom og dækker bonusøkonomi, skat og finansiel risikostyring. Alle artikler faktatjekkes af en anden redaktør end forfatteren.
+                  Jonas står for anmeldelser og guides. Kevin dækker teknik og platformudvikling. Frederik tester casino bonusser live på stream. Ajse er juridisk redaktør og dækker compliance, licenser og ansvarligt spil. Niklas er finansøkonom og dækker bonusøkonomi, skat og finansiel risikostyring. Alle artikler faktatjekkes af en anden redaktør end forfatteren.
                 </p>
               </CardContent>
             </Card>
