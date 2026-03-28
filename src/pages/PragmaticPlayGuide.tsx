@@ -198,6 +198,12 @@ const PragmaticPlayGuide = () => (
         <p className="text-muted-foreground leading-relaxed">
           Bingo-divisionen opererer under separate licenser målrettet det britiske marked (Gambling Commission) og latinamerikanske jurisdiktioner. Compliance-afdelingen har over 200 medarbejdere – en af branchens største – hvilket afspejler den regulatoriske kompleksitet ved at operere i 20+ jurisdiktioner simultant med tre produktvertikaler.
         </p>
+        <ReviewScreenshot
+          src={pragmaticLiveCasino}
+          alt="Pragmatic Play live casino-spil – Free Bet Blackjack, The Bingo Spot og Mega Roulette 3000"
+          caption="Pragmatic Plays live casino-division tilbyder over 100 borde inkl. Free Bet Blackjack, The Bingo Spot og Mega Roulette 3000 – alle streamet fra deres studier i Bukarest."
+          size="full"
+        />
       </>
     }
     pros={[
