@@ -73,6 +73,8 @@ export default function RewardsProgram() {
           </div>
         </div>
         <div className="container py-8 md:py-12">
+        <div className="flex gap-8 xl:gap-10">
+          <div className="min-w-0 flex-1">
         <AuthorMetaBar author="jonas" showFactCheck={false} showAffiliateDisclaimer={false} />
 
         {/* Section: Community Highlights Rewards */}
