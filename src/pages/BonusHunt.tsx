@@ -309,7 +309,7 @@ export default function BonusHunt() {
                     </TabsContent>
                     <TabsContent value="avgx" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntAvgXTab
-                        session={isArchived ? null : session}
+                        session={isArchived ? archivedSession : session}
                         bets={avgxBets}
                         userId={user?.id}
                         openedBonuses={huntData?.stats?.openedBonuses || 0}
