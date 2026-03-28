@@ -3,6 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import comeonKampagner from "@/assets/screenshots/comeon-kampagner.webp";
 import leovegasStickyBonus from "@/assets/screenshots/leovegas-sticky-bonus-velkomst.webp";
+import leovegasStickyMekanik from "@/assets/screenshots/leovegas-sticky-bonus-mekanik.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
