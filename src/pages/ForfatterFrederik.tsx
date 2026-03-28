@@ -298,7 +298,8 @@ export default function ForfatterFrederik() {
           <div className="rounded-xl border border-border bg-gradient-to-br from-card to-accent/20 p-6 space-y-4">
             <p className="text-muted-foreground leading-relaxed">
               Frederik er 23 år og har været aktiv i casino-streaming siden 2022. Han mødte{" "}
-              <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> gennem Twitch, hvor de hurtigt fandt fælles interesse for streaming, online casino og community-opbygning. Det var starten på et samarbejde, der med tiden udviklede sig til en fast rolle hos Casinoaftaler.
+              <Link to="/forfatter/jonas" className="text-primary hover:underline">Jonas</Link> og{" "}
+              <Link to="/forfatter/kevin" className="text-primary hover:underline">Kevin</Link> gennem Twitch, hvor de hurtigt fandt fælles interesse for streaming, online casino og community-opbygning. Det var starten på et samarbejde, der med tiden udviklede sig til en fast rolle hos Casinoaftaler.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               Inden Frederik blev en del af Casinoaftaler, startede han sin egen kanal <strong>Dendynamiskedue</strong> sammen med sine venner. Kanalen gav ham erfaring med live-streaming, content creation og dialog med seerne. Da han senere valgte at gå solo, fik han mulighed for at udvikle sin egen streamingstil – præget af høj energi, smilende humør og en ægte passion for casinospil.
