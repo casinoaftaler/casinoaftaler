@@ -211,3 +211,9 @@ All colors MUST be HSL.
     scrollbar-color: hsl(220 15% 18%) transparent;
   }
 }
+
+/* Fact-check badge sweep animation */
+@keyframes factcheck-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
