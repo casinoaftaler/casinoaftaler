@@ -91,6 +91,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Casino Bonus",
     iconName: "gift",
+    hubTo: "/casino-bonus",
     links: [
       { to: "/casino-bonus", label: "Casino Bonus" },
       { to: "/velkomstbonus", label: "Velkomstbonus" },
