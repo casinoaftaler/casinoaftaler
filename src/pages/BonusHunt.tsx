@@ -34,7 +34,7 @@ import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboar
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { useBonusHuntData, useLatestHuntNumber, useArchivedHuntNumbers } from "@/hooks/useBonusHuntData";
 import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
-import { useBonusHuntSession, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
+import { useBonusHuntSession, useBonusHuntSessionByHuntNumber, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
 import { useAuth } from "@/hooks/useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
@@ -65,8 +65,10 @@ export default function BonusHunt() {
   const { data: huntData, isLoading: huntLoading } = useBonusHuntData(huntIdOverride);
   const { data: allArchives = [] } = useBonusHuntArchives();
   const { data: session } = useBonusHuntSession();
-  const { data: gtwBets = [] } = useBonusHuntGtwBets(session?.id);
-  const { data: avgxBets = [] } = useBonusHuntAvgxBets(session?.id);
+  const { data: archivedSession } = useBonusHuntSessionByHuntNumber(huntIdOverride);
+  const effectiveSessionId = huntIdOverride ? archivedSession?.id : session?.id;
+  const { data: gtwBets = [] } = useBonusHuntGtwBets(effectiveSessionId);
+  const { data: avgxBets = [] } = useBonusHuntAvgxBets(effectiveSessionId);
 
   const refreshBets = useCallback(() => {
     queryClient.invalidateQueries({ queryKey: ['bonus-hunt-gtw-bets'] });
@@ -296,7 +298,7 @@ export default function BonusHunt() {
                     </TabsContent>
                     <TabsContent value="gtw" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntGTWTab
-                        session={isArchived ? null : session}
+                        session={isArchived ? archivedSession : session}
                         bets={gtwBets}
                         userId={user?.id}
                         openedBonuses={huntData?.stats?.openedBonuses || 0}
@@ -307,7 +309,7 @@ export default function BonusHunt() {
                     </TabsContent>
                     <TabsContent value="avgx" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntAvgXTab
-                        session={isArchived ? null : session}
+                        session={isArchived ? archivedSession : session}
                         bets={avgxBets}
                         userId={user?.id}
                         openedBonuses={huntData?.stats?.openedBonuses || 0}
