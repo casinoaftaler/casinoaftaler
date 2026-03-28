@@ -166,6 +166,12 @@ const NyeCasinoerMitID = () => {
               </CardContent>
             </Card>
           </div>
+          <ReviewScreenshot
+            src={pipKontooplysninger}
+            alt="Pip.dk kontooplysninger-formular med felter til e-mail, mobilnummer og adresse under registrering"
+            caption="Traditionelt registreringsflow hos Pip.dk med formularfelter – typisk for Tier 2/3 casinoer (kilde: pip.dk)"
+            size="medium"
+          />
           <p className="mt-4 text-muted-foreground leading-relaxed">
             I vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> vægter vi onboarding-oplevelsen som del af mobiloplevelse-parameteret (5% af den samlede score). Casinoer med Tier 1-registrering scorer konsekvent 9-10/10, mens Tier 3 typisk scorer 5-6/10. Forskellen kan virke marginal, men førstehåndsindtrykket er afgørende for den samlede oplevelse.
           </p>
