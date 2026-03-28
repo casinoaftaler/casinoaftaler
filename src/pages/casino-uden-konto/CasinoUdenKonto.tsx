@@ -1,6 +1,7 @@
 import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import kapowMitidRegistrering from "@/assets/screenshots/kapow-mitid-registrering.webp";
+import spilleautomatenIndbetaling from "@/assets/screenshots/spilleautomaten-indbetaling-betalingsmetoder.webp";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -709,6 +710,13 @@ const CasinoUdenKonto = () => {
             .
           </p>
         </section>
+
+        <ReviewScreenshot
+          src={spilleautomatenIndbetaling}
+          alt="Indbetalingsside hos Spilleautomaten med MobilePay, Mastercard, Visa og Trustly – alle med minimum 75 kr. og 4-trins flow fra betalingsvalg til bekræftelse"
+          caption="Indbetalingsflow hos Spilleautomaten.dk – vælg mellem MobilePay, kort eller Trustly med minimum 75 kr. (marts 2026)"
+          size="medium"
+        />
 
         <Separator className="my-10" />
 
