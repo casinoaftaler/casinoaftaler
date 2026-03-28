@@ -276,6 +276,13 @@ const HoejRTPGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaSpiludbydere}
+          alt="Spiludbyder-filter fra Betinia med antal spil pr. udvikler: Pragmatic Play 539, Play'n GO 352, Hacksaw Gaming 149, Stakelogic 167, Synot 161 og flere"
+          caption="Spiludbyder-filteret hos Betinia.dk – filtrér efter udvikler for at finde spil med høj RTP (marts 2026)"
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         {/* Strategier for at udnytte RTP */}
