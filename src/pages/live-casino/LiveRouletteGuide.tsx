@@ -440,6 +440,12 @@ const LiveRouletteGuide = () => {
               </div>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src={rouletteIndsatsbord}
+            alt="Live roulette-bord med indsatsfelter for inside bets, outside bets og racetrack med Tier, Orphelins og Voisins"
+            caption="Indsatsbordet i live roulette – alle bet-typer fra even money til straight-up er synlige sammen med racetrack-indsatser"
+            size="full"
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Praktisk implikation:</strong> En spiller, der sætter 50 kr. på rød/sort i 100 spins, kan forvente et resultat inden for ±500 kr. af sit forventede tab (-135 kr.). En spiller, der sætter 50 kr. straight-up i 100 spins, kan forvente et resultat inden for ±2.920 kr. Begge taber gennemsnitligt 135 kr. – men oplevelsen er dramatisk anderledes.
           </p>
