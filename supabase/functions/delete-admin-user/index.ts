@@ -98,14 +98,14 @@ Deno.serve(async (req) => {
       .eq("role", roleToDelete);
 
     if (deleteRoleError) {
-      console.error("Error removing admin role:", deleteRoleError);
+      console.error("Error removing role:", deleteRoleError);
       return new Response(
-        JSON.stringify({ error: "Kunne ikke fjerne admin rolle" }),
+        JSON.stringify({ error: `Kunne ikke fjerne ${roleToDelete} rolle` }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    console.log(`Admin role removed for user: ${userId}`);
+    console.log(`${roleToDelete} role removed for user: ${userId}`);
 
     return new Response(
       JSON.stringify({ success: true }),
