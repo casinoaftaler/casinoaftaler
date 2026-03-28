@@ -447,12 +447,12 @@ serve(async (req) => {
           }, { onConflict: 'hunt_number' });
       }
 
-      // Auto-create betting session if none exists
+      // Auto-create betting session if none exists (check both hunt_number and streamsystem_hunt_id)
       {
         const { data: existingSession } = await supabase
           .from("bonus_hunt_sessions")
-          .select("id")
-          .eq("hunt_number", huntNumber)
+          .select("id, hunt_number")
+          .or(`hunt_number.eq.${huntNumber},streamsystem_hunt_id.eq.${ssHuntId}`)
           .maybeSingle();
 
         if (!existingSession) {
