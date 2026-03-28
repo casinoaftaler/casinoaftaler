@@ -528,14 +528,40 @@ serve(async (req) => {
         if (huntSlotNames.length > 0) {
           (async () => {
             try {
+              // Get already-awarded slots for this hunt to enforce 1 credit per slot
+              const { data: alreadyAwarded } = await supabase
+                .from('slot_requests')
+                .select('slot_name')
+                .eq('hunt_number', huntNumber)
+                .eq('status', 'bonus_hit');
+              const awardedSlotNames = new Set((alreadyAwarded || []).map((r: any) => r.slot_name.toLowerCase()));
+
               const { data: pendingReqs } = await supabase
                 .from('slot_requests')
                 .select('id, user_id, slot_name')
-                .eq('status', 'pending');
+                .eq('status', 'pending')
+                .order('created_at', { ascending: true }); // First come, first served
+
+              // Track slots we award in this batch to prevent duplicates within same run
+              const awardedThisBatch = new Set<string>();
 
               for (const req of (pendingReqs || [])) {
-                if (huntSlotNames.includes(req.slot_name.toLowerCase())) {
-                  // Auto bonus-hit
+                const slotKey = req.slot_name.toLowerCase();
+                if (huntSlotNames.includes(slotKey)) {
+                  // Skip if already awarded to another user in this hunt
+                  if (awardedSlotNames.has(slotKey) || awardedThisBatch.has(slotKey)) {
+                    // Mark as no_bonus instead — slot was already claimed
+                    await supabase.from('slot_requests').update({
+                      status: 'no_bonus',
+                      hunt_number: huntNumber,
+                    }).eq('id', req.id);
+                    console.log(`Slot "${req.slot_name}" already awarded in hunt #${huntNumber}, marking as no_bonus for user ${req.user_id}`);
+                    continue;
+                  }
+
+                  awardedThisBatch.add(slotKey);
+
+                  // Auto bonus-hit — first request only
                   await supabase.from('slot_requests').update({
                     status: 'bonus_hit',
                     hunt_number: huntNumber,
