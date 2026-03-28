@@ -314,6 +314,9 @@ export default function Shop() {
         <div className="mt-12">
           <RelatedGuides currentPath="/butik" />
         </div>
+          </div>
+          <ContentSidebar />
+        </div>
         </div>
       </div>
     </>
