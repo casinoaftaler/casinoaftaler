@@ -1408,7 +1408,7 @@ const GAME_OPTIONS = [
   { id: "fedesvin-bonanza", label: "Fedesvin Bonanza" },
 ] as const;
 
-const GLOBAL_TABS = ["spins", "points", "combined-stats", "live-players", "requests", "tournaments"] as const;
+const GLOBAL_TABS = ["spins", "points", "combined-stats", "live-players", "tournaments"] as const;
 
 export function SlotMachineAdminSection() {
   const [selectedGame, setSelectedGame] = useState("book-of-fedesvin");
