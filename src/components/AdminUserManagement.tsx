@@ -105,6 +105,7 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
       setDialogOpen(false);
       setEmail("");
       setPassword("");
+      setSelectedRole("admin");
       setError("");
     },
     onError: (error: Error) => {
