@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import leovegasLobby from "@/assets/screenshots/leovegas-lobby.webp";
