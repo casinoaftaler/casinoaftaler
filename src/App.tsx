@@ -244,6 +244,7 @@ const Forfatter = lazy(() => import("./pages/Forfatter"));
 const ForfatterKevin = lazy(() => import("./pages/ForfatterKevin"));
 const ForfatterAjse = lazy(() => import("./pages/ForfatterAjse"));
 const ForfatterNiklas = lazy(() => import("./pages/ForfatterNiklas"));
+const ForfatterFrederik = lazy(() => import("./pages/ForfatterFrederik"));
 const SaadanTesterVi = lazy(() => import("./pages/SaadanTesterVi"));
 const CasinoNyheder = lazy(() => import("./pages/CasinoNyheder"));
 const CasinoNyhedArticle = lazy(() => import("./pages/CasinoNyhedArticle"));
