@@ -555,6 +555,7 @@ const LiveBlackjackGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Vores anbefaling:</strong> Undgå alle sidebets konsekvent. Hvis du absolut ønsker sidebets som underholdning, begræns dem til 21+3 (lavest house edge) og sæt et fast sidebet-budget, der er adskilt fra din hovedindsats. Sidebets bør aldrig overstige 10 % af din totale indsats pr. hånd – og ideelt set bør de være 0 %.
           </p>
+          <ReviewScreenshot src={lightningBlackjack} alt="Lightning Blackjack med synlige sidebets, multiplikatorer og dealer ved bordet" caption="Sidebets i Lightning Blackjack: multiplikatorer fra 2x til 8x er synlige over bordet – men house edge er markant højere end hovedspillet." size="medium" />
         </section>
 
         <Separator className="my-10" />
