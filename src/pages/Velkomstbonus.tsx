@@ -306,10 +306,10 @@ const Velkomstbonus = () => {
         </section>
 
         <ReviewScreenshot
-          src={pipKontooplysninger}
-          alt="Registreringsflow med kontooplysninger hos dansk casino – udfyld e-mail og mobilnummer for at aktivere velkomstbonus"
-          caption="Kontooplysninger under registrering hos Pip.dk – velkomstbonus aktiveres efter dette trin (kilde: pip.dk)"
-          size="compact"
+          src={pipFoersteIndbetaling}
+          alt="Velkomstbonus-popup med 100% match op til 2.000 kr. ved første indbetaling hos dansk casino"
+          caption="Aktivering af velkomstbonus ved første indbetaling – vælg 'Ja til bonus' for at aktivere (kilde: pip.dk)"
+          size="medium"
         />
 
         <Separator className="my-10" />
