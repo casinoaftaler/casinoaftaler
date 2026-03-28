@@ -2,8 +2,9 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import onecasinoLiveCasino from "@/assets/screenshots/onecasino-live-casino.webp";
+import rouletteLobbyVarianter from "@/assets/screenshots/roulette-lobby-varianter.webp";
 import danskespilLiveRoulette from "@/assets/screenshots/danskespil-live-roulette.webp";
+import rouletteIndsatsbord from "@/assets/screenshots/roulette-indsatsbord.webp";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
@@ -182,9 +183,9 @@ const LiveRouletteGuide = () => {
             <strong>Dual Play Roulette:</strong> Et unikt format, hvor online spillere deler et fysisk bord med spillere i et landbaseret casino. Hjulet og dealeren er de samme – du ser det eksakt samme spin som dem, der fysisk er til stede. Tempoet bestemmes af de landbaserede spillere og er typisk 20-30 spins/time. House edge og regler er identiske med standard europæisk. Det er den mest autentiske live roulette-oplevelse tilgængelig online.
           </p>
           <ReviewScreenshot
-            src={onecasinoLiveCasino}
-            alt="Live dealer-bord hos OneCasino med roulette og professionel croupier i HD-streaming"
-            caption="Live roulette hos OneCasino – et eksempel på professionel dealer-oplevelse med dansk licens"
+            src={rouletteLobbyVarianter}
+            alt="Roulette-lobby med over 20 bordvarianter inkl. Dansk Roulette, Lightning, Immersive og Speed Roulette"
+            caption="Roulette-lobbyen viser det fulde udvalg af bordtyper – fra Dansk Roulette til Double Ball og Salon Privé"
             size="full"
           />
         </section>
@@ -439,6 +440,12 @@ const LiveRouletteGuide = () => {
               </div>
             </CardContent>
           </Card>
+          <ReviewScreenshot
+            src={rouletteIndsatsbord}
+            alt="Live roulette-bord med indsatsfelter for inside bets, outside bets og racetrack med Tier, Orphelins og Voisins"
+            caption="Indsatsbordet i live roulette – alle bet-typer fra even money til straight-up er synlige sammen med racetrack-indsatser"
+            size="full"
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Praktisk implikation:</strong> En spiller, der sætter 50 kr. på rød/sort i 100 spins, kan forvente et resultat inden for ±500 kr. af sit forventede tab (-135 kr.). En spiller, der sætter 50 kr. straight-up i 100 spins, kan forvente et resultat inden for ±2.920 kr. Begge taber gennemsnitligt 135 kr. – men oplevelsen er dramatisk anderledes.
           </p>
