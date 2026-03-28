@@ -224,7 +224,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/poker/caribbean-stud", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/poker/video-poker", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/poker/poker-strategi", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
-  { path: "/casinospil/poker/bedste-sider", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-15", author: "kevin", articleTitle: "Bedste Pokersider i Danmark 2026", articleCategory: "Guide", articleExcerpt: "Komplet guide til de bedste pokersider med dansk licens – sammenlign PokerStars, Unibet, bet365 og Campobet." },
+  { path: "/casinospil/poker/bedste-sider", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-15", author: "kevin", factCheckedBy: "jonas", articleTitle: "Bedste Pokersider i Danmark 2026", articleCategory: "Guide", articleExcerpt: "Komplet guide til de bedste pokersider med dansk licens – sammenlign PokerStars, Unibet, bet365 og Campobet." },
   { path: "/casinospil/craps", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
   { path: "/casinospil/baccarat", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-05" },
   // /casinospil/roulette-strategi – 301 redirected to /casinospil/roulette (cannibalization fix)
