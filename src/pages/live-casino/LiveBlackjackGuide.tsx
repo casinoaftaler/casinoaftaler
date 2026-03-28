@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.webp";
 import lightningBlackjack from "@/assets/screenshots/lightning-blackjack.webp";
+import sidebetsBlackjack from "@/assets/screenshots/sidebets-blackjack.webp";
 import classicBlackjack from "@/assets/screenshots/classic-blackjack.webp";
 import infiniteBlackjack from "@/assets/screenshots/infinite-blackjack.webp";
 import speedBlackjack from "@/assets/screenshots/speed-blackjack.webp";
