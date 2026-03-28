@@ -155,7 +155,7 @@ const OmTeamet = () => {
   ];
 
   const stats = [
-    { icon: Briefcase, value: "10+", label: "Års samlet erfaring" },
+    { icon: Briefcase, value: "14+", label: "Års samlet erfaring" },
     { icon: Trophy, value: "30+", label: "Testede danske casinoer" },
     { icon: Tv, value: "7000+", label: "Timers live streaming" },
     { icon: BookOpen, value: "270+", label: "Publicerede artikler & guides" },
@@ -874,7 +874,7 @@ const OmTeamet = () => {
                   <h3 className="font-semibold text-sm">Rollefordeling</h3>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Jonas står for anmeldelser og guides. Kevin dækker teknik og platformudvikling. Ajse er juridisk redaktør og dækker compliance, licenser og ansvarligt spil. Niklas er finansøkonom og dækker bonusøkonomi, skat og finansiel risikostyring. Alle artikler faktatjekkes af en anden redaktør end forfatteren.
+                  Jonas står for anmeldelser og guides. Kevin dækker teknik og platformudvikling. Frederik tester casino bonusser live på stream. Ajse er juridisk redaktør og dækker compliance, licenser og ansvarligt spil. Niklas er finansøkonom og dækker bonusøkonomi, skat og finansiel risikostyring. Alle artikler faktatjekkes af en anden redaktør end forfatteren.
                 </p>
               </CardContent>
             </Card>
