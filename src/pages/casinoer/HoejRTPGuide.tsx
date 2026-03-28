@@ -119,6 +119,13 @@ const HoejRTPGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaSpilleregler}
+          alt="Spilleregler fra dansk spilleautomat med RTP-oplysninger: teoretisk RTP 95,52%, Ante-indsats RTP 95,54%, Køb Gratis Spins RTP 95,55% samt volatilitetsniveau og indsatsgrænser"
+          caption="Eksempel på spilleregler med RTP og volatilitet – alle danske casinoer er forpligtet til at vise disse oplysninger"
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* Top spilleautomater */}
