@@ -501,17 +501,7 @@ export default function Leaderboard() {
 
       <CommunityNav />
 
-      <div className="container relative">
-        {/* Left sidebar – positioned outside content flow */}
-        <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-6">
-          <div className="sticky top-24 h-fit flex flex-col gap-4">
-            <CommunitySeoBridge />
-            
-            <SidebarSocialProof />
-            <SidebarLeaderboard />
-            <SidebarShopLeaderboard />
-          </div>
-        </div>
+      <div className="container">
 
         {/* Main content + right sidebar */}
         <div className="flex gap-8 xl:gap-10">

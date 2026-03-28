@@ -67,11 +67,6 @@ export default function RewardsProgram() {
       <CommunityNav />
 
       <div className="relative">
-        <div className="hidden lg:block absolute left-4 xl:left-8 top-8 w-[260px] z-10">
-          <div className="sticky top-24">
-            <CommunitySeoBridge />
-          </div>
-        </div>
         <div className="container py-8 md:py-12">
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
