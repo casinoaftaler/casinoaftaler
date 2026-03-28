@@ -138,13 +138,13 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
     e.preventDefault();
     setError("");
 
-    const validation = inviteAdminSchema.safeParse({ email, password });
+    const validation = inviteAdminSchema.safeParse({ email, password, role: selectedRole });
     if (!validation.success) {
       setError(validation.error.errors[0].message);
       return;
     }
 
-    createAdmin.mutate({ email, password });
+    createAdmin.mutate({ email, password, role: selectedRole });
   };
 
   const content = (
