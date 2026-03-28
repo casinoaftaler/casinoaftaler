@@ -167,6 +167,12 @@ const SpilForSjovGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">En af de mest undervurderede fordele ved demo-tilstand er muligheden for systematisk at lære casinospillets mekanik. I stedet for blot at trykke på "spin"-knappen kan du bruge demo-spil som et læringsværktøj, der giver dig dybere forståelse af, hvordan spillene fungerer. Her er en praktisk guide til at bruge demo-tilstand effektivt som læringsredskab.</p>
           
           <h3 className="text-xl font-bold mb-3">Spilleautomater: Forstå volatilitet og bonusfunktioner</h3>
+          <ReviewScreenshot
+            src={demosaldoIndsats}
+            alt="Demo-tilstand med virtuel saldo på 5.000 kr. og demoindsats på 20 kr. vist i spillets interface"
+            caption="I demo-tilstand starter du med en virtuel saldo – her 5.000 kr. – og kan frit justere din indsats uden risiko"
+            size="compact"
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">Når du tester en ny spilleautomat i demo-tilstand, bør du fokusere på flere nøgleelementer: <strong>Volatilitet</strong> – spil 100-200 spins og observer gevinstfrekvensen og gevinsternes størrelse. Høj volatilitet giver sjældne men store gevinster, lav volatilitet giver hyppige men små gevinster. <strong>Bonusfunktioner</strong> – observer, hvor ofte bonusrunder udløses, og hvad de typisk udbetaler. Nogle bonusrunder kan give massive gevinster (100x+ indsatsen), mens andre er mere beskedne. <strong>Betalingslinjer og indsatsstruktur</strong> – forstå, hvordan gevinstlinjerne fungerer, og hvad den optimale indsats er for at aktivere alle funktioner.</p>
           
           <h3 className="text-xl font-bold mb-3">Bordspil: Øv strategi systematisk</h3>
