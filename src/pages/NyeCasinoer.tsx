@@ -3,6 +3,9 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaLobby from "@/assets/screenshots/betinia-lobby.webp";
 import kapowRegistrering from "@/assets/screenshots/kapow-registrering.webp";
 import playkasinoForside from "@/assets/screenshots/playkasino-forside-velkomst.webp";
+import videoslotsIndbetaling from "@/assets/screenshots/videoslots-indbetaling.webp";
+import videoslotsLiveCasino from "@/assets/screenshots/videoslots-live-casino.webp";
+import videoslotsChatbot from "@/assets/screenshots/videoslots-chatbot.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
