@@ -229,7 +229,12 @@ export function AdminUserManagement({ embedded = false }: AdminUserManagementPro
                 <div className="flex items-center gap-3">
                   <Shield className="h-4 w-4 text-primary" />
                   <div>
-                    <p className="text-sm font-medium">{admin.email || admin.user_id}</p>
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-medium">{admin.email || admin.user_id}</p>
+                      <Badge variant={admin.role === "admin" ? "default" : "secondary"} className="text-[10px] px-1.5 py-0">
+                        {admin.role === "admin" ? "Admin" : "Moderator"}
+                      </Badge>
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       Oprettet: {new Date(admin.created_at).toLocaleDateString("da-DK")}
                     </p>
