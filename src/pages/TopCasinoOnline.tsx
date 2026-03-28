@@ -476,6 +476,13 @@ const TopCasinoOnline = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={playkasinoForside}
+          alt="PlayKasino forside med eksklusivt velkomsttilbud på 100% op til 500 kr. og navigation til spilleautomater, live casino og jackpots"
+          caption="PlayKasino.dk – forsiden med velkomsttilbud og spillekategorier (marts 2026)"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* Types of Casino Games */}
