@@ -3,6 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import unibetLiveCasino from "@/assets/screenshots/unibet-live-casino.webp";
+import udbydereLobbySS from "@/assets/screenshots/live-casino-udbydere-lobby.webp";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
