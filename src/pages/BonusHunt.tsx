@@ -393,6 +393,9 @@ export default function BonusHunt() {
 
           <div className="pb-12" />
         </div>
+          </div>
+          <ContentSidebar />
+        </div>
         </div>
     </>
   );

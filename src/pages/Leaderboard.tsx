@@ -586,6 +586,9 @@ export default function Leaderboard() {
 
           <div className="pb-12" />
         </div>
+          </div>
+          <ContentSidebar />
+        </div>
       </div>
     </>
   );
