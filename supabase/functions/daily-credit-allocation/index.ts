@@ -81,10 +81,7 @@ Deno.serve(async (req) => {
 
     const today = getTodayDanish();
     const BASE_DAILY_SPINS = 2000;
-    const MAX_SPINS_CAP = 10200;
-    const SUBSCRIBER_MAX_SPINS_CAP = 10300;
     const SUBSCRIBER_BONUS = 100;
-    const ABSOLUTE_MAX_CREDITS = 10000;
 
     // Get all users with a Twitch account (active users)
     const { data: profiles, error: profilesError } = await supabase
