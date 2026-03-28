@@ -559,6 +559,24 @@ const OmTeamet = () => {
                 Se Niklas – Finansøkonom <ArrowRight className="ml-1 h-3.5 w-3.5" />
               </Link>
             </div>
+            {/* Frederik */}
+            <div className="rounded-xl border border-border bg-card p-5">
+              <Link to="/forfatter/frederik" className="group">
+                <div className="flex items-center gap-3 mb-3">
+                  <img src={frederikImage} alt="Frederik – Streamer" className="h-12 w-12 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors" width={48} height={48} loading="lazy" />
+                  <div>
+                    <p className="font-semibold group-hover:text-primary transition-colors">Frederik</p>
+                    <p className="text-xs text-muted-foreground">Streamer & Bonustester</p>
+                  </div>
+                </div>
+              </Link>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Tester <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">casino bonusser</Link> live på stream og skaber engagerende indhold på <Link to="/community/slots" className="text-primary underline hover:text-primary/80">Twitch</Link> og YouTube. Streamer med 4+ års erfaring.
+              </p>
+              <Link to="/forfatter/frederik" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                Se Frederik – Streamer <ArrowRight className="ml-1 h-3.5 w-3.5" />
+              </Link>
+            </div>
           </div>
         </section>
 
