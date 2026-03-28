@@ -7,6 +7,7 @@ import videoslotsIndbetaling from "@/assets/screenshots/videoslots-indbetaling.w
 import videoslotsLiveCasino from "@/assets/screenshots/videoslots-live-casino.webp";
 import videoslotsChatbot from "@/assets/screenshots/videoslots-chatbot.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 
 import { AuthorBio } from "@/components/AuthorBio";
