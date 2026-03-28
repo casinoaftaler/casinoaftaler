@@ -56,6 +56,8 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
+import GuideHeroImage from "@/components/GuideHeroImage";
+import stickyBonusHero from "@/assets/heroes/sticky-bonus-hero.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -165,6 +167,8 @@ const StickyBonus = () => {
         <AuthorMetaBar author="niklas" readTime="22 Min." />
 
         <SnippetAnswer answer="En sticky bonus sammenblander din indbetaling og bonusmidler til én saldo. Over 80% af danske bonusser er sticky – de giver mere spillekapital, men kræver fuld omsætning før udbetaling." />
+
+        <GuideHeroImage src={stickyBonusHero} alt="Sticky Bonus – casino chips låst med kæde og hængelås foran et roulette-hjul" />
 
         <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["betinia", "spilleautomaten", "campobet"]} />
 
