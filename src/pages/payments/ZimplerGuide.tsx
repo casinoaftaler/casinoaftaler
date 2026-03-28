@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import { PaymentMethodPage } from "./PaymentMethodPageTemplate";
-import { ReviewScreenshot } from "@/components/ReviewScreenshot";
-import mrvegasBetaling from "@/assets/screenshots/mrvegas-betaling.webp";
 import zimplerHero from "@/assets/heroes/zimpler-hero.jpg";
 
 const ZimplerGuide = () => {
@@ -105,12 +103,6 @@ const ZimplerGuide = () => {
                <p className="mb-4 text-muted-foreground leading-relaxed">
                  Vi testede Zimpler som betalingsmetode på tre danske casinoer med Spillemyndighedens licens i februar 2026. Testen blev gennemført med en Nordea-bankkonto og MitID-appen som godkendelsesmetode. Vi fokuserede på indbetalingshastighed, udbetalingstid, brugeroplevelse på mobil og bonuskvalificering.
                </p>
-               <ReviewScreenshot
-                 src={mrvegasBetaling}
-                 alt="MrVegas betalingsoversigt med tilgængelige ind- og udbetalingsmetoder på dansk casino"
-                 caption="MrVegas' betalingsoversigt – her ser du de tilgængelige metoder, inklusiv mulighed for bankoverførsel via Zimpler"
-                 size="full"
-               />
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 <strong>Indbetalingstest:</strong> Zimpler var tilgængeligt som betalingsmetode på to af tre testede casinoer – en lavere dækning end{" "}
                 <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
