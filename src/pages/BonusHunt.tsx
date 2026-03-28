@@ -32,6 +32,7 @@ import { CommunityConversionCard } from "@/components/community/CommunityConvers
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
+import { ContentSidebar } from "@/components/ContentSidebar";
 import { useBonusHuntData, useLatestHuntNumber, useArchivedHuntNumbers } from "@/hooks/useBonusHuntData";
 import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { useBonusHuntSession, useBonusHuntSessionByHuntNumber, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
