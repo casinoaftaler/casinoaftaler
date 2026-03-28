@@ -1,65 +1,46 @@
 
 
-## Analyse: Content-sidebar mangler på community-sider
+## Bug: "Requested By" not showing — Name Mismatch
 
-### Nuværende situation
+### Root Cause
 
-**Community-sider (8 sider):** CommunityHub, Highlights, BonusHunt, Leaderboard, Shop, RewardsProgram, GameLibrary, SpinTheReel
+The `useBonusHuntSlotRequesters` hook stores a map keyed by `slot_requests.slot_name.toLowerCase()`. The table looks up with `slot.slot.toLowerCase()` — the name from the StreamSystem API.
 
-**Hvad de HAR:**
-- `CommunityNav` (horisontal tab-bar med 8 community-links)
-- Venstre sidebar (kun synlig ved 1540px+) med `CommunitySeoBridge` (6 money-page links) + `CommunityConversionCard` (1 link)
+These names often differ:
+- DB: `"Gates Of Olympus"` → key: `"gates of olympus"`
+- API: `"Gates of olympus super scatter"` → lookup: `"gates of olympus super scatter"`
 
-**Hvad de MANGLER:**
-- `ContentSidebar` med 8 kategorier og ~121 links til money-pages — den sidebar der sidder på ALLE 160+ content-sider
+No match → no requester shown. This affects ALL slots, not just 100x+.
 
-### Problemet i tal
+### Fix
 
-| Element | Money-pages | Community-sider |
-|---|---|---|
-| Links til money-pages via sidebar | ~121 per side | **7** (kun SeoBridge) |
-| Breakpoint for sidebar | xl (1280px) | 1540px (endnu færre ser den) |
-| Casino Ratings widget | Ja (top 10) | Nej |
-| Struktureret kategori-navigation | 8 kategorier | Ingen |
+**File: `src/components/bonus-hunt/BonusHuntSlotTable.tsx`** (line ~229)
 
-Community-siderne er trafikcenteret, men har **~95% færre** money-page links end content-siderne.
+Change the lookup from exact match to a **contains-based fallback**:
 
-### Anbefaling
+```typescript
+// Current (exact match only):
+const requester = requesterMap?.get(slot.slot.toLowerCase());
 
-Tilføj `ContentSidebar` som en **højre-sidebar** på alle community-sider — præcis som på money-pages. Den eksisterende venstre sidebar (SeoBridge + leaderboard) beholdes.
-
-### Plan
-
-**1. Opdater `CommunityPageLayout` med ContentSidebar**
-- Tilføj `ContentSidebar` som højre-kolonne i et flex-layout (samme mønster som `ContentPageLayout`)
-- Synlig fra `xl` breakpoint (1280px) — lavere end nuværende 1540px
-- Beholde eksisterende venstre sidebar med community-specifikt indhold
-
-**2. Opdater de 6 sider der IKKE bruger CommunityPageLayout**
-- BonusHunt, Leaderboard, Shop, RewardsProgram, GameLibrary, SpinTheReel
-- Tilføj `ContentSidebar` i deres eksisterende layout-struktur
-- Samme mønster: flex-container med `ContentSidebar` til højre
-
-**3. Resultat**
-- ~121 nye money-page links per community-side × 8 sider = **~968 nye interne links**
-- Casino Ratings widget synlig på alle community-sider
-- Konsistent navigation på tværs af hele sitet
-- Lavere breakpoint (xl/1280px) betyder flere brugere ser sidebaren
-
-### Teknisk tilgang
-
-```text
-Community side (ny struktur)
-┌─────────────────────────────────────────────────┐
-│  Hero + CommunityNav                            │
-├──────────┬──────────────────────┬────────────────┤
-│ Venstre  │   Main content      │  ContentSidebar│
-│ sidebar  │                     │  (money-pages) │
-│ (SEO     │                     │  ~121 links    │
-│  Bridge) │                     │  Casino ratings│
-│ @1540px  │                     │  @xl (1280px)  │
-└──────────┴──────────────────────┴────────────────┘
+// Fixed (exact match first, then contains fallback):
+const slotLower = slot.slot.toLowerCase();
+let requester = requesterMap?.get(slotLower);
+if (!requester && requesterMap) {
+  for (const [key, val] of requesterMap) {
+    if (slotLower.includes(key) || key.includes(slotLower)) {
+      requester = val;
+      break;
+    }
+  }
+}
 ```
 
-Enkelt implementering — vi genbruger den eksisterende `ContentSidebar`-komponent uden ændringer.
+This handles cases like:
+- `"gates of olympus"` matches `"gates of olympus super scatter"` (key included in slot name)
+- `"toshi video club"` matches `"toshi ways club"` won't match (correctly), but `"toshi video club"` matches itself
+
+### Why this is safe
+- The contains check only fires when exact match fails
+- Map iteration is tiny (typically <20 requesters per hunt)
+- No extra API calls or dependencies
 
