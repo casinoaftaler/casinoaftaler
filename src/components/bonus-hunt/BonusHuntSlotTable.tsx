@@ -223,6 +223,9 @@ export function BonusHuntSlotTable({ slots, huntNumber }: Props) {
                   <td className="px-3 py-2 font-mono text-xs">
                     {slot.opened ? <WinBadge win={slot.win} multiplier={slot.multiplier} /> : <WinBadge win={0} multiplier={0} />}
                   </td>
+                  <td className="px-3 py-2 text-xs text-muted-foreground hidden sm:table-cell">
+                    {requesterMap?.get(slot.slot.toLowerCase()) || ''}
+                  </td>
                 </tr>
               ))}
               {pageSlots.length === 0 && (
