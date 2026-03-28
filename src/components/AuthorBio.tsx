@@ -8,9 +8,10 @@ import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
 import niklasImage from "@/assets/niklas-forfatter.webp";
+import frederikImage from "@/assets/frederik-forfatter.webp";
 
 interface AuthorBioProps {
-  author?: "jonas" | "kevin" | "ajse" | "niklas";
+  author?: "jonas" | "kevin" | "ajse" | "niklas" | "frederik";
   /** Set to false if CommunityPromoSection is already rendered elsewhere on the page */
   showCommunity?: boolean;
 }
@@ -73,6 +74,20 @@ const authorData = {
     bio: "Niklas er finansøkonom og forsikringsekspert hos Casinoaftaler.dk med fokus på bonusøkonomi, EV-analyse, casino og skat samt finansiel risikostyring.",
     socials: [
       { href: "https://www.linkedin.com/in/niclas-finscet-hansen/", label: "LinkedIn" },
+    ],
+  },
+  frederik: {
+    name: "Frederik",
+    image: frederikImage,
+    alt: "Frederik Merkel – Streamer hos Casinoaftaler.dk",
+    link: "/forfatter/frederik",
+    badge: "Casino-streamer & bonustester",
+    role: "Fast streamer hos Casinoaftaler.dk",
+    bio: "Frederik er fast streamer hos Casinoaftaler.dk med fokus på test af casino bonusser og underholdende live gameplay. Hans energiske streamingstil og smittende humør gør ham til en favorit i community'et.",
+    socials: [
+      { href: "https://www.youtube.com/@MerkelSpins", label: "YouTube" },
+      { href: "https://www.twitch.tv/fedesvinsejer", label: "Twitch" },
+      { href: "https://www.instagram.com/frederikmerkel/", label: "Instagram" },
     ],
   },
 } as const;

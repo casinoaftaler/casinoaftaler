@@ -113,23 +113,31 @@ export const NIKLAS_SAME_AS = [
   "https://www.linkedin.com/in/niclas-finscet-hansen/",
 ];
 
+export const FREDERIK_SAME_AS = [
+  "https://www.youtube.com/@MerkelSpins",
+  "https://www.twitch.tv/fedesvinsejer",
+  "https://www.instagram.com/frederikmerkel/",
+];
+
 
 function buildPersonEntity(authorName: string, authorUrl: string, authorSameAs: string[]) {
   const isKevin = authorName === "Kevin";
   const isAjse = authorName === "Ajse";
   const isNiklas = authorName === "Niklas";
 
-  const nameMap: Record<string, string> = { Ajse: "Ajse", Kevin: "Kevin", Niklas: "Niklas" };
-  const imageMap: Record<string, string> = { Ajse: "ajse-avatar.webp", Kevin: "kevin-avatar.webp", Niklas: "niklas-avatar.webp" };
+  const nameMap: Record<string, string> = { Ajse: "Ajse", Kevin: "Kevin", Niklas: "Niklas", Frederik: "Frederik Merkel" };
+  const imageMap: Record<string, string> = { Ajse: "ajse-avatar.webp", Kevin: "kevin-avatar.webp", Niklas: "niklas-avatar.webp", Frederik: "frederik-avatar.webp" };
   const jobTitleMap: Record<string, string> = {
     Ajse: "Juridisk redaktør & casinoanalytiker",
     Kevin: "Casino Streamer & IT-medansvarlig",
     Niklas: "Finansøkonom & forsikringsekspert",
+    Frederik: "Casino Streamer & Bonustester",
   };
   const knowsAboutMap: Record<string, string[]> = {
     Ajse: ["dansk spillelovgivning", "online casino regulering", "ansvarligt spil", "casino compliance", "slot-markedet", "Gambling Law", "Casino Regulation", "Responsible Gambling"],
     Kevin: ["online casino", "casino streaming", "betalingsmetoder", "spiludviklere", "IT-sikkerhed"],
     Niklas: ["finansiel analyse", "forsikring", "risikostyring", "bankroll management", "casino og skat", "bonusøkonomi", "EV-analyse", "Financial Analysis", "Insurance"],
+    Frederik: ["online casino", "casino streaming", "casino bonus", "spillemaskiner", "bonustest"],
   };
 
   return {
@@ -200,7 +208,7 @@ export function buildArticleSchema(opts: {
 }) {
   const authorName = opts.authorName || "Jonas";
   const authorUrl = opts.authorUrl || `${SITE_URL}/forfatter/jonas`;
-  const sameAsMap: Record<string, string[]> = { Kevin: KEVIN_SAME_AS, Ajse: AJSE_SAME_AS, Niklas: NIKLAS_SAME_AS };
+  const sameAsMap: Record<string, string[]> = { Kevin: KEVIN_SAME_AS, Ajse: AJSE_SAME_AS, Niklas: NIKLAS_SAME_AS, Frederik: FREDERIK_SAME_AS };
   const authorSameAs = opts.authorSameAs ?? (sameAsMap[authorName] || JONAS_SAME_AS);
 
   // Source of truth order:

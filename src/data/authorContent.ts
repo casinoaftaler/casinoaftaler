@@ -31,7 +31,7 @@ export interface AuthorVideo {
   category: string;
 }
 
-export type AuthorId = "jonas" | "kevin" | "ajse" | "niklas";
+export type AuthorId = "jonas" | "kevin" | "ajse" | "niklas" | "frederik";
 
 // ─── Jonas – Articles ───────────────────────────────────────────────────
 
@@ -372,6 +372,8 @@ export function getAuthorArticles(author: AuthorId): AuthorArticle[] {
       return mergeWithSeoRoutes(ajseArticles, "ajse");
     case "niklas":
       return mergeWithSeoRoutes(niklasArticles, "niklas");
+    case "frederik":
+      return mergeWithSeoRoutes([], "frederik");
   }
 }
 
@@ -383,6 +385,7 @@ export function getAuthorReviewVideos(author: AuthorId): AuthorVideo[] {
     case "kevin":
     case "ajse":
     case "niklas":
+    case "frederik":
       return [];
   }
 }
@@ -395,6 +398,7 @@ export function getAuthorGuideVideos(author: AuthorId): AuthorVideo[] {
     case "kevin":
     case "ajse":
     case "niklas":
+    case "frederik":
       return [];
   }
 }

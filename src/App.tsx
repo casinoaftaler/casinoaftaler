@@ -244,6 +244,7 @@ const Forfatter = lazy(() => import("./pages/Forfatter"));
 const ForfatterKevin = lazy(() => import("./pages/ForfatterKevin"));
 const ForfatterAjse = lazy(() => import("./pages/ForfatterAjse"));
 const ForfatterNiklas = lazy(() => import("./pages/ForfatterNiklas"));
+const ForfatterFrederik = lazy(() => import("./pages/ForfatterFrederik"));
 const SaadanTesterVi = lazy(() => import("./pages/SaadanTesterVi"));
 const CasinoNyheder = lazy(() => import("./pages/CasinoNyheder"));
 const CasinoNyhedArticle = lazy(() => import("./pages/CasinoNyhedArticle"));
@@ -372,6 +373,7 @@ const App = () => (
                 <Route path="/forfatter/kevin" element={<ForfatterKevin />} />
                 <Route path="/forfatter/ajse" element={<ForfatterAjse />} />
                 <Route path="/forfatter/niklas" element={<ForfatterNiklas />} />
+                <Route path="/forfatter/frederik" element={<ForfatterFrederik />} />
                 <Route path="/saadan-tester-vi-casinoer" element={<SaadanTesterVi />} />
                 
                 <Route path="/kontakt" element={<Kontakt />} />
