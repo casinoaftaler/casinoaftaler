@@ -602,6 +602,13 @@ const NyeCasinoer = () => {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={videoslotsIndbetaling}
+          alt="Videoslots indbetalingsside med Dankort, Visa, MobilePay, Skrill, Neteller og paysafecard – beløb fra 100 til 100.000 DKK"
+          caption="Videoslots tilbyder et bredt udvalg af danske betalingsmetoder inkl. MobilePay og bankoverførsel med 0% gebyr"
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* ══════════════════════════════════════════════════════════════
