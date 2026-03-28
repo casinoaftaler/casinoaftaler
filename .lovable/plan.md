@@ -1,25 +1,41 @@
 
 
-## Plan: Add 4 CampoBet Screenshots to /casinoer Hub
+# Pip.dk Screenshots: /nye-casinoer/mitid + Strategisk Genbrug
 
-### What I'll Do
+## Oversigt
 
-1. **Convert images to WebP** – Copy all 4 uploaded PNGs, convert to optimized WebP (<150KB) and save in `src/assets/screenshots/`
+5 Pip.dk screenshots viser et komplet registreringsflow og er perfekte til MitID-guiden. De supplerer desuden det eksisterende Kapow-flow med et nyt brand, hvilket reducerer footprint-risiko.
 
-2. **Import and place screenshots** across varied sections (anti-footprint rule: no clustering):
+## Del 1: Placering på /nye-casinoer/mitid (alle 5 screenshots)
 
-| Screenshot | Content | Placement (section) | `size` |
+Siden har i dag kun 1 screenshot (Betinia MitID). Med Pip.dk får den 6 i alt – god visuel densitet.
+
+| Asset | Sektion | Size | Kontekst |
 |---|---|---|---|
-| Indbetaling (betalingsmetoder) | CampoBet kassesektion med MobilePay, Visa, PayPal etc. | Section 7: Betalingsmetoder (~line 462) | `"medium"` |
-| Udbydere (providers grid) | CampoBet udbyderoversigt med 80+ spiludviklere | Section 11: Spiludviklere (~line 589) | `"full"` |
-| Live Spil (live casino lobby) | CampoBet live casino med Roulette, Blackjack, Baccarat | Section 10: Spiltyper (~line 543) | `"full"` |
-| Ansvarligt spil | CampoBet ansvarligt spil-sektion | Section 12: Ansvarligt Spil (~line 620) | `"medium"` |
+| `pip-cpr-nummer.webp` | "Sådan fungerer MitID" (trin-for-trin) | compact | Efter trin-listen, illustrerer CPR-verifikation |
+| `pip-mitid-godkend.webp` | "Sådan fungerer MitID" (trin-for-trin) | compact | Efter CPR-screenshot, viser MitID-app godkendelse |
+| `pip-kontooplysninger.webp` | "Onboarding-oplevelsen" (Tier 2/3 kort) | medium | Viser traditionelt registreringsflow med formularfelter |
+| `pip-adgangskode.webp` | "Sikkerhed og databeskyttelse" | compact | Illustrerer adgangskode-oprettelse som ekstra sikkerhedslag |
+| `pip-velkomstbonus.webp` | "MitID + Trustly Pay N Play" | medium | Viser bonusvalg efter registrering |
 
-3. **Alt/caption metadata** – Each screenshot gets a unique, descriptive Danish alt text and caption referencing CampoBet.dk as source. First screenshot uses `eager` if above fold (none will be – all use `lazy`).
+## Del 2: Strategisk genbrug (max 3 sider pr. asset)
 
-### File Changes
-- **4 new assets** in `src/assets/screenshots/` (WebP format)
-- **1 file edited**: `src/pages/casinoer/CasinoerHub.tsx` – add 4 imports + 4 `<ReviewScreenshot>` placements
+Guardrail tillader 3 sider pr. screenshot. MitID-siden tæller som 1.
 
-This gives the page 5 total screenshots (1 Betano + 4 CampoBet) distributed across 5 different H2 sections, ensuring no clustering pattern.
+| Asset | Side 2 | Side 3 |
+|---|---|---|
+| `pip-mitid-godkend.webp` | `/mobil-casino` (MitID på mobil) | `/casino-uden-konto` (verifikation) |
+| `pip-kontooplysninger.webp` | `/velkomstbonus` (registreringsflow) | — |
+| `pip-velkomstbonus.webp` | `/casino-bonus` (bonusvalg ved oprettelse) | `/nye-casinoer/bonusser` |
+
+`pip-cpr-nummer.webp` og `pip-adgangskode.webp` forbliver eksklusive til MitID-siden (unikke kontekster).
+
+Dette giver Pip.dk som et nyt brand i rotation ved siden af Kapow, Betinia og Videoslots – ingen asset bruges på mere end 3 sider.
+
+## Teknisk
+
+- Konvertér 5 PNGs til WebP (ffmpeg, q82)
+- Gem som `src/assets/screenshots/pip-*.webp`
+- Importér i NyeCasinoerMitID.tsx + de 4 andre sider
+- Unikke alt/caption per side-kontekst
 
