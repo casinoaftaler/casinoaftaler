@@ -215,8 +215,8 @@ serve(async (req) => {
       const { summary, detail } = validHunts[i];
       const row = buildArchiveRow(huntNumber, summary, detail);
 
-      const { error: insertError } = await supabase.from('bonus_hunt_archives').insert(row);
-      if (insertError) { console.error(`Failed to insert hunt #${huntNumber}:`, insertError); continue; }
+      const { error: insertError } = await supabase.from('bonus_hunt_archives').upsert(row, { onConflict: 'hunt_number' });
+      if (insertError) { console.error(`Failed to upsert hunt #${huntNumber}:`, insertError); continue; }
 
       for (const slot of (detail.slots || [])) {
         const slotName = slot.slot?.name || 'Unknown';
