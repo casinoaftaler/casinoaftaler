@@ -3,6 +3,7 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import comeonKampagner from "@/assets/screenshots/comeon-kampagner.webp";
 import leovegasStickyBonus from "@/assets/screenshots/leovegas-sticky-bonus-velkomst.webp";
+import leovegasStickyMekanik from "@/assets/screenshots/leovegas-sticky-bonus-mekanik.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
@@ -292,9 +293,14 @@ const StickyBonus = () => {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={leovegasStickyMekanik}
+            alt="LeoVegas sticky bonus velkomstpakke – eksempel på hvordan en sticky bonus fungerer i praksis med omsætningskrav"
+            caption="LeoVegas – sticky bonus i praksis: bonussen forbliver låst indtil omsætningskravet er opfyldt"
+            size="medium"
+          />
         </section>
-
-
 
         <Separator className="my-10" />
 
@@ -483,14 +489,14 @@ const StickyBonus = () => {
               </CardContent>
             </Card>
           </div>
-        </section>
 
-        <ReviewScreenshot
-          src={leovegasStickyBonus}
-          alt="LeoVegas sticky velkomstbonus med 10x omsætningskrav på indbetaling og bonus – typisk eksempel på danske sticky bonus-vilkår"
-          caption="LeoVegas – sticky bonus med 10x omsætningskrav (d+b), maks. bonus 1.000 kr. og 60 dages gyldighedsperiode"
-          size="medium"
-        />
+          <ReviewScreenshot
+            src={leovegasStickyBonus}
+            alt="LeoVegas sticky velkomstbonus med 10x omsætningskrav på indbetaling og bonus – typisk eksempel på danske sticky bonus-vilkår"
+            caption="LeoVegas – sticky bonus med 10x omsætningskrav (d+b), maks. bonus 1.000 kr. og 60 dages gyldighedsperiode"
+            size="medium"
+          />
+        </section>
 
         <Separator className="my-10" />
 
