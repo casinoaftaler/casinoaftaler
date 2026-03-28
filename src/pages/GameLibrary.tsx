@@ -233,6 +233,9 @@ export default function GameLibrary() {
 
           <div className="pb-8" />
         </div>
+          </div>
+          <ContentSidebar />
+        </div>
       </div>
     </div>
   );
