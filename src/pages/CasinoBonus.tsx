@@ -306,12 +306,6 @@ const CasinoBonus = () => {
           size="full"
         />
 
-        <ReviewScreenshot
-          src={pipVelkomstbonus}
-          alt="Velkomstbonus-valg hos dansk casino med mulighed for at vælge mellem forskellige bonustilbud ved oprettelse"
-          caption="Bonusvalg ved kontooprettelse hos Pip.dk – vælg den velkomstbonus der passer din spillestil (kilde: pip.dk)"
-          size="medium"
-        />
 
         {/* ========== 3. GENNEMGANG AF ALLE BONUSTYPER ========== */}
         <section className="mb-12">
@@ -812,6 +806,13 @@ const CasinoBonus = () => {
               </CardContent>
             </Card>
           </div>
+
+          <ReviewScreenshot
+            src={pipVelkomstbonus}
+            alt="Bonusvalg-skærm hos dansk casino med valgmuligheder for velkomstbonus tilpasset forskellige spillerprofiler"
+            caption="Bonusvalg ved oprettelse hos Pip.dk – vælg den type der matcher din spillerprofil (kilde: pip.dk)"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />

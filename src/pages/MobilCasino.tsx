@@ -718,6 +718,13 @@ const MobilCasino = () => {
             dette krav uanset platform. Indbetalingsgrænser gælder også på mobil og kan
             justeres via casinoets kontoindstillinger.
           </p>
+
+          <ReviewScreenshot
+            src={pipFoersteIndbetaling}
+            alt="Mobilcasino velkomstbonus-popup med 100% bonus op til 2.000 kr. og mulighed for at vælge bonus eller spille uden"
+            caption="Velkomstbonus ved første indbetaling på mobil – vælg bonus eller spil uden med ét tryk (kilde: pip.dk)"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -794,13 +801,6 @@ const MobilCasino = () => {
               </div>
             </div>
           </div>
-
-          <ReviewScreenshot
-            src={pipFoersteIndbetaling}
-            alt="Første indbetaling på mobil casino med velkomstbonus og minimumsindbetaling via MitID-verificeret konto"
-            caption="Indbetalingsflow på mobil efter MitID-verifikation – velkomstbonus aktiveres automatisk (kilde: pip.dk)"
-            size="medium"
-          />
         </section>
 
         <Separator className="my-10" />
