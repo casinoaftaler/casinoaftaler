@@ -482,11 +482,11 @@ const OmTeamet = () => {
             Vores skribenter & redaktion
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            Casinoaftaler.dk drives af fire faste skribenter med klare roller og ansvarsområder.
+            Casinoaftaler.dk drives af fem faste skribenter med klare roller og ansvarsområder.
             Alle artikler, anmeldelser og guides produceres internt af redaktionen og faktatjekkes
             af en anden redaktør end forfatteren inden publicering.
           </p>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {/* Jonas */}
             <div className="rounded-xl border border-border bg-card p-5">
               <Link to="/forfatter/jonas" className="group">
