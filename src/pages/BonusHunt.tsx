@@ -326,6 +326,14 @@ export default function BonusHunt() {
                         couponOpen={session?.coupon_betting_open as boolean | undefined}
                       />
                     </TabsContent>
+                    {isLive && (
+                      <TabsContent value="request" forceMount className="data-[state=inactive]:hidden">
+                        <div className="rounded-xl border border-border bg-card p-4">
+                          <h3 className="text-sm font-semibold mb-3">Request en slot til hunten</h3>
+                          <SlotRequestForm />
+                        </div>
+                      </TabsContent>
+                    )}
                   </Tabs>
 
                   {!isLive && huntData && (
