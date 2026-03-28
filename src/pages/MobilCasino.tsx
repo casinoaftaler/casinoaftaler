@@ -794,6 +794,13 @@ const MobilCasino = () => {
               </div>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={pipFoersteIndbetaling}
+            alt="Første indbetaling på mobil casino med velkomstbonus og minimumsindbetaling via MitID-verificeret konto"
+            caption="Indbetalingsflow på mobil efter MitID-verifikation – velkomstbonus aktiveres automatisk (kilde: pip.dk)"
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />

@@ -764,6 +764,12 @@ const CasinoUdenKonto = () => {
             spille – uanset om du bruger Pay N Play eller traditionel registrering. Den hurtige
             adgang til spil gør det endnu vigtigere at have klare grænser på plads.
           </p>
+          <ReviewScreenshot
+            src={pipKontooplysninger}
+            alt="Registreringsformular hos dansk casino uden konto med automatisk udfyldte felter fra MitID-verifikation"
+            caption="Kontooplysninger udfyldes automatisk via bankverifikation – ingen manuel indtastning nødvendig (kilde: pip.dk)"
+            size="compact"
+          />
           <p className="text-muted-foreground leading-relaxed">
             Hvis du oplever problemer med dit spil, kontakt{" "}
             <Link to="/ansvarligt-spil/stopspillet" className="text-primary underline hover:text-primary/80">
