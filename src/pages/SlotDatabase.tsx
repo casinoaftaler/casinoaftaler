@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
+import { useDocumentedHuntCount } from "@/hooks/useBonusHuntData";
 import { slugifySlotName } from "@/lib/slugify";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { buildSlotCatalogSchema } from "@/lib/slotCatalogSchema";
@@ -218,6 +219,8 @@ export default function SlotDatabase() {
     return filtered.slice(start, start + ROWS_PER_PAGE);
   }, [filtered, currentPage]);
 
+  const { data: documentedHuntCount } = useDocumentedHuntCount();
+
   const stats = useMemo(() => {
     if (!slots) return { total: 0, providers: 0, avgRtp: 0, totalHunts: 0 };
     const providersSet = new Set(slots.map(s => s.provider).filter(p => p && p !== "Custom Slot" && p !== "Unknown"));
@@ -227,9 +230,9 @@ export default function SlotDatabase() {
       total: slots.length,
       providers: providersSet.size,
       avgRtp: avgRtp.toFixed(2),
-      totalHunts: slots.reduce((sum, s) => sum + s.bonus_count, 0),
+      totalHunts: documentedHuntCount || 0,
     };
-  }, [slots]);
+  }, [slots, documentedHuntCount]);
 
   const slotCount = stats.total || 1400;
   const slotCountLabel = `${slotCount}+`;
