@@ -493,6 +493,11 @@ serve(async (req) => {
       syncSlotCatalog(supabase, huntData, isNewHunt)
         .then(() => triggerEnrich(supabase))
         .catch(e => console.error('Slot catalog sync error:', e));
+
+      // Inject our hunt_number as visibleId so frontend shows correct position
+      if (huntNumber > 0 && data?.data) {
+        data.data.visibleId = huntNumber;
+      }
     }
 
     return new Response(JSON.stringify(data), {
