@@ -43,6 +43,7 @@ export function useAuth() {
   }, []);
 
   const checkRoles = async (userId: string) => {
+    setRolesLoading(true);
     const { data, error } = await supabase
       .from("user_roles")
       .select("role")
@@ -55,6 +56,7 @@ export function useAuth() {
       setIsAdmin(false);
       setIsModerator(false);
     }
+    setRolesLoading(false);
   };
 
   const signIn = async (email: string, password: string) => {
