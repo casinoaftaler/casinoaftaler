@@ -20,21 +20,22 @@ export function useAuth() {
         // Check roles after auth state change
         if (session?.user) {
           setTimeout(() => {
-            checkRoles(session.user.id);
+            checkRoles(session.user.id, { background: event === "TOKEN_REFRESHED" });
           }, 0);
         } else {
           setIsAdmin(false);
           setIsModerator(false);
+          setRolesLoading(false);
         }
       }
     );
 
     // THEN check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        checkRoles(session.user.id);
+        await checkRoles(session.user.id);
       }
       setLoading(false);
     });
@@ -42,8 +43,14 @@ export function useAuth() {
     return () => subscription.unsubscribe();
   }, []);
 
-  const checkRoles = async (userId: string) => {
-    setRolesLoading(true);
+  const checkRoles = async (
+    userId: string,
+    options: { background?: boolean } = {}
+  ) => {
+    if (!options.background) {
+      setRolesLoading(true);
+    }
+
     const { data, error } = await supabase
       .from("user_roles")
       .select("role")
@@ -56,7 +63,10 @@ export function useAuth() {
       setIsAdmin(false);
       setIsModerator(false);
     }
-    setRolesLoading(false);
+
+    if (!options.background) {
+      setRolesLoading(false);
+    }
   };
 
   const signIn = async (email: string, password: string) => {
@@ -86,6 +96,7 @@ export function useAuth() {
     setSession(null);
     setIsAdmin(false);
     setIsModerator(false);
+    setRolesLoading(false);
     
     const { error } = await supabase.auth.signOut();
     return { error };
