@@ -3,6 +3,8 @@ import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonus from "@/assets/screenshots/betinia-velkomstbonus-aktiv.webp";
 import pipVelkomstbonus from "@/assets/screenshots/pip-velkomstbonus.webp";
+import velkomstSpilLobby from "@/assets/screenshots/velkomstbonus-spil-lobby.webp";
+import velkomstKampagne from "@/assets/screenshots/velkomstbonus-kampagne.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
@@ -504,6 +506,12 @@ const Velkomstbonus = () => {
             bonusspil. Tjek altid de specifikke vilkår for den bonus, du
             aktiverer, så du undgår at spille på spil, der ikke tæller med.
           </p>
+          <ReviewScreenshot
+            src={velkomstSpilLobby}
+            alt="Populære spilleautomater i et dansk online casino – spil som Sweet Bonanza, Book of Dead og Le Bandit"
+            caption="Udvalget af populære spilleautomater hos Expekt – de fleste af disse spil kan spilles med bonuspenge fra din velkomstbonus."
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
@@ -730,6 +738,12 @@ const Velkomstbonus = () => {
           <p className="text-muted-foreground leading-relaxed">
             Husk også at tjekke, om velkomstbonussen er en <Link to="/sticky-bonus" className="text-primary underline hover:text-primary/80">sticky bonus</Link> eller en no-sticky bonus, da dette har stor betydning for, hvordan du kan bruge dine gevinster. De bedste velkomstbonusser i Danmark 2026 kombinerer en generøs matchprocent, lave <Link to="/omsaetningskrav" className="text-primary underline hover:text-primary/80">omsætningskrav</Link>, og no-sticky struktur – og vi opdaterer løbende vores liste, så du altid finder det bedste tilbud.
           </p>
+          <ReviewScreenshot
+            src={velkomstKampagne}
+            alt="Velkomsttilbud hos et dansk casino med op til 1.000 kr. i kontant bonus fordelt på tre tilbud"
+            caption="Eksempel på en velkomstbonus i 2026 – vælg mellem tre indbetalingsniveauer med 10x omsætningskrav og kontant udbetaling."
+            size="medium"
+          />
         </section>
 
         <Separator className="my-10" />
