@@ -160,13 +160,8 @@ export function SpinManagementSection() {
     mutationFn: async (amount: number) => {
       if (!users || users.length === 0) throw new Error("No users found");
 
-      const ABSOLUTE_MAX_CREDITS = 2000;
-
       const operations = users.map(async (user) => {
-        const newSpins = Math.min(
-          Math.max(0, user.spins_remaining + amount),
-          ABSOLUTE_MAX_CREDITS
-        );
+        const newSpins = Math.max(0, user.spins_remaining + amount);
 
         const spinResult = user.spin_record_id
           ? await supabase
