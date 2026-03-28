@@ -279,7 +279,7 @@ export default function BonusHunt() {
                 <div className="lg:col-span-2 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
                   <Tabs defaultValue="coupon" className="w-full">
                     <TabsList className={`w-full grid ${isLive ? 'grid-cols-5' : 'grid-cols-4'}`}>
-                      <TabsTrigger value="coupon">Kupon</TabsTrigger>
+                      <TabsTrigger value="coupon">KUPON</TabsTrigger>
                       <TabsTrigger value="stats">STATS</TabsTrigger>
                       <TabsTrigger value="gtw">GTW</TabsTrigger>
                       <TabsTrigger value="avgx">AVG X</TabsTrigger>
