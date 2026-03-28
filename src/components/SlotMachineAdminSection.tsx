@@ -1459,10 +1459,6 @@ export function SlotMachineAdminSection() {
             <BarChart3 className="h-3.5 w-3.5" />
             Samlet Statistik
           </TabsTrigger>
-          <TabsTrigger value="requests" className="gap-1">
-            <Gamepad2 className="h-3.5 w-3.5" />
-            Requests
-          </TabsTrigger>
           <TabsTrigger value="tournaments" className="gap-1">
             <Trophy className="h-3.5 w-3.5" />
             Turneringer
