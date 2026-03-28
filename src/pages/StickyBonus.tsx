@@ -295,9 +295,9 @@ const StickyBonus = () => {
         </section>
 
         <ReviewScreenshot
-          src={betiniaBonusvilkaar}
-          alt="Betinia bonusvilkår med omsætningskrav, gyldighed og sticky bonus-regler tydeligt beskrevet i casinoets vilkårssektion"
-          caption="Betinia – eksempel på sticky bonus-vilkår med detaljeret beskrivelse af omsætningskrav og restriktioner"
+          src={leovegasStickyBonus}
+          alt="LeoVegas velkomstbonus-side med sticky bonus op til 1.000 kr. og 10x omsætningskrav på deposit plus bonus"
+          caption="LeoVegas – eksempel på en klassisk sticky velkomstbonus med 10x omsætningskrav på indbetaling + bonus"
           size="full"
         />
 
