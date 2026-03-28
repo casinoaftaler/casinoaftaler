@@ -54,6 +54,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Casinospil",
     iconName: "dices",
+    hubTo: "/casinospil",
     links: [
       { to: "/casinospil", label: "Alle Casinospil" },
       { to: "/casinospil/spillemaskiner", label: "Spillemaskiner" },
