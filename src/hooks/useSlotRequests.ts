@@ -88,12 +88,12 @@ export function useCreateSlotRequest() {
 
   return useMutation({
     mutationFn: async (data: { slot_name: string; provider: string; is_custom: boolean }) => {
-      // Check for duplicate requests (any user, pending or bonus_hit)
+      // Check for duplicate requests (only pending ones block new requests)
       const { data: existing } = await supabase
         .from("slot_requests" as any)
         .select("id")
         .ilike("slot_name", data.slot_name)
-        .in("status", ["pending", "bonus_hit"])
+        .eq("status", "pending")
         .limit(1);
       if ((existing as any[])?.length) {
         throw new Error("Denne slot er allerede blevet requested");
