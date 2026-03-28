@@ -196,6 +196,13 @@ const HoejRTPGuide = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={betiniaLiveCasino}
+          alt="Live casino-udvalg med American Blackjack, Extended Blackjack, European Roulette Glam, Super Stake Roulette 5000x, Vegas Drops Roulette og American Blackjack Classic 2"
+          caption="Live casino bordspil hos Betinia.dk – Blackjack og Roulette varianter med høj RTP (marts 2026)"
+          size="full"
+        />
+
         <Separator className="my-10" />
 
         {/* Volatilitet */}
