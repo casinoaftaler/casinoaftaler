@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
+import { SidebarCasinoRatings } from "./SidebarCasinoRatings";
 
 const iconMap: Record<string, React.ElementType> = {
   crown: Crown,
