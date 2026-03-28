@@ -287,12 +287,6 @@ const LightningRouletteGuide = () => {
           <p className="text-muted-foreground leading-relaxed">
             <strong>Volatilitetssammenligning:</strong> Standardafvigelsen pr. spin i standard roulette (straight-up) er ca. 5,76 enheder. I Lightning Roulette stiger den til ca. 12-15 enheder afhængigt af multiplikator-fordelingen. Det betyder 2-3x højere udsving – du vil opleve længere tabsperioder og sjældnere men markant større gevinster. Denne profil appellerer til spillere med "lotto-mentalitet" – og frastøder spillere, der foretrækker jævne resultater.
           </p>
-          <ReviewScreenshot
-            src={danskespilRedDoorRoulette}
-            alt="Red Door Roulette hos Danske Spil med game show-format, roulettehjul og live dealer"
-            caption="Red Door Roulette – Evolutions game show-variant med multiplikatorer og bonus-runder bag den røde dør"
-            size="full"
-          />
         </section>
 
         <Separator className="my-10" />
