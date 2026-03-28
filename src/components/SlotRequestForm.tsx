@@ -195,13 +195,6 @@ export function SlotRequestForm() {
               </div>
             )}
 
-            {selectedSlot && (
-              <div className="flex items-center gap-2 text-sm bg-muted/30 rounded-lg p-2.5 border border-border">
-                <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
-                <span className="font-medium">{selectedSlot.slot_name}</span>
-                <span className="text-muted-foreground">af {selectedSlot.provider}</span>
-              </div>
-            )}
           </div>
         ) : (
           <div className="space-y-4">
