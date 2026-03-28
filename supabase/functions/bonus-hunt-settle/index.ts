@@ -12,8 +12,10 @@ serve(async (req) => {
   }
 
   try {
+    console.log('bonus-hunt-settle invoked');
     const authHeader = req.headers.get('Authorization');
     if (!authHeader?.startsWith('Bearer ')) {
+      console.log('No auth header found');
       return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers: corsHeaders });
     }
 
