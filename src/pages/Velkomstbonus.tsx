@@ -191,7 +191,7 @@ const Velkomstbonus = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="niklas" readTime="22 Min." />
 
         <SnippetAnswer answer="En velkomstbonus matcher din første indbetaling – typisk 100% op til 1.000 kr. med 10x omsætningskrav i Danmark. No-sticky versioner giver bedst reel værdi. Sammenlign vilkår nedenfor." />
