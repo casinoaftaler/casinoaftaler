@@ -174,9 +174,14 @@ const PragmaticPlayGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           En vigtig advarsel: tjek altid RTP-niveauet i spillets informationsmenu. Gates of Olympus ved 96,50% og Gates of Olympus ved 94,00% er teknisk set to forskellige spil fra et matematisk perspektiv, selvom de ser identiske ud. Forskellen over tid er substantiel og kan betyde forskellen mellem en acceptabel session og en unødvendigt dyr oplevelse. De RTP-værdier der angives nedenfor er standard-niveauerne – dit casino kan have konfigureret lavere.
         </p>
+        <ReviewScreenshot
+          src={pragmaticSlotKatalog}
+          alt="Pragmatic Play spillemaskiner sorteret i casinolobby – Sweet Bonanza, Gates of Olympus, Big Bass og 539 titler"
+          caption="Pragmatic Play har over 539 spillemaskiner tilgængelige i danske casinoer – her vist i et dansk casino med provider-filteret aktiveret."
+          size="full"
+        />
       </>
     }
-    games={[
       { name: "Gates of Olympus", desc: "Zeus-temaet slot med Tumble-mekanik og multiplikator-bomber op til 500x. Cluster pays på 6x5 grid. Bonus buy koster 100x indsatsen og giver 15 free spins med retrigger-mulighed. Multiplikatorer i free spins er additive – de kan akkumulere over en hel bonus-runde og appliceres på den samlede runde-gevinst. RTP: 96,50% (men tjek – kan være konfigureret lavere). Hitfrekvens: ~18%. Maks. gevinst: 5.000x. Zeus-temaet med lynild-animationer og græsk tempel-backdrop er Pragmatics mest ikoniske visuelle identitet. Bonusrunden kan swinge fra 5x til 500x+ retur afhængig af multiplikator-akkumulering.", highlight: "500x multiplikatorer – 5.000x maks." },
       { name: "Sweet Bonanza", desc: "Den originale Tumble-bestseller med cluster pays og multiplikator-bomber op til 100x. 6x5 grid med slik-tema der har defineret en hel franchise (8+ varianter). Bonus buy: 100x indsatsen. Sweet Bonanza er Pragmatics mest kopierede formel – Tumble + cluster + random multipliers – og udgangspunktet for alt der fulgte. RTP: 96,48% (konfigurerbar). Maks. gevinst: 21.175x. Slik-symbolerne med lyserøde og turkise farver skabte en visuel identitet der er øjeblikkeligt genkendelig. Free spins med multiplikator-bomber op til 100x kan generere kædegevinster med eksponentiel vækst – den matematiske kerne der gør spillet addiktivt.", highlight: "Franchise-grundlægger – 21.175x maks." },
       { name: "Big Bass Bonanza", desc: "Fiskeri-tema med Money Collect-funktion: fisherman-symboler samler pengefisk-værdier fra hele skærmen. Simpel men addiktiv mekanik der har genereret 12+ franchise-varianter. RTP: 96,71% (den højeste i Pragmatics portefølje). Medium-høj volatilitet. Bonus buy: 75x. Serien inkluderer Big Bass Splash (Tumble-variant), Amazon Xtreme og Floats My Boat. Money Collect-mekanikkens genialitet ligger i dens visuelle tilfredsstillelse: at se fisherman-symbolet bevæge sig hen over skærmen og 'samle' alle synlige pengeværdier skaber et dopamin-spike der er taktilt og umiddelbart – en af de mest veldesignede bonus-interaktioner i branchen.", highlight: "12+ franchise-varianter – 96,71% RTP" },
