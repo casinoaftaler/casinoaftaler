@@ -31,7 +31,7 @@ export interface AuthorVideo {
   category: string;
 }
 
-export type AuthorId = "jonas" | "kevin" | "ajse" | "niklas";
+export type AuthorId = "jonas" | "kevin" | "ajse" | "niklas" | "frederik";
 
 // ─── Jonas – Articles ───────────────────────────────────────────────────
 
