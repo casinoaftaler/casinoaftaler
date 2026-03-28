@@ -7,6 +7,8 @@ import {
   Dices,
   CreditCard,
   Gamepad2,
+  Tv,
+  Star,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
