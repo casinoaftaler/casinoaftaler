@@ -163,9 +163,9 @@ export function AuthorMetaBar({ author, showFactCheck = true, showVerified = fal
             <div className="flex items-center gap-2">
               <Badge
                 variant="secondary"
-                className="gap-1 relative overflow-hidden border-emerald-500/30 text-emerald-400 bg-emerald-950/40 before:absolute before:inset-0 before:bg-emerald-500/15 before:translate-x-[-100%] before:animate-[factcheck-sweep_1.2s_ease-out_0.3s_forwards]"
+                className="gap-1 relative overflow-hidden border-emerald-600/40 text-emerald-700 bg-emerald-100 dark:text-emerald-400 dark:bg-emerald-950/40 dark:border-emerald-500/30 before:absolute before:inset-0 before:bg-emerald-500/20 dark:before:bg-emerald-500/15 before:translate-x-[-100%] before:animate-[factcheck-sweep_1.2s_ease-out_0.3s_forwards]"
               >
-                <CheckCircle className="h-3.5 w-3.5 text-emerald-400" />
+                <CheckCircle className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
                 Faktatjekket
               </Badge>
               <Link to={checkerInfo.link} className="flex items-center gap-1.5 group">
