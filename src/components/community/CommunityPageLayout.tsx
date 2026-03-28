@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
 
+import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { ContentSidebar } from "@/components/ContentSidebar";
