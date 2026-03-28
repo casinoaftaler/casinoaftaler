@@ -153,9 +153,27 @@ Deno.serve(async (req) => {
           );
         }
 
+        // Keep admin UX consistent: if email already exists, also set the provided password
+        // so the created moderator/admin can immediately log in with the entered credentials.
+        const { error: updateExistingUserError } = await supabaseAdmin.auth.admin.updateUserById(
+          foundUserId,
+          {
+            password,
+            email_confirm: true,
+          }
+        );
+
+        if (updateExistingUserError) {
+          console.error("Error updating existing user password:", updateExistingUserError);
+          return new Response(
+            JSON.stringify({ error: "Bruger findes allerede, men adgangskoden kunne ikke opdateres" }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+
         userId = foundUserId;
         userEmail = email;
-        console.log(`Found existing user: ${userId}`);
+        console.log(`Found existing user and updated credentials: ${userId}`);
       } else {
         console.error("Error creating user:", createError);
         return new Response(
