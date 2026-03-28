@@ -96,6 +96,12 @@ const ApplePayGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Indbetaling:</strong> Log ind på dit casino i Safari (Apple Pay fungerer mest pålideligt i Safari på iOS). Gå til kassesektionen og vælg Apple Pay som betalingsmetode. Indtast beløbet, og en Apple Pay-dialog vises med dit standardkort. Bekræft med Face ID (dobbelttryk på sideknappen, se på telefonen) eller Touch ID. Transaktionen gennemføres inden for 2-5 sekunder, og din spillesaldo opdateres øjeblikkeligt.
           </p>
+          <ReviewScreenshot
+            src={applePayIndbetaling}
+            alt="Casino indbetalingsside med Apple Pay synlig under Mobil-betalingsmetoder sammen med MobilePay"
+            caption="Apple Pay vises typisk under 'Mobil' i casinoets kassesystem – her sammen med MobilePay og andre betalingsmetoder"
+            size="medium"
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Udbetaling:</strong> Ikke alle casinoer understøtter Apple Pay til udbetalinger. Hos dem der gør, returneres pengene til det kort, du indbetalte med, via standard Visa/Mastercard-refunderingsprocessen. Behandlingstiden er 1–3 hverdage. Hos casinoer uden Apple Pay-udbetaling bruges typisk{" "}
             <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link>{" "}
