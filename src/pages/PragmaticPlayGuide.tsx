@@ -3,6 +3,9 @@ import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award } from "lucide-react";
 import pragmaticPlayHero from "@/assets/heroes/pragmatic-play-hero.jpg";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import pragmaticLiveCasino from "@/assets/screenshots/pragmatic-play-live-casino.webp";
+import pragmaticSlotKatalog from "@/assets/screenshots/pragmatic-play-slot-katalog.webp";
 
 const PragmaticPlayGuide = () => (
   <ProviderPage
@@ -171,6 +174,12 @@ const PragmaticPlayGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           En vigtig advarsel: tjek altid RTP-niveauet i spillets informationsmenu. Gates of Olympus ved 96,50% og Gates of Olympus ved 94,00% er teknisk set to forskellige spil fra et matematisk perspektiv, selvom de ser identiske ud. Forskellen over tid er substantiel og kan betyde forskellen mellem en acceptabel session og en unødvendigt dyr oplevelse. De RTP-værdier der angives nedenfor er standard-niveauerne – dit casino kan have konfigureret lavere.
         </p>
+        <ReviewScreenshot
+          src={pragmaticSlotKatalog}
+          alt="Pragmatic Play spillemaskiner sorteret i casinolobby – Sweet Bonanza, Gates of Olympus, Big Bass og 539 titler"
+          caption="Pragmatic Play har over 539 spillemaskiner tilgængelige i danske casinoer – her vist i et dansk casino med provider-filteret aktiveret."
+          size="full"
+        />
       </>
     }
     games={[
@@ -195,6 +204,12 @@ const PragmaticPlayGuide = () => (
         <p className="text-muted-foreground leading-relaxed">
           Bingo-divisionen opererer under separate licenser målrettet det britiske marked (Gambling Commission) og latinamerikanske jurisdiktioner. Compliance-afdelingen har over 200 medarbejdere – en af branchens største – hvilket afspejler den regulatoriske kompleksitet ved at operere i 20+ jurisdiktioner simultant med tre produktvertikaler.
         </p>
+        <ReviewScreenshot
+          src={pragmaticLiveCasino}
+          alt="Pragmatic Play live casino-spil – Free Bet Blackjack, The Bingo Spot og Mega Roulette 3000"
+          caption="Pragmatic Plays live casino-division tilbyder over 100 borde inkl. Free Bet Blackjack, The Bingo Spot og Mega Roulette 3000 – alle streamet fra deres studier i Bukarest."
+          size="full"
+        />
       </>
     }
     pros={[
