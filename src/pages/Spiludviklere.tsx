@@ -341,7 +341,7 @@ const Spiludviklere = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="30 Min." />
 
         <SnippetAnswer answer="Valget af spiludvikler påvirker direkte dine vinderchancer. NetEnt og Play'n GO tilbyder højest RTP (96-97%), mens Nolimit City og Hacksaw Gaming giver størst gevinstpotentiale med høj volatilitet." />
