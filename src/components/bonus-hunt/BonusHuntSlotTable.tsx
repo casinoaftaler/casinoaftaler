@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Search, ArrowUpDown, ChevronDown, Trophy, Ro
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { BonusHuntSlotPopoverContent } from "./BonusHuntSlotInfoDialog";
 import { useProviderOverrides, useSlotCatalogMap } from "@/hooks/useSlotCatalog";
+import { useBonusHuntSlotRequesters } from "@/hooks/useSlotRequests";
 import type { BonusHuntSlot } from "@/hooks/useBonusHuntData";
 
 const PROVIDER_SLUG_MAP: Record<string, string> = {
@@ -41,6 +42,7 @@ function getSlotSlug(slotName: string): string {
 
 interface Props {
   slots: BonusHuntSlot[];
+  huntNumber?: number;
 }
 
 type SortKey = 'index' | 'slot' | 'bet' | 'multiplier' | 'win';
@@ -80,7 +82,7 @@ function WinBadge({ win, multiplier }: { win: number; multiplier: number }) {
   );
 }
 
-export function BonusHuntSlotTable({ slots }: Props) {
+export function BonusHuntSlotTable({ slots, huntNumber }: Props) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
   const [sortKey, setSortKey] = useState<SortKey>('index');
@@ -89,6 +91,7 @@ export function BonusHuntSlotTable({ slots }: Props) {
 
   const { data: overrides } = useProviderOverrides();
   const { data: catalogData } = useSlotCatalogMap();
+  const { data: requesterMap } = useBonusHuntSlotRequesters(huntNumber);
   const catalogProviderMap = catalogData?.providerMap;
   const catalogNameMap = catalogData?.nameMap;
 
@@ -172,6 +175,9 @@ export function BonusHuntSlotTable({ slots }: Props) {
                     </span>
                   </th>
                 ))}
+                <th className="px-3 py-2.5 text-left font-medium text-muted-foreground text-xs hidden sm:table-cell">
+                  Requested By
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border/50">
@@ -217,10 +223,13 @@ export function BonusHuntSlotTable({ slots }: Props) {
                   <td className="px-3 py-2 font-mono text-xs">
                     {slot.opened ? <WinBadge win={slot.win} multiplier={slot.multiplier} /> : <WinBadge win={0} multiplier={0} />}
                   </td>
+                  <td className="px-3 py-2 text-xs text-muted-foreground hidden sm:table-cell">
+                    {requesterMap?.get(slot.slot.toLowerCase()) || ''}
+                  </td>
                 </tr>
               ))}
               {pageSlots.length === 0 && (
-                <tr><td colSpan={5} className="px-3 py-8 text-center text-muted-foreground">Ingen slots fundet</td></tr>
+                <tr><td colSpan={6} className="px-3 py-8 text-center text-muted-foreground">Ingen slots fundet</td></tr>
               )}
             </tbody>
           </table>

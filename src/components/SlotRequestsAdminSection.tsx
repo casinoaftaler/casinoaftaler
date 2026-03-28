@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useAllSlotRequests, useUpdateSlotRequestStatus } from "@/hooks/useSlotRequests";
+import { useBonusHuntSession } from "@/hooks/useBonusHuntSession";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
@@ -23,7 +24,9 @@ export function SlotRequestsAdminSection() {
   const { data: requests, isLoading } = useAllSlotRequests();
   const updateStatus = useUpdateSlotRequestStatus();
   const { data: siteSettings } = useSiteSettings();
+  const { data: session } = useBonusHuntSession();
   const queryClient = useQueryClient();
+  const activeHuntNumber = session?.hunt_number;
 
   const currentMax = parseInt(siteSettings?.max_pending_slot_requests ?? "1", 10);
   const [maxLimit, setMaxLimit] = useState(currentMax);
@@ -48,7 +51,7 @@ export function SlotRequestsAdminSection() {
   };
 
   const handleAction = (requestId: string, userId: string, status: string, awardCredits?: boolean) => {
-    updateStatus.mutate({ requestId, status, userId, awardCredits });
+    updateStatus.mutate({ requestId, status, userId, awardCredits, huntNumber: awardCredits ? activeHuntNumber : undefined });
   };
 
   const pendingRequests = requests?.filter(req => req.status === "pending") ?? [];

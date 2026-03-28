@@ -1,0 +1,1 @@
+ALTER TABLE public.slot_requests ADD COLUMN hunt_number integer;

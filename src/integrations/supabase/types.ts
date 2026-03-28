@@ -2200,6 +2200,7 @@ export type Database = {
           admin_note: string | null
           created_at: string
           credits_awarded: number
+          hunt_number: number | null
           id: string
           is_custom: boolean
           provider: string
@@ -2212,6 +2213,7 @@ export type Database = {
           admin_note?: string | null
           created_at?: string
           credits_awarded?: number
+          hunt_number?: number | null
           id?: string
           is_custom?: boolean
           provider: string
@@ -2224,6 +2226,7 @@ export type Database = {
           admin_note?: string | null
           created_at?: string
           credits_awarded?: number
+          hunt_number?: number | null
           id?: string
           is_custom?: boolean
           provider?: string
