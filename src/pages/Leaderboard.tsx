@@ -501,7 +501,7 @@ export default function Leaderboard() {
       <CommunityNav />
 
       <div className="container relative">
-        {/* Sidebar – positioned outside content flow like Bonus Hunt */}
+        {/* Left sidebar – positioned outside content flow */}
         <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-6">
           <div className="sticky top-24 h-fit flex flex-col gap-4">
             <CommunitySeoBridge />
@@ -512,6 +512,9 @@ export default function Leaderboard() {
           </div>
         </div>
 
+        {/* Main content + right sidebar */}
+        <div className="flex gap-8 xl:gap-10">
+          <div className="min-w-0 flex-1">
         <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
 
           {/* Main content */}
