@@ -120,7 +120,7 @@ const NyeCasinoerMitID = () => {
 
           <ReviewScreenshot
             src={pipCprNummer}
-            alt="Pip.dk registreringsformular med CPR-nummer felt til MitID-verifikation af dansk spiller"
+            alt="CPR-nummer indtastning ved Pip.dk registrering – første trin i MitID-verifikation"
             caption="CPR-verifikation hos Pip.dk – det første trin i MitID-registreringsflowet (kilde: pip.dk)"
             size="compact"
           />
