@@ -195,6 +195,13 @@ const NyeCasinoerDanskLicens = () => {
               <p className="text-xs text-muted-foreground">licensperiode</p>
             </div>
           </div>
+
+          <ReviewScreenshot
+            src={spillemyndighedenSpilleverandor}
+            alt="Spillemyndighedens side om spilleverandør-tilladelser med ansøgningsblanketter og krav til licensansøgning i Danmark"
+            caption="Spillemyndighedens licensside – her kan operatører ansøge om tilladelse til at udbyde onlinekasino i Danmark (kilde: spillemyndigheden.dk)"
+            size="full"
+          />
         </section>
 
         <Separator className="my-10" />
