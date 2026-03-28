@@ -210,6 +210,13 @@ const BedsteNyeCasinoer = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={videoslotsChatbot}
+          alt="Videoslots chatbot på dansk med velkomstbesked og AI-drevet kundeservice via Ada"
+          caption="Videoslots tilbyder dansk chatbot-support døgnet rundt – et eksempel på proaktiv kundeservice hos nye casinoer"
+          size="compact"
+        />
+
         <Separator className="my-10" />
 
         <section className="mb-12">
