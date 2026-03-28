@@ -763,7 +763,7 @@ function AdminDashboard() {
   const [editingCasino, setEditingCasino] = useState<Casino | null>(null);
   const [orderedCasinos, setOrderedCasinos] = useState<Casino[]>([]);
   const [headerIconUrl, setHeaderIconUrl] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState("content");
+  const [activeTab, setActiveTab] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [contentSubTab, setContentSubTab] = useState("casinos");
 
