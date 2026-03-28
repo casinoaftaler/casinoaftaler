@@ -88,7 +88,7 @@ export function useCreateSlotRequest() {
 
   return useMutation({
     mutationFn: async (data: { slot_name: string; provider: string; is_custom: boolean }) => {
-      // Check for duplicate requests (only pending ones block new requests)
+      // Check for duplicate pending requests
       const { data: existing, error: checkError } = await supabase
         .from("slot_requests" as any)
         .select("id")
@@ -98,6 +98,29 @@ export function useCreateSlotRequest() {
       
       if (!checkError && (existing as any[])?.length > 0) {
         throw new Error("Denne slot er allerede blevet requested");
+      }
+
+      // Check if slot was already hit in the current active hunt
+      const { data: activeSession } = await supabase
+        .from("bonus_hunt_sessions" as any)
+        .select("hunt_number")
+        .eq("status", "active")
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (activeSession?.hunt_number) {
+        const { data: alreadyHit } = await supabase
+          .from("slot_requests" as any)
+          .select("id")
+          .ilike("slot_name", data.slot_name)
+          .eq("status", "bonus_hit")
+          .eq("hunt_number", activeSession.hunt_number)
+          .limit(1);
+
+        if ((alreadyHit as any[])?.length > 0) {
+          throw new Error("Denne slot er allerede blevet ramt i den aktive bonus hunt");
+        }
       }
 
       const { error } = await supabase.from("slot_requests" as any).insert({
