@@ -226,7 +226,16 @@ export function BonusHuntSlotTable({ slots, huntNumber }: Props) {
                   </td>
                   <td className="px-3 py-2 text-xs text-muted-foreground hidden sm:table-cell">
                     {(() => {
-                      const requester = requesterMap?.get(slot.slot.toLowerCase());
+                      const slotLower = slot.slot.toLowerCase();
+                      let requester = requesterMap?.get(slotLower);
+                      if (!requester && requesterMap) {
+                        for (const [key, val] of requesterMap) {
+                          if (slotLower.includes(key) || key.includes(slotLower)) {
+                            requester = val;
+                            break;
+                          }
+                        }
+                      }
                       if (!requester) return null;
                       const displayName = requester.displayName;
                       const initials = displayName?.slice(0, 2).toUpperCase() || '?';
