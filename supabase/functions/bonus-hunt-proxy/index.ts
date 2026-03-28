@@ -523,8 +523,8 @@ serve(async (req) => {
         .catch(e => console.error('Slot catalog sync error:', e));
 
       // Auto-match pending slot requests against current hunt slots
-      if (huntNumber > 0 && huntData?.data?.length > 0) {
-        const huntSlotNames = huntData.data.map((s: any) => (s.slot?.searchName || s.slot?.name || s.title || '').toLowerCase()).filter(Boolean);
+      if (huntNumber > 0 && Array.isArray(huntData?.slots) && huntData.slots.length > 0) {
+        const huntSlotNames = huntData.slots.map((s: any) => (s.slot?.searchName || s.slot?.name || s.title || '').toLowerCase()).filter(Boolean);
         if (huntSlotNames.length > 0) {
           (async () => {
             try {
@@ -542,13 +542,16 @@ serve(async (req) => {
                     credits_awarded: 200,
                   }).eq('id', req.id);
 
-                  // Award 200 credits
-                  const today = new Date().toLocaleDateString('da-DK', { timeZone: 'Europe/Copenhagen' }).split('.').reverse().join('-');
+                  // Award 200 credits — use proper ISO date with zero-padding
+                  const now = new Date();
+                  const today = `${now.toLocaleDateString('sv-SE', { timeZone: 'Europe/Copenhagen' })}`;
+
                   const { data: existing } = await supabase
                     .from('slot_spins')
                     .select('id, spins_remaining')
                     .eq('user_id', req.user_id)
                     .eq('date', today)
+                    .eq('game_id', 'shared')
                     .maybeSingle();
 
                   if (existing) {
@@ -560,6 +563,7 @@ serve(async (req) => {
                       user_id: req.user_id,
                       date: today,
                       spins_remaining: 200,
+                      game_id: 'shared',
                     });
                   }
 
