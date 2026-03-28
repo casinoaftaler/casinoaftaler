@@ -18,7 +18,6 @@ import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import ludomaniHero from "@/assets/heroes/ludomani-guide-hero.jpg";
 import {
-import { ContentPageLayout } from "@/components/ContentPageLayout";
   Shield,
   Clock,
   AlertTriangle,
@@ -43,6 +42,7 @@ import { ContentPageLayout } from "@/components/ContentPageLayout";
   UserX,
   HandHeart,
 } from "lucide-react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 // ────────────────────────────────────────────────────────────────
 // FAQ Data

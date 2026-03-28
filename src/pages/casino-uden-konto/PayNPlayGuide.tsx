@@ -17,11 +17,11 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import {
-import { ContentPageLayout } from "@/components/ContentPageLayout";
   Zap, Shield, Lock, Globe, Landmark, ArrowRight, CheckCircle, AlertTriangle,
   Clock, CreditCard, Eye, RefreshCw, BarChart3, Server, FileText, Smartphone,
   Users, Scale, TrendingUp, Ban,
 } from "lucide-react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const payNPlayFaqs: { question: string; answer: string | React.ReactNode }[] = [
   {

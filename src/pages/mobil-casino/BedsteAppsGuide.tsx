@@ -16,12 +16,12 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import {
-import { ContentPageLayout } from "@/components/ContentPageLayout";
   Smartphone, Shield, Clock, CheckCircle, ArrowRight, Zap, Star,
   TrendingUp, CreditCard, Gamepad2, Eye, Settings, Download, RefreshCw,
   Info, Trophy, BarChart3, Lock, Monitor, Wifi, Battery, AlertTriangle,
   HelpCircle, Globe, Bell, Search, Heart,
 } from "lucide-react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const faqs: { question: string; answer: string | React.ReactNode }[] = [
   {
