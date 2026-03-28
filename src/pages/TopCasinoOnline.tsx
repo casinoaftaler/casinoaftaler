@@ -774,6 +774,13 @@ const TopCasinoOnline = () => {
           </div>
         </section>
 
+        <ReviewScreenshot
+          src={playkasinoIndbetaling}
+          alt="PlayKasino indbetalingsside med MobilePay, Visa, Mastercard, Skrill, Trustly og PayPal – alle med 0% gebyr og minimum 100 kr."
+          caption="Betalingsmetoder hos PlayKasino.dk – 6 indbetalingsmuligheder uden gebyrer (marts 2026)"
+          size="medium"
+        />
+
         <Separator className="my-10" />
 
         {/* Danish License */}
