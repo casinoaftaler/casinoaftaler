@@ -265,7 +265,7 @@ export default function BonusHunt() {
                     huntVideo && <BonusHuntVideoSection video={huntVideo} />
                   )}
                   {/* Slot table – directly under video */}
-                  <BonusHuntSlotTable slots={huntData.slots} />
+                  <BonusHuntSlotTable slots={huntData.slots} huntNumber={currentHuntNumber} />
                   {/* SEO Content – process overview, right under slots */}
                   <BonusHuntSeoContent />
                   {/* Host card – visible on mobile only (below slot table) */}
