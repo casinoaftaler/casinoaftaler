@@ -26,6 +26,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import type { ReactNode } from "react";
 import { Star, Zap, Check, X, Gamepad2, ShieldCheck, Trophy, Headphones, Wallet, Users, Target, CreditCard, Smartphone, TrendingUp } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -141,7 +142,7 @@ const SpilnuAnmeldelse = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="34 Min." />
         <CasinoReviewHero slug="spilnu" casinoName="Spilnu" />
         <ReviewMoneyLinks showMobilePay />
@@ -529,7 +530,7 @@ const SpilnuAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/spilnu" />
         <FAQSection faqs={spilnuFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

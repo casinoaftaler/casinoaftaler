@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import comeonKampagner from "@/assets/screenshots/comeon-kampagner.webp";
 import leovegasStickyBonus from "@/assets/screenshots/leovegas-sticky-bonus-velkomst.webp";
@@ -162,7 +163,7 @@ const StickyBonus = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="niklas" readTime="22 Min." />
 
         <SnippetAnswer answer="En sticky bonus sammenblander din indbetaling og bonusmidler til én saldo. Over 80% af danske bonusser er sticky – de giver mere spillekapital, men kræver fuld omsætning før udbetaling." />
@@ -944,7 +945,7 @@ const StickyBonus = () => {
         <RelatedGuides currentPath="/sticky-bonus" />
         <FAQSection title="Ofte stillede spørgsmål om sticky bonus" faqs={stickyFaqs} />
         <AuthorBio author="niklas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );

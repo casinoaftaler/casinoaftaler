@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -61,7 +62,7 @@ const CasinoOgSkatGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="niklas" readTime="22 min" />
 
 
@@ -280,7 +281,7 @@ const CasinoOgSkatGuide = () => {
         <FAQSection title="Ofte stillede spørgsmål om casino og skat" faqs={faqs} />
 
         <AuthorBio author="niklas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

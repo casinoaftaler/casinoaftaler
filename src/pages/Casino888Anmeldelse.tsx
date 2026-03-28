@@ -29,6 +29,7 @@ import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { Star, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Crown, Award, ShieldCheck, Headphones, TrendingUp, BarChart3 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -58,7 +59,7 @@ const Casino888Anmeldelse = () => {
           <p className="mb-6 text-lg text-white/80">Komplet anmeldelse af 888 Casino – en af online gamblings absolut ældste og mest respekterede brands. Eksklusive spil, generøst loyalitetsprogram og dansk licens siden branchens tidligste dage.</p>
         </div></div>
       </section>
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="34 Min." />
         <CasinoReviewHero slug="888-casino" casinoName="888 Casino" />
         <ReviewMoneyLinks />
@@ -339,7 +340,7 @@ const Casino888Anmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/888-casino" />
         <FAQSection faqs={faqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

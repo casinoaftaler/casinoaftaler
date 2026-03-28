@@ -17,6 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Smartphone, Shield, Clock, CheckCircle, ArrowRight, Zap, Star,
   TrendingUp, CreditCard, Gamepad2, Eye, Settings, Download, RefreshCw,
   Info, Trophy, BarChart3, Lock, Monitor, Wifi, Battery, AlertTriangle,
@@ -150,7 +151,7 @@ const AndroidCasinoGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" />
 
         <SnippetAnswer answer="De bedste Android casino apps tilbyder 1.500+ spil, biometrisk login og MobilePay-integration. Se vores test nedenfor." />
@@ -1038,7 +1039,7 @@ const AndroidCasinoGuide = () => {
         <RelatedGuides currentPath="/mobil-casino/android" />
         <FAQSection title="Ofte Stillede Spørgsmål om Android Casino" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

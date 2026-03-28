@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
@@ -105,7 +106,7 @@ const NyeCasinoerUdenRofus = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="20 Min." />
 
 
@@ -398,7 +399,7 @@ const NyeCasinoerUdenRofus = () => {
         <RelatedGuides currentPath="/nye-casinoer/uden-rofus" />
         <FAQSection title="Ofte stillede spørgsmål om casinoer uden ROFUS" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

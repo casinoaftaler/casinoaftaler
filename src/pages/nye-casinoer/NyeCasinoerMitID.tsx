@@ -7,6 +7,7 @@ import pipAdgangskode from "@/assets/screenshots/pip-adgangskode.webp";
 import pipVelkomstbonus from "@/assets/screenshots/pip-velkomstbonus.webp";
 import pipMitidGodkend from "@/assets/screenshots/pip-mitid-godkend.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
@@ -75,7 +76,7 @@ const NyeCasinoerMitID = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="18 Min." />
 
 
@@ -494,7 +495,7 @@ const NyeCasinoerMitID = () => {
         <RelatedGuides currentPath="/nye-casinoer/mitid" />
         <FAQSection title="Ofte stillede spørgsmål om MitID og nye casinoer" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

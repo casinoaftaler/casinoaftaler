@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import danskespilLiveBlackjack from "@/assets/screenshots/danskespil-live-blackjack-bord.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -181,7 +182,7 @@ const BlackjackGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="40 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
@@ -954,7 +955,7 @@ const BlackjackGuide = () => {
         <RelatedGuides currentPath="/casinospil/blackjack" />
         <FAQSection faqs={blackjackFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

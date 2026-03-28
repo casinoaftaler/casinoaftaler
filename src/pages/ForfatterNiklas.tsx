@@ -33,6 +33,7 @@ import {
   PiggyBank,
 } from "lucide-react";
 import niklasImage from "@/assets/niklas-forfatter.webp";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const faqs = [
   {
@@ -219,7 +220,7 @@ export default function ForfatterNiklas() {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="redaktionen" factCheckBy="ajse" readTime="5 Min." showVerified />
 
         {/* Profile card */}
@@ -608,7 +609,7 @@ export default function ForfatterNiklas() {
         <FAQSection title="Ofte stillede spørgsmål om Niklas" faqs={faqs} />
 
         <AuthorBio author="niklas" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
     </>
   );
 }

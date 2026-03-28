@@ -17,6 +17,7 @@ import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import rofusHero from "@/assets/heroes/rofus-guide-hero.jpg";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Shield,
   Clock,
   AlertTriangle,
@@ -219,7 +220,7 @@ const RofusGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="ajse" readTime="25 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.
@@ -1107,7 +1108,7 @@ const RofusGuide = () => {
         <RelatedGuides currentPath="/ansvarligt-spil/rofus" />
         <FAQSection title="Ofte Stillede Spørgsmål om ROFUS" faqs={rofusFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

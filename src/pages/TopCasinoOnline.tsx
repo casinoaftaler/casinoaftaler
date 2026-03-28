@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -240,7 +241,7 @@ const TopCasinoOnline = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="25 Min." />
 
         <SnippetAnswer answer="De 10 bedste online casinoer i Danmark 2026 er testet og rangeret efter bonus, udbetalingstid, spiludvalg og sikkerhed. Alle har dansk licens fra Spillemyndigheden, max 10x omsætningskrav og hurtige udbetalinger." />
@@ -1258,7 +1259,7 @@ const TopCasinoOnline = () => {
         <FAQSection title="Ofte stillede spørgsmål om online casino" faqs={topCasinoFaqs} />
 
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

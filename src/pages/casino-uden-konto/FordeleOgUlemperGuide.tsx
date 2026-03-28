@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Shield, AlertTriangle, CheckCircle, Scale, Lock, Eye, BarChart3,
   ArrowRight, FileText, Globe, TrendingUp, Users, Gavel, Ban,
   Clock, CreditCard, Smartphone, Zap, RefreshCw,
@@ -141,7 +142,7 @@ const FordeleOgUlemperGuide = () => {
       <div className="container py-6">
       </div>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="32 Min." />
 
 
@@ -543,7 +544,7 @@ const FordeleOgUlemperGuide = () => {
         <RelatedGuides currentPath="/casino-uden-konto/fordele-og-ulemper" />
         <FAQSection title="Ofte Stillede Spørgsmål" faqs={fordeleUlemperFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

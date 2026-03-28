@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import getluckyLiveCasino from "@/assets/screenshots/getlucky-live-casino.webp";
@@ -144,7 +145,7 @@ const LiveCasinoStrategiGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="28 Min." />
 
 
@@ -879,7 +880,7 @@ const LiveCasinoStrategiGuide = () => {
         <AuthorBio author="jonas" />
 
         <StickyCtaBySlug slug="spildansknu" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betanoLiveCasino from "@/assets/screenshots/betano-live-casino.webp";
@@ -130,7 +131,7 @@ const LiveBlackjackGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="22 Min." />
 
         <SnippetAnswer answer="Live blackjack med perfekt grundstrategi har en husfordel på kun 0,5%. Sidebets som Perfect Pairs og 21+3 øger variansen." />
@@ -689,7 +690,7 @@ const LiveBlackjackGuide = () => {
           faqs={faqs}
         />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );

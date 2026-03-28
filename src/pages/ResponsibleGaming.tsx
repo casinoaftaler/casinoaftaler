@@ -19,6 +19,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import rofusForsideMitid from "@/assets/screenshots/rofus-forside-mitid-login.webp";
 import rofusRegistrering from "@/assets/screenshots/rofus-registrering-udelukkelse.webp";
 import danskeSpilSundeSpillevaner from "@/assets/screenshots/danske-spil-sunde-spillevaner.webp";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const warningSignItems = [
   "Bruger flere penge, end du har råd til at tabe",
@@ -162,7 +163,7 @@ const ResponsibleGaming = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="ajse" readTime="14 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
@@ -487,7 +488,7 @@ const ResponsibleGaming = () => {
         <RelatedGuides currentPath="/ansvarligt-spil" />
         <FAQSection title="Ofte Stillede Spørgsmål om Ansvarligt Spil" faqs={responsibleGamingFaqs} />
         <AuthorBio author="ajse" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

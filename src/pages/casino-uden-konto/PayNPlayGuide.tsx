@@ -17,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Zap, Shield, Lock, Globe, Landmark, ArrowRight, CheckCircle, AlertTriangle,
   Clock, CreditCard, Eye, RefreshCw, BarChart3, Server, FileText, Smartphone,
   Users, Scale, TrendingUp, Ban,
@@ -131,7 +132,7 @@ const PayNPlayGuide = () => {
       <div className="container py-6">
       </div>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="34 Min." />
 
 
@@ -600,7 +601,7 @@ const PayNPlayGuide = () => {
         <RelatedGuides currentPath="/casino-uden-konto/pay-n-play" />
         <FAQSection title="Ofte Stillede Spørgsmål om Pay N Play" faqs={payNPlayFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

@@ -10,6 +10,7 @@ import { RatingBreakdown } from "@/components/RatingBreakdown";import { CASINO_S
 import { RelatedReviews } from "@/components/RelatedReviews";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 const linkClass = "text-primary underline hover:text-primary/80";
 const pokerstarsFaqs: { question: string; answer: ReactNode }[] = [
   { question: "Er PokerStars lovligt i Danmark?", answer: (<>Ja, PokerStars har dansk licens fra <Link to="/spillemyndigheden" className={linkClass}>Spillemyndigheden</Link> og er tilsluttet <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className={linkClass}>ROFUS</a>. PokerStars ejes af Flutter Entertainment, verdens største online gambling-koncern.</>) },
@@ -34,7 +35,7 @@ const PokerStarsAnmeldelse = () => {
           <p className="mb-6 text-lg text-white/80">Uafhængig anmeldelse af PokerStars – verdens største poker-platform, nu med fuldt casino og sportsvæddemål i Danmark.</p>
         </div></div>
       </section>
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="36 Min." />
         <CasinoReviewHero slug="pokerstars" casinoName="PokerStars" />
         <ReviewMoneyLinks />
@@ -317,7 +318,7 @@ const PokerStarsAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/pokerstars" />
         <FAQSection faqs={pokerstarsFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

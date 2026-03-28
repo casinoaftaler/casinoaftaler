@@ -26,6 +26,7 @@ import onecasinoForside from "@/assets/screenshots/onecasino-forside.webp";
 import onecasinoSpillemaskiner from "@/assets/screenshots/onecasino-spillemaskiner.webp";
 import onecasinoLiveCasino from "@/assets/screenshots/onecasino-live-casino.webp";
 import onecasinoIndbetaling from "@/assets/screenshots/onecasino-indbetaling.webp";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -133,7 +134,7 @@ const OneCasinoAnmeldelse = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="33 Min." />
         <CasinoReviewHero slug="one-casino" casinoName="One Casino" />
         <ReviewMoneyLinks />
@@ -515,7 +516,7 @@ const OneCasinoAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/one-casino" />
         <FAQSection faqs={oneFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

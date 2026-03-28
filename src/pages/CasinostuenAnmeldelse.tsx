@@ -27,6 +27,7 @@ import casinostuenForside from "@/assets/screenshots/casinostuen-forside.webp";
 import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillemaskiner.webp";
 import casinostuenLiveCasino from "@/assets/screenshots/casinostuen-live-casino.webp";
 import casinostuenShop from "@/assets/screenshots/casinostuen-shop.webp";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -57,7 +58,7 @@ const CasinostuenAnmeldelse = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="32 Min." />
         <CasinoReviewHero slug="casinostuen" casinoName="Casinostuen" />
         <ReviewMoneyLinks />
@@ -334,7 +335,7 @@ const CasinostuenAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/casinostuen" />
         <FAQSection faqs={casinostuenFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

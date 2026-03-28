@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/thunderstruck-ii-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -46,7 +47,7 @@ const ThunderstruckIIGuide = () => {
         description="Thunderstruck II analyse: Great Hall of Spins med fire bonusniveauer, 96,65 % RTP og 8.000× max win. Se EV-vurdering for danske spillere."
         jsonLd={[articleSchema, faqJsonLd]}
       />
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="16 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Thunderstruck II spillemaskine" loading="eager" />
@@ -147,7 +148,7 @@ const ThunderstruckIIGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/thunderstruck-ii" />
         <FAQSection title="Ofte Stillede Spørgsmål om Thunderstruck II" faqs={thunderstruckIIFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

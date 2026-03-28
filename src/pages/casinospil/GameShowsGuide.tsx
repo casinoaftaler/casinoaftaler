@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import lightningRouletteMultipliers from "@/assets/screenshots/xxxtreme-lightning-roulette-multipliers.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -123,7 +124,7 @@ const GameShowsGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="28 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
@@ -648,7 +649,7 @@ const GameShowsGuide = () => {
         <RelatedGuides currentPath="/live-casino/game-shows" />
         <FAQSection title="Ofte stillede spørgsmål om casino game shows" faqs={gameShowFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

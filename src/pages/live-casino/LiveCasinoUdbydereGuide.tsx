@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import unibetLiveCasino from "@/assets/screenshots/unibet-live-casino.webp";
@@ -133,7 +134,7 @@ const LiveCasinoUdbydereGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="26 Min." />
 
 
@@ -726,7 +727,7 @@ const LiveCasinoUdbydereGuide = () => {
         <AuthorBio author="jonas" />
 
         <StickyCtaBySlug slug="spildansknu" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

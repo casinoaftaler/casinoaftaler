@@ -29,6 +29,7 @@ import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, Target, Users, Search, TrendingUp } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -59,7 +60,7 @@ const GetLuckyAnmeldelse = () => {
           <p className="mb-6 text-lg text-white/80">Dybdegående anmeldelse af GetLucky Casino – en spilrig platform med dansk licens, loyalitetsprogram og over 1.500 casinospil fra topudbydere.</p>
         </div></div>
       </section>
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="34 Min." />
         <CasinoReviewHero slug="getlucky" casinoName="GetLucky Casino" />
         <ReviewMoneyLinks />
@@ -316,7 +317,7 @@ const GetLuckyAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/getlucky" />
         <FAQSection title="Ofte stillede spørgsmål om GetLucky Casino" faqs={getluckyFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

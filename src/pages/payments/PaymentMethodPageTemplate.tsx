@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { ReactNode } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 interface FAQ {
   question: string;
@@ -226,7 +227,7 @@ export function PaymentMethodPage({
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="22 Min." />
 
        <SnippetAnswer answer={snippetAnswer || `${name} på danske casinoer: Se vores dybdegående test af hastighed, sikkerhed og bonuskvalificering. Sammenlign med alternative betalingsmetoder nedenfor.`} />
@@ -495,7 +496,7 @@ export function PaymentMethodPage({
         <FAQSection title={`Ofte stillede spørgsmål om ${name}`} faqs={faqs} />
 
         <AuthorBio author="kevin" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
       {ctaCasinoSlug && <StickyCtaBySlug slug={ctaCasinoSlug} />}
     </>
   );

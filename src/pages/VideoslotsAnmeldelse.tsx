@@ -28,6 +28,7 @@ import { buildVideoSchema } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, AlertTriangle, Users, TrendingUp, Target, BarChart3, Swords } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -60,7 +61,7 @@ const VideoslotsAnmeldelse = () => {
         </div></div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="36 Min." />
         <CasinoReviewHero slug="videoslots" casinoName="Videoslots Casino" />
         <ReviewMoneyLinks />
@@ -316,7 +317,7 @@ const VideoslotsAnmeldelse = () => {
         <RelatedGuides currentPath="/casino-anmeldelser/videoslots" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

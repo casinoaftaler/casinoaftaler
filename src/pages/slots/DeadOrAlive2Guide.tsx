@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrvegasSpilleautomater from "@/assets/screenshots/mrvegas-spilleautomater.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/dead-or-alive-2-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -114,7 +115,7 @@ const DeadOrAlive2Guide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="26 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Dead or Alive 2 spillemaskine" loading="eager" />
@@ -334,7 +335,7 @@ const DeadOrAlive2Guide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/dead-or-alive-2" />
         <FAQSection title="Ofte Stillede Spørgsmål om Dead or Alive 2" faqs={doa2Faqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

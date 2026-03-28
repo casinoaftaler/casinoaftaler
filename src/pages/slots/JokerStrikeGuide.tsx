@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/joker-strike-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -46,7 +47,7 @@ const JokerStrikeGuide = () => {
         description="Komplet analyse af Joker Strike: 98,11 % RTP med Hi Roller, lav volatilitet, 456× max win og den mest effektive gennemspilningsslot."
         jsonLd={[articleSchema, faqJsonLd]}
       />
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="14 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Joker Strike spillemaskine" loading="eager" />
@@ -138,7 +139,7 @@ const JokerStrikeGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/joker-strike" />
         <FAQSection title="Ofte Stillede Spørgsmål om Joker Strike" faqs={jokerStrikeFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

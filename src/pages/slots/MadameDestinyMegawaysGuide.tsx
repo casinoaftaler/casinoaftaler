@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import betiniaMegaways from "@/assets/screenshots/betinia-megaways-filter.webp";
 import heroImage from "@/assets/heroes/madame-destiny-megaways-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -55,7 +56,7 @@ const MadameDestinyMegawaysGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="15 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Madame Destiny Megaways spillemaskine" loading="eager" />
@@ -155,7 +156,7 @@ const MadameDestinyMegawaysGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/madame-destiny-megaways" />
         <FAQSection title="Ofte Stillede Spørgsmål om Madame Destiny Megaways" faqs={madameDestinyMWFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );

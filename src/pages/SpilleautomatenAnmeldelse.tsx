@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
 import { ReviewMoneyLinks } from "@/components/ReviewMoneyLinks";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 
 const linkClass = "text-primary underline hover:text-primary/80";
@@ -129,7 +130,7 @@ const SpilleautomatenAnmeldelse = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="34 Min." />
 
         <CasinoReviewHero slug="spilleautomaten" casinoName="Spilleautomaten" />
@@ -829,7 +830,7 @@ const SpilleautomatenAnmeldelse = () => {
           <FAQSection title="Ofte stillede spørgsmål om Spilleautomaten" faqs={spilleautomatenFaqs} />
           <AuthorBio />
         </LazySection>
-      </div>
+      </ContentPageLayout>
       {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusAmount={casino.bonus_amount} bonusType={casino.bonus_type} freeSpins={casino.free_spins} wageringRequirements={casino.wagering_requirements} rating={casino.rating} logoUrl={casino.logo_url} isRecommended={casino.is_recommended} isHot={casino.is_hot} />}
     </>
   );

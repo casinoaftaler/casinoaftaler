@@ -37,6 +37,7 @@ import {
   Gamepad2,
 } from "lucide-react";
 import ajseImage from "@/assets/ajse-avatar.webp";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const faqs = [
   {
@@ -239,7 +240,7 @@ export default function ForfatterAjse() {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="redaktionen" factCheckBy="kevin" readTime="5 Min." showVerified />
 
         {/* Profile card */}
@@ -703,7 +704,7 @@ export default function ForfatterAjse() {
         <FAQSection title="Ofte stillede spørgsmål om Ajse" faqs={faqs} />
 
         <AuthorBio author="ajse" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
     </>
   );
 }

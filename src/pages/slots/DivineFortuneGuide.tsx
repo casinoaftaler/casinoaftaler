@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import mrgreenJackpots from "@/assets/screenshots/mrgreen-jackpots.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/divine-fortune-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -55,7 +56,7 @@ const DivineFortuneGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="19 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Divine Fortune spillemaskine" loading="eager" />
@@ -155,7 +156,7 @@ const DivineFortuneGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/divine-fortune" />
         <FAQSection title="Ofte Stillede Spørgsmål om Divine Fortune" faqs={divineFortuneFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

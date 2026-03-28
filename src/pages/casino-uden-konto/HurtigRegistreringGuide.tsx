@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   Zap, Shield, Clock, ArrowRight, CheckCircle, AlertTriangle,
   BarChart3, Globe, CreditCard, Users, FileText, TrendingUp, Smartphone,
   Lock, Eye, Scale, Ban, RefreshCw, Landmark,
@@ -131,7 +132,7 @@ const HurtigRegistreringGuide = () => {
       <div className="container py-6">
       </div>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="30 Min." />
 
 
@@ -691,7 +692,7 @@ const HurtigRegistreringGuide = () => {
         <RelatedGuides currentPath="/casino-uden-konto/hurtig-registrering" />
         <FAQSection title="Ofte Stillede Spørgsmål om Hurtig Registrering" faqs={hurtigRegFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

@@ -65,6 +65,7 @@ const faqs = [
 ];
 
 import { getAuthorArticles } from "@/data/authorContent";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 const kevinArticles = getAuthorArticles("kevin");
 
 const expertiseItems = [
@@ -212,7 +213,7 @@ export default function ForfatterKevin() {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="redaktionen" factCheckBy="jonas" readTime="5 Min." showVerified />
 
         {/* Profile card */}
@@ -662,7 +663,7 @@ export default function ForfatterKevin() {
         <FAQSection title="Ofte stillede spørgsmål om Kevin" faqs={faqs} />
 
         <AuthorBio author="kevin" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
     </>
   );
 }

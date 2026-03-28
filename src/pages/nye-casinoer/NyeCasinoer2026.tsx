@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
@@ -113,7 +114,7 @@ const NyeCasinoer2026 = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="22 Min." />
 
 
@@ -446,7 +447,7 @@ const NyeCasinoer2026 = () => {
         <RelatedGuides currentPath="/nye-casinoer/2026" />
         <FAQSection title="Ofte stillede spørgsmål om nye casinoer i 2026" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

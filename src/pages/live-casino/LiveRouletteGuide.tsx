@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import rouletteLobbyVarianter from "@/assets/screenshots/roulette-lobby-varianter.webp";
@@ -123,7 +124,7 @@ const LiveRouletteGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="20 Min." />
 
         <SnippetAnswer answer="Live roulette med europæisk hjul har 97,30% RTP. Fransk roulette med La Partage giver 98,65% på lige væddemål." />
@@ -544,7 +545,7 @@ const LiveRouletteGuide = () => {
         <RelatedGuides currentPath="/live-casino/roulette" />
         <FAQSection title="Ofte stillede spørgsmål om live roulette" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

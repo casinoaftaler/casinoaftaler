@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
@@ -129,7 +130,7 @@ const RouletteStrategiGuide = () => {
       </section>
 
       {/* ── BODY ── */}
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="30 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
@@ -526,7 +527,7 @@ const RouletteStrategiGuide = () => {
         <FAQSection faqs={strategiFaqs} />
 
         <AuthorBio author="jonas" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

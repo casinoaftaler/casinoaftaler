@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import baccaratLobby from "@/assets/screenshots/baccarat-lobby.webp";
@@ -112,7 +113,7 @@ const LiveBaccaratGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="18 Min." />
 
         <SnippetAnswer answer="Live baccarat har en af de laveste husforbedeler med 1,06% på banker-væddemål. Tilgængeligt på alle danske licenserede casinoer." />
@@ -620,7 +621,7 @@ const LiveBaccaratGuide = () => {
         <RelatedGuides currentPath="/live-casino/baccarat" />
         <FAQSection title="Ofte stillede spørgsmål om live baccarat" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

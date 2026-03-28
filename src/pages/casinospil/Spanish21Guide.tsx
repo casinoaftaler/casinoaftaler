@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -111,7 +112,7 @@ const Spanish21Guide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="17 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
@@ -291,7 +292,7 @@ const Spanish21Guide = () => {
         <RelatedGuides currentPath="/casinospil/blackjack/spanish-21" />
         <FAQSection faqs={faqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

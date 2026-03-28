@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -112,7 +113,7 @@ export default function MartingaleRouletteGuide() {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="40 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
@@ -821,7 +822,7 @@ export default function MartingaleRouletteGuide() {
         <RelatedGuides currentPath="/casinospil/roulette/martingale-roulette" />
         <FAQSection faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

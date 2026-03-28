@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import stakeForside from "@/assets/screenshots/stake-forside.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/razor-shark-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -107,7 +108,7 @@ const RazorSharkGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="24 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Razor Shark spillemaskine" loading="eager" />
@@ -339,7 +340,7 @@ const RazorSharkGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/razor-shark" />
         <FAQSection title="Ofte Stillede Spørgsmål om Razor Shark" faqs={razorSharkFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

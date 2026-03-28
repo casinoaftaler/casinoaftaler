@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Scale, Shield, FileCheck, AlertTriangle, Globe, BookOpen, User, CalendarDays, Clock, CheckCircle, Landmark, Gavel, Lock, Eye, Users, Phone, Ban } from "lucide-react";
@@ -180,7 +181,7 @@ const Spillemyndigheden = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="ajse" readTime="12 Min." showAffiliateDisclaimer={false} />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Juridisk gennemgået og opdateret af Ajse, juridisk redaktør hos Casinoaftaler.dk.</p>
 
@@ -464,7 +465,7 @@ const Spillemyndigheden = () => {
         <RelatedGuides currentPath="/spillemyndigheden" />
         <FAQSection title="Ofte Stillede Spørgsmål om Spillemyndigheden" faqs={spillemyndighedenFaqs} />
         <AuthorBio author="ajse" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );

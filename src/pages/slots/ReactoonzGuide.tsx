@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/reactoonz-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -112,7 +113,7 @@ const ReactoonzGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="20 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Reactoonz spillemaskine" loading="eager" />
@@ -532,7 +533,7 @@ const ReactoonzGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/reactoonz" />
         <FAQSection title="Ofte Stillede Spørgsmål om Reactoonz" faqs={reactoonzFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );

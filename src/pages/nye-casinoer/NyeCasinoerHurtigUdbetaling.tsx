@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import spildansknuIndbetaling from "@/assets/reviews/spildansknu-indbetaling.webp";
 import kapowMitidGodkendt from "@/assets/screenshots/kapow-mitid-godkendt.webp";
@@ -106,7 +107,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="18 Min." />
 
 
@@ -516,7 +517,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
         <RelatedGuides currentPath="/nye-casinoer/hurtig-udbetaling" />
         <FAQSection title="Ofte stillede spørgsmål om hurtige udbetalinger" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

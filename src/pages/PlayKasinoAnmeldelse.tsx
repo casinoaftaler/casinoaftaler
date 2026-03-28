@@ -33,6 +33,7 @@ import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.webp";
 import playkasionBordspil from "@/assets/screenshots/playkasino-bordspil.webp";
 import playkasinoIndbetaling from "@/assets/screenshots/playkasino-indbetaling.webp";
 import {
+import { ContentPageLayout } from "@/components/ContentPageLayout";
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   HelpCircle, User, CalendarDays, BookOpen, Smartphone, Headphones,
   Gamepad2, Wallet, TrendingUp, Award, Zap, RotateCcw, Check, X,
@@ -195,7 +196,7 @@ const PlayKasinoAnmeldelse = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="58 Min." />
 
         <CasinoReviewHero slug="playkasino" casinoName="PlayKasino" />
@@ -1426,7 +1427,7 @@ const PlayKasinoAnmeldelse = () => {
           <FAQSection title="Ofte stillede spørgsmål om PlayKasino" faqs={playkasinoFaqs} />
           <AuthorBio />
         </LazySection>
-      </div>
+      </ContentPageLayout>
       {casino && <StickyCTA casinoSlug={casino.slug} casinoName={casino.name} bonusAmount={casino.bonus_amount} bonusType={casino.bonus_type} freeSpins={casino.free_spins ?? ""} wageringRequirements={casino.wagering_requirements} rating={casino.rating} logoUrl={casino.logo_url} isRecommended={casino.is_recommended} isHot={casino.is_hot} />}
     </>
   );

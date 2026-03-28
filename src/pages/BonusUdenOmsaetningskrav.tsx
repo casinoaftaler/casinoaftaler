@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import getluckyKampagner from "@/assets/screenshots/getlucky-kampagner.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -166,7 +167,7 @@ const BonusUdenOmsaetningskrav = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="niklas" readTime="18 Min." />
 
         <SnippetAnswer answer="Bonus uden omsætningskrav giver 100% gevinstkonvertering – du hæver gevinster direkte. Gevinstloftet (typisk 500-2.000 kr.) er den reelle begrænsning, ikke omsætningen." />
@@ -765,7 +766,7 @@ const BonusUdenOmsaetningskrav = () => {
         <FAQSection title="Tekniske spørgsmål om omsætningsfrie bonusser" faqs={faqs} />
 
         <AuthorBio author="niklas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

@@ -39,6 +39,7 @@ import {
 } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const partnerFaqs = [
   {
@@ -138,7 +139,7 @@ const PragmaticPlayPartner = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="30 min" />
 
         {/* ═══════════════════════════════════════════════════════════
@@ -921,7 +922,7 @@ const PragmaticPlayPartner = () => {
         <RelatedGuides currentPath="/pragmatic-play-partner" maxLinks={5} />
 
         <AuthorBio author="jonas" showCommunity={false} />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

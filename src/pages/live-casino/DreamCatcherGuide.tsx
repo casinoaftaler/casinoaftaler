@@ -3,6 +3,7 @@ import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.webp";
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { QuickComparisonTable } from "@/components/QuickComparisonTable";
@@ -118,7 +119,7 @@ const DreamCatcherGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="28 min" />
 
 
@@ -471,7 +472,7 @@ const DreamCatcherGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Dream Catcher" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/dream-catcher" />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

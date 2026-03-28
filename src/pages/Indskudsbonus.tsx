@@ -1,5 +1,6 @@
 import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaBonusvilkaar from "@/assets/screenshots/betinia-bonusvilkaar.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -154,7 +155,7 @@ const Indskudsbonus = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="niklas" readTime="18 Min." />
 
         <SnippetAnswer answer="En indskudsbonus (matchbonus) matcher din indbetaling med en procentdel – typisk 100% op til 1.000 kr. Den reelle værdi afhænger af omsætningskrav, bonusstruktur og RTP." />
@@ -807,7 +808,7 @@ const Indskudsbonus = () => {
         <FAQSection title="Ofte stillede spørgsmål om indskudsbonus" faqs={indskudsbonusFaqs} />
 
         <AuthorBio author="niklas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );

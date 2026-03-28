@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import heroImage from "@/assets/heroes/starburst-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -101,7 +102,7 @@ const StarburstGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime="22 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Starburst spillemaskine" loading="eager" />
@@ -415,7 +416,7 @@ const StarburstGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/starburst" />
         <FAQSection title="Ofte Stillede Spørgsmål om Starburst" faqs={starburstFaqs} />
         <AuthorBio author="kevin" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

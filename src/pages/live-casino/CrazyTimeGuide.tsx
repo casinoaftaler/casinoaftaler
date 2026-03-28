@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import royalcasinoLiveCasino from "@/assets/screenshots/royalcasino-live-casino.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -123,7 +124,7 @@ const CrazyTimeGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="30 min" />
 
 
@@ -512,7 +513,7 @@ const CrazyTimeGuide = () => {
         <FAQSection title="Ofte Stillede Spørgsmål om Crazy Time" faqs={faqs} />
         <RelatedGuides currentPath="/live-casino/crazy-time" />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );

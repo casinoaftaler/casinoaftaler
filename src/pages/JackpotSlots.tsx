@@ -38,6 +38,7 @@ import {
   DollarSign,
 } from "lucide-react";
 import { type ReactNode } from "react";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
@@ -144,7 +145,7 @@ const JackpotSlots = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="22 Min." />
 
         <SnippetAnswer answer="Progressive jackpot-slots samler en pulje fra alle spillere i netværket – Mega Moolah holder rekorden med 130+ mio. kr. Basis-RTP er 88–94%, da en del af indsatsen går til puljen. Gevinster er skattefri i Danmark." />
@@ -469,7 +470,7 @@ const JackpotSlots = () => {
         <RelatedGuides currentPath="/jackpot-slots" />
         <FAQSection title="Ofte Stillede Spørgsmål om Jackpot Slots" faqs={jackpotFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
     </>
   );
 };

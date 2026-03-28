@@ -9,6 +9,7 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { FAQSection } from "@/components/FAQSection";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -204,7 +205,7 @@ const CasinoMedMobilePay = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="28 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Skrevet af Jonas Theill, casino betalingsekspert hos Casinoaftaler.dk.
@@ -1016,7 +1017,7 @@ const CasinoMedMobilePay = () => {
         <RelatedGuides currentPath="/casino-med-mobilepay" />
 
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
 
       <StickyCtaBySlug slug="spildansknu" />
     </>

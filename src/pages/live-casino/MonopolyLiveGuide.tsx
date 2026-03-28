@@ -2,6 +2,7 @@ import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import casinostuenLiveCasino from "@/assets/screenshots/casinostuen-live-casino.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
@@ -109,7 +110,7 @@ const MonopolyLiveGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="18 Min." />
 
         <SnippetAnswer answer="Monopoly Live kombinerer money wheel med augmented reality-bonusrunder. RTP er 96,23% med op til 10.000x gevinst." />
@@ -583,7 +584,7 @@ const MonopolyLiveGuide = () => {
         <RelatedGuides currentPath="/live-casino/monopoly-live" />
         <FAQSection title="Ofte stillede spørgsmål om Monopoly Live" faqs={faqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="betinia" />
     </>
   );

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import betiniaBonusbuyLobby from "@/assets/screenshots/betinia-bonusbuy-lobby.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -256,7 +257,7 @@ const BonusBuysGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="22 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
@@ -886,7 +887,7 @@ const BonusBuysGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/bonus-buys" />
         <FAQSection title="Ofte Stillede Spørgsmål om Bonus Buys" faqs={bonusBuyFaqs} />
         <AuthorBio author="jonas" />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spildansknu" />
     </>
   );

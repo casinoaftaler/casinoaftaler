@@ -4,6 +4,7 @@ import casinostuenSpillemaskiner from "@/assets/screenshots/casinostuen-spillema
 import playkasinoHotcold from "@/assets/screenshots/playkasino-hotcold.webp";
 import zeusVsHadesRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-hades-rtp-info.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
@@ -123,7 +124,7 @@ export default function SpillemaskinerHoejRTP() {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="28 Min." />
 
         <SnippetAnswer answer="Spillemaskiner med høj RTP (96%+) giver bedre langsigtede vinderchancer. RTP er en matematisk konstant beregnet over milliarder spins – ikke en garanti for den enkelte session." />
@@ -663,7 +664,7 @@ export default function SpillemaskinerHoejRTP() {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/hoej-rtp" />
         <FAQSection title="Ofte stillede spørgsmål om RTP og volatilitet" faqs={hoejRtpFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
   );

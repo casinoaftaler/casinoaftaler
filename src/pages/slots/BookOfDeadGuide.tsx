@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import leovegasPopulaereSpil from "@/assets/screenshots/leovegas-populaere-spil.webp";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
+import { ContentPageLayout } from "@/components/ContentPageLayout";
 import heroImage from "@/assets/heroes/book-of-dead-hero.jpg";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -113,7 +114,7 @@ const BookOfDeadGuide = () => {
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
+      <ContentPageLayout>
         <AuthorMetaBar author="jonas" readTime="24 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Book of Dead spillemaskine" loading="eager" />
@@ -444,7 +445,7 @@ const BookOfDeadGuide = () => {
         <RelatedGuides currentPath="/casinospil/spillemaskiner/book-of-dead" />
         <FAQSection title="Ofte Stillede Spørgsmål om Book of Dead" faqs={bookOfDeadFaqs} />
         <AuthorBio />
-      </div>
+      </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>
   );
