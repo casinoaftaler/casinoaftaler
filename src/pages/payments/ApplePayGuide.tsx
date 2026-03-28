@@ -46,6 +46,12 @@ const ApplePayGuide = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed">
             For at forstå, hvorfor Apple Pay er fundamentalt sikrere end en traditionel kortbetaling, er det nødvendigt at forstå tokeniseringsprocessen. Når du tilføjer et Visa- eller Mastercard til Apple Wallet, kontakter din enhed kortudstederen (din bank) via Apple's servere. Banken genererer derefter en unik Device Account Number – en 16-cifret kode, der kun er gyldig for din specifikke enhed. Denne token gemmes i enhedens Secure Element, en dedikeret sikkerhedschip, der er fysisk isoleret fra resten af operativsystemet. Hverken Apple, iOS-apps eller malware kan tilgå denne chip.
           </p>
+          <ReviewScreenshot
+            src={applePayLogo}
+            alt="Apple Pay logo – tokeniseret mobilbetaling via Face ID og Touch ID på danske casinoer"
+            caption="Apple Pay bruger tokenisering og biometrisk godkendelse til sikre casinoindbetalinger"
+            size="compact"
+          />
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Ved hver transaktion genererer Secure Element desuden en dynamisk sikkerhedskode – en engangsværdi, der er unik for den specifikke betaling. Denne kode sendes sammen med din Device Account Number til casinoets betalingsprocessor. Processoren sender tokenet videre til kortnetværket (Visa eller Mastercard), som de-tokeniserer det – det vil sige oversætter det tilbage til dit rigtige kortnummer – og gennemfører transaktionen med din bank. På intet tidspunkt ser casinoet, dets betalingsgateway eller nogen mellemled dit faktiske kortnummer.
           </p>
