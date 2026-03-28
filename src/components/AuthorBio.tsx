@@ -8,9 +8,10 @@ import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
 import niklasImage from "@/assets/niklas-forfatter.webp";
+import frederikImage from "@/assets/frederik-forfatter.webp";
 
 interface AuthorBioProps {
-  author?: "jonas" | "kevin" | "ajse" | "niklas";
+  author?: "jonas" | "kevin" | "ajse" | "niklas" | "frederik";
   /** Set to false if CommunityPromoSection is already rendered elsewhere on the page */
   showCommunity?: boolean;
 }
