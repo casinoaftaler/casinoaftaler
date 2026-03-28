@@ -609,6 +609,12 @@ export default function CasinoerHub() {
           </p>
         </section>
 
+        <ReviewScreenshot
+          src={campobetUdbydere}
+          alt="CampoBet spiludbyderoversigt med logoer fra NetEnt, Pragmatic Play, Evolution Gaming, Play'n GO og 80+ andre udbydere"
+          caption="CampoBet.dk – overblik over 80+ integrerede spiludviklere, der leverer slots, bordspil og live casino"
+        />
+
         {/* ── SECTION 12: Ansvarligt Spil ── */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
