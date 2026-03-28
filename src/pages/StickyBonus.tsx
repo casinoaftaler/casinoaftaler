@@ -56,8 +56,6 @@ import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { VideoContextBox } from "@/components/VideoContextBox";
 import { BonusClusterPriorityLinks } from "@/components/BonusClusterPriorityLinks";
-import GuideHeroImage from "@/components/GuideHeroImage";
-import stickyBonusHero from "@/assets/heroes/sticky-bonus-hero.png";
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
