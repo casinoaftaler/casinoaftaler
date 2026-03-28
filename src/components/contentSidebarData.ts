@@ -110,6 +110,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
   {
     title: "Betalingsmetoder",
     iconName: "creditCard",
+    hubTo: "/betalingsmetoder",
     links: [
       { to: "/betalingsmetoder", label: "Alle Betalingsmetoder" },
       { to: "/betalingsmetoder/apple-pay", label: "Apple Pay" },
