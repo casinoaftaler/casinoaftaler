@@ -13,7 +13,7 @@ import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { FAQSection } from "@/components/FAQSection";
 import { CommunityNav } from "@/components/community/CommunityNav";
-import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
+
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 
 import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
