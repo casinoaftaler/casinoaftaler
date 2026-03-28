@@ -105,7 +105,7 @@ const personSchema = {
   name: "Frederik Merkel",
   alternateName: "MerkelSpins",
   url: `${SITE_URL}/forfatter/frederik`,
-  image: `${SITE_URL}/frederik-avatar.webp`,
+  image: `${SITE_URL}/frederik-forfatter.webp`,
   jobTitle: "Casino Streamer",
   knowsAbout: ["online casino", "casino streaming", "casino bonus", "spillemaskiner", "bonustest"],
   nationality: { "@type": "Country", name: "Denmark" },
