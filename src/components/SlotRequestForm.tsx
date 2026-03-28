@@ -1,25 +1,14 @@
-import { useState } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useAuth } from "@/hooks/useAuth";
 import { useMySlotRequests, useCreateSlotRequest } from "@/hooks/useSlotRequests";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { Loader2, Send, Clock, CheckCircle2, XCircle, Minus } from "lucide-react";
+import { useSlotCatalog } from "@/hooks/useSlotCatalog";
+import { Loader2, Send, Clock, CheckCircle2, XCircle, Minus, Search, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const PRESET_SLOTS: Record<string, string[]> = {
-  "Relax Gaming": ["Money Train 4", "Dream Drop Jackpot", "Temple Tumble 2", "Snake Arena"],
-  "Pragmatic Play": ["Gates of Olympus", "Sweet Bonanza", "Sugar Rush", "Big Bass Bonanza", "Starlight Princess"],
-  "Play'n GO": ["Book of Dead", "Reactoonz 2", "Rise of Olympus", "Fire Joker"],
-  "Thunderkick": ["Pink Elephants 2", "Flame Busters", "Esqueleto Explosivo 2"],
-  "Hacksaw Gaming": ["Wanted Dead or a Wild", "Chaos Crew", "Stick 'Em", "Hand of Anubis"],
-  "Quickspin": ["Big Bad Wolf", "Sakura Fortune 2", "Sticky Bandits"],
-};
-
-const PROVIDERS = Object.keys(PRESET_SLOTS);
 
 const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline"; icon: typeof Clock }> = {
   pending: { label: "Afventer", variant: "secondary", icon: Clock },
@@ -33,44 +22,78 @@ export function SlotRequestForm() {
   const { data: myRequests, isLoading: requestsLoading } = useMySlotRequests();
   const createRequest = useCreateSlotRequest();
   const { data: siteSettings } = useSiteSettings();
+  const { data: slots, isLoading: slotsLoading } = useSlotCatalog();
 
-  const [provider, setProvider] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedSlot, setSelectedSlot] = useState<{ slot_name: string; provider: string } | null>(null);
+  const [isCustomMode, setIsCustomMode] = useState(false);
+  const [customSlotName, setCustomSlotName] = useState("");
   const [customProvider, setCustomProvider] = useState("");
-  const [slot, setSlot] = useState("");
-  const [customSlot, setCustomSlot] = useState("");
-
-  const isAndetProvider = provider === "Andet";
-  const isAndetSlot = slot === "Andet";
-  const slotsForProvider = !isAndetProvider && provider ? PRESET_SLOTS[provider] ?? [] : [];
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const pendingCount = myRequests?.filter((r) => r.status === "pending").length ?? 0;
   const maxPending = parseInt(siteSettings?.max_pending_slot_requests ?? "1", 10);
   const hasReachedLimit = pendingCount >= maxPending;
 
+  // Filter slots based on search query
+  const filteredSlots = useMemo(() => {
+    if (!searchQuery.trim() || !slots) return [];
+    const q = searchQuery.toLowerCase();
+    return slots
+      .filter((s) => s.slot_name.toLowerCase().includes(q) || s.provider.toLowerCase().includes(q))
+      .slice(0, 15);
+  }, [searchQuery, slots]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const canSubmit =
     user &&
     !hasReachedLimit &&
     !createRequest.isPending &&
-    (isAndetProvider
-      ? customProvider.trim() && customSlot.trim()
-      : provider &&
-        (isAndetSlot ? customSlot.trim() : slot && slot !== ""));
+    (isCustomMode
+      ? customSlotName.trim() && customProvider.trim()
+      : !!selectedSlot);
+
+  const handleSelectSlot = (slot: { slot_name: string; provider: string }) => {
+    setSelectedSlot(slot);
+    setSearchQuery(slot.slot_name);
+    setShowDropdown(false);
+    setIsCustomMode(false);
+  };
+
+  const handleSwitchToCustom = () => {
+    setIsCustomMode(true);
+    setSelectedSlot(null);
+    setCustomSlotName(searchQuery);
+    setShowDropdown(false);
+  };
 
   const handleSubmit = () => {
     if (!canSubmit) return;
 
-    const finalProvider = isAndetProvider ? customProvider.trim() : provider;
-    const finalSlot = isAndetProvider || isAndetSlot ? customSlot.trim() : slot;
-    const isCustom = isAndetProvider || isAndetSlot;
+    const finalSlotName = isCustomMode ? customSlotName.trim() : selectedSlot!.slot_name;
+    const finalProvider = isCustomMode ? customProvider.trim() : selectedSlot!.provider;
 
     createRequest.mutate(
-      { slot_name: finalSlot, provider: finalProvider, is_custom: isCustom },
+      { slot_name: finalSlotName, provider: finalProvider, is_custom: isCustomMode },
       {
         onSuccess: () => {
-          setProvider("");
+          setSearchQuery("");
+          setSelectedSlot(null);
+          setIsCustomMode(false);
+          setCustomSlotName("");
           setCustomProvider("");
-          setSlot("");
-          setCustomSlot("");
         },
       }
     );
@@ -97,57 +120,111 @@ export function SlotRequestForm() {
           </p>
         )}
 
-        <div className="space-y-2">
-          <Label>Udbyder</Label>
-          <Select value={provider} onValueChange={(v) => { setProvider(v); setSlot(""); setCustomSlot(""); setCustomProvider(""); }}>
-            <SelectTrigger>
-              <SelectValue placeholder="Vælg udbyder..." />
-            </SelectTrigger>
-            <SelectContent>
-              {PROVIDERS.map((p) => (
-                <SelectItem key={p} value={p}>{p}</SelectItem>
-              ))}
-              <SelectItem value="Andet">Andet (skriv selv)</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+        {!isCustomMode ? (
+          <div className="space-y-2 relative" ref={dropdownRef}>
+            <Label>Søg efter slot</Label>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                ref={inputRef}
+                placeholder="Skriv slot navn eller udbyder..."
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setSelectedSlot(null);
+                  setShowDropdown(true);
+                }}
+                onFocus={() => {
+                  if (searchQuery.trim()) setShowDropdown(true);
+                }}
+                className="pl-9"
+              />
+            </div>
 
-        {isAndetProvider && (
-          <div className="space-y-2">
-            <Label>Udbyder navn</Label>
-            <Input
-              placeholder="Skriv udbyderens navn..."
-              value={customProvider}
-              onChange={(e) => setCustomProvider(e.target.value)}
-            />
+            {showDropdown && searchQuery.trim().length >= 2 && (
+              <div className="absolute z-50 w-full mt-1 bg-popover border border-border rounded-lg shadow-lg max-h-64 overflow-y-auto">
+                {slotsLoading ? (
+                  <div className="flex items-center justify-center py-4">
+                    <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+                  </div>
+                ) : filteredSlots.length > 0 ? (
+                  <>
+                    {filteredSlots.map((slot) => (
+                      <button
+                        key={slot.id}
+                        className="w-full text-left px-4 py-2.5 hover:bg-muted/50 flex items-center justify-between transition-colors"
+                        onClick={() => handleSelectSlot(slot)}
+                      >
+                        <span className="font-medium text-foreground">{slot.slot_name}</span>
+                        <span className="text-xs text-muted-foreground">{slot.provider}</span>
+                      </button>
+                    ))}
+                    <button
+                      className="w-full text-left px-4 py-2.5 hover:bg-muted/50 flex items-center gap-2 text-primary border-t border-border transition-colors"
+                      onClick={handleSwitchToCustom}
+                    >
+                      <Plus className="h-4 w-4" />
+                      <span className="text-sm">Kan ikke finde den? Skriv manuelt</span>
+                    </button>
+                  </>
+                ) : (
+                  <div className="p-3 space-y-2">
+                    <p className="text-sm text-muted-foreground">
+                      Ingen slots fundet for "{searchQuery}"
+                    </p>
+                    <button
+                      className="w-full text-left px-2 py-2 hover:bg-muted/50 rounded flex items-center gap-2 text-primary transition-colors"
+                      onClick={handleSwitchToCustom}
+                    >
+                      <Plus className="h-4 w-4" />
+                      <span className="text-sm">Tilføj som custom slot</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {selectedSlot && (
+              <div className="flex items-center gap-2 text-sm bg-muted/30 rounded-lg p-2.5 border border-border">
+                <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
+                <span className="font-medium">{selectedSlot.slot_name}</span>
+                <span className="text-muted-foreground">af {selectedSlot.provider}</span>
+              </div>
+            )}
           </div>
-        )}
+        ) : (
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <Label className="text-base font-medium">Custom Slot</Label>
+              <button
+                className="text-xs text-primary hover:underline"
+                onClick={() => {
+                  setIsCustomMode(false);
+                  setCustomSlotName("");
+                  setCustomProvider("");
+                }}
+              >
+                ← Tilbage til søgning
+              </button>
+            </div>
 
-        {(provider && !isAndetProvider) && (
-          <div className="space-y-2">
-            <Label>Slot</Label>
-            <Select value={slot} onValueChange={(v) => { setSlot(v); setCustomSlot(""); }}>
-              <SelectTrigger>
-                <SelectValue placeholder="Vælg slot..." />
-              </SelectTrigger>
-              <SelectContent>
-                {slotsForProvider.map((s) => (
-                  <SelectItem key={s} value={s}>{s}</SelectItem>
-                ))}
-                <SelectItem value="Andet">Andet (skriv selv)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        )}
+            <div className="space-y-2">
+              <Label>Slot navn</Label>
+              <Input
+                placeholder="Skriv slottens navn..."
+                value={customSlotName}
+                onChange={(e) => setCustomSlotName(e.target.value)}
+              />
+            </div>
 
-        {(isAndetProvider || isAndetSlot) && (
-          <div className="space-y-2">
-            <Label>Slot navn</Label>
-            <Input
-              placeholder="Skriv slottens navn..."
-              value={customSlot}
-              onChange={(e) => setCustomSlot(e.target.value)}
-            />
+            <div className="space-y-2">
+              <Label>Udbyder</Label>
+              <Input
+                placeholder="Skriv udbyderens navn..."
+                value={customProvider}
+                onChange={(e) => setCustomProvider(e.target.value)}
+              />
+            </div>
           </div>
         )}
 
