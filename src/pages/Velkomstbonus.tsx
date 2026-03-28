@@ -2,7 +2,7 @@ import React from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaVelkomstbonus from "@/assets/screenshots/betinia-velkomstbonus-aktiv.webp";
-import pipFoersteIndbetaling from "@/assets/screenshots/pip-foerste-indbetaling.webp";
+import pipVelkomstbonus from "@/assets/screenshots/pip-velkomstbonus.webp";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { Link } from "react-router-dom";
