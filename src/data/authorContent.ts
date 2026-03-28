@@ -372,6 +372,8 @@ export function getAuthorArticles(author: AuthorId): AuthorArticle[] {
       return mergeWithSeoRoutes(ajseArticles, "ajse");
     case "niklas":
       return mergeWithSeoRoutes(niklasArticles, "niklas");
+    case "frederik":
+      return mergeWithSeoRoutes([], "frederik");
   }
 }
 
