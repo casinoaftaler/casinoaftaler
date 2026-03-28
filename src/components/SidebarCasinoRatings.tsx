@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
-import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 
 const RANK_STYLES: Record<number, string> = {
   0: "bg-amber-500/20 text-amber-600 dark:text-amber-400 ring-1 ring-amber-500/30",
@@ -12,27 +11,7 @@ const RANK_STYLES: Record<number, string> = {
   2: "bg-orange-600/20 text-orange-700 dark:text-orange-400 ring-1 ring-orange-500/30",
 };
 
-/** Title variants for anti-footprint */
-const WIDGET_TITLES = [
-  "Online casinoer",
-  "Top casinoer",
-  "Bedste casinoer",
-  "Casino ranking",
-  "Populære casinoer",
-];
-
-/** CTA variants for anti-footprint */
-const CTA_VARIANTS = [
-  "Mere",
-  "Se alle",
-  "Vis flere",
-  "Udforsk",
-  "Se ranking",
-];
-
 export function SidebarCasinoRatings() {
-  const { shuffle, pick } = useAntiFootprint();
-
   const { data: casinos } = useQuery({
     queryKey: ["sidebar-casinos"],
     queryFn: async () => {
@@ -50,21 +29,16 @@ export function SidebarCasinoRatings() {
 
   if (!casinos?.length) return null;
 
-  // Anti-footprint: shuffle casino order and pick varied texts
-  const shuffledCasinos = shuffle(casinos);
-  const widgetTitle = pick(WIDGET_TITLES);
-  const ctaText = pick(CTA_VARIANTS);
-
   return (
     <div className="overflow-hidden rounded-lg border border-border/60 shadow-sm">
       <div className="flex w-full items-center gap-2.5 px-4 py-3 font-semibold text-[15px] bg-gradient-to-r from-primary/20 to-primary/10 text-foreground">
         <span className="inline-flex items-center justify-center h-7 w-7 rounded-md bg-primary/15 flex-shrink-0">
           <Trophy className="h-4.5 w-4.5 text-primary" />
         </span>
-        <span>{widgetTitle}</span>
+        <span>Online casinoer</span>
       </div>
       <ul className="bg-card">
-        {shuffledCasinos.map((casino, index) => {
+        {casinos.map((casino, index) => {
           const ratingPercent = ((casino.rating ?? 0) / 5) * 100;
           const isTop3 = index < 3;
 
@@ -74,7 +48,6 @@ export function SidebarCasinoRatings() {
                 to={`/casino-anmeldelser/${casino.slug}`}
                 className="flex items-center gap-2.5 px-4 py-2.5 text-[14px] transition-colors border-t border-border/30 text-foreground/80 hover:bg-accent/10 hover:text-foreground group"
               >
-                {/* Rank number */}
                 <span
                   className={cn(
                     "inline-flex items-center justify-center h-5.5 w-5.5 rounded text-[11px] font-bold flex-shrink-0",
@@ -86,7 +59,6 @@ export function SidebarCasinoRatings() {
                   {index + 1}
                 </span>
 
-                {/* Logo */}
                 {casino.logo_url ? (
                   <img
                     src={casino.logo_url}
@@ -100,7 +72,6 @@ export function SidebarCasinoRatings() {
                   <Monitor className="h-5 w-5 text-muted-foreground/40 flex-shrink-0" />
                 )}
 
-                {/* Name + progress bar */}
                 <div className="flex-1 min-w-0">
                   <span className="truncate block font-medium text-[13px] leading-tight">
                     {casino.name}
@@ -111,7 +82,6 @@ export function SidebarCasinoRatings() {
                   />
                 </div>
 
-                {/* Rating badge */}
                 <span className="inline-flex items-center gap-0.5 text-xs font-bold text-foreground min-w-[38px] justify-end flex-shrink-0">
                   {casino.rating?.toFixed(1)}
                   <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
@@ -125,7 +95,7 @@ export function SidebarCasinoRatings() {
             to="/top-10-casino-online"
             className="flex items-center justify-center gap-1 px-4 py-2.5 text-[13px] text-primary hover:text-primary/80 border-t border-border/30 font-medium"
           >
-            {ctaText} <ChevronRight className="h-3.5 w-3.5" />
+            Mere <ChevronRight className="h-3.5 w-3.5" />
           </Link>
         </li>
       </ul>
