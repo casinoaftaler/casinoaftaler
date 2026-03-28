@@ -28,7 +28,7 @@ import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock"
 import { BonusHuntStatStrip } from "@/components/bonus-hunt/BonusHuntStatStrip";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunitySeoBridge } from "@/components/community/CommunitySeoBridge";
-import { CommunityConversionCard } from "@/components/community/CommunityConversionCard";
+
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
