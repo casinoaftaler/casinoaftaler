@@ -1,23 +1,41 @@
 
 
-## Plan: Add two LeoVegas screenshots to Sticky Bonus page
+## Plan: Fix Bonus Hunt numbering to always show DB position number
 
-Both uploaded images show the same LeoVegas welcome offer. They need to be converted to WebP assets and placed in two specific sections.
+The issue: when viewing a live/current bonus hunt, the UI shows the StreamSystem API's hunt number (e.g., #126) instead of our database position number (e.g., #179). Archived hunts already work correctly because the proxy injects `visibleId`.
 
-### Steps
+### Root Cause
+On the live proxy path (non-archived), the response returns raw StreamSystem data without injecting our `visibleId`. The frontend then parses the number from the API's `name` field ("Bonus Hunt #126" → 126), displaying the wrong number.
 
-1. **Convert and save images as WebP assets**
-   - `user-uploads://image-1774693797.png` → `src/assets/screenshots/leovegas-sticky-bonus-mekanik.webp` (the wide/full version for "Mekanikken" section)
-   - `user-uploads://Skærmbillede_2026-03-28_112558-2.png` → this is essentially the same as the existing `leovegas-sticky-bonus-velkomst.webp` — keep the existing asset for the "Typiske betingelser" section
+### Changes
 
-2. **Edit `src/pages/StickyBonus.tsx`**
-   - **Import** the new asset for the "Mekanikken" section
-   - **Insert Screenshot 1** (wide image) after the cards in the "Mekanikken bag en Sticky Bonus" section (~line 294, after the closing `</div>` of the cards). Use `size="medium"` with appropriate alt/caption about LeoVegas sticky bonus mechanics.
-   - **Move existing Screenshot 2** (already `leovegasStickyBonus` at line 488-493) into the "Typiske betingelser" section — move it to right after line 485 (after the grid's closing `</div>` inside that section, before the section closes at line 486). Remove the current placement at lines 488-493.
+**1. Update `bonus-hunt-proxy` Edge Function**
+- On the live path (after line 496, before returning), inject `visibleId` into the response data using the `huntNumber` from our DB (which was used for the archive upsert)
+- Change `hunt_name` in the upsert to use `'Bonus Hunt #' || hunt_number` format instead of the raw API name, to maintain consistency with the migration we just ran
+- This ensures the frontend always receives the correct position number
 
-### Technical details
-- Both screenshots use `ReviewScreenshot` component with `size="medium"`
-- Minimum 15-line gap between screenshots enforced per governance rules
-- Image 1 uses `eager={false}` (lazy) as it's below the fold
-- WebP conversion via ffmpeg at q82, under 150KB
+**2. Update `BonusHuntHeroBar.tsx`** (no change needed)
+- Already displays `#{huntNumber}` where `huntNumber` comes from the page's `currentHuntNumber`, which is derived from `huntData.visibleId`. Once the proxy injects the correct `visibleId`, this will show correctly.
+
+**3. Update `BonusHuntNavBar.tsx`** (no change needed)
+- Same logic — already uses `huntNumber` prop.
+
+### Technical detail
+In `bonus-hunt-proxy/index.ts`, before returning the response on line 498, modify the data to inject `visibleId`:
+
+```typescript
+// Inject our hunt_number as visibleId so frontend shows correct position
+if (huntNumber > 0 && data?.data) {
+  data.data.visibleId = huntNumber;
+}
+```
+
+And change line 412 from:
+```typescript
+hunt_name: huntData.name,
+```
+to:
+```typescript
+hunt_name: `Bonus Hunt #${huntNumber}`,
+```
 
