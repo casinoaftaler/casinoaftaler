@@ -76,10 +76,22 @@ export function SidebarShopLeaderboard() {
           .select("user_id, display_name, avatar_url")
           .filter("display_name", "in", `(${usernames.join(",")})`);
 
-        // Also fetch twitch_badges from profiles_leaderboard
-        const { data: badgeProfiles } = await supabase
-          .from("profiles_leaderboard")
-          .select("user_id, twitch_badges, display_name");
+        // Fetch badges only for matched users instead of entire leaderboard table
+        let badgeMap = new Map<string, any>();
+        const profileIds = ((profiles || []) as any[])
+          .map((p: any) => p.user_id)
+          .filter(Boolean);
+
+        if (profileIds.length > 0) {
+          const { data: badgeProfiles } = await supabase
+            .from("profiles_leaderboard")
+            .select("user_id, twitch_badges")
+            .in("user_id", profileIds);
+
+          badgeMap = new Map(
+            (badgeProfiles || []).map((p) => [p.user_id, p.twitch_badges])
+          );
+        }
 
         // Build a map by lowercase display_name
         const profileMap = new Map(
