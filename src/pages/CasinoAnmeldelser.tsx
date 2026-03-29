@@ -683,6 +683,7 @@ const CasinoAnmeldelser = () => {
               </thead>
               <tbody>
                 {[
+                  { name: "PlayKasino", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–8 timer", rating: "9.0", slug: "casino-anmeldelser/playkasino" },
                   { name: "Spilleautomaten", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–8 timer", rating: "9.2", slug: "casino-anmeldelser/spilleautomaten" },
                   { name: "SpilDanskNu", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–12 timer", rating: "9.0", slug: "casino-anmeldelser/spildansknu" },
                   { name: "Betinia", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–10 timer", rating: "8.9", slug: "casino-anmeldelser/betinia" },
