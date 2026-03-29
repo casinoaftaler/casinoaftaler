@@ -58,7 +58,7 @@ function ExpandableGrid({ items, initialCount, cols = 5, onNavigate }: {
       </div>
       {hasMore && (
         <button
-          onClick={() => setExpanded(!expanded)}
+          onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
           className="mt-2 text-[11px] font-medium text-primary hover:underline flex items-center gap-1 transition-colors"
         >
           {expanded ? (
@@ -107,7 +107,7 @@ function ExpandableColumn({ title, items, allItems, hubTo, onNavigate }: {
       </div>
       {hasMore && (
         <button
-          onClick={() => setExpanded(!expanded)}
+          onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
           className="mt-1.5 text-[11px] font-medium text-primary hover:underline flex items-center gap-1"
         >
           {expanded ? "Vis færre" : `Vis alle (${full.length})`}
