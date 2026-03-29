@@ -41,12 +41,11 @@ function PanelHeader({ title, hubTo, hubLabel, onNavigate }: {
 }
 
 /* ─── Expandable grid: shows `initialCount` items, "Vis alle (N)" expands to full list ─── */
-function ExpandableGrid({ items, initialCount, cols = 5, onNavigate }: {
-  items: NavLink[]; initialCount: number; cols?: number; onNavigate: () => void;
+function ExpandableGrid({ items, initialCount, cols = 5, onNavigate, onShowAll }: {
+  items: NavLink[]; initialCount: number; cols?: number; onNavigate: () => void; onShowAll?: () => void;
 }) {
-  const [expanded, setExpanded] = useState(false);
-  const visibleItems = expanded ? items : items.slice(0, initialCount);
   const hasMore = items.length > initialCount;
+  const visibleItems = items.slice(0, initialCount);
   const colClass = cols === 4 ? "grid-cols-4" : cols === 3 ? "grid-cols-3" : "grid-cols-5";
 
   return (
@@ -58,14 +57,10 @@ function ExpandableGrid({ items, initialCount, cols = 5, onNavigate }: {
       </div>
       {hasMore && (
         <button
-          onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
+          onClick={(e) => { e.stopPropagation(); onShowAll?.(); }}
           className="mt-2 text-[11px] font-medium text-primary hover:underline flex items-center gap-1 transition-colors"
         >
-          {expanded ? (
-            <>Vis færre <ChevronDown className="h-3 w-3 rotate-180 transition-transform" /></>
-          ) : (
-            <>Vis alle ({items.length}) <ChevronDown className="h-3 w-3 transition-transform" /></>
-          )}
+          Vis alle ({items.length}) <ChevronDown className="h-3 w-3 transition-transform" />
         </button>
       )}
     </div>
