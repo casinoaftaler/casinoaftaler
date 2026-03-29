@@ -732,6 +732,12 @@ const CasinoAnmeldelser = () => {
           {(() => {
             const allReviews = [
               {
+                name: "PlayKasino",
+                slug: "casino-anmeldelser/playkasino",
+                text: "PlayKasino er det nyeste skud på stammen blandt danske licenserede casinoer, drevet af SkillOnNet – samme operatør som PlayOJO. Med over 1.200 spiltitler, no-sticky bonus med 10x omsætning og dedikerede apps til iOS og Android, leverer PlayKasino en solid og moderne spilleoplevelse. MobilePay- og Trustly-indbetalinger fungerer gnidningsfrit. Svagheden er fraværet af live chat-support, men e-mail besvares typisk inden for 2–6 timer. Et stærkt valg for spillere, der vil have en frisk platform med fair bonusvilkår.",
+                partner: true,
+              },
+              {
                 name: "Spilleautomaten",
                 slug: "casino-anmeldelser/spilleautomaten",
                 text: "Spilleautomaten har positioneret sig som det rene casino-alternativ i et marked, der i stigende grad domineres af dual-platform operatører. Med over 2.500 titler fra 40+ udviklere og et konsekvent fokus på no-sticky bonusser med 10x omsætning, leverer platformen en af markedets mest gennemsigtige spilleoplevelser. Vores udbetalingstests viste konsistent 4–8 timers behandling via Trustly – blandt de hurtigste vi har målt. Svagheden er fraværet af sportsbetting og et relativt beskedent VIP-program.",
