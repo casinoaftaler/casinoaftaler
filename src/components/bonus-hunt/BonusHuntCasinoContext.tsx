@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useCasinos } from "@/hooks/useCasinos";
+import { useCasinoBySlug } from "@/hooks/useCasinoBySlug";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { ArrowRight, Check } from "lucide-react";
 
