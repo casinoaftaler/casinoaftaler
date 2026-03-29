@@ -13,6 +13,9 @@ import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
 import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent";
 import { BonusHuntSeoText } from "@/components/bonus-hunt/BonusHuntSeoText";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 // LazySection removed from SEO-critical sections for crawlability
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
