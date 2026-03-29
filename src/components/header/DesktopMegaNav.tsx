@@ -471,8 +471,8 @@ export function DesktopMegaNav() {
             <PanelHeader title="Mere" onNavigate={close} />
             <div className="grid grid-cols-5 gap-5">
               <ExpandableColumn title="Betalingsmetoder" items={PAYMENT_LINKS.slice(0, 5)} allItems={PAYMENT_LINKS} hubTo="/betalingsmetoder" onNavigate={close} onShowAll={() => expandSection("payment")} />
-              <ExpandableColumn title="Spiludviklere" items={PROVIDER_LINKS.slice(0, 5)} allItems={PROVIDER_LINKS} hubTo="/spiludviklere" onNavigate={close} onShowAll={() => expandSection("providers")} />
-              <ExpandableColumn title="Anmeldelser" items={REVIEW_TOP_LINKS.slice(0, 5)} allItems={[...REVIEW_TOP_LINKS, ...REVIEW_ALL_LINKS]} hubTo="/casino-anmeldelser" onNavigate={close} onShowAll={() => expandSection("reviews")} />
+              <ExpandableColumn title="Spiludviklere" items={PROVIDER_LINKS.slice(0, 6)} allItems={PROVIDER_LINKS} hubTo="/spiludviklere" onNavigate={close} onShowAll={() => expandSection("providers")} />
+              <ExpandableColumn title="Anmeldelser" items={REVIEW_TOP_LINKS.slice(0, 6)} allItems={[...REVIEW_TOP_LINKS, ...REVIEW_ALL_LINKS]} hubTo="/casino-anmeldelser" onNavigate={close} onShowAll={() => expandSection("reviews")} />
               <ExpandableColumn title="Info & Om" items={MORE_LINKS.slice(0, 5)} allItems={MORE_LINKS} onNavigate={close} onShowAll={() => expandSection("more")} />
               <ExpandableColumn title="Forfattere" items={FORFATTER_LINKS} onNavigate={close} />
             </div>
