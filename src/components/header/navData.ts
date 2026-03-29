@@ -241,7 +241,7 @@ export const COMMUNITY_LINKS: NavLinkWithIcon[] = [
   { to: "/community/turneringer", label: "Turneringer", iconName: "swords" },
   { to: "/community/turneringer/arkiv", label: "Turneringsarkiv", iconName: "archive" },
   { to: "/community/hall-of-fame", label: "Hall of Fame", iconName: "medal" },
-  { to: "/highlights", label: "Highlights", iconName: "play-circle" },
+  { to: "/highlights", label: "Highlights", iconName: "circle-play" },
   { to: "/butik", label: "Butik", iconName: "shopping-bag" },
 ];
 
