@@ -84,29 +84,26 @@ function SubLabel({ title, hubTo, onNavigate }: {
 }
 
 /* ─── Expandable column ─── */
-function ExpandableColumn({ title, items, allItems, hubTo, onNavigate }: {
-  title: string; items: NavLink[]; allItems?: NavLink[]; hubTo?: string; onNavigate: () => void;
+function ExpandableColumn({ title, items, allItems, hubTo, onNavigate, onShowAll }: {
+  title: string; items: NavLink[]; allItems?: NavLink[]; hubTo?: string; onNavigate: () => void; onShowAll?: () => void;
 }) {
-  const [expanded, setExpanded] = useState(false);
   const full = allItems || items;
-  const visible = expanded ? full : items;
   const hasMore = full.length > items.length;
 
   return (
     <div>
       <SubLabel title={title} hubTo={hubTo} onNavigate={onNavigate} />
       <div className="space-y-1.5">
-        {visible.map(item => (
+        {items.map(item => (
           <MegaLink key={item.to} to={item.to} label={item.label} onClick={onNavigate} />
         ))}
       </div>
       {hasMore && (
         <button
-          onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
+          onClick={(e) => { e.stopPropagation(); onShowAll?.(); }}
           className="mt-1.5 text-[11px] font-medium text-primary hover:underline flex items-center gap-1"
         >
-          {expanded ? "Vis færre" : `Vis alle (${full.length})`}
-          <ChevronDown className={cn("h-3 w-3 transition-transform", expanded && "rotate-180")} />
+          Vis alle ({full.length}) <ChevronDown className="h-3 w-3 transition-transform" />
         </button>
       )}
     </div>
