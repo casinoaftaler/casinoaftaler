@@ -34,9 +34,29 @@ export default function ProviderSlotsHub() {
   const validSlug = providerSlug && PROVIDER_HUB_SLUGS.includes(providerSlug) ? providerSlug : null;
   const content = validSlug ? PROVIDER_HUB_CONTENT[validSlug] : null;
   const { data: slots } = useProviderSlots(validSlug || "");
+  const { data: casinos } = useCasinos();
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
   const { shuffle } = useAntiFootprint(validSlug ?? undefined);
+
+  // Find partner casinos that carry this provider
+  const providerPrioritySlugs = useMemo(() => {
+    if (!casinos || !content) return undefined;
+    const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];
+    const displayName = content.displayName.toLowerCase();
+    return casinos
+      .filter(
+        (c) =>
+          c.is_active &&
+          PARTNER_SLUGS.includes(c.slug) &&
+          c.game_providers?.some(
+            (gp) => gp.name.toLowerCase() === displayName
+          )
+      )
+      .sort((a, b) => a.position - b.position)
+      .slice(0, 3)
+      .map((c) => c.slug);
+  }, [casinos, content]);
 
   // Compute dynamic stats
   const stats = useMemo(() => {
