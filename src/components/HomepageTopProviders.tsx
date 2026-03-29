@@ -66,7 +66,7 @@ export function HomepageTopProviders() {
 
       <div className="mt-4 text-center">
         <Link
-          to="/casinospil/spillemaskiner"
+          to="/spiludviklere"
           className="text-sm text-primary hover:underline font-medium"
         >
           Se alle spiludviklere →
