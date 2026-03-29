@@ -48,6 +48,7 @@ import {
 } from "lucide-react";
 
 const reviewSlugs = [
+  "playkasino",
   "spilleautomaten",
   "spildansknu",
   "campobet",
