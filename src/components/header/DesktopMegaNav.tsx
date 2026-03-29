@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronRight, ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users } from "lucide-react";
+import { ChevronRight, ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users, icons } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   CASINO_LINKS, NYE_CASINOER_LINKS, SLOT_LINKS, SLOT_CATEGORY_LINKS,
@@ -79,28 +79,56 @@ function MegaLogoCard({
   );
 }
 
+/* ─── Icon accent colors (rotating) ─── */
+const ICON_COLORS = [
+  "bg-purple-500/15 text-purple-400",
+  "bg-blue-500/15 text-blue-400",
+  "bg-emerald-500/15 text-emerald-400",
+  "bg-amber-500/15 text-amber-400",
+  "bg-rose-500/15 text-rose-400",
+];
+
+function getIconColor(index: number) {
+  return ICON_COLORS[index % ICON_COLORS.length];
+}
+
+/* ─── Resolve lucide icon by kebab-case name ─── */
+function getLucideIcon(name?: string) {
+  if (!name) return null;
+  // Convert kebab-case to PascalCase
+  const pascal = name.replace(/(^|-)([a-z])/g, (_, _dash, letter) => letter.toUpperCase());
+  return (icons as Record<string, any>)[pascal] || null;
+}
+
 /* ─── Compact link item ─── */
-function MegaLink({ to, label, onClick }: { to: string; label: string; onClick: () => void }) {
+function MegaLink({ to, label, iconName, colorIndex = 0, onClick }: { to: string; label: string; iconName?: string; colorIndex?: number; onClick: () => void }) {
+  const IconComp = getLucideIcon(iconName);
+
   return (
     <Link
       to={to}
       onClick={onClick}
-      className="flex items-center justify-between gap-2 rounded-lg border border-border/50 bg-card/60 px-3 py-2 text-[13px] font-medium transition-all duration-150 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_0_12px_-4px_hsl(var(--primary)/0.3)] group"
+      className="flex items-center gap-2.5 rounded-lg border border-border/50 bg-card/60 px-3 py-2 text-[13px] font-medium transition-all duration-150 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_0_12px_-4px_hsl(var(--primary)/0.3)] group"
     >
-      <span className="truncate">{label}</span>
+      {IconComp && (
+        <span className={cn("flex items-center justify-center rounded-md h-6 w-6 shrink-0", getIconColor(colorIndex))}>
+          <IconComp className="h-3.5 w-3.5" />
+        </span>
+      )}
+      <span className="truncate flex-1">{label}</span>
       <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground/50 transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
     </Link>
   );
 }
 
 /* ─── Smart link: renders logo card if logoUrl available, otherwise text ─── */
-function SmartLink({ item, onClick }: { item: NavLink; onClick: () => void }) {
+function SmartLink({ item, colorIndex = 0, onClick }: { item: NavLink; colorIndex?: number; onClick: () => void }) {
   const resolvedUrl = resolveLogoUrl(item);
   if (resolvedUrl) {
     const isReview = item.to.startsWith("/casino-anmeldelser/");
     return <MegaLogoCard to={item.to} label={item.label} logoUrl={resolvedUrl} onClick={onClick} isReview={isReview} />;
   }
-  return <MegaLink to={item.to} label={item.label} onClick={onClick} />;
+  return <MegaLink to={item.to} label={item.label} iconName={item.iconName} colorIndex={colorIndex} onClick={onClick} />;
 }
 
 /* ─── Panel header ─── */
@@ -130,8 +158,8 @@ function ExpandableGrid({ items, initialCount, cols = 5, onNavigate, onShowAll }
   return (
     <div>
       <div className={cn("grid gap-1.5", colClass)}>
-        {visibleItems.map(item => (
-          <MegaLink key={item.to} to={item.to} label={item.label} onClick={onNavigate} />
+        {visibleItems.map((item, i) => (
+          <MegaLink key={item.to} to={item.to} label={item.label} iconName={item.iconName} colorIndex={i} onClick={onNavigate} />
         ))}
       </div>
       {hasMore && (
@@ -174,8 +202,8 @@ function ExpandableColumn({ title, items, allItems, hubTo, onNavigate, onShowAll
     <div>
       <SubLabel title={title} hubTo={hubTo} onNavigate={onNavigate} />
       <div className={hasLogos ? "grid grid-cols-2 gap-1.5" : "space-y-1.5"}>
-        {items.map(item => (
-          <SmartLink key={item.to} item={item} onClick={onNavigate} />
+        {items.map((item, i) => (
+          <SmartLink key={item.to} item={item} colorIndex={i} onClick={onNavigate} />
         ))}
       </div>
       {hasMore && (
@@ -286,8 +314,8 @@ export function DesktopMegaNav() {
                   )}
                 </div>
                 <div className="grid gap-1.5 grid-cols-5">
-                  {sec.items.map(item => (
-                    <MegaLink key={item.to} to={item.to} label={item.label} onClick={close} />
+                  {sec.items.map((item, i) => (
+                    <MegaLink key={item.to} to={item.to} label={item.label} iconName={item.iconName} colorIndex={i} onClick={close} />
                   ))}
                 </div>
               </>
@@ -357,8 +385,8 @@ export function DesktopMegaNav() {
                   )}
                 </div>
                 <div className="grid gap-2 grid-cols-5 sm:grid-cols-6 lg:grid-cols-8">
-                  {sec.items.map(item => (
-                    <SmartLink key={item.to} item={item} onClick={close} />
+                  {sec.items.map((item, i) => (
+                    <SmartLink key={item.to} item={item} colorIndex={i} onClick={close} />
                   ))}
                 </div>
               </>
