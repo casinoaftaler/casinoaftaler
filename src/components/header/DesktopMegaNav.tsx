@@ -122,13 +122,13 @@ function MegaLink({ to, label, iconName, colorIndex = 0, onClick }: { to: string
 }
 
 /* ─── Smart link: renders logo card if logoUrl available, otherwise text ─── */
-function SmartLink({ item, onClick }: { item: NavLink; onClick: () => void }) {
+function SmartLink({ item, colorIndex = 0, onClick }: { item: NavLink; colorIndex?: number; onClick: () => void }) {
   const resolvedUrl = resolveLogoUrl(item);
   if (resolvedUrl) {
     const isReview = item.to.startsWith("/casino-anmeldelser/");
     return <MegaLogoCard to={item.to} label={item.label} logoUrl={resolvedUrl} onClick={onClick} isReview={isReview} />;
   }
-  return <MegaLink to={item.to} label={item.label} onClick={onClick} />;
+  return <MegaLink to={item.to} label={item.label} iconName={item.iconName} colorIndex={colorIndex} onClick={onClick} />;
 }
 
 /* ─── Panel header ─── */
