@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
-import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,13 +8,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Trophy, Crown, Star, TrendingUp, Sparkles, Medal, Film, ArrowRight, Users, Play } from "lucide-react";
-import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
-import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
-import { RelatedGuides } from "@/components/RelatedGuides";
+import { CommunityNav } from "@/components/community/CommunityNav";
+import { ContentSidebar } from "@/components/ContentSidebar";
+import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
+import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
+import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 import { HallOfFameSeoContent } from "@/components/seo-content/HallOfFameSeoContent";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import hallOfFameHero from "@/assets/hall-of-fame-hero.jpg";
 
 // Fetch top players by total winnings from leaderboard
 function useTopPlayers() {
