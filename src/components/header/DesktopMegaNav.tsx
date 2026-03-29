@@ -322,9 +322,9 @@ export function DesktopMegaNav() {
                     </Link>
                   )}
                 </div>
-                <div className="grid gap-1.5 grid-cols-5">
+                <div className="grid gap-2 grid-cols-5 sm:grid-cols-6 lg:grid-cols-8">
                   {sec.items.map(item => (
-                    <MegaLink key={item.to} to={item.to} label={item.label} onClick={close} />
+                    <SmartLink key={item.to} item={item} onClick={close} />
                   ))}
                 </div>
               </>
