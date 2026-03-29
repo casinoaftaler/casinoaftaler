@@ -10,18 +10,23 @@ import {
   COMMUNITY_LINKS, MORE_LINKS, FORFATTER_LINKS, type NavLink,
 } from "./navData";
 
-/* ─── Provider logo imports (Vite static) ─── */
+/* ─── Logo imports (Vite static) ─── */
 const providerLogos = import.meta.glob<{ default: string }>(
   "/src/assets/providers/*.png",
+  { eager: true }
+);
+const casinoLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/casino-logos/*.webp",
   { eager: true }
 );
 
 function resolveLogoUrl(item: NavLink): string | undefined {
   if (!item.logoUrl) return undefined;
-  // For local assets referenced via /src/assets/...
-  if (item.logoUrl.startsWith("/src/assets/")) {
-    const mod = providerLogos[item.logoUrl];
-    return mod?.default;
+  if (item.logoUrl.startsWith("/src/assets/providers/")) {
+    return providerLogos[item.logoUrl]?.default;
+  }
+  if (item.logoUrl.startsWith("/src/assets/casino-logos/")) {
+    return casinoLogos[item.logoUrl]?.default;
   }
   // Remote URLs (casino logos from storage)
   return item.logoUrl;

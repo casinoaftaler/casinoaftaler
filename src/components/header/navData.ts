@@ -193,8 +193,8 @@ const CASINO_LOGO_BASE = "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/ob
 export const REVIEW_TOP_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/spildansknu", label: "SpilDanskNu", logoUrl: `${CASINO_LOGO_BASE}/spildansknu-1765832906267.png` },
   { to: "/casino-anmeldelser/spilleautomaten", label: "Spilleautomaten", logoUrl: `${CASINO_LOGO_BASE}/spilleautomaten-1765832651802.png` },
-  { to: "/casino-anmeldelser/betinia", label: "Betinia", logoUrl: `${CASINO_LOGO_BASE}/betinia-1765833463348.png` },
-  { to: "/casino-anmeldelser/campobet", label: "Campobet", logoUrl: `${CASINO_LOGO_BASE}/campobet-1765833776423.png` },
+  { to: "/casino-anmeldelser/betinia", label: "Betinia", logoUrl: "/src/assets/casino-logos/betinia.webp" },
+  { to: "/casino-anmeldelser/campobet", label: "Campobet", logoUrl: "/src/assets/casino-logos/campobet.webp" },
   { to: "/casino-anmeldelser/swift-casino", label: "Swift Casino", logoUrl: `${CASINO_LOGO_BASE}/swift-casino-1765833754433.png` },
   { to: "/casino-anmeldelser/luna-casino", label: "Luna Casino", logoUrl: `${CASINO_LOGO_BASE}/luna-casino-1765833821820.png` },
   { to: "/casino-anmeldelser/playkasino", label: "PlayKasino", logoUrl: `${CASINO_LOGO_BASE}/new-casino-1774460542476-1774460612838.png` },
@@ -202,7 +202,7 @@ export const REVIEW_TOP_LINKS: NavLink[] = [
 
 export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil Casino", logoUrl: `${CASINO_LOGO_BASE}/danskespil.png` },
-  { to: "/casino-anmeldelser/comeon", label: "ComeOn Casino", logoUrl: `${CASINO_LOGO_BASE}/comeon.png` },
+  { to: "/casino-anmeldelser/comeon", label: "ComeOn Casino", logoUrl: "/src/assets/casino-logos/comeon.webp" },
   { to: "/casino-anmeldelser/getlucky", label: "GetLucky Casino", logoUrl: `${CASINO_LOGO_BASE}/getlucky.png` },
   { to: "/casino-anmeldelser/mr-green", label: "Mr Green Casino", logoUrl: `${CASINO_LOGO_BASE}/mrgreen.png` },
   { to: "/casino-anmeldelser/videoslots", label: "Videoslots Casino", logoUrl: `${CASINO_LOGO_BASE}/videoslots.png` },
@@ -212,7 +212,7 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/bet365", label: "bet365", logoUrl: `${CASINO_LOGO_BASE}/bet365.png` },
   { to: "/casino-anmeldelser/888-casino", label: "888 Casino", logoUrl: `${CASINO_LOGO_BASE}/888casino.png` },
   { to: "/casino-anmeldelser/betano", label: "Betano", logoUrl: `${CASINO_LOGO_BASE}/betano.png` },
-  { to: "/casino-anmeldelser/expekt", label: "Expekt", logoUrl: `${CASINO_LOGO_BASE}/expekt.png` },
+  { to: "/casino-anmeldelser/expekt", label: "Expekt", logoUrl: "/src/assets/casino-logos/expekt.webp" },
   { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino", logoUrl: `${CASINO_LOGO_BASE}/royalcasino.png` },
   { to: "/casino-anmeldelser/maria-casino", label: "Maria Casino", logoUrl: `${CASINO_LOGO_BASE}/mariacasino.png` },
   { to: "/casino-anmeldelser/kapow-casino", label: "Kapow Casino" },
@@ -222,7 +222,7 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino", logoUrl: `${CASINO_LOGO_BASE}/stake.png` },
   { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen", logoUrl: `${CASINO_LOGO_BASE}/casinostuen.png` },
   { to: "/casino-anmeldelser/pokerstars", label: "PokerStars", logoUrl: `${CASINO_LOGO_BASE}/pokerstars.png` },
-  { to: "/casino-anmeldelser/bwin", label: "bwin", logoUrl: `${CASINO_LOGO_BASE}/bwin.png` },
+  { to: "/casino-anmeldelser/bwin", label: "bwin", logoUrl: "/src/assets/casino-logos/bwin.webp" },
   { to: "/casino-anmeldelser/marathonbet", label: "MarathonBet", logoUrl: `${CASINO_LOGO_BASE}/marathonbet.png` },
   { to: "/casino-anmeldelser/bet365-vs-unibet", label: "bet365 vs Unibet" },
   { to: "/casino-anmeldelser/leovegas-vs-mr-green", label: "LeoVegas vs Mr Green" },
