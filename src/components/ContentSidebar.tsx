@@ -16,6 +16,26 @@ import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
 import { SidebarCasinoRatings } from "./SidebarCasinoRatings";
 import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 
+/* ─── Eager-load logo assets for sidebar ─── */
+const providerLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/providers/*.{webp,png,jpg}",
+  { eager: true }
+);
+const casinoLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/casino-logos/*.{webp,png,jpg}",
+  { eager: true }
+);
+const reviewLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/reviews/*.{webp,png,jpg}",
+  { eager: true }
+);
+
+function resolveLogoUrl(path?: string): string | null {
+  if (!path) return null;
+  const all = { ...providerLogos, ...casinoLogos, ...reviewLogos };
+  return all[path]?.default ?? null;
+}
+
 const iconMap: Record<string, React.ElementType> = {
   crown: Crown,
   sparkles: Sparkles,
@@ -83,6 +103,7 @@ function CategorySection({
           const isActive = location.pathname === link.to;
           const LinkIcon = getLucideIcon(link.iconName);
           const iconColor = ICON_COLORS[idx % ICON_COLORS.length];
+          const logoSrc = resolveLogoUrl(link.logoUrl);
 
           return (
             <li key={link.to}>
@@ -96,7 +117,16 @@ function CategorySection({
                     : "text-foreground/80 hover:bg-accent/10 hover:text-foreground border-l-2 border-l-transparent"
                 )}
               >
-                {LinkIcon && (
+                {logoSrc ? (
+                  <span className="inline-flex items-center justify-center h-6 w-6 rounded bg-background border border-border/40 flex-shrink-0 overflow-hidden">
+                    <img
+                      src={logoSrc}
+                      alt=""
+                      className="h-4 w-4 object-contain"
+                      loading="lazy"
+                    />
+                  </span>
+                ) : LinkIcon ? (
                   <span
                     className={cn(
                       "inline-flex items-center justify-center h-5 w-5 rounded flex-shrink-0",
@@ -105,7 +135,7 @@ function CategorySection({
                   >
                     <LinkIcon className="h-3 w-3" />
                   </span>
-                )}
+                ) : null}
                 <span className="truncate flex-1">{link.label}</span>
                 <ChevronRight
                   className={cn(
