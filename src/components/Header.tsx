@@ -145,7 +145,7 @@ export const Header = memo(function Header() {
   return (
     <>
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" style={{ contain: 'layout style', minHeight: '64px' }}>
-      <div className="container flex h-16 items-center justify-between">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 2xl:px-12 flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 flex-shrink-0">
           <div className="flex h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0 items-center justify-center rounded-lg overflow-hidden">
             <img src={casinoaftalerLogo} alt="Casinoaftaler.dk logo" width={40} height={40} className="h-full w-full object-cover" loading="eager" {...{ fetchpriority: "high" }} />
@@ -154,7 +154,7 @@ export const Header = memo(function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-4 xl:gap-6 lg:flex whitespace-nowrap" style={{ contain: 'layout style' }}>
+        <nav className="hidden items-center flex-1 justify-evenly gap-1 lg:flex whitespace-nowrap" style={{ contain: 'layout style' }}>
           {/* Casinoer */}
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
