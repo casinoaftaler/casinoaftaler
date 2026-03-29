@@ -222,7 +222,7 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino", logoUrl: `${CASINO_LOGO_BASE}/stake.png` },
   { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen", logoUrl: `${CASINO_LOGO_BASE}/casinostuen.png` },
   { to: "/casino-anmeldelser/pokerstars", label: "PokerStars", logoUrl: `${CASINO_LOGO_BASE}/pokerstars.png` },
-  { to: "/casino-anmeldelser/bwin", label: "bwin", logoUrl: `${CASINO_LOGO_BASE}/bwin.png` },
+  { to: "/casino-anmeldelser/bwin", label: "bwin", logoUrl: "/src/assets/casino-logos/bwin.webp" },
   { to: "/casino-anmeldelser/marathonbet", label: "MarathonBet", logoUrl: `${CASINO_LOGO_BASE}/marathonbet.png` },
   { to: "/casino-anmeldelser/bet365-vs-unibet", label: "bet365 vs Unibet" },
   { to: "/casino-anmeldelser/leovegas-vs-mr-green", label: "LeoVegas vs Mr Green" },
