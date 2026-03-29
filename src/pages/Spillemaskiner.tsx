@@ -126,7 +126,7 @@ const Spillemaskiner = () => {
 
         <SnippetAnswer answer="Spillemaskiner (online slots) udgør 70% af casinoomsætningen. RTP varierer fra 94-97%, og volatilitet bestemmer gevinstmønsteret. Vælg spil baseret på matematik, ikke tema." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["spilleautomaten", "campobet", "betinia"]} />
+        <QuickComparisonTable count={3} title="Top 3 casinoer til spillemaskiner" prioritySlugs={["spilleautomaten", "campobet", "betinia"]} />
 
 {/* ── SEKTION 1: Historisk kontekst ── */}
         <section className="mb-12">

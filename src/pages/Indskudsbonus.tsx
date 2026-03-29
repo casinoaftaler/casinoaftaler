@@ -160,7 +160,7 @@ const Indskudsbonus = () => {
 
         <SnippetAnswer answer="En indskudsbonus (matchbonus) matcher din indbetaling med en procentdel – typisk 100% op til 1.000 kr. Den reelle værdi afhænger af omsætningskrav, bonusstruktur og RTP." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["spilleautomaten", "betinia", "spildansknu"]} />
+        <QuickComparisonTable count={3} title="Bedste indskudsbonusser – top 3" prioritySlugs={["spilleautomaten", "betinia", "spildansknu"]} />
 
 {/* Intro */}
         <section className="mb-12">

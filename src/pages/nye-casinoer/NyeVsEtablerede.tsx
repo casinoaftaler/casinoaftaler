@@ -71,7 +71,7 @@ const NyeVsEtablerede = () => {
 
         <SnippetAnswer answer="Nye casinoer tilbyder typisk bedre bonusser og moderne UI, mens etablerede casinoer har bredere spiludvalg og dokumenteret track record." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" prioritySlugs={["betinia", "swift-casino", "spildansknu"]} />
+        <QuickComparisonTable count={3} title="Nye vs. etablerede – top 3 valg" prioritySlugs={["betinia", "swift-casino", "spildansknu"]} />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Nye vs. etablerede casinoer – den store sammenligning</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">

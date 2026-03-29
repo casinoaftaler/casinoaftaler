@@ -346,7 +346,7 @@ const Spiludviklere = () => {
 
         <SnippetAnswer answer="Valget af spiludvikler påvirker direkte dine vinderchancer. NetEnt og Play'n GO tilbyder højest RTP (96-97%), mens Nolimit City og Hacksaw Gaming giver størst gevinstpotentiale med høj volatilitet." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["spilleautomaten", "campobet", "betinia"]} />
+        <QuickComparisonTable count={3} title="Bedste casinoer med flest udbydere" prioritySlugs={["spilleautomaten", "campobet", "betinia"]} />
 
 {/* ═══════════════════════════════════════════
             SECTION 1: Strategisk intro
