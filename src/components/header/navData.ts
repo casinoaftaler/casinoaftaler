@@ -192,7 +192,7 @@ const CASINO_LOGO_BASE = "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/ob
 
 export const REVIEW_TOP_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/spildansknu", label: "SpilDanskNu", logoUrl: "/src/assets/casino-logos/spildansknu.webp" },
-  { to: "/casino-anmeldelser/spilleautomaten", label: "Spilleautomaten", logoUrl: "/src/assets/casino-logos/spilleautomaten.webp" },
+  { to: "/casino-anmeldelser/spilleautomaten", label: "Spilleautomaten", logoUrl: "/src/assets/casino-logos/spilleautomaten.png" },
   { to: "/casino-anmeldelser/betinia", label: "Betinia", logoUrl: "/src/assets/casino-logos/betinia.webp" },
   { to: "/casino-anmeldelser/campobet", label: "Campobet", logoUrl: "/src/assets/casino-logos/campobet.webp" },
   { to: "/casino-anmeldelser/swift-casino", label: "Swift Casino", logoUrl: "/src/assets/casino-logos/swift-casino.webp" },
@@ -209,7 +209,7 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/mr-vegas", label: "Mr Vegas Casino", logoUrl: "/src/assets/casino-logos/mrvegas.webp" },
   { to: "/casino-anmeldelser/leovegas", label: "LeoVegas", logoUrl: "/src/assets/casino-logos/leovegas.webp" },
   { to: "/casino-anmeldelser/unibet", label: "Unibet", logoUrl: `${CASINO_LOGO_BASE}/unibet.png` },
-  { to: "/casino-anmeldelser/bet365", label: "bet365", logoUrl: `${CASINO_LOGO_BASE}/bet365.png` },
+  { to: "/casino-anmeldelser/bet365", label: "bet365", logoUrl: "/src/assets/casino-logos/bet365.jpg" },
   { to: "/casino-anmeldelser/888-casino", label: "888 Casino", logoUrl: "/src/assets/casino-logos/888casino.webp" },
   { to: "/casino-anmeldelser/betano", label: "Betano", logoUrl: `${CASINO_LOGO_BASE}/betano.png` },
   { to: "/casino-anmeldelser/expekt", label: "Expekt", logoUrl: "/src/assets/casino-logos/expekt.webp" },
