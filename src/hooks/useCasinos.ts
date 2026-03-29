@@ -81,6 +81,7 @@ export function useCasinos(includeInactive = false) {
         game_providers: (casino.game_providers as unknown as GameProvider[]) || []
       })) as Casino[];
     },
+    staleTime: 5 * 60 * 1000,
   });
 }
 
