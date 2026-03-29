@@ -8,7 +8,7 @@ import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
 import niklasImage from "@/assets/niklas-forfatter.webp";
-import frederikImage from "@/assets/frederik-forfatter.jpg";
+import frederikImage from "@/assets/frederik-forfatter.webp";
 
 interface AuthorBioProps {
   author?: "jonas" | "kevin" | "ajse" | "niklas" | "frederik";
