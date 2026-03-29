@@ -58,7 +58,6 @@ function NavItems({ links, iconSize = "h-3 w-3" }: { links: NavLink[]; iconSize?
 export const Header = memo(function Header() {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [allReviewsExpanded, setAllReviewsExpanded] = useState(false);
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem("theme");
     return saved === "dark";
