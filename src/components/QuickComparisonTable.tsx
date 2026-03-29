@@ -27,10 +27,22 @@ const PARTNER_SLUGS = [
   "playkasino",
 ];
 
-const RANK_COLORS = [
-  { bg: "bg-amber-500", shadow: "shadow-amber-500/30", ring: "ring-amber-400/40" },
-  { bg: "bg-slate-400", shadow: "shadow-slate-400/20", ring: "ring-slate-300/30" },
-  { bg: "bg-orange-700", shadow: "shadow-orange-700/20", ring: "ring-orange-600/30" },
+const RANK_CONFIG = [
+  {
+    gradient: "from-amber-400 to-amber-600",
+    glow: "shadow-[0_0_12px_rgba(245,158,11,0.5)]",
+    border: "border-amber-400/30",
+  },
+  {
+    gradient: "from-slate-300 to-slate-500",
+    glow: "shadow-[0_0_10px_rgba(148,163,184,0.4)]",
+    border: "border-slate-300/30",
+  },
+  {
+    gradient: "from-orange-500 to-orange-800",
+    glow: "shadow-[0_0_10px_rgba(194,65,12,0.4)]",
+    border: "border-orange-500/30",
+  },
 ] as const;
 
 interface QuickComparisonTableProps {
@@ -43,39 +55,19 @@ function RatingStars({ score }: { score: number }) {
   const full = Math.floor(score);
   const half = score - full >= 0.25;
   return (
-    <div className="flex items-center gap-0.5" aria-label={`Rating: ${score.toFixed(1)} ud af 5`}>
+    <div className="flex items-center gap-px" aria-label={`Rating: ${score.toFixed(1)} ud af 5`}>
       {[1, 2, 3, 4, 5].map((i) => (
         <Star
           key={i}
-          className={`h-4 w-4 ${
+          className={`h-3.5 w-3.5 ${
             i <= full
-              ? "text-amber-400 fill-amber-400"
+              ? "text-amber-400 fill-amber-400 drop-shadow-[0_0_2px_rgba(251,191,36,0.4)]"
               : i === full + 1 && half
                 ? "text-amber-400 fill-amber-400/50"
                 : "text-muted-foreground/20"
           }`}
         />
       ))}
-    </div>
-  );
-}
-
-function StatPill({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: React.ElementType;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="flex flex-col items-center gap-1.5 rounded-xl bg-muted/40 border border-border/50 px-3 py-3">
-      <Icon className="h-4 w-4 text-primary/70" strokeWidth={1.8} />
-      <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium leading-none">
-        {label}
-      </span>
-      <span className="text-sm font-bold text-foreground leading-none">{value}</span>
     </div>
   );
 }
@@ -112,126 +104,117 @@ export function QuickComparisonTable({
 
   return (
     <section className="mb-10" aria-label={title}>
-      <h3 className="text-xl font-bold text-foreground mb-5 tracking-tight">
+      <h3 className="text-lg font-bold text-foreground mb-4 tracking-tight">
         {title}
       </h3>
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-3">
         {display.map((casino, i) => {
           const score =
             CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating);
-          const rank = RANK_COLORS[i] ?? {
-            bg: "bg-muted",
-            shadow: "shadow-none",
-            ring: "ring-border",
-          };
+          const rank = RANK_CONFIG[i] ?? RANK_CONFIG[2];
 
           return (
             <article
               key={casino.id}
-              className="group relative rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20"
+              className="relative rounded-2xl bg-card border border-border overflow-hidden group transition-all duration-200 hover:border-primary/25"
+              style={{
+                boxShadow: "0 1px 3px hsl(250 30% 10% / 0.04), 0 4px 14px hsl(250 30% 10% / 0.03)",
+              }}
             >
-              {/* Top accent line */}
-              <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+              {/* Subtle left accent stripe */}
+              <div
+                className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b ${rank.gradient} opacity-60 group-hover:opacity-100 transition-opacity`}
+              />
 
-              <div className="p-5 sm:p-6">
-                {/* ── Header: Rank + Logo + Name/Rating + Bonus ── */}
-                <div className="flex items-start gap-4">
-                  {/* Rank badge */}
-                  <div
-                    className={`shrink-0 flex items-center justify-center h-9 w-9 rounded-full text-sm font-black text-white shadow-lg ring-2 ${rank.bg} ${rank.shadow} ${rank.ring}`}
-                  >
-                    {i + 1}
-                  </div>
-
-                  {/* Logo */}
-                  {casino.logo_url && (
-                    <div className="shrink-0 rounded-xl bg-background border border-border/60 p-1.5 shadow-sm">
+              <div className="pl-5 pr-4 py-4 sm:pl-6 sm:pr-5 sm:py-5">
+                {/* ── Row 1: Logo block + Casino info + Bonus ── */}
+                <div className="flex items-center gap-3 sm:gap-4">
+                  {/* Rank + Logo stacked */}
+                  <div className="relative shrink-0">
+                    {/* Rank pip */}
+                    <div
+                      className={`absolute -top-1.5 -left-1.5 z-10 h-6 w-6 rounded-full bg-gradient-to-br ${rank.gradient} ${rank.glow} flex items-center justify-center`}
+                    >
+                      <span className="text-[11px] font-black text-white leading-none">
+                        {i + 1}
+                      </span>
+                    </div>
+                    <div className="rounded-xl bg-background border border-border/70 p-1 shadow-sm">
                       <img
-                        src={optimizeStorageImage(casino.logo_url, 88)}
+                        src={optimizeStorageImage(casino.logo_url!, 80)}
                         alt={`${casino.name} logo`}
-                        width={64}
-                        height={64}
-                        className="h-16 w-16 rounded-lg object-contain"
+                        width={52}
+                        height={52}
+                        className="h-[52px] w-[52px] rounded-lg object-contain"
                         loading="lazy"
                       />
                     </div>
-                  )}
+                  </div>
 
-                  {/* Name + Stars */}
-                  <div className="flex-1 min-w-0 pt-0.5">
+                  {/* Name + Rating */}
+                  <div className="flex-1 min-w-0">
                     <Link
                       to={`/casino-anmeldelser/${casino.slug}`}
-                      className="text-lg sm:text-xl font-bold text-foreground hover:text-primary transition-colors line-clamp-1"
+                      className="text-base sm:text-lg font-bold text-foreground hover:text-primary transition-colors line-clamp-1 leading-tight"
                     >
                       {casino.name}
                     </Link>
-                    <div className="flex items-center gap-2 mt-1.5">
+                    <div className="flex items-center gap-1.5 mt-1">
                       <RatingStars score={score} />
-                      <span className="text-base font-bold text-primary tabular-nums">
+                      <span className="text-sm font-bold text-primary tabular-nums leading-none">
                         {score.toFixed(1)}
                       </span>
                     </div>
                   </div>
 
-                  {/* Bonus — desktop */}
-                  <div className="shrink-0 text-right hidden sm:flex flex-col items-end gap-0.5">
-                    <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">
+                  {/* Bonus — always visible, responsive size */}
+                  <div className="shrink-0 text-right">
+                    <span className="block text-[10px] sm:text-[11px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
                       Bonus
                     </span>
-                    <span className="text-xl font-black text-primary leading-tight tracking-tight">
+                    <span className="block text-base sm:text-xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight mt-0.5 tracking-tight">
                       {casino.bonus_amount}
                     </span>
                   </div>
                 </div>
 
-                {/* Bonus — mobile */}
-                <div className="mt-4 sm:hidden">
-                  <div className="flex items-center justify-between rounded-xl bg-primary/[0.06] border border-primary/10 px-4 py-2.5">
-                    <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
-                      Bonus
-                    </span>
-                    <span className="text-lg font-black text-primary tracking-tight">
-                      {casino.bonus_amount}
-                    </span>
-                  </div>
-                </div>
-
-                {/* ── Stats row ── */}
-                <div className="mt-5 grid grid-cols-3 gap-2.5">
-                  <StatPill
-                    icon={RotateCw}
-                    label="Omsætning"
-                    value={casino.wagering_requirements}
-                  />
-                  <StatPill
-                    icon={Clock}
-                    label="Udbetaling"
-                    value={casino.payout_time}
-                  />
-                  <StatPill
-                    icon={Landmark}
-                    label="Min. indbet."
-                    value={casino.min_deposit}
-                  />
+                {/* ── Row 2: Stats ── */}
+                <div className="mt-3.5 grid grid-cols-3 gap-1.5 sm:gap-2">
+                  {[
+                    { icon: RotateCw, label: "Omsætning", value: casino.wagering_requirements },
+                    { icon: Clock, label: "Udbetaling", value: casino.payout_time },
+                    { icon: Landmark, label: "Min. indbet.", value: casino.min_deposit },
+                  ].map(({ icon: Icon, label, value }) => (
+                    <div
+                      key={label}
+                      className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1"
+                    >
+                      <Icon className="h-3.5 w-3.5 text-muted-foreground/70" strokeWidth={1.6} />
+                      <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
+                        {label}
+                      </span>
+                      <span className="text-xs sm:text-sm font-bold text-foreground leading-none">
+                        {value}
+                      </span>
+                    </div>
+                  ))}
                 </div>
 
                 {/* ── CTA ── */}
-                <div className="mt-5">
+                <div className="mt-3.5">
                   <Button
                     variant="cta"
-                    className="w-full h-12 text-base font-black tracking-wide gap-2 rounded-xl"
-                    onClick={() =>
-                      getAffiliateRedirect(casino.slug, user?.id)
-                    }
+                    className="w-full h-11 text-sm font-black tracking-wide gap-2 rounded-xl"
+                    onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
                   >
                     {ctaText}
-                    <ExternalLink className="h-4 w-4" />
+                    <ExternalLink className="h-3.5 w-3.5" />
                   </Button>
                 </div>
 
                 {/* ── Disclaimer ── */}
-                <div className="mt-4">
+                <div className="mt-3">
                   <CasinoCardDisclaimer />
                 </div>
               </div>
