@@ -1,28 +1,16 @@
 
 
-## Add Lucide icons to the ContentSidebar navigation
+## Fix: Bonus Hunt list ordering (oldest to newest)
 
-The mega menu already maps an `iconName` (kebab-case Lucide name) to every link. The sidebar (`contentSidebarData.ts`) has the exact same links but without icons. The plan is to add the matching `iconName` to each sidebar link and render them with the same colored-badge pattern as the mega menu.
-
-### Performance impact
-None. Lucide icons are already bundled (the mega menu imports `icons` from `lucide-react`). This adds zero extra network requests -- just reuses existing tree-shaken SVG components. The sidebar is only rendered on desktop (xl breakpoint), so mobile is unaffected.
-
----
+The "Seneste Bonus Hunts" lists on the homepage and in community widgets currently display hunts newest-first (#181 first). The fix is to reverse the display order so hunts appear oldest to newest while still fetching the 3 most recent.
 
 ### Changes
 
-**1. Update `SidebarLink` interface and add `iconName` to all links**
-File: `src/components/contentSidebarData.ts`
-- Add optional `iconName?: string` to the `SidebarLink` interface
-- Copy the matching `iconName` from `navData.ts` to every link (they share the same `to` paths, so it's a 1:1 mapping)
+**1. `src/components/HomepageLiveCommunity.tsx`**
+- After mapping the hunts array (line 32-39), reverse it so the oldest of the 3 appears first: `.reverse()`
 
-**2. Render icons in the sidebar links**
-File: `src/components/ContentSidebar.tsx`
-- Import `icons` from `lucide-react` (same as mega menu)
-- Add the `getLucideIcon` helper (kebab-case to PascalCase lookup)
-- Add rotating `ICON_COLORS` array (same 5 colors as mega menu)
-- In each link row, render a small colored icon badge (h-5 w-5 circle) before the label, matching the mega menu's visual style but slightly smaller to fit the sidebar's compact layout
+**2. `src/components/CommunityActivityWidget.tsx`**
+- Same fix: reverse the mapped hunts array so oldest hunt appears first in the list.
 
-### Visual result
-Each sidebar link gets a small colored Lucide icon badge to the left of the label, matching the style seen in the mega menu screenshot (image 1). The category headers keep their existing larger icons unchanged.
+Both components will still fetch the 3 newest hunts (descending), but `.reverse()` the result so they render from oldest (#179) to newest (#181).
 
