@@ -16,6 +16,26 @@ import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
 import { SidebarCasinoRatings } from "./SidebarCasinoRatings";
 import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 
+/* ─── Eager-load logo assets for sidebar ─── */
+const providerLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/providers/*.{webp,png,jpg}",
+  { eager: true }
+);
+const casinoLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/casino-logos/*.{webp,png,jpg}",
+  { eager: true }
+);
+const reviewLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/reviews/*.{webp,png,jpg}",
+  { eager: true }
+);
+
+function resolveLogoUrl(path?: string): string | null {
+  if (!path) return null;
+  const all = { ...providerLogos, ...casinoLogos, ...reviewLogos };
+  return all[path]?.default ?? null;
+}
+
 const iconMap: Record<string, React.ElementType> = {
   crown: Crown,
   sparkles: Sparkles,
