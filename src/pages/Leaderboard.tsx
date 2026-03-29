@@ -30,7 +30,6 @@ import { CompletedTournamentRow } from "@/components/tournament/CompletedTournam
 import { MonthlyTournamentBoxes } from "@/components/tournament/MonthlyTournamentBoxes";
 import { TournamentSeoContent, getTournamentFaqSchema, tournamentFaqs } from "@/components/tournament/TournamentSeoContent";
 import { TurneringerSeoText } from "@/components/tournament/TurneringerSeoText";
-import { AuthorBio } from "@/components/AuthorBio";
 import turneringerHero from "@/assets/community/turneringer-hero.jpg";
 
 const GAME_NAMES: Record<string, string> = {
