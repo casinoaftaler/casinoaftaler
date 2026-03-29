@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX bonus_hunt_sessions_hunt_number_unique ON public.bonus_hunt_sessions (hunt_number);
