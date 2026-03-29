@@ -122,7 +122,7 @@ export const Header = memo(function Header() {
     await signOut();
   };
 
-  const toggleSection = (key: string) => setExpandedSection(expandedSection === key ? null : key);
+  
 
   return (
     <>
