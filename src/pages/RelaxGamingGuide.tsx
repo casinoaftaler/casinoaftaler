@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
-import relaxHero from "@/assets/heroes/relax-gaming-hero.jpg";
 
 const RelaxGamingGuide = () => (
   <ProviderPage
@@ -9,10 +8,7 @@ const RelaxGamingGuide = () => (
     seoTitle="Relax Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
     seoDescription="Relax Gaming: Innovativ spiludvikler bag Money Train og Dream Drop Jackpots. 150+ titler, mekanik-drevet design og aggregator-platform."
     name="Relax Gaming"
-    heroSubtitle="Relax Gaming kombinerer mekanik-drevet innovation med en stærk aggregeringsplatform. Money Train-serien og Dream Drop Jackpots har cementeret deres position som branchens kreative kraftcenter."
-    heroImage={relaxHero}
-    heroImageAlt="Relax Gaming – innovative spilleautomater og Dream Drop Jackpots"
-    currentPath="/spiludviklere/relax-gaming"
+    heroSubtitle="Relax Gaming kombinerer mekanik-drevet innovation med en stærk aggregeringsplatform. Money Train-serien og Dream Drop Jackpots har cementeret deres position som branchens kreative kraftcenter."    currentPath="/spiludviklere/relax-gaming"
     readTime="18 Min."
     sectionOrder={["intro", "technical", "strategic", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
     strategicTitle="Hybrid-Modellen: Studio og Platform i Symbiose"

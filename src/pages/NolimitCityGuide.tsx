@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema, SITE_URL } from "@/lib/seo";
 import { VideoContextBox } from "@/components/VideoContextBox";
-import nolimitHero from "@/assets/heroes/nolimit-city-hero.jpg";
 
 const NolimitCityGuide = () => (
   <ProviderPage
@@ -12,10 +11,7 @@ const NolimitCityGuide = () => (
     seoTitle="Nolimit City Spillemaskiner – xWays & High Vol (2026)"
     seoDescription="Nolimit City slots: xWays, xNudge og xBomb-patenter. San Quentin xWays med 2.084.000× maks. gevinst. Opkøbt af Evolution for €340M."
     name="Nolimit City"
-    heroSubtitle="Nolimit City har redefineret high-volatility slots med patenterede mekanikker som xWays, xNudge og xBomb. Opkøbt af Evolution Gaming for €340 millioner – en anerkendelse af deres unikke position."
-    heroImage={nolimitHero}
-    heroImageAlt="Nolimit City – high-volatility slots med xWays, xNudge og xBomb mekanikker"
-    currentPath="/spiludviklere/nolimit-city"
+    heroSubtitle="Nolimit City har redefineret high-volatility slots med patenterede mekanikker som xWays, xNudge og xBomb. Opkøbt af Evolution Gaming for €340 millioner – en anerkendelse af deres unikke position."    currentPath="/spiludviklere/nolimit-city"
     extraJsonLd={[buildVideoSchema(`${SITE_URL}/spiludviklere/nolimit-city`, "oLToV0bHrjU", { title: "Nolimit City – Bonus åbninger live", description: "Se Jonas åbne bonusser på populære Nolimit City spillemaskiner live – xWays, xNudge og xBomb mekanikker i praksis.", uploadDate: "2026-03-07", duration: "PT25M0S" })]}
     readTime="18 Min."
     sectionOrder={["strategic", "technical", "intro", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}

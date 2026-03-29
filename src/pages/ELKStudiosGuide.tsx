@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
-import elkHero from "@/assets/heroes/elk-studios-hero.jpg";
 
 const ELKStudiosGuide = () => (
   <ProviderPage
@@ -9,10 +8,7 @@ const ELKStudiosGuide = () => (
     seoTitle="ELK Studios – Præcisionsingeniørerne bag Avalanche og Precision Spins 2026"
     seoDescription="Dybdegående analyse af ELK Studios – svenske præcisionsingeniører med 80+ titler, Avalanche-mekanik, Precision Spins-teknologi og 95-96,5% RTP."
     name="ELK Studios"
-    heroSubtitle="ELK Studios er casinobranchens præcisionsingeniører – et svensk boutique-studio der i over et årti har bevist, at kvalitet trumfer kvantitet. Med patenteret Precision Spins-teknologi, Avalanche-mekanikken og 80+ omhyggeligt polerede titler har de skabt en portefølje hvor hvert spil er et statement."
-    heroImage={elkHero}
-    heroImageAlt="ELK Studios – kvalitetsspilleautomater med Avalanche og Precision Spins"
-    currentPath="/spiludviklere/elk-studios"
+    heroSubtitle="ELK Studios er casinobranchens præcisionsingeniører – et svensk boutique-studio der i over et årti har bevist, at kvalitet trumfer kvantitet. Med patenteret Precision Spins-teknologi, Avalanche-mekanikken og 80+ omhyggeligt polerede titler har de skabt en portefølje hvor hvert spil er et statement."    currentPath="/spiludviklere/elk-studios"
     readTime="38 Min."
     strategicTitle="Håndværkerens Dilemma: ELK Studios' Markedsstrategi"
     technicalTitle="Præcisionsinstrumenterne: ELK Studios' Teknologiske Arsenal"

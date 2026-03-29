@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
-import redTigerHero from "@/assets/heroes/red-tiger-hero.jpg";
 
 const RedTigerGuide = () => (
   <ProviderPage
@@ -9,10 +8,7 @@ const RedTigerGuide = () => (
     seoTitle="Red Tiger Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
     seoDescription="Red Tiger Gaming: Daily Jackpots, Tournaments og Megaways-specialist. Opkøbt af NetEnt for £200M, nu under Evolution. 220+ spil."
     name="Red Tiger Gaming"
-    heroSubtitle="Red Tiger Gaming har innoveret casinobranchen med garanterede Daily Jackpots og Tournaments-funktionen. Opkøbt for £200M, nu en nøglebrik i Evolution-koncernen."
-    heroImage={redTigerHero}
-    heroImageAlt="Red Tiger Gaming – Daily Jackpots, Tournaments og Megaways slots"
-    currentPath="/spiludviklere/red-tiger"
+    heroSubtitle="Red Tiger Gaming har innoveret casinobranchen med garanterede Daily Jackpots og Tournaments-funktionen. Opkøbt for £200M, nu en nøglebrik i Evolution-koncernen."    currentPath="/spiludviklere/red-tiger"
     readTime="18 Min."
     sectionOrder={["technical", "intro", "strategic", "games", "casinos", "history", "licenses", "proscons", "providers", "responsible"]}
     strategicTitle="Gamification-Innovatoren: Engagement Over Volatilitet"

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
-import evolutionHero from "@/assets/heroes/evolution-gaming-hero.jpg";
 
 const EvolutionGamingGuide = () => (
   <ProviderPage
@@ -9,10 +8,7 @@ const EvolutionGamingGuide = () => (
     seoTitle="Evolution Gaming – Live Casino-Monopolisten og Koncern-Arkitekten 2026"
     seoDescription="Dybdegående analyse af Evolution Gaming – 70%+ live casino-markedsandel, Crazy Time, Lightning Roulette, NetEnt + BTG opkøb. 16.000+ ansatte."
     name="Evolution Gaming"
-    heroSubtitle="Evolution Gaming er ikke bare et spiludviklingsstudio – det er en koncern-arkitekt der har konsolideret den globale casinobranche under ét tag. Med 70%+ markedsandel i live casino, opkøb af NetEnt, Red Tiger og Big Time Gaming, og 16.000+ ansatte er de den mest dominerende aktør i online gambling-historien."
-    heroImage={evolutionHero}
-    heroImageAlt="Evolution Gaming live casino studio med professionelle dealere og avanceret streaming-teknologi"
-    currentPath="/spiludviklere/evolution-gaming"
+    heroSubtitle="Evolution Gaming er ikke bare et spiludviklingsstudio – det er en koncern-arkitekt der har konsolideret den globale casinobranche under ét tag. Med 70%+ markedsandel i live casino, opkøb af NetEnt, Red Tiger og Big Time Gaming, og 16.000+ ansatte er de den mest dominerende aktør i online gambling-historien."    currentPath="/spiludviklere/evolution-gaming"
     readTime="38 Min."
     strategicTitle="Koncern-Arkitekturen: Evolutions Opkøbs- og Dominansstrategi"
     technicalTitle="Live Casino-Teknologien: Fra OCR til 4K-Streaming"

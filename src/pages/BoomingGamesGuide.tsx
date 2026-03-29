@@ -12,16 +12,12 @@ import {
   Sparkles,
   Rocket,
 } from "lucide-react";
-import boomingHero from "@/assets/images/providers/booming-games-hero.jpg";
 
 const BoomingGamesGuide = () => (
   <ProviderPage
     seoTitle="Booming Games – Komplet Guide til Spiludvikleren (2026)"
     seoDescription="Booming Games: Innovative spillemaskiner, unik Felt-teknologi, B2B-løsninger og 200+ spil. Se licenser, RTP-profiler og populære titler."
-    name="Booming Games"
-    heroImage={boomingHero}
-    heroImageAlt="Booming Games – Malta-baseret spiludvikler"
-    heroSubtitle="Malta-baseret innovator med 200+ spillemaskiner, proprietær Felt-teknologi og stærk tilstedeværelse på regulerede markeder verden over."
+    name="Booming Games"    heroSubtitle="Malta-baseret innovator med 200+ spillemaskiner, proprietær Felt-teknologi og stærk tilstedeværelse på regulerede markeder verden over."
     introTitle="Hvem er Booming Games? – Den Komplette Historie om Maltas Mest Produktive Mid-Tier Studie"
     introContent={
       <div className="space-y-4 text-muted-foreground leading-relaxed">

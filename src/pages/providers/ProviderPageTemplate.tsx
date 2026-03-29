@@ -5,12 +5,14 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useCasinos } from "@/hooks/useCasinos";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ProviderSlotLinks } from "@/components/ProviderSlotLinks";
 import { DeveloperSiblingLinks } from "@/components/DeveloperSiblingLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { DeveloperMoneyLinks } from "@/components/DeveloperMoneyLinks";
 import { ProviderCatalogSlots } from "@/components/ProviderCatalogSlots";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -29,7 +31,7 @@ import {
   BarChart3,
   Target,
 } from "lucide-react";
-import { ReactNode, Fragment } from "react";
+import { ReactNode, Fragment, useMemo } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 

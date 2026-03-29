@@ -2,17 +2,13 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import wazdanHero from "@/assets/images/providers/wazdan-hero.jpg";
 
 const WazdanGuide = () => (
   <ProviderPage
     ctaCasinoSlug="spildansknu"
     seoTitle="Wazdan Spillemaskiner – Bedste Slots, RTP & Komplet Guide (2026)"
     seoDescription="Wazdan slots: Polsk studio med Volatility Levels™-teknologi, 200+ titler, RTP 95-96,5 % og innovative features som Unique Gamble. Se populære spil."
-    name="Wazdan"
-    heroImage={wazdanHero}
-    heroImageAlt="Wazdan – polsk innovativ spiludvikler"
-    heroSubtitle="Wazdan er den polske innovator der har revolutioneret spilleroplevelsen med patenteret Volatility Levels™-teknologi – spillere vælger selv volatilitet i realtid. Med 200+ titler og avancerede gamification-features har Wazdan etableret sig som en af Europas mest progressive spiludviklere."
+    name="Wazdan"    heroSubtitle="Wazdan er den polske innovator der har revolutioneret spilleroplevelsen med patenteret Volatility Levels™-teknologi – spillere vælger selv volatilitet i realtid. Med 200+ titler og avancerede gamification-features har Wazdan etableret sig som en af Europas mest progressive spiludviklere."
     currentPath="/spiludviklere/wazdan"
     readTime="35 Min."
     strategicTitle="Spillerautonomi som Forretningsmodel: Wazdans Disruptive Markedsposition"

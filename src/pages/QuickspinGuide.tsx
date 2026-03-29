@@ -2,17 +2,13 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import quickspinHero from "@/assets/images/providers/quickspin-hero.jpg";
 
 const QuickspinGuide = () => (
   <ProviderPage
     ctaCasinoSlug="betinia"
     seoTitle="Quickspin Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
     seoDescription="Quickspin slots: Svensk premium-studio med Achievement Engine, fast RTP 96,0-96,7 %, medium volatilitet og 80+ kvalitetsslots. Se populære spil."
-    name="Quickspin"
-    heroImage={quickspinHero}
-    heroImageAlt="Quickspin – svensk premium spiludvikler"
-    heroSubtitle="Quickspin er det svenske premium-studio der har bevist, at spillercentreret design og gamification kan sameksistere med matematisk integritet. Med Achievement Engine og en portefølje på 80+ slots har de skabt en ny standard for spillerengagement."
+    name="Quickspin"    heroSubtitle="Quickspin er det svenske premium-studio der har bevist, at spillercentreret design og gamification kan sameksistere med matematisk integritet. Med Achievement Engine og en portefølje på 80+ slots har de skabt en ny standard for spillerengagement."
     currentPath="/spiludviklere/quickspin"
     readTime="36 Min."
     strategicTitle="Gamification som Konkurrencefordel: Quickspins Unikke Markedsposition"
