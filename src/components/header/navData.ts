@@ -89,7 +89,7 @@ export const BLACKJACK_LINKS: NavLink[] = [
 export const BLACKJACK_STRATEGY_LINKS: NavLink[] = [
   { to: "/casinospil/blackjack/martingale", label: "Martingale Strategi", iconName: "arrow-up-right" },
   { to: "/casinospil/blackjack/fibonacci", label: "Fibonacci Strategi", iconName: "sigma" },
-  { to: "/casinospil/blackjack/dalembert", label: "D'Alembert Strategi", iconName: "minus-plus" },
+  { to: "/casinospil/blackjack/dalembert", label: "D'Alembert Strategi", iconName: "minus" },
 ];
 
 export const ROULETTE_LINKS: NavLink[] = [
