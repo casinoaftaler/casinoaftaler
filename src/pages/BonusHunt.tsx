@@ -232,8 +232,11 @@ export default function BonusHunt() {
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
         <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
-          {/* Author meta bar */}
-          <AuthorMetaBar author="kevin" readTime="8 Min." />
+          <AuthorMetaBar author="kevin" />
+
+          <SnippetAnswer answer="Følg live bonus hunts med dokumenterede resultater, gennemsnit X og break-even analyser. Deltag i community bets og se arkiverede hunts med Twitch VOD – kun danske casinoer med licens." />
+
+          {!user && <CommunityJoinCTA />}
 
           {/* Stat strip */}
           <BonusHuntStatStrip />
