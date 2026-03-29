@@ -244,32 +244,49 @@ const MENU_CLOSE_DELAY_MS = 5000;
 /* ─── Main ─── */
 export function DesktopMegaNav() {
   const [activeMenu, setActiveMenu] = useState<MenuKey | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
   const [focusedSection, setFocusedSection] = useState<string | null>(null);
   const timeoutRef = useRef<number>();
+  const closeAnimRef = useRef<number>();
   const navigate = useNavigate();
+
+  const CLOSE_ANIM_MS = 200;
+
+  const animateClose = useCallback(() => {
+    clearTimeout(timeoutRef.current);
+    clearTimeout(closeAnimRef.current);
+    setIsClosing(true);
+    closeAnimRef.current = window.setTimeout(() => {
+      setActiveMenu(null);
+      setFocusedSection(null);
+      setIsClosing(false);
+    }, CLOSE_ANIM_MS);
+  }, []);
 
   const handleEnter = useCallback((key: MenuKey) => {
     clearTimeout(timeoutRef.current);
+    clearTimeout(closeAnimRef.current);
+    setIsClosing(false);
     setActiveMenu(key);
     setFocusedSection(null);
   }, []);
 
   const handleLeave = useCallback(() => {
     timeoutRef.current = window.setTimeout(() => {
-      setActiveMenu(null);
-      setFocusedSection(null);
+      animateClose();
     }, MENU_CLOSE_DELAY_MS);
-  }, []);
+  }, [animateClose]);
 
   const handlePanelEnter = useCallback(() => {
     clearTimeout(timeoutRef.current);
+    clearTimeout(closeAnimRef.current);
+    setIsClosing(false);
   }, []);
 
   const close = useCallback(() => {
     clearTimeout(timeoutRef.current);
-    setActiveMenu(null);
-    setFocusedSection(null);
-  }, []);
+    animateClose();
+  }, [animateClose]);
 
   const expandSection = useCallback((sectionKey: string) => {
     clearTimeout(timeoutRef.current);
