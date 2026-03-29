@@ -184,7 +184,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
       { to: "/casino-anmeldelser/videoslots", label: "Videoslots", logoUrl: "/src/assets/casino-logos/videoslots.webp" },
       { to: "/casino-anmeldelser/nordicbet", label: "NordicBet", logoUrl: "/src/assets/reviews/nordicbet.webp" },
       { to: "/casino-anmeldelser/spilnu", label: "Spilnu", logoUrl: "/src/assets/reviews/spilnu.webp" },
-      { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino", iconName: "star" },
+      { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino", logoUrl: "/src/assets/casino-logos/stake.webp" },
     ],
   },
 ];
