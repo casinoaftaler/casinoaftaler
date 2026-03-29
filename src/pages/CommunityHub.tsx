@@ -204,10 +204,6 @@ export default function CommunityHub() {
             </EnergySweep>
           </RevealSection>
 
-          <SnippetAnswer answer="Casinoaftalers community samler gratis slots, live bonus hunts, turneringer og et rewards-program – alt gratis og med virtuelle credits. Spil, konkurrér og optjen bonus spins hver dag." />
-
-          {!user && <CommunityJoinCTA />}
-
           {/* Feature strip */}
           <RevealSection>
             <EnergySweep>
@@ -251,6 +247,10 @@ export default function CommunityHub() {
               </div>
             </EnergySweep>
           </RevealSection>
+
+          <SnippetAnswer answer="Casinoaftalers community samler gratis slots, live bonus hunts, turneringer og et rewards-program – alt gratis og med virtuelle credits. Spil, konkurrér og optjen bonus spins hver dag." />
+
+          {!user && <CommunityJoinCTA />}
 
           {/* Footer SEO – anti-footprint rotated */}
           <CommunityFooterSeo
