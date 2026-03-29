@@ -39,6 +39,8 @@ export function useBonusHuntSessionByHuntNumber(huntNumber?: number) {
         .from('bonus_hunt_sessions' as any)
         .select('*')
         .eq('hunt_number', huntNumber!)
+        .order('created_at', { ascending: true })
+        .limit(1)
         .maybeSingle();
       if (error) throw error;
       return data as any;
