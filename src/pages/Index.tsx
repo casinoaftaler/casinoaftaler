@@ -205,7 +205,7 @@ const Index = () => {
             <HomepageRightSidebar />
           </aside>
           <div className="mb-8">
-            <h2 className="mb-4 text-3xl font-bold">Danmarks mest datadrevne casinoguide</h2>
+            <h2 className="mb-4 text-3xl font-bold">Casinoaftaler er Danmarks mest datadrevne casinoguide</h2>
             <p className="mb-6 text-muted-foreground leading-relaxed">
               Vi tester hvert casino med dansk licens på tværs af 6 vægtede kategorier – fra bonusvilkår og udbetalingshastighed til kundeservice og sikkerhed. Vores vurderinger bygger på reel gameplay-data fra over 1.800 slots i vores database, hundredvis af live-streamede Bonus Hunts og et aktivt community, der verificerer resultaterne. Det er dokumentation, ikke markedsføring – og det er derfor, vores topliste opdateres dagligt baseret på faktiske ændringer i markedet.
             </p>
