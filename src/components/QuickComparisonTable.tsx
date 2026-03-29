@@ -206,26 +206,14 @@ export function QuickComparisonTable({
                     )}
                   </div>
 
-                  {/* Bonus + CTA stacked — desktop */}
-                  <div className="shrink-0 hidden sm:flex flex-col items-end gap-2">
-                    <div className="text-right">
-                      <span className="block text-[11px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
-                        Bonus
-                      </span>
-                      <span className="block text-xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight mt-0.5 tracking-tight">
-                        {casino.bonus_amount}
-                      </span>
-                    </div>
-                    <Button
-                      variant="cta"
-                      className="h-9 text-xs font-black tracking-wide gap-1.5 rounded-lg px-5"
-                      onClick={() =>
-                        getAffiliateRedirect(casino.slug, user?.id)
-                      }
-                    >
-                      {ctaText}
-                      <ExternalLink className="h-3 w-3" />
-                    </Button>
+                  {/* Bonus — desktop */}
+                  <div className="shrink-0 hidden sm:block text-right">
+                    <span className="block text-[11px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
+                      Bonus
+                    </span>
+                    <span className="block text-xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight mt-0.5 tracking-tight">
+                      {casino.bonus_amount}
+                    </span>
                   </div>
                 </div>
 
