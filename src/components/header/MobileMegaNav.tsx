@@ -77,6 +77,24 @@ function MobileSmartLink({ item, colorIndex = 0, onClose, indent = "ml-6" }: {
     );
   }
 
+  if (item.avatarUrl) {
+    return (
+      <Link
+        to={item.to}
+        onClick={onClose}
+        className={cn(indent, "flex items-center gap-2.5 py-2 text-sm text-muted-foreground transition-colors hover:text-primary")}
+      >
+        <img
+          src={item.avatarUrl}
+          alt={item.label}
+          className="h-6 w-6 rounded-full object-cover object-top shrink-0 ring-1 ring-border"
+          loading="lazy"
+        />
+        <span className="truncate">{item.label}</span>
+      </Link>
+    );
+  }
+
   return (
     <Link
       to={item.to}

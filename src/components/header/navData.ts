@@ -3,11 +3,18 @@
  * Shared by both DesktopNav and MobileNav to avoid duplication.
  */
 
+import jonasImage from "@/assets/jonas-forfatter.webp";
+import kevinImage from "@/assets/kevin-forfatter.webp";
+import ajseImage from "@/assets/ajse-avatar.webp";
+import niklasImage from "@/assets/niklas-forfatter.webp";
+import frederikImage from "@/assets/frederik-forfatter.webp";
+
 export interface NavLink {
   to: string;
   label: string;
   logoUrl?: string;
   iconName?: string;
+  avatarUrl?: string;
 }
 
 export interface NavLinkWithIcon extends NavLink {
@@ -259,9 +266,9 @@ export const MORE_LINKS: NavLink[] = [
 ];
 
 export const FORFATTER_LINKS: NavLink[] = [
-  { to: "/forfatter/jonas", label: "Jonas", iconName: "user" },
-  { to: "/forfatter/kevin", label: "Kevin", iconName: "user" },
-  { to: "/forfatter/ajse", label: "Ajse", iconName: "user" },
-  { to: "/forfatter/niklas", label: "Niklas", iconName: "user" },
-  { to: "/forfatter/frederik", label: "Frederik", iconName: "user" },
+  { to: "/forfatter/jonas", label: "Jonas", iconName: "user", avatarUrl: jonasImage },
+  { to: "/forfatter/kevin", label: "Kevin", iconName: "user", avatarUrl: kevinImage },
+  { to: "/forfatter/ajse", label: "Ajse", iconName: "user", avatarUrl: ajseImage },
+  { to: "/forfatter/niklas", label: "Niklas", iconName: "user", avatarUrl: niklasImage },
+  { to: "/forfatter/frederik", label: "Frederik", iconName: "user", avatarUrl: frederikImage },
 ];
