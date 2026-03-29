@@ -56,8 +56,6 @@ interface ProviderPageProps {
   seoDescription: string;
   name: string;
   heroSubtitle: string;
-  heroImage?: string;
-  heroImageAlt?: string;
   introTitle: string;
   introContent: ReactNode;
   historyTitle: string;
