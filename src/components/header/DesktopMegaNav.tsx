@@ -10,9 +10,13 @@ import {
   COMMUNITY_LINKS, MORE_LINKS, FORFATTER_LINKS, type NavLink,
 } from "./navData";
 
-/* ─── Provider logo imports (Vite static) ─── */
+/* ─── Logo imports (Vite static) ─── */
 const providerLogos = import.meta.glob<{ default: string }>(
   "/src/assets/providers/*.png",
+  { eager: true }
+);
+const casinoLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/casino-logos/*.webp",
   { eager: true }
 );
 
