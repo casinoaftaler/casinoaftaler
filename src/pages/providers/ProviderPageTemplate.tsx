@@ -116,7 +116,7 @@ const defaultSectionOrder = [
 ];
 
 export function ProviderPage({
-  seoTitle, seoDescription, name, heroSubtitle, heroImage, heroImageAlt,
+  seoTitle, seoDescription, name, heroSubtitle,
   introTitle, introContent, historyTitle, historyIntro, timeline,
   games, gamesIntro, licensesContent, pros, cons, faqs, currentPath, extraJsonLd,
   responsibleGamingText, strategicAnalysis, technicalProfile,
@@ -126,7 +126,23 @@ export function ProviderPage({
 }: ProviderPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
+  const { data: casinos } = useCasinos();
 
+  // Find partner casinos that carry this provider
+  const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];
+  const providerPrioritySlugs = useMemo(() => {
+    if (!casinos) return undefined;
+    const displayName = name.toLowerCase();
+    return casinos
+      .filter(c =>
+        c.is_active &&
+        PARTNER_SLUGS.includes(c.slug) &&
+        c.game_providers?.some(gp => gp.name.toLowerCase() === displayName)
+      )
+      .sort((a, b) => a.position - b.position)
+      .slice(0, 3)
+      .map(c => c.slug);
+  }, [casinos, name]);
   const faqJsonLd = buildFaqSchema(faqs);
 
   const articleSchema = buildArticleSchema({
