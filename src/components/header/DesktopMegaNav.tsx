@@ -128,12 +128,30 @@ function MegaLink({ to, label, iconName, colorIndex = 0, onClick }: { to: string
   );
 }
 
-/* ─── Smart link: renders logo card if logoUrl available, otherwise text ─── */
+/* ─── Smart link: renders logo card if logoUrl available, avatar if avatarUrl, otherwise text ─── */
 function SmartLink({ item, colorIndex = 0, onClick }: { item: NavLink; colorIndex?: number; onClick: () => void }) {
   const resolvedUrl = resolveLogoUrl(item);
   if (resolvedUrl) {
     const isReview = item.to.startsWith("/casino-anmeldelser/");
     return <MegaLogoCard to={item.to} label={item.label} logoUrl={resolvedUrl} onClick={onClick} isReview={isReview} />;
+  }
+  if (item.avatarUrl) {
+    return (
+      <Link
+        to={item.to}
+        onClick={onClick}
+        className="flex items-center gap-2.5 rounded-lg border border-border/50 bg-card/60 px-3 py-2 text-[13px] font-medium transition-all duration-150 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_0_12px_-4px_hsl(var(--primary)/0.3)] group"
+      >
+        <img
+          src={item.avatarUrl}
+          alt={item.label}
+          className="h-6 w-6 rounded-full object-cover object-top shrink-0 ring-1 ring-border"
+          loading="lazy"
+        />
+        <span className="truncate flex-1">{item.label}</span>
+        <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground/50 transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
+      </Link>
+    );
   }
   return <MegaLink to={item.to} label={item.label} iconName={item.iconName} colorIndex={colorIndex} onClick={onClick} />;
 }
