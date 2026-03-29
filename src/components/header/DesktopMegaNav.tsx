@@ -1,16 +1,16 @@
 import { useState, useRef, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronRight, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users } from "lucide-react";
+import { ChevronRight, ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   CASINO_LINKS, NYE_CASINOER_LINKS, SLOT_LINKS, SLOT_CATEGORY_LINKS,
-  BLACKJACK_LINKS, ROULETTE_LINKS, POKER_LINKS, OTHER_CASINOSPIL_LINKS,
-  LIVE_CASINO_LINKS, BONUS_LINKS, PAYMENT_LINKS, PROVIDER_LINKS,
-  REVIEW_TOP_LINKS, REVIEW_ALL_LINKS, COMMUNITY_LINKS, MORE_LINKS,
-  FORFATTER_LINKS, type NavLink,
+  BLACKJACK_LINKS, BLACKJACK_STRATEGY_LINKS, ROULETTE_LINKS, ROULETTE_STRATEGY_LINKS,
+  POKER_LINKS, OTHER_CASINOSPIL_LINKS, LIVE_CASINO_LINKS, BONUS_LINKS,
+  PAYMENT_LINKS, PROVIDER_LINKS, REVIEW_TOP_LINKS, REVIEW_ALL_LINKS,
+  COMMUNITY_LINKS, MORE_LINKS, FORFATTER_LINKS, type NavLink,
 } from "./navData";
 
-/* ─── Compact link item with brand hover ─── */
+/* ─── Compact link item ─── */
 function MegaLink({ to, label, onClick }: { to: string; label: string; onClick: () => void }) {
   return (
     <Link
@@ -24,7 +24,7 @@ function MegaLink({ to, label, onClick }: { to: string; label: string; onClick: 
   );
 }
 
-/* ─── Panel header: category title + hub link ─── */
+/* ─── Panel header ─── */
 function PanelHeader({ title, hubTo, hubLabel, onNavigate }: {
   title: string; hubTo?: string; hubLabel?: string; onNavigate: () => void;
 }) {
@@ -40,6 +40,38 @@ function PanelHeader({ title, hubTo, hubLabel, onNavigate }: {
   );
 }
 
+/* ─── Expandable grid: shows `initialCount` items, "Vis alle (N)" expands to full list ─── */
+function ExpandableGrid({ items, initialCount, cols = 5, onNavigate }: {
+  items: NavLink[]; initialCount: number; cols?: number; onNavigate: () => void;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const visibleItems = expanded ? items : items.slice(0, initialCount);
+  const hasMore = items.length > initialCount;
+  const colClass = cols === 4 ? "grid-cols-4" : cols === 3 ? "grid-cols-3" : "grid-cols-5";
+
+  return (
+    <div>
+      <div className={cn("grid gap-1.5", colClass)}>
+        {visibleItems.map(item => (
+          <MegaLink key={item.to} to={item.to} label={item.label} onClick={onNavigate} />
+        ))}
+      </div>
+      {hasMore && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="mt-2 text-[11px] font-medium text-primary hover:underline flex items-center gap-1 transition-colors"
+        >
+          {expanded ? (
+            <>Vis færre <ChevronDown className="h-3 w-3 rotate-180 transition-transform" /></>
+          ) : (
+            <>Vis alle ({items.length}) <ChevronDown className="h-3 w-3 transition-transform" /></>
+          )}
+        </button>
+      )}
+    </div>
+  );
+}
+
 /* ─── Sub-section label ─── */
 function SubLabel({ title, hubTo, onNavigate }: {
   title: string; hubTo?: string; onNavigate: () => void;
@@ -49,37 +81,39 @@ function SubLabel({ title, hubTo, onNavigate }: {
       <h4 className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{title}</h4>
       {hubTo && (
         <Link to={hubTo} onClick={onNavigate} className="text-[11px] text-primary hover:underline">
-          Se alle →
+          Oversigt →
         </Link>
       )}
     </div>
   );
 }
 
-/* ─── Link grid ─── */
-function LinkGrid({ items, cols = 5, onNavigate }: { items: NavLink[]; cols?: number; onNavigate: () => void }) {
-  const colClass = cols === 4 ? "grid-cols-4" : cols === 3 ? "grid-cols-3" : "grid-cols-5";
-  return (
-    <div className={cn("grid gap-1.5", colClass)}>
-      {items.map(item => (
-        <MegaLink key={item.to} to={item.to} label={item.label} onClick={onNavigate} />
-      ))}
-    </div>
-  );
-}
-
-/* ─── Column of links ─── */
-function LinkColumn({ title, items, hubTo, onNavigate }: {
-  title: string; items: NavLink[]; hubTo?: string; onNavigate: () => void;
+/* ─── Expandable column ─── */
+function ExpandableColumn({ title, items, allItems, hubTo, onNavigate }: {
+  title: string; items: NavLink[]; allItems?: NavLink[]; hubTo?: string; onNavigate: () => void;
 }) {
+  const [expanded, setExpanded] = useState(false);
+  const full = allItems || items;
+  const visible = expanded ? full : items;
+  const hasMore = full.length > items.length;
+
   return (
     <div>
       <SubLabel title={title} hubTo={hubTo} onNavigate={onNavigate} />
       <div className="space-y-1.5">
-        {items.map(item => (
+        {visible.map(item => (
           <MegaLink key={item.to} to={item.to} label={item.label} onClick={onNavigate} />
         ))}
       </div>
+      {hasMore && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="mt-1.5 text-[11px] font-medium text-primary hover:underline flex items-center gap-1"
+        >
+          {expanded ? "Vis færre" : `Vis alle (${full.length})`}
+          <ChevronDown className={cn("h-3 w-3 transition-transform", expanded && "rotate-180")} />
+        </button>
+      )}
     </div>
   );
 }
@@ -126,16 +160,16 @@ export function DesktopMegaNav() {
       case "casinoer":
         return (
           <>
-            <PanelHeader title="Casinoer" hubTo="/casinoer" hubLabel="Alle Casinoer →" onNavigate={close} />
-            <LinkGrid items={CASINO_LINKS} onNavigate={close} />
+            <PanelHeader title="Casinoer" hubTo="/casinoer" hubLabel="Casinoer Hub →" onNavigate={close} />
+            <ExpandableGrid items={CASINO_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
       case "nye-casinoer":
         return (
           <>
-            <PanelHeader title="Nye Casinoer" hubTo="/nye-casinoer" hubLabel="Alle Nye Casinoer →" onNavigate={close} />
-            <LinkGrid items={NYE_CASINOER_LINKS} onNavigate={close} />
+            <PanelHeader title="Nye Casinoer" hubTo="/nye-casinoer" hubLabel="Nye Casinoer Hub →" onNavigate={close} />
+            <ExpandableGrid items={NYE_CASINOER_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
@@ -146,16 +180,42 @@ export function DesktopMegaNav() {
             {/* Slots */}
             <div className="mb-3">
               <SubLabel title="Spillemaskiner" hubTo="/casinospil/spillemaskiner" onNavigate={close} />
-              <LinkGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS.slice(0, 7)]} onNavigate={close} />
+              <ExpandableGrid
+                items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]}
+                initialCount={10}
+                onNavigate={close}
+              />
             </div>
             {/* Separator */}
             <div className="border-t border-border/40 my-3" />
             {/* Table games */}
             <div className="grid grid-cols-4 gap-5">
-              <LinkColumn title="Blackjack" items={BLACKJACK_LINKS} hubTo="/casinospil/blackjack" onNavigate={close} />
-              <LinkColumn title="Roulette" items={ROULETTE_LINKS} hubTo="/casinospil/roulette" onNavigate={close} />
-              <LinkColumn title="Poker" items={POKER_LINKS.slice(0, 4)} hubTo="/casinospil/poker" onNavigate={close} />
-              <LinkColumn title="Andre Spil" items={OTHER_CASINOSPIL_LINKS} onNavigate={close} />
+              <ExpandableColumn
+                title="Blackjack"
+                items={BLACKJACK_LINKS}
+                allItems={[...BLACKJACK_LINKS, ...BLACKJACK_STRATEGY_LINKS]}
+                hubTo="/casinospil/blackjack"
+                onNavigate={close}
+              />
+              <ExpandableColumn
+                title="Roulette"
+                items={ROULETTE_LINKS}
+                allItems={[...ROULETTE_LINKS, ...ROULETTE_STRATEGY_LINKS]}
+                hubTo="/casinospil/roulette"
+                onNavigate={close}
+              />
+              <ExpandableColumn
+                title="Poker"
+                items={POKER_LINKS.slice(0, 4)}
+                allItems={POKER_LINKS}
+                hubTo="/casinospil/poker"
+                onNavigate={close}
+              />
+              <ExpandableColumn
+                title="Andre Spil"
+                items={OTHER_CASINOSPIL_LINKS}
+                onNavigate={close}
+              />
             </div>
           </>
         );
@@ -164,7 +224,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Live Casino" hubTo="/live-casino" hubLabel="Live Casino Oversigt →" onNavigate={close} />
-            <LinkGrid items={LIVE_CASINO_LINKS} onNavigate={close} />
+            <ExpandableGrid items={LIVE_CASINO_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
@@ -172,7 +232,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Casino Bonus" hubTo="/casino-bonus" hubLabel="Casino Bonus Oversigt →" onNavigate={close} />
-            <LinkGrid items={BONUS_LINKS} onNavigate={close} />
+            <ExpandableGrid items={BONUS_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
@@ -181,11 +241,38 @@ export function DesktopMegaNav() {
           <>
             <PanelHeader title="Mere" onNavigate={close} />
             <div className="grid grid-cols-5 gap-5">
-              <LinkColumn title="Betalingsmetoder" items={PAYMENT_LINKS.slice(0, 6)} hubTo="/betalingsmetoder" onNavigate={close} />
-              <LinkColumn title="Spiludviklere" items={PROVIDER_LINKS.slice(0, 6)} hubTo="/spiludviklere" onNavigate={close} />
-              <LinkColumn title="Anmeldelser" items={REVIEW_TOP_LINKS.slice(0, 6)} hubTo="/casino-anmeldelser" onNavigate={close} />
-              <LinkColumn title="Info & Om" items={MORE_LINKS.slice(0, 6)} onNavigate={close} />
-              <LinkColumn title="Forfattere" items={FORFATTER_LINKS} onNavigate={close} />
+              <ExpandableColumn
+                title="Betalingsmetoder"
+                items={PAYMENT_LINKS.slice(0, 5)}
+                allItems={PAYMENT_LINKS}
+                hubTo="/betalingsmetoder"
+                onNavigate={close}
+              />
+              <ExpandableColumn
+                title="Spiludviklere"
+                items={PROVIDER_LINKS.slice(0, 5)}
+                allItems={PROVIDER_LINKS}
+                hubTo="/spiludviklere"
+                onNavigate={close}
+              />
+              <ExpandableColumn
+                title="Anmeldelser"
+                items={REVIEW_TOP_LINKS.slice(0, 5)}
+                allItems={[...REVIEW_TOP_LINKS, ...REVIEW_ALL_LINKS]}
+                hubTo="/casino-anmeldelser"
+                onNavigate={close}
+              />
+              <ExpandableColumn
+                title="Info & Om"
+                items={MORE_LINKS.slice(0, 5)}
+                allItems={MORE_LINKS}
+                onNavigate={close}
+              />
+              <ExpandableColumn
+                title="Forfattere"
+                items={FORFATTER_LINKS}
+                onNavigate={close}
+              />
             </div>
           </>
         );
@@ -194,7 +281,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Community" hubTo="/community" hubLabel="Community Hub →" onNavigate={close} />
-            <LinkGrid items={COMMUNITY_LINKS} onNavigate={close} />
+            <ExpandableGrid items={COMMUNITY_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
@@ -247,7 +334,7 @@ export function DesktopMegaNav() {
             onMouseEnter={handlePanelEnter}
             onMouseLeave={handleLeave}
           >
-            <div className="max-w-[1600px] mx-auto px-6 2xl:px-12 py-4">
+            <div className="max-w-[1600px] mx-auto px-6 2xl:px-12 py-4 max-h-[75vh] overflow-y-auto">
               {renderContent(activeMenu)}
             </div>
           </div>
