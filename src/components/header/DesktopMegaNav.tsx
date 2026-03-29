@@ -193,7 +193,7 @@ export function DesktopMegaNav() {
     timeoutRef.current = window.setTimeout(() => {
       setActiveMenu(null);
       setFocusedSection(null);
-    }, 180);
+    }, 400);
   }, []);
 
   const handlePanelEnter = useCallback(() => {
