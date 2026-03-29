@@ -27,7 +27,6 @@ import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
 import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
 import bonanzaImage from "@/assets/slots/fedesvin-bonanza-preview.jpg";
 import { SpillehalSeoText } from "@/components/community/SpillehalSeoText";
-import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import "@/styles/spillehal-animations.css";
 import "@/styles/community-micro.css";
@@ -130,7 +129,6 @@ export default function GameLibrary() {
           <div className="min-w-0 flex-1">
         <div className="py-8 md:py-12 space-y-8 md:space-y-10">
 
-          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} hideTableOfContents />
 
           <SnippetAnswer answer="Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin direkte i browseren. Optjen points, kæmp om pladser på ranglisten og konkurrér i turneringer – helt uden risiko." />
 

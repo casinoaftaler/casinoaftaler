@@ -18,7 +18,6 @@ import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 // LazySection removed from SEO-critical sections for crawlability
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
-import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
 import { BonusHuntFaq, buildBonusHuntFaqSchema } from "@/components/bonus-hunt/BonusHuntFaq";
@@ -232,7 +231,6 @@ export default function BonusHunt() {
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
         <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
-          <AuthorMetaBar author="kevin" hideTableOfContents />
 
           <SnippetAnswer answer="Følg live bonus hunts med dokumenterede resultater, gennemsnit X og break-even analyser. Deltag i community bets og se arkiverede hunts med Twitch VOD – kun danske casinoer med licens." />
 
