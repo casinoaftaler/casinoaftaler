@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Gift, Unlock, Wallet, Target, Dice3, BarChart3, Scale, Trophy, Rocket, Check, ArrowRight, TrendingUp, TrendingDown } from "lucide-react";
-import { useCasinos } from "@/hooks/useCasinos";
+import { useCasinoBySlug } from "@/hooks/useCasinoBySlug";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import type { BonusHuntData } from "@/hooks/useBonusHuntData";
 import type { LucideIcon } from "lucide-react";
