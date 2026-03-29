@@ -1,27 +1,39 @@
 
 
-## Bredere header-navigation
+## Site-wide Search in Header
 
-### Nuværende problem
-Navigationen sidder i en `container` div med begrænset bredde og faste gaps (`gap-4 xl:gap-6`), så der er meget ubrugt plads på begge sider af menuen på brede skærme.
+### What we're building
+A search icon/button in the header menu that opens a command palette (Cmd+K style dialog) where users can instantly search across ALL content on the site: pages, guides, casino reviews, news articles, glossary terms, slots, and providers.
 
-### Løsning
-Udvid header-containeren og fordel nav-items jævnt over den tilgængelige plads, inspireret af CasinoPenge's layout.
+### How it works
 
-### Tekniske ændringer
+**Search index**: Build a static searchable index from all existing navData arrays + additional route definitions, combined with live DB queries for dynamic content (casino_news, casinos).
 
-**Fil: `src/components/Header.tsx`**
+**UI**: Use the existing `CommandDialog` component (already in `src/components/ui/command.tsx`) for instant fuzzy search with categorized results.
 
-1. **Ændre container-klassen** på header-wrapperen fra `container` til `container max-w-[1600px]` (eller `w-full px-6 2xl:px-12`) for at bruge mere af skærmbredden.
+### Technical plan
 
-2. **Ændre nav-elementets layout** fra faste gaps til `flex-1 justify-between` eller `justify-evenly`, så items spreder sig jævnt:
-   - Linje 157: Ændre `gap-4 xl:gap-6` til `flex-1 justify-evenly gap-2` så items fylder pladsen mellem logo og bruger-actions.
+**1. Create `src/components/header/SiteSearch.tsx`**
+- Search icon button (magnifying glass) placed in the header next to ThemeToggle
+- Opens a `CommandDialog` on click (also triggers on Cmd+K / Ctrl+K keyboard shortcut)
+- Builds a static search index from:
+  - All navData arrays (CASINO_LINKS, BONUS_LINKS, SLOT_LINKS, PROVIDER_LINKS, REVIEW_TOP_LINKS, REVIEW_ALL_LINKS, etc.) — ~200 items
+  - Glossary terms from `glossaryTerms` array
+  - Additional hardcoded top-level routes (forsiden, casinospil, live casino, etc.)
+- Fetches dynamic content on dialog open:
+  - `casino_news` (title + slug, published, limit 50 latest)
+  - `casinos` table (name + slug, limit 100)
+- Groups results into categories: Sider, Casino Anmeldelser, Bonusser, Spillemaskiner, Spiludviklere, Ordbog, Nyheder
+- On select: navigate to the route and close the dialog
+- Debounced client-side filtering (no server round-trip for search itself)
 
-3. **Reducer icon+tekst spacing** lidt for at give plads til jævn fordeling: `gap-1` i stedet for `gap-1.5` på triggers.
+**2. Update `src/components/Header.tsx`**
+- Import and render `<SiteSearch />` in the right-side actions area (before ThemeToggle), visible on both desktop and mobile
+- Add Search icon to mobile menu as well
 
-### Resultat
-- Logo til venstre, bruger-actions til højre (som nu)
-- Nav-items fordelt jævnt over hele den tilgængelige bredde imellem
-- Responsivt: På mindre skærme forbliver layoutet som i dag (lg breakpoint)
-- Ingen ændringer til dropdown-indhold eller mobil-menu
+### Result
+- Instant search across 300+ pages and DB content
+- Keyboard shortcut Cmd+K / Ctrl+K
+- Categorized, navigable results
+- No external search service needed — pure client-side fuzzy matching using cmdk
 
