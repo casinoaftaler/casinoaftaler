@@ -158,14 +158,8 @@ export default function GameLibrary() {
           {/* Community CTA for logged-out users */}
           {!user && <CommunityJoinCTA />}
 
-          {/* Section divider */}
-          <div className="spillehal-divider" />
 
-          {/* Conversion strip */}
-          <CommunityConversionStrip />
 
-          {/* Section divider */}
-          <div className="spillehal-divider" />
 
           {/* Upcoming exclusive games */}
           {MORE_SLOTS.length > 0 && (
