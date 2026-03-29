@@ -483,9 +483,20 @@ export function DesktopMegaNav() {
 
       {activeMenu && (
         <>
-          <div className="fixed inset-0 top-16 z-40" onClick={close} />
           <div
-            className="fixed left-0 right-0 z-50 border-b border-border/50 bg-popover shadow-xl animate-in fade-in slide-in-from-top-1 duration-150"
+            className={cn(
+              "fixed inset-0 top-16 z-40 bg-black/20 transition-opacity",
+              isClosing ? "opacity-0 duration-200" : "opacity-100 duration-150"
+            )}
+            onClick={close}
+          />
+          <div
+            className={cn(
+              "fixed left-0 right-0 z-50 border-b border-border/50 bg-popover shadow-xl transition-all",
+              isClosing
+                ? "opacity-0 -translate-y-2 duration-200 ease-in"
+                : "opacity-100 translate-y-0 duration-150 ease-out"
+            )}
             style={{ top: "64px" }}
             onMouseEnter={handlePanelEnter}
             onMouseLeave={handleLeave}
