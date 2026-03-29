@@ -453,6 +453,8 @@ serve(async (req) => {
           .from("bonus_hunt_sessions")
           .select("id, hunt_number")
           .or(`hunt_number.eq.${huntNumber},streamsystem_hunt_id.eq.${ssHuntId}`)
+          .order('created_at', { ascending: true })
+          .limit(1)
           .maybeSingle();
 
         if (!existingSession) {
