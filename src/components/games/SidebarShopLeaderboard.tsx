@@ -109,7 +109,7 @@ export function SidebarShopLeaderboard() {
               points: u.points,
               avatar_url: profile?.avatar_url || null,
               display_name: profile?.display_name || u.username,
-              twitch_badges: badgeMap.get(u.username.toLowerCase()) || null,
+              twitch_badges: profile?.user_id ? badgeMap.get(profile.user_id) || null : null,
             };
           })
         );
