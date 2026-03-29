@@ -220,7 +220,7 @@ export default function CommunityHub() {
 
           <SnippetAnswer answer="Casinoaftalers community samler gratis slots, live bonus hunts, turneringer og et rewards-program – alt gratis og med virtuelle credits. Spil, konkurrér og optjen bonus spins hver dag." />
 
-          {!user && <CommunityJoinCTA />}
+          {!user && <CommunityJoinCTA description="Spil gratis slots, deltag i turneringer, følg live bonus hunts og optjen rewards – alt sammen gratis med virtuelle credits." />}
 
           {/* Footer SEO – anti-footprint rotated */}
           <CommunityFooterSeo

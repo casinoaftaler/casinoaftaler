@@ -246,7 +246,7 @@ export default function Highlights() {
 
           
 
-          {!user && <CommunityJoinCTA />}
+          {!user && <CommunityJoinCTA description="Opret en gratis konto og upload dine egne highlights. Godkendte clips belønnes med bonus spins til vores spillehal." />}
 
           {/* ── Tabs ── */}
           <Tabs defaultValue={defaultTab} className="w-full">

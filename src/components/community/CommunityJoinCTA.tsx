@@ -40,7 +40,7 @@ export function CommunityJoinCTA({ description = "Spil gratis slots, deltag i tu
             Bliv en del af fællesskabet
           </h2>
           <p className="text-sm text-muted-foreground mt-0.5">
-            Spil gratis slots, deltag i turneringer og optjen rewards sammen med andre spillere. Tre kategorier, daglige credits og automatisk deltagelse – kun for community-medlemmer.
+            {description}
           </p>
         </div>
         <Button

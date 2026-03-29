@@ -132,7 +132,7 @@ export default function RewardsProgram() {
 
         <SnippetAnswer answer="Optjen bonus spins ved at uploade godkendte clips, udfylde din profil og requeste slots til livestream. Alle belønninger er gratis og stacker med dine daglige spins." />
 
-        {!user && <CommunityJoinCTA />}
+        {!user && <CommunityJoinCTA description="Opret en gratis konto og optjen bonus spins ved at uploade clips, udfylde din profil og requeste slots til livestream." />}
 
         <Separator className="my-10" />
 
