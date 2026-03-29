@@ -33,12 +33,23 @@ function resolveLogoUrl(item: NavLink): string | undefined {
 }
 
 /* ─── Logo card item ─── */
+/* Logos that are white/light and need a dark card background */
+const DARK_BG_LABELS = new Set([
+  "Mr Vegas Casino", "Videoslots Casino", "Mr Green Casino", "Swift Casino",
+  "Luna Casino", "PlayKasino", "ComeOn Casino", "LeoVegas",
+  "Unibet", "NordicBet", "bwin", "MarathonBet", "Campobet",
+]);
+
 function MegaLogoCard({ to, label, logoUrl, onClick }: { to: string; label: string; logoUrl: string; onClick: () => void }) {
+  const needsDark = DARK_BG_LABELS.has(label);
   return (
     <Link
       to={to}
       onClick={onClick}
-      className="group relative flex items-center justify-center rounded-xl border border-border/30 bg-[hsl(230,25%,18%)] p-3 h-16 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)] hover:scale-[1.03]"
+      className={cn(
+        "group relative flex items-center justify-center rounded-xl border border-border/30 p-3 h-16 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)] hover:scale-[1.03]",
+        needsDark ? "bg-[hsl(230,25%,18%)]" : "bg-muted/50"
+      )}
     >
       <img
         src={logoUrl}
