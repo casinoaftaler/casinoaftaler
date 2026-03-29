@@ -21,6 +21,16 @@ import {
   TrendingUp,
 } from "lucide-react";
 
+/* ─── Logo imports ─── */
+const casinoLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/casino-logos/*.{webp,png,jpg}",
+  { eager: true }
+);
+
+function resolveLogoUrl(path: string): string | undefined {
+  return casinoLogos[path]?.default;
+}
+
 export function HomepageCasinospilSection() {
   return (
     <section className="mb-12">
@@ -48,6 +58,15 @@ export function HomepageCasinospilSection() {
   );
 }
 
+const REVIEW_CASINOS = [
+  { name: "Spilleautomaten", to: "/casino-anmeldelser/spilleautomaten", logo: "/src/assets/casino-logos/spilleautomaten.webp" },
+  { name: "Campobet", to: "/casino-anmeldelser/campobet", logo: "/src/assets/casino-logos/campobet.webp" },
+  { name: "Betinia", to: "/casino-anmeldelser/betinia", logo: "/src/assets/casino-logos/betinia.webp" },
+  { name: "Swift Casino", to: "/casino-anmeldelser/swift-casino", logo: "/src/assets/casino-logos/swift-casino.webp" },
+  { name: "Luna Casino", to: "/casino-anmeldelser/luna-casino", logo: "/src/assets/casino-logos/luna-casino.webp" },
+  { name: "SpilDanskNu", to: "/casino-anmeldelser/spildansknu", logo: "/src/assets/casino-logos/spildansknu.webp" },
+];
+
 export function HomepageAnmeldelserSection() {
   return (
     <section className="mb-12">
@@ -57,24 +76,36 @@ export function HomepageAnmeldelserSection() {
         <Link to="/betalingsmetoder" className="text-primary hover:underline font-medium">betalingsmetoder</Link>
         {" "}og udbetalingstider. Her er nogle af vores seneste anmeldelser:
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {[
-          { name: "Spilleautomaten", to: "/casino-anmeldelser/spilleautomaten" },
-          { name: "Campobet", to: "/casino-anmeldelser/campobet" },
-          { name: "Betinia", to: "/casino-anmeldelser/betinia" },
-          { name: "Swift Casino", to: "/casino-anmeldelser/swift-casino" },
-          { name: "Luna Casino", to: "/casino-anmeldelser/luna-casino" },
-          { name: "SpilDanskNu", to: "/casino-anmeldelser/spildansknu" },
-        ].map((casino) => (
-          <Link
-            key={casino.name}
-            to={casino.to}
-            className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
-          >
-            <BookOpen className="h-4 w-4 text-primary flex-shrink-0" />
-            {casino.name} Anmeldelse
-          </Link>
-        ))}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-3">
+        {REVIEW_CASINOS.map((casino) => {
+          const logoSrc = resolveLogoUrl(casino.logo);
+          return (
+            <Link
+              key={casino.name}
+              to={casino.to}
+              className="group relative flex items-center justify-center rounded-xl border border-border bg-card p-4 h-16 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)]"
+            >
+              {logoSrc ? (
+                <>
+                  <img
+                    src={logoSrc}
+                    alt={`${casino.name} Anmeldelse`}
+                    className="h-10 max-w-[85%] object-contain"
+                    loading="lazy"
+                  />
+                  <span className="absolute inset-x-0 -bottom-0.5 text-center text-[10px] font-medium text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity truncate px-1">
+                    {casino.name}
+                  </span>
+                </>
+              ) : (
+                <span className="flex items-center gap-2 text-sm font-medium">
+                  <BookOpen className="h-4 w-4 text-primary flex-shrink-0" />
+                  {casino.name} Anmeldelse
+                </span>
+              )}
+            </Link>
+          );
+        })}
       </div>
       <p className="mt-4 text-muted-foreground leading-relaxed">
         Læs alle vores{" "}
