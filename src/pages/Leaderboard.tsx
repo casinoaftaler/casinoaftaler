@@ -516,7 +516,13 @@ export default function Leaderboard() {
         {/* Main content + right sidebar */}
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
-        <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
+        <div className="py-8 md:py-12 space-y-8" style={{ minHeight: '80vh' }}>
+
+          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} />
+
+          <SnippetAnswer answer="Deltag gratis i slot-turneringer med virtuelle credits og kæmp om præmier. Tre kategorier, daglige credits og automatisk deltagelse – kun for community-medlemmer." />
+
+          {!user && <CommunityJoinCTA />}
 
           {/* Main content */}
           {tournamentsLoading ? (
