@@ -514,11 +514,6 @@ export default function Leaderboard() {
           <div className="min-w-0 flex-1">
         <div className="py-8 md:py-12 space-y-8" style={{ minHeight: '80vh' }}>
 
-
-          <SnippetAnswer answer="Deltag gratis i slot-turneringer med virtuelle credits og kæmp om præmier. Tre kategorier, daglige credits og automatisk deltagelse – kun for community-medlemmer." />
-
-          {!user && <CommunityJoinCTA />}
-
           {/* Main content */}
           {tournamentsLoading ? (
             <div className="space-y-4">
@@ -528,6 +523,10 @@ export default function Leaderboard() {
             <div className="space-y-6">
               {/* Monthly tournament boxes */}
               <MonthlyTournamentBoxes />
+
+              <SnippetAnswer answer="Deltag gratis i slot-turneringer med virtuelle credits og kæmp om præmier. Tre kategorier, daglige credits og automatisk deltagelse – kun for community-medlemmer." />
+
+              {!user && <CommunityJoinCTA />}
 
               {/* Active tournaments */}
               {active.length > 0 && (

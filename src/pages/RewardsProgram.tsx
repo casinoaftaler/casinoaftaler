@@ -80,10 +80,6 @@ export default function RewardsProgram() {
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
 
-        <SnippetAnswer answer="Optjen bonus spins ved at uploade godkendte clips, udfylde din profil og requeste slots til livestream. Alle belønninger er gratis og stacker med dine daglige spins." />
-
-        {!user && <CommunityJoinCTA />}
-
         {/* Section: Community Highlights Rewards */}
         <section className="mb-12">
           <div className="flex items-center gap-3 mb-4">
@@ -133,6 +129,10 @@ export default function RewardsProgram() {
             </CardContent>
           </Card>
         </section>
+
+        <SnippetAnswer answer="Optjen bonus spins ved at uploade godkendte clips, udfylde din profil og requeste slots til livestream. Alle belønninger er gratis og stacker med dine daglige spins." />
+
+        {!user && <CommunityJoinCTA />}
 
         <Separator className="my-10" />
 
