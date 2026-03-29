@@ -10,6 +10,44 @@ import {
   COMMUNITY_LINKS, MORE_LINKS, FORFATTER_LINKS, type NavLink,
 } from "./navData";
 
+/* ─── Provider logo imports (Vite static) ─── */
+const providerLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/providers/*.png",
+  { eager: true }
+);
+
+function resolveLogoUrl(item: NavLink): string | undefined {
+  if (!item.logoUrl) return undefined;
+  // For local assets referenced via /src/assets/...
+  if (item.logoUrl.startsWith("/src/assets/")) {
+    const mod = providerLogos[item.logoUrl];
+    return mod?.default;
+  }
+  // Remote URLs (casino logos from storage)
+  return item.logoUrl;
+}
+
+/* ─── Logo card item ─── */
+function MegaLogoCard({ to, label, logoUrl, onClick }: { to: string; label: string; logoUrl: string; onClick: () => void }) {
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className="group relative flex items-center justify-center rounded-xl border border-border/50 bg-card/80 p-3 h-16 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)] hover:scale-[1.03]"
+    >
+      <img
+        src={logoUrl}
+        alt={label}
+        className="h-8 max-w-[90%] object-contain"
+        loading="lazy"
+      />
+      <span className="absolute inset-x-0 -bottom-0.5 text-center text-[10px] font-medium text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity truncate px-1">
+        {label}
+      </span>
+    </Link>
+  );
+}
+
 /* ─── Compact link item ─── */
 function MegaLink({ to, label, onClick }: { to: string; label: string; onClick: () => void }) {
   return (
@@ -22,6 +60,15 @@ function MegaLink({ to, label, onClick }: { to: string; label: string; onClick: 
       <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground/50 transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
     </Link>
   );
+}
+
+/* ─── Smart link: renders logo card if logoUrl available, otherwise text ─── */
+function SmartLink({ item, onClick }: { item: NavLink; onClick: () => void }) {
+  const resolvedUrl = resolveLogoUrl(item);
+  if (resolvedUrl) {
+    return <MegaLogoCard to={item.to} label={item.label} logoUrl={resolvedUrl} onClick={onClick} />;
+  }
+  return <MegaLink to={item.to} label={item.label} onClick={onClick} />;
 }
 
 /* ─── Panel header ─── */
