@@ -237,7 +237,7 @@ export const COMMUNITY_LINKS: NavLinkWithIcon[] = [
   { to: "/bonus-hunt", label: "Bonus Hunt", iconName: "crosshair" },
   { to: "/bonus-hunt/arkiv", label: "Bonus Hunt Arkiv", iconName: "archive" },
   { to: "/slot-database", label: "Slot Database", iconName: "database" },
-  { to: "/statistik", label: "Statistik", iconName: "bar-chart-3" },
+  { to: "/statistik", label: "Statistik", iconName: "chart-bar" },
   { to: "/community/turneringer", label: "Turneringer", iconName: "swords" },
   { to: "/community/turneringer/arkiv", label: "Turneringsarkiv", iconName: "archive" },
   { to: "/community/hall-of-fame", label: "Hall of Fame", iconName: "medal" },
