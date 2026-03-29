@@ -492,6 +492,8 @@ serve(async (req) => {
           .from("bonus_hunt_sessions")
           .select("id, gtw_betting_open, avgx_betting_open, status")
           .eq("hunt_number", huntNumber)
+          .order('created_at', { ascending: true })
+          .limit(1)
           .maybeSingle();
 
         if (openSession && (openSession.gtw_betting_open || openSession.avgx_betting_open)) {
