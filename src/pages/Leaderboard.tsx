@@ -11,6 +11,9 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 import { RelatedGuides } from "@/components/RelatedGuides";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 import { FAQSection } from "@/components/FAQSection";
 import { CommunityNav } from "@/components/community/CommunityNav";
 
