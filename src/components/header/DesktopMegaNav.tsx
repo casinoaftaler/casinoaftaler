@@ -134,16 +134,21 @@ type MenuKey = (typeof TRIGGERS)[number]["key"];
 /* ─── Main ─── */
 export function DesktopMegaNav() {
   const [activeMenu, setActiveMenu] = useState<MenuKey | null>(null);
+  const [focusedSection, setFocusedSection] = useState<string | null>(null);
   const timeoutRef = useRef<number>();
   const navigate = useNavigate();
 
   const handleEnter = useCallback((key: MenuKey) => {
     clearTimeout(timeoutRef.current);
     setActiveMenu(key);
+    setFocusedSection(null);
   }, []);
 
   const handleLeave = useCallback(() => {
-    timeoutRef.current = window.setTimeout(() => setActiveMenu(null), 180);
+    timeoutRef.current = window.setTimeout(() => {
+      setActiveMenu(null);
+      setFocusedSection(null);
+    }, 180);
   }, []);
 
   const handlePanelEnter = useCallback(() => {
@@ -153,6 +158,11 @@ export function DesktopMegaNav() {
   const close = useCallback(() => {
     clearTimeout(timeoutRef.current);
     setActiveMenu(null);
+    setFocusedSection(null);
+  }, []);
+
+  const expandSection = useCallback((sectionKey: string) => {
+    setFocusedSection(prev => prev === sectionKey ? null : sectionKey);
   }, []);
 
   const renderContent = (key: MenuKey) => {
@@ -174,48 +184,56 @@ export function DesktopMegaNav() {
         );
 
       case "casinospil":
+        if (focusedSection) {
+          const sections: Record<string, { title: string; hubTo?: string; items: NavLink[] }> = {
+            slots: { title: "Spillemaskiner", hubTo: "/casinospil/spillemaskiner", items: [...SLOT_CATEGORY_LINKS, ...SLOT_LINKS] },
+            blackjack: { title: "Blackjack", hubTo: "/casinospil/blackjack", items: [...BLACKJACK_LINKS, ...BLACKJACK_STRATEGY_LINKS] },
+            roulette: { title: "Roulette", hubTo: "/casinospil/roulette", items: [...ROULETTE_LINKS, ...ROULETTE_STRATEGY_LINKS] },
+            poker: { title: "Poker", hubTo: "/casinospil/poker", items: POKER_LINKS },
+            other: { title: "Andre Spil", items: OTHER_CASINOSPIL_LINKS },
+          };
+          const sec = sections[focusedSection];
+          if (sec) {
+            return (
+              <>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setFocusedSection(null); }}
+                      className="text-xs font-medium text-primary hover:underline flex items-center gap-0.5"
+                    >
+                      ← Tilbage
+                    </button>
+                    <h3 className="text-sm font-semibold text-foreground">{sec.title}</h3>
+                  </div>
+                  {sec.hubTo && (
+                    <Link to={sec.hubTo} onClick={close} className="text-xs font-medium text-primary hover:underline flex items-center gap-0.5">
+                      Oversigt <ChevronRight className="h-3 w-3" />
+                    </Link>
+                  )}
+                </div>
+                <div className="grid gap-1.5 grid-cols-5">
+                  {sec.items.map(item => (
+                    <MegaLink key={item.to} to={item.to} label={item.label} onClick={close} />
+                  ))}
+                </div>
+              </>
+            );
+          }
+        }
         return (
           <>
             <PanelHeader title="Casinospil" hubTo="/casinospil" hubLabel="Casinospil Oversigt →" onNavigate={close} />
-            {/* Slots */}
             <div className="mb-3">
               <SubLabel title="Spillemaskiner" hubTo="/casinospil/spillemaskiner" onNavigate={close} />
-              <ExpandableGrid
-                items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]}
-                initialCount={10}
-                onNavigate={close}
-              />
+              <ExpandableGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]} initialCount={10} onNavigate={close} onShowAll={() => expandSection("slots")} />
             </div>
-            {/* Separator */}
             <div className="border-t border-border/40 my-3" />
-            {/* Table games */}
             <div className="grid grid-cols-4 gap-5">
-              <ExpandableColumn
-                title="Blackjack"
-                items={BLACKJACK_LINKS}
-                allItems={[...BLACKJACK_LINKS, ...BLACKJACK_STRATEGY_LINKS]}
-                hubTo="/casinospil/blackjack"
-                onNavigate={close}
-              />
-              <ExpandableColumn
-                title="Roulette"
-                items={ROULETTE_LINKS}
-                allItems={[...ROULETTE_LINKS, ...ROULETTE_STRATEGY_LINKS]}
-                hubTo="/casinospil/roulette"
-                onNavigate={close}
-              />
-              <ExpandableColumn
-                title="Poker"
-                items={POKER_LINKS.slice(0, 4)}
-                allItems={POKER_LINKS}
-                hubTo="/casinospil/poker"
-                onNavigate={close}
-              />
-              <ExpandableColumn
-                title="Andre Spil"
-                items={OTHER_CASINOSPIL_LINKS}
-                onNavigate={close}
-              />
+              <ExpandableColumn title="Blackjack" items={BLACKJACK_LINKS} allItems={[...BLACKJACK_LINKS, ...BLACKJACK_STRATEGY_LINKS]} hubTo="/casinospil/blackjack" onNavigate={close} onShowAll={() => expandSection("blackjack")} />
+              <ExpandableColumn title="Roulette" items={ROULETTE_LINKS} allItems={[...ROULETTE_LINKS, ...ROULETTE_STRATEGY_LINKS]} hubTo="/casinospil/roulette" onNavigate={close} onShowAll={() => expandSection("roulette")} />
+              <ExpandableColumn title="Poker" items={POKER_LINKS.slice(0, 4)} allItems={POKER_LINKS} hubTo="/casinospil/poker" onNavigate={close} onShowAll={() => expandSection("poker")} />
+              <ExpandableColumn title="Andre Spil" items={OTHER_CASINOSPIL_LINKS} onNavigate={close} />
             </div>
           </>
         );
@@ -237,42 +255,52 @@ export function DesktopMegaNav() {
         );
 
       case "mere":
+        if (focusedSection) {
+          const sections: Record<string, { title: string; hubTo?: string; items: NavLink[] }> = {
+            payment: { title: "Betalingsmetoder", hubTo: "/betalingsmetoder", items: PAYMENT_LINKS },
+            providers: { title: "Spiludviklere", hubTo: "/spiludviklere", items: PROVIDER_LINKS },
+            reviews: { title: "Anmeldelser", hubTo: "/casino-anmeldelser", items: [...REVIEW_TOP_LINKS, ...REVIEW_ALL_LINKS] },
+            more: { title: "Info & Om", items: MORE_LINKS },
+            authors: { title: "Forfattere", items: FORFATTER_LINKS },
+          };
+          const sec = sections[focusedSection];
+          if (sec) {
+            return (
+              <>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setFocusedSection(null); }}
+                      className="text-xs font-medium text-primary hover:underline flex items-center gap-0.5"
+                    >
+                      ← Tilbage
+                    </button>
+                    <h3 className="text-sm font-semibold text-foreground">{sec.title}</h3>
+                  </div>
+                  {sec.hubTo && (
+                    <Link to={sec.hubTo} onClick={close} className="text-xs font-medium text-primary hover:underline flex items-center gap-0.5">
+                      Oversigt <ChevronRight className="h-3 w-3" />
+                    </Link>
+                  )}
+                </div>
+                <div className="grid gap-1.5 grid-cols-5">
+                  {sec.items.map(item => (
+                    <MegaLink key={item.to} to={item.to} label={item.label} onClick={close} />
+                  ))}
+                </div>
+              </>
+            );
+          }
+        }
         return (
           <>
             <PanelHeader title="Mere" onNavigate={close} />
             <div className="grid grid-cols-5 gap-5">
-              <ExpandableColumn
-                title="Betalingsmetoder"
-                items={PAYMENT_LINKS.slice(0, 5)}
-                allItems={PAYMENT_LINKS}
-                hubTo="/betalingsmetoder"
-                onNavigate={close}
-              />
-              <ExpandableColumn
-                title="Spiludviklere"
-                items={PROVIDER_LINKS.slice(0, 5)}
-                allItems={PROVIDER_LINKS}
-                hubTo="/spiludviklere"
-                onNavigate={close}
-              />
-              <ExpandableColumn
-                title="Anmeldelser"
-                items={REVIEW_TOP_LINKS.slice(0, 5)}
-                allItems={[...REVIEW_TOP_LINKS, ...REVIEW_ALL_LINKS]}
-                hubTo="/casino-anmeldelser"
-                onNavigate={close}
-              />
-              <ExpandableColumn
-                title="Info & Om"
-                items={MORE_LINKS.slice(0, 5)}
-                allItems={MORE_LINKS}
-                onNavigate={close}
-              />
-              <ExpandableColumn
-                title="Forfattere"
-                items={FORFATTER_LINKS}
-                onNavigate={close}
-              />
+              <ExpandableColumn title="Betalingsmetoder" items={PAYMENT_LINKS.slice(0, 5)} allItems={PAYMENT_LINKS} hubTo="/betalingsmetoder" onNavigate={close} onShowAll={() => expandSection("payment")} />
+              <ExpandableColumn title="Spiludviklere" items={PROVIDER_LINKS.slice(0, 5)} allItems={PROVIDER_LINKS} hubTo="/spiludviklere" onNavigate={close} onShowAll={() => expandSection("providers")} />
+              <ExpandableColumn title="Anmeldelser" items={REVIEW_TOP_LINKS.slice(0, 5)} allItems={[...REVIEW_TOP_LINKS, ...REVIEW_ALL_LINKS]} hubTo="/casino-anmeldelser" onNavigate={close} onShowAll={() => expandSection("reviews")} />
+              <ExpandableColumn title="Info & Om" items={MORE_LINKS.slice(0, 5)} allItems={MORE_LINKS} onNavigate={close} onShowAll={() => expandSection("more")} />
+              <ExpandableColumn title="Forfattere" items={FORFATTER_LINKS} onNavigate={close} />
             </div>
           </>
         );
