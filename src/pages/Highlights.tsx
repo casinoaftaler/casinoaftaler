@@ -244,7 +244,7 @@ export default function Highlights() {
             </p>
           </section>
 
-          <SnippetAnswer answer="Se de bedste stream-øjeblikke fra Twitch og YouTube – episke bonus-åbninger, massive multipliers og community clips. Upload dine egne highlights og optjen bonus spins." />
+          
 
           {!user && <CommunityJoinCTA />}
 
