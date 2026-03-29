@@ -216,20 +216,12 @@ export default function GameLibrary() {
           {/* Section divider */}
           <div className="spillehal-divider" />
 
-          {/* Deep SEO text – before casino sections */}
-          <SpillehalSeoText />
-
-          {/* SEO bridge sections */}
-          <CommunitySeoSections />
-
-          {/* Related guides */}
-          <RelatedGuides currentPath="/community/slots" />
-
-          {/* Brand block */}
-          <CommunityBrandBlock />
-
-          {/* Author bio – always last */}
-          <AuthorBio author="kevin" />
+          {/* Footer SEO – anti-footprint rotated */}
+          <CommunityFooterSeo
+            currentPath="/community/slots"
+            author="kevin"
+            before={<SpillehalSeoText />}
+          />
 
           <div className="pb-8" />
         </div>

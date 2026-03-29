@@ -1,50 +1,38 @@
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
-import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
-import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
+import { CommunityHubFaq, buildCommunityHubFaqSchema } from "@/components/community/CommunityHubFaq";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
+import { CommunityOverviewSeoText } from "@/components/community/CommunityOverviewSeoText";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
-import { RelatedGuides } from "@/components/RelatedGuides";
-
-
 import { EnergySweep } from "@/components/community/EnergySweep";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  Gamepad2,
-  Trophy,
-  Video,
-  Gift,
-  ShoppingBag,
-  RotateCw,
-  ArrowRight,
-  Users,
-  Target,
-  BarChart3,
+  Gamepad2, Trophy, Video, Gift, ShoppingBag, ArrowRight, Users, Target, BarChart3,
 } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { useMemo } from "react";
 
 import spillehalImg from "@/assets/community/spillehal-card.jpg";
 import turneringerImg from "@/assets/community/turneringer-card.jpg";
 import highlightsImg from "@/assets/community/highlights-card.jpg";
 import rewardsImg from "@/assets/community/rewards-card.jpg";
 import butikImg from "@/assets/community/butik-card.jpg";
-import spinTheReelImg from "@/assets/community/spin-the-reel-card.jpg";
 import bonusHuntImg from "@/assets/community/bonus-hunt-card.jpg";
 import hallOfFameImg from "@/assets/community/hall-of-fame-card.jpg";
-import { CommunityOverviewSeoText } from "@/components/community/CommunityOverviewSeoText";
-import { AuthorBio } from "@/components/AuthorBio";
 import "@/styles/energy-sweep.css";
 import "@/styles/community-micro.css";
 
 const SECTIONS = [
   {
     title: "Spillehal",
-    description:
-      "Spil vores egne gratis spilleautomater – Book of Fedesvin, Rise of Fedesvin og flere. Optjen point og konkurrer med andre spillere.",
+    description: "Spil vores egne gratis spilleautomater – Book of Fedesvin, Rise of Fedesvin og flere. Optjen point og konkurrer med andre spillere.",
     href: "/community/slots",
     icon: Gamepad2,
     badge: "Populær",
@@ -53,8 +41,7 @@ const SECTIONS = [
   },
   {
     title: "Bonus Hunt",
-    description:
-      "Følg live bonus hunts, gæt end balance og bet på average multiplier grupper. Vind points og credits!",
+    description: "Følg live bonus hunts, gæt end balance og bet på average multiplier grupper. Vind points og credits!",
     href: "/bonus-hunt",
     icon: Target,
     badge: "Live Betting",
@@ -63,8 +50,7 @@ const SECTIONS = [
   },
   {
     title: "Turneringer",
-    description:
-      "Deltag i slot-turneringer og kæmp om præmier! Se aktive turneringer, ranglister og vindere.",
+    description: "Deltag i slot-turneringer og kæmp om præmier! Se aktive turneringer, ranglister og vindere.",
     href: "/community/turneringer",
     icon: Trophy,
     badge: "Ugentlige præmier",
@@ -73,8 +59,7 @@ const SECTIONS = [
   },
   {
     title: "Highlights",
-    description:
-      "Se de bedste øjeblikke fra streams og community. Twitch clips, YouTube videoer og bruger-indsendte highlights.",
+    description: "Se de bedste øjeblikke fra streams og community. Twitch clips, YouTube videoer og bruger-indsendte highlights.",
     href: "/highlights",
     icon: Video,
     badge: "Clips & Streams",
@@ -83,8 +68,7 @@ const SECTIONS = [
   },
   {
     title: "Rewards Program",
-    description:
-      "Optjen ekstra spins ved at bidrage til fællesskabet. Upload clips, udfyld din profil og request slots.",
+    description: "Optjen ekstra spins ved at bidrage til fællesskabet. Upload clips, udfyld din profil og request slots.",
     href: "/community/rewards",
     icon: Gift,
     badge: "Bonus Spins",
@@ -93,8 +77,7 @@ const SECTIONS = [
   },
   {
     title: "Hall of Fame",
-    description:
-      "Se community-legender, all-time leaderboards, bedste clips og turneringsvindere. Ægte data fra vores spillere.",
+    description: "Se community-legender, all-time leaderboards, bedste clips og turneringsvindere. Ægte data fra vores spillere.",
     href: "/community/hall-of-fame",
     icon: Trophy,
     badge: "Legender",
@@ -103,8 +86,7 @@ const SECTIONS = [
   },
   {
     title: "Statistik",
-    description:
-      "Aggregeret data fra alle bonus hunts. Provider-rankings, historiske grafer og top 10 slots baseret på reelle tests.",
+    description: "Aggregeret data fra alle bonus hunts. Provider-rankings, historiske grafer og top 10 slots baseret på reelle tests.",
     href: "/statistik",
     icon: BarChart3,
     badge: "Data & Analyse",
@@ -113,8 +95,7 @@ const SECTIONS = [
   },
   {
     title: "Butik",
-    description:
-      "Shop eksklusive varer med dine Twitch-point. Gaming headsets, gavekort, konsoller og mere.",
+    description: "Shop eksklusive varer med dine Twitch-point. Gaming headsets, gavekort, konsoller og mere.",
     href: "/butik",
     icon: ShoppingBag,
     badge: "Twitch Point",
@@ -175,19 +156,23 @@ function CommunityCard({ section }: { section: typeof SECTIONS[number] }) {
 export default function CommunityHub() {
   const { user } = useAuth();
 
-  const articleSchema = buildArticleSchema({
+  const faqSchema = useMemo(() => buildCommunityHubFaqSchema(), []);
+  const articleSchema = useMemo(() => buildArticleSchema({
     headline: "Community – Gratis Slots, Turneringer & Bonus Spins",
     description: "Spil gratis slots, deltag i turneringer og optjen points i Casinoaftaler.dk's community.",
     url: `${SITE_URL}/community`,
     datePublished: "2026-01-15",
-  });
+  }), []);
+
+  const jsonLd = useMemo(() => ({ "@context": "https://schema.org", "@graph": [articleSchema, faqSchema] }), [articleSchema, faqSchema]);
 
   return (
     <>
       <SEO
         title="Community – Gratis Slots, Turneringer & Bonus Spins"
         description="Spil gratis slots, deltag i turneringer og optjen points i Casinoaftaler.dk's community. Vind spins og præmier hver dag."
-        jsonLd={[articleSchema]}
+        jsonLd={jsonLd}
+        breadcrumbLabel="Community"
       />
       <CommunityPageLayout
         title="Community"
@@ -207,13 +192,12 @@ export default function CommunityHub() {
           </p>
         }
       >
-        <div className="py-8 md:py-12" style={{ minHeight: '80vh' }}>
+        <div className="py-8 md:py-12 space-y-8">
+          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} />
 
-          {!user && (
-            <RevealSection className="mb-8">
-              <CommunityJoinCTA />
-            </RevealSection>
-          )}
+          <SnippetAnswer answer="Casinoaftalers community samler gratis slots, live bonus hunts, turneringer og et rewards-program – alt gratis og med virtuelle credits. Spil, konkurrér og optjen bonus spins hver dag." />
+
+          {!user && <CommunityJoinCTA />}
 
           {/* First row – 3 cards */}
           <RevealSection>
@@ -231,7 +215,7 @@ export default function CommunityHub() {
             <EnergySweep>
               <Link
                 to="/velkomstbonus"
-                className="community-strip community-panel group block mt-6 mb-6 rounded-xl p-6"
+                className="community-strip community-panel group block rounded-xl p-6"
               >
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                   <div className="flex items-center gap-3 flex-1">
@@ -249,10 +233,7 @@ export default function CommunityHub() {
                   </div>
                   <Button
                     className="gap-2 shrink-0 font-semibold shadow-lg community-btn-glow"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))",
-                    }}
+                    style={{ background: "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))" }}
                   >
                     Velkomstbonus
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -273,11 +254,13 @@ export default function CommunityHub() {
             </EnergySweep>
           </RevealSection>
 
-          <CommunityOverviewSeoText />
-          <CommunitySeoSections />
-          <RelatedGuides currentPath="/community" />
-          <CommunityBrandBlock />
-          <AuthorBio author="kevin" />
+          {/* Footer SEO – anti-footprint rotated */}
+          <CommunityFooterSeo
+            currentPath="/community"
+            author="kevin"
+            before={<CommunityOverviewSeoText />}
+            after={<CommunityHubFaq />}
+          />
         </div>
       </CommunityPageLayout>
     </>
