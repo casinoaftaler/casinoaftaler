@@ -470,6 +470,7 @@ export function DesktopMegaNav() {
   return (
     <>
       <nav
+        ref={navContainerRef}
         className="hidden lg:flex items-center flex-1 justify-evenly gap-1 whitespace-nowrap"
         style={{ contain: "layout style" }}
       >
