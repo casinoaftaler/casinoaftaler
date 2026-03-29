@@ -579,17 +579,13 @@ export default function Leaderboard() {
             </Collapsible>
           )}
 
-          {/* Deep SEO text – after ended tournaments */}
-          <TurneringerSeoText />
-
-          {/* SEO sections */}
-          <div className="mt-12 space-y-8">
-            <CommunitySeoSections />
-            <RelatedGuides currentPath="/community/turneringer" />
-            <FAQSection title="Ofte stillede spørgsmål om turneringer" faqs={tournamentFaqs} />
-            <AuthorBio author="kevin" />
-            <CommunityBrandBlock />
-          </div>
+          {/* Footer SEO – anti-footprint rotated */}
+          <CommunityFooterSeo
+            currentPath="/community/turneringer"
+            author="kevin"
+            before={<TurneringerSeoText />}
+            after={<FAQSection title="Ofte stillede spørgsmål om turneringer" faqs={tournamentFaqs} />}
+          />
 
           <div className="pb-12" />
         </div>
