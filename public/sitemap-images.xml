@@ -1,228 +1,322 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Image sitemap for casino logos and key visual assets.
-  Helps Google Image Search index brand logos and slot screenshots.
-  Referenced from sitemap-index.xml.
--->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
-  <!-- Casino Review Pages with Logos -->
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/danske-spil</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/danskespil.png</image:loc>
-      <image:title>Danske Spil Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/leovegas</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/leovegas.png</image:loc>
-      <image:title>LeoVegas Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/bet365</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/bet365.png</image:loc>
-      <image:title>bet365 Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/unibet</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/unibet.png</image:loc>
-      <image:title>Unibet Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/888-casino</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/888casino.png</image:loc>
-      <image:title>888 Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/mr-green</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/mrgreen.png</image:loc>
-      <image:title>Mr Green Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/betano</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/betano.png</image:loc>
-      <image:title>Betano Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/royal-casino</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/royalcasino.png</image:loc>
-      <image:title>Royal Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/maria-casino</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/mariacasino.png</image:loc>
-      <image:title>Maria Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/comeon</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/comeon.png</image:loc>
-      <image:title>ComeOn Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/nordicbet</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/nordicbet.png</image:loc>
-      <image:title>NordicBet Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/videoslots</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/videoslots.png</image:loc>
-      <image:title>Videoslots Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/mr-vegas</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/mrvegas.png</image:loc>
-      <image:title>Mr Vegas Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/expekt</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/expekt.png</image:loc>
-      <image:title>Expekt Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/spilnu</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/spilnu.png</image:loc>
-      <image:title>Spilnu Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/getlucky</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/getlucky.png</image:loc>
-      <image:title>GetLucky Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/kapow-casino</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/leovegas.png</image:loc>
-      <image:title>Kapow Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/one-casino</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/onecasino.png</image:loc>
-      <image:title>One Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/stake-casino</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/stake.png</image:loc>
-      <image:title>Stake Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/casinostuen</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/casinostuen.png</image:loc>
-      <image:title>Casinostuen Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/pokerstars</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/pokerstars.png</image:loc>
-      <image:title>PokerStars Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/bwin</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/bwin.png</image:loc>
-      <image:title>bwin Casino Logo</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://casinoaftaler.dk/casino-anmeldelser/marathonbet</loc>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/marathonbet.png</image:loc>
-      <image:title>Marathonbet Casino Logo</image:title>
-    </image:image>
-  </url>
   <url>
     <loc>https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten</loc>
     <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/spilleautomaten.png</image:loc>
-      <image:title>Spilleautomaten Casino Logo</image:title>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/spilleautomaten-1765832651802.png</image:loc>
+      <image:title>Spilleautomaten Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Spilleautomaten, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/campobet</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/campobet-1765833776423.png</image:loc>
+      <image:title>Campobet Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Campobet, anmeldt på Casinoaftaler.dk</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://casinoaftaler.dk/casino-anmeldelser/betinia</loc>
     <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/betinia.png</image:loc>
-      <image:title>Betinia Casino Logo</image:title>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/betinia-1765833463348.png</image:loc>
+      <image:title>Betinia Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Betinia, anmeldt på Casinoaftaler.dk</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://casinoaftaler.dk/casino-anmeldelser/swift-casino</loc>
     <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/swift-casino.png</image:loc>
-      <image:title>Swift Casino Logo</image:title>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/swift-casino-1765833754433.png</image:loc>
+      <image:title>Swift Casino Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Swift Casino, anmeldt på Casinoaftaler.dk</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://casinoaftaler.dk/casino-anmeldelser/luna-casino</loc>
     <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/luna-casino.png</image:loc>
-      <image:title>Luna Casino Logo</image:title>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/luna-casino-1765833821820.png</image:loc>
+      <image:title>Luna Casino Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Luna Casino, anmeldt på Casinoaftaler.dk</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://casinoaftaler.dk/casino-anmeldelser/spildansknu</loc>
     <image:image>
-      <image:loc>https://casinoaftaler.dk/logos/spildansknu.png</image:loc>
-      <image:title>SpilDanskNu Casino Logo</image:title>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/spildansknu-1765832906267.png</image:loc>
+      <image:title>SpilDanskNu Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for SpilDanskNu, anmeldt på Casinoaftaler.dk</image:caption>
     </image:image>
   </url>
-
-  <!-- Site Brand Assets -->
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/danske-spil</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/danskespil.png</image:loc>
+      <image:title>Danske Spil Casino Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Danske Spil Casino, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/comeon</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/comeon.png</image:loc>
+      <image:title>ComeOn Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for ComeOn, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/getlucky</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/getlucky.png</image:loc>
+      <image:title>GetLucky Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for GetLucky, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/mr-green</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/mrgreen.png</image:loc>
+      <image:title>Mr Green Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Mr Green, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/videoslots</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/videoslots.png</image:loc>
+      <image:title>Videoslots Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Videoslots, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/mr-vegas</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/mrvegas.png</image:loc>
+      <image:title>Mr Vegas Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Mr Vegas, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/leovegas</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/leovegas.png</image:loc>
+      <image:title>LeoVegas Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for LeoVegas, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/expekt</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/expekt.png</image:loc>
+      <image:title>Expekt Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Expekt, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/betano</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/betano.png</image:loc>
+      <image:title>Betano Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Betano, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/888-casino</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/888casino.png</image:loc>
+      <image:title>888casino Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for 888casino, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/unibet</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/unibet.png</image:loc>
+      <image:title>Unibet Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Unibet, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/bet365</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/bet365.png</image:loc>
+      <image:title>bet365 Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for bet365, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/royal-casino</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/royalcasino.png</image:loc>
+      <image:title>Royal Casino Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Royal Casino, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/maria-casino</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/mariacasino.png</image:loc>
+      <image:title>Maria Casino Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Maria Casino, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/nordicbet</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/nordicbet.png</image:loc>
+      <image:title>NordicBet Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for NordicBet, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/one-casino</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/onecasino.png</image:loc>
+      <image:title>OneCasino Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for OneCasino, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/spilnu</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/spilnu.png</image:loc>
+      <image:title>Spilnu Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Spilnu, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/stake-casino</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/stake.png</image:loc>
+      <image:title>Stake Casino Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Stake Casino, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/casinostuen</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/casinostuen.png</image:loc>
+      <image:title>Casinostuen Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for Casinostuen, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/pokerstars</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/pokerstars.png</image:loc>
+      <image:title>PokerStars Casino Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for PokerStars Casino, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/bwin</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/bwin.png</image:loc>
+      <image:title>bwin Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for bwin, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/marathonbet</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/marathonbet.png</image:loc>
+      <image:title>MarathonBet Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for MarathonBet, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/playkasino</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/new-casino-1774460542476-1774460612838.png</image:loc>
+      <image:title>PlayKasino Casino Logo – Dansk Anmeldelse</image:title>
+      <image:caption>Officielt logo for PlayKasino, anmeldt på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/bet365-vs-unibet</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/bet365.png</image:loc>
+      <image:title>bet365 Logo</image:title>
+      <image:caption>bet365 – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/unibet.png</image:loc>
+      <image:title>Unibet Logo</image:title>
+      <image:caption>Unibet – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/leovegas-vs-mr-green</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/leovegas.png</image:loc>
+      <image:title>LeoVegas Logo</image:title>
+      <image:caption>LeoVegas – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/mrgreen.png</image:loc>
+      <image:title>Mr Green Logo</image:title>
+      <image:caption>Mr Green – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/danske-spil-vs-spilnu</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/danskespil.png</image:loc>
+      <image:title>Danske Spil Casino Logo</image:title>
+      <image:caption>Danske Spil Casino – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/spilnu.png</image:loc>
+      <image:title>Spilnu Logo</image:title>
+      <image:caption>Spilnu – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/spilleautomaten-vs-spildansknu</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/spilleautomaten-1765832651802.png</image:loc>
+      <image:title>Spilleautomaten Logo</image:title>
+      <image:caption>Spilleautomaten – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/spildansknu-1765832906267.png</image:loc>
+      <image:title>SpilDanskNu Logo</image:title>
+      <image:caption>SpilDanskNu – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/betinia-vs-campobet</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/betinia-1765833463348.png</image:loc>
+      <image:title>Betinia Logo</image:title>
+      <image:caption>Betinia – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/campobet-1765833776423.png</image:loc>
+      <image:title>Campobet Logo</image:title>
+      <image:caption>Campobet – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://casinoaftaler.dk/casino-anmeldelser/swift-casino-vs-luna-casino</loc>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/swift-casino-1765833754433.png</image:loc>
+      <image:title>Swift Casino Logo</image:title>
+      <image:caption>Swift Casino – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos/luna-casino-1765833821820.png</image:loc>
+      <image:title>Luna Casino Logo</image:title>
+      <image:caption>Luna Casino – sammenligning på Casinoaftaler.dk</image:caption>
+    </image:image>
+  </url>
   <url>
     <loc>https://casinoaftaler.dk/</loc>
     <image:image>
       <image:loc>https://casinoaftaler.dk/icon-512x512.png</image:loc>
-      <image:title>Casinoaftaler.dk Logo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/jonas-avatar.webp</image:loc>
-      <image:title>Jonas Theill – Casino Bonus Ekspert</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/kevin-avatar.webp</image:loc>
-      <image:title>Kevin – Casino Streamer &amp; IT-medansvarlig</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://casinoaftaler.dk/ajse-avatar.webp</image:loc>
-      <image:title>Ajse – Juridisk redaktør &amp; casinoanalytiker</image:title>
+      <image:title>Casinoaftaler.dk – Uafhængig casino guide</image:title>
+      <image:caption>Logo for Casinoaftaler.dk, Danmarks uafhængige casinoguide</image:caption>
     </image:image>
   </url>
 </urlset>
