@@ -1,4 +1,4 @@
-import { ReactNode, Suspense, lazy } from "react";
+import { ReactNode, Suspense, lazy, useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
 
