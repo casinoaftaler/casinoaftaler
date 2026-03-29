@@ -35,7 +35,7 @@ function useRecentHunts() {
               year: "numeric",
             })
           : null,
-      }));
+      })).reverse();
     },
     staleTime: 5 * 60 * 1000,
   });
