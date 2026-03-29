@@ -83,7 +83,7 @@ interface AuthorMetaBarProps {
   hideTableOfContents?: boolean;
 }
 
-export function AuthorMetaBar({ author, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true, factCheckBy }: AuthorMetaBarProps) {
+export function AuthorMetaBar({ author, showFactCheck = true, showVerified = false, showAffiliateDisclaimer = true, factCheckBy, hideTableOfContents = false }: AuthorMetaBarProps) {
   const { pathname } = useLocation();
   const authorInfo = author !== "redaktionen" ? authorConfig[author] : null;
   const autoReadTime = useAutoReadTime();
