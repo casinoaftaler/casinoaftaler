@@ -82,7 +82,9 @@ export function CommunityPageLayout({
         {/* Main content + right sidebar */}
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">{children}</div>
-          <ContentSidebar />
+          <Suspense fallback={null}>
+            <LazyContentSidebar />
+          </Suspense>
         </div>
       </div>
     </>

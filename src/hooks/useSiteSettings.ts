@@ -7,7 +7,7 @@ export function useSiteSettings() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("site_settings")
-        .select("*");
+        .select("key, value");
 
       if (error) throw error;
 
@@ -19,7 +19,9 @@ export function useSiteSettings() {
 
       return settings;
     },
-    staleTime: 5 * 60 * 1000, // 5 minutes cache
+    staleTime: 30 * 60 * 1000,
+    gcTime: 60 * 60 * 1000,
     refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 }
