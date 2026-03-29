@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Gamepad2, ArrowRight } from "lucide-react";
 import spillehalPromo from "@/assets/spillehal-promo-small.webp";
 import risePromo from "@/assets/rise-of-fedesvin-promo-small.webp";
+import bonanzaPromo from "@/assets/slots/fedesvin-bonanza-preview.jpg";
 
 function PromoBanner({ to, image, alt, label, title }: { to: string; image: string; alt: string; label: string; title: string }) {
   return (
@@ -42,6 +43,13 @@ export function SpillehalPromoBanner() {
         alt="Spil Rise of Fedesvin gratis"
         label="Spil Nu"
         title="Spil gratis på Rise of Fedesvin"
+      />
+      <PromoBanner
+        to="/community/slots/fedesvin-bonanza"
+        image={bonanzaPromo}
+        alt="Spil Fedesvin Bonanza gratis"
+        label="Spil Nu"
+        title="Spil gratis på Fedesvin Bonanza"
       />
     </div>
   );
