@@ -35,7 +35,7 @@ export const NYE_CASINOER_LINKS: NavLink[] = [
   { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", iconName: "zap" },
   { to: "/nye-casinoer/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", iconName: "gift" },
   { to: "/nye-casinoer/trustly", label: "Med Trustly", iconName: "banknote" },
-  { to: "/nye-casinoer/mitid", label: "Med MitID", iconName: "fingerprint" },
+  { to: "/nye-casinoer/mitid", label: "Med MitID", iconName: "scan-line" },
   { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", iconName: "percent" },
   { to: "/nye-casinoer/vs-etablerede", label: "Nye vs Etablerede", iconName: "scale" },
 ];
