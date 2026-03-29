@@ -207,7 +207,7 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/mr-green", label: "Mr Green Casino", logoUrl: "/src/assets/casino-logos/mrgreen.webp" },
   { to: "/casino-anmeldelser/videoslots", label: "Videoslots Casino", logoUrl: `${CASINO_LOGO_BASE}/videoslots.png` },
   { to: "/casino-anmeldelser/mr-vegas", label: "Mr Vegas Casino", logoUrl: `${CASINO_LOGO_BASE}/mrvegas.png` },
-  { to: "/casino-anmeldelser/leovegas", label: "LeoVegas", logoUrl: `${CASINO_LOGO_BASE}/leovegas.png` },
+  { to: "/casino-anmeldelser/leovegas", label: "LeoVegas", logoUrl: "/src/assets/casino-logos/leovegas.webp" },
   { to: "/casino-anmeldelser/unibet", label: "Unibet", logoUrl: `${CASINO_LOGO_BASE}/unibet.png` },
   { to: "/casino-anmeldelser/bet365", label: "bet365", logoUrl: `${CASINO_LOGO_BASE}/bet365.png` },
   { to: "/casino-anmeldelser/888-casino", label: "888 Casino", logoUrl: `${CASINO_LOGO_BASE}/888casino.png` },
