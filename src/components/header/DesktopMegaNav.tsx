@@ -401,11 +401,12 @@ export function DesktopMegaNav() {
 
       {activeMenu && (
         <>
-          <div className="fixed inset-0 top-0 z-40" onClick={close} />
+          <div className="fixed inset-0 top-16 z-40" onClick={close} />
           <div
             className="fixed left-0 right-0 z-50 border-b border-border/50 bg-popover shadow-xl animate-in fade-in slide-in-from-top-1 duration-150"
             style={{ top: "64px" }}
             onMouseEnter={handlePanelEnter}
+            onMouseLeave={handleLeave}
           >
             <div className="max-w-[1600px] mx-auto px-6 2xl:px-12 py-4 max-h-[75vh] overflow-y-auto">
               {renderContent(activeMenu)}
