@@ -10,30 +10,46 @@ import {
   FORFATTER_LINKS, type NavLink,
 } from "./navData";
 
-/* ─── Compact link item ─── */
+/* ─── Compact link item with brand hover ─── */
 function MegaLink({ to, label, onClick }: { to: string; label: string; onClick: () => void }) {
   return (
     <Link
       to={to}
       onClick={onClick}
-      className="flex items-center justify-between gap-2 rounded-lg border border-border/60 bg-card/80 px-3 py-2 text-[13px] font-medium transition-all hover:bg-accent hover:border-primary/30 group"
+      className="flex items-center justify-between gap-2 rounded-lg border border-border/50 bg-card/60 px-3 py-2 text-[13px] font-medium transition-all duration-150 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_0_12px_-4px_hsl(var(--primary)/0.3)] group"
     >
       <span className="truncate">{label}</span>
-      <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground/60 transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+      <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground/50 transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
     </Link>
   );
 }
 
-/* ─── Section label with hub link ─── */
-function SectionLabel({ title, hubTo, hubLabel, onNavigate }: {
+/* ─── Panel header: category title + hub link ─── */
+function PanelHeader({ title, hubTo, hubLabel, onNavigate }: {
   title: string; hubTo?: string; hubLabel?: string; onNavigate: () => void;
 }) {
   return (
-    <div className="flex items-center justify-between mb-2.5">
-      <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{title}</h3>
+    <div className="flex items-center justify-between mb-3">
+      <h3 className="text-sm font-semibold text-foreground">{title}</h3>
       {hubTo && (
         <Link to={hubTo} onClick={onNavigate} className="text-xs font-medium text-primary hover:underline flex items-center gap-0.5">
           {hubLabel || "Se alle"} <ChevronRight className="h-3 w-3" />
+        </Link>
+      )}
+    </div>
+  );
+}
+
+/* ─── Sub-section label ─── */
+function SubLabel({ title, hubTo, onNavigate }: {
+  title: string; hubTo?: string; onNavigate: () => void;
+}) {
+  return (
+    <div className="flex items-center gap-2 mb-2">
+      <h4 className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{title}</h4>
+      {hubTo && (
+        <Link to={hubTo} onClick={onNavigate} className="text-[11px] text-primary hover:underline">
+          Se alle →
         </Link>
       )}
     </div>
@@ -52,13 +68,13 @@ function LinkGrid({ items, cols = 5, onNavigate }: { items: NavLink[]; cols?: nu
   );
 }
 
-/* ─── Column of links (for table games layout) ─── */
+/* ─── Column of links ─── */
 function LinkColumn({ title, items, hubTo, onNavigate }: {
   title: string; items: NavLink[]; hubTo?: string; onNavigate: () => void;
 }) {
   return (
     <div>
-      <SectionLabel title={title} hubTo={hubTo} hubLabel="Se alle" onNavigate={onNavigate} />
+      <SubLabel title={title} hubTo={hubTo} onNavigate={onNavigate} />
       <div className="space-y-1.5">
         {items.map(item => (
           <MegaLink key={item.to} to={item.to} label={item.label} onClick={onNavigate} />
@@ -110,7 +126,7 @@ export function DesktopMegaNav() {
       case "casinoer":
         return (
           <>
-            <SectionLabel title="Casinoer" hubTo="/casinoer" hubLabel="Alle Casinoer →" onNavigate={close} />
+            <PanelHeader title="Casinoer" hubTo="/casinoer" hubLabel="Alle Casinoer →" onNavigate={close} />
             <LinkGrid items={CASINO_LINKS} onNavigate={close} />
           </>
         );
@@ -118,7 +134,7 @@ export function DesktopMegaNav() {
       case "nye-casinoer":
         return (
           <>
-            <SectionLabel title="Nye Casinoer" hubTo="/nye-casinoer" hubLabel="Alle Nye Casinoer →" onNavigate={close} />
+            <PanelHeader title="Nye Casinoer" hubTo="/nye-casinoer" hubLabel="Alle Nye Casinoer →" onNavigate={close} />
             <LinkGrid items={NYE_CASINOER_LINKS} onNavigate={close} />
           </>
         );
@@ -126,14 +142,16 @@ export function DesktopMegaNav() {
       case "casinospil":
         return (
           <>
-            <SectionLabel title="Casinospil" hubTo="/casinospil" hubLabel="Casinospil Oversigt →" onNavigate={close} />
-            {/* Slots row */}
-            <div className="mb-4">
-              <SectionLabel title="Spillemaskiner" hubTo="/casinospil/spillemaskiner" hubLabel="Se alle" onNavigate={close} />
+            <PanelHeader title="Casinospil" hubTo="/casinospil" hubLabel="Casinospil Oversigt →" onNavigate={close} />
+            {/* Slots */}
+            <div className="mb-3">
+              <SubLabel title="Spillemaskiner" hubTo="/casinospil/spillemaskiner" onNavigate={close} />
               <LinkGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS.slice(0, 7)]} onNavigate={close} />
             </div>
-            {/* Table games in columns */}
-            <div className="grid grid-cols-4 gap-6">
+            {/* Separator */}
+            <div className="border-t border-border/40 my-3" />
+            {/* Table games */}
+            <div className="grid grid-cols-4 gap-5">
               <LinkColumn title="Blackjack" items={BLACKJACK_LINKS} hubTo="/casinospil/blackjack" onNavigate={close} />
               <LinkColumn title="Roulette" items={ROULETTE_LINKS} hubTo="/casinospil/roulette" onNavigate={close} />
               <LinkColumn title="Poker" items={POKER_LINKS.slice(0, 4)} hubTo="/casinospil/poker" onNavigate={close} />
@@ -145,7 +163,7 @@ export function DesktopMegaNav() {
       case "live-casino":
         return (
           <>
-            <SectionLabel title="Live Casino" hubTo="/live-casino" hubLabel="Live Casino Oversigt →" onNavigate={close} />
+            <PanelHeader title="Live Casino" hubTo="/live-casino" hubLabel="Live Casino Oversigt →" onNavigate={close} />
             <LinkGrid items={LIVE_CASINO_LINKS} onNavigate={close} />
           </>
         );
@@ -153,7 +171,7 @@ export function DesktopMegaNav() {
       case "casino-bonus":
         return (
           <>
-            <SectionLabel title="Casino Bonus" hubTo="/casino-bonus" hubLabel="Casino Bonus Oversigt →" onNavigate={close} />
+            <PanelHeader title="Casino Bonus" hubTo="/casino-bonus" hubLabel="Casino Bonus Oversigt →" onNavigate={close} />
             <LinkGrid items={BONUS_LINKS} onNavigate={close} />
           </>
         );
@@ -161,23 +179,13 @@ export function DesktopMegaNav() {
       case "mere":
         return (
           <>
-            <SectionLabel title="Mere" onNavigate={close} />
-            <div className="grid grid-cols-5 gap-6">
-              <div className="col-span-1">
-                <LinkColumn title="Betalingsmetoder" items={PAYMENT_LINKS.slice(0, 6)} hubTo="/betalingsmetoder" onNavigate={close} />
-              </div>
-              <div className="col-span-1">
-                <LinkColumn title="Spiludviklere" items={PROVIDER_LINKS.slice(0, 6)} hubTo="/spiludviklere" onNavigate={close} />
-              </div>
-              <div className="col-span-1">
-                <LinkColumn title="Anmeldelser" items={REVIEW_TOP_LINKS.slice(0, 6)} hubTo="/casino-anmeldelser" onNavigate={close} />
-              </div>
-              <div className="col-span-1">
-                <LinkColumn title="Info & Om" items={MORE_LINKS.slice(0, 6)} onNavigate={close} />
-              </div>
-              <div className="col-span-1">
-                <LinkColumn title="Forfattere" items={FORFATTER_LINKS} onNavigate={close} />
-              </div>
+            <PanelHeader title="Mere" onNavigate={close} />
+            <div className="grid grid-cols-5 gap-5">
+              <LinkColumn title="Betalingsmetoder" items={PAYMENT_LINKS.slice(0, 6)} hubTo="/betalingsmetoder" onNavigate={close} />
+              <LinkColumn title="Spiludviklere" items={PROVIDER_LINKS.slice(0, 6)} hubTo="/spiludviklere" onNavigate={close} />
+              <LinkColumn title="Anmeldelser" items={REVIEW_TOP_LINKS.slice(0, 6)} hubTo="/casino-anmeldelser" onNavigate={close} />
+              <LinkColumn title="Info & Om" items={MORE_LINKS.slice(0, 6)} onNavigate={close} />
+              <LinkColumn title="Forfattere" items={FORFATTER_LINKS} onNavigate={close} />
             </div>
           </>
         );
@@ -185,7 +193,7 @@ export function DesktopMegaNav() {
       case "community":
         return (
           <>
-            <SectionLabel title="Community" hubTo="/community" hubLabel="Community Hub →" onNavigate={close} />
+            <PanelHeader title="Community" hubTo="/community" hubLabel="Community Hub →" onNavigate={close} />
             <LinkGrid items={COMMUNITY_LINKS} onNavigate={close} />
           </>
         );
