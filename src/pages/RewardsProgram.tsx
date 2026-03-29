@@ -130,6 +130,10 @@ export default function RewardsProgram() {
           </Card>
         </section>
 
+        <SnippetAnswer answer="Optjen bonus spins ved at uploade godkendte clips, udfylde din profil og requeste slots til livestream. Alle belønninger er gratis og stacker med dine daglige spins." />
+
+        {!user && <CommunityJoinCTA />}
+
         <Separator className="my-10" />
 
         {/* Section: Profile Completion Rewards */}
