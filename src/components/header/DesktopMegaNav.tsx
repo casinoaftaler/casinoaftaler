@@ -295,6 +295,25 @@ export function DesktopMegaNav() {
     setFocusedSection(prev => prev === sectionKey ? null : sectionKey);
   }, []);
 
+  // Close menu when clicking anywhere outside the nav triggers and the panel
+  useEffect(() => {
+    if (!activeMenu || isClosing) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (
+        navContainerRef.current?.contains(target) ||
+        panelRef.current?.contains(target)
+      ) {
+        return; // click was inside menu
+      }
+      animateClose();
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [activeMenu, isClosing, animateClose]);
+
   const renderContent = (key: MenuKey) => {
     switch (key) {
       case "casinoer":
