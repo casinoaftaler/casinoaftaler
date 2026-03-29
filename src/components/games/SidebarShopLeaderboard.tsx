@@ -98,10 +98,8 @@ export function SidebarShopLeaderboard() {
           ((profiles || []) as any[]).map((p: any) => [p.display_name?.toLowerCase() || "", p])
         );
 
-        // Build badge map by lowercase display_name
-        const badgeMap = new Map(
-          (badgeProfiles || []).map((p) => [p.display_name?.toLowerCase() || "", p.twitch_badges])
-        );
+        // Build badge map by user_id (targeted fetch only)
+
 
         setEntries(
           topUsers.map((u) => {
