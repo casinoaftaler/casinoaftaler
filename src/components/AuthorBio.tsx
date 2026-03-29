@@ -88,6 +88,7 @@ const authorData = {
       { href: "https://www.youtube.com/@MerkelSpins", label: "YouTube" },
       { href: "https://www.twitch.tv/fedesvinsejer", label: "Twitch" },
       { href: "https://www.instagram.com/frederikmerkel/", label: "Instagram" },
+      { href: "https://www.linkedin.com/in/frederik-merkel-a64481345", label: "LinkedIn" },
     ],
   },
 } as const;
