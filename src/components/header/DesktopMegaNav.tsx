@@ -202,8 +202,8 @@ function ExpandableColumn({ title, items, allItems, hubTo, onNavigate, onShowAll
     <div>
       <SubLabel title={title} hubTo={hubTo} onNavigate={onNavigate} />
       <div className={hasLogos ? "grid grid-cols-2 gap-1.5" : "space-y-1.5"}>
-        {items.map(item => (
-          <SmartLink key={item.to} item={item} onClick={onNavigate} />
+        {items.map((item, i) => (
+          <SmartLink key={item.to} item={item} colorIndex={i} onClick={onNavigate} />
         ))}
       </div>
       {hasMore && (
