@@ -18,8 +18,6 @@ import { FAQSection } from "@/components/FAQSection";
 import { CommunityNav } from "@/components/community/CommunityNav";
 
 import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
-
-import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
