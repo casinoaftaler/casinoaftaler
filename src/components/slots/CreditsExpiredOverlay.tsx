@@ -3,7 +3,7 @@ import { Clock, Sparkles, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CreditCoin } from "@/components/CreditCoin";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useCasinos } from "@/hooks/useCasinos";
+import { useCasinoBySlug } from "@/hooks/useCasinoBySlug";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
