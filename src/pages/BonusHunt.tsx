@@ -271,6 +271,7 @@ export default function BonusHunt() {
                   {/* Slot table – directly under video */}
                   <BonusHuntSlotTable slots={huntData.slots} huntNumber={currentHuntNumber} />
                   {/* SEO Content – process overview, right under slots */}
+                  {!user && <CommunityJoinCTA />}
                   <BonusHuntSeoContent />
                   {/* Host card – visible on mobile only (below slot table) */}
                   <div className="xl:hidden">
