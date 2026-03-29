@@ -87,7 +87,7 @@ function MobileSmartLink({ item, colorIndex = 0, onClose, indent = "ml-6" }: {
         <img
           src={item.avatarUrl}
           alt={item.label}
-          className="h-6 w-6 rounded-full object-cover object-top shrink-0 ring-1 ring-border"
+          className="h-8 w-8 rounded-full object-cover object-top shrink-0 ring-1 ring-border"
           loading="lazy"
         />
         <span className="truncate">{item.label}</span>
