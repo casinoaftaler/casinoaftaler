@@ -108,6 +108,7 @@ export default function GameLibrary() {
           url: `${SITE_URL}/community/slots`,
           datePublished: "2026-01-15",
         })]}
+        breadcrumbLabel="Spillehal"
       />
       <PageBackground />
       <GameLibraryHero />
