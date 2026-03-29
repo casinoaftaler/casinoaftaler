@@ -281,7 +281,7 @@ export default function BonusHunt() {
 
                 {/* Right column (40%) */}
                 <div className="lg:col-span-2 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
-                  <Tabs defaultValue="request" className="w-full">
+                  <Tabs defaultValue={isLive ? "request" : "stats"} className="w-full">
                     <TabsList className={`w-full grid ${isLive ? 'grid-cols-4' : 'grid-cols-3'}`}>
                       {isLive && <TabsTrigger value="request">REQUEST</TabsTrigger>}
                       <TabsTrigger value="stats">STATS</TabsTrigger>
