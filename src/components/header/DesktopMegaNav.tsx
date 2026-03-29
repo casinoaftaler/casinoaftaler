@@ -151,8 +151,9 @@ function PanelHeader({ title, hubTo, hubLabel, onNavigate }: {
 function ExpandableGrid({ items, initialCount, cols = 5, onNavigate, onShowAll }: {
   items: NavLink[]; initialCount: number; cols?: number; onNavigate: () => void; onShowAll?: () => void;
 }) {
+  const [expanded, setExpanded] = useState(false);
   const hasMore = items.length > initialCount;
-  const visibleItems = items.slice(0, initialCount);
+  const visibleItems = expanded ? items : items.slice(0, initialCount);
   const colClass = cols === 4 ? "grid-cols-4" : cols === 3 ? "grid-cols-3" : "grid-cols-5";
 
   return (
@@ -162,9 +163,16 @@ function ExpandableGrid({ items, initialCount, cols = 5, onNavigate, onShowAll }
           <MegaLink key={item.to} to={item.to} label={item.label} iconName={item.iconName} colorIndex={i} onClick={onNavigate} />
         ))}
       </div>
-      {hasMore && (
+      {hasMore && !expanded && (
         <button
-          onClick={(e) => { e.stopPropagation(); onShowAll?.(); }}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (onShowAll) {
+              onShowAll();
+              return;
+            }
+            setExpanded(true);
+          }}
           className="mt-2 text-[11px] font-medium text-primary hover:underline flex items-center gap-1 transition-colors"
         >
           Vis alle ({items.length}) <ChevronDown className="h-3 w-3 transition-transform" />
@@ -231,6 +239,8 @@ const TRIGGERS = [
 
 type MenuKey = (typeof TRIGGERS)[number]["key"];
 
+const MENU_CLOSE_DELAY_MS = 5000;
+
 /* ─── Main ─── */
 export function DesktopMegaNav() {
   const [activeMenu, setActiveMenu] = useState<MenuKey | null>(null);
@@ -248,7 +258,7 @@ export function DesktopMegaNav() {
     timeoutRef.current = window.setTimeout(() => {
       setActiveMenu(null);
       setFocusedSection(null);
-    }, 400);
+    }, MENU_CLOSE_DELAY_MS);
   }, []);
 
   const handlePanelEnter = useCallback(() => {
