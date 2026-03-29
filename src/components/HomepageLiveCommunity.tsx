@@ -36,7 +36,7 @@ function useHomepageCommunityData() {
         date: h.created_at
           ? new Date(h.created_at).toLocaleDateString("da-DK", { day: "numeric", month: "short" })
           : null,
-      }));
+      })).reverse();
 
       // Fetch profiles for leaderboard
       const leaderboardData = (leaderboardRes.data ?? []).filter((d) => (d as any).monthly_winnings > 0);
