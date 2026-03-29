@@ -106,8 +106,8 @@ export const Header = memo(function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" style={{ contain: 'layout style', minHeight: '64px' }}>
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 2xl:px-12 flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-          <div className="flex h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0 items-center justify-center rounded-lg overflow-hidden">
-            <img src={casinoaftalerLogo} alt="Casinoaftaler.dk logo" width={48} height={48} className="h-full w-full object-contain" loading="eager" {...{ fetchpriority: "high" }} />
+          <div className="flex h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 items-center justify-center overflow-hidden">
+            <img src={casinoaftalerLogo} alt="Casinoaftaler.dk logo" width={80} height={80} className="h-full w-full object-contain" loading="eager" {...{ fetchpriority: "high" }} />
           </div>
           <span className="text-sm sm:text-xl font-bold whitespace-nowrap" style={{ minWidth: '140px' }}>{siteName}</span>
         </Link>
