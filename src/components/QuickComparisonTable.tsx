@@ -5,8 +5,9 @@ import { useAuth } from "@/hooks/useAuth";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 import { Link } from "react-router-dom";
-import { ExternalLink, Star } from "lucide-react";
+import { ExternalLink, Star, Clock, RefreshCw, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
 
 const CTA_VARIANTS = [
   "FÅ BONUS",
@@ -25,19 +26,39 @@ const PARTNER_SLUGS = [
   "playkasino",
 ];
 
+const RANK_STYLES = [
+  "bg-amber-500 text-white shadow-amber-500/40",
+  "bg-slate-400 text-white shadow-slate-400/30",
+  "bg-orange-700 text-white shadow-orange-700/30",
+] as const;
+
 interface QuickComparisonTableProps {
-  /** Number of casinos to show (default 3) */
   count?: number;
-  /** Optional heading */
   title?: string;
-  /** Casino slugs to prioritize (shown first in this order) */
   prioritySlugs?: string[];
 }
 
-/**
- * Dense comparison table with key metrics + direct CTA.
- * Designed for above-the-fold placement on money pages.
- */
+function RatingStars({ score }: { score: number }) {
+  const full = Math.floor(score);
+  const half = score - full >= 0.25;
+  return (
+    <div className="flex items-center gap-0.5">
+      {[1, 2, 3, 4, 5].map((i) => (
+        <Star
+          key={i}
+          className={`h-3.5 w-3.5 ${
+            i <= full
+              ? "text-amber-400 fill-amber-400"
+              : i === full + 1 && half
+                ? "text-amber-400 fill-amber-400/50"
+                : "text-muted-foreground/25"
+          }`}
+        />
+      ))}
+    </div>
+  );
+}
+
 export function QuickComparisonTable({
   count = 3,
   title = "Hurtig sammenligning",
@@ -70,83 +91,118 @@ export function QuickComparisonTable({
 
   return (
     <div className="mb-8">
-      <h3 className="text-lg font-bold mb-3">{title}</h3>
-      <div className="overflow-x-auto rounded-lg border border-border">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-border bg-muted/50">
-              <th className="py-2.5 px-3 text-left font-semibold">#</th>
-              <th className="py-2.5 px-3 text-left font-semibold">Casino</th>
-              <th className="py-2.5 px-3 text-left font-semibold hidden sm:table-cell">Bonus</th>
-              <th className="py-2.5 px-3 text-left font-semibold hidden md:table-cell">Omsætning</th>
-              <th className="py-2.5 px-3 text-left font-semibold hidden md:table-cell">Udbetaling</th>
-              <th className="py-2.5 px-3 text-center font-semibold">Score</th>
-              <th className="py-2.5 px-3 text-right font-semibold"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {display.map((casino, i) => {
-              const score = CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating);
-              return (
-                <tr
-                  key={casino.id}
-                  className={`border-b border-border last:border-0 ${i === 0 ? "bg-primary/5" : ""}`}
-                >
-                  <td className="py-3 px-3 font-bold text-primary">{i + 1}</td>
-                  <td className="py-3 px-3">
-                    <div className="flex items-center gap-2">
-                      {casino.logo_url && (
-                        <img
-                          src={optimizeStorageImage(casino.logo_url, 32)}
-                          alt={`${casino.name} logo`}
-                          width={24}
-                          height={24}
-                          className="h-6 w-6 rounded object-contain bg-background"
-                          loading="lazy"
-                        />
-                      )}
-                      <Link
-                        to={`/casino-anmeldelser/${casino.slug}`}
-                        className="font-medium text-foreground hover:text-primary transition-colors"
-                      >
-                        {casino.name}
-                      </Link>
+      <h3 className="text-lg font-bold mb-4">{title}</h3>
+      <div className="flex flex-col gap-4">
+        {display.map((casino, i) => {
+          const score = CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating);
+          const rankStyle = RANK_STYLES[i] ?? "bg-muted text-muted-foreground";
+
+          return (
+            <div
+              key={casino.id}
+              className="relative rounded-xl border border-border bg-card overflow-hidden transition-shadow hover:shadow-lg hover:shadow-primary/5"
+            >
+              {/* Rank badge */}
+              <div
+                className={`absolute top-3 left-3 z-10 flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold shadow-md ${rankStyle}`}
+              >
+                {i + 1}
+              </div>
+
+              <div className="p-4 pt-5 sm:p-5">
+                {/* Top row: Logo + Name/Rating + Bonus */}
+                <div className="flex items-start gap-4 ml-8 sm:ml-10">
+                  {/* Logo */}
+                  {casino.logo_url && (
+                    <div className="shrink-0 rounded-lg bg-background border border-border p-1.5">
+                      <img
+                        src={optimizeStorageImage(casino.logo_url, 80)}
+                        alt={`${casino.name} logo`}
+                        width={56}
+                        height={56}
+                        className="h-14 w-14 rounded-md object-contain"
+                        loading="lazy"
+                      />
                     </div>
-                  </td>
-                  <td className="py-3 px-3 text-muted-foreground hidden sm:table-cell">
-                    {casino.bonus_amount}
-                  </td>
-                  <td className="py-3 px-3 text-muted-foreground hidden md:table-cell">
-                    {casino.wagering_requirements}
-                  </td>
-                  <td className="py-3 px-3 text-muted-foreground hidden md:table-cell">
-                    {casino.payout_time}
-                  </td>
-                  <td className="py-3 px-3 text-center">
-                    <span className="inline-flex items-center gap-1 font-bold text-primary">
-                      <Star className="h-3.5 w-3.5 fill-primary" />
-                      {score.toFixed(1)}
-                    </span>
-                  </td>
-                  <td className="py-3 px-3 text-right">
-                    <Button
-                      size="sm"
-                      className="h-8 text-xs gap-1"
-                      onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
+                  )}
+
+                  {/* Name + Rating */}
+                  <div className="flex-1 min-w-0">
+                    <Link
+                      to={`/casino-anmeldelser/${casino.slug}`}
+                      className="text-base sm:text-lg font-bold text-foreground hover:text-primary transition-colors line-clamp-1"
                     >
-                      {ctaText}
-                      <ExternalLink className="h-3 w-3" />
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                      {casino.name}
+                    </Link>
+                    <div className="flex items-center gap-1.5 mt-1">
+                      <RatingStars score={score} />
+                      <span className="text-sm font-semibold text-primary tabular-nums">
+                        {score.toFixed(1)}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Bonus highlight */}
+                  <div className="shrink-0 text-right hidden sm:block">
+                    <span className="block text-xs text-muted-foreground">Bonus</span>
+                    <span className="block text-lg font-bold text-primary leading-tight">
+                      {casino.bonus_amount}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Mobile bonus (shown only on small screens) */}
+                <div className="mt-3 ml-8 sm:hidden rounded-lg bg-primary/5 border border-primary/10 px-3 py-2 text-center">
+                  <span className="text-xs text-muted-foreground">Bonus: </span>
+                  <span className="font-bold text-primary">{casino.bonus_amount}</span>
+                </div>
+
+                {/* Stats row */}
+                <div className="mt-4 grid grid-cols-3 gap-2 ml-8 sm:ml-10">
+                  <div className="flex flex-col items-center rounded-lg bg-muted/50 px-2 py-2.5">
+                    <RefreshCw className="h-3.5 w-3.5 text-muted-foreground mb-1" />
+                    <span className="text-[10px] text-muted-foreground leading-tight">Omsætning</span>
+                    <span className="text-xs font-semibold text-foreground mt-0.5">
+                      {casino.wagering_requirements}
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center rounded-lg bg-muted/50 px-2 py-2.5">
+                    <Clock className="h-3.5 w-3.5 text-muted-foreground mb-1" />
+                    <span className="text-[10px] text-muted-foreground leading-tight">Udbetaling</span>
+                    <span className="text-xs font-semibold text-foreground mt-0.5">
+                      {casino.payout_time}
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center rounded-lg bg-muted/50 px-2 py-2.5">
+                    <Wallet className="h-3.5 w-3.5 text-muted-foreground mb-1" />
+                    <span className="text-[10px] text-muted-foreground leading-tight">Min. indbet.</span>
+                    <span className="text-xs font-semibold text-foreground mt-0.5">
+                      {casino.min_deposit}
+                    </span>
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="mt-4 ml-8 sm:ml-10">
+                  <Button
+                    variant="cta"
+                    className="w-full h-11 text-sm gap-1.5"
+                    onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
+                  >
+                    {ctaText}
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </Button>
+                </div>
+
+                {/* Disclaimer */}
+                <div className="mt-3 ml-8 sm:ml-10">
+                  <CasinoCardDisclaimer />
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <p className="mt-2 text-xs text-muted-foreground">
-        18+ | Spil ansvarligt | Regler og vilkår gælder
-      </p>
     </div>
   );
 }
