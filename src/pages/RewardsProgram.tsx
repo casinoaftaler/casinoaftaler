@@ -36,6 +36,7 @@ export default function RewardsProgram() {
           url: `${SITE_URL}/community/rewards`,
           datePublished: "2026-01-20",
         })]}
+        breadcrumbLabel="Rewards"
       />
 
       {/* Hero Section */}
