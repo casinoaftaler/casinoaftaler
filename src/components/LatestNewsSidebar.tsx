@@ -3,8 +3,8 @@ import { Newspaper, ArrowRight } from "lucide-react";
 import { usePublishedNews } from "@/hooks/useCasinoNews";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 
-export function LatestNewsSidebar() {
-  const { data, isLoading } = usePublishedNews(1, 2);
+export function LatestNewsSidebar({ count = 2 }: { count?: number }) {
+  const { data, isLoading } = usePublishedNews(1, count);
   const articles = data?.articles ?? [];
 
   if (isLoading) {

@@ -196,8 +196,8 @@ const Index = () => {
       {/* Top Casinos Section with sidebar */}
       <section id="top-casinos" className="py-8 md:py-12" style={{ contain: 'layout style' }}>
         <div className="container relative">
-          <aside className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[200px]">
-            <QuickNavSidebar />
+          <aside className="hidden min-[1540px]:block absolute left-full top-0 ml-6 w-[300px]">
+            <HomepageSidebar />
           </aside>
           <div className="mb-8">
             <h2 className="mb-4 text-3xl font-bold">Bedste Online Casinoer i Danmark</h2>
