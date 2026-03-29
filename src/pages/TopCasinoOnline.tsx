@@ -247,92 +247,6 @@ const TopCasinoOnline = () => {
         <SnippetAnswer answer="De 10 bedste online casinoer i Danmark 2026 er testet og rangeret efter bonus, udbetalingstid, spiludvalg og sikkerhed. Alle har dansk licens fra Spillemyndigheden, max 10x omsætningskrav og hurtige udbetalinger." />
 
         <QuickComparisonTable count={3} title="Top 3 casinoer – hurtig sammenligning" prioritySlugs={["spildansknu", "spilleautomaten", "campobet"]} />
-        <section className="mb-12">
-          <h2 className="mb-6 text-3xl font-bold">
-            Top 10 Online Casino i Danmark
-          </h2>
-          <p className="mb-6 text-muted-foreground leading-relaxed">
-            Herunder finder du vores håndplukkede top 10 over de bedste online casinoer i Danmark lige nu. Listen er opdateret månedligt og baseret på vores dybdegående test af hvert enkelt spillested.
-          </p>
-          {isLoading ? (
-            <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            </div>
-          ) : topCasinos.length === 0 ? (
-            <p className="py-8 text-center text-muted-foreground">
-              Ingen casinoer tilgængelige i øjeblikket.
-            </p>
-          ) : (
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-                {topCasinos.slice(0, 2).map((casino, index) => (
-                  <div key={casino.id}>
-                    <CasinoCard
-                      casino={mapCasino(casino)}
-                      rank={index + 1}
-                      open={openCasinoId === casino.id}
-                      onOpenChange={(open) =>
-                        setOpenCasinoId(open ? casino.id : null)
-                      }
-                    />
-                    <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
-                  </div>
-                ))}
-              </div>
-              {topCasinos.length > 2 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-                  {topCasinos.slice(2, 5).map((casino, index) => (
-                    <div key={casino.id}>
-                      <CasinoCard
-                        casino={mapCasino(casino)}
-                        rank={index + 3}
-                        open={openCasinoId === casino.id}
-                        onOpenChange={(open) =>
-                          setOpenCasinoId(open ? casino.id : null)
-                        }
-                      />
-                      <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
-                    </div>
-                  ))}
-                </div>
-              )}
-              {topCasinos.length > 5 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-                  {topCasinos.slice(5, 8).map((casino, index) => (
-                    <div key={casino.id}>
-                      <CasinoCard
-                        casino={mapCasino(casino)}
-                        rank={index + 6}
-                        open={openCasinoId === casino.id}
-                        onOpenChange={(open) =>
-                          setOpenCasinoId(open ? casino.id : null)
-                        }
-                      />
-                      <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
-                    </div>
-                  ))}
-                </div>
-              )}
-              {topCasinos.length > 8 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-                  {topCasinos.slice(8, 10).map((casino, index) => (
-                    <div key={casino.id}>
-                      <CasinoCard
-                        casino={mapCasino(casino)}
-                        rank={index + 9}
-                        open={openCasinoId === casino.id}
-                        onOpenChange={(open) =>
-                          setOpenCasinoId(open ? casino.id : null)
-                        }
-                      />
-                      <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        </section>
 
         <Separator className="my-10" />
 
@@ -456,6 +370,95 @@ const TopCasinoOnline = () => {
               </CardContent>
             </Card>
           </div>
+        </section>
+
+        <Separator className="my-10" />
+
+        <section className="mb-12">
+          <h2 className="mb-6 text-3xl font-bold">
+            Top 10 Online Casino i Danmark
+          </h2>
+          <p className="mb-6 text-muted-foreground leading-relaxed">
+            Herunder finder du vores håndplukkede top 10 over de bedste online casinoer i Danmark lige nu. Listen er opdateret månedligt og baseret på vores dybdegående test af hvert enkelt spillested.
+          </p>
+          {isLoading ? (
+            <div className="flex items-center justify-center py-12">
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            </div>
+          ) : topCasinos.length === 0 ? (
+            <p className="py-8 text-center text-muted-foreground">
+              Ingen casinoer tilgængelige i øjeblikket.
+            </p>
+          ) : (
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                {topCasinos.slice(0, 2).map((casino, index) => (
+                  <div key={casino.id}>
+                    <CasinoCard
+                      casino={mapCasino(casino)}
+                      rank={index + 1}
+                      open={openCasinoId === casino.id}
+                      onOpenChange={(open) =>
+                        setOpenCasinoId(open ? casino.id : null)
+                      }
+                    />
+                    <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
+                  </div>
+                ))}
+              </div>
+              {topCasinos.length > 2 && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                  {topCasinos.slice(2, 5).map((casino, index) => (
+                    <div key={casino.id}>
+                      <CasinoCard
+                        casino={mapCasino(casino)}
+                        rank={index + 3}
+                        open={openCasinoId === casino.id}
+                        onOpenChange={(open) =>
+                          setOpenCasinoId(open ? casino.id : null)
+                        }
+                      />
+                      <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
+                    </div>
+                  ))}
+                </div>
+              )}
+              {topCasinos.length > 5 && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                  {topCasinos.slice(5, 8).map((casino, index) => (
+                    <div key={casino.id}>
+                      <CasinoCard
+                        casino={mapCasino(casino)}
+                        rank={index + 6}
+                        open={openCasinoId === casino.id}
+                        onOpenChange={(open) =>
+                          setOpenCasinoId(open ? casino.id : null)
+                        }
+                      />
+                      <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
+                    </div>
+                  ))}
+                </div>
+              )}
+              {topCasinos.length > 8 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                  {topCasinos.slice(8, 10).map((casino, index) => (
+                    <div key={casino.id}>
+                      <CasinoCard
+                        casino={mapCasino(casino)}
+                        rank={index + 9}
+                        open={openCasinoId === casino.id}
+                        onOpenChange={(open) =>
+                          setOpenCasinoId(open ? casino.id : null)
+                        }
+                      />
+                      <TopCasinoReviewLink slug={casino.slug} name={casino.name} />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </section>
 
         <Separator className="my-10" />

@@ -124,8 +124,6 @@ const NyeCasinoerDanskLicens = () => {
 
         </section>
 
-        <InlineCasinoCards title="Nye Licenserede Casinoer i Danmark" />
-
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -152,6 +150,8 @@ const NyeCasinoerDanskLicens = () => {
             ))}
           </div>
         </section>
+
+        <InlineCasinoCards title="Nye Licenserede Casinoer i Danmark" />
 
         <Separator className="my-10" />
 
