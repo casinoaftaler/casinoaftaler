@@ -12,7 +12,7 @@ import {
 
 /* ─── Logo imports (Vite static) ─── */
 const providerLogos = import.meta.glob<{ default: string }>(
-  "/src/assets/providers/*.png",
+  "/src/assets/providers/*.{webp,png,jpg}",
   { eager: true }
 );
 const casinoLogos = import.meta.glob<{ default: string }>(
