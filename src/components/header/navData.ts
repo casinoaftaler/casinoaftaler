@@ -191,13 +191,13 @@ export const PROVIDER_LINKS: NavLink[] = [
 const CASINO_LOGO_BASE = "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos";
 
 export const REVIEW_TOP_LINKS: NavLink[] = [
-  { to: "/casino-anmeldelser/spildansknu", label: "SpilDanskNu", logoUrl: `${CASINO_LOGO_BASE}/spildansknu-1765832906267.png` },
-  { to: "/casino-anmeldelser/spilleautomaten", label: "Spilleautomaten", logoUrl: `${CASINO_LOGO_BASE}/spilleautomaten-1765832651802.png` },
+  { to: "/casino-anmeldelser/spildansknu", label: "SpilDanskNu", logoUrl: "/src/assets/casino-logos/spildansknu.webp" },
+  { to: "/casino-anmeldelser/spilleautomaten", label: "Spilleautomaten", logoUrl: "/src/assets/casino-logos/spilleautomaten.webp" },
   { to: "/casino-anmeldelser/betinia", label: "Betinia", logoUrl: "/src/assets/casino-logos/betinia.webp" },
   { to: "/casino-anmeldelser/campobet", label: "Campobet", logoUrl: "/src/assets/casino-logos/campobet.webp" },
-  { to: "/casino-anmeldelser/swift-casino", label: "Swift Casino", logoUrl: `${CASINO_LOGO_BASE}/swift-casino-1765833754433.png` },
+  { to: "/casino-anmeldelser/swift-casino", label: "Swift Casino", logoUrl: "/src/assets/casino-logos/swift-casino.webp" },
   { to: "/casino-anmeldelser/luna-casino", label: "Luna Casino", logoUrl: "/src/assets/casino-logos/luna-casino.webp" },
-  { to: "/casino-anmeldelser/playkasino", label: "PlayKasino", logoUrl: `${CASINO_LOGO_BASE}/new-casino-1774460542476-1774460612838.png` },
+  { to: "/casino-anmeldelser/playkasino", label: "PlayKasino", logoUrl: "/src/assets/casino-logos/playkasino.webp" },
 ];
 
 export const REVIEW_ALL_LINKS: NavLink[] = [
@@ -213,7 +213,7 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/888-casino", label: "888 Casino", logoUrl: `${CASINO_LOGO_BASE}/888casino.png` },
   { to: "/casino-anmeldelser/betano", label: "Betano", logoUrl: `${CASINO_LOGO_BASE}/betano.png` },
   { to: "/casino-anmeldelser/expekt", label: "Expekt", logoUrl: "/src/assets/casino-logos/expekt.webp" },
-  { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino", logoUrl: `${CASINO_LOGO_BASE}/royalcasino.png` },
+  { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino", logoUrl: "/src/assets/casino-logos/royal-casino.webp" },
   { to: "/casino-anmeldelser/maria-casino", label: "Maria Casino", logoUrl: `${CASINO_LOGO_BASE}/mariacasino.png` },
   { to: "/casino-anmeldelser/kapow-casino", label: "Kapow Casino", logoUrl: "/src/assets/casino-logos/kapow.webp" },
   { to: "/casino-anmeldelser/nordicbet", label: "NordicBet", logoUrl: `${CASINO_LOGO_BASE}/nordicbet.png` },
