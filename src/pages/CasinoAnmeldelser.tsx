@@ -132,6 +132,7 @@ const articleSchema = buildArticleSchema({
 
 /** ItemList schema – all reviewed casinos as a ranked list for rich snippet eligibility */
 const reviewListSlugs = [
+  { name: "PlayKasino", slug: "playkasino" },
   { name: "Spilleautomaten", slug: "spilleautomaten" },
   { name: "SpilDanskNu", slug: "spildansknu" },
   { name: "Betinia", slug: "betinia" },
