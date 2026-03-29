@@ -69,7 +69,7 @@ const VRCasinoerGuide = () => {
 
         <SnippetAnswer answer="VR casinoer er stadig i tidlig fase i Danmark. De bedste oplevelser kræver Meta Quest headset og tilbyder immersive bordspil." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" prioritySlugs={["campobet", "spilleautomaten", "betinia"]} />
+        <QuickComparisonTable count={3} title="Fremtidens casinoer – top 3" prioritySlugs={["campobet", "spilleautomaten", "betinia"]} />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over VR casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Virtual reality revolutionerer mange brancher, og online gambling står for en transformation, der kan ændre alt, vi kender. Forestil dig at træde ind i et luksuriøst casino i Monaco – uden at forlade din stue. VR casinoer lover præcis denne oplevelse: Immersiv 3D-grafik, sociale interaktioner med andre spillere, realistiske spilleborde og en atmosfære, der matcher det bedste, fysiske casinoer kan tilbyde. I 2026 er teknologien kommet langt nok til, at de første overbevisende VR casinooplevelser er tilgængelige, men der er stadig vigtige begrænsninger og overvejelser, du bør kende til.</p>

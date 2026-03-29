@@ -111,7 +111,7 @@ const CasinoLicenser = () => {
 
         <SnippetAnswer answer="Dansk licens fra Spillemyndigheden giver skattefri gevinster, max 10x omsætningskrav, ROFUS-beskyttelse og dansk klageadgang. MGA og Curaçao tilbyder ingen af disse fordele." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["spildansknu", "betinia", "spilleautomaten"]} />
+        <QuickComparisonTable count={3} title="Licenserede danske casinoer – top 3" prioritySlugs={["spildansknu", "betinia", "spilleautomaten"]} />
 
 {/* ── Introduktion ── */}
         <section className="mb-12">

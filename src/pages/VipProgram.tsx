@@ -196,7 +196,7 @@ const VipProgram = () => {
 
         <SnippetAnswer answer="VIP-programmer belønner aktive spillere med cashback, reload-bonusser og dedikeret support. De bedste programmer giver 0,5-1,5% effektiv tilbagebetaling via comp points." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["spildansknu", "campobet", "spilleautomaten"]} />
+        <QuickComparisonTable count={3} title="Bedste VIP-programmer – top 3" prioritySlugs={["spildansknu", "campobet", "spilleautomaten"]} />
 
 {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER ET VIP-PROGRAM?

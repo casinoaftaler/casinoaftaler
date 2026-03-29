@@ -168,7 +168,7 @@ const StickyBonus = () => {
 
         <SnippetAnswer answer="En sticky bonus sammenblander din indbetaling og bonusmidler til én saldo. Over 80% af danske bonusser er sticky – de giver mere spillekapital, men kræver fuld omsætning før udbetaling." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["betinia", "spilleautomaten", "campobet"]} />
+        <QuickComparisonTable count={3} title="Sticky bonus – top 3 casinoer" prioritySlugs={["betinia", "spilleautomaten", "campobet"]} />
 
 {/* Intro */}
         <section className="mb-12">

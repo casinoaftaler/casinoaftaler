@@ -138,7 +138,7 @@ const PayNPlayGuide = () => {
 
         <SnippetAnswer answer="Pay N Play bruger Trustly til øjeblikkelig bank-identifikation og betaling i ét trin – ingen konto, ingen ventetid." />
 
-        <QuickComparisonTable count={3} title="Bedste Pay N Play Casinoer – Top 3" prioritySlugs={["swift-casino", "spilleautomaten", "betinia"]} />
+        <QuickComparisonTable count={3} title="Pay N Play – hurtigste casinoer" prioritySlugs={["swift-casino", "spilleautomaten", "betinia"]} />
         {/* 1. INTRODUKTION */}
         <section className="mb-12" id="introduktion">
           <h2 className="mb-4 text-3xl font-bold flex items-center gap-2"><Globe className="h-7 w-7 text-primary" />Hvad er Pay N Play?</h2>

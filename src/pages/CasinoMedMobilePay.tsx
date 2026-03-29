@@ -213,7 +213,7 @@ const CasinoMedMobilePay = () => {
 
         <SnippetAnswer answer="MobilePay accepteres på de fleste danske casinoer med instant indbetalinger, nul gebyrer og fuld bonuskvalificering. Udbetalinger sker via Trustly eller bankoverførsel." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["spildansknu", "betinia", "playkasino"]} />
+        <QuickComparisonTable count={3} title="MobilePay-casinoer – top 3" prioritySlugs={["spildansknu", "betinia", "playkasino"]} />
 
 {/* ══════════════════════════════════════════════════════════════
             1. INTRODUKTION: HVORFOR MOBILEPAY?

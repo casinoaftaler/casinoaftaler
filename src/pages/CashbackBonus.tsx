@@ -195,7 +195,7 @@ const CashbackBonus = () => {
 
         <SnippetAnswer answer="Cashback returnerer 5-15% af dine nettotab – den mest gennemsigtige bonustype. Ingen komplicerede omsætningskrav, og værdien akkumulerer over tid for aktive spillere." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["campobet", "betinia", "luna-casino"]} />
+        <QuickComparisonTable count={3} title="Bedste cashback-casinoer" prioritySlugs={["campobet", "betinia", "luna-casino"]} />
 
 {/* Intro */}
         <section className="mb-12">

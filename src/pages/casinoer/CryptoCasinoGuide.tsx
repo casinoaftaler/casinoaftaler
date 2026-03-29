@@ -59,7 +59,7 @@ const CryptoCasinoGuide = () => {
 
         <SnippetAnswer answer="Crypto casinoer accepterer Bitcoin og Ethereum, men i Danmark kræver alle lovlige casinoer dansk licens uanset betalingsmetode." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer – Top 3" prioritySlugs={["betinia", "campobet", "spilleautomaten"]} />
+        <QuickComparisonTable count={3} title="Krypto-venlige casinoer – top 3" prioritySlugs={["betinia", "campobet", "spilleautomaten"]} />
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Overblik over crypto casinoer</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">Kryptovalutaer har revolutioneret mange brancher, og online gambling er ingen undtagelse. Crypto casinoer tilbyder hurtigere transaktioner, lavere gebyrer og et niveau af gennemsigtighed, som traditionelle casinoer ikke kan matche – takket være blockchain-teknologi og provably fair-systemer. Men denne nye verden kommer også med unikke risici, som danske spillere bør forstå grundigt, før de dykker ind.</p>

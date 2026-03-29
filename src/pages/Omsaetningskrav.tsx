@@ -172,7 +172,7 @@ const Omsaetningskrav = () => {
 
         <SnippetAnswer answer="Omsætningskrav er det antal gange du skal gennemspille din bonus før udbetaling. I Danmark er loftet 10x (d+b) – Europas laveste. Vælg spil med høj RTP for hurtigst mulig omsætning." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["betinia", "playkasino", "spilleautomaten"]} />
+        <QuickComparisonTable count={3} title="Faireste omsætningskrav – top 3" prioritySlugs={["betinia", "playkasino", "spilleautomaten"]} />
 
 {/* Intro - Hvad betyder omsætningskrav */}
         <section className="mb-12">

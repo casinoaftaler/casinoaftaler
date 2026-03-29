@@ -221,7 +221,7 @@ const MobilCasino = () => {
 
         <SnippetAnswer answer="75% af al casinotrafik i Danmark kommer fra mobilen. De bedste mobilcasinoer har responsive HTML5-platforme, alle betalingsmetoder inkl. MobilePay og fuldt spiludvalg." />
 
-        <QuickComparisonTable count={3} title="Hurtig sammenligning – Top 3" prioritySlugs={["betinia", "swift-casino", "spilleautomaten"]} />
+        <QuickComparisonTable count={3} title="Top 3 mobilvenlige casinoer" prioritySlugs={["betinia", "swift-casino", "spilleautomaten"]} />
 
 {/* ══════════════════════════════════════════════════════════════
             1. HVAD ER MOBIL CASINO?
