@@ -6,6 +6,7 @@
 export interface NavLink {
   to: string;
   label: string;
+  logoUrl?: string;
 }
 
 export interface NavLinkWithIcon extends NavLink {
