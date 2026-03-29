@@ -4,7 +4,7 @@ import { ExternalLink, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CommunityPromoSection } from "@/components/CommunityPromoSection";
 import { SourceCitations } from "@/components/SourceCitations";
-import jonasImage from "@/assets/jonas-forfatter.webp";
+import jonasImage from "@/assets/jonas-forfatter.png";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
 import niklasImage from "@/assets/niklas-forfatter.webp";
