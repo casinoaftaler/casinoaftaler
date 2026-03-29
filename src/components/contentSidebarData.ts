@@ -8,6 +8,7 @@ export interface SidebarLink {
   to: string;
   label: string;
   iconName?: string;
+  logoUrl?: string;
 }
 
 export interface SidebarCategory {
