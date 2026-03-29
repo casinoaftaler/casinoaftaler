@@ -156,7 +156,7 @@ export default function GameLibrary() {
           <SnippetAnswer answer="Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin direkte i browseren. Optjen points, kæmp om pladser på ranglisten og konkurrér i turneringer – helt uden risiko." />
 
           {/* Community CTA for logged-out users */}
-          {!user && <CommunityJoinCTA />}
+          {!user && <CommunityJoinCTA description="Opret en gratis konto og spil community-slots som Book of Fedesvin. Optjen points og kæmp om pladser på ranglisten." />}
 
 
 
