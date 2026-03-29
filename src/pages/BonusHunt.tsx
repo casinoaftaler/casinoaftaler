@@ -13,6 +13,9 @@ import { BonusHuntLiveStream } from "@/components/bonus-hunt/BonusHuntLiveStream
 import { BonusHuntResultSummary } from "@/components/bonus-hunt/BonusHuntResultSummary";
 import { BonusHuntSeoContent } from "@/components/bonus-hunt/BonusHuntSeoContent";
 import { BonusHuntSeoText } from "@/components/bonus-hunt/BonusHuntSeoText";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 // LazySection removed from SEO-critical sections for crawlability
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
@@ -20,10 +23,6 @@ import { AuthorBio } from "@/components/AuthorBio";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
 import { BonusHuntFaq, buildBonusHuntFaqSchema } from "@/components/bonus-hunt/BonusHuntFaq";
 import { BonusHuntRelatedGuides } from "@/components/bonus-hunt/BonusHuntRelatedGuides";
-import { BonusHuntTopCasinos } from "@/components/bonus-hunt/BonusHuntTopCasinos";
-import { BonusHuntLatestNews } from "@/components/bonus-hunt/BonusHuntLatestNews";
-import { BonusHuntCommunityLinks } from "@/components/bonus-hunt/BonusHuntCommunityLinks";
-import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 
 import { BonusHuntStatStrip } from "@/components/bonus-hunt/BonusHuntStatStrip";
 import { CommunityNav } from "@/components/community/CommunityNav";
@@ -233,8 +232,11 @@ export default function BonusHunt() {
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
         <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
-          {/* Author meta bar */}
-          <AuthorMetaBar author="kevin" readTime="8 Min." />
+          <AuthorMetaBar author="kevin" />
+
+          <SnippetAnswer answer="Følg live bonus hunts med dokumenterede resultater, gennemsnit X og break-even analyser. Deltag i community bets og se arkiverede hunts med Twitch VOD – kun danske casinoer med licens." />
+
+          {!user && <CommunityJoinCTA />}
 
           {/* Stat strip */}
           <BonusHuntStatStrip />
@@ -365,29 +367,18 @@ export default function BonusHunt() {
             </div>
           )}
 
-          {/* Enterprise SEO text – full width, after main grid */}
-          <BonusHuntSeoText />
-
-          {/* Community cross-links – rendered eagerly for crawlability */}
-          <BonusHuntCommunityLinks />
-
-          {/* Top casinos CTA */}
-          <BonusHuntTopCasinos />
-
-          {/* Latest news – freshness signal */}
-          <BonusHuntLatestNews />
-
-          {/* Relaterede Guides – internal link hub */}
-          <BonusHuntRelatedGuides />
-
-          {/* FAQ Section – must be in DOM for schema match */}
-          <BonusHuntFaq />
-
-          {/* Brand block – E-E-A-T signal */}
-          <CommunityBrandBlock />
-
-          {/* Author bio – E-E-A-T signal (always last) */}
-          <AuthorBio author="kevin" showCommunity={false} />
+          {/* Footer SEO – anti-footprint rotated */}
+          <CommunityFooterSeo
+            currentPath="/bonus-hunt"
+            author="kevin"
+            before={
+              <>
+                <BonusHuntSeoText />
+                <BonusHuntRelatedGuides />
+              </>
+            }
+            after={<BonusHuntFaq />}
+          />
 
           <div className="pb-12" />
         </div>

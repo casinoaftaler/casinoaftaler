@@ -6,21 +6,19 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Gift, Video, UserCircle, Sparkles, Info, ArrowRight, CheckCircle2, Gamepad2, User, CalendarDays, BookOpen } from "lucide-react";
+import { Gift, Video, UserCircle, Sparkles, Info, ArrowRight, CheckCircle2, Gamepad2 } from "lucide-react";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { SlotRequestForm } from "@/components/SlotRequestForm";
 import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { ContentSidebar } from "@/components/ContentSidebar";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
-
-import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
-import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 import { RewardsSeoContent } from "@/components/community/RewardsSeoContent";
-import { AuthorBio } from "@/components/AuthorBio";
 
 export default function RewardsProgram() {
   const { user, loading } = useAuth();
@@ -38,6 +36,7 @@ export default function RewardsProgram() {
           url: `${SITE_URL}/community/rewards`,
           datePublished: "2026-01-20",
         })]}
+        breadcrumbLabel="Rewards"
       />
 
       {/* Hero Section */}
@@ -82,6 +81,10 @@ export default function RewardsProgram() {
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
         <AuthorMetaBar author="jonas" showFactCheck={false} showAffiliateDisclaimer={false} />
+
+        <SnippetAnswer answer="Optjen bonus spins ved at uploade godkendte clips, udfylde din profil og requeste slots til livestream. Alle belønninger er gratis og stacker med dine daglige spins." />
+
+        {!user && <CommunityJoinCTA />}
 
         {/* Section: Community Highlights Rewards */}
         <section className="mb-12">
@@ -272,15 +275,12 @@ export default function RewardsProgram() {
           </Card>
         </section>
 
-        <RewardsSeoContent />
-
-        <CommunitySeoSections />
-
-        <RelatedGuides currentPath="/community/rewards" maxLinks={4} />
-
-        <CommunityBrandBlock />
-
-        <AuthorBio author="jonas" showCommunity={false} />
+        {/* Footer SEO – anti-footprint rotated */}
+        <CommunityFooterSeo
+          currentPath="/community/rewards"
+          author="jonas"
+          before={<RewardsSeoContent />}
+        />
 
         <div className="pb-12" />
           </div>

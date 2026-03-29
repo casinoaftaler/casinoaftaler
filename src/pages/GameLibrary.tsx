@@ -4,9 +4,7 @@ import { SEO } from "@/components/SEO";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunityConversionStrip } from "@/components/community/CommunityConversionStrip";
-import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
-import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 
 
 import { ContentSidebar } from "@/components/ContentSidebar";
@@ -29,7 +27,8 @@ import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
 import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
 import bonanzaImage from "@/assets/slots/fedesvin-bonanza-preview.jpg";
 import { SpillehalSeoText } from "@/components/community/SpillehalSeoText";
-import { AuthorBio } from "@/components/AuthorBio";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import "@/styles/spillehal-animations.css";
 import "@/styles/community-micro.css";
 
@@ -109,6 +108,7 @@ export default function GameLibrary() {
           url: `${SITE_URL}/community/slots`,
           datePublished: "2026-01-15",
         })]}
+        breadcrumbLabel="Spillehal"
       />
       <PageBackground />
       <GameLibraryHero />
@@ -129,6 +129,10 @@ export default function GameLibrary() {
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
         <div className="py-8 md:py-12 space-y-8 md:space-y-10">
+
+          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} />
+
+          <SnippetAnswer answer="Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin direkte i browseren. Optjen points, kæmp om pladser på ranglisten og konkurrér i turneringer – helt uden risiko." />
 
           {/* Community CTA for logged-out users */}
           {!user && <CommunityJoinCTA />}
@@ -212,20 +216,12 @@ export default function GameLibrary() {
           {/* Section divider */}
           <div className="spillehal-divider" />
 
-          {/* Deep SEO text – before casino sections */}
-          <SpillehalSeoText />
-
-          {/* SEO bridge sections */}
-          <CommunitySeoSections />
-
-          {/* Related guides */}
-          <RelatedGuides currentPath="/community/slots" />
-
-          {/* Brand block */}
-          <CommunityBrandBlock />
-
-          {/* Author bio – always last */}
-          <AuthorBio author="kevin" />
+          {/* Footer SEO – anti-footprint rotated */}
+          <CommunityFooterSeo
+            currentPath="/community/slots"
+            author="kevin"
+            before={<SpillehalSeoText />}
+          />
 
           <div className="pb-8" />
         </div>

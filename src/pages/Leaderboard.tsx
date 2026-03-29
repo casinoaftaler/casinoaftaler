@@ -10,13 +10,12 @@ import { Trophy, Medal, Award, Crown, Sparkles, Gamepad2, ArrowRight, LogIn, Clo
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
-import { RelatedGuides } from "@/components/RelatedGuides";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
+import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 import { FAQSection } from "@/components/FAQSection";
 import { CommunityNav } from "@/components/community/CommunityNav";
 
-import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
-
-import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
@@ -31,7 +30,6 @@ import { CompletedTournamentRow } from "@/components/tournament/CompletedTournam
 import { MonthlyTournamentBoxes } from "@/components/tournament/MonthlyTournamentBoxes";
 import { TournamentSeoContent, getTournamentFaqSchema, tournamentFaqs } from "@/components/tournament/TournamentSeoContent";
 import { TurneringerSeoText } from "@/components/tournament/TurneringerSeoText";
-import { AuthorBio } from "@/components/AuthorBio";
 import turneringerHero from "@/assets/community/turneringer-hero.jpg";
 
 const GAME_NAMES: Record<string, string> = {
@@ -456,6 +454,7 @@ export default function Leaderboard() {
         title="Slot Turneringer – Gratis Turneringer med Præmier 2026"
         description="Deltag gratis i månedlige slot-turneringer og vind præmier op til 500 kr. Tre kategorier, daglige credits og automatisk deltagelse."
         jsonLd={jsonLd}
+        breadcrumbLabel="Turneringer"
       />
 
       {/* Hero Section – with tournament image */}
@@ -514,7 +513,13 @@ export default function Leaderboard() {
         {/* Main content + right sidebar */}
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
-        <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
+        <div className="py-8 md:py-12 space-y-8" style={{ minHeight: '80vh' }}>
+
+          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} />
+
+          <SnippetAnswer answer="Deltag gratis i slot-turneringer med virtuelle credits og kæmp om præmier. Tre kategorier, daglige credits og automatisk deltagelse – kun for community-medlemmer." />
+
+          {!user && <CommunityJoinCTA />}
 
           {/* Main content */}
           {tournamentsLoading ? (
@@ -571,17 +576,13 @@ export default function Leaderboard() {
             </Collapsible>
           )}
 
-          {/* Deep SEO text – after ended tournaments */}
-          <TurneringerSeoText />
-
-          {/* SEO sections */}
-          <div className="mt-12 space-y-8">
-            <CommunitySeoSections />
-            <RelatedGuides currentPath="/community/turneringer" />
-            <FAQSection title="Ofte stillede spørgsmål om turneringer" faqs={tournamentFaqs} />
-            <AuthorBio author="kevin" />
-            <CommunityBrandBlock />
-          </div>
+          {/* Footer SEO – anti-footprint rotated */}
+          <CommunityFooterSeo
+            currentPath="/community/turneringer"
+            author="kevin"
+            before={<TurneringerSeoText />}
+            after={<FAQSection title="Ofte stillede spørgsmål om turneringer" faqs={tournamentFaqs} />}
+          />
 
           <div className="pb-12" />
         </div>
