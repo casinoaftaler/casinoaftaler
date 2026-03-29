@@ -82,6 +82,10 @@ export default function RewardsProgram() {
           <div className="min-w-0 flex-1">
         <AuthorMetaBar author="jonas" showFactCheck={false} showAffiliateDisclaimer={false} />
 
+        <SnippetAnswer answer="Optjen bonus spins ved at uploade godkendte clips, udfylde din profil og requeste slots til livestream. Alle belønninger er gratis og stacker med dine daglige spins." />
+
+        {!user && <CommunityJoinCTA />}
+
         {/* Section: Community Highlights Rewards */}
         <section className="mb-12">
           <div className="flex items-center gap-3 mb-4">
