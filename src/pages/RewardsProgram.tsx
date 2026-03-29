@@ -10,18 +10,15 @@ import { Gift, Video, UserCircle, Sparkles, Info, ArrowRight, CheckCircle2, Game
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { SlotRequestForm } from "@/components/SlotRequestForm";
+import { useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
-import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { ContentSidebar } from "@/components/ContentSidebar";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
-
-import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
-import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 import { RewardsSeoContent } from "@/components/community/RewardsSeoContent";
-import { AuthorBio } from "@/components/AuthorBio";
 
 export default function RewardsProgram() {
   const { user, loading } = useAuth();
