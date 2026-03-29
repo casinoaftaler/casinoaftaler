@@ -101,7 +101,7 @@ export const ROULETTE_LINKS: NavLink[] = [
 export const ROULETTE_STRATEGY_LINKS: NavLink[] = [
   { to: "/casinospil/roulette/martingale-roulette", label: "Martingale Strategi", iconName: "arrow-up-right" },
   { to: "/casinospil/roulette/fibonacci-roulette", label: "Fibonacci Strategi", iconName: "sigma" },
-  { to: "/casinospil/roulette/dalembert-roulette", label: "D'Alembert Strategi", iconName: "minus-plus" },
+  { to: "/casinospil/roulette/dalembert-roulette", label: "D'Alembert Strategi", iconName: "minus" },
   { to: "/casinospil/roulette/labouchere-roulette", label: "Labouchère Strategi", iconName: "list-ordered" },
   { to: "/casinospil/roulette/james-bond-roulette", label: "James Bond Strategi", iconName: "glasses" },
 ];
