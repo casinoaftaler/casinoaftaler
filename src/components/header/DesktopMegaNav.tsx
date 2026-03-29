@@ -374,6 +374,7 @@ export function DesktopMegaNav() {
           <button
             key={key}
             onMouseEnter={() => handleEnter(key)}
+            onMouseLeave={handleLeave}
             onClick={() => {
               const hubMap: Record<MenuKey, string> = {
                 casinoer: "/casinoer",
