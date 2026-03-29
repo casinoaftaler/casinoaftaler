@@ -524,7 +524,7 @@ export default function Leaderboard() {
               {/* Monthly tournament boxes */}
               <MonthlyTournamentBoxes />
 
-              {!user && <CommunityJoinCTA description="Opret en gratis konto og deltag i slot-turneringer med virtuelle credits. Tre kategorier, daglige credits og automatisk deltagelse." />}
+              {!user && <CommunityJoinCTA description="Deltag gratis i slot-turneringer og vind rigtige pengepræmier. Spil med virtuelle credits, tre kategorier og daglige credits – vinderne får udbetalt præmier i rigtige penge." />}
 
               {/* Active tournaments */}
               {active.length > 0 && (
