@@ -207,6 +207,7 @@ export function DesktopMegaNav() {
   }, []);
 
   const expandSection = useCallback((sectionKey: string) => {
+    clearTimeout(timeoutRef.current);
     setFocusedSection(prev => prev === sectionKey ? null : sectionKey);
   }, []);
 
