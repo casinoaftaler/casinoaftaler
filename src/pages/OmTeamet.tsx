@@ -37,11 +37,11 @@ import {
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { usePublishedNews } from "@/hooks/useCasinoNews";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
-import jonasImage from "@/assets/jonas-forfatter.png";
+import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
 import niklasImage from "@/assets/niklas-forfatter.webp";
-import frederikImage from "@/assets/frederik-forfatter.jpg";
+import frederikImage from "@/assets/frederik-forfatter.webp";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import omHeroImage from "@/assets/heroes/om-hero.png";
