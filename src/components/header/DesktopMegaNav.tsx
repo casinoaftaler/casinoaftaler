@@ -43,7 +43,7 @@ function MegaLogoCard({ to, label, logoUrl, onClick }: { to: string; label: stri
       <img
         src={logoUrl}
         alt={label}
-        className="h-8 max-w-[90%] object-contain"
+        className="h-10 max-w-[85%] object-contain"
         loading="lazy"
       />
       <span className="absolute inset-x-0 -bottom-0.5 text-center text-[10px] font-medium text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity truncate px-1">
