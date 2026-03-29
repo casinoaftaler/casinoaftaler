@@ -36,7 +36,7 @@ export function CommunityJoinCTA() {
             Bliv en del af fællesskabet
           </h2>
           <p className="text-sm text-muted-foreground mt-0.5">
-            Spil gratis slots, deltag i turneringer og optjen rewards sammen med andre spillere.
+            Spil gratis slots, deltag i turneringer og optjen rewards sammen med andre spillere. Tre kategorier, daglige credits og automatisk deltagelse – kun for community-medlemmer.
           </p>
         </div>
         <Button

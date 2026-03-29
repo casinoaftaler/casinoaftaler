@@ -235,9 +235,8 @@ export default function BonusHunt() {
           {/* Stat strip */}
           <BonusHuntStatStrip />
 
-          <SnippetAnswer answer="Følg live bonus hunts med dokumenterede resultater, gennemsnit X og break-even analyser. Deltag i community bets og se arkiverede hunts med Twitch VOD – kun danske casinoer med licens." />
 
-          {!user && <CommunityJoinCTA />}
+
 
 
           {/* Main content */}

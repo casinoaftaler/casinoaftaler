@@ -204,38 +204,8 @@ export default function CommunityHub() {
             </EnergySweep>
           </RevealSection>
 
-          {/* Feature strip */}
-          <RevealSection>
-            <EnergySweep>
-              <Link
-                to="/velkomstbonus"
-                className="community-strip community-panel group block rounded-xl p-6"
-              >
-                <div className="flex flex-col sm:flex-row items-center gap-4">
-                  <div className="flex items-center gap-3 flex-1">
-                    <div className="flex items-center justify-center h-10 w-10 rounded-lg shrink-0" style={{ background: "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))" }}>
-                      <Gift className="h-5 w-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-base font-bold text-foreground flex items-center gap-2">
-                        🔥 Klar til en seriøs velkomstbonus?
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        Snup de bedste indbetalingsbonusser og kom stærkt fra start.
-                      </p>
-                    </div>
-                  </div>
-                  <Button
-                    className="gap-2 shrink-0 font-semibold shadow-lg community-btn-glow"
-                    style={{ background: "linear-gradient(135deg, hsl(260 70% 50%), hsl(220 80% 50%))" }}
-                  >
-                    Velkomstbonus
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </div>
-              </Link>
-            </EnergySweep>
-          </RevealSection>
+
+
 
           {/* Second row */}
           <RevealSection>

@@ -524,8 +524,6 @@ export default function Leaderboard() {
               {/* Monthly tournament boxes */}
               <MonthlyTournamentBoxes />
 
-              <SnippetAnswer answer="Deltag gratis i slot-turneringer med virtuelle credits og kæmp om præmier. Tre kategorier, daglige credits og automatisk deltagelse – kun for community-medlemmer." />
-
               {!user && <CommunityJoinCTA />}
 
               {/* Active tournaments */}
