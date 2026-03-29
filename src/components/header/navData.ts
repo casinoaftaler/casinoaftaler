@@ -196,7 +196,7 @@ export const REVIEW_TOP_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/betinia", label: "Betinia", logoUrl: "/src/assets/casino-logos/betinia.webp" },
   { to: "/casino-anmeldelser/campobet", label: "Campobet", logoUrl: "/src/assets/casino-logos/campobet.webp" },
   { to: "/casino-anmeldelser/swift-casino", label: "Swift Casino", logoUrl: `${CASINO_LOGO_BASE}/swift-casino-1765833754433.png` },
-  { to: "/casino-anmeldelser/luna-casino", label: "Luna Casino", logoUrl: `${CASINO_LOGO_BASE}/luna-casino-1765833821820.png` },
+  { to: "/casino-anmeldelser/luna-casino", label: "Luna Casino", logoUrl: "/src/assets/casino-logos/luna-casino.webp" },
   { to: "/casino-anmeldelser/playkasino", label: "PlayKasino", logoUrl: `${CASINO_LOGO_BASE}/new-casino-1774460542476-1774460612838.png` },
 ];
 
