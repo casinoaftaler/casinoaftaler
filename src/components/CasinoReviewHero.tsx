@@ -5,6 +5,48 @@ interface CasinoReviewHeroProps {
   casinoName?: string;
 }
 
+/* Map casino slugs to local logo assets (same as mega-menu uses) */
+const localLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/casino-logos/*.{webp,png,jpg}",
+  { eager: true }
+);
+
+const SLUG_TO_FILE: Record<string, string> = {
+  "888casino": "888casino",
+  "bet365": "bet365",
+  "betinia": "betinia",
+  "bwin": "bwin",
+  "campobet": "campobet",
+  "comeon": "comeon",
+  "expekt": "expekt",
+  "getlucky": "getlucky",
+  "kapow-casino": "kapow",
+  "leovegas": "leovegas",
+  "luna-casino": "luna-casino",
+  "mr-green": "mrgreen",
+  "mr-vegas": "mrvegas",
+  "onecasino": "onecasino",
+  "play-kasino": "playkasino",
+  "royal-casino": "royal-casino",
+  "spildansknu": "spildansknu",
+  "spilleautomaten": "spilleautomaten",
+  "spreadex": "spreadex",
+  "swift-casino": "swift-casino",
+  "videoslots": "videoslots",
+};
+
+function resolveLocalLogo(slug: string): string | undefined {
+  const fileName = SLUG_TO_FILE[slug];
+  if (!fileName) return undefined;
+  
+  // Try webp first, then png, then jpg
+  for (const ext of ["webp", "png", "jpg"]) {
+    const key = `/src/assets/casino-logos/${fileName}.${ext}`;
+    if (localLogos[key]) return localLogos[key].default;
+  }
+  return undefined;
+}
+
 const LIGHT_LOGO_SLUGS = new Set([
   "unibet", "leovegas", "mr-vegas", "mr-green", "comeon",
   "nordicbet", "onecasino", "betinia", "getlucky",
@@ -13,8 +55,10 @@ const LIGHT_LOGO_SLUGS = new Set([
 export function CasinoReviewHero({ slug, casinoName }: CasinoReviewHeroProps) {
   const { data: casinos } = useCasinos();
   const casino = casinos?.find((c) => c.slug === slug);
-  const logoUrl = casino?.logo_url;
   const displayName = casinoName || casino?.name || slug;
+  
+  // Prefer local asset (same as mega-menu), fall back to DB logo_url
+  const logoUrl = resolveLocalLogo(slug) || casino?.logo_url;
   const needsDarkBg = LIGHT_LOGO_SLUGS.has(slug);
 
   if (!logoUrl) return null;
