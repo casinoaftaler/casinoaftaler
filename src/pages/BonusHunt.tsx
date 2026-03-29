@@ -5,7 +5,7 @@ import { BonusHuntSlotTable } from "@/components/bonus-hunt/BonusHuntSlotTable";
 import { BonusHuntStatsTab } from "@/components/bonus-hunt/BonusHuntStatsTab";
 import { BonusHuntGTWTab } from "@/components/bonus-hunt/BonusHuntGTWTab";
 import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
-import { BonusHuntSlotCoupon } from "@/components/bonus-hunt/BonusHuntSlotCoupon";
+
 import { SlotRequestForm } from "@/components/SlotRequestForm";
 
 import { BonusHuntVideoSection, getHuntVideoFromArchive } from "@/components/bonus-hunt/BonusHuntVideoSection";
@@ -281,13 +281,12 @@ export default function BonusHunt() {
 
                 {/* Right column (40%) */}
                 <div className="lg:col-span-2 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
-                  <Tabs defaultValue="coupon" className="w-full">
-                    <TabsList className={`w-full grid ${isLive ? 'grid-cols-5' : 'grid-cols-4'}`}>
-                      <TabsTrigger value="coupon">KUPON</TabsTrigger>
+                  <Tabs defaultValue={isLive ? "request" : "stats"} className="w-full">
+                    <TabsList className={`w-full grid ${isLive ? 'grid-cols-4' : 'grid-cols-3'}`}>
+                      {isLive && <TabsTrigger value="request">REQUEST</TabsTrigger>}
                       <TabsTrigger value="stats">STATS</TabsTrigger>
                       <TabsTrigger value="gtw">GTW</TabsTrigger>
                       <TabsTrigger value="avgx">AVG X</TabsTrigger>
-                      {isLive && <TabsTrigger value="request">REQUEST</TabsTrigger>}
                     </TabsList>
                     <TabsContent value="stats" forceMount className="data-[state=inactive]:hidden">
                       <BonusHuntStatsTab
@@ -316,18 +315,6 @@ export default function BonusHunt() {
                         userId={user?.id}
                         openedBonuses={huntData?.stats?.openedBonuses || 0}
                         onBetPlaced={refreshBets}
-                      />
-                    </TabsContent>
-                    <TabsContent value="coupon" forceMount className="data-[state=inactive]:hidden">
-                      <BonusHuntSlotCoupon
-                        huntNumber={currentHuntNumber}
-                        sessionId={session?.id}
-                        isLive={isLive}
-                        isArchived={isArchived}
-                        huntSlots={huntData?.slots}
-                        totalSlots={huntData?.stats.totalBonuses}
-                        sessionMarkets={session?.coupon_markets as any}
-                        couponOpen={session?.coupon_betting_open as boolean | undefined}
                       />
                     </TabsContent>
                     {isLive && (
