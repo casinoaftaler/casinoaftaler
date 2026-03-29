@@ -244,32 +244,49 @@ const MENU_CLOSE_DELAY_MS = 5000;
 /* ─── Main ─── */
 export function DesktopMegaNav() {
   const [activeMenu, setActiveMenu] = useState<MenuKey | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
   const [focusedSection, setFocusedSection] = useState<string | null>(null);
   const timeoutRef = useRef<number>();
+  const closeAnimRef = useRef<number>();
   const navigate = useNavigate();
+
+  const CLOSE_ANIM_MS = 200;
+
+  const animateClose = useCallback(() => {
+    clearTimeout(timeoutRef.current);
+    clearTimeout(closeAnimRef.current);
+    setIsClosing(true);
+    closeAnimRef.current = window.setTimeout(() => {
+      setActiveMenu(null);
+      setFocusedSection(null);
+      setIsClosing(false);
+    }, CLOSE_ANIM_MS);
+  }, []);
 
   const handleEnter = useCallback((key: MenuKey) => {
     clearTimeout(timeoutRef.current);
+    clearTimeout(closeAnimRef.current);
+    setIsClosing(false);
     setActiveMenu(key);
     setFocusedSection(null);
   }, []);
 
   const handleLeave = useCallback(() => {
     timeoutRef.current = window.setTimeout(() => {
-      setActiveMenu(null);
-      setFocusedSection(null);
+      animateClose();
     }, MENU_CLOSE_DELAY_MS);
-  }, []);
+  }, [animateClose]);
 
   const handlePanelEnter = useCallback(() => {
     clearTimeout(timeoutRef.current);
+    clearTimeout(closeAnimRef.current);
+    setIsClosing(false);
   }, []);
 
   const close = useCallback(() => {
     clearTimeout(timeoutRef.current);
-    setActiveMenu(null);
-    setFocusedSection(null);
-  }, []);
+    animateClose();
+  }, [animateClose]);
 
   const expandSection = useCallback((sectionKey: string) => {
     clearTimeout(timeoutRef.current);
@@ -335,16 +352,16 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Casinospil" hubTo="/casinospil" hubLabel="Casinospil Oversigt →" onNavigate={close} />
-            <div className="mb-3">
-              <SubLabel title="Spillemaskiner" hubTo="/casinospil/spillemaskiner" onNavigate={close} />
-              <ExpandableGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]} initialCount={10} onNavigate={close} onShowAll={() => expandSection("slots")} />
-            </div>
-            <div className="border-t border-border/40 my-3" />
-            <div className="grid grid-cols-4 gap-5">
+            <div className="grid grid-cols-4 gap-5 mb-3">
               <ExpandableColumn title="Blackjack" items={BLACKJACK_LINKS} allItems={[...BLACKJACK_LINKS, ...BLACKJACK_STRATEGY_LINKS]} hubTo="/casinospil/blackjack" onNavigate={close} onShowAll={() => expandSection("blackjack")} />
               <ExpandableColumn title="Roulette" items={ROULETTE_LINKS} allItems={[...ROULETTE_LINKS, ...ROULETTE_STRATEGY_LINKS]} hubTo="/casinospil/roulette" onNavigate={close} onShowAll={() => expandSection("roulette")} />
               <ExpandableColumn title="Poker" items={POKER_LINKS.slice(0, 4)} allItems={POKER_LINKS} hubTo="/casinospil/poker" onNavigate={close} onShowAll={() => expandSection("poker")} />
               <ExpandableColumn title="Andre Spil" items={OTHER_CASINOSPIL_LINKS} onNavigate={close} />
+            </div>
+            <div className="border-t border-border/40 my-3" />
+            <div>
+              <SubLabel title="Spillemaskiner" hubTo="/casinospil/spillemaskiner" onNavigate={close} />
+              <ExpandableGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]} initialCount={10} onNavigate={close} onShowAll={() => expandSection("slots")} />
             </div>
           </>
         );
@@ -466,9 +483,20 @@ export function DesktopMegaNav() {
 
       {activeMenu && (
         <>
-          <div className="fixed inset-0 top-16 z-40" onClick={close} />
           <div
-            className="fixed left-0 right-0 z-50 border-b border-border/50 bg-popover shadow-xl animate-in fade-in slide-in-from-top-1 duration-150"
+            className={cn(
+              "fixed inset-0 top-16 z-40 bg-black/20 transition-opacity",
+              isClosing ? "opacity-0 duration-200" : "opacity-100 duration-150"
+            )}
+            onClick={close}
+          />
+          <div
+            className={cn(
+              "fixed left-0 right-0 z-50 border-b border-border/50 bg-popover shadow-xl transition-all",
+              isClosing
+                ? "opacity-0 -translate-y-2 duration-200 ease-in"
+                : "opacity-100 translate-y-0 duration-150 ease-out"
+            )}
             style={{ top: "64px" }}
             onMouseEnter={handlePanelEnter}
             onMouseLeave={handleLeave}
