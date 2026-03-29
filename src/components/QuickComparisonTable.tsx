@@ -5,7 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 import { Link } from "react-router-dom";
-import { ExternalLink, Star, Clock, RefreshCw, Wallet } from "lucide-react";
+import { ExternalLink, Star, RotateCw, Clock, Landmark } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
 
@@ -16,6 +16,7 @@ const CTA_VARIANTS = [
   "PRØV HER",
   "HENT BONUS",
 ] as const;
+
 const PARTNER_SLUGS = [
   "spildansknu",
   "spilleautomaten",
@@ -26,10 +27,10 @@ const PARTNER_SLUGS = [
   "playkasino",
 ];
 
-const RANK_STYLES = [
-  "bg-amber-500 text-white shadow-amber-500/40",
-  "bg-slate-400 text-white shadow-slate-400/30",
-  "bg-orange-700 text-white shadow-orange-700/30",
+const RANK_COLORS = [
+  { bg: "bg-amber-500", shadow: "shadow-amber-500/30", ring: "ring-amber-400/40" },
+  { bg: "bg-slate-400", shadow: "shadow-slate-400/20", ring: "ring-slate-300/30" },
+  { bg: "bg-orange-700", shadow: "shadow-orange-700/20", ring: "ring-orange-600/30" },
 ] as const;
 
 interface QuickComparisonTableProps {
@@ -42,19 +43,39 @@ function RatingStars({ score }: { score: number }) {
   const full = Math.floor(score);
   const half = score - full >= 0.25;
   return (
-    <div className="flex items-center gap-0.5">
+    <div className="flex items-center gap-0.5" aria-label={`Rating: ${score.toFixed(1)} ud af 5`}>
       {[1, 2, 3, 4, 5].map((i) => (
         <Star
           key={i}
-          className={`h-3.5 w-3.5 ${
+          className={`h-4 w-4 ${
             i <= full
               ? "text-amber-400 fill-amber-400"
               : i === full + 1 && half
                 ? "text-amber-400 fill-amber-400/50"
-                : "text-muted-foreground/25"
+                : "text-muted-foreground/20"
           }`}
         />
       ))}
+    </div>
+  );
+}
+
+function StatPill({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: React.ElementType;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="flex flex-col items-center gap-1.5 rounded-xl bg-muted/40 border border-border/50 px-3 py-3">
+      <Icon className="h-4 w-4 text-primary/70" strokeWidth={1.8} />
+      <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-medium leading-none">
+        {label}
+      </span>
+      <span className="text-sm font-bold text-foreground leading-none">{value}</span>
     </div>
   );
 }
@@ -90,119 +111,134 @@ export function QuickComparisonTable({
   if (display.length === 0) return null;
 
   return (
-    <div className="mb-8">
-      <h3 className="text-lg font-bold mb-4">{title}</h3>
-      <div className="flex flex-col gap-4">
+    <section className="mb-10" aria-label={title}>
+      <h3 className="text-xl font-bold text-foreground mb-5 tracking-tight">
+        {title}
+      </h3>
+
+      <div className="flex flex-col gap-5">
         {display.map((casino, i) => {
-          const score = CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating);
-          const rankStyle = RANK_STYLES[i] ?? "bg-muted text-muted-foreground";
+          const score =
+            CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating);
+          const rank = RANK_COLORS[i] ?? {
+            bg: "bg-muted",
+            shadow: "shadow-none",
+            ring: "ring-border",
+          };
 
           return (
-            <div
+            <article
               key={casino.id}
-              className="relative rounded-xl border border-border bg-card overflow-hidden transition-shadow hover:shadow-lg hover:shadow-primary/5"
+              className="group relative rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/20"
             >
-              {/* Rank badge */}
-              <div
-                className={`absolute top-3 left-3 z-10 flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold shadow-md ${rankStyle}`}
-              >
-                {i + 1}
-              </div>
+              {/* Top accent line */}
+              <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-              <div className="p-4 pt-5 sm:p-5">
-                {/* Top row: Logo + Name/Rating + Bonus */}
-                <div className="flex items-start gap-4 ml-8 sm:ml-10">
+              <div className="p-5 sm:p-6">
+                {/* ── Header: Rank + Logo + Name/Rating + Bonus ── */}
+                <div className="flex items-start gap-4">
+                  {/* Rank badge */}
+                  <div
+                    className={`shrink-0 flex items-center justify-center h-9 w-9 rounded-full text-sm font-black text-white shadow-lg ring-2 ${rank.bg} ${rank.shadow} ${rank.ring}`}
+                  >
+                    {i + 1}
+                  </div>
+
                   {/* Logo */}
                   {casino.logo_url && (
-                    <div className="shrink-0 rounded-lg bg-background border border-border p-1.5">
+                    <div className="shrink-0 rounded-xl bg-background border border-border/60 p-1.5 shadow-sm">
                       <img
-                        src={optimizeStorageImage(casino.logo_url, 80)}
+                        src={optimizeStorageImage(casino.logo_url, 88)}
                         alt={`${casino.name} logo`}
-                        width={56}
-                        height={56}
-                        className="h-14 w-14 rounded-md object-contain"
+                        width={64}
+                        height={64}
+                        className="h-16 w-16 rounded-lg object-contain"
                         loading="lazy"
                       />
                     </div>
                   )}
 
-                  {/* Name + Rating */}
-                  <div className="flex-1 min-w-0">
+                  {/* Name + Stars */}
+                  <div className="flex-1 min-w-0 pt-0.5">
                     <Link
                       to={`/casino-anmeldelser/${casino.slug}`}
-                      className="text-base sm:text-lg font-bold text-foreground hover:text-primary transition-colors line-clamp-1"
+                      className="text-lg sm:text-xl font-bold text-foreground hover:text-primary transition-colors line-clamp-1"
                     >
                       {casino.name}
                     </Link>
-                    <div className="flex items-center gap-1.5 mt-1">
+                    <div className="flex items-center gap-2 mt-1.5">
                       <RatingStars score={score} />
-                      <span className="text-sm font-semibold text-primary tabular-nums">
+                      <span className="text-base font-bold text-primary tabular-nums">
                         {score.toFixed(1)}
                       </span>
                     </div>
                   </div>
 
-                  {/* Bonus highlight */}
-                  <div className="shrink-0 text-right hidden sm:block">
-                    <span className="block text-xs text-muted-foreground">Bonus</span>
-                    <span className="block text-lg font-bold text-primary leading-tight">
+                  {/* Bonus — desktop */}
+                  <div className="shrink-0 text-right hidden sm:flex flex-col items-end gap-0.5">
+                    <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">
+                      Bonus
+                    </span>
+                    <span className="text-xl font-black text-primary leading-tight tracking-tight">
                       {casino.bonus_amount}
                     </span>
                   </div>
                 </div>
 
-                {/* Mobile bonus (shown only on small screens) */}
-                <div className="mt-3 ml-8 sm:hidden rounded-lg bg-primary/5 border border-primary/10 px-3 py-2 text-center">
-                  <span className="text-xs text-muted-foreground">Bonus: </span>
-                  <span className="font-bold text-primary">{casino.bonus_amount}</span>
-                </div>
-
-                {/* Stats row */}
-                <div className="mt-4 grid grid-cols-3 gap-2 ml-8 sm:ml-10">
-                  <div className="flex flex-col items-center rounded-lg bg-muted/50 px-2 py-2.5">
-                    <RefreshCw className="h-3.5 w-3.5 text-muted-foreground mb-1" />
-                    <span className="text-[10px] text-muted-foreground leading-tight">Omsætning</span>
-                    <span className="text-xs font-semibold text-foreground mt-0.5">
-                      {casino.wagering_requirements}
+                {/* Bonus — mobile */}
+                <div className="mt-4 sm:hidden">
+                  <div className="flex items-center justify-between rounded-xl bg-primary/[0.06] border border-primary/10 px-4 py-2.5">
+                    <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
+                      Bonus
                     </span>
-                  </div>
-                  <div className="flex flex-col items-center rounded-lg bg-muted/50 px-2 py-2.5">
-                    <Clock className="h-3.5 w-3.5 text-muted-foreground mb-1" />
-                    <span className="text-[10px] text-muted-foreground leading-tight">Udbetaling</span>
-                    <span className="text-xs font-semibold text-foreground mt-0.5">
-                      {casino.payout_time}
-                    </span>
-                  </div>
-                  <div className="flex flex-col items-center rounded-lg bg-muted/50 px-2 py-2.5">
-                    <Wallet className="h-3.5 w-3.5 text-muted-foreground mb-1" />
-                    <span className="text-[10px] text-muted-foreground leading-tight">Min. indbet.</span>
-                    <span className="text-xs font-semibold text-foreground mt-0.5">
-                      {casino.min_deposit}
+                    <span className="text-lg font-black text-primary tracking-tight">
+                      {casino.bonus_amount}
                     </span>
                   </div>
                 </div>
 
-                {/* CTA */}
-                <div className="mt-4 ml-8 sm:ml-10">
+                {/* ── Stats row ── */}
+                <div className="mt-5 grid grid-cols-3 gap-2.5">
+                  <StatPill
+                    icon={RotateCw}
+                    label="Omsætning"
+                    value={casino.wagering_requirements}
+                  />
+                  <StatPill
+                    icon={Clock}
+                    label="Udbetaling"
+                    value={casino.payout_time}
+                  />
+                  <StatPill
+                    icon={Landmark}
+                    label="Min. indbet."
+                    value={casino.min_deposit}
+                  />
+                </div>
+
+                {/* ── CTA ── */}
+                <div className="mt-5">
                   <Button
                     variant="cta"
-                    className="w-full h-11 text-sm gap-1.5"
-                    onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
+                    className="w-full h-12 text-base font-black tracking-wide gap-2 rounded-xl"
+                    onClick={() =>
+                      getAffiliateRedirect(casino.slug, user?.id)
+                    }
                   >
                     {ctaText}
-                    <ExternalLink className="h-3.5 w-3.5" />
+                    <ExternalLink className="h-4 w-4" />
                   </Button>
                 </div>
 
-                {/* Disclaimer */}
-                <div className="mt-3 ml-8 sm:ml-10">
+                {/* ── Disclaimer ── */}
+                <div className="mt-4">
                   <CasinoCardDisclaimer />
                 </div>
               </div>
-            </div>
+            </article>
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }
