@@ -115,19 +115,21 @@ function CategorySection({ category }: { category: SidebarCategory }) {
   );
 }
 
-export function HomepageSidebar() {
+/** Left sidebar: Seneste nyt + Spillehal promo */
+export function HomepageLeftSidebar() {
   return (
     <div className="sticky top-24 space-y-4">
-      {/* Seneste nyt - 5 artikler */}
       <LatestNewsSidebar count={5} />
-
-      {/* Spillehal promo */}
       <SpillehalPromoBanner />
+    </div>
+  );
+}
 
-      {/* Casino ratings */}
+/** Right sidebar: Full navigation bar */
+export function HomepageRightSidebar() {
+  return (
+    <div className="sticky top-24 space-y-4">
       <SidebarCasinoRatings />
-
-      {/* Full navigation */}
       <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1">
         Navigation
       </h3>
