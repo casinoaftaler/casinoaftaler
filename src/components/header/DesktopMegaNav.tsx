@@ -234,7 +234,7 @@ export function DesktopMegaNav() {
         <>
           <div className="fixed inset-0 top-16 z-40" onClick={close} />
           <div
-            className="fixed left-0 right-0 z-50 border-b border-border/50 bg-popover/98 backdrop-blur-xl shadow-xl animate-in fade-in slide-in-from-top-1 duration-150"
+            className="fixed left-0 right-0 z-50 border-b border-border/50 bg-popover shadow-xl animate-in fade-in slide-in-from-top-1 duration-150"
             style={{ top: "64px" }}
             onMouseEnter={handlePanelEnter}
             onMouseLeave={handleLeave}
