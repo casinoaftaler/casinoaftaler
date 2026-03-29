@@ -248,6 +248,8 @@ export function DesktopMegaNav() {
   const [focusedSection, setFocusedSection] = useState<string | null>(null);
   const timeoutRef = useRef<number>();
   const closeAnimRef = useRef<number>();
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const CLOSE_ANIM_MS = 200;
