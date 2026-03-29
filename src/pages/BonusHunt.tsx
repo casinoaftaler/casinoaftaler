@@ -367,29 +367,18 @@ export default function BonusHunt() {
             </div>
           )}
 
-          {/* Enterprise SEO text – full width, after main grid */}
-          <BonusHuntSeoText />
-
-          {/* Community cross-links – rendered eagerly for crawlability */}
-          <BonusHuntCommunityLinks />
-
-          {/* Top casinos CTA */}
-          <BonusHuntTopCasinos />
-
-          {/* Latest news – freshness signal */}
-          <BonusHuntLatestNews />
-
-          {/* Relaterede Guides – internal link hub */}
-          <BonusHuntRelatedGuides />
-
-          {/* FAQ Section – must be in DOM for schema match */}
-          <BonusHuntFaq />
-
-          {/* Brand block – E-E-A-T signal */}
-          <CommunityBrandBlock />
-
-          {/* Author bio – E-E-A-T signal (always last) */}
-          <AuthorBio author="kevin" showCommunity={false} />
+          {/* Footer SEO – anti-footprint rotated */}
+          <CommunityFooterSeo
+            currentPath="/bonus-hunt"
+            author="kevin"
+            before={
+              <>
+                <BonusHuntSeoText />
+                <BonusHuntRelatedGuides />
+              </>
+            }
+            after={<BonusHuntFaq />}
+          />
 
           <div className="pb-12" />
         </div>

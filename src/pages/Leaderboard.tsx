@@ -457,6 +457,7 @@ export default function Leaderboard() {
         title="Slot Turneringer – Gratis Turneringer med Præmier 2026"
         description="Deltag gratis i månedlige slot-turneringer og vind præmier op til 500 kr. Tre kategorier, daglige credits og automatisk deltagelse."
         jsonLd={jsonLd}
+        breadcrumbLabel="Turneringer"
       />
 
       {/* Hero Section – with tournament image */}

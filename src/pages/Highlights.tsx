@@ -11,21 +11,16 @@ import { ClipSubmitForm } from "@/components/community/ClipSubmitForm";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Video, Search, Sparkles, Plus } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Link, useSearchParams } from "react-router-dom";
-import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityPageLayout } from "@/components/community/CommunityPageLayout";
-
-import { BonusHuntCommunityLinks } from "@/components/bonus-hunt/BonusHuntCommunityLinks";
-import { BonusHuntTopCasinos } from "@/components/bonus-hunt/BonusHuntTopCasinos";
-import { BonusHuntLatestNews } from "@/components/bonus-hunt/BonusHuntLatestNews";
-import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
+import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { HighlightsFaq, buildHighlightsFaqSchema } from "@/components/highlights/HighlightsFaq";
 import { SITE_URL, buildArticleSchema, KEVIN_SAME_AS } from "@/lib/seo";
-import { AuthorBio } from "@/components/AuthorBio";
 
 function HighlightsTab() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -196,6 +191,7 @@ function CommunityTab() {
 }
 
 export default function Highlights() {
+  const { user } = useAuth();
   const [searchParams] = useSearchParams();
   const defaultTab = searchParams.get("tab") === "community" ? "community" : "highlights";
 
@@ -230,6 +226,12 @@ export default function Highlights() {
         badgeIcon={Sparkles}
       >
         <div className="py-8 md:py-12 space-y-8">
+
+          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} />
+
+          <SnippetAnswer answer="Se de bedste stream-øjeblikke fra Twitch og YouTube – episke bonus-åbninger, massive multipliers og community clips. Upload dine egne highlights og optjen bonus spins." />
+
+          {!user && <CommunityJoinCTA />}
 
           {/* ── Redaktionel intro ── */}
           <section className="rounded-xl border border-border/50 bg-card p-5 space-y-3">
@@ -271,28 +273,12 @@ export default function Highlights() {
             </TabsContent>
           </Tabs>
 
-          {/* ── Community cross-links ── */}
-          <BonusHuntCommunityLinks />
-
-          {/* ── Top casinos CTA ── */}
-          <BonusHuntTopCasinos />
-
-          {/* ── Latest news ── */}
-          <BonusHuntLatestNews />
-
-          {/* ── Related guides ── */}
-          <RelatedGuides currentPath="/highlights" />
-
-          {/* ── FAQ ── */}
-          <HighlightsFaq />
-
-          {/* ── Brand block – E-E-A-T signal ── */}
-          <CommunityBrandBlock />
-
-          {/* ── Author bio – always last ── */}
-          <AuthorBio author="kevin" showCommunity={false} />
-
-          <div className="pb-12" />
+          {/* Footer SEO – anti-footprint rotated */}
+          <CommunityFooterSeo
+            currentPath="/highlights"
+            author="kevin"
+            after={<HighlightsFaq />}
+          />
         </div>
       </CommunityPageLayout>
     </>
