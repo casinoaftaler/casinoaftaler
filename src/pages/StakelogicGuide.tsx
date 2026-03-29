@@ -2,17 +2,13 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import stakelogicHero from "@/assets/images/providers/stakelogic-hero.jpg";
 
 const StakelogicGuide = () => (
   <ProviderPage
     ctaCasinoSlug="campobet"
     seoTitle="Stakelogic Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
     seoDescription="Stakelogic slots: Hollandsk studio med Super Stake™, 150+ titler, RTP 95,5-96,5 % og fokus på regulerede europæiske markeder. Se populære spil."
-    name="Stakelogic"
-    heroImage={stakelogicHero}
-    heroImageAlt="Stakelogic – hollandsk innovativ spiludvikler"
-    heroSubtitle="Stakelogic er den hollandske innovator der med Super Stake™-teknologien har skabt en helt ny dimension i online spilleautomater. Med 150+ titler og en unik position som Novomatic Groups digitale spydspids kombinerer de landbaseret casino-DNA med cutting-edge online innovation."
+    name="Stakelogic"    heroSubtitle="Stakelogic er den hollandske innovator der med Super Stake™-teknologien har skabt en helt ny dimension i online spilleautomater. Med 150+ titler og en unik position som Novomatic Groups digitale spydspids kombinerer de landbaseret casino-DNA med cutting-edge online innovation."
     currentPath="/spiludviklere/stakelogic"
     readTime="33 Min."
     strategicTitle="Fra Landbaseret Arv til Digital Innovation: Stakelogics Unikke Markedsposition"

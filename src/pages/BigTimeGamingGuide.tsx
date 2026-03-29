@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
-import btgHero from "@/assets/heroes/big-time-gaming-hero.jpg";
 
 const BigTimeGamingGuide = () => (
   <ProviderPage
@@ -9,10 +8,7 @@ const BigTimeGamingGuide = () => (
     seoTitle="Big Time Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
     seoDescription="Big Time Gaming – Megaways-opfinderne med 117.649+ vinderkombinationer, licenseret til 100+ spil fra andre studios. Opkøbt af Evolution."
     name="Big Time Gaming"
-    heroSubtitle="Big Time Gaming opfandt Megaways-mekanikken – den mest licenserede innovation i casinobranchen. Med op til 248.832 vinderkombinationer per spin ændrede de spillets regler permanent."
-    heroImage={btgHero}
-    heroImageAlt="Big Time Gaming – opfinderne af Megaways med 117.649+ vinderkombinationer"
-    currentPath="/spiludviklere/big-time-gaming"
+    heroSubtitle="Big Time Gaming opfandt Megaways-mekanikken – den mest licenserede innovation i casinobranchen. Med op til 248.832 vinderkombinationer per spin ændrede de spillets regler permanent."    currentPath="/spiludviklere/big-time-gaming"
     readTime="18 Min."
     sectionOrder={["intro", "strategic", "technical", "games", "history", "casinos", "licenses", "proscons", "providers", "responsible"]}
     strategicTitle="IP-Drevet Forretningsmodel: Patentet Der Ændrede Alt"

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award } from "lucide-react";
-import pragmaticPlayHero from "@/assets/heroes/pragmatic-play-hero.jpg";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import pragmaticLiveCasino from "@/assets/screenshots/pragmatic-play-live-casino.webp";
 import pragmaticSlotKatalog from "@/assets/screenshots/pragmatic-play-slot-katalog.webp";
@@ -13,10 +12,7 @@ const PragmaticPlayGuide = () => (
     seoTitle="Pragmatic Play Spillemaskiner – Bedste Spil & RTP (2026)"
     seoDescription="Pragmatic Play: High-volume spiludvikler med 250+ titler. Sweet Bonanza, Gates of Olympus, 6-8 nye spil/måned og RTP 94-96,5 %. Se populære slots."
     name="Pragmatic Play"
-    heroSubtitle="Pragmatic Play har taget casinobranchen med storm med en alsidig portefølje der spænder fra spilleautomater til live casino og bingo – med 6-8 nye udgivelser hver måned."
-    heroImage={pragmaticPlayHero}
-    heroImageAlt="Pragmatic Play spiludvikler – farverige spilleautomater med høj volatilitet"
-    currentPath="/spiludviklere/pragmatic-play"
+    heroSubtitle="Pragmatic Play har taget casinobranchen med storm med en alsidig portefølje der spænder fra spilleautomater til live casino og bingo – med 6-8 nye udgivelser hver måned."    currentPath="/spiludviklere/pragmatic-play"
     readTime="38 Min."
     strategicTitle="Produktionsmaskinens Logik: Pragmatics Forretningsstrategi"
     technicalTitle="Under Motorhjelmen: Pragmatics Tekniske Infrastruktur"

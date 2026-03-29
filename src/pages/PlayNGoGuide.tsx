@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
-import playNGoHero from "@/assets/heroes/play-n-go-hero.jpg";
 
 const PlayNGoGuide = () => (
   <ProviderPage
@@ -9,10 +8,7 @@ const PlayNGoGuide = () => (
     seoTitle="Play'n GO Spillemaskiner – Bedste Spil & RTP (2026)"
     seoDescription="Dybdegående analyse af Play'n GO – 5x Slot Provider of the Year, 300+ spil, Book of Dead, Reactoonz. Fast RTP, ingen Bonus Buy, franchise-building."
     name="Play'n GO"
-    heroSubtitle="Play'n GO er casinobranchens storyteller-in-chief. Med fem 'Slot Provider of the Year'-priser, 300+ titler, Rich Wilde-franchisen og Reactoonz-universet har dette svenske studio bevist, at narrativ dybde og teknisk konsistens kan vinde over volumen og hype."
-    heroImage={playNGoHero}
-    heroImageAlt="Play'n GO – kreative spilleautomater med Book of Dead, Reactoonz og Rich Wilde"
-    currentPath="/spiludviklere/play-n-go"
+    heroSubtitle="Play'n GO er casinobranchens storyteller-in-chief. Med fem 'Slot Provider of the Year'-priser, 300+ titler, Rich Wilde-franchisen og Reactoonz-universet har dette svenske studio bevist, at narrativ dybde og teknisk konsistens kan vinde over volumen og hype."    currentPath="/spiludviklere/play-n-go"
     readTime="38 Min."
     strategicTitle="Storytellerens Konkurrencefordel: Play'n GOs Unikke Position"
     technicalTitle="Franchise-Motorens Anatomi: Play'n GOs Tekniske Platform"

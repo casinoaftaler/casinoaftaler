@@ -2,17 +2,13 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import endorphinaHero from "@/assets/images/providers/endorphina-hero.jpg";
 
 const EndorphinaGuide = () => (
   <ProviderPage
     ctaCasinoSlug="betinia"
     seoTitle="Endorphina Spillemaskiner – Bedste Slots, RTP & Guide (2026)"
     seoDescription="Endorphina slots: Tjekkisk studio med matematisk præcise spillemaskiner, høj RTP 96-97 %, stilren grafik og innovativ Chance Feature. 100+ titler."
-    name="Endorphina"
-    heroImage={endorphinaHero}
-    heroImageAlt="Endorphina – tjekkisk premium spiludvikler"
-    heroSubtitle="Endorphina er det tjekkiske studie der beviser, at matematisk integritet og visuelt design ikke er modsætninger. Med en portefølje på 100+ slots kendetegnet ved høj RTP, stilren grafik og innovative features har de opbygget en loyal følgerskare blandt data-orienterede spillere."
+    name="Endorphina"    heroSubtitle="Endorphina er det tjekkiske studie der beviser, at matematisk integritet og visuelt design ikke er modsætninger. Med en portefølje på 100+ slots kendetegnet ved høj RTP, stilren grafik og innovative features har de opbygget en loyal følgerskare blandt data-orienterede spillere."
     currentPath="/spiludviklere/endorphina"
     readTime="34 Min."
     strategicTitle="Kvalitet over Kvantitet: Endorphinas Strategiske Position i et Overmættet Marked"

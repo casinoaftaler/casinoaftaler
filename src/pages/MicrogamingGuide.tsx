@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
-import microgamingHero from "@/assets/heroes/microgaming-hero.jpg";
 
 const MicrogamingGuide = () => (
   <ProviderPage
@@ -9,10 +8,7 @@ const MicrogamingGuide = () => (
     seoTitle="Microgaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
     seoDescription="Microgaming: Branchens pioner siden 1994. Mega Moolah med €1 milliard+ udbetalt, 900+ spil, Quickfire-aggregator og eCOGRA-medstifter."
     name="Microgaming"
-    heroSubtitle="Microgaming er casinobranchens historiske fundament. Grundlagt i 1994 – blandt de første online casinoer. Mega Moolah har udbetalt over €1 milliard i progressive jackpots."
-    heroImage={microgamingHero}
-    heroImageAlt="Microgaming – pioner i online casino siden 1994 med Mega Moolah jackpots"
-    currentPath="/spiludviklere/microgaming"
+    heroSubtitle="Microgaming er casinobranchens historiske fundament. Grundlagt i 1994 – blandt de første online casinoer. Mega Moolah har udbetalt over €1 milliard i progressive jackpots."    currentPath="/spiludviklere/microgaming"
     readTime="18 Min."
     sectionOrder={["strategic", "intro", "history", "technical", "games", "casinos", "proscons", "licenses", "providers", "responsible"]}
     strategicTitle="Branchens Grundlægger: Fra Pioner til Platform"

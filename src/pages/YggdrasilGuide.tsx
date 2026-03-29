@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
-import yggdrasilHero from "@/assets/heroes/yggdrasil-hero.jpg";
 
 const YggdrasilGuide = () => (
   <ProviderPage
@@ -9,10 +8,7 @@ const YggdrasilGuide = () => (
     seoTitle="Yggdrasil Gaming – Alt om Spiludvikleren 2026 | Casinoaftaler"
     seoDescription="Yggdrasil Gaming: Grundlagt af NetEnts tidligere CEO. BOOST tools, Gigablox, Splitz-mekanikker og 230+ spil med platform-innovation."
     name="Yggdrasil Gaming"
-    heroSubtitle="Yggdrasil Gaming blev grundlagt af NetEnts tidligere CEO med en vision om at ændre casinobranchen. Med BOOST-tools, Gigablox og Splitz-mekanikker har de skabt en platform-drevet innovationsmodel."
-    heroImage={yggdrasilHero}
-    heroImageAlt="Yggdrasil Gaming – nordisk platform-innovation med BOOST tools og Gigablox"
-    currentPath="/spiludviklere/yggdrasil"
+    heroSubtitle="Yggdrasil Gaming blev grundlagt af NetEnts tidligere CEO med en vision om at ændre casinobranchen. Med BOOST-tools, Gigablox og Splitz-mekanikker har de skabt en platform-drevet innovationsmodel."    currentPath="/spiludviklere/yggdrasil"
     readTime="18 Min."
     sectionOrder={["intro", "history", "strategic", "technical", "games", "licenses", "casinos", "proscons", "providers", "responsible"]}
     strategicTitle="Platform-Først Filosofien: Infrastruktur Over Indhold"

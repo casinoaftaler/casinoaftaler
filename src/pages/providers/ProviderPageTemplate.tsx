@@ -5,12 +5,14 @@ import { SEO } from "@/components/SEO";
 import { buildFaqSchema, buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { AuthorBio } from "@/components/AuthorBio";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useCasinos } from "@/hooks/useCasinos";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { ProviderSlotLinks } from "@/components/ProviderSlotLinks";
 import { DeveloperSiblingLinks } from "@/components/DeveloperSiblingLinks";
 import { InlineCasinoCards } from "@/components/InlineCasinoCards";
 import { DeveloperMoneyLinks } from "@/components/DeveloperMoneyLinks";
 import { ProviderCatalogSlots } from "@/components/ProviderCatalogSlots";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -29,7 +31,7 @@ import {
   BarChart3,
   Target,
 } from "lucide-react";
-import { ReactNode, Fragment } from "react";
+import { ReactNode, Fragment, useMemo } from "react";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 
@@ -54,8 +56,6 @@ interface ProviderPageProps {
   seoDescription: string;
   name: string;
   heroSubtitle: string;
-  heroImage?: string;
-  heroImageAlt?: string;
   introTitle: string;
   introContent: ReactNode;
   historyTitle: string;
@@ -111,12 +111,12 @@ const providerLinks = [
 ];
 
 const defaultSectionOrder = [
-  "intro", "casinos", "history", "games", "licenses",
+  "intro", "casinoComparison", "casinos", "history", "games", "licenses",
   "proscons", "strategic", "technical", "providers", "responsible",
 ];
 
 export function ProviderPage({
-  seoTitle, seoDescription, name, heroSubtitle, heroImage, heroImageAlt,
+  seoTitle, seoDescription, name, heroSubtitle,
   introTitle, introContent, historyTitle, historyIntro, timeline,
   games, gamesIntro, licensesContent, pros, cons, faqs, currentPath, extraJsonLd,
   responsibleGamingText, strategicAnalysis, technicalProfile,
@@ -126,7 +126,23 @@ export function ProviderPage({
 }: ProviderPageProps) {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
+  const { data: casinos } = useCasinos();
 
+  // Find partner casinos that carry this provider
+  const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];
+  const providerPrioritySlugs = useMemo(() => {
+    if (!casinos) return undefined;
+    const displayName = name.toLowerCase();
+    return casinos
+      .filter(c =>
+        c.is_active &&
+        PARTNER_SLUGS.includes(c.slug) &&
+        c.game_providers?.some(gp => gp.name.toLowerCase() === displayName)
+      )
+      .sort((a, b) => a.position - b.position)
+      .slice(0, 3)
+      .map(c => c.slug);
+  }, [casinos, name]);
   const faqJsonLd = buildFaqSchema(faqs);
 
   const articleSchema = buildArticleSchema({
@@ -196,6 +212,15 @@ export function ProviderPage({
         </div>
       </section>
     ),
+    casinoComparison: providerPrioritySlugs && providerPrioritySlugs.length > 0 ? (
+      <div>
+        <QuickComparisonTable
+          count={3}
+          title={`Bedste casinoer med ${name} spil`}
+          prioritySlugs={providerPrioritySlugs}
+        />
+      </div>
+    ) : null,
     casinos: <InlineCasinoCards title={`Casinoer med ${name}-spil`} />,
     licenses: (
       <section className="mb-12">
@@ -382,16 +407,8 @@ export function ProviderPage({
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime={readTime} />
 
-        {heroImage && (
-          <div className="mb-10 overflow-hidden rounded-xl">
-            <img
-              src={heroImage}
-              alt={heroImageAlt || `${name} - spiludvikler`}
-              className="w-full h-auto object-cover max-h-[400px]"
-              loading="eager"
-            />
-          </div>
-        )}
+
+
 
         {orderedSections.map((s, i) => (
           <Fragment key={s.key}>

@@ -2,17 +2,13 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import betsoftHero from "@/assets/images/providers/betsoft-hero.jpg";
 
 const BetsoftGuide = () => (
   <ProviderPage
     ctaCasinoSlug="spildansknu"
     seoTitle="Betsoft Spillemaskiner – Bedste 3D Slots, RTP & Guide (2026)"
     seoDescription="Betsoft slots: Pioneren inden for cinematiske 3D-slots med SLOTS3-teknologi, 250+ titler og RTP 94,5-97,1 %. Se de bedste Betsoft-spil."
-    name="Betsoft"
-    heroImage={betsoftHero}
-    heroImageAlt="Betsoft – pioneren inden for cinematiske 3D-slots"
-    heroSubtitle="Betsoft er studiet der bragte Hollywood til spilleautomaten. Med deres patenterede SLOTS3-teknologi har de produceret nogle af de mest visuelt imponerende og narrativt ambitiøse slots i branchens historie – fra Slotfather til Alkemor's Tower."
+    name="Betsoft"    heroSubtitle="Betsoft er studiet der bragte Hollywood til spilleautomaten. Med deres patenterede SLOTS3-teknologi har de produceret nogle af de mest visuelt imponerende og narrativt ambitiøse slots i branchens historie – fra Slotfather til Alkemor's Tower."
     currentPath="/spiludviklere/betsoft"
     readTime="35 Min."
     strategicTitle="Cinematisk Gambling: Betsofts Vision og Markedsstrategi"
