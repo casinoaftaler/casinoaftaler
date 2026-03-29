@@ -275,15 +275,12 @@ export default function RewardsProgram() {
           </Card>
         </section>
 
-        <RewardsSeoContent />
-
-        <CommunitySeoSections />
-
-        <RelatedGuides currentPath="/community/rewards" maxLinks={4} />
-
-        <CommunityBrandBlock />
-
-        <AuthorBio author="jonas" showCommunity={false} />
+        {/* Footer SEO – anti-footprint rotated */}
+        <CommunityFooterSeo
+          currentPath="/community/rewards"
+          author="jonas"
+          before={<RewardsSeoContent />}
+        />
 
         <div className="pb-12" />
           </div>
