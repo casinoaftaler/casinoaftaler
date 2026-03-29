@@ -48,6 +48,7 @@ import {
 } from "lucide-react";
 
 const reviewSlugs = [
+  "playkasino",
   "spilleautomaten",
   "spildansknu",
   "campobet",
@@ -131,6 +132,7 @@ const articleSchema = buildArticleSchema({
 
 /** ItemList schema – all reviewed casinos as a ranked list for rich snippet eligibility */
 const reviewListSlugs = [
+  { name: "PlayKasino", slug: "playkasino" },
   { name: "Spilleautomaten", slug: "spilleautomaten" },
   { name: "SpilDanskNu", slug: "spildansknu" },
   { name: "Betinia", slug: "betinia" },
@@ -619,7 +621,7 @@ const CasinoAnmeldelser = () => {
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">Vores anbefalede casinoer – testet med rigtige penge</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Disse seks casinoer har alle scoret højest i vores testproces og opfylder de strengeste krav til bonusvilkår, udbetalingshastighed og spiludvalg.
+            Disse syv casinoer har alle scoret højest i vores testproces og opfylder de strengeste krav til bonusvilkår, udbetalingshastighed og spiludvalg.
           </p>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
@@ -681,6 +683,7 @@ const CasinoAnmeldelser = () => {
               </thead>
               <tbody>
                 {[
+                  { name: "PlayKasino", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–8 timer", rating: "9.0", slug: "casino-anmeldelser/playkasino" },
                   { name: "Spilleautomaten", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–8 timer", rating: "9.2", slug: "casino-anmeldelser/spilleautomaten" },
                   { name: "SpilDanskNu", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "6–12 timer", rating: "9.0", slug: "casino-anmeldelser/spildansknu" },
                   { name: "Betinia", licens: "Dansk", type: "No-Sticky", omsætning: "10x", udbetaling: "4–10 timer", rating: "8.9", slug: "casino-anmeldelser/betinia" },
@@ -728,6 +731,12 @@ const CasinoAnmeldelser = () => {
 
           {(() => {
             const allReviews = [
+              {
+                name: "PlayKasino",
+                slug: "casino-anmeldelser/playkasino",
+                text: "PlayKasino er det nyeste skud på stammen blandt danske licenserede casinoer, drevet af SkillOnNet – samme operatør som PlayOJO. Med over 1.200 spiltitler, no-sticky bonus med 10x omsætning og dedikerede apps til iOS og Android, leverer PlayKasino en solid og moderne spilleoplevelse. MobilePay- og Trustly-indbetalinger fungerer gnidningsfrit. Svagheden er fraværet af live chat-support, men e-mail besvares typisk inden for 2–6 timer. Et stærkt valg for spillere, der vil have en frisk platform med fair bonusvilkår.",
+                partner: true,
+              },
               {
                 name: "Spilleautomaten",
                 slug: "casino-anmeldelser/spilleautomaten",
