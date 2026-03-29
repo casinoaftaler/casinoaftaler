@@ -44,7 +44,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
   if (!isVisible) return null;
 
   const pad = (n: number) => String(n).padStart(2, "0");
-  const playkasinoData = playkasino;
+  const playkasino = playkasinoCasino;
 
   return (
     <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm rounded-xl">
