@@ -260,9 +260,9 @@ export const MORE_LINKS: NavLink[] = [
 ];
 
 export const FORFATTER_LINKS: NavLink[] = [
-  { to: "/forfatter/jonas", label: "Jonas", iconName: "user" },
-  { to: "/forfatter/kevin", label: "Kevin", iconName: "user" },
-  { to: "/forfatter/ajse", label: "Ajse", iconName: "user" },
-  { to: "/forfatter/niklas", label: "Niklas", iconName: "user" },
-  { to: "/forfatter/frederik", label: "Frederik", iconName: "user" },
+  { to: "/forfatter/jonas", label: "Jonas", iconName: "user", avatarUrl: "/assets/jonas-forfatter.webp" },
+  { to: "/forfatter/kevin", label: "Kevin", iconName: "user", avatarUrl: "/assets/kevin-forfatter.webp" },
+  { to: "/forfatter/ajse", label: "Ajse", iconName: "user", avatarUrl: "/assets/ajse-avatar.webp" },
+  { to: "/forfatter/niklas", label: "Niklas", iconName: "user", avatarUrl: "/assets/niklas-forfatter.webp" },
+  { to: "/forfatter/frederik", label: "Frederik", iconName: "user", avatarUrl: "/assets/frederik-forfatter.webp" },
 ];
