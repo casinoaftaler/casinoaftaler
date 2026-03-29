@@ -232,12 +232,12 @@ export default function BonusHunt() {
           <div className="min-w-0 flex-1">
         <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
 
+          {/* Stat strip */}
+          <BonusHuntStatStrip />
+
           <SnippetAnswer answer="Følg live bonus hunts med dokumenterede resultater, gennemsnit X og break-even analyser. Deltag i community bets og se arkiverede hunts med Twitch VOD – kun danske casinoer med licens." />
 
           {!user && <CommunityJoinCTA />}
-
-          {/* Stat strip */}
-          <BonusHuntStatStrip />
 
 
           {/* Main content */}

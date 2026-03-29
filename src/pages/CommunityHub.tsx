@@ -193,10 +193,6 @@ export default function CommunityHub() {
       >
         <div className="py-8 md:py-12 space-y-8">
 
-          <SnippetAnswer answer="Casinoaftalers community samler gratis slots, live bonus hunts, turneringer og et rewards-program – alt gratis og med virtuelle credits. Spil, konkurrér og optjen bonus spins hver dag." />
-
-          {!user && <CommunityJoinCTA />}
-
           {/* First row – 3 cards */}
           <RevealSection>
             <EnergySweep>
@@ -207,6 +203,10 @@ export default function CommunityHub() {
               </div>
             </EnergySweep>
           </RevealSection>
+
+          <SnippetAnswer answer="Casinoaftalers community samler gratis slots, live bonus hunts, turneringer og et rewards-program – alt gratis og med virtuelle credits. Spil, konkurrér og optjen bonus spins hver dag." />
+
+          {!user && <CommunityJoinCTA />}
 
           {/* Feature strip */}
           <RevealSection>

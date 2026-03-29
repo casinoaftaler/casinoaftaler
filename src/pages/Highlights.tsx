@@ -226,11 +226,6 @@ export default function Highlights() {
       >
         <div className="py-8 md:py-12 space-y-8">
 
-
-          <SnippetAnswer answer="Se de bedste stream-øjeblikke fra Twitch og YouTube – episke bonus-åbninger, massive multipliers og community clips. Upload dine egne highlights og optjen bonus spins." />
-
-          {!user && <CommunityJoinCTA />}
-
           {/* ── Redaktionel intro ── */}
           <section className="rounded-xl border border-border/50 bg-card p-5 space-y-3">
             <h2 className="text-base font-bold text-foreground">
@@ -248,6 +243,10 @@ export default function Highlights() {
               <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>.
             </p>
           </section>
+
+          <SnippetAnswer answer="Se de bedste stream-øjeblikke fra Twitch og YouTube – episke bonus-åbninger, massive multipliers og community clips. Upload dine egne highlights og optjen bonus spins." />
+
+          {!user && <CommunityJoinCTA />}
 
           {/* ── Tabs ── */}
           <Tabs defaultValue={defaultTab} className="w-full">

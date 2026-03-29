@@ -129,12 +129,6 @@ export default function GameLibrary() {
           <div className="min-w-0 flex-1">
         <div className="py-8 md:py-12 space-y-8 md:space-y-10">
 
-
-          <SnippetAnswer answer="Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin direkte i browseren. Optjen points, kæmp om pladser på ranglisten og konkurrér i turneringer – helt uden risiko." />
-
-          {/* Community CTA for logged-out users */}
-          {!user && <CommunityJoinCTA />}
-
           {/* Featured Slots - side by side */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
             {FEATURED_SLOTS.map((slot, index) => (
@@ -158,6 +152,11 @@ export default function GameLibrary() {
               </div>
             ))}
           </div>
+
+          <SnippetAnswer answer="Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin direkte i browseren. Optjen points, kæmp om pladser på ranglisten og konkurrér i turneringer – helt uden risiko." />
+
+          {/* Community CTA for logged-out users */}
+          {!user && <CommunityJoinCTA />}
 
           {/* Section divider */}
           <div className="spillehal-divider" />
