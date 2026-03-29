@@ -231,7 +231,7 @@ const FreeSpinsIDag = () => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("free_spin_campaigns")
-        .select("id,casino_id,casino_name,casino_slug,title,description,spin_count,min_deposit,wagering_requirement,expiry_date,offer_type,last_checked,score,requires_deposit,for_new_players,for_existing_players,source_type,game_name,required_action,spin_value,short_terms_summary,confidence_score,last_verified_at,campaign_period_start,campaign_period_end,deposit_amount,eligible_players,campaign_type,summary,full_terms_clean")
+        .select("id,casino_id,casino_name,casino_slug,title,description,spin_count,min_deposit,wagering_requirement,expiry_date,offer_type,last_checked,score,requires_deposit,for_new_players,for_existing_players,source_type,game_name,required_action,spin_value,short_terms_summary,confidence_score,last_verified_at,campaign_period_start,campaign_period_end,deposit_amount,eligible_players,campaign_type,summary,full_terms_clean,casino_logo_url,affiliate_url")
         .eq("is_active", true)
         .gt("spin_count", 0)
         .gte("confidence_score", 60)
