@@ -4,7 +4,7 @@ import { SEO } from "@/components/SEO";
 import { organizationSchema } from "@/lib/seo";
 import { HeroSection } from "@/components/HeroSection";
 import { WhyTrustUs } from "@/components/WhyTrustUs";
-import { QuickNavSidebar } from "@/components/QuickNavBar";
+import { HomepageSidebar } from "@/components/HomepageSidebar";
 import { TodayUpdatedSection } from "@/components/TodayUpdatedSection";
 import { HomepageLatestSlots, useLatestSlots, buildLatestSlotsSchema } from "@/components/HomepageLatestSlots";
 import { HomepagePopularSlots, usePopularSlots, buildPopularSlotsSchema } from "@/components/HomepagePopularSlots";
