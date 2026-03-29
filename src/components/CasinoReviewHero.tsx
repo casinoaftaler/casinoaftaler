@@ -1,4 +1,4 @@
-import { useCasinos } from "@/hooks/useCasinos";
+import { useCasinoBySlug } from "@/hooks/useCasinoBySlug";
 
 interface CasinoReviewHeroProps {
   slug: string;
@@ -57,7 +57,6 @@ const REMOTE_LOGOS: Record<string, string> = {
 function resolveHeroLogo(slug: string): string | undefined {
   const assetPath = SLUG_TO_ASSET[slug];
   if (assetPath) {
-    // Check both glob maps
     const resolved = casinoLogos[assetPath]?.default || reviewLogos[assetPath]?.default;
     if (resolved) return resolved;
   }
@@ -70,8 +69,7 @@ const LIGHT_LOGO_SLUGS = new Set([
 ]);
 
 export function CasinoReviewHero({ slug, casinoName }: CasinoReviewHeroProps) {
-  const { data: casinos } = useCasinos();
-  const casino = casinos?.find((c) => c.slug === slug);
+  const { data: casino } = useCasinoBySlug(slug);
   const displayName = casinoName || casino?.name || slug;
 
   // Prefer local asset, then remote mapping, then DB logo_url as last resort

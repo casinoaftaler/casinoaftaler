@@ -1,4 +1,4 @@
-import { useCasinos } from "@/hooks/useCasinos";
+import { useCasinoBySlug } from "@/hooks/useCasinoBySlug";
 import { StickyCTA } from "@/components/StickyCTA";
 
 interface StickyCtaBySlugProps {
@@ -6,8 +6,7 @@ interface StickyCtaBySlugProps {
 }
 
 export function StickyCtaBySlug({ slug }: StickyCtaBySlugProps) {
-  const { data: casinos } = useCasinos();
-  const casino = casinos?.find((c) => c.slug === slug);
+  const { data: casino } = useCasinoBySlug(slug);
 
   if (!casino) return null;
 
