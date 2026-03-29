@@ -25,6 +25,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { NotificationDropdown } from "./NotificationDropdown";
+import { SiteSearch } from "./header/SiteSearch";
 import { RedeemCodeDialog } from "./RedeemCodeDialog";
 import { getTodayDanish } from "@/lib/danishDate";
 import {
@@ -530,6 +531,7 @@ export const Header = memo(function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <SiteSearch />
           {!user && (
             <div className="hidden lg:block">
               <ThemeToggle />
