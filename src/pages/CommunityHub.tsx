@@ -193,7 +193,7 @@ export default function CommunityHub() {
         }
       >
         <div className="py-8 md:py-12 space-y-8">
-          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} />
+          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} hideTableOfContents />
 
           <SnippetAnswer answer="Casinoaftalers community samler gratis slots, live bonus hunts, turneringer og et rewards-program – alt gratis og med virtuelle credits. Spil, konkurrér og optjen bonus spins hver dag." />
 

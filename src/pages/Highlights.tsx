@@ -227,7 +227,7 @@ export default function Highlights() {
       >
         <div className="py-8 md:py-12 space-y-8">
 
-          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} />
+          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} hideTableOfContents />
 
           <SnippetAnswer answer="Se de bedste stream-øjeblikke fra Twitch og YouTube – episke bonus-åbninger, massive multipliers og community clips. Upload dine egne highlights og optjen bonus spins." />
 

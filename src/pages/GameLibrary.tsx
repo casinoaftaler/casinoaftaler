@@ -130,7 +130,7 @@ export default function GameLibrary() {
           <div className="min-w-0 flex-1">
         <div className="py-8 md:py-12 space-y-8 md:space-y-10">
 
-          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} />
+          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} hideTableOfContents />
 
           <SnippetAnswer answer="Spil gratis community-slots som Book of Fedesvin og Rise of Fedesvin direkte i browseren. Optjen points, kæmp om pladser på ranglisten og konkurrér i turneringer – helt uden risiko." />
 

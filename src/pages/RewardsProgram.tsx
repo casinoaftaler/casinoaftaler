@@ -80,7 +80,7 @@ export default function RewardsProgram() {
         <div className="py-8 md:py-12">
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
-        <AuthorMetaBar author="jonas" showFactCheck={false} showAffiliateDisclaimer={false} />
+        <AuthorMetaBar author="jonas" showFactCheck={false} showAffiliateDisclaimer={false} hideTableOfContents />
 
         <SnippetAnswer answer="Optjen bonus spins ved at uploade godkendte clips, udfylde din profil og requeste slots til livestream. Alle belønninger er gratis og stacker med dine daglige spins." />
 
