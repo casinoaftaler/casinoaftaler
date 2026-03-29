@@ -268,8 +268,8 @@ const FreeSpinsIDag = () => {
   const animatedNoDep = useCountUp(statsRevealed ? noDepCount : 0);
   const animatedExisting = useCountUp(statsRevealed ? existingCount : 0);
 
-  const getCasinoLogo = (slug: string) => casinos?.find(c => c.slug === slug)?.logo_url || null;
-  const getCasinoAffiliate = (slug: string) => casinos?.find(c => c.slug === slug)?.affiliate_url || null;
+  const getCasinoLogo = (slug: string) => campaigns?.find(c => c.casino_slug === slug)?.casino_logo_url || null;
+  const getCasinoAffiliate = (slug: string) => campaigns?.find(c => c.casino_slug === slug)?.affiliate_url || null;
   const seoDateModified = pageMeta?.updated_at ?? getRouteLastmod("/free-spins-i-dag");
   const displayedUpdateDate = seoDateModified
     ? format(new Date(seoDateModified), "d. MMMM yyyy", { locale: da })
