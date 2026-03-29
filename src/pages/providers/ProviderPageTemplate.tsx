@@ -398,16 +398,8 @@ export function ProviderPage({
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime={readTime} />
 
-        {heroImage && (
-          <div className="mb-10 overflow-hidden rounded-xl">
-            <img
-              src={heroImage}
-              alt={heroImageAlt || `${name} - spiludvikler`}
-              className="w-full h-auto object-cover max-h-[400px]"
-              loading="eager"
-            />
-          </div>
-        )}
+
+
 
         {orderedSections.map((s, i) => (
           <Fragment key={s.key}>
