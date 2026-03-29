@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronRight, ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users, icons } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -248,6 +248,8 @@ export function DesktopMegaNav() {
   const [focusedSection, setFocusedSection] = useState<string | null>(null);
   const timeoutRef = useRef<number>();
   const closeAnimRef = useRef<number>();
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const CLOSE_ANIM_MS = 200;
@@ -292,6 +294,25 @@ export function DesktopMegaNav() {
     clearTimeout(timeoutRef.current);
     setFocusedSection(prev => prev === sectionKey ? null : sectionKey);
   }, []);
+
+  // Close menu when clicking anywhere outside the nav triggers and the panel
+  useEffect(() => {
+    if (!activeMenu || isClosing) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (
+        navContainerRef.current?.contains(target) ||
+        panelRef.current?.contains(target)
+      ) {
+        return; // click was inside menu
+      }
+      animateClose();
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [activeMenu, isClosing, animateClose]);
 
   const renderContent = (key: MenuKey) => {
     switch (key) {
@@ -449,6 +470,7 @@ export function DesktopMegaNav() {
   return (
     <>
       <nav
+        ref={navContainerRef}
         className="hidden lg:flex items-center flex-1 justify-evenly gap-1 whitespace-nowrap"
         style={{ contain: "layout style" }}
       >
@@ -491,6 +513,7 @@ export function DesktopMegaNav() {
             onClick={close}
           />
           <div
+            ref={panelRef}
             className={cn(
               "fixed left-0 right-0 z-50 border-b border-border/50 bg-popover shadow-xl transition-all",
               isClosing
