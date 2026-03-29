@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -515,7 +514,6 @@ export default function Leaderboard() {
           <div className="min-w-0 flex-1">
         <div className="py-8 md:py-12 space-y-8" style={{ minHeight: '80vh' }}>
 
-          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} hideTableOfContents />
 
           <SnippetAnswer answer="Deltag gratis i slot-turneringer med virtuelle credits og kæmp om præmier. Tre kategorier, daglige credits og automatisk deltagelse – kun for community-medlemmer." />
 

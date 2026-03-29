@@ -6,7 +6,6 @@ import { CommunityHubFaq, buildCommunityHubFaqSchema } from "@/components/commun
 import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 import { CommunityOverviewSeoText } from "@/components/community/CommunityOverviewSeoText";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
-import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { EnergySweep } from "@/components/community/EnergySweep";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -193,7 +192,6 @@ export default function CommunityHub() {
         }
       >
         <div className="py-8 md:py-12 space-y-8">
-          <AuthorMetaBar author="kevin" showAffiliateDisclaimer={false} hideTableOfContents />
 
           <SnippetAnswer answer="Casinoaftalers community samler gratis slots, live bonus hunts, turneringer og et rewards-program – alt gratis og med virtuelle credits. Spil, konkurrér og optjen bonus spins hver dag." />
 
