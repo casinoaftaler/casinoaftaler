@@ -338,7 +338,7 @@ export default function SlotDatabase() {
 
         <SnippetAnswer answer="Vores slot database indeholder ægte community-data fra live bonus hunts – ikke teoretiske tal. Se RTP, volatilitet og performance for 1.400+ spillemaskiner testet på Twitch." />
 
-        <QuickComparisonTable count={3} title="Bedste Casinoer til Slots" prioritySlugs={["spilleautomaten", "campobet", "betinia"]} />
+        
 
         {/* Stats strip */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
