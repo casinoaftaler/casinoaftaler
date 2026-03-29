@@ -27,7 +27,8 @@ import leFedesvinImage from "@/assets/slots/le-fedesvin-preview.jpg";
 import olympusImage from "@/assets/slots/fedesvin-of-olympus-preview.jpg";
 import bonanzaImage from "@/assets/slots/fedesvin-bonanza-preview.jpg";
 import { SpillehalSeoText } from "@/components/community/SpillehalSeoText";
-import { AuthorBio } from "@/components/AuthorBio";
+import { AuthorMetaBar } from "@/components/AuthorMetaBar";
+import { SnippetAnswer } from "@/components/SnippetAnswer";
 import "@/styles/spillehal-animations.css";
 import "@/styles/community-micro.css";
 
