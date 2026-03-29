@@ -38,7 +38,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import jonasImage from "@/assets/jonas-forfatter.webp";
+import jonasImage from "@/assets/jonas-forfatter.png";
 
 const FEATURED_SLUGS = ["spildansknu", "spilleautomaten", "campobet"];
 
