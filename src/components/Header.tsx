@@ -55,20 +55,6 @@ function NavItems({ links, iconSize = "h-3 w-3" }: { links: NavLink[]; iconSize?
   );
 }
 
-/** Render expandable link list for mobile */
-function MobileLinks({ links, onClose, indent = "ml-6" }: { links: NavLink[]; onClose: () => void; indent?: string }) {
-  return (
-    <>
-      {links.map((item) => (
-        <Link key={item.to} to={item.to} className={`${indent} flex items-center gap-2 py-2.5 text-sm text-muted-foreground transition-colors hover:text-primary`} onClick={onClose}>
-          <Star className="h-4 w-4" />
-          {item.label}
-        </Link>
-      ))}
-    </>
-  );
-}
-
 export const Header = memo(function Header() {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
