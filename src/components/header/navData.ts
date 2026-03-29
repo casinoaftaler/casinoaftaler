@@ -202,7 +202,7 @@ export const REVIEW_TOP_LINKS: NavLink[] = [
 
 export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil Casino", logoUrl: `${CASINO_LOGO_BASE}/danskespil.png` },
-  { to: "/casino-anmeldelser/comeon", label: "ComeOn Casino", logoUrl: `${CASINO_LOGO_BASE}/comeon.png` },
+  { to: "/casino-anmeldelser/comeon", label: "ComeOn Casino", logoUrl: "/src/assets/casino-logos/comeon.webp" },
   { to: "/casino-anmeldelser/getlucky", label: "GetLucky Casino", logoUrl: `${CASINO_LOGO_BASE}/getlucky.png` },
   { to: "/casino-anmeldelser/mr-green", label: "Mr Green Casino", logoUrl: `${CASINO_LOGO_BASE}/mrgreen.png` },
   { to: "/casino-anmeldelser/videoslots", label: "Videoslots Casino", logoUrl: `${CASINO_LOGO_BASE}/videoslots.png` },
