@@ -170,7 +170,7 @@ export const PROVIDER_LINKS: NavLink[] = [
   { to: "/spiludviklere/relax-gaming", label: "Relax Gaming", logoUrl: "/src/assets/providers/relax-gaming.webp" },
   { to: "/spiludviklere/play-n-go", label: "Play'n GO", logoUrl: "/src/assets/providers/play-n-go.webp" },
   { to: "/spiludviklere/hacksaw-gaming", label: "Hacksaw Gaming", logoUrl: "/src/assets/providers/hacksaw-gaming.webp" },
-  { to: "/spiludviklere/nolimit-city", label: "Nolimit City", logoUrl: "/src/assets/providers/nolimit-city.png" },
+  { to: "/spiludviklere/nolimit-city", label: "Nolimit City", logoUrl: "/src/assets/providers/nolimit-city.webp" },
   { to: "/spiludviklere/elk-studios", label: "ELK Studios", logoUrl: "/src/assets/providers/elk-studios.webp" },
   { to: "/spiludviklere/yggdrasil", label: "Yggdrasil", logoUrl: "/src/assets/providers/yggdrasil.webp" },
   { to: "/spiludviklere/microgaming", label: "Microgaming", logoUrl: "/src/assets/providers/microgaming.webp" },
@@ -185,7 +185,7 @@ export const PROVIDER_LINKS: NavLink[] = [
   { to: "/spiludviklere/wazdan", label: "Wazdan", logoUrl: "/src/assets/providers/wazdan.webp" },
   { to: "/spiludviklere/endorphina", label: "Endorphina", logoUrl: "/src/assets/providers/endorphina.webp" },
   { to: "/spiludviklere/stakelogic", label: "Stakelogic", logoUrl: "/src/assets/providers/stakelogic.webp" },
-  { to: "/spiludviklere/booming-games", label: "Booming Games", logoUrl: "/src/assets/providers/booming-games.png" },
+  { to: "/spiludviklere/booming-games", label: "Booming Games", logoUrl: "/src/assets/providers/booming-games.webp" },
 ];
 
 const CASINO_LOGO_BASE = "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/casino-logos";
