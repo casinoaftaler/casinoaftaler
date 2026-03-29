@@ -22,7 +22,7 @@ import { Separator } from "@/components/ui/separator";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Link } from "react-router-dom";
-import { useCasinos } from "@/hooks/useCasinos";
+
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   Sparkles, Clock, ShieldCheck, AlertTriangle, Star, RefreshCw,
@@ -94,6 +94,8 @@ interface CampaignOffer {
   campaign_type: string | null;
   summary: string | null;
   full_terms_clean: string | null;
+  casino_logo_url: string | null;
+  affiliate_url: string | null;
 }
 
 type FilterType = "all" | "new" | "existing" | "no_deposit";
@@ -218,7 +220,7 @@ function getEligibilityLabel(offer: CampaignOffer): string | null {
 
 // ─── Main Page ───
 const FreeSpinsIDag = () => {
-  const { data: casinos } = useCasinos();
+  
   const { data: pageMeta } = usePageLastmod("/free-spins-i-dag");
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const { ref: statsRef, revealed: statsRevealed } = useScrollReveal();
@@ -229,7 +231,7 @@ const FreeSpinsIDag = () => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("free_spin_campaigns")
-        .select("id,casino_id,casino_name,casino_slug,title,description,spin_count,min_deposit,wagering_requirement,expiry_date,offer_type,last_checked,score,requires_deposit,for_new_players,for_existing_players,source_type,game_name,required_action,spin_value,short_terms_summary,confidence_score,last_verified_at,campaign_period_start,campaign_period_end,deposit_amount,eligible_players,campaign_type,summary,full_terms_clean")
+        .select("id,casino_id,casino_name,casino_slug,title,description,spin_count,min_deposit,wagering_requirement,expiry_date,offer_type,last_checked,score,requires_deposit,for_new_players,for_existing_players,source_type,game_name,required_action,spin_value,short_terms_summary,confidence_score,last_verified_at,campaign_period_start,campaign_period_end,deposit_amount,eligible_players,campaign_type,summary,full_terms_clean,casino_logo_url,affiliate_url")
         .eq("is_active", true)
         .gt("spin_count", 0)
         .gte("confidence_score", 60)
@@ -266,8 +268,8 @@ const FreeSpinsIDag = () => {
   const animatedNoDep = useCountUp(statsRevealed ? noDepCount : 0);
   const animatedExisting = useCountUp(statsRevealed ? existingCount : 0);
 
-  const getCasinoLogo = (slug: string) => casinos?.find(c => c.slug === slug)?.logo_url || null;
-  const getCasinoAffiliate = (slug: string) => casinos?.find(c => c.slug === slug)?.affiliate_url || null;
+  const getCasinoLogo = (slug: string) => campaigns?.find(c => c.casino_slug === slug)?.casino_logo_url || null;
+  const getCasinoAffiliate = (slug: string) => campaigns?.find(c => c.casino_slug === slug)?.affiliate_url || null;
   const seoDateModified = pageMeta?.updated_at ?? getRouteLastmod("/free-spins-i-dag");
   const displayedUpdateDate = seoDateModified
     ? format(new Date(seoDateModified), "d. MMMM yyyy", { locale: da })
