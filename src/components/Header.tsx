@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
 import { DesktopMegaNav } from "./header/DesktopMegaNav";
+import { MobileMegaNav } from "./header/MobileMegaNav";
 import casinoaftalerLogo from "@/assets/casinoaftaler-logo.webp";
 import { Button } from "@/components/ui/button";
 import {
