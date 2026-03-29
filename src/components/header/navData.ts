@@ -201,7 +201,7 @@ export const REVIEW_TOP_LINKS: NavLink[] = [
 ];
 
 export const REVIEW_ALL_LINKS: NavLink[] = [
-  { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil Casino", logoUrl: `${CASINO_LOGO_BASE}/danskespil.png` },
+  { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil Casino", logoUrl: "/src/assets/casino-logos/danskespil.webp" },
   { to: "/casino-anmeldelser/comeon", label: "ComeOn Casino", logoUrl: "/src/assets/casino-logos/comeon.webp" },
   { to: "/casino-anmeldelser/getlucky", label: "GetLucky Casino", logoUrl: "/src/assets/reviews/getlucky.webp" },
   { to: "/casino-anmeldelser/mr-green", label: "Mr Green Casino", logoUrl: "/src/assets/reviews/mrgreen.webp" },
@@ -219,7 +219,7 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/nordicbet", label: "NordicBet", logoUrl: "/src/assets/reviews/nordicbet.webp" },
   { to: "/casino-anmeldelser/one-casino", label: "One Casino", logoUrl: "/src/assets/casino-logos/onecasino.webp" },
   { to: "/casino-anmeldelser/spilnu", label: "Spilnu", logoUrl: "/src/assets/reviews/spilnu.webp" },
-  { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino", logoUrl: `${CASINO_LOGO_BASE}/stake.png` },
+  { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino", logoUrl: "/src/assets/casino-logos/stake.webp" },
   { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen", logoUrl: "/src/assets/reviews/casinostuen.webp" },
   { to: "/casino-anmeldelser/pokerstars", label: "PokerStars", logoUrl: "/src/assets/reviews/pokerstars.webp" },
   { to: "/casino-anmeldelser/bwin", label: "bwin", logoUrl: "/src/assets/casino-logos/bwin.webp" },
