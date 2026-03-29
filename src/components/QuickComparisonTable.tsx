@@ -5,7 +5,17 @@ import { useAuth } from "@/hooks/useAuth";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { useAntiFootprint } from "@/hooks/useAntiFootprint";
 import { Link } from "react-router-dom";
-import { ExternalLink, Star, RotateCw, Clock, Landmark } from "lucide-react";
+import {
+  ExternalLink,
+  Star,
+  RotateCw,
+  Clock,
+  Landmark,
+  Gift,
+  CheckCircle2,
+  Flame,
+  ThumbsUp,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CasinoCardDisclaimer } from "@/components/CasinoCardDisclaimer";
 
@@ -31,17 +41,14 @@ const RANK_CONFIG = [
   {
     gradient: "from-amber-400 to-amber-600",
     glow: "shadow-[0_0_12px_rgba(245,158,11,0.5)]",
-    border: "border-amber-400/30",
   },
   {
     gradient: "from-slate-300 to-slate-500",
     glow: "shadow-[0_0_10px_rgba(148,163,184,0.4)]",
-    border: "border-slate-300/30",
   },
   {
     gradient: "from-orange-500 to-orange-800",
     glow: "shadow-[0_0_10px_rgba(194,65,12,0.4)]",
-    border: "border-orange-500/30",
   },
 ] as const;
 
@@ -55,7 +62,10 @@ function RatingStars({ score }: { score: number }) {
   const full = Math.floor(score);
   const half = score - full >= 0.25;
   return (
-    <div className="flex items-center gap-px" aria-label={`Rating: ${score.toFixed(1)} ud af 5`}>
+    <div
+      className="flex items-center gap-px"
+      aria-label={`Rating: ${score.toFixed(1)} ud af 5`}
+    >
       {[1, 2, 3, 4, 5].map((i) => (
         <Star
           key={i}
@@ -113,26 +123,27 @@ export function QuickComparisonTable({
           const score =
             CASINO_SCORES[casino.slug]?.total ?? Number(casino.rating);
           const rank = RANK_CONFIG[i] ?? RANK_CONFIG[2];
+          const topFeatures = (casino.features || []).slice(0, 3);
 
           return (
             <article
               key={casino.id}
               className="relative rounded-2xl bg-card border border-border overflow-hidden group transition-all duration-200 hover:border-primary/25"
               style={{
-                boxShadow: "0 1px 3px hsl(250 30% 10% / 0.04), 0 4px 14px hsl(250 30% 10% / 0.03)",
+                boxShadow:
+                  "0 1px 3px hsl(250 30% 10% / 0.04), 0 4px 14px hsl(250 30% 10% / 0.03)",
               }}
             >
-              {/* Subtle left accent stripe */}
+              {/* Left accent stripe */}
               <div
                 className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b ${rank.gradient} opacity-60 group-hover:opacity-100 transition-opacity`}
               />
 
               <div className="pl-5 pr-4 py-4 sm:pl-6 sm:pr-5 sm:py-5">
-                {/* ── Row 1: Logo block + Casino info + Bonus ── */}
-                <div className="flex items-center gap-3 sm:gap-4">
-                  {/* Rank + Logo stacked */}
+                {/* ── Row 1: Logo + Name/Rating + Badges + Bonus ── */}
+                <div className="flex items-start gap-3 sm:gap-4">
+                  {/* Rank + Logo */}
                   <div className="relative shrink-0">
-                    {/* Rank pip */}
                     <div
                       className={`absolute -top-1.5 -left-1.5 z-10 h-6 w-6 rounded-full bg-gradient-to-br ${rank.gradient} ${rank.glow} flex items-center justify-center`}
                     >
@@ -152,23 +163,52 @@ export function QuickComparisonTable({
                     </div>
                   </div>
 
-                  {/* Name + Rating */}
+                  {/* Name + Stars + Feature tags */}
                   <div className="flex-1 min-w-0">
-                    <Link
-                      to={`/casino-anmeldelser/${casino.slug}`}
-                      className="text-base sm:text-lg font-bold text-foreground hover:text-primary transition-colors line-clamp-1 leading-tight"
-                    >
-                      {casino.name}
-                    </Link>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <Link
+                        to={`/casino-anmeldelser/${casino.slug}`}
+                        className="text-base sm:text-lg font-bold text-foreground hover:text-primary transition-colors line-clamp-1 leading-tight"
+                      >
+                        {casino.name}
+                      </Link>
+                      {/* Badges */}
+                      {casino.is_recommended && (
+                        <span className="inline-flex items-center gap-0.5 rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+                          <ThumbsUp className="h-2.5 w-2.5" />
+                          Anbefalet
+                        </span>
+                      )}
+                      {casino.is_hot && (
+                        <span className="inline-flex items-center gap-0.5 rounded-full bg-destructive/10 text-destructive px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+                          <Flame className="h-2.5 w-2.5" />
+                          Hot
+                        </span>
+                      )}
+                    </div>
                     <div className="flex items-center gap-1.5 mt-1">
                       <RatingStars score={score} />
                       <span className="text-sm font-bold text-primary tabular-nums leading-none">
                         {score.toFixed(1)}
                       </span>
                     </div>
+                    {/* Feature checkmarks */}
+                    {topFeatures.length > 0 && (
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-2">
+                        {topFeatures.map((feat) => (
+                          <span
+                            key={feat}
+                            className="inline-flex items-center gap-1 text-[11px] text-muted-foreground"
+                          >
+                            <CheckCircle2 className="h-3 w-3 text-emerald-500 shrink-0" />
+                            {feat}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Bonus — always visible, responsive size */}
+                  {/* Bonus */}
                   <div className="shrink-0 text-right">
                     <span className="block text-[10px] sm:text-[11px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
                       Bonus
@@ -179,38 +219,79 @@ export function QuickComparisonTable({
                   </div>
                 </div>
 
-                {/* ── Row 2: Stats ── */}
-                <div className="mt-3.5 grid grid-cols-3 gap-1.5 sm:gap-2">
-                  {[
-                    { icon: RotateCw, label: "Omsætning", value: casino.wagering_requirements },
-                    { icon: Clock, label: "Udbetaling", value: casino.payout_time },
-                    { icon: Landmark, label: "Min. indbet.", value: casino.min_deposit },
-                  ].map(({ icon: Icon, label, value }) => (
-                    <div
-                      key={label}
-                      className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1"
-                    >
-                      <Icon className="h-3.5 w-3.5 text-muted-foreground/70" strokeWidth={1.6} />
-                      <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
-                        {label}
-                      </span>
-                      <span className="text-xs sm:text-sm font-bold text-foreground leading-none">
-                        {value}
-                      </span>
-                    </div>
-                  ))}
+                {/* ── Row 2: Stats (4 cols now with bonus type) ── */}
+                <div className="mt-3.5 grid grid-cols-4 gap-1.5 sm:gap-2">
+                  <div className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1">
+                    <Gift
+                      className="h-3.5 w-3.5 text-muted-foreground/70"
+                      strokeWidth={1.6}
+                    />
+                    <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
+                      Bonus type
+                    </span>
+                    <span className="text-xs sm:text-sm font-bold text-foreground leading-none">
+                      {casino.bonus_type || "Standard"}
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1">
+                    <RotateCw
+                      className="h-3.5 w-3.5 text-muted-foreground/70"
+                      strokeWidth={1.6}
+                    />
+                    <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
+                      Omsætning
+                    </span>
+                    <span className="text-xs sm:text-sm font-bold text-foreground leading-none">
+                      {casino.wagering_requirements}
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1">
+                    <Clock
+                      className="h-3.5 w-3.5 text-muted-foreground/70"
+                      strokeWidth={1.6}
+                    />
+                    <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
+                      Udbetaling
+                    </span>
+                    <span className="text-xs sm:text-sm font-bold text-foreground leading-none">
+                      {casino.payout_time}
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1">
+                    <Landmark
+                      className="h-3.5 w-3.5 text-muted-foreground/70"
+                      strokeWidth={1.6}
+                    />
+                    <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
+                      Min. indbet.
+                    </span>
+                    <span className="text-xs sm:text-sm font-bold text-foreground leading-none">
+                      {casino.min_deposit}
+                    </span>
+                  </div>
                 </div>
 
-                {/* ── CTA ── */}
+                {/* ── CTA + Review link ── */}
                 <div className="mt-3.5">
                   <Button
                     variant="cta"
                     className="w-full h-11 text-sm font-black tracking-wide gap-2 rounded-xl"
-                    onClick={() => getAffiliateRedirect(casino.slug, user?.id)}
+                    onClick={() =>
+                      getAffiliateRedirect(casino.slug, user?.id)
+                    }
                   >
                     {ctaText}
                     <ExternalLink className="h-3.5 w-3.5" />
                   </Button>
+                </div>
+
+                <div className="mt-2 flex items-center justify-center">
+                  <Link
+                    to={`/casino-anmeldelser/${casino.slug}`}
+                    className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2"
+                  >
+                    Læs anmeldelse →
+                  </Link>
                 </div>
 
                 {/* ── Disclaimer ── */}
