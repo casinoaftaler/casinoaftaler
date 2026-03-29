@@ -220,7 +220,7 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/one-casino", label: "One Casino", logoUrl: "/src/assets/casino-logos/onecasino.webp" },
   { to: "/casino-anmeldelser/spilnu", label: "Spilnu", logoUrl: "/src/assets/reviews/spilnu.webp" },
   { to: "/casino-anmeldelser/stake-casino", label: "Stake Casino", logoUrl: `${CASINO_LOGO_BASE}/stake.png` },
-  { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen", logoUrl: `${CASINO_LOGO_BASE}/casinostuen.png` },
+  { to: "/casino-anmeldelser/casinostuen", label: "Casinostuen", logoUrl: "/src/assets/reviews/casinostuen.webp" },
   { to: "/casino-anmeldelser/pokerstars", label: "PokerStars", logoUrl: "/src/assets/reviews/pokerstars.webp" },
   { to: "/casino-anmeldelser/bwin", label: "bwin", logoUrl: "/src/assets/casino-logos/bwin.webp" },
   { to: "/casino-anmeldelser/marathonbet", label: "MarathonBet", logoUrl: "/src/assets/reviews/marathonbet.webp" },
