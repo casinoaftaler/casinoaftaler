@@ -140,7 +140,7 @@ export function QuickComparisonTable({
               />
 
               <div className="pl-5 pr-4 py-4 sm:pl-6 sm:pr-5 sm:py-5">
-                {/* ── Row 1: Logo + Name/Rating + Badges + Bonus ── */}
+                {/* ── Row 1: Logo + Name/Rating + Bonus + CTA ── */}
                 <div className="flex items-start gap-3 sm:gap-4">
                   {/* Rank + Logo */}
                   <div className="relative shrink-0">
@@ -163,7 +163,7 @@ export function QuickComparisonTable({
                     </div>
                   </div>
 
-                  {/* Name + Stars + Feature tags */}
+                  {/* Name + Stars + Features */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                       <Link
@@ -172,7 +172,6 @@ export function QuickComparisonTable({
                       >
                         {casino.name}
                       </Link>
-                      {/* Badges */}
                       {casino.is_recommended && (
                         <span className="inline-flex items-center gap-0.5 rounded-full bg-primary/10 text-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
                           <ThumbsUp className="h-2.5 w-2.5" />
@@ -192,7 +191,6 @@ export function QuickComparisonTable({
                         {score.toFixed(1)}
                       </span>
                     </div>
-                    {/* Feature checkmarks */}
                     {topFeatures.length > 0 && (
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-2">
                         {topFeatures.map((feat) => (
@@ -208,70 +206,77 @@ export function QuickComparisonTable({
                     )}
                   </div>
 
-                  {/* Bonus */}
-                  <div className="shrink-0 text-right">
-                    <span className="block text-[10px] sm:text-[11px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
-                      Bonus
-                    </span>
-                    <span className="block text-base sm:text-xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight mt-0.5 tracking-tight">
-                      {casino.bonus_amount}
-                    </span>
+                  {/* Bonus + CTA stacked — desktop */}
+                  <div className="shrink-0 hidden sm:flex flex-col items-end gap-2">
+                    <div className="text-right">
+                      <span className="block text-[11px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
+                        Bonus
+                      </span>
+                      <span className="block text-xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight mt-0.5 tracking-tight">
+                        {casino.bonus_amount}
+                      </span>
+                    </div>
+                    <Button
+                      variant="cta"
+                      className="h-9 text-xs font-black tracking-wide gap-1.5 rounded-lg px-5"
+                      onClick={() =>
+                        getAffiliateRedirect(casino.slug, user?.id)
+                      }
+                    >
+                      {ctaText}
+                      <ExternalLink className="h-3 w-3" />
+                    </Button>
                   </div>
                 </div>
 
-                {/* ── Row 2: Stats (4 cols now with bonus type) ── */}
+                {/* Bonus + CTA — mobile */}
+                <div className="mt-3 sm:hidden">
+                  <div className="flex items-center justify-between rounded-xl bg-primary/[0.06] border border-primary/10 px-4 py-2.5">
+                    <div>
+                      <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold">
+                        Bonus
+                      </span>
+                      <span className="block text-lg font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent tracking-tight">
+                        {casino.bonus_amount}
+                      </span>
+                    </div>
+                    <Button
+                      variant="cta"
+                      className="h-9 text-xs font-black tracking-wide gap-1.5 rounded-lg px-4"
+                      onClick={() =>
+                        getAffiliateRedirect(casino.slug, user?.id)
+                      }
+                    >
+                      {ctaText}
+                      <ExternalLink className="h-3 w-3" />
+                    </Button>
+                  </div>
+                </div>
+
+                {/* ── Stats row ── */}
                 <div className="mt-3.5 grid grid-cols-4 gap-1.5 sm:gap-2">
-                  <div className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1">
-                    <Gift
-                      className="h-3.5 w-3.5 text-muted-foreground/70"
-                      strokeWidth={1.6}
-                    />
-                    <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
-                      Bonus type
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-foreground leading-none">
-                      {casino.bonus_type || "Standard"}
-                    </span>
-                  </div>
-                  <div className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1">
-                    <RotateCw
-                      className="h-3.5 w-3.5 text-muted-foreground/70"
-                      strokeWidth={1.6}
-                    />
-                    <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
-                      Omsætning
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-foreground leading-none">
-                      {casino.wagering_requirements}
-                    </span>
-                  </div>
-                  <div className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1">
-                    <Clock
-                      className="h-3.5 w-3.5 text-muted-foreground/70"
-                      strokeWidth={1.6}
-                    />
-                    <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
-                      Udbetaling
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-foreground leading-none">
-                      {casino.payout_time}
-                    </span>
-                  </div>
-                  <div className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1">
-                    <Landmark
-                      className="h-3.5 w-3.5 text-muted-foreground/70"
-                      strokeWidth={1.6}
-                    />
-                    <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
-                      Min. indbet.
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-foreground leading-none">
-                      {casino.min_deposit}
-                    </span>
-                  </div>
+                  {[
+                    { icon: Gift, label: "Bonus type", value: casino.bonus_type || "Standard" },
+                    { icon: RotateCw, label: "Omsætning", value: casino.wagering_requirements },
+                    { icon: Clock, label: "Udbetaling", value: casino.payout_time },
+                    { icon: Landmark, label: "Min. indbet.", value: casino.min_deposit },
+                  ].map(({ icon: Icon, label, value }) => (
+                    <div
+                      key={label}
+                      className="flex flex-col items-center gap-1 rounded-xl bg-muted/30 border border-border/40 py-2.5 px-1"
+                    >
+                      <Icon className="h-3.5 w-3.5 text-muted-foreground/70" strokeWidth={1.6} />
+                      <span className="text-[9px] sm:text-[10px] uppercase tracking-widest text-muted-foreground font-semibold leading-none">
+                        {label}
+                      </span>
+                      <span className="text-xs sm:text-sm font-bold text-foreground leading-none">
+                        {value}
+                      </span>
+                    </div>
+                  ))}
                 </div>
 
-                {/* ── CTA + Review link ── */}
+                {/* ── Full-width CTA (below stats) ── */}
                 <div className="mt-3.5">
                   <Button
                     variant="cta"
