@@ -1,39 +1,46 @@
 
 
-## Site-wide Search in Header
+## Plan: Upgrade Plain Text Menu Links with Icons
 
-### What we're building
-A search icon/button in the header menu that opens a command palette (Cmd+K style dialog) where users can instantly search across ALL content on the site: pages, guides, casino reviews, news articles, glossary terms, slots, and providers.
+### Problem
+The "Casinoer", "Nye Casinoer", "Live Casino", "Casino Bonus", "Community", "Betalingsmetoder", "Info & Om", and "Forfattere" sections all use plain text links (`MegaLink`), which look bland compared to the logo-card sections (Spiludviklere, Anmeldelser).
 
-### How it works
+### Approach
+Inspired by the reference image (image 2), each text link gets a small, colorful icon to the left — making them visually richer while keeping them compact. Two options:
 
-**Search index**: Build a static searchable index from all existing navData arrays + additional route definitions, combined with live DB queries for dynamic content (casino_news, casinos).
+**Option A — Lucide icons with colored circles**
+Each `MegaLink` gets a Lucide icon wrapped in a small colored circle/badge (like the reference shows). We map each link to a relevant icon (e.g., Trophy for "Top 10", Zap for "Hurtig Udbetaling", Gift for bonus links, etc.). The circle backgrounds use a few accent colors for visual variety.
 
-**UI**: Use the existing `CommandDialog` component (already in `src/components/ui/command.tsx`) for instant fuzzy search with categorized results.
+**Option B — Small custom illustration images**
+Create or source ~40 small PNG/WebP illustrations (like the betting reference). More visually unique but significantly more work and maintenance.
 
-### Technical plan
+### Recommendation: Option A
+Lucide icons are already in the project, require no new assets, and can be mapped semantically. A small colored background circle (24×24px) gives the same visual pop as the reference.
 
-**1. Create `src/components/header/SiteSearch.tsx`**
-- Search icon button (magnifying glass) placed in the header next to ThemeToggle
-- Opens a `CommandDialog` on click (also triggers on Cmd+K / Ctrl+K keyboard shortcut)
-- Builds a static search index from:
-  - All navData arrays (CASINO_LINKS, BONUS_LINKS, SLOT_LINKS, PROVIDER_LINKS, REVIEW_TOP_LINKS, REVIEW_ALL_LINKS, etc.) — ~200 items
-  - Glossary terms from `glossaryTerms` array
-  - Additional hardcoded top-level routes (forsiden, casinospil, live casino, etc.)
-- Fetches dynamic content on dialog open:
-  - `casino_news` (title + slug, published, limit 50 latest)
-  - `casinos` table (name + slug, limit 100)
-- Groups results into categories: Sider, Casino Anmeldelser, Bonusser, Spillemaskiner, Spiludviklere, Ordbog, Nyheder
-- On select: navigate to the route and close the dialog
-- Debounced client-side filtering (no server round-trip for search itself)
+### Implementation Details
 
-**2. Update `src/components/Header.tsx`**
-- Import and render `<SiteSearch />` in the right-side actions area (before ThemeToggle), visible on both desktop and mobile
-- Add Search icon to mobile menu as well
+1. **Extend `navData.ts`**: Add an optional `iconName` field (Lucide icon name string) to relevant link arrays (`CASINO_LINKS`, `NYE_CASINOER_LINKS`, `LIVE_CASINO_LINKS`, `BONUS_LINKS`, `COMMUNITY_LINKS`, `PAYMENT_LINKS`, `MORE_LINKS`, `FORFATTER_LINKS`). Map each link to a semantically relevant icon.
 
-### Result
-- Instant search across 300+ pages and DB content
-- Keyboard shortcut Cmd+K / Ctrl+K
-- Categorized, navigable results
-- No external search service needed — pure client-side fuzzy matching using cmdk
+2. **Update `MegaLink` in `DesktopMegaNav.tsx`**: Accept an optional icon prop. When present, render a small colored circle with the Lucide icon before the label. Use 4-5 rotating accent colors (purple, blue, green, amber, rose) based on index for variety.
+
+3. **Update call sites**: Pass the icon data through `ExpandableGrid`, `ExpandableColumn`, and `MegaLink` where applicable.
+
+### Visual Result
+Each text link goes from:
+```
+┌─────────────────────────┐
+│ Hurtig Udbetaling     › │
+└─────────────────────────┘
+```
+To:
+```
+┌─────────────────────────┐
+│ ⚡ Hurtig Udbetaling  › │
+│ (colored circle bg)      │
+└─────────────────────────┘
+```
+
+### Files Changed
+- `src/components/header/navData.ts` — add `iconName` to link entries
+- `src/components/header/DesktopMegaNav.tsx` — update `MegaLink`, `ExpandableGrid`, `ExpandableColumn` to render icons
 
