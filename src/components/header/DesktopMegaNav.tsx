@@ -41,7 +41,6 @@ const BOOSTED_PROVIDER_LOGOS = new Set([
   "Booming Games",
 ]);
 
-/** Logos that are white/light and need a dark card background to be visible */
 
 function MegaLogoCard({
   to,
