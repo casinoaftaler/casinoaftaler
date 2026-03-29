@@ -35,7 +35,7 @@ export const NYE_CASINOER_LINKS: NavLink[] = [
   { to: "/nye-casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", iconName: "zap" },
   { to: "/nye-casinoer/bonus-uden-indbetaling", label: "Bonus uden Indbetaling", iconName: "gift" },
   { to: "/nye-casinoer/trustly", label: "Med Trustly", iconName: "banknote" },
-  { to: "/nye-casinoer/mitid", label: "Med MitID", iconName: "fingerprint" },
+  { to: "/nye-casinoer/mitid", label: "Med MitID", iconName: "scan-line" },
   { to: "/nye-casinoer/lav-wagering", label: "Lav Wagering", iconName: "percent" },
   { to: "/nye-casinoer/vs-etablerede", label: "Nye vs Etablerede", iconName: "scale" },
 ];
@@ -89,7 +89,7 @@ export const BLACKJACK_LINKS: NavLink[] = [
 export const BLACKJACK_STRATEGY_LINKS: NavLink[] = [
   { to: "/casinospil/blackjack/martingale", label: "Martingale Strategi", iconName: "arrow-up-right" },
   { to: "/casinospil/blackjack/fibonacci", label: "Fibonacci Strategi", iconName: "sigma" },
-  { to: "/casinospil/blackjack/dalembert", label: "D'Alembert Strategi", iconName: "minus-plus" },
+  { to: "/casinospil/blackjack/dalembert", label: "D'Alembert Strategi", iconName: "minus" },
 ];
 
 export const ROULETTE_LINKS: NavLink[] = [
@@ -101,7 +101,7 @@ export const ROULETTE_LINKS: NavLink[] = [
 export const ROULETTE_STRATEGY_LINKS: NavLink[] = [
   { to: "/casinospil/roulette/martingale-roulette", label: "Martingale Strategi", iconName: "arrow-up-right" },
   { to: "/casinospil/roulette/fibonacci-roulette", label: "Fibonacci Strategi", iconName: "sigma" },
-  { to: "/casinospil/roulette/dalembert-roulette", label: "D'Alembert Strategi", iconName: "minus-plus" },
+  { to: "/casinospil/roulette/dalembert-roulette", label: "D'Alembert Strategi", iconName: "minus" },
   { to: "/casinospil/roulette/labouchere-roulette", label: "Labouchère Strategi", iconName: "list-ordered" },
   { to: "/casinospil/roulette/james-bond-roulette", label: "James Bond Strategi", iconName: "glasses" },
 ];
@@ -147,7 +147,7 @@ export const BONUS_LINKS: NavLinkWithIcon[] = [
   { to: "/free-spins-i-dag", label: "Free Spins i Dag", iconName: "calendar-check" },
   { to: "/omsaetningskrav", label: "Omsætningskrav", iconName: "calculator" },
   { to: "/indskudsbonus", label: "Indskudsbonus", iconName: "piggy-bank" },
-  { to: "/bonus-uden-omsaetningskrav", label: "Bonus uden Omsætningskrav", iconName: "check-circle" },
+  { to: "/bonus-uden-omsaetningskrav", label: "Bonus uden Omsætningskrav", iconName: "circle-check" },
 ];
 
 export const PAYMENT_LINKS: NavLink[] = [
@@ -237,11 +237,11 @@ export const COMMUNITY_LINKS: NavLinkWithIcon[] = [
   { to: "/bonus-hunt", label: "Bonus Hunt", iconName: "crosshair" },
   { to: "/bonus-hunt/arkiv", label: "Bonus Hunt Arkiv", iconName: "archive" },
   { to: "/slot-database", label: "Slot Database", iconName: "database" },
-  { to: "/statistik", label: "Statistik", iconName: "bar-chart-3" },
+  { to: "/statistik", label: "Statistik", iconName: "chart-bar" },
   { to: "/community/turneringer", label: "Turneringer", iconName: "swords" },
   { to: "/community/turneringer/arkiv", label: "Turneringsarkiv", iconName: "archive" },
   { to: "/community/hall-of-fame", label: "Hall of Fame", iconName: "medal" },
-  { to: "/highlights", label: "Highlights", iconName: "play-circle" },
+  { to: "/highlights", label: "Highlights", iconName: "circle-play" },
   { to: "/butik", label: "Butik", iconName: "shopping-bag" },
 ];
 

@@ -95,8 +95,8 @@ function getIconColor(index: number) {
 /* ─── Resolve lucide icon by kebab-case name ─── */
 function getLucideIcon(name?: string) {
   if (!name) return null;
-  // Convert kebab-case to PascalCase
-  const pascal = name.replace(/(^|-)([a-z])/g, (_, _dash, letter) => letter.toUpperCase());
+  // Convert kebab-case to PascalCase (handles letters AND digits after hyphens)
+  const pascal = name.replace(/(^|-)(.)/g, (_, _dash, char) => char.toUpperCase());
   return (icons as Record<string, any>)[pascal] || null;
 }
 
