@@ -136,13 +136,14 @@ function ExpandableColumn({ title, items, allItems, hubTo, onNavigate, onShowAll
 }) {
   const full = allItems || items;
   const hasMore = full.length > items.length;
+  const hasLogos = items.some(i => i.logoUrl);
 
   return (
     <div>
       <SubLabel title={title} hubTo={hubTo} onNavigate={onNavigate} />
-      <div className="space-y-1.5">
+      <div className={hasLogos ? "grid grid-cols-2 gap-1.5" : "space-y-1.5"}>
         {items.map(item => (
-          <MegaLink key={item.to} to={item.to} label={item.label} onClick={onNavigate} />
+          <SmartLink key={item.to} item={item} onClick={onNavigate} />
         ))}
       </div>
       {hasMore && (
