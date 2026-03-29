@@ -531,6 +531,7 @@ export const Header = memo(function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <SiteSearch />
           {!user && (
             <div className="hidden lg:block">
               <ThemeToggle />
