@@ -13,8 +13,7 @@ interface BonusHuntCasinoContextProps {
 }
 
 export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX, isLive = false, casinoSlug = "spildansknu" }: BonusHuntCasinoContextProps) {
-  const { data: casinos } = useCasinos();
-  const casino = casinos?.find((c) => c.slug === casinoSlug);
+  const { data: casino } = useCasinoBySlug(casinoSlug);
   const logoUrl = casino?.logo_url;
   const displayName = casino?.name ?? casinoSlug;
   const reviewPath = `/casino-anmeldelser/${casinoSlug}`;
