@@ -94,6 +94,8 @@ interface CampaignOffer {
   campaign_type: string | null;
   summary: string | null;
   full_terms_clean: string | null;
+  casino_logo_url: string | null;
+  affiliate_url: string | null;
 }
 
 type FilterType = "all" | "new" | "existing" | "no_deposit";
