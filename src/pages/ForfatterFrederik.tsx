@@ -35,7 +35,7 @@ import {
   ChevronRight,
   Smile,
 } from "lucide-react";
-import frederikImage from "@/assets/frederik-forfatter.jpg";
+import frederikImage from "@/assets/frederik-forfatter.webp";
 
 const FEATURED_SLUGS = ["spildansknu", "betinia", "campobet"];
 
