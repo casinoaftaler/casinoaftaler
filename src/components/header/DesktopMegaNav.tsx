@@ -335,16 +335,16 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Casinospil" hubTo="/casinospil" hubLabel="Casinospil Oversigt →" onNavigate={close} />
-            <div className="mb-3">
-              <SubLabel title="Spillemaskiner" hubTo="/casinospil/spillemaskiner" onNavigate={close} />
-              <ExpandableGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]} initialCount={10} onNavigate={close} onShowAll={() => expandSection("slots")} />
-            </div>
-            <div className="border-t border-border/40 my-3" />
-            <div className="grid grid-cols-4 gap-5">
+            <div className="grid grid-cols-4 gap-5 mb-3">
               <ExpandableColumn title="Blackjack" items={BLACKJACK_LINKS} allItems={[...BLACKJACK_LINKS, ...BLACKJACK_STRATEGY_LINKS]} hubTo="/casinospil/blackjack" onNavigate={close} onShowAll={() => expandSection("blackjack")} />
               <ExpandableColumn title="Roulette" items={ROULETTE_LINKS} allItems={[...ROULETTE_LINKS, ...ROULETTE_STRATEGY_LINKS]} hubTo="/casinospil/roulette" onNavigate={close} onShowAll={() => expandSection("roulette")} />
               <ExpandableColumn title="Poker" items={POKER_LINKS.slice(0, 4)} allItems={POKER_LINKS} hubTo="/casinospil/poker" onNavigate={close} onShowAll={() => expandSection("poker")} />
               <ExpandableColumn title="Andre Spil" items={OTHER_CASINOSPIL_LINKS} onNavigate={close} />
+            </div>
+            <div className="border-t border-border/40 my-3" />
+            <div>
+              <SubLabel title="Spillemaskiner" hubTo="/casinospil/spillemaskiner" onNavigate={close} />
+              <ExpandableGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]} initialCount={10} onNavigate={close} onShowAll={() => expandSection("slots")} />
             </div>
           </>
         );
