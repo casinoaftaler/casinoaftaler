@@ -278,53 +278,50 @@ export default function HallOfFame() {
         title={seoTitle}
         description={seoDesc}
         jsonLd={[articleSchema, faqSchema]}
+        breadcrumbLabel="Hall of Fame"
       />
 
-      {/* TYPE B: Full-width hero with background image */}
-      <section className="relative overflow-hidden py-16 text-white md:py-24">
-        <img
-          src={hallOfFameHero}
-          alt="Hall of Fame med trofæer og guldlys – Casinoaftalers community legender"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background" />
-        <div className="container relative z-10">
+      {/* Hero – matches other community pages */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: "linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))",
+        }}
+      >
+        <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
               <Crown className="mr-1.5 h-3.5 w-3.5" />
               Community Legender
             </Badge>
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl text-foreground">
-              Hall of Fame – Casinoaftalers Æreshal
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Hall of Fame
             </h1>
-            <p className="text-lg text-muted-foreground mb-8">
+            <p className="text-lg text-white/80">
               De mest dedikerede spillere, de vildeste gevinster og de bedste clips fra vores{" "}
-              <Link to="/community" className="text-primary hover:underline">community</Link>.
+              <Link to="/community" className="text-white underline hover:text-white/80">community</Link>.
               Alt baseret på ægte data fra vores gratis{" "}
-              <Link to="/community/slots" className="text-primary hover:underline">spillemaskiner</Link>.
+              <Link to="/community/slots" className="text-white underline hover:text-white/80">spillemaskiner</Link>.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link
-                to="/community/turneringer"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
-              >
-                Se turneringer <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/highlights"
-                className="inline-flex items-center gap-2 rounded-lg bg-muted px-6 py-3 text-sm font-semibold text-foreground hover:bg-muted/80 transition-colors"
-              >
-                <Film className="h-4 w-4" />
-                Upload clip
-              </Link>
-            </div>
           </div>
         </div>
       </section>
 
-      <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" readTime="20 min" />
+      <CommunityNav />
+
+      <div className="container relative">
+        {/* Left sidebar */}
+        <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
+          <div className="sticky top-24 h-fit flex flex-col gap-4">
+            <SidebarSocialProof />
+            <SidebarLeaderboard />
+            <SidebarShopLeaderboard />
+          </div>
+        </div>
+
+        <div className="flex gap-8 xl:gap-10">
+          <div className="min-w-0 flex-1">
+        <div className="py-8 md:py-12 space-y-8">
 
         {/* All-Time Leaderboards */}
         <section className="mb-12">
