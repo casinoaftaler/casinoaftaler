@@ -111,7 +111,7 @@ const providerLinks = [
 ];
 
 const defaultSectionOrder = [
-  "intro", "casinoComparison", "casinos", "history", "games", "licenses",
+  "intro", "casinos", "history", "games", "licenses",
   "proscons", "strategic", "technical", "providers", "responsible",
 ];
 
