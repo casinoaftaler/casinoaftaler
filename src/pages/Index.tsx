@@ -380,6 +380,7 @@ const Index = () => {
           },
         ]} />
       </div>
+      </LazySection>
     </>
   );
 };
