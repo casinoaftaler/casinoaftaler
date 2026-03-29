@@ -30,8 +30,7 @@ function StatRow({ label, value, highlight, icon: Icon }: { label: string; value
 
 export function BonusHuntStatsTab({ data, huntNumber, huntDate, isLive = false, casinoSlug = "spildansknu" }: Props) {
   const s = data.stats;
-  const { data: casinos } = useCasinos();
-  const casino = casinos?.find((c) => c.slug === casinoSlug);
+  const { data: casino } = useCasinoBySlug(casinoSlug);
   const logoUrl = casino?.logo_url;
   const displayName = casino?.name ?? casinoSlug;
   const reviewPath = `/casino-anmeldelser/${casinoSlug}`;
