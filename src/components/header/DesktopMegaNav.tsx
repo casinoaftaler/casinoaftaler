@@ -145,7 +145,7 @@ function SmartLink({ item, colorIndex = 0, onClick }: { item: NavLink; colorInde
         <img
           src={item.avatarUrl}
           alt={item.label}
-          className="h-6 w-6 rounded-full object-cover object-top shrink-0 ring-1 ring-border"
+          className="h-8 w-8 rounded-full object-cover object-top shrink-0 ring-1 ring-border"
           loading="lazy"
         />
         <span className="truncate flex-1">{item.label}</span>
