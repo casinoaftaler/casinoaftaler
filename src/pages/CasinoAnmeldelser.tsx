@@ -621,7 +621,7 @@ const CasinoAnmeldelser = () => {
         <section className="mb-12">
           <h2 className="mb-6 text-3xl font-bold">Vores anbefalede casinoer – testet med rigtige penge</h2>
           <p className="mb-6 text-muted-foreground leading-relaxed">
-            Disse seks casinoer har alle scoret højest i vores testproces og opfylder de strengeste krav til bonusvilkår, udbetalingshastighed og spiludvalg.
+            Disse syv casinoer har alle scoret højest i vores testproces og opfylder de strengeste krav til bonusvilkår, udbetalingshastighed og spiludvalg.
           </p>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
