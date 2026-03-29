@@ -33,13 +33,6 @@ function resolveLogoUrl(item: NavLink): string | undefined {
 }
 
 /* ─── Logo card item ─── */
-/* Logos that are white/light and need a dark card background */
-const DARK_BG_LABELS = new Set([
-  "Mr Vegas Casino", "Videoslots Casino", "Mr Green Casino", "Swift Casino",
-  "Luna Casino", "PlayKasino", "ComeOn Casino", "LeoVegas",
-  "Unibet", "NordicBet", "bwin", "MarathonBet", "Campobet",
-]);
-
 const BOOSTED_PROVIDER_LOGOS = new Set([
   "Yggdrasil",
   "Microgaming",
@@ -48,24 +41,33 @@ const BOOSTED_PROVIDER_LOGOS = new Set([
   "Booming Games",
 ]);
 
-function MegaLogoCard({ to, label, logoUrl, onClick }: { to: string; label: string; logoUrl: string; onClick: () => void }) {
-  const needsDark = DARK_BG_LABELS.has(label);
+function MegaLogoCard({
+  to,
+  label,
+  logoUrl,
+  onClick,
+  isReview,
+}: {
+  to: string;
+  label: string;
+  logoUrl: string;
+  onClick: () => void;
+  isReview?: boolean;
+}) {
   const needsBoost = BOOSTED_PROVIDER_LOGOS.has(label);
+
   return (
     <Link
       to={to}
       onClick={onClick}
-      className={cn(
-        "group relative flex items-center justify-center rounded-xl border border-border/30 p-3 h-16 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)] hover:scale-[1.03]",
-        needsDark ? "bg-[hsl(230,25%,18%)]" : "bg-muted/50"
-      )}
+      className="group relative flex items-center justify-center rounded-xl border border-border/30 bg-muted/50 p-3 h-16 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)] hover:scale-[1.03]"
     >
       <img
         src={logoUrl}
         alt={label}
         className={cn(
           "object-contain",
-          needsBoost ? "h-12 max-w-[96%]" : "h-10 max-w-[85%]"
+          isReview ? "h-12 max-w-[96%]" : needsBoost ? "h-12 max-w-[96%]" : "h-10 max-w-[85%]"
         )}
         loading="lazy"
       />
@@ -94,7 +96,8 @@ function MegaLink({ to, label, onClick }: { to: string; label: string; onClick: 
 function SmartLink({ item, onClick }: { item: NavLink; onClick: () => void }) {
   const resolvedUrl = resolveLogoUrl(item);
   if (resolvedUrl) {
-    return <MegaLogoCard to={item.to} label={item.label} logoUrl={resolvedUrl} onClick={onClick} />;
+    const isReview = item.to.startsWith("/casino-anmeldelser/");
+    return <MegaLogoCard to={item.to} label={item.label} logoUrl={resolvedUrl} onClick={onClick} isReview={isReview} />;
   }
   return <MegaLink to={item.to} label={item.label} onClick={onClick} />;
 }
