@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useCasinos } from "@/hooks/useCasinos";
+import { useCasinoBySlug } from "@/hooks/useCasinoBySlug";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { ArrowRight, Check } from "lucide-react";
 
@@ -13,8 +13,7 @@ interface BonusHuntCasinoContextProps {
 }
 
 export function BonusHuntCasinoContext({ huntNumber, huntDate, bonusCount, avgX, isLive = false, casinoSlug = "spildansknu" }: BonusHuntCasinoContextProps) {
-  const { data: casinos } = useCasinos();
-  const casino = casinos?.find((c) => c.slug === casinoSlug);
+  const { data: casino } = useCasinoBySlug(casinoSlug);
   const logoUrl = casino?.logo_url;
   const displayName = casino?.name ?? casinoSlug;
   const reviewPath = `/casino-anmeldelser/${casinoSlug}`;

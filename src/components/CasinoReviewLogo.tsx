@@ -1,4 +1,4 @@
-import { useCasinos } from "@/hooks/useCasinos";
+import { useCasinoBySlug } from "@/hooks/useCasinoBySlug";
 import { useLocation } from "react-router-dom";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 
@@ -42,7 +42,6 @@ const PATH_TO_SLUG: Record<string, string> = {
 };
 
 export function CasinoReviewLogo({ slug }: CasinoReviewLogoProps) {
-  const { data: casinos } = useCasinos();
   const location = useLocation();
 
   // Auto-detect slug from URL if not provided
@@ -52,7 +51,7 @@ export function CasinoReviewLogo({ slug }: CasinoReviewLogoProps) {
     return PATH_TO_SLUG[lastPart] || lastPart;
   })();
 
-  const casino = casinos?.find((c) => c.slug === effectiveSlug);
+  const { data: casino } = useCasinoBySlug(effectiveSlug);
   const logoUrl = casino?.logo_url;
 
   if (!logoUrl) return null;

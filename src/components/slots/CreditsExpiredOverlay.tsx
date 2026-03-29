@@ -3,7 +3,7 @@ import { Clock, Sparkles, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CreditCoin } from "@/components/CreditCoin";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useCasinos } from "@/hooks/useCasinos";
+import { useCasinoBySlug } from "@/hooks/useCasinoBySlug";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
@@ -30,7 +30,7 @@ interface CreditsExpiredOverlayProps {
 
 export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps) {
   const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnightCopenhagen);
-  const { data: casinos } = useCasinos();
+  const { data: playkasinoCasino } = useCasinoBySlug("playkasino");
   const { user } = useAuth();
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
   if (!isVisible) return null;
 
   const pad = (n: number) => String(n).padStart(2, "0");
-  const playkasino = casinos?.find((c) => c.slug === "playkasino");
+  const playkasino = playkasinoCasino;
 
   return (
     <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm rounded-xl">

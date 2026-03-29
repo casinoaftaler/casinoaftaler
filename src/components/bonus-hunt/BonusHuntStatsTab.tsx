@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Gift, Unlock, Wallet, Target, Dice3, BarChart3, Scale, Trophy, Rocket, Check, ArrowRight, TrendingUp, TrendingDown } from "lucide-react";
-import { useCasinos } from "@/hooks/useCasinos";
+import { useCasinoBySlug } from "@/hooks/useCasinoBySlug";
 import { optimizeStorageImage } from "@/lib/imageOptimization";
 import type { BonusHuntData } from "@/hooks/useBonusHuntData";
 import type { LucideIcon } from "lucide-react";
@@ -30,8 +30,7 @@ function StatRow({ label, value, highlight, icon: Icon }: { label: string; value
 
 export function BonusHuntStatsTab({ data, huntNumber, huntDate, isLive = false, casinoSlug = "spildansknu" }: Props) {
   const s = data.stats;
-  const { data: casinos } = useCasinos();
-  const casino = casinos?.find((c) => c.slug === casinoSlug);
+  const { data: casino } = useCasinoBySlug(casinoSlug);
   const logoUrl = casino?.logo_url;
   const displayName = casino?.name ?? casinoSlug;
   const reviewPath = `/casino-anmeldelser/${casinoSlug}`;
