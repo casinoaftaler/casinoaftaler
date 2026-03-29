@@ -213,7 +213,7 @@ export const REVIEW_ALL_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/888-casino", label: "888 Casino", logoUrl: `${CASINO_LOGO_BASE}/888casino.png` },
   { to: "/casino-anmeldelser/betano", label: "Betano", logoUrl: `${CASINO_LOGO_BASE}/betano.png` },
   { to: "/casino-anmeldelser/expekt", label: "Expekt", logoUrl: "/src/assets/casino-logos/expekt.webp" },
-  { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino", logoUrl: `${CASINO_LOGO_BASE}/royalcasino.png` },
+  { to: "/casino-anmeldelser/royal-casino", label: "Royal Casino", logoUrl: "/src/assets/casino-logos/royal-casino.webp" },
   { to: "/casino-anmeldelser/maria-casino", label: "Maria Casino", logoUrl: `${CASINO_LOGO_BASE}/mariacasino.png` },
   { to: "/casino-anmeldelser/kapow-casino", label: "Kapow Casino", logoUrl: "/src/assets/casino-logos/kapow.webp" },
   { to: "/casino-anmeldelser/nordicbet", label: "NordicBet", logoUrl: `${CASINO_LOGO_BASE}/nordicbet.png` },
