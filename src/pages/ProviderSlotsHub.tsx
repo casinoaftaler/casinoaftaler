@@ -5,7 +5,9 @@ import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
 import { FAQSection } from "@/components/FAQSection";
 import { ProviderCatalogSlots } from "@/components/ProviderCatalogSlots";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { useProviderSlots } from "@/hooks/useProviderSlots";
+import { useCasinos } from "@/hooks/useCasinos";
 import { PROVIDER_HUB_CONTENT, PROVIDER_HUB_SLUGS } from "@/lib/providerHubContent";
 import { PROVIDER_DISPLAY_NAMES } from "@/lib/slotProviderLinks";
 import { buildArticleSchema, buildFaqSchema, SITE_URL, JONAS_SAME_AS } from "@/lib/seo";
@@ -32,9 +34,29 @@ export default function ProviderSlotsHub() {
   const validSlug = providerSlug && PROVIDER_HUB_SLUGS.includes(providerSlug) ? providerSlug : null;
   const content = validSlug ? PROVIDER_HUB_CONTENT[validSlug] : null;
   const { data: slots } = useProviderSlots(validSlug || "");
+  const { data: casinos } = useCasinos();
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
   const { shuffle } = useAntiFootprint(validSlug ?? undefined);
+
+  // Find partner casinos that carry this provider
+  const providerPrioritySlugs = useMemo(() => {
+    if (!casinos || !content) return undefined;
+    const PARTNER_SLUGS = ["spildansknu", "spilleautomaten", "betinia", "campobet", "swift-casino", "luna-casino", "playkasino"];
+    const displayName = content.displayName.toLowerCase();
+    return casinos
+      .filter(
+        (c) =>
+          c.is_active &&
+          PARTNER_SLUGS.includes(c.slug) &&
+          c.game_providers?.some(
+            (gp) => gp.name.toLowerCase() === displayName
+          )
+      )
+      .sort((a, b) => a.position - b.position)
+      .slice(0, 3)
+      .map((c) => c.slug);
+  }, [casinos, content]);
 
   // Compute dynamic stats
   const stats = useMemo(() => {
@@ -279,10 +301,19 @@ export default function ProviderSlotsHub() {
                 </div>
               </section>
             ),
+            casinoComparison: providerPrioritySlugs && providerPrioritySlugs.length > 0 ? (
+              <div key="casinoComparison">
+                <QuickComparisonTable
+                  count={3}
+                  title={`Bedste casinoer med ${content.displayName} slots`}
+                  prioritySlugs={providerPrioritySlugs}
+                />
+              </div>
+            ) : null,
           };
 
           // Shuffle section order deterministically per provider slug
-          const sectionKeys = ["intro", "stats", "top5", "catalog", "moneylinks", "faq", "crosslinks"];
+          const sectionKeys = ["intro", "stats", "casinoComparison", "top5", "catalog", "moneylinks", "faq", "crosslinks"];
           const shuffled = shuffle(sectionKeys);
 
           return shuffled.map((key) => {
