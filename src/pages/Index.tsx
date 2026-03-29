@@ -5,6 +5,7 @@ import { organizationSchema } from "@/lib/seo";
 import { HeroSection } from "@/components/HeroSection";
 import { WhyTrustUs } from "@/components/WhyTrustUs";
 import { HomepageLeftSidebar, HomepageRightSidebar } from "@/components/HomepageSidebar";
+import { LazySection } from "@/components/LazySection";
 import { TodayUpdatedSection } from "@/components/TodayUpdatedSection";
 import { HomepageLatestSlots, useLatestSlots, buildLatestSlotsSchema } from "@/components/HomepageLatestSlots";
 import { HomepagePopularSlots, usePopularSlots, buildPopularSlotsSchema } from "@/components/HomepagePopularSlots";
@@ -271,14 +272,27 @@ const Index = () => {
       </section>
 
       <TodayUpdatedSection />
-      <DailyRotatingTip />
-      <HomepageLatestSlots />
-      <HomepagePopularSlots />
-      <HomepageTopProviders />
-      <HomepageLiveCommunity />
-      <WhyTrustUs />
+      <LazySection minHeight="300px">
+        <DailyRotatingTip />
+      </LazySection>
+      <LazySection minHeight="400px">
+        <HomepageLatestSlots />
+      </LazySection>
+      <LazySection minHeight="400px">
+        <HomepagePopularSlots />
+      </LazySection>
+      <LazySection minHeight="300px">
+        <HomepageTopProviders />
+      </LazySection>
+      <LazySection minHeight="500px">
+        <HomepageLiveCommunity />
+      </LazySection>
+      <LazySection minHeight="300px">
+        <WhyTrustUs />
+      </LazySection>
 
       {/* === SEO Content Sections === */}
+      <LazySection minHeight="2000px">
       <div className="container py-8 md:py-12">
         <HomepageSeoSections />
 
@@ -366,6 +380,7 @@ const Index = () => {
           },
         ]} />
       </div>
+      </LazySection>
     </>
   );
 };
