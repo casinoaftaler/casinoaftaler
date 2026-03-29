@@ -189,7 +189,7 @@ export function AuthorMetaBar({ author, showFactCheck = true, showVerified = fal
       </div>
       {showAffiliateDisclaimer && <AffiliateDisclaimer />}
       {!showAffiliateDisclaimer && <div className="mb-6" />}
-      <TableOfContents />
+      {!hideTableOfContents && <TableOfContents />}
     </>
   );
 }
