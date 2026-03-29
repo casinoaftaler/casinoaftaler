@@ -301,10 +301,19 @@ export default function ProviderSlotsHub() {
                 </div>
               </section>
             ),
+            casinoComparison: providerPrioritySlugs && providerPrioritySlugs.length > 0 ? (
+              <div key="casinoComparison">
+                <QuickComparisonTable
+                  count={3}
+                  title={`Bedste casinoer med ${content.displayName} slots`}
+                  prioritySlugs={providerPrioritySlugs}
+                />
+              </div>
+            ) : null,
           };
 
           // Shuffle section order deterministically per provider slug
-          const sectionKeys = ["intro", "stats", "top5", "catalog", "moneylinks", "faq", "crosslinks"];
+          const sectionKeys = ["intro", "stats", "casinoComparison", "top5", "catalog", "moneylinks", "faq", "crosslinks"];
           const shuffled = shuffle(sectionKeys);
 
           return shuffled.map((key) => {
