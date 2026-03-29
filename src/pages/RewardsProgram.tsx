@@ -9,7 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Gift, Video, UserCircle, Sparkles, Info, ArrowRight, CheckCircle2, Gamepad2 } from "lucide-react";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
-import { useAuth } from "@/hooks/useAuth";
+import { SlotRequestForm } from "@/components/SlotRequestForm";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
