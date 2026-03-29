@@ -5,7 +5,7 @@ import { BonusHuntSlotTable } from "@/components/bonus-hunt/BonusHuntSlotTable";
 import { BonusHuntStatsTab } from "@/components/bonus-hunt/BonusHuntStatsTab";
 import { BonusHuntGTWTab } from "@/components/bonus-hunt/BonusHuntGTWTab";
 import { BonusHuntAvgXTab } from "@/components/bonus-hunt/BonusHuntAvgXTab";
-import { BonusHuntSlotCoupon } from "@/components/bonus-hunt/BonusHuntSlotCoupon";
+
 import { SlotRequestForm } from "@/components/SlotRequestForm";
 
 import { BonusHuntVideoSection, getHuntVideoFromArchive } from "@/components/bonus-hunt/BonusHuntVideoSection";
