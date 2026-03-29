@@ -31,29 +31,7 @@ import { NotificationDropdown } from "./NotificationDropdown";
 import { SiteSearch } from "./header/SiteSearch";
 import { RedeemCodeDialog } from "./RedeemCodeDialog";
 import { getTodayDanish } from "@/lib/danishDate";
-import {
-  CASINO_LINKS, NYE_CASINOER_LINKS, SLOT_LINKS, SLOT_CATEGORY_LINKS, BLACKJACK_LINKS,
-  BLACKJACK_STRATEGY_LINKS, ROULETTE_LINKS, ROULETTE_STRATEGY_LINKS,
-  POKER_LINKS, OTHER_CASINOSPIL_LINKS, LIVE_CASINO_LINKS, BONUS_LINKS,
-  PAYMENT_LINKS, PROVIDER_LINKS, REVIEW_TOP_LINKS, REVIEW_ALL_LINKS,
-  COMMUNITY_LINKS, MORE_LINKS, FORFATTER_LINKS, type NavLink,
-} from "./header/navData";
-
-/** Render a list of NavLinks as DropdownMenuItems */
-function NavItems({ links, iconSize = "h-3 w-3" }: { links: NavLink[]; iconSize?: string }) {
-  return (
-    <>
-      {links.map((item) => (
-        <DropdownMenuItem key={item.to} asChild>
-          <Link to={item.to} className="flex items-center gap-2">
-            <Star className={iconSize} />
-            {item.label}
-          </Link>
-        </DropdownMenuItem>
-      ))}
-    </>
-  );
-}
+import type { NavLink } from "./header/navData";
 
 export const Header = memo(function Header() {
   const navigate = useNavigate();
