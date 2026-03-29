@@ -41,6 +41,15 @@ const BOOSTED_PROVIDER_LOGOS = new Set([
   "Booming Games",
 ]);
 
+/** Logos that are white/light and need a dark card background to be visible */
+const NEEDS_DARK_BG = new Set([
+  "Casinostuen",
+  "NordicBet",
+  "PlayKasino",
+  "Campobet",
+  "Spilleautomaten",
+]);
+
 function MegaLogoCard({
   to,
   label,
@@ -55,19 +64,23 @@ function MegaLogoCard({
   isReview?: boolean;
 }) {
   const needsBoost = BOOSTED_PROVIDER_LOGOS.has(label);
+  const darkBg = NEEDS_DARK_BG.has(label);
 
   return (
     <Link
       to={to}
       onClick={onClick}
-      className="group relative flex items-center justify-center rounded-xl border border-border/30 bg-muted/50 p-3 h-16 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)] hover:scale-[1.03]"
+      className={cn(
+        "group relative flex items-center justify-center rounded-xl border border-border/30 p-3 h-16 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)] hover:scale-[1.03]",
+        darkBg ? "bg-[hsl(230,25%,18%)]" : "bg-muted/50"
+      )}
     >
       <img
         src={logoUrl}
         alt={label}
         className={cn(
           "object-contain",
-          isReview ? "h-12 max-w-[96%]" : needsBoost ? "h-12 max-w-[96%]" : "h-10 max-w-[85%]"
+          (isReview || needsBoost) ? "h-12 max-w-[96%]" : "h-10 max-w-[85%]"
         )}
         loading="lazy"
       />
