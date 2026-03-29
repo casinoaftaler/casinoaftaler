@@ -1,36 +1,27 @@
 
 
-## Problem
+## Bredere header-navigation
 
-On `/nye-casinoer` and `/top-10-casino-online`, a full CasinoCard grid renders **immediately** after the QuickComparisonTable (Top 3), creating a wall of casino cards with no editorial content in between. Two more pages (`/nye-casinoer/bedste` and `/nye-casinoer/dansk-licens`) have InlineCasinoCards appearing within one section of the Top 3.
+### Nuværende problem
+Navigationen sidder i en `container` div med begrænset bredde og faste gaps (`gap-4 xl:gap-6`), så der er meget ubrugt plads på begge sider af menuen på brede skærme.
 
-## Pages to Fix
+### Løsning
+Udvid header-containeren og fordel nav-items jævnt over den tilgængelige plads, inspireret af CasinoPenge's layout.
 
-| Page | File | Issue |
-|------|------|-------|
-| `/nye-casinoer` | `NyeCasinoer.tsx` | CasinoCard grid (7 cards) directly after Top 3 |
-| `/top-10-casino-online` | `TopCasinoOnline.tsx` | CasinoCard grid (10 cards) directly after Top 3 |
-| `/nye-casinoer/bedste` | `BedsteNyeCasinoer.tsx` | InlineCasinoCards after 1 short text section |
-| `/nye-casinoer/dansk-licens` | `NyeCasinoerDanskLicens.tsx` | InlineCasinoCards after 1 short text section |
+### Tekniske ændringer
 
-No other pages have this pattern -- all other QuickComparisonTable instances are followed by editorial content sections.
+**Fil: `src/components/Header.tsx`**
 
-## Plan
+1. **Ændre container-klassen** på header-wrapperen fra `container` til `container max-w-[1600px]` (eller `w-full px-6 2xl:px-12`) for at bruge mere af skærmbredden.
 
-### 1. NyeCasinoer.tsx
-Move the CasinoCard grid (lines 237-281) from directly after QuickComparisonTable to **after Section 3** (Testmetode, ~line 439). This places 3 full editorial sections + screenshots between Top 3 and the card grid.
+2. **Ændre nav-elementets layout** fra faste gaps til `flex-1 justify-between` eller `justify-evenly`, så items spreder sig jævnt:
+   - Linje 157: Ændre `gap-4 xl:gap-6` til `flex-1 justify-evenly gap-2` så items fylder pladsen mellem logo og bruger-actions.
 
-### 2. TopCasinoOnline.tsx
-Move the CasinoCard grid (lines 250-335) from directly after QuickComparisonTable to **after the "Sådan vurderer vi" section** (~line 459). This places 2 editorial sections between Top 3 and the card grid.
+3. **Reducer icon+tekst spacing** lidt for at give plads til jævn fordeling: `gap-1` i stedet for `gap-1.5` på triggers.
 
-### 3. BedsteNyeCasinoer.tsx
-Move the `<InlineCasinoCards>` (line 91) further down -- after the scoring model section (~line 130+). This adds meaningful editorial distance.
-
-### 4. NyeCasinoerDanskLicens.tsx
-Move the `<InlineCasinoCards>` (line 127) further down -- after the "6 lovmæssige rettigheder" section. This adds editorial distance.
-
-## Technical Details
-- Pure layout reordering -- no new components or logic changes
-- Each move is a cut-and-paste of the existing JSX block to a later position in the same file
-- All existing Separators and section structure preserved
+### Resultat
+- Logo til venstre, bruger-actions til højre (som nu)
+- Nav-items fordelt jævnt over hele den tilgængelige bredde imellem
+- Responsivt: På mindre skærme forbliver layoutet som i dag (lg breakpoint)
+- Ingen ændringer til dropdown-indhold eller mobil-menu
 
