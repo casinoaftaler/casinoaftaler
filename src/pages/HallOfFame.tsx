@@ -482,20 +482,19 @@ export default function HallOfFame() {
           </div>
         </section>
 
-        {/* SEO Content */}
-        <HallOfFameSeoContent />
+        {/* Footer SEO – anti-footprint rotated */}
+        <CommunityFooterSeo
+          currentPath="/community/hall-of-fame"
+          author="jonas"
+          before={<HallOfFameSeoContent />}
+          after={<FAQSection faqs={faqItems} />}
+        />
 
-        <CommunitySeoSections />
-
-        <RelatedGuides currentPath="/community/hall-of-fame" />
-
-        <div className="mt-12">
-          <FAQSection faqs={faqItems} />
+        <div className="pb-12" />
         </div>
-
-        <CommunityBrandBlock />
-
-        <AuthorBio author="jonas" />
+          </div>
+          <ContentSidebar />
+        </div>
       </div>
     </>
   );
