@@ -1,13 +1,16 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense, lazy, useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
 
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
-import { ContentSidebar } from "@/components/ContentSidebar";
 import { type LucideIcon } from "lucide-react";
 import communityHero from "@/assets/community/community-hero.jpg";
+
+const LazyContentSidebar = lazy(() =>
+  import("@/components/ContentSidebar").then((mod) => ({ default: mod.ContentSidebar }))
+);
 
 interface CommunityPageLayoutProps {
   children: ReactNode;
