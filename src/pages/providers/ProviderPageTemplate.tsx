@@ -407,8 +407,15 @@ export function ProviderPage({
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime={readTime} />
 
-
-
+        {providerPrioritySlugs && providerPrioritySlugs.length > 0 && (
+          <div className="mb-10">
+            <QuickComparisonTable
+              count={3}
+              title={`Bedste casinoer med ${name} spil`}
+              prioritySlugs={providerPrioritySlugs}
+            />
+          </div>
+        )}
 
         {orderedSections.map((s, i) => (
           <Fragment key={s.key}>
