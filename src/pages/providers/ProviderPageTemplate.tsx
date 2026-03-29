@@ -111,7 +111,7 @@ const providerLinks = [
 ];
 
 const defaultSectionOrder = [
-  "intro", "casinoComparison", "casinos", "history", "games", "licenses",
+  "intro", "casinos", "history", "games", "licenses",
   "proscons", "strategic", "technical", "providers", "responsible",
 ];
 
@@ -212,15 +212,6 @@ export function ProviderPage({
         </div>
       </section>
     ),
-    casinoComparison: providerPrioritySlugs && providerPrioritySlugs.length > 0 ? (
-      <div>
-        <QuickComparisonTable
-          count={3}
-          title={`Bedste casinoer med ${name} spil`}
-          prioritySlugs={providerPrioritySlugs}
-        />
-      </div>
-    ) : null,
     casinos: <InlineCasinoCards title={`Casinoer med ${name}-spil`} />,
     licenses: (
       <section className="mb-12">
@@ -407,8 +398,15 @@ export function ProviderPage({
       <ContentPageLayout>
         <AuthorMetaBar author="kevin" readTime={readTime} />
 
-
-
+        {providerPrioritySlugs && providerPrioritySlugs.length > 0 && (
+          <div className="mb-10">
+            <QuickComparisonTable
+              count={3}
+              title={`Bedste casinoer med ${name} spil`}
+              prioritySlugs={providerPrioritySlugs}
+            />
+          </div>
+        )}
 
         {orderedSections.map((s, i) => (
           <Fragment key={s.key}>
