@@ -192,7 +192,7 @@ const CASINO_LOGO_BASE = "https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/ob
 
 export const REVIEW_TOP_LINKS: NavLink[] = [
   { to: "/casino-anmeldelser/spildansknu", label: "SpilDanskNu", logoUrl: "/src/assets/casino-logos/spildansknu.webp" },
-  { to: "/casino-anmeldelser/spilleautomaten", label: "Spilleautomaten", logoUrl: "/src/assets/casino-logos/spilleautomaten.png" },
+  { to: "/casino-anmeldelser/spilleautomaten", label: "Spilleautomaten", logoUrl: "/src/assets/casino-logos/spilleautomaten.webp" },
   { to: "/casino-anmeldelser/betinia", label: "Betinia", logoUrl: "/src/assets/casino-logos/betinia.webp" },
   { to: "/casino-anmeldelser/campobet", label: "Campobet", logoUrl: "/src/assets/casino-logos/campobet.webp" },
   { to: "/casino-anmeldelser/swift-casino", label: "Swift Casino", logoUrl: "/src/assets/casino-logos/swift-casino.webp" },
