@@ -175,7 +175,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
       { to: "/casino-anmeldelser/unibet", label: "Unibet", logoUrl: "/src/assets/reviews/unibet.webp" },
       { to: "/casino-anmeldelser/bet365", label: "bet365", logoUrl: "/src/assets/casino-logos/bet365.jpg" },
       { to: "/casino-anmeldelser/comeon", label: "ComeOn", logoUrl: "/src/assets/casino-logos/comeon.webp" },
-      { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil", iconName: "landmark" },
+      { to: "/casino-anmeldelser/danske-spil", label: "Danske Spil", logoUrl: "/src/assets/casino-logos/danskespil.webp" },
       { to: "/casino-anmeldelser/getlucky", label: "GetLucky", logoUrl: "/src/assets/reviews/getlucky.webp" },
       { to: "/casino-anmeldelser/888-casino", label: "888 Casino", logoUrl: "/src/assets/casino-logos/888casino.webp" },
       { to: "/casino-anmeldelser/betano", label: "Betano", logoUrl: "/src/assets/reviews/betano.webp" },
