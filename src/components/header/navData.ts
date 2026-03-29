@@ -3,7 +3,7 @@
  * Shared by both DesktopNav and MobileNav to avoid duplication.
  */
 
-import jonasImage from "@/assets/jonas-forfatter.png";
+import jonasImage from "@/assets/jonas-forfatter.webp";
 import kevinImage from "@/assets/kevin-forfatter.webp";
 import ajseImage from "@/assets/ajse-avatar.webp";
 import niklasImage from "@/assets/niklas-forfatter.webp";
