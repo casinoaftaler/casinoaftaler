@@ -19,6 +19,10 @@ const casinoLogos = import.meta.glob<{ default: string }>(
   "/src/assets/casino-logos/*.{webp,png,jpg}",
   { eager: true }
 );
+const reviewLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/reviews/*.{webp,png,jpg}",
+  { eager: true }
+);
 
 function resolveLogoUrl(item: NavLink): string | undefined {
   if (!item.logoUrl) return undefined;
@@ -27,6 +31,9 @@ function resolveLogoUrl(item: NavLink): string | undefined {
   }
   if (item.logoUrl.startsWith("/src/assets/casino-logos/")) {
     return casinoLogos[item.logoUrl]?.default;
+  }
+  if (item.logoUrl.startsWith("/src/assets/reviews/")) {
+    return reviewLogos[item.logoUrl]?.default;
   }
   return item.logoUrl;
 }
