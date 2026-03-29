@@ -212,6 +212,15 @@ export function ProviderPage({
         </div>
       </section>
     ),
+    casinoComparison: providerPrioritySlugs && providerPrioritySlugs.length > 0 ? (
+      <div>
+        <QuickComparisonTable
+          count={3}
+          title={`Bedste casinoer med ${name} spil`}
+          prioritySlugs={providerPrioritySlugs}
+        />
+      </div>
+    ) : null,
     casinos: <InlineCasinoCards title={`Casinoer med ${name}-spil`} />,
     licenses: (
       <section className="mb-12">
