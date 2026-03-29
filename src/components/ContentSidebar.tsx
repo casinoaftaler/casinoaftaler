@@ -118,7 +118,7 @@ function CategorySection({
                 )}
               >
                 {logoSrc ? (
-                  <span className="inline-flex items-center justify-center h-8 w-8 rounded-md bg-background border border-border/40 flex-shrink-0 overflow-hidden p-0.5">
+                  <span className="inline-flex items-center justify-center h-10 w-10 rounded-md bg-background border border-border/40 flex-shrink-0 overflow-hidden p-0.5">
                     <img
                       src={logoSrc}
                       alt=""
