@@ -30,7 +30,7 @@ interface CreditsExpiredOverlayProps {
 
 export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps) {
   const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnightCopenhagen);
-  const { data: casinos } = useCasinos();
+  const { data: playkasino } = useCasinoBySlug("playkasino");
   const { user } = useAuth();
 
   useEffect(() => {
