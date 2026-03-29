@@ -12,7 +12,7 @@ function PromoBanner({ to, image, alt, label, title }: { to: string; image: stri
       className="group relative block overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/50 hover:shadow-lg"
     >
       <div className="relative w-full overflow-hidden">
-        <img src={image} alt={alt} width={202} height={283} className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 aspect-[5/7]" loading="lazy" />
+        <img src={image} alt={alt} width={202} height={283} className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 aspect-[4/5]" loading="lazy" />
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-background via-background/70 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 p-3 flex flex-col gap-1.5">
           <p className="text-[10px] font-bold uppercase tracking-wider text-primary">🎰 Vind Præmier</p>
