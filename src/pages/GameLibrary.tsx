@@ -4,9 +4,7 @@ import { SEO } from "@/components/SEO";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunityConversionStrip } from "@/components/community/CommunityConversionStrip";
-import { CommunityBrandBlock } from "@/components/community/CommunityBrandBlock";
-import { RelatedGuides } from "@/components/RelatedGuides";
-import { CommunitySeoSections } from "@/components/community/CommunitySeoSections";
+import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 
 
 import { ContentSidebar } from "@/components/ContentSidebar";
