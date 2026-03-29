@@ -32,7 +32,10 @@ function resolveLogoUrl(item: NavLink): string | undefined {
   if (item.logoUrl.startsWith("/src/assets/casino-logos/")) {
     return casinoLogos[item.logoUrl]?.default;
   }
-  // Remote URLs (casino logos from storage)
+  if (item.logoUrl.startsWith("/src/assets/reviews/")) {
+    return reviewLogos[item.logoUrl]?.default;
+  }
+  // Remote URLs
   return item.logoUrl;
 }
 
