@@ -42,13 +42,6 @@ const BOOSTED_PROVIDER_LOGOS = new Set([
 ]);
 
 /** Logos that are white/light and need a dark card background to be visible */
-const NEEDS_DARK_BG = new Set([
-  "Casinostuen",
-  "NordicBet",
-  "PlayKasino",
-  "Campobet",
-  "Spilleautomaten",
-]);
 
 function MegaLogoCard({
   to,
