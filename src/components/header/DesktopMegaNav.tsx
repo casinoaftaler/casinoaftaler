@@ -193,7 +193,7 @@ export function DesktopMegaNav() {
     timeoutRef.current = window.setTimeout(() => {
       setActiveMenu(null);
       setFocusedSection(null);
-    }, 180);
+    }, 400);
   }, []);
 
   const handlePanelEnter = useCallback(() => {
@@ -207,6 +207,7 @@ export function DesktopMegaNav() {
   }, []);
 
   const expandSection = useCallback((sectionKey: string) => {
+    clearTimeout(timeoutRef.current);
     setFocusedSection(prev => prev === sectionKey ? null : sectionKey);
   }, []);
 
