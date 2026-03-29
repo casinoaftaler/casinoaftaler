@@ -220,7 +220,7 @@ function getEligibilityLabel(offer: CampaignOffer): string | null {
 
 // ─── Main Page ───
 const FreeSpinsIDag = () => {
-  const { data: casinos } = useCasinos();
+  
   const { data: pageMeta } = usePageLastmod("/free-spins-i-dag");
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const { ref: statsRef, revealed: statsRevealed } = useScrollReveal();
