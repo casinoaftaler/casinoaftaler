@@ -16,7 +16,7 @@ const providerLogos = import.meta.glob<{ default: string }>(
   { eager: true }
 );
 const casinoLogos = import.meta.glob<{ default: string }>(
-  "/src/assets/casino-logos/*.webp",
+  "/src/assets/casino-logos/*.{webp,png,jpg}",
   { eager: true }
 );
 
