@@ -40,8 +40,17 @@ const DARK_BG_LABELS = new Set([
   "Unibet", "NordicBet", "bwin", "MarathonBet", "Campobet",
 ]);
 
+const BOOSTED_PROVIDER_LOGOS = new Set([
+  "Yggdrasil",
+  "Microgaming",
+  "Red Tiger",
+  "Pragmatic Play",
+  "Booming Games",
+]);
+
 function MegaLogoCard({ to, label, logoUrl, onClick }: { to: string; label: string; logoUrl: string; onClick: () => void }) {
   const needsDark = DARK_BG_LABELS.has(label);
+  const needsBoost = BOOSTED_PROVIDER_LOGOS.has(label);
   return (
     <Link
       to={to}
@@ -54,7 +63,10 @@ function MegaLogoCard({ to, label, logoUrl, onClick }: { to: string; label: stri
       <img
         src={logoUrl}
         alt={label}
-        className="h-10 max-w-[85%] object-contain"
+        className={cn(
+          "object-contain",
+          needsBoost ? "h-12 max-w-[96%]" : "h-10 max-w-[85%]"
+        )}
         loading="lazy"
       />
       <span className="absolute inset-x-0 -bottom-0.5 text-center text-[10px] font-medium text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity truncate px-1">
