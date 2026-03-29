@@ -164,7 +164,7 @@ export const PAYMENT_LINKS: NavLink[] = [
 ];
 
 export const PROVIDER_LINKS: NavLink[] = [
-  { to: "/spiludviklere/netent", label: "NetEnt", logoUrl: "/src/assets/providers/netent.png" },
+  { to: "/spiludviklere/netent", label: "NetEnt", logoUrl: "/src/assets/providers/netent.webp" },
   { to: "/spiludviklere/pragmatic-play", label: "Pragmatic Play", logoUrl: "/src/assets/providers/pragmatic-play.png" },
   { to: "/spiludviklere/evolution-gaming", label: "Evolution Gaming", logoUrl: "/src/assets/providers/evolution-gaming.png" },
   { to: "/spiludviklere/relax-gaming", label: "Relax Gaming", logoUrl: "/src/assets/providers/relax-gaming.png" },
