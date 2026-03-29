@@ -513,6 +513,7 @@ export function DesktopMegaNav() {
             onClick={close}
           />
           <div
+            ref={panelRef}
             className={cn(
               "fixed left-0 right-0 z-50 border-b border-border/50 bg-popover shadow-xl transition-all",
               isClosing
