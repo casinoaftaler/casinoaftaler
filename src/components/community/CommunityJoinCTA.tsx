@@ -3,7 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Users, ArrowRight } from "lucide-react";
 import "@/styles/community-micro.css";
 
-export function CommunityJoinCTA() {
+interface CommunityJoinCTAProps {
+  description?: string;
+}
+
+export function CommunityJoinCTA({ description = "Spil gratis slots, deltag i turneringer og optjen rewards sammen med andre spillere." }: CommunityJoinCTAProps) {
   return (
     <Link
       to="/auth"
