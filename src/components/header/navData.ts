@@ -147,7 +147,7 @@ export const BONUS_LINKS: NavLinkWithIcon[] = [
   { to: "/free-spins-i-dag", label: "Free Spins i Dag", iconName: "calendar-check" },
   { to: "/omsaetningskrav", label: "Omsætningskrav", iconName: "calculator" },
   { to: "/indskudsbonus", label: "Indskudsbonus", iconName: "piggy-bank" },
-  { to: "/bonus-uden-omsaetningskrav", label: "Bonus uden Omsætningskrav", iconName: "check-circle" },
+  { to: "/bonus-uden-omsaetningskrav", label: "Bonus uden Omsætningskrav", iconName: "circle-check" },
 ];
 
 export const PAYMENT_LINKS: NavLink[] = [
