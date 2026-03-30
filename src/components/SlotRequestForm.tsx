@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/hooks/useAuth";
-import { useMySlotRequests, useCreateSlotRequest } from "@/hooks/useSlotRequests";
+import { useMySlotRequests, useCreateSlotRequest, usePendingQueuePositions } from "@/hooks/useSlotRequests";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { Loader2, Send, Clock, CheckCircle2, XCircle, Minus, Search, Plus } from "lucide-react";
@@ -20,6 +20,7 @@ const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secon
 export function SlotRequestForm() {
   const { user } = useAuth();
   const { data: myRequests, isLoading: requestsLoading } = useMySlotRequests();
+  const { data: queuePositions } = usePendingQueuePositions();
   const createRequest = useCreateSlotRequest();
   const { data: siteSettings } = useSiteSettings();
   const { data: slots, isLoading: slotsLoading } = useSlotCatalog();
@@ -272,6 +273,9 @@ export function SlotRequestForm() {
                     <span className="text-muted-foreground">({req.provider})</span>
                   </div>
                   <div className="flex items-center gap-2">
+                    {req.status === "pending" && queuePositions?.get(req.id) && (
+                      <Badge variant="outline" className="text-xs">#{queuePositions.get(req.id)} i køen</Badge>
+                    )}
                     {req.credits_awarded > 0 && (
                       <span className="text-xs text-primary font-medium">+{req.credits_awarded} credits</span>
                     )}

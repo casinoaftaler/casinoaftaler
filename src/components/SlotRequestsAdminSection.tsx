@@ -54,7 +54,8 @@ export function SlotRequestsAdminSection() {
     updateStatus.mutate({ requestId, status, userId, awardCredits, huntNumber: awardCredits ? activeHuntNumber : undefined });
   };
 
-  const pendingRequests = requests?.filter(req => req.status === "pending") ?? [];
+  const pendingRequests = (requests?.filter(req => req.status === "pending") ?? [])
+    .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
 
   return (
     <div className="space-y-6">
@@ -108,6 +109,7 @@ export function SlotRequestsAdminSection() {
             <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead className="w-12">#</TableHead>
                   <TableHead>Bruger</TableHead>
                   <TableHead>Slot</TableHead>
                   <TableHead>Udbyder</TableHead>
@@ -117,11 +119,12 @@ export function SlotRequestsAdminSection() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {pendingRequests.map((req) => {
+                {pendingRequests.map((req, index) => {
                   const config = STATUS_CONFIG[req.status] || STATUS_CONFIG.pending;
                   const isPending = req.status === "pending";
                   return (
                     <TableRow key={req.id}>
+                      <TableCell className="font-bold text-primary">#{index + 1}</TableCell>
                       <TableCell className="font-medium">{req.display_name}</TableCell>
                       <TableCell>
                         {req.slot_name}
