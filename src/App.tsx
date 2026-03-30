@@ -9,6 +9,7 @@ import { QueryClient } from "@tanstack/query-core";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { SlotPageLoading } from "./components/slots/SlotPageLoading";
+import { DwellRewardBadge } from "./components/DwellRewardBadge";
 
 import Index from "./pages/Index";
 
