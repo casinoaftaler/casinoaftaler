@@ -76,7 +76,7 @@ function CategorySection({ category }: { category: SidebarCategory }) {
   const Icon = iconMap[category.iconName] || Crown;
 
   return (
-    <li className="overflow-hidden rounded-lg border border-border/60 transition-shadow hover:shadow-sm">
+    <li className="overflow-hidden rounded-lg border border-border/80 transition-shadow hover:shadow-sm">
       <div className="flex w-full items-center gap-2.5 px-4 py-3 font-semibold text-[15px] bg-primary/10 text-foreground">
         <span className="inline-flex items-center justify-center h-7 w-7 rounded-md flex-shrink-0 bg-primary/10 text-primary">
           <Icon className="h-4.5 w-4.5" />
