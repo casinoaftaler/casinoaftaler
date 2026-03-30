@@ -454,7 +454,7 @@ const Forretningsmodel = () => {
               { to: "/casino-bonus", icon: BookOpen, title: "Casino Bonus Guide", desc: "Komplet guide til alle bonustyper i Danmark" },
               { to: "/casinoer", icon: Star, title: "Alle Casinoer", desc: "Dybdegående kategoriguides og analyser" },
               { to: "/nye-casinoer", icon: Trophy, title: "Nye Casinoer", desc: "De nyeste casinoer med dansk licens" },
-              { to: "/casino-anmeldelser", icon: FileText, title: "Casino Anmeldelser", desc: "{ to: "/casino-anmeldelser", icon: FileText, title: "Casino Anmeldelser", desc: "30+ detaljerede casinoanmeldelser" }," },
+              { to: "/casino-anmeldelser", icon: FileText, title: "Casino Anmeldelser", desc: "30+ detaljerede casinoanmeldelser" }, "/casino-anmeldelser", icon: FileText, title: "Casino Anmeldelser", desc: "30+ detaljerede casinoanmeldelser" }," },
               { to: "/casinospil", icon: Gamepad2, title: "Casinospil", desc: "Guides til blackjack, roulette, poker og slots" },
               { to: "/casinospil/spillemaskiner", icon: Star, title: "Spillemaskiner", desc: "30+ dybdegående spillemaskineguides" },
               { to: "/live-casino", icon: Users, title: "Live Casino", desc: "Guide til live dealer-spil i Danmark" },
