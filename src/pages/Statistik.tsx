@@ -39,6 +39,7 @@ const PROVIDER_GUIDE_SLUGS: Record<string, string> = {
   "Evolution Gaming": "evolution-gaming",
   "Relax Gaming": "relax-gaming",
   "Play'n GO": "play-n-go",
+  "Play'n Go": "play-n-go",
   "Hacksaw Gaming": "hacksaw-gaming",
   "Nolimit City": "nolimit-city",
   "ELK Studios": "elk-studios",
