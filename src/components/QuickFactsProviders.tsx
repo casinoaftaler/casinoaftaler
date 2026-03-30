@@ -8,6 +8,7 @@ const providerRoutes: Record<string, string> = {
   "Evolution Gaming": "/spiludviklere/evolution-gaming",
   "Relax Gaming": "/spiludviklere/relax-gaming",
   "Play'n GO": "/spiludviklere/play-n-go",
+  "Play'n Go": "/spiludviklere/play-n-go",
   "Hacksaw Gaming": "/spiludviklere/hacksaw-gaming",
   "Nolimit City": "/spiludviklere/nolimit-city",
   "ELK Studios": "/spiludviklere/elk-studios",
@@ -17,6 +18,11 @@ const providerRoutes: Record<string, string> = {
   "Red Tiger": "/spiludviklere/red-tiger",
   "Red Tiger Gaming": "/spiludviklere/red-tiger",
   "Big Time Gaming": "/spiludviklere/big-time-gaming",
+  "Push Gaming": "/spiludviklere/push-gaming",
+  "Thunderkick": "/spiludviklere/thunderkick",
+  "Blueprint Gaming": "/spiludviklere/blueprint-gaming",
+  "Quickspin": "/spiludviklere/quickspin",
+  "Betsoft": "/spiludviklere/betsoft",
 };
 
 /** Maps provider display names to their /spillemaskiner/ hub slugs */
@@ -26,6 +32,7 @@ const providerHubSlugs: Record<string, string> = {
   "Evolution Gaming": "evolution-gaming",
   "Relax Gaming": "relax-gaming",
   "Play'n GO": "play-n-go",
+  "Play'n Go": "play-n-go",
   "Hacksaw Gaming": "hacksaw-gaming",
   "Nolimit City": "nolimit-city",
   "ELK Studios": "elk-studios",
@@ -36,6 +43,11 @@ const providerHubSlugs: Record<string, string> = {
   "Red Tiger Gaming": "red-tiger",
   "Big Time Gaming": "big-time-gaming",
   "IGT": "igt",
+  "Push Gaming": "push-gaming",
+  "Thunderkick": "thunderkick",
+  "Blueprint Gaming": "blueprint-gaming",
+  "Quickspin": "quickspin",
+  "Betsoft": "betsoft",
 };
 
 interface QuickFactsProvidersProps {

@@ -27,6 +27,11 @@ const PROVIDER_SLUG_MAP: Record<string, string> = {
   'elk studios': 'elk-studios',
   'evolution gaming': 'evolution-gaming',
   'evolution': 'evolution-gaming',
+  'push gaming': 'push-gaming',
+  'thunderkick': 'thunderkick',
+  'blueprint gaming': 'blueprint-gaming',
+  'quickspin': 'quickspin',
+  'betsoft': 'betsoft',
 };
 
 function getProviderSlug(provider: string): string | null {
