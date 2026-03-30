@@ -556,7 +556,7 @@ const MobilCasino = () => {
                 title: "Game Shows",
                 desc: "Crazy Time, Monopoly Live, Dream Catcher og lignende live game shows. Fuldt interaktive med chat og betting-interface på mobil.",
                 coverage: "95 %+",
-                link: "/casinospil/game-shows",
+                link: "/live-casino/game-shows",
               },
               {
                 title: "Jackpot Slots",

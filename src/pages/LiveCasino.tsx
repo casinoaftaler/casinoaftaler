@@ -454,7 +454,7 @@ const LiveCasino = () => {
             <strong>Nøgleindsigt:</strong> Hvis du udelukkende optimerer efter house edge, er live blackjack med basisstrategi det bedste valg (0,50 %), fulgt af French <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> med La Partage (1,35 %) og <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> banker-bet (1,06 %). Undgå altid baccarat tie-bet (14,36 %) og amerikansk roulette (5,26 %) – de er blandt de dårligste bets i hele casinoindustrien.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Bemærk forskellen mellem house edge og volatilitet. <Link to="/casinospil/game-shows" className={linkClass}>Game shows</Link> som Crazy Time har både højere house edge OG højere volatilitet. Det betyder, at du gennemsnitligt taber mere pr. krone, og at dine resultater svinger vildere fra session til session. For underholdningsværdi er game shows fremragende – for profitoptimering er de det dårligste valg.
+            Bemærk forskellen mellem house edge og volatilitet. <Link to="/live-casino/game-shows" className={linkClass}>Game shows</Link> som Crazy Time har både højere house edge OG højere volatilitet. Det betyder, at du gennemsnitligt taber mere pr. krone, og at dine resultater svinger vildere fra session til session. For underholdningsværdi er game shows fremragende – for profitoptimering er de det dårligste valg.
           </p>
         </section>
 

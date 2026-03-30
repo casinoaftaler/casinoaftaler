@@ -40,7 +40,7 @@ const faqs: { question: string; answer: string | React.ReactNode }[] = [
     question: "Hvad er forskellen på Monopoly Live og Crazy Time?",
     answer: (
       <>
-        Begge er Evolution <Link to="/casinospil/game-shows" className={linkClass}>game shows</Link>, men med forskellige profiler. Crazy Time har 4 bonusspil (Pachinko, Cash Hunt, Coin Flip, Crazy Time) mod Monopolys 1 bonusrunde. Crazy Time har højere max gevinst (25.000x vs. ~10.000x) og højere house edge (4,08 % vs. 3,77 %). Monopoly Livs bonusrunde er mere kompleks og underholdende, mens Crazy Time tilbyder mere variation.
+        Begge er Evolution <Link to="/live-casino/game-shows" className={linkClass}>game shows</Link>, men med forskellige profiler. Crazy Time har 4 bonusspil (Pachinko, Cash Hunt, Coin Flip, Crazy Time) mod Monopolys 1 bonusrunde. Crazy Time har højere max gevinst (25.000x vs. ~10.000x) og højere house edge (4,08 % vs. 3,77 %). Monopoly Livs bonusrunde er mere kompleks og underholdende, mens Crazy Time tilbyder mere variation.
       </>
     ),
   },
@@ -117,7 +117,7 @@ const MonopolyLiveGuide = () => {
 
         <QuickComparisonTable count={3} title="Bedste Casinoer til Monopoly Live" prioritySlugs={["luna-casino", "swift-casino", "campobet"]} />
 <p className="mb-6 text-muted-foreground leading-relaxed">
-          Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her analyserer vi Monopoly Live specifikt – Evolutions populære game show, der kombinerer et live pengehjul med en immersiv 3D Monopoly-bonusrunde. Alt indhold er baseret på matematisk analyse og personlig erfaring fra 100+ timer med Monopoly Live-sessions. For en bredere oversigt over game shows, se vores <Link to="/casinospil/game-shows" className={linkClass}>game show guide</Link>.
+          Denne side er en del af vores <Link to="/live-casino" className={linkClass}>komplette live casino guide</Link>. Her analyserer vi Monopoly Live specifikt – Evolutions populære game show, der kombinerer et live pengehjul med en immersiv 3D Monopoly-bonusrunde. Alt indhold er baseret på matematisk analyse og personlig erfaring fra 100+ timer med Monopoly Live-sessions. For en bredere oversigt over game shows, se vores <Link to="/live-casino/game-shows" className={linkClass}>game show guide</Link>.
         </p>
 
         <InlineCasinoCards title="Spil Monopoly Live her" count={6} />
