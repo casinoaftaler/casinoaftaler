@@ -50,7 +50,7 @@ const SLUG_OVERRIDES: Record<string, MoneyLink[]> = {
   "rtp": [
     { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Find spillemaskiner med bedst tilbagebetaling" },
     { to: "/casino-bonus", label: "Casino Bonus", icon: Gift, desc: "Bonusser til slots med høj RTP" },
-    { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "Sammenlign RTP på 1.400+ slots" },
+    { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "{ to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "Sammenlign RTP på 1.470+ slots" }," },
     { to: "/free-spins", label: "Free Spins", icon: Sparkles, desc: "Brug free spins på høj-RTP slots" },
   ],
   "wagering": [
