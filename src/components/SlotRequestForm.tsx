@@ -273,6 +273,9 @@ export function SlotRequestForm() {
                     <span className="text-muted-foreground">({req.provider})</span>
                   </div>
                   <div className="flex items-center gap-2">
+                    {req.status === "pending" && queuePositions?.get(req.id) && (
+                      <Badge variant="outline" className="text-xs">#{queuePositions.get(req.id)} i køen</Badge>
+                    )}
                     {req.credits_awarded > 0 && (
                       <span className="text-xs text-primary font-medium">+{req.credits_awarded} credits</span>
                     )}

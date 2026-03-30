@@ -119,11 +119,12 @@ export function SlotRequestsAdminSection() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {pendingRequests.map((req) => {
+                {pendingRequests.map((req, index) => {
                   const config = STATUS_CONFIG[req.status] || STATUS_CONFIG.pending;
                   const isPending = req.status === "pending";
                   return (
                     <TableRow key={req.id}>
+                      <TableCell className="font-bold text-primary">#{index + 1}</TableCell>
                       <TableCell className="font-medium">{req.display_name}</TableCell>
                       <TableCell>
                         {req.slot_name}
