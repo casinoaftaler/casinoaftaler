@@ -20,6 +20,7 @@ const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secon
 export function SlotRequestForm() {
   const { user } = useAuth();
   const { data: myRequests, isLoading: requestsLoading } = useMySlotRequests();
+  const { data: queuePositions } = usePendingQueuePositions();
   const createRequest = useCreateSlotRequest();
   const { data: siteSettings } = useSiteSettings();
   const { data: slots, isLoading: slotsLoading } = useSlotCatalog();
