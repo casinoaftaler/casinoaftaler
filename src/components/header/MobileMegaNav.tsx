@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users, CreditCard, Gamepad2, User, Star, Moon, Sun, icons } from "lucide-react";
+import { ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users, CreditCard, Gamepad2, User, Star, Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MENU_ICON_MAP } from "./menuIconMap";
 import {
