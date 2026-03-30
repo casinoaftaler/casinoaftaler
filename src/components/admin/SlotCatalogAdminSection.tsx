@@ -89,14 +89,41 @@ function ArchetypeClassificationSection() {
   const runEnrichment = async () => {
     setEnriching(true);
     setEnrichResult(null);
+    let totalEnriched = 0;
+    let allResults: any[] = [];
+    let remaining = 999;
+    let batchNum = 0;
+
     try {
-      const res = await supabase.functions.invoke("slot-enrich-analysis", {
-        body: { limit: 8 },
-      });
-      if (res.error) throw res.error;
-      const result = res.data as { enriched: number; total: number; results?: any[] };
-      setEnrichResult(result);
-      toast.success(`${result.enriched} af ${result.total} slots beriget!`);
+      while (remaining > 0) {
+        batchNum++;
+        toast.info(`Batch ${batchNum} kører... (${totalEnriched} færdige)`);
+        
+        const res = await supabase.functions.invoke("slot-enrich-analysis", {
+          body: { limit: 30 },
+        });
+        if (res.error) throw res.error;
+        
+        const result = res.data as { enriched: number; total: number; remaining: number; results?: any[] };
+        totalEnriched += result.enriched;
+        remaining = result.remaining ?? 0;
+        if (result.results) allResults = [...allResults, ...result.results];
+        
+        setEnrichResult({ enriched: totalEnriched, total: totalEnriched + remaining, results: allResults });
+
+        // Stop if nothing was enriched (all rate-limited or errors)
+        if (result.enriched === 0) {
+          toast.warning("Ingen slots beriget i denne batch – stopper.");
+          break;
+        }
+
+        // Pause between batches to avoid rate limits
+        if (remaining > 0) {
+          await new Promise(r => setTimeout(r, 2000));
+        }
+      }
+      
+      toast.success(`Færdig! ${totalEnriched} slots beriget i alt.`);
     } catch (err: any) {
       toast.error("Fejl: " + (err.message || "Ukendt fejl"));
     } finally {
