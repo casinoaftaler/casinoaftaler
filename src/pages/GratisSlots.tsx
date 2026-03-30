@@ -174,7 +174,7 @@ export default function GratisSlots() {
             >
               <div className="relative w-full aspect-[4/3] bg-muted/30 rounded-md overflow-hidden">
                 <img
-                  src={`https://cdn.pragmaticplay.net/game_pic/rec/325/${slot.game_id}.png`}
+                  src={`https://zhpbqqhtgnblaugrqhqi.supabase.co/storage/v1/object/public/slot-thumbnails/${slot.game_id}.webp`}
                   alt={slot.slot_name}
                   className="w-full h-full object-cover"
                   loading="lazy"
