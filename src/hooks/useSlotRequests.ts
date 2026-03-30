@@ -100,25 +100,19 @@ export function useCreateSlotRequest() {
         throw new Error("Denne slot er allerede blevet requested af en anden bruger");
       }
 
-      // Check if slot was already hit in the current active hunt (any user)
-      const { data: alreadyHitAny } = await supabase
-        .from("slot_requests" as any)
-        .select("id")
-        .ilike("slot_name", data.slot_name)
-        .eq("status", "bonus_hit")
-        .limit(1);
-
       // Get active hunt to scope the check
       const { data: activeSessionCheck } = await supabase
         .from("bonus_hunt_sessions" as any)
-        .select("hunt_number")
+        .select("hunt_number, streamsystem_hunt_id")
         .eq("status", "active")
         .order("created_at", { ascending: false })
         .limit(1)
         .maybeSingle();
 
       const activeHuntNum = (activeSessionCheck as any)?.hunt_number;
+      
       if (activeHuntNum) {
+        // Check if already hit in this hunt
         const { data: alreadyHitInHunt } = await supabase
           .from("slot_requests" as any)
           .select("id")
@@ -129,6 +123,34 @@ export function useCreateSlotRequest() {
 
         if ((alreadyHitInHunt as any[])?.length > 0) {
           throw new Error("Denne slot er allerede blevet ramt i den aktive bonus hunt");
+        }
+
+        // Check if slot is already on the active hunt's slot list (from API)
+        try {
+          const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
+          const proxyUrl = `https://${projectId}.supabase.co/functions/v1/bonus-hunt-proxy?huntId=${activeHuntNum}`;
+          const resp = await fetch(proxyUrl, {
+            headers: { 'apikey': import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY },
+          });
+          if (resp.ok) {
+            const huntData = await resp.json();
+            const slots = huntData?.data?.slots || huntData?.slots || [];
+            const reqName = data.slot_name.toLowerCase().trim();
+            const isAlreadyOnHunt = slots.some((s: any) => {
+              const huntName = (s.slot?.searchName || s.slot?.name || s.title || '').toLowerCase().trim();
+              if (!huntName || huntName.length < 3) return false;
+              if (huntName === reqName) return true;
+              if (reqName.length >= 4 && huntName.includes(reqName)) return true;
+              if (huntName.length >= 4 && reqName.includes(huntName)) return true;
+              return false;
+            });
+            if (isAlreadyOnHunt) {
+              throw new Error("Denne slot er allerede på den aktive bonus hunt liste. Du kan ikke requeste en slot der allerede er med.");
+            }
+          }
+        } catch (e: any) {
+          // Re-throw our validation error, ignore fetch errors
+          if (e.message?.includes("allerede på den aktive")) throw e;
         }
       }
 
