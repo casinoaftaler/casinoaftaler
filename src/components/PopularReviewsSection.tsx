@@ -92,7 +92,9 @@ export function PopularReviewsSection() {
       <p className="mt-4 text-muted-foreground leading-relaxed">
         Se alle vores{" "}
         <Link to="/casino-anmeldelser" className="text-primary hover:underline font-medium">
-          29 casino anmeldelser
+        <Link to="/casino-anmeldelser" className="text-primary hover:underline font-medium">
+          30 casino anmeldelser
+        </Link>{" "}
         </Link>{" "}
         for en komplet oversigt over det danske marked.
       </p>

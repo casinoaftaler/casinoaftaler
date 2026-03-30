@@ -7,7 +7,7 @@ const trustPoints = [
     title: "Kun dansk licens",
     description:
       "Vi anbefaler udelukkende casinoer med aktiv licens fra Spillemyndigheden. Hver licens verificeres direkte mod det officielle register.",
-    stat: "29+ casinoer testet",
+    stat: "30+ casinoer testet",
   },
   {
     icon: BarChart3,
