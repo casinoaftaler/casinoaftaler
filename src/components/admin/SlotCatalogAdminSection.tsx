@@ -174,7 +174,7 @@ function ArchetypeClassificationSection() {
 
           <Button onClick={runEnrichment} disabled={enriching || running} variant="secondary">
             {enriching ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Database className="h-4 w-4 mr-2" />}
-            {enriching ? "Beriger..." : `Berig testgruppe (top 25 stats-heavy)`}
+            {enriching ? "Beriger automatisk..." : `Berig alle stats-heavy (auto)`}
           </Button>
         </div>
 
