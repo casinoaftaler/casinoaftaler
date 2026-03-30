@@ -695,7 +695,7 @@ export default function PokerBedsteSiderGuide() {
           </div>
 
           <p className="text-muted-foreground leading-relaxed">
-            For den ultimate guide til at forbedre dit strategiske fundament, se vores <Link to="/casinospil/poker/strategi" className={linkClass}>pokerstrategi-guide</Link>, som dækker preflop-ranges, positionsspil, pot odds og avancerede concepts som implied odds og reverse implied odds.
+            For den ultimate guide til at forbedre dit strategiske fundament, se vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>pokerstrategi-guide</Link>, som dækker preflop-ranges, positionsspil, pot odds og avancerede concepts som implied odds og reverse implied odds.
           </p>
         </section>
 
