@@ -30,9 +30,7 @@ export function DwellRewardBadge() {
   const hasPlayedSound = useRef(false);
 
   const completed = isClaimed || alreadyCompleted;
-  // Filter out completed pages AND current page (which may have just been completed but not yet reflected in DB)
   const nextMission = pages.find((p) => !p.completed && p.path !== pathname);
-  const allMissionsComplete = !nextMission && completed;
 
   // Current milestone message
   const currentMilestone = useMemo(() => {
@@ -45,7 +43,7 @@ export function DwellRewardBadge() {
     for (const m of MILESTONES) {
       if (prevSeconds > m.at && secondsLeft <= m.at && secondsLeft > 0) {
         setMilestoneFlash(m.text);
-        const timer = setTimeout(() => setMilestoneFlash(null), 2000);
+        const timer = setTimeout(() => setMilestoneFlash(null), 3000);
         setPrevSeconds(secondsLeft);
         return () => clearTimeout(timer);
       }
@@ -73,10 +71,10 @@ export function DwellRewardBadge() {
     }
   }, [isClaimed]);
 
-  // Auto-hide after 4s if completed AND no next mission
+  // Auto-hide after 5s if completed AND no next mission
   useEffect(() => {
     if (completed && !nextMission) {
-      const timer = setTimeout(() => setVisible(false), 4000);
+      const timer = setTimeout(() => setVisible(false), 5000);
       return () => clearTimeout(timer);
     }
   }, [completed, nextMission]);
@@ -88,43 +86,63 @@ export function DwellRewardBadge() {
   const circumference = 2 * Math.PI * 26;
   const strokeDashoffset = circumference * (1 - progress);
 
-  // Dynamic glow color based on progress
   const glowIntensity = Math.min(progress * 1.5, 1);
   const isNearEnd = secondsLeft <= 30 && secondsLeft > 0;
+
+  // Format seconds as mm:ss for display
+  const minutes = Math.floor(secondsLeft / 60);
+  const secs = secondsLeft % 60;
+  const timeDisplay = minutes > 0 ? `${minutes}:${secs.toString().padStart(2, "0")}` : `${secs}s`;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 animate-fade-in">
       {/* Milestone toast */}
       {milestoneFlash && (
-        <div className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap animate-fade-in">
-          <div className="rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-1.5 text-xs font-bold text-white shadow-lg shadow-amber-500/30">
+        <div className="absolute -top-14 left-1/2 -translate-x-1/2 whitespace-nowrap animate-fade-in">
+          <div
+            className="rounded-full px-5 py-2 text-sm font-bold text-white shadow-xl"
+            style={{
+              background: "linear-gradient(135deg, hsl(38, 92%, 50%), hsl(25, 95%, 53%), hsl(15, 95%, 50%))",
+              boxShadow: "0 4px 20px -2px rgba(245, 158, 11, 0.5), 0 0 40px -8px rgba(249, 115, 22, 0.3)",
+              animation: "pulse 1.5s ease-in-out infinite",
+            }}
+          >
             {milestoneFlash}
           </div>
         </div>
       )}
 
       <div
-        className={`relative flex items-center gap-3.5 rounded-2xl border-2 px-5 py-3.5 shadow-xl backdrop-blur-sm transition-all duration-500 ${
+        className={`relative flex items-center gap-4 rounded-2xl border-2 px-5 py-4 shadow-2xl backdrop-blur-md transition-all duration-700 ${
           completed
-            ? "bg-gradient-to-r from-emerald-500/15 to-emerald-400/10 border-emerald-500/40 shadow-emerald-500/20"
+            ? "border-emerald-500/50"
             : isNearEnd
-              ? "bg-gradient-to-r from-orange-500/15 to-amber-500/10 border-orange-500/50 shadow-orange-500/25"
-              : "bg-gradient-to-r from-amber-500/10 to-orange-500/5 border-amber-500/40 shadow-amber-500/15"
+              ? "border-orange-500/60"
+              : "border-amber-500/40"
         }`}
         style={{
+          background: completed
+            ? "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(52, 211, 153, 0.08) 100%)"
+            : isNearEnd
+              ? "linear-gradient(135deg, rgba(249, 115, 22, 0.18) 0%, rgba(245, 158, 11, 0.10) 100%)"
+              : "linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(249, 115, 22, 0.06) 100%)",
           boxShadow: completed
-            ? "0 8px 32px -4px rgba(16, 185, 129, 0.25)"
-            : `0 8px 32px -4px rgba(245, 158, 11, ${0.1 + glowIntensity * 0.2})`,
+            ? "0 10px 40px -6px rgba(16, 185, 129, 0.35), 0 0 60px -12px rgba(52, 211, 153, 0.2), inset 0 1px 0 rgba(255,255,255,0.1)"
+            : isNearEnd
+              ? `0 10px 40px -6px rgba(249, 115, 22, 0.4), 0 0 60px -12px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(255,255,255,0.1)`
+              : `0 10px 40px -6px rgba(245, 158, 11, ${0.12 + glowIntensity * 0.25}), inset 0 1px 0 rgba(255,255,255,0.1)`,
         }}
       >
-        {/* Animated glow ring while active */}
+        {/* Animated background glow */}
         {!completed && isActive && (
           <div
-            className={`absolute inset-0 rounded-2xl transition-opacity duration-1000 ${
+            className={`absolute inset-0 rounded-2xl transition-opacity duration-1000 pointer-events-none ${
               isNearEnd ? "animate-pulse" : ""
             }`}
             style={{
-              background: `radial-gradient(ellipse at center, rgba(245, 158, 11, ${0.05 + glowIntensity * 0.08}) 0%, transparent 70%)`,
+              background: isNearEnd
+                ? `radial-gradient(ellipse at 30% 50%, rgba(249, 115, 22, 0.15) 0%, transparent 60%)`
+                : `radial-gradient(ellipse at 30% 50%, rgba(245, 158, 11, ${0.05 + glowIntensity * 0.1}) 0%, transparent 60%)`,
             }}
           />
         )}
@@ -132,35 +150,54 @@ export function DwellRewardBadge() {
         {/* Sparkle particles near completion */}
         {isNearEnd && !completed && (
           <>
-            <div className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-amber-400 animate-ping opacity-75" />
-            <div className="absolute -bottom-0.5 right-4 h-1.5 w-1.5 rounded-full bg-orange-400 animate-ping opacity-60" style={{ animationDelay: "0.5s" }} />
+            <div className="absolute -top-1.5 -right-1.5 h-2.5 w-2.5 rounded-full animate-ping" style={{ background: "hsl(38, 92%, 50%)", opacity: 0.8 }} />
+            <div className="absolute -bottom-1 right-6 h-2 w-2 rounded-full animate-ping" style={{ background: "hsl(25, 95%, 53%)", opacity: 0.6, animationDelay: "0.5s" }} />
+            <div className="absolute top-2 -left-1 h-1.5 w-1.5 rounded-full animate-ping" style={{ background: "hsl(38, 92%, 50%)", opacity: 0.5, animationDelay: "1s" }} />
+          </>
+        )}
+
+        {/* Completion celebration particles */}
+        {completed && (
+          <>
+            <div className="absolute -top-2 left-6 h-2 w-2 rounded-full animate-ping" style={{ background: "hsl(160, 84%, 39%)", opacity: 0.7 }} />
+            <div className="absolute -right-1 top-3 h-1.5 w-1.5 rounded-full animate-ping" style={{ background: "hsl(160, 84%, 39%)", opacity: 0.5, animationDelay: "0.7s" }} />
           </>
         )}
 
         {/* Circular progress */}
-        <div className="relative h-14 w-14 flex-shrink-0">
-          <svg className="h-14 w-14 -rotate-90" viewBox="0 0 56 56">
+        <div className="relative h-16 w-16 flex-shrink-0">
+          <svg className="h-16 w-16 -rotate-90" viewBox="0 0 64 64">
             {/* Track */}
-            <circle cx="28" cy="28" r="26" fill="none" strokeWidth="3" className="stroke-muted/20" />
+            <circle cx="32" cy="32" r="28" fill="none" strokeWidth="3.5" stroke="hsl(var(--muted) / 0.2)" />
             {/* Progress arc */}
             {!completed && (
               <circle
-                cx="28" cy="28" r="26"
+                cx="32" cy="32" r="28"
                 fill="none"
                 stroke={isNearEnd ? "url(#dwell-gradient-hot)" : "url(#dwell-gradient)"}
-                strokeWidth="3.5"
+                strokeWidth="4"
                 strokeLinecap="round"
-                strokeDasharray={circumference}
-                strokeDashoffset={strokeDashoffset}
-                className="transition-all duration-300"
+                strokeDasharray={2 * Math.PI * 28}
+                strokeDashoffset={(2 * Math.PI * 28) * (1 - progress)}
+                className="transition-all duration-700 ease-out"
                 style={{
-                  filter: isNearEnd ? "drop-shadow(0 0 4px rgba(249, 115, 22, 0.5))" : "none",
+                  filter: isNearEnd
+                    ? "drop-shadow(0 0 8px rgba(249, 115, 22, 0.6))"
+                    : progress > 0.3
+                      ? `drop-shadow(0 0 ${4 + glowIntensity * 4}px rgba(245, 158, 11, ${0.3 + glowIntensity * 0.3}))`
+                      : "none",
                 }}
               />
             )}
             {/* Completed ring */}
             {completed && (
-              <circle cx="28" cy="28" r="26" fill="none" strokeWidth="3" className="stroke-emerald-500" style={{ filter: "drop-shadow(0 0 6px rgba(16, 185, 129, 0.4))" }} />
+              <circle
+                cx="32" cy="32" r="28"
+                fill="none"
+                strokeWidth="4"
+                stroke="hsl(160, 84%, 39%)"
+                style={{ filter: "drop-shadow(0 0 8px rgba(16, 185, 129, 0.5))" }}
+              />
             )}
             <defs>
               <linearGradient id="dwell-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -169,7 +206,7 @@ export function DwellRewardBadge() {
               </linearGradient>
               <linearGradient id="dwell-gradient-hot" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="hsl(25, 95%, 53%)" />
-                <stop offset="100%" stopColor="hsl(15, 95%, 50%)" />
+                <stop offset="100%" stopColor="hsl(0, 90%, 55%)" />
               </linearGradient>
             </defs>
           </svg>
@@ -177,11 +214,11 @@ export function DwellRewardBadge() {
           <div className="absolute inset-0 flex items-center justify-center">
             {completed ? (
               <div className="animate-scale-in">
-                <Check className="h-6 w-6 text-emerald-500" strokeWidth={3} />
+                <Check className="h-7 w-7 text-emerald-500" strokeWidth={3} />
               </div>
             ) : (
               <span
-                className={`text-base font-black tabular-nums transition-colors duration-300 ${
+                className={`text-lg font-black tabular-nums transition-colors duration-300 ${
                   isNearEnd ? "text-orange-500" : "text-foreground"
                 }`}
               >
@@ -192,44 +229,48 @@ export function DwellRewardBadge() {
         </div>
 
         {/* Text + next mission */}
-        <div className="relative flex flex-col gap-1 min-w-0">
+        <div className="relative flex flex-col gap-1.5 min-w-0">
           {completed ? (
             <div className="animate-fade-in">
-              <span className="text-base font-bold text-emerald-600 dark:text-emerald-400">
+              <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
                 +300 credits! 🎉
               </span>
               {nextMission ? (
                 <Link
                   to={nextMission.path}
                   onClick={() => activateMissionMode()}
-                  className="mt-1 flex items-center gap-1.5 rounded-lg bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 transition-all hover:gap-2.5"
+                  className="mt-1.5 flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold transition-all duration-300 hover:gap-3 group"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(249, 115, 22, 0.08) 100%)",
+                    color: "hsl(25, 95%, 45%)",
+                  }}
                 >
                   <span>Næste: {nextMission.label}</span>
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform" />
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </Link>
               ) : (
-                <span className="text-xs text-muted-foreground">Alle missioner fuldført! 🏆</span>
+                <p className="text-xs text-muted-foreground mt-0.5">Alle missioner fuldført! 🏆</p>
               )}
             </div>
           ) : (
             <>
-              <div className="flex items-center gap-1.5">
-                <Gift className={`h-4 w-4 transition-colors duration-300 ${isNearEnd ? "text-orange-500" : "text-amber-500"}`} />
-                <span className="text-base font-bold text-foreground">300 credits</span>
+              <div className="flex items-center gap-2">
+                <Gift className={`h-4.5 w-4.5 transition-colors duration-300 ${isNearEnd ? "text-orange-500" : "text-amber-500"}`} />
+                <span className="text-lg font-bold text-foreground">300 credits</span>
               </div>
               <span className="text-xs text-muted-foreground">
                 {!hasScrolled ? (
-                  <span className="flex items-center gap-1">
+                  <span className="flex items-center gap-1.5">
                     <ArrowDown className="h-3 w-3 animate-bounce" />
                     Scroll ned for at starte
                   </span>
                 ) : currentMilestone ? (
-                  <span className="flex items-center gap-1 animate-fade-in">
-                    {(() => { const Icon = currentMilestone.icon; return <Icon className="h-3 w-3" />; })()}
-                    {currentMilestone.text.replace(/\s*[\p{Emoji_Presentation}\p{Extended_Pictographic}]+$/u, "")} – {secondsLeft}s
+                  <span className="flex items-center gap-1.5 animate-fade-in font-medium" style={{ color: "hsl(25, 90%, 48%)" }}>
+                    {(() => { const Icon = currentMilestone.icon; return <Icon className="h-3.5 w-3.5" />; })()}
+                    {currentMilestone.text.replace(/\s*[\p{Emoji_Presentation}\p{Extended_Pictographic}]+$/u, "")} – {timeDisplay}
                   </span>
                 ) : isActive ? (
-                  `Bliv på siden i ${secondsLeft} sek...`
+                  `Bliv på siden i ${timeDisplay}...`
                 ) : (
                   "⏸ Pauset – vend tilbage"
                 )}
