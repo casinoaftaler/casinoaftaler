@@ -2026,6 +2026,7 @@ export type Database = {
           created_at: string
           deep_content: string | null
           description: string | null
+          enriched_analysis: string | null
           highest_win: number | null
           highest_x: number | null
           id: string
@@ -2045,6 +2046,7 @@ export type Database = {
           created_at?: string
           deep_content?: string | null
           description?: string | null
+          enriched_analysis?: string | null
           highest_win?: number | null
           highest_x?: number | null
           id?: string
@@ -2064,6 +2066,7 @@ export type Database = {
           created_at?: string
           deep_content?: string | null
           description?: string | null
+          enriched_analysis?: string | null
           highest_win?: number | null
           highest_x?: number | null
           id?: string
@@ -2917,6 +2920,7 @@ export type Database = {
           created_at: string
           deep_content: string | null
           description: string | null
+          enriched_analysis: string | null
           highest_win: number | null
           highest_x: number | null
           id: string

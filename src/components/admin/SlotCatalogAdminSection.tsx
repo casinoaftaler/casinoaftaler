@@ -54,6 +54,8 @@ const ARCHETYPE_COLORS: Record<string, string> = {
 
 function ArchetypeClassificationSection() {
   const [running, setRunning] = useState(false);
+  const [enriching, setEnriching] = useState(false);
+  const [enrichResult, setEnrichResult] = useState<{ enriched: number; total: number; results?: any[] } | null>(null);
   const [distribution, setDistribution] = useState<Record<string, number> | null>(null);
   const { data: slots } = useSlotCatalog();
 
@@ -61,10 +63,13 @@ function ArchetypeClassificationSection() {
   useEffect(() => {
     if (!slots) return;
     const counts: Record<string, number> = {};
+    let enrichedCount = 0;
     slots.forEach((s) => {
       const arch = (s as any).content_archetype || "uklassificeret";
       counts[arch] = (counts[arch] || 0) + 1;
+      if ((s as any).enriched_analysis) enrichedCount++;
     });
+    counts["_enriched"] = enrichedCount;
     setDistribution(counts);
   }, [slots]);
 
@@ -83,19 +88,39 @@ function ArchetypeClassificationSection() {
     }
   };
 
-  const total = distribution ? Object.values(distribution).reduce((a, b) => a + b, 0) : 0;
+  const runEnrichment = async () => {
+    setEnriching(true);
+    setEnrichResult(null);
+    try {
+      const res = await supabase.functions.invoke("slot-enrich-analysis", {
+        body: { limit: 25 },
+      });
+      if (res.error) throw res.error;
+      const result = res.data as { enriched: number; total: number; results?: any[] };
+      setEnrichResult(result);
+      toast.success(`${result.enriched} af ${result.total} slots beriget!`);
+    } catch (err: any) {
+      toast.error("Fejl: " + (err.message || "Ukendt fejl"));
+    } finally {
+      setEnriching(false);
+    }
+  };
+
+  const total = distribution ? Object.values(distribution).filter((_, i) => true).reduce((a, b) => a + b, 0) - (distribution["_enriched"] || 0) : 0;
+  const enrichedCount = distribution?.["_enriched"] || 0;
+  const statsHeavyCount = distribution?.["stats-heavy"] || 0;
 
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Sparkles className="h-5 w-5" />
-          Arketype-klassificering
+          Arketype-klassificering & AI-berigelse
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="text-sm text-muted-foreground">
-          Klassificer alle slots i 4 arketyper baseret på tilgængelige data (RTP, bonus hunts, wins).
+          Klassificer slots i 4 arketyper, og berig stats-heavy slots med unik AI-genereret analyse.
         </p>
 
         {distribution && (
@@ -116,10 +141,39 @@ function ArchetypeClassificationSection() {
           </div>
         )}
 
-        <Button onClick={runClassification} disabled={running}>
-          {running ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Sparkles className="h-4 w-4 mr-2" />}
-          {running ? "Klassificerer..." : "Kør klassificering"}
-        </Button>
+        <div className="flex flex-wrap gap-3">
+          <Button onClick={runClassification} disabled={running || enriching}>
+            {running ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Sparkles className="h-4 w-4 mr-2" />}
+            {running ? "Klassificerer..." : "Kør klassificering"}
+          </Button>
+
+          <Button onClick={runEnrichment} disabled={enriching || running} variant="secondary">
+            {enriching ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Database className="h-4 w-4 mr-2" />}
+            {enriching ? "Beriger..." : `Berig testgruppe (top 25 stats-heavy)`}
+          </Button>
+        </div>
+
+        {enrichedCount > 0 && (
+          <p className="text-xs text-muted-foreground">
+            {enrichedCount} slots har allerede AI-beriget analyse ({statsHeavyCount > 0 ? `${statsHeavyCount - enrichedCount} stats-heavy mangler` : "alle færdige"})
+          </p>
+        )}
+
+        {enrichResult && (
+          <div className="rounded-lg border p-3 space-y-2">
+            <p className="text-sm font-medium">{enrichResult.enriched} af {enrichResult.total} beriget</p>
+            {enrichResult.results && (
+              <div className="max-h-40 overflow-y-auto text-xs space-y-1">
+                {enrichResult.results.map((r: any, i: number) => (
+                  <div key={i} className={cn("flex justify-between", r.status === "ok" ? "text-green-400" : "text-red-400")}>
+                    <span>{r.name}</span>
+                    <span>{r.status}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </CardContent>
     </Card>
   );
