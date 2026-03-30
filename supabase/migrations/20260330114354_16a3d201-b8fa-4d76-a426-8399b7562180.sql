@@ -1,0 +1,1 @@
+UPDATE bonus_hunt_archives SET casino_name = 'SpilDanskNu' WHERE casino_name = 'Casinoaftaler.dk';
