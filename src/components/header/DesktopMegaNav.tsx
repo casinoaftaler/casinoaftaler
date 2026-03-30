@@ -430,7 +430,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Casino Bonus" hubTo="/casino-bonus" hubLabel="Casino Bonus Oversigt →" onNavigate={close} />
-            <ExpandableGrid items={BONUS_LINKS} initialCount={20} onNavigate={close} />
+            <ExpandableGrid items={BONUS_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
