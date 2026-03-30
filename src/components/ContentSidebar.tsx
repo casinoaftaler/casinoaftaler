@@ -82,7 +82,7 @@ function CategorySection({
   const Icon = iconMap[category.iconName] || Crown;
 
   return (
-    <li className="overflow-hidden rounded-lg border border-border/60 transition-shadow hover:shadow-sm">
+    <li className="overflow-hidden rounded-lg border border-border/80 transition-shadow hover:shadow-sm">
       <div
         className={cn(
           "flex w-full items-center gap-2.5 px-4 py-3 font-semibold text-[15px] transition-colors",
