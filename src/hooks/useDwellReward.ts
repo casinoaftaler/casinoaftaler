@@ -72,7 +72,7 @@ export function useDwellReward(pagePath: string) {
           setState((s) => ({ ...s, alreadyCompleted: true, isClaimed: true }));
         }
       });
-  }, [user, pagePath, isEligiblePage]);
+  }, [user, pagePath, isEligiblePage, isMissionActivated]);
 
   // Scroll detection
   useEffect(() => {
