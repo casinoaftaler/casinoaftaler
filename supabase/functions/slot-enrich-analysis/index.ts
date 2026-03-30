@@ -10,7 +10,6 @@ const corsHeaders = {
 /* ── Anti-footprint: randomize structural elements ───────────── */
 
 const SECTION_HEADINGS = [
-  // 12 totally different heading approaches
   (name: string) => `Hvad gør ${name} unik?`,
   (name: string) => `${name} – Dybdegående performance-analyse`,
   (name: string) => `Sådan præsterer ${name} i praksis`,
@@ -70,7 +69,7 @@ function buildPrompt(slot: any): string {
   const tone = pick(TONE_DESCRIPTORS, seed);
   const structure = pick(STRUCTURE_TEMPLATES, seed + 3);
   const closing = pick(CLOSING_STYLES, seed + 7);
-  const wordCount = 280 + (seed % 220); // 280-500 words, varies per slot
+  const wordCount = 280 + (seed % 220);
 
   const dataPoints: string[] = [];
   if (slot.rtp) dataPoints.push(`RTP: ${slot.rtp}%`);
@@ -107,6 +106,58 @@ VIGTIGE REGLER:
 - Returner KUN selve teksten – ingen indledning, ingen metadata`;
 }
 
+async function enrichSlot(slot: any, apiKey: string, sb: any): Promise<{ name: string; status: string }> {
+  try {
+    const prompt = buildPrompt(slot);
+    const seed = hashCode(slot.slot_name);
+    const heading = pick(SECTION_HEADINGS, seed)(slot.slot_name);
+
+    const aiRes = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "google/gemini-2.5-flash",
+        messages: [{ role: "user", content: prompt }],
+      }),
+    });
+
+    if (aiRes.status === 429) {
+      await aiRes.text();
+      return { name: slot.slot_name, status: "rate-limited" };
+    }
+
+    if (!aiRes.ok) {
+      const errText = await aiRes.text();
+      console.error(`AI error for ${slot.slot_name}:`, errText);
+      return { name: slot.slot_name, status: `AI error: ${aiRes.status}` };
+    }
+
+    const aiData = await aiRes.json();
+    const content = aiData.choices?.[0]?.message?.content?.trim();
+
+    if (!content || content.length < 100) {
+      return { name: slot.slot_name, status: "empty/short response" };
+    }
+
+    const enrichedPayload = JSON.stringify({ heading, body: content });
+
+    const { error: updateErr } = await sb
+      .from("slot_catalog")
+      .update({ enriched_analysis: enrichedPayload })
+      .eq("id", slot.id);
+
+    if (updateErr) {
+      return { name: slot.slot_name, status: `DB error: ${updateErr.message}` };
+    }
+    return { name: slot.slot_name, status: "ok" };
+  } catch (err: any) {
+    return { name: slot.slot_name, status: `error: ${err.message}` };
+  }
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -120,9 +171,8 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const sb = createClient(supabaseUrl, supabaseKey);
 
-    const { limit = 25 } = await req.json().catch(() => ({}));
+    const { limit = 30 } = await req.json().catch(() => ({}));
 
-    // Fetch stats-heavy slots without enriched_analysis, ordered by bonus_count desc
     const { data: slots, error: fetchErr } = await sb
       .from("slot_catalog")
       .select("id, slot_name, provider, rtp, volatility, max_potential, bonus_count, highest_win, highest_x")
@@ -134,78 +184,44 @@ serve(async (req) => {
     if (fetchErr) throw fetchErr;
     if (!slots || slots.length === 0) {
       return new Response(
-        JSON.stringify({ message: "Ingen slots at berige", enriched: 0 }),
+        JSON.stringify({ message: "Alle stats-heavy slots er beriget!", enriched: 0, remaining: 0 }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
+    // Process in parallel batches of 5 for speed while respecting rate limits
+    const CONCURRENCY = 5;
     const results: { name: string; status: string }[] = [];
+    let rateLimited = false;
 
-    // Process sequentially to respect rate limits
-    for (const slot of slots) {
-      try {
-        const prompt = buildPrompt(slot);
-        const seed = hashCode(slot.slot_name);
-        const heading = pick(SECTION_HEADINGS, seed)(slot.slot_name);
+    for (let i = 0; i < slots.length && !rateLimited; i += CONCURRENCY) {
+      const batch = slots.slice(i, i + CONCURRENCY);
+      const batchResults = await Promise.all(
+        batch.map(slot => enrichSlot(slot, LOVABLE_API_KEY, sb))
+      );
+      
+      for (const r of batchResults) {
+        results.push(r);
+        if (r.status === "rate-limited") rateLimited = true;
+      }
 
-        const aiRes = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${LOVABLE_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model: "google/gemini-2.5-flash",
-            messages: [{ role: "user", content: prompt }],
-          }),
-        });
-
-        if (aiRes.status === 429) {
-          // Rate limited – save what we have and stop
-          results.push({ name: slot.slot_name, status: "rate-limited – stopped" });
-          break;
-        }
-
-        if (!aiRes.ok) {
-          const errText = await aiRes.text();
-          results.push({ name: slot.slot_name, status: `AI error: ${aiRes.status}` });
-          console.error(`AI error for ${slot.slot_name}:`, errText);
-          continue;
-        }
-
-        const aiData = await aiRes.json();
-        const content = aiData.choices?.[0]?.message?.content?.trim();
-
-        if (!content || content.length < 100) {
-          results.push({ name: slot.slot_name, status: "empty/short response" });
-          continue;
-        }
-
-        // Store as JSON with heading + body for flexible rendering
-        const enrichedPayload = JSON.stringify({ heading, body: content });
-
-        const { error: updateErr } = await sb
-          .from("slot_catalog")
-          .update({ enriched_analysis: enrichedPayload })
-          .eq("id", slot.id);
-
-        if (updateErr) {
-          results.push({ name: slot.slot_name, status: `DB error: ${updateErr.message}` });
-        } else {
-          results.push({ name: slot.slot_name, status: "ok" });
-        }
-
-        // Small delay between requests
-        await new Promise((r) => setTimeout(r, 800));
-      } catch (slotErr: any) {
-        results.push({ name: slot.slot_name, status: `error: ${slotErr.message}` });
+      // Small pause between batches
+      if (i + CONCURRENCY < slots.length && !rateLimited) {
+        await new Promise(r => setTimeout(r, 500));
       }
     }
 
-    const enriched = results.filter((r) => r.status === "ok").length;
+    const enriched = results.filter(r => r.status === "ok").length;
+
+    // Count remaining
+    const { count } = await sb
+      .from("slot_catalog")
+      .select("id", { count: "exact", head: true })
+      .eq("content_archetype", "stats-heavy")
+      .is("enriched_analysis", null);
 
     return new Response(
-      JSON.stringify({ enriched, total: slots.length, results }),
+      JSON.stringify({ enriched, total: slots.length, remaining: count || 0, results }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (err: any) {
