@@ -972,7 +972,7 @@ const MobilCasino = () => {
             <strong>Vigtig nuance:</strong> Service Workers kan cache UI og spilkode, men
             casino-spil kræver altid en aktiv internetforbindelse til serveren for at
             generere og verificere resultater via{" "}
-            <Link to="/casino-ordbog/rng" className="text-primary underline hover:text-primary/80">
+            <Link to="/ordbog/rng" className="text-primary underline hover:text-primary/80">
               Random Number Generator (RNG)
             </Link>. Du kan aldrig spille casino offline – caching handler om performance,
             ikke offline-funktionalitet. Læs mere om PWA-installation i vores{" "}
