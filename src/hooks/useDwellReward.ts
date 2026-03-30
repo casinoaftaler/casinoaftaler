@@ -11,7 +11,7 @@ export const DWELL_REWARD_PAGES = [
   { path: "/nye-casinoer", label: "Nye Casinoer", credits: 300 },
 ] as const;
 
-export const DWELL_DURATION_SECONDS = 60;
+export const DWELL_DURATION_SECONDS = 120;
 
 interface DwellRewardState {
   /** Seconds remaining (60 → 0) */

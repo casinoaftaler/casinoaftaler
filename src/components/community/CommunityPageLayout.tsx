@@ -1,4 +1,5 @@
 import { ReactNode, Suspense, lazy, useEffect, useState } from "react";
+import { DailyMissionsCard } from "@/components/community/DailyMissionsCard";
 import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
 
@@ -85,7 +86,12 @@ export function CommunityPageLayout({
           {/* Main content + right sidebar */}
           <div className="min-w-0 flex-1 max-w-[960px]">
             <div className="flex gap-8 xl:gap-10">
-              <div className="min-w-0 flex-1">{children}</div>
+              <div className="min-w-0 flex-1">
+                <div className="py-6">
+                  <DailyMissionsCard />
+                </div>
+                {children}
+              </div>
             </div>
           </div>
           <Suspense fallback={null}>
