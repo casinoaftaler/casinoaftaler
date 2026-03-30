@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronRight, ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users, icons } from "lucide-react";
+import { ChevronRight, ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   CASINO_LINKS, NYE_CASINOER_LINKS, SLOT_LINKS, SLOT_CATEGORY_LINKS,
@@ -100,12 +100,9 @@ function getIconColor(index: number) {
   return ICON_COLORS[index % ICON_COLORS.length];
 }
 
-/* ─── Resolve lucide icon by kebab-case name ─── */
-function getLucideIcon(name?: string) {
-  if (!name) return null;
-  // Convert kebab-case to PascalCase (handles letters AND digits after hyphens)
-  const pascal = name.replace(/(^|-)(.)/g, (_, _dash, char) => char.toUpperCase());
-  return (icons as Record<string, any>)[pascal] || null;
+/* ─── Resolve lucide icon by kebab-case name (no-op: all icons use MENU_ICON_MAP WebP images) ─── */
+function getLucideIcon(_name?: string) {
+  return null;
 }
 
 /* ─── Compact link item ─── */

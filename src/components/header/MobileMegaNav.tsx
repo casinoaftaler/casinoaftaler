@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users, CreditCard, Gamepad2, User, Star, Moon, Sun, icons } from "lucide-react";
+import { ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users, CreditCard, Gamepad2, User, Star, Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MENU_ICON_MAP } from "./menuIconMap";
 import {
@@ -39,11 +39,9 @@ function resolveLogoUrl(item: NavLink): string | undefined {
   return item.logoUrl;
 }
 
-/* ─── Resolve lucide icon by kebab-case name ─── */
-function getLucideIcon(name?: string) {
-  if (!name) return null;
-  const pascal = name.replace(/(^|-)(.)/g, (_, _dash, char) => char.toUpperCase());
-  return (icons as Record<string, any>)[pascal] || null;
+/* ─── Resolve lucide icon by kebab-case name (no-op: all icons use MENU_ICON_MAP WebP images) ─── */
+function getLucideIcon(_name?: string) {
+  return null;
 }
 
 /* ─── Icon accent colors ─── */

@@ -226,7 +226,7 @@ const Index = () => {
               Ingen casinoer matcher dette filter. Prøv en anden kategori.
             </p>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-4" style={{ minHeight: '600px', contain: 'layout style' }}>
               {filteredCasinos.length > 0 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                   {filteredCasinos.slice(0, 2).map((casino, index) => (
