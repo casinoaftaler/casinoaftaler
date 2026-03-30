@@ -64,7 +64,7 @@ async function fetchAllRows<T>(
 /**
  * Vite plugin that generates all sitemap XML files at build time.
  * - sitemap.xml: from seoRoutes.ts (static pages)
- * - sitemap-slots.xml: from slot_catalog table (1600+ slots)
+ * - sitemap-slots.xml: from slot_catalog table (1470+ slots)
  * - sitemap-articles.xml: from casino_news table (all published articles)
  * - sitemap-index.xml: referencing all above on same domain
  */
