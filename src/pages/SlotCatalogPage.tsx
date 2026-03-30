@@ -1074,6 +1074,28 @@ export default function SlotCatalogPage() {
           )}
         </section>
 
+        {/* Enriched AI Analysis – unique per slot, anti-footprint */}
+        {(() => {
+          const rawEnriched = (slot as any).enriched_analysis;
+          if (!rawEnriched) return null;
+          try {
+            const parsed = JSON.parse(rawEnriched);
+            if (!parsed.heading || !parsed.body) return null;
+            return (
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold mb-4">{parsed.heading}</h2>
+                <div className="text-muted-foreground leading-relaxed space-y-4"
+                  dangerouslySetInnerHTML={{
+                    __html: autoLinkEntities(
+                      parsed.body.split("\n").filter(Boolean).map((p: string) => `<p>${p}</p>`).join("")
+                    )
+                  }}
+                />
+              </section>
+            );
+          } catch { return null; }
+        })()}
+
         {/* Casinoer der har denne slot */}
         {casinosForSlot && casinosForSlot.length > 0 && (
           <section className="mb-8">
