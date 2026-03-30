@@ -192,7 +192,7 @@ export default function CommunityHub() {
           </p>
         }
       >
-        <div className="py-8 md:py-12 space-y-8">
+        <div className="pb-8 md:pb-12 space-y-8">
 
 
 
