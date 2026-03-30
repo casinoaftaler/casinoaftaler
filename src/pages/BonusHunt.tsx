@@ -16,7 +16,6 @@ import { BonusHuntSeoText } from "@/components/bonus-hunt/BonusHuntSeoText";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
-// LazySection removed from SEO-critical sections for crawlability
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
 import { AuthorBio } from "@/components/AuthorBio";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
@@ -31,7 +30,7 @@ import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { ContentSidebar } from "@/components/ContentSidebar";
-import { useBonusHuntData, useLatestHuntNumber, useArchivedHuntNumbers } from "@/hooks/useBonusHuntData";
+import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { useBonusHuntSession, useBonusHuntSessionByHuntNumber, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
 import { useAuth } from "@/hooks/useAuth";
@@ -50,6 +49,9 @@ export default function BonusHunt() {
     return param ? parseInt(param, 10) || undefined : undefined;
   });
 
+  // Track which tab is active so we only fetch bet data when needed
+  const [activeTab, setActiveTab] = useState<string>("");
+
   // Sync URL param when huntIdOverride changes
   useEffect(() => {
     if (huntIdOverride) {
@@ -60,19 +62,28 @@ export default function BonusHunt() {
   }, [huntIdOverride, setSearchParams]);
 
   const { data: latestHuntNumber = 1 } = useLatestHuntNumber();
-  const { data: archivedHuntNumbers = [] } = useArchivedHuntNumbers();
   const { data: huntData, isLoading: huntLoading } = useBonusHuntData(huntIdOverride);
   const { data: allArchives = [] } = useBonusHuntArchives();
   const { data: session } = useBonusHuntSession();
   const { data: archivedSession } = useBonusHuntSessionByHuntNumber(huntIdOverride);
   const effectiveSessionId = huntIdOverride ? archivedSession?.id : session?.id;
-  const { data: gtwBets = [] } = useBonusHuntGtwBets(effectiveSessionId);
-  const { data: avgxBets = [] } = useBonusHuntAvgxBets(effectiveSessionId);
+
+  // Only fetch bet data when the relevant tab is active
+  const shouldFetchGtw = activeTab === 'gtw';
+  const shouldFetchAvgx = activeTab === 'avgx';
+  const { data: gtwBets = [] } = useBonusHuntGtwBets(shouldFetchGtw ? effectiveSessionId : undefined);
+  const { data: avgxBets = [] } = useBonusHuntAvgxBets(shouldFetchAvgx ? effectiveSessionId : undefined);
 
   const refreshBets = useCallback(() => {
     queryClient.invalidateQueries({ queryKey: ['bonus-hunt-gtw-bets'] });
     queryClient.invalidateQueries({ queryKey: ['bonus-hunt-avgx-bets'] });
   }, [queryClient]);
+
+  // Derive archived hunt numbers from allArchives (avoids separate query)
+  const archivedHuntNumbers = useMemo(
+    () => allArchives.filter((a: any) => (a.total_slots ?? 0) > 0).map((a: any) => a.hunt_number as number),
+    [allArchives]
+  );
 
   // maxHuntNumber = highest known hunt (could be live hunt above latest archived)
   const activeSessionHuntNumber = session?.status === 'active' ? session.hunt_number : undefined;
@@ -87,6 +98,13 @@ export default function BonusHunt() {
   const isArchived = !isLive && archivedHuntNumbers.includes(currentHuntNumber);
   const currentArchive = useMemo(() => allArchives.find((a: any) => a.hunt_number === currentHuntNumber), [allArchives, currentHuntNumber]);
   const huntVideo = useMemo(() => getHuntVideoFromArchive(currentArchive), [currentArchive]);
+
+  // Set default tab based on live status (only once when data loads)
+  useEffect(() => {
+    if (!activeTab && huntData) {
+      setActiveTab(isLive ? "request" : "stats");
+    }
+  }, [huntData, isLive, activeTab]);
 
   // Build available hunt numbers from archived data, sorted descending
   const availableHuntNumbers = useMemo(() => {
@@ -235,10 +253,6 @@ export default function BonusHunt() {
           {/* Stat strip */}
           <BonusHuntStatStrip />
 
-
-
-
-
           {/* Main content */}
           {huntLoading ? (
             <div className="flex items-center justify-center py-20" style={{ minHeight: '600px' }}>
@@ -281,7 +295,7 @@ export default function BonusHunt() {
 
                 {/* Right column (40%) */}
                 <div className="lg:col-span-2 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
-                  <Tabs defaultValue={isLive ? "request" : "stats"} className="w-full">
+                  <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                     <TabsList className={`w-full grid ${isLive ? 'grid-cols-4' : 'grid-cols-3'}`}>
                       {isLive && <TabsTrigger value="request">REQUEST</TabsTrigger>}
                       <TabsTrigger value="stats">STATS</TabsTrigger>
@@ -297,7 +311,7 @@ export default function BonusHunt() {
                         casinoSlug={casinoSlug}
                       />
                     </TabsContent>
-                    <TabsContent value="gtw" forceMount className="data-[state=inactive]:hidden">
+                    <TabsContent value="gtw">
                       <BonusHuntGTWTab
                         session={isArchived ? archivedSession : session}
                         bets={gtwBets}
@@ -308,7 +322,7 @@ export default function BonusHunt() {
                         startBalance={huntData?.stats?.startBalance}
                       />
                     </TabsContent>
-                    <TabsContent value="avgx" forceMount className="data-[state=inactive]:hidden">
+                    <TabsContent value="avgx">
                       <BonusHuntAvgXTab
                         session={isArchived ? archivedSession : session}
                         bets={avgxBets}
