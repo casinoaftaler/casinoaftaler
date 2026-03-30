@@ -432,61 +432,6 @@ export function MonthlyTournamentBoxes() {
 
   return (
     <div className="space-y-3">
-      {/* Section header */}
-      <div className="flex items-center justify-between flex-wrap gap-2">
-        <div className="flex items-center gap-2">
-          <Trophy className="h-5 w-5 text-amber-400" />
-          <h2 className="font-bold text-lg text-foreground">Turneringer</h2>
-          <Badge variant="outline" className="text-[10px] px-1.5 py-0 capitalize whitespace-nowrap">
-            {monthLabel}
-          </Badge>
-        </div>
-        <div className="flex items-center gap-3">
-          {archiveData && archiveData.length > 0 && (
-            <Dialog open={showArchive} onOpenChange={setShowArchive}>
-              <DialogTrigger asChild>
-                <Button variant="ghost" size="sm" className="text-xs text-muted-foreground h-7 px-2">
-                  <History className="h-3.5 w-3.5 mr-1" />
-                  Arkiv
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-md">
-                <DialogHeader>
-                  <DialogTitle className="flex items-center gap-2">
-                    <History className="h-5 w-5 text-amber-400" />
-                    Tidligere vindere
-                  </DialogTitle>
-                </DialogHeader>
-                <div className="space-y-4 max-h-[60vh] overflow-y-auto">
-                  {archiveData.map(({ month, entries }) => {
-                    const monthDate = new Date(month + "T00:00:00");
-                    const monthName = monthDate.toLocaleDateString("da-DK", { month: "long", year: "numeric" });
-                    return (
-                      <div key={month}>
-                        <h4 className="text-sm font-semibold text-foreground capitalize mb-2">{monthName}</h4>
-                        <div className="space-y-1.5">
-                          {entries.map((arch) => (
-                            <div key={arch.id} className="flex items-center gap-2 px-2.5 py-2 rounded-lg bg-muted/30">
-                              <Avatar className="h-6 w-6 shrink-0">
-                                <AvatarImage src={arch.winner_avatar_url || undefined} />
-                                <AvatarFallback className="text-[10px]">{arch.winner_display_name.charAt(0).toUpperCase()}</AvatarFallback>
-                              </Avatar>
-                              <span className="text-xs font-medium text-foreground truncate flex-1">{arch.winner_display_name}</span>
-                              <span className="text-xs font-mono font-semibold tabular-nums text-amber-400">
-                                {formatCategoryValue(arch.winning_value, arch.category as LeaderboardCategory)}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </DialogContent>
-            </Dialog>
-          )}
-        </div>
-      </div>
 
       {/* Tournament boxes */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
