@@ -895,14 +895,10 @@ const BlackjackSkemaGuide = () => {
 
           <Separator className="my-8" />
 
-          <AuthorBio
-            name="Jonas"
-            title="Casino Bonus Ekspert & Grundlægger"
-            bio="Jonas har analyseret blackjack-matematik og strategier i over 8 år. Han har personligt spillet 50.000+ hænder med basic strategy og dokumenteret resultaterne. Denne guide reflekterer hans dybdegående forståelse af EV-optimering og optimal beslutningstagning ved blackjack-bordet."
-          />
+          <AuthorBio author="jonas" />
 
-          <CasinospilMoneyLinks />
-          <LatestNewsByCategory category="casino-nyheder" />
+          <CasinospilMoneyLinks gameName="Blackjack" currentPath="/casinospil/blackjack/skema" />
+          <LatestNewsByCategory pagePath="/casinospil/blackjack/skema" />
           <RelatedGuides currentPath="/casinospil/blackjack/skema" />
         </div>
       </ContentPageLayout>
