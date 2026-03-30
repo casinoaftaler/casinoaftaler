@@ -330,6 +330,10 @@ const ComeOnAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        <CasinoHuntPerformance casinoSlug="comeon" casinoName="ComeOn" />
+
+        <Separator className="my-10" />
+
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">ComeOn er Danmarks simpleste casino – og det er både styrken og begrænsningen</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">ComeOn Casino er den pålidelige all-rounder i den danske mellemklasse. Det er ikke det mest spændende casino, det mest innovative eller det bredeste i spiludvalg. Men det er et af de mest ærlige, gennemsigtige og brugervenlige. I en branche, der hyppigt overkomplicerer bonusvilkår og skjuler begrænsninger i småtskrift, er ComeOns ligefremhed en strategisk differentiator – ikke en mangel.</p>
