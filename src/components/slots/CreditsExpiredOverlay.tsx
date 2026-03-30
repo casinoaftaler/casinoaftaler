@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Clock, Sparkles, ExternalLink } from "lucide-react";
+import { Clock, Sparkles, ExternalLink, Coins, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CreditCoin } from "@/components/CreditCoin";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -8,6 +8,7 @@ import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
+import { useDwellRewardProgress } from "@/hooks/useDwellReward";
 
 function getTimeUntilMidnightCopenhagen(): { hours: number; minutes: number; seconds: number } {
   const now = new Date();
@@ -32,6 +33,8 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
   const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnightCopenhagen);
   const { data: playkasinoCasino } = useCasinoBySlug("playkasino");
   const { user } = useAuth();
+  const { pages, completedCount, totalPages } = useDwellRewardProgress();
+  const uncompletedMissions = pages.filter((p) => !p.completed);
 
   useEffect(() => {
     if (!isVisible) return;
@@ -61,8 +64,57 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
           </h3>
 
           <p className="text-xs text-muted-foreground leading-relaxed">
-            Kom tilbage i morgen for at vinde præmier og komme på leaderboardet!
+            {uncompletedMissions.length > 0
+              ? "Du kan optjene flere credits nu ved at fuldføre Daily Missions!"
+              : "Kom tilbage i morgen for at vinde præmier og komme på leaderboardet!"}
           </p>
+
+          {/* Daily Missions section */}
+          {user && uncompletedMissions.length > 0 && (
+            <div className="border border-amber-500/30 rounded-xl bg-gradient-to-b from-amber-500/10 to-amber-500/5 p-3 space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-foreground flex items-center gap-1.5">
+                  <Coins className="h-3.5 w-3.5 text-amber-500" />
+                  Daily Missions
+                </span>
+                <span className="text-[10px] font-medium text-amber-500 tabular-nums">
+                  +{uncompletedMissions.length * 300} credits muligt
+                </span>
+              </div>
+              <div className="space-y-1.5">
+                {pages.slice(0, 4).map((page) => (
+                  <Link
+                    key={page.path}
+                    to={`${page.path}?mission=1`}
+                    className={`flex items-center justify-between rounded-lg px-2.5 py-1.5 text-xs transition-colors ${
+                      page.completed
+                        ? "text-emerald-500/70"
+                        : "text-foreground hover:bg-amber-500/10"
+                    }`}
+                  >
+                    <span className="flex items-center gap-1.5">
+                      {page.completed ? (
+                        <Check className="h-3 w-3" />
+                      ) : (
+                        <span className="h-3 w-3 rounded-full border border-amber-500 flex-shrink-0" />
+                      )}
+                      {page.label}
+                    </span>
+                    {!page.completed && (
+                      <span className="flex items-center gap-1 text-amber-500 font-medium">
+                        +300 <ArrowRight className="h-3 w-3" />
+                      </span>
+                    )}
+                  </Link>
+                ))}
+                {pages.length > 4 && (
+                  <p className="text-[10px] text-muted-foreground text-center">
+                    +{pages.length - 4} flere missioner
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
 
           <div className="flex items-center justify-center gap-2 text-primary">
             <Clock className="h-3.5 w-3.5" />
