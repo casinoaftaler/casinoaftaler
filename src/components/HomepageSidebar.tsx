@@ -12,7 +12,8 @@ import {
   Gamepad2,
   Tv,
   Star,
-  icons,
+  LayoutGrid,
+  Cherry,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
@@ -49,13 +50,17 @@ const iconMap: Record<string, React.ElementType> = {
   star: Star,
 };
 
+const SIDEBAR_ICON_MAP: Record<string, React.ElementType> = {
+  "dices": Dices,
+  "layout-grid": LayoutGrid,
+  "cherry": Cherry,
+  "creditCard": CreditCard,
+  "gamepad2": Gamepad2,
+};
+
 function getLucideIcon(name?: string): React.ElementType | null {
   if (!name) return null;
-  const pascal = name
-    .split("-")
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-    .join("");
-  return (icons as Record<string, React.ElementType>)[pascal] ?? null;
+  return SIDEBAR_ICON_MAP[name] ?? null;
 }
 
 const ICON_COLORS = [

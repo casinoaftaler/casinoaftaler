@@ -9,7 +9,8 @@ import {
   Gamepad2,
   Tv,
   Star,
-  icons,
+  LayoutGrid,
+  Cherry,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
@@ -47,15 +48,18 @@ const iconMap: Record<string, React.ElementType> = {
   tv: Tv,
   star: Star,
 };
+/* ─── Direct icon map for sidebar fallback (no wildcard import) ─── */
+const SIDEBAR_ICON_MAP: Record<string, React.ElementType> = {
+  "dices": Dices,
+  "layout-grid": LayoutGrid,
+  "cherry": Cherry,
+  "creditCard": CreditCard,
+  "gamepad2": Gamepad2,
+};
 
-/* ─── kebab-case → PascalCase Lucide lookup ─── */
 function getLucideIcon(name?: string): React.ElementType | null {
   if (!name) return null;
-  const pascal = name
-    .split("-")
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-    .join("");
-  return (icons as Record<string, React.ElementType>)[pascal] ?? null;
+  return SIDEBAR_ICON_MAP[name] ?? null;
 }
 
 /* ─── Icon accent colors (matching mega menu) ─── */
