@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
@@ -409,35 +410,9 @@ const BlackjackSkemaGuide = () => {
             answer="Et blackjack skema viser den statistisk optimale handling (hit, stand, double, split eller surrender) for enhver kombination af din hånd og dealerens kort. Ved at følge skemaet perfekt reduceres house edge fra 2–5 % til blot 0,5 % – den laveste fordel i noget casinospil."
           />
 
-          {/* ── Table of Contents ── */}
-          <Card className="mb-8 border-border bg-card">
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <BookOpen className="h-5 w-5 text-primary" />
-                Indholdsfortegnelse
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <nav aria-label="Indholdsfortegnelse">
-                <ol className="space-y-1.5 text-sm list-decimal list-inside">
-                  <li><a href="#hvad-er" className={linkClass}>Hvad er et blackjack skema?</a></li>
-                  <li><a href="#hard-totals" className={linkClass}>Hard Totals – strategitabel</a></li>
-                  <li><a href="#soft-totals" className={linkClass}>Soft Totals – strategitabel</a></li>
-                  <li><a href="#pairs" className={linkClass}>Pairs (Split) – strategitabel</a></li>
-                  <li><a href="#farvekoder" className={linkClass}>Farvekoder og handlinger forklaret</a></li>
-                  <li><a href="#hvordan" className={linkClass}>Sådan bruger du skemaet – trin for trin</a></li>
-                  <li><a href="#matematik" className={linkClass}>Matematikken bag skemaet</a></li>
-                  <li><a href="#varianter" className={linkClass}>Skema-variationer for forskellige regler</a></li>
-                  <li><a href="#fejl" className={linkClass}>De 10 mest udbredte fejl</a></li>
-                  <li><a href="#quiz" className={linkClass}>Test din strategi – interaktiv quiz</a></li>
-                  <li><a href="#ev-tabel" className={linkClass}>EV-analyse: De mest profitable og dyreste hænder</a></li>
-                  <li><a href="#online-vs-live" className={linkClass}>Online blackjack vs. live blackjack</a></li>
-                  <li><a href="#korttaelling" className={linkClass}>Fra skema til korttælling</a></li>
-                  <li><a href="#faq" className={linkClass}>Ofte stillede spørgsmål</a></li>
-                </ol>
-              </nav>
-            </CardContent>
-          </Card>
+          <QuickComparisonTable count={3} title="Top 3 blackjack-casinoer – hurtig sammenligning" />
+
+          <Separator className="my-10" />
 
           {/* ── Section 1: What is ── */}
           <section id="hvad-er" className="mb-10">
