@@ -184,7 +184,7 @@ export function useDwellReward(pagePath: string) {
 
     setState((s) => ({ ...s, isClaiming: true }));
 
-    const today = new Date().toISOString().split("T")[0];
+    const today = getTodayDanish();
     const { data, error } = await supabase.rpc("claim_dwell_reward", {
       p_user_id: user.id,
       p_page_path: pagePath,
