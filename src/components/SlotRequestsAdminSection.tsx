@@ -109,6 +109,7 @@ export function SlotRequestsAdminSection() {
             <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead className="w-12">#</TableHead>
                   <TableHead>Bruger</TableHead>
                   <TableHead>Slot</TableHead>
                   <TableHead>Udbyder</TableHead>
