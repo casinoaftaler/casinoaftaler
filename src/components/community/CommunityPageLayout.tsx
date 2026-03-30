@@ -1,7 +1,8 @@
-import { ReactNode, Suspense, lazy } from "react";
+import { ReactNode } from "react";
 import { DailyMissionsCard } from "@/components/community/DailyMissionsCard";
 import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
+import { CommunityContentShell } from "./CommunityContentShell";
 
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
@@ -10,10 +11,6 @@ import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget"
 import { useAuth } from "@/hooks/useAuth";
 import { type LucideIcon } from "lucide-react";
 import communityHero from "@/assets/community/community-hero.jpg";
-
-const LazyContentSidebar = lazy(() =>
-  import("@/components/ContentSidebar").then((mod) => ({ default: mod.ContentSidebar }))
-);
 
 interface CommunityPageLayoutProps {
   children: ReactNode;
@@ -73,39 +70,24 @@ export function CommunityPageLayout({
         </section>
       )}
       <CommunityNav />
-      <div className="mx-auto w-full max-w-[1800px] px-4 md:px-6 lg:px-8">
-        <div className="flex justify-center gap-6 xl:gap-8">
-          {!hideSidebar && (
-            <aside className="hidden min-[1540px]:block w-[260px] flex-shrink-0 pt-8 md:pt-12">
-              <div className="sticky top-24 h-fit flex flex-col gap-4">
-                <DailyMissionsWidget />
-                <SidebarSocialProof />
-                <SidebarLeaderboard />
-                <SidebarShopLeaderboard />
-              </div>
-            </aside>
-          )}
-
-          <div className="min-w-0 flex-1 max-w-[960px] pt-8 md:pt-12">
-            <div className="flex gap-8 xl:gap-10">
-              <div className="min-w-0 flex-1">
-                {user && (
-                  <div className="pb-6">
-                    <DailyMissionsCard />
-                  </div>
-                )}
-                {children}
-              </div>
-            </div>
+      <CommunityContentShell
+        hideLeftSidebar={hideSidebar}
+        leftSidebar={
+          <>
+            <DailyMissionsWidget />
+            <SidebarSocialProof />
+            <SidebarLeaderboard />
+            <SidebarShopLeaderboard />
+          </>
+        }
+      >
+        {user && (
+          <div className="pb-6">
+            <DailyMissionsCard />
           </div>
-
-          <Suspense fallback={null}>
-            <aside className="flex-shrink-0 pt-8 md:pt-12">
-              <LazyContentSidebar />
-            </aside>
-          </Suspense>
-        </div>
-      </div>
+        )}
+        {children}
+      </CommunityContentShell>
     </>
   );
 }

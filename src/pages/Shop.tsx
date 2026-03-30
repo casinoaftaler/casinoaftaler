@@ -10,10 +10,13 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { CommunityContentShell } from "@/components/community/CommunityContentShell";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { CommunityNav } from "@/components/community/CommunityNav";
+import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
+import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
+import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 
-import { ContentSidebar } from "@/components/ContentSidebar";
 function ShopHero() {
   const { data: siteSettings } = useSiteSettings();
   const heroBackgroundImage = siteSettings?.hero_background;
@@ -271,10 +274,15 @@ export default function Shop() {
       />
       <ShopHero />
       <CommunityNav />
-      <div className="relative">
-        <div className="container py-8 md:py-12">
-        <div className="flex gap-8 xl:gap-10">
-          <div className="min-w-0 flex-1">
+      <CommunityContentShell
+        leftSidebar={
+          <>
+            <SidebarSocialProof />
+            <SidebarLeaderboard />
+            <SidebarShopLeaderboard />
+          </>
+        }
+      >
         {/* Meta info bar */}
         <div className="mb-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-1.5">
@@ -309,13 +317,7 @@ export default function Shop() {
         <div className="mt-12">
           <RelatedGuides currentPath="/butik" />
         </div>
-          </div>
-          <div className="pt-8 md:pt-12">
-            <ContentSidebar />
-          </div>
-        </div>
-        </div>
-      </div>
+      </CommunityContentShell>
     </>
   );
 }

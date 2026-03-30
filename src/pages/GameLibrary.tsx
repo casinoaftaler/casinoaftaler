@@ -2,13 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
+import { CommunityContentShell } from "@/components/community/CommunityContentShell";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { CommunityConversionStrip } from "@/components/community/CommunityConversionStrip";
 import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
-
-
-import { ContentSidebar } from "@/components/ContentSidebar";
-
 
 
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
@@ -114,22 +111,17 @@ export default function GameLibrary() {
       <GameLibraryHero />
       <CommunityNav />
 
-      {/* Main content with sidebars */}
-      <div className="container relative">
-        {/* Left sidebar */}
-        <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
-          <div className="sticky top-24 h-fit flex flex-col gap-4">
+      <CommunityContentShell
+        leftSidebar={
+          <>
             <DailyMissionsWidget />
             <SidebarSocialProof />
             <SidebarLeaderboard />
             <SidebarShopLeaderboard />
-          </div>
-        </div>
-
-        {/* Main content + right sidebar */}
-        <div className="flex gap-8 xl:gap-10">
-          <div className="min-w-0 flex-1">
-        <div className="py-8 md:py-12 space-y-8 md:space-y-10">
+          </>
+        }
+      >
+        <div className="space-y-8 md:space-y-10">
 
           {/* Featured Slots - side by side */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-stretch">
@@ -218,12 +210,7 @@ export default function GameLibrary() {
 
           <div className="pb-8" />
         </div>
-          </div>
-          <div className="pt-8 md:pt-12">
-            <ContentSidebar />
-          </div>
-        </div>
-      </div>
+      </CommunityContentShell>
     </div>
   );
 }

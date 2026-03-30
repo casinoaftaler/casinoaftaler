@@ -5,11 +5,11 @@ import { FAQSection } from "@/components/FAQSection";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { CommunityContentShell } from "@/components/community/CommunityContentShell";
 
 import { buildArticleSchema, buildFaqSchema, SITE_URL } from "@/lib/seo";
 import { Trophy, Crown, Star, TrendingUp, Sparkles, Medal, Film, ArrowRight, Users, Play } from "lucide-react";
 import { CommunityNav } from "@/components/community/CommunityNav";
-import { ContentSidebar } from "@/components/ContentSidebar";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
@@ -309,19 +309,16 @@ export default function HallOfFame() {
 
       <CommunityNav />
 
-      <div className="container relative">
-        {/* Left sidebar */}
-        <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
-          <div className="sticky top-24 h-fit flex flex-col gap-4">
+      <CommunityContentShell
+        leftSidebar={
+          <>
             <SidebarSocialProof />
             <SidebarLeaderboard />
             <SidebarShopLeaderboard />
-          </div>
-        </div>
-
-        <div className="flex gap-8 xl:gap-10">
-          <div className="min-w-0 flex-1">
-        <div className="py-8 md:py-12 space-y-8">
+          </>
+        }
+      >
+        <div className="space-y-8">
 
         {/* All-Time Leaderboards */}
         <section className="mb-12">
@@ -492,12 +489,7 @@ export default function HallOfFame() {
 
         <div className="pb-12" />
         </div>
-          </div>
-          <div className="pt-8 md:pt-12">
-            <ContentSidebar />
-          </div>
-        </div>
-      </div>
+      </CommunityContentShell>
     </>
   );
 }
