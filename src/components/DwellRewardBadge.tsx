@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useDwellReward, DWELL_DURATION_SECONDS } from "@/hooks/useDwellReward";
-import { Check, Coins, LogIn, Gift } from "lucide-react";
+import { Check, Coins, LogIn, Gift, ArrowDown } from "lucide-react";
 
 export function DwellRewardBadge() {
   const { pathname } = useLocation();
@@ -12,6 +12,7 @@ export function DwellRewardBadge() {
     alreadyCompleted,
     isEligiblePage,
     isLoggedIn,
+    hasScrolled,
   } = useDwellReward(pathname);
 
   const [visible, setVisible] = useState(true);
@@ -136,7 +137,16 @@ export function DwellRewardBadge() {
                 </span>
               </div>
               <span className="text-xs text-muted-foreground">
-                {isActive ? `Bliv på siden i ${secondsLeft} sek...` : "⏸ Pauset – vend tilbage"}
+                {!hasScrolled ? (
+                  <span className="flex items-center gap-1">
+                    <ArrowDown className="h-3 w-3 animate-bounce" />
+                    Scroll ned for at starte timeren
+                  </span>
+                ) : isActive ? (
+                  `Bliv på siden i ${secondsLeft} sek...`
+                ) : (
+                  "⏸ Pauset – vend tilbage"
+                )}
               </span>
             </>
           )}

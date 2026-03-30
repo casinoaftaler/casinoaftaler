@@ -13,6 +13,7 @@ export const DWELL_REWARD_PAGES = [
 ] as const;
 
 export const DWELL_DURATION_SECONDS = 120;
+export const SCROLL_THRESHOLD = 0.3; // 30% scroll depth required
 
 interface DwellRewardState {
   /** Seconds remaining (60 → 0) */
@@ -25,6 +26,8 @@ interface DwellRewardState {
   isClaiming: boolean;
   /** Whether this page was already completed today */
   alreadyCompleted: boolean;
+  /** Whether user has scrolled past threshold */
+  hasScrolled: boolean;
   /** Error message if any */
   error: string | null;
 }
@@ -37,12 +40,14 @@ export function useDwellReward(pagePath: string) {
     isClaimed: false,
     isClaiming: false,
     alreadyCompleted: false,
+    hasScrolled: false,
     error: null,
   });
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const startTimeRef = useRef<number>(0);
   const elapsedRef = useRef<number>(0);
+  const hasScrolledRef = useRef(false);
 
   const isEligiblePage = DWELL_REWARD_PAGES.some((p) => p.path === pagePath);
 
@@ -65,9 +70,29 @@ export function useDwellReward(pagePath: string) {
       });
   }, [user, pagePath, isEligiblePage]);
 
-  // Timer logic with visibility API
+  // Scroll detection
   useEffect(() => {
     if (!user || !isEligiblePage || state.alreadyCompleted || state.isClaimed) return;
+
+    const handleScroll = () => {
+      if (hasScrolledRef.current) return;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0 && scrollTop / docHeight >= SCROLL_THRESHOLD) {
+        hasScrolledRef.current = true;
+        setState((s) => ({ ...s, hasScrolled: true }));
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // check immediately
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [user, isEligiblePage, state.alreadyCompleted, state.isClaimed]);
+
+  // Timer logic with visibility API + scroll gate
+  useEffect(() => {
+    if (!user || !isEligiblePage || state.alreadyCompleted || state.isClaimed) return;
+    if (!hasScrolledRef.current) return; // Don't start until scrolled
 
     const startTimer = () => {
       if (timerRef.current) return;
@@ -120,7 +145,7 @@ export function useDwellReward(pagePath: string) {
       stopTimer();
       document.removeEventListener("visibilitychange", handleVisibility);
     };
-  }, [user, isEligiblePage, state.alreadyCompleted, state.isClaimed]);
+  }, [user, isEligiblePage, state.alreadyCompleted, state.isClaimed, state.hasScrolled]);
 
   // Auto-claim when timer reaches 0
   useEffect(() => {
