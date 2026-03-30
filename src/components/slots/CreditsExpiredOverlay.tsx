@@ -86,7 +86,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
                   <Link
                     key={page.path}
 to={page.path}
-                      onClick={() => sessionStorage.setItem("missionActive", "1")}
+                      onClick={() => { const { activateMissionMode } = require("@/hooks/useDwellReward"); activateMissionMode(); }}
                     className={`flex items-center justify-between rounded-lg px-2.5 py-1.5 text-xs transition-colors ${
                       page.completed
                         ? "text-emerald-500/70"
