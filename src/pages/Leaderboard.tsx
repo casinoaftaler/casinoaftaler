@@ -18,6 +18,7 @@ import { CommunityNav } from "@/components/community/CommunityNav";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
+import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
 import { ContentSidebar } from "@/components/ContentSidebar";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { UserProfileLink } from "@/components/UserProfileLink";
@@ -503,6 +504,7 @@ export default function Leaderboard() {
         {/* Left sidebar */}
         <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-6">
           <div className="sticky top-24 h-fit flex flex-col gap-4">
+            <DailyMissionsWidget />
             <SidebarSocialProof />
             <SidebarLeaderboard />
             <SidebarShopLeaderboard />

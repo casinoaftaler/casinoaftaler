@@ -18,6 +18,7 @@ import { FeaturedSlotPanel } from "@/components/games/FeaturedSlotPanel";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
+import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
 import { Button } from "@/components/ui/button";
 import { Gamepad2, Clock, Rocket } from "lucide-react";
 import spillehalHero from "@/assets/community/spillehal-hero.jpg";
@@ -118,6 +119,7 @@ export default function GameLibrary() {
         {/* Left sidebar */}
         <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
           <div className="sticky top-24 h-fit flex flex-col gap-4">
+            <DailyMissionsWidget />
             <SidebarSocialProof />
             <SidebarLeaderboard />
             <SidebarShopLeaderboard />
