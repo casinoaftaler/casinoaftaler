@@ -84,11 +84,11 @@ export function SidebarSocialProof() {
         }}
       />
 
-      <ul className="space-y-2">
+      <ul className="flex flex-col gap-2 w-full">
         {stats.map((stat, i) => (
           <li
             key={stat.label}
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all duration-300 bg-muted/30 min-h-[52px]"
+            className="flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all duration-300 bg-muted/30 h-[52px] w-full"
           >
             <div
               className="flex items-center justify-center h-8 w-8 rounded-lg shrink-0"
