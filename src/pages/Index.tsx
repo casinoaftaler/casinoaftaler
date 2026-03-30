@@ -16,6 +16,7 @@ import { HomepageLiveCommunity } from "@/components/HomepageLiveCommunity";
 import { HomepageSeoSections } from "@/components/HomepageSeoSections";
 import { HomepagePaymentSection, HomepageProviderSection } from "@/components/HomepagePaymentProviders";
 import { HomepageTopProviders } from "@/components/HomepageTopProviders";
+import { HomepageFreshness } from "@/components/HomepageFreshness";
 import {
   HomepageCasinospilSection,
   HomepageAnmeldelserSection,
@@ -137,12 +138,39 @@ const Index = () => {
                 foundingDate: "2021",
               },
               {
+                "@type": "WebSite",
+                "@id": "https://casinoaftaler.dk/#website",
+                url: "https://casinoaftaler.dk",
+                name: "Casinoaftaler.dk",
+                publisher: { "@id": "https://casinoaftaler.dk/#organization" },
+                potentialAction: {
+                  "@type": "SearchAction",
+                  target: {
+                    "@type": "EntryPoint",
+                    urlTemplate: "https://casinoaftaler.dk/casino-anmeldelser?q={search_term_string}",
+                  },
+                  "query-input": "required name=search_term_string",
+                },
+                inLanguage: "da-DK",
+              },
+              {
                 "@type": "WebPage",
                 "@id": "https://casinoaftaler.dk/#webpage",
                 url: "https://casinoaftaler.dk",
                 name: "Online Casinoer med Bonus – Nye Casinoer 2026",
                 ...(homepageDateModified ? { dateModified: `${homepageDateModified}T00:00:00+01:00` } : {}),
                 isPartOf: { "@id": "https://casinoaftaler.dk/#website" },
+                about: [
+                  { "@type": "Thing", name: "Online Casino", url: "https://casinoaftaler.dk/casinoer" },
+                  { "@type": "Thing", name: "Casino Bonus", url: "https://casinoaftaler.dk/casino-bonus" },
+                  { "@type": "Thing", name: "Spillemaskiner", url: "https://casinoaftaler.dk/casinospil/spillemaskiner" },
+                ],
+                breadcrumb: {
+                  "@type": "BreadcrumbList",
+                  itemListElement: [
+                    { "@type": "ListItem", position: 1, name: "Forside", item: "https://casinoaftaler.dk" },
+                  ],
+                },
               },
             ],
           },
@@ -159,6 +187,7 @@ const Index = () => {
               { "@type": "ListItem", position: 4, item: { "@type": "Thing", name: "Campobet", url: "https://casinoaftaler.dk/casino-anmeldelser/campobet" } },
               { "@type": "ListItem", position: 5, item: { "@type": "Thing", name: "Swift Casino", url: "https://casinoaftaler.dk/casino-anmeldelser/swift-casino" } },
               { "@type": "ListItem", position: 6, item: { "@type": "Thing", name: "Luna Casino", url: "https://casinoaftaler.dk/casino-anmeldelser/luna-casino" } },
+              { "@type": "ListItem", position: 7, item: { "@type": "Thing", name: "PlayKasino", url: "https://casinoaftaler.dk/casino-anmeldelser/playkasino" } },
             ],
           },
           ...(latestSlots?.length ? [buildLatestSlotsSchema(latestSlots)] : []),
@@ -193,6 +222,7 @@ const Index = () => {
       />
 
       <HeroSection />
+      <HomepageFreshness />
 
       {/* Top Casinos Section with sidebar */}
       <section id="top-casinos" className="py-8 md:py-12" style={{ contain: 'layout style' }}>
@@ -208,7 +238,7 @@ const Index = () => {
           <div className="mb-8">
             <h2 className="mb-4 text-3xl font-bold">Casinoaftaler er Danmarks mest datadrevne casinoguide</h2>
             <p className="mb-6 text-muted-foreground leading-relaxed">
-              Vi tester hvert casino med dansk licens på tværs af 6 vægtede kategorier – fra bonusvilkår og udbetalingshastighed til kundeservice og sikkerhed. Vores vurderinger bygger på reel gameplay-data fra over 1.800 slots i vores database, hundredvis af live-streamede Bonus Hunts og et aktivt community, der verificerer resultaterne. Det er dokumentation, ikke markedsføring – og det er derfor, vores topliste opdateres dagligt baseret på faktiske ændringer i markedet.
+              Vi tester hvert casino med dansk licens på tværs af 6 vægtede kategorier – fra bonusvilkår og udbetalingshastighed til kundeservice og sikkerhed. Vores vurderinger bygger på reel gameplay-data fra over 1.470 slots i vores database, hundredvis af live-streamede Bonus Hunts og et aktivt community, der verificerer resultaterne. Det er dokumentation, ikke markedsføring – og det er derfor, vores topliste opdateres dagligt baseret på faktiske ændringer i markedet.
             </p>
             <FilterTabs activeFilter={activeFilter} onFilterChange={setActiveFilter} />
           </div>

@@ -14,14 +14,14 @@ const trustPoints = [
     title: "Matematisk bonusanalyse",
     description:
       "Vi beregner EV (expected value) og RTP-justering for hver bonus – ikke bare omsætningskrav, men reel spillerværdi i kroner og øre.",
-    stat: "1.400+ slots i database",
+    stat: "1.470+ slots i database",
   },
   {
     icon: Scale,
     title: "Uafhængig redaktion",
     description:
       "Vores anmeldelser er udarbejdet af forfattere med 5+ års erfaring i den danske gambling-branche. Affiliate-links påvirker aldrig vurderinger.",
-    stat: "263 indexerede sider",
+    stat: "320+ indexerede sider",
     link: { to: "/saadan-tester-vi-casinoer", label: "Læs vores metode →" },
   },
   {
