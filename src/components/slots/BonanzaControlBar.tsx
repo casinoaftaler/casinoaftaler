@@ -66,7 +66,7 @@ export function BonanzaControlBar({
   disabled,
   isSpinLocked,
   minBet = 1,
-  maxBet = 10,
+  maxBet = 20,
   spinsRemaining,
   maxSpins,
   spinsLoading,
