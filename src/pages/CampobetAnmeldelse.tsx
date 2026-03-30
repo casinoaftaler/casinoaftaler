@@ -28,6 +28,7 @@ import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
+import { CasinoHuntPerformance } from "@/components/CasinoHuntPerformance";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   Zap, RotateCcw, Check, X, Globe, Target, TrendingUp, Award,
