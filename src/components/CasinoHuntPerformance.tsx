@@ -4,6 +4,25 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FlaskConical, TrendingUp, TrendingDown, Trophy, BarChart3, Target } from "lucide-react";
 
+/** Slugify a slot name for /slot-katalog/ links */
+function slotNameToSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/['']/g, "")
+    .replace(/[^a-z0-9æøå]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+/** Title-case a slot name that may be ALL CAPS */
+function normalizeSlotName(name: string): string {
+  if (name === name.toUpperCase() && name.length > 3) {
+    return name
+      .toLowerCase()
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+  return name;
+}
+
 interface CasinoHuntPerformanceProps {
   casinoSlug: string;
   casinoName: string;
