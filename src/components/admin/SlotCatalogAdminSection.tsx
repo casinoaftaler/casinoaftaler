@@ -35,6 +35,7 @@ const SEED_PROVIDERS = [
 export function SlotCatalogAdminSection() {
   return (
     <div className="space-y-8">
+      <ArchetypeClassificationSection />
       <SeedDatabaseSection />
       <ProviderOverridesSection />
       <SlotCatalogSection />
