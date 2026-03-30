@@ -69,7 +69,7 @@ function MegaLogoCard({
     <Link
       to={to}
       onClick={onClick}
-      className="group relative flex items-center justify-center rounded-xl border border-border/30 bg-muted/50 p-3 h-16 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)] hover:scale-[1.03]"
+      className="group relative flex items-center justify-center rounded-xl border border-border/30 bg-muted/50 p-4 h-20 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)] hover:scale-[1.03]"
     >
       <img
         src={logoUrl}
@@ -114,7 +114,7 @@ function MegaLink({ to, label, iconName, colorIndex = 0, onClick }: { to: string
     <Link
       to={to}
       onClick={onClick}
-      className="flex items-center gap-2.5 rounded-lg border border-border/50 bg-card/60 px-3 py-2 text-[13px] font-medium transition-all duration-150 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_0_12px_-4px_hsl(var(--primary)/0.3)] group"
+      className="flex items-center gap-3 rounded-lg border border-border/50 bg-card/60 px-4 py-3 text-[14px] font-medium transition-all duration-150 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_0_12px_-4px_hsl(var(--primary)/0.3)] group"
     >
       {menuIconUrl ? (
         <img
@@ -146,7 +146,7 @@ function SmartLink({ item, colorIndex = 0, onClick }: { item: NavLink; colorInde
       <Link
         to={item.to}
         onClick={onClick}
-        className="flex items-center gap-2.5 rounded-lg border border-border/50 bg-card/60 px-3 py-2 text-[13px] font-medium transition-all duration-150 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_0_12px_-4px_hsl(var(--primary)/0.3)] group"
+        className="flex items-center gap-3 rounded-lg border border-border/50 bg-card/60 px-4 py-3 text-[14px] font-medium transition-all duration-150 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_0_12px_-4px_hsl(var(--primary)/0.3)] group"
       >
         <img
           src={item.avatarUrl}
@@ -189,7 +189,7 @@ function ExpandableGrid({ items, initialCount, cols = 5, onNavigate, onShowAll }
 
   return (
     <div>
-      <div className={cn("grid gap-1.5", colClass)}>
+      <div className={cn("grid gap-2.5", colClass)}>
         {visibleItems.map((item, i) => (
           <MegaLink key={item.to} to={item.to} label={item.label} iconName={item.iconName} colorIndex={i} onClick={onNavigate} />
         ))}
@@ -351,7 +351,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Casinoer" hubTo="/casinoer" hubLabel="Casinoer Hub →" onNavigate={close} />
-            <ExpandableGrid items={CASINO_LINKS} initialCount={20} onNavigate={close} />
+            <ExpandableGrid items={CASINO_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
@@ -359,7 +359,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Nye Casinoer" hubTo="/nye-casinoer" hubLabel="Nye Casinoer Hub →" onNavigate={close} />
-            <ExpandableGrid items={NYE_CASINOER_LINKS} initialCount={20} onNavigate={close} />
+            <ExpandableGrid items={NYE_CASINOER_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
@@ -392,7 +392,7 @@ export function DesktopMegaNav() {
                     </Link>
                   )}
                 </div>
-                <div className="grid gap-1.5 grid-cols-5">
+                <div className="grid gap-2.5 grid-cols-5">
                   {sec.items.map((item, i) => (
                     <MegaLink key={item.to} to={item.to} label={item.label} iconName={item.iconName} colorIndex={i} onClick={close} />
                   ))}
@@ -413,7 +413,7 @@ export function DesktopMegaNav() {
             <div className="border-t border-border/40 my-3" />
             <div>
               <SubLabel title="Spillemaskiner" hubTo="/casinospil/spillemaskiner" onNavigate={close} />
-              <ExpandableGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]} initialCount={20} onNavigate={close} onShowAll={() => expandSection("slots")} />
+              <ExpandableGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]} initialCount={10} onNavigate={close} onShowAll={() => expandSection("slots")} />
             </div>
           </>
         );
@@ -422,7 +422,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Live Casino" hubTo="/live-casino" hubLabel="Live Casino Oversigt →" onNavigate={close} />
-            <ExpandableGrid items={LIVE_CASINO_LINKS} initialCount={20} onNavigate={close} />
+            <ExpandableGrid items={LIVE_CASINO_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
@@ -430,7 +430,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Casino Bonus" hubTo="/casino-bonus" hubLabel="Casino Bonus Oversigt →" onNavigate={close} />
-            <ExpandableGrid items={BONUS_LINKS} initialCount={20} onNavigate={close} />
+            <ExpandableGrid items={BONUS_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
@@ -489,7 +489,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Community" hubTo="/community" hubLabel="Community Hub →" onNavigate={close} />
-            <ExpandableGrid items={COMMUNITY_LINKS} initialCount={20} onNavigate={close} />
+            <ExpandableGrid items={COMMUNITY_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
@@ -555,7 +555,7 @@ export function DesktopMegaNav() {
             onMouseEnter={handlePanelEnter}
             onMouseLeave={handleLeave}
           >
-            <div className="max-w-[1600px] mx-auto px-6 2xl:px-12 py-4 max-h-[75vh] overflow-y-auto">
+            <div className="max-w-[1800px] mx-auto px-8 2xl:px-16 py-6 max-h-[80vh] overflow-y-auto">
               {renderContent(activeMenu)}
             </div>
           </div>
