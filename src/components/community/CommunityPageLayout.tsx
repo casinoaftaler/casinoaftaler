@@ -1,4 +1,5 @@
 import { ReactNode, Suspense, lazy, useEffect, useState } from "react";
+import { DailyMissionsCard } from "@/components/community/DailyMissionsCard";
 import { Badge } from "@/components/ui/badge";
 import { CommunityNav } from "./CommunityNav";
 
