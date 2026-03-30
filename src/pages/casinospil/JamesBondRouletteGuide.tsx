@@ -476,7 +476,7 @@ export default function JamesBondRouletteGuide() {
             Selv med et mere generøst casino der tæller roulette 20 %, bliver det 150.000 kr. i indsatser (750 spins), med et forventet tab på -4.058 kr. – stadig langt over bonusværdien. Den lave roulette-tællingsrate gør enhver roulette-baseret bonus-strategi til negativ EV hos danske casinoer.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <strong>Undtagelsen:</strong> Nogle få casinoer tilbyder <Link to="/casino-bonus/omsaetningsfri-bonus" className={linkClass}>omsætningsfri bonusser</Link> eller bonusser med 1× omsætning. Her kan James Bond være interessant, da du kun behøver 5-10 spins for at gennemspille – og med 67,6 % vindersandsynlighed per spin har du en anstændig chance for at beholde en del af bonussen. Men disse tilbud er sjældne og har typisk lavere bonusbeløb.
+            <strong>Undtagelsen:</strong> Nogle få casinoer tilbyder <Link to="/no-sticky-bonus" className={linkClass}>omsætningsfri bonusser</Link> eller bonusser med 1× omsætning. Her kan James Bond være interessant, da du kun behøver 5-10 spins for at gennemspille – og med 67,6 % vindersandsynlighed per spin har du en anstændig chance for at beholde en del af bonussen. Men disse tilbud er sjældne og har typisk lavere bonusbeløb.
           </p>
         </section>
 

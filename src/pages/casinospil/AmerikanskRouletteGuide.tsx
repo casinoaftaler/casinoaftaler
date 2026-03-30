@@ -898,7 +898,7 @@ export default function AmerikanskRouletteGuide() {
             <strong>Takeaway:</strong> Amerikansk roulette er aldrig det optimale valg til bonus wagering. Selv med 100 % bidrag taber du 256 kr. i EV sammenlignet med europæisk – og med realistiske 10-20 % bidragsrater eskalerer forskellen til tusindvis af kroner. Den eneste positive EV-kombination for amerikansk er lave omsætningskrav (10×) med 100 % bidrag – en sjælden kombination hos danske casinoer.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            For bonus-gennemspilning anbefaler vi konsekvent <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette med La Partage</Link> (1,35 % HE), der bevarer positiv EV i flere scenarier. Tjek altid bonusvilkårene i vores <Link to="/bonusser" className={linkClass}>bonusoversigt</Link> for den specifikke roulette-bidragsprocent.
+            For bonus-gennemspilning anbefaler vi konsekvent <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette med La Partage</Link> (1,35 % HE), der bevarer positiv EV i flere scenarier. Tjek altid bonusvilkårene i vores <Link to="/casino-bonus" className={linkClass}>bonusoversigt</Link> for den specifikke roulette-bidragsprocent.
           </p>
         </section>
 

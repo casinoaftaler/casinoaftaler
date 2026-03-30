@@ -243,7 +243,7 @@ export default function Bet365VsUnibet() {
 
         <h3 className="mb-3 text-xl font-semibold">Løbende kampagner og loyalitet</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          bet365 kører hyppige "Bonus Drop" kampagner med tilfældige belønninger under spil samt periodiske free spins-tilbud. Deres loyalitetsprogram er diskret og baseret på personlige tilbud. Unibet har et mere struktureret system med Unibet Points, ugentlige turneringer og cashback-tilbud. For aktive spillere giver Unibets systematiske tilgang typisk bedre langsigtet værdi. Se også vores <Link to="/casino-bonus/free-spins" className={linkClass}>free spins-guide</Link> for daglige tilbud.
+          bet365 kører hyppige "Bonus Drop" kampagner med tilfældige belønninger under spil samt periodiske free spins-tilbud. Deres loyalitetsprogram er diskret og baseret på personlige tilbud. Unibet har et mere struktureret system med Unibet Points, ugentlige turneringer og cashback-tilbud. For aktive spillere giver Unibets systematiske tilgang typisk bedre langsigtet værdi. Se også vores <Link to="/free-spins" className={linkClass}>free spins-guide</Link> for daglige tilbud.
         </p>
       </section>
 
