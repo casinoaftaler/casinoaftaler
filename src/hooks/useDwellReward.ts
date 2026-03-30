@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getTodayDanish } from "@/lib/danishDate";
 
 export const DWELL_REWARD_PAGES = [
   { path: "/top-10-casino-online", label: "Top 10 Casino", credits: 300 },
@@ -90,7 +91,7 @@ export function useDwellReward(pagePath: string) {
   useEffect(() => {
     if (!user || !isEligiblePage || !isMissionActivated) return;
 
-    const today = new Date().toISOString().split("T")[0];
+    const today = getTodayDanish();
     supabase
       .from("daily_dwell_rewards")
       .select("id")
@@ -183,7 +184,7 @@ export function useDwellReward(pagePath: string) {
 
     setState((s) => ({ ...s, isClaiming: true }));
 
-    const today = new Date().toISOString().split("T")[0];
+    const today = getTodayDanish();
     const { data, error } = await supabase.rpc("claim_dwell_reward", {
       p_user_id: user.id,
       p_page_path: pagePath,
@@ -230,7 +231,7 @@ export function useDwellRewardProgress() {
     queryKey: ["dwell-progress", user?.id],
     queryFn: async () => {
       if (!user) return [];
-      const today = new Date().toISOString().split("T")[0];
+      const today = getTodayDanish();
       const { data } = await supabase
         .from("daily_dwell_rewards")
         .select("page_path")
