@@ -91,7 +91,7 @@ export function useDwellReward(pagePath: string) {
   useEffect(() => {
     if (!user || !isEligiblePage || !isMissionActivated) return;
 
-    const today = new Date().toISOString().split("T")[0];
+    const today = getTodayDanish();
     supabase
       .from("daily_dwell_rewards")
       .select("id")
