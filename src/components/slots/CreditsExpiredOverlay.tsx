@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Clock, Sparkles, ExternalLink } from "lucide-react";
+import { Clock, Sparkles, ExternalLink, Coins, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CreditCoin } from "@/components/CreditCoin";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -8,6 +8,7 @@ import { optimizeStorageImage } from "@/lib/imageOptimization";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
+import { useDwellRewardProgress } from "@/hooks/useDwellReward";
 
 function getTimeUntilMidnightCopenhagen(): { hours: number; minutes: number; seconds: number } {
   const now = new Date();
