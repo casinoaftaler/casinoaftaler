@@ -225,7 +225,7 @@ serve(async (req) => {
     const { count } = await sb
       .from("slot_catalog")
       .select("id", { count: "exact", head: true })
-      .eq("content_archetype", "stats-heavy")
+      .in("content_archetype", ["stats-heavy", "community-driven"])
       .is("enriched_analysis", null);
 
     return new Response(
