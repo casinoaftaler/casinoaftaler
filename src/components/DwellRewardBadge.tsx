@@ -40,6 +40,11 @@ export function DwellRewardBadge() {
 
   // Flash effect when crossing a milestone threshold
   useEffect(() => {
+    if (secondsLeft === 0 || completed) {
+      setMilestoneFlash(null);
+      setPrevSeconds(secondsLeft);
+      return;
+    }
     for (const m of MILESTONES) {
       if (prevSeconds > m.at && secondsLeft <= m.at && secondsLeft > 0) {
         setMilestoneFlash(m.text);
@@ -49,7 +54,7 @@ export function DwellRewardBadge() {
       }
     }
     setPrevSeconds(secondsLeft);
-  }, [secondsLeft, prevSeconds]);
+  }, [secondsLeft, prevSeconds, completed]);
 
   // Reset visibility and sound flag on page change
   useEffect(() => {
