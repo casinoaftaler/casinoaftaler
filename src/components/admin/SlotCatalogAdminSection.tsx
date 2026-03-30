@@ -76,14 +76,12 @@ function ArchetypeClassificationSection() {
   const runClassification = async () => {
     setRunning(true);
     try {
-      const res = await supabase.functions.invoke("slot-classify-archetypes");
-      if (res.error) throw res.error;
-      const result = res.data as { distribution: Record<string, number> };
-      setDistribution(result.distribution);
-      toast.success("Arketyper klassificeret!");
+      const { error } = await supabase.rpc("classify_slot_archetypes" as any);
+      if (error) throw error;
+      // Refresh slot data to recompute distribution
+      window.location.reload();
     } catch (err: any) {
       toast.error("Fejl: " + (err.message || "Ukendt fejl"));
-    } finally {
       setRunning(false);
     }
   };
