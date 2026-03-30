@@ -331,6 +331,8 @@ const SpilleautomatenAnmeldelse = () => {
           </div>
         </section>
 
+        <CasinoHuntPerformance casinoSlug="spilleautomaten" casinoName="Spilleautomaten" onCtaClick={handleBonusClick} />
+
         <Separator className="my-10" />
 
         {/* 5-Day Bonus Deep Dive */}

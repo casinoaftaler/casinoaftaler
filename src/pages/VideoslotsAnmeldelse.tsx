@@ -174,6 +174,8 @@ const VideoslotsAnmeldelse = () => {
           </div>
         </section>
 
+        <CasinoHuntPerformance casinoSlug="videoslots" casinoName="Videoslots" />
+
         <Separator className="my-10" />
 
         {/* Betalingsmetoder */}

@@ -193,6 +193,8 @@ const ComeOnAnmeldelse = () => {
           </div>
         </section>
 
+        <CasinoHuntPerformance casinoSlug="comeon" casinoName="ComeOn" />
+
         <Separator className="my-10" />
 
         <section className="mb-12">

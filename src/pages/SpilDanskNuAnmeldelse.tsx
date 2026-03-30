@@ -132,6 +132,8 @@ const SpilDanskNuAnmeldelse = () => {
           </div>
         </section>
 
+        <CasinoHuntPerformance casinoSlug="spildansknu" casinoName="SpilDanskNu" onCtaClick={handleBonusClick} />
+
         <Separator className="my-10" />
 
         {/* 2. Bonusanalyse – high-intent */}

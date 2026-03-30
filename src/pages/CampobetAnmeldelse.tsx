@@ -290,6 +290,8 @@ const CampobetAnmeldelse = () => {
           </div>
         </section>
 
+        <CasinoHuntPerformance casinoSlug="campobet" casinoName="Campobet" onCtaClick={handleBonusClick} />
+
         <Separator className="my-10" />
 
         {/* No-Sticky Bonusanalyse */}
