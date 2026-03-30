@@ -29,8 +29,10 @@ export function DwellRewardBadge() {
   const [prevSeconds, setPrevSeconds] = useState(DWELL_DURATION_SECONDS);
   const hasPlayedSound = useRef(false);
 
-  const nextMission = pages.find((p) => !p.completed && p.path !== pathname);
   const completed = isClaimed || alreadyCompleted;
+  // Filter out completed pages AND current page (which may have just been completed but not yet reflected in DB)
+  const nextMission = pages.find((p) => !p.completed && p.path !== pathname);
+  const allMissionsComplete = !nextMission && completed;
 
   // Current milestone message
   const currentMilestone = useMemo(() => {
