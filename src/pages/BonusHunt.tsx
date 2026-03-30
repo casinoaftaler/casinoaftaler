@@ -16,6 +16,7 @@ import { BonusHuntSeoText } from "@/components/bonus-hunt/BonusHuntSeoText";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
+import { CommunityContentShell } from "@/components/community/CommunityContentShell";
 import { BonusHuntHostCard } from "@/components/bonus-hunt/BonusHuntHostCard";
 import { AuthorBio } from "@/components/AuthorBio";
 import { BonusHuntHeroBar } from "@/components/bonus-hunt/BonusHuntHeroBar";
@@ -30,7 +31,6 @@ import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
-import { ContentSidebar } from "@/components/ContentSidebar";
 import { useBonusHuntData, useLatestHuntNumber } from "@/hooks/useBonusHuntData";
 import { useBonusHuntArchives } from "@/hooks/useSlotCatalog";
 import { useBonusHuntSession, useBonusHuntSessionByHuntNumber, useBonusHuntGtwBets, useBonusHuntAvgxBets } from "@/hooks/useBonusHuntSession";
@@ -236,21 +236,17 @@ export default function BonusHunt() {
 
       <CommunityNav />
 
-      <div className="container relative">
-        {/* Left sidebar */}
-        <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
-          <div className="sticky top-24 h-fit flex flex-col gap-4">
+      <CommunityContentShell
+        leftSidebar={
+          <>
             <DailyMissionsWidget />
             <SidebarSocialProof />
             <SidebarLeaderboard />
             <SidebarShopLeaderboard />
-          </div>
-        </div>
-
-        {/* Main content + right sidebar */}
-        <div className="flex gap-8 xl:gap-10">
-          <div className="min-w-0 flex-1">
-        <div className="pt-8 md:pt-12 space-y-6" style={{ minHeight: '80vh' }}>
+          </>
+        }
+      >
+        <div className="space-y-6" style={{ minHeight: '80vh' }}>
 
           {/* Stat strip */}
           <BonusHuntStatStrip />
@@ -383,12 +379,7 @@ export default function BonusHunt() {
 
           <div className="pb-12" />
         </div>
-          </div>
-          <div className="pt-8 md:pt-12">
-            <ContentSidebar />
-          </div>
-        </div>
-        </div>
+      </CommunityContentShell>
     </>
   );
 }

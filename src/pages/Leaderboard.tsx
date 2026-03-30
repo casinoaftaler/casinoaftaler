@@ -13,13 +13,13 @@ import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 import { FAQSection } from "@/components/FAQSection";
+import { CommunityContentShell } from "@/components/community/CommunityContentShell";
 import { CommunityNav } from "@/components/community/CommunityNav";
 
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
-import { ContentSidebar } from "@/components/ContentSidebar";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { useAuth } from "@/hooks/useAuth";
@@ -500,21 +500,17 @@ export default function Leaderboard() {
 
       <CommunityNav />
 
-      <div className="container relative">
-        {/* Left sidebar */}
-        <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
-          <div className="sticky top-24 h-fit flex flex-col gap-4">
+      <CommunityContentShell
+        leftSidebar={
+          <>
             <DailyMissionsWidget />
             <SidebarSocialProof />
             <SidebarLeaderboard />
             <SidebarShopLeaderboard />
-          </div>
-        </div>
-
-        {/* Main content + right sidebar */}
-        <div className="flex gap-8 xl:gap-10">
-          <div className="min-w-0 flex-1">
-        <div className="py-8 md:py-12 space-y-8" style={{ minHeight: '80vh' }}>
+          </>
+        }
+      >
+        <div className="space-y-8" style={{ minHeight: '80vh' }}>
 
           {/* Main content */}
           {tournamentsLoading ? (
@@ -583,12 +579,7 @@ export default function Leaderboard() {
 
           <div className="pb-12" />
         </div>
-          </div>
-          <div className="pt-8 md:pt-12">
-            <ContentSidebar />
-          </div>
-        </div>
-      </div>
+      </CommunityContentShell>
     </>
   );
 }
