@@ -25,6 +25,7 @@ import { QuickFactsProviders, QuickFactsLicense } from "@/components/QuickFactsP
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
+import { CasinoHuntPerformance } from "@/components/CasinoHuntPerformance";
 import type { ReactNode } from "react";
 import { ShieldCheck, Star, Clock, CreditCard, Trophy, Sparkles, Gamepad2, Zap, Check, X, Smartphone, Headphones, Globe, Award, AlertTriangle, Users, TrendingUp, Target, BarChart3, Swords } from "lucide-react";
 import { UserReviewSection } from "@/components/UserReviewSection";
@@ -296,6 +297,10 @@ const VideoslotsAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Videoslots vs. <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link>:</strong> Unibet er en allround-platform med sport, casino, poker og bingo. Spiludvalget (ca. 1.800 titler) er under halvdelen af Videoslots', og der er ingen turneringsfunktion à la Battle of Slots. Til gengæld tilbyder Unibet en integreret sportsoplevelse, en stærkere app og FDJ Uniteds (tidl. Kindred) "Journey towards zero"-initativ for ansvarligt spil. Unibet er for generalisten; Videoslots er for specialisten.</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Videoslots vs. <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link>:</strong> GetLucky med sine ca. 1.500 spil er det nærmeste danske alternativ til Videoslots' bredde-tilgang, men med kun en tredjedel af kataloget. GetLucky har en bedre mobiloplevelse og et mere overskueligt interface, men mangler Battle of Slots og Weekend Boosters. For spillere, der vil have en "Videoslots lite"-oplevelse med bedre design, er GetLucky et godt kompromis.</p>
         </section>
+
+        <Separator className="my-10" />
+
+        <CasinoHuntPerformance casinoSlug="videoslots" casinoName="Videoslots" />
 
         <Separator className="my-10" />
 

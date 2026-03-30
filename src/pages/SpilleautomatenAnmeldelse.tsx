@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { InlineReviewCTA } from "@/components/InlineReviewCTA";
 import { LazySection } from "@/components/LazySection";
+import { CasinoHuntPerformance } from "@/components/CasinoHuntPerformance";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { RatingBreakdown } from "@/components/RatingBreakdown";
 import { CASINO_SCORES } from "@/lib/reviewScoring";
@@ -786,6 +787,10 @@ const SpilleautomatenAnmeldelse = () => {
             </Card>
           </div>
         </section>
+
+        <Separator className="my-10" />
+
+        <CasinoHuntPerformance casinoSlug="spilleautomaten" casinoName="Spilleautomaten" />
 
         <Separator className="my-10" />
 

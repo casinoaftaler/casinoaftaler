@@ -28,6 +28,7 @@ import type { ReactNode } from "react";
 import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
+import { CasinoHuntPerformance } from "@/components/CasinoHuntPerformance";
 import {
   ShieldCheck, Star, Clock, CreditCard, Gift, Trophy, Sparkles,
   Zap, RotateCcw, Check, X, Globe, Target, TrendingUp, Award,
@@ -581,6 +582,10 @@ const CampobetAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Campobet vs. bet365.</strong> bet365 er den ubestridte markedsleder inden for sportsbetting med dybere markeder, hurtigere odds-opdateringer og et mere etableret brand. Campobets fordel ligger i casino-delen: No-Sticky bonus (bet365 har sticky), et bredere spiludvalg fra flere udbydere, og ugentlige reload-bonusser. Vælg bet365 for sportsspecialisering, Campobet for den bedste casino-sport hybrid.</p>
           <p className="text-muted-foreground leading-relaxed"><strong className="text-foreground">Campobets unikke position.</strong> Det der gør Campobet særligt attraktivt er den sjældne kombination af No-Sticky bonusstruktur, tredobbelt licensering og et spiludvalg der matcher de bedste rene casino-platforme – alt sammen kombineret med en sportssektion der konkurrerer med dedikerede bookmakers. Det er en dual-platform, der ikke kompromitterer på nogen af de to vertikaler.</p>
         </section>
+
+        <Separator className="my-10" />
+
+        <CasinoHuntPerformance casinoSlug="campobet" casinoName="Campobet" />
 
         <Separator className="my-10" />
 
