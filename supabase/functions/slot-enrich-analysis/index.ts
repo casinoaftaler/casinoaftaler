@@ -65,11 +65,12 @@ function pick<T>(arr: T[], seed: number): T {
 }
 
 function buildPrompt(slot: any): string {
+  const archetype = slot.content_archetype || "stats-heavy";
   const seed = hashCode(slot.slot_name + (slot.provider || ""));
   const tone = pick(TONE_DESCRIPTORS, seed);
   const structure = pick(STRUCTURE_TEMPLATES, seed + 3);
   const closing = pick(CLOSING_STYLES, seed + 7);
-  const wordCount = 280 + (seed % 220);
+  const wordCount = archetype === "community-driven" ? 200 + (seed % 150) : 280 + (seed % 220);
 
   const dataPoints: string[] = [];
   if (slot.rtp) dataPoints.push(`RTP: ${slot.rtp}%`);
@@ -79,9 +80,15 @@ function buildPrompt(slot: any): string {
   if (slot.highest_x) dataPoints.push(`Højeste multiplikator registreret: ${slot.highest_x}x`);
   if (slot.highest_win) dataPoints.push(`Største gevinst: ${slot.highest_win} kr`);
 
+  const focusInstruction = archetype === "community-driven"
+    ? `FOKUS: Denne slot har begrænset teknisk data, men ægte community-erfaringer fra bonus hunts. Fokuser primært på de faktiske resultater fra fællesskabet – hvad der er observeret, oplevet og registreret. Hold teksten jordnær og erfaringsbaseret.`
+    : `FOKUS: Denne slot har rig teknisk data OG community-erfaringer. Analyser begge dimensioner i dybden – sæt RTP, volatilitet og max win i kontekst med de faktiske bonus hunt resultater.`;
+
   return `Du er en dansk casino-content specialist.
 
 OPGAVE: Skriv en UNIK analyse af spillemaskinen "${slot.slot_name}" fra ${slot.provider || "ukendt udbyder"}.
+
+${focusInstruction}
 
 TILGÆNGELIGE DATA:
 ${dataPoints.join("\n")}
