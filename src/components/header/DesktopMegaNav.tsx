@@ -351,7 +351,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Casinoer" hubTo="/casinoer" hubLabel="Casinoer Hub →" onNavigate={close} />
-            <ExpandableGrid items={CASINO_LINKS} initialCount={10} onNavigate={close} />
+            <ExpandableGrid items={CASINO_LINKS} initialCount={20} onNavigate={close} />
           </>
         );
 
@@ -359,7 +359,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Nye Casinoer" hubTo="/nye-casinoer" hubLabel="Nye Casinoer Hub →" onNavigate={close} />
-            <ExpandableGrid items={NYE_CASINOER_LINKS} initialCount={10} onNavigate={close} />
+            <ExpandableGrid items={NYE_CASINOER_LINKS} initialCount={20} onNavigate={close} />
           </>
         );
 
@@ -413,7 +413,7 @@ export function DesktopMegaNav() {
             <div className="border-t border-border/40 my-3" />
             <div>
               <SubLabel title="Spillemaskiner" hubTo="/casinospil/spillemaskiner" onNavigate={close} />
-              <ExpandableGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]} initialCount={10} onNavigate={close} onShowAll={() => expandSection("slots")} />
+              <ExpandableGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]} initialCount={20} onNavigate={close} onShowAll={() => expandSection("slots")} />
             </div>
           </>
         );
@@ -422,7 +422,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Live Casino" hubTo="/live-casino" hubLabel="Live Casino Oversigt →" onNavigate={close} />
-            <ExpandableGrid items={LIVE_CASINO_LINKS} initialCount={10} onNavigate={close} />
+            <ExpandableGrid items={LIVE_CASINO_LINKS} initialCount={20} onNavigate={close} />
           </>
         );
 
@@ -430,7 +430,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Casino Bonus" hubTo="/casino-bonus" hubLabel="Casino Bonus Oversigt →" onNavigate={close} />
-            <ExpandableGrid items={BONUS_LINKS} initialCount={10} onNavigate={close} />
+            <ExpandableGrid items={BONUS_LINKS} initialCount={20} onNavigate={close} />
           </>
         );
 
@@ -489,7 +489,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Community" hubTo="/community" hubLabel="Community Hub →" onNavigate={close} />
-            <ExpandableGrid items={COMMUNITY_LINKS} initialCount={10} onNavigate={close} />
+            <ExpandableGrid items={COMMUNITY_LINKS} initialCount={20} onNavigate={close} />
           </>
         );
 
