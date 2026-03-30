@@ -42,6 +42,7 @@ const PATH_OVERRIDES: Record<string, string> = {
   // Jonas – systems / clusters
   "/casinospil/blackjack/martingale": "martingale-blackjack",
   "/casinospil/blackjack/dalembert": "dalembert-blackjack",
+  "/casinospil/blackjack/skema": "blackjack-skema",
   "/casinospil/poker/omaha": "omaha-poker",
   "/casinospil/poker/strategi": "poker-strategi",
   "/nye-casinoer/vs-etablerede": "nye-vs-etablerede",

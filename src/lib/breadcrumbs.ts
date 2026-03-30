@@ -263,6 +263,7 @@ export const routeLabels: Record<string, string> = {
   "/casinospil/blackjack/europaeisk-blackjack": "Europæisk Blackjack",
   "/casinospil/blackjack/double-exposure-blackjack": "Double Exposure",
   "/casinospil/blackjack/spanish-21": "Spanish 21",
+  "/casinospil/blackjack/skema": "Blackjack Skema",
   "/casinospil/roulette": "Roulette",
   "/casinospil/roulette/amerikansk-roulette": "Amerikansk Roulette",
   "/casinospil/roulette/europaeisk-roulette": "Europæisk Roulette",
@@ -514,6 +515,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/casinospil/blackjack/europaeisk-blackjack": [{ name: "Casinospil", path: "/casinospil" }, { name: "Blackjack", path: "/casinospil/blackjack" }],
   "/casinospil/blackjack/double-exposure-blackjack": [{ name: "Casinospil", path: "/casinospil" }, { name: "Blackjack", path: "/casinospil/blackjack" }],
   "/casinospil/blackjack/spanish-21": [{ name: "Casinospil", path: "/casinospil" }, { name: "Blackjack", path: "/casinospil/blackjack" }],
+  "/casinospil/blackjack/skema": [{ name: "Casinospil", path: "/casinospil" }, { name: "Blackjack", path: "/casinospil/blackjack" }],
 
   // Info-klynge – bundet til /om hubben
   "/saadan-tester-vi-casinoer": [{ name: "Om Casinoaftaler.dk", path: "/om" }],
