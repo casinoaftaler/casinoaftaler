@@ -128,6 +128,8 @@ export function useDwellReward(pagePath: string) {
     }
   }, [state.secondsLeft, state.isClaimed, state.isClaiming, user]);
 
+  const queryClient = useQueryClient();
+
   const claimReward = useCallback(async () => {
     if (!user || state.isClaimed || state.isClaiming) return;
 
@@ -151,13 +153,17 @@ export function useDwellReward(pagePath: string) {
       return;
     }
 
+    // Invalidate credit queries so header updates immediately
+    queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
+    queryClient.invalidateQueries({ queryKey: ["header-credits"] });
+
     setState((s) => ({
       ...s,
       isClaimed: true,
       isClaiming: false,
       alreadyCompleted: true,
     }));
-  }, [user, pagePath, state.isClaimed, state.isClaiming]);
+  }, [user, pagePath, state.isClaimed, state.isClaiming, queryClient]);
 
   return {
     ...state,
