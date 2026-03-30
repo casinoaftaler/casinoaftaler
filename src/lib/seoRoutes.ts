@@ -214,6 +214,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/blackjack/martingale", changefreq: "weekly", priority: 0.74, lastmod: "2026-03-18" },
   { path: "/casinospil/blackjack/fibonacci", changefreq: "weekly", priority: 0.74, lastmod: "2026-03-18" },
   { path: "/casinospil/blackjack/dalembert", changefreq: "weekly", priority: 0.74, lastmod: "2026-03-18" },
+  { path: "/casinospil/blackjack/skema", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-30" },
   { path: "/casinospil/roulette", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-18" },
   { path: "/casinospil/roulette/amerikansk-roulette", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },
   { path: "/casinospil/roulette/europaeisk-roulette", changefreq: "weekly", priority: 0.7, lastmod: "2026-03-05" },

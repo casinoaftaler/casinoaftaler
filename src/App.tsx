@@ -532,6 +532,7 @@ const App = () => (
                 <Route path="/casinospil/blackjack/martingale" element={<MartingaleBlackjackGuide />} />
                 <Route path="/casinospil/blackjack/fibonacci" element={<FibonacciBlackjackGuide />} />
                 <Route path="/casinospil/blackjack/dalembert" element={<DalembertBlackjackGuide />} />
+                <Route path="/casinospil/blackjack/skema" element={<BlackjackSkemaGuide />} />
                 <Route path="/casinospil/roulette" element={<RouletteGuide />} />
                 <Route path="/casinospil/roulette/amerikansk-roulette" element={<AmerikanskRouletteGuide />} />
                 <Route path="/casinospil/roulette/europaeisk-roulette" element={<EuropaeiskRouletteGuide />} />
