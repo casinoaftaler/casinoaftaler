@@ -35,9 +35,11 @@ function normalizeSlotName(name: string): string {
 interface CasinoHuntPerformanceProps {
   casinoSlug: string;
   casinoName: string;
+  /** Affiliate redirect handler – called when user clicks the CTA */
+  onCtaClick?: () => void;
 }
 
-export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerformanceProps) {
+export function CasinoHuntPerformance({ casinoSlug, casinoName, onCtaClick }: CasinoHuntPerformanceProps) {
   const { data: stats, isLoading } = useCasinoHuntStats(casinoSlug);
 
   if (isLoading || !stats || stats.totalHunts === 0) return null;
@@ -168,24 +170,26 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerf
         </div>
       )}
 
-      {/* CTA */}
-      <div className="rounded-xl border border-primary/30 bg-primary/5 p-5 mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <p className="font-semibold text-foreground">
-            Vil du prøve {casinoName} selv?
-          </p>
-          <p className="text-sm text-muted-foreground">
-            Læs vores fulde anmeldelse med bonusvilkår, udbetalingstest og vurdering.
-          </p>
+      {/* CTA – affiliate redirect */}
+      {onCtaClick && (
+        <div className="rounded-xl border border-primary/30 bg-primary/5 p-5 mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <p className="font-semibold text-foreground">
+              Vil du prøve {casinoName} selv?
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Vi har testet det i {stats.totalHunts} bonus hunts – se om det matcher din spillestil.
+            </p>
+          </div>
+          <button
+            onClick={onCtaClick}
+            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary/80 px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:scale-[1.03] hover:shadow-md hover:shadow-primary/25 whitespace-nowrap shrink-0"
+          >
+            Besøg {casinoName}
+            <ArrowRight className="h-4 w-4" />
+          </button>
         </div>
-        <Link
-          to={`/casino-anmeldelser/${casinoSlug}`}
-          className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary/80 px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:scale-[1.03] hover:shadow-md hover:shadow-primary/25 whitespace-nowrap shrink-0"
-        >
-          Læs fuld anmeldelse
-          <ArrowRight className="h-4 w-4" />
-        </Link>
-      </div>
+      )}
 
       <p className="text-sm text-muted-foreground italic">
         Alle data stammer fra vores live bonus hunts på{" "}

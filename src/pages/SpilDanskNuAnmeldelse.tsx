@@ -132,6 +132,8 @@ const SpilDanskNuAnmeldelse = () => {
           </div>
         </section>
 
+        <CasinoHuntPerformance casinoSlug="spildansknu" casinoName="SpilDanskNu" onCtaClick={handleBonusClick} />
+
         <Separator className="my-10" />
 
         {/* 2. Bonusanalyse – high-intent */}
@@ -390,10 +392,6 @@ const SpilDanskNuAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong className="text-foreground">Spillere der kræver døgnåben support.</strong> Med kundeservice kun til kl. 23:00 er SpilDanskNu ikke ideelt for natteaktive spillere. Casinoer med 24/7 support som <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobet</Link> er bedre valg her.</p>
           <p className="text-muted-foreground leading-relaxed"><strong className="text-foreground">Spillere der foretrækker No-Sticky bonus.</strong> SpilDanskNus bonus er en standard matchbonus – ikke No-Sticky. For spillere der prioriterer muligheden for at hæve gevinster fra egen saldo uden omsætningskrav, er <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link> eller <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobet</Link> bedre alternativer.</p>
         </section>
-
-        <Separator className="my-10" />
-
-        <CasinoHuntPerformance casinoSlug="spildansknu" casinoName="SpilDanskNu" />
 
         <Separator className="my-10" />
 

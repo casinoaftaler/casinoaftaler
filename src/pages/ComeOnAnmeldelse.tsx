@@ -193,6 +193,8 @@ const ComeOnAnmeldelse = () => {
           </div>
         </section>
 
+        <CasinoHuntPerformance casinoSlug="comeon" casinoName="ComeOn" />
+
         <Separator className="my-10" />
 
         <section className="mb-12">
@@ -327,10 +329,6 @@ const ComeOnAnmeldelse = () => {
           <p className="mb-4 text-muted-foreground leading-relaxed"><strong>Vs. <Link to="/casino-anmeldelser/getlucky" className={linkClass}>GetLucky</Link>:</strong> GetLucky har 50% flere spiltitler og et loyalitetsprogram. ComeOn har bedre bonusgennemsigtighed, hurtigere udbetalinger (14 vs. 26 timer) og dansk kundeservice. For spiludvalg: GetLucky. For gennemsigtighed og hastighed: ComeOn.</p>
           <p className="text-muted-foreground leading-relaxed"><strong>Vs. <Link to="/casino-anmeldelser/888-casino" className={linkClass}>888 Casino</Link>:</strong> 888 Casino har eksklusive spil og et 8-niveaus loyalitetsprogram. ComeOn har enklere vilkår, hurtigere udbetalinger og dansk support. For loyalitet og unikke features: 888. For den ukomplicerede all-round oplevelse: ComeOn.</p>
         </section>
-
-        <Separator className="my-10" />
-
-        <CasinoHuntPerformance casinoSlug="comeon" casinoName="ComeOn" />
 
         <Separator className="my-10" />
 
