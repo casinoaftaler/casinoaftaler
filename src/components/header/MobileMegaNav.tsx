@@ -61,6 +61,7 @@ function MobileSmartLink({ item, colorIndex = 0, onClose, indent = "ml-6" }: {
 }) {
   const logoUrl = resolveLogoUrl(item);
   const IconComp = getLucideIcon(item.iconName);
+  const menuIconUrl = item.iconName ? MENU_ICON_MAP[item.iconName] : undefined;
   const color = ICON_COLORS[colorIndex % ICON_COLORS.length];
 
   if (logoUrl) {
