@@ -214,7 +214,7 @@ export default function Bet365VsUnibet() {
           <p className="text-muted-foreground text-sm">Gevinster udbetales direkte som kontanter</p>
         </div>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Unibets Cash Spins-tilbud er unikt på det danske marked. Mens de fleste <Link to="/casino-bonus/free-spins" className={linkClass}>free spins</Link>-bonusser kræver omsætning af gevinsterne, kan Unibets Cash Spins-gevinster udbetales direkte. Det gør tilbudet særligt attraktivt for spillere, der ikke ønsker at gennemspille et omsætningskrav. For en komplet guide til bonus-typer, se vores <Link to="/casino-bonus" className={linkClass}>bonusoversigt</Link>.
+          Unibets Cash Spins-tilbud er unikt på det danske marked. Mens de fleste <Link to="/free-spins" className={linkClass}>free spins</Link>-bonusser kræver omsætning af gevinsterne, kan Unibets Cash Spins-gevinster udbetales direkte. Det gør tilbudet særligt attraktivt for spillere, der ikke ønsker at gennemspille et omsætningskrav. For en komplet guide til bonus-typer, se vores <Link to="/casino-bonus" className={linkClass}>bonusoversigt</Link>.
         </p>
 
         <h3 className="mb-3 text-xl font-semibold">Expected Value-beregning: Casinobonus</h3>
