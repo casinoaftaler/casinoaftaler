@@ -29,7 +29,7 @@ const CATEGORY_MONEY_LINKS: Record<string, MoneyLink[]> = {
     { to: "/casinospil/spillemaskiner", label: "Spillemaskiner Guide", icon: BarChart3, desc: "Komplet guide til online slots" },
     { to: "/casino-bonus", label: "Casino Bonus", icon: Gift, desc: "Bonusser til spillemaskiner" },
     { to: "/free-spins", label: "Free Spins Tilbud", icon: Sparkles, desc: "Gratis spins på populære slots" },
-    { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "1.400+ slots med community-data" },
+    { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "{ to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "1.470+ slots med community-data" }," },
   ],
   "Grundbegreber": [
     { to: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: Star, desc: "Find det rette casino med vores anmeldelser" },
