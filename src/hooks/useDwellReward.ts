@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const DWELL_REWARD_PAGES = [
   { path: "/top-10-casino-online", label: "Top 10 Casino", credits: 300 },
@@ -225,59 +225,22 @@ export function useDwellReward(pagePath: string) {
 /** Hook to fetch today's completed dwell rewards for the current user */
 export function useDwellRewardProgress() {
   const { user } = useAuth();
-  const [completedPages, setCompletedPages] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [refreshKey, setRefreshKey] = useState(0);
 
-  const fetchProgress = useCallback(async (userId: string) => {
-    const today = new Date().toISOString().split("T")[0];
-    const { data } = await supabase
-      .from("daily_dwell_rewards")
-      .select("page_path")
-      .eq("user_id", userId)
-      .eq("reward_date", today);
-    setCompletedPages(data?.map((d) => d.page_path) ?? []);
-    setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
-    if (!user) {
-      setCompletedPages([]);
-      setIsLoading(false);
-      return;
-    }
-    fetchProgress(user.id);
-  }, [user, fetchProgress, refreshKey]);
-
-  // Listen to queryClient invalidation of "dwell-progress" to refetch
-  const queryClient = useQueryClient();
-  useEffect(() => {
-    const unsubscribe = queryClient.getQueryCache().subscribe((event) => {
-      if (event?.type === "updated" || event?.type === "removed") {
-        const key = event?.query?.queryKey;
-        if (Array.isArray(key) && key[0] === "dwell-progress") {
-          setRefreshKey((k) => k + 1);
-        }
-      }
-    });
-    return () => unsubscribe();
-  }, [queryClient]);
-
-  // Auth state changes
-  useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (event === "SIGNED_IN" && session?.user) {
-          setIsLoading(true);
-          fetchProgress(session.user.id);
-        } else if (event === "SIGNED_OUT") {
-          setCompletedPages([]);
-          setIsLoading(false);
-        }
-      }
-    );
-    return () => subscription.unsubscribe();
-  }, [fetchProgress]);
+  const { data: completedPages = [], isLoading } = useQuery({
+    queryKey: ["dwell-progress", user?.id],
+    queryFn: async () => {
+      if (!user) return [];
+      const today = new Date().toISOString().split("T")[0];
+      const { data } = await supabase
+        .from("daily_dwell_rewards")
+        .select("page_path")
+        .eq("user_id", user.id)
+        .eq("reward_date", today);
+      return [...new Set(data?.map((d) => d.page_path) ?? [])];
+    },
+    enabled: !!user,
+    staleTime: 5_000,
+  });
 
   return {
     completedPages,
@@ -288,6 +251,5 @@ export function useDwellRewardProgress() {
       ...p,
       completed: completedPages.includes(p.path),
     })),
-    refetch: () => setRefreshKey((k) => k + 1),
   };
 }
