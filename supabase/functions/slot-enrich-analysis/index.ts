@@ -180,10 +180,11 @@ serve(async (req) => {
 
     const { limit = 30 } = await req.json().catch(() => ({}));
 
+    // Fetch stats-heavy AND community-driven slots without enriched_analysis
     const { data: slots, error: fetchErr } = await sb
       .from("slot_catalog")
-      .select("id, slot_name, provider, rtp, volatility, max_potential, bonus_count, highest_win, highest_x")
-      .eq("content_archetype", "stats-heavy")
+      .select("id, slot_name, provider, rtp, volatility, max_potential, bonus_count, highest_win, highest_x, content_archetype")
+      .in("content_archetype", ["stats-heavy", "community-driven"])
       .is("enriched_analysis", null)
       .order("bonus_count", { ascending: false })
       .limit(limit);
@@ -191,7 +192,7 @@ serve(async (req) => {
     if (fetchErr) throw fetchErr;
     if (!slots || slots.length === 0) {
       return new Response(
-        JSON.stringify({ message: "Alle stats-heavy slots er beriget!", enriched: 0, remaining: 0 }),
+        JSON.stringify({ message: "Alle stats-heavy & community-driven slots er beriget!", enriched: 0, remaining: 0 }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
