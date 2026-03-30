@@ -219,6 +219,7 @@ const Spanish21Guide = lazy(() => import("./pages/casinospil/Spanish21Guide"));
 const MartingaleBlackjackGuide = lazy(() => import("./pages/casinospil/MartingaleBlackjackGuide"));
 const FibonacciBlackjackGuide = lazy(() => import("./pages/casinospil/FibonacciBlackjackGuide"));
 const DalembertBlackjackGuide = lazy(() => import("./pages/casinospil/DalembertBlackjackGuide"));
+const BlackjackSkemaGuide = lazy(() => import("./pages/casinospil/BlackjackSkemaGuide"));
 const RouletteGuide = lazy(() => import("./pages/casinospil/RouletteGuide"));
 const AmerikanskRouletteGuide = lazy(() => import("./pages/casinospil/AmerikanskRouletteGuide"));
 const EuropaeiskRouletteGuide = lazy(() => import("./pages/casinospil/EuropaeiskRouletteGuide"));
