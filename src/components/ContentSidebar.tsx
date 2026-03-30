@@ -127,6 +127,15 @@ function CategorySection({
                       loading="lazy"
                     />
                   </span>
+                ) : link.iconName && MENU_ICON_MAP[link.iconName] ? (
+                  <span className="inline-flex items-center justify-center h-6 w-6 rounded flex-shrink-0">
+                    <img
+                      src={MENU_ICON_MAP[link.iconName]}
+                      alt=""
+                      className="h-5 w-5 object-contain"
+                      loading="lazy"
+                    />
+                  </span>
                 ) : LinkIcon ? (
                   <span
                     className={cn(

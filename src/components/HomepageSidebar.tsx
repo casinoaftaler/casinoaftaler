@@ -100,6 +100,10 @@ function CategorySection({ category }: { category: SidebarCategory }) {
                   <span className="inline-flex items-center justify-center h-10 w-10 rounded-md bg-background border border-border/40 flex-shrink-0 overflow-hidden p-0.5">
                     <img src={logoSrc} alt="" className="h-full w-full object-contain" loading="lazy" />
                   </span>
+                ) : link.iconName && MENU_ICON_MAP[link.iconName] ? (
+                  <span className="inline-flex items-center justify-center h-6 w-6 rounded flex-shrink-0">
+                    <img src={MENU_ICON_MAP[link.iconName]} alt="" className="h-5 w-5 object-contain" loading="lazy" />
+                  </span>
                 ) : LinkIcon ? (
                   <span className={cn("inline-flex items-center justify-center h-5 w-5 rounded flex-shrink-0", isActive ? "bg-primary/15 text-primary" : iconColor)}>
                     <LinkIcon className="h-3 w-3" />
