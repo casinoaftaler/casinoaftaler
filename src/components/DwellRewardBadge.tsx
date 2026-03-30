@@ -59,9 +59,9 @@ export function DwellRewardBadge() {
     hasPlayedSound.current = false;
   }, [pathname]);
 
-  // Play completion sound
+  // Play completion sound only when this session's timer actually reaches 0
   useEffect(() => {
-    if (isClaimed && !hasPlayedSound.current) {
+    if (isClaimed && secondsLeft === 0 && !hasPlayedSound.current) {
       hasPlayedSound.current = true;
       try {
         const audio = new Audio("/sounds/mission-complete.m4a");
@@ -69,7 +69,7 @@ export function DwellRewardBadge() {
         audio.play().catch(() => {});
       } catch {}
     }
-  }, [isClaimed]);
+  }, [isClaimed, secondsLeft]);
 
   // Auto-hide after 5s if completed AND no next mission
   useEffect(() => {
