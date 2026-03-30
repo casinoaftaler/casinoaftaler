@@ -85,7 +85,8 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
                 {pages.slice(0, 4).map((page) => (
                   <Link
                     key={page.path}
-                    to={`${page.path}?mission=1`}
+to={page.path}
+                      onClick={() => sessionStorage.setItem("missionActive", "1")}
                     className={`flex items-center justify-between rounded-lg px-2.5 py-1.5 text-xs transition-colors ${
                       page.completed
                         ? "text-emerald-500/70"

@@ -36,7 +36,8 @@ export function DailyMissionsWidget() {
         {pages.map((page) => (
           <Link
             key={page.path}
-            to={`${page.path}?mission=1`}
+to={page.path}
+            onClick={() => sessionStorage.setItem("missionActive", "1")}
             className={`flex items-center justify-between rounded-lg px-2.5 py-1.5 text-xs transition-colors ${
               page.completed
                 ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
