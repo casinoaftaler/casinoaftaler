@@ -8,6 +8,7 @@ import { SEO } from "@/components/SEO";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { buildFaqSchema, buildArticleSchema, buildHowToSchema, SITE_URL } from "@/lib/seo";
 import { Separator } from "@/components/ui/separator";
+import { QuickComparisonTable } from "@/components/QuickComparisonTable";
 import { RelatedGuides } from "@/components/RelatedGuides";
 import { LatestNewsByCategory } from "@/components/LatestNewsByCategory";
 import { CasinospilMoneyLinks } from "@/components/CasinospilMoneyLinks";
