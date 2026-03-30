@@ -100,6 +100,11 @@ const PROVIDER_SLUG_MAP: Record<string, string> = {
   "microgaming": "microgaming",
   "elk studios": "elk-studios",
   "evolution gaming": "evolution-gaming",
+  "push gaming": "push-gaming",
+  "thunderkick": "thunderkick",
+  "blueprint gaming": "blueprint-gaming",
+  "quickspin": "quickspin",
+  "betsoft": "betsoft",
 };
 
 function resolveProviderSlug(provider: string): string | null {
