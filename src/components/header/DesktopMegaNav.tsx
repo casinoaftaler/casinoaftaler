@@ -69,7 +69,7 @@ function MegaLogoCard({
     <Link
       to={to}
       onClick={onClick}
-      className="group relative flex items-center justify-center rounded-xl border border-border/30 bg-muted/50 p-3 h-16 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)] hover:scale-[1.03]"
+      className="group relative flex items-center justify-center rounded-xl border border-border/30 bg-muted/50 p-4 h-20 transition-all duration-150 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.3)] hover:scale-[1.03]"
     >
       <img
         src={logoUrl}
