@@ -2876,6 +2876,7 @@ export type Database = {
         Args: { p_section: string; p_today: string; p_user_id: string }
         Returns: Json
       }
+      classify_slot_archetypes: { Args: never; Returns: undefined }
       deduct_spin:
         | {
             Args: {
