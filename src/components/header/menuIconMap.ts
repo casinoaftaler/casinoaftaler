@@ -58,6 +58,7 @@ export const MENU_ICON_MAP: Record<string, string> = {
   "club": img("card-club.webp"),
   "copy": img("scale-compare.webp"),
   "hash": img("dice-craps.webp"),
+  "table": img("strategy-table.webp"),
 
   // Strategy
   "arrow-up-right": img("arrow-strategy.webp"),
