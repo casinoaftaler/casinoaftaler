@@ -26,12 +26,15 @@ function resolveSlug(casinoName: string): string {
 export interface SlotPerformance {
   name: string;
   bestX: number;
+  provider?: string;
 }
 
 export interface CasinoHuntStats {
   totalHunts: number;
   avgX: number;
   bestHuntX: number;
+  bestSlotX: number;
+  bestSlotName: string;
   totalStartBalance: number;
   totalEndBalance: number;
   profitLossPercent: number;
@@ -69,8 +72,8 @@ export function useCasinoHuntStats(casinoSlug: string | undefined) {
         ? ((totalEndBalance - totalStartBalance) / totalStartBalance) * 100
         : 0;
 
-      // Extract top slots from api_data
-      const slotMap = new Map<string, number>();
+      // Extract top slots from api_data with provider info
+      const slotMap = new Map<string, { bestX: number; provider?: string }>();
 
       for (const archive of matching) {
         const apiData = archive.api_data as any;
@@ -85,20 +88,34 @@ export function useCasinoHuntStats(casinoSlug: string | undefined) {
           const x = win / bet;
           const name = s.slot?.name || s.name;
           if (!name) continue;
-          const existing = slotMap.get(name) || 0;
-          if (x > existing) slotMap.set(name, x);
+          const provider = s.slot?.provider || s.provider || undefined;
+          const existing = slotMap.get(name);
+          if (!existing || x > existing.bestX) {
+            slotMap.set(name, { bestX: x, provider: provider || existing?.provider });
+          }
         }
       }
 
       const topSlots = [...slotMap.entries()]
-        .sort((a, b) => b[1] - a[1])
+        .sort((a, b) => b[1].bestX - a[1].bestX)
         .slice(0, 5)
-        .map(([name, bestX]) => ({ name, bestX: Math.round(bestX * 10) / 10 }));
+        .map(([name, data]) => ({
+          name,
+          bestX: Math.round(data.bestX * 10) / 10,
+          provider: data.provider,
+        }));
+
+      // Best single slot hit
+      const bestSlotEntry = topSlots[0];
+      const bestSlotX = bestSlotEntry?.bestX ?? 0;
+      const bestSlotName = bestSlotEntry?.name ?? "";
 
       return {
         totalHunts,
         avgX: Math.round(avgX * 100) / 100,
         bestHuntX: Math.round(bestHuntX * 100) / 100,
+        bestSlotX,
+        bestSlotName,
         totalStartBalance: Math.round(totalStartBalance),
         totalEndBalance: Math.round(totalEndBalance),
         profitLossPercent: Math.round(profitLossPercent * 10) / 10,
