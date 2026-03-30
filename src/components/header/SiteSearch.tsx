@@ -18,7 +18,6 @@ import {
   PAYMENT_LINKS, PROVIDER_LINKS, REVIEW_TOP_LINKS, REVIEW_ALL_LINKS,
   COMMUNITY_LINKS, MORE_LINKS, FORFATTER_LINKS,
 } from "./navData";
-import { glossaryTerms } from "@/data/glossaryTerms";
 
 interface SearchItem {
   label: string;
@@ -26,7 +25,7 @@ interface SearchItem {
   category: string;
 }
 
-// Build static index once
+// Build static index once (WITHOUT glossary – loaded on demand)
 const STATIC_ITEMS: SearchItem[] = [
   // Top-level pages
   { label: "Forsiden", to: "/", category: "Sider" },
@@ -68,8 +67,6 @@ const STATIC_ITEMS: SearchItem[] = [
   ...COMMUNITY_LINKS.map(l => ({ label: l.label, to: l.to, category: "Community" })),
   ...MORE_LINKS.map(l => ({ label: l.label, to: l.to, category: "Sider" })),
   ...FORFATTER_LINKS.map(l => ({ label: l.label, to: l.to, category: "Forfattere" })),
-  // Glossary
-  ...glossaryTerms.map(t => ({ label: t.title, to: `/ordbog/${t.slug}`, category: "Ordbog" })),
 ];
 
 // Deduplicate by path
