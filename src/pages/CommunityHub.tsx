@@ -5,6 +5,7 @@ import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { CommunityHubFaq, buildCommunityHubFaqSchema } from "@/components/community/CommunityHubFaq";
 import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 import { CommunityOverviewSeoText } from "@/components/community/CommunityOverviewSeoText";
+import { DailyMissionsCard } from "@/components/community/DailyMissionsCard";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { EnergySweep } from "@/components/community/EnergySweep";
