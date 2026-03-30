@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { UserProfileLink } from "@/components/UserProfileLink";
 import { TwitchBadgesInline } from "@/components/TwitchBadges";
 import { useTournamentCountdown } from "@/hooks/useTournamentCountdown";
-import { useMonthlyTournamentArchive } from "@/hooks/useMonthlyTournamentArchive";
+
 import { useMonthlyTournamentConfig, type TournamentConfig } from "@/hooks/useMonthlyTournamentConfig";
 import {
   useSlotLeaderboard,
