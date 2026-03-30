@@ -222,6 +222,7 @@ const Index = () => {
       />
 
       <HeroSection />
+      <HomepageFreshness />
 
       {/* Top Casinos Section with sidebar */}
       <section id="top-casinos" className="py-8 md:py-12" style={{ contain: 'layout style' }}>
