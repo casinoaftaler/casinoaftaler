@@ -18,6 +18,7 @@ import { CommunityNav } from "@/components/community/CommunityNav";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
+import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
 import { ContentSidebar } from "@/components/ContentSidebar";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { UserProfileLink } from "@/components/UserProfileLink";
