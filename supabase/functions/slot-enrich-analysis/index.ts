@@ -65,11 +65,12 @@ function pick<T>(arr: T[], seed: number): T {
 }
 
 function buildPrompt(slot: any): string {
+  const archetype = slot.content_archetype || "stats-heavy";
   const seed = hashCode(slot.slot_name + (slot.provider || ""));
   const tone = pick(TONE_DESCRIPTORS, seed);
   const structure = pick(STRUCTURE_TEMPLATES, seed + 3);
   const closing = pick(CLOSING_STYLES, seed + 7);
-  const wordCount = 280 + (seed % 220);
+  const wordCount = archetype === "community-driven" ? 200 + (seed % 150) : 280 + (seed % 220);
 
   const dataPoints: string[] = [];
   if (slot.rtp) dataPoints.push(`RTP: ${slot.rtp}%`);
@@ -79,9 +80,15 @@ function buildPrompt(slot: any): string {
   if (slot.highest_x) dataPoints.push(`Højeste multiplikator registreret: ${slot.highest_x}x`);
   if (slot.highest_win) dataPoints.push(`Største gevinst: ${slot.highest_win} kr`);
 
+  const focusInstruction = archetype === "community-driven"
+    ? `FOKUS: Denne slot har begrænset teknisk data, men ægte community-erfaringer fra bonus hunts. Fokuser primært på de faktiske resultater fra fællesskabet – hvad der er observeret, oplevet og registreret. Hold teksten jordnær og erfaringsbaseret.`
+    : `FOKUS: Denne slot har rig teknisk data OG community-erfaringer. Analyser begge dimensioner i dybden – sæt RTP, volatilitet og max win i kontekst med de faktiske bonus hunt resultater.`;
+
   return `Du er en dansk casino-content specialist.
 
 OPGAVE: Skriv en UNIK analyse af spillemaskinen "${slot.slot_name}" fra ${slot.provider || "ukendt udbyder"}.
+
+${focusInstruction}
 
 TILGÆNGELIGE DATA:
 ${dataPoints.join("\n")}
@@ -173,10 +180,11 @@ serve(async (req) => {
 
     const { limit = 30 } = await req.json().catch(() => ({}));
 
+    // Fetch stats-heavy AND community-driven slots without enriched_analysis
     const { data: slots, error: fetchErr } = await sb
       .from("slot_catalog")
-      .select("id, slot_name, provider, rtp, volatility, max_potential, bonus_count, highest_win, highest_x")
-      .eq("content_archetype", "stats-heavy")
+      .select("id, slot_name, provider, rtp, volatility, max_potential, bonus_count, highest_win, highest_x, content_archetype")
+      .in("content_archetype", ["stats-heavy", "community-driven"])
       .is("enriched_analysis", null)
       .order("bonus_count", { ascending: false })
       .limit(limit);
@@ -184,7 +192,7 @@ serve(async (req) => {
     if (fetchErr) throw fetchErr;
     if (!slots || slots.length === 0) {
       return new Response(
-        JSON.stringify({ message: "Alle stats-heavy slots er beriget!", enriched: 0, remaining: 0 }),
+        JSON.stringify({ message: "Alle stats-heavy & community-driven slots er beriget!", enriched: 0, remaining: 0 }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
@@ -217,7 +225,7 @@ serve(async (req) => {
     const { count } = await sb
       .from("slot_catalog")
       .select("id", { count: "exact", head: true })
-      .eq("content_archetype", "stats-heavy")
+      .in("content_archetype", ["stats-heavy", "community-driven"])
       .is("enriched_analysis", null);
 
     return new Response(
