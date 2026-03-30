@@ -26,6 +26,8 @@ interface DwellRewardState {
   isClaiming: boolean;
   /** Whether this page was already completed today */
   alreadyCompleted: boolean;
+  /** Whether user has scrolled past threshold */
+  hasScrolled: boolean;
   /** Error message if any */
   error: string | null;
 }
@@ -38,12 +40,14 @@ export function useDwellReward(pagePath: string) {
     isClaimed: false,
     isClaiming: false,
     alreadyCompleted: false,
+    hasScrolled: false,
     error: null,
   });
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const startTimeRef = useRef<number>(0);
   const elapsedRef = useRef<number>(0);
+  const hasScrolledRef = useRef(false);
 
   const isEligiblePage = DWELL_REWARD_PAGES.some((p) => p.path === pagePath);
 
