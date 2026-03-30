@@ -501,7 +501,7 @@ const BlackjackSkemaGuide = () => {
             </div>
           </section>
 
-          <InlineCasinoCards slugs={["leovegas", "casumo"]} heading="Populære blackjack-casinoer" />
+          <InlineCasinoCards title="Populære blackjack-casinoer" />
 
           {/* ── Sådan bruger du skemaet ── */}
           <section id="hvordan" className="mb-10">
