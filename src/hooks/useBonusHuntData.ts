@@ -244,13 +244,17 @@ async function fetchLatestHuntNumber(): Promise<number> {
 }
 
 async function fetchDocumentedHuntCount(): Promise<number> {
-  const { count: archiveCount } = await supabase
+  // Use the max hunt_number as the documented count so it aligns with the
+  // highest visible hunt number in the UI (avoids "184 but only 183 documented").
+  const { data: maxRow } = await supabase
     .from('bonus_hunt_archives')
-    .select('*', { count: 'exact', head: true })
+    .select('hunt_number')
     .gt('total_slots', 0)
-    .not('hunt_number', 'in', `(${[...BLOCKED_HUNTS].join(',')})`);
+    .order('hunt_number', { ascending: false })
+    .limit(1)
+    .maybeSingle();
 
-  if ((archiveCount || 0) > 0) return archiveCount || 0;
+  if (maxRow?.hunt_number) return maxRow.hunt_number;
 
   const { count: sessionCount } = await supabase
     .from('bonus_hunt_sessions')
