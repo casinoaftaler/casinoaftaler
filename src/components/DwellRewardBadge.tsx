@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { useDwellReward, DWELL_DURATION_SECONDS } from "@/hooks/useDwellReward";
-import { Check, Coins, LogIn, Gift, ArrowDown } from "lucide-react";
+import { useDwellReward, useDwellRewardProgress, DWELL_DURATION_SECONDS } from "@/hooks/useDwellReward";
+import { Check, Gift, ArrowDown, ArrowRight } from "lucide-react";
 
 export function DwellRewardBadge() {
   const { pathname } = useLocation();
@@ -12,55 +12,39 @@ export function DwellRewardBadge() {
     alreadyCompleted,
     isEligiblePage,
     isLoggedIn,
+    isMissionActivated,
     hasScrolled,
   } = useDwellReward(pathname);
 
+  const { pages } = useDwellRewardProgress();
+
   const [visible, setVisible] = useState(true);
 
-  // Auto-hide 4 sekunder efter fuldførelse
+  // Find next uncompleted mission (not the current page)
+  const nextMission = pages.find((p) => !p.completed && p.path !== pathname);
+
+  const completed = isClaimed || alreadyCompleted;
+
+  // Auto-hide after 8 seconds if completed AND no next mission
   useEffect(() => {
-    if (isClaimed || alreadyCompleted) {
+    if (completed && !nextMission) {
       const timer = setTimeout(() => setVisible(false), 4000);
       return () => clearTimeout(timer);
     } else {
       setVisible(true);
     }
-  }, [isClaimed, alreadyCompleted]);
+  }, [completed, nextMission]);
 
-  if (!isEligiblePage) return null;
+  // Only show for logged-in users on eligible pages activated via mission link
+  if (!isEligiblePage || !isLoggedIn || !isMissionActivated) return null;
   if (!visible) return null;
-
-  // Ikke logget ind – vis login-opfordring
-  if (!isLoggedIn) {
-    return (
-      <div className="fixed bottom-6 right-6 z-50 animate-fade-in">
-        <Link
-          to="/login"
-          className="flex items-center gap-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 px-5 py-3.5 shadow-xl shadow-amber-500/25 hover:shadow-2xl hover:shadow-amber-500/30 transition-all hover:scale-105 text-white"
-        >
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
-            <LogIn className="h-5 w-5" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-sm font-bold">Optjen 300 credits</span>
-            <span className="text-xs text-white/80">Log ind og bliv på siden</span>
-          </div>
-        </Link>
-      </div>
-    );
-  }
 
   const progress = 1 - secondsLeft / DWELL_DURATION_SECONDS;
   const circumference = 2 * Math.PI * 26;
   const strokeDashoffset = circumference * (1 - progress);
-  const completed = isClaimed || alreadyCompleted;
 
   return (
-    <div
-      className={`fixed bottom-6 right-6 z-50 transition-all duration-700 ${
-        completed ? "animate-fade-in opacity-100" : "animate-fade-in"
-      }`}
-    >
+    <div className="fixed bottom-6 right-6 z-50 animate-fade-in">
       <div
         className={`relative flex items-center gap-3.5 rounded-2xl border-2 px-5 py-3.5 shadow-xl transition-all duration-500 ${
           completed
@@ -68,12 +52,12 @@ export function DwellRewardBadge() {
             : "bg-gradient-to-r from-amber-500/10 to-orange-500/5 border-amber-500/40 shadow-amber-500/15"
         }`}
       >
-        {/* Pulserende glow mens timeren kører */}
+        {/* Pulsing glow while active */}
         {!completed && isActive && (
           <div className="absolute inset-0 rounded-2xl bg-amber-500/10 animate-pulse" />
         )}
 
-        {/* Cirkulær progress */}
+        {/* Circular progress */}
         <div className="relative h-14 w-14 flex-shrink-0">
           <svg className="h-14 w-14 -rotate-90" viewBox="0 0 56 56">
             <circle
@@ -117,16 +101,26 @@ export function DwellRewardBadge() {
           </div>
         </div>
 
-        {/* Tekst */}
-        <div className="relative flex flex-col">
+        {/* Text + next mission */}
+        <div className="relative flex flex-col gap-1">
           {completed ? (
             <>
               <span className="text-base font-bold text-emerald-600 dark:text-emerald-400">
                 +300 credits! 🎉
               </span>
-              <span className="text-xs text-muted-foreground">
-                Belønning optjent ✓
-              </span>
+              {nextMission ? (
+                <Link
+                  to={`${nextMission.path}?mission=1`}
+                  className="flex items-center gap-1.5 rounded-lg bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 transition-colors"
+                >
+                  <span>Næste: {nextMission.label}</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              ) : (
+                <span className="text-xs text-muted-foreground">
+                  Alle missioner fuldført! 🏆
+                </span>
+              )}
             </>
           ) : (
             <>

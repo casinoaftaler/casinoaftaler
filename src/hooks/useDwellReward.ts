@@ -51,9 +51,13 @@ export function useDwellReward(pagePath: string) {
 
   const isEligiblePage = DWELL_REWARD_PAGES.some((p) => p.path === pagePath);
 
+  // Check if mission was activated via ?mission=1 param
+  const isMissionActivated = typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("mission") === "1";
+
   // Check if already completed today
   useEffect(() => {
-    if (!user || !isEligiblePage) return;
+    if (!user || !isEligiblePage || !isMissionActivated) return;
 
     const today = new Date().toISOString().split("T")[0];
     supabase
@@ -68,11 +72,11 @@ export function useDwellReward(pagePath: string) {
           setState((s) => ({ ...s, alreadyCompleted: true, isClaimed: true }));
         }
       });
-  }, [user, pagePath, isEligiblePage]);
+  }, [user, pagePath, isEligiblePage, isMissionActivated]);
 
   // Scroll detection
   useEffect(() => {
-    if (!user || !isEligiblePage || state.alreadyCompleted || state.isClaimed) return;
+    if (!user || !isEligiblePage || !isMissionActivated || state.alreadyCompleted || state.isClaimed) return;
 
     const handleScroll = () => {
       if (hasScrolledRef.current) return;
@@ -91,7 +95,7 @@ export function useDwellReward(pagePath: string) {
 
   // Timer logic with visibility API + scroll gate
   useEffect(() => {
-    if (!user || !isEligiblePage || state.alreadyCompleted || state.isClaimed) return;
+    if (!user || !isEligiblePage || !isMissionActivated || state.alreadyCompleted || state.isClaimed) return;
     if (!hasScrolledRef.current) return; // Don't start until scrolled
 
     const startTimer = () => {
@@ -194,6 +198,7 @@ export function useDwellReward(pagePath: string) {
   return {
     ...state,
     isEligiblePage,
+    isMissionActivated,
     isLoggedIn: !!user,
   };
 }
