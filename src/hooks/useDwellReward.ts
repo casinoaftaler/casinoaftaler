@@ -239,7 +239,9 @@ export function useDwellRewardProgress() {
       return [...new Set(data?.map((d) => d.page_path) ?? [])];
     },
     enabled: !!user,
-    staleTime: 5_000,
+    staleTime: 2_000,
+    refetchInterval: 10_000,
+    refetchOnWindowFocus: true,
   });
 
   return {
