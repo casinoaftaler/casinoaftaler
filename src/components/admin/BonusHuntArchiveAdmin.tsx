@@ -32,7 +32,7 @@ interface ArchiveRow {
   start_balance: number | null;
   end_balance: number | null;
   created_at: string;
-  api_data: any;
+  api_data?: any;
   twitch_vod_id?: string | null;
   vod_date?: string | null;
   casino_name?: string | null;
