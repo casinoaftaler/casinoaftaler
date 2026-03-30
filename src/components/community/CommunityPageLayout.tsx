@@ -5,6 +5,7 @@ import { CommunityNav } from "./CommunityNav";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
+import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
 import { type LucideIcon } from "lucide-react";
 import communityHero from "@/assets/community/community-hero.jpg";
 
