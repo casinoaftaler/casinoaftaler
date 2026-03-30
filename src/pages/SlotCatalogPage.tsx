@@ -1,5 +1,4 @@
 import { useParams, Link } from "react-router-dom";
-import { PragmaticDemoPlayer } from "@/components/PragmaticDemoPlayer";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
@@ -963,13 +962,6 @@ export default function SlotCatalogPage() {
         </div>
       </section>
 
-      {/* Pragmatic Play Demo Player – prominently above fold */}
-      {(slot as any).game_id && slot.provider === "Pragmatic Play" && (
-        <div className="container py-6">
-          <PragmaticDemoPlayer gameId={(slot as any).game_id} slotName={slotName} />
-        </div>
-      )}
-
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="redaktionen" showAffiliateDisclaimer={false} />
 
@@ -1046,7 +1038,6 @@ export default function SlotCatalogPage() {
             </Link>
           </div>
         )}
-
 
         {/* AI-generated description OR fallback */}
         <section className="mb-8">

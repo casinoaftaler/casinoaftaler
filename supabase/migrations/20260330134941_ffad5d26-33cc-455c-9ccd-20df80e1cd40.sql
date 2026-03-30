@@ -1,1 +1,0 @@
-UPDATE slot_catalog SET game_id = 'vs20olympgate' WHERE slug = 'gates-of-olympus' AND game_id IS NULL;
