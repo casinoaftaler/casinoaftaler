@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { usePageLastmod } from "@/hooks/usePageLastmod";
 import { SEO } from "@/components/SEO";
 import { organizationSchema } from "@/lib/seo";
 import { HeroSection } from "@/components/HeroSection";
