@@ -46,6 +46,16 @@ export const approvedDynamicDateModifiedRules = [
       "\\bdateModified\\s*=\\s*\\{seoDateModified\\}",
     ],
   },
+  {
+    component: "Index",
+    file: "src/pages/Index.tsx",
+    pathPattern: "^/$",
+    allowedSourceDescription: 'pageMeta?.updated_at ?? getRouteLastmod("/") via homepageDateModified',
+    allowedSourcePatterns: [
+      "\\bdateModified\\s*:\\s*homepageDateModified\\b",
+      "\\bdateModified\\s*=\\s*\\{homepageDateModified\\}",
+    ],
+  },
 ];
 
 export function isApprovedDynamicDateModifiedPath(pathname) {
