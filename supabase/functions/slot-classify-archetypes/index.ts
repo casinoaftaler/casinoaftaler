@@ -11,47 +11,25 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
 
-    // Use pg REST API with raw SQL via database function approach
-    // Since we can't run raw SQL, we batch updates with range pagination
+    // Use a single RPC call with raw SQL for maximum speed
+    // Step 1: Classify all in one UPDATE using CASE
+    const { error: classifyError } = await supabase.rpc("classify_slot_archetypes" as any);
 
-    const supabase = createClient(supabaseUrl, serviceRoleKey);
+    if (classifyError) {
+      // Fallback: do it via batched client updates if RPC doesn't exist
+      await classifyViaBatches(supabase);
+    }
 
-    // First, reset all archetypes to null so we get a clean classification
-    await batchUpdate(supabase, "slot_catalog", { content_archetype: null }, {});
-
-    // 1. Stats-heavy: rtp IS NOT NULL AND bonus_count >= 3 AND (highest_x > 0 OR highest_win > 0)
-    await batchUpdate(supabase, "slot_catalog", { content_archetype: "stats-heavy" }, {
-      filters: (q: any) => q.not("rtp", "is", null).gte("bonus_count", 3).or("highest_x.gt.0,highest_win.gt.0")
-    });
-
-    // 2. Community-driven: bonus_count >= 1 AND wins, not already classified
-    await batchUpdate(supabase, "slot_catalog", { content_archetype: "community-driven" }, {
-      filters: (q: any) => q.is("content_archetype", null).gte("bonus_count", 1).or("highest_x.gt.0,highest_win.gt.0")
-    });
-
-    // 3. Comparison: has RTP, not already classified
-    await batchUpdate(supabase, "slot_catalog", { content_archetype: "comparison" }, {
-      filters: (q: any) => q.is("content_archetype", null).not("rtp", "is", null)
-    });
-
-    // 4. Minimal: everything else
-    await batchUpdate(supabase, "slot_catalog", { content_archetype: "minimal" }, {
-      filters: (q: any) => q.is("content_archetype", null)
-    });
-
-    // Fetch distribution using paginated select
-    const allRows = await fetchAll(supabase, "slot_catalog", "content_archetype");
-    const counts: Record<string, number> = {};
-    allRows.forEach((row: any) => {
-      const arch = row.content_archetype || "unknown";
-      counts[arch] = (counts[arch] || 0) + 1;
-    });
+    // Fetch distribution
+    const counts = await getDistribution(supabase);
 
     return new Response(
-      JSON.stringify({ success: true, distribution: counts, total: allRows.length }),
+      JSON.stringify({ success: true, distribution: counts }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   } catch (err) {
@@ -62,54 +40,65 @@ Deno.serve(async (req) => {
   }
 });
 
-// Batch update to bypass 1000-row limit
-async function batchUpdate(
-  supabase: any,
-  table: string,
-  updateData: Record<string, any>,
-  opts: { filters?: (q: any) => any }
-) {
-  const batchSize = 500;
-  let totalUpdated = 0;
+async function classifyViaBatches(supabase: any) {
+  // Order matters: most specific first, no reset needed
+  // 1. Stats-heavy
+  await batchUpdate(supabase, (q: any) =>
+    q.not("rtp", "is", null).gte("bonus_count", 3).or("highest_x.gt.0,highest_win.gt.0"),
+    "stats-heavy"
+  );
+  // 2. Community-driven (not already stats-heavy)
+  await batchUpdate(supabase, (q: any) =>
+    q.neq("content_archetype", "stats-heavy").gte("bonus_count", 1).or("highest_x.gt.0,highest_win.gt.0"),
+    "community-driven"
+  );
+  // 3. Comparison (not already classified as above)
+  await batchUpdate(supabase, (q: any) =>
+    q.not("content_archetype", "in", '("stats-heavy","community-driven")').not("rtp", "is", null),
+    "comparison"
+  );
+  // 4. Minimal (everything not yet classified)
+  await batchUpdate(supabase, (q: any) =>
+    q.not("content_archetype", "in", '("stats-heavy","community-driven","comparison")'),
+    "minimal"
+  );
+}
 
+async function batchUpdate(supabase: any, applyFilters: (q: any) => any, archetype: string) {
+  const batchSize = 500;
   while (true) {
-    // First, get IDs of matching rows
-    let selectQuery = supabase.from(table).select("id").limit(batchSize);
-    if (opts.filters) {
-      selectQuery = opts.filters(selectQuery);
-    }
-    const { data: ids, error: selectErr } = await selectQuery;
-    if (selectErr) throw selectErr;
+    let q = supabase.from("slot_catalog").select("id").limit(batchSize);
+    q = applyFilters(q);
+    const { data: ids, error } = await q;
+    if (error) throw error;
     if (!ids || ids.length === 0) break;
 
     const idList = ids.map((r: any) => r.id);
-    const { error: updateErr } = await supabase
-      .from(table)
-      .update(updateData)
+    const { error: ue } = await supabase
+      .from("slot_catalog")
+      .update({ content_archetype: archetype } as any)
       .in("id", idList);
-    if (updateErr) throw updateErr;
-
-    totalUpdated += idList.length;
+    if (ue) throw ue;
     if (ids.length < batchSize) break;
   }
-
-  return totalUpdated;
 }
 
-// Paginated fetch to bypass 1000-row limit
-async function fetchAll(supabase: any, table: string, select: string) {
+async function getDistribution(supabase: any) {
   const batchSize = 1000;
-  let all: any[] = [];
+  const counts: Record<string, number> = {};
   let from = 0;
   while (true) {
     const { data, error } = await supabase
-      .from(table)
-      .select(select)
+      .from("slot_catalog")
+      .select("content_archetype")
       .range(from, from + batchSize - 1);
     if (error) throw error;
-    all = all.concat(data || []);
+    (data || []).forEach((r: any) => {
+      const a = r.content_archetype || "unknown";
+      counts[a] = (counts[a] || 0) + 1;
+    });
     if (!data || data.length < batchSize) break;
     from += batchSize;
   }
-  return all;
+  return counts;
 }
