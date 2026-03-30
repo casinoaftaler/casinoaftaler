@@ -53,7 +53,8 @@ export function DailyMissionsCard() {
           {pages.map((page) => (
             <Link
               key={page.path}
-              to={`${page.path}?mission=1`}
+to={page.path}
+              onClick={() => sessionStorage.setItem("missionActive", "1")}
               className={`group flex items-center gap-3 rounded-xl border px-4 py-3 transition-all ${
                 page.completed
                   ? "border-emerald-500/30 bg-emerald-500/5"

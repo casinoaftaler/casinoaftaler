@@ -110,7 +110,8 @@ export function DwellRewardBadge() {
               </span>
               {nextMission ? (
                 <Link
-                  to={`${nextMission.path}?mission=1`}
+                  to={nextMission.path}
+                  onClick={() => sessionStorage.setItem("missionActive", "1")}
                   className="flex items-center gap-1.5 rounded-lg bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-600 dark:text-amber-400 hover:bg-amber-500/20 transition-colors"
                 >
                   <span>Næste: {nextMission.label}</span>

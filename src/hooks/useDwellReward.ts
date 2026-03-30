@@ -51,9 +51,40 @@ export function useDwellReward(pagePath: string) {
 
   const isEligiblePage = DWELL_REWARD_PAGES.some((p) => p.path === pagePath);
 
-  // Check if mission was activated via ?mission=1 param
-  const isMissionActivated = typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).get("mission") === "1";
+  // Check if mission mode is active via sessionStorage (set by mission links)
+  const [isMissionActivated, setIsMissionActivated] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("mission") === "1") {
+      // Store in session and clean URL
+      sessionStorage.setItem("missionActive", "1");
+      const url = new URL(window.location.href);
+      url.searchParams.delete("mission");
+      window.history.replaceState({}, "", url.pathname + url.hash);
+    }
+    setIsMissionActivated(sessionStorage.getItem("missionActive") === "1");
+  }, [pagePath]);
+
+  // Reset state when pagePath changes
+  useEffect(() => {
+    hasScrolledRef.current = false;
+    elapsedRef.current = 0;
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+    setState({
+      secondsLeft: DWELL_DURATION_SECONDS,
+      isActive: false,
+      isClaimed: false,
+      isClaiming: false,
+      alreadyCompleted: false,
+      hasScrolled: false,
+      error: null,
+    });
+  }, [pagePath]);
 
   // Check if already completed today
   useEffect(() => {
