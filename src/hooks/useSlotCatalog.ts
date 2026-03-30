@@ -94,18 +94,36 @@ export function useSlotCatalogEntry(slotName: string | null) {
   });
 }
 
-// Fetch bonus hunt archives
+// Fetch bonus hunt archives – lightweight (no api_data)
 export function useBonusHuntArchives() {
   return useQuery({
     queryKey: ['bonus-hunt-archives'],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('bonus_hunt_archives')
-        .select('*')
+        .select('id, hunt_number, hunt_name, hunt_status, average_x, start_balance, end_balance, total_slots, opened_slots, twitch_vod_id, vod_date, casino_name, created_at, updated_at')
         .order('hunt_number', { ascending: false });
       if (error) throw error;
       return data || [];
     },
+    staleTime: 300000,
+  });
+}
+
+// Fetch full archive with api_data for a single hunt (admin use)
+export function useBonusHuntArchiveFull(huntNumber?: number) {
+  return useQuery({
+    queryKey: ['bonus-hunt-archive-full', huntNumber],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('bonus_hunt_archives')
+        .select('*')
+        .eq('hunt_number', huntNumber!)
+        .maybeSingle();
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!huntNumber,
     staleTime: 300000,
   });
 }
