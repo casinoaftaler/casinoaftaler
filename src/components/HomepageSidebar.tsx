@@ -76,14 +76,14 @@ function CategorySection({ category }: { category: SidebarCategory }) {
   const Icon = iconMap[category.iconName] || Crown;
 
   return (
-    <li className="overflow-hidden rounded-lg border border-border/60 transition-shadow hover:shadow-sm">
+    <li className="overflow-hidden rounded-lg border border-border/80 transition-shadow hover:shadow-sm">
       <div className="flex w-full items-center gap-2.5 px-4 py-3 font-semibold text-[15px] bg-primary/10 text-foreground">
         <span className="inline-flex items-center justify-center h-7 w-7 rounded-md flex-shrink-0 bg-primary/10 text-primary">
           <Icon className="h-4.5 w-4.5" />
         </span>
         <span>{category.title}</span>
       </div>
-      <ul className="bg-card">
+      <ul className="bg-card/80 dark:bg-card">
         {category.links.map((link, idx) => {
           const isActive = location.pathname === link.to;
           const LinkIcon = getLucideIcon(link.iconName);
@@ -95,14 +95,14 @@ function CategorySection({ category }: { category: SidebarCategory }) {
               <Link
                 to={link.to}
                 className={cn(
-                  "flex items-center gap-2.5 px-4 py-2.5 text-[14px] transition-colors border-t border-border/30",
+                  "flex items-center gap-2.5 px-4 py-2.5 text-[14px] transition-colors border-t border-border/40 dark:border-border/50",
                   isActive
                     ? "bg-primary/10 text-primary font-medium border-l-2 border-l-primary"
-                    : "text-foreground/80 hover:bg-accent/10 hover:text-foreground border-l-2 border-l-transparent"
+                    : "text-foreground/90 dark:text-foreground/95 hover:bg-accent/10 hover:text-foreground border-l-2 border-l-transparent"
                 )}
               >
                 {logoSrc ? (
-                  <span className="inline-flex items-center justify-center h-10 w-10 rounded-md bg-background border border-border/40 flex-shrink-0 overflow-hidden p-0.5">
+                  <span className="inline-flex items-center justify-center h-10 w-10 rounded-md bg-background dark:bg-muted/30 border border-border/50 dark:border-border/70 flex-shrink-0 overflow-hidden p-0.5">
                     <img src={logoSrc} alt="" className="h-full w-full object-contain" loading="lazy" />
                   </span>
                 ) : link.iconName && MENU_ICON_MAP[link.iconName] ? (
