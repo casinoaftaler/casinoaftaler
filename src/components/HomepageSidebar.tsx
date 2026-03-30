@@ -83,7 +83,7 @@ function CategorySection({ category }: { category: SidebarCategory }) {
         </span>
         <span>{category.title}</span>
       </div>
-      <ul className="bg-card">
+      <ul className="bg-card/80 dark:bg-card">
         {category.links.map((link, idx) => {
           const isActive = location.pathname === link.to;
           const LinkIcon = getLucideIcon(link.iconName);
