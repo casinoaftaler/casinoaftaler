@@ -1,0 +1,1 @@
+DELETE FROM daily_dwell_rewards WHERE user_id = 'c1b557d3-f918-4a5e-95d6-aa99e6579b59';
