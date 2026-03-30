@@ -91,7 +91,7 @@ function ArchetypeClassificationSection() {
     setEnrichResult(null);
     try {
       const res = await supabase.functions.invoke("slot-enrich-analysis", {
-        body: { limit: 25 },
+        body: { limit: 8 },
       });
       if (res.error) throw res.error;
       const result = res.data as { enriched: number; total: number; results?: any[] };
