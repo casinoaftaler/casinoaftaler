@@ -378,32 +378,35 @@ const BlackjackSkemaGuide = () => {
         datePublished="2026-03-30"
         jsonLd={[articleSchema, faqJsonLd, howToSchema]}
       />
+      {/* Hero Section */}
+      <section
+        className="relative overflow-hidden py-12 text-white md:py-20"
+        style={{
+          backgroundImage: 'linear-gradient(135deg, hsl(260 70% 25%), hsl(250 60% 20%) 40%, hsl(210 80% 25%))',
+        }}
+      >
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge variant="secondary" className="mb-4">
+              <Calculator className="mr-1.5 h-3.5 w-3.5" />
+              Matematisk analyse
+            </Badge>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Blackjack Skema – Den Komplette Basic Strategy Guide
+            </h1>
+            <p className="text-lg text-white/80">
+              Det farvekodede skema, der viser den matematisk optimale handling i enhver blackjack-situation. Baseret på millioner af simuleringer og anvendeligt i både online og live casino.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <ContentPageLayout>
         <div className="mx-auto max-w-4xl">
-          {/* ── Hero ── */}
-          <Badge variant="outline" className="mb-4 text-xs font-medium uppercase tracking-wider border-primary/40 text-primary">
-            Matematisk analyse
-          </Badge>
-          <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
-            Blackjack Skema – Den Komplette Basic Strategy Guide
-          </h1>
-          <p className="text-lg text-muted-foreground mb-2">
-            Det farvekodede skema, der viser den matematisk optimale handling i enhver blackjack-situation. Baseret på millioner af simuleringer og anvendeligt i både online og live casino.
-          </p>
-
           <AuthorMetaBar author="jonas" />
 
           <SnippetAnswer
             answer="Et blackjack skema viser den statistisk optimale handling (hit, stand, double, split eller surrender) for enhver kombination af din hånd og dealerens kort. Ved at følge skemaet perfekt reduceres house edge fra 2–5 % til blot 0,5 % – den laveste fordel i noget casinospil."
-          />
-
-          <img
-            src={heroImage}
-            alt="Blackjack strategiskema på et grønt casinobord med farvekodede beslutningsfelter"
-            width={1920}
-            height={640}
-            className="mb-8 w-full rounded-xl object-cover"
-            loading="eager"
           />
 
           {/* ── Table of Contents ── */}
