@@ -739,7 +739,7 @@ function SettingsTab({ gameId }: { gameId?: string }) {
   const [formData, setFormData] = useState({
     dailySpins: 100,
     minBet: 1,
-    maxBet: 10,
+    maxBet: 20,
     pageLocked: true,
     pagePassword: "",
     riseLocked: true,
