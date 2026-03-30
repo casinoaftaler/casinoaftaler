@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getTodayDanish } from "@/lib/danishDate";
 
 export const DWELL_REWARD_PAGES = [
   { path: "/top-10-casino-online", label: "Top 10 Casino", credits: 300 },
