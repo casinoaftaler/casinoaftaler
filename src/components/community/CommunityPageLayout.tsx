@@ -87,7 +87,7 @@ export function CommunityPageLayout({
           <div className="min-w-0 flex-1 max-w-[960px]">
             <div className="flex gap-8 xl:gap-10">
               <div className="min-w-0 flex-1">
-                <div className="py-6">
+                <div className="pt-8 md:pt-12 pb-6">
                   <DailyMissionsCard />
                 </div>
                 {children}
