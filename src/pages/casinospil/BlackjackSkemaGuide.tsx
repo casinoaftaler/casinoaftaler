@@ -880,6 +880,7 @@ const BlackjackSkemaGuide = () => {
           <RelatedGuides currentPath="/casinospil/blackjack/skema" />
         </div>
       </ContentPageLayout>
+      <StickyCtaBySlug slug="campobet" />
     </>
   );
 };
