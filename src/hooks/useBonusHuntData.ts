@@ -69,8 +69,8 @@ function parseHuntResponse(raw: any): BonusHuntData {
 
   const startBalance = huntData.start || totalBets;
   const breakEvenX = totalBets > 0 ? startBalance / totalBets : 0;
-  // End Balance = sum of all winnings (not the API's "end" field which is balance when bonuses are opened)
-  const endVal = totalWinnings > 0 ? totalWinnings : null;
+  // Use the API's end field when available (includes remaining hunt balance + bonus winnings)
+  const endVal = huntData.end != null ? huntData.end : (totalWinnings > 0 ? totalWinnings : null);
 
   const parsedVisibleId = huntData.visibleId
     || (huntData.name ? parseInt(huntData.name.replace(/\D/g, ''), 10) || 0 : 0);
