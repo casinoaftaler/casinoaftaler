@@ -790,6 +790,10 @@ const SpilleautomatenAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        <CasinoHuntPerformance casinoSlug="spilleautomaten" casinoName="Spilleautomaten" />
+
+        <Separator className="my-10" />
+
         {/* Final Verdict */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Konklusion – Slots-Specialisten holder hvad den lover</h2>
