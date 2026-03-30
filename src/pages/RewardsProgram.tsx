@@ -282,7 +282,9 @@ export default function RewardsProgram() {
 
         <div className="pb-12" />
           </div>
-          <ContentSidebar />
+          <div className="pt-8 md:pt-12">
+            <ContentSidebar />
+          </div>
         </div>
         </div>
       </div>

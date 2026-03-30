@@ -310,7 +310,9 @@ export default function Shop() {
           <RelatedGuides currentPath="/butik" />
         </div>
           </div>
-          <ContentSidebar />
+          <div className="pt-8 md:pt-12">
+            <ContentSidebar />
+          </div>
         </div>
         </div>
       </div>

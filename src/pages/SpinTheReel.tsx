@@ -250,7 +250,9 @@ export default function SpinTheReel() {
             </>
           )}
             </div>
+          <div className="pt-8 md:pt-12">
             <ContentSidebar />
+          </div>
           </div>
         </div>
       </main>
