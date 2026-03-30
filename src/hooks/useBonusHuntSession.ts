@@ -46,7 +46,8 @@ export function useBonusHuntSessionByHuntNumber(huntNumber?: number) {
       return data as any;
     },
     enabled: !!huntNumber && huntNumber > 0,
-    staleTime: 60000,
+    staleTime: 15000,
+    refetchInterval: 15000,
   });
 }
 
