@@ -104,7 +104,7 @@ export function formatLastmodDanish(isoDate: string): string {
 
 export const seoRoutes: SeoRoute[] = ([
   // ── Forside ──
-  { path: "/", changefreq: "daily", priority: 1.0, lastmod: "2026-03-18" },
+  { path: "/", changefreq: "daily", priority: 1.0, lastmod: "2026-03-31" },
 
   // ── Casino Anmeldelser ──
   { path: "/casino-anmeldelser", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-08" },
