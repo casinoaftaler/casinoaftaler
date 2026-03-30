@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useDwellRewardProgress } from "@/hooks/useDwellReward";
+import { useDwellRewardProgress, activateMissionMode } from "@/hooks/useDwellReward";
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check, Coins, Clock, ArrowRight } from "lucide-react";
@@ -40,7 +40,6 @@ export function DailyMissionsCard() {
           </Badge>
         </div>
 
-        {/* Progress bar */}
         <div className="h-3 rounded-full bg-muted/50 mb-5 overflow-hidden">
           <div
             className="h-full rounded-full bg-gradient-to-r from-amber-500 to-emerald-500 transition-all duration-500"
@@ -48,13 +47,12 @@ export function DailyMissionsCard() {
           />
         </div>
 
-        {/* Mission grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {pages.map((page) => (
             <Link
               key={page.path}
-to={page.path}
-              onClick={() => sessionStorage.setItem("missionActive", "1")}
+              to={page.path}
+              onClick={() => activateMissionMode()}
               className={`group flex items-center gap-3 rounded-xl border px-4 py-3 transition-all ${
                 page.completed
                   ? "border-emerald-500/30 bg-emerald-500/5"
