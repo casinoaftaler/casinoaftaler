@@ -443,7 +443,7 @@ export default function PokerBedsteSiderGuide() {
             </Card>
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            En vigtig nuance: disse anbefalinger forudsætter, at du er en vindende spiller på dit niveau. Hvis du stadig lærer, bør du spille på de laveste tilgængelige niveauer (NL2-NL5) uanset din bankroll. Formålet er at opbygge erfaring og identificere dine leaks, ikke at tjene penge. Læs vores <Link to="/casinospil/poker/strategi" className={linkClass}>pokerstrategi-guide</Link> for at forbedre dit spil systematisk, og husk altid principperne for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
+            En vigtig nuance: disse anbefalinger forudsætter, at du er en vindende spiller på dit niveau. Hvis du stadig lærer, bør du spille på de laveste tilgængelige niveauer (NL2-NL5) uanset din bankroll. Formålet er at opbygge erfaring og identificere dine leaks, ikke at tjene penge. Læs vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>pokerstrategi-guide</Link> for at forbedre dit spil systematisk, og husk altid principperne for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
           </p>
         </section>
 
