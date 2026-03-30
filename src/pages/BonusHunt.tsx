@@ -250,7 +250,7 @@ export default function BonusHunt() {
         {/* Main content + right sidebar */}
         <div className="flex gap-8 xl:gap-10">
           <div className="min-w-0 flex-1">
-        <div className="pt-6 md:pt-8 space-y-6" style={{ minHeight: '80vh' }}>
+        <div className="pt-8 md:pt-12 space-y-6" style={{ minHeight: '80vh' }}>
 
           {/* Stat strip */}
           <BonusHuntStatStrip />
