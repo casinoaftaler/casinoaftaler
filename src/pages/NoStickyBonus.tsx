@@ -721,7 +721,7 @@ const NoStickyBonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <Link to="/campobet-anmeldelse" className={linkClass}>Campobet</Link>
+                  <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobet</Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
