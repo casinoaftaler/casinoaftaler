@@ -82,7 +82,7 @@ export function DailyMissionsCard() {
                   {page.label}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  {page.completed ? "Fuldført ✓" : `+${page.credits} credits · 60 sek`}
+                  {page.completed ? "Fuldført ✓" : `+${page.credits} credits · 120 sek`}
                 </p>
               </div>
               {!page.completed && (
