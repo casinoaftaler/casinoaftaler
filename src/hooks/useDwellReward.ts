@@ -57,7 +57,7 @@ export function useDwellReward(pagePath: string) {
 
   // Check if already completed today
   useEffect(() => {
-    if (!user || !isEligiblePage) return;
+    if (!user || !isEligiblePage || !isMissionActivated) return;
 
     const today = new Date().toISOString().split("T")[0];
     supabase
