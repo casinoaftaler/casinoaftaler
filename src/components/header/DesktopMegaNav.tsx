@@ -413,7 +413,7 @@ export function DesktopMegaNav() {
             <div className="border-t border-border/40 my-3" />
             <div>
               <SubLabel title="Spillemaskiner" hubTo="/casinospil/spillemaskiner" onNavigate={close} />
-              <ExpandableGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]} initialCount={20} onNavigate={close} onShowAll={() => expandSection("slots")} />
+              <ExpandableGrid items={[...SLOT_CATEGORY_LINKS, ...SLOT_LINKS]} initialCount={10} onNavigate={close} onShowAll={() => expandSection("slots")} />
             </div>
           </>
         );
