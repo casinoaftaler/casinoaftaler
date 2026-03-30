@@ -499,7 +499,14 @@ function SlotCatalogSection() {
               <tbody className="divide-y divide-border">
                 {filtered.map(slot => (
                   <tr key={slot.id} className="hover:bg-muted/30">
-                    <td className="px-3 py-2 font-medium">{slot.slot_name}</td>
+                    <td className="px-3 py-2 font-medium">
+                      <span>{slot.slot_name}</span>
+                      {(slot as any).content_archetype && (
+                        <Badge variant="outline" className={cn("ml-2 text-[10px] px-1.5 py-0", ARCHETYPE_COLORS[(slot as any).content_archetype] || "")}>
+                          {(slot as any).content_archetype}
+                        </Badge>
+                      )}
+                    </td>
                     <td className="px-3 py-2">{slot.provider || '—'}</td>
                     <td className="px-3 py-2 font-mono">{slot.rtp ? `${slot.rtp}%` : '—'}</td>
                     <td className="px-3 py-2">{slot.volatility || '—'}</td>
