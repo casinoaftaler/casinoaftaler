@@ -79,6 +79,7 @@ const SpinTheReel = lazy(() => import("./pages/SpinTheReel"));
 const BonusHunt = lazy(() => import("./pages/BonusHunt"));
 const BonusHuntArkiv = lazy(() => import("./pages/BonusHuntArkiv"));
 const SlotDatabase = lazy(() => import("./pages/SlotDatabase"));
+const GratisSlots = lazy(() => import("./pages/GratisSlots"));
 const Statistik = lazy(() => import("./pages/Statistik"));
 const SlotCatalogPage = lazy(() => import("./pages/SlotCatalogPage"));
 const TurneringsArkiv = lazy(() => import("./pages/TurneringsArkiv"));
