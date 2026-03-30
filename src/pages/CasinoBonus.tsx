@@ -568,7 +568,7 @@ const CasinoBonus = () => {
                   </Link>
                   <p className="text-xs text-muted-foreground mt-1">RTP: {slot.rtp} · Volatilitet: {slot.vol}</p>
                   <div className="mt-2 flex gap-2">
-                    <Link to={`/slot-katalog/${slot.slug}`} className="text-xs text-muted-foreground hover:text-primary transition-colors">
+                    <Link to={`/casinospil/spillemaskiner/${slot.slug}`} className="text-xs text-muted-foreground hover:text-primary transition-colors">
                       Statistik →
                     </Link>
                     <Link to={`/spiludviklere/${slot.provider}`} className="text-xs text-muted-foreground hover:text-primary transition-colors">
