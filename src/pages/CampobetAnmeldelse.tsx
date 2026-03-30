@@ -585,6 +585,10 @@ const CampobetAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        <CasinoHuntPerformance casinoSlug="campobet" casinoName="Campobet" />
+
+        <Separator className="my-10" />
+
         {/* Endelig vurdering */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Endelig dom – 4.8 ud af 5</h2>

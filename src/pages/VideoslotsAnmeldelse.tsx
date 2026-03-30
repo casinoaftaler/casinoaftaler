@@ -299,6 +299,10 @@ const VideoslotsAnmeldelse = () => {
 
         <Separator className="my-10" />
 
+        <CasinoHuntPerformance casinoSlug="videoslots" casinoName="Videoslots" />
+
+        <Separator className="my-10" />
+
         {/* Endelig Vurdering */}
         <section className="mb-12">
           <RatingBreakdown scores={CASINO_SCORES["videoslots"].scores} total={CASINO_SCORES["videoslots"].total} />
