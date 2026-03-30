@@ -95,7 +95,7 @@ export function CommunityPageLayout({
             </div>
           </div>
           <Suspense fallback={null}>
-            <aside className="flex-shrink-0">
+            <aside className="flex-shrink-0 pt-8 md:pt-12">
               <LazyContentSidebar />
             </aside>
           </Suspense>
