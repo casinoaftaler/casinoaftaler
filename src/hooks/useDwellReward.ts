@@ -231,7 +231,7 @@ export function useDwellRewardProgress() {
     queryKey: ["dwell-progress", user?.id],
     queryFn: async () => {
       if (!user) return [];
-      const today = new Date().toISOString().split("T")[0];
+      const today = getTodayDanish();
       const { data } = await supabase
         .from("daily_dwell_rewards")
         .select("page_path")
