@@ -49,6 +49,11 @@ const PROVIDER_GUIDE_SLUGS: Record<string, string> = {
   "Red Tiger": "red-tiger",
   "Red Tiger Gaming": "red-tiger",
   "Big Time Gaming": "big-time-gaming",
+  "Push Gaming": "push-gaming",
+  "Thunderkick": "thunderkick",
+  "Blueprint Gaming": "blueprint-gaming",
+  "Quickspin": "quickspin",
+  "Betsoft": "betsoft",
 };
 
 /* ── Provider hub slugs (for /spillemaskiner/{slug}) ── */
