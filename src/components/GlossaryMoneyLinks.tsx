@@ -29,7 +29,7 @@ const CATEGORY_MONEY_LINKS: Record<string, MoneyLink[]> = {
     { to: "/casinospil/spillemaskiner", label: "Spillemaskiner Guide", icon: BarChart3, desc: "Komplet guide til online slots" },
     { to: "/casino-bonus", label: "Casino Bonus", icon: Gift, desc: "Bonusser til spillemaskiner" },
     { to: "/free-spins", label: "Free Spins Tilbud", icon: Sparkles, desc: "Gratis spins på populære slots" },
-    { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "{ to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "1.470+ slots med community-data" }," },
+    { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "1.470+ slots med community-data" },
   ],
   "Grundbegreber": [
     { to: "/casino-anmeldelser", label: "Casino Anmeldelser", icon: Star, desc: "Find det rette casino med vores anmeldelser" },
@@ -50,7 +50,7 @@ const SLUG_OVERRIDES: Record<string, MoneyLink[]> = {
   "rtp": [
     { to: "/casinospil/spillemaskiner/hoej-rtp", label: "Høj RTP Slots", icon: BarChart3, desc: "Find spillemaskiner med bedst tilbagebetaling" },
     { to: "/casino-bonus", label: "Casino Bonus", icon: Gift, desc: "Bonusser til slots med høj RTP" },
-    { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "{ to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "Sammenlign RTP på 1.470+ slots" }," },
+    { to: "/slot-database", label: "Slot Database", icon: BarChart3, desc: "Sammenlign RTP p� 1.470+ slots" },
     { to: "/free-spins", label: "Free Spins", icon: Sparkles, desc: "Brug free spins på høj-RTP slots" },
   ],
   "wagering": [
