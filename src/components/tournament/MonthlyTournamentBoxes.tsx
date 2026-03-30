@@ -409,12 +409,7 @@ function SingleTournamentBox({ config }: { config: TournamentBoxConfig }) {
 
 export function MonthlyTournamentBoxes() {
   const countdown = useTournamentCountdown();
-  const { data: archiveData } = useMonthlyTournamentArchive();
   const { data: configs, isLoading: configLoading } = useMonthlyTournamentConfig();
-  const [showArchive, setShowArchive] = useState(false);
-
-  const now = new Date();
-  const monthLabel = `${now.toLocaleDateString("da-DK", { month: "long" }).replace(/^./, c => c.toUpperCase())} ${now.getFullYear()}`;
 
   // Build tournament box configs from DB config
   const tournamentBoxes: TournamentBoxConfig[] = (configs || []).map(c => ({
