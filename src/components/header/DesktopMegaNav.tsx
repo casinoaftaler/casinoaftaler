@@ -351,7 +351,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Casinoer" hubTo="/casinoer" hubLabel="Casinoer Hub →" onNavigate={close} />
-            <ExpandableGrid items={CASINO_LINKS} initialCount={20} onNavigate={close} />
+            <ExpandableGrid items={CASINO_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
