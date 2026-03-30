@@ -13,6 +13,7 @@ export const DWELL_REWARD_PAGES = [
 ] as const;
 
 export const DWELL_DURATION_SECONDS = 120;
+export const SCROLL_THRESHOLD = 0.3; // 30% scroll depth required
 
 interface DwellRewardState {
   /** Seconds remaining (60 → 0) */
