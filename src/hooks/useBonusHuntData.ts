@@ -60,7 +60,10 @@ function parseHuntResponse(raw: any): BonusHuntData {
   const openedSlots = slots.filter(s => s.opened);
   const totalBets = slots.reduce((sum, s) => sum + s.bet, 0);
   const avgBet = slots.length > 0 ? totalBets / slots.length : 0;
-  const totalWinnings = openedSlots.reduce((sum, s) => sum + s.win, 0);
+  const bonusWinnings = openedSlots.reduce((sum, s) => sum + s.win, 0);
+  // Total winnings = bonus winnings + leftover balance from hunting phase
+  const huntLeftover = huntData.end != null ? huntData.end : 0;
+  const totalWinnings = bonusWinnings + huntLeftover;
 
   const multipliersOpen = openedSlots.filter(s => s.multiplier > 0);
   const avgX = multipliersOpen.length > 0
@@ -69,8 +72,7 @@ function parseHuntResponse(raw: any): BonusHuntData {
 
   const startBalance = huntData.start || totalBets;
   const breakEvenX = totalBets > 0 ? startBalance / totalBets : 0;
-  // Use the API's end field when available (includes remaining hunt balance + bonus winnings)
-  const endVal = huntData.end != null ? huntData.end : (totalWinnings > 0 ? totalWinnings : null);
+  const endVal = totalWinnings > 0 ? totalWinnings : null;
 
   const parsedVisibleId = huntData.visibleId
     || (huntData.name ? parseInt(huntData.name.replace(/\D/g, ''), 10) || 0 : 0);
