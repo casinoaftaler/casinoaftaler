@@ -1,0 +1,1 @@
+INSERT INTO storage.buckets (id, name, public) VALUES ('slot-thumbnails', 'slot-thumbnails', true) ON CONFLICT (id) DO NOTHING;
