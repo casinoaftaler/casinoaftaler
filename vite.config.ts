@@ -424,9 +424,7 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-icons': ['lucide-react'],
           'vendor-supabase': ['@supabase/supabase-js'],
-          'vendor-charts': ['recharts'],
           'vendor-carousel': ['embla-carousel-react'],
           'vendor-dnd': ['@dnd-kit/core', '@dnd-kit/sortable', '@dnd-kit/utilities'],
         },
