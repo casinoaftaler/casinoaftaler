@@ -36,7 +36,7 @@ import {
   TableIcon,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import heroImage from "@/assets/heroes/blackjack-skema-hero.jpg";
+
 
 const linkClass = "text-primary underline hover:text-primary/80";
 
