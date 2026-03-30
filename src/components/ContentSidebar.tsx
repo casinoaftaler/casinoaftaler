@@ -116,10 +116,10 @@ function CategorySection({
                 to={link.to}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "flex items-center gap-2.5 px-4 py-2.5 text-[14px] transition-colors border-t border-border/30",
+                  "flex items-center gap-2.5 px-4 py-2.5 text-[14px] transition-colors border-t border-border/40 dark:border-border/50",
                   isActive
                     ? "bg-primary/10 text-primary font-medium border-l-2 border-l-primary"
-                    : "text-foreground/80 hover:bg-accent/10 hover:text-foreground border-l-2 border-l-transparent"
+                    : "text-foreground/90 dark:text-foreground/95 hover:bg-accent/10 hover:text-foreground border-l-2 border-l-transparent"
                 )}
               >
                 {logoSrc ? (
