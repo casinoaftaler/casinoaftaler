@@ -42,6 +42,12 @@ const linkClass = "text-primary underline hover:text-primary/80";
 
 const blackjackCluster = [
   {
+    to: "/casinospil/blackjack/skema",
+    title: "Blackjack Skema",
+    desc: "Det komplette farvekodede basic strategy skema med interaktiv quiz og EV-analyse for alle håndtyper.",
+    icon: Target,
+  },
+  {
     to: "/casinospil/blackjack/amerikansk-blackjack",
     title: "Amerikansk Blackjack",
     desc: "Hole card-reglen, peek-mekanikken og hvorfor amerikanske regler favoriserer spilleren ved doubles og splits.",
