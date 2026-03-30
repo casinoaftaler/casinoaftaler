@@ -30,6 +30,7 @@ export function DwellRewardBadge() {
   const hasPlayedSound = useRef(false);
 
   const nextMission = pages.find((p) => !p.completed && p.path !== pathname);
+  const allMissionsComplete = pages.every((p) => p.completed || p.path === pathname);
   const completed = isClaimed || alreadyCompleted;
 
   // Current milestone message
