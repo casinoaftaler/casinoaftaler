@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users, CreditCard, Gamepad2, User, Star, Moon, Sun, icons } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { MENU_ICON_MAP } from "./menuIconMap";
 import {
   CASINO_LINKS, NYE_CASINOER_LINKS, SLOT_LINKS, SLOT_CATEGORY_LINKS,
   BLACKJACK_LINKS, BLACKJACK_STRATEGY_LINKS, ROULETTE_LINKS, ROULETTE_STRATEGY_LINKS,
@@ -60,6 +61,7 @@ function MobileSmartLink({ item, colorIndex = 0, onClose, indent = "ml-6" }: {
 }) {
   const logoUrl = resolveLogoUrl(item);
   const IconComp = getLucideIcon(item.iconName);
+  const menuIconUrl = item.iconName ? MENU_ICON_MAP[item.iconName] : undefined;
   const color = ICON_COLORS[colorIndex % ICON_COLORS.length];
 
   if (logoUrl) {
@@ -101,7 +103,9 @@ function MobileSmartLink({ item, colorIndex = 0, onClose, indent = "ml-6" }: {
       onClick={onClose}
       className={cn(indent, "flex items-center gap-2.5 py-2 text-sm text-muted-foreground transition-colors hover:text-primary")}
     >
-      {IconComp ? (
+      {menuIconUrl ? (
+        <img src={menuIconUrl} alt="" className="h-6 w-6 rounded-md object-contain shrink-0" loading="lazy" />
+      ) : IconComp ? (
         <span className={cn("flex items-center justify-center rounded-md h-6 w-6 shrink-0", color)}>
           <IconComp className="h-3.5 w-3.5" />
         </span>

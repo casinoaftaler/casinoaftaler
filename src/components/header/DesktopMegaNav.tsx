@@ -9,6 +9,7 @@ import {
   PAYMENT_LINKS, PROVIDER_LINKS, REVIEW_TOP_LINKS, REVIEW_ALL_LINKS,
   COMMUNITY_LINKS, MORE_LINKS, FORFATTER_LINKS, type NavLink,
 } from "./navData";
+import { MENU_ICON_MAP } from "./menuIconMap";
 
 /* ─── Logo imports (Vite static) ─── */
 const providerLogos = import.meta.glob<{ default: string }>(
@@ -110,6 +111,7 @@ function getLucideIcon(name?: string) {
 /* ─── Compact link item ─── */
 function MegaLink({ to, label, iconName, colorIndex = 0, onClick }: { to: string; label: string; iconName?: string; colorIndex?: number; onClick: () => void }) {
   const IconComp = getLucideIcon(iconName);
+  const menuIconUrl = iconName ? MENU_ICON_MAP[iconName] : undefined;
 
   return (
     <Link
@@ -117,11 +119,18 @@ function MegaLink({ to, label, iconName, colorIndex = 0, onClick }: { to: string
       onClick={onClick}
       className="flex items-center gap-2.5 rounded-lg border border-border/50 bg-card/60 px-3 py-2 text-[13px] font-medium transition-all duration-150 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_0_12px_-4px_hsl(var(--primary)/0.3)] group"
     >
-      {IconComp && (
+      {menuIconUrl ? (
+        <img
+          src={menuIconUrl}
+          alt=""
+          className="h-6 w-6 rounded-md object-contain shrink-0"
+          loading="lazy"
+        />
+      ) : IconComp ? (
         <span className={cn("flex items-center justify-center rounded-md h-6 w-6 shrink-0", getIconColor(colorIndex))}>
           <IconComp className="h-3.5 w-3.5" />
         </span>
-      )}
+      ) : null}
       <span className="truncate flex-1">{label}</span>
       <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground/50 transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
     </Link>
