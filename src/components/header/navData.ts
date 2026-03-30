@@ -87,6 +87,7 @@ export const SLOT_CATEGORY_LINKS: NavLink[] = [
 ];
 
 export const BLACKJACK_LINKS: NavLink[] = [
+  { to: "/casinospil/blackjack/skema", label: "Blackjack Skema", iconName: "table" },
   { to: "/casinospil/blackjack/amerikansk-blackjack", label: "Amerikansk Blackjack", iconName: "spade" },
   { to: "/casinospil/blackjack/europaeisk-blackjack", label: "Europæisk Blackjack", iconName: "club" },
   { to: "/casinospil/blackjack/double-exposure-blackjack", label: "Double Exposure", iconName: "copy" },

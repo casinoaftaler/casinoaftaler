@@ -866,18 +866,16 @@ const BlackjackSkemaGuide = () => {
             </div>
           </section>
 
+          <CasinospilMoneyLinks gameName="Blackjack" currentPath="/casinospil/blackjack/skema" />
+          <LatestNewsByCategory pagePath="/casinospil/blackjack/skema" />
+          <RelatedGuides currentPath="/casinospil/blackjack/skema" />
+
           {/* ── FAQ ── */}
           <section id="faq">
             <FAQSection faqs={faqs} />
           </section>
 
-          <Separator className="my-8" />
-
           <AuthorBio author="jonas" />
-
-          <CasinospilMoneyLinks gameName="Blackjack" currentPath="/casinospil/blackjack/skema" />
-          <LatestNewsByCategory pagePath="/casinospil/blackjack/skema" />
-          <RelatedGuides currentPath="/casinospil/blackjack/skema" />
         </div>
       </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
