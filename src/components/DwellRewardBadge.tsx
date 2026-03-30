@@ -51,12 +51,25 @@ export function DwellRewardBadge() {
     setPrevSeconds(secondsLeft);
   }, [secondsLeft, prevSeconds]);
 
-  // Reset visibility on page change
+  // Reset visibility and sound flag on page change
   useEffect(() => {
     setVisible(true);
     setPrevSeconds(DWELL_DURATION_SECONDS);
     setMilestoneFlash(null);
+    hasPlayedSound.current = false;
   }, [pathname]);
+
+  // Play completion sound
+  useEffect(() => {
+    if (completed && !hasPlayedSound.current && !alreadyCompleted) {
+      hasPlayedSound.current = true;
+      try {
+        const audio = new Audio("/sounds/mission-complete.m4a");
+        audio.volume = 0.7;
+        audio.play().catch(() => {});
+      } catch {}
+    }
+  }, [completed, alreadyCompleted]);
 
   // Auto-hide after 4s if completed AND no next mission
   useEffect(() => {
