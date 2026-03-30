@@ -92,9 +92,9 @@ export function SiteSearch() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  // Fetch dynamic content when dialog opens
+  // Fetch dynamic content + glossary when dialog opens
   const fetchDynamic = useCallback(async () => {
-    const [newsRes, casinosRes] = await Promise.all([
+    const [newsRes, casinosRes, glossaryModule] = await Promise.all([
       supabase
         .from("casino_news")
         .select("title, slug")
@@ -107,6 +107,7 @@ export function SiteSearch() {
         .eq("is_active", true)
         .order("position", { ascending: true })
         .limit(100),
+      import("@/data/glossaryTerms"),
     ]);
 
     const items: SearchItem[] = [];
@@ -117,7 +118,6 @@ export function SiteSearch() {
     }
     if (casinosRes.data) {
       for (const c of casinosRes.data) {
-        // Only add if not already in static reviews
         const path = `/casino-anmeldelser/${c.slug}`;
         if (!DEDUPED_STATIC.some(s => s.to === path)) {
           items.push({ label: c.name, to: path, category: "Casino Anmeldelser" });
@@ -125,6 +125,15 @@ export function SiteSearch() {
       }
     }
     setDynamicItems(items);
+
+    // Glossary terms loaded async
+    setGlossaryItems(
+      glossaryModule.glossaryTerms.map((t: { title: string; slug: string }) => ({
+        label: t.title,
+        to: `/ordbog/${t.slug}`,
+        category: "Ordbog",
+      }))
+    );
   }, []);
 
   useEffect(() => {
