@@ -474,7 +474,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [
         { to: "/bonus-hunt", label: "Bonus Hunt Live", icon: Trophy, desc: "Se aktive og kommende bonus hunts" },
-        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "1.400+ spillemaskiner med community-data" },
+        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "1.470+ spillemaskiner med community-data" },
         { to: "/community/turneringer", label: "Turneringer", icon: Trophy, desc: "Deltag i månedlige turneringer" },
         reviewHub,
         bonusHub,
@@ -489,7 +489,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
       guides: [
         { to: "/bonus-hunt", label: "Bonus Hunt Live", icon: Trophy, desc: "Følg med i live bonus hunts på Twitch" },
         { to: "/bonus-hunt/arkiv", label: "Bonus Hunt Arkiv", icon: BarChart3, desc: "Alle dokumenterede hunt-resultater" },
-        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "1.400+ spillemaskiner med community-data" },
+        { to: "/slot-database", label: "Slot Database", icon: Gamepad2, desc: "1.470+ spillemaskiner med community-data" },
         { to: "/spiludviklere", label: "Spiludviklere", icon: BookOpen, desc: "Dybdegående guides til alle providers" },
         casinospilHub,
         reviewHub,

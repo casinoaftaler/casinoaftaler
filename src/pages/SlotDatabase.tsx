@@ -341,7 +341,7 @@ export default function SlotDatabase() {
           </div>
         )}
 
-        <SnippetAnswer answer="Vores slot database indeholder ægte community-data fra live bonus hunts – ikke teoretiske tal. Se RTP, volatilitet og performance for 1.400+ spillemaskiner testet på Twitch." />
+        <SnippetAnswer answer="Vores slot database indeholder ægte community-data fra live bonus hunts – ikke teoretiske tal. Se RTP, volatilitet og performance for 1.470+ spillemaskiner testet på Twitch." />
 
         
 
@@ -428,7 +428,7 @@ export default function SlotDatabase() {
               <a href="/casino-bonus" className="text-primary underline"> casino bonusser</a>.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              <strong>Se komplet katalog:</strong> <a href="/slot-directory.html" className="text-primary underline">Alle spillemaskiner (statisk oversigt)</a> – indeholder links til samtlige 1.400+ spillemaskiner.
+              <strong>Se komplet katalog:</strong> <a href="/slot-directory.html" className="text-primary underline">Alle spillemaskiner (statisk oversigt)</a> – indeholder links til samtlige 1.470+ spillemaskiner.
             </p>
           </div>
         </noscript>

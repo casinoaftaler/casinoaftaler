@@ -366,7 +366,7 @@ const MegawaysSlots = () => {
             Vores anbefalinger er baseret på en kombination af RTP, vindpotentiale, spiloplevelse
             og community-data fra vores{" "}
             <Link to="/slot-database" className={linkClass}>Slot Database</Link>, hvor vi tracker
-            statistik fra 1.400+ spilleautomater testet i{" "}
+            statistik fra 1.470+ spilleautomater testet i{" "}
             <Link to="/bonus-hunt" className={linkClass}>bonus hunts</Link>.
           </p>
 
@@ -605,7 +605,7 @@ const MegawaysSlots = () => {
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Vores <Link to="/slot-database" className={linkClass}>Slot Database</Link> indeholder
-            detaljerede statistikker fra 1.400+ spilleautomater testet i live{" "}
+            detaljerede statistikker fra 1.470+ spilleautomater testet i live{" "}
             <Link to="/bonus-hunt" className={linkClass}>bonus hunts</Link>. Megaways-titler er
             konsekvent repræsenteret i vores tests og leverer følgende gennemsnitlige resultater:
           </p>
