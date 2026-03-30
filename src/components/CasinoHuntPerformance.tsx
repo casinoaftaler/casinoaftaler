@@ -100,24 +100,34 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerf
             Top 5 slots testet hos {casinoName}
           </h3>
           <div className="space-y-2">
-            {stats.topSlots.map((slot, i) => (
-              <div
-                key={slot.name}
-                className="flex items-center justify-between rounded-lg border border-border/50 px-4 py-2.5"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-bold text-muted-foreground w-6">
-                    #{i + 1}
-                  </span>
-                  <span className="font-medium">{slot.name}</span>
-                </div>
-                <Badge
-                  variant={i === 0 ? "default" : "secondary"}
-                  className={i === 0 ? "bg-primary text-primary-foreground" : ""}
+            {stats.topSlots.map((slot, i) => {
+              const displayName = normalizeSlotName(slot.name);
+              const slug = slotNameToSlug(slot.name);
+              return (
+                <div
+                  key={slot.name}
+                  className="flex items-center justify-between rounded-lg border border-border/50 px-4 py-2.5"
                 >
-                  {slot.bestX.toLocaleString("da-DK")}x
-                </Badge>
-              </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-bold text-muted-foreground w-6">
+                      #{i + 1}
+                    </span>
+                    <Link
+                      to={`/slot-katalog/${slug}`}
+                      className="font-medium text-foreground hover:text-primary transition-colors hover:underline"
+                    >
+                      {displayName}
+                    </Link>
+                  </div>
+                  <Badge
+                    variant={i === 0 ? "default" : "secondary"}
+                    className={i === 0 ? "bg-primary text-primary-foreground" : ""}
+                  >
+                    {slot.bestX.toLocaleString("da-DK", { minimumFractionDigits: 1 })}x
+                  </Badge>
+                </div>
+              );
+            }
             ))}
           </div>
         </div>
