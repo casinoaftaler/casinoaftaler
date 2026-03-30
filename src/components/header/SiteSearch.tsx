@@ -77,6 +77,7 @@ const DEDUPED_STATIC = Array.from(
 export function SiteSearch() {
   const [open, setOpen] = useState(false);
   const [dynamicItems, setDynamicItems] = useState<SearchItem[]>([]);
+  const [glossaryItems, setGlossaryItems] = useState<SearchItem[]>([]);
   const navigate = useNavigate();
 
   // Keyboard shortcut
