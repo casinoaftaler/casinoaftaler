@@ -316,7 +316,10 @@ export function BonusHuntArchiveAdmin() {
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex items-center justify-end gap-1">
-                        <Button variant="ghost" size="icon" onClick={() => setViewingArchive(a)} title="Se slots">
+                        <Button variant="ghost" size="icon" onClick={async () => {
+                          const { data } = await supabase.from('bonus_hunt_archives').select('*').eq('id', a.id).maybeSingle();
+                          setViewingArchive(data ? { ...a, api_data: (data as any).api_data } : a);
+                        }} title="Se slots">
                           <Eye className="h-4 w-4" />
                         </Button>
                         <Button variant="ghost" size="icon" onClick={() => openEdit(a)} title="Rediger">
