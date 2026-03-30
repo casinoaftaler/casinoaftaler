@@ -799,7 +799,7 @@ export default function PokerBedsteSiderGuide() {
             </Card>
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            Uanset dit valg af pokersite, er det vigtigste at spille inden for dine finansielle grænser og behandle poker som underholdning – medmindre du er en dedikeret studerende af spillet. For strategisk forbedring anbefaler vi vores <Link to="/casinospil/poker/strategi" className={linkClass}>pokerstrategi-guide</Link>, og for alternative spilformer kan du udforske <Link to="/casinospil/poker/video-poker" className={linkClass}>video poker</Link>, <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> eller vores komplette <Link to="/casinospil" className={linkClass}>casinospil-oversigt</Link>.
+            Uanset dit valg af pokersite, er det vigtigste at spille inden for dine finansielle grænser og behandle poker som underholdning – medmindre du er en dedikeret studerende af spillet. For strategisk forbedring anbefaler vi vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>pokerstrategi-guide</Link>, og for alternative spilformer kan du udforske <Link to="/casinospil/poker/video-poker" className={linkClass}>video poker</Link>, <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> eller vores komplette <Link to="/casinospil" className={linkClass}>casinospil-oversigt</Link>.
           </p>
         </section>
 

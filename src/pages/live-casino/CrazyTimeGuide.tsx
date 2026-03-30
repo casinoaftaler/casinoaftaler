@@ -328,7 +328,7 @@ const CrazyTimeGuide = () => {
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-4 flex items-center gap-2"><Activity className="h-5 w-5 text-primary" />Volatilitet og standardafvigelse – den matematiske virkelighed</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Crazy Times volatilitet er ekstremt høj sammenlignet med andre live casino-spil – og det er denne volatilitet, der skaber både spillets appeal og dets risiko. Standardafvigelsen pr. spin estimeres til ca. 40-80× indsatsen (afhængig af væddemålsmix), sammenlignet med ~1,1x for blackjack, ~5,8x for europæisk roulette (straight-up bet) og ~15x for typiske <Link to="/spillemaskiner" className={linkClass}>spillemaskiner</Link>.
+            Crazy Times volatilitet er ekstremt høj sammenlignet med andre live casino-spil – og det er denne volatilitet, der skaber både spillets appeal og dets risiko. Standardafvigelsen pr. spin estimeres til ca. 40-80× indsatsen (afhængig af væddemålsmix), sammenlignet med ~1,1x for blackjack, ~5,8x for europæisk roulette (straight-up bet) og ~15x for typiske <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskiner</Link>.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Hvad betyder det i praksis? Over 100 spins med 50 kr. indsats kan dit bankroll svinge med ±20.000-40.000 kr. fra det forventede resultat. Statistisk set vil ca. 5 % af sessions resultere i en gevinst på 3× bankroll eller mere, mens ca. 30 % ender med totalt tab af session-bankroll. De resterende 65 % vil opleve et tab mellem 0 og 100 % af bankroll – det typiske resultat er et moderat tab tæt på den forventede EV.
