@@ -9,6 +9,7 @@ export const DWELL_REWARD_PAGES = [
   { path: "/free-spins", label: "Free Spins", credits: 300 },
   { path: "/live-casino", label: "Live Casino", credits: 300 },
   { path: "/nye-casinoer", label: "Nye Casinoer", credits: 300 },
+  { path: "/casino-anmeldelser", label: "Casino Anmeldelser", credits: 300 },
 ] as const;
 
 export const DWELL_DURATION_SECONDS = 120;
