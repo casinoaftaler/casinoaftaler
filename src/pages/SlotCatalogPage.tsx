@@ -963,6 +963,13 @@ export default function SlotCatalogPage() {
         </div>
       </section>
 
+      {/* Pragmatic Play Demo Player – prominently above fold */}
+      {(slot as any).game_id && slot.provider === "Pragmatic Play" && (
+        <div className="container py-6">
+          <PragmaticDemoPlayer gameId={(slot as any).game_id} slotName={slotName} />
+        </div>
+      )}
+
       <div className="container py-8 md:py-12">
         <AuthorMetaBar author="redaktionen" showAffiliateDisclaimer={false} />
 
@@ -1040,12 +1047,6 @@ export default function SlotCatalogPage() {
           </div>
         )}
 
-        {/* Pragmatic Play Demo Player */}
-        {(slot as any).game_id && slot.provider === "Pragmatic Play" && (
-          <section className="mb-8">
-            <PragmaticDemoPlayer gameId={(slot as any).game_id} slotName={slotName} />
-          </section>
-        )}
 
         {/* AI-generated description OR fallback */}
         <section className="mb-8">
