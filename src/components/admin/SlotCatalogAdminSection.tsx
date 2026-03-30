@@ -44,6 +44,87 @@ export function SlotCatalogAdminSection() {
   );
 }
 
+// ── Archetype Classification ──
+const ARCHETYPE_COLORS: Record<string, string> = {
+  "stats-heavy": "bg-green-500/20 text-green-400 border-green-500/30",
+  "community-driven": "bg-blue-500/20 text-blue-400 border-blue-500/30",
+  "comparison": "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+  "minimal": "bg-muted text-muted-foreground border-border",
+};
+
+function ArchetypeClassificationSection() {
+  const [running, setRunning] = useState(false);
+  const [distribution, setDistribution] = useState<Record<string, number> | null>(null);
+  const { data: slots } = useSlotCatalog();
+
+  // Compute current distribution from loaded data
+  useEffect(() => {
+    if (!slots) return;
+    const counts: Record<string, number> = {};
+    slots.forEach((s) => {
+      const arch = (s as any).content_archetype || "uklassificeret";
+      counts[arch] = (counts[arch] || 0) + 1;
+    });
+    setDistribution(counts);
+  }, [slots]);
+
+  const runClassification = async () => {
+    setRunning(true);
+    try {
+      const res = await supabase.functions.invoke("slot-classify-archetypes");
+      if (res.error) throw res.error;
+      const result = res.data as { distribution: Record<string, number> };
+      setDistribution(result.distribution);
+      toast.success("Arketyper klassificeret!");
+    } catch (err: any) {
+      toast.error("Fejl: " + (err.message || "Ukendt fejl"));
+    } finally {
+      setRunning(false);
+    }
+  };
+
+  const total = distribution ? Object.values(distribution).reduce((a, b) => a + b, 0) : 0;
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Sparkles className="h-5 w-5" />
+          Arketype-klassificering
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <p className="text-sm text-muted-foreground">
+          Klassificer alle slots i 4 arketyper baseret på tilgængelige data (RTP, bonus hunts, wins).
+        </p>
+
+        {distribution && (
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+            {["stats-heavy", "community-driven", "comparison", "minimal", "uklassificeret"].map((arch) => {
+              const count = distribution[arch] || 0;
+              const pct = total > 0 ? ((count / total) * 100).toFixed(1) : "0";
+              return (
+                <div key={arch} className="rounded-lg border p-3 text-center space-y-1">
+                  <Badge variant="outline" className={ARCHETYPE_COLORS[arch] || ""}>
+                    {arch}
+                  </Badge>
+                  <div className="text-2xl font-bold">{count}</div>
+                  <div className="text-xs text-muted-foreground">{pct}%</div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        <Button onClick={runClassification} disabled={running}>
+          {running ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Sparkles className="h-4 w-4 mr-2" />}
+          {running ? "Klassificerer..." : "Kør klassificering"}
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
+
 // ── Seed Database ──
 interface PreviewSlot {
   name: string;
