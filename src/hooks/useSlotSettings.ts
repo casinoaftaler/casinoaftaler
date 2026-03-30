@@ -38,7 +38,7 @@ export function useSlotSettings() {
       return {
         dailySpins: parseInt(settingsMap.slot_daily_spins || "100", 10),
         minBet: parseInt(settingsMap.slot_min_bet || "1", 10),
-        maxBet: parseInt(settingsMap.slot_max_bet || "10", 10),
+        maxBet: parseInt(settingsMap.slot_max_bet || "20", 10),
         pageLocked: settingsMap.slot_page_locked === "true",
         pagePassword: settingsMap.slot_page_password || "bookoffedesvin2026",
         riseLocked: settingsMap.rise_of_fedesvin_locked === "true",
@@ -112,7 +112,7 @@ export function useSlotSettings() {
   });
 
   return {
-    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 10, pageLocked: true, pagePassword: "bookoffedesvin2026", riseLocked: true, risePassword: "riseoffedesvin2026", gatesLocked: true, gatesPassword: "gatesoffedesvin2026", spinLoopMs: 600, reelStaggerMs: 20, reelSlowdownMs: 300 },
+    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 20, pageLocked: true, pagePassword: "bookoffedesvin2026", riseLocked: true, risePassword: "riseoffedesvin2026", gatesLocked: true, gatesPassword: "gatesoffedesvin2026", spinLoopMs: 600, reelStaggerMs: 20, reelSlowdownMs: 300 },
     isLoading,
     updateSettings,
   };

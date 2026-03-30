@@ -8,6 +8,7 @@ import { BonanzaPayTable } from "./BonanzaPayTable";
 import { PayTable } from "./PayTable";
 import { AutoSpinPopover } from "./AutoSpinPopover";
 import { getSlotTheme } from "@/lib/slotTheme";
+import { getNextBet, getPrevBet } from "@/lib/betSteps";
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
@@ -161,7 +162,7 @@ export function GatesControlBar({
             "hover:bg-pink-500/30 hover:border-pink-400/50 transition-colors",
             "disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-pink-500/20"
           )}
-          onClick={() => onBetChange(Math.max(minBet, bet - 1))}
+          onClick={() => onBetChange(getPrevBet(bet, minBet))}
           disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
         >
           <Minus className="h-3.5 w-3.5" />
@@ -176,7 +177,7 @@ export function GatesControlBar({
             "hover:bg-pink-500/30 hover:border-pink-400/50 transition-colors",
             "disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-pink-500/20"
           )}
-          onClick={() => onBetChange(Math.min(maxBet, bet + 1))}
+          onClick={() => onBetChange(getNextBet(bet, maxBet))}
           disabled={isBetLocked || isCurrentlySpinning || bet >= maxBet}
         >
           <Plus className="h-3.5 w-3.5" />

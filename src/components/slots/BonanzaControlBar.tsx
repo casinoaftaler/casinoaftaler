@@ -1,4 +1,5 @@
 import { Minus, Plus, RotateCw, Square } from "lucide-react";
+import { getNextBet, getPrevBet } from "@/lib/betSteps";
 import { BonanzaTumbleWinBar, type CollisionPhase } from "./BonanzaTumbleWinBar";
 import { AnimatedWinCounter } from "./AnimatedWinCounter";
 import { cn } from "@/lib/utils";
@@ -154,7 +155,7 @@ export function BonanzaControlBar({
               "active:scale-90 transition-all duration-150",
               "disabled:opacity-25 disabled:cursor-not-allowed"
             )}
-            onClick={() => onBetChange(Math.max(minBet, bet - 1))}
+            onClick={() => onBetChange(getPrevBet(bet, minBet))}
             disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
           >
             <Minus className="h-6 w-6 text-white" />
@@ -215,7 +216,7 @@ export function BonanzaControlBar({
               "active:scale-90 transition-all duration-150",
               "disabled:opacity-25 disabled:cursor-not-allowed"
             )}
-            onClick={() => onBetChange(Math.min(maxBet, bet + 1))}
+            onClick={() => onBetChange(getNextBet(bet, maxBet))}
             disabled={isBetLocked || isCurrentlySpinning || bet >= maxBet}
           >
             <Plus className="h-6 w-6 text-white" />
@@ -333,7 +334,7 @@ export function BonanzaControlBar({
             "active:scale-90 transition-all duration-150",
             "disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-black/30 disabled:hover:border-white/20"
           )}
-          onClick={() => onBetChange(Math.max(minBet, bet - 1))}
+          onClick={() => onBetChange(getPrevBet(bet, minBet))}
           disabled={isBetLocked || isCurrentlySpinning || bet <= minBet}
         >
           <Minus className="h-6 w-6 text-white" />
@@ -397,7 +398,7 @@ export function BonanzaControlBar({
             "active:scale-90 transition-all duration-150",
             "disabled:opacity-25 disabled:cursor-not-allowed disabled:hover:bg-black/30 disabled:hover:border-white/20"
           )}
-          onClick={() => onBetChange(Math.min(maxBet, bet + 1))}
+          onClick={() => onBetChange(getNextBet(bet, maxBet))}
           disabled={isBetLocked || isCurrentlySpinning || bet >= maxBet}
         >
           <Plus className="h-6 w-6 text-white" />

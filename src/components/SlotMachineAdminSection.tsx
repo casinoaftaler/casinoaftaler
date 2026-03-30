@@ -739,7 +739,7 @@ function SettingsTab({ gameId }: { gameId?: string }) {
   const [formData, setFormData] = useState({
     dailySpins: 100,
     minBet: 1,
-    maxBet: 10,
+    maxBet: 20,
     pageLocked: true,
     pagePassword: "",
     riseLocked: true,
@@ -1036,7 +1036,7 @@ function SettingsTab({ gameId }: { gameId?: string }) {
                 type="number"
                 min="1"
                 value={formData.maxBet}
-                onChange={(e) => setFormData({ ...formData, maxBet: parseInt(e.target.value) || 10 })}
+                onChange={(e) => setFormData({ ...formData, maxBet: parseInt(e.target.value) || 20 })}
               />
             </div>
           </div>
