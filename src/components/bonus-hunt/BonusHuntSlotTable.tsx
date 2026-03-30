@@ -75,7 +75,7 @@ function WinBadge({ win, multiplier }: { win: number; multiplier: number }) {
   const showRocket = multiplier >= 200;
 
   return (
-    <span className={`inline-flex items-center gap-1 ${win >= 100 ? 'font-semibold text-green-500' : ''}`}>
+    <span className={`inline-flex items-center gap-1 ${multiplier >= 100 ? 'font-semibold text-green-500' : ''}`}>
       {formatNum(win)} kr
       {showTrophy && <Trophy className="h-3 w-3 text-amber-400" />}
       {showRocket && <Rocket className="h-3 w-3 text-primary" />}
