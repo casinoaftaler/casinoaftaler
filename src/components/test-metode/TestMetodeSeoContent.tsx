@@ -457,7 +457,7 @@ export function TestMetodeSeoContent() {
                   afvige markant på grund af variansen i slots (volatilitet). En bonus med positiv EV
                   garanterer ikke gevinst – den indikerer blot, at bonussen statistisk set er fordelagtig
                   over mange gennemspilninger. For en dybere forståelse af volatilitet, se vores guide til{" "}
-                  <Link to="/casinospil/spilleautomater" className={linkClass}>spilleautomater</Link>.
+                  <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomater</Link>.
                 </p>
               </div>
             </div>

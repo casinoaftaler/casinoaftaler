@@ -359,7 +359,7 @@ const CasinoBonus = () => {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-muted-foreground leading-relaxed">
-                Free spins er gratis omgange på udvalgte <Link to="/spillemaskiner" className={linkClass}>spilleautomater</Link>, typisk tildelt som del af en velkomstpakke eller som selvstændig kampagne. Værdien af free spins varierer enormt afhængigt af spinværdi, det valgte spil og eventuelle <Link to="/ordbog/wagering" className={linkClass}>omsætningskrav</Link> på gevinster. Et tilbud på "100 free spins" kan betyde alt fra 10 kr. til 500 kr. i reel værdi – det afhænger af spinværdien (typisk 1-5 kr. pr. spin) og spillets RTP. Se <Link to="/free-spins-i-dag" className={linkClass}>free spins i dag</Link> for aktuelle tilbud.
+                Free spins er gratis omgange på udvalgte <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomater</Link>, typisk tildelt som del af en velkomstpakke eller som selvstændig kampagne. Værdien af free spins varierer enormt afhængigt af spinværdi, det valgte spil og eventuelle <Link to="/ordbog/wagering" className={linkClass}>omsætningskrav</Link> på gevinster. Et tilbud på "100 free spins" kan betyde alt fra 10 kr. til 500 kr. i reel værdi – det afhænger af spinværdien (typisk 1-5 kr. pr. spin) og spillets RTP. Se <Link to="/free-spins-i-dag" className={linkClass}>free spins i dag</Link> for aktuelle tilbud.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 <strong>Fordele:</strong> Risikofri afprøvning af nye spil, ingen krav om indbetaling ved no-deposit free spins. <strong>Ulemper:</strong> Ofte begrænset til specifikke spil, gevinster kan have omsætningskrav, lav spinværdi reducerer potentialet. <strong>Passer til:</strong> Slotsspillere, nye spillere der vil teste uden risiko.
@@ -544,7 +544,7 @@ const CasinoBonus = () => {
 
           <h3 className="mb-3 mt-6 text-xl font-semibold">RTP-valgets indflydelse på bonusværdi</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Dit valg af <Link to="/spillemaskiner" className={linkClass}>spillemaskine</Link> har enorm indflydelse på bonusværdien. En slot med 97% <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> (3% house edge) versus 94% RTP (6% house edge) ændrer EV dramatisk. For case 1 ovenfor: Med 97% RTP falder tabet til 600 kr. (EV = +400 kr.), mens 94% RTP øger tabet til 1.200 kr. (EV = −200 kr. – bonussen er nu en nettonegativ!). Populære valg til bonusomsætning inkluderer <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (96,48 % RTP) og <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (96,50 % RTP). Tjek vores <Link to="/spillemaskiner-hoej-rtp" className={linkClass}>spillemaskiner med høj RTP</Link> for de bedste wagering-kandidater. Vælg altid spil med mindst 96% RTP under bonusomsætning – og vær opmærksom på spillets <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link>, der påvirker din bust-risiko.
+            Dit valg af <Link to="/casinospil/spillemaskiner" className={linkClass}>spillemaskine</Link> har enorm indflydelse på bonusværdien. En slot med 97% <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> (3% house edge) versus 94% RTP (6% house edge) ændrer EV dramatisk. For case 1 ovenfor: Med 97% RTP falder tabet til 600 kr. (EV = +400 kr.), mens 94% RTP øger tabet til 1.200 kr. (EV = −200 kr. – bonussen er nu en nettonegativ!). Populære valg til bonusomsætning inkluderer <Link to="/casinospil/spillemaskiner/sweet-bonanza" className={linkClass}>Sweet Bonanza</Link> (96,48 % RTP) og <Link to="/casinospil/spillemaskiner/gates-of-olympus" className={linkClass}>Gates of Olympus</Link> (96,50 % RTP). Tjek vores <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>spillemaskiner med høj RTP</Link> for de bedste wagering-kandidater. Vælg altid spil med mindst 96% RTP under bonusomsætning – og vær opmærksom på spillets <Link to="/ordbog/volatilitet" className={linkClass}>volatilitet</Link>, der påvirker din bust-risiko.
           </p>
 
           {/* In-content slot recommendations for wagering */}
@@ -568,7 +568,7 @@ const CasinoBonus = () => {
                   </Link>
                   <p className="text-xs text-muted-foreground mt-1">RTP: {slot.rtp} · Volatilitet: {slot.vol}</p>
                   <div className="mt-2 flex gap-2">
-                    <Link to={`/slot-katalog/${slot.slug}`} className="text-xs text-muted-foreground hover:text-primary transition-colors">
+                    <Link to={`/casinospil/spillemaskiner/${slot.slug}`} className="text-xs text-muted-foreground hover:text-primary transition-colors">
                       Statistik →
                     </Link>
                     <Link to={`/spiludviklere/${slot.provider}`} className="text-xs text-muted-foreground hover:text-primary transition-colors">
@@ -579,7 +579,7 @@ const CasinoBonus = () => {
               ))}
             </div>
             <p className="mt-4 text-xs text-muted-foreground">
-              Se flere muligheder i vores <Link to="/slot-database" className={linkClass}>slot database</Link> eller udforsk <Link to="/spillemaskiner-hoej-rtp" className={linkClass}>slots med høj RTP</Link>.
+              Se flere muligheder i vores <Link to="/slot-database" className={linkClass}>slot database</Link> eller udforsk <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>slots med høj RTP</Link>.
             </p>
           </div>
 

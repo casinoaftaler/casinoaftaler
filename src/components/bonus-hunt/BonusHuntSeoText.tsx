@@ -512,11 +512,11 @@ export function BonusHuntSeoText() {
             </Link>{" "}
             der løbende lancerer innovative spilleautomater, bliver paletten af slots til hunts stadig bredere.
             Vi ser også en stigende interesse for{" "}
-            <Link to="/casino-bonus/free-spins" className="text-primary hover:underline">
+            <Link to="/free-spins" className="text-primary hover:underline">
               free spins-tilbud
             </Link>{" "}
             og{" "}
-            <Link to="/casino-bonus/free-spins-uden-indbetaling" className="text-primary hover:underline">
+            <Link to="/free-spins-i-dag" className="text-primary hover:underline">
               free spins uden indbetaling
             </Link>{" "}
             som supplement til bonus buy-hunts.

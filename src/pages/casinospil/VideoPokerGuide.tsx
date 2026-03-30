@@ -593,7 +593,7 @@ export default function VideoPokerGuide() {
             </CardContent>
           </Card>
           <p className="text-muted-foreground leading-relaxed">
-            Valget mellem video poker og spilleautomater handler ultimativt om, hvad du søger: Hvis du vil minimere dit forventede tab og nyder strategisk tænkning, er video poker overlegen. Hvis du vil have underholdning med store jackpot-muligheder og visuelt spektakulære spil, passer <Link to="/casinospil/spilleautomater" className={linkClass}>spilleautomater</Link> bedre. Begge er legitime former for casinounderholdning – men din lommebok vil takke dig for at vælge video poker.
+            Valget mellem video poker og spilleautomater handler ultimativt om, hvad du søger: Hvis du vil minimere dit forventede tab og nyder strategisk tænkning, er video poker overlegen. Hvis du vil have underholdning med store jackpot-muligheder og visuelt spektakulære spil, passer <Link to="/casinospil/spillemaskiner" className={linkClass}>spilleautomater</Link> bedre. Begge er legitime former for casinounderholdning – men din lommebok vil takke dig for at vælge video poker.
           </p>
         </section>
 

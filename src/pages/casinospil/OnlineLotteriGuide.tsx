@@ -344,7 +344,7 @@ const OnlineLotteriGuide = () => {
             Varians og risiko – højeste volatilitet i gambling
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Lotterier har den højeste volatilitet af alle regulerede spilformer – højere end <Link to="/casinospil/game-shows" className={linkClass}>game shows</Link>, spillemaskiner og alle bordspil. Standardafvigelsen pr. kupon er ekstrem: for dansk Lotto med 50 kr. indsats og potentiel 5 mio. kr. jackpot er standardafvigelsen ca. 1.730 kr. – mere end 34 gange kuponprisen.
+            Lotterier har den højeste volatilitet af alle regulerede spilformer – højere end <Link to="/live-casino/game-shows" className={linkClass}>game shows</Link>, spillemaskiner og alle bordspil. Standardafvigelsen pr. kupon er ekstrem: for dansk Lotto med 50 kr. indsats og potentiel 5 mio. kr. jackpot er standardafvigelsen ca. 1.730 kr. – mere end 34 gange kuponprisen.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             Til sammenligning har et roulettevæddemål (even money) en standardafvigelse på ca. 1× indsatsen, en spilleautomat typisk 5-15× indsatsen, og et game show som Crazy Time ca. 50-100× indsatsen. Lotteri slår dem alle med 30-50× indsatsen – og for Eurojackpot er tallet endnu højere.
@@ -389,7 +389,7 @@ const OnlineLotteriGuide = () => {
                   <TableRow><TableCell className="font-medium">Baccarat (Banker)</TableCell><TableCell>1,06 %</TableCell><TableCell>98,94 %</TableCell><TableCell>10,60 kr.</TableCell></TableRow>
                   <TableRow><TableCell className="font-medium"><Link to="/casinospil/roulette" className={linkClass}>Roulette</Link> (europæisk)</TableCell><TableCell>2,7 %</TableCell><TableCell>97,3 %</TableCell><TableCell>27 kr.</TableCell></TableRow>
                   <TableRow><TableCell className="font-medium"><Link to="/casinospil/spillemaskiner" className={linkClass}>Spillemaskiner</Link></TableCell><TableCell>3–6 %</TableCell><TableCell>94–97 %</TableCell><TableCell>30–60 kr.</TableCell></TableRow>
-                  <TableRow><TableCell className="font-medium"><Link to="/casinospil/game-shows" className={linkClass}>Game Shows</Link></TableCell><TableCell>3–10 %</TableCell><TableCell>90–97 %</TableCell><TableCell>30–100 kr.</TableCell></TableRow>
+                  <TableRow><TableCell className="font-medium"><Link to="/live-casino/game-shows" className={linkClass}>Game Shows</Link></TableCell><TableCell>3–10 %</TableCell><TableCell>90–97 %</TableCell><TableCell>30–100 kr.</TableCell></TableRow>
                   <TableRow><TableCell className="font-medium">Keno</TableCell><TableCell>25–40 %</TableCell><TableCell>60–75 %</TableCell><TableCell>250–400 kr.</TableCell></TableRow>
                   <TableRow><TableCell className="font-medium">Skrabespil</TableCell><TableCell>15–45 %</TableCell><TableCell>55–85 %</TableCell><TableCell>150–450 kr.</TableCell></TableRow>
                   <TableRow><TableCell className="font-medium">Lotto</TableCell><TableCell>~55 %</TableCell><TableCell>~45 %</TableCell><TableCell>550 kr.</TableCell></TableRow>

@@ -837,7 +837,7 @@ export default function AmerikanskRouletteGuide() {
             Bonus Wagering på Amerikansk Roulette: EV-Analyse for Danske Bonusser
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Mange danske spillere forsøger at gennemspille casino <Link to="/bonusser" className={linkClass}>bonusser</Link> på roulette. Men de fleste casinoer begrænser roulette-væddemåls bidrag til omsætningskrav til 10-20 % (mod 100 % for spilleautomater). Kombineret med den høje house edge på amerikansk roulette bliver matematikken brutal:
+            Mange danske spillere forsøger at gennemspille casino <Link to="/casino-bonus" className={linkClass}>bonusser</Link> på roulette. Men de fleste casinoer begrænser roulette-væddemåls bidrag til omsætningskrav til 10-20 % (mod 100 % for spilleautomater). Kombineret med den høje house edge på amerikansk roulette bliver matematikken brutal:
           </p>
 
           <Card className="bg-muted/30 mb-6">
@@ -898,7 +898,7 @@ export default function AmerikanskRouletteGuide() {
             <strong>Takeaway:</strong> Amerikansk roulette er aldrig det optimale valg til bonus wagering. Selv med 100 % bidrag taber du 256 kr. i EV sammenlignet med europæisk – og med realistiske 10-20 % bidragsrater eskalerer forskellen til tusindvis af kroner. Den eneste positive EV-kombination for amerikansk er lave omsætningskrav (10×) med 100 % bidrag – en sjælden kombination hos danske casinoer.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            For bonus-gennemspilning anbefaler vi konsekvent <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette med La Partage</Link> (1,35 % HE), der bevarer positiv EV i flere scenarier. Tjek altid bonusvilkårene i vores <Link to="/bonusser" className={linkClass}>bonusoversigt</Link> for den specifikke roulette-bidragsprocent.
+            For bonus-gennemspilning anbefaler vi konsekvent <Link to="/casinospil/roulette/fransk-roulette" className={linkClass}>fransk roulette med La Partage</Link> (1,35 % HE), der bevarer positiv EV i flere scenarier. Tjek altid bonusvilkårene i vores <Link to="/casino-bonus" className={linkClass}>bonusoversigt</Link> for den specifikke roulette-bidragsprocent.
           </p>
         </section>
 

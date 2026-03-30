@@ -729,7 +729,7 @@ export default function FibonacciRouletteGuide() {
             Fibonacci er faktisk et af de bedre systemer til bonusomsætning, fordi den moderate eskalering reducerer risikoen for at gå bust inden du når omsætningskravet. Vores simulering viser, at 78% af Fibonacci-spillere gennemfører en 10× omsætning med 1.000 kr. bonus og 2.000 kr. egen indbetaling – sammenlignet med 72% for Martingale og 84% for flat betting.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Men husk: de fleste casinoer tæller roulette kun 10-20% mod omsætningskrav (ikke 100% som i vores beregning). Tjek altid bonusvilkårene hos dit valgte casino. Se vores <Link to="/casino-bonusser" className={linkClass}>komplet guide til casinobonusser</Link> for en dybere gennemgang af bonusvilkår og omsætningsstrategier.
+            Men husk: de fleste casinoer tæller roulette kun 10-20% mod omsætningskrav (ikke 100% som i vores beregning). Tjek altid bonusvilkårene hos dit valgte casino. Se vores <Link to="/casino-bonus" className={linkClass}>komplet guide til casinobonusser</Link> for en dybere gennemgang af bonusvilkår og omsætningsstrategier.
           </p>
         </section>
 

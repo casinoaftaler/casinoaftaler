@@ -48,6 +48,12 @@ const KNOWN_DYNAMIC_ROUTES = new Set([
   "/admin",
   "/butik",
   "/highlights",
+  "/login",
+  "/sitemap",
+  "/sitemap/casino-anmeldelser",
+  "/sitemap/casino-bonus",
+  "/sitemap/casinospil",
+  "/slot-directory.html",
 ]);
 
 // Patterns for dynamic route segments (e.g. /casino-anmeldelser/:slug)
@@ -56,6 +62,10 @@ const DYNAMIC_PATTERNS = [
   /^\/highlights\/.+$/,
   /^\/profil\/.+$/,
   /^\/ordbog\/.+$/,
+  /^\/casinospil\/spillemaskiner\/.+$/,
+  /^\/spillemaskiner\/.+$/,
+  /^\/casino-anmeldelser\/.+$/,
+  /^\/spiludviklere\/.+$/,
 ];
 
 // External link prefixes to ignore

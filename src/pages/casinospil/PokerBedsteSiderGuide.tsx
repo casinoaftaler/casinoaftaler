@@ -443,7 +443,7 @@ export default function PokerBedsteSiderGuide() {
             </Card>
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            En vigtig nuance: disse anbefalinger forudsætter, at du er en vindende spiller på dit niveau. Hvis du stadig lærer, bør du spille på de laveste tilgængelige niveauer (NL2-NL5) uanset din bankroll. Formålet er at opbygge erfaring og identificere dine leaks, ikke at tjene penge. Læs vores <Link to="/casinospil/poker/strategi" className={linkClass}>pokerstrategi-guide</Link> for at forbedre dit spil systematisk, og husk altid principperne for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
+            En vigtig nuance: disse anbefalinger forudsætter, at du er en vindende spiller på dit niveau. Hvis du stadig lærer, bør du spille på de laveste tilgængelige niveauer (NL2-NL5) uanset din bankroll. Formålet er at opbygge erfaring og identificere dine leaks, ikke at tjene penge. Læs vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>pokerstrategi-guide</Link> for at forbedre dit spil systematisk, og husk altid principperne for <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link>.
           </p>
         </section>
 
@@ -695,7 +695,7 @@ export default function PokerBedsteSiderGuide() {
           </div>
 
           <p className="text-muted-foreground leading-relaxed">
-            For den ultimate guide til at forbedre dit strategiske fundament, se vores <Link to="/casinospil/poker/strategi" className={linkClass}>pokerstrategi-guide</Link>, som dækker preflop-ranges, positionsspil, pot odds og avancerede concepts som implied odds og reverse implied odds.
+            For den ultimate guide til at forbedre dit strategiske fundament, se vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>pokerstrategi-guide</Link>, som dækker preflop-ranges, positionsspil, pot odds og avancerede concepts som implied odds og reverse implied odds.
           </p>
         </section>
 
@@ -799,7 +799,7 @@ export default function PokerBedsteSiderGuide() {
             </Card>
           </div>
           <p className="text-muted-foreground leading-relaxed">
-            Uanset dit valg af pokersite, er det vigtigste at spille inden for dine finansielle grænser og behandle poker som underholdning – medmindre du er en dedikeret studerende af spillet. For strategisk forbedring anbefaler vi vores <Link to="/casinospil/poker/strategi" className={linkClass}>pokerstrategi-guide</Link>, og for alternative spilformer kan du udforske <Link to="/casinospil/poker/video-poker" className={linkClass}>video poker</Link>, <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> eller vores komplette <Link to="/casinospil" className={linkClass}>casinospil-oversigt</Link>.
+            Uanset dit valg af pokersite, er det vigtigste at spille inden for dine finansielle grænser og behandle poker som underholdning – medmindre du er en dedikeret studerende af spillet. For strategisk forbedring anbefaler vi vores <Link to="/casinospil/poker/poker-strategi" className={linkClass}>pokerstrategi-guide</Link>, og for alternative spilformer kan du udforske <Link to="/casinospil/poker/video-poker" className={linkClass}>video poker</Link>, <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> eller vores komplette <Link to="/casinospil" className={linkClass}>casinospil-oversigt</Link>.
           </p>
         </section>
 

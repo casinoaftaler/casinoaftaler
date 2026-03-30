@@ -664,7 +664,7 @@ const NoStickyBonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <Link to="/spilleautomaten-anmeldelse" className={linkClass}>Spilleautomaten</Link>
+                  <Link to="/casino-anmeldelser/spilleautomaten" className={linkClass}>Spilleautomaten</Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -683,7 +683,7 @@ const NoStickyBonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <Link to="/spildansknu-anmeldelse" className={linkClass}>SpilDanskNu</Link>
+                  <Link to="/casino-anmeldelser/spildansknu" className={linkClass}>SpilDanskNu</Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -702,7 +702,7 @@ const NoStickyBonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <Link to="/betinia-anmeldelse" className={linkClass}>Betinia</Link>
+                  <Link to="/casino-anmeldelser/betinia" className={linkClass}>Betinia</Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -721,7 +721,7 @@ const NoStickyBonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <Link to="/campobet-anmeldelse" className={linkClass}>Campobet</Link>
+                  <Link to="/casino-anmeldelser/campobet" className={linkClass}>Campobet</Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -740,7 +740,7 @@ const NoStickyBonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <Link to="/swift-casino-anmeldelse" className={linkClass}>Swift Casino</Link>
+                  <Link to="/casino-anmeldelser/swift-casino" className={linkClass}>Swift Casino</Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -759,7 +759,7 @@ const NoStickyBonus = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <Link to="/luna-casino-anmeldelse" className={linkClass}>Luna Casino</Link>
+                  <Link to="/casino-anmeldelser/luna-casino" className={linkClass}>Luna Casino</Link>
                 </CardTitle>
               </CardHeader>
               <CardContent>

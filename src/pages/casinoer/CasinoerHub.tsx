@@ -380,7 +380,7 @@ export default function CasinoerHub() {
                     <tr className="border-b border-border/50"><td className="py-2 pr-4"><Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>Høj RTP Slots</Link></td><td className="py-2 pr-4">96-97 %</td><td className="py-2 pr-4">3-4 %</td><td className="py-2"><Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>Guide →</Link></td></tr>
                     <tr className="border-b border-border/50"><td className="py-2 pr-4"><Link to="/casinospil/spillemaskiner" className={linkClass}>Standard Slots</Link></td><td className="py-2 pr-4">94-96 %</td><td className="py-2 pr-4">4-6 %</td><td className="py-2"><Link to="/casinospil/spillemaskiner" className={linkClass}>Guide →</Link></td></tr>
                     <tr className="border-b border-border/50"><td className="py-2 pr-4"><Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>Amerikansk Roulette</Link></td><td className="py-2 pr-4">94,74 %</td><td className="py-2 pr-4">5,26 %</td><td className="py-2"><Link to="/casinospil/roulette/amerikansk-roulette" className={linkClass}>Guide →</Link></td></tr>
-                    <tr><td className="py-2 pr-4"><Link to="/casinospil/game-shows" className={linkClass}>Game Shows</Link></td><td className="py-2 pr-4">92-96 %</td><td className="py-2 pr-4">4-8 %</td><td className="py-2"><Link to="/casinospil/game-shows" className={linkClass}>Guide →</Link></td></tr>
+                    <tr><td className="py-2 pr-4"><Link to="/live-casino/game-shows" className={linkClass}>Game Shows</Link></td><td className="py-2 pr-4">92-96 %</td><td className="py-2 pr-4">4-8 %</td><td className="py-2"><Link to="/live-casino/game-shows" className={linkClass}>Guide →</Link></td></tr>
                   </tbody>
                 </table>
               </div>
@@ -554,7 +554,7 @@ export default function CasinoerHub() {
             <Link to="/live-casino" className={linkClass}>Live casino</Link> er den hurtigst voksende kategori, ledet af <Link to="/spiludviklere/evolution-gaming" className={linkClass}>Evolution Gaming</Link>. Live casino-spil streamer fra professionelle studier med rigtige dealere og giver den autentiske casino-atmosfære hjemmefra. Populære live spil inkluderer <Link to="/live-casino/blackjack" className={linkClass}>Live Blackjack</Link>, <Link to="/live-casino/lightning-roulette" className={linkClass}>Lightning Roulette</Link> og <Link to="/live-casino/monopoly-live" className={linkClass}>Monopoly Live</Link>.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <Link to="/casinospil/game-shows" className={linkClass}>Game shows</Link> er en innovativ hybrid, der kombinerer live casino med tv-underholdning. Crazy Time, Dream Catcher og Deal or No Deal tilbyder massive multiplikatorer og en underholdningsværdi, der overgår traditionelle bordspil. Se vores <Link to="/casinospil" className={linkClass}>komplette casinospil-hub</Link> for dybdegående guides til alle spiltyper.
+            <Link to="/live-casino/game-shows" className={linkClass}>Game shows</Link> er en innovativ hybrid, der kombinerer live casino med tv-underholdning. Crazy Time, Dream Catcher og Deal or No Deal tilbyder massive multiplikatorer og en underholdningsværdi, der overgår traditionelle bordspil. Se vores <Link to="/casinospil" className={linkClass}>komplette casinospil-hub</Link> for dybdegående guides til alle spiltyper.
           </p>
         </section>
 

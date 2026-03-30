@@ -214,7 +214,7 @@ export default function Bet365VsUnibet() {
           <p className="text-muted-foreground text-sm">Gevinster udbetales direkte som kontanter</p>
         </div>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          Unibets Cash Spins-tilbud er unikt på det danske marked. Mens de fleste <Link to="/casino-bonus/free-spins" className={linkClass}>free spins</Link>-bonusser kræver omsætning af gevinsterne, kan Unibets Cash Spins-gevinster udbetales direkte. Det gør tilbudet særligt attraktivt for spillere, der ikke ønsker at gennemspille et omsætningskrav. For en komplet guide til bonus-typer, se vores <Link to="/casino-bonus" className={linkClass}>bonusoversigt</Link>.
+          Unibets Cash Spins-tilbud er unikt på det danske marked. Mens de fleste <Link to="/free-spins" className={linkClass}>free spins</Link>-bonusser kræver omsætning af gevinsterne, kan Unibets Cash Spins-gevinster udbetales direkte. Det gør tilbudet særligt attraktivt for spillere, der ikke ønsker at gennemspille et omsætningskrav. For en komplet guide til bonus-typer, se vores <Link to="/casino-bonus" className={linkClass}>bonusoversigt</Link>.
         </p>
 
         <h3 className="mb-3 text-xl font-semibold">Expected Value-beregning: Casinobonus</h3>
@@ -243,7 +243,7 @@ export default function Bet365VsUnibet() {
 
         <h3 className="mb-3 text-xl font-semibold">Løbende kampagner og loyalitet</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
-          bet365 kører hyppige "Bonus Drop" kampagner med tilfældige belønninger under spil samt periodiske free spins-tilbud. Deres loyalitetsprogram er diskret og baseret på personlige tilbud. Unibet har et mere struktureret system med Unibet Points, ugentlige turneringer og cashback-tilbud. For aktive spillere giver Unibets systematiske tilgang typisk bedre langsigtet værdi. Se også vores <Link to="/casino-bonus/free-spins" className={linkClass}>free spins-guide</Link> for daglige tilbud.
+          bet365 kører hyppige "Bonus Drop" kampagner med tilfældige belønninger under spil samt periodiske free spins-tilbud. Deres loyalitetsprogram er diskret og baseret på personlige tilbud. Unibet har et mere struktureret system med Unibet Points, ugentlige turneringer og cashback-tilbud. For aktive spillere giver Unibets systematiske tilgang typisk bedre langsigtet værdi. Se også vores <Link to="/free-spins" className={linkClass}>free spins-guide</Link> for daglige tilbud.
         </p>
       </section>
 
