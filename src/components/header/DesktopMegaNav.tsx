@@ -555,7 +555,7 @@ export function DesktopMegaNav() {
             onMouseEnter={handlePanelEnter}
             onMouseLeave={handleLeave}
           >
-            <div className="max-w-[1600px] mx-auto px-6 2xl:px-12 py-4 max-h-[75vh] overflow-y-auto">
+            <div className="max-w-[1800px] mx-auto px-8 2xl:px-16 py-6 max-h-[80vh] overflow-y-auto">
               {renderContent(activeMenu)}
             </div>
           </div>
