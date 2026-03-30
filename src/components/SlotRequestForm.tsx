@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { useAuth } from "@/hooks/useAuth";
-import { useMySlotRequests, useCreateSlotRequest } from "@/hooks/useSlotRequests";
+import { useMySlotRequests, useCreateSlotRequest, usePendingQueuePositions } from "@/hooks/useSlotRequests";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { useSlotCatalog } from "@/hooks/useSlotCatalog";
 import { Loader2, Send, Clock, CheckCircle2, XCircle, Minus, Search, Plus } from "lucide-react";

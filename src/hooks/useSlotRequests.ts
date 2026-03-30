@@ -195,6 +195,42 @@ export function useBonusHuntSlotRequesters(huntNumber?: number) {
   });
 }
 
+export function usePendingQueuePositions() {
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    const channel = supabase
+      .channel('pending-queue-positions')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'slot_requests' },
+        () => {
+          queryClient.invalidateQueries({ queryKey: ["pending-queue-positions"] });
+        }
+      )
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
+  }, [queryClient]);
+
+  return useQuery({
+    queryKey: ["pending-queue-positions"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("slot_requests" as any)
+        .select("id")
+        .eq("status", "pending")
+        .order("created_at", { ascending: true });
+      if (error) throw error;
+      const map = new Map<string, number>();
+      (data as any[]).forEach((r: any, i: number) => {
+        map.set(r.id, i + 1);
+      });
+      return map;
+    },
+  });
+}
+
 export function useUpdateSlotRequestStatus() {
   const queryClient = useQueryClient();
 

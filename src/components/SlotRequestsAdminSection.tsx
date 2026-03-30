@@ -54,7 +54,8 @@ export function SlotRequestsAdminSection() {
     updateStatus.mutate({ requestId, status, userId, awardCredits, huntNumber: awardCredits ? activeHuntNumber : undefined });
   };
 
-  const pendingRequests = requests?.filter(req => req.status === "pending") ?? [];
+  const pendingRequests = (requests?.filter(req => req.status === "pending") ?? [])
+    .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
 
   return (
     <div className="space-y-6">
