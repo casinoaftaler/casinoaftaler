@@ -1004,6 +1004,33 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_dwell_rewards: {
+        Row: {
+          completed_at: string
+          credits_awarded: number
+          id: string
+          page_path: string
+          reward_date: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          credits_awarded?: number
+          id?: string
+          page_path: string
+          reward_date?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          credits_awarded?: number
+          id?: string
+          page_path?: string
+          reward_date?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       daily_free_spins_offers: {
         Row: {
           casino_id: string | null
@@ -2888,6 +2915,10 @@ export type Database = {
     Functions: {
       activate_community_spins_safe: {
         Args: { p_amount: number; p_today: string; p_user_id: string }
+        Returns: Json
+      }
+      claim_dwell_reward: {
+        Args: { p_page_path: string; p_today: string; p_user_id: string }
         Returns: Json
       }
       claim_profile_section_reward: {

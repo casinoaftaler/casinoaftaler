@@ -5,6 +5,7 @@ import { CommunityJoinCTA } from "@/components/community/CommunityJoinCTA";
 import { CommunityHubFaq, buildCommunityHubFaqSchema } from "@/components/community/CommunityHubFaq";
 import { CommunityFooterSeo } from "@/components/community/CommunityFooterSeo";
 import { CommunityOverviewSeoText } from "@/components/community/CommunityOverviewSeoText";
+import { DailyMissionsCard } from "@/components/community/DailyMissionsCard";
 import { SnippetAnswer } from "@/components/SnippetAnswer";
 import { buildArticleSchema, SITE_URL } from "@/lib/seo";
 import { EnergySweep } from "@/components/community/EnergySweep";
@@ -192,6 +193,8 @@ export default function CommunityHub() {
         }
       >
         <div className="py-8 md:py-12 space-y-8">
+          {/* Daily Missions – only visible to logged-in users */}
+          <DailyMissionsCard />
 
           {/* First row – 3 cards */}
           <RevealSection>

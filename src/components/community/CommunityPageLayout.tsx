@@ -5,6 +5,7 @@ import { CommunityNav } from "./CommunityNav";
 import { SidebarSocialProof } from "@/components/games/SidebarSocialProof";
 import { SidebarLeaderboard } from "@/components/games/SidebarLeaderboard";
 import { SidebarShopLeaderboard } from "@/components/games/SidebarShopLeaderboard";
+import { DailyMissionsWidget } from "@/components/community/DailyMissionsWidget";
 import { type LucideIcon } from "lucide-react";
 import communityHero from "@/assets/community/community-hero.jpg";
 
@@ -73,6 +74,7 @@ export function CommunityPageLayout({
         {!hideSidebar && (
           <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
             <div className="sticky top-24 h-fit flex flex-col gap-4">
+              <DailyMissionsWidget />
               <SidebarSocialProof />
               <SidebarLeaderboard />
               <SidebarShopLeaderboard />
