@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronRight, ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users, icons } from "lucide-react";
+import { ChevronRight, ChevronDown, Landmark, Sparkles, Dices, Tv, BookOpen, MoreHorizontal, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   CASINO_LINKS, NYE_CASINOER_LINKS, SLOT_LINKS, SLOT_CATEGORY_LINKS,
