@@ -27,6 +27,7 @@ export function DwellRewardBadge() {
   const [visible, setVisible] = useState(true);
   const [milestoneFlash, setMilestoneFlash] = useState<string | null>(null);
   const [prevSeconds, setPrevSeconds] = useState(DWELL_DURATION_SECONDS);
+  const hasPlayedSound = useRef(false);
 
   const nextMission = pages.find((p) => !p.completed && p.path !== pathname);
   const completed = isClaimed || alreadyCompleted;
