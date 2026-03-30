@@ -2,7 +2,7 @@ import { useCasinoHuntStats } from "@/hooks/useCasinoHuntStats";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FlaskConical, TrendingUp, TrendingDown, Trophy, BarChart3, Target } from "lucide-react";
+import { FlaskConical, TrendingUp, TrendingDown, Zap, BarChart3, Target, ArrowRight } from "lucide-react";
 
 /** Slugify a slot name for /slot-katalog/ links */
 function slotNameToSlug(name: string): string {
@@ -10,6 +10,15 @@ function slotNameToSlug(name: string): string {
     .toLowerCase()
     .replace(/['']/g, "")
     .replace(/[^a-z0-9æøå]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+/** Slugify a provider name for /spiludviklere/ links */
+function providerToSlug(provider: string): string {
+  return provider
+    .toLowerCase()
+    .replace(/['']/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 }
 
@@ -45,10 +54,15 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerf
         </h2>
       </div>
 
-      <p className="mb-6 text-muted-foreground leading-relaxed">
+      <p className="mb-2 text-muted-foreground leading-relaxed">
         Vi har testet {casinoName} i <strong className="text-foreground">{stats.totalHunts} bonus hunts</strong> med
         en samlet startbalance på {formattedStart} kr. Her er de faktiske resultater – ingen teori,
         kun <Link to="/bonus-hunt/arkiv" className="text-primary underline hover:text-primary/80">dokumenterede data fra vores streams</Link>.
+      </p>
+
+      <p className="mb-6 text-sm text-muted-foreground">
+        <strong className="text-foreground">Hvad er X?</strong>{" "}
+        X angiver hvor mange gange din indsats blev ganget. En bonus på 500x betyder, at en indsats på 10 kr. gav 5.000 kr. tilbage.
       </p>
 
       {/* Stats grid */}
@@ -71,9 +85,9 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerf
 
         <Card className="border-border/50">
           <CardContent className="p-4 text-center">
-            <Trophy className="h-5 w-5 mx-auto mb-1 text-muted-foreground" />
-            <p className="text-2xl font-bold">{stats.bestHuntX}x</p>
-            <p className="text-xs text-muted-foreground">Bedste Hunt</p>
+            <Zap className="h-5 w-5 mx-auto mb-1 text-primary" />
+            <p className="text-2xl font-bold">{stats.bestSlotX.toLocaleString("da-DK", { minimumFractionDigits: 1 })}x</p>
+            <p className="text-xs text-muted-foreground">Bedste slot-hit</p>
           </CardContent>
         </Card>
 
@@ -92,9 +106,19 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerf
         </Card>
       </div>
 
+      {/* Variance framing */}
+      {!isProfitable && (
+        <p className="mb-6 text-sm text-muted-foreground bg-muted/50 rounded-lg px-4 py-3 border border-border/50">
+          💡 Et negativt resultat på {Math.abs(stats.profitLossPercent)}% over {stats.totalHunts} hunts er normalt – 
+          spillemaskiner har typisk en <Link to="/ordbog/rtp" className="text-primary hover:underline">RTP på 94-96%</Link>, 
+          og vores data afspejler reel gambling-varians. Det understreger vigtigheden af{" "}
+          <Link to="/ansvarligt-spil" className="text-primary hover:underline">ansvarligt spil</Link>.
+        </p>
+      )}
+
       {/* Top performing slots */}
       {stats.topSlots.length > 0 && (
-        <div className="mb-4">
+        <div className="mb-6">
           <h3 className="text-lg font-semibold mb-3">
             Top 5 slots testet hos {casinoName}
           </h3>
@@ -107,16 +131,29 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerf
                   key={slot.name}
                   className="flex items-center justify-between rounded-lg border border-border/50 px-4 py-2.5"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm font-bold text-muted-foreground w-6">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="text-sm font-bold text-muted-foreground w-6 shrink-0">
                       #{i + 1}
                     </span>
-                    <Link
-                      to={`/slot-katalog/${slug}`}
-                      className="font-medium text-foreground hover:text-primary transition-colors hover:underline"
-                    >
-                      {displayName}
-                    </Link>
+                    <div className="min-w-0">
+                      <Link
+                        to={`/slot-katalog/${slug}`}
+                        className="font-medium text-foreground hover:text-primary transition-colors hover:underline"
+                      >
+                        {displayName}
+                      </Link>
+                      {slot.provider && (
+                        <span className="block text-xs text-muted-foreground">
+                          af{" "}
+                          <Link
+                            to={`/spiludviklere/${providerToSlug(slot.provider)}`}
+                            className="hover:text-primary transition-colors hover:underline"
+                          >
+                            {slot.provider}
+                          </Link>
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <Badge
                     variant={i === 0 ? "default" : "secondary"}
@@ -130,6 +167,25 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerf
           </div>
         </div>
       )}
+
+      {/* CTA */}
+      <div className="rounded-xl border border-primary/30 bg-primary/5 p-5 mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <p className="font-semibold text-foreground">
+            Vil du prøve {casinoName} selv?
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Læs vores fulde anmeldelse med bonusvilkår, udbetalingstest og vurdering.
+          </p>
+        </div>
+        <Link
+          to={`/casino-anmeldelser/${casinoSlug}`}
+          className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary to-primary/80 px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:scale-[1.03] hover:shadow-md hover:shadow-primary/25 whitespace-nowrap shrink-0"
+        >
+          Læs fuld anmeldelse
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
 
       <p className="text-sm text-muted-foreground italic">
         Alle data stammer fra vores live bonus hunts på{" "}
