@@ -43,8 +43,8 @@ export function CommunityNav() {
 
   return (
     <nav className="border-b border-border/50 bg-card/50 backdrop-blur-sm sticky top-0 z-20">
-      <div className="container">
-        <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide py-1 -mx-1">
+      <div className="container flex justify-center">
+        <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide py-1">
           {NAV_ITEMS.map((item) => {
             const active = isActive(item.href, item.exact);
             const Icon = item.icon;
