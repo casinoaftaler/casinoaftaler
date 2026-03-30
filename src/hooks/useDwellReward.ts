@@ -198,6 +198,7 @@ export function useDwellReward(pagePath: string) {
   return {
     ...state,
     isEligiblePage,
+    isMissionActivated,
     isLoggedIn: !!user,
   };
 }
