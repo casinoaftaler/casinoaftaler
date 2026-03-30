@@ -4,6 +4,25 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FlaskConical, TrendingUp, TrendingDown, Trophy, BarChart3, Target } from "lucide-react";
 
+/** Slugify a slot name for /slot-katalog/ links */
+function slotNameToSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/['']/g, "")
+    .replace(/[^a-z0-9æøå]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+/** Title-case a slot name that may be ALL CAPS */
+function normalizeSlotName(name: string): string {
+  if (name === name.toUpperCase() && name.length > 3) {
+    return name
+      .toLowerCase()
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+  return name;
+}
+
 interface CasinoHuntPerformanceProps {
   casinoSlug: string;
   casinoName: string;
@@ -16,7 +35,6 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerf
 
   const isProfitable = stats.profitLossPercent >= 0;
   const formattedStart = stats.totalStartBalance.toLocaleString("da-DK");
-  const formattedEnd = stats.totalEndBalance.toLocaleString("da-DK");
 
   return (
     <section className="mb-12" aria-labelledby="hunt-performance-heading">
@@ -81,25 +99,34 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerf
             Top 5 slots testet hos {casinoName}
           </h3>
           <div className="space-y-2">
-            {stats.topSlots.map((slot, i) => (
-              <div
-                key={slot.name}
-                className="flex items-center justify-between rounded-lg border border-border/50 px-4 py-2.5"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-bold text-muted-foreground w-6">
-                    #{i + 1}
-                  </span>
-                  <span className="font-medium">{slot.name}</span>
-                </div>
-                <Badge
-                  variant={i === 0 ? "default" : "secondary"}
-                  className={i === 0 ? "bg-primary text-primary-foreground" : ""}
+            {stats.topSlots.map((slot, i) => {
+              const displayName = normalizeSlotName(slot.name);
+              const slug = slotNameToSlug(slot.name);
+              return (
+                <div
+                  key={slot.name}
+                  className="flex items-center justify-between rounded-lg border border-border/50 px-4 py-2.5"
                 >
-                  {slot.bestX.toLocaleString("da-DK")}x
-                </Badge>
-              </div>
-            ))}
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-bold text-muted-foreground w-6">
+                      #{i + 1}
+                    </span>
+                    <Link
+                      to={`/slot-katalog/${slug}`}
+                      className="font-medium text-foreground hover:text-primary transition-colors hover:underline"
+                    >
+                      {displayName}
+                    </Link>
+                  </div>
+                  <Badge
+                    variant={i === 0 ? "default" : "secondary"}
+                    className={i === 0 ? "bg-primary text-primary-foreground" : ""}
+                  >
+                    {slot.bestX.toLocaleString("da-DK", { minimumFractionDigits: 1 })}x
+                  </Badge>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
