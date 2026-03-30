@@ -142,7 +142,7 @@ export function SiteSearch() {
     }
   }, [open, fetchDynamic]);
 
-  const allItems = useMemo(() => [...DEDUPED_STATIC, ...dynamicItems], [dynamicItems]);
+  const allItems = useMemo(() => [...DEDUPED_STATIC, ...dynamicItems, ...glossaryItems], [dynamicItems, glossaryItems]);
 
   // Group items by category
   const grouped = useMemo(() => {
