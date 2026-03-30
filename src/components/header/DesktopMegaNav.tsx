@@ -392,7 +392,7 @@ export function DesktopMegaNav() {
                     </Link>
                   )}
                 </div>
-                <div className="grid gap-1.5 grid-cols-5">
+                <div className="grid gap-2.5 grid-cols-5">
                   {sec.items.map((item, i) => (
                     <MegaLink key={item.to} to={item.to} label={item.label} iconName={item.iconName} colorIndex={i} onClick={close} />
                   ))}
