@@ -103,7 +103,9 @@ function MobileSmartLink({ item, colorIndex = 0, onClose, indent = "ml-6" }: {
       onClick={onClose}
       className={cn(indent, "flex items-center gap-2.5 py-2 text-sm text-muted-foreground transition-colors hover:text-primary")}
     >
-      {IconComp ? (
+      {menuIconUrl ? (
+        <img src={menuIconUrl} alt="" className="h-6 w-6 rounded-md object-contain shrink-0" loading="lazy" />
+      ) : IconComp ? (
         <span className={cn("flex items-center justify-center rounded-md h-6 w-6 shrink-0", color)}>
           <IconComp className="h-3.5 w-3.5" />
         </span>
