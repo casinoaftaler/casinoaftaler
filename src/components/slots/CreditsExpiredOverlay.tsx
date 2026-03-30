@@ -33,6 +33,8 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
   const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnightCopenhagen);
   const { data: playkasinoCasino } = useCasinoBySlug("playkasino");
   const { user } = useAuth();
+  const { pages, completedCount, totalPages } = useDwellRewardProgress();
+  const uncompletedMissions = pages.filter((p) => !p.completed);
 
   useEffect(() => {
     if (!isVisible) return;
