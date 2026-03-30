@@ -529,6 +529,35 @@ serve(async (req) => {
       // Auto-match pending slot requests against current hunt slots
       if (huntNumber > 0 && Array.isArray(huntData?.slots) && huntData.slots.length > 0) {
         const huntSlotNames = huntData.slots.map((s: any) => (s.slot?.searchName || s.slot?.name || s.title || '').toLowerCase()).filter(Boolean);
+
+        // Fuzzy match: returns the matched hunt slot name or null
+        const fuzzyMatchHuntSlot = (requestName: string, huntNames: string[]): string | null => {
+          const req = requestName.toLowerCase().trim();
+          if (req.length < 3) return null;
+          // 1. Exact match
+          if (huntNames.includes(req)) return req;
+          // 2. Hunt slot contains request name (min 4 chars to avoid false positives)
+          if (req.length >= 4) {
+            const found = huntNames.find(h => h.includes(req));
+            if (found) return found;
+          }
+          // 3. Request name contains hunt slot name (min 4 chars)
+          const found2 = huntNames.find(h => h.length >= 4 && req.includes(h));
+          if (found2) return found2;
+          return null;
+        };
+
+        // Check if a name fuzzy-matches any name in a Set
+        const fuzzyMatchSet = (name: string, nameSet: Set<string>): boolean => {
+          const n = name.toLowerCase().trim();
+          if (nameSet.has(n)) return true;
+          for (const s of nameSet) {
+            if (n.length >= 4 && s.includes(n)) return true;
+            if (s.length >= 4 && n.includes(s)) return true;
+          }
+          return false;
+        };
+
         if (huntSlotNames.length > 0) {
           (async () => {
             try {
@@ -551,19 +580,21 @@ serve(async (req) => {
 
               for (const req of (pendingReqs || [])) {
                 const slotKey = req.slot_name.toLowerCase();
-                if (huntSlotNames.includes(slotKey)) {
-                  // Skip if already awarded to another user in this hunt
-                  if (awardedSlotNames.has(slotKey) || awardedThisBatch.has(slotKey)) {
+                const matchedHuntSlot = fuzzyMatchHuntSlot(slotKey, huntSlotNames);
+                if (matchedHuntSlot) {
+                  // Skip if already awarded to another user in this hunt (fuzzy check)
+                  if (fuzzyMatchSet(slotKey, awardedSlotNames) || fuzzyMatchSet(slotKey, awardedThisBatch)) {
                     // Mark as no_bonus instead — slot was already claimed
                     await supabase.from('slot_requests').update({
                       status: 'no_bonus',
                       hunt_number: huntNumber,
                     }).eq('id', req.id);
-                    console.log(`Slot "${req.slot_name}" already awarded in hunt #${huntNumber}, marking as no_bonus for user ${req.user_id}`);
+                    console.log(`Slot "${req.slot_name}" fuzzy-matched "${matchedHuntSlot}" but already awarded in hunt #${huntNumber}, marking as no_bonus for user ${req.user_id}`);
                     continue;
                   }
 
                   awardedThisBatch.add(slotKey);
+                  awardedThisBatch.add(matchedHuntSlot); // Also track the matched name to prevent reverse matches
 
                   // Auto bonus-hit — first request only
                   await supabase.from('slot_requests').update({
