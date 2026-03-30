@@ -579,7 +579,7 @@ const CasinoBonus = () => {
               ))}
             </div>
             <p className="mt-4 text-xs text-muted-foreground">
-              Se flere muligheder i vores <Link to="/slot-database" className={linkClass}>slot database</Link> eller udforsk <Link to="/spillemaskiner-hoej-rtp" className={linkClass}>slots med høj RTP</Link>.
+              Se flere muligheder i vores <Link to="/slot-database" className={linkClass}>slot database</Link> eller udforsk <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>slots med høj RTP</Link>.
             </p>
           </div>
 
