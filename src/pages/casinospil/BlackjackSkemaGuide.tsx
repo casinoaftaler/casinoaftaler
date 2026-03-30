@@ -404,7 +404,7 @@ const BlackjackSkemaGuide = () => {
 
       <ContentPageLayout>
         <div className="mx-auto max-w-4xl">
-          <AuthorMetaBar author="jonas" />
+          <AuthorMetaBar author="jonas" readTime="35 Min." />
 
           <SnippetAnswer
             answer="Et blackjack skema viser den statistisk optimale handling (hit, stand, double, split eller surrender) for enhver kombination af din hånd og dealerens kort. Ved at følge skemaet perfekt reduceres house edge fra 2–5 % til blot 0,5 % – den laveste fordel i noget casinospil."

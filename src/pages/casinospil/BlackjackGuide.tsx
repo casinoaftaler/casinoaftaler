@@ -961,7 +961,7 @@ const BlackjackGuide = () => {
         <LatestNewsByCategory pagePath="/casinospil/blackjack" />
         <RelatedGuides currentPath="/casinospil/blackjack" />
         <FAQSection faqs={blackjackFaqs} />
-        <AuthorBio />
+        <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
