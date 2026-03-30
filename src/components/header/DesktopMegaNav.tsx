@@ -9,6 +9,7 @@ import {
   PAYMENT_LINKS, PROVIDER_LINKS, REVIEW_TOP_LINKS, REVIEW_ALL_LINKS,
   COMMUNITY_LINKS, MORE_LINKS, FORFATTER_LINKS, type NavLink,
 } from "./navData";
+import { MENU_ICON_MAP } from "./menuIconMap";
 
 /* ─── Logo imports (Vite static) ─── */
 const providerLogos = import.meta.glob<{ default: string }>(
