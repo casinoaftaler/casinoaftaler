@@ -171,24 +171,41 @@ export function useDwellRewardProgress() {
   const [completedPages, setCompletedPages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const fetchProgress = useCallback(async (userId: string) => {
+    const today = new Date().toISOString().split("T")[0];
+    const { data } = await supabase
+      .from("daily_dwell_rewards")
+      .select("page_path")
+      .eq("user_id", userId)
+      .eq("reward_date", today);
+    setCompletedPages(data?.map((d) => d.page_path) ?? []);
+    setIsLoading(false);
+  }, []);
+
   useEffect(() => {
     if (!user) {
       setCompletedPages([]);
       setIsLoading(false);
       return;
     }
+    fetchProgress(user.id);
+  }, [user, fetchProgress]);
 
-    const today = new Date().toISOString().split("T")[0];
-    supabase
-      .from("daily_dwell_rewards")
-      .select("page_path")
-      .eq("user_id", user.id)
-      .eq("reward_date", today)
-      .then(({ data }) => {
-        setCompletedPages(data?.map((d) => d.page_path) ?? []);
-        setIsLoading(false);
-      });
-  }, [user]);
+  // Listen directly to auth state changes to handle login without re-mount
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (event === "SIGNED_IN" && session?.user) {
+          setIsLoading(true);
+          fetchProgress(session.user.id);
+        } else if (event === "SIGNED_OUT") {
+          setCompletedPages([]);
+          setIsLoading(false);
+        }
+      }
+    );
+    return () => subscription.unsubscribe();
+  }, [fetchProgress]);
 
   return {
     completedPages,
