@@ -74,7 +74,7 @@ export function HeroSection() {
           <div className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/70">
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="h-4 w-4 text-primary" />
-              29+ casinoer testet
+              30+ casinoer testet
             </span>
             <span className="flex items-center gap-1.5">
               <Award className="h-4 w-4 text-accent" />
