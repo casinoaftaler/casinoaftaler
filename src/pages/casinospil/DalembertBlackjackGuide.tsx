@@ -113,7 +113,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Er D'Alembert bedre egnet for nybegyndere?",
     answer: (
       <>
-        Ja, af alle progressionssystemer er D'Alembert det mest nybegyndervenlige. Den lineære eskalering er nem at huske, tabsrisikoen er lav, og den emotionelle belastning er minimal. Men den bedste anbefaling til nybegyndere er stadig: lær <Link to="/casinospil/blackjack" className={linkClass}>basic strategy</Link> og brug flat betting.
+        Ja, af alle progressionssystemer er D'Alembert det mest nybegyndervenlige. Den lineære eskalering er nem at huske, tabsrisikoen er lav, og den emotionelle belastning er minimal. Men den bedste anbefaling til nybegyndere er stadig: lær <Link to="/casinospil/blackjack/skema" className={linkClass}>basic strategy skemaet</Link> og brug flat betting.
       </>
     ),
   },

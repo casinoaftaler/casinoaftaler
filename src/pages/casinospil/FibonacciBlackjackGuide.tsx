@@ -101,7 +101,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Kan Fibonacci kombineres med basic strategy?",
     answer: (
       <>
-        Du bør ALTID bruge <Link to="/casinospil/blackjack" className={linkClass}>basic strategy</Link> uanset indsatssystem. Fibonacci styrer kun din indsatsstørrelse, ikke dine spilbeslutninger (hit, stand, double, split). At kombinere et indsatssystem med dårlig spilstrategi fordobler din ulempe.
+        Du bør ALTID bruge <Link to="/casinospil/blackjack/skema" className={linkClass}>basic strategy skemaet</Link> uanset indsatssystem. Fibonacci styrer kun din indsatsstørrelse, ikke dine spilbeslutninger (hit, stand, double, split). At kombinere et indsatssystem med dårlig spilstrategi fordobler din ulempe.
       </>
     ),
   },

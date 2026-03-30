@@ -335,7 +335,7 @@ const DoubleExposureBlackjackGuide = () => {
             Optimal Strategi – Tænk i Totaler, Ikke Up Cards
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Fordi du kender dealerens fulde hånd, er strategien for Double Exposure fundamentalt anderledes end <Link to="/casinospil/blackjack" className={linkClass}>standard basic strategy</Link>. I stedet for at handle baseret på dealerens up card, handler du baseret på dealerens <em>total</em>. Og fordi dealer vinder ties, skal du stræbe efter at <em>slå</em> dealerens total – ikke bare matche den.
+            Fordi du kender dealerens fulde hånd, er strategien for Double Exposure fundamentalt anderledes end <Link to="/casinospil/blackjack/skema" className={linkClass}>standard basic strategy skemaet</Link>. I stedet for at handle baseret på dealerens up card, handler du baseret på dealerens <em>total</em>. Og fordi dealer vinder ties, skal du stræbe efter at <em>slå</em> dealerens total – ikke bare matche den.
           </p>
 
           <h3 className="mb-3 text-xl font-semibold">De 5 Gyldne Regler for Double Exposure</h3>
