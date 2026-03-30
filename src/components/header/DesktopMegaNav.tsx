@@ -422,7 +422,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Live Casino" hubTo="/live-casino" hubLabel="Live Casino Oversigt →" onNavigate={close} />
-            <ExpandableGrid items={LIVE_CASINO_LINKS} initialCount={20} onNavigate={close} />
+            <ExpandableGrid items={LIVE_CASINO_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
