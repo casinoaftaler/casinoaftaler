@@ -112,26 +112,32 @@ function useSimilarSlots(provider: string | null, currentName: string | null, vo
       if (!provider || provider === "Unknown" || provider === "Custom Slot") return [];
       const { data, error } = await supabase
         .from("slot_catalog")
-        .select("slot_name, rtp, volatility, bonus_count, highest_x, slug")
+        .select("slot_name, rtp, volatility, bonus_count, highest_x, slug, enriched_analysis")
         .eq("provider", provider)
         .order("bonus_count", { ascending: false })
-        .limit(50);
+        .limit(80);
       if (error) throw error;
-      // Build pool: exclude current slot, sort by volatility match then bonus_count
+      // Build pool: exclude current slot
+      // Priority: 1) enriched slots, 2) volatility match, 3) bonus_count
       const pool = (data || [])
         .filter((s) => s.slot_name !== currentName)
         .sort((a, b) => {
+          const aEnriched = a.enriched_analysis ? 1 : 0;
+          const bEnriched = b.enriched_analysis ? 1 : 0;
+          if (aEnriched !== bEnriched) return bEnriched - aEnriched;
           const aMatch = a.volatility === volatility ? 1 : 0;
           const bMatch = b.volatility === volatility ? 1 : 0;
           if (aMatch !== bMatch) return bMatch - aMatch;
           return (b.bonus_count || 0) - (a.bonus_count || 0);
         });
       if (pool.length === 0) return [];
-      // Hash-based rotation: deterministic offset per slot name
-      const offset = Math.abs(hashStr(currentName || "")) % pool.length;
+      // Hash-based rotation within top enriched slots for anti-footprint
+      const offset = Math.abs(hashStr(currentName || "")) % Math.max(1, Math.min(pool.length, 20));
       const result: typeof pool = [];
       for (let i = 0; i < Math.min(8, pool.length); i++) {
-        result.push(pool[(offset + i) % pool.length]);
+        const item = pool[(offset + i) % pool.length];
+        // Strip enriched_analysis from result to avoid sending large text to client
+        result.push({ ...item, enriched_analysis: null });
       }
       return result;
     },
