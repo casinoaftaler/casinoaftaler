@@ -904,7 +904,7 @@ const IPhoneCasinoGuide = () => {
                 title: "Game Shows",
                 rating: "★★★★★",
                 desc: "Crazy Time, Monopoly Live og Dream Catcher er designet mobile-first. Interaktive elementer fungerer perfekt via touch.",
-                link: "/casinospil/game-shows",
+                link: "/live-casino/game-shows",
               },
             ].map((game) => (
               <Card key={game.title} className="border-border bg-card">

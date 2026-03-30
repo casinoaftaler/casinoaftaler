@@ -79,7 +79,7 @@ const PAGE_CATEGORY_MAP: Record<string, { categories: string[]; tags: string[]; 
   "/casinospil/poker": { categories: ["nye-casinoer"], tags: ["poker", "casinospil"], label: "poker" },
   "/casinospil/baccarat": { categories: ["nye-casinoer"], tags: ["baccarat", "casinospil"], label: "baccarat" },
   "/casinospil/craps": { categories: ["nye-casinoer"], tags: ["craps", "casinospil"], label: "craps" },
-  "/casinospil/game-shows": { categories: ["nye-casinoer"], tags: ["game shows", "live casino"], label: "game shows" },
+  "/live-casino/game-shows": { categories: ["nye-casinoer"], tags: ["game shows", "live casino"], label: "game shows" },
   "/casinospil/online-lotteri": { categories: ["nye-casinoer"], tags: ["lotteri", "casinospil"], label: "online lotteri" },
   // Casinoer cluster
   "/casinoer": { categories: ["nye-casinoer", "markedsbevægelser"], tags: ["casino", "online casino"], label: "online casinoer" },
