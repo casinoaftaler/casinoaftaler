@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
+import { MENU_ICON_MAP } from "./header/menuIconMap";
 
 /* ─── Logo asset imports (same as ContentSidebar) ─── */
 const providerLogos = import.meta.glob<{ default: string }>(
