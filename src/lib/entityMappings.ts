@@ -99,6 +99,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
 
   // Casinospil hub money-pages
   { patterns: [/\bspillemaskiner\b/i], href: "/casinospil/spillemaskiner", anchor: "" },
+  { patterns: [/\bblackjack skema\b/i, /\bbasic strategy\b/i, /\bstrategiskema\b/i], href: "/casinospil/blackjack/skema", anchor: "" },
   { patterns: [/\bblackjack\b/i], href: "/casinospil/blackjack", anchor: "" },
   { patterns: [/\broulette\b/i], href: "/casinospil/roulette", anchor: "" },
 
