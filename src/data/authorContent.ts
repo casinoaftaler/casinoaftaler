@@ -71,7 +71,7 @@ const jonasArticles: AuthorArticle[] = [
   { title: "Caribbean Stud Poker Guide", path: "/casinospil/poker/caribbean-stud", category: "Guide", excerpt: "Caribbean Stud Poker – regler, progressiv jackpot og strategi." },
   { title: "Craps Guide", path: "/casinospil/craps", category: "Guide", excerpt: "Lær craps regler, væddemål og strategi for begyndere." },
   { title: "Online Lotteri Guide", path: "/casinospil/online-lotteri", category: "Guide", excerpt: "Alt om online lotteri hos danske casinoer og operatører." },
-  { title: "Game Shows Guide", path: "/casinospil/game-shows", category: "Guide", excerpt: "Oplev live game shows som Crazy Time og Dream Catcher." },
+  { title: "Game Shows Guide", path: "/live-casino/game-shows", category: "Guide", excerpt: "Oplev live game shows som Crazy Time og Dream Catcher." },
   { title: "Baccarat Guide", path: "/casinospil/baccarat", category: "Guide", excerpt: "Komplet guide til baccarat – regler, strategi og varianter." },
   { title: "Roulette Strategi Guide", path: "/casinospil/roulette/roulette-strategi", category: "Guide", excerpt: "Avancerede roulettestrategier – Martingale, Fibonacci og mere." },
   { title: "Spillemaskiner Guide", path: "/casinospil/spillemaskiner", category: "Guide", excerpt: "Alt om online spillemaskiner – typer, RTP og tips." },
