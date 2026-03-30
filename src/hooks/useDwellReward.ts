@@ -76,7 +76,7 @@ export function useDwellReward(pagePath: string) {
 
   // Scroll detection
   useEffect(() => {
-    if (!user || !isEligiblePage || state.alreadyCompleted || state.isClaimed) return;
+    if (!user || !isEligiblePage || !isMissionActivated || state.alreadyCompleted || state.isClaimed) return;
 
     const handleScroll = () => {
       if (hasScrolledRef.current) return;
