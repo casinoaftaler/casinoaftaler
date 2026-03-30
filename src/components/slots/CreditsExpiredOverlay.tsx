@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { activateMissionMode } from "@/hooks/useDwellReward";
 import { Clock, Sparkles, ExternalLink, Coins, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CreditCoin } from "@/components/CreditCoin";
