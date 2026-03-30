@@ -112,7 +112,7 @@ export function useSlotSettings() {
   });
 
   return {
-    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 10, pageLocked: true, pagePassword: "bookoffedesvin2026", riseLocked: true, risePassword: "riseoffedesvin2026", gatesLocked: true, gatesPassword: "gatesoffedesvin2026", spinLoopMs: 600, reelStaggerMs: 20, reelSlowdownMs: 300 },
+    settings: settings ?? { dailySpins: 100, minBet: 1, maxBet: 20, pageLocked: true, pagePassword: "bookoffedesvin2026", riseLocked: true, risePassword: "riseoffedesvin2026", gatesLocked: true, gatesPassword: "gatesoffedesvin2026", spinLoopMs: 600, reelStaggerMs: 20, reelSlowdownMs: 300 },
     isLoading,
     updateSettings,
   };
