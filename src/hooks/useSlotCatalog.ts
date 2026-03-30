@@ -11,6 +11,8 @@ export interface SlotCatalogEntry {
   highest_win: number;
   highest_x: number;
   bonus_count: number;
+  content_archetype: string | null;
+  content_enriched_at: string | null;
   created_at: string;
   updated_at: string;
 }
