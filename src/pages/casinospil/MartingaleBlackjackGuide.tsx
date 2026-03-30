@@ -37,7 +37,7 @@ const faqs: { question: string; answer: ReactNode }[] = [
     question: "Virker Martingale-systemet i blackjack?",
     answer: (
       <>
-        Nej. Martingale ændrer ikke house edge. Det omfordeler kun risikoen, så du vinder små beløb ofte og taber store beløb sjældent. Over tid vil <Link to="/casinospil/blackjack" className={linkClass}>basic strategy</Link> være langt vigtigere end ethvert indsatssystem.
+        Nej. Martingale ændrer ikke house edge. Det omfordeler kun risikoen, så du vinder små beløb ofte og taber store beløb sjældent. Over tid vil <Link to="/casinospil/blackjack/skema" className={linkClass}>basic strategy skemaet</Link> være langt vigtigere end ethvert indsatssystem.
       </>
     ),
   },

@@ -700,7 +700,7 @@ const EuropaeiskBlackjackGuide = () => {
             </li>
           </ul>
           <p className="text-muted-foreground leading-relaxed">
-            Husk: den vigtigste blackjack-beslutning er ikke varianten – det er om du følger <Link to="/casinospil/blackjack" className={linkClass}>basic strategy</Link>. En spiller med perfekt strategi ved det "forkerte" bord slår en mavefornemmelse-spiller ved det "rigtige" bord hver gang. Start med at mestre strategien for den variant du har adgang til – og optimer derfra.
+            Husk: den vigtigste blackjack-beslutning er ikke varianten – det er om du følger <Link to="/casinospil/blackjack/skema" className={linkClass}>basic strategy skemaet</Link>. En spiller med perfekt strategi ved det "forkerte" bord slår en mavefornemmelse-spiller ved det "rigtige" bord hver gang. Start med at mestre strategien for den variant du har adgang til – og optimer derfra.
           </p>
         </section>
 

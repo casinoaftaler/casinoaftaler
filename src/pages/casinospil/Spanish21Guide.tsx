@@ -127,7 +127,7 @@ const Spanish21Guide = () => {
             Spanish 21 fjerner 10-kortene fra bunken, men giver spilleren flere værktøjer tilbage i form af bonusudbetalinger, fleksible fordoblinger og særlige redningsregler. Derfor kan du ikke evaluere spillet med standard-blackjack-logik alene.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Hvis du vil sammenligne varianten med andre blackjack-spor, så brug hovedguiden til <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, eller se forskellen til <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikansk blackjack</Link> og <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link>.
+            Hvis du vil sammenligne varianten med andre blackjack-spor, så brug hovedguiden til <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, se vores <Link to="/casinospil/blackjack/skema" className={linkClass}>basic strategy skema</Link>, eller se forskellen til <Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>amerikansk blackjack</Link> og <Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure</Link>.
           </p>
         </section>
 

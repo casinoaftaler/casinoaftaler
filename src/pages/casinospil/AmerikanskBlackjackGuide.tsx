@@ -384,7 +384,7 @@ const AmerikanskBlackjackGuide = () => {
             Komplet Basic Strategy for Amerikansk Blackjack (S17, 6-deck)
           </h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Basic strategy for amerikansk blackjack er næsten identisk med den generelle <Link to="/casinospil/blackjack" className={linkClass}>blackjack basic strategy</Link>, men med enkelte justeringer baseret på hole card-reglen. Fordi du ved, at dealeren <em>ikke</em> har blackjack (pga. peek), kan du være marginalt mere aggressiv:
+            Basic strategy for amerikansk blackjack er næsten identisk med det generelle <Link to="/casinospil/blackjack/skema" className={linkClass}>blackjack basic strategy skema</Link>, men med enkelte justeringer baseret på hole card-reglen. Fordi du ved, at dealeren <em>ikke</em> har blackjack (pga. peek), kan du være marginalt mere aggressiv:
           </p>
 
           <h3 className="mb-3 text-xl font-semibold">Hard Totals – De Vigtigste Beslutninger</h3>

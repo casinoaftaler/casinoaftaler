@@ -943,6 +943,7 @@ const BlackjackGuide = () => {
             Denne cornerstone-guide har dækket blackjacks samlede landskab. For dybere specialisering, naviger til de individuelle guides via cluster-gitteret ovenfor. Her er hvad hver guide tilbyder ud over denne hubs indhold:
           </p>
           <ul className="mb-4 space-y-2 text-muted-foreground leading-relaxed list-disc list-inside">
+            <li><Link to="/casinospil/blackjack/skema" className={linkClass}>Blackjack Skema</Link> – Det komplette farvekodede basic strategy skema med interaktiv quiz, EV-analyse og memoreringsteknikker.</li>
             <li><Link to="/casinospil/blackjack/amerikansk-blackjack" className={linkClass}>Amerikansk Blackjack</Link> – Hole card-reglen, peek-mekanikken, liberal splitting og surrender-analyse med EV-tabeller.</li>
             <li><Link to="/casinospil/blackjack/europaeisk-blackjack" className={linkClass}>Europæisk Blackjack</Link> – No hole card-konsekvenser, modificeret basic strategy, og hvorfor doubles mod dealer-es kræver anderledes tilgang.</li>
             <li><Link to="/casinospil/blackjack/double-exposure-blackjack" className={linkClass}>Double Exposure Blackjack</Link> – Begge kort synlige: dramatisk ændret strategi, 6:5-kompensation og matematisk analyse af fordel vs. ulempe.</li>
@@ -960,7 +961,7 @@ const BlackjackGuide = () => {
         <LatestNewsByCategory pagePath="/casinospil/blackjack" />
         <RelatedGuides currentPath="/casinospil/blackjack" />
         <FAQSection faqs={blackjackFaqs} />
-        <AuthorBio />
+        <AuthorBio author="jonas" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="campobet" />
     </>
