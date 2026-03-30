@@ -189,7 +189,7 @@ function ExpandableGrid({ items, initialCount, cols = 5, onNavigate, onShowAll }
 
   return (
     <div>
-      <div className={cn("grid gap-1.5", colClass)}>
+      <div className={cn("grid gap-2.5", colClass)}>
         {visibleItems.map((item, i) => (
           <MegaLink key={item.to} to={item.to} label={item.label} iconName={item.iconName} colorIndex={i} onClick={onNavigate} />
         ))}
