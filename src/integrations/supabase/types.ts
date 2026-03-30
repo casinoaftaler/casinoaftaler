@@ -2021,6 +2021,8 @@ export type Database = {
       slot_catalog: {
         Row: {
           bonus_count: number
+          content_archetype: string | null
+          content_enriched_at: string | null
           created_at: string
           deep_content: string | null
           description: string | null
@@ -2038,6 +2040,8 @@ export type Database = {
         }
         Insert: {
           bonus_count?: number
+          content_archetype?: string | null
+          content_enriched_at?: string | null
           created_at?: string
           deep_content?: string | null
           description?: string | null
@@ -2055,6 +2059,8 @@ export type Database = {
         }
         Update: {
           bonus_count?: number
+          content_archetype?: string | null
+          content_enriched_at?: string | null
           created_at?: string
           deep_content?: string | null
           description?: string | null
@@ -2905,6 +2911,8 @@ export type Database = {
         Args: { p_slug: string }
         Returns: {
           bonus_count: number
+          content_archetype: string | null
+          content_enriched_at: string | null
           created_at: string
           deep_content: string | null
           description: string | null

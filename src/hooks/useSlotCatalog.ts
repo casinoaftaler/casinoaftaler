@@ -11,6 +11,8 @@ export interface SlotCatalogEntry {
   highest_win: number;
   highest_x: number;
   bonus_count: number;
+  content_archetype: string | null;
+  content_enriched_at: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -142,7 +144,7 @@ export function useSlotCatalog() {
 export function useCreateSlotCatalogEntry() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: async (entry: Omit<SlotCatalogEntry, 'id' | 'created_at' | 'updated_at'>) => {
+    mutationFn: async (entry: Omit<SlotCatalogEntry, 'id' | 'created_at' | 'updated_at' | 'content_archetype' | 'content_enriched_at'>) => {
       const { data, error } = await supabase
         .from('slot_catalog')
         .insert(entry)
