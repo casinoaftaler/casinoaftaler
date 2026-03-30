@@ -1040,12 +1040,6 @@ export default function SlotCatalogPage() {
           </div>
         )}
 
-        {/* Pragmatic Play Demo Player */}
-        {(slot as any).game_id && slot.provider === "Pragmatic Play" && (
-          <section className="mb-8">
-            <PragmaticDemoPlayer gameId={(slot as any).game_id} slotName={slotName} />
-          </section>
-        )}
 
         {/* AI-generated description OR fallback */}
         <section className="mb-8">
