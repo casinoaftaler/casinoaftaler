@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 import { SIDEBAR_CATEGORIES, type SidebarCategory } from "./contentSidebarData";
 import { SidebarCasinoRatings } from "./SidebarCasinoRatings";
 import { useAntiFootprint } from "@/hooks/useAntiFootprint";
+import { MENU_ICON_MAP } from "./header/menuIconMap";
 
 /* ─── Eager-load logo assets for sidebar ─── */
 const providerLogos = import.meta.glob<{ default: string }>(
@@ -123,6 +124,15 @@ function CategorySection({
                       src={logoSrc}
                       alt=""
                       className="h-full w-full object-contain"
+                      loading="lazy"
+                    />
+                  </span>
+                ) : link.iconName && MENU_ICON_MAP[link.iconName] ? (
+                  <span className="inline-flex items-center justify-center h-6 w-6 rounded flex-shrink-0">
+                    <img
+                      src={MENU_ICON_MAP[link.iconName]}
+                      alt=""
+                      className="h-5 w-5 object-contain"
                       loading="lazy"
                     />
                   </span>
