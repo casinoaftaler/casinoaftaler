@@ -11,7 +11,7 @@ export function HeroSection() {
   const { data: twitchStatus } = useTwitchStatus(siteSettings?.twitch_url);
 
   const heroTitle = siteSettings?.hero_title || "Bedste Online Casinoer i Danmark 2026 – Testet & Verificeret";
-  const heroSubtitle = siteSettings?.hero_subtitle || "Vi har analyseret 30+ danske casinoer med licens fra Spillemyndigheden. Se hvilke der scorer højest på bonus, udbetalingstid og spiludvalg."; = siteSettings?.hero_subtitle || "Vi har analyseret 30+ danske casinoer med licens fra Spillemyndigheden. Se hvilke der scorer højest på bonus, udbetalingstid og spiludvalg."; med licens fra Spillemyndigheden. Se hvilke der scorer højest på bonus, udbetalingstid og spiludvalg.";
+  const heroSubtitle = siteSettings?.hero_subtitle || "Vi har analyseret 30+ danske casinoer med licens fra Spillemyndigheden. Se hvilke der scorer højest på bonus, udbetalingstid og spiludvalg.";
   const heroBackgroundImage = siteSettings?.hero_background_image;
   const isLive = twitchStatus?.isLive ?? false;
   const contentReady = !settingsLoading;
