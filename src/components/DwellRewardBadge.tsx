@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useDwellReward, useDwellRewardProgress, DWELL_DURATION_SECONDS, activateMissionMode } from "@/hooks/useDwellReward";
 import { Check, Gift, ArrowDown, ArrowRight, Flame, Zap, Trophy } from "lucide-react";
@@ -27,6 +27,7 @@ export function DwellRewardBadge() {
   const [visible, setVisible] = useState(true);
   const [milestoneFlash, setMilestoneFlash] = useState<string | null>(null);
   const [prevSeconds, setPrevSeconds] = useState(DWELL_DURATION_SECONDS);
+  const hasPlayedSound = useRef(false);
 
   const nextMission = pages.find((p) => !p.completed && p.path !== pathname);
   const completed = isClaimed || alreadyCompleted;
@@ -50,12 +51,25 @@ export function DwellRewardBadge() {
     setPrevSeconds(secondsLeft);
   }, [secondsLeft, prevSeconds]);
 
-  // Reset visibility on page change
+  // Reset visibility and sound flag on page change
   useEffect(() => {
     setVisible(true);
     setPrevSeconds(DWELL_DURATION_SECONDS);
     setMilestoneFlash(null);
+    hasPlayedSound.current = false;
   }, [pathname]);
+
+  // Play completion sound
+  useEffect(() => {
+    if (completed && !hasPlayedSound.current && !alreadyCompleted) {
+      hasPlayedSound.current = true;
+      try {
+        const audio = new Audio("/sounds/mission-complete.m4a");
+        audio.volume = 0.7;
+        audio.play().catch(() => {});
+      } catch {}
+    }
+  }, [completed, alreadyCompleted]);
 
   // Auto-hide after 4s if completed AND no next mission
   useEffect(() => {
