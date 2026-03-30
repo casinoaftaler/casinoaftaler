@@ -216,7 +216,7 @@ export function BonanzaControlBar({
               "active:scale-90 transition-all duration-150",
               "disabled:opacity-25 disabled:cursor-not-allowed"
             )}
-            onClick={() => onBetChange(Math.min(maxBet, bet + 1))}
+            onClick={() => onBetChange(getNextBet(bet, maxBet))}
             disabled={isBetLocked || isCurrentlySpinning || bet >= maxBet}
           >
             <Plus className="h-6 w-6 text-white" />
