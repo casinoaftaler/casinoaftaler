@@ -36,6 +36,7 @@ import { CasinoReviewHero } from "@/components/CasinoReviewHero";
 import { YoutubeEmbed } from "@/components/YoutubeEmbed";
 import { buildVideoSchema } from "@/lib/seo";
 import { CommunityActivityWidget } from "@/components/CommunityActivityWidget";
+import { CasinoHuntPerformance } from "@/components/CasinoHuntPerformance";
 import { LiveCommunityDataStrip } from "@/components/LiveCommunityDataStrip";
 import { QuickFactsProviders, QuickFactsLogo, QuickFactsLicense } from "@/components/QuickFactsProviders";
 import { UserReviewSection } from "@/components/UserReviewSection";
