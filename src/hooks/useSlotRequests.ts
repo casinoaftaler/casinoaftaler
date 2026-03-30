@@ -131,16 +131,26 @@ export function useCreateSlotRequest() {
       const activeHuntNum = (activeSessionCheck as any)?.hunt_number;
       
       if (activeHuntNum) {
-        // Check if already hit in this hunt
+        // Check if this user already requested this slot (fuzzy) in the current hunt with any non-rejected status
+        const { data: userHuntRequests } = await supabase
+          .from("slot_requests" as any)
+          .select("id, slot_name")
+          .eq("user_id", user!.id)
+          .eq("hunt_number", activeHuntNum)
+          .neq("status", "rejected");
+
+        if ((userHuntRequests as any[])?.some((r: any) => fuzzyMatch(reqName, r.slot_name.toLowerCase().trim()))) {
+          throw new Error("Du har allerede requestet denne slot i den aktive bonus hunt");
+        }
+
+        // Check if already hit in this hunt (any user, fuzzy)
         const { data: alreadyHitInHunt } = await supabase
           .from("slot_requests" as any)
-          .select("id")
-          .ilike("slot_name", data.slot_name)
+          .select("id, slot_name")
           .eq("status", "bonus_hit")
-          .eq("hunt_number", activeHuntNum)
-          .limit(1);
+          .eq("hunt_number", activeHuntNum);
 
-        if ((alreadyHitInHunt as any[])?.length > 0) {
+        if ((alreadyHitInHunt as any[])?.some((r: any) => fuzzyMatch(reqName, r.slot_name.toLowerCase().trim()))) {
           throw new Error("Denne slot er allerede blevet ramt i den aktive bonus hunt");
         }
 
