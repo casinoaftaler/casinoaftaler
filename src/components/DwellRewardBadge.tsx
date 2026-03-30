@@ -137,7 +137,16 @@ export function DwellRewardBadge() {
                 </span>
               </div>
               <span className="text-xs text-muted-foreground">
-                {isActive ? `Bliv på siden i ${secondsLeft} sek...` : "⏸ Pauset – vend tilbage"}
+                {!hasScrolled ? (
+                  <span className="flex items-center gap-1">
+                    <ArrowDown className="h-3 w-3 animate-bounce" />
+                    Scroll ned for at starte timeren
+                  </span>
+                ) : isActive ? (
+                  `Bliv på siden i ${secondsLeft} sek...`
+                ) : (
+                  "⏸ Pauset – vend tilbage"
+                )}
               </span>
             </>
           )}
