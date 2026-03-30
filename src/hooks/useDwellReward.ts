@@ -51,6 +51,10 @@ export function useDwellReward(pagePath: string) {
 
   const isEligiblePage = DWELL_REWARD_PAGES.some((p) => p.path === pagePath);
 
+  // Check if mission was activated via ?mission=1 param
+  const isMissionActivated = typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("mission") === "1";
+
   // Check if already completed today
   useEffect(() => {
     if (!user || !isEligiblePage) return;
