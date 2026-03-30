@@ -174,13 +174,13 @@ function ArchetypeClassificationSection() {
 
           <Button onClick={runEnrichment} disabled={enriching || running} variant="secondary">
             {enriching ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Database className="h-4 w-4 mr-2" />}
-            {enriching ? "Beriger automatisk..." : `Berig alle stats-heavy (auto)`}
+            {enriching ? "Beriger automatisk..." : `Berig alle (stats-heavy + community-driven)`}
           </Button>
         </div>
 
         {enrichedCount > 0 && (
           <p className="text-xs text-muted-foreground">
-            {enrichedCount} slots har allerede AI-beriget analyse ({statsHeavyCount > 0 ? `${statsHeavyCount - enrichedCount} stats-heavy mangler` : "alle færdige"})
+            {enrichedCount} slots har allerede AI-beriget analyse ({(statsHeavyCount + (distribution?.["community-driven"] || 0)) - enrichedCount} mangler)
           </p>
         )}
 
