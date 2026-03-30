@@ -35,7 +35,6 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerf
 
   const isProfitable = stats.profitLossPercent >= 0;
   const formattedStart = stats.totalStartBalance.toLocaleString("da-DK");
-  const formattedEnd = stats.totalEndBalance.toLocaleString("da-DK");
 
   return (
     <section className="mb-12" aria-labelledby="hunt-performance-heading">
@@ -127,8 +126,7 @@ export function CasinoHuntPerformance({ casinoSlug, casinoName }: CasinoHuntPerf
                   </Badge>
                 </div>
               );
-            }
-            ))}
+            })}
           </div>
         </div>
       )}
