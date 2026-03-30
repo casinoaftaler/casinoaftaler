@@ -393,10 +393,6 @@ const SpilDanskNuAnmeldelse = () => {
 
         <Separator className="my-10" />
 
-        <CasinoHuntPerformance casinoSlug="spildansknu" casinoName="SpilDanskNu" />
-
-        <Separator className="my-10" />
-
         {/* Sammenligning */}
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">SpilDanskNu vs. Spilleautomaten vs. Luna Casino</h2>
