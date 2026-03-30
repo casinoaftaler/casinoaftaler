@@ -135,7 +135,7 @@ export function SpillehalSeoText() {
           <p>
             For en dybere forståelse af RTP-konceptet og hvordan det påvirker din spilstrategi, se
             vores guide til{" "}
-            <Link to="/casinospil/spillemaskiner/hoj-rtp" className="text-primary hover:underline">
+            <Link to="/casinospil/spillemaskiner/hoej-rtp" className="text-primary hover:underline">
               spillemaskiner med høj RTP
             </Link>. Vil du se community-statistik og performance-data for alle testede spil, er
             vores{" "}
