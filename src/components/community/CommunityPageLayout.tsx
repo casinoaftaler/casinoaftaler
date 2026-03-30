@@ -69,23 +69,29 @@ export function CommunityPageLayout({
         </section>
       )}
       <CommunityNav />
-      <div className="container relative">
-        {/* Left sidebar - community specific */}
-        {!hideSidebar && (
-          <div className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[260px] pt-8 md:pt-12">
-            <div className="sticky top-24 h-fit flex flex-col gap-4">
-              <DailyMissionsWidget />
-              <SidebarSocialProof />
-              <SidebarLeaderboard />
-              <SidebarShopLeaderboard />
+      <div className="mx-auto w-full max-w-[1800px] px-4 md:px-6 lg:px-8">
+        <div className="flex justify-center gap-6 xl:gap-8">
+          {/* Left sidebar - community specific */}
+          {!hideSidebar && (
+            <aside className="hidden min-[1540px]:block w-[260px] flex-shrink-0 pt-8 md:pt-12">
+              <div className="sticky top-24 h-fit flex flex-col gap-4">
+                <DailyMissionsWidget />
+                <SidebarSocialProof />
+                <SidebarLeaderboard />
+                <SidebarShopLeaderboard />
+              </div>
+            </aside>
+          )}
+          {/* Main content + right sidebar */}
+          <div className="min-w-0 flex-1 max-w-[960px]">
+            <div className="flex gap-8 xl:gap-10">
+              <div className="min-w-0 flex-1">{children}</div>
             </div>
           </div>
-        )}
-        {/* Main content + right sidebar */}
-        <div className="flex gap-8 xl:gap-10">
-          <div className="min-w-0 flex-1">{children}</div>
           <Suspense fallback={null}>
-            <LazyContentSidebar />
+            <aside className="flex-shrink-0">
+              <LazyContentSidebar />
+            </aside>
           </Suspense>
         </div>
       </div>
