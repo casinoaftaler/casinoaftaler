@@ -36,7 +36,7 @@ export function SlotRequestForm() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const pendingCount = myRequests?.filter((r) => r.status === "pending").length ?? 0;
-  const maxPending = parseInt(siteSettings?.max_pending_slot_requests ?? "1", 10);
+  const maxPending = 5;
   const hasReachedLimit = pendingCount >= maxPending;
 
   // Filter slots based on search query
