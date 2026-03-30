@@ -26,7 +26,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 import type { TwitchBadges as TwitchBadgesType } from "@/hooks/useTwitchBadges";
 
-import fedesvinBonanzaPreview from "@/assets/slots/fedesvin-bonanza-preview.jpg";
+import fedesvinBonanzaPreview from "@/assets/slots/fedesvin-bonanza-preview.webp";
 import bookOfFedesvinPreview from "@/assets/slots/book-of-fedesvin-preview.jpg";
 import riseOfFedesvinIntro from "@/assets/slots/rise/intro-screen.jpg";
 

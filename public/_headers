@@ -1,9 +1,10 @@
-/*
-  Link: <https://casinoaftaler.dk/sitemap-index.xml>; rel="sitemap"
-  X-Robots-Tag: all
-  Cache-Control: no-cache
-
 /assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
   Cache-Control: public, max-age=31536000, immutable
 
 /*.webp
@@ -17,3 +18,14 @@
 
 /*.ico
   Cache-Control: public, max-age=604800
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/index.html
+  Cache-Control: no-cache
+  Link: <https://casinoaftaler.dk/sitemap-index.xml>; rel="sitemap"
+  X-Robots-Tag: all
+
+/*
+  X-Robots-Tag: all

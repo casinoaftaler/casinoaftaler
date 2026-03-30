@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Gamepad2, ArrowRight } from "lucide-react";
 import spillehalPromo from "@/assets/spillehal-promo-small.webp";
 import risePromo from "@/assets/rise-of-fedesvin-promo-small.webp";
-import bonanzaPromo from "@/assets/slots/fedesvin-bonanza-preview.jpg";
+import bonanzaPromo from "@/assets/slots/fedesvin-bonanza-preview.webp";
 
 function PromoBanner({ to, image, alt, label, title }: { to: string; image: string; alt: string; label: string; title: string }) {
   return (
