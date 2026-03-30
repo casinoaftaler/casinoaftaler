@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useDwellReward, DWELL_DURATION_SECONDS } from "@/hooks/useDwellReward";
 import { Check, Coins, LogIn, Gift } from "lucide-react";
@@ -13,7 +14,20 @@ export function DwellRewardBadge() {
     isLoggedIn,
   } = useDwellReward(pathname);
 
+  const [visible, setVisible] = useState(true);
+
+  // Auto-hide 4 sekunder efter fuldførelse
+  useEffect(() => {
+    if (isClaimed || alreadyCompleted) {
+      const timer = setTimeout(() => setVisible(false), 4000);
+      return () => clearTimeout(timer);
+    } else {
+      setVisible(true);
+    }
+  }, [isClaimed, alreadyCompleted]);
+
   if (!isEligiblePage) return null;
+  if (!visible) return null;
 
   // Ikke logget ind – vis login-opfordring
   if (!isLoggedIn) {
@@ -41,7 +55,11 @@ export function DwellRewardBadge() {
   const completed = isClaimed || alreadyCompleted;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 animate-fade-in">
+    <div
+      className={`fixed bottom-6 right-6 z-50 transition-all duration-700 ${
+        completed ? "animate-fade-in opacity-100" : "animate-fade-in"
+      }`}
+    >
       <div
         className={`relative flex items-center gap-3.5 rounded-2xl border-2 px-5 py-3.5 shadow-xl transition-all duration-500 ${
           completed
@@ -49,7 +67,7 @@ export function DwellRewardBadge() {
             : "bg-gradient-to-r from-amber-500/10 to-orange-500/5 border-amber-500/40 shadow-amber-500/15"
         }`}
       >
-        {/* Pulserende glow-effekt mens timeren kører */}
+        {/* Pulserende glow mens timeren kører */}
         {!completed && isActive && (
           <div className="absolute inset-0 rounded-2xl bg-amber-500/10 animate-pulse" />
         )}
@@ -118,7 +136,7 @@ export function DwellRewardBadge() {
                 </span>
               </div>
               <span className="text-xs text-muted-foreground">
-                {isActive ? "Bliv på siden i " + secondsLeft + " sek..." : "⏸ Pauset – vend tilbage"}
+                {isActive ? `Bliv på siden i ${secondsLeft} sek...` : "⏸ Pauset – vend tilbage"}
               </span>
             </>
           )}

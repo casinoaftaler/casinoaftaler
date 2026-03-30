@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const DWELL_REWARD_PAGES = [
   { path: "/top-10-casino-online", label: "Top 10 Casino", credits: 300 },
@@ -127,6 +128,8 @@ export function useDwellReward(pagePath: string) {
     }
   }, [state.secondsLeft, state.isClaimed, state.isClaiming, user]);
 
+  const queryClient = useQueryClient();
+
   const claimReward = useCallback(async () => {
     if (!user || state.isClaimed || state.isClaiming) return;
 
@@ -150,13 +153,17 @@ export function useDwellReward(pagePath: string) {
       return;
     }
 
+    // Invalidate credit queries so header updates immediately
+    queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
+    queryClient.invalidateQueries({ queryKey: ["header-credits"] });
+
     setState((s) => ({
       ...s,
       isClaimed: true,
       isClaiming: false,
       alreadyCompleted: true,
     }));
-  }, [user, pagePath, state.isClaimed, state.isClaiming]);
+  }, [user, pagePath, state.isClaimed, state.isClaiming, queryClient]);
 
   return {
     ...state,
