@@ -696,6 +696,7 @@ const App = () => (
               {/* Catch-all */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <DwellRewardBadge />
           </Suspense>
           </ChunkErrorBoundary>
         </BrowserRouter>
