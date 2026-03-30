@@ -1,4 +1,5 @@
 import { useParams, Link } from "react-router-dom";
+import { PragmaticDemoPlayer } from "@/components/PragmaticDemoPlayer";
 import { autoLinkEntities } from "@/lib/entityAutoLinker";
 import { getAffiliateRedirect } from "@/lib/affiliateRedirect";
 import { useAuth } from "@/hooks/useAuth";
@@ -1037,6 +1038,13 @@ export default function SlotCatalogPage() {
               Læs den dybdegående {slotName} guide med matematik, strategi og EV-analyse →
             </Link>
           </div>
+        )}
+
+        {/* Pragmatic Play Demo Player */}
+        {(slot as any).game_id && slot.provider === "Pragmatic Play" && (
+          <section className="mb-8">
+            <PragmaticDemoPlayer gameId={(slot as any).game_id} slotName={slotName} />
+          </section>
         )}
 
         {/* AI-generated description OR fallback */}
