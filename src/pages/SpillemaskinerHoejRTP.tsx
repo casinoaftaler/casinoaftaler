@@ -657,7 +657,7 @@ export default function SpillemaskinerHoejRTP() {
             Uanset præference gælder de samme grundlæggende principper: spil kun for penge, du har råd til at tabe. Sæt tids- og beløbsgrænser. Behandl spillemaskiner som underholdning – ikke som en indtægtskilde. Og forstå, at den matematiske fordel altid tilhører huset. Læs vores guide til <Link to="/ansvarligt-spil" className={linkClass}>ansvarligt spil</Link> for konkrete redskaber til at spille sundt og kontrolleret.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            For en bred oversigt over alle spiltyper og deres respektive odds, besøg vores <Link to="/casinospil" className={linkClass}>casinospil-oversigt</Link>. Her kan du sammenligne spillemaskiner med <Link to="/blackjack" className={linkClass}>blackjack</Link>, <Link to="/roulette" className={linkClass}>roulette</Link>, <Link to="/craps" className={linkClass}>craps</Link> og <Link to="/baccarat" className={linkClass}>baccarat</Link> – og vælge den spiltype, der bedst matcher din profil.
+            For en bred oversigt over alle spiltyper og deres respektive odds, besøg vores <Link to="/casinospil" className={linkClass}>casinospil-oversigt</Link>. Her kan du sammenligne spillemaskiner med <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link>, <Link to="/casinospil/roulette" className={linkClass}>roulette</Link>, <Link to="/casinospil/craps" className={linkClass}>craps</Link> og <Link to="/casinospil/baccarat" className={linkClass}>baccarat</Link> – og vælge den spiltype, der bedst matcher din profil.
           </p>
         </section>
 
