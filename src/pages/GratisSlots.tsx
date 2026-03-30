@@ -172,8 +172,21 @@ export default function GratisSlots() {
               className="group rounded-lg border border-border bg-card p-3 flex flex-col gap-2 hover:border-primary/50 hover:shadow-md transition-all cursor-pointer"
               onClick={() => { setSelectedSlot(slot); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             >
-              <div className="flex items-center justify-center h-16 bg-muted/30 rounded-md">
-                <Gamepad2 className="h-8 w-8 text-muted-foreground group-hover:text-primary transition-colors" />
+              <div className="relative w-full aspect-[4/3] bg-muted/30 rounded-md overflow-hidden">
+                <img
+                  src={`https://cdn.pragmaticplay.net/game_pic/rec/325/${slot.game_id}.png`}
+                  alt={slot.slot_name}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    target.style.display = 'none';
+                    target.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+                <div className="hidden absolute inset-0 flex items-center justify-center">
+                  <Gamepad2 className="h-8 w-8 text-muted-foreground" />
+                </div>
               </div>
               <h3 className="text-sm font-medium leading-tight line-clamp-2">{slot.slot_name}</h3>
               <div className="flex flex-wrap gap-1 mt-auto">
