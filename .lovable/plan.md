@@ -1,24 +1,32 @@
 
 
-## Plan: Prevent duplicate slot requests per user
+## Fix: Bonus Hunt End Balance Calculation
 
 ### Problem
-Users can request the same slot twice — the current check only does an exact `ilike` match across all users for pending requests. It misses:
-1. The same user requesting the same slot with slightly different spelling
-2. The same user having a pending request for a slot already requested by them (with any status in the current hunt)
+The client-side `parseHuntResponse` function in `useBonusHuntData.ts` (line 72-73) **ignores** the StreamSystem API's `end` field and incorrectly sets `endBalance = totalWinnings`.
 
-### Solution
+In reality, when you hunt from 5000 kr down to 1500 kr, the end balance after opening bonuses should be **1500 + total bonus winnings**, not just the bonus winnings alone. The API's `huntData.end` field already contains this correct value.
 
-**File: `src/hooks/useSlotRequests.ts`** — Update the duplicate check in `useCreateSlotRequest`:
+The backend edge functions (`bonus-hunt-proxy`, `bonus-hunt-auto-settle`, `bonus-hunt-bulk-import`) all correctly use `huntData.end`, so only the client parser needs fixing.
 
-1. **Same-user pending check**: Before the global duplicate check, add a query checking if the current user already has a pending request (any slot). Since `maxPending` is typically 1, this enforces "only 1 slot can be requested at a time" — but this is already handled by the `hasReachedLimit` check in the form. Add a server-side guard too.
+### Fix (1 file)
 
-2. **Fuzzy duplicate check**: Replace the exact `ilike` match with fuzzy/contains logic (same as used elsewhere — min 4 chars overlap) to catch near-duplicates like "Le Viking" vs "Le Viking Bebe". Check across ALL users for pending status.
+**`src/hooks/useBonusHuntData.ts`** — line 72-73:
 
-3. **Same-user any-status check for current hunt**: Check if the same user already requested this slot (fuzzy match) in the current hunt with any non-rejected status, preventing re-requests of previously hit/settled slots.
+Replace:
+```ts
+const endVal = totalWinnings > 0 ? totalWinnings : null;
+```
 
-### Changes
-- Fetch all pending requests and apply fuzzy matching client-side instead of relying on exact `ilike`
-- Add a check: if user already has a pending request for a fuzzy-matching slot name, block with error
-- Add a check: if any user has a pending request for a fuzzy-matching slot name, block with error
+With:
+```ts
+const endVal = huntData.end != null ? huntData.end : (totalWinnings > 0 ? totalWinnings : null);
+```
+
+This uses the API's `end` field when available (which includes the remaining hunting balance + bonus winnings), and only falls back to `totalWinnings` if the API doesn't provide it.
+
+### Impact
+- **End Balance** row in the stats tab will show the correct final balance
+- **Resultat** row (profit/loss = endBalance - startBalance) will be accurate
+- No changes needed to the stats UI or edge functions — they already handle this correctly
 
