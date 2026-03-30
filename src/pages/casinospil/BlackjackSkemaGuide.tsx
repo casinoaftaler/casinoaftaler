@@ -391,7 +391,7 @@ const BlackjackSkemaGuide = () => {
             Det farvekodede skema, der viser den matematisk optimale handling i enhver blackjack-situation. Baseret på millioner af simuleringer og anvendeligt i både online og live casino.
           </p>
 
-          <AuthorMetaBar author="Jonas" readTime={22} />
+          <AuthorMetaBar author="jonas" />
 
           <SnippetAnswer
             answer="Et blackjack skema viser den statistisk optimale handling (hit, stand, double, split eller surrender) for enhver kombination af din hånd og dealerens kort. Ved at følge skemaet perfekt reduceres house edge fra 2–5 % til blot 0,5 % – den laveste fordel i noget casinospil."
