@@ -2027,9 +2027,14 @@ export type Database = {
           deep_content: string | null
           description: string | null
           enriched_analysis: string | null
+          game_description: string | null
+          game_format: string | null
+          game_id: string | null
+          has_buy_feature: boolean | null
           highest_win: number | null
           highest_x: number | null
           id: string
+          max_multiplier: number | null
           max_potential: string | null
           meta_description: string | null
           provider: string
@@ -2047,9 +2052,14 @@ export type Database = {
           deep_content?: string | null
           description?: string | null
           enriched_analysis?: string | null
+          game_description?: string | null
+          game_format?: string | null
+          game_id?: string | null
+          has_buy_feature?: boolean | null
           highest_win?: number | null
           highest_x?: number | null
           id?: string
+          max_multiplier?: number | null
           max_potential?: string | null
           meta_description?: string | null
           provider?: string
@@ -2067,9 +2077,14 @@ export type Database = {
           deep_content?: string | null
           description?: string | null
           enriched_analysis?: string | null
+          game_description?: string | null
+          game_format?: string | null
+          game_id?: string | null
+          has_buy_feature?: boolean | null
           highest_win?: number | null
           highest_x?: number | null
           id?: string
+          max_multiplier?: number | null
           max_potential?: string | null
           meta_description?: string | null
           provider?: string
@@ -2921,9 +2936,14 @@ export type Database = {
           deep_content: string | null
           description: string | null
           enriched_analysis: string | null
+          game_description: string | null
+          game_format: string | null
+          game_id: string | null
+          has_buy_feature: boolean | null
           highest_win: number | null
           highest_x: number | null
           id: string
+          max_multiplier: number | null
           max_potential: string | null
           meta_description: string | null
           provider: string
