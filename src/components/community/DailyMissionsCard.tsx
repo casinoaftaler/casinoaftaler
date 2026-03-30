@@ -25,7 +25,7 @@ export function DailyMissionsCard() {
               Daily Missions
             </h2>
             <p className="text-sm text-muted-foreground mt-1">
-              Besøg vores guides og optjen credits – 60 sekunder pr. side
+              Besøg vores guides og optjen credits – 120 sekunder pr. side
             </p>
           </div>
           <Badge
