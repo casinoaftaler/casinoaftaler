@@ -8,6 +8,7 @@ import { BonanzaPayTable } from "./BonanzaPayTable";
 import { PayTable } from "./PayTable";
 import { AutoSpinPopover } from "./AutoSpinPopover";
 import { getSlotTheme } from "@/lib/slotTheme";
+import { getNextBet, getPrevBet } from "@/lib/betSteps";
 
 type AutoSpinCount = 10 | 25 | 50 | 100 | "infinite";
 
