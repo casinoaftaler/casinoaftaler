@@ -95,7 +95,7 @@ export function useDwellReward(pagePath: string) {
 
   // Timer logic with visibility API + scroll gate
   useEffect(() => {
-    if (!user || !isEligiblePage || state.alreadyCompleted || state.isClaimed) return;
+    if (!user || !isEligiblePage || !isMissionActivated || state.alreadyCompleted || state.isClaimed) return;
     if (!hasScrolledRef.current) return; // Don't start until scrolled
 
     const startTimer = () => {
