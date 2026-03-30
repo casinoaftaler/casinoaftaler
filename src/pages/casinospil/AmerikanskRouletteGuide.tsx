@@ -837,7 +837,7 @@ export default function AmerikanskRouletteGuide() {
             Bonus Wagering på Amerikansk Roulette: EV-Analyse for Danske Bonusser
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Mange danske spillere forsøger at gennemspille casino <Link to="/bonusser" className={linkClass}>bonusser</Link> på roulette. Men de fleste casinoer begrænser roulette-væddemåls bidrag til omsætningskrav til 10-20 % (mod 100 % for spilleautomater). Kombineret med den høje house edge på amerikansk roulette bliver matematikken brutal:
+            Mange danske spillere forsøger at gennemspille casino <Link to="/casino-bonus" className={linkClass}>bonusser</Link> på roulette. Men de fleste casinoer begrænser roulette-væddemåls bidrag til omsætningskrav til 10-20 % (mod 100 % for spilleautomater). Kombineret med den høje house edge på amerikansk roulette bliver matematikken brutal:
           </p>
 
           <Card className="bg-muted/30 mb-6">
