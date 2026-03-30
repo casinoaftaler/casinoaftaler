@@ -13,36 +13,56 @@ export const DWELL_REWARD_PAGES = [
 ] as const;
 
 export const DWELL_DURATION_SECONDS = 120;
-export const SCROLL_THRESHOLD = 0.3; // 30% scroll depth required
+export const SCROLL_THRESHOLD = 0.3;
+
+/** Set mission mode – call this onClick before navigating */
+export function activateMissionMode() {
+  sessionStorage.setItem("missionActive", "1");
+}
+
+/** Check if mission mode is active (persists across navigations in same tab) */
+function isMissionMode(): boolean {
+  return typeof window !== "undefined" && sessionStorage.getItem("missionActive") === "1";
+}
+
+/** Strip ?mission=1 from URL if present (legacy / fallback) */
+function cleanMissionParam() {
+  if (typeof window === "undefined") return;
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("mission")) {
+    activateMissionMode();
+    params.delete("mission");
+    const clean = params.toString();
+    const newUrl = window.location.pathname + (clean ? `?${clean}` : "") + window.location.hash;
+    window.history.replaceState({}, "", newUrl);
+  }
+}
 
 interface DwellRewardState {
-  /** Seconds remaining (60 → 0) */
   secondsLeft: number;
-  /** Whether timer is actively counting */
   isActive: boolean;
-  /** Whether reward was claimed */
   isClaimed: boolean;
-  /** Whether currently claiming */
   isClaiming: boolean;
-  /** Whether this page was already completed today */
   alreadyCompleted: boolean;
-  /** Whether user has scrolled past threshold */
   hasScrolled: boolean;
-  /** Error message if any */
   error: string | null;
 }
 
+const INITIAL_STATE: DwellRewardState = {
+  secondsLeft: DWELL_DURATION_SECONDS,
+  isActive: false,
+  isClaimed: false,
+  isClaiming: false,
+  alreadyCompleted: false,
+  hasScrolled: false,
+  error: null,
+};
+
 export function useDwellReward(pagePath: string) {
   const { user } = useAuth();
-  const [state, setState] = useState<DwellRewardState>({
-    secondsLeft: DWELL_DURATION_SECONDS,
-    isActive: false,
-    isClaimed: false,
-    isClaiming: false,
-    alreadyCompleted: false,
-    hasScrolled: false,
-    error: null,
-  });
+  const queryClient = useQueryClient();
+  const [state, setState] = useState<DwellRewardState>(INITIAL_STATE);
+  const [isMissionActivated, setIsMissionActivated] = useState(false);
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const startTimeRef = useRef<number>(0);
@@ -51,39 +71,19 @@ export function useDwellReward(pagePath: string) {
 
   const isEligiblePage = DWELL_REWARD_PAGES.some((p) => p.path === pagePath);
 
-  // Check if mission mode is active via sessionStorage (set by mission links)
-  const [isMissionActivated, setIsMissionActivated] = useState(false);
-
+  // On every pagePath change: clean URL, check sessionStorage, full reset
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("mission") === "1") {
-      // Store in session and clean URL
-      sessionStorage.setItem("missionActive", "1");
-      const url = new URL(window.location.href);
-      url.searchParams.delete("mission");
-      window.history.replaceState({}, "", url.pathname + url.hash);
-    }
-    setIsMissionActivated(sessionStorage.getItem("missionActive") === "1");
-  }, [pagePath]);
+    cleanMissionParam();
+    setIsMissionActivated(isMissionMode());
 
-  // Reset state when pagePath changes
-  useEffect(() => {
+    // Full reset
     hasScrolledRef.current = false;
     elapsedRef.current = 0;
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
-    setState({
-      secondsLeft: DWELL_DURATION_SECONDS,
-      isActive: false,
-      isClaimed: false,
-      isClaiming: false,
-      alreadyCompleted: false,
-      hasScrolled: false,
-      error: null,
-    });
+    setState(INITIAL_STATE);
   }, [pagePath]);
 
   // Check if already completed today
@@ -120,14 +120,14 @@ export function useDwellReward(pagePath: string) {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // check immediately
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [user, isEligiblePage, state.alreadyCompleted, state.isClaimed]);
+  }, [user, isEligiblePage, isMissionActivated, state.alreadyCompleted, state.isClaimed]);
 
-  // Timer logic with visibility API + scroll gate
+  // Timer logic
   useEffect(() => {
     if (!user || !isEligiblePage || !isMissionActivated || state.alreadyCompleted || state.isClaimed) return;
-    if (!hasScrolledRef.current) return; // Don't start until scrolled
+    if (!hasScrolledRef.current) return;
 
     const startTimer = () => {
       if (timerRef.current) return;
@@ -135,8 +135,7 @@ export function useDwellReward(pagePath: string) {
       setState((s) => ({ ...s, isActive: true }));
 
       timerRef.current = setInterval(() => {
-        const now = Date.now();
-        const sessionElapsed = (now - startTimeRef.current) / 1000;
+        const sessionElapsed = (Date.now() - startTimeRef.current) / 1000;
         const totalElapsed = elapsedRef.current + sessionElapsed;
         const remaining = Math.max(0, DWELL_DURATION_SECONDS - totalElapsed);
 
@@ -153,8 +152,7 @@ export function useDwellReward(pagePath: string) {
 
     const stopTimer = () => {
       if (timerRef.current) {
-        const sessionElapsed = (Date.now() - startTimeRef.current) / 1000;
-        elapsedRef.current += sessionElapsed;
+        elapsedRef.current += (Date.now() - startTimeRef.current) / 1000;
         clearInterval(timerRef.current);
         timerRef.current = null;
         setState((s) => ({ ...s, isActive: false }));
@@ -162,34 +160,23 @@ export function useDwellReward(pagePath: string) {
     };
 
     const handleVisibility = () => {
-      if (document.visibilityState === "visible") {
-        startTimer();
-      } else {
-        stopTimer();
-      }
+      document.visibilityState === "visible" ? startTimer() : stopTimer();
     };
 
-    // Start immediately if visible
-    if (document.visibilityState === "visible") {
-      startTimer();
-    }
-
+    if (document.visibilityState === "visible") startTimer();
     document.addEventListener("visibilitychange", handleVisibility);
-
     return () => {
       stopTimer();
       document.removeEventListener("visibilitychange", handleVisibility);
     };
-  }, [user, isEligiblePage, state.alreadyCompleted, state.isClaimed, state.hasScrolled]);
+  }, [user, isEligiblePage, isMissionActivated, state.alreadyCompleted, state.isClaimed, state.hasScrolled]);
 
-  // Auto-claim when timer reaches 0
+  // Auto-claim
   useEffect(() => {
     if (state.secondsLeft === 0 && !state.isClaimed && !state.isClaiming && user) {
       claimReward();
     }
   }, [state.secondsLeft, state.isClaimed, state.isClaiming, user]);
-
-  const queryClient = useQueryClient();
 
   const claimReward = useCallback(async () => {
     if (!user || state.isClaimed || state.isClaiming) return;
@@ -214,9 +201,10 @@ export function useDwellReward(pagePath: string) {
       return;
     }
 
-    // Invalidate credit queries so header updates immediately
+    // Invalidate all relevant queries so UI updates everywhere
     queryClient.invalidateQueries({ queryKey: ["slot-spins"] });
     queryClient.invalidateQueries({ queryKey: ["header-credits"] });
+    queryClient.invalidateQueries({ queryKey: ["dwell-progress"] });
 
     setState((s) => ({
       ...s,
@@ -239,6 +227,7 @@ export function useDwellRewardProgress() {
   const { user } = useAuth();
   const [completedPages, setCompletedPages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const fetchProgress = useCallback(async (userId: string) => {
     const today = new Date().toISOString().split("T")[0];
@@ -258,9 +247,23 @@ export function useDwellRewardProgress() {
       return;
     }
     fetchProgress(user.id);
-  }, [user, fetchProgress]);
+  }, [user, fetchProgress, refreshKey]);
 
-  // Listen directly to auth state changes to handle login without re-mount
+  // Listen to queryClient invalidation of "dwell-progress" to refetch
+  const queryClient = useQueryClient();
+  useEffect(() => {
+    const unsubscribe = queryClient.getQueryCache().subscribe((event) => {
+      if (event?.type === "updated" || event?.type === "removed") {
+        const key = event?.query?.queryKey;
+        if (Array.isArray(key) && key[0] === "dwell-progress") {
+          setRefreshKey((k) => k + 1);
+        }
+      }
+    });
+    return () => unsubscribe();
+  }, [queryClient]);
+
+  // Auth state changes
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
@@ -285,5 +288,6 @@ export function useDwellRewardProgress() {
       ...p,
       completed: completedPages.includes(p.path),
     })),
+    refetch: () => setRefreshKey((k) => k + 1),
   };
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { activateMissionMode } from "@/hooks/useDwellReward";
 import { Clock, Sparkles, ExternalLink, Coins, ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { CreditCoin } from "@/components/CreditCoin";
@@ -86,7 +87,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
                   <Link
                     key={page.path}
 to={page.path}
-                      onClick={() => sessionStorage.setItem("missionActive", "1")}
+                      onClick={() => activateMissionMode()}
                     className={`flex items-center justify-between rounded-lg px-2.5 py-1.5 text-xs transition-colors ${
                       page.completed
                         ? "text-emerald-500/70"

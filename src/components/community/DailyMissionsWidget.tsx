@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { useDwellRewardProgress } from "@/hooks/useDwellReward";
+import { useDwellRewardProgress, activateMissionMode } from "@/hooks/useDwellReward";
 import { useAuth } from "@/hooks/useAuth";
-import { Check, Coins, ArrowRight } from "lucide-react";
+import { Check, Coins } from "lucide-react";
 
 /** Compact widget for the community left sidebar */
 export function DailyMissionsWidget() {
@@ -23,7 +23,6 @@ export function DailyMissionsWidget() {
         </span>
       </div>
 
-      {/* Progress bar */}
       <div className="h-2 rounded-full bg-muted/50 mb-3 overflow-hidden">
         <div
           className="h-full rounded-full bg-gradient-to-r from-amber-500 to-emerald-500 transition-all duration-500"
@@ -31,13 +30,12 @@ export function DailyMissionsWidget() {
         />
       </div>
 
-      {/* Page list */}
       <div className="space-y-1.5">
         {pages.map((page) => (
           <Link
             key={page.path}
-to={page.path}
-            onClick={() => sessionStorage.setItem("missionActive", "1")}
+            to={page.path}
+            onClick={() => activateMissionMode()}
             className={`flex items-center justify-between rounded-lg px-2.5 py-1.5 text-xs transition-colors ${
               page.completed
                 ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
