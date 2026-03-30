@@ -489,7 +489,7 @@ export function DesktopMegaNav() {
         return (
           <>
             <PanelHeader title="Community" hubTo="/community" hubLabel="Community Hub →" onNavigate={close} />
-            <ExpandableGrid items={COMMUNITY_LINKS} initialCount={20} onNavigate={close} />
+            <ExpandableGrid items={COMMUNITY_LINKS} initialCount={10} onNavigate={close} />
           </>
         );
 
