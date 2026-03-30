@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useDwellReward, DWELL_DURATION_SECONDS } from "@/hooks/useDwellReward";
-import { Check, Coins, LogIn, Gift } from "lucide-react";
+import { Check, Coins, LogIn, Gift, ArrowDown } from "lucide-react";
 
 export function DwellRewardBadge() {
   const { pathname } = useLocation();
@@ -12,6 +12,7 @@ export function DwellRewardBadge() {
     alreadyCompleted,
     isEligiblePage,
     isLoggedIn,
+    hasScrolled,
   } = useDwellReward(pathname);
 
   const [visible, setVisible] = useState(true);
