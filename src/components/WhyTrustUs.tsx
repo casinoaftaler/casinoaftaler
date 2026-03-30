@@ -21,7 +21,7 @@ const trustPoints = [
     title: "Uafhængig redaktion",
     description:
       "Vores anmeldelser er udarbejdet af forfattere med 5+ års erfaring i den danske gambling-branche. Affiliate-links påvirker aldrig vurderinger.",
-    stat: "263 indexerede sider",
+    stat: "320+ indexerede sider",
     link: { to: "/saadan-tester-vi-casinoer", label: "Læs vores metode →" },
   },
   {
