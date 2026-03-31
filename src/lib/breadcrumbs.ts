@@ -293,7 +293,7 @@ export const routeLabels: Record<string, string> = {
   "/casinospil/game-shows": "Game Shows",
   // Casinoer guides
   "/casinoer": "Casinoer",
-  "/hurtig-udbetaling": "Hurtig Udbetaling",
+  // "/casinoer/hurtig-udbetaling" removed – redirects to /hurtig-udbetaling
   "/casinoer/hoej-rtp": "Høj RTP",
   "/casinoer/crypto-casino": "Crypto Casino",
   "/casinoer/vr-casinoer": "VR Casinoer",
