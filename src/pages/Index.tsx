@@ -231,99 +231,103 @@ const Index = () => {
 
       {/* Top Casinos Section with sidebar */}
       <section id="top-casinos" className="py-8 md:py-12" style={{ contain: 'layout style' }}>
-        <div className="container relative">
-          {/* Left sidebar: Full navigation */}
-          <aside className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[300px]">
-            <HomepageRightSidebar />
-          </aside>
-          <div className="mb-8">
-            <h2 className="mb-4 text-3xl font-bold">Casinoaftaler er Danmarks mest datadrevne casinoguide</h2>
-            <p className="mb-6 text-muted-foreground leading-relaxed">
-              <span>Vi tester hvert casino med dansk licens på tværs af 6 vægtede kategorier – fra bonusvilkår og udbetalingshastighed til kundeservice og sikkerhed. Vores vurderinger bygger på reel gameplay-data fra over 1.470 slots i vores database, hundredvis af live-streamede Bonus Hunts og et aktivt community, der verificerer resultaterne. </span>
-              <span className="hidden md:inline">Det er dokumentation, ikke markedsføring – og det er derfor, vores topliste opdateres dagligt baseret på faktiske ændringer i markedet.</span>
-              <span className="md:hidden" id="intro-more-text" style={{ display: 'none' }}>Det er dokumentation, ikke markedsføring – og det er derfor, vores topliste opdateres dagligt baseret på faktiske ændringer i markedet.</span>
-              <button
-                className="md:hidden text-primary font-medium ml-1 hover:underline"
-                id="intro-read-more-btn"
-                onClick={() => {
-                  document.getElementById('intro-more-text')!.style.display = 'inline';
-                  document.getElementById('intro-read-more-btn')!.style.display = 'none';
-                  document.getElementById('intro-read-less-btn')!.style.display = 'inline';
-                }}
-              >
-                Læs mere →
-              </button>
-              <button
-                className="md:hidden text-primary font-medium ml-1 hover:underline"
-                id="intro-read-less-btn"
-                style={{ display: 'none' }}
-                onClick={() => {
-                  document.getElementById('intro-more-text')!.style.display = 'none';
-                  document.getElementById('intro-read-less-btn')!.style.display = 'none';
-                  document.getElementById('intro-read-more-btn')!.style.display = 'inline';
-                }}
-              >
-                Læs mindre ←
-              </button>
-            </p>
-            <FilterTabs activeFilter={activeFilter} onFilterChange={setActiveFilter} />
-          </div>
-
-          {isLoading ? (
-            <div className="flex items-center justify-center" style={{ minHeight: '600px', contain: 'layout style' }}>
-              <div className="w-full space-y-4">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="h-[160px] rounded-2xl bg-muted animate-pulse" />
-                ))}
+        <div className="mx-auto max-w-[1400px] px-8 min-[1540px]:max-w-[1740px]">
+          <div className="flex gap-6">
+            {/* Left sidebar: Full navigation */}
+            <aside className="hidden min-[1540px]:block w-[300px] shrink-0">
+              <HomepageRightSidebar />
+            </aside>
+            <div className="flex-1 min-w-0">
+              <div className="mb-8">
+                <h2 className="mb-4 text-3xl font-bold">Casinoaftaler er Danmarks mest datadrevne casinoguide</h2>
+                <p className="mb-6 text-muted-foreground leading-relaxed">
+                  <span>Vi tester hvert casino med dansk licens på tværs af 6 vægtede kategorier – fra bonusvilkår og udbetalingshastighed til kundeservice og sikkerhed. Vores vurderinger bygger på reel gameplay-data fra over 1.470 slots i vores database, hundredvis af live-streamede Bonus Hunts og et aktivt community, der verificerer resultaterne. </span>
+                  <span className="hidden md:inline">Det er dokumentation, ikke markedsføring – og det er derfor, vores topliste opdateres dagligt baseret på faktiske ændringer i markedet.</span>
+                  <span className="md:hidden" id="intro-more-text" style={{ display: 'none' }}>Det er dokumentation, ikke markedsføring – og det er derfor, vores topliste opdateres dagligt baseret på faktiske ændringer i markedet.</span>
+                  <button
+                    className="md:hidden text-primary font-medium ml-1 hover:underline"
+                    id="intro-read-more-btn"
+                    onClick={() => {
+                      document.getElementById('intro-more-text')!.style.display = 'inline';
+                      document.getElementById('intro-read-more-btn')!.style.display = 'none';
+                      document.getElementById('intro-read-less-btn')!.style.display = 'inline';
+                    }}
+                  >
+                    Læs mere →
+                  </button>
+                  <button
+                    className="md:hidden text-primary font-medium ml-1 hover:underline"
+                    id="intro-read-less-btn"
+                    style={{ display: 'none' }}
+                    onClick={() => {
+                      document.getElementById('intro-more-text')!.style.display = 'none';
+                      document.getElementById('intro-read-less-btn')!.style.display = 'none';
+                      document.getElementById('intro-read-more-btn')!.style.display = 'inline';
+                    }}
+                  >
+                    Læs mindre ←
+                  </button>
+                </p>
+                <FilterTabs activeFilter={activeFilter} onFilterChange={setActiveFilter} />
               </div>
+
+              {isLoading ? (
+                <div className="flex items-center justify-center" style={{ minHeight: '600px', contain: 'layout style' }}>
+                  <div className="w-full space-y-4">
+                    {[1, 2, 3].map(i => (
+                      <div key={i} className="h-[160px] rounded-2xl bg-muted animate-pulse" />
+                    ))}
+                  </div>
+                </div>
+              ) : filteredCasinos.length === 0 ? (
+                <p className="py-12 text-center text-muted-foreground">
+                  Ingen casinoer matcher dette filter. Prøv en anden kategori.
+                </p>
+              ) : (
+                <div className="space-y-4" style={{ minHeight: '600px', contain: 'layout style' }}>
+                  {filteredCasinos.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                      {filteredCasinos.slice(0, 2).map((casino, index) => (
+                        <CasinoCard
+                          key={casino.id}
+                          casino={mapCasino(casino)}
+                          rank={index + 1}
+                          open={openCasinoId === casino.id}
+                          onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  {filteredCasinos.length > 2 && (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                      {filteredCasinos.slice(2, 5).map((casino, index) => (
+                        <CasinoCard
+                          key={casino.id}
+                          casino={mapCasino(casino)}
+                          rank={index + 3}
+                          open={openCasinoId === casino.id}
+                          onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  {filteredCasinos.length > 5 && (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                      {filteredCasinos.slice(5).map((casino, index) => (
+                        <CasinoCard
+                          key={casino.id}
+                          casino={mapCasino(casino)}
+                          rank={index + 6}
+                          open={openCasinoId === casino.id}
+                          onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
-          ) : filteredCasinos.length === 0 ? (
-            <p className="py-12 text-center text-muted-foreground">
-              Ingen casinoer matcher dette filter. Prøv en anden kategori.
-            </p>
-          ) : (
-            <div className="space-y-4" style={{ minHeight: '600px', contain: 'layout style' }}>
-              {filteredCasinos.length > 0 && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-                  {filteredCasinos.slice(0, 2).map((casino, index) => (
-                    <CasinoCard
-                      key={casino.id}
-                      casino={mapCasino(casino)}
-                      rank={index + 1}
-                      open={openCasinoId === casino.id}
-                      onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
-                    />
-                  ))}
-                </div>
-              )}
-              {filteredCasinos.length > 2 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-                  {filteredCasinos.slice(2, 5).map((casino, index) => (
-                    <CasinoCard
-                      key={casino.id}
-                      casino={mapCasino(casino)}
-                      rank={index + 3}
-                      open={openCasinoId === casino.id}
-                      onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
-                    />
-                  ))}
-                </div>
-              )}
-              {filteredCasinos.length > 5 && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-                  {filteredCasinos.slice(5).map((casino, index) => (
-                    <CasinoCard
-                      key={casino.id}
-                      casino={mapCasino(casino)}
-                      rank={index + 6}
-                      open={openCasinoId === casino.id}
-                      onOpenChange={(open) => setOpenCasinoId(open ? casino.id : null)}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+          </div>
         </div>
       </section>
 
