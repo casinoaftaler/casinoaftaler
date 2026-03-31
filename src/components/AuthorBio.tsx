@@ -42,7 +42,7 @@ const authorData = {
     link: "/forfatter/kevin",
     badge: "Casino-streamer & IT medansvarlig",
     role: "IT Medansvarlig hos Casinoaftaler.dk & Casino-streamer",
-    bio: "Kevin er IT medansvarlig hos Casinoaftaler.dk og har streamet online casino i over 3 år. Med sin rolige og afslappede stil bidrager han til community, indhold og udvikling af platformen.",
+    bio: "Kevin er IT medansvarlig hos Casinoaftaler.dk og har streamet online casino i over 4 år. Med sin rolige og afslappede stil bidrager han til community, indhold og udvikling af platformen.",
     socials: [
       { href: "https://www.twitch.tv/kevinsylence", label: "Twitch" },
       { href: "https://www.youtube.com/@KevinSylence", label: "YouTube" },

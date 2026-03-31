@@ -72,7 +72,7 @@ const expertiseItems = [
   {
     icon: Gamepad2,
     label: "Slots & RTP-forståelse",
-    desc: "Dyb indsigt i spillemekanikker, volatilitet og RTP-analyse fra over 3 års daglig streaming.",
+    desc: "Dyb indsigt i spillemekanikker, volatilitet og RTP-analyse fra over 4 års daglig streaming.",
   },
   {
     icon: Tv,
