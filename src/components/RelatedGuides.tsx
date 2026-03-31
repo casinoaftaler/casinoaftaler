@@ -335,7 +335,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   if (path === "/forfatter/jonas") {
     return {
       guides: [
-        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og IT medansvarlig" },
+        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/ajse", label: "Ajse – Juridisk redaktør", icon: BookOpen, desc: "Juridisk redaktør på Casinoaftaler.dk" },
         { to: "/forfatter/niklas", label: "Niklas – Finansøkonom", icon: BookOpen, desc: "Finansøkonom & forsikringsekspert" },
         { to: "/om", label: "Om Casinoaftaler.dk", icon: BookOpen, desc: "Mød teamet bag Casinoaftaler.dk" },
