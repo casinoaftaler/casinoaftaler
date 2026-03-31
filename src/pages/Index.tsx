@@ -229,15 +229,16 @@ const Index = () => {
       <HeroSection />
       <HomepageFreshness />
 
-      {/* Top Casinos Section with sidebar */}
-      <section id="top-casinos" className="py-8 md:py-12" style={{ contain: 'layout style' }}>
-        <div className="mx-auto max-w-[1400px] px-8 min-[1540px]:max-w-[1740px]">
-          <div className="flex gap-6">
-            {/* Left sidebar: Full navigation */}
-            <aside className="hidden min-[1540px]:block w-[300px] shrink-0">
-              <HomepageRightSidebar />
-            </aside>
-            <div className="flex-1 min-w-0">
+      {/* Main layout with sidebar */}
+      <div className="mx-auto max-w-[1400px] px-8 min-[1540px]:max-w-[1740px]">
+        <div className="flex gap-6">
+          {/* Left sidebar: Full navigation */}
+          <aside className="hidden min-[1540px]:block w-[300px] shrink-0">
+            <HomepageRightSidebar />
+          </aside>
+          <div className="flex-1 min-w-0">
+            {/* Top Casinos Section */}
+            <section id="top-casinos" className="py-8 md:py-12" style={{ contain: 'layout style' }}>
               <div className="mb-8">
                 <h2 className="mb-4 text-3xl font-bold">Casinoaftaler er Danmarks mest datadrevne casinoguide</h2>
                 <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -326,125 +327,125 @@ const Index = () => {
                   )}
                 </div>
               )}
+            </section>
+
+            <TodayUpdatedSection />
+            <LazySection minHeight="300px">
+              <DailyRotatingTip />
+            </LazySection>
+            <LazySection minHeight="400px">
+              <HomepageLatestSlots />
+            </LazySection>
+            <LazySection minHeight="400px">
+              <HomepagePopularSlots />
+            </LazySection>
+            <LazySection minHeight="300px">
+              <HomepageTopProviders />
+            </LazySection>
+            <LazySection minHeight="500px">
+              <HomepageLiveCommunity />
+            </LazySection>
+            <LazySection minHeight="300px">
+              <WhyTrustUs />
+            </LazySection>
+            <LazySection minHeight="300px">
+              <MeetTheTeam />
+            </LazySection>
+
+            {/* === SEO Content Sections === */}
+            <LazySection minHeight="2000px">
+            <div className="py-8 md:py-12">
+              <HomepageSeoSections />
+
+              <BonusTypeCards />
+              <Separator className="my-10" />
+
+              <PopularReviewsSection />
+              <Separator className="my-10" />
+
+              <WeeklyRotationReviews />
+              <Separator className="my-10" />
+
+              <WeeklyGuideRotation />
+              <Separator className="my-10" />
+
+              {/* Sikkerhed og licens */}
+              <section className="mb-12">
+                <h2 className="mb-4 text-3xl font-bold">🔒 Sikkerhed og Licens – Spil Trygt på Online Casino</h2>
+                <p className="mb-4 text-muted-foreground leading-relaxed">
+                  Danmark har et af Europas mest strengt regulerede markeder for online casino. Spillemyndigheden udsteder licenser og fører løbende tilsyn med alle operatører, hvilket sikrer, at dit spil foregår i trygge og kontrollerede rammer. Alle online casinoer, vi anbefaler på Casinoaftaler, har gyldig dansk licens – det er vores absolutte ufravigelige krav.
+                </p>
+                <p className="mb-4 text-muted-foreground leading-relaxed">
+                  En dansk licens garanterer, at casinoet benytter certificerede tilfældighedsgeneratorer (RNG), at dine indskud er adskilt fra operatørens driftsmidler, og at du har adgang til selvudelukkelsesværktøjer via{" "}
+                  <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>
+                  . Alle gevinster fra licenserede online casinoer er desuden 100 % skattefri i Danmark.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Har du brug for hjælp eller oplever problemer med dine spillevaner, kan du kontakte{" "}
+                  <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>
+                  {" "}– en gratis og anonym rådgivningstjeneste. Vi opfordrer altid til{" "}
+                  <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>
+                  {" "}og at sætte faste grænser for tid og penge.
+                </p>
+              </section>
+
+              <Separator className="my-10" />
+              <HomepagePaymentSection />
+              <Separator className="my-10" />
+              <HomepageProviderSection />
+              <Separator className="my-10" />
+              <HomepageCasinospilSection />
+              <Separator className="my-10" />
+              <HomepageAnmeldelserSection />
+              <Separator className="my-10" />
+              <HomepageBonusHuntSection />
+              <Separator className="my-10" />
+              <HomepageNyhederSection />
+              <Separator className="my-10" />
+              <HomepageTrendsSection />
+              <Separator className="my-10" />
+              <HomepageGennemsigtighedSection />
+              <Separator className="my-10" />
+              <HomepageSlotShowcase />
+              <Separator className="my-10" />
+              <HomepageAnsvarligtSpilSection />
+              <Separator className="my-10" />
+              <HomepageKonverteringsSection />
+
+              <SourceCitations />
+
+              <div className="mt-10" />
+              <FAQSection title="Ofte stillede spørgsmål om online casino i Danmark" faqs={[
+                {
+                  question: "Hvad er det vigtigste at vide, før man spiller på online casino i Danmark?",
+                  answer: "Det vigtigste er at vælge et online casino med gyldig dansk licens fra Spillemyndigheden. Licensen sikrer, at casinoet overholder strenge krav til spillerbeskyttelse, herunder tilslutning til ROFUS, krypteret dataoverførsel og maksimalt omsætningskrav på 10x. Danske online casinoer bruger MitID til registrering, og alle gevinster er skattefri. Vi anbefaler altid at sætte et budget, før du starter.",
+                },
+                {
+                  question: "Hvordan finder jeg det bedste online casino til mine behov?",
+                  answer: "Start med at definere dine prioriteter: Er det spiludvalg, udbetalingshastighed, betalingsmetoder eller vilkår? Sammenlign online casinoer på tværs af disse faktorer. Vores topliste opdateres løbende baseret på grundige tests af bonus, spiludvalg, betalingsmetoder, kundeservice, mobiloplevelse og sikkerhed.",
+                },
+                {
+                  question: "Er online casinoer i Danmark sikre og regulerede?",
+                  answer: "Ja, det danske marked er et af de mest strengt regulerede i Europa. Spillemyndigheden udsteder licenser og fører løbende tilsyn. Alle licenserede online casinoer skal dokumentere fair spil via certificerede RNG-systemer, implementere anti-hvidvask-procedurer og tilbyde selvudelukkelsesværktøjer. ROFUS giver dig mulighed for at udelukke dig selv fra alle danske spillesider med ét klik.",
+                },
+                {
+                  question: "Skal jeg betale skat af gevinster fra online casino?",
+                  answer: "Nej, alle gevinster fra online casinoer med gyldig dansk licens er 100 % skattefri – uanset størrelse. Skatten er betalt af casinooperatøren via licensafgiften. Gevinster fra online casinoer uden dansk licens er derimod skattepligtige, og du mister al spillerbeskyttelse.",
+                },
+                {
+                  question: "Hvorfor bør jeg sammenligne online casinoer, før jeg vælger?",
+                  answer: "Fordi der er markante forskelle mellem online casinoer i Danmark – fra udbetalingstider og spiludvalg til bonusvilkår og kundeservice. En grundig sammenligning hjælper dig med at undgå skjulte vilkår og finde det spillested, der reelt matcher dine præferencer. Vores uafhængige tests gør det nemt at sammenligne på tværs af de vigtigste kriterier.",
+                },
+                {
+                  question: "Hvilke casinospil giver de bedste vinderchancer?",
+                  answer: "Blackjack har den laveste house edge (ned til 0,5 % med optimal strategi), efterfulgt af baccarat (ca. 1,06 %) og video poker (op til 99,5 % RTP). Blandt spilleautomater varierer RTP fra 88 % til 97 %+. Højere RTP betyder bedre langsigtede chancer, men volatilitet spiller også en rolle for din oplevelse.",
+                },
+              ]} />
             </div>
+            </LazySection>
           </div>
         </div>
-      </section>
-
-      <TodayUpdatedSection />
-      <LazySection minHeight="300px">
-        <DailyRotatingTip />
-      </LazySection>
-      <LazySection minHeight="400px">
-        <HomepageLatestSlots />
-      </LazySection>
-      <LazySection minHeight="400px">
-        <HomepagePopularSlots />
-      </LazySection>
-      <LazySection minHeight="300px">
-        <HomepageTopProviders />
-      </LazySection>
-      <LazySection minHeight="500px">
-        <HomepageLiveCommunity />
-      </LazySection>
-      <LazySection minHeight="300px">
-        <WhyTrustUs />
-      </LazySection>
-      <LazySection minHeight="300px">
-        <MeetTheTeam />
-      </LazySection>
-
-      {/* === SEO Content Sections === */}
-      <LazySection minHeight="2000px">
-      <div className="container py-8 md:py-12">
-        <HomepageSeoSections />
-
-        <BonusTypeCards />
-        <Separator className="my-10" />
-
-        <PopularReviewsSection />
-        <Separator className="my-10" />
-
-        <WeeklyRotationReviews />
-        <Separator className="my-10" />
-
-        <WeeklyGuideRotation />
-        <Separator className="my-10" />
-
-        {/* Sikkerhed og licens */}
-        <section className="mb-12">
-          <h2 className="mb-4 text-3xl font-bold">🔒 Sikkerhed og Licens – Spil Trygt på Online Casino</h2>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            Danmark har et af Europas mest strengt regulerede markeder for online casino. Spillemyndigheden udsteder licenser og fører løbende tilsyn med alle operatører, hvilket sikrer, at dit spil foregår i trygge og kontrollerede rammer. Alle online casinoer, vi anbefaler på Casinoaftaler, har gyldig dansk licens – det er vores absolutte ufravigelige krav.
-          </p>
-          <p className="mb-4 text-muted-foreground leading-relaxed">
-            En dansk licens garanterer, at casinoet benytter certificerede tilfældighedsgeneratorer (RNG), at dine indskud er adskilt fra operatørens driftsmidler, og at du har adgang til selvudelukkelsesværktøjer via{" "}
-            <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>
-            . Alle gevinster fra licenserede online casinoer er desuden 100 % skattefri i Danmark.
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Har du brug for hjælp eller oplever problemer med dine spillevaner, kan du kontakte{" "}
-            <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>
-            {" "}– en gratis og anonym rådgivningstjeneste. Vi opfordrer altid til{" "}
-            <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>
-            {" "}og at sætte faste grænser for tid og penge.
-          </p>
-        </section>
-
-        <Separator className="my-10" />
-        <HomepagePaymentSection />
-        <Separator className="my-10" />
-        <HomepageProviderSection />
-        <Separator className="my-10" />
-        <HomepageCasinospilSection />
-        <Separator className="my-10" />
-        <HomepageAnmeldelserSection />
-        <Separator className="my-10" />
-        <HomepageBonusHuntSection />
-        <Separator className="my-10" />
-        <HomepageNyhederSection />
-        <Separator className="my-10" />
-        <HomepageTrendsSection />
-        <Separator className="my-10" />
-        <HomepageGennemsigtighedSection />
-        <Separator className="my-10" />
-        <HomepageSlotShowcase />
-        <Separator className="my-10" />
-        <HomepageAnsvarligtSpilSection />
-        <Separator className="my-10" />
-        <HomepageKonverteringsSection />
-
-        <SourceCitations />
-
-        <div className="mt-10" />
-        <FAQSection title="Ofte stillede spørgsmål om online casino i Danmark" faqs={[
-          {
-            question: "Hvad er det vigtigste at vide, før man spiller på online casino i Danmark?",
-            answer: "Det vigtigste er at vælge et online casino med gyldig dansk licens fra Spillemyndigheden. Licensen sikrer, at casinoet overholder strenge krav til spillerbeskyttelse, herunder tilslutning til ROFUS, krypteret dataoverførsel og maksimalt omsætningskrav på 10x. Danske online casinoer bruger MitID til registrering, og alle gevinster er skattefri. Vi anbefaler altid at sætte et budget, før du starter.",
-          },
-          {
-            question: "Hvordan finder jeg det bedste online casino til mine behov?",
-            answer: "Start med at definere dine prioriteter: Er det spiludvalg, udbetalingshastighed, betalingsmetoder eller vilkår? Sammenlign online casinoer på tværs af disse faktorer. Vores topliste opdateres løbende baseret på grundige tests af bonus, spiludvalg, betalingsmetoder, kundeservice, mobiloplevelse og sikkerhed.",
-          },
-          {
-            question: "Er online casinoer i Danmark sikre og regulerede?",
-            answer: "Ja, det danske marked er et af de mest strengt regulerede i Europa. Spillemyndigheden udsteder licenser og fører løbende tilsyn. Alle licenserede online casinoer skal dokumentere fair spil via certificerede RNG-systemer, implementere anti-hvidvask-procedurer og tilbyde selvudelukkelsesværktøjer. ROFUS giver dig mulighed for at udelukke dig selv fra alle danske spillesider med ét klik.",
-          },
-          {
-            question: "Skal jeg betale skat af gevinster fra online casino?",
-            answer: "Nej, alle gevinster fra online casinoer med gyldig dansk licens er 100 % skattefri – uanset størrelse. Skatten er betalt af casinooperatøren via licensafgiften. Gevinster fra online casinoer uden dansk licens er derimod skattepligtige, og du mister al spillerbeskyttelse.",
-          },
-          {
-            question: "Hvorfor bør jeg sammenligne online casinoer, før jeg vælger?",
-            answer: "Fordi der er markante forskelle mellem online casinoer i Danmark – fra udbetalingstider og spiludvalg til bonusvilkår og kundeservice. En grundig sammenligning hjælper dig med at undgå skjulte vilkår og finde det spillested, der reelt matcher dine præferencer. Vores uafhængige tests gør det nemt at sammenligne på tværs af de vigtigste kriterier.",
-          },
-          {
-            question: "Hvilke casinospil giver de bedste vinderchancer?",
-            answer: "Blackjack har den laveste house edge (ned til 0,5 % med optimal strategi), efterfulgt af baccarat (ca. 1,06 %) og video poker (op til 99,5 % RTP). Blandt spilleautomater varierer RTP fra 88 % til 97 %+. Højere RTP betyder bedre langsigtede chancer, men volatilitet spiller også en rolle for din oplevelse.",
-          },
-        ]} />
       </div>
-      </LazySection>
     </>
   );
 };
