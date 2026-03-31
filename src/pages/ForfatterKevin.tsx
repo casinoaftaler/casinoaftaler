@@ -274,12 +274,11 @@ export default function ForfatterKevin() {
                 </div>
               </div>
               <p className="text-muted-foreground leading-relaxed">
-                Kevin er streamer og forfatter på Casinoaftaler.dk og bidrager med praktisk erfaring fra live-spil og casinotests.
-                Han deltager aktivt i community-turneringer og arbejder med udvikling og forbedring af platformens funktioner.
-                Hans ekspertise dækker alt fra{" "}
-                <Link to="/casinospil" className="text-primary hover:underline">casinospil</Link> og bonusanalyse til
-                teknisk optimering, og han følger nøje{" "}
-                <Link to="/saadan-tester-vi-casinoer" className="text-primary hover:underline">hvordan vi tester casinoer</Link>.
+                Kevin er streamer og spiludvikler hos Casinoaftaler.dk. Han streamer slots live på Twitch og udvikler
+                community-spil i <Link to="/community/slots" className="text-primary hover:underline">spillehallen</Link>.
+                Kevin blev kontaktet af Jonas for at hjælpe med streaming og spiludvikling, og bidrager
+                med sin erfaring fra{" "}
+                <Link to="/casinospil" className="text-primary hover:underline">casinospil</Link> og live-gameplay.
                 Læs mere om{" "}
                 <Link to="/community" className="text-primary hover:underline">vores community</Link>.
               </p>
