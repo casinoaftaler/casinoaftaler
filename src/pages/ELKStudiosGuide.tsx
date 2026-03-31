@@ -28,6 +28,13 @@ const ELKStudiosGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I en branche hvor de fleste udviklere måler succes i antal udgivelser per måned, har ELK Studios valgt en radikalt anderledes vej. Grundlagt i 2012 i Stockholm af en gruppe ingeniører og designere med baggrund i film- og spilproduktion, har dette svenske boutique-studio konsekvent prioriteret dybde over bredde. Hvor <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> udgiver 6-8 titler månedligt og har en portefølje på over 250 spil, har ELK Studios efter 13 års intensivt arbejde rundet 80 titler. Det er ikke en svaghed – det er en bevidst strategi der har vundet dem adskillige EGR Awards og brancherespekt der overgår studios med ti gange så mange titler. Hvert eneste ELK-spil repræsenterer 6-9 måneders koncentreret udvikling – mere end dobbelt så lang tid som branchens gennemsnit.
         </p>
+        <ReviewScreenshot
+          src={elkLogoBanner}
+          alt="ELK Studios officielt logo med karakteristiske spilkarakterer fra populære titler som Wild Toro, Bompers og Cygnus"
+          caption="ELK Studios – det svenske boutique-studios visuelle identitet med ikoniske karakterer fra deres portefølje"
+          eager={true}
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           ELK Studios' grundlæggende innovation er en todelt teknologisk platform: Precision Spins og Avalanche-mekanikken. Precision Spins er en proprietær teknologi der giver spillere kontrol over bankroll-allokering på en måde ingen anden udvikler tilbyder. I stedet for at sætte identisk indsats per spin, kan spilleren fordele sit budget dynamisk – lavere indsats på basis-spins og højere på spins med bonuspotentiale. Det er matematisk bankroll-management integreret direkte i spilgrænsefladen, certificeret af eCOGRA for at sikre at den avancerede allokering ikke kompromitterer spilets fairness. Precision Spins tilbyder typisk tre til fem budget-profiler der automatisk justerer indsatsen baseret på spilets matematiske model – en innovation der ikke har nogen direkte konkurrent i branchen.
         </p>
