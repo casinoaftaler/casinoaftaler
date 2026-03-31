@@ -527,18 +527,18 @@ const OmTeamet = () => {
             <div className="rounded-xl border border-border bg-card p-5">
               <Link to="/forfatter/kevin" className="group">
                 <div className="flex items-center gap-3 mb-3">
-                  <img src={kevinImage} alt="Kevin – IT Medansvarlig" className="h-12 w-12 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors" width={48} height={48} loading="lazy" />
+                  <img src={kevinImage} alt="Kevin – Streamer & Spiludvikler" className="h-12 w-12 rounded-full object-cover object-top ring-2 ring-border group-hover:ring-primary transition-colors" width={48} height={48} loading="lazy" />
                   <div>
                     <p className="font-semibold group-hover:text-primary transition-colors">Kevin</p>
-                    <p className="text-xs text-muted-foreground">Casino-streamer & IT Medansvarlig</p>
+                    <p className="text-xs text-muted-foreground">Casino-streamer & Spiludvikler</p>
                   </div>
                 </div>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Dækker <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>, <Link to="/hurtig-udbetaling" className="text-primary underline hover:text-primary/80">udbetalingshastighed</Link>, spiludviklere og teknisk platformudvikling. Streamer med 3+ års erfaring.
+                Streamer <Link to="/community/slots" className="text-primary underline hover:text-primary/80">slots</Link> live og udvikler community-spil i <Link to="/community/slots" className="text-primary underline hover:text-primary/80">spillehallen</Link>. Streamer med 4+ års erfaring.
               </p>
               <Link to="/forfatter/kevin" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
-                Se Kevin – Casino & IT <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                Se Kevin – Streamer & Spil <ArrowRight className="ml-1 h-3.5 w-3.5" />
               </Link>
             </div>
             {/* Ajse */}
