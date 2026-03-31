@@ -12,6 +12,11 @@ import {
   Sparkles,
   Rocket,
 } from "lucide-react";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import boomingLogo from "@/assets/screenshots/booming-games-logo-officielt.webp";
+import boomingBuffaloGameplay from "@/assets/screenshots/booming-buffalo-hold-and-win-gameplay.webp";
+import boomingBuffaloBonus from "@/assets/screenshots/booming-buffalo-hold-and-win-bonus.webp";
+import boomingMga from "@/assets/screenshots/booming-games-mga-licens.webp";
 
 const BoomingGamesGuide = () => (
   <ProviderPage
@@ -24,6 +29,13 @@ const BoomingGamesGuide = () => (
         <p>
           <strong>Booming Games</strong> er et Malta-baseret spiludviklingsstudie der siden grundlæggelsen i 2014 har etableret sig som en af de mest produktive og geografisk diversificerede mid-tier udviklere i den globale iGaming-industri. Med hovedkontor i Sliema, Malta, og udviklingshold fordelt mellem Isle of Man og flere asiatiske lokationer har studiet opbygget et imponerende katalog på over <strong>200 unikke spillemaskiner</strong> – en bedrift der placerer dem i selskab med langt større studier med betydeligt flere ressourcer. Booming Games' succes er ikke bygget på et enkelt viralt hit eller en banebrydende mekanik, men derimod på en systematisk tilgang til spiludvikling der prioriterer konsistens, markedsrelevans og teknologisk effektivitet.
         </p>
+        <ReviewScreenshot
+          src={boomingLogo}
+          alt="Booming Games officielt logo – Malta-baseret spiludvikler med 200+ spillemaskiner og proprietær Felt-teknologi"
+          caption="Booming Games' officielle logo – grundlagt 2014 i Sliema, Malta"
+          eager
+          size="medium"
+        />
         <p>
           Det der fundamentalt adskiller Booming Games fra størstedelen af deres konkurrenter er den <strong>proprietære Felt-teknologi</strong> – en komplet spilmotor og integrationsplatform der muliggør hurtig spiludvikling, fleksibel tilpasning til individuelle operatørers behov og problemfri distribution via en enkelt API. Hvor mange mid-tier studier er afhængige af tredjepartsplatforme til distribution (via aggregatorer som <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gamings</Link> Silver Bullet eller Yggdrasils YGS Masters), har Booming Games bygget deres egen infrastruktur fra bunden. Denne B2B-først-tilgang har gjort det muligt for studiet at indgå direkte partnerskaber med hundredvis af online casinoer på tværs af regulerede markeder i Europa, Latinamerika og Asien – en distributionsbredde der typisk er forbeholdt tier-1 udviklere.
         </p>
@@ -70,6 +82,12 @@ const BoomingGamesGuide = () => (
         <p>
           Booming Games' spiludbud spænder over et bemærkelsesværdigt bredt spektrum af temaer og mekanikker, der afspejler studiets globale ambitioner og forståelse af diverse spillerpræferencer. Fra <strong>klassiske frugtmaskiner</strong> som Burning Classics og Sizzling Fruits til <strong>avancerede video slots</strong> med komplekse bonussystemer og progressive jackpots, dækker studiet praktisk talt enhver spillerpræference. Denne tematiske mangfoldighed er ikke tilfældig – den er en bevidst strategi der gør Booming Games attraktive for operatører på tværs af markeder med meget forskellige kulturelle præferencer.
         </p>
+        <ReviewScreenshot
+          src={boomingBuffaloGameplay}
+          alt="Buffalo Hold and Win gameplay fra Booming Games – 5x3 slot med Grand, Major og Mini jackpots og nordamerikansk prærie-tema"
+          caption="Buffalo Hold and Win – en af Booming Games' populære Hold & Win-titler med tredobbelt jackpot-system"
+          size="full"
+        />
         <p>
           Studiets styrke ligger i evnen til at kombinere velkendte, gennemprøvede mekanikker som <strong>Hold & Win</strong>, <strong>Book-style free spins</strong> og <strong>cascading wins</strong> med unikke twists der giver hvert spil sin egen identitet. Hvor mange mid-tier studier simpelthen kopierer populære mekanikker fra tier-1 udviklere, tilføjer Booming Games konsekvent et lag af innovation – hvad enten det er en samlingsmekanik (Cash Pig), en power-meter (Wild Energy) eller en crystal chance-feature (Book of Wizard). Denne tilgang sikrer at spillere der kender de grundlæggende mekanikker altid møder noget nyt og uventet i Booming Games' titler.
         </p>
@@ -92,6 +110,12 @@ const BoomingGamesGuide = () => (
         <p>
           Alle spil er certificeret af anerkendte uafhængige testlaboratorier, herunder <strong>BMM Testlabs</strong> og <strong>iTech Labs</strong>, der verificerer RNG-integritet (Random Number Generator), matematiske modeller og overensstemmelse med regulatoriske krav for fairness og tilfældighed. Booming Games' engagement i <Link to="/ansvarligt-spil" className="text-primary underline hover:text-primary/80">ansvarligt spil</Link> understøttes yderligere af deres implementering af responsible gaming-værktøjer i Felt-platformen, herunder sessions-grænser, tabsgrænser og selvudelukkelsesmekanismer der kan aktiveres direkte i spilklienten.
         </p>
+        <ReviewScreenshot
+          src={boomingMga}
+          alt="Malta Gaming Authority (MGA) officielt logo – Booming Games er licenseret af MGA som primær regulatorisk myndighed"
+          caption="Malta Gaming Authority – Booming Games' primære licens siden grundlæggelsen"
+          size="compact"
+        />
       </div>
     }
     pros={[
@@ -209,6 +233,12 @@ const BoomingGamesGuide = () => (
           Felt-platformen tilbyder fire kernefunktioner der tilsammen forklarer Booming Games' evne til at konkurrere med langt større studier: (1) <strong>Hurtig Integration</strong> via enkelt API til hele kataloget – operatører kan onboarde alle 200+ spil på under 48 timer. (2) <strong>Multi-Jurisdiktion Compliance</strong> med automatisk tilpasning per marked, inklusive RTP-varianter og reguleringsspecifikke funktioner som responsible gaming-værktøjer. (3) <strong>Adaptiv Matematik</strong> der tillader operatører at vælge mellem godkendte RTP-niveauer per jurisdiktion uden at kompromittere spilintegriteten. (4) <strong>Gamification Suite</strong> med indbyggede turneringsværktøjer, jackpot-systemer, leaderboard-funktioner og achievements der kan aktiveres direkte i spilklienten.
         </p>
         <h3 className="text-xl font-bold mt-6 mb-4">Matematisk Modellering og Kvalitetssikring</h3>
+        <ReviewScreenshot
+          src={boomingBuffaloBonus}
+          alt="Buffalo Hold and Win bonusfunktioner – Hold and Win med guldmønter og Major Free Spins med scatter-symboler fra Booming Games"
+          caption="Buffalo Hold and Win bonusrunder – Hold & Win med progressive mønter (venstre) og Major Free Spins (højre)"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Hvert Booming Games-spil gennemgår en omfattende matematisk modelleringsproces der starter med definition af målvolatilitet, RTP-niveau og gevinstdistribution. Modellerne simuleres over millioner af spins for at verificere at den faktiske performance matcher det ønskede design – en proces der typisk tager 3-4 uger per titel og involverer dedikerede matematikere med baggrund i statistik og sandsynlighedsberegning. Denne stringens sikrer at spillere kan stole på at de publicerede RTP-værdier er nøjagtige, og at spillenes volatilitetsprofiler matcher det annoncerede niveau – en detalje der adskiller seriøse studier fra dem der genbruger standardiserede matematiske modeller uden tilpasning.
         </p>
