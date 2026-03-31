@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import blueprintLogo from "@/assets/screenshots/blueprint-logo-officielt.webp";
+import blueprintSlots from "@/assets/screenshots/blueprint-slots-katalog.webp";
+import blueprintEyeOfHorus from "@/assets/screenshots/blueprint-eye-of-horus-gameplay.webp";
+import blueprintMga from "@/assets/screenshots/blueprint-mga-licens.webp";
 
 const BlueprintGamingGuide = () => (
   <ProviderPage
@@ -24,6 +29,13 @@ const BlueprintGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Der er en udbredt misforståelse blandt danske casinospillere: at Blueprint Gaming blot er endnu et studio der licenserer <Link to="/megaways-slots" className="text-primary underline hover:text-primary/80">Megaways</Link>-mekanikken fra <Link to="/spiludviklere/big-time-gaming" className="text-primary underline hover:text-primary/80">Big Time Gaming</Link> og producerer varianter. Det er, for at sige det mildt, en grov forsimpling. Blueprint Gaming, grundlagt i Newark, England i 2001, er et af de ældste og mest erfarne digitale spiludviklerstudier i Europa – med rødder der strækker sig tilbage til den fysiske spilleautomat-industri. Deres portefølje på over 200 titler, et proprietært progressivt jackpot-netværk (Jackpot King), og en Gauselmann Group-backing gør dem til en af branchens mest komplette aktører.
         </p>
+        <ReviewScreenshot
+          src={blueprintLogo}
+          alt="Blueprint Gaming officielt logo med den ikoniske Gauselmann-sol – britisk spiludvikler grundlagt 2001"
+          caption="Blueprint Gamings officielle logo – ejet af Gauselmann Group (Merkur)"
+          eager
+          size="medium"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Blueprint Gamings DNA er britisk – og det mærkes i alt hvad de producerer. Den britiske gambling-kultur har altid prioriteret action og potentiale over æstetik og subtilitet. Hvor svenske studios som <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link> og Thunderkick designer for den reflekterende spiller der værdsætter visuel fidelitet og matematisk elegance, designer Blueprint for spilleren der vil have ting til at ske – hurtigt, dramatisk og med store tal på skærmen. Deres spil er høj-energi, feature-rige og designet til at generere øjeblikke af intens spænding.
         </p>
@@ -108,6 +120,12 @@ const BlueprintGamingGuide = () => (
         </div>
 
         <h3 className="text-xl font-bold mb-3 mt-6">Jackpot King: Sådan Fungerer Netværket</h3>
+        <ReviewScreenshot
+          src={blueprintEyeOfHorus}
+          alt="Eye of Horus The Golden Tablet Gold Spins gameplay – Blueprint Gaming slot med egyptisk tema og Jackpot King integration"
+          caption="Eye of Horus Golden Tablet – et af Blueprints mest populære Jackpot King-spil"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Jackpot King er Blueprint Gamings mest distinctive tekniske bidrag til branchen – et progressivt jackpot-netværk der forbinder udvalgte spil i et fælles pulje-system. Mekanikken fungerer således: en lille procentdel af hver indsats (typisk 1-3%) kanaliseres til Jackpot King-puljen. Puljen deles i tre niveauer – Royal Pot, Regal Pot og King (den store jackpot). Jackpot King-runden udløses tilfældigt under basis-spillet og præsenterer spilleren for et separat mini-spil med en grid af kroner og juveler, hvor målet er at matche symboler for at avancere gennem jackpot-niveauerne.
         </p>
@@ -138,6 +156,12 @@ const BlueprintGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Blueprint Gamings katalog spænder fra klassiske 5x3-slots til deres mest innovative Megaways-produktioner. Nedenstående seks titler repræsenterer bredden i porteføljen – fra det ikoniske Jackpot King-system til de mest populære Megaways-varianter. Hvert spil analyseres med konkrete tal og strategisk kontekst for danske spillere.
         </p>
+        <ReviewScreenshot
+          src={blueprintSlots}
+          alt="Blueprint Gaming slots katalog med Game of Thrones, The Pig Wizard, Red Hot Chilli, Eye of Horus og The Flintstones Rocky Riches"
+          caption="Udvalg fra Blueprint Gamings katalog – fra licenserede IP-titler til klassiske slots"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Bemærk: RTP kan variere afhængigt af, om du spiller Jackpot King-versionen eller standardversionen af et givet spil. Jackpot King-varianter har typisk 1-3 procentpoints lavere basis-RTP, men inkluderer adgang til det progressive jackpot-netværk. Tjek altid den specifikke RTP hos dit valgte{" "}
           <Link to="/top-10-casino-online" className="text-primary underline hover:text-primary/80">online casino</Link>.
@@ -160,6 +184,12 @@ const BlueprintGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           For danske spillere er det væsentligt at Blueprint Gaming er fuldt certificeret til det danske marked via Spillemyndigheden. Alle spil er testet og godkendt af uafhængige laboratorier (GLI og BMM Testlabs) for RNG-integritet og RTP-nøjagtighed. Jackpot King-systemet er separat certificeret for at sikre retfærdighed i jackpot-puljens allokering og udbetaling – en ekstra kompleksitet der kræver specialiseret regulatorisk godkendelse.
         </p>
+        <ReviewScreenshot
+          src={blueprintMga}
+          alt="Malta Gaming Authority (MGA) officielt logo – Blueprint Gaming er licenseret af MGA til europæisk drift"
+          caption="Malta Gaming Authority – en af Blueprint Gamings primære regulatoriske licenser"
+          size="compact"
+        />
         <p className="text-muted-foreground leading-relaxed">
           Gauselmann Groups compliance-infrastruktur understøtter Blueprints regulatoriske position: koncernen har årtiers erfaring med europæisk gambling-regulering fra den fysiske sektor, og denne erfaring oversættes direkte til den digitale operation. Blueprint overholder UKGC's strenge krav til reklame-begrænsninger, spillerbeskyttelse og social ansvarlighed – standarder der i mange tilfælde overgår hvad der kræves i andre jurisdiktioner.
         </p>
