@@ -400,8 +400,11 @@ const BingoGuide = () => {
             ))}
           </div>
 
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="mb-4 text-muted-foreground leading-relaxed">
             <strong>Konklusion:</strong> Bingo er det oplagte valg hvis du prioriterer social interaktion, fællesskab og en afslappet spiloplevelse over rå RTP og strategisk dybde. Spillere der foretrækker højere RTP og strategiindflydelse bør overveje <Link to="/casinospil/blackjack" className={linkClass}>blackjack</Link> eller <Link to="/casinospil/spillemaskiner/hoej-rtp" className={linkClass}>spillemaskiner med høj RTP</Link>. Mange spillere kombinerer bingo med andre spiltyper – fx bingo som social aktivitet og slots til gevinstjagt.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            For spillere der søger et lignende ukompliceret format med højere tempo, kan <Link to="/casinospil/keno" className={linkClass}>keno</Link> være et attraktivt alternativ – det kombinerer nummertrækningens spænding med individuel spiller-kontrol over risikoprofilen. <Link to="/casinospil/skrabespil" className={linkClass}>Online skrabespil</Link> er endnu hurtigere og simplere, med øjeblikkeligt resultat og RTP op til 97%. Og for dem der foretrækker klassisk bordspils-atmosfære tilbyder <Link to="/casinospil/roulette" className={linkClass}>roulette</Link> en social oplevelse med 97,3% RTP.
           </p>
         </section>
 
