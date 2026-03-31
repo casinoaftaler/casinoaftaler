@@ -919,7 +919,7 @@ const CasinoMedDanskLicens = () => {
         <CasinospilMoneyLinks gameName="casino med dansk licens" currentPath="/casino-med-dansk-licens" />
 
         {/* ── LatestNewsByCategory ── */}
-        <LatestNewsByCategory />
+        <LatestNewsByCategory pagePath="/casino-med-dansk-licens" />
 
         {/* ── RelatedGuides ── */}
         <RelatedGuides currentPath="/casino-med-dansk-licens" />
