@@ -69,6 +69,11 @@ const BigTimeGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Hitfrekvensen i BTG-spil er typisk 18-25% – lavere end industrigennemsnittet på 25-35%. Det betyder at spillere oplever længere perioder uden gevinst, men med højere individuelle gevinster når de kommer. Denne profil tiltrækker high-risk-segmentet: streamere, erfarne spillere og dem der søger adrenalin snarere end underholdning. Det er den diametralt modsatte tilgang til <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnts</Link> lavere-volatilitet, højere-hitfrekvens-filosofi.
         </p>
+        <ReviewScreenshot
+          src={btgExtraChilli}
+          alt="Extra Chilli Megaways gameplay screenshot – 34.300 Megaways vinderkombinationer med Feature Drop bonus buy til $100"
+          caption="Extra Chilli Megaways i aktion – Megaways-tælleren viser 34.300 vinderkombinationer og Feature Drop til $100"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Sammenlignet med <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>, der også er en mekanik-innovator under Evolution, differentierer BTG sig fundamentalt gennem sin IP-licensering. Nolimit City holder sine patenter (xWays, xNudge, xBomb, xSplit) eksklusive til egne titler; BTG licenserer Megaways aggressivt til hele branchen. Begge strategier har merit: Nolimit beholder eksklusiviteten og brand-identiteten, BTG maksimerer markedspenetration og royalty-indtægter. Det er innovator vs. licensor – to sider af mekanik-innovation med vidt forskellige kommercielle profiler.
         </p>
