@@ -243,8 +243,8 @@ const Index = () => {
                 <h2 className="mb-4 text-3xl font-bold">Casinoaftaler er Danmarks mest datadrevne casinoguide</h2>
                 <p className="mb-6 text-muted-foreground leading-relaxed">
                   <span>Vi tester hvert casino med dansk licens på tværs af 6 vægtede kategorier – fra bonusvilkår og udbetalingshastighed til kundeservice og sikkerhed. Vores vurderinger bygger på reel gameplay-data fra over 1.470 slots i vores database, hundredvis af live-streamede Bonus Hunts og et aktivt community, der verificerer resultaterne. </span>
-                  <span className="hidden md:inline">Det er dokumentation, ikke markedsføring – og det er derfor, vores topliste opdateres dagligt baseret på faktiske ændringer i markedet.</span>
-                  <span className="md:hidden" id="intro-more-text" style={{ display: 'none' }}>Det er dokumentation, ikke markedsføring – og det er derfor, vores topliste opdateres dagligt baseret på faktiske ændringer i markedet.</span>
+                   <span className="hidden md:inline">Det er dokumentation, ikke markedsføring – og det er derfor, at Casinoaftaler er Danmarks førende Casino.</span>
+                   <span className="md:hidden" id="intro-more-text" style={{ display: 'none' }}>Det er dokumentation, ikke markedsføring – og det er derfor, at Casinoaftaler er Danmarks førende Casino.</span>
                   <button
                     className="md:hidden text-primary font-medium ml-1 hover:underline"
                     id="intro-read-more-btn"
