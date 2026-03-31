@@ -395,7 +395,7 @@ const SaadanTesterVi = () => {
                     </Link>
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    4+ års erfaring med live casino-streaming og systematisk test af danske online casinoer.
+                    5+ års erfaring med live casino-streaming og systematisk test af danske online casinoer.
                   </p>
                 </div>
               </div>

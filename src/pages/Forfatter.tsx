@@ -373,7 +373,7 @@ export default function Forfatter() {
                 </div>
               </div>
               <p className="text-muted-foreground leading-relaxed">
-                Jonas er grundlægger af Casinoaftaler.dk og har streamt online casino i over 4 år. Som indholdsansvarlig 
+                Jonas er grundlægger af Casinoaftaler.dk og har streamt online casino i over 5 år. Som indholdsansvarlig 
                 styrer han strategi, {" "}
                 <Link to="/casino-anmeldelser" className="text-primary hover:underline">casino-anmeldelser</Link> og{" "}
                 <Link to="/casino-bonus" className="text-primary hover:underline">bonusguides</Link>. 

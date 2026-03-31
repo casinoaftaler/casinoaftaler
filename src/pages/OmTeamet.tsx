@@ -590,7 +590,7 @@ const OmTeamet = () => {
                 </div>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Tester <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">casino bonusser</Link> live på stream og skaber engagerende indhold på <Link to="/community/slots" className="text-primary underline hover:text-primary/80">Twitch</Link> og YouTube. Streamer med 4+ års erfaring.
+                Tester <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">casino bonusser</Link> live på stream og skaber engagerende indhold på <Link to="/community/slots" className="text-primary underline hover:text-primary/80">Twitch</Link> og YouTube. Streamer med 5+ års erfaring.
               </p>
               <Link to="/forfatter/frederik" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
                 Se Frederik – Streamer <ArrowRight className="ml-1 h-3.5 w-3.5" />
