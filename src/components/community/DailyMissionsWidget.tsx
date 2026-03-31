@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { useDwellRewardProgress, activateMissionMode } from "@/hooks/useDwellReward";
+import { useMissionStreak, STREAK_MILESTONES } from "@/hooks/useMissionStreak";
 import { useAuth } from "@/hooks/useAuth";
-import { Check, Coins, Clock, ArrowRight, Sparkles } from "lucide-react";
+import { Check, Coins, Clock, ArrowRight, Sparkles, Flame } from "lucide-react";
 
 /** Full Daily Missions widget for the community left sidebar */
 export function DailyMissionsWidget() {
   const { user } = useAuth();
   const { pages, completedCount, totalPages, isLoading } = useDwellRewardProgress();
+  const { currentStreak, nextMilestone } = useMissionStreak();
 
   if (!user) return null;
   if (isLoading) return null;
