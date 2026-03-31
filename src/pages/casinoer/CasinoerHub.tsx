@@ -68,6 +68,15 @@ const SUBCATEGORIES = [
       "Kun Spillemyndighed-licenserede operatører er lovlige i Danmark. Se hvad licensen kræver, og hvordan du tjekker et casino.",
   },
   {
+    title: "Casino med Dansk Licens",
+    href: "/casino-med-dansk-licens",
+    icon: ShieldCheck,
+    badge: "Guide",
+    badgeVariant: "default" as const,
+    description:
+      "Komplet guide til casinoer med dansk licens: skattefri gevinster, max 10x omsætningskrav, ROFUS og MitID-verifikation.",
+  },
+  {
     title: "VR Casinoer",
     href: "/casinoer/vr-casinoer",
     icon: Monitor,
@@ -290,7 +299,7 @@ export default function CasinoerHub() {
           </Card>
 
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Vores <Link to="/casino-licenser" className={linkClass}>licensguide</Link> går i dybden med det komplette regulatoriske landskab: fra hvordan du verificerer en licens på spillemyndigheden.dk, til hvad der sker hvis et casino mister sin licens (dine midler returneres via den lovpligtige garantistillelse). Vi dækker også de tekniske aspekter af licensbetingelserne, herunder krav til datahåndtering (GDPR-compliance), hvidvask-forebyggelse (AML/KYC) og rapportering af mistænkelig adfærd.
+            Vores <Link to="/casino-licenser" className={linkClass}>licensguide</Link> går i dybden med det komplette regulatoriske landskab: fra hvordan du verificerer en licens på spillemyndigheden.dk, til hvad der sker hvis et casino mister sin licens (dine midler returneres via den lovpligtige garantistillelse). Se også vores dedikerede guide til <Link to="/casino-med-dansk-licens" className={linkClass}>casino med dansk licens</Link>, der dækker alt fra skattefrihed og omsætningskrav til MitID-verifikation. Vi dækker også de tekniske aspekter af licensbetingelserne, herunder krav til datahåndtering (GDPR-compliance), hvidvask-forebyggelse (AML/KYC) og rapportering af mistænkelig adfærd.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Et særligt aspekt af det danske marked er <Link to="/ansvarligt-spil" className={linkClass}>ROFUS-registret</Link> – det nationale selvudelukkelsesprogram, der giver spillere mulighed for at blokere sig selv fra alle danske casinoer i en valgfri periode. Alle licenserede operatører er forpligtede til at tjekke ROFUS ved kontooprettelse og login. Dette er et af de mest avancerede ansvarligt spil-systemer i verden, og det er unikt for det danske marked.

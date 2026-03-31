@@ -162,6 +162,7 @@ export const routeLabels: Record<string, string> = {
   // Spillemyndighed & Licenser
   "/spillemyndigheden": "Spillemyndigheden",
   "/casino-licenser": "Casino Licenser",
+  "/casino-med-dansk-licens": "Casino med Dansk Licens",
   "/licenserede-casinoer": "Licenserede Casinoer",
   "/saadan-tester-vi-casinoer": "Sådan Tester Vi Casinoer",
   
