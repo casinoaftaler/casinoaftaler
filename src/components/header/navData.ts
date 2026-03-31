@@ -33,6 +33,7 @@ export const CASINO_LINKS: NavLink[] = [
   { to: "/casinoer/vr-casinoer", label: "VR Casinoer", iconName: "glasses" },
   { to: "/casinoer/spil-casino-for-sjov", label: "Spil Casino for Sjov", iconName: "gamepad-2" },
   { to: "/casinoer/casino-og-skat", label: "Casino og Skat", iconName: "receipt" },
+  { to: "/casino-med-dansk-licens", label: "Casino med Dansk Licens", iconName: "shield-check" },
 ];
 
 export const NYE_CASINOER_LINKS: NavLink[] = [
