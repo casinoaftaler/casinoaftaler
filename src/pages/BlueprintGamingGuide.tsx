@@ -143,6 +143,12 @@ const BlueprintGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Blueprint Gamings katalog spænder fra klassiske 5x3-slots til deres mest innovative Megaways-produktioner. Nedenstående seks titler repræsenterer bredden i porteføljen – fra det ikoniske Jackpot King-system til de mest populære Megaways-varianter. Hvert spil analyseres med konkrete tal og strategisk kontekst for danske spillere.
         </p>
+        <ReviewScreenshot
+          src={blueprintSlots}
+          alt="Blueprint Gaming slots katalog med Game of Thrones, The Pig Wizard, Red Hot Chilli, Eye of Horus og The Flintstones Rocky Riches"
+          caption="Udvalg fra Blueprint Gamings katalog – fra licenserede IP-titler til klassiske slots"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Bemærk: RTP kan variere afhængigt af, om du spiller Jackpot King-versionen eller standardversionen af et givet spil. Jackpot King-varianter har typisk 1-3 procentpoints lavere basis-RTP, men inkluderer adgang til det progressive jackpot-netværk. Tjek altid den specifikke RTP hos dit valgte{" "}
           <Link to="/top-10-casino-online" className="text-primary underline hover:text-primary/80">online casino</Link>.
