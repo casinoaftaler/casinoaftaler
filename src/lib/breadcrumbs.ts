@@ -297,7 +297,7 @@ export const routeLabels: Record<string, string> = {
   "/casinoer/hoej-rtp": "Høj RTP",
   "/casinoer/crypto-casino": "Crypto Casino",
   "/casinoer/vr-casinoer": "VR Casinoer",
-  "/mobil-casino": "Mobil Casinoer",
+  // "/casinoer/mobil-casinoer" removed – redirects to /mobil-casino
   "/casinoer/spil-casino-for-sjov": "Spil Casino for Sjov",
   "/casinoer/casino-og-skat": "Casino og Skat",
   // Casino Nyheder
