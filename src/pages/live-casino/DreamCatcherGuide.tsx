@@ -120,7 +120,7 @@ const DreamCatcherGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="28 min" />
+        <AuthorMetaBar author="jonas" readTime="37 min" />
 
 
         <SnippetAnswer answer="Dream Catcher er Evolutions enkleste money wheel med 96,58% RTP. Ideelt for begyndere i live casino game shows." />

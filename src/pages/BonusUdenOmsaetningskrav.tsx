@@ -168,7 +168,7 @@ const BonusUdenOmsaetningskrav = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="niklas" readTime="18 Min." />
+        <AuthorMetaBar author="niklas" readTime="96 Min." />
 
         <SnippetAnswer answer="Bonus uden omsætningskrav giver 100% gevinstkonvertering – du hæver gevinster direkte. Gevinstloftet (typisk 500-2.000 kr.) er den reelle begrænsning, ikke omsætningen." />
 

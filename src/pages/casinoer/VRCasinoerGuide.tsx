@@ -64,7 +64,7 @@ const VRCasinoerGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="21 min" />
+        <AuthorMetaBar author="jonas" readTime="47 min" />
 
 
         <SnippetAnswer answer="VR casinoer er stadig i tidlig fase i Danmark. De bedste oplevelser kræver Meta Quest headset og tilbyder immersive bordspil." />

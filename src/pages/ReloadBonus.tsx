@@ -196,7 +196,7 @@ const ReloadBonus = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="niklas" readTime="14 Min." />
+        <AuthorMetaBar author="niklas" readTime="168 Min." />
 
         <SnippetAnswer answer="Reload-bonus matcher din indbetaling med 25-50% – ugentligt eller månedligt. Matematisk ofte mere fordelagtig end velkomstbonussen takket være lavere omsætningskrav." />
 

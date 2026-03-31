@@ -58,7 +58,7 @@ const StakeCasinoAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="64 Min." />
         <CasinoReviewHero slug="stake-casino" casinoName="Stake Casino" />
         <ReviewMoneyLinks showMobilePay />
 

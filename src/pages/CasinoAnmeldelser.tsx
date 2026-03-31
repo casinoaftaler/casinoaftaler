@@ -240,7 +240,7 @@ const CasinoAnmeldelser = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="15 Min." />
 
         <SnippetAnswer answer="Vi har testet 29 danske casinoer med rigtige penge over 14+ dage hver. Sammenlign bonus, udbetalingstid og spiludvalg – alle med gyldig dansk licens fra Spillemyndigheden." />
 

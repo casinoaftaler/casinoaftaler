@@ -122,7 +122,7 @@ const Spillemaskiner = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="63 Min." />
 
         <SnippetAnswer answer="Spillemaskiner (online slots) udgør 70% af casinoomsætningen. RTP varierer fra 94-97%, og volatilitet bestemmer gevinstmønsteret. Vælg spil baseret på matematik, ikke tema." />
 

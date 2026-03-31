@@ -148,7 +148,7 @@ const DoubleExposureBlackjackGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="120 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Double Exposure blackjack-bord med begge dealerkort synlige" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

@@ -66,7 +66,7 @@ const NyeVsEtablerede = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" readTime="115 Min." />
 
 
         <SnippetAnswer answer="Nye casinoer tilbyder typisk bedre bonusser og moderne UI, mens etablerede casinoer har bredere spiludvalg og dokumenteret track record." />

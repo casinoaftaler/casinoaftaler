@@ -114,7 +114,7 @@ const LiveBaccaratGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" readTime="101 Min." />
 
         <SnippetAnswer answer="Live baccarat har en af de laveste husforbedeler med 1,06% på banker-væddemål. Tilgængeligt på alle danske licenserede casinoer." />
 

@@ -253,7 +253,7 @@ const CasinoUdenKonto = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="32 Min." />
+        <AuthorMetaBar author="kevin" readTime="141 Min." />
 
         <SnippetAnswer answer="Casino uden konto (Pay N Play) lader dig spille med det samme via bankidentifikation – uden registrering eller KYC-ventetid." />
 

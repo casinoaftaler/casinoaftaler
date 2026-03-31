@@ -58,7 +58,7 @@ const NordicBetAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="8 Min." />
         <CasinoReviewHero slug="nordicbet" casinoName="NordicBet" />
         <ReviewMoneyLinks showMobilePay />
 

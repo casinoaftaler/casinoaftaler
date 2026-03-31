@@ -101,7 +101,7 @@ const NyeCasinoerDanskLicens = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" readTime="112 Min." />
 
 
         <SnippetAnswer answer="Nye casinoer med dansk licens fra Spillemyndigheden sikrer ROFUS-tilslutning, skattefri gevinster og fuld spillerbeskyttelse." />

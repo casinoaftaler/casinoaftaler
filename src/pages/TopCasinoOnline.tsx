@@ -243,7 +243,7 @@ const TopCasinoOnline = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" readTime="73 Min." />
 
         <SnippetAnswer answer="De 10 bedste online casinoer i Danmark 2026 er testet og rangeret efter bonus, udbetalingstid, spiludvalg og sikkerhed. Alle har dansk licens fra Spillemyndigheden, max 10x omsætningskrav og hurtige udbetalinger." />
 

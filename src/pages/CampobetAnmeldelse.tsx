@@ -159,7 +159,7 @@ const CampobetAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="33 Min." />
+        <AuthorMetaBar author="jonas" readTime="154 Min." />
         <CasinoReviewHero slug="campobet" casinoName="Campobet" />
         <ReviewMoneyLinks />
 

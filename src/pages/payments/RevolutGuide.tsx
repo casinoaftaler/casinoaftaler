@@ -287,7 +287,7 @@ const RevolutGuide = () => {
       responsibleGamingText="Revoluts indbyggede gambling-blokering er det mest effektive ansvarligt spil-værktøj i nogen betalingsapp. Aktivér den via app-indstillinger for at blokere alle transaktioner til casinoer. Realtidsnotifikationer giver dig også overblik over hvert eneste køb."
       snippetAnswer="Revolut er den eneste betalingsmetode med dedikeret gambling-blokering – ideel til ansvarligt spil. Instant indbetalinger via virtuelt kort og realtidsnotifikationer ved hver transaktion."
       prioritySlugs={["betinia", "spildansknu", "spilleautomaten"]}
-      readTime="20 Min."
+      readTime="116 Min."
       datePublished="2026-02-22"
     />
   );

@@ -133,7 +133,7 @@ const HurtigRegistreringGuide = () => {
       </div>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="30 Min." />
+        <AuthorMetaBar author="kevin" readTime="128 Min." />
 
 
         <SnippetAnswer answer="Hurtig registrering via MitID eller BankID tager under 2 minutter – sammenlign med traditionel registrering og Pay N Play." />

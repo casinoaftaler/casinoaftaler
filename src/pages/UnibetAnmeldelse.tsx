@@ -64,7 +64,7 @@ const UnibetAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="66 Min." />
         <CasinoReviewHero slug="unibet" casinoName="Unibet" />
         <ReviewMoneyLinks />
 

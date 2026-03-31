@@ -153,7 +153,7 @@ const LunaCasinoAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="33 Min." />
+        <AuthorMetaBar author="jonas" readTime="155 Min." />
 
         <CasinoReviewHero slug="luna-casino" casinoName="Luna Casino" />
         <ReviewMoneyLinks showMobilePay />

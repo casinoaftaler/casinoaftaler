@@ -100,7 +100,7 @@ const BonanzaGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 min" />
+        <AuthorMetaBar author="jonas" readTime="31 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Bonanza Megaways spillemaskine" loading="eager" />
         </div>

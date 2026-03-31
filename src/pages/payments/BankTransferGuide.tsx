@@ -285,7 +285,7 @@ const BankTransferGuide = () => {
       responsibleGamingText="Bankoverførslers langsomme behandlingstid kan paradoksalt nok være en fordel – ventetiden giver dig tid til at genoverveje, om du virkelig ønsker at indbetale mere. Sæt altid faste grænser i casinoets indstillinger."
       snippetAnswer="Bankoverførsel er den mest pålidelige, men langsomste metode – 2-5 hverdage for udbetalinger. Ingen beløbsgrænser og fuld bonuskvalificering. Bedst til store beløb over 50.000 kr."
       prioritySlugs={["spildansknu", "betinia", "campobet"]}
-      readTime="19 Min."
+      readTime="179 Min."
       datePublished="2026-02-18"
     />
   );

@@ -68,7 +68,7 @@ const HoejRTPGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 min" />
+        <AuthorMetaBar author="jonas" readTime="24 min" />
 
 
         <SnippetAnswer answer="Casinoer med høj RTP tilbyder slots med 96%+ tilbagebetaling. Tjek altid den specifikke RTP-konfiguration – den kan variere mellem casinoer." />

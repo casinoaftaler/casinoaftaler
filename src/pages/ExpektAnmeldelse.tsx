@@ -60,7 +60,7 @@ const ExpektAnmeldelse = () => {
         </div></div>
       </section>
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="32 Min." />
+        <AuthorMetaBar author="jonas" readTime="139 Min." />
         <CasinoReviewHero slug="expekt" casinoName="Expekt" />
         <ReviewMoneyLinks />
 

@@ -115,7 +115,7 @@ const MartingaleBlackjackGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" readTime="99 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

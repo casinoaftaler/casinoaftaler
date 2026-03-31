@@ -160,7 +160,7 @@ const ThreeCardPokerGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="40 Min." />
+        <AuthorMetaBar author="jonas" readTime="161 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Three Card Poker-bord i elegant casino med dealer og kort" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

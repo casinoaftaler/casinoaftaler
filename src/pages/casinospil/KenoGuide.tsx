@@ -219,7 +219,7 @@ const KenoGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="71 Min." />
 
         <SnippetAnswer answer="Online keno i Danmark spilles lovligt hos casinoer med dansk licens fra Spillemyndigheden. Spilleren vælger 1-15 numre fra 80 mulige, hvorefter 20 numre trækkes tilfældigt. Gevinsten afhænger af antal matches og indsats. RTP varierer fra 85-96% for online keno – markant højere end fysisk keno (60-75%). Populære varianter inkluderer Power Keno, Super Keno og video keno med bonusfunktioner. Alle danske keno-gevinster er skattefrie." />
 

@@ -164,7 +164,7 @@ const StickyBonus = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="niklas" readTime="22 Min." />
+        <AuthorMetaBar author="niklas" readTime="88 Min." />
 
         <SnippetAnswer answer="En sticky bonus sammenblander din indbetaling og bonusmidler til én saldo. Over 80% af danske bonusser er sticky – de giver mere spillekapital, men kræver fuld omsætning før udbetaling." />
 

@@ -167,7 +167,7 @@ const Omsaetningskrav = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="niklas" readTime="20 Min." />
+        <AuthorMetaBar author="niklas" readTime="108 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">Finansielt gennemgået og opdateret af Niklas, finansøkonom hos Casinoaftaler.dk.</p>
 
         <SnippetAnswer answer="Omsætningskrav er det antal gange du skal gennemspille din bonus før udbetaling. I Danmark er loftet 10x (d+b) – Europas laveste. Vælg spil med høj RTP for hurtigst mulig omsætning." />

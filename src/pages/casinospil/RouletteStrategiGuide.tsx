@@ -131,7 +131,7 @@ const RouletteStrategiGuide = () => {
 
       {/* ── BODY ── */}
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="30 Min." />
+        <AuthorMetaBar author="jonas" readTime="129 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

@@ -215,7 +215,7 @@ const GratisCasinoSpil = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 Min." />
+        <AuthorMetaBar author="jonas" readTime="84 Min." />
 
         <SnippetAnswer answer="Gratis casino spil (demotilstand) lader dig spille spillemaskiner og bordspil med virtuelle kreditter – identisk RTP, volatilitet og bonusfunktioner som rigtige penge-versioner. Over 1.000 titler er tilgængelige uden indbetaling. Perfekt til at teste nye spil, lære strategier og evaluere spiludviklere uden økonomisk risiko." />
 

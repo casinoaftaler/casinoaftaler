@@ -130,7 +130,7 @@ const HurtigUdbetalingGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 min" />
+        <AuthorMetaBar author="jonas" readTime="26 min" />
 
 
         <SnippetAnswer answer="De hurtigste casinoer i Danmark udbetaler via Trustly inden for 2 timer. MobilePay og bankoverførsler tager typisk 1-3 hverdage." />

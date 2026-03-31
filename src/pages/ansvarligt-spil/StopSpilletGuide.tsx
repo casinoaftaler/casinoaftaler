@@ -186,7 +186,7 @@ const StopSpilletGuide = () => {
       </section>
 
       <ContentPageLayout hideSidebar>
-        <AuthorMetaBar author="ajse" readTime="25 Min." />
+        <AuthorMetaBar author="ajse" readTime="79 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Juridisk og fagligt gennemgået af Ajse, juridisk redaktør hos Casinoaftaler.dk.
         </p>

@@ -65,7 +65,7 @@ const MobilCasinoerGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 min" />
+        <AuthorMetaBar author="jonas" readTime="29 min" />
 
 
         <SnippetAnswer answer="De bedste mobilcasinoer i Danmark tilbyder PWA-apps med fuld funktionalitet, biometrisk login og optimeret touch-navigation." />

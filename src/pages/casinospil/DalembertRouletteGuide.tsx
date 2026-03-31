@@ -99,7 +99,7 @@ export default function DalembertRouletteGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="37 Min." />
+        <AuthorMetaBar author="jonas" readTime="175 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="D'Alembert progression illustreret med jævnt stigende chipstakke på roulette-bord" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

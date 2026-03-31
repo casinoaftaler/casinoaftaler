@@ -63,7 +63,7 @@ const LicenseredeCasinoerGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 min" />
+        <AuthorMetaBar author="jonas" readTime="27 min" />
 
 
         <SnippetAnswer answer="Alle casinoer med dansk licens er overvåget af Spillemyndigheden, tilsluttet ROFUS og tilbyder skattefri gevinster." />

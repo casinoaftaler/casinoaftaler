@@ -153,7 +153,7 @@ const FibonacciBlackjackGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="122 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Casino blackjack-bord med Fibonacci-spiralen og chipstakke arrangeret i talrækken" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

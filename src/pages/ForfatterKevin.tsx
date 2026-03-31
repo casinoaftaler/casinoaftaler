@@ -214,7 +214,7 @@ export default function ForfatterKevin() {
       </section>
 
       <ContentPageLayout hideSidebar>
-        <AuthorMetaBar author="redaktionen" factCheckBy="jonas" readTime="5 Min." showVerified />
+        <AuthorMetaBar author="redaktionen" factCheckBy="jonas" readTime="146 Min." showVerified />
 
         {/* Profile card */}
         <section className="mb-12">

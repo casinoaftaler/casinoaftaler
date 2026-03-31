@@ -64,7 +64,7 @@ const RoyalCasinoAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" readTime="149 Min." />
         <CasinoReviewHero slug="royal-casino" casinoName="Royal Casino" />
         <ReviewMoneyLinks showMobilePay />
 

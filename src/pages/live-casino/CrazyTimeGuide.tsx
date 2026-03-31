@@ -125,7 +125,7 @@ const CrazyTimeGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="30 min" />
+        <AuthorMetaBar author="jonas" readTime="46 min" />
 
 
         <SnippetAnswer answer="Crazy Time fra Evolution har en gennemsnitlig RTP på 95,5% og fire bonus-runder med op til 25.000x. Det mest populære game show i Danmark." />

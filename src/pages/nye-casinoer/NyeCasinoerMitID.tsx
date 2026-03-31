@@ -77,7 +77,7 @@ const NyeCasinoerMitID = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" readTime="105 Min." />
 
 
         <SnippetAnswer answer="Nye casinoer med MitID giver hurtig verifikation og øjeblikkelig adgang til spil med dansk licens og fuld ROFUS-integration." />

@@ -116,7 +116,7 @@ const DeadOrAlive2Guide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="26 Min." />
+        <AuthorMetaBar author="jonas" readTime="152 Min." />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Dead or Alive 2 spillemaskine" loading="eager" />
         </div>

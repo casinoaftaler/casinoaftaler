@@ -166,7 +166,7 @@ const SwiftCasinoAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="65 Min." />
 
         <CasinoReviewHero slug="swift-casino" casinoName="Swift Casino" />
         <ReviewMoneyLinks />

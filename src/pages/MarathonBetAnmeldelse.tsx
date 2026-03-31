@@ -36,7 +36,7 @@ const MarathonBetAnmeldelse = () => {
         </div></div>
       </section>
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="35 Min." />
+        <AuthorMetaBar author="jonas" readTime="10 Min." />
         <CasinoReviewHero slug="marathonbet" casinoName="MarathonBet" />
         <ReviewMoneyLinks />
 

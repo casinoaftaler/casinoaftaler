@@ -143,7 +143,7 @@ const FordeleOgUlemperGuide = () => {
       </div>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="32 Min." />
+        <AuthorMetaBar author="kevin" readTime="142 Min." />
 
 
         <SnippetAnswer answer="Casino uden konto tilbyder hurtigere adgang, men med færre bonusmuligheder og begrænset loyalitetsprogram." />

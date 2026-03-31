@@ -64,7 +64,7 @@ const MrGreenAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="30 Min." />
+        <AuthorMetaBar author="jonas" readTime="124 Min." />
         <CasinoReviewHero slug="mr-green" casinoName="Mr Green Casino" />
         <ReviewMoneyLinks />
 

@@ -120,7 +120,7 @@ const CrapsGuide = () => {
 
       {/* ── BODY ── */}
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="25 Min." />
+        <AuthorMetaBar author="jonas" readTime="81 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img

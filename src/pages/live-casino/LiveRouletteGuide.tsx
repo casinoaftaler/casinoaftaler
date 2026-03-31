@@ -125,7 +125,7 @@ const LiveRouletteGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="20 Min." />
+        <AuthorMetaBar author="jonas" readTime="110 Min." />
 
         <SnippetAnswer answer="Live roulette med europæisk hjul har 97,30% RTP. Fransk roulette med La Partage giver 98,65% på lige væddemål." />
 

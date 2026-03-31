@@ -120,7 +120,7 @@ export default function TurneringsArkiv() {
       </section>
 
       <div className="container py-8 md:py-12">
-        <AuthorMetaBar author="jonas" readTime="25 min" />
+        <AuthorMetaBar author="jonas" readTime="43 min" />
 
         {/* Archive by month with timeline accent */}
         {isLoading ? (

@@ -334,7 +334,7 @@ const ApplePayGuide = () => {
       ]}
       snippetAnswer="Apple Pay bruger Face ID/Touch ID til øjeblikkelige indbetalinger via dit betalingskort. Kun 2 af 4 testede casinoer understøtter udbetalinger – hav Trustly som backup."
       prioritySlugs={["betinia", "spilleautomaten", "swift-casino"]}
-      readTime="24 Min."
+      readTime="162 Min."
       datePublished="2026-02-12"
     />
   );

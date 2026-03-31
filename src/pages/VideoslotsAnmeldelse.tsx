@@ -63,7 +63,7 @@ const VideoslotsAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="119 Min." />
         <CasinoReviewHero slug="videoslots" casinoName="Videoslots Casino" />
         <ReviewMoneyLinks />
 

@@ -104,7 +104,7 @@ const NyeCasinoerBonusUdenIndbetaling = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" readTime="103 Min." />
 
 
         <SnippetAnswer answer="Nye casinoer med bonus uden indbetaling giver dig free spins eller bonuspenge helt gratis – dog altid med omsætningskrav." />

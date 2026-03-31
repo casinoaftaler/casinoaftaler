@@ -115,7 +115,7 @@ const NyeCasinoer2026 = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 Min." />
+        <AuthorMetaBar author="jonas" readTime="92 Min." />
 
 
         <SnippetAnswer answer="Nye casinoer i 2026 byder på moderne teknologi, mobile-first design og konkurrencedygtige bonusser. Se hvilke der er værd at prøve." />

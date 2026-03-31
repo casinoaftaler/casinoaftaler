@@ -86,7 +86,7 @@ const SpilDanskNuAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="32 Min." />
+        <AuthorMetaBar author="jonas" readTime="140 Min." />
         <CasinoReviewHero slug="spildansknu" casinoName="SpilDanskNu" />
         <ReviewMoneyLinks showMobilePay />
 

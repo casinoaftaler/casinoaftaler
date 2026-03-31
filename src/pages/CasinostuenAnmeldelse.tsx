@@ -59,7 +59,7 @@ const CasinostuenAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="32 Min." />
+        <AuthorMetaBar author="jonas" readTime="138 Min." />
         <CasinoReviewHero slug="casinostuen" casinoName="Casinostuen" />
         <ReviewMoneyLinks />
 

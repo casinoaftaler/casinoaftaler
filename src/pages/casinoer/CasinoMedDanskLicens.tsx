@@ -146,7 +146,7 @@ const CasinoMedDanskLicens = () => {
 
       <ContentPageLayout>
         {/* ── AuthorMetaBar ── */}
-        <AuthorMetaBar author="jonas" readTime="22 Min." factCheckBy="ajse" />
+        <AuthorMetaBar author="jonas" readTime="90 Min." factCheckBy="ajse" />
 
         {/* ── SnippetAnswer ── */}
         <SnippetAnswer answer="Et casino med dansk licens fra Spillemyndigheden giver skattefri gevinster, max 10x omsætningskrav, ROFUS-selvudelukkelse og dansk klageadgang. Per 2026 har ca. 38 casinoer aktiv dansk licens. Det er den eneste licenstype, der giver fuld juridisk beskyttelse for danske spillere." />

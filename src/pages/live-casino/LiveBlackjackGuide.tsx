@@ -132,7 +132,7 @@ const LiveBlackjackGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="22 Min." />
+        <AuthorMetaBar author="jonas" readTime="91 Min." />
 
         <SnippetAnswer answer="Live blackjack med perfekt grundstrategi har en husfordel på kun 0,5%. Sidebets som Perfect Pairs og 21+3 øger variansen." />
 

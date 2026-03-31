@@ -36,7 +36,7 @@ const PokerStarsAnmeldelse = () => {
         </div></div>
       </section>
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="117 Min." />
         <CasinoReviewHero slug="pokerstars" casinoName="PokerStars" />
         <ReviewMoneyLinks />
 

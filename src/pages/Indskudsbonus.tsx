@@ -156,7 +156,7 @@ const Indskudsbonus = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="niklas" readTime="18 Min." />
+        <AuthorMetaBar author="niklas" readTime="97 Min." />
 
         <SnippetAnswer answer="En indskudsbonus (matchbonus) matcher din indbetaling med en procentdel – typisk 100% op til 1.000 kr. Den reelle værdi afhænger af omsætningskrav, bonusstruktur og RTP." />
 

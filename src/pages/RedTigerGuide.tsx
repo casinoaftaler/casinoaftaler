@@ -9,7 +9,7 @@ const RedTigerGuide = () => (
     seoDescription="Red Tiger Gaming: Daily Jackpots, Tournaments og Megaways-specialist. Opkøbt af NetEnt for £200M, nu under Evolution. 220+ spil."
     name="Red Tiger Gaming"
     heroSubtitle="Red Tiger Gaming har innoveret casinobranchen med garanterede Daily Jackpots og Tournaments-funktionen. Opkøbt for £200M, nu en nøglebrik i Evolution-koncernen."    currentPath="/spiludviklere/red-tiger"
-    readTime="20 Min."
+    readTime="109 Min."
     sectionOrder={["technical", "intro", "strategic", "games", "casinos", "history", "licenses", "proscons", "providers", "responsible"]}
     strategicTitle="Gamification-Innovatoren: Engagement Over Volatilitet"
     introTitle="Red Tiger Gaming – Hvem Er Holdet Bag Daily Jackpots?"

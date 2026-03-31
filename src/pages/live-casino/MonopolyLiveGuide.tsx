@@ -111,7 +111,7 @@ const MonopolyLiveGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="18 Min." />
+        <AuthorMetaBar author="jonas" readTime="102 Min." />
 
         <SnippetAnswer answer="Monopoly Live kombinerer money wheel med augmented reality-bonusrunder. RTP er 96,23% med op til 10.000x gevinst." />
 

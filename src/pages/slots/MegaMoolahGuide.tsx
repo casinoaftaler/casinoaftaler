@@ -69,7 +69,7 @@ const MegaMoolahGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="17 min" />
+        <AuthorMetaBar author="kevin" readTime="4 min" />
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} width="1920" height="1080" className="w-full h-auto object-cover max-h-[400px]" alt="Mega Moolah spillemaskine" loading="eager" />
         </div>

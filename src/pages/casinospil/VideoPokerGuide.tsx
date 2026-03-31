@@ -108,7 +108,7 @@ export default function VideoPokerGuide() {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="55 Min." />
+        <AuthorMetaBar author="jonas" readTime="171 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img src={heroImage} alt="Video poker maskine der viser Jacks or Better med Royal Flush" width={1920} height={600} className="w-full h-auto object-cover max-h-[400px]" loading="eager" />

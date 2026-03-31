@@ -190,7 +190,7 @@ const PokerGuide = () => {
 
       {/* ── BODY ── */}
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="38 Min." />
+        <AuthorMetaBar author="jonas" readTime="137 Min." />
 
         <div className="mb-10 overflow-hidden rounded-xl">
           <img
