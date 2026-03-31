@@ -387,7 +387,7 @@ export function ProviderPage({
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
+              <ProviderLogoIcon slug={currentPath.split("/").pop() || ""} alt={name} className="mr-1.5 h-3.5 w-auto max-w-[60px] object-contain" />
               Spiludvikler
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">{name}</h1>
