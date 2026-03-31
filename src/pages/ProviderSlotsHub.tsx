@@ -240,7 +240,7 @@ export default function ProviderSlotsHub() {
             catalog: (
               <section className="mb-12" key="catalog">
                 <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-                  <Gamepad2 className="h-7 w-7 text-primary" />
+                  <ProviderLogoIcon slug={validSlug} alt={content.displayName} className="h-7 w-auto max-w-[100px] object-contain" />
                   Alle {content.displayName} Spillemaskiner
                 </h2>
                 <ProviderCatalogSlots providerSlug={validSlug} />

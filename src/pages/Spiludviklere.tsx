@@ -620,7 +620,7 @@ const Spiludviklere = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <img src={netentLogo} alt="NetEnt" className="h-5 w-auto max-w-[60px] object-contain" loading="lazy" />
                   🎲 Klassiske Slot-Producenter – NetEnt, Play'n GO, Microgaming, Betsoft, Endorphina
                 </CardTitle>
               </CardHeader>
