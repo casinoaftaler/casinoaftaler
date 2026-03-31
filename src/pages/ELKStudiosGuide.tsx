@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import elkLogoBanner from "@/assets/screenshots/elk-studios-logo-banner.webp";
+import elkTimeline from "@/assets/screenshots/elk-studios-timeline.webp";
+import elkPugThugs from "@/assets/screenshots/elk-studios-pug-thugs-gameplay.webp";
+import elkKatalogBetinia from "@/assets/screenshots/elk-studios-katalog-betinia.webp";
 
 const ELKStudiosGuide = () => (
   <ProviderPage
@@ -23,6 +28,13 @@ const ELKStudiosGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           I en branche hvor de fleste udviklere måler succes i antal udgivelser per måned, har ELK Studios valgt en radikalt anderledes vej. Grundlagt i 2012 i Stockholm af en gruppe ingeniører og designere med baggrund i film- og spilproduktion, har dette svenske boutique-studio konsekvent prioriteret dybde over bredde. Hvor <Link to="/spiludviklere/pragmatic-play" className="text-primary underline hover:text-primary/80">Pragmatic Play</Link> udgiver 6-8 titler månedligt og har en portefølje på over 250 spil, har ELK Studios efter 13 års intensivt arbejde rundet 80 titler. Det er ikke en svaghed – det er en bevidst strategi der har vundet dem adskillige EGR Awards og brancherespekt der overgår studios med ti gange så mange titler. Hvert eneste ELK-spil repræsenterer 6-9 måneders koncentreret udvikling – mere end dobbelt så lang tid som branchens gennemsnit.
         </p>
+        <ReviewScreenshot
+          src={elkLogoBanner}
+          alt="ELK Studios officielt logo med karakteristiske spilkarakterer fra populære titler som Wild Toro, Bompers og Cygnus"
+          caption="ELK Studios – det svenske boutique-studios visuelle identitet med ikoniske karakterer fra deres portefølje"
+          eager={true}
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           ELK Studios' grundlæggende innovation er en todelt teknologisk platform: Precision Spins og Avalanche-mekanikken. Precision Spins er en proprietær teknologi der giver spillere kontrol over bankroll-allokering på en måde ingen anden udvikler tilbyder. I stedet for at sætte identisk indsats per spin, kan spilleren fordele sit budget dynamisk – lavere indsats på basis-spins og højere på spins med bonuspotentiale. Det er matematisk bankroll-management integreret direkte i spilgrænsefladen, certificeret af eCOGRA for at sikre at den avancerede allokering ikke kompromitterer spilets fairness. Precision Spins tilbyder typisk tre til fem budget-profiler der automatisk justerer indsatsen baseret på spilets matematiske model – en innovation der ikke har nogen direkte konkurrent i branchen.
         </p>
@@ -49,6 +61,13 @@ const ELKStudiosGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Den kommercielle konsekvens af denne strategi er paradoksal: ELK Studios er blandt de mest respekterede studier i branchen (målt på EGR Awards per udgivelse), men blandt de mindst synlige i casinolobbyer (målt på tilgængelige titler). Det kræver en aktiv indsats fra spilleren at finde ELK Studios-spil: brug casinoets filtreringsmenu, søg efter studio-navn, eller tjek dedikerede ELK-sektioner som flere danske casinoer tilbyder. Den passive browser – spilleren der klikker på det nærmeste nye spil i lobbyen – vil sjældnere støde på ELK Studios end Pragmatic Play. Det er en trade-off ELK Studios har accepteret: de sigter efter loyale fans, ikke tilfældige kliks.
         </p>
+
+        <ReviewScreenshot
+          src={elkTimeline}
+          alt="ELK Studios udviklings-timeline med milepæle og ikoniske spilkarakterer fra Bushido Gold, Bompers og andre titler"
+          caption="ELK Studios' timeline – fra grundlæggelse i 2012 til nutidens 80+ titler med fokus på kvalitet over kvantitet"
+          size="medium"
+        />
 
         <h3 className="text-xl font-bold mb-4">ELK Studios vs. Play'n GO: Kvalitets-First Rivalisering</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
@@ -116,6 +135,12 @@ const ELKStudiosGuide = () => (
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Følgende seks titler repræsenterer bredden og dybden i ELK Studios' kreative output – fra det ikoniske Walking Wilds-system i Wild Toro til Avalanche-seriens cascading vinderkæder og den innovative betalingsmekanik i Kaiju Payment. Alle har fast RTP der ikke kan justeres af operatører – en garanti for gennemsigtighed.
         </p>
+        <ReviewScreenshot
+          src={elkPugThugs}
+          alt="Pug Thugs of Nitropolis gameplay-screenshot med Wild, Super Bonus og Collect-funktioner – ELK Studios' Nitropolis-serie"
+          caption="Verificeret dansk screenshot: Pug Thugs of Nitropolis med Nitro Wild, Super Bonus og samle-mekanik ved 5 kr. indsats"
+          size="full"
+        />
       </>
     }
     games={[
@@ -128,6 +153,12 @@ const ELKStudiosGuide = () => (
     ]}
     licensesContent={
       <>
+        <ReviewScreenshot
+          src={elkKatalogBetinia}
+          alt="ELK Studios komplet spilkatalog på Betinia casino med titler som Bonzo's Bananza, Arcanum, Tropicool 5, Ice Wolf 2 og Cygnus 6"
+          caption="Verificeret dansk screenshot: ELK Studios' fulde katalog hos Betinia – alle titler tilgængelige for danske spillere"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           ELK Studios opererer under licenser fra Malta Gaming Authority (MGA/B2B/543/2018) og UK Gambling Commission – de to mest respekterede regulatoriske organer i den europæiske spilindustri. MGA-licensen dækker B2B-distribution til operatører globalt, mens UKGC-licensen giver adgang til det britiske marked, der stiller de strengeste krav til spillerbeskyttelse og gennemsigtighed i branchen. Denne dobbelte licensering er en kvalitetsstempel der signalerer regulatorisk seriøsitet på det højeste niveau.
         </p>
