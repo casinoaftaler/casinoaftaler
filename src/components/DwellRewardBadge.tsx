@@ -118,7 +118,7 @@ export function DwellRewardBadge() {
   const timeDisplay = minutes > 0 ? `${minutes}:${secs.toString().padStart(2, "0")}` : `${secs}s`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 animate-fade-in">
+    <div className="fixed bottom-24 left-6 z-50 animate-fade-in">
       {/* Milestone toast */}
       {milestoneFlash && (
         <div className="absolute -top-14 left-1/2 -translate-x-1/2 whitespace-nowrap animate-fade-in">
@@ -261,7 +261,6 @@ export function DwellRewardBadge() {
               {scrollClaimed && (
                 <p className="text-[10px] text-emerald-500/80 font-medium">inkl. +{scrollDepthCredits} scroll-dybde bonus</p>
               )}
-              {/* Scroll hint: dwell done, at 30% but not yet at 60%, bonus not claimed */}
               {!scrollClaimed && hasReachedHint && !hasReachedDepth && (
                 <p className="text-[10px] font-semibold text-amber-500 animate-pulse mt-0.5 flex items-center gap-1">
                   <ArrowDown className="h-3 w-3 animate-bounce" />
@@ -297,6 +296,13 @@ export function DwellRewardBadge() {
                 <Gift className={`h-4.5 w-4.5 transition-colors duration-300 ${isNearEnd ? "text-orange-500" : "text-amber-500"}`} />
                 <span className="text-lg font-bold text-foreground">300 credits</span>
               </div>
+              {/* Scroll-depth hint during active timer */}
+              {hasScrolled && !hasReachedDepth && hasReachedHint && (
+                <p className="text-[10px] font-semibold text-amber-500 animate-pulse mt-0.5 flex items-center gap-1">
+                  <ArrowDown className="h-3 w-3 animate-bounce" />
+                  Scroll til 70% for +{scrollDepthCredits} bonus!
+                </p>
+              )}
               <span className="text-xs text-muted-foreground">
                 {!hasScrolled ? (
                   <span className="flex items-center gap-1.5">
