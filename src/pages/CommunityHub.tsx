@@ -164,7 +164,24 @@ export default function CommunityHub() {
     datePublished: "2026-01-15",
   }), []);
 
-  const jsonLd = useMemo(() => ({ "@context": "https://schema.org", "@graph": [articleSchema, faqSchema] }), [articleSchema, faqSchema]);
+  const howToSchema = useMemo(() => ({
+    "@type": "HowTo",
+    "@id": `${SITE_URL}/community#daily-missions`,
+    name: "Sådan optjener du gratis credits med Daily Missions",
+    description: "Fuldfør 6 daglige missioner og optjen op til 1.800 credits + streak-bonusser. Scroll ned og læs vores guides i 120 sekunder for at fuldføre hver mission.",
+    totalTime: "PT12M",
+    estimatedCost: { "@type": "MonetaryAmount", currency: "DKK", value: "0" },
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Log ind på din konto", text: "Log ind med din Twitch-konto for at aktivere Daily Missions." },
+      { "@type": "HowToStep", position: 2, name: "Start en mission", text: "Klik på en af de 6 tilgængelige missioner (f.eks. Top 10 Casino, Casino Bonus, Free Spins)." },
+      { "@type": "HowToStep", position: 3, name: "Læs guiden i 120 sekunder", text: "Scroll ned på siden og læs indholdet i mindst 120 sekunder. En timer viser din fremgang." },
+      { "@type": "HowToStep", position: 4, name: "Modtag dine credits", text: "300 credits tilføjes automatisk til din saldo, når timeren når nul. Scroll 60%+ for yderligere 100 bonus-credits." },
+      { "@type": "HowToStep", position: 5, name: "Gentag for alle 6 sider", text: "Fuldfør alle 6 missioner for at optjene det fulde daglige beløb på op til 2.400 credits." },
+      { "@type": "HowToStep", position: 6, name: "Byg din streak", text: "Fuldfør alle missioner flere dage i træk for streak-bonusser: 3 dage (+500), 7 dage (+1.500), 30 dage (+5.000)." },
+    ],
+  }), []);
+
+  const jsonLd = useMemo(() => ({ "@context": "https://schema.org", "@graph": [articleSchema, faqSchema, howToSchema] }), [articleSchema, faqSchema, howToSchema]);
 
   return (
     <>
