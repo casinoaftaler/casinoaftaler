@@ -1036,7 +1036,7 @@ function SettingsTab({ gameId }: { gameId?: string }) {
                 type="number"
                 min="1"
                 value={formData.maxBet}
-                onChange={(e) => setFormData({ ...formData, maxBet: parseInt(e.target.value) || 20 })}
+                onChange={(e) => setFormData({ ...formData, maxBet: parseInt(e.target.value) || 50 })}
               />
             </div>
           </div>
