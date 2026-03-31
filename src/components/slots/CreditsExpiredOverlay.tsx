@@ -116,7 +116,7 @@ export function CreditsExpiredOverlay({ isVisible }: CreditsExpiredOverlayProps)
 
               <p className={`text-[11px] mb-3 leading-relaxed ${hasNoneCompleted ? "text-amber-200/80" : "text-muted-foreground"}`}>
                 {hasNoneCompleted
-                  ? "🔥 Optjen op til 1.800 credits i dag – start din første mission!"
+                  ? "🔥 Optjen op til 3.600 credits i dag – start din første mission!"
                   : "Besøg vores guides og optjen credits – 120 sekunder pr. side"}
               </p>
 

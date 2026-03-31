@@ -168,7 +168,7 @@ export default function CommunityHub() {
     "@type": "HowTo",
     "@id": `${SITE_URL}/community#daily-missions`,
     name: "Sådan optjener du gratis credits med Daily Missions",
-    description: "Fuldfør 6 daglige missioner og optjen op til 1.800 credits + streak-bonusser. Scroll ned og læs vores guides i 120 sekunder for at fuldføre hver mission.",
+    description: "Fuldfør 6 daglige missioner og optjen op til 3.600 credits + streak-bonusser. Scroll ned og læs vores guides i 120 sekunder for at fuldføre hver mission.",
     totalTime: "PT12M",
     estimatedCost: { "@type": "MonetaryAmount", currency: "DKK", value: "0" },
     step: [

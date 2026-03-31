@@ -47,7 +47,7 @@ export function DailyMissionsCard() {
             </h2>
             <p className={`text-sm mt-1 ${hasNoneCompleted ? "text-amber-200/80" : "text-muted-foreground"}`}>
               {hasNoneCompleted
-                ? "🔥 Start dine missioner og optjen op til 1.800 credits!"
+                ? "🔥 Start dine missioner og optjen op til 3.600 credits!"
                 : "Besøg vores guides og optjen credits – 120 sekunder pr. side"}
             </p>
           </div>
