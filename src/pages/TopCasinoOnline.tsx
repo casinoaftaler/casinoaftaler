@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ProviderLogoIcon } from "@/components/ProviderLogoIcon";
 import { StickyCtaBySlug } from "@/components/StickyCtaBySlug";
 import { ContentPageLayout } from "@/components/ContentPageLayout";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";

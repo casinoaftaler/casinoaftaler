@@ -1,5 +1,6 @@
 import { useMemo, type ReactNode } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
+import { ProviderLogoIcon } from "@/components/ProviderLogoIcon";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";

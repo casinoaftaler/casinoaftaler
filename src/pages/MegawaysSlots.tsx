@@ -2,6 +2,7 @@ import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaMegawaysFilter from "@/assets/screenshots/betinia-megaways-filter.webp";
 import { Link } from "react-router-dom";
+import { ProviderLogoIcon } from "@/components/ProviderLogoIcon";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
