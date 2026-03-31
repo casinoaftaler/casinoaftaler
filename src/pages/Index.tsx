@@ -231,12 +231,13 @@ const Index = () => {
 
       {/* Top Casinos Section with sidebar */}
       <section id="top-casinos" className="py-8 md:py-12" style={{ contain: 'layout style' }}>
-        <div className="container relative">
-          {/* Left sidebar: Full navigation */}
-          <aside className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[300px]">
-            <HomepageRightSidebar />
-          </aside>
-          <div className="mb-8">
+        <div className="mx-auto max-w-[1400px] px-8 min-[1540px]:max-w-[1740px]">
+          <div className="flex gap-6">
+            {/* Left sidebar: Full navigation */}
+            <aside className="hidden min-[1540px]:block w-[300px] shrink-0">
+              <HomepageRightSidebar />
+            </aside>
+            <div className="flex-1 min-w-0">
             <h2 className="mb-4 text-3xl font-bold">Casinoaftaler er Danmarks mest datadrevne casinoguide</h2>
             <p className="mb-6 text-muted-foreground leading-relaxed">
               <span>Vi tester hvert casino med dansk licens på tværs af 6 vægtede kategorier – fra bonusvilkår og udbetalingshastighed til kundeservice og sikkerhed. Vores vurderinger bygger på reel gameplay-data fra over 1.470 slots i vores database, hundredvis af live-streamede Bonus Hunts og et aktivt community, der verificerer resultaterne. </span>
