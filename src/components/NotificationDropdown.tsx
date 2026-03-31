@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Bell, Check, CheckCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,6 +16,18 @@ export function NotificationDropdown() {
   const [open, setOpen] = useState(false);
   const { notifications, unreadCount, markAsRead, markAllAsRead, isLoading } =
     useNotifications();
+  const hasAutoMarked = useRef(false);
+
+  // Auto-mark all as read when dropdown opens
+  useEffect(() => {
+    if (open && unreadCount > 0 && !hasAutoMarked.current && !markAllAsRead.isPending) {
+      hasAutoMarked.current = true;
+      markAllAsRead.mutate();
+    }
+    if (!open) {
+      hasAutoMarked.current = false;
+    }
+  }, [open, unreadCount]);
 
   const handleMarkAsRead = (notificationId: string) => {
     markAsRead.mutate(notificationId);
