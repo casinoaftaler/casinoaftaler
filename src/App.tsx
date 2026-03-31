@@ -497,6 +497,10 @@ const App = () => (
                 <Route path="/casinoer/spil-casino-for-sjov" element={<SpilForSjovGuide />} />
                 <Route path="/casinoer/casino-og-skat" element={<CasinoOgSkatGuide />} />
                 <Route path="/casino-med-dansk-licens" element={<CasinoMedDanskLicens />} />
+                <Route path="/gratis-casino-spil" element={<GratisCasinoSpil />} />
+                <Route path="/hurtig-udbetaling" element={<HurtigUdbetaling />} />
+                <Route path="/casino-uden-rofus" element={<CasinoUdenRofus />} />
+                <Route path="/casino-med-mitid" element={<CasinoMedMitID2 />} />
                 <Route path="/casinospil/spillemaskiner" element={<Spillemaskiner />} />
                 <Route path="/casinospil/spillemaskiner/hoej-rtp" element={<SpillemaskinerHoejRTP />} />
                 <Route path="/spillemaskiner/:providerSlug" element={<ProviderSlotsHub />} />
