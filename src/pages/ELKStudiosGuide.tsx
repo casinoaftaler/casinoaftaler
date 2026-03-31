@@ -153,6 +153,12 @@ const ELKStudiosGuide = () => (
     ]}
     licensesContent={
       <>
+        <ReviewScreenshot
+          src={elkKatalogBetinia}
+          alt="ELK Studios komplet spilkatalog på Betinia casino med titler som Bonzo's Bananza, Arcanum, Tropicool 5, Ice Wolf 2 og Cygnus 6"
+          caption="Verificeret dansk screenshot: ELK Studios' fulde katalog hos Betinia – alle titler tilgængelige for danske spillere"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           ELK Studios opererer under licenser fra Malta Gaming Authority (MGA/B2B/543/2018) og UK Gambling Commission – de to mest respekterede regulatoriske organer i den europæiske spilindustri. MGA-licensen dækker B2B-distribution til operatører globalt, mens UKGC-licensen giver adgang til det britiske marked, der stiller de strengeste krav til spillerbeskyttelse og gennemsigtighed i branchen. Denne dobbelte licensering er en kvalitetsstempel der signalerer regulatorisk seriøsitet på det højeste niveau.
         </p>
