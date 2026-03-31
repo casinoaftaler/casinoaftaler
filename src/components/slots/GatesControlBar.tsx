@@ -59,7 +59,7 @@ export function GatesControlBar({
   disabled,
   isSpinLocked,
   minBet = 1,
-  maxBet = 50,
+  maxBet = 40,
   spinsRemaining,
   maxSpins,
   spinsLoading,
