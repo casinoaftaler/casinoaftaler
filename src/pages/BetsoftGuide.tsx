@@ -173,9 +173,17 @@ const BetsoftGuide = () => (
       { name: "Golden Horns", desc: "Nordisk mytologi-tema der viser Betsofts nyere designretning: mere moderne mekanikker (stacked wilds, expanding symbols) kombineret med den karakteristiske 3D-kvalitet. Vikinge-tema med detaljerede runer, mystiske skove og dynamisk belysning der ændrer sig med gameplay-tilstanden. RTP: 96,04%. Medium-høj volatilitet. Maks. gevinst: 8.000x.", highlight: "8.000x – Nordisk 3D-epik" },
     ]}
     licensesContent={
-      <p className="mb-4 text-muted-foreground leading-relaxed">
-        Betsoft opererer under primære licenser fra Malta Gaming Authority (MGA) og Curaçao eGaming, med yderligere certificeringer til specifikke europæiske markeder herunder Rumænien, Italien og Spanien. Alle Betsoft-titler er RNG-certificeret af GLI (Gaming Laboratories International) og QUINEL – to af branchens mest respekterede uafhængige testlaboratorier. For danske spillere er Betsoft-spil tilgængelige via operatører med dansk licens fra <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>. Betsofts compliance-framework inkluderer automatiske jurisdiktionsspecifikke tilpasninger der sikrer overholdelse af lokale regler for indsatsgrænser, autoplay-begrænsninger og ansvarligt spil-features.
-      </p>
+      <>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Betsoft opererer under primære licenser fra Malta Gaming Authority (MGA) og Curaçao eGaming, med yderligere certificeringer til specifikke europæiske markeder herunder Rumænien, Italien og Spanien. Alle Betsoft-titler er RNG-certificeret af GLI (Gaming Laboratories International) og QUINEL – to af branchens mest respekterede uafhængige testlaboratorier. For danske spillere er Betsoft-spil tilgængelige via operatører med dansk licens fra <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>. Betsofts compliance-framework inkluderer automatiske jurisdiktionsspecifikke tilpasninger der sikrer overholdelse af lokale regler for indsatsgrænser, autoplay-begrænsninger og ansvarligt spil-features.
+        </p>
+        <ReviewScreenshot
+          src={betsoftMga}
+          alt="Malta Gaming Authority (MGA) officielt logo – Betsofts primære spillicens fra den maltesiske spillemyndighed"
+          caption="Malta Gaming Authority – Betsofts primære licensgiver og en af verdens mest respekterede spillemyndigheder"
+          size="medium"
+        />
+      </>
     }
     pros={[
       "SLOTS3-teknologi – branchens mest avancerede 3D-rendering med filmkvalitets animation",
