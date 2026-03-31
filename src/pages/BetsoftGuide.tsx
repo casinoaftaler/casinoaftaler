@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import betsoftLogo from "@/assets/screenshots/betsoft-logo-officielt.webp";
+import betsoftSlots from "@/assets/screenshots/betsoft-slots-katalog.webp";
+import betsoftMga from "@/assets/screenshots/betsoft-mga-licens.webp";
+import betsoftStats from "@/assets/screenshots/betsoft-noegletal-statistik.webp";
 
 const BetsoftGuide = () => (
   <ProviderPage
@@ -24,6 +29,13 @@ const BetsoftGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Der er et præcist tidspunkt i spilleautomaternes historie hvor grænsen mellem slot og underholdning blev permanent sløret – og det tidspunkt blev defineret af Betsoft. Det Malta- og Cypern-baserede studio, grundlagt i 2006, var det første der behandlede en spilleautomat som et cinematisk medie. Mens konkurrenterne konkurrerede om bedre matematik og flere gevinstlinjer, investerede Betsoft i 3D-rendering, storyboarding og karakteranimation – og skabte dermed en helt ny kategori: den cinematiske slot.
         </p>
+        <ReviewScreenshot
+          src={betsoftLogo}
+          alt="Betsoft officielt logo – sort og guld branding med de karakteristiske pilhoveder der symboliserer studiets cinematiske tilgang"
+          caption="Betsofts officielle logo – pionererne inden for cinematiske 3D-spilleautomater siden 2006"
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Betsofts signaturtilgang manifesterede sig først med SLOTS3-teknologien, lanceret i 2012, der erstattede traditionelle 2D-symboler med fuldt animerede 3D-karakterer og miljøer. Hvor en typisk <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>-slot af samme årgang præsenterede statiske symboler på et grid, præsenterede Betsoft levende verdener: gangstere i Slotfather der tændte cigarer og justerede manchetknapper, dværge i Alkemor's Tower der eksperimenterede med trylledrikke, cowboys i At the Copa der dansede salsa. Det var ikke bare grafisk pynt – det var en designfilosofi der sagde: spilleautomaten er et underholdningsprodukt først, et gambling-produkt dernæst.
         </p>
@@ -80,7 +92,11 @@ const BetsoftGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Den positive side er Betsofts nichéappel. Deres cinematiske profil giver dem en unik position i casinolobbyerne – de tilbyder noget som ingen anden spiludvikler kan replikere, og operatører der vil differentierne deres spilbibliotek har brug for den diversitet Betsoft leverer. I et marked hvor de fleste slots ser ens ud, er Betsofts visuelle distinktion en reel konkurrencefordel.
         </p>
-
+        <ReviewScreenshot
+          src={betsoftStats}
+          alt="Betsoft nøgletal – grundlagt 2006, 200+ medarbejdere, 200+ spil, 500.000+ spillere og 500+ klienter"
+          caption="Betsofts officielle nøgletal: 200+ spil, 500+ klienter og over 500.000 spillere globalt"
+        />
         <h3 className="text-xl font-bold mb-3 mt-6">Fremtidsperspektiv: VR, AR og den Næste Dimension</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Betsofts langsigtede vision er positionering til den næste teknologiske bølge i gambling: virtual reality og augmented reality. Studiets investering i 3D-rendering, karakteranimation og immersiv lyddesign er direkte overførbar til VR-formatet – og Betsoft har allerede demonstreret VR-prototyper af flere titler. Hvis (og når) VR-gambling bliver mainstream, er Betsoft det studie der er bedst teknisk forberedt.
@@ -138,6 +154,11 @@ const BetsoftGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Betsofts katalog er en rejse gennem 3D-slots-genrens evolution – fra de tidlige SLOTS3-pionerer til moderne titler der integrerer branchestandardmekanikker i den cinematiske ramme. De nedenstående seks titler repræsenterer de bedste eksempler på Betsofts unikke designfilosofi: spil der er visuelt extraordinære og gameplay-mæssigt engagerende på samme tid.
         </p>
+        <ReviewScreenshot
+          src={betsoftSlots}
+          alt="Betsoft slots katalog – After Night Falls, The Jealous Ex, 3 Pots of Wishes, Dr. Jekyll & Mr. Hyde 2, 3 Pots of Olympus, Once Again Upon a Time og flere cinematiske 3D-titler"
+          caption="Udvalg fra Betsofts portefølje: 9 af studiets nyeste 3D-slots med karakteristisk cinematisk grafik"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           En vigtig note for danske spillere: Betsofts ældre titler kan have lavere RTP end nutidens branchestandard. De nyere titler (2019+) har generelt forbedrede matematiske profiler. Til <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">bonusomsætning</Link> anbefales nyere titler med dokumenteret RTP over 96%.
         </p>
@@ -152,9 +173,17 @@ const BetsoftGuide = () => (
       { name: "Golden Horns", desc: "Nordisk mytologi-tema der viser Betsofts nyere designretning: mere moderne mekanikker (stacked wilds, expanding symbols) kombineret med den karakteristiske 3D-kvalitet. Vikinge-tema med detaljerede runer, mystiske skove og dynamisk belysning der ændrer sig med gameplay-tilstanden. RTP: 96,04%. Medium-høj volatilitet. Maks. gevinst: 8.000x.", highlight: "8.000x – Nordisk 3D-epik" },
     ]}
     licensesContent={
-      <p className="mb-4 text-muted-foreground leading-relaxed">
-        Betsoft opererer under primære licenser fra Malta Gaming Authority (MGA) og Curaçao eGaming, med yderligere certificeringer til specifikke europæiske markeder herunder Rumænien, Italien og Spanien. Alle Betsoft-titler er RNG-certificeret af GLI (Gaming Laboratories International) og QUINEL – to af branchens mest respekterede uafhængige testlaboratorier. For danske spillere er Betsoft-spil tilgængelige via operatører med dansk licens fra <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>. Betsofts compliance-framework inkluderer automatiske jurisdiktionsspecifikke tilpasninger der sikrer overholdelse af lokale regler for indsatsgrænser, autoplay-begrænsninger og ansvarligt spil-features.
-      </p>
+      <>
+        <p className="mb-4 text-muted-foreground leading-relaxed">
+          Betsoft opererer under primære licenser fra Malta Gaming Authority (MGA) og Curaçao eGaming, med yderligere certificeringer til specifikke europæiske markeder herunder Rumænien, Italien og Spanien. Alle Betsoft-titler er RNG-certificeret af GLI (Gaming Laboratories International) og QUINEL – to af branchens mest respekterede uafhængige testlaboratorier. For danske spillere er Betsoft-spil tilgængelige via operatører med dansk licens fra <Link to="/spillemyndigheden" className="text-primary underline hover:text-primary/80">Spillemyndigheden</Link>. Betsofts compliance-framework inkluderer automatiske jurisdiktionsspecifikke tilpasninger der sikrer overholdelse af lokale regler for indsatsgrænser, autoplay-begrænsninger og ansvarligt spil-features.
+        </p>
+        <ReviewScreenshot
+          src={betsoftMga}
+          alt="Malta Gaming Authority (MGA) officielt logo – Betsofts primære spillicens fra den maltesiske spillemyndighed"
+          caption="Malta Gaming Authority – Betsofts primære licensgiver og en af verdens mest respekterede spillemyndigheder"
+          size="medium"
+        />
+      </>
     }
     pros={[
       "SLOTS3-teknologi – branchens mest avancerede 3D-rendering med filmkvalitets animation",
