@@ -16,10 +16,10 @@ import { LogIn, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
-const SpinHistory = lazy(() =>
+const SpinHistory = lazyRetry(() =>
   import("@/components/spin-the-reel/SpinHistory").then((m) => ({ default: m.SpinHistory }))
 );
-const TodayLeaderboard = lazy(() =>
+const TodayLeaderboard = lazyRetry(() =>
   import("@/components/spin-the-reel/TodayLeaderboard").then((m) => ({ default: m.TodayLeaderboard }))
 );
 
