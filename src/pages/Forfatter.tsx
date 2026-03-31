@@ -104,7 +104,7 @@ const expertiseItems = [
   },
   {
     icon: Tv,
-    label: "Aktiv Twitch-streamer siden 2021",
+    label: "Aktiv Twitch-streamer siden 2020",
     desc: "Daglig live-streaming med bonus hunts, slots og community-interaktion for tusindvis af seere.",
   },
   {
