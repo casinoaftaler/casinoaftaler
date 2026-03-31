@@ -103,8 +103,8 @@ const personSchema = {
   name: "Kevin",
   url: `${SITE_URL}/forfatter/kevin`,
   image: `${SITE_URL}/kevin-avatar.webp`,
-  jobTitle: "Casino Streamer & IT-medansvarlig",
-  knowsAbout: ["online casino", "casino streaming", "betalingsmetoder", "spiludviklere", "IT-sikkerhed"],
+  jobTitle: "Casino Streamer & Spiludvikler",
+  knowsAbout: ["online casino", "casino streaming", "spilleautomater", "spiludvikling", "community-spil"],
   nationality: { "@type": "Country", name: "Denmark" },
   worksFor: {
     "@type": "Organization",
