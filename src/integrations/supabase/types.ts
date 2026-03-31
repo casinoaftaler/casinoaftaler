@@ -1011,6 +1011,7 @@ export type Database = {
           id: string
           page_path: string
           reward_date: string
+          scroll_depth_bonus: number
           user_id: string
         }
         Insert: {
@@ -1019,6 +1020,7 @@ export type Database = {
           id?: string
           page_path: string
           reward_date?: string
+          scroll_depth_bonus?: number
           user_id: string
         }
         Update: {
@@ -1027,6 +1029,7 @@ export type Database = {
           id?: string
           page_path?: string
           reward_date?: string
+          scroll_depth_bonus?: number
           user_id?: string
         }
         Relationships: []
@@ -1435,6 +1438,42 @@ export type Database = {
           source_url?: string | null
           summary?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      mission_streaks: {
+        Row: {
+          current_streak: number
+          id: string
+          last_completed_date: string | null
+          longest_streak: number
+          streak_3_claimed: boolean
+          streak_30_claimed: boolean
+          streak_7_claimed: boolean
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          current_streak?: number
+          id?: string
+          last_completed_date?: string | null
+          longest_streak?: number
+          streak_3_claimed?: boolean
+          streak_30_claimed?: boolean
+          streak_7_claimed?: boolean
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          current_streak?: number
+          id?: string
+          last_completed_date?: string | null
+          longest_streak?: number
+          streak_3_claimed?: boolean
+          streak_30_claimed?: boolean
+          streak_7_claimed?: boolean
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -2925,6 +2964,10 @@ export type Database = {
         Args: { p_section: string; p_today: string; p_user_id: string }
         Returns: Json
       }
+      claim_scroll_depth_bonus: {
+        Args: { p_page_path: string; p_today: string; p_user_id: string }
+        Returns: Json
+      }
       classify_slot_archetypes: { Args: never; Returns: undefined }
       deduct_spin:
         | {
@@ -3008,6 +3051,10 @@ export type Database = {
         Returns: undefined
       }
       refresh_slot_leaderboard: { Args: never; Returns: undefined }
+      update_mission_streak: {
+        Args: { p_today: string; p_user_id: string }
+        Returns: Json
+      }
       upsert_slot_catalog: {
         Args: {
           p_multiplier: number
