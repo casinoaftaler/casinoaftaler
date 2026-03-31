@@ -76,12 +76,14 @@ function useVariedFaqTitle(title: string, pathname: string): string {
       return genericVariants[Math.abs(hash) % genericVariants.length];
     }
 
+    const capitalizedTopic = topic.charAt(0).toUpperCase() + topic.slice(1);
+
     const variants = [
       `Ofte stillede spørgsmål om ${topic}`,
       `Spørgsmål & svar om ${topic}`,
-      `${topic} – det vil du gerne vide`,
+      `${capitalizedTopic} – det vil du gerne vide`,
       `Hyppige spørgsmål om ${topic}`,
-      `FAQ: ${topic}`,
+      `FAQ: ${capitalizedTopic}`,
     ];
 
     let hash = 0;

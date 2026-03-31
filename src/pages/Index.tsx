@@ -412,6 +412,7 @@ const Index = () => {
 
         <SourceCitations />
 
+        <div className="mt-10" />
         <FAQSection title="Ofte stillede spørgsmål om online casino i Danmark" faqs={[
           {
             question: "Hvad er det vigtigste at vide, før man spiller på online casino i Danmark?",
