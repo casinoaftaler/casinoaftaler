@@ -135,7 +135,7 @@ export function HomepageLeftSidebar() {
   );
 }
 
-/** Right sidebar: Full navigation bar */
+/** Right sidebar: Full navigation bar + Seneste nyt + Spillehal promo */
 export function HomepageRightSidebar() {
   return (
     <div className="sticky top-24 space-y-4">
@@ -147,6 +147,8 @@ export function HomepageRightSidebar() {
           <CategorySection key={category.title} category={category} />
         ))}
       </ul>
+      <LatestNewsSidebar count={5} />
+      <SpillehalPromoBanner />
     </div>
   );
 }

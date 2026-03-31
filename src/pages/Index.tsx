@@ -5,7 +5,7 @@ import { SEO } from "@/components/SEO";
 import { organizationSchema } from "@/lib/seo";
 import { HeroSection } from "@/components/HeroSection";
 import { WhyTrustUs } from "@/components/WhyTrustUs";
-import { HomepageLeftSidebar, HomepageRightSidebar } from "@/components/HomepageSidebar";
+import { HomepageRightSidebar } from "@/components/HomepageSidebar";
 import { LazySection } from "@/components/LazySection";
 import { TodayUpdatedSection } from "@/components/TodayUpdatedSection";
 import { HomepageLatestSlots, useLatestSlots, buildLatestSlotsSchema } from "@/components/HomepageLatestSlots";
@@ -231,10 +231,6 @@ const Index = () => {
       {/* Top Casinos Section with sidebar */}
       <section id="top-casinos" className="py-8 md:py-12" style={{ contain: 'layout style' }}>
         <div className="container relative">
-          {/* Left sidebar: Seneste nyt + Spillehal promo */}
-          <aside className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[200px]">
-            <HomepageLeftSidebar />
-          </aside>
           {/* Right sidebar: Full navigation */}
           <aside className="hidden min-[1540px]:block absolute left-full top-0 ml-6 w-[300px]">
             <HomepageRightSidebar />
