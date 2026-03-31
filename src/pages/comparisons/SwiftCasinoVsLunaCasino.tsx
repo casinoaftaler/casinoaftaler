@@ -143,7 +143,7 @@ export default function SwiftCasinoVsLunaCasino() {
       h1="Swift Casino vs Luna Casino – bredde eller kurateret kvalitet?"
       intro="To søstercasinoer fra samme operatør, samme bonusmaksimum og samme lovlige danske ramme – men to markant forskellige ideer om, hvordan et godt online casino skal føles i praksis."
       path="/casino-anmeldelser/swift-casino-vs-luna-casino"
-      datePublished="2026-03-16"
+      datePublished="2026-03-18"
       author="jonas"
       heroImage={heroImage}
       heroAlt="Sammenligning af Swift Casino og Luna Casino med fokus på volumen versus kuratering"

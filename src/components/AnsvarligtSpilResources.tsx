@@ -36,14 +36,34 @@ interface AnsvarligtSpilResourcesProps {
 export function AnsvarligtSpilResources({ currentPath }: AnsvarligtSpilResourcesProps) {
   const resources = ALL_RESOURCES.filter((r) => r.to !== currentPath);
 
+  const headingVariants = [
+    "Udforsk mere om ansvarligt spil",
+    "Vigtige ressourcer for spillere",
+    "Læs videre om sikkerhed og grænser",
+    "Hjælp og vejledning til spillere",
+    "Andre guides om ansvarligt spil",
+    "Beskyt dit spil – læs mere her",
+  ];
+
+  const introVariants = [
+    "Ansvarligt spil omfatter flere vigtige områder – fra selvudelukkelse og grænser til professionel hjælp og lovgivning. Udforsk vores guides herunder.",
+    "Vi dækker alle aspekter af ansvarligt casinospil i Danmark. Find den guide, der er mest relevant for dig.",
+    "Vores eksperter har samlet de vigtigste ressourcer om spilleansvar, regulering og hjælpemuligheder.",
+    "Fra ROFUS-udelukkelse til professionel rådgivning – her finder du alle relevante guides.",
+    "Uanset om du søger information om grænser, hjælpelinjer eller lovgivning, har vi en guide til dig.",
+    "Danske spillere har mange muligheder for hjælp og forebyggelse. Udforsk dem her.",
+  ];
+
+  const idx = currentPath.length % headingVariants.length;
+
   return (
     <section className="mb-12">
       <h2 className="mb-4 text-2xl font-bold flex items-center gap-2">
         <ShieldCheck className="h-6 w-6 text-primary" />
-        Udforsk mere om ansvarligt spil
+        {headingVariants[idx]}
       </h2>
       <p className="text-muted-foreground mb-6 leading-relaxed">
-        Ansvarligt spil omfatter flere vigtige områder – fra selvudelukkelse og grænser til professionel hjælp og lovgivning. Udforsk vores guides herunder.
+        {introVariants[idx]}
       </p>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {resources.map(({ to, title, desc, icon: Icon }) => (
