@@ -128,6 +128,12 @@ const ELKStudiosGuide = () => (
         <p className="mb-6 text-muted-foreground leading-relaxed">
           Følgende seks titler repræsenterer bredden og dybden i ELK Studios' kreative output – fra det ikoniske Walking Wilds-system i Wild Toro til Avalanche-seriens cascading vinderkæder og den innovative betalingsmekanik i Kaiju Payment. Alle har fast RTP der ikke kan justeres af operatører – en garanti for gennemsigtighed.
         </p>
+        <ReviewScreenshot
+          src={elkPugThugs}
+          alt="Pug Thugs of Nitropolis gameplay-screenshot med Wild, Super Bonus og Collect-funktioner – ELK Studios' Nitropolis-serie"
+          caption="Verificeret dansk screenshot: Pug Thugs of Nitropolis med Nitro Wild, Super Bonus og samle-mekanik ved 5 kr. indsats"
+          size="full"
+        />
       </>
     }
     games={[
