@@ -29,6 +29,13 @@ const BetsoftGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Der er et præcist tidspunkt i spilleautomaternes historie hvor grænsen mellem slot og underholdning blev permanent sløret – og det tidspunkt blev defineret af Betsoft. Det Malta- og Cypern-baserede studio, grundlagt i 2006, var det første der behandlede en spilleautomat som et cinematisk medie. Mens konkurrenterne konkurrerede om bedre matematik og flere gevinstlinjer, investerede Betsoft i 3D-rendering, storyboarding og karakteranimation – og skabte dermed en helt ny kategori: den cinematiske slot.
         </p>
+        <ReviewScreenshot
+          src={betsoftLogo}
+          alt="Betsoft officielt logo – sort og guld branding med de karakteristiske pilhoveder der symboliserer studiets cinematiske tilgang"
+          caption="Betsofts officielle logo – pionererne inden for cinematiske 3D-spilleautomater siden 2006"
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Betsofts signaturtilgang manifesterede sig først med SLOTS3-teknologien, lanceret i 2012, der erstattede traditionelle 2D-symboler med fuldt animerede 3D-karakterer og miljøer. Hvor en typisk <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>-slot af samme årgang præsenterede statiske symboler på et grid, præsenterede Betsoft levende verdener: gangstere i Slotfather der tændte cigarer og justerede manchetknapper, dværge i Alkemor's Tower der eksperimenterede med trylledrikke, cowboys i At the Copa der dansede salsa. Det var ikke bare grafisk pynt – det var en designfilosofi der sagde: spilleautomaten er et underholdningsprodukt først, et gambling-produkt dernæst.
         </p>
