@@ -618,10 +618,10 @@ const CasinoMedMitID = () => {
             MitID er langt mere end en teknisk formalitet – det er din garanti for at du spiller på et reguleret, sikkert og ansvarligt casino. Systemet beskytter dig mod identitetstyveri, sikrer at mindreårige ikke kan spille, og håndhæver ROFUS-udelukkelse automatisk. Alt sammen uden at det koster dig mere end 30 sekunders tid ved kontooprettelse.
           </p>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Casinoer der ikke kræver MitID-verifikation har ikke dansk licens og tilbyder fundamentalt svagere spillerbeskyttelse. Gevinster beskattes, der er ingen klageinstans, og din dataprivatliv er ikke garanteret. Det er ikke en risiko der er værd at tage, når Danmark har over 30 licenserede casinoer der tilbyder fremragende bonusser, spiludvalg og brugeroplevelser – alt med fuld MitID-sikkerhed.
+            Casinoer der ikke kræver MitID-verifikation har ikke dansk licens og tilbyder fundamentalt svagere spillerbeskyttelse – læs mere om <Link to="/casino-uden-rofus" className={linkClass}>risiciene ved casino uden ROFUS</Link>. Gevinster beskattes, der er ingen klageinstans, og din dataprivatliv er ikke garanteret. Det er ikke en risiko der er værd at tage, når Danmark har over 30 licenserede casinoer der tilbyder fremragende bonusser, spiludvalg og brugeroplevelser – alt med fuld MitID-sikkerhed.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Brug vores <Link to="/casino-anmeldelser" className={linkClass}>casinoanmeldelser</Link> til at finde det danske casino der passer bedst til dig. Alle casinoer vi anmelder har dansk licens, bruger MitID-verifikation og er tilsluttet ROFUS – så du kan fokusere på det sjove og lade sikkerheden passe sig selv.
+            Brug vores <Link to="/casino-anmeldelser" className={linkClass}>casinoanmeldelser</Link> til at finde det danske casino der passer bedst til dig. Vil du prøve spil risikofrit først? Se vores guide til <Link to="/gratis-casino-spil" className={linkClass}>gratis casino spil</Link> med demotilstand. Og når du er klar til rigtige penge, sørg for at vælge et casino med <Link to="/hurtig-udbetaling" className={linkClass}>hurtige udbetalinger</Link> – alle med MitID-verifikation og ROFUS-tilslutning.
           </p>
         </section>
 
