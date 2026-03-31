@@ -227,7 +227,7 @@ const HurtigUdbetaling = () => {
             Har du brug for dine penge hurtigt, er <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> den klart mest oplagte løsning på det danske marked. Med direkte bankoverførsel via <Link to="/casino-med-mitid" className={linkClass}>MitID</Link> lander pengene typisk i din bank inden for 5-15 minutter – hurtigere end de fleste Dankort-betalinger i fysiske butikker.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            I denne guide gennemgår vi alle betalingsmetoder med præcise udbetalingstider, forklarer hvad der forsinker udbetalinger og hvordan du undgår det, og giver dig en systematisk tilgang til at vælge det hurtigste casino baseret på din foretrukne betalingsmetode.
+            I denne guide gennemgår vi alle betalingsmetoder med præcise udbetalingstider, forklarer hvad der forsinker udbetalinger og hvordan du undgår det, og giver dig en systematisk tilgang til at vælge det hurtigste casino baseret på din foretrukne betalingsmetode. Vil du prøve et casino risikofrit før du indbetaler? Se vores guide til <Link to="/gratis-casino-spil" className={linkClass}>gratis casino spil</Link>, og undgå altid <Link to="/casino-uden-rofus" className={linkClass}>casinoer uden ROFUS</Link> der ikke garanterer dine udbetalinger.
           </p>
         </section>
 

@@ -466,11 +466,11 @@ const CasinoUdenRofus = () => {
               </div>
               <div>
                 <p className="font-medium text-sm">Profil 2: Bonusjægeren</p>
-                <p className="text-sm text-muted-foreground">Søger ulicenserede casinoer i troen på bedre bonusvilkår uden det danske 10x-omsætningsloft. Som dokumenteret ovenfor er denne antagelse fejlagtig, når skattekonsekvenser og reelle omsætningskrav medregnes. Disse spillere bør i stedet fokusere på at maksimere værdien af danske bonusser.</p>
+                <p className="text-sm text-muted-foreground">Søger ulicenserede casinoer i troen på bedre bonusvilkår uden det danske 10x-omsætningsloft. Som dokumenteret ovenfor er denne antagelse fejlagtig, når skattekonsekvenser og reelle omsætningskrav medregnes. Disse spillere bør i stedet fokusere på at maksimere værdien af danske bonusser eller prøve <Link to="/gratis-casino-spil" className={linkClass}>gratis casino spil</Link> for at finde det rette spil uden risiko.</p>
               </div>
               <div>
                 <p className="font-medium text-sm">Profil 3: Spil-entusiasten</p>
-                <p className="text-sm text-muted-foreground">Ønsker adgang til spil eller udbydere der ikke er tilgængelige hos danske operatører. Det kan være nichespil, kryptovaluta-baserede spil eller live-casino-varianter fra bestemte providers. Denne profil er mindre bekymrende men bør stadig vurdere de skattemæssige konsekvenser nøje.</p>
+                <p className="text-sm text-muted-foreground">Ønsker adgang til spil eller udbydere der ikke er tilgængelige hos danske operatører. Danske casinoer tilbyder dog et bredt udvalg – tjek vores <Link to="/gratis-casino-spil" className={linkClass}>gratis demospil</Link> for at teste udvalget. Vær også opmærksom på at ulicenserede casinoer ikke tilbyder <Link to="/hurtig-udbetaling" className={linkClass}>hurtige udbetalinger</Link> med dansk bankgaranti.</p>
               </div>
             </div>
           </div>
