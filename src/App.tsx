@@ -487,7 +487,7 @@ const App = () => (
                 <Route path="/casino-anmeldelser/swift-casino-vs-luna-casino" element={<SwiftCasinoVsLunaCasino />} />
                 <Route path="/casinospil" element={<Casinospil />} />
                 <Route path="/casinoer" element={<CasinoerHub />} />
-                <Route path="/casinoer/hurtig-udbetaling" element={<HurtigUdbetalingGuide />} />
+                <Route path="/casinoer/hurtig-udbetaling" element={<Navigate to="/hurtig-udbetaling" replace />} />
                 <Route path="/casinoer/hoej-rtp" element={<HoejRTPGuide />} />
                 <Route path="/casinoer/crypto-casino" element={<CryptoCasinoGuide />} />
                 <Route path="/licenserede-casinoer" element={<Navigate to="/casino-licenser" replace />} />
