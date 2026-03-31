@@ -224,41 +224,6 @@ export function ProviderPage({
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">{licensesTitle || "Licenser og Sikkerhed"}</h2>
         {licensesContent}
-        <div className="grid gap-4 md:grid-cols-3 mt-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base">
-                <ShieldCheck className="h-4 w-4 text-primary" />
-                Malta Gaming Authority
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
-              En af verdens mest respekterede spillemyndigheder med strenge krav til fairness og spillerbeskyttelse.
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base">
-                <ShieldCheck className="h-4 w-4 text-primary" />
-                UK Gambling Commission
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
-              Den britiske spillemyndighed, kendt for sine strenge regler og høje krav til licenserede spiludviklere.
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base">
-                <Award className="h-4 w-4 text-primary" />
-                RNG Certificeret
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
-              Uafhængig testning af RNG-teknologi sikrer, at alle spilresultater er 100% tilfældige og retfærdige.
-            </CardContent>
-          </Card>
-        </div>
       </section>
     ),
     proscons: (
