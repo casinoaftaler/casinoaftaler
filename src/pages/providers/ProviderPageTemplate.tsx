@@ -19,7 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
   ShieldCheck,
-  Gamepad2,
+  
   Award,
   CheckCircle2,
   AlertTriangle,
