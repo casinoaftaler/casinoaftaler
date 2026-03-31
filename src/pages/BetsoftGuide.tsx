@@ -92,7 +92,11 @@ const BetsoftGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Den positive side er Betsofts nichéappel. Deres cinematiske profil giver dem en unik position i casinolobbyerne – de tilbyder noget som ingen anden spiludvikler kan replikere, og operatører der vil differentierne deres spilbibliotek har brug for den diversitet Betsoft leverer. I et marked hvor de fleste slots ser ens ud, er Betsofts visuelle distinktion en reel konkurrencefordel.
         </p>
-
+        <ReviewScreenshot
+          src={betsoftStats}
+          alt="Betsoft nøgletal – grundlagt 2006, 200+ medarbejdere, 200+ spil, 500.000+ spillere og 500+ klienter"
+          caption="Betsofts officielle nøgletal: 200+ spil, 500+ klienter og over 500.000 spillere globalt"
+        />
         <h3 className="text-xl font-bold mb-3 mt-6">Fremtidsperspektiv: VR, AR og den Næste Dimension</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Betsofts langsigtede vision er positionering til den næste teknologiske bølge i gambling: virtual reality og augmented reality. Studiets investering i 3D-rendering, karakteranimation og immersiv lyddesign er direkte overførbar til VR-formatet – og Betsoft har allerede demonstreret VR-prototyper af flere titler. Hvis (og når) VR-gambling bliver mainstream, er Betsoft det studie der er bedst teknisk forberedt.
