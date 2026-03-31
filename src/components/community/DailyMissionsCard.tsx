@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { useDwellRewardProgress, activateMissionMode } from "@/hooks/useDwellReward";
+import { useMissionStreak, STREAK_MILESTONES } from "@/hooks/useMissionStreak";
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, Coins, Clock, ArrowRight, Sparkles } from "lucide-react";
+import { Check, Coins, Clock, ArrowRight, Sparkles, Flame } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 /** Full-size card for the /community hub page */
 export function DailyMissionsCard() {
   const { user } = useAuth();
   const { pages, completedCount, totalPages, isLoading } = useDwellRewardProgress();
+  const { currentStreak, nextMilestone, longestStreak } = useMissionStreak();
 
   if (!user || isLoading) return null;
 
