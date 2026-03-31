@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import btgLogo from "@/assets/screenshots/btg-logo-officielt.webp";
+import btgExtraChilli from "@/assets/screenshots/btg-extra-chilli-megaways.webp";
+import btgWhiteRabbit from "@/assets/screenshots/btg-white-rabbit-megaways.webp";
+import btgSlotsUdvalg from "@/assets/screenshots/btg-slots-udvalg.webp";
 
 const BigTimeGamingGuide = () => (
   <ProviderPage
@@ -23,6 +28,13 @@ const BigTimeGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Big Time Gaming (BTG) er en australsk spiludvikler grundlagt i 2011 i Sydney af Nik Robinson – en erfaren branchefolk med over to årtiers erfaring i spilleindustrien. Robinsons vision var at skabe slots der var fundamentalt anderledes end alt andet på markedet, og med Megaways-mekanikken opnåede han noget ekstraordinært: han opfandt en spilmekanik der har ændret hele casinoindustrien. Det er sjældent at én enkelt innovation kan tilskrives ét studio – Megaways er den undtagelse der bekræfter reglen.
         </p>
+        <ReviewScreenshot
+          src={btgLogo}
+          alt="Big Time Gaming officielt logo – det røde BTG-emblem med stjerner, kendt for Megaways-mekanikken"
+          caption="Big Time Gamings officielle logo – studiet bag den patenterede Megaways-mekanik"
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Megaways-mekanikken med dynamiske hjul og op til 117.649 (eller flere) vinderkombinationer per spin debuterede i Bonanza i 2016. Konceptet er elegant: i stedet for et fast antal symboler per hjulposition (typisk 3), tildeler en Random Reel Modifier 2-7 symboler per position per spin. Med 6 hjul giver det 7^6 = 117.649 mulige vinderkombinationer i maksimumscenariet – mod typisk 243 eller 1.024 i standard slots. White Rabbit Megaways udvidede dette yderligere med extending reels til 248.832 vinderkombinationer. Denne variabilitet skaber en helt ny type spænding: hvert spin føles anderledes fordi antallet af vinderkombinationer svinger dramatisk.
         </p>
@@ -57,6 +69,11 @@ const BigTimeGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Hitfrekvensen i BTG-spil er typisk 18-25% – lavere end industrigennemsnittet på 25-35%. Det betyder at spillere oplever længere perioder uden gevinst, men med højere individuelle gevinster når de kommer. Denne profil tiltrækker high-risk-segmentet: streamere, erfarne spillere og dem der søger adrenalin snarere end underholdning. Det er den diametralt modsatte tilgang til <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnts</Link> lavere-volatilitet, højere-hitfrekvens-filosofi.
         </p>
+        <ReviewScreenshot
+          src={btgExtraChilli}
+          alt="Extra Chilli Megaways gameplay screenshot – 34.300 Megaways vinderkombinationer med Feature Drop bonus buy til $100"
+          caption="Extra Chilli Megaways i aktion – Megaways-tælleren viser 34.300 vinderkombinationer og Feature Drop til $100"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Sammenlignet med <Link to="/spiludviklere/nolimit-city" className="text-primary underline hover:text-primary/80">Nolimit City</Link>, der også er en mekanik-innovator under Evolution, differentierer BTG sig fundamentalt gennem sin IP-licensering. Nolimit City holder sine patenter (xWays, xNudge, xBomb, xSplit) eksklusive til egne titler; BTG licenserer Megaways aggressivt til hele branchen. Begge strategier har merit: Nolimit beholder eksklusiviteten og brand-identiteten, BTG maksimerer markedspenetration og royalty-indtægter. Det er innovator vs. licensor – to sider af mekanik-innovation med vidt forskellige kommercielle profiler.
         </p>
@@ -73,6 +90,12 @@ const BigTimeGamingGuide = () => (
         <p className="mb-6 text-muted-foreground leading-relaxed">
           BTGs tekniske fingeraftryk er Megaways-motorens Random Reel Modifier – en patenteret algoritme der dynamisk bestemmer antal symboler per hjulposition per spin. Denne motor er kernen i alle BTGs egne titler og de 100+ licenserede Megaways-spil. Feature Drop-mekanikken (faldende bonus buy-pris) er separat patenteret og eksisterer kun i BTGs egne titler. Alle spil bygges i HTML5 med full mobile responsiveness og understøtter portrait-mode – en vigtig detalje for mobilspillere.
         </p>
+        <ReviewScreenshot
+          src={btgWhiteRabbit}
+          alt="White Rabbit 2 Megaways slot – gameplay med 840 Megaways, Game Provider Big Time Gaming, High/Extreme volatilitet og 96,36-96,37% RTP"
+          caption="White Rabbit 2 Megaways – BTGs nyeste titel med Megapots jackpot-integration og High/Extreme volatilitet"
+          size="full"
+        />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">RTP-interval</p><p className="text-lg font-bold">94,0% – 96,53%</p><p className="text-xs text-muted-foreground">Bonanza: 96,00% | White Rabbit: 96,53%</p></CardContent></Card>
           <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">Volatilitet</p><p className="text-lg font-bold">Høj – Ekstremt Høj</p><p className="text-xs text-muted-foreground">Hitfrekvens typisk 18-25%</p></CardContent></Card>
@@ -104,6 +127,11 @@ const BigTimeGamingGuide = () => (
         <p className="mb-6 text-muted-foreground leading-relaxed">
           En vigtig observation: BTGs spil kræver tålmodighed. Hitfrekvensen er lavere end gennemsnittet, og de store gevinster gemmer sig i bonusrunderne. Basis-spillet kan føles langsomt og tørt, men når Reactions begynder at kaskadere og multiplikatoren stiger – det er da Megaways viser sit potentiale. Det er design der belønner vedholdenhed, ikke impulsspil.
         </p>
+        <ReviewScreenshot
+          src={btgSlotsUdvalg}
+          alt="Big Time Gaming slots udvalg – Christmas Megapots, White Rabbit 2 og Castle of Terror II med Play for Real Money knapper"
+          caption="Udvalg af BTGs nyeste titler: Christmas Megapots, White Rabbit 2 og Castle of Terror II"
+        />
       </>
     }
     games={[
