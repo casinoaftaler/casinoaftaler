@@ -345,6 +345,9 @@ const Index = () => {
       <LazySection minHeight="300px">
         <WhyTrustUs />
       </LazySection>
+      <LazySection minHeight="300px">
+        <MeetTheTeam />
+      </LazySection>
 
       {/* === SEO Content Sections === */}
       <LazySection minHeight="2000px">
