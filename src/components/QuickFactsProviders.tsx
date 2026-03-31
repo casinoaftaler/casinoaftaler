@@ -1,6 +1,8 @@
-import { Gamepad2, ShieldCheck, BarChart3 } from "lucide-react";
+import { ShieldCheck, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PROVIDER_HUB_SLUGS } from "@/lib/providerHubContent";
+import { ProviderLogoIcon, getProviderLogoUrl } from "@/components/ProviderLogoIcon";
+import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
 
 const providerRoutes: Record<string, string> = {
   "NetEnt": "/spiludviklere/netent",
@@ -68,19 +70,28 @@ export function QuickFactsProviders({ providers }: QuickFactsProvidersProps) {
     <>
       <div className="mt-4 rounded-lg border border-border p-3">
         <p className="text-xs text-muted-foreground uppercase mb-2 flex items-center justify-center gap-1.5">
-          <Gamepad2 className="h-3.5 w-3.5" />
+          <img src={MENU_ICON_MAP["gamepad-2"]} alt="" className="h-3.5 w-3.5" loading="lazy" />
           Spiludbydere
         </p>
         <div className="flex flex-wrap justify-center gap-1.5">
           {providers.map((name) => {
+            const slug = providerHubSlugs[name];
             const route = providerRoutes[name];
+            const logoSrc = slug ? getProviderLogoUrl(slug) : null;
+            const pill = (
+              <span className="inline-flex items-center gap-1">
+                {logoSrc && <img src={logoSrc} alt="" className="h-3 w-auto max-w-[40px] object-contain" loading="lazy" />}
+                {name}
+              </span>
+            );
             if (route) {
               return (
                 <Link
                   key={name}
                   to={route}
-                  className="inline-block rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors"
+                  className="inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground hover:bg-primary/10 hover:text-primary transition-colors"
                 >
+                  {logoSrc && <img src={logoSrc} alt="" className="h-3 w-auto max-w-[40px] object-contain" loading="lazy" />}
                   {name}
                 </Link>
               );
@@ -88,8 +99,9 @@ export function QuickFactsProviders({ providers }: QuickFactsProvidersProps) {
             return (
               <span
                 key={name}
-                className="inline-block rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground"
+                className="inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground"
               >
+                {logoSrc && <img src={logoSrc} alt="" className="h-3 w-auto max-w-[40px] object-contain" loading="lazy" />}
                 {name}
               </span>
             );

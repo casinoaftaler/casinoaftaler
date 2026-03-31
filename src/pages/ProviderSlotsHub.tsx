@@ -22,7 +22,7 @@ import { Separator } from "@/components/ui/separator";
 import { slugifySlotName } from "@/lib/slugify";
 import { ProviderMoneyLinks } from "@/components/ProviderMoneyLinks";
 import {
-  Gamepad2,
+  
   BarChart3,
   TrendingUp,
   Award,
@@ -156,7 +156,7 @@ export default function ProviderSlotsHub() {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
+              <ProviderLogoIcon slug={validSlug} alt={content.displayName} className="mr-1.5 h-3.5 w-auto max-w-[60px] object-contain" />
               Spillemaskiner
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -240,7 +240,7 @@ export default function ProviderSlotsHub() {
             catalog: (
               <section className="mb-12" key="catalog">
                 <h2 className="mb-4 text-3xl font-bold flex items-center gap-2">
-                  <Gamepad2 className="h-7 w-7 text-primary" />
+                  <ProviderLogoIcon slug={validSlug} alt={content.displayName} className="h-7 w-auto max-w-[100px] object-contain" />
                   Alle {content.displayName} Spillemaskiner
                 </h2>
                 <ProviderCatalogSlots providerSlug={validSlug} />

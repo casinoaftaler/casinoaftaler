@@ -44,7 +44,7 @@ import spilleautomatenRtp from "@/assets/screenshots/spilleautomaten-zeus-vs-had
 import {
   ShieldCheck,
   Zap,
-  Gamepad2,
+  
   Award,
   CheckCircle2,
   AlertTriangle,
@@ -328,7 +328,7 @@ const Spiludviklere = () => {
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <Badge variant="secondary" className="mb-4">
-              <Gamepad2 className="mr-1.5 h-3.5 w-3.5" />
+              <img src={pragmaticPlayLogo} alt="" className="mr-1.5 h-3.5 w-auto max-w-[60px] object-contain" loading="lazy" />
               Brancheguide
             </Badge>
             <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -620,7 +620,7 @@ const Spiludviklere = () => {
             <Card className="border-primary/20">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <Gamepad2 className="h-5 w-5 text-primary" />
+                  <img src={netentLogo} alt="NetEnt" className="h-5 w-auto max-w-[60px] object-contain" loading="lazy" />
                   🎲 Klassiske Slot-Producenter – NetEnt, Play'n GO, Microgaming, Betsoft, Endorphina
                 </CardTitle>
               </CardHeader>
