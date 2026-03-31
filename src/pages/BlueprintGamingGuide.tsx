@@ -120,6 +120,12 @@ const BlueprintGamingGuide = () => (
         </div>
 
         <h3 className="text-xl font-bold mb-3 mt-6">Jackpot King: Sådan Fungerer Netværket</h3>
+        <ReviewScreenshot
+          src={blueprintEyeOfHorus}
+          alt="Eye of Horus The Golden Tablet Gold Spins gameplay – Blueprint Gaming slot med egyptisk tema og Jackpot King integration"
+          caption="Eye of Horus Golden Tablet – et af Blueprints mest populære Jackpot King-spil"
+          size="full"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Jackpot King er Blueprint Gamings mest distinctive tekniske bidrag til branchen – et progressivt jackpot-netværk der forbinder udvalgte spil i et fælles pulje-system. Mekanikken fungerer således: en lille procentdel af hver indsats (typisk 1-3%) kanaliseres til Jackpot King-puljen. Puljen deles i tre niveauer – Royal Pot, Regal Pot og King (den store jackpot). Jackpot King-runden udløses tilfældigt under basis-spillet og præsenterer spilleren for et separat mini-spil med en grid af kroner og juveler, hvor målet er at matche symboler for at avancere gennem jackpot-niveauerne.
         </p>
