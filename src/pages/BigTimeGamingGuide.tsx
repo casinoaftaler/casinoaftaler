@@ -127,6 +127,11 @@ const BigTimeGamingGuide = () => (
         <p className="mb-6 text-muted-foreground leading-relaxed">
           En vigtig observation: BTGs spil kræver tålmodighed. Hitfrekvensen er lavere end gennemsnittet, og de store gevinster gemmer sig i bonusrunderne. Basis-spillet kan føles langsomt og tørt, men når Reactions begynder at kaskadere og multiplikatoren stiger – det er da Megaways viser sit potentiale. Det er design der belønner vedholdenhed, ikke impulsspil.
         </p>
+        <ReviewScreenshot
+          src={btgSlotsUdvalg}
+          alt="Big Time Gaming slots udvalg – Christmas Megapots, White Rabbit 2 og Castle of Terror II med Play for Real Money knapper"
+          caption="Udvalg af BTGs nyeste titler: Christmas Megapots, White Rabbit 2 og Castle of Terror II"
+        />
       </>
     }
     games={[
