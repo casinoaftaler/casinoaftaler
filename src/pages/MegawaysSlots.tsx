@@ -2,6 +2,7 @@ import React from "react";
 import { ReviewScreenshot } from "@/components/ReviewScreenshot";
 import betiniaMegawaysFilter from "@/assets/screenshots/betinia-megaways-filter.webp";
 import { Link } from "react-router-dom";
+import { ProviderLogoIcon } from "@/components/ProviderLogoIcon";
 import { SEO } from "@/components/SEO";
 import { AuthorMetaBar } from "@/components/AuthorMetaBar";
 import { AuthorBio } from "@/components/AuthorBio";
@@ -573,19 +574,19 @@ const MegawaysSlots = () => {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
             {[
-              { name: "Big Time Gaming", to: "/spiludviklere/big-time-gaming", desc: "Opfinderen – Bonanza, Extra Chilli, White Rabbit" },
-              { name: "Pragmatic Play", to: "/spiludviklere/pragmatic-play", desc: "Flest titler – Great Rhino, Buffalo King, Madame Destiny" },
-              { name: "NetEnt", to: "/spiludviklere/netent", desc: "Klassiker-remakes – Gonzo's Quest MW, Twin Spin MW" },
-              { name: "Red Tiger", to: "/spiludviklere/red-tiger", desc: "Innovation – Piggy Riches MW, Mystery Reels MW" },
-              { name: "Relax Gaming", to: "/spiludviklere/relax-gaming", desc: "Dream Drop Jackpot + Megaways" },
-              { name: "Hacksaw Gaming", to: "/spiludviklere/hacksaw-gaming", desc: "Nolimit-inspirerede Megaways-hybrider" },
+              { name: "Big Time Gaming", to: "/spiludviklere/big-time-gaming", slug: "big-time-gaming", desc: "Opfinderen – Bonanza, Extra Chilli, White Rabbit" },
+              { name: "Pragmatic Play", to: "/spiludviklere/pragmatic-play", slug: "pragmatic-play", desc: "Flest titler – Great Rhino, Buffalo King, Madame Destiny" },
+              { name: "NetEnt", to: "/spiludviklere/netent", slug: "netent", desc: "Klassiker-remakes – Gonzo's Quest MW, Twin Spin MW" },
+              { name: "Red Tiger", to: "/spiludviklere/red-tiger", slug: "red-tiger", desc: "Innovation – Piggy Riches MW, Mystery Reels MW" },
+              { name: "Relax Gaming", to: "/spiludviklere/relax-gaming", slug: "relax-gaming", desc: "Dream Drop Jackpot + Megaways" },
+              { name: "Hacksaw Gaming", to: "/spiludviklere/hacksaw-gaming", slug: "hacksaw-gaming", desc: "Nolimit-inspirerede Megaways-hybrider" },
             ].map((dev) => (
               <Link
                 key={dev.name}
                 to={dev.to}
                 className="flex items-start gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-primary/50"
               >
-                <Gamepad2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                <ProviderLogoIcon slug={dev.slug} alt={dev.name} className="h-5 w-auto max-w-[80px] object-contain flex-shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-semibold text-sm">{dev.name}</h3>
                   <p className="text-xs text-muted-foreground">{dev.desc}</p>
