@@ -23,10 +23,17 @@ export function useScrollDepthBonus(pagePath: string, dwellCompleted: boolean) {
     if (!user || !dwellCompleted || isClaimed) return;
 
     const handleScroll = () => {
-      if (depthRef.current) return;
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (docHeight > 0 && scrollTop / docHeight >= SCROLL_DEPTH_THRESHOLD) {
+      if (docHeight <= 0) return;
+      const ratio = scrollTop / docHeight;
+
+      if (!hintRef.current && ratio >= SCROLL_DEPTH_HINT_THRESHOLD) {
+        hintRef.current = true;
+        setHasReachedHint(true);
+      }
+
+      if (!depthRef.current && ratio >= SCROLL_DEPTH_THRESHOLD) {
         depthRef.current = true;
         setHasReachedDepth(true);
       }
