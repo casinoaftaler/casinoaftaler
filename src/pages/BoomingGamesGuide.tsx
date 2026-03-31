@@ -29,6 +29,13 @@ const BoomingGamesGuide = () => (
         <p>
           <strong>Booming Games</strong> er et Malta-baseret spiludviklingsstudie der siden grundlæggelsen i 2014 har etableret sig som en af de mest produktive og geografisk diversificerede mid-tier udviklere i den globale iGaming-industri. Med hovedkontor i Sliema, Malta, og udviklingshold fordelt mellem Isle of Man og flere asiatiske lokationer har studiet opbygget et imponerende katalog på over <strong>200 unikke spillemaskiner</strong> – en bedrift der placerer dem i selskab med langt større studier med betydeligt flere ressourcer. Booming Games' succes er ikke bygget på et enkelt viralt hit eller en banebrydende mekanik, men derimod på en systematisk tilgang til spiludvikling der prioriterer konsistens, markedsrelevans og teknologisk effektivitet.
         </p>
+        <ReviewScreenshot
+          src={boomingLogo}
+          alt="Booming Games officielt logo – Malta-baseret spiludvikler med 200+ spillemaskiner og proprietær Felt-teknologi"
+          caption="Booming Games' officielle logo – grundlagt 2014 i Sliema, Malta"
+          eager
+          size="medium"
+        />
         <p>
           Det der fundamentalt adskiller Booming Games fra størstedelen af deres konkurrenter er den <strong>proprietære Felt-teknologi</strong> – en komplet spilmotor og integrationsplatform der muliggør hurtig spiludvikling, fleksibel tilpasning til individuelle operatørers behov og problemfri distribution via en enkelt API. Hvor mange mid-tier studier er afhængige af tredjepartsplatforme til distribution (via aggregatorer som <Link to="/spiludviklere/relax-gaming" className="text-primary underline hover:text-primary/80">Relax Gamings</Link> Silver Bullet eller Yggdrasils YGS Masters), har Booming Games bygget deres egen infrastruktur fra bunden. Denne B2B-først-tilgang har gjort det muligt for studiet at indgå direkte partnerskaber med hundredvis af online casinoer på tværs af regulerede markeder i Europa, Latinamerika og Asien – en distributionsbredde der typisk er forbeholdt tier-1 udviklere.
         </p>
