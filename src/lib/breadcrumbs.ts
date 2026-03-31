@@ -292,6 +292,7 @@ export const routeLabels: Record<string, string> = {
   "/casinospil/online-lotteri": "Online Lotteri",
   "/casinospil/bingo": "Bingo",
   "/casinospil/keno": "Keno",
+  "/casinospil/skrabespil": "Skrabespil",
   "/casinospil/game-shows": "Game Shows",
   // Casinoer guides
   "/casinoer": "Casinoer",
@@ -473,6 +474,7 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/casinospil/online-lotteri": [{ name: "Casinospil", path: "/casinospil" }],
   "/casinospil/bingo": [{ name: "Casinospil", path: "/casinospil" }],
   "/casinospil/keno": [{ name: "Casinospil", path: "/casinospil" }],
+  "/casinospil/skrabespil": [{ name: "Casinospil", path: "/casinospil" }],
   "/casinospil/spillemaskiner": [{ name: "Casinospil", path: "/casinospil" }],
 
   // Provider Slot Hubs – bound to /casinospil/spillemaskiner

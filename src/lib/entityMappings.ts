@@ -113,6 +113,7 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\broulette\b/i], href: "/casinospil/roulette", anchor: "" },
   { patterns: [/\bonline bingo\b/i, /\bbingo online\b/i, /\bbingo med dansk licens\b/i], href: "/casinospil/bingo", anchor: "", anchorVariants: ["online bingo", "bingo", "bingo i Danmark"] },
   { patterns: [/\bonline keno\b/i, /\bkeno online\b/i, /\bkeno med dansk licens\b/i, /\bkeno spil\b/i], href: "/casinospil/keno", anchor: "", anchorVariants: ["online keno", "keno", "keno i Danmark"] },
+  { patterns: [/\bonline skrabespil\b/i, /\bskrabespil online\b/i, /\bskrabespil med dansk licens\b/i, /\bskrabelodder\b/i, /\bskrabelod\b/i], href: "/casinospil/skrabespil", anchor: "", anchorVariants: ["online skrabespil", "skrabespil", "skrabelodder"] },
 
   // Trust & compliance
   { patterns: [/\bSpillemyndigheden\b/], href: "/spillemyndigheden", anchor: "Spillemyndigheden" },
