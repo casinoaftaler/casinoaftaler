@@ -93,6 +93,10 @@ interface PaymentMethodPageProps {
   snippetAnswer?: string;
   /** Priority casino slugs for QuickComparisonTable. Falls back to position-based. */
   prioritySlugs?: string[];
+  /** Unique read time per page, e.g. "18 Min." */
+  readTime?: string;
+  /** Unique datePublished per page in ISO format */
+  datePublished?: string;
 }
 
 const paymentLinks = [
