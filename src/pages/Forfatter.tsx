@@ -89,8 +89,8 @@ const jonasGuideVideos = getAuthorGuideVideos("jonas");
 const expertiseItems = [
   {
     icon: CalendarDays,
-    label: "4+ års erfaring med online casino",
-    desc: "Daglig erfaring med test og streaming af danske online casinoer siden 2021.",
+    label: "5+ års erfaring med online casino",
+    desc: "Daglig erfaring med test og streaming af danske online casinoer siden 2020.",
   },
   {
     icon: CheckCircle2,
@@ -104,7 +104,7 @@ const expertiseItems = [
   },
   {
     icon: Tv,
-    label: "Aktiv Twitch-streamer siden 2021",
+    label: "Aktiv Twitch-streamer siden 2020",
     desc: "Daglig live-streaming med bonus hunts, slots og community-interaktion for tusindvis af seere.",
   },
   {
@@ -138,7 +138,7 @@ const personSchema = {
   },
   sameAs: JONAS_SAME_AS,
   description:
-    "Jonas er grundlæggeren af Casinoaftaler.dk og en af Danmarks mest engagerende casino-streamere med over 4 års erfaring.",
+    "Jonas er grundlæggeren af Casinoaftaler.dk og en af Danmarks mest engagerende casino-streamere med over 5 års erfaring.",
 };
 
 
@@ -373,7 +373,7 @@ export default function Forfatter() {
                 </div>
               </div>
               <p className="text-muted-foreground leading-relaxed">
-                Jonas er grundlægger af Casinoaftaler.dk og har streamt online casino i over 4 år. Som indholdsansvarlig 
+                Jonas er grundlægger af Casinoaftaler.dk og har streamt online casino i over 5 år. Som indholdsansvarlig 
                 styrer han strategi, {" "}
                 <Link to="/casino-anmeldelser" className="text-primary hover:underline">casino-anmeldelser</Link> og{" "}
                 <Link to="/casino-bonus" className="text-primary hover:underline">bonusguides</Link>. 

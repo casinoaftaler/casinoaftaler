@@ -24,7 +24,7 @@ const authorData = {
     link: "/forfatter/jonas",
     badge: "Grundlægger & indholdsansvarlig",
     role: "Grundlægger af Casinoaftaler.dk & Casino-streamer",
-    bio: "Jonas er grundlægger af Casinoaftaler.dk og har streamet online casino i over 4 år. Med daglig erfaring fra slots og live casino deler han ærlige anmeldelser og opdateret viden om det danske casinomarked.",
+    bio: "Jonas er grundlægger af Casinoaftaler.dk og har streamet online casino i over 5 år. Med daglig erfaring fra slots og live casino deler han ærlige anmeldelser og opdateret viden om det danske casinomarked.",
     socials: [
       { href: "https://www.twitch.tv/fedesvinsejer", label: "Twitch" },
       { href: "https://www.youtube.com/@fedesvinsejer", label: "YouTube" },
@@ -42,7 +42,7 @@ const authorData = {
     link: "/forfatter/kevin",
     badge: "Casino-streamer & IT medansvarlig",
     role: "IT Medansvarlig hos Casinoaftaler.dk & Casino-streamer",
-    bio: "Kevin er IT medansvarlig hos Casinoaftaler.dk og har streamet online casino i over 3 år. Med sin rolige og afslappede stil bidrager han til community, indhold og udvikling af platformen.",
+    bio: "Kevin er IT medansvarlig hos Casinoaftaler.dk og har streamet online casino i over 4 år. Med sin rolige og afslappede stil bidrager han til community, indhold og udvikling af platformen.",
     socials: [
       { href: "https://www.twitch.tv/kevinsylence", label: "Twitch" },
       { href: "https://www.youtube.com/@KevinSylence", label: "YouTube" },
