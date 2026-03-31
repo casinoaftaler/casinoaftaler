@@ -10,7 +10,7 @@ const ISoftBetGuide = () => (
     seoDescription="iSoftBet slots: GAP-aggregeringsplatform, Hold & Win-mekanikker, 200+ titler og tilstedeværelse i 20+ regulerede markeder. Se populære spil."
     name="iSoftBet"    heroSubtitle="iSoftBet er dobbelt-trusselen i online gambling: både en respekteret spiludvikler med 200+ originale slots OG en af branchens førende aggregeringsplatforme via deres GAP-system. Denne dualitet gør dem til en af de mest strategisk interessante aktører i industrien."
     currentPath="/spiludviklere/isoftbet"
-    readTime="32 Min."
+    readTime="31 Min."
     strategicTitle="Platform og Produkt: iSoftBets Unikke Dobbeltrolle i Branchen"
     technicalTitle="GAP-Platformen og Slot-Arkitektur: iSoftBets Tekniske Fundament"
     gamesTitle="Seks Nøgletitler fra iSoftBets Portefølje"

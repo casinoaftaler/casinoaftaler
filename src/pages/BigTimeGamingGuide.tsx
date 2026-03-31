@@ -14,7 +14,7 @@ const BigTimeGamingGuide = () => (
     seoDescription="Big Time Gaming – Megaways-opfinderne med 117.649+ vinderkombinationer, licenseret til 100+ spil fra andre studios. Opkøbt af Evolution."
     name="Big Time Gaming"
     heroSubtitle="Big Time Gaming opfandt Megaways-mekanikken – den mest licenserede innovation i casinobranchen. Med op til 248.832 vinderkombinationer per spin ændrede de spillets regler permanent."    currentPath="/spiludviklere/big-time-gaming"
-    readTime="18 Min."
+    readTime="24 Min."
     sectionOrder={["intro", "strategic", "technical", "games", "history", "casinos", "licenses", "proscons", "providers", "responsible"]}
     strategicTitle="IP-Drevet Forretningsmodel: Patentet Der Ændrede Alt"
     introTitle="Big Time Gaming – Mekanik-Innovatorerne fra Sydney"

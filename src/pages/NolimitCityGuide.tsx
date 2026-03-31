@@ -13,8 +13,8 @@ const NolimitCityGuide = () => (
     name="Nolimit City"
     heroSubtitle="Nolimit City har redefineret high-volatility slots med patenterede mekanikker som xWays, xNudge og xBomb. Opkøbt af Evolution Gaming for €340 millioner – en anerkendelse af deres unikke position."    currentPath="/spiludviklere/nolimit-city"
     extraJsonLd={[buildVideoSchema(`${SITE_URL}/spiludviklere/nolimit-city`, "oLToV0bHrjU", { title: "Nolimit City – Bonus åbninger live", description: "Se Jonas åbne bonusser på populære Nolimit City spillemaskiner live – xWays, xNudge og xBomb mekanikker i praksis.", uploadDate: "2026-03-07", duration: "PT25M0S" })]}
-    readTime="18 Min."
-    sectionOrder={["strategic", "technical", "intro", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
+    readTime="22 Min."
+    sectionOrder={["strategic", "intro", "technical", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
     strategicTitle="Provokation som Brandstrategi: Tabuer og Markedsposition"
     introTitle="Nolimit City – Studiets DNA og Vision"
     historyTitle="Vejen fra Stockholm til €340 Millioners Opkøb"

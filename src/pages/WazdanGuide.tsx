@@ -10,7 +10,7 @@ const WazdanGuide = () => (
     seoDescription="Wazdan slots: Polsk studio med Volatility Levels™-teknologi, 200+ titler, RTP 95-96,5 % og innovative features som Unique Gamble. Se populære spil."
     name="Wazdan"    heroSubtitle="Wazdan er den polske innovator der har revolutioneret spilleroplevelsen med patenteret Volatility Levels™-teknologi – spillere vælger selv volatilitet i realtid. Med 200+ titler og avancerede gamification-features har Wazdan etableret sig som en af Europas mest progressive spiludviklere."
     currentPath="/spiludviklere/wazdan"
-    readTime="35 Min."
+    readTime="25 Min."
     strategicTitle="Spillerautonomi som Forretningsmodel: Wazdans Disruptive Markedsposition"
     technicalTitle="Volatility Levels™ og Proprietær Teknologi: Wazdans Tekniske DNA"
     gamesTitle="Seks Essentielle Titler fra Wazdans Portefølje"

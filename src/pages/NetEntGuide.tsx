@@ -10,7 +10,7 @@ const NetEntGuide = () => (
     seoDescription="NetEnt: Svensk spiludvikler bag Starburst og Gonzo's Quest. RTP 95-98 %, medium volatilitet og 200+ ikoniske slots. Se de bedste NetEnt-spil."
     name="NetEnt"
     heroSubtitle="NetEnt er synonym med kvalitet i casinobranchen. Lær alt om den svenske spiludvikler, der har revolutioneret online slots med titler som Starburst, Gonzo's Quest og Dead or Alive."    currentPath="/spiludviklere/netent"
-    readTime="32 Min."
+    readTime="37 Min."
     strategicTitle="Den Svenske Doktrin: NetEnts Filosofi og Konkurrenceposition"
     technicalTitle="Ingeniørkunsten Bag Hjulene: NetEnts Tekniske DNA"
     gamesTitle="Tidløse Klassikere: De Spil der Definerede en Branche"

@@ -9,7 +9,7 @@ const PlayNGoGuide = () => (
     seoDescription="Dybdegående analyse af Play'n GO – 5x Slot Provider of the Year, 300+ spil, Book of Dead, Reactoonz. Fast RTP, ingen Bonus Buy, franchise-building."
     name="Play'n GO"
     heroSubtitle="Play'n GO er casinobranchens storyteller-in-chief. Med fem 'Slot Provider of the Year'-priser, 300+ titler, Rich Wilde-franchisen og Reactoonz-universet har dette svenske studio bevist, at narrativ dybde og teknisk konsistens kan vinde over volumen og hype."    currentPath="/spiludviklere/play-n-go"
-    readTime="38 Min."
+    readTime="39 Min."
     strategicTitle="Storytellerens Konkurrencefordel: Play'n GOs Unikke Position"
     technicalTitle="Franchise-Motorens Anatomi: Play'n GOs Tekniske Platform"
     gamesTitle="Universer i Pixels: Play'n GOs Definerende Titler"
