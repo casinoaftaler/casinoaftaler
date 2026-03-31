@@ -234,7 +234,7 @@ export default function ForfatterKevin() {
                   <User className="h-4 w-4 text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground">Rolle</p>
-                    <p className="text-sm font-medium">Streamer & forfatter</p>
+                    <p className="text-sm font-medium">Streamer & Spiludvikler</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-3">
