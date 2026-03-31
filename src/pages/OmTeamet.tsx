@@ -405,7 +405,7 @@ const OmTeamet = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-white">Kevin</p>
-                    <p className="text-sm text-white/60">Casino-streamer & IT Medansvarlig</p>
+                    <p className="text-sm text-white/60">Casino-streamer & Spiludvikler</p>
                   </div>
                 </div>
               </CardContent>
