@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import blueprintLogo from "@/assets/screenshots/blueprint-logo-officielt.webp";
+import blueprintSlots from "@/assets/screenshots/blueprint-slots-katalog.webp";
+import blueprintEyeOfHorus from "@/assets/screenshots/blueprint-eye-of-horus-gameplay.webp";
+import blueprintMga from "@/assets/screenshots/blueprint-mga-licens.webp";
 
 const BlueprintGamingGuide = () => (
   <ProviderPage
