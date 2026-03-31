@@ -495,6 +495,9 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinospil/keno", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-31",
     author: "jonas", factCheckedBy: "kevin", articleTitle: "Online Keno i Danmark", articleCategory: "Guide",
     articleExcerpt: "Komplet guide til online keno med dansk licens – varianter, RTP-analyse, sandsynlighedsmodeller og optimal strategi." },
+  { path: "/casinospil/skrabespil", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-28",
+    author: "jonas", factCheckedBy: "kevin", articleTitle: "Online Skrabespil i Danmark", articleCategory: "Guide",
+    articleExcerpt: "Komplet guide til online skrabespil med dansk licens – varianter, RTP-analyse, gevinsttabeller og ansvarligt spil." },
   // /sitemap – excluded: has noindex in Sitemap.tsx (noindex + sitemap = conflicting signals)
 
 ] as const).map((route): SeoRoute => ({ ...route }));

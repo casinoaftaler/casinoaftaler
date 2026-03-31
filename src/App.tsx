@@ -570,6 +570,7 @@ const App = () => (
                 <Route path="/casinospil/online-lotteri" element={<OnlineLotteriGuide />} />
                 <Route path="/casinospil/bingo" element={<BingoGuide />} />
                 <Route path="/casinospil/keno" element={<KenoGuide />} />
+                <Route path="/casinospil/skrabespil" element={<SkrabespilGuide />} />
                 <Route path="/casinospil/game-shows" element={<Navigate to="/live-casino/game-shows" replace />} />
                 <Route path="/spiludviklere/netent" element={<NetEntGuide />} />
                 <Route path="/spiludviklere/pragmatic-play" element={<PragmaticPlayGuide />} />
