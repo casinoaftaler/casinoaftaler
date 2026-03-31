@@ -1174,6 +1174,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/casinoer/hoej-rtp", label: "Høj RTP", icon: BarChart3, desc: "Casinoer med bedst tilbagebetaling" },
         { to: "/casinoer/crypto-casino", label: "Crypto Casino", icon: Globe, desc: "Bitcoin og krypto-gambling i Danmark" },
         { to: "/casino-licenser", label: "Licenserede Casinoer", icon: ShieldCheck, desc: "Sikre casinoer med dansk licens" },
+        { to: "/casino-med-dansk-licens", label: "Casino med Dansk Licens", icon: ShieldCheck, desc: "Komplet guide til danske licenser" },
         reviewHub,
         bonusHub,
         nyeCasinoerHub,
