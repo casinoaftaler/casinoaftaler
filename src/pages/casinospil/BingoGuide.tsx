@@ -221,7 +221,7 @@ const BingoGuide = () => {
 
         <SnippetAnswer answer="Online bingo i Danmark spilles lovligt hos casinoer med dansk licens fra Spillemyndigheden. De mest udbredte varianter er 90-kugle bingo (europæisk) med tre gevinstniveauer og 75-kugle bingo (amerikansk) med mønster-baserede gevinster. RTP varierer fra 70-85% for traditionel bingo til 85-95% for video bingo. Alle danske bingo-gevinster er skattefrie, og spillere er beskyttet af ROFUS og MitID-verifikation." />
 
-        <QuickComparisonTable count={3} title="Bedste casinoer med bingo i Danmark" prioritySlugs={["maria-casino", "leovegas", "spilleautomaten"]} />
+        <QuickComparisonTable count={3} title="Bedste casinoer med bingo i Danmark" prioritySlugs={["spilleautomaten", "spildansknu", "betinia"]} />
 
         {/* Intro */}
         <section className="mb-10">
