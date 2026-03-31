@@ -47,7 +47,9 @@ export function useScrollDepthBonus(pagePath: string, dwellCompleted: boolean) {
   // Reset on page change
   useEffect(() => {
     depthRef.current = false;
+    hintRef.current = false;
     setHasReachedDepth(false);
+    setHasReachedHint(false);
     setIsClaimed(false);
     setIsClaiming(false);
   }, [pagePath]);
