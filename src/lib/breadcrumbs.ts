@@ -427,31 +427,24 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   // Standalone cornerstone – top-level authority (no cluster parent)
   // /casino-med-dansk-licens uses default breadcrumb: Forside > Casino med Dansk Licens
 
-  // Top-10 bound to casino-anmeldelser hub
-  "/top-10-casino-online": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
+  // Standalone cornerstones – top-level authority (no cluster parent)
+  // /top-10-casino-online → Forside > Top 10 Casino Online
+  // /free-spins → Forside > Free Spins
+  // /free-spins-i-dag → Forside > Free Spins i Dag
+  // /bonus-uden-indbetaling → Forside > Bonus uden Indbetaling
+  // /casino-med-mobilepay → Forside > Casino med MobilePay
 
-  // VS-sider – bundet til /casino-anmeldelser hub
-  "/casino-anmeldelser/bet365-vs-unibet": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
-  "/casino-anmeldelser/leovegas-vs-mr-green": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
-  "/casino-anmeldelser/danske-spil-vs-spilnu": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
-  "/casino-anmeldelser/spilleautomaten-vs-spildansknu": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
-  "/casino-anmeldelser/betinia-vs-campobet": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
-  "/casino-anmeldelser/swift-casino-vs-luna-casino": [{ name: "Casino Anmeldelser", path: "/casino-anmeldelser" }],
-
-  // Bonus cluster – all bound to /casino-bonus hub
-  "/free-spins": [{ name: "Casino Bonus", path: "/casino-bonus" }],
+  // Bonus cluster – remaining spokes bound to /casino-bonus hub
   "/velkomstbonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/omsaetningskrav": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/indskudsbonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
-  "/bonus-uden-indbetaling": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/bonus-uden-omsaetningskrav": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/no-sticky-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/sticky-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
-  "/free-spins-i-dag": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/cashback-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/reload-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/vip-program": [{ name: "Casino Bonus", path: "/casino-bonus" }],
-  "/casino-med-mobilepay": [{ name: "Betalingsmetoder", path: "/betalingsmetoder" }],
+
 
   // Casinospil cluster – sub-hubs bound to /casinospil
   "/casinospil/roulette": [{ name: "Casinospil", path: "/casinospil" }],
