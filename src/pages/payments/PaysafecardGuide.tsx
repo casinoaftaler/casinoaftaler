@@ -291,6 +291,7 @@ const PaysafecardGuide = () => {
         )},
       ]}
       currentPath="/betalingsmetoder/paysafecard"
+      responsibleGamingText="Paysafecards forudbetalte model er i sig selv et ansvarligt spil-værktøj – når kuponen er brugt, kræver det et fysisk køb af en ny. Brug denne naturlige grænse bevidst og undgå at købe flere kuponer i træk."
       snippetAnswer="Paysafecard er den bedste metode til budgetkontrol – du køber vouchers med et fast beløb og kan aldrig overskride dit budget. Kun til indbetalinger; udbetalinger kræver Trustly eller bankoverførsel."
       prioritySlugs={["betinia", "campobet", "spildansknu"]}
       readTime="23 Min."

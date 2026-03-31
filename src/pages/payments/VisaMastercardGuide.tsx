@@ -294,6 +294,7 @@ const VisaMastercardGuide = () => {
         )},
       ]}
       currentPath="/betalingsmetoder/visa-mastercard"
+      responsibleGamingText="Brug aldrig kreditkort til gambling – spil kun med debitkort og penge du allerede har. De fleste danske banker tillader dig at sætte daglige forbrugsgrænser på dit kort, hvilket giver en ekstra sikkerhedsmekanisme."
       howToName="Sådan indbetaler du med Visa eller Mastercard på et dansk casino"
       howToTotalTime="PT3M"
       howToSteps={[
