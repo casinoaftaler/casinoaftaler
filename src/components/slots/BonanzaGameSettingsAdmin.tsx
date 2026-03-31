@@ -171,7 +171,7 @@ export function BonanzaGameSettingsAdmin() {
               min={1}
               max={50}
               value={form.maxBet}
-              onChange={(e) => setForm({ ...form, maxBet: parseInt(e.target.value) || 50 })}
+              onChange={(e) => setForm({ ...form, maxBet: parseInt(e.target.value) || 40 })}
             />
             <p className="text-xs text-muted-foreground">Maks indsats pr. spin</p>
           </div>
