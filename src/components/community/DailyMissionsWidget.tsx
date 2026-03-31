@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDwellRewardProgress, activateMissionMode } from "@/hooks/useDwellReward";
+import { SCROLL_DEPTH_BONUS_CREDITS } from "@/hooks/useScrollDepthBonus";
 import { useMissionStreak, STREAK_MILESTONES } from "@/hooks/useMissionStreak";
 import { useAuth } from "@/hooks/useAuth";
 import { Check, Coins, Clock, ArrowRight, Sparkles, Flame } from "lucide-react";
@@ -13,8 +14,8 @@ export function DailyMissionsWidget() {
   if (!user) return null;
   if (isLoading) return null;
 
-  const totalCredits = pages.reduce((sum, p) => sum + p.credits, 0);
-  const earnedCredits = pages.filter((p) => p.completed).reduce((sum, p) => sum + p.credits, 0);
+  const totalCredits = pages.reduce((sum, p) => sum + p.credits + SCROLL_DEPTH_BONUS_CREDITS, 0);
+  const earnedCredits = pages.filter((p) => p.completed).reduce((sum, p) => sum + p.credits + SCROLL_DEPTH_BONUS_CREDITS, 0);
   const hasNoneCompleted = completedCount === 0;
   const allCompleted = completedCount === totalPages;
 
@@ -56,7 +57,7 @@ export function DailyMissionsWidget() {
 
       <p className={`text-[11px] mb-3 leading-relaxed ${hasNoneCompleted ? "text-amber-200/80" : "text-muted-foreground"}`}>
         {hasNoneCompleted
-          ? "🔥 Optjen op til 1.800 credits i dag – start din første mission!"
+          ? "🔥 Optjen op til 3.600 credits i dag – start din første mission!"
           : "Besøg vores guides og optjen credits – 120 sekunder pr. side"}
       </p>
 

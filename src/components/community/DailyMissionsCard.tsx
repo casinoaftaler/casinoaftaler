@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDwellRewardProgress, activateMissionMode } from "@/hooks/useDwellReward";
+import { SCROLL_DEPTH_BONUS_CREDITS } from "@/hooks/useScrollDepthBonus";
 import { useMissionStreak, STREAK_MILESTONES } from "@/hooks/useMissionStreak";
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,8 +15,8 @@ export function DailyMissionsCard() {
 
   if (!user || isLoading) return null;
 
-  const totalCredits = pages.reduce((sum, p) => sum + p.credits, 0);
-  const earnedCredits = pages.filter((p) => p.completed).reduce((sum, p) => sum + p.credits, 0);
+  const totalCredits = pages.reduce((sum, p) => sum + p.credits + SCROLL_DEPTH_BONUS_CREDITS, 0);
+  const earnedCredits = pages.filter((p) => p.completed).reduce((sum, p) => sum + p.credits + SCROLL_DEPTH_BONUS_CREDITS, 0);
   const hasNoneCompleted = completedCount === 0;
   const allCompleted = completedCount === totalPages;
 
@@ -46,7 +47,7 @@ export function DailyMissionsCard() {
             </h2>
             <p className={`text-sm mt-1 ${hasNoneCompleted ? "text-amber-200/80" : "text-muted-foreground"}`}>
               {hasNoneCompleted
-                ? "🔥 Start dine missioner og optjen op til 1.800 credits!"
+                ? "🔥 Start dine missioner og optjen op til 3.600 credits!"
                 : "Besøg vores guides og optjen credits – 120 sekunder pr. side"}
             </p>
           </div>
