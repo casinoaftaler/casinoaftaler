@@ -164,19 +164,25 @@ export function ProviderPage({
   });
 
   const sectionMap: Record<string, ReactNode> = {
-    intro: (
-      <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">{introTitle}</h2>
-        {introContent}
-        <p className="mt-4 text-muted-foreground leading-relaxed">
-          Læs vores komplette{" "}
-          <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">oversigt over spiludviklere</Link>{" "}
-          for at sammenligne {name} med andre førende studios i branchen, eller udforsk{" "}
-          <Link to="/casinospil" className="text-primary underline hover:text-primary/80">vores guide til casinospil</Link>{" "}
-          for at finde de bedste spil til din spillestil.
-        </p>
-      </section>
-    ),
+    intro: (() => {
+      const crosslinkVariants = [
+        <>Læs vores komplette <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">oversigt over spiludviklere</Link> for at sammenligne {name} med andre førende studios, eller udforsk <Link to="/casinospil" className="text-primary underline hover:text-primary/80">vores guide til casinospil</Link> for at finde de bedste spil til din spillestil.</>,
+        <>Sammenlign {name} med andre studios i vores <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">spiludvikler-oversigt</Link>, eller find din næste favorit via <Link to="/casinospil/spillemaskiner" className="text-primary underline hover:text-primary/80">vores spillemaskine-guide</Link>.</>,
+        <>Udforsk hvordan {name} klarer sig mod konkurrenterne i vores <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">komplette udvikler-guide</Link>, og se de nyeste <Link to="/casinospil" className="text-primary underline hover:text-primary/80">casinospil-anbefalinger</Link>.</>,
+        <>Se hele det danske udbud af spiludviklere i vores <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">dybdegående oversigt</Link>, eller gå direkte til <Link to="/casinospil/spillemaskiner" className="text-primary underline hover:text-primary/80">spillemaskinerne</Link> for at finde {name}-titler.</>,
+        <>Find flere studier som {name} i vores <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">spiludvikler-database</Link>, eller læs om <Link to="/casinospil" className="text-primary underline hover:text-primary/80">hvilke casinospil</Link> der passer til din spillestil.</>,
+      ];
+      const idx = name.length % crosslinkVariants.length;
+      return (
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">{introTitle}</h2>
+          {introContent}
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            {crosslinkVariants[idx]}
+          </p>
+        </section>
+      );
+    })(),
     history: (
       <section className="mb-12">
         <h2 className="mb-4 text-3xl font-bold">{historyTitle}</h2>
