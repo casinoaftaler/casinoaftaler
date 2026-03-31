@@ -45,7 +45,7 @@ const faqs = [
   {
     question: "Hvad er Kevins rolle på Casinoaftaler.dk?",
     answer:
-      "Kevin er streamer, forfatter og IT-medansvarlig på Casinoaftaler.dk. Han bidrager med praktisk erfaring fra live-streams, casinotests og platformudvikling.",
+      "Kevin er streamer og spiludvikler hos Casinoaftaler.dk. Han streamer slots live på Twitch og udvikler community-spil i spillehallen.",
   },
   {
     question: "Streamer Kevin casino live?",
@@ -60,7 +60,7 @@ const faqs = [
   {
     question: "Hvad er Kevins speciale?",
     answer:
-      "Kevins specialer inkluderer slot-analyse, RTP-forståelse, bonusvilkår og community-engagement. Han har desuden solid erfaring med platformudvikling og teknisk optimering.",
+      "Kevins specialer inkluderer slot-streaming, RTP-forståelse, bonusvilkår, community-engagement og udvikling af spil til spillehallen.",
   },
 ];
 
