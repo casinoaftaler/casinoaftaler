@@ -165,6 +165,12 @@ const BlueprintGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           For danske spillere er det væsentligt at Blueprint Gaming er fuldt certificeret til det danske marked via Spillemyndigheden. Alle spil er testet og godkendt af uafhængige laboratorier (GLI og BMM Testlabs) for RNG-integritet og RTP-nøjagtighed. Jackpot King-systemet er separat certificeret for at sikre retfærdighed i jackpot-puljens allokering og udbetaling – en ekstra kompleksitet der kræver specialiseret regulatorisk godkendelse.
         </p>
+        <ReviewScreenshot
+          src={blueprintMga}
+          alt="Malta Gaming Authority (MGA) officielt logo – Blueprint Gaming er licenseret af MGA til europæisk drift"
+          caption="Malta Gaming Authority – en af Blueprint Gamings primære regulatoriske licenser"
+          size="compact"
+        />
         <p className="text-muted-foreground leading-relaxed">
           Gauselmann Groups compliance-infrastruktur understøtter Blueprints regulatoriske position: koncernen har årtiers erfaring med europæisk gambling-regulering fra den fysiske sektor, og denne erfaring oversættes direkte til den digitale operation. Blueprint overholder UKGC's strenge krav til reklame-begrænsninger, spillerbeskyttelse og social ansvarlighed – standarder der i mange tilfælde overgår hvad der kræves i andre jurisdiktioner.
         </p>
