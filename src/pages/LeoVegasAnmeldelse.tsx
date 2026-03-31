@@ -61,7 +61,7 @@ const LeoVegasAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="36 Min." />
+        <AuthorMetaBar author="jonas" readTime="62 Min." />
         <CasinoReviewHero slug="leovegas" casinoName="LeoVegas" />
         <ReviewMoneyLinks />
 

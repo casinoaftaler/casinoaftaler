@@ -214,7 +214,7 @@ const MobilCasino = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" readTime="9 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Testet og skrevet af Jonas Theill, casino bonus ekspert hos Casinoaftaler.dk.
         </p>

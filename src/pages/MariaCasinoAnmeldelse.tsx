@@ -38,7 +38,7 @@ const MariaCasinoAnmeldelse = () => {
         </div></div>
       </section>
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" readTime="11 Min." />
         <CasinoReviewHero slug="maria-casino" casinoName="Maria Casino" />
         <ReviewMoneyLinks showMobilePay />
 

@@ -143,7 +143,7 @@ const SpilnuAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="49 Min." />
         <CasinoReviewHero slug="spilnu" casinoName="Spilnu" />
         <ReviewMoneyLinks showMobilePay />
 

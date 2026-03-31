@@ -61,7 +61,7 @@ const GetLuckyAnmeldelse = () => {
         </div></div>
       </section>
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="47 Min." />
         <CasinoReviewHero slug="getlucky" casinoName="GetLucky Casino" />
         <ReviewMoneyLinks />
 

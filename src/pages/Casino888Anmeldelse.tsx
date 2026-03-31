@@ -60,7 +60,7 @@ const Casino888Anmeldelse = () => {
         </div></div>
       </section>
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="44 Min." />
         <CasinoReviewHero slug="888-casino" casinoName="888 Casino" />
         <ReviewMoneyLinks />
 

@@ -206,7 +206,7 @@ const CasinoMedMobilePay = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" readTime="13 Min." />
         <p className="text-sm text-muted-foreground mt-2 mb-6">
           Skrevet af Jonas Theill, casino betalingsekspert hos Casinoaftaler.dk.
         </p>

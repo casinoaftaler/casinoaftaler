@@ -146,7 +146,7 @@ const LiveCasinoStrategiGuide = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="28 Min." />
+        <AuthorMetaBar author="jonas" readTime="57 Min." />
 
 
         <SnippetAnswer answer="Live casino-strategi handler om at vælge spil med lav husfordel, bruge grundstrategi i blackjack og sætte stop-loss grænser." />

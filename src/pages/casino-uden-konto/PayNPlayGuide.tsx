@@ -133,7 +133,7 @@ const PayNPlayGuide = () => {
       </div>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="34 Min." />
+        <AuthorMetaBar author="kevin" readTime="51 Min." />
 
 
         <SnippetAnswer answer="Pay N Play bruger Trustly til øjeblikkelig bank-identifikation og betaling i ét trin – ingen konto, ingen ventetid." />

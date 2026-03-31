@@ -132,7 +132,7 @@ const SpilleautomatenAnmeldelse = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="34 Min." />
+        <AuthorMetaBar author="jonas" readTime="48 Min." />
 
         <CasinoReviewHero slug="spilleautomaten" casinoName="Spilleautomaten" />
         <ReviewMoneyLinks showMobilePay />
