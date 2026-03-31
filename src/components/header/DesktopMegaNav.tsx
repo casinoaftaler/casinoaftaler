@@ -146,7 +146,7 @@ function SmartLink({ item, colorIndex = 0, onClick }: { item: NavLink; colorInde
       <Link
         to={item.to}
         onClick={onClick}
-        className="flex items-center gap-3 rounded-lg border border-border/50 bg-card/60 px-4 py-3 text-[14px] font-medium transition-all duration-150 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_0_12px_-4px_hsl(var(--primary)/0.3)] group"
+        className="flex items-center gap-3 rounded-lg border border-border/50 bg-card/60 px-4 py-3 text-[15px] font-semibold transition-all duration-150 hover:bg-primary/10 hover:border-primary/40 hover:shadow-[0_0_12px_-4px_hsl(var(--primary)/0.3)] group"
       >
         <img
           src={item.avatarUrl}
