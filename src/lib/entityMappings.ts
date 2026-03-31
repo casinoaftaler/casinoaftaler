@@ -100,6 +100,12 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bdansk licens\b/i, /\bdanske licenser\b/i], href: "/casino-licenser", anchor: "" },
   { patterns: [/\bhvidvask(?:regler|lovgivning|ning)?\b/i, /\bAML\b/], href: "/casino-licenser", anchor: "" },
 
+  // 4 nye cornerstone money-pages
+  { patterns: [/\bcasino uden ROFUS\b/i, /\bcasinoer uden ROFUS\b/i, /\buden ROFUS\b/i], href: "/casino-uden-rofus", anchor: "", anchorVariants: ["casino uden ROFUS", "casinoer uden ROFUS", "risici ved casino uden ROFUS"] },
+  { patterns: [/\bcasino med MitID\b/i, /\bMitID casino\b/i, /\bMitID[\s-]?verifikation\b/i, /\bMitID[\s-]?login\b/i], href: "/casino-med-mitid", anchor: "", anchorVariants: ["casino med MitID", "MitID-verifikation", "casinoer med MitID", "MitID login"] },
+  { patterns: [/\bhurtig udbetaling\b/i, /\bhurtige udbetalinger\b/i, /\bhurtigste udbetalinger\b/i], href: "/hurtig-udbetaling", anchor: "", anchorVariants: ["hurtig udbetaling", "hurtige udbetalinger", "casinoer med hurtig udbetaling"] },
+  { patterns: [/\bgratis casino[\s-]?spil\b/i, /\bgratis casinospil\b/i, /\bspil gratis casino\b/i], href: "/gratis-casino-spil", anchor: "", anchorVariants: ["gratis casino spil", "gratis casinospil", "spil gratis"] },
+
   // Casinospil hub money-pages
   { patterns: [/\bspillemaskiner\b/i], href: "/casinospil/spillemaskiner", anchor: "" },
   { patterns: [/\bblackjack skema\b/i, /\bbasic strategy\b/i, /\bstrategiskema\b/i], href: "/casinospil/blackjack/skema", anchor: "" },

@@ -49,6 +49,22 @@ const PRIORITY_MONEY_RULES = [
     href: "/casino-med-mobilepay",
     patterns: [/\bcasino med mobilepay\b/i, /\bmobilepay casino\b/i, /\bcasinoer med mobilepay\b/i],
   },
+  {
+    href: "/casino-uden-rofus",
+    patterns: [/\bcasino uden rofus\b/i, /\bcasinoer uden rofus\b/i, /\buden rofus\b/i],
+  },
+  {
+    href: "/casino-med-mitid",
+    patterns: [/\bcasino med mitid\b/i, /\bmitid casino\b/i, /\bcasinoer med mitid\b/i],
+  },
+  {
+    href: "/hurtig-udbetaling",
+    patterns: [/\bhurtig udbetaling\b/i, /\bhurtige udbetalinger\b/i, /\bhurtig udbetaling casino\b/i],
+  },
+  {
+    href: "/gratis-casino-spil",
+    patterns: [/\bgratis casino[\s-]?spil\b/i, /\bgratis casinospil\b/i],
+  },
 ] as const;
 
 const MONEY_PAGE_HREFS = new Set<string>(PRIORITY_MONEY_RULES.map((rule) => rule.href));
