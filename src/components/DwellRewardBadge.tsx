@@ -25,7 +25,7 @@ export function DwellRewardBadge() {
   } = useDwellReward(pathname);
 
   const { pages, completedCount, totalPages } = useDwellRewardProgress();
-  const { hasReachedDepth, isClaimed: scrollClaimed, scrollDepthCredits } = useScrollDepthBonus(pathname, isClaimed || alreadyCompleted);
+  const { hasReachedDepth, hasReachedHint, isClaimed: scrollClaimed, scrollDepthCredits } = useScrollDepthBonus(pathname, isClaimed || alreadyCompleted);
   const { currentStreak, checkAndUpdateStreak } = useMissionStreak();
 
   const [visible, setVisible] = useState(true);
@@ -260,6 +260,13 @@ export function DwellRewardBadge() {
               </span>
               {scrollClaimed && (
                 <p className="text-[10px] text-emerald-500/80 font-medium">inkl. +{scrollDepthCredits} scroll-dybde bonus</p>
+              )}
+              {/* Scroll hint: dwell done, at 30% but not yet at 60%, bonus not claimed */}
+              {!scrollClaimed && hasReachedHint && !hasReachedDepth && (
+                <p className="text-[10px] font-semibold text-amber-500 animate-pulse mt-0.5 flex items-center gap-1">
+                  <ArrowDown className="h-3 w-3 animate-bounce" />
+                  Scroll dybere ned for +{scrollDepthCredits} ekstra credits!
+                </p>
               )}
               {streakFlash && (
                 <p className="text-xs font-bold text-amber-500 animate-pulse mt-0.5">{streakFlash}</p>

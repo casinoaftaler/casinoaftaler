@@ -5,25 +5,35 @@ import { useQueryClient } from "@tanstack/react-query";
 import { getTodayDanish } from "@/lib/danishDate";
 
 export const SCROLL_DEPTH_THRESHOLD = 0.6; // 60%
+export const SCROLL_DEPTH_HINT_THRESHOLD = 0.3; // 30% – show hint
 export const SCROLL_DEPTH_BONUS_CREDITS = 300;
 
 export function useScrollDepthBonus(pagePath: string, dwellCompleted: boolean) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
   const [hasReachedDepth, setHasReachedDepth] = useState(false);
+  const [hasReachedHint, setHasReachedHint] = useState(false);
   const [isClaimed, setIsClaimed] = useState(false);
   const [isClaiming, setIsClaiming] = useState(false);
   const depthRef = useRef(false);
+  const hintRef = useRef(false);
 
   // Track scroll depth
   useEffect(() => {
     if (!user || !dwellCompleted || isClaimed) return;
 
     const handleScroll = () => {
-      if (depthRef.current) return;
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (docHeight > 0 && scrollTop / docHeight >= SCROLL_DEPTH_THRESHOLD) {
+      if (docHeight <= 0) return;
+      const ratio = scrollTop / docHeight;
+
+      if (!hintRef.current && ratio >= SCROLL_DEPTH_HINT_THRESHOLD) {
+        hintRef.current = true;
+        setHasReachedHint(true);
+      }
+
+      if (!depthRef.current && ratio >= SCROLL_DEPTH_THRESHOLD) {
         depthRef.current = true;
         setHasReachedDepth(true);
       }
@@ -37,7 +47,9 @@ export function useScrollDepthBonus(pagePath: string, dwellCompleted: boolean) {
   // Reset on page change
   useEffect(() => {
     depthRef.current = false;
+    hintRef.current = false;
     setHasReachedDepth(false);
+    setHasReachedHint(false);
     setIsClaimed(false);
     setIsClaiming(false);
   }, [pagePath]);
@@ -69,5 +81,5 @@ export function useScrollDepthBonus(pagePath: string, dwellCompleted: boolean) {
     setIsClaiming(false);
   }, [user, pagePath, isClaimed, isClaiming, queryClient]);
 
-  return { hasReachedDepth, isClaimed, scrollDepthCredits: SCROLL_DEPTH_BONUS_CREDITS };
+  return { hasReachedDepth, hasReachedHint, isClaimed, scrollDepthCredits: SCROLL_DEPTH_BONUS_CREDITS };
 }
