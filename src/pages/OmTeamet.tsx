@@ -222,7 +222,7 @@ const OmTeamet = () => {
             <div className="mt-10 grid grid-cols-2 gap-6 justify-items-center md:hidden">
               {[
                 { to: "/forfatter/jonas", img: jonasImage, alt: "Jonas – Grundlægger", name: "Jonas" },
-                { to: "/forfatter/kevin", img: kevinImage, alt: "Kevin – IT Medansvarlig", name: "Kevin" },
+                { to: "/forfatter/kevin", img: kevinImage, alt: "Kevin – Streamer & Spiludvikler", name: "Kevin" },
                 { to: "/forfatter/ajse", img: ajseImage, alt: "Ajse – Juridisk redaktør", name: "Ajse" },
                 { to: "/forfatter/niklas", img: niklasImage, alt: "Niklas – Finansøkonom", name: "Niklas" },
                 { to: "/forfatter/frederik", img: frederikImage, alt: "Frederik – Streamer", name: "Frederik" },
