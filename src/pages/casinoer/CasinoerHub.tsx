@@ -68,6 +68,15 @@ const SUBCATEGORIES = [
       "Kun Spillemyndighed-licenserede operatører er lovlige i Danmark. Se hvad licensen kræver, og hvordan du tjekker et casino.",
   },
   {
+    title: "Casino med Dansk Licens",
+    href: "/casino-med-dansk-licens",
+    icon: ShieldCheck,
+    badge: "Guide",
+    badgeVariant: "default" as const,
+    description:
+      "Komplet guide til casinoer med dansk licens: skattefri gevinster, max 10x omsætningskrav, ROFUS og MitID-verifikation.",
+  },
+  {
     title: "VR Casinoer",
     href: "/casinoer/vr-casinoer",
     icon: Monitor,
