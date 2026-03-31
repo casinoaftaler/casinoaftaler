@@ -200,7 +200,7 @@ const CasinoUdenRofus = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="jonas" readTime="55 Min." />
+        <AuthorMetaBar author="ajse" readTime="55 Min." />
 
         <SnippetAnswer answer="Casino uden ROFUS er ulicenserede casinoer der ikke er tilsluttet det danske selvudelukkelsesprogram. Gevinster beskattes op til 52%, du har ingen klageinstans, og Spillemyndigheden kan blokere adgangen. Vi anbefaler udelukkende casinoer med dansk licens." />
 
@@ -642,7 +642,7 @@ const CasinoUdenRofus = () => {
         <ReviewMoneyLinks />
         <RelatedGuides currentPath="/casino-uden-rofus" />
         <FAQSection title="Ofte stillede spørgsmål om casino uden ROFUS" faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="ajse" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

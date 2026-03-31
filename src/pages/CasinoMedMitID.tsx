@@ -194,7 +194,7 @@ const CasinoMedMitID = () => {
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="frederik" readTime="50 Min." />
+        <AuthorMetaBar author="ajse" readTime="50 Min." />
 
         <SnippetAnswer answer="Alle danske licenserede casinoer bruger MitID til sikker identitetskontrol og aldersverifikation. Kontooprettelse tager 2-5 minutter med automatisk ROFUS-tjek og to-faktor-autentificering via biometri. MitID deler aldrig bankoplysninger med casinoet." />
 
@@ -631,7 +631,7 @@ const CasinoMedMitID = () => {
         <ReviewMoneyLinks />
         <RelatedGuides currentPath="/casino-med-mitid" />
         <FAQSection title="Ofte stillede spørgsmål om casino med MitID" faqs={faqs} />
-        <AuthorBio author="frederik" />
+        <AuthorBio author="ajse" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="leovegas" />
     </>
