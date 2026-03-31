@@ -138,7 +138,7 @@ export function HomepageLeftSidebar() {
 /** Right sidebar: Full navigation bar + Seneste nyt + Spillehal promo */
 export function HomepageRightSidebar() {
   return (
-    <div className="sticky top-24 space-y-4">
+    <div className="space-y-4">
       <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground px-1">
         Navigation
       </h3>
