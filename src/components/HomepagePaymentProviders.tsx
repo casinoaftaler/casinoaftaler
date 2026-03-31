@@ -2,10 +2,21 @@ import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
 
+const providerLogos = import.meta.glob<{ default: string }>(
+  "/src/assets/providers/*.{webp,png,jpg}",
+  { eager: true }
+);
+
 function MenuIcon({ iconName, alt, className = "h-5 w-5 flex-shrink-0" }: { iconName: string; alt: string; className?: string }) {
   const src = MENU_ICON_MAP[iconName];
   if (!src) return null;
   return <img src={src} alt={alt} className={className} loading="lazy" />;
+}
+
+function ProviderLogo({ logoPath, alt }: { logoPath: string; alt: string }) {
+  const src = providerLogos[logoPath]?.default;
+  if (!src) return <MenuIcon iconName="gamepad-2" alt={alt} />;
+  return <img src={src} alt={alt} className="h-5 w-auto max-w-[80px] object-contain flex-shrink-0" loading="lazy" />;
 }
 
 export function HomepagePaymentSection() {
