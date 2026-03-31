@@ -1,6 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./useAuth";
+import { useEffect, useRef } from "react";
+import { toast } from "sonner";
 
 interface Notification {
   id: string;
@@ -9,7 +11,7 @@ interface Notification {
   created_at: string;
 }
 
-interface UserNotificationWithDetails {
+export interface UserNotificationWithDetails {
   id: string;
   notification_id: string;
   is_read: boolean;
@@ -20,6 +22,7 @@ interface UserNotificationWithDetails {
 export function useNotifications() {
   const { user } = useAuth();
   const queryClient = useQueryClient();
+  const lastSeenIdRef = useRef<string | null>(null);
 
   // Fetch all notifications with user's read status
   const { data: notifications = [], isLoading, refetch } = useQuery({
@@ -27,7 +30,6 @@ export function useNotifications() {
     queryFn: async (): Promise<UserNotificationWithDetails[]> => {
       if (!user?.id) return [];
 
-      // Fetch notifications: global (no target) OR targeted to this user
       const { data: allNotifications, error: notifError } = await supabase
         .from("notifications")
         .select("*")
@@ -37,7 +39,6 @@ export function useNotifications() {
       if (notifError) throw notifError;
       if (!allNotifications || allNotifications.length === 0) return [];
 
-      // Get user's read status for each notification
       const { data: userStatuses, error: statusError } = await supabase
         .from("user_notifications")
         .select("*")
@@ -45,7 +46,6 @@ export function useNotifications() {
 
       if (statusError) throw statusError;
 
-      // Map notifications with their read status
       const statusMap = new Map(
         (userStatuses || []).map((s) => [s.notification_id, s])
       );
@@ -62,18 +62,63 @@ export function useNotifications() {
       });
     },
     enabled: !!user?.id,
-    staleTime: 30000, // 30 seconds
+    staleTime: 30000,
   });
 
-  // Count unread notifications
+  // Track the latest notification ID to detect genuinely new ones
+  useEffect(() => {
+    if (notifications.length > 0 && !lastSeenIdRef.current) {
+      lastSeenIdRef.current = notifications[0]?.notification_id || null;
+    }
+  }, [notifications]);
+
+  // Realtime subscription for new notifications
+  useEffect(() => {
+    if (!user?.id) return;
+
+    const channel = supabase
+      .channel("notifications-realtime")
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "notifications",
+        },
+        (payload) => {
+          const newNotif = payload.new as Notification;
+          // Show toast for new notification
+          toast(newNotif.title || "Ny besked!", {
+            description: newNotif.message.length > 100
+              ? newNotif.message.slice(0, 100) + "…"
+              : newNotif.message,
+            duration: 8000,
+            icon: "🔔",
+            action: {
+              label: "Åbn",
+              onClick: () => {
+                // Trigger bell click programmatically
+                document.querySelector<HTMLButtonElement>("[data-notification-trigger]")?.click();
+              },
+            },
+          });
+          // Refetch notifications
+          queryClient.invalidateQueries({ queryKey: ["notifications", user.id] });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user?.id, queryClient]);
+
   const unreadCount = notifications.filter((n) => !n.is_read).length;
 
-  // Mark a notification as read
   const markAsRead = useMutation({
     mutationFn: async (notificationId: string) => {
       if (!user?.id) throw new Error("User not authenticated");
 
-      // Check if user_notification record exists
       const { data: existing } = await supabase
         .from("user_notifications")
         .select("id")
@@ -82,22 +127,18 @@ export function useNotifications() {
         .maybeSingle();
 
       if (existing) {
-        // Update existing record
         const { error } = await supabase
           .from("user_notifications")
           .update({ is_read: true, read_at: new Date().toISOString() })
           .eq("id", existing.id);
-
         if (error) throw error;
       } else {
-        // Insert new record
         const { error } = await supabase.from("user_notifications").insert({
           user_id: user.id,
           notification_id: notificationId,
           is_read: true,
           read_at: new Date().toISOString(),
         });
-
         if (error) throw error;
       }
     },
@@ -106,7 +147,6 @@ export function useNotifications() {
     },
   });
 
-  // Mark all notifications as read
   const markAllAsRead = useMutation({
     mutationFn: async () => {
       if (!user?.id) throw new Error("User not authenticated");
@@ -165,25 +205,21 @@ interface NotificationWithStats {
 export function useAdminNotifications() {
   const queryClient = useQueryClient();
 
-  // Fetch total user count
   const { data: totalUsers = 0 } = useQuery({
     queryKey: ["total-users-count"],
     queryFn: async () => {
       const { count, error } = await supabase
         .from("profiles")
         .select("*", { count: "exact", head: true });
-
       if (error) throw error;
       return count || 0;
     },
-    staleTime: 60000, // 1 minute
+    staleTime: 60000,
   });
 
-  // Fetch all notifications with read stats for admin view
   const { data: notifications = [], isLoading } = useQuery({
     queryKey: ["admin-notifications", totalUsers],
     queryFn: async (): Promise<NotificationWithStats[]> => {
-      // Fetch all notifications
       const { data: allNotifications, error: notifError } = await supabase
         .from("notifications")
         .select("*")
@@ -192,7 +228,6 @@ export function useAdminNotifications() {
       if (notifError) throw notifError;
       if (!allNotifications || allNotifications.length === 0) return [];
 
-      // Fetch read counts for each notification
       const { data: readCounts, error: readError } = await supabase
         .from("user_notifications")
         .select("notification_id")
@@ -200,14 +235,12 @@ export function useAdminNotifications() {
 
       if (readError) throw readError;
 
-      // Count reads per notification
       const readCountMap = new Map<string, number>();
       (readCounts || []).forEach((item) => {
         const current = readCountMap.get(item.notification_id) || 0;
         readCountMap.set(item.notification_id, current + 1);
       });
 
-      // Map notifications with stats
       return allNotifications.map((notif) => {
         const readCount = readCountMap.get(notif.id) || 0;
         return {
@@ -220,7 +253,6 @@ export function useAdminNotifications() {
     },
   });
 
-  // Create a new notification
   const createNotification = useMutation({
     mutationFn: async ({
       title,
@@ -243,14 +275,12 @@ export function useAdminNotifications() {
     },
   });
 
-  // Delete a notification
   const deleteNotification = useMutation({
     mutationFn: async (id: string) => {
       const { error } = await supabase
         .from("notifications")
         .delete()
         .eq("id", id);
-
       if (error) throw error;
     },
     onSuccess: () => {
