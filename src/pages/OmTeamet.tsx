@@ -1006,7 +1006,7 @@ const OmTeamet = () => {
             </Link>
             <Link to="/forfatter/kevin">
               <Button variant="outline" size="lg" className="border-white/30 text-white bg-white/10 hover:bg-white/20 font-semibold">
-                Se Kevin – Casino & IT
+                Se Kevin – Streamer & Spil
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

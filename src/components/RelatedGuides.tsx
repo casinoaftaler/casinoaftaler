@@ -377,7 +377,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
     return {
       guides: [
         { to: "/forfatter/jonas", label: "Jonas – Grundlægger", icon: BookOpen, desc: "Grundlægger af Casinoaftaler.dk" },
-        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og IT medansvarlig" },
+        { to: "/forfatter/kevin", label: "Kevin – Forfatter", icon: BookOpen, desc: "Casino-streamer og spiludvikler" },
         { to: "/forfatter/ajse", label: "Ajse – Juridisk redaktør", icon: BookOpen, desc: "Juridisk redaktør på Casinoaftaler.dk" },
         { to: "/omsaetningskrav", label: "Omsætningskrav", icon: BookOpen, desc: "Komplet guide til omsætningskrav" },
         { to: "/casinoer/casino-og-skat", label: "Casino & Skat", icon: BookOpen, desc: "Guide til beskatning af casinogevinster" },

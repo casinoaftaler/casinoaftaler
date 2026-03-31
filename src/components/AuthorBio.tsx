@@ -38,11 +38,11 @@ const authorData = {
   kevin: {
     name: "Kevin",
     image: kevinImage,
-    alt: "Kevin – Medansvarlig hos Casinoaftaler.dk",
+    alt: "Kevin – Streamer & Spiludvikler hos Casinoaftaler.dk",
     link: "/forfatter/kevin",
-    badge: "Casino-streamer & IT medansvarlig",
-    role: "IT Medansvarlig hos Casinoaftaler.dk & Casino-streamer",
-    bio: "Kevin er IT medansvarlig hos Casinoaftaler.dk og har streamet online casino i over 4 år. Med sin rolige og afslappede stil bidrager han til community, indhold og udvikling af platformen.",
+    badge: "Casino-streamer & Spiludvikler",
+    role: "Streamer & Spiludvikler hos Casinoaftaler.dk",
+    bio: "Kevin er streamer og spiludvikler hos Casinoaftaler.dk med over 4 års erfaring. Han udvikler community-spil i spillehallen og streamer slots med en rolig og afslappet stil.",
     socials: [
       { href: "https://www.twitch.tv/kevinsylence", label: "Twitch" },
       { href: "https://www.youtube.com/@KevinSylence", label: "YouTube" },
