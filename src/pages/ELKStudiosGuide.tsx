@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { ProviderPage } from "./providers/ProviderPageTemplate";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewScreenshot } from "@/components/ReviewScreenshot";
+import elkLogoBanner from "@/assets/screenshots/elk-studios-logo-banner.webp";
+import elkTimeline from "@/assets/screenshots/elk-studios-timeline.webp";
+import elkPugThugs from "@/assets/screenshots/elk-studios-pug-thugs-gameplay.webp";
+import elkKatalogBetinia from "@/assets/screenshots/elk-studios-katalog-betinia.webp";
 
 const ELKStudiosGuide = () => (
   <ProviderPage
