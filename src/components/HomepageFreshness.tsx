@@ -15,7 +15,7 @@ export function HomepageFreshness() {
 
   return (
     <div className="container pb-2 pt-6">
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
+      <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted-foreground">
         {displayDate && (
           <span className="flex items-center gap-1.5">
             <RefreshCw className="h-3.5 w-3.5 text-primary" />
