@@ -138,7 +138,7 @@ const personSchema = {
   },
   sameAs: JONAS_SAME_AS,
   description:
-    "Jonas er grundlæggeren af Casinoaftaler.dk og en af Danmarks mest engagerende casino-streamere med over 4 års erfaring.",
+    "Jonas er grundlæggeren af Casinoaftaler.dk og en af Danmarks mest engagerende casino-streamere med over 5 års erfaring.",
 };
 
 
