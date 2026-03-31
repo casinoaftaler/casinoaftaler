@@ -154,6 +154,11 @@ const BetsoftGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Betsofts katalog er en rejse gennem 3D-slots-genrens evolution – fra de tidlige SLOTS3-pionerer til moderne titler der integrerer branchestandardmekanikker i den cinematiske ramme. De nedenstående seks titler repræsenterer de bedste eksempler på Betsofts unikke designfilosofi: spil der er visuelt extraordinære og gameplay-mæssigt engagerende på samme tid.
         </p>
+        <ReviewScreenshot
+          src={betsoftSlots}
+          alt="Betsoft slots katalog – After Night Falls, The Jealous Ex, 3 Pots of Wishes, Dr. Jekyll & Mr. Hyde 2, 3 Pots of Olympus, Once Again Upon a Time og flere cinematiske 3D-titler"
+          caption="Udvalg fra Betsofts portefølje: 9 af studiets nyeste 3D-slots med karakteristisk cinematisk grafik"
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           En vigtig note for danske spillere: Betsofts ældre titler kan have lavere RTP end nutidens branchestandard. De nyere titler (2019+) har generelt forbedrede matematiske profiler. Til <Link to="/velkomstbonus" className="text-primary underline hover:text-primary/80">bonusomsætning</Link> anbefales nyere titler med dokumenteret RTP over 96%.
         </p>
