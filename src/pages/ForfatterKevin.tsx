@@ -118,7 +118,7 @@ const personSchema = {
   },
   sameAs: KEVIN_SAME_AS,
   description:
-    "Kevin er streamer og forfatter på Casinoaftaler.dk med fokus på casinospil, bonusanalyse og teknisk udvikling af platformen.",
+    "Kevin er streamer og spiludvikler hos Casinoaftaler.dk med fokus på live-streaming af slots og udvikling af community-spil.",
 };
 
 
