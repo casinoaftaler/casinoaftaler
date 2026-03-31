@@ -156,7 +156,7 @@ const MobilCasinoerGuide = () => {
             <Card className="border-border bg-card">
               <CardHeader><CardTitle className="text-lg">Trustly – Direkte bankoverførsel fra mobilen</CardTitle></CardHeader>
               <CardContent className="space-y-3 text-sm text-muted-foreground">
-                <p><Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> fungerer fremragende på mobil og tilbyder øjeblikkelige bankoverførsler direkte fra din mobilbank. Du logger ind via MitID-appen, godkender betalingen, og pengene er på din casinokonto inden for sekunder. Det er den hurtigste metode til både ind- og <Link to="/casinoer/hurtig-udbetaling" className={linkClass}>udbetalinger</Link>.</p>
+                <p><Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> fungerer fremragende på mobil og tilbyder øjeblikkelige bankoverførsler direkte fra din mobilbank. Du logger ind via MitID-appen, godkender betalingen, og pengene er på din casinokonto inden for sekunder. Det er den hurtigste metode til både ind- og <Link to="/hurtig-udbetaling" className={linkClass}>udbetalinger</Link>.</p>
                 <p>Fordele: Direkte bankoverførsel uden mellemled, ingen gebyrer, ingen separat konto påkrævet, understøttes af alle danske banker. MitID-integration gør processen sikker og gnidningsfri på mobil.</p>
               </CardContent>
             </Card>

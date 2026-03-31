@@ -23,11 +23,11 @@ export interface NavLinkWithIcon extends NavLink {
 
 export const CASINO_LINKS: NavLink[] = [
   { to: "/top-10-casino-online", label: "Top 10 Online Casino", iconName: "trophy" },
-  { to: "/casinoer/hurtig-udbetaling", label: "Hurtig Udbetaling", iconName: "zap" },
+  { to: "/hurtig-udbetaling", label: "Hurtig Udbetaling", iconName: "zap" },
   { to: "/casinoer/hoej-rtp", label: "Høj RTP", iconName: "trending-up" },
   { to: "/casino-licenser", label: "Licenserede Casinoer", iconName: "shield-check" },
   { to: "/casino-uden-konto", label: "Casino uden Konto", iconName: "user-x" },
-  { to: "/casinoer/mobil-casinoer", label: "Mobil Casinoer", iconName: "smartphone" },
+  { to: "/mobil-casino", label: "Mobil Casinoer", iconName: "smartphone" },
   { to: "/mobil-casino", label: "Mobil Casino Guide", iconName: "tablet-smartphone" },
   { to: "/casinoer/crypto-casino", label: "Crypto Casino", iconName: "bitcoin" },
   { to: "/casinoer/vr-casinoer", label: "VR Casinoer", iconName: "glasses" },

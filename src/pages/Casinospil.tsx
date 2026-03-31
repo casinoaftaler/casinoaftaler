@@ -1286,7 +1286,7 @@ const Casinospil = () => {
         <section className="mb-12">
           <h2 className="mb-4 text-3xl font-bold">Mobilspil vs. desktop – platformens indflydelse på din spiloplevelse</h2>
           <p className="mb-4 text-muted-foreground leading-relaxed">
-            Over 70 % af al online casinospil i Danmark sker via mobile enheder. Denne migration fra desktop til mobil har fundamentalt ændret, hvordan casinospil designes, opleves og forbruges. Men valget af platform er ikke ubetydeligt – det påvirker alt fra spilkvalitet til din adfærd som spiller. Læs vores dedikerede <Link to="/casinoer/mobil-casinoer" className={linkClass}>guide til mobil casinoer</Link> for specifikke casino-anbefalinger.
+            Over 70 % af al online casinospil i Danmark sker via mobile enheder. Denne migration fra desktop til mobil har fundamentalt ændret, hvordan casinospil designes, opleves og forbruges. Men valget af platform er ikke ubetydeligt – det påvirker alt fra spilkvalitet til din adfærd som spiller. Læs vores dedikerede <Link to="/mobil-casino" className={linkClass}>guide til mobil casinoer</Link> for specifikke casino-anbefalinger.
           </p>
 
           <h3 className="mb-3 text-xl font-semibold">Designforskelle og spiloplevelse</h3>

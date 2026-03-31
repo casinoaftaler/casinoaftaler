@@ -173,7 +173,7 @@ const OmTeamet = () => {
   const disqualificationCriteria = [
     { text: "Manglende dansk licens fra Spillemyndigheden", link: "/casino-licenser", linkText: "dansk licens" },
     { text: "Uklare eller vildledende bonusvilkår", link: "/casino-bonus", linkText: "bonusvilkår" },
-    { text: "Langsom udbetalingstid uden dokumenteret grund", link: "/casinoer/hurtig-udbetaling", linkText: "udbetalingstid" },
+    { text: "Langsom udbetalingstid uden dokumenteret grund", link: "/hurtig-udbetaling", linkText: "udbetalingstid" },
     { text: "Skjulte gebyrer ved ind- eller udbetaling", link: "/betalingsmetoder", linkText: "gebyrer" },
     { text: "Aggressiv eller uansvarlig markedsføring", link: "/ansvarligt-spil", linkText: "uansvarlig markedsføring" },
     { text: "Manglende tilslutning til ROFUS", link: null, linkText: null },
@@ -536,7 +536,7 @@ const OmTeamet = () => {
                 </div>
               </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Dækker <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>, <Link to="/casinoer/hurtig-udbetaling" className="text-primary underline hover:text-primary/80">udbetalingshastighed</Link>, spiludviklere og teknisk platformudvikling. Streamer med 3+ års erfaring.
+                Dækker <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsmetoder</Link>, <Link to="/hurtig-udbetaling" className="text-primary underline hover:text-primary/80">udbetalingshastighed</Link>, spiludviklere og teknisk platformudvikling. Streamer med 3+ års erfaring.
               </p>
               <Link to="/forfatter/kevin" className="mt-3 inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors">
                 Se Kevin – Casino & IT <ArrowRight className="ml-1 h-3.5 w-3.5" />

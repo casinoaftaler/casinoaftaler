@@ -131,7 +131,7 @@ const NyeCasinoerHurtigUdbetaling = () => {
 
           <div className="mt-6 rounded-lg border border-primary/30 bg-accent/30 p-4">
             <p className="text-sm text-muted-foreground">
-              <strong>Se også alle casinoer med hurtig udbetaling</strong> – ikke kun nye. Vores <Link to="/casinoer/hurtig-udbetaling" className={linkClass}>komplette guide til casinoer med hurtig udbetaling</Link> dækker både nye og etablerede casinoer med de hurtigste udbetalingstider.
+              <strong>Se også alle casinoer med hurtig udbetaling</strong> – ikke kun nye. Vores <Link to="/hurtig-udbetaling" className={linkClass}>komplette guide til casinoer med hurtig udbetaling</Link> dækker både nye og etablerede casinoer med de hurtigste udbetalingstider.
             </p>
           </div>
         </section>

@@ -55,7 +55,7 @@ export function NewsHubSections() {
             Vi dækker nye partnerskaber mellem casinoer og betalingsudbydere, ændringer i udbetalingstider og de seneste fintech-innovationer 
             der påvirker din mulighed for hurtige og sikre transaktioner. Trends som instant withdrawals og biometrisk autentificering via 
             <Link to="/betalingsmetoder/apple-pay" className="text-primary hover:underline">Apple Pay</Link> sætter nye standarder for 
-            <Link to="/casinoer/hurtig-udbetaling" className="text-primary hover:underline"> hurtige udbetalinger</Link> på det danske marked.
+            <Link to="/hurtig-udbetaling" className="text-primary hover:underline"> hurtige udbetalinger</Link> på det danske marked.
           </p>
         </div>
       </section>

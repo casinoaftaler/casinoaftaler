@@ -579,7 +579,7 @@ const Betalingsmetoder = () => {
               <CardContent className="text-sm text-muted-foreground space-y-2">
                 <p><strong>Anbefaling:</strong> <Link to="/betalingsmetoder/trustly" className="text-primary underline hover:text-primary/80">Trustly</Link> eller <Link to="/betalingsmetoder/zimpler" className="text-primary underline hover:text-primary/80">Zimpler</Link></p>
                 <p>Open Banking-løsninger leverer de hurtigste udbetalinger direkte til bankkontoen. Trustly målte 6 timer og 42 minutter i vores test; Zimpler 8 timer og 15 minutter. Begge opererer via MitID og kvalificerer til alle bonusser. Alternativt: Skrill (2 timer 45 minutter til wallet-saldo, men potentiel bonus-ekskludering).</p>
-                <p>Se også vores guide til <Link to="/casinoer/hurtig-udbetaling" className="text-primary underline hover:text-primary/80">casinoer med hurtig udbetaling</Link>.</p>
+                <p>Se også vores guide til <Link to="/hurtig-udbetaling" className="text-primary underline hover:text-primary/80">casinoer med hurtig udbetaling</Link>.</p>
               </CardContent>
             </Card>
             <Card>
