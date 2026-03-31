@@ -38,7 +38,7 @@ export function useSlotSettings() {
       return {
         dailySpins: parseInt(settingsMap.slot_daily_spins || "100", 10),
         minBet: parseInt(settingsMap.slot_min_bet || "1", 10),
-        maxBet: parseInt(settingsMap.slot_max_bet || "20", 10),
+        maxBet: parseInt(settingsMap.slot_max_bet || "50", 10),
         pageLocked: settingsMap.slot_page_locked === "true",
         pagePassword: settingsMap.slot_page_password || "bookoffedesvin2026",
         riseLocked: settingsMap.rise_of_fedesvin_locked === "true",
