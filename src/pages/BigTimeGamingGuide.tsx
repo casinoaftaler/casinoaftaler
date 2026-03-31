@@ -90,6 +90,12 @@ const BigTimeGamingGuide = () => (
         <p className="mb-6 text-muted-foreground leading-relaxed">
           BTGs tekniske fingeraftryk er Megaways-motorens Random Reel Modifier – en patenteret algoritme der dynamisk bestemmer antal symboler per hjulposition per spin. Denne motor er kernen i alle BTGs egne titler og de 100+ licenserede Megaways-spil. Feature Drop-mekanikken (faldende bonus buy-pris) er separat patenteret og eksisterer kun i BTGs egne titler. Alle spil bygges i HTML5 med full mobile responsiveness og understøtter portrait-mode – en vigtig detalje for mobilspillere.
         </p>
+        <ReviewScreenshot
+          src={btgWhiteRabbit}
+          alt="White Rabbit 2 Megaways slot – gameplay med 840 Megaways, Game Provider Big Time Gaming, High/Extreme volatilitet og 96,36-96,37% RTP"
+          caption="White Rabbit 2 Megaways – BTGs nyeste titel med Megapots jackpot-integration og High/Extreme volatilitet"
+          size="full"
+        />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">RTP-interval</p><p className="text-lg font-bold">94,0% – 96,53%</p><p className="text-xs text-muted-foreground">Bonanza: 96,00% | White Rabbit: 96,53%</p></CardContent></Card>
           <Card><CardContent className="pt-6"><p className="text-xs text-muted-foreground uppercase mb-1">Volatilitet</p><p className="text-lg font-bold">Høj – Ekstremt Høj</p><p className="text-xs text-muted-foreground">Hitfrekvens typisk 18-25%</p></CardContent></Card>
