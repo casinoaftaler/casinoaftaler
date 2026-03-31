@@ -13,14 +13,14 @@ const PragmaticPlayGuide = () => (
     seoDescription="Pragmatic Play: High-volume spiludvikler med 250+ titler. Sweet Bonanza, Gates of Olympus, 6-8 nye spil/måned og RTP 94-96,5 %. Se populære slots."
     name="Pragmatic Play"
     heroSubtitle="Pragmatic Play har taget casinobranchen med storm med en alsidig portefølje der spænder fra spilleautomater til live casino og bingo – med 6-8 nye udgivelser hver måned."    currentPath="/spiludviklere/pragmatic-play"
-    readTime="38 Min."
+    readTime="40 Min."
     strategicTitle="Produktionsmaskinens Logik: Pragmatics Forretningsstrategi"
     technicalTitle="Under Motorhjelmen: Pragmatics Tekniske Infrastruktur"
     gamesTitle="Franchise-Imperiet: De Spil der Driver Milliarder af Spins"
     licensesTitle="Global Compliance: Pragmatics Regulatoriske Fodaftryk"
     prosConsTitle="Pragmatics Trumfer og Svagheder"
     responsibleTitle="Ansvarligt Spil i en High-Volume Verden"
-    sectionOrder={["strategic", "technical", "intro", "games", "history", "licenses", "casinos", "proscons", "providers", "responsible"]}
+    sectionOrder={["strategic", "technical", "intro", "games", "casinos", "history", "licenses", "proscons", "providers", "responsible"]}
     introTitle="Industriens Maskinrum: Hvordan Pragmatic Play Blev Branchens Mest Spillede Udvikler"
     introContent={
       <>

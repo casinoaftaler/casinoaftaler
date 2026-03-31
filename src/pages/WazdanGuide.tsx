@@ -10,7 +10,7 @@ const WazdanGuide = () => (
     seoDescription="Wazdan slots: Polsk studio med Volatility Levels™-teknologi, 200+ titler, RTP 95-96,5 % og innovative features som Unique Gamble. Se populære spil."
     name="Wazdan"    heroSubtitle="Wazdan er den polske innovator der har revolutioneret spilleroplevelsen med patenteret Volatility Levels™-teknologi – spillere vælger selv volatilitet i realtid. Med 200+ titler og avancerede gamification-features har Wazdan etableret sig som en af Europas mest progressive spiludviklere."
     currentPath="/spiludviklere/wazdan"
-    readTime="35 Min."
+    readTime="25 Min."
     strategicTitle="Spillerautonomi som Forretningsmodel: Wazdans Disruptive Markedsposition"
     technicalTitle="Volatility Levels™ og Proprietær Teknologi: Wazdans Tekniske DNA"
     gamesTitle="Seks Essentielle Titler fra Wazdans Portefølje"
@@ -134,7 +134,7 @@ const WazdanGuide = () => (
     ]}
     faqs={[
       { question: "Hvad er Wazdans Volatility Levels™?", answer: "Volatility Levels™ er Wazdans patenterede teknologi der lader spillere vælge mellem lav, standard og høj volatilitet i realtid – direkte i spillet. Teknisk fungerer det via tre separate certificerede matematiske modeller. Lav volatilitet giver hyppige, små gevinster; høj volatilitet giver sjældne, men store gevinster. Det er den eneste teknologi af sin art i iGaming-industrien." },
-      { question: "Er Wazdan-spil tilgængelige på danske casinoer?", answer: <>Ja, Wazdan-titler er tilgængelige hos adskillige <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">danskslicenserede casinoer</Link>. Alle spil er certificeret af BMM Testlabs og opfylder Spillemyndighedens krav for det danske marked.</> },
+      { question: "Er Wazdan-spil tilgængelige på danske casinoer?", answer: <>Ja, Wazdan er tilgængelige hos flere <Link to="/casino-licenser" className="text-primary underline hover:text-primary/80">danskslicenserede casinoer</Link>. Studiets spil er verificeret af uafhængige testlaboratorier og lever op til de regulatoriske standarder der kræves af Spillemyndigheden for drift på det danske marked.</> },
       { question: "Hvad er Wazdans bedste spil?", answer: "De mest populære Wazdan-titler inkluderer 9 Lions (Hold & Win), Power of Gods: Hades (mytologisk tema med 5.000x maks.), Larry the Leprechaun (Cash Infinity) og Magic Spins (10.000x maks. gevinst). Alle understøtter Volatility Levels™." },
       { question: "Hvad er Energy Saving Mode hos Wazdan?", answer: "Energy Saving Mode reducerer batteriforbrug på mobile enheder med op til 40% ved at optimere animations-rendering og dataudveksling. Ultra Lite Mode går endnu videre og minimerer datatrafik for spillere med langsom internetforbindelse." },
       { question: "Hvor høj er RTP'en på Wazdan-slots?", answer: <>Wazdans RTP ligger typisk mellem 95,0% og 96,5% afhængig af spillet og det valgte volatilitetsniveau. Det er lidt under gennemsnittet for premium-studier som <Link to="/spiludviklere/netent" className="text-primary underline hover:text-primary/80">NetEnt</Link>, men Volatility Levels™-teknologien kompenserer ved at give spillere mere kontrol over spilleoplevelsen. Se vores <Link to="/slot-database" className="text-primary underline hover:text-primary/80">slot-database</Link> for specifikke RTP-data.</> },

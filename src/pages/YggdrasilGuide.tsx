@@ -9,7 +9,7 @@ const YggdrasilGuide = () => (
     seoDescription="Yggdrasil Gaming: Grundlagt af NetEnts tidligere CEO. BOOST tools, Gigablox, Splitz-mekanikker og 230+ spil med platform-innovation."
     name="Yggdrasil Gaming"
     heroSubtitle="Yggdrasil Gaming blev grundlagt af NetEnts tidligere CEO med en vision om at ændre casinobranchen. Med BOOST-tools, Gigablox og Splitz-mekanikker har de skabt en platform-drevet innovationsmodel."    currentPath="/spiludviklere/yggdrasil"
-    readTime="18 Min."
+    readTime="30 Min."
     sectionOrder={["intro", "history", "strategic", "technical", "games", "licenses", "casinos", "proscons", "providers", "responsible"]}
     strategicTitle="Platform-Først Filosofien: Infrastruktur Over Indhold"
     introTitle="Yggdrasil Gaming – NetEnt-Grundlæggerens Nye Vision"

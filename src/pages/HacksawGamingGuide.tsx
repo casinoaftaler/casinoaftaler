@@ -13,7 +13,7 @@ const HacksawGamingGuide = () => (
     name="Hacksaw Gaming"
     heroSubtitle="Hacksaw Gaming er casinobranchens kreative rebel. Fra skrabelodder til high-volatility slots med op til 55.000x gevinster – de bryder alle konventioner."    currentPath="/spiludviklere/hacksaw-gaming"
     extraJsonLd={[buildVideoSchema(`${SITE_URL}/spiludviklere/hacksaw-gaming`, "SQqTH2EgYTM", { title: "Jonas åbner bonusser på Hacksaw Gaming slots", description: "Se Jonas fra Casinoaftaler.dk åbne super bonusser på populære Hacksaw Gaming spillemaskiner – bl.a. Wanted Dead or a Wild, Chaos Crew og Dork Unit.", uploadDate: "2026-03-07", duration: "PT25M30S" })]}
-    readTime="32 Min."
+    readTime="29 Min."
     strategicTitle="Rebellens Strategi: Hvorfor Hacksaw Bevidst Frastøder Flertallet"
     technicalTitle="Motorrum og Matematik: Hacksaws Tekniske Fundament"
     gamesTitle="Hacksaws Arsenal: De Spil der Definerede et Studio"

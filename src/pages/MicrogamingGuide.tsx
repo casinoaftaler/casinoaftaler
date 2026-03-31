@@ -9,7 +9,7 @@ const MicrogamingGuide = () => (
     seoDescription="Microgaming: Branchens pioner siden 1994. Mega Moolah med €1 milliard+ udbetalt, 900+ spil, Quickfire-aggregator og eCOGRA-medstifter."
     name="Microgaming"
     heroSubtitle="Microgaming er casinobranchens historiske fundament. Grundlagt i 1994 – blandt de første online casinoer. Mega Moolah har udbetalt over €1 milliard i progressive jackpots."    currentPath="/spiludviklere/microgaming"
-    readTime="18 Min."
+    readTime="26 Min."
     sectionOrder={["strategic", "intro", "history", "technical", "games", "casinos", "proscons", "licenses", "providers", "responsible"]}
     strategicTitle="Branchens Grundlægger: Fra Pioner til Platform"
     introTitle="Microgaming – Hvem Står Bag 30 Års Innovation?"
