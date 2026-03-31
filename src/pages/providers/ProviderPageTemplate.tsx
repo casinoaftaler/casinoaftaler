@@ -287,19 +287,35 @@ export function ProviderPage({
         {technicalProfile}
       </section>
     ) : null,
-    providers: (
-      <section className="mb-12">
-        <h2 className="mb-4 text-3xl font-bold">Relaterede Spiludviklere</h2>
-        <p className="mb-4 text-muted-foreground leading-relaxed">
-          Se vores komplette{" "}
-          <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">oversigt over spiludviklere</Link>{" "}
-          i casinobranchen.
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {providerLinks
-            .filter((dev) => dev.to !== currentPath)
-            .slice(0, 3)
-            .map((dev) => (
+    providers: (() => {
+      const headingVariants = [
+        "Relaterede Spiludviklere",
+        "Andre Populære Spiludviklere",
+        "Udforsk Flere Studios",
+        `Studios der Ligner ${name}`,
+        "Lignende Spiludviklere",
+      ];
+      const descVariants = [
+        <>Se vores komplette <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">oversigt over spiludviklere</Link> i casinobranchen.</>,
+        <>Sammenlign med andre studier i vores <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">spiludvikler-guide</Link>.</>,
+        <>Find flere udviklere i vores <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">dybdegående udvikler-database</Link>.</>,
+        <>Udforsk hele markedet via vores <Link to="/spiludviklere" className="text-primary underline hover:text-primary/80">komplette spiludvikler-oversigt</Link>.</>,
+        <>Se hvem der ellers leverer til <Link to="/top-10-casino-online" className="text-primary underline hover:text-primary/80">danske casinoer</Link> i vores udvikleroversigt.</>,
+      ];
+      const hIdx = (name.length + 3) % headingVariants.length;
+      const dIdx = (name.length + 1) % descVariants.length;
+      // Rotate which providers to show based on name hash
+      const startIdx = name.charCodeAt(0) % providerLinks.length;
+      const filtered = providerLinks.filter((dev) => dev.to !== currentPath);
+      const rotated = [...filtered.slice(startIdx % filtered.length), ...filtered.slice(0, startIdx % filtered.length)];
+      return (
+        <section className="mb-12">
+          <h2 className="mb-4 text-3xl font-bold">{headingVariants[hIdx]}</h2>
+          <p className="mb-4 text-muted-foreground leading-relaxed">
+            {descVariants[dIdx]}
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {rotated.slice(0, 3).map((dev) => (
               <Link
                 key={dev.to}
                 to={dev.to}
@@ -308,32 +324,38 @@ export function ProviderPage({
                 {dev.label}
               </Link>
             ))}
-        </div>
-      </section>
-    ),
-    responsible: (
-      <section className="mb-12">
-        <Card className="border-primary/20 bg-primary/5">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-xl">
-              <Award className="h-5 w-5 text-primary" />
-              {responsibleTitle || "Ansvarligt Spil"}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3 text-sm text-muted-foreground">
-            <p>
-              {responsibleGamingText || `${name} prioriterer ansvarligt spil og samarbejder med anerkendte organisationer for spillerbeskyttelse.`}{" "}
-              Læs mere om{" "}
-              <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>.{" "}
-              I Danmark kan du altid søge hjælp via{" "}
-              <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>{" "}
-              og{" "}
-              <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. 18+ | Spil ansvarligt.
-            </p>
-          </CardContent>
-        </Card>
-      </section>
-    ),
+          </div>
+        </section>
+      );
+    })(),
+    responsible: (() => {
+      const helpVariants = [
+        <>Læs mere om <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ansvarligt spil</Link>. I Danmark kan du søge hjælp via <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a> og <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a>. 18+ | Spil ansvarligt.</>,
+        <>Har du brug for hjælp? Besøg <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a> for selvudelukkelse eller <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet</a> for rådgivning. Læs vores <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">guide til ansvarligt spil</Link>. 18+.</>,
+        <>Find støtte og vejledning hos <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> eller registrer dig i <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a>. Se også vores <Link to="/ansvarligt-spil/selvudelukkelse-guide" className="text-primary hover:underline font-medium">selvudelukkelses-guide</Link>. 18+ | Spil med omtanke.</>,
+        <>Udforsk vores <Link to="/ansvarligt-spil" className="text-primary hover:underline font-medium">ressourcer om ansvarligt spil</Link>, og brug <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a> hvis du ønsker at begrænse din adgang til online casinoer. <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet</a> tilbyder gratis rådgivning. 18+.</>,
+        <>Sæt dine grænser via vores <Link to="/ansvarligt-spil/spillegraenser" className="text-primary hover:underline font-medium">spillegrænse-guide</Link>. <a href="https://www.rofus.nu/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">ROFUS</a> og <a href="https://www.stopspillet.dk/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">StopSpillet.dk</a> er altid tilgængelige for danske spillere. 18+ | Spil ansvarligt.</>,
+      ];
+      const rIdx = (name.length + 2) % helpVariants.length;
+      return (
+        <section className="mb-12">
+          <Card className="border-primary/20 bg-primary/5">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-xl">
+                <Award className="h-5 w-5 text-primary" />
+                {responsibleTitle || "Ansvarligt Spil"}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              <p>
+                {responsibleGamingText || `${name} prioriterer ansvarligt spil og samarbejder med anerkendte organisationer for spillerbeskyttelse.`}{" "}
+                {helpVariants[rIdx]}
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+      );
+    })(),
   };
 
   const order = sectionOrder || defaultSectionOrder;
