@@ -275,6 +275,7 @@ const VRCasinoerGuide = lazyRetry(() => import("./pages/casinoer/VRCasinoerGuide
 const MobilCasinoerGuide = lazyRetry(() => import("./pages/casinoer/MobilCasinoerGuide"));
 const SpilForSjovGuide = lazyRetry(() => import("./pages/casinoer/SpilForSjovGuide"));
 const CasinoOgSkatGuide = lazyRetry(() => import("./pages/casinoer/CasinoOgSkatGuide"));
+const CasinoMedDanskLicens = lazyRetry(() => import("./pages/casinoer/CasinoMedDanskLicens"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
