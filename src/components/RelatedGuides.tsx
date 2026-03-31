@@ -213,6 +213,7 @@ const casinoGuidesSiblings: GuideLink[] = [
   { to: "/casinoer/mobil-casinoer", label: "Mobil Casinoer", icon: Zap, desc: "Casino på din smartphone" },
   { to: "/casinoer/spil-casino-for-sjov", label: "Spil for Sjov", icon: Sparkles, desc: "Gratis casinospil uden risiko" },
   { to: "/casinoer/casino-og-skat", label: "Casino og Skat", icon: Target, desc: "Skatteforhold ved casinogevinster" },
+  { to: "/casino-med-dansk-licens", label: "Casino med Dansk Licens", icon: ShieldCheck, desc: "Komplet guide til licenserede casinoer" },
   { to: "/mobil-casino", label: "Mobil Casino", icon: Smartphone, desc: "Komplet guide til casino på mobilen" },
   { to: "/casino-app", label: "Casino App", icon: Smartphone, desc: "Guide til casino apps i Danmark" },
   { to: "/mobil-casino/iphone", label: "Casino på iPhone", icon: Smartphone, desc: "iOS-guide med Face ID og Safari PWA" },
@@ -1173,6 +1174,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
         { to: "/casinoer/hoej-rtp", label: "Høj RTP", icon: BarChart3, desc: "Casinoer med bedst tilbagebetaling" },
         { to: "/casinoer/crypto-casino", label: "Crypto Casino", icon: Globe, desc: "Bitcoin og krypto-gambling i Danmark" },
         { to: "/casino-licenser", label: "Licenserede Casinoer", icon: ShieldCheck, desc: "Sikre casinoer med dansk licens" },
+        { to: "/casino-med-dansk-licens", label: "Casino med Dansk Licens", icon: ShieldCheck, desc: "Komplet guide til danske licenser" },
         reviewHub,
         bonusHub,
         nyeCasinoerHub,
@@ -1200,7 +1202,7 @@ function getContextualGuides(currentPath: string): { guides: GuideLink[]; subtit
   }
 
   // Casino guides subpages → rotated siblings + varied cross-cluster
-  if (path.startsWith("/casinoer/") || path === "/casino-licenser") {
+  if (path.startsWith("/casinoer/") || path === "/casino-licenser" || path === "/casino-med-dansk-licens") {
     const currentIndex = casinoGuidesSiblings.findIndex(g => g.to === path);
     const len = casinoGuidesSiblings.length;
     let siblings: GuideLink[];

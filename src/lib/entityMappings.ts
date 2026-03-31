@@ -48,6 +48,9 @@ export const ENTITY_MAPPINGS: EntityMapping[] = [
   { patterns: [/\bMarathonBet\b/i], href: "/casino-anmeldelser/marathonbet", anchor: "MarathonBet" },
   { patterns: [/\bStake Casino\b/i, /\bStake\b/], href: "/casino-anmeldelser/stake", anchor: "Stake" },
 
+  // Money-page topic entities
+  { patterns: [/\bcasino med dansk licens\b/i, /\bdansk licenserede? casinoer\b/i], href: "/casino-med-dansk-licens", anchor: "casino med dansk licens", anchorVariants: ["casinoer med dansk licens", "danske licenserede casinoer"] },
+
   // Community data-hubs
   { patterns: [/\bbonus hunt statistik\b/i, /\bhunt[\s-]?statistik\b/i], href: "/statistik", anchor: "bonus hunt statistik" },
   { patterns: [/\bbonus hunt arkiv\b/i, /\bhunt[\s-]?arkiv\b/i], href: "/bonus-hunt/arkiv", anchor: "", anchorVariants: ["bonus hunt arkivet", "arkivet", "vores hunt-arkiv"] },

@@ -338,6 +338,7 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/casinoer/mobil-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/spil-casino-for-sjov", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
+  { path: "/casino-med-dansk-licens", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-31", author: "jonas", factCheckedBy: "frederik", articleTitle: "Casino med Dansk Licens – Komplet Guide", articleCategory: "Guide", articleExcerpt: "Alt om casinoer med dansk licens: skattefri gevinster, max 10x omsætningskrav, ROFUS-beskyttelse og MitID-verifikation." },
 
   // ── Casino Nyheder ──
   // Hub only – article entries are dynamically generated in sitemap-articles.xml
