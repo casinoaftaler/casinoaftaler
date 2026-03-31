@@ -230,15 +230,15 @@ const Index = () => {
 
       {/* Top Casinos Section with sidebar */}
       <section id="top-casinos" className="py-8 md:py-12" style={{ contain: 'layout style' }}>
-        <div className="container relative">
-          {/* Left sidebar: Seneste nyt + Spillehal promo */}
-          <aside className="hidden min-[1540px]:block absolute right-full top-0 mr-6 w-[200px]">
-            <HomepageLeftSidebar />
-          </aside>
-          {/* Right sidebar: Full navigation */}
-          <aside className="hidden min-[1540px]:block absolute left-full top-0 ml-6 w-[300px]">
-            <HomepageRightSidebar />
-          </aside>
+        <div className="mx-auto w-full max-w-[1800px] px-4 md:px-6 lg:px-8">
+          <div className="flex justify-center gap-6 xl:gap-8">
+            {/* Left sidebar: Seneste nyt + Spillehal promo */}
+            <aside className="hidden min-[1540px]:block w-[220px] flex-shrink-0 pt-0">
+              <HomepageLeftSidebar />
+            </aside>
+
+            {/* Main content */}
+            <div className="min-w-0 flex-1 max-w-[960px]">
           <div className="mb-8">
             <h2 className="mb-4 text-3xl font-bold">Casinoaftaler er Danmarks mest datadrevne casinoguide</h2>
             <p className="mb-6 text-muted-foreground leading-relaxed">
@@ -327,6 +327,13 @@ const Index = () => {
               )}
             </div>
           )}
+            </div>
+
+            {/* Right sidebar: Full navigation */}
+            <aside className="hidden min-[1540px]:block w-[300px] flex-shrink-0 pt-0">
+              <HomepageRightSidebar />
+            </aside>
+          </div>
         </div>
       </section>
 
