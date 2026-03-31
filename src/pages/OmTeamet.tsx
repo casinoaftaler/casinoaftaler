@@ -291,25 +291,24 @@ const OmTeamet = () => {
             Fra Twitch til Casinoaftaler.dk
           </h2>
           <div className="grid gap-8 md:grid-cols-2">
-            <div className="space-y-4">
+             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
-                Det hele startede på Twitch. Jonas og Kevin streamede uafhængigt af hinanden, men
-                fandt hurtigt fælles interesse for online casino, streaming og det community, der
-                voksede op omkring dem.
+                Det hele startede på Twitch. Jonas streamede online casino og byggede gradvist et
+                community op omkring ærlige casinotests og gennemsigtig information. Det blev
+                hurtigt tydeligt, at der manglede en dansk platform med reel ekspertise.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                De begyndte at gæste hinandens streams, dele erfaringer og diskutere de casinoer,
-                de testede. Seerne stillede spørgsmål – og det blev tydeligt, at der manglede et
-                sted med ærlig og gennemsigtig information.
+                Derfra voksede idéen om Casinoaftaler.dk – en platform bygget af en streamer med
+                praktisk erfaring, for spillere der ønsker gennemsigtighed.
               </p>
             </div>
             <div className="space-y-4">
               <p className="text-muted-foreground leading-relaxed">
-                Derfra voksede idéen om Casinoaftaler.dk – en platform bygget af streamere med
-                praktisk erfaring, for spillere der ønsker gennemsigtighed.
+                Efterhånden som platformen voksede, blev Kevin kontaktet som streamer og spiludvikler.
+                Kevin bidrager med live-streaming og udvikling af community-spil i spillehallen.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                I dag kombinerer de streaming, systematisk test og community til en samlet
+                I dag kombinerer teamet streaming, systematisk test og community til en samlet
                 platform, hvor anmeldelser bygger på reel erfaring – ikke kun skrivebordsvurdering.
               </p>
             </div>
