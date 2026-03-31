@@ -1,4 +1,5 @@
-import { useState, useCallback, lazy, Suspense } from "react";
+import { useState, useCallback, Suspense } from "react";
+import { lazyRetry } from "@/lib/lazyRetry";
 import { SEO } from "@/components/SEO";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { ContentSidebar } from "@/components/ContentSidebar";

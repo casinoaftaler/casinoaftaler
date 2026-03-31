@@ -1,4 +1,5 @@
-import { ReactNode, Suspense, lazy } from "react";
+import { ReactNode, Suspense } from "react";
+import { lazyRetry } from "@/lib/lazyRetry";
 import { cn } from "@/lib/utils";
 
 const LazyContentSidebar = lazyRetry(() =>
