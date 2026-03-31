@@ -234,7 +234,7 @@ export function PaymentMethodPage({
       </section>
 
       <ContentPageLayout>
-        <AuthorMetaBar author="kevin" readTime="22 Min." />
+        <AuthorMetaBar author="kevin" readTime={readTime || "22 Min."} />
 
        <SnippetAnswer answer={snippetAnswer || `${name} på danske casinoer: Se vores dybdegående test af hastighed, sikkerhed og bonuskvalificering. Sammenlign med alternative betalingsmetoder nedenfor.`} />
 
@@ -245,11 +245,12 @@ export function PaymentMethodPage({
           <h2 className="mb-4 text-3xl font-bold">{introTitle}</h2>
           {introContent}
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            Se vores komplette{" "}
-            <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">sammenligning af betalingsmetoder</Link>{" "}
-            for at finde den metode, der passer bedst til dine behov, eller læs vores{" "}
-            <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link>{" "}
-            for at se, hvilke metoder hvert casino understøtter.
+            {[
+              <>Se vores komplette <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">sammenligning af betalingsmetoder</Link> for at finde den metode, der passer bedst til dine behov, eller læs vores <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">casino anmeldelser</Link> for at se, hvilke metoder hvert casino understøtter.</>,
+              <>Vil du sammenligne {name} med andre metoder? Se vores <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">komplette betalingsoversigt</Link> eller find det rette casino i vores <Link to="/top-10-casino-online" className="text-primary underline hover:text-primary/80">top 10 casinoer</Link>.</>,
+              <>Udforsk alle dine muligheder i vores <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">guide til betalingsmetoder</Link>, eller se hvilke casinoer der tilbyder {name} i vores <Link to="/casino-anmeldelser" className="text-primary underline hover:text-primary/80">dybdegående anmeldelser</Link>.</>,
+              <>Læs mere om alternative betalingsløsninger i vores <Link to="/betalingsmetoder" className="text-primary underline hover:text-primary/80">betalingsguide</Link>, og find de bedste tilbud til {name}-brugere via vores <Link to="/casino-bonus" className="text-primary underline hover:text-primary/80">bonusoversigt</Link>.</>,
+            ][name.length % 4]}
           </p>
         </section>
 
