@@ -338,7 +338,9 @@ export const seoRoutes: SeoRoute[] = ([
   { path: "/mobil-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/spil-casino-for-sjov", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
-  { path: "/casino-med-dansk-licens", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-31", author: "jonas", factCheckedBy: "frederik", articleTitle: "Casino med Dansk Licens – Komplet Guide", articleCategory: "Guide", articleExcerpt: "Alt om casinoer med dansk licens: skattefri gevinster, max 10x omsætningskrav, ROFUS-beskyttelse og MitID-verifikation." },
+  { path: "/casino-med-dansk-licens", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-31", author: "jonas", factCheckedBy: "ajse", articleTitle: "Casino med Dansk Licens – Komplet Guide", articleCategory: "Guide", articleExcerpt: "Alt om casinoer med dansk licens: skattefri gevinster, max 10x omsætningskrav, ROFUS-beskyttelse og MitID-verifikation." },
+  { path: "/casino-uden-rofus", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-31", author: "ajse", factCheckedBy: "jonas", articleTitle: "Casino uden ROFUS – Hvad Du Skal Vide", articleCategory: "Guide", articleExcerpt: "Juridisk gennemgang af casino uden ROFUS: risici, beskatning og hvorfor danske licenser er tryggere." },
+  { path: "/casino-med-mitid", changefreq: "weekly", priority: 0.85, lastmod: "2026-03-31", author: "ajse", factCheckedBy: "jonas", articleTitle: "Casino med MitID – Sikker Verifikation", articleCategory: "Guide", articleExcerpt: "MitID-verifikation hos danske casinoer: alderstjek, ROFUS-kontrol og sikker kontooprettelse." },
 
   // ── Casino Nyheder ──
   // Hub only – article entries are dynamically generated in sitemap-articles.xml
