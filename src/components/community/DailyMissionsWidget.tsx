@@ -14,8 +14,8 @@ export function DailyMissionsWidget() {
   if (!user) return null;
   if (isLoading) return null;
 
-  const totalCredits = pages.reduce((sum, p) => sum + p.credits, 0);
-  const earnedCredits = pages.filter((p) => p.completed).reduce((sum, p) => sum + p.credits, 0);
+  const totalCredits = pages.reduce((sum, p) => sum + p.credits + SCROLL_DEPTH_BONUS_CREDITS, 0);
+  const earnedCredits = pages.filter((p) => p.completed).reduce((sum, p) => sum + p.credits + SCROLL_DEPTH_BONUS_CREDITS, 0);
   const hasNoneCompleted = completedCount === 0;
   const allCompleted = completedCount === totalPages;
 
