@@ -63,7 +63,7 @@ const DEFAULTS: BonanzaSettings = {
   symbolWidth: 180,
   symbolHeight: 140,
   symbolScale: 100,
-  maxBet: 50,
+  maxBet: 40,
 };
 
 export function BonanzaGameSettingsAdmin() {
