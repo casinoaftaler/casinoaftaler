@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useDwellReward, useDwellRewardProgress, DWELL_DURATION_SECONDS, activateMissionMode } from "@/hooks/useDwellReward";
+import { useScrollDepthBonus } from "@/hooks/useScrollDepthBonus";
+import { useMissionStreak } from "@/hooks/useMissionStreak";
 import { Check, Gift, ArrowDown, ArrowRight, Flame, Zap, Trophy } from "lucide-react";
 
 const MILESTONES = [
