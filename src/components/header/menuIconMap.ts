@@ -81,6 +81,9 @@ export const MENU_ICON_MAP: Record<string, string> = {
   // Other games
   "dice-5": img("dice-craps.webp"),
   "ticket": img("ticket-lottery.webp"),
+  "bingo": img("bingo-ball.webp"),
+  "keno": img("keno-board.webp"),
+  "scratch-card": img("scratch-card.webp"),
 
   // Live Casino
   "building-2": img("building-game.webp"),
