@@ -40,6 +40,7 @@ export const SIDEBAR_CATEGORIES: SidebarCategory[] = [
       { to: "/casino-med-mitid", label: "Casino med MitID", iconName: "scan-line" },
       { to: "/hurtig-udbetaling", label: "Hurtig Udbetaling", iconName: "zap" },
       { to: "/gratis-casino-spil", label: "Gratis Casino Spil", iconName: "gamepad-2" },
+    ],
   },
   {
     title: "Nye Casinoer",
