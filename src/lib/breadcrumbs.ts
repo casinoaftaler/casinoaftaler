@@ -433,12 +433,12 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   // /free-spins-i-dag → Forside > Free Spins i Dag
   // /bonus-uden-indbetaling → Forside > Bonus uden Indbetaling
   // /casino-med-mobilepay → Forside > Casino med MobilePay
+  // /velkomstbonus → Forside > Velkomstbonus
+  // /bonus-uden-omsaetningskrav → Forside > Bonus uden Omsætningskrav
 
   // Bonus cluster – remaining spokes bound to /casino-bonus hub
-  "/velkomstbonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/omsaetningskrav": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/indskudsbonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
-  "/bonus-uden-omsaetningskrav": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/no-sticky-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/sticky-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
   "/cashback-bonus": [{ name: "Casino Bonus", path: "/casino-bonus" }],
