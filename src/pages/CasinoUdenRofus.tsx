@@ -642,7 +642,7 @@ const CasinoUdenRofus = () => {
         <ReviewMoneyLinks />
         <RelatedGuides currentPath="/casino-uden-rofus" />
         <FAQSection title="Ofte stillede spørgsmål om casino uden ROFUS" faqs={faqs} />
-        <AuthorBio author="jonas" />
+        <AuthorBio author="ajse" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="spilleautomaten" />
     </>

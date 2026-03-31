@@ -631,7 +631,7 @@ const CasinoMedMitID = () => {
         <ReviewMoneyLinks />
         <RelatedGuides currentPath="/casino-med-mitid" />
         <FAQSection title="Ofte stillede spørgsmål om casino med MitID" faqs={faqs} />
-        <AuthorBio author="frederik" />
+        <AuthorBio author="ajse" />
       </ContentPageLayout>
       <StickyCtaBySlug slug="leovegas" />
     </>
