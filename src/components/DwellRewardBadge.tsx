@@ -24,15 +24,31 @@ export function DwellRewardBadge() {
     hasScrolled,
   } = useDwellReward(pathname);
 
-  const { pages } = useDwellRewardProgress();
+  const { pages, completedCount, totalPages } = useDwellRewardProgress();
+  const { hasReachedDepth, isClaimed: scrollClaimed, scrollDepthCredits } = useScrollDepthBonus(pathname, isClaimed || alreadyCompleted);
+  const { currentStreak, checkAndUpdateStreak } = useMissionStreak();
 
   const [visible, setVisible] = useState(true);
   const [milestoneFlash, setMilestoneFlash] = useState<string | null>(null);
   const [prevSeconds, setPrevSeconds] = useState(DWELL_DURATION_SECONDS);
+  const [streakFlash, setStreakFlash] = useState<string | null>(null);
   const hasPlayedSound = useRef(false);
 
   const completed = isClaimed || alreadyCompleted;
   const nextMission = pages.find((p) => !p.completed && p.path !== pathname);
+
+  // Check streak when all missions complete
+  useEffect(() => {
+    if (completedCount === totalPages && completedCount > 0) {
+      checkAndUpdateStreak().then((result: any) => {
+        if (result?.rewards?.length > 0) {
+          const reward = result.rewards[0];
+          setStreakFlash(`🔥 ${reward.type} streak! +${reward.credits} credits!`);
+          setTimeout(() => setStreakFlash(null), 5000);
+        }
+      });
+    }
+  }, [completedCount, totalPages]);
 
   // Current milestone message
   const currentMilestone = useMemo(() => {
