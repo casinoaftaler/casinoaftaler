@@ -12,6 +12,17 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /auth
+Disallow: /auth/
+Disallow: /admin
+Disallow: /admin/
+Disallow: /profil
+Disallow: /profil/
+Disallow: /indstillinger
+Disallow: /indstillinger/
+Disallow: /api/
+Disallow: /*?preview=
+Disallow: /*?ref=
 
 Sitemap: https://casinoaftaler.dk/sitemap-index.xml
 

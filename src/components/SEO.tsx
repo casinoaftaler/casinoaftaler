@@ -163,6 +163,7 @@ export function SEO({ title, description, type = "website", image = `${SITE_URL}
         <meta name="robots" content="noindex, follow" />
       )}
       <link rel="canonical" href={resolvedCanonicalUrl} />
+      <link rel="alternate" type="application/rss+xml" title="Casinoaftaler.dk – Casino Nyheder" href={`${SITE_URL}/rss.xml`} />
       {!noindex && (
         <>
           <link rel="alternate" hrefLang="da" href={resolvedCanonicalUrl} />
