@@ -293,11 +293,11 @@ export const routeLabels: Record<string, string> = {
   "/casinospil/game-shows": "Game Shows",
   // Casinoer guides
   "/casinoer": "Casinoer",
-  "/casinoer/hurtig-udbetaling": "Hurtig Udbetaling",
+  // "/casinoer/hurtig-udbetaling" removed – redirects to /hurtig-udbetaling
   "/casinoer/hoej-rtp": "Høj RTP",
   "/casinoer/crypto-casino": "Crypto Casino",
   "/casinoer/vr-casinoer": "VR Casinoer",
-  "/casinoer/mobil-casinoer": "Mobil Casinoer",
+  // "/casinoer/mobil-casinoer" removed – redirects to /mobil-casino
   "/casinoer/spil-casino-for-sjov": "Spil Casino for Sjov",
   "/casinoer/casino-og-skat": "Casino og Skat",
   // Casino Nyheder
@@ -561,11 +561,11 @@ const PARENT_OVERRIDES: Record<string, { name: string; path: string }[]> = {
   "/live-casino/udbydere": [{ name: "Live Casino", path: "/live-casino" }],
 
   // Casinoer guides – bundet til /casinoer hub
-  "/casinoer/hurtig-udbetaling": [{ name: "Casinoer", path: "/casinoer" }],
+  "/hurtig-udbetaling": [{ name: "Casinoer", path: "/casinoer" }],
   "/casinoer/hoej-rtp": [{ name: "Casinoer", path: "/casinoer" }],
   "/casinoer/crypto-casino": [{ name: "Casinoer", path: "/casinoer" }],
   "/casinoer/vr-casinoer": [{ name: "Casinoer", path: "/casinoer" }],
-  "/casinoer/mobil-casinoer": [{ name: "Casinoer", path: "/casinoer" }],
+  "/mobil-casino": [{ name: "Casinoer", path: "/casinoer" }],
   "/casinoer/spil-casino-for-sjov": [{ name: "Casinoer", path: "/casinoer" }],
   "/casinoer/casino-og-skat": [{ name: "Casinoer", path: "/casinoer" }],
 

@@ -33,7 +33,7 @@ const linkClass = "text-primary underline underline-offset-4 hover:text-primary/
 const SUBCATEGORIES = [
   {
     title: "Hurtig Udbetaling Casino",
-    href: "/casinoer/hurtig-udbetaling",
+    href: "/hurtig-udbetaling",
     icon: Zap,
     badge: "Populær",
     badgeVariant: "default" as const,
@@ -87,7 +87,7 @@ const SUBCATEGORIES = [
   },
   {
     title: "Mobil Casino",
-    href: "/casinoer/mobil-casinoer",
+    href: "/mobil-casino",
     icon: Smartphone,
     badge: "Mobil",
     badgeVariant: "secondary" as const,
@@ -216,7 +216,7 @@ export default function CasinoerHub() {
             For den danske spiller betyder dette et paradoks: færre valg, men bedre kvalitet. De casinoer, der vælger at ansøge om og opretholde en dansk licens, investerer betydeligt i compliance, ansvarligt spil-værktøjer og lokaliseret kundeservice. Men selv inden for dette licenserede felt varierer kvaliteten enormt – fra casinoer med 2-minutters udbetalinger til operatører, der tager 3-5 hverdage. Fra platforme med gennemsnitlig <Link to="/ordbog/rtp" className={linkClass}>RTP</Link> på 97 % til dem, der skjuler deres RTP-data.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Denne hub er dit analytiske fundament. Vi har systematiseret alle kritiske casino-kategorier i dybdegående guides, der hver dækker ét specifikt aspekt af casino-valget. Nedenfor finder du links til alle vores specialguides – fra <Link to="/casinoer/hurtig-udbetaling" className={linkClass}>hurtig udbetaling</Link> og <Link to="/casinoer/hoej-rtp" className={linkClass}>høj RTP</Link> til <Link to="/casinoer/crypto-casino" className={linkClass}>crypto-casinoer</Link> og <Link to="/casinoer/casino-og-skat" className={linkClass}>skatteforhold</Link>. Hver guide er baseret på reelle tests, matematiske modeller og officielle licensdata.
+            Denne hub er dit analytiske fundament. Vi har systematiseret alle kritiske casino-kategorier i dybdegående guides, der hver dækker ét specifikt aspekt af casino-valget. Nedenfor finder du links til alle vores specialguides – fra <Link to="/hurtig-udbetaling" className={linkClass}>hurtig udbetaling</Link> og <Link to="/casinoer/hoej-rtp" className={linkClass}>høj RTP</Link> til <Link to="/casinoer/crypto-casino" className={linkClass}>crypto-casinoer</Link> og <Link to="/casinoer/casino-og-skat" className={linkClass}>skatteforhold</Link>. Hver guide er baseret på reelle tests, matematiske modeller og officielle licensdata.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Vores <Link to="/saadan-tester-vi-casinoer" className={linkClass}>testmetode</Link> er dokumenteret og transparent: vi opretter reelle konti, gennemfører KYC-verifikation, indbetaler egne penge, spiller minimum 200 spins, tester kundeservice og måler udbetalingstider med stopur. Det er denne tilgang, der gør vores <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link> troværdige – og det er fundamentet for alle anbefalinger i denne hub.
@@ -346,7 +346,7 @@ export default function CasinoerHub() {
           </Card>
 
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            En vigtig nuance er "pending period" – den tid casinoet holder din udbetaling "under behandling" før den sendes. Seriøse operatører har 0-2 timers pending period. Nogle casinoer har bevidst lange pending periods (12-48 timer) for at give spilleren mulighed for at annullere udbetalingen og fortsætte med at spille – en praksis, der er lovlig, men etisk tvivlsom. Vores <Link to="/casinoer/hurtig-udbetaling" className={linkClass}>guide til hurtig udbetaling</Link> identificerer de casinoer med kortest pending period.
+            En vigtig nuance er "pending period" – den tid casinoet holder din udbetaling "under behandling" før den sendes. Seriøse operatører har 0-2 timers pending period. Nogle casinoer har bevidst lange pending periods (12-48 timer) for at give spilleren mulighed for at annullere udbetalingen og fortsætte med at spille – en praksis, der er lovlig, men etisk tvivlsom. Vores <Link to="/hurtig-udbetaling" className={linkClass}>guide til hurtig udbetaling</Link> identificerer de casinoer med kortest pending period.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             KYC-verifikation (Know Your Customer) er en anden faktor, der påvirker din første udbetaling. Alle danske casinoer kræver identitetsverifikation inden den første udbetaling – typisk foto-ID, adressebevis og betalingsmetode-verifikation. De bedste casinoer gennemfører dette inden for 1-4 timer; de dårligste tager 24-72 timer. Vi dokumenterer KYC-processen i hver af vores <Link to="/casino-anmeldelser" className={linkClass}>casino anmeldelser</Link>.
@@ -489,7 +489,7 @@ export default function CasinoerHub() {
             Mobil Casino: Spil Overalt med Fuld Funktionalitet
           </h2>
           <p className="text-muted-foreground mb-4 leading-relaxed">
-            Over 70 % af al online casino-trafik i Danmark kommer nu fra mobilenheder – en stigning fra ca. 40 % i 2018. Denne mobile dominans har drevet en fundamental transformation i casino-design: alle seriøse danske operatører er nu "mobile-first", hvilket betyder, at brugeroplevelsen på smartphone er lige så god (eller bedre) end på desktop. Vores <Link to="/casinoer/mobil-casinoer" className={linkClass}>mobil casino-guide</Link> evaluerer de bedste mobiloplevelser i det danske marked.
+            Over 70 % af al online casino-trafik i Danmark kommer nu fra mobilenheder – en stigning fra ca. 40 % i 2018. Denne mobile dominans har drevet en fundamental transformation i casino-design: alle seriøse danske operatører er nu "mobile-first", hvilket betyder, at brugeroplevelsen på smartphone er lige så god (eller bedre) end på desktop. Vores <Link to="/mobil-casino" className={linkClass}>mobil casino-guide</Link> evaluerer de bedste mobiloplevelser i det danske marked.
           </p>
           <p className="text-muted-foreground mb-4 leading-relaxed">
             De fleste danske casinoer tilbyder responsive web-apps – du behøver ikke downloade en dedikeret app fra App Store eller Google Play. Dette er faktisk en fordel: web-apps opdateres øjeblikkeligt, kræver ingen storage-plads og er identiske med desktop-versionen. Enkelte operatører som <Link to="/casino-anmeldelser/leovegas" className={linkClass}>LeoVegas</Link> og <Link to="/casino-anmeldelser/unibet" className={linkClass}>Unibet</Link> tilbyder også native apps med push-notifikationer for kampagner.
@@ -662,7 +662,7 @@ export default function CasinoerHub() {
             Den mest konkrete trend for danske spillere er den accelererende adoption af instant payments. <Link to="/betalingsmetoder/trustly" className={linkClass}>Trustly</Link> og <Link to="/betalingsmetoder/zimpler" className={linkClass}>Zimpler</Link> muliggør allerede udbetalinger inden for minutter, og denne standard breder sig til stadig flere operatører. Pay N Play-konceptet – hvor du kan spille uden traditionel kontooprettelse ved at logge ind via din bank – er en naturlig forlængelse af denne udvikling.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            <Link to="/casinoer/crypto-casino" className={linkClass}>Kryptovaluta-casinoer</Link> forbliver en niche i Danmark på grund af licensbegrænsninger, men blockchain-teknologiens transparens (provably fair-spil) har potentiale til at transformere trust-modellen i online gambling på længere sigt. For det komplette billede af teknologiske trends og deres indflydelse på det danske marked, se vores dedikerede guides til <Link to="/casinoer/vr-casinoer" className={linkClass}>VR casinoer</Link> og <Link to="/casinoer/mobil-casinoer" className={linkClass}>mobil casinoer</Link>.
+            <Link to="/casinoer/crypto-casino" className={linkClass}>Kryptovaluta-casinoer</Link> forbliver en niche i Danmark på grund af licensbegrænsninger, men blockchain-teknologiens transparens (provably fair-spil) har potentiale til at transformere trust-modellen i online gambling på længere sigt. For det komplette billede af teknologiske trends og deres indflydelse på det danske marked, se vores dedikerede guides til <Link to="/casinoer/vr-casinoer" className={linkClass}>VR casinoer</Link> og <Link to="/mobil-casino" className={linkClass}>mobil casinoer</Link>.
           </p>
         </section>
 

@@ -845,7 +845,7 @@ const CasinoUdenKonto = () => {
               { to: "/nye-casinoer/mitid", title: "Casinoer med MitID", desc: "Casinoer med hurtig MitID-registrering" },
               { to: "/casino-licenser", title: "Casino Licenser", desc: "Forstå det danske licenssystem" },
               { to: "/ansvarligt-spil", title: "Ansvarligt Spil", desc: "Ressourcer og værktøjer til ansvarligt spil" },
-              { to: "/casinoer/hurtig-udbetaling", title: "Hurtig Udbetaling", desc: "Casinoer med hurtigste udbetalinger" },
+              { to: "/hurtig-udbetaling", title: "Hurtig Udbetaling", desc: "Casinoer med hurtigste udbetalinger" },
             ].map((item) => (
               <Link
                 key={item.to}

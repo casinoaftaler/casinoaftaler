@@ -23,6 +23,36 @@ export const cannibalizationMap = {
     demotedUrls: ["/slot-directory.html"],
     titleOwner: "Datadrevet slot-intent skal ejes af /slot-database og fødes videre til de stærkeste programmatic slot-sider.",
   },
+  hurtigUdbetaling: {
+    primaryUrl: "/hurtig-udbetaling",
+    supportUrls: ["/nye-casinoer/hurtig-udbetaling"],
+    demotedUrls: [],
+    titleOwner: "Hurtig udbetaling-intent ejes af /hurtig-udbetaling. /casinoer/hurtig-udbetaling er 301-redirected hertil.",
+  },
+  mobilCasino: {
+    primaryUrl: "/mobil-casino",
+    supportUrls: ["/mobil-casino/iphone", "/mobil-casino/android", "/mobil-casino/tablet", "/mobil-casino/bedste-apps"],
+    demotedUrls: [],
+    titleOwner: "Mobil casino-intent ejes af /mobil-casino. /casinoer/mobil-casinoer er 301-redirected hertil.",
+  },
+  danskLicens: {
+    primaryUrl: "/casino-med-dansk-licens",
+    supportUrls: ["/casino-licenser", "/nye-casinoer/dansk-licens"],
+    demotedUrls: [],
+    titleOwner: "Transactional 'casino med dansk licens' ejes af /casino-med-dansk-licens. /casino-licenser dækker informational licenstyper-intent. /nye-casinoer/dansk-licens er nye-scoped spoke.",
+  },
+  rofus: {
+    primaryUrl: "/casino-uden-rofus",
+    supportUrls: ["/nye-casinoer/uden-rofus", "/ansvarligt-spil/rofus"],
+    demotedUrls: [],
+    titleOwner: "Casino uden ROFUS-intent ejes af /casino-uden-rofus. /nye-casinoer/uden-rofus er nye-scoped. /ansvarligt-spil/rofus er ansvarligt-spil guide (helt andet intent).",
+  },
+  mitid: {
+    primaryUrl: "/casino-med-mitid",
+    supportUrls: ["/nye-casinoer/mitid"],
+    demotedUrls: [],
+    titleOwner: "MitID casino-intent ejes af /casino-med-mitid. /nye-casinoer/mitid er nye-scoped spoke.",
+  },
 } as const;
 
 export const moneyPageRoutePriority = {

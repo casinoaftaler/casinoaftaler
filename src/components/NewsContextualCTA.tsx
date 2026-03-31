@@ -50,7 +50,7 @@ const CATEGORY_CTA_MAP: Record<string, CTAMapping> = {
     links: [
       { to: "/betalingsmetoder", label: "Alle Betalingsmetoder", icon: CreditCard },
       { to: "/betalingsmetoder/mobilepay", label: "MobilePay Casino", icon: CreditCard },
-      { to: "/casinoer/hurtig-udbetaling", label: "Casinoer med Hurtig Udbetaling", icon: ArrowRight },
+      { to: "/hurtig-udbetaling", label: "Casinoer med Hurtig Udbetaling", icon: ArrowRight },
     ],
   },
   "markedsbevægelser": {

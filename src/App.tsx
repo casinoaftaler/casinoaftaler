@@ -487,13 +487,13 @@ const App = () => (
                 <Route path="/casino-anmeldelser/swift-casino-vs-luna-casino" element={<SwiftCasinoVsLunaCasino />} />
                 <Route path="/casinospil" element={<Casinospil />} />
                 <Route path="/casinoer" element={<CasinoerHub />} />
-                <Route path="/casinoer/hurtig-udbetaling" element={<HurtigUdbetalingGuide />} />
+                <Route path="/casinoer/hurtig-udbetaling" element={<Navigate to="/hurtig-udbetaling" replace />} />
                 <Route path="/casinoer/hoej-rtp" element={<HoejRTPGuide />} />
                 <Route path="/casinoer/crypto-casino" element={<CryptoCasinoGuide />} />
                 <Route path="/licenserede-casinoer" element={<Navigate to="/casino-licenser" replace />} />
                 <Route path="/casino-licenser" element={<CasinoLicenser />} />
                 <Route path="/casinoer/vr-casinoer" element={<VRCasinoerGuide />} />
-                <Route path="/casinoer/mobil-casinoer" element={<MobilCasinoerGuide />} />
+                <Route path="/casinoer/mobil-casinoer" element={<Navigate to="/mobil-casino" replace />} />
                 <Route path="/casinoer/spil-casino-for-sjov" element={<SpilForSjovGuide />} />
                 <Route path="/casinoer/casino-og-skat" element={<CasinoOgSkatGuide />} />
                 <Route path="/casino-med-dansk-licens" element={<CasinoMedDanskLicens />} />

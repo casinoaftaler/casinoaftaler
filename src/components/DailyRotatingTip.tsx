@@ -35,7 +35,7 @@ const TIPS: Tip[] = [
   { text: "Baccarat har en af de laveste house edges (ca. 1,06 %) – et godt valg for strategiske spillere.", linkText: "Læs baccarat guide", linkTo: "/casinospil/baccarat" },
   { text: "Nye casinoer tilbyder ofte bedre bonusser for at tiltrække spillere – men tjek altid licensen.", linkText: "Se nye casinoer 2026", linkTo: "/nye-casinoer" },
   { text: "StopSpillet.dk tilbyder gratis og anonym rådgivning, hvis du oplever problemer med spillevaner.", linkText: "Læs om ansvarligt spil", linkTo: "/ansvarligt-spil" },
-  { text: "Danske casinoer tilbyder typisk udbetalinger inden for 0-24 timer for e-wallets.", linkText: "Se hurtigste udbetalinger", linkTo: "/casinoer/hurtig-udbetaling" },
+  { text: "Danske casinoer tilbyder typisk udbetalinger inden for 0-24 timer for e-wallets.", linkText: "Se hurtigste udbetalinger", linkTo: "/hurtig-udbetaling" },
   { text: "Megaways-slots kan have op til 117.649 gevinstlinjer – det giver ekstra spænding.", linkText: "Find Megaways slots", linkTo: "/slot-database" },
   { text: "En god casino-anmeldelse tester kundeservice, spiludvalg, bonus og udbetalingshastighed.", linkText: "Læs vores metodik", linkTo: "/om" },
   { text: "Community clips lader dig dele dine bedste gevinster med andre spillere.", linkText: "Se community highlights", linkTo: "/highlights" },

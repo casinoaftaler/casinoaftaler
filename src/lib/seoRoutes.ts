@@ -329,13 +329,13 @@ export const seoRoutes: SeoRoute[] = ([
   // ── Casino Guides ──
   // Hub is 0.9 – all spokes capped at 0.8 to maintain strict crawl hierarchy
   { path: "/casinoer", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-18" },
-  { path: "/casinoer/hurtig-udbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
+  { path: "/hurtig-udbetaling", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/hoej-rtp", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/crypto-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   // /licenserede-casinoer excluded – 301 redirects to /casino-licenser
   { path: "/casino-licenser", changefreq: "monthly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/vr-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
-  { path: "/casinoer/mobil-casinoer", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
+  { path: "/mobil-casino", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/spil-casino-for-sjov", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casinoer/casino-og-skat", changefreq: "weekly", priority: 0.8, lastmod: "2026-03-04" },
   { path: "/casino-med-dansk-licens", changefreq: "weekly", priority: 0.9, lastmod: "2026-03-31", author: "jonas", factCheckedBy: "frederik", articleTitle: "Casino med Dansk Licens – Komplet Guide", articleCategory: "Guide", articleExcerpt: "Alt om casinoer med dansk licens: skattefri gevinster, max 10x omsætningskrav, ROFUS-beskyttelse og MitID-verifikation." },

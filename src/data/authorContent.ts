@@ -114,12 +114,12 @@ const jonasArticles: AuthorArticle[] = [
   { title: "Nye Casinoer med Bonus Uden Indbetaling", path: "/nye-casinoer/bonus-uden-indbetaling", category: "Guide", excerpt: "Nye casinoer der tilbyder bonus uden indbetaling." },
   { title: "Nye vs. Etablerede Casinoer", path: "/nye-casinoer/vs-etablerede", category: "Guide", excerpt: "Sammenligning af nye og etablerede casinoer i Danmark." },
   // Casinoer cluster
-  { title: "Casinoer med Hurtig Udbetaling", path: "/casinoer/hurtig-udbetaling", category: "Guide", excerpt: "Find casinoer med de hurtigste udbetalinger i Danmark." },
+  { title: "Casinoer med Hurtig Udbetaling", path: "/hurtig-udbetaling", category: "Guide", excerpt: "Find casinoer med de hurtigste udbetalinger i Danmark." },
   { title: "Casinoer med Høj RTP", path: "/casinoer/hoej-rtp", category: "Guide", excerpt: "Casinoer med de bedste tilbagebetalingsprocenter." },
   { title: "Crypto Casino Guide", path: "/casinoer/crypto-casino", category: "Guide", excerpt: "Alt om kryptovaluta-casinoer, Bitcoin-betalinger og sikkerhed." },
   { title: "Licenserede Casinoer", path: "/casino-licenser", category: "Guide", excerpt: "Komplet liste over casinoer med dansk licens." },
   { title: "VR Casinoer Guide", path: "/casinoer/vr-casinoer", category: "Guide", excerpt: "Alt om virtual reality casinoer og fremtidens spiloplevelse." },
-  { title: "Mobil Casinoer Guide", path: "/casinoer/mobil-casinoer", category: "Guide", excerpt: "De bedste mobilvenlige casinoer i Danmark." },
+  { title: "Mobil Casinoer Guide", path: "/mobil-casino", category: "Guide", excerpt: "De bedste mobilvenlige casinoer i Danmark." },
   { title: "Spil Casino for Sjov", path: "/casinoer/spil-casino-for-sjov", category: "Guide", excerpt: "Prøv casinospil gratis uden risiko – komplet guide." },
   // Casino og Skat moved to Niklas
   // Mobil Casino cluster

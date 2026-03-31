@@ -668,7 +668,7 @@ const CasinoMedDanskLicens = () => {
           <h3 className="mb-3 text-xl font-bold">Udbetalingstid – hvad kan du forvente?</h3>
           <p className="mb-4 text-muted-foreground leading-relaxed">
             De fleste danske casinoer behandler udbetalinger inden for 24 timer – mange endda hurtigere. Casinoer med{" "}
-            <Link to="/casinoer/hurtig-udbetaling" className={linkClass}>hurtig udbetaling</Link> som Spilleautomaten og SpilDanskNu har typisk behandlingstider på under 2 timer for e-wallets og MobilePay.
+            <Link to="/hurtig-udbetaling" className={linkClass}>hurtig udbetaling</Link> som Spilleautomaten og SpilDanskNu har typisk behandlingstider på under 2 timer for e-wallets og MobilePay.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             Første udbetaling kan tage længere tid på grund af{" "}

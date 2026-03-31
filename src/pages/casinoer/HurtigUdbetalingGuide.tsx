@@ -368,7 +368,7 @@ const HurtigUdbetalingGuide = () => {
             </CardHeader>
             <CardContent className="space-y-3 text-sm text-muted-foreground">
               <p><Link to="/betalingsmetoder/mobilepay" className={linkClass}>MobilePay</Link> er danskernes foretrukne mobile betalingsløsning og vinder hurtigt indpas hos online casinoer. Udbetalinger via MobilePay tager typisk 0–24 timer og er helt gebyrfri. Processen er ekstremt enkel – du modtager blot pengene direkte i din MobilePay-app, hvorfra de automatisk overføres til din tilknyttede bankkonto.</p>
-              <p><Link to="/betalingsmetoder/apple-pay" className={linkClass}>Apple Pay</Link> tilbyder lignende bekvemmelighed for iPhone-brugere med hurtig, sikker betaling via Face ID eller Touch ID. Begge metoder er ideelle til <Link to="/casinoer/mobil-casinoer" className={linkClass}>mobil casino</Link>-spillere, der ønsker en sømløs oplevelse fra spil til udbetaling.</p>
+              <p><Link to="/betalingsmetoder/apple-pay" className={linkClass}>Apple Pay</Link> tilbyder lignende bekvemmelighed for iPhone-brugere med hurtig, sikker betaling via Face ID eller Touch ID. Begge metoder er ideelle til <Link to="/mobil-casino" className={linkClass}>mobil casino</Link>-spillere, der ønsker en sømløs oplevelse fra spil til udbetaling.</p>
             </CardContent>
           </Card>
         </section>
