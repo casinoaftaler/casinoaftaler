@@ -6,20 +6,18 @@ import {
   ShieldCheck,
   Sparkles,
   Trophy,
-  Users,
-  Gamepad2,
-  BookOpen,
-  Zap,
-  Gift,
-  Target,
   CheckCircle2,
   ArrowRight,
   Search,
-  Scale,
-  Newspaper,
   Star,
-  TrendingUp,
 } from "lucide-react";
+import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
+
+function MenuIcon({ iconName, alt, className = "h-5 w-5 flex-shrink-0" }: { iconName: string; alt: string; className?: string }) {
+  const src = MENU_ICON_MAP[iconName];
+  if (!src) return null;
+  return <img src={src} alt={alt} className={className} loading="lazy" />;
+}
 
 /* ─── Logo imports ─── */
 const casinoLogos = import.meta.glob<{ default: string }>(
@@ -99,7 +97,7 @@ export function HomepageAnmeldelserSection() {
                 </>
               ) : (
                 <span className="flex items-center gap-2 text-sm font-medium">
-                  <BookOpen className="h-4 w-4 text-primary flex-shrink-0" />
+                  <MenuIcon iconName="book-open" alt={casino.name} className="h-4 w-4 flex-shrink-0" />
                   {casino.name} Anmeldelse
                 </span>
               )}
@@ -144,32 +142,32 @@ export function HomepageBonusHuntSection() {
       </p>
       <div className="flex flex-wrap gap-3">
         <Link to="/bonus-hunt" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
-          <Target className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="target" alt="Bonus hunts" />
           Se alle bonus hunts
           <ArrowRight className="h-4 w-4" />
         </Link>
         <Link to="/bonus-hunt/arkiv" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
-          <BookOpen className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="book-open" alt="Arkiv" />
           Bonus Hunt Arkiv
         </Link>
         <Link to="/slot-database" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
-          <Gamepad2 className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="gamepad-2" alt="Slot Database" />
           Slot Database
         </Link>
         <Link to="/community/turneringer/arkiv" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
-          <Trophy className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="trophy" alt="Turneringer" />
           Turneringsarkiv
         </Link>
         <Link to="/statistik" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
-          <TrendingUp className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="trending-up" alt="Statistik" />
           Bonus Hunt Statistik
         </Link>
         <Link to="/community" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
-          <Users className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="users" alt="Community" />
           Udforsk community
         </Link>
         <Link to="/ordbog" className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
-          <BookOpen className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="book-open" alt="Ordbog" />
           Casino Ordbog
         </Link>
       </div>
@@ -188,7 +186,7 @@ export function HomepageNyhederSection() {
         to="/casino-nyheder"
         className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
       >
-        <Newspaper className="h-4 w-4 text-primary flex-shrink-0" />
+        <MenuIcon iconName="newspaper" alt="Nyheder" />
         Se alle casino nyheder
         <ArrowRight className="h-4 w-4" />
       </Link>
@@ -299,15 +297,15 @@ export function HomepageSlotShowcase() {
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <Link to="/megaways-slots" className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
-          <Zap className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="zap" alt="Megaways" />
           Megaways Slots
         </Link>
         <Link to="/jackpot-slots" className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
-          <Trophy className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="trophy" alt="Jackpot" />
           Jackpot Slots
         </Link>
         <Link to="/bonus-buy-slots" className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
-          <Gift className="h-4 w-4 text-primary flex-shrink-0" />
+          <MenuIcon iconName="gift" alt="Bonus Buy" />
           Bonus Buy Slots
         </Link>
       </div>
@@ -321,7 +319,7 @@ export function HomepageAnsvarligtSpilSection() {
       <Card className="border-border bg-card border-l-4 border-l-primary">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <ShieldCheck className="h-6 w-6 text-primary" />
+            <MenuIcon iconName="shield-check" alt="Ansvarligt spil" className="h-6 w-6" />
             Ansvarligt Spil
           </CardTitle>
         </CardHeader>

@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
-import { CreditCard, Gamepad2 } from "lucide-react";
+import { MENU_ICON_MAP } from "@/components/header/menuIconMap";
+
+function MenuIcon({ iconName, alt, className = "h-5 w-5 flex-shrink-0" }: { iconName: string; alt: string; className?: string }) {
+  const src = MENU_ICON_MAP[iconName];
+  if (!src) return null;
+  return <img src={src} alt={alt} className={className} loading="lazy" />;
+}
 
 export function HomepagePaymentSection() {
   return (
@@ -13,23 +19,23 @@ export function HomepagePaymentSection() {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
         {[
-          { name: "MobilePay", to: "/betalingsmetoder/mobilepay" },
-          { name: "Trustly", to: "/betalingsmetoder/trustly" },
-          { name: "Visa/Mastercard", to: "/betalingsmetoder/visa-mastercard" },
-          { name: "Apple Pay", to: "/betalingsmetoder/apple-pay" },
-          { name: "PayPal", to: "/betalingsmetoder/paypal" },
-          { name: "Skrill", to: "/betalingsmetoder/skrill" },
-          { name: "Revolut", to: "/betalingsmetoder/revolut" },
-          { name: "Paysafecard", to: "/betalingsmetoder/paysafecard" },
-          { name: "Zimpler", to: "/betalingsmetoder/zimpler" },
-          { name: "Bankoverførsel", to: "/betalingsmetoder/bankoverforsler" },
+          { name: "MobilePay", to: "/betalingsmetoder/mobilepay", icon: "smartphone" },
+          { name: "Trustly", to: "/betalingsmetoder/trustly", icon: "send" },
+          { name: "Visa/Mastercard", to: "/betalingsmetoder/visa-mastercard", icon: "credit-card" },
+          { name: "Apple Pay", to: "/betalingsmetoder/apple-pay", icon: "apple" },
+          { name: "PayPal", to: "/betalingsmetoder/paypal", icon: "wallet" },
+          { name: "Skrill", to: "/betalingsmetoder/skrill", icon: "wallet" },
+          { name: "Revolut", to: "/betalingsmetoder/revolut", icon: "circle-dollar-sign" },
+          { name: "Paysafecard", to: "/betalingsmetoder/paysafecard", icon: "shield" },
+          { name: "Zimpler", to: "/betalingsmetoder/zimpler", icon: "banknote" },
+          { name: "Bankoverførsel", to: "/betalingsmetoder/bankoverforsler", icon: "landmark" },
         ].map((pm) => (
           <Link
             key={pm.name}
             to={pm.to}
             className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
           >
-            <CreditCard className="h-4 w-4 text-primary flex-shrink-0" />
+            <MenuIcon iconName={pm.icon} alt={pm.name} />
             {pm.name}
           </Link>
         ))}
@@ -78,7 +84,7 @@ export function HomepageProviderSection() {
             to={provider.to}
             className="flex items-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
           >
-            <Gamepad2 className="h-4 w-4 text-primary flex-shrink-0" />
+            <MenuIcon iconName="gamepad-2" alt={provider.name} />
             {provider.name}
           </Link>
         ))}
