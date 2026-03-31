@@ -1,4 +1,5 @@
-import { lazy, Suspense, Component, type ReactNode, type ErrorInfo, type ComponentType } from "react";
+import { Suspense, Component, type ReactNode, type ErrorInfo, type ComponentType } from "react";
+import { lazyRetry } from "./lib/lazyRetry";
 import { trackError } from "./lib/errorTracker";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
