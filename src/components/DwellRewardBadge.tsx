@@ -256,8 +256,17 @@ export function DwellRewardBadge() {
           {completed ? (
             <div className="animate-fade-in">
               <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
-                +300 credits! 🎉
+                +{300 + (scrollClaimed ? scrollDepthCredits : 0)} credits! 🎉
               </span>
+              {scrollClaimed && (
+                <p className="text-[10px] text-emerald-500/80 font-medium">inkl. +{scrollDepthCredits} scroll-dybde bonus</p>
+              )}
+              {streakFlash && (
+                <p className="text-xs font-bold text-amber-500 animate-pulse mt-0.5">{streakFlash}</p>
+              )}
+              {currentStreak > 0 && !streakFlash && (
+                <p className="text-[10px] text-muted-foreground mt-0.5">🔥 {currentStreak}-dags streak</p>
+              )}
               {nextMission ? (
                 <Link
                   to={nextMission.path}
