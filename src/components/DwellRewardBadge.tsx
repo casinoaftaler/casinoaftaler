@@ -296,11 +296,17 @@ export function DwellRewardBadge() {
                 <Gift className={`h-4.5 w-4.5 transition-colors duration-300 ${isNearEnd ? "text-orange-500" : "text-amber-500"}`} />
                 <span className="text-lg font-bold text-foreground">300 credits</span>
               </div>
-              {/* Scroll-depth hint during active timer */}
-              {hasScrolled && !hasReachedDepth && hasReachedHint && (
+              {/* Scroll-depth hints during active timer */}
+              {hasScrolled && hasReachedHint && !hasReachedDepth && (
                 <p className="text-[10px] font-semibold text-amber-500 animate-pulse mt-0.5 flex items-center gap-1">
                   <ArrowDown className="h-3 w-3 animate-bounce" />
                   Scroll til 70% for +{scrollDepthCredits} bonus!
+                </p>
+              )}
+              {hasScrolled && hasReachedDepth && !completed && (
+                <p className="text-[10px] font-semibold text-emerald-500 mt-0.5 flex items-center gap-1">
+                  <Check className="h-3 w-3" />
+                  +{scrollDepthCredits} bonus klar! Vent tiden ud ⏳
                 </p>
               )}
               <span className="text-xs text-muted-foreground">
