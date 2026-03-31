@@ -81,5 +81,5 @@ export function useScrollDepthBonus(pagePath: string, dwellCompleted: boolean) {
     setIsClaiming(false);
   }, [user, pagePath, isClaimed, isClaiming, queryClient]);
 
-  return { hasReachedDepth, isClaimed, scrollDepthCredits: SCROLL_DEPTH_BONUS_CREDITS };
+  return { hasReachedDepth, hasReachedHint, isClaimed, scrollDepthCredits: SCROLL_DEPTH_BONUS_CREDITS };
 }
