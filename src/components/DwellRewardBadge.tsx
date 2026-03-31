@@ -25,7 +25,7 @@ export function DwellRewardBadge() {
   } = useDwellReward(pathname);
 
   const { pages, completedCount, totalPages } = useDwellRewardProgress();
-  const { hasReachedDepth, isClaimed: scrollClaimed, scrollDepthCredits } = useScrollDepthBonus(pathname, isClaimed || alreadyCompleted);
+  const { hasReachedDepth, hasReachedHint, isClaimed: scrollClaimed, scrollDepthCredits } = useScrollDepthBonus(pathname, isClaimed || alreadyCompleted);
   const { currentStreak, checkAndUpdateStreak } = useMissionStreak();
 
   const [visible, setVisible] = useState(true);
