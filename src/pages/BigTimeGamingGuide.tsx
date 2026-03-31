@@ -28,6 +28,13 @@ const BigTimeGamingGuide = () => (
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Big Time Gaming (BTG) er en australsk spiludvikler grundlagt i 2011 i Sydney af Nik Robinson – en erfaren branchefolk med over to årtiers erfaring i spilleindustrien. Robinsons vision var at skabe slots der var fundamentalt anderledes end alt andet på markedet, og med Megaways-mekanikken opnåede han noget ekstraordinært: han opfandt en spilmekanik der har ændret hele casinoindustrien. Det er sjældent at én enkelt innovation kan tilskrives ét studio – Megaways er den undtagelse der bekræfter reglen.
         </p>
+        <ReviewScreenshot
+          src={btgLogo}
+          alt="Big Time Gaming officielt logo – det røde BTG-emblem med stjerner, kendt for Megaways-mekanikken"
+          caption="Big Time Gamings officielle logo – studiet bag den patenterede Megaways-mekanik"
+          size="medium"
+          eager
+        />
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Megaways-mekanikken med dynamiske hjul og op til 117.649 (eller flere) vinderkombinationer per spin debuterede i Bonanza i 2016. Konceptet er elegant: i stedet for et fast antal symboler per hjulposition (typisk 3), tildeler en Random Reel Modifier 2-7 symboler per position per spin. Med 6 hjul giver det 7^6 = 117.649 mulige vinderkombinationer i maksimumscenariet – mod typisk 243 eller 1.024 i standard slots. White Rabbit Megaways udvidede dette yderligere med extending reels til 248.832 vinderkombinationer. Denne variabilitet skaber en helt ny type spænding: hvert spin føles anderledes fordi antallet af vinderkombinationer svinger dramatisk.
         </p>
