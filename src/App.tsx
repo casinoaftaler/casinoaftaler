@@ -247,6 +247,7 @@ const BaccaratGuide = lazyRetry(() => import("./pages/casinospil/BaccaratGuide")
 const RouletteStrategiGuide = lazyRetry(() => import("./pages/casinospil/RouletteStrategiGuide"));
 const OnlineLotteriGuide = lazyRetry(() => import("./pages/casinospil/OnlineLotteriGuide"));
 const BingoGuide = lazyRetry(() => import("./pages/casinospil/BingoGuide"));
+const KenoGuide = lazyRetry(() => import("./pages/casinospil/KenoGuide"));
 const GameShowsGuide = lazyRetry(() => import("./pages/casinospil/GameShowsGuide"));
 const Forfatter = lazyRetry(() => import("./pages/Forfatter"));
 const ForfatterKevin = lazyRetry(() => import("./pages/ForfatterKevin"));
