@@ -245,7 +245,7 @@ const OmTeamet = () => {
               <span className="text-3xl font-bold text-white/30">&</span>
               <Link to="/forfatter/kevin" className="group">
                 <div className="mx-auto h-36 w-36 overflow-hidden rounded-2xl border-4 border-white/20 transition-all duration-300 group-hover:border-white/50 group-hover:scale-105">
-                  <img src={kevinImage} alt="Kevin – IT Medansvarlig" className="h-full w-full object-cover object-top" loading="eager" />
+                  <img src={kevinImage} alt="Kevin – Streamer & Spiludvikler" className="h-full w-full object-cover object-top" loading="eager" />
                 </div>
                 <p className="mt-2 text-sm font-medium text-white/80">Kevin</p>
               </Link>
