@@ -1,4 +1,5 @@
-import { useState, useCallback, lazy, Suspense } from "react";
+import { useState, useCallback, Suspense } from "react";
+import { lazyRetry } from "@/lib/lazyRetry";
 import { SEO } from "@/components/SEO";
 import { CommunityNav } from "@/components/community/CommunityNav";
 import { ContentSidebar } from "@/components/ContentSidebar";
@@ -16,10 +17,10 @@ import { LogIn, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
-const SpinHistory = lazy(() =>
+const SpinHistory = lazyRetry(() =>
   import("@/components/spin-the-reel/SpinHistory").then((m) => ({ default: m.SpinHistory }))
 );
-const TodayLeaderboard = lazy(() =>
+const TodayLeaderboard = lazyRetry(() =>
   import("@/components/spin-the-reel/TodayLeaderboard").then((m) => ({ default: m.TodayLeaderboard }))
 );
 
