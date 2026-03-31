@@ -131,20 +131,38 @@ export function DailyMissionsWidget() {
         ))}
       </div>
 
-      {/* Streak section */}
-      {currentStreak > 0 && (
-        <div className="mt-3 flex items-center gap-2 rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2">
-          <Flame className="h-4 w-4 text-amber-500 flex-shrink-0" />
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-bold text-amber-500">{currentStreak}-dags streak 🔥</p>
-            {nextMilestone && (
-              <p className="text-[10px] text-muted-foreground">
-                Næste bonus: {nextMilestone.days} dage → +{nextMilestone.credits} credits
-              </p>
-            )}
-          </div>
+      {/* Streak section – always visible */}
+      <div className="mt-3 rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2.5">
+        <div className="flex items-center gap-2 mb-2">
+          <Flame className={`h-4 w-4 flex-shrink-0 ${currentStreak > 0 ? "text-amber-500" : "text-muted-foreground"}`} />
+          <p className="text-xs font-bold text-foreground">
+            {currentStreak > 0 ? `${currentStreak}-dags streak 🔥` : "Streak bonus"}
+          </p>
         </div>
-      )}
+        <div className="flex gap-1.5">
+          {STREAK_MILESTONES.map((m) => {
+            const achieved = currentStreak >= m.days;
+            const isNext = nextMilestone?.days === m.days;
+            return (
+              <div
+                key={m.days}
+                className={`flex-1 flex flex-col items-center gap-0.5 rounded-md py-1.5 text-center ${
+                  achieved
+                    ? "bg-amber-500/15 border border-amber-500/30"
+                    : isNext
+                      ? "bg-amber-500/5 border border-amber-500/20"
+                      : "bg-muted/10 border border-border/20"
+                }`}
+              >
+                <span className={`text-[10px] font-bold ${achieved ? "text-amber-500" : isNext ? "text-amber-400" : "text-muted-foreground"}`}>
+                  {achieved ? "✓" : `${m.days}d`}
+                </span>
+                <span className="text-[9px] text-muted-foreground">+{m.credits}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
 
       {allCompleted && (
         <p className="mt-3 text-center text-xs font-medium text-emerald-600 dark:text-emerald-400">

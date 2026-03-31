@@ -143,38 +143,61 @@ export function DailyMissionsCard() {
           ))}
         </div>
 
-        {/* Streak progress */}
-        {(currentStreak > 0 || longestStreak > 0) && (
-          <div className="mt-5 flex items-center gap-4 rounded-xl border border-amber-500/20 bg-amber-500/5 px-5 py-3">
-            <Flame className="h-6 w-6 text-amber-500 flex-shrink-0" />
+        {/* Streak progress – always visible */}
+        <div className="mt-5 rounded-xl border border-amber-500/20 bg-amber-500/5 px-5 py-4">
+          <div className="flex items-center gap-3 mb-3">
+            <Flame className={`h-6 w-6 flex-shrink-0 ${currentStreak > 0 ? "text-amber-500" : "text-muted-foreground"}`} />
             <div className="flex-1">
-              <p className="text-sm font-bold text-foreground">{currentStreak}-dags streak 🔥</p>
-              {nextMilestone && (
-                <p className="text-xs text-muted-foreground">
-                  {nextMilestone.days - currentStreak} dage til næste bonus: +{nextMilestone.credits} credits
-                </p>
-              )}
-              {longestStreak > currentStreak && (
+              <p className="text-sm font-bold text-foreground">
+                {currentStreak > 0 ? `${currentStreak}-dags streak 🔥` : "Start din streak!"}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                {currentStreak === 0
+                  ? "Fuldfør alle 6 missioner dagligt for at opbygge en streak"
+                  : nextMilestone
+                    ? `${nextMilestone.days - currentStreak} dage til næste bonus: +${nextMilestone.credits} credits`
+                    : "Alle streak-bonusser opnået! 🏆"}
+              </p>
+              {longestStreak > currentStreak && longestStreak > 0 && (
                 <p className="text-[10px] text-muted-foreground/60">Personlig rekord: {longestStreak} dage</p>
               )}
             </div>
-            <div className="flex gap-1">
-              {STREAK_MILESTONES.map((m) => (
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            {STREAK_MILESTONES.map((m) => {
+              const achieved = currentStreak >= m.days;
+              const isNext = nextMilestone?.days === m.days;
+              return (
                 <div
                   key={m.days}
-                  className={`flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-bold ${
-                    currentStreak >= m.days
-                      ? "bg-amber-500 text-white"
-                      : "bg-muted/30 text-muted-foreground"
+                  className={`flex flex-col items-center gap-1 rounded-lg border px-3 py-2.5 transition-all ${
+                    achieved
+                      ? "border-amber-500/40 bg-amber-500/15"
+                      : isNext
+                        ? "border-amber-500/30 bg-amber-500/5"
+                        : "border-border/30 bg-muted/10"
                   }`}
-                  title={`${m.days}-dags streak: +${m.credits} credits`}
                 >
-                  {m.days}d
+                  <div className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold ${
+                    achieved
+                      ? "bg-amber-500 text-white"
+                      : isNext
+                        ? "bg-amber-500/20 text-amber-500"
+                        : "bg-muted/30 text-muted-foreground"
+                  }`}>
+                    {achieved ? "✓" : `${m.days}d`}
+                  </div>
+                  <p className={`text-[11px] font-semibold ${achieved ? "text-amber-500" : "text-foreground"}`}>
+                    {m.label}
+                  </p>
+                  <p className={`text-[10px] ${achieved ? "text-amber-400/70" : "text-muted-foreground"}`}>
+                    +{m.credits.toLocaleString("da-DK")} credits
+                  </p>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
-        )}
+        </div>
 
         {allCompleted && (
           <p className="mt-4 text-center text-sm font-medium text-emerald-600 dark:text-emerald-400">
