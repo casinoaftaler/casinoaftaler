@@ -55,6 +55,13 @@ const ELKStudiosGuide = () => (
           Den kommercielle konsekvens af denne strategi er paradoksal: ELK Studios er blandt de mest respekterede studier i branchen (målt på EGR Awards per udgivelse), men blandt de mindst synlige i casinolobbyer (målt på tilgængelige titler). Det kræver en aktiv indsats fra spilleren at finde ELK Studios-spil: brug casinoets filtreringsmenu, søg efter studio-navn, eller tjek dedikerede ELK-sektioner som flere danske casinoer tilbyder. Den passive browser – spilleren der klikker på det nærmeste nye spil i lobbyen – vil sjældnere støde på ELK Studios end Pragmatic Play. Det er en trade-off ELK Studios har accepteret: de sigter efter loyale fans, ikke tilfældige kliks.
         </p>
 
+        <ReviewScreenshot
+          src={elkTimeline}
+          alt="ELK Studios udviklings-timeline med milepæle og ikoniske spilkarakterer fra Bushido Gold, Bompers og andre titler"
+          caption="ELK Studios' timeline – fra grundlæggelse i 2012 til nutidens 80+ titler med fokus på kvalitet over kvantitet"
+          size="medium"
+        />
+
         <h3 className="text-xl font-bold mb-4">ELK Studios vs. Play'n GO: Kvalitets-First Rivalisering</h3>
         <p className="mb-4 text-muted-foreground leading-relaxed">
           Den mest oplagte sammenligning i branchen er med <Link to="/spiludviklere/play-n-go" className="text-primary underline hover:text-primary/80">Play'n GO</Link>, der ligeledes positionerer sig som kvalitets-first. Begge er svenske studier med stærke principper om ikke at kompromittere på spiloplevelsen. Men de differentier sig fundamentalt i approach: Play'n GO satser på storytelling og franchise-building (Rich Wilde-serien, Reactoonz-universet), mens ELK Studios satser på mekanisk innovation og matematisk dybde. Play'n GO har en portefølje på 300+ spil med 4-5 udgivelser per måned; ELK har 80 med 1-2. Play'n GO tilbyder ikke Bonus Buy; ELK tilbyder det i udvalgte titler. Play'n GO har fast RTP; ELK har ligeledes fast RTP – begge er blandt de få udviklere der ikke tilbyder operatør-konfigurerbare RTP-niveauer.
