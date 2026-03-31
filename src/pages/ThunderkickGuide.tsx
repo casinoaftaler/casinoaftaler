@@ -10,7 +10,7 @@ const ThunderkickGuide = () => (
     seoDescription="Thunderkick slots: Svensk indie-studio med Barrell Shift og Ticket Collect. RTP 96-96,5 %, medium-høj volatilitet og 60+ unikke titler."
     name="Thunderkick"    heroSubtitle="Thunderkick er det svenske indie-studie der beviser, at originalitet stadig kan trumfe volumen. Med kun 60+ titler har de skabt nogle af branchens mest distinkte spilleautomater – fra Esqueleto Explosivo til Beat the Beast-serien."
     currentPath="/spiludviklere/thunderkick"
-    readTime="34 Min."
+    readTime="23 Min."
     strategicTitle="Kunstnerens Dilemma: Thunderkicks Filosofi og Markedsposition"
     technicalTitle="Mekanisk Originalitet: Thunderkicks Tekniske Arkitektur"
     gamesTitle="Seks Mesterværker: De Spil der Definerer Thunderkicks Identitet"
