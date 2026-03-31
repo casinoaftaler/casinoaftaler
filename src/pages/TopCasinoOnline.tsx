@@ -1115,21 +1115,21 @@ const TopCasinoOnline = () => {
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {[
-              { name: "NetEnt", to: "/spiludviklere/netent" },
-              { name: "Play'n GO", to: "/spiludviklere/play-n-go" },
-              { name: "Pragmatic Play", to: "/spiludviklere/pragmatic-play" },
-              { name: "Evolution Gaming", to: "/spiludviklere/evolution-gaming" },
-              { name: "Microgaming", to: "/spiludviklere/microgaming" },
-              { name: "Yggdrasil", to: "/spiludviklere/yggdrasil" },
-              { name: "Red Tiger", to: "/spiludviklere/red-tiger" },
-              { name: "Big Time Gaming", to: "/spiludviklere/big-time-gaming" },
-              { name: "Nolimit City", to: "/spiludviklere/nolimit-city" },
-              { name: "Hacksaw Gaming", to: "/spiludviklere/hacksaw-gaming" },
-              { name: "Relax Gaming", to: "/spiludviklere/relax-gaming" },
-              { name: "ELK Studios", to: "/spiludviklere/elk-studios" },
+              { name: "NetEnt", to: "/spiludviklere/netent", slug: "netent" },
+              { name: "Play'n GO", to: "/spiludviklere/play-n-go", slug: "play-n-go" },
+              { name: "Pragmatic Play", to: "/spiludviklere/pragmatic-play", slug: "pragmatic-play" },
+              { name: "Evolution Gaming", to: "/spiludviklere/evolution-gaming", slug: "evolution-gaming" },
+              { name: "Microgaming", to: "/spiludviklere/microgaming", slug: "microgaming" },
+              { name: "Yggdrasil", to: "/spiludviklere/yggdrasil", slug: "yggdrasil" },
+              { name: "Red Tiger", to: "/spiludviklere/red-tiger", slug: "red-tiger" },
+              { name: "Big Time Gaming", to: "/spiludviklere/big-time-gaming", slug: "big-time-gaming" },
+              { name: "Nolimit City", to: "/spiludviklere/nolimit-city", slug: "nolimit-city" },
+              { name: "Hacksaw Gaming", to: "/spiludviklere/hacksaw-gaming", slug: "hacksaw-gaming" },
+              { name: "Relax Gaming", to: "/spiludviklere/relax-gaming", slug: "relax-gaming" },
+              { name: "ELK Studios", to: "/spiludviklere/elk-studios", slug: "elk-studios" },
             ].map((provider) => (
               <Link key={provider.name} to={provider.to} className="flex items-center justify-center gap-2 rounded-lg border border-border bg-card p-3 text-sm font-medium text-center transition-colors hover:border-primary/50 hover:bg-accent/50">
-                <Gamepad2 className="h-4 w-4 text-primary flex-shrink-0" />
+                <ProviderLogoIcon slug={provider.slug} alt={provider.name} />
                 {provider.name}
               </Link>
             ))}

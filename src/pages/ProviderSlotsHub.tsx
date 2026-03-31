@@ -276,7 +276,7 @@ export default function ProviderSlotsHub() {
                     to={`/spiludviklere/${validSlug}`}
                     className="flex items-center gap-3 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 hover:bg-accent/50"
                   >
-                    <Gamepad2 className="h-5 w-5 text-primary flex-shrink-0" />
+                    <ProviderLogoIcon slug={validSlug} alt={content.displayName} />
                     <div className="flex-1">
                       <p className="font-semibold">{content.displayName} – Dybdegående Udvikler-guide</p>
                       <p className="text-sm text-muted-foreground">
